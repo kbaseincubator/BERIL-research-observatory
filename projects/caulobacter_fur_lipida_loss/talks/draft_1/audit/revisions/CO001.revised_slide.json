@@ -1,0 +1,31 @@
+{
+  "id": 30,
+  "position": 31,
+  "substory_id": null,
+  "layout": "deck_close",
+  "content": {
+    "unified_point": "Lipid A loss triggers five adaptive layers that explain how — and why — Caulobacter alone tolerates the deletion.",
+    "key_takeaways": [
+      "Fur-released transport relief is real and fitness-bearing in Path A transporters, but the SspB-buffered respiratory arm shows no fitness signal.",
+      "ChvI drives a two-phase program — regulators early, envelope-structural genes late — but the membrane substitute itself is set elsewhere.",
+      "A constitutive anionic-sphingolipid pool substitutes for lipid A, transported by maintained Lpt machinery — not an inducible emergency response.",
+      "Peptidoglycan synthesis is broadly downshifted with targeted Pal-Tol induction — a coordinated remodel that raises why only Caulobacter survives it.",
+      "The sphingolipid pathway and ChvG-ChvI are taxonomically restricted; comparator species lack the route entirely and use alternative strategies instead."
+    ],
+    "forward_call": "Replicate the OM proteome (already planned by the data provider for summer 2026). Characterize the Caulobacter SigU regulon via SigU-induction RNA-seq (ectopic vanillate-inducible SigU expression) followed by genome-wide DE.",
+    "data_source": "Substory conclusions: S1 (C-slot) + S2 (C-slot) + S3 (C-slot) + S4 (C-slot) + S5 (C-slot); narrative/00_throughline.md; REPORT.md §Future directions"
+  },
+  "speaker_notes_seed": "The OM proteome replication is the immediate near-term experiment — the data provider already has it slated for summer 2026, and it nails down the two post-hoc findings (lptC2 transcript-protein decoupling and Pal-Tol induction) before publication. The SigU regulon characterization is the longer novel arc: no Caulobacter SigU regulon exists in the literature, and the late ChvI cohort from NB03 gives us a ready candidate target list to validate.\n\n**Sources:** Substory conclusions: S1 (C-slot) + S2 (C-slot) + S3 (C-slot) + S4 (C-slot) + S5 (C-slot); narrative/00_throughline.md; REPORT.md §Future directions",
+  "evidence_anchors": [
+    {"kind": "report_section", "ref": "REPORT.md §Future directions"},
+    {"kind": "report_section", "ref": "REPORT.md §Key Findings"}
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-07T00:00:00Z",
+      "finding_id": "CO001",
+      "finding_class": "content_overflow",
+      "summary": "Shortened unified_point from 336 to 113 chars to satisfy content_overflow P1 (G.10-C slot_kind=title, deck_close); dropped rhetorical opener 'A single envelope catastrophe — lipid A loss —' and qualifiers 'partially independent' and 'together' (all preserved verbatim in key_takeaways and speaker_notes_seed); substantive claim — five adaptive layers explaining how and why Caulobacter alone tolerates the deletion — preserved intact."
+    }
+  ]
+}

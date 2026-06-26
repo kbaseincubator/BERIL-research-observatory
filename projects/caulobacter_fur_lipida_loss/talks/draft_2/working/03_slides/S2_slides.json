@@ -1,0 +1,88 @@
+{
+  "schema_version": "compose-fragment.v2",
+  "substory_id": "S2",
+  "substory_punchline": "Calibrated against genome background, only the Fur-released Path A enriches for envelope-stress fitness.",
+  "throughline_id": "TL1",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "section_divider",
+      "content": {
+        "punchline": "Calibrated against genome background, only the Fur-released Path A enriches for envelope-stress fitness.",
+        "substory_number": 2
+      },
+      "speaker_notes": "In the previous section we established that Δfur derepression is the driver — confirmed by the Leaden concordance and the strain contrast. The question now is which of the Fur-released genes actually carry the envelope-stress fitness signal. The answer has two halves: Path A, the clean Fur-released TBDT subset, clears a calibrated enrichment bar; Path B, the SspB-buffered cbb3/fix respiratory chain, falls to background. Before the results land, the methodological framing is essential. The genome-wide phenotype-bearing rate in the Caulobacter fitness compendium is 33.25% — one in three genes shows a fitness effect in at least two envelope-stress experiments. That background rate transforms the analysis. The pre-registered ≥10% threshold in the original plan sits well below 33.25%, meaning any random set of Caulobacter genes would appear to pass the original threshold. The real question is not 'do these genes show fitness effects?' but 'are they enriched beyond what background predicts?' That recalibration — from threshold-passing to fold-enrichment over background — is the methodological lesson (A6) that this section carries alongside its biology. The Path A enrichment result is real but modest: fold 1.60×, p=0.016. It was independently reproduced by our adversarial reviewer at fold 1.598×, p=0.0156, Bonferroni-robust. The Path B result is unambiguously null: fold 1.04×, p=0.515, indistinguishable from any randomly drawn Caulobacter gene set. This section narrows the driver claim from Δfur derepression broadly to the specific Fur-released TBDT arm that contacts envelope-stress fitness. The next slide walks through the calibration setup before the two-arm results.",
+      "evidence_anchors": []
+    },
+    {
+      "position": 1,
+      "layout": "methods_summary",
+      "content": {
+        "title": "Hypergeometric enrichment test calibrated against Caulobacter genome background (H2 method)",
+        "bullets": [
+          "Fitness data: Caulobacter RB-TnSeq compendium, 198 experiments (kescience_fitnessbrowser, orgId=Caulo; Price et al. 2018)",
+          "Envelope-stress subset selected: 22 of 198 experiments; iron-limitation experiments = 0 in compendium — H2 iron arm descoped at preflight",
+          "Phenotype-bearing criterion: |fitness t| > 4 in ≥ 2 envelope-stress experiments",
+          "Genome background calibration: K=1311 / N=3943 = 33.25% phenotype-bearing across all Caulobacter genes",
+          "Pre-registered ≥10% threshold sits below 33.25% background — threshold-passing alone is uninformative without background correction (A6: miscalibration lesson)",
+          "H2 verdict recalibrated in NB02b: hypergeometric enrichment vs background, requiring fold ≥ 1.5× and p < 0.05",
+          "Two arms tested: Path A (32 concordant_strong Fur-released genes) vs Path B (26 SspB-buffered cbb3/fix genes)"
+        ],
+        "tools_versions": [
+          {"tool": "Fitness Browser", "version": "unknown"}
+        ],
+        "see_notes_footer": true
+      },
+      "speaker_notes": "The method here is a hypergeometric enrichment test, but the calibration step — establishing the genome-wide background rate before testing any gene set — is where most of the interpretive work happens. The Caulobacter Fitness Browser compendium covers 198 experiments: 22 envelope-stress, 46 nitrogen-source, 42 carbon-source, 10 PYE control, and 5 others. We selected the 22 envelope-stress experiments as the relevant phenotypic axis for H2. Crucially, the compendium contains zero iron-limitation experiments for Caulobacter, so H2's iron arm was descoped at preflight per the pre-registered plan. These are envelope-axis-only results. We defined a gene as phenotype-bearing if it had an absolute fitness t-statistic greater than 4 in at least 2 of those 22 envelope-stress experiments. Genome-wide, 1,311 of 3,943 Caulobacter genes meet this criterion — exactly 33.25%. The pre-registered ≥10% threshold in the original analysis plan sits comfortably below 33.25%, which means any randomly drawn Caulobacter gene set would on average show about one in three genes as phenotype-bearing — well above the threshold. Threshold-passing was therefore a presence test, not an enrichment test. The adversarial review surfaced this as a methodological miscalibration. We recalibrated the H2 verdict in notebook 02b to require fold-enrichment over background of at least 1.5× with p<0.05. This is now the methodological lesson the talk carries: pre-registered fitness-phenotype thresholds in BERIL projects must be calibrated against the genome-wide background rate rather than set as fixed percentages. The two arms tested have comparable sample sizes — 32 genes versus 26 genes — so power to detect enrichment is roughly matched between them. The next slide shows the two-arm results side by side.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 2"},
+        {"kind": "notebook", "ref": "notebooks/02_caulo_fitness_ranking.ipynb"},
+        {"kind": "notebook", "ref": "notebooks/02b_h2_hypergeometric_verdict.ipynb cell 1"},
+        {"kind": "citation_pool_key", "ref": "Price2018"}
+      ]
+    },
+    {
+      "position": 2,
+      "layout": "data_table",
+      "content": {
+        "title": "Path A enriched 1.60× over genome background; Path B falls to background",
+        "columns": ["Gene set", "n", "Phenotype-bearing", "Fold vs background", "p-value"],
+        "rows": [
+          ["Path A — Fur-released TBDTs", "32", "53.1% (17/32)", "1.60×", "0.016"],
+          ["Path B — SspB-buffered cbb3/fix", "26", "34.6% (9/26)", "1.04×", "0.515"]
+        ],
+        "caption": "Genome background: 33.25% (K=1311/N=3943). Hypergeometric test vs background. Path B is indistinguishable from background.",
+        "footnote": "Full analysis in REPORT.md §Finding 2 and nb 02b_h2_hypergeometric_verdict.ipynb cell 2.",
+        "data_source": "REPORT.md §Finding 2; notebooks/02b_h2_hypergeometric_verdict.ipynb cell 2",
+        "highlight_rows": [0]
+      },
+      "speaker_notes": "This table is the core H2 result. Path A — the 32-gene concordant-strong Fur-released TBDT subset — shows 53.1% phenotype-bearing, fold 1.60× over the 33.25% genome background, hypergeometric p=0.016. Path B — the 26-gene SspB-buffered cbb3/fix respiratory arm — shows 34.6%, fold 1.04×, p=0.515, which is statistically indistinguishable from any randomly drawn Caulobacter gene set under envelope stress. These numbers are verbatim from REPORT.md §Finding 2 and notebook 02b_h2_hypergeometric_verdict.ipynb cell 2. The adversarial reviewer independently reproduced the Path A result at fold 1.598×, p=0.0156, Bonferroni-robust — external verification that anchors the STRONG tier classification despite the modest fold-enrichment magnitude. The functional breakdown of the Path A phenotype-bearing genes is suggestive: top hits include ChvT (CCNA_03108) with |t|=43.7 under envelope stress, HutA, and other Fur-derepressed TBDTs with |t| ranging from 9 to 28. These are outer-membrane transport machinery — consistent with a role in sphingolipid (CPG) trafficking via the shared Lpt apparatus proposed by Uchendu et al. 2026, although that mechanistic link is not directly demonstrated here. The Path A enrichment is labeled 'marginal' in REPORT.md — fold 1.60× is statistically clear but modest in magnitude. We are not claiming strong positive selection; we are claiming that the Fur-released TBDT arm clears a calibrated enrichment bar that the SspB-buffered respiratory arm does not. The Path B null is not a power failure: n=26 is comparable to n=32, the test is identical, and p=0.515 is not borderline — it is unambiguously null. The distinction between the two arms is real, reproducible, and is the basis for narrowing the driver claim to Path A.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 2"},
+        {"kind": "notebook", "ref": "notebooks/02b_h2_hypergeometric_verdict.ipynb cell 2"}
+      ]
+    },
+    {
+      "position": 3,
+      "layout": "claim_evidence",
+      "content": {
+        "title": "Path B demotion: SspB-buffered respiratory arm is working hypothesis, not established mechanism",
+        "bullets": [
+          "Path B (cbb3/fix-NOPQ micro-aerobic respiratory arm, n=26): 34.6% phenotype-bearing — fold 1.04×, p=0.515, indistinguishable from genome background (33.25%)",
+          "Transcript-level SspB buffering is real (NB01: 53/93 Leaden Δfur DEGs blunted, dominated by cbb3/fix operon); fitness data do not selectively support this set over randomly drawn Caulobacter genes under envelope stress",
+          "'Respiratory ATP required for envelope-remodeling work' is mechanistically plausible but not established by fitness data — demoted from finding to working hypothesis"
+        ],
+        "citations": ["Price2018"]
+      },
+      "speaker_notes": "The Path B null is the second half of the punchline, and it is biologically informative rather than a failure. The SspB-buffered cbb3/fix micro-aerobic respiratory operon does buffer a real transcript-level change: 53 of the 93 Leaden Δfur DEGs are blunted in our Δfur ΔsspB data, and those 53 are dominated by the cbb3/fix genes. That transcript-level effect is genuine — it is what makes the Δfur ΔsspB double deletion distinguishable from a Δfur single in the Leaden comparison (NB01, cells 5-7). But the fitness compendium tells a different story: at 34.6% phenotype-bearing, fold 1.04×, p=0.515, the SspB-buffered set is indistinguishable from any 26 randomly drawn Caulobacter genes under the same 22 envelope-stress experiments. The mechanistic hypothesis — that respiratory ATP is required to fuel the envelope-remodeling work the rescued strain must perform — remains plausible in principle. Cell division without LPS, sphingolipid transport, PG remodeling, and OM maintenance are all energy-intensive. But 'plausible' is where the fitness evidence leaves it. The REPORT.md Limitations section explicitly states that the cbb3/fix set is 'not selectively supported over randomly drawn Caulobacter genes under envelope stress.' That is the correct take-home. The transcript data and the fitness data are measuring different things and they disagree: the transcript effect is real; the fitness enrichment is absent. We cannot distinguish 'respiratory protection matters but the enrichment test is underpowered' from 'respiratory protection is not specifically required here.' Anticipate the audience question: 'doesn't the respiratory chain need to be active?' The answer is yes — but needing to be active and being selectively enriched for phenotype under envelope stress are different claims. The fitness data test the latter. Path B therefore sits in the hypothesis category in the pre-registered scorecard. The transition: having partitioned the Fur-released gene sets — Path A carries the envelope-stress signal, Path B does not — the next section asks what the Fur-set envelope state triggers downstream: the ChvI two-phase regulatory response.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 2"},
+        {"kind": "report_section", "ref": "REPORT.md §Limitations"},
+        {"kind": "notebook", "ref": "notebooks/02b_h2_hypergeometric_verdict.ipynb cell 2"},
+        {"kind": "notebook", "ref": "notebooks/01_leaden2018_fur_signature.ipynb cell 5"}
+      ]
+    }
+  ]
+}

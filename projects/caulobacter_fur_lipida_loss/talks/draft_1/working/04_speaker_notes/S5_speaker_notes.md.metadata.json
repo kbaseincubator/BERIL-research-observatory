@@ -1,0 +1,9 @@
+{
+  "elapsed_seconds": 603,
+  "input_tokens": 17,
+  "output_tokens": 34214,
+  "cache_read_tokens": 1718452,
+  "cache_creation_tokens": 213606,
+  "estimated_cost_usd": 1.8298191000000001,
+  "model": "sonnet"
+}

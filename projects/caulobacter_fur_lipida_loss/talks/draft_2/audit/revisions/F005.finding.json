@@ -1,0 +1,20 @@
+{
+  "id": "F005",
+  "class": "citation_reality",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 16,
+  "slide_position": 16,
+  "slide_layout": "claim_evidence",
+  "substory_id": "S3",
+  "citation_id": "Greenwich2023",
+  "issue": "Slide 16's citation pins do not match its content. The citations array is [QuinteroYanes2022, Greenwich2023], but Greenwich2023 supports nothing on this slide \u2014 its load-bearing role is the ChvG-ChvI alphaproteobacterial-conservation claim on slide 26 (per slide 26 speaker notes). Meanwhile the slide-16 bullet that DOES need a citation \u2014 'ChvR sRNA (Fr\u00f6hlich 2018, adversarial review N3) is an untested post-transcriptional alternative' \u2014 attributes ChvR to Fr\u00f6hlich 2018, which is absent from the citations array AND from the references slide (34). So the slide cites a paper it does not use (Greenwich2023, citation drift) and names a paper it does not list (Fr\u00f6hlich 2018, dangling attribution).",
+  "report_evidence": [
+    {
+      "section": "\u00a7Finding 6 (slide 26 usage)",
+      "quote": "The ChvG-ChvI result is consistent with Greenwich et al. 2023's review documenting alphaproteobacterial conservation of this envelope-stress regulatory circuit"
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "On slide 16, drop Greenwich2023 from the citations array (it belongs to slide 26's ChvG-ChvI claim) and add Fr\u00f6hlich 2018 to back the ChvR sRNA bullet; ensure Fr\u00f6hlich 2018 also lands in refs_short on slide 34."
+}

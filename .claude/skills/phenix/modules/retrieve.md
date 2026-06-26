@@ -12,13 +12,13 @@ Retrieve AlphaFold predicted structures from the EBI API and store them in MinIO
 
 ### Step 1: Look Up the AlphaFold Entry in BERDL
 
-Query `kescience_alphafold.alphafold_entries` to confirm the accession exists and get metadata:
+Query `kescience.alphafold.alphafold_entries` to confirm the accession exists and get metadata:
 
 ```python
 spark.sql(
     """
     SELECT alphafold_id, first_residue, last_residue, model_version
-    FROM kescience_alphafold.alphafold_entries
+    FROM kescience.alphafold.alphafold_entries
     WHERE uniprot_accession = 'ACCESSION'
     LIMIT 1
     """
@@ -31,7 +31,7 @@ Optionally check MSA depth for confidence:
 spark.sql(
     """
     SELECT msa_depth
-    FROM kescience_alphafold.alphafold_msa_depths
+    FROM kescience.alphafold.alphafold_msa_depths
     WHERE uniprot_accession = 'ACCESSION'
     LIMIT 1
     """
@@ -103,7 +103,7 @@ mc cp "${ACCESSION}_pae.json" "berdl-minio/${MINIO_PATH}/pae.json"
 
 ### Step 5: Record in Delta Lake
 
-Prepare a TSV row for `kescience_structural_biology.alphafold_structures`:
+Prepare a TSV row for `kescience.structural_biology.alphafold_structures`:
 
 | Field | Value |
 |-------|-------|
@@ -156,10 +156,10 @@ To find which pangenome proteins have AlphaFold structures:
 ```sql
 SELECT b.gene_cluster_id, b.product, b.uniref100,
        a.alphafold_id, m.msa_depth
-FROM kbase_ke_pangenome.bakta_annotations b
-JOIN kescience_alphafold.alphafold_entries a
+FROM kbase.ke_pangenome.bakta_annotations b
+JOIN kescience.alphafold.alphafold_entries a
   ON a.uniprot_accession = REPLACE(b.uniref100, 'UniRef100_', '')
-LEFT JOIN kescience_alphafold.alphafold_msa_depths m
+LEFT JOIN kescience.alphafold.alphafold_msa_depths m
   ON m.uniprot_accession = a.uniprot_accession
 WHERE b.species_id = 'SPECIES_ID'
   AND b.uniref100 IS NOT NULL

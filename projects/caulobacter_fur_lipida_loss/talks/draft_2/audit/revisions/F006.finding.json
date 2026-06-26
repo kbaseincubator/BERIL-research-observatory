@@ -1,0 +1,15 @@
+{
+  "id": "F006",
+  "class": "qa_softball",
+  "severity": "P1",
+  "confidence": "high",
+  "issue": "The three anticipated Q&A (single-condition scope, Lpt transcript-protein discordance, Path A power) are genuinely strong and land their concessions. But the Q&A set omits the sharpest objection to the deck's central word: 'driver.' No Q&A defends the gap between the causal framing ('\u0394fur derepression is the demonstrable driver') and the fact that this project's own new evidence is correlational (\u03c1=0.315) plus a marginal enrichment (1.60\u00d7); the causal NECESSITY ('\u0394fur required for lipid A-loss viability') is imported wholesale from Zik 2022, prior work this team did not perform. A hostile reviewer asks: 'Your data show correlation and marginal enrichment; the necessity that licenses the word driver is Zik 2022. What does THIS work demonstrate causally that Zik 2022 did not already establish?' There is no anticipated answer for this.",
+  "report_evidence": [
+    {
+      "section": "00_throughline.md A1/A25",
+      "quote": "A1 ... \u2713 direct ... A25 \u2014 Zik 2022 baseline-mechanism anchoring (\u0394*fur* required for rescue) ... \u2713 direct \u2014 establishes Fur as the precondition this arc characterizes"
+    }
+  ],
+  "fix_target": "qa_anticipated.v1.md",
+  "fix_hint": "Add a fourth Q&A that draws the line explicitly: Zik 2022 established \u0394fur necessity (causal precondition); this work contributes the regulon-to-envelope mechanistic map at graded confidence (concordance fingerprint, calibrated Path A triage, ChvI phase structure, constitutive sphingolipid + PG reorganization). The new contribution is the graded mechanism, not the causal necessity."
+}

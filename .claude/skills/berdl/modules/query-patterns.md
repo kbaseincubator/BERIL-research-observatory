@@ -29,7 +29,7 @@ See `docs/pitfalls.md` for current per-table size guidance.
 
 ## Query Templates
 
-> **Examples below use specific database/table names** (e.g. `kbase_ke_pangenome.genome`) for clarity. Run `get_databases(return_json=False)` to verify the database is accessible to you before adapting any example.
+> **Examples below use specific database/table names** (e.g. `kbase.ke_pangenome.genome`) for clarity. Run `get_databases(return_json=False)` to verify the database is accessible to you before adapting any example.
 
 ### Pattern: Safe Species Lookup
 
@@ -38,13 +38,13 @@ See `docs/pitfalls.md` for current per-table size guidance.
 ```sql
 -- Step 1: Find the exact species clade ID
 SELECT gtdb_species_clade_id, GTDB_species
-FROM kbase_ke_pangenome.gtdb_species_clade
+FROM kbase.ke_pangenome.gtdb_species_clade
 WHERE GTDB_species LIKE '%Escherichia_coli%'
 LIMIT 5
 
 -- Step 2: Use exact ID for subsequent queries
 SELECT *
-FROM kbase_ke_pangenome.genome
+FROM kbase.ke_pangenome.genome
 WHERE gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
 LIMIT 100
 ```
@@ -60,8 +60,8 @@ LIMIT 100
 
 ```sql
 SELECT gc.gene_cluster_id, gc.is_core, ann.COG_category, ann.EC, ann.Description
-FROM kbase_ke_pangenome.gene_cluster gc
-LEFT JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
+FROM kbase.ke_pangenome.gene_cluster gc
+LEFT JOIN kbase.ke_pangenome.eggnog_mapper_annotations ann
   ON gc.gene_cluster_id = ann.query_name
 WHERE gc.gtdb_species_clade_id = '{species_id}'
   AND ann.COG_category != '-'
@@ -81,7 +81,7 @@ ORDER BY gc.is_core DESC, ann.COG_category
 
 ```sql
 SELECT genome_id, gtdb_species_clade_id
-FROM kbase_ke_pangenome.genome
+FROM kbase.ke_pangenome.genome
 WHERE genome_id IN (
   'RS_GCF_000005845.2',
   'RS_GCF_000008865.2',
@@ -101,16 +101,16 @@ WHERE genome_id IN (
 ```sql
 -- CORRECT: Filter the large table first, then join
 SELECT gc.gene_cluster_id, gc.is_core, ann.KEGG_Pathway
-FROM kbase_ke_pangenome.gene_cluster gc
-JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
+FROM kbase.ke_pangenome.gene_cluster gc
+JOIN kbase.ke_pangenome.eggnog_mapper_annotations ann
   ON gc.gene_cluster_id = ann.query_name
 WHERE gc.gtdb_species_clade_id = '{species_id}'
   AND ann.KEGG_Pathway != '-'
 
 -- WRONG: Unfiltered join on very-large tables (see docs/pitfalls.md)
 SELECT gc.gene_cluster_id, ann.KEGG_Pathway
-FROM kbase_ke_pangenome.gene_cluster gc
-JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
+FROM kbase.ke_pangenome.gene_cluster gc
+JOIN kbase.ke_pangenome.eggnog_mapper_annotations ann
   ON gc.gene_cluster_id = ann.query_name
 -- Missing WHERE clause = full table scan!
 ```
@@ -132,8 +132,8 @@ SELECT
   gc.is_core,
   ann.COG_category,
   COUNT(*) as gene_count
-FROM kbase_ke_pangenome.gene_cluster gc
-JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
+FROM kbase.ke_pangenome.gene_cluster gc
+JOIN kbase.ke_pangenome.eggnog_mapper_annotations ann
   ON gc.gene_cluster_id = ann.query_name
 WHERE gc.gtdb_species_clade_id = '{species_id}'
 GROUP BY gc.is_core, ann.COG_category
@@ -155,7 +155,7 @@ ORDER BY gene_count DESC
 ```sql
 -- CORRECT: CAST before comparison
 SELECT locusId, sysName, gene_name, CAST(fit AS FLOAT) as fitness
-FROM kescience_fitnessbrowser.genefitness
+FROM kescience.fitnessbrowser.genefitness
 WHERE orgId = 'Keio'
   AND CAST(fit AS FLOAT) < -2
 ORDER BY CAST(fit AS FLOAT) ASC
@@ -178,14 +178,14 @@ WHERE fit < '-2'  -- Compares lexicographically!
 ```sql
 -- Page 1
 SELECT genome_id, gtdb_species_clade_id
-FROM kbase_ke_pangenome.genome
+FROM kbase.ke_pangenome.genome
 WHERE gtdb_species_clade_id = '{species_id}'
 ORDER BY genome_id
 LIMIT 1000 OFFSET 0
 
 -- Page 2
 SELECT genome_id, gtdb_species_clade_id
-FROM kbase_ke_pangenome.genome
+FROM kbase.ke_pangenome.genome
 WHERE gtdb_species_clade_id = '{species_id}'
 ORDER BY genome_id
 LIMIT 1000 OFFSET 1000
@@ -206,7 +206,7 @@ SELECT
   COUNT(*) as total_genomes,
   SUM(CASE WHEN has_sample = true THEN 1 ELSE 0 END) as with_sample,
   SUM(CASE WHEN has_sample = true THEN 1 ELSE 0 END) * 100.0 / COUNT(*) as pct_coverage
-FROM kbase_ke_pangenome.genome
+FROM kbase.ke_pangenome.genome
 WHERE gtdb_species_clade_id = '{species_id}'
 
 -- Check annotation coverage for a species
@@ -214,8 +214,8 @@ SELECT
   COUNT(*) as total_clusters,
   SUM(CASE WHEN ann.query_name IS NOT NULL THEN 1 ELSE 0 END) as annotated,
   SUM(CASE WHEN ann.COG_category != '-' AND ann.COG_category IS NOT NULL THEN 1 ELSE 0 END) as has_cog
-FROM kbase_ke_pangenome.gene_cluster gc
-LEFT JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
+FROM kbase.ke_pangenome.gene_cluster gc
+LEFT JOIN kbase.ke_pangenome.eggnog_mapper_annotations ann
   ON gc.gene_cluster_id = ann.query_name
 WHERE gc.gtdb_species_clade_id = '{species_id}'
 ```

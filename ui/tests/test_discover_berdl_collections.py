@@ -34,7 +34,7 @@ def test_discovery_uses_berdl_helpers_and_groups_schema(monkeypatch):
         @staticmethod
         def get_databases():
             calls.append(("get_databases",))
-            return {"databases": ["kbase_ke_pangenome"]}
+            return {"databases": ["kbase.ke_pangenome"]}
 
         @staticmethod
         def get_tables(database):
@@ -64,14 +64,14 @@ def test_discovery_uses_berdl_helpers_and_groups_schema(monkeypatch):
     assert snapshot["source_url"] == "berdl-notebook-utils"
     assert snapshot["tenants"][0]["id"] == "kbase"
     collection = snapshot["tenants"][0]["collections"][0]
-    assert collection["id"] == "kbase_ke_pangenome"
+    assert collection["id"] == "kbase.ke_pangenome"
     assert collection["tables"][0]["columns"][0]["name"] == "genome_id"
     assert "broken_table schema failed" in collection["discovery_errors"][0]
     assert calls == [
         ("get_databases",),
-        ("get_tables", "kbase_ke_pangenome"),
-        ("get_table_schema", "kbase_ke_pangenome", "genome"),
-        ("get_table_schema", "kbase_ke_pangenome", "broken_table"),
+        ("get_tables", "kbase.ke_pangenome"),
+        ("get_table_schema", "kbase.ke_pangenome", "genome"),
+        ("get_table_schema", "kbase.ke_pangenome", "broken_table"),
     ]
 
 
@@ -82,7 +82,7 @@ def test_discovery_can_skip_schema_helpers(monkeypatch):
     class Helpers:
         @staticmethod
         def get_databases():
-            return [{"database": "kbase_ke_pangenome"}]
+            return [{"database": "kbase.ke_pangenome"}]
 
         @staticmethod
         def get_tables(database):
@@ -106,7 +106,7 @@ def test_discovery_can_skip_schema_helpers(monkeypatch):
             "columns": [],
         }
     ]
-    assert calls == [("get_tables", "kbase_ke_pangenome")]
+    assert calls == [("get_tables", "kbase.ke_pangenome")]
 
 
 def test_cli_default_writes_snapshot_without_auth_token(tmp_path, monkeypatch):
@@ -117,7 +117,7 @@ def test_cli_default_writes_snapshot_without_auth_token(tmp_path, monkeypatch):
     class Helpers:
         @staticmethod
         def get_databases():
-            return ["kbase_genomes"]
+            return ["kbase.genomes"]
 
         @staticmethod
         def get_tables(database):
@@ -134,7 +134,7 @@ def test_cli_default_writes_snapshot_without_auth_token(tmp_path, monkeypatch):
     assert code == 0
     snapshot = json.loads(output.read_text())
     assert snapshot["discovery_method"] == "berdl_notebook_utils"
-    assert snapshot["tenants"][0]["collections"][0]["id"] == "kbase_genomes"
+    assert snapshot["tenants"][0]["collections"][0]["id"] == "kbase.genomes"
 
 
 def test_write_snapshot_atomic(tmp_path):
@@ -153,13 +153,13 @@ def test_filter_user_facing_snapshot_removes_scratch_namespaces():
             {
                 "id": "kbase",
                 "collections": [
-                    {"id": "kbase_genomes"},
-                    {"id": "kbase_refseq_taxon_api"},
+                    {"id": "kbase.genomes"},
+                    {"id": "kbase.refseq_taxon_api"},
                 ],
             },
             {
                 "id": "globalusers",
-                "collections": [{"id": "globalusers_demo_test"}],
+                "collections": [{"id": "globalusers.demo_test"}],
             },
         ]
     }
@@ -168,5 +168,5 @@ def test_filter_user_facing_snapshot_removes_scratch_namespaces():
 
     assert filtered["visibility_filter"] == "user_facing_v1"
     assert filtered["tenants"] == [
-        {"id": "kbase", "collections": [{"id": "kbase_genomes"}]}
+        {"id": "kbase", "collections": [{"id": "kbase.genomes"}]}
     ]

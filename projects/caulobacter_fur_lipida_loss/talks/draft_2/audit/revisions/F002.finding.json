@@ -1,0 +1,20 @@
+{
+  "id": "F002",
+  "class": "claim_evidence",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 1,
+  "slide_position": 1,
+  "slide_layout": "title",
+  "substory_id": null,
+  "title_quote": "Caulobacter Fur Lipida Loss",
+  "issue": "The title slide is a placeholder that ships embarrassments to a peer audience. (1) The title 'Caulobacter Fur Lipida Loss' is a degenerate auto-title from the directory name \u2014 'Lipida' is a non-word; the subject is 'lipid A,' per REPORT's own title '\u0394fur-permitted lipid A loss.' (2) presenter and affiliation are both literal 'TBD.' (3) The subtitle is truncated mid-sentence: '\u0394fur derepression is the demonstrable driver of the lipid A-loss-permissive envelope state, and everything\u2026'. The first slide a senior room sees signals an unfinished deck and a garbled subject noun.",
+  "report_evidence": [
+    {
+      "section": "REPORT.md title",
+      "quote": "The regulatory and proteomic architecture of \u0394*fur*-permitted lipid A loss in *Caulobacter crescentus*"
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Replace title with a real one, e.g. '\u0394fur derepression drives the lipid A-loss-permissive envelope state in Caulobacter crescentus'. Populate presenter/affiliation (production orchestrator). Either complete the subtitle sentence or truncate it cleanly (drop the trailing 'and everything\u2026')."
+}

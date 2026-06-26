@@ -24,10 +24,11 @@ on-cluster invocation. Pure off-cluster CLIs that never need the JH kernel
 
 On-cluster: uses berdl_notebook_utils for access-aware discovery and tenant
 metadata (display name, description, website, organization, stewards, members).
-Off-cluster: falls back to SHOW DATABASES + SHOW TABLES IN <db> via the local
-get_spark_session() drop-in (which auto-spawns the JH server). Tenant metadata
-is unavailable off-cluster — fallback groups by the prefix before the first
-underscore.
+Off-cluster: enumerates the registered Iceberg catalogs (via the
+spark.sql.catalog.* config keys) and lists namespaces + tables in each, via
+the local get_spark_session() drop-in (which auto-spawns the JH server).
+Tenant metadata is unavailable off-cluster — fallback groups by the catalog
+(the prefix before the first dot of each catalog.namespace identifier).
 
 By default the script writes the full markdown report to `data/berdl_inventory.md`
 (repo-root-relative) and prints a compact tenant-level summary to stdout. The
@@ -87,8 +88,27 @@ class TenantInfo:
 
 
 def _split_tenant_prefix(database: str) -> str:
-    """Fallback tenant key when no metadata is available."""
-    return database.split("_", 1)[0] if "_" in database else "(other)"
+    """Tenant key for an Iceberg ``catalog.namespace`` database identifier.
+
+    Under Iceberg/Polaris every database is qualified as
+    ``catalog.namespace`` (e.g. ``kbase.genomes``, ``kbase.ke_pangenome``) —
+    the tenant is the catalog, i.e. everything before the first dot. Legacy
+    flat Delta names (``kbase_genomes``) are dropped before they reach here
+    (see ``_iceberg_only`` / ``fetch_off_cluster``), so there is no underscore
+    fallback; a name with no dot is grouped under ``(other)``.
+    """
+    return database.split(".", 1)[0] if "." in database else "(other)"
+
+
+def _iceberg_only(structure: dict[str, list[str]]) -> dict[str, list[str]]:
+    """Keep only Iceberg (dotted ``catalog.namespace``) databases.
+
+    The migration leaves legacy Delta databases registered as flat,
+    underscore-only names (``kbase_genomes``) alongside their Iceberg twins
+    (``kbase.genomes``). We surface only the Iceberg form; any identifier
+    without a dot is a Delta/Hive database and is dropped.
+    """
+    return {db: tables for db, tables in structure.items() if "." in db}
 
 
 def _is_on_cluster(host: str = "spark.berdl.kbase.us", port: int = 443, timeout: float = 2.0) -> bool:
@@ -175,20 +195,49 @@ def fetch_tenants_on_cluster() -> list[TenantInfo]:
 
 
 def fetch_off_cluster() -> dict[str, list[str]]:
-    """Fall back to SHOW DATABASES + SHOW TABLES IN <db>. Auto-spawns JH server."""
+    """Fall back to per-catalog SHOW NAMESPACES + SHOW TABLES. Auto-spawns JH server.
+
+    With Polaris/Iceberg each tenant is a separate catalog, so SHOW DATABASES is
+    insufficient.  We enumerate the registered Iceberg catalogs, then list
+    namespaces and tables inside each one, returning ``catalog.namespace`` keys.
+    """
+    import re
+
     from get_spark_session import get_spark_session  # local drop-in
 
     spark = get_spark_session()
-    db_rows = spark.sql("SHOW DATABASES").collect()
-    databases = [row["namespace"] for row in db_rows]
+
+    # Discover catalogs via `SET`, not `SHOW CATALOGS`: over Spark Connect the
+    # latter only returns catalogs the client session has already *touched*, so
+    # it misses server-registered Iceberg catalogs. The reliable source is the
+    # ``spark.sql.catalog.<name>`` config keys (sub-properties like ``.uri`` are
+    # skipped by the anchored pattern). ``spark_catalog`` is the Hive/Delta
+    # catalog and is excluded — its flat databases are the legacy form we drop.
+    catalog_key = re.compile(r"^spark\.sql\.catalog\.([a-zA-Z_][a-zA-Z0-9_]*)$")
+    catalogs = sorted(
+        {
+            m.group(1)
+            for row in spark.sql("SET").collect()
+            if (m := catalog_key.match(row["key"])) and m.group(1) != "spark_catalog"
+        }
+    )
+
     structure: dict[str, list[str]] = {}
-    for db in databases:
+    for catalog in catalogs:
         try:
-            rows = spark.sql(f"SHOW TABLES IN `{db}`").collect()
-            structure[db] = [row["tableName"] for row in rows]
+            ns_rows = spark.sql(f"SHOW NAMESPACES IN {catalog}").collect()
+            namespaces = [row[0] for row in ns_rows]
         except Exception as exc:  # noqa: BLE001
-            print(f"# WARN: could not list tables for {db}: {exc}", file=sys.stderr)
-            structure[db] = []
+            print(f"# WARN: could not list namespaces in catalog {catalog}: {exc}", file=sys.stderr)
+            continue
+        for ns in namespaces:
+            qualified = f"{catalog}.{ns}"
+            try:
+                tbl_rows = spark.sql(f"SHOW TABLES IN {qualified}").collect()
+                structure[qualified] = [row["tableName"] for row in tbl_rows]
+            except Exception as exc:  # noqa: BLE001
+                print(f"# WARN: could not list tables for {qualified}: {exc}", file=sys.stderr)
+                structure[qualified] = []
     return structure
 
 
@@ -238,13 +287,15 @@ def format_inventory(
     tenants = tenants or []
 
     # Drop databases whose tenant is in the hidden set (e.g. globalusers
-    # sandbox — contents are noise for orientation). Match both via
-    # namespace_prefix and the underscore-split fallback.
+    # sandbox — contents are noise for orientation). Match via namespace_prefix
+    # and the catalog (dot-split) fallback.
     hidden_prefixes = tuple(
         t.namespace_prefix
         for t in tenants
         if t.namespace_prefix and t.name in _HIDDEN_TENANTS
     )
+    # Drop legacy Delta (flat) databases — surface only Iceberg catalog.namespace.
+    structure = _iceberg_only(structure)
     structure = {
         db: tables
         for db, tables in structure.items()
@@ -392,6 +443,8 @@ def format_summary(
         for t in tenants
         if t.namespace_prefix and t.name in _HIDDEN_TENANTS
     )
+    # Drop legacy Delta (flat) databases — surface only Iceberg catalog.namespace.
+    structure = _iceberg_only(structure)
     structure = {
         db: tables
         for db, tables in structure.items()

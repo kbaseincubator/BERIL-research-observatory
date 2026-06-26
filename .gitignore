@@ -104,3 +104,9 @@ htmlcov/
 .pytest_cache/
 .ruff_cache/
 *.uc
+
+# OpenViking
+knowledge/workspace
+knowledge/ov.conf
+knowledge/openviking/ov.conf
+knowledge/openviking/gcp-key.json

@@ -62,7 +62,7 @@ def main() -> None:
     parser.add_argument("--no-chunked", action="store_true",
                         help="Force single-batch ingest regardless of table size")
     parser.add_argument("--user-tenant", action="store_true",
-                        help="Store in user-tenant space (u_username__dataset); "
+                        help="Store in personal Iceberg catalog (my.dataset); "
                              "resolves username from ~/.mc/config.json")
     args = parser.parse_args()
 
@@ -89,11 +89,11 @@ def main() -> None:
     user_namespace = None
     if args.user_tenant:
         username      = get_minio_username()
-        user_namespace = f"u_{username}__{DATASET}"
+        user_namespace = f"my.{DATASET}"
         NAMESPACE     = user_namespace
         BRONZE_PREFIX = f"users-general-warehouse/{username}/data/{DATASET}"
     else:
-        NAMESPACE     = f"{args.tenant}_{DATASET}"
+        NAMESPACE     = f"{args.tenant}.{DATASET}"
         BRONZE_PREFIX = f"tenant-general-warehouse/{args.tenant}/datasets/{DATASET}"
 
     PROGRESS_KEY = f"{BRONZE_PREFIX}/_ingest_progress.jsonl"

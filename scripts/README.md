@@ -43,7 +43,7 @@ lsof -i :1337 -i :1338 -i :8123 | grep LISTEN
 
 ```bash
 source .venv-berdl/bin/activate
-python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10"
+python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM kbase.ke_pangenome.pangenome LIMIT 10"
 ```
 
 Use native Spark SQL via `spark.sql(query)` in notebooks, or
@@ -78,7 +78,7 @@ collecting schema output for a small set of databases.
 ```bash
 python scripts/export_sql.py \
   --berdl-proxy \
-  --query "SELECT * FROM kbase_ke_pangenome.pangenome" \
+  --query "SELECT * FROM kbase.ke_pangenome.pangenome" \
   --path "s3a://cdm-lake/users-general-warehouse/<user>/exports/my-export" \
   --format parquet \
   --mode overwrite
@@ -122,7 +122,7 @@ Once `.venv-berdl` is set up and the proxy chain is running, notebooks work iden
 from get_spark_session import get_spark_session
 
 spark = get_spark_session()
-df = spark.sql("SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10")
+df = spark.sql("SELECT * FROM kbase.ke_pangenome.pangenome LIMIT 10")
 pdf = df.toPandas()
 ```
 

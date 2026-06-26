@@ -1,0 +1,82 @@
+{
+  "schema_version": "revise-invariance.v1",
+  "version": "0.4.0-m5a-tierA",
+  "finding_id": "F005",
+  "slide_id": 16,
+  "pre_edit_slide_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/audit/revisions/F005.slide.json",
+  "post_edit_slide_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/audit/revisions/F005.revised_slide.json",
+  "checked_invariants": [
+    "citation_preservation",
+    "numeric_preservation",
+    "hedge_level",
+    "layout_preservation"
+  ],
+  "skipped_invariants": [
+    "claim_id_cross_walk"
+  ],
+  "violations": [
+    {
+      "invariant": "numeric_preservation",
+      "severity": "fail",
+      "detail": "numeric literals invented in revise (post-edit contains numbers not present in pre-edit); invented: ['2026']",
+      "pre_value": [
+        "0",
+        "0",
+        "0",
+        "0.002",
+        "0.002",
+        "0.02",
+        "0.02",
+        "0.05",
+        "0.40",
+        "0.40",
+        "0.64",
+        "0.64",
+        "00",
+        "2021",
+        "2022",
+        "3",
+        "3",
+        "4",
+        "4",
+        "4584",
+        "4584",
+        "4599",
+        "4599",
+        "6",
+        "6",
+        "6"
+      ],
+      "post_value": [
+        "0",
+        "0",
+        "0",
+        "0.002",
+        "0.002",
+        "0.02",
+        "0.02",
+        "0.05",
+        "0.40",
+        "0.40",
+        "0.64",
+        "0.64",
+        "2021",
+        "2022",
+        "2026",
+        "3",
+        "3",
+        "4",
+        "4",
+        "4584",
+        "4584",
+        "4599",
+        "4599",
+        "6",
+        "6",
+        "6"
+      ]
+    }
+  ],
+  "verdict": "fail",
+  "note": "claim_id_cross_walk skipped \u2014 claim_inventory.tsv missing or unreadable; revise discipline on claim_id mentions is not enforced for this finding."
+}

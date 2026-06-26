@@ -1,0 +1,68 @@
+{
+  "layout": "data_table",
+  "content": {
+    "title": "Lpt transcript upregulated; LptD/LptE protein decline and CtpA absence define the layer's limits",
+    "columns": [
+      "Component",
+      "Transcript log2",
+      "Transcript FDR",
+      "Protein log2",
+      "Verdict"
+    ],
+    "rows": [
+      [
+        "MsbA-like CCNA_00307",
+        "+0.89",
+        "0.010",
+        "n.d.",
+        "PASS (transcript)"
+      ],
+      [
+        "LptC-related CCNA_03716",
+        "+0.56",
+        "0.005",
+        "n.d.",
+        "PASS (transcript)"
+      ],
+      [
+        "LptD CCNA_01760",
+        "n.d.",
+        "-",
+        "-0.47",
+        "DISCORDANT"
+      ],
+      [
+        "LptE CCNA_03866",
+        "n.d.",
+        "-",
+        "-0.78",
+        "DISCORDANT"
+      ],
+      [
+        "lptC2 CCNA_01226",
+        "-0.60",
+        "0.034",
+        "+1.08 vs int.",
+        "PILOT"
+      ],
+      [
+        "CtpA CCNA_03113",
+        "+0.58",
+        "0.109",
+        "not detected",
+        "REJECTED"
+      ]
+    ],
+    "caption": "Transcript log2 from 4599-vs-4584 edgeR contrast; protein log2 from single-replicate OM proteome (4672/4659). PILOT entries require replicated proteomics (planned summer 2026).",
+    "footnote": "Full H3 sub-claim scorecard in REPORT.md \u00a7Finding 4 and hypothesis scorecard; NB04_sphingolipid_lpt_panel.ipynb cells 3,5,6.",
+    "data_source": "REPORT.md \u00a7Finding 4; NB04_sphingolipid_lpt_panel.ipynb cells 3,5,6",
+    "highlight_rows": [
+      0,
+      1
+    ]
+  },
+  "speaker_notes": "With CPG supply established as constitutive, the second half of Layer 3 is whether the Lpt transport apparatus is maintained to ship CPG across the periplasm. This table summarizes six focal Lpt components across both data types.\n\nAt the transcript level, the story is clear and consistent with the Uchendu 2026 shared-component model: zero Lpt components are significantly down, and two are meaningfully up. MsbA-like CCNA_00307 shows log2 = +0.89 at FDR 0.01 in 4599-vs-4584; LptC-related CCNA_03716 shows log2 = +0.56 at FDR 0.005. These are the exact Lpt paralogs Uchendu 2026 shows are required for inner-membrane sphingolipid transport in Caulobacter. Upregulation at transcript is direct evidence consistent with the repurposing model \u2014 highlighted in the table.\n\nAt the protein level, the two canonical Lpt proteins actually detected in the OM proteome \u2014 LptD (CCNA_01760) and LptE (CCNA_03866) \u2014 decline: LptD log2(4672/4659) = -0.47; LptE = -0.78. This is discordant with the transcript signal and is the genuine tension in Layer 3. A parsimonious interpretation: canonical Lpt normally loads LPS substrate; remove the substrate and the LPS-specific machinery is less occupied or actively turned over. This would be consistent with lptC2 paralogs taking over CPG traffic. But single-replicate proteomics cannot discriminate substrate-limitation from active downregulation \u2014 both remain open. The verdict is labeled DISCORDANT, not PASS.\n\nFor lptC2 (CCNA_01226), the Uchendu 2026 sphingolipid IM transporter: transcript goes DOWN (-0.60, FDR 0.034) while protein goes UP (+1.08 log2 vs intermediate; net +0.66 log2 vs WT baseline, because lptC2 was already DOWN -0.42 in the intermediate strain). This is consistent with post-transcriptional stabilization when LpxC competition for the shared LptB ATPase disappears \u2014 but it is a single-replicate pilot, labeled PILOT explicitly. CCNA_01217, a Zik 2022 sphingolipid gene required for CHIR-090 tolerance, shows protein +0.77 vs intermediate and +0.74 vs WT \u2014 a second directional pilot datum (see REPORT.md \u00a7Finding 4 pilot).\n\nCtpA verdict: REJECTED. Transcript pvalue = 0.048 failed the BORDERLINE lower bound of 0.05, and CtpA protein was not detected in the OM proteome. The LpxF-substitute hypothesis from Zik 2022 remains untested by this work.",
+  "id": 17,
+  "substory_id": "S3",
+  "position": 17
+}

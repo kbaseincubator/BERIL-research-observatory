@@ -1,0 +1,1210 @@
+{
+  "project_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss",
+  "research_plan": {
+    "found": true,
+    "intents": [
+      {
+        "section_name": "Hypotheses",
+        "intent_type": "hypothesis",
+        "text": "Each hypothesis is stated with H0/H1, the Phase A evidence already on hand, and the *specific* analyses required to resolve it.\n\n### H1 \u2014 ChvG-ChvI envelope-stress regulon: cooperator and consequence\n\n- **H0**: ChvI regulon induction in 4584 and 4599 is no greater than expected by chance given universe size and DEG cardinality.\n- **H1**: ChvI regulon is *partially* induced when Fur+SspB are released (permissive condition), and *further* induced when lipid A is lost (consequence), with distinct gene subsets dominating each phase.\n\n**Phase A evidence**: Stein 4.75-fold p=8e-9 (4584-vs-4580) and 4.56-fold p=1e-15 (4599-vs-4584); QY 3.18-fold (4584) and 2.87-fold (4599). H0 already rejected; the question is *which subset of ChvI targets is engaged at each phase*, whether **SigU** (ECF \u03c3-factor, +3.13 in 4599-vs-4584) is the operational driver of the 4599-specific component, and whether the early-cooperator subset overlaps with the Fur regulon (suggesting Fur-ChvI co-regulation).\n\n### H2 \u2014 A critical Fur regulon subset, rankable by phenotypic importance\n\n- **H0**: The \u0394*fur* contribution to \u0394*lpxc* rescue is driven by *generic* derepression of the entire Fur regulon equally \u2014 no specific subset matters more than others.\n- **H1**: A small, identifiable subset of Fur-released genes is mechanistically critical \u2014 genes whose loss is associated with strong fitness defects under iron limitation, oxidative stress, or envelope-disrupting conditions.\n\n**Phase A evidence**: Massive Fur derepression (HutA +10.5, CCNA_02275 +9.8 transcript with +8.9 log2 protein cascade, multiple TBDTs, DUF4198 family). The transcriptome cannot distinguish \"matters\" from \"merely derepressed\" \u2014 but the **198 RB-TnSeq Caulobacter experiments in `kescience_fitnessbrowser`** can rank Fur-released genes by phenotypic importance. The clean Fur-only signal needs **Leaden 2018 SRP136695** re-analyzed (4584-vs-4580 is confounded by \u0394*sspB*).\n\n### H3 \u2014 Sphingolipid substitution operates by flux + processing, not biosynthesis\n\n- **H0**: \u0394*lpxc* rescue requires transcriptional induction of the sphingolipid biosynthesis pathway (i.e., the existing baseline expression is insufficient).\n- **H1**: The constitutive sphingolipid pool is sufficient; rescue operates by (a) substrate flux rerouting in the absence of LpxC competition, and (b) **CtpA / LpxE-like CCNA_03113** providing the LpxF-equivalent head-group processing step; (c) the canonical Lpt apparatus is *maintained* (or modestly upregulated) for sphingolipid trafficking, consistent with Uchendu 2026's shared-component model.\n\n**Phase A evidence**: spt down -0.64 (FDR=0.002), most sphingolipid biosynthesis loci down/stable. H0 \u2014 biosynthesis induction \u2014 is already rejected. CtpA +0.58 borderline-up in 4599-vs-4584. MsbA-like CCNA_00307 +0.89 (FDR=0.006), LptC-related CCNA_03716 +0.56 (FDR=0.005), canonical LptDFGE stable. H1 has prima facie support.\n\n### H4 \u2014 Peptidoglycan remodeling participates in the lipid-A-loss response\n\n- **H0**: PG remodeling enzymes do not show coordinated up-regulation in 4599 vs 4584.\n- **H1**: A subset of PG-remodeling enzymes (lytic transglycosylases, PBPs, Ldts) shows coordinated upregulation in 4599 at transcript and/or protein level, evocative of (but mechanistically distinct from) the Kang/Boll 2021 PBP1A/LdtJ-LdtK route in *A. baumannii*.\n\n**Phase A evidence**: **SdpA (lytic murein transglycosylase) +4.8 log2 at the OM proteome** in 4672 vs 4659. Additional PG-remodeling enzymes (DD-carboxypeptidase, PBP family) need a systematic check."
+      },
+      {
+        "section_name": "Analysis Plan",
+        "intent_type": "analysis_plan",
+        "text": "Notebooks are numbered, executed in JupyterHub with outputs committed (per `PROJECT.md`). Each notebook saves figures to `figures/NB{n}_*.png` and small derived tables to `data/NB{n}_*.csv` (excluded from git by the project gitignore rule; re-derived from the notebook on demand).\n\n### NB01 \u2014 Leaden 2018 SRP136695 re-analysis (Fur-only DEG signature)\n\n- **Goal**: Produce a clean \u0394*fur*-only DEG signature (no \u0394*sspB*, no \u0394*rsaA*) to disambiguate Fur-specific vs SspB-specific effects in 4584-vs-4580.\n- **Approach** (preflight first to avoid wasted compute):\n  1. **Preflight (NB01a, in-notebook, fast)** \u2014 try to find a pre-published DEG table before re-analyzing from raw reads:\n     a. Fetch Frontiers in Microbiology PMC supplementary files for PMC6120978 (`https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6120978/`) via WebFetch / `wget` \u2014 Frontiers typically attaches Supplementary Table S1 (DEG matrix) directly.\n     b. Check GEO at `https://www.ncbi.nlm.nih.gov/geo/?term=SRP136695` for an author-provided processed-count or DEG table.\n     c. If a DEG table is found, normalize it to (locustag, logFC, pvalue, fdr) and skip step 2.\n  2. **Re-analysis (CTS, only if preflight fails)**:\n     - **CTS budget dry-run**: submit a 1-sample SRA prefetch test first (~10 min). Confirm runtime and storage extrapolate within quota (estimated full job: 6 samples \u00d7 ~30 min HISAT2 = ~3 h wall, ~150 GB transient).\n     - Full pipeline: `prefetch SRP136695 \u2192 fasterq-dump \u2192 fastp \u2192 HISAT2 (NA1000 ref, --very-sensitive) \u2192 featureCounts -Q 20 \u2192 edgeR TMM + glmQLFTest`.\n  3. Bring DEG tables back to JupyterHub for join with the colleague's `fact_differential.csv`.\n- **Outputs**:\n  - `data/NB01_leaden2018_de_full.csv` \u2014 Fur-only DEGs at colleague's conventions\n  - `data/NB01_fur_only_signature.csv` \u2014 high-confidence subset (|logFC|>1, FDR<0.05)\n  - `data/NB01_source_provenance.md` \u2014 records whether preflight succeeded (preferred) or CTS re-analysis was required, plus pipeline versions.\n  - Comparison plot: scatter of 4584-vs-4580 logFC vs Leaden \u0394*fur* logFC, colored by Fur regulon membership\n  - `figures/NB01_fur_signature_scatter.png`\n\n### NB02 \u2014 Fur-released gene fitness ranking via BERDL RB-TnSeq\n\n- **Goal**: Rank Fur-released genes from NB01 (and from 4584-vs-4580) by phenotypic importance \u2014 i.e., which knockouts have strong fitness defects under iron limitation, oxidative stress, envelope-disrupting conditions, or carbon-restricted media. Tests H2.\n- **Approach** (condition-coverage preflight first):\n  1. **Preflight \u2014 condition coverage**:\n     ```sql\n     SELECT expGroup, COUNT(*) AS n\n     FROM kescience_fitnessbrowser.experiment\n     WHERE orgId = 'Caulo'\n     GROUP BY expGroup ORDER BY n DESC;\n     ```\n     plus an inspection of `condition_1` / `concentration_1` strings for iron-, peroxide-, vancomycin-, bacitracin-, detergent-related terms. **If fewer than 3 envelope-stress experiments AND fewer than 3 iron-limitation experiments, H2 cannot be tested at the originally planned resolution** \u2014 drop H2 to \"exploratory\" status and document; otherwise proceed.\n  2. From `kescience_fitnessbrowser.experiment` with `orgId='Caulo'`, classify the 198 experiments by `expGroup` and condition strings. Tag the iron-limitation, oxidative-stress, envelope-stress, and carbon-shift conditions.\n  3. Join `fitbyexp_caulo` to per-condition fitness summary statistics \u2014 mean, max-magnitude, and t-significance per gene per condition class (`CAST(fit AS DOUBLE)`, `CAST(t AS DOUBLE)`).\n  4. For each Fur-released gene from NB01 (and Phase A): compute the \"phenotype rank\" within the Fur regulon.\n- **Outputs**:\n  - `data/NB02_caulo_fitness_summary.csv` \u2014 per-gene fitness statistics per condition class\n  - `data/NB02_fur_regulon_phenotype_rank.csv` \u2014 Fur-released genes ranked by phenotype magnitude\n  - `figures/NB02_fur_regulon_phenotype_heatmap.png`\n  - `figures/NB02_top_fur_genes_volcano.png` \u2014 genes in the top decile by fitness magnitude\n\n### NB03 \u2014 ChvI regulon dissection and SigU as the operational driver\n\n- **Goal**: Identify which subset of ChvI-induced genes is engaged in 4584-vs-4580 (cooperator) vs 4599-vs-4584 (consequence). Test whether SigU (CCNA_02977) drives the 4599-specific engaged subset. Tests H1.\n- **Approach**:\n  1. Partition the Stein + QY ChvI-induced regulons by phase of induction (early/cooperator: also up in 4584-vs-4580; late/consequence: only up in 4599-vs-4584).\n  2. Functional annotation enrichment of each partition (use existing GO terms file + paperBLAST where useful).\n  3. Identify *Caulobacter* SigU regulon members (literature + paperBLAST query) and test overlap with the late/consequence subset.\n- **Outputs**:\n  - `data/NB03_chvi_early_vs_late.csv` \u2014 ChvI gene-by-gene phase assignment\n  - `data/NB03_sigU_overlap.csv` \u2014 SigU regulon \u2229 late ChvI subset\n  - `figures/NB03_chvi_phase_heatmap.png`\n  - `figures/NB03_sigU_regulon_volcano.png`\n\n### NB04 \u2014 Sphingolipid flux, CtpA, and the canonical Lpt apparatus\n\n- **Goal**: Resolve H3 \u2014 confirm sphingolipid pathway is constitutive (not induced), CtpA upregulation is robust, and canonical Lpt apparatus is maintained or up. Cross-reference with OM proteome.\n- **Approach**:\n  1. Full sphingolipid biosynthesis + Uchendu transporter + CtpA expression panel: CPM, DE, and OM-proteome presence/abundance.\n  2. Canonical Lpt apparatus (LptA-G, LptD/E, MsbA, the LptC-related CCNA_03716) expression and proteome.\n  3. Compute coverage caveats (does the OM proteome detect any of these inner-membrane proteins?).\n  4. Optional: AlphaFold structural overlay of CtpA vs LpxF (just inspection \u2014 no structural claim made).\n- **Outputs**:\n  - `data/NB04_sphingolipid_lpt_panel.csv` \u2014 combined transcript + protein evidence\n  - `figures/NB04_sphingolipid_locus_heatmap.png`\n  - `figures/NB04_lpt_apparatus_heatmap.png`\n  - `figures/NB04_ctpA_per_strain.png`\n\n### NB05 \u2014 Peptidoglycan remodeling (H4)\n\n- **Goal**: Test whether PG-remodeling enzymes show coordinated upregulation in 4599. Compare to the *A. baumannii* PBP1A/Ldt route.\n- **Approach**:\n  1. Curate a PG-biosynthesis-and-remodeling gene set for Caulobacter from `dim_feature` description, COG, and PaperBLAST (PBPs, lytic transglycosylases SdpA/SdpB, Ldts, DD-carboxypeptidases, MurA-F).\n  2. DE and OM-proteome behavior for each gene in 4584-vs-4580 and 4599-vs-4584.\n  3. Cross-reference the *A. baumannii* PBP1A and LdtJ/LdtK orthologs in Caulobacter (paperBLAST + BLAST against canonical sequences).\n- **Outputs**:\n  - `data/NB05_pg_remodeling_panel.csv`\n  - `figures/NB05_pg_remodeling_heatmap.png`\n\n### NB06 \u2014 Comparative-species arm\n\n- **Goal**: Why is this route uniquely Caulobacter? Catalogue presence/absence of the sphingolipid biosynthesis + transport locus, CtpA-like LpxF substitute, and the relevant Fur-released \"critical\" genes (from NB02) across *N. meningitidis*, *A. baumannii*, *M. catarrhalis*.\n- **Approach**:\n  1. **BERDL coverage preflight** \u2014 query each pangenome database for species coverage:\n     ```sql\n     SELECT DISTINCT species, COUNT(*) AS n_genomes\n     FROM <pangenome>.gtdb_species_clade\n     WHERE lower(species) LIKE '%baumannii%' OR lower(species) LIKE '%meningitidis%' OR lower(species) LIKE '%catarrhalis%' OR lower(species) LIKE '%caulobacter%'\n     GROUP BY species;\n     ```\n     Try `kbase_ke_pangenome`, `kbase_uniprot` (any species-keyed table), and `phagefoundry.acinetobacter` for A. baumannii specifically.\n  2. **NCBI fallback (executed if BERDL coverage of any of the 4 species is missing)**: download reference genomes via `datasets download genome accession` for:\n     - *A. baumannii* ATCC 17978 (GCF_000196795.1) and ACICU (GCF_000018445.1)\n     - *N. meningitidis* MC58 (GCF_000008805.1) and 8013 (GCF_000026965.1)\n     - *M. catarrhalis* BBH18 (GCF_000092265.1) and RH4 (GCF_000176855.1)\n     - *C. crescentus* NA1000 (GCF_000022005.1) as the reference query genome\n     Then run `hmmsearch` (HMMER 3) for each focal gene family (Pfam HMMs for serine-palmitoyltransferase PF00155, LptF/G PF03739, LpxC PF03331, Fur PF01475, CtpA C-terminal protease PF00574), tabulate hits per genome.\n  3. Build a presence/absence matrix for the focal gene sets (sphingolipid pathway, CtpA, Lpt apparatus, Fur-critical subset from NB02).\n  4. Compare to the published alternative routes: *A. baumannii* PBP1A/LdtJ-LdtK (Kang 2021), *N. meningitidis* phospholipid + capsule (Steeghs 2001), *M. catarrhalis* late-acyltransferase (Gao 2008).\n- **Outputs**:\n  - `data/NB06_comparative_presence_absence.csv`\n  - `data/NB06_genome_sources.md` \u2014 records whether BERDL or NCBI provided each species' genome and the accession\n  - `figures/NB06_comparative_heatmap.png`\n\n### NB07 \u2014 Figures and synthesis for REPORT.md\n\n- **Goal**: Final figures (multi-panel where appropriate), and a structured findings summary for `/synthesize`.\n- **Approach**: cross-reference NB01-06; build a 4-panel hypothesis summary; export to `figures/` ready for the report.\n\n### Stop condition\n\nNotebook execution proceeds through NB01 \u2192 NB06 \u2192 NB07. Plan revision (return to checkpoint) triggered by any of:\n\n1. **NB01 disagreement**: less than 30% Spearman concordance between Leaden \u0394*fur* logFC and our 4584-vs-4580 logFC (over genes with |logFC|>1 in either set). Would indicate \u0394*sspB* dominates the signal, requiring reframe of H2 as a Fur+SspB combined effect.\n2. **NB02 null result**: fewer than 10% of Fur-released genes (from NB01 or 4584-vs-4580) reach the H2 phenotype-bearing threshold (`|fitness t-score|>4 in \u22652 envelope-stress or iron-limitation experiments`). Would substantially weaken H2.\n3. **NB02 preflight failure**: fewer than 3 envelope-stress AND fewer than 3 iron-limitation experiments in Caulo fitness data \u2014 H2 drops to exploratory status (don't trigger revision; just descope).\n4. **NB04 contradiction**: sphingolipid biosynthesis pathway (any of *spt*, *bcerS*, *acp*, *cerR*, *acps*) significantly induced (logFC>1, FDR<0.05) in 4584-vs-4580 OR 4599-vs-4584. Would force H3 reframe back to biosynthesis-induction."
+      }
+    ]
+  },
+  "notebooks": [
+    {
+      "path": "notebooks/00_orientation.ipynb",
+      "cells_total": 28,
+      "cells_code": 16,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "matplotlib.pyplot",
+          "alias": "plt",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "seaborn",
+          "alias": "sns",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 5,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        },
+        {
+          "cell": 10,
+          "line": 1,
+          "module": "scipy.stats",
+          "alias": null,
+          "names": [
+            "hypergeom"
+          ],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [],
+      "spark_queries": [],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 12,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 13,
+          "name": "DATA_IN",
+          "value_repr": "(non-literal: Path('/home/aparkin/data/kr-caulobacter-envelope/clean'))"
+        },
+        {
+          "cell": 1,
+          "line": 14,
+          "name": "DATA_OUT",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        },
+        {
+          "cell": 1,
+          "line": 15,
+          "name": "FIG",
+          "value_repr": "(non-literal: PROJ / 'figures')"
+        },
+        {
+          "cell": 4,
+          "line": 1,
+          "name": "SPHINGO",
+          "value_repr": "(non-literal: ['CCNA_01212', 'CCNA_01213', 'CCNA_01214', 'CCNA_01217', 'CC)"
+        },
+        {
+          "cell": 4,
+          "line": 3,
+          "name": "SPHINGO_NAME",
+          "value_repr": "(non-literal: {'CCNA_01212': 'bcerS', 'CCNA_01213': 'lptG2 (Uchendu)', 'CC)"
+        },
+        {
+          "cell": 11,
+          "line": 1,
+          "name": "SUPPRESSORS",
+          "value_repr": "(non-literal: ['CCNA_00497', 'CCNA_01068', 'CCNA_01553', 'CCNA_03733'])"
+        }
+      ]
+    },
+    {
+      "path": "notebooks/01_leaden2018_fur_signature.ipynb",
+      "cells_total": 16,
+      "cells_code": 9,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "matplotlib.pyplot",
+          "alias": "plt",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "seaborn",
+          "alias": "sns",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 5,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 6,
+          "module": "scipy.stats",
+          "alias": null,
+          "names": [
+            "spearmanr",
+            "pearsonr"
+          ],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 7,
+          "module": "openpyxl",
+          "alias": null,
+          "names": [],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [
+        {
+          "cell": 4,
+          "line": 11,
+          "test_name": "Spearman rank correlation",
+          "library_path": "scipy.stats.spearmanr",
+          "raw_call": "spearmanr(both['log2fc_fur'], both['log2fc_iron_2hDP'])",
+          "keyword_args": {}
+        },
+        {
+          "cell": 4,
+          "line": 12,
+          "test_name": "Pearson correlation",
+          "library_path": "scipy.stats.pearsonr",
+          "raw_call": "pearsonr(both['log2fc_fur'], both['log2fc_iron_2hDP'])",
+          "keyword_args": {}
+        },
+        {
+          "cell": 5,
+          "line": 16,
+          "test_name": "Spearman rank correlation",
+          "library_path": "scipy.stats.spearmanr",
+          "raw_call": "spearmanr(both['log2fc_fur'], both['log2fc_ours'])",
+          "keyword_args": {}
+        },
+        {
+          "cell": 5,
+          "line": 17,
+          "test_name": "Pearson correlation",
+          "library_path": "scipy.stats.pearsonr",
+          "raw_call": "pearsonr(both['log2fc_fur'], both['log2fc_ours'])",
+          "keyword_args": {}
+        }
+      ],
+      "spark_queries": [],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 14,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 15,
+          "name": "USERDATA",
+          "value_repr": "(non-literal: Path('/home/aparkin/data/kr-caulobacter-envelope'))"
+        },
+        {
+          "cell": 1,
+          "line": 16,
+          "name": "DATA_OUT",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        },
+        {
+          "cell": 1,
+          "line": 17,
+          "name": "FIG",
+          "value_repr": "(non-literal: PROJ / 'figures')"
+        },
+        {
+          "cell": 1,
+          "line": 18,
+          "name": "LEADEN_PATH",
+          "value_repr": "(non-literal: USERDATA / 'raw' / 'Table 2.XLSX')"
+        },
+        {
+          "cell": 5,
+          "line": 9,
+          "name": "n_total",
+          "value_repr": "(non-literal: len(joined))"
+        },
+        {
+          "cell": 5,
+          "line": 10,
+          "name": "n_with_ours",
+          "value_repr": "(non-literal: joined['log2fc_ours'].notna().sum())"
+        },
+        {
+          "cell": 5,
+          "line": 28,
+          "name": "VERDICT",
+          "value_repr": "(non-literal: 'PASS \u2014 \u0394fur is a major driver' if rho_s >= 0.3 else 'FAIL \u2014)"
+        }
+      ]
+    },
+    {
+      "path": "notebooks/02_caulo_fitness_ranking.ipynb",
+      "cells_total": 20,
+      "cells_code": 12,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "matplotlib.pyplot",
+          "alias": "plt",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "seaborn",
+          "alias": "sns",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 5,
+          "module": "re",
+          "alias": null,
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 6,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 7,
+          "module": "berdl_notebook_utils.setup_spark_session",
+          "alias": null,
+          "names": [
+            "get_spark_session"
+          ],
+          "name_aliases": {}
+        },
+        {
+          "cell": 11,
+          "line": 16,
+          "module": "scipy.stats",
+          "alias": null,
+          "names": [
+            "hypergeom"
+          ],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [],
+      "spark_queries": [
+        {
+          "cell": 1,
+          "line": 19,
+          "query_excerpt": "SELECT 1 AS one",
+          "full_length": 15,
+          "execution_context": "K-BERDL via Spark (remote execution; query string only, not full execution path)"
+        },
+        {
+          "cell": 2,
+          "line": 2,
+          "query_excerpt": "\n    SELECT expName, expDesc, expDescLong, expGroup,\n           media, aerobic, liquid, condition_1, units_1, concentration_1,\n           condition_2, units_2, concentration_2,\n           condition_3, units_3, concentration_3,\n           condition_4, units_4, concentration_4\n    FROM kescience_fitnessbrowser.experiment\n    WHERE orgId = 'Caulo'\n",
+          "full_length": 347,
+          "execution_context": "K-BERDL via Spark (remote execution; query string only, not full execution path)"
+        },
+        {
+          "cell": 6,
+          "line": 1,
+          "query_excerpt": "\n    SELECT locusId, sysName, gene, desc, scaffoldId, begin, end, strand, type\n    FROM kescience_fitnessbrowser.gene\n    WHERE orgId = 'Caulo'\n",
+          "full_length": 144,
+          "execution_context": "K-BERDL via Spark (remote execution; query string only, not full execution path)"
+        },
+        {
+          "cell": 7,
+          "line": 1,
+          "query_excerpt": "\n    SELECT expName, locusId,\n           CAST(fit AS DOUBLE) AS fit,\n           CAST(t   AS DOUBLE) AS t\n    FROM kescience_fitnessbrowser.fitbyexp_caulo\n",
+          "full_length": 154,
+          "execution_context": "K-BERDL via Spark (remote execution; query string only, not full execution path)"
+        }
+      ],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 14,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 15,
+          "name": "DATA_OUT",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        },
+        {
+          "cell": 1,
+          "line": 16,
+          "name": "FIG",
+          "value_repr": "(non-literal: PROJ / 'figures')"
+        },
+        {
+          "cell": 4,
+          "line": 2,
+          "name": "IRON_RE",
+          "value_repr": "(non-literal: re.compile('fe\\\\b|iron|2,2.bipyridyl|ferric|ferrous|hemin|fe)"
+        },
+        {
+          "cell": 4,
+          "line": 3,
+          "name": "OXIDATIVE_RE",
+          "value_repr": "(non-literal: re.compile('h2o2|hydrogen peroxide|peroxide|paraquat|menadio)"
+        },
+        {
+          "cell": 4,
+          "line": 4,
+          "name": "ENVELOPE_RE",
+          "value_repr": "(non-literal: re.compile('vancomycin|bacitracin|polymyxin|colistin|deoxych)"
+        },
+        {
+          "cell": 4,
+          "line": 5,
+          "name": "CARBON_RE",
+          "value_repr": "(non-literal: re.compile('glucose|fructose|galactose|sucrose|maltose|lacto)"
+        },
+        {
+          "cell": 5,
+          "line": 2,
+          "name": "n_iron",
+          "value_repr": "(non-literal: exps['cond_classes'].str.contains('iron', regex=False, na=Fa)"
+        },
+        {
+          "cell": 5,
+          "line": 3,
+          "name": "n_env",
+          "value_repr": "(non-literal: exps['cond_classes'].str.contains('envelope', regex=False, n)"
+        },
+        {
+          "cell": 5,
+          "line": 4,
+          "name": "n_ox",
+          "value_repr": "(non-literal: exps['cond_classes'].str.contains('oxidative', regex=False, )"
+        },
+        {
+          "cell": 5,
+          "line": 5,
+          "name": "n_carbon",
+          "value_repr": "(non-literal: exps['cond_classes'].str.contains('carbon', regex=False, na=)"
+        },
+        {
+          "cell": 5,
+          "line": 7,
+          "name": "PREFLIGHT_PASS",
+          "value_repr": "(non-literal: n_env >= 3 and n_iron >= 3)"
+        },
+        {
+          "cell": 9,
+          "line": 12,
+          "name": "n_strong",
+          "value_repr": "(non-literal: (in_class['t'].abs() > t_threshold).sum())"
+        },
+        {
+          "cell": 9,
+          "line": 18,
+          "name": "max_abs_t",
+          "value_repr": "(non-literal: abs(best_t))"
+        },
+        {
+          "cell": 9,
+          "line": 21,
+          "name": "max_abs_t",
+          "value_repr": "(non-literal: np.nan)"
+        }
+      ]
+    },
+    {
+      "path": "notebooks/02b_h2_hypergeometric_verdict.ipynb",
+      "cells_total": 4,
+      "cells_code": 2,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "scipy.stats",
+          "alias": null,
+          "names": [
+            "hypergeom"
+          ],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [],
+      "spark_queries": [],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 6,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 7,
+          "name": "DATA",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        }
+      ]
+    },
+    {
+      "path": "notebooks/03_chvi_phase_partition_sigU.ipynb",
+      "cells_total": 24,
+      "cells_code": 13,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "matplotlib.pyplot",
+          "alias": "plt",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "seaborn",
+          "alias": "sns",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 5,
+          "module": "re",
+          "alias": null,
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 6,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 7,
+          "module": "scipy.stats",
+          "alias": null,
+          "names": [
+            "hypergeom",
+            "fisher_exact"
+          ],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [
+        {
+          "cell": 10,
+          "line": 19,
+          "test_name": "Fisher's exact test",
+          "library_path": "scipy.stats.fisher_exact",
+          "raw_call": "fisher_exact(table, alternative='greater')",
+          "keyword_args": {
+            "alternative": "'greater'"
+          }
+        }
+      ],
+      "spark_queries": [],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 14,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 15,
+          "name": "DATA_IN",
+          "value_repr": "(non-literal: Path('/home/aparkin/data/kr-caulobacter-envelope/clean'))"
+        },
+        {
+          "cell": 1,
+          "line": 16,
+          "name": "DATA_OUT",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        },
+        {
+          "cell": 1,
+          "line": 17,
+          "name": "FIG",
+          "value_repr": "(non-literal: PROJ / 'figures')"
+        },
+        {
+          "cell": 6,
+          "line": 8,
+          "name": "KEYWORD_SETS",
+          "value_repr": "(non-literal: {'TBDT / OM receptor': 'TonB.dependent|tbd|outer.membrane.re)"
+        },
+        {
+          "cell": 6,
+          "line": 21,
+          "name": "n_total",
+          "value_repr": "(non-literal: len(annotated_df))"
+        },
+        {
+          "cell": 6,
+          "line": 26,
+          "name": "n_hit",
+          "value_repr": "(non-literal: mask.sum())"
+        }
+      ]
+    },
+    {
+      "path": "notebooks/04_sphingolipid_lpt_panel.ipynb",
+      "cells_total": 18,
+      "cells_code": 11,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "matplotlib.pyplot",
+          "alias": "plt",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "seaborn",
+          "alias": "sns",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 5,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [],
+      "spark_queries": [],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 12,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 13,
+          "name": "DATA_IN",
+          "value_repr": "(non-literal: Path('/home/aparkin/data/kr-caulobacter-envelope/clean'))"
+        },
+        {
+          "cell": 1,
+          "line": 14,
+          "name": "DATA_OUT",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        },
+        {
+          "cell": 1,
+          "line": 15,
+          "name": "FIG",
+          "value_repr": "(non-literal: PROJ / 'figures')"
+        },
+        {
+          "cell": 2,
+          "line": 2,
+          "name": "SPHINGOLIPID",
+          "value_repr": "(non-literal: {'CCNA_01212': 'bcerS \u2014 bacterial ceramide synthase', 'CCNA_)"
+        },
+        {
+          "cell": 2,
+          "line": 21,
+          "name": "LPT_APPARATUS",
+          "value_repr": "(non-literal: {'CCNA_00307': 'MsbA-like phospholipid/LPS ABC transporter',)"
+        },
+        {
+          "cell": 2,
+          "line": 31,
+          "name": "CTPA",
+          "value_repr": "(non-literal: {'CCNA_03113': 'CtpA \u2014 C-terminal processing protease; LpxE-)"
+        }
+      ]
+    },
+    {
+      "path": "notebooks/05_pg_remodeling.ipynb",
+      "cells_total": 17,
+      "cells_code": 9,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "matplotlib.pyplot",
+          "alias": "plt",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "seaborn",
+          "alias": "sns",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 5,
+          "module": "re",
+          "alias": null,
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 6,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [],
+      "spark_queries": [],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 13,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 14,
+          "name": "DATA_IN",
+          "value_repr": "(non-literal: Path('/home/aparkin/data/kr-caulobacter-envelope/clean'))"
+        },
+        {
+          "cell": 1,
+          "line": 15,
+          "name": "DATA_OUT",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        },
+        {
+          "cell": 1,
+          "line": 16,
+          "name": "FIG",
+          "value_repr": "(non-literal: PROJ / 'figures')"
+        },
+        {
+          "cell": 2,
+          "line": 2,
+          "name": "PG_SYMBOLS",
+          "value_repr": "(non-literal: {'murA', 'murB', 'murC', 'murD', 'murE', 'murF', 'murG', 'mu)"
+        },
+        {
+          "cell": 2,
+          "line": 21,
+          "name": "DESC_PATTERN",
+          "value_repr": "(non-literal: re.compile('transglycosylase|transpeptidase|penicillin.bindi)"
+        },
+        {
+          "cell": 5,
+          "line": 2,
+          "name": "n_trans_sig",
+          "value_repr": "(non-literal: len(trans_sig))"
+        },
+        {
+          "cell": 5,
+          "line": 3,
+          "name": "n_prot_sig",
+          "value_repr": "(non-literal: len(prot_sig))"
+        },
+        {
+          "cell": 5,
+          "line": 7,
+          "name": "n_total_meeting",
+          "value_repr": "(non-literal: len(meeting_set))"
+        }
+      ]
+    },
+    {
+      "path": "notebooks/06_comparative_species.ipynb",
+      "cells_total": 15,
+      "cells_code": 8,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "matplotlib.pyplot",
+          "alias": "plt",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "seaborn",
+          "alias": "sns",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 5,
+          "module": "re",
+          "alias": null,
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 6,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 7,
+          "module": "berdl_notebook_utils.setup_spark_session",
+          "alias": null,
+          "names": [
+            "get_spark_session"
+          ],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [],
+      "spark_queries": [],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 14,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 15,
+          "name": "DATA_OUT",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        },
+        {
+          "cell": 1,
+          "line": 16,
+          "name": "FIG",
+          "value_repr": "(non-literal: PROJ / 'figures')"
+        },
+        {
+          "cell": 1,
+          "line": 21,
+          "name": "SPECIES",
+          "value_repr": "(non-literal: {'C_crescentus': 'caulobacter', 'A_baumannii': 'acinetobacte)"
+        },
+        {
+          "cell": 2,
+          "line": 2,
+          "name": "FAMILIES",
+          "value_repr": "(non-literal: [('spt \u2014 serine palmitoyltransferase', 'serine.palmitoyltran)"
+        },
+        {
+          "cell": 3,
+          "line": 12,
+          "name": "n_hits",
+          "value_repr": "(non-literal: int(df['n'].iloc[0]))"
+        }
+      ]
+    },
+    {
+      "path": "notebooks/06b_ncbi_annotation_presence.ipynb",
+      "cells_total": 10,
+      "cells_code": 6,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "time",
+          "alias": null,
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 5,
+          "module": "Bio",
+          "alias": null,
+          "names": [
+            "Entrez"
+          ],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [],
+      "spark_queries": [],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 10,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 11,
+          "name": "DATA",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        },
+        {
+          "cell": 1,
+          "line": 13,
+          "name": "SPECIES_TAXIDS",
+          "value_repr": "(non-literal: {'C_crescentus': '565050[Organism:exp] OR \"Caulobacter vibri)"
+        },
+        {
+          "cell": 1,
+          "line": 22,
+          "name": "FOCAL",
+          "value_repr": "(non-literal: [('spt \u2014 serine palmitoyltransferase', ['\"serine palmitoyltr)"
+        },
+        {
+          "cell": 5,
+          "line": 1,
+          "name": "SPHINGO",
+          "value_repr": "(non-literal: ['spt \u2014 serine palmitoyltransferase', 'bcerS \u2014 bacterial cer)"
+        },
+        {
+          "cell": 5,
+          "line": 6,
+          "name": "CHV",
+          "value_repr": "(non-literal: ['ChvG \u2014 sensor kinase', 'ChvI \u2014 response regulator'])"
+        },
+        {
+          "cell": 5,
+          "line": 8,
+          "name": "LPT",
+          "value_repr": "(non-literal: ['LpxA \u2014 UDP-GlcNAc acyltransferase', 'LpxC \u2014 UDP-GlcNAc dea)"
+        }
+      ]
+    },
+    {
+      "path": "notebooks/07_synthesis.ipynb",
+      "cells_total": 8,
+      "cells_code": 4,
+      "cells_skipped": 0,
+      "parse_errors": [],
+      "imports": [
+        {
+          "cell": 1,
+          "line": 1,
+          "module": "pandas",
+          "alias": "pd",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 2,
+          "module": "numpy",
+          "alias": "np",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 3,
+          "module": "matplotlib.pyplot",
+          "alias": "plt",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 4,
+          "module": "matplotlib.gridspec",
+          "alias": "gridspec",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 5,
+          "module": "seaborn",
+          "alias": "sns",
+          "names": [],
+          "name_aliases": {}
+        },
+        {
+          "cell": 1,
+          "line": 6,
+          "module": "pathlib",
+          "alias": null,
+          "names": [
+            "Path"
+          ],
+          "name_aliases": {}
+        }
+      ],
+      "statistical_tests": [],
+      "spark_queries": [],
+      "constants": [
+        {
+          "cell": 1,
+          "line": 13,
+          "name": "PROJ",
+          "value_repr": "(non-literal: Path('/home/aparkin/BERIL-research-observatory/projects/caul)"
+        },
+        {
+          "cell": 1,
+          "line": 14,
+          "name": "DATA",
+          "value_repr": "(non-literal: PROJ / 'data')"
+        },
+        {
+          "cell": 1,
+          "line": 15,
+          "name": "FIG",
+          "value_repr": "(non-literal: PROJ / 'figures')"
+        }
+      ]
+    }
+  ],
+  "scripts": [],
+  "package_versions": {
+    "from_requirements_txt": {},
+    "from_pyproject_toml": {},
+    "from_environment_yml": {}
+  },
+  "summary": {
+    "notebook_count": 10,
+    "script_count": 0,
+    "code_cells_total": 90,
+    "code_cells_skipped": 0,
+    "statistical_test_calls_total": 5,
+    "statistical_test_names_unique": [
+      "Fisher's exact test",
+      "Pearson correlation",
+      "Spearman rank correlation"
+    ],
+    "modules_imported_unique": [
+      "Bio",
+      "berdl_notebook_utils.setup_spark_session",
+      "matplotlib.gridspec",
+      "matplotlib.pyplot",
+      "numpy",
+      "openpyxl",
+      "pandas",
+      "pathlib",
+      "re",
+      "scipy.stats",
+      "seaborn",
+      "time"
+    ],
+    "spark_query_count": 4,
+    "package_count": 0
+  }
+}
+Wrote methods_provenance.md to /home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_2/methods_provenance.md

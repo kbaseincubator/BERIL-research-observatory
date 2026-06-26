@@ -17,7 +17,8 @@ Example:
 ## Format Guidance
 
 - `parquet`: best default for interoperability and efficient reads.
-- `delta`: best when output will be queried repeatedly as a table-like dataset.
+- `iceberg`: best when output will be registered in the Polaris catalog and queried repeatedly.
+- `delta`: for scratch file output not registered in a catalog (legacy; new tables should use Iceberg).
 - `json/csv`: only for smaller extracts and human-readable handoff.
 
 ## Naming Guidance

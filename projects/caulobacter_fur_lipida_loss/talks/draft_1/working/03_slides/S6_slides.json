@@ -1,0 +1,80 @@
+{
+  "schema_version": "compose-fragment.v2",
+  "substory_id": "S6",
+  "substory_punchline": "Five partially independent layers compose one *Caulobacter*-specific program for surviving lipid A loss.",
+  "throughline_id": "TL2",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "section_divider",
+      "content": {
+        "punchline": "Five partially independent layers compose one *Caulobacter*-specific program for surviving lipid A loss.",
+        "substory_number": 6
+      },
+      "speaker_notes": "We have now characterized all five adaptive layers: Fur-released transport, ChvI two-phase signaling, constitutive sphingolipid substitution, peptidoglycan remodeling, and the cross-species structural unavailability that answers the 'why Caulobacter alone' half of the question. Coming in from S5, we know that the sphingolipid biosynthesis pathway is absent in A. baumannii, N. meningitidis, and M. catarrhalis — absent at both the PaperBLAST and NCBI annotation levels — and that ChvG-ChvI is similarly absent outside the alphaproteobacteria. The closing question is whether these five layers integrate into a single coherent mechanism that explains both how and why Caulobacter tolerates lipid A loss when other Gram-negatives cannot.\n\nThe answer is yes, with important fine print that the pre-registered scorecard makes explicit. The layers are partially independent in the engineering sense — each was tested against its own hypothesis and pre-registered threshold. Any one layer could fail without necessarily collapsing the others. What the scorecard shows is that the sphingolipid layer is the load-bearing center. Without a constitutive CPG pool, Lpt repurposing has nothing to ship. Without ChvI scheduling the envelope-structural response over two phases, the timing of the rebuild is absent. Without Pal-Tol induction compensating for OM lipid asymmetry, homeostasis cannot be maintained when LPS is gone. And without the route being uniquely available — which the comparative arm confirms — the mechanism cannot generalize beyond this species.\n\nBefore I show the synthesis data, a word on honesty: the scorecard includes a REJECTED entry for CtpA and a DEMOTED arm for the SspB-buffered respiratory program. Those are not omissions or failures of the project — they are the pre-registered framework doing exactly what it was designed to do: forcing a reckoning with what the data do and do not support. Both the PASS verdicts and the REJECTED verdict are load-bearing; dropping the rejected candidate is what makes the remaining five-layer claim trustworthy. The next two slides lay out the synthesis approach and the scorecard itself.",
+      "evidence_anchors": []
+    },
+    {
+      "position": 1,
+      "layout": "methods_summary",
+      "content": {
+        "title": "Synthesis: five evidence arms integrated against pre-registered thresholds",
+        "bullets": [
+          "Pre-registered hypotheses H1–H4 + comparative arm; thresholds committed before any DE analysis (RESEARCH_PLAN.md §thresholds)",
+          "Transcript: edgeR DE on 4599-vs-4584 contrast — isolates Δlpxc response against Δfur Δsspb background (FDR < 0.05)",
+          "Fitness: hypergeometric enrichment vs genome background 33.25% (n=3,943 genes, 198-experiment Caulobacter RB-TnSeq compendium)",
+          "OM proteome: single-replicate per strain; direction-only criterion |log2| > 1; replicated proteomics scheduled summer 2026",
+          "Comparative: NCBI annotation (NB06b) re-confirmed after PaperBLAST ~80% false-negative diagnosis for Caulobacter lipid A genes",
+          "Adversarial review corrections applied: CtpA verdict corrected BORDERLINE → REJECTED; Pal interpretation reframed to Tan & Chng 2025 retrograde-PL model",
+          "NB07 synthesis notebook integrates all five arms into the 4-panel master figure and pre-registered scorecard"
+        ],
+        "tools_versions": [
+          {"tool": "edgeR", "version": "unknown"},
+          {"tool": "Biopython Entrez", "version": "unknown"}
+        ],
+        "see_notes_footer": true
+      },
+      "speaker_notes": "The synthesis integrates five distinct evidence streams into a pre-registered scorecard. Let me orient you to what each stream can and cannot claim before I show the verdicts.\n\nTranscript data were analyzed by edgeR differential expression on the 4599-versus-4584 contrast — this specific pairwise comparison isolates the Δlpxc response against the combined Δfur Δsspb background. All significance thresholds were committed in the research plan before any DE analysis ran: FDR less than 0.05 for transcript, absolute log2 greater than 1 for the proteome. The pre-registered ≥10 percent threshold for the fitness arm was discovered during adversarial review to sit below the genome background rate of 33.25 percent — meaning it was uninformative as an enrichment test. The scorecard therefore uses hypergeometric enrichment against that background as the formal H2 verdict, using the 198-experiment Caulobacter RB-TnSeq compendium from the BERDL Fitness Browser.\n\nThe OM proteome is single-replicate per strain — one of the project's eleven named limitations. Direction is interpretable at |log2| greater than 1; per-protein significance statistics cannot be computed from a single observation. The lptC2 protein induction, the LptD and LptE protein-level decline, and the Pal upregulation at the protein level all require the replicated proteomics scheduled for summer 2026 before they can be claimed at publication rigor.\n\nThe comparative arm was initially screened via PaperBLAST, but the adversarial review found that PaperBLAST returns zero hits for five known Caulobacter lipid A biosynthesis genes — LpxA, LpxC, LpxD, LpxB, and LpxK — while NCBI annotation finds 11 to 18 each. NB06b re-ran the comparative panel against NCBI annotation and confirmed the headline biological claims: sphingolipid pathway absent in the comparators, ChvG-ChvI alphaproteobacterial-restricted. Those NCBI-confirmed results feed into the scorecard, not the PaperBLAST screen.\n\nTwo adversarial-review corrections are baked into the scorecard you will see next. First: the CtpA verdict was changed from BORDERLINE to REJECTED — the 4599-versus-4584 p-value of 0.048 fails the BORDERLINE lower bound of 0.05, and CtpA was undetected in the proteome. Second: the Pal upregulation interpretation was reframed from an uncited Mg2+-bridging mechanism to the Tan and Chng 2025 retrograde phospholipid transport model. Both corrections make the final synthesis more conservative and more grounded. The next slide shows the scorecard.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Results (Hypothesis scorecard)"},
+        {"kind": "report_section", "ref": "REPORT.md §Limitations"},
+        {"kind": "notebook", "ref": "notebooks/07_synthesis.ipynb"},
+        {"kind": "citation_pool_key", "ref": "Price2018"}
+      ]
+    },
+    {
+      "position": 2,
+      "layout": "data_table",
+      "content": {
+        "title": "Five-layer synthesis scorecard: four layers confirmed, CtpA rejected, SspB arm demoted",
+        "columns": ["Layer", "Headline result", "Verdict"],
+        "rows": [
+          ["L1 Fur–transport", "Path A TBDTs 17/32 = 53.1% vs 33.25% background (fold 1.60×, p=0.016)", "PASS (marginal)"],
+          ["L1 SspB–respiratory", "Path B fold 1.04×, p=0.515 — indistinguishable from background", "NOT ENRICHED"],
+          ["L2 ChvI cascade", "Two-phase partition: 20 early + 10 both-phase + 49 late (≥10 threshold)", "PASS"],
+          ["L3 Sphingolipid", "0/6 biosynthesis genes UP; spt −0.64 FDR 0.002 — pool constitutive", "PASS strongly"],
+          ["L3 CtpA", "pvalue 0.048, FDR 0.109; protein absent — REJECTED at pre-registered bar", "REJECTED"],
+          ["L4 PG remodel", "28 loci (≥3 threshold); 20 DOWN + Pal +2.08 tx / +2.84 protein", "PASS strongly"],
+          ["L5 Comparative", "spt NCBI 7,0,0,0; ChvG 5,0,0,0 — route absent in comparators", "CONFIRMED"]
+        ],
+        "caption": "Seven verdicts against pre-registered thresholds; CtpA corrected from BORDERLINE to REJECTED post adversarial review.",
+        "footnote": "Full scorecard with pre-registered thresholds in REPORT.md §Results.",
+        "data_source": "REPORT.md §Results; NB07_synthesis.ipynb",
+        "highlight_rows": [0, 2, 3, 5, 6]
+      },
+      "speaker_notes": "The scorecard gives seven verdicts across the five layers. Let me walk through what each verdict means in evidence terms, because fine print matters.\n\nLayer one's transport arm passes — marginally. The 32 concordant-strong Fur-released Path A genes show 53.1 percent phenotype-bearing versus a genome background of 33.25 percent: fold 1.60 times, hypergeometric p 0.016. The top hits are ChvT at |t| of 43.7 and four TBDTs — CCNA_02910, 00210, 02048, and 00028 — at |t| 9 to 28 under envelope stress. Marginal is the right word: the enrichment is real but modest. The SspB-buffered respiratory arm, Path B, is at fold 1.04 times, p 0.515 — indistinguishable from a random draw of 26 genes from the genome. The transcript-level buffering of the cbb3 and fix-NOPQ respiratory operon is real, but it does not translate into selective fitness importance. The respiratory ATP arm is demoted to hypothesis.\n\nLayer two passes cleanly: 20 unique-to-early genes, 10 both-phase, 49 late-consequence, all above the pre-registered ≥10-per-cohort threshold.\n\nLayer three has the strongest individual finding in the project. Zero of six sphingolipid biosynthesis genes are significantly upregulated; spt is down at −0.64 with FDR 0.002. The CPG pool does not need to be made on demand — it is standing. CtpA, by contrast, is rejected. The 4599-versus-4584 p-value of 0.048 fails the pre-registered BORDERLINE lower bound, and CtpA was not detected in the OM proteome. This is the corrected verdict after adversarial review.\n\nLayer four passes strongly: 28 unique loci meet the H4 threshold — 20 down, including FtsI, PbpZ, PbpC, MurD, and multiple endopeptidases — while Pal is specifically induced at +2.08 transcript log2 and +2.84 protein log2. Per Tan and Chng 2025, the parsimonious reading is that Pal upregulation supports increased retrograde phospholipid transport to restore OM lipid homeostasis when the LPS outer leaflet is gone.\n\nLayer five is confirmed at two levels — NCBI annotation spt 7,0,0,0 and ChvG 5,0,0,0 — independently supported by Olea-Ozuna 2020 and 2024 and Greenwich 2023.\n\nThe synthesis closes the throughline: four of five main layers confirmed, one candidate rejected, one sub-arm demoted. Only Caulobacter simultaneously encodes the sphingolipid pathway, maintains ChvG-ChvI signaling, and carries the Lpt capacity for dual-substrate transport — which is precisely why it alone tolerates the deletion, and why no genetic transfer of part of this program to a comparator species would be sufficient without the full suite.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Results (Hypothesis scorecard)"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 2 table"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 3"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 4"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 5"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 6"},
+        {"kind": "notebook", "ref": "notebooks/07_synthesis.ipynb"},
+        {"kind": "citation_pool_key", "ref": "Zik2022"}
+      ]
+    }
+  ]
+}

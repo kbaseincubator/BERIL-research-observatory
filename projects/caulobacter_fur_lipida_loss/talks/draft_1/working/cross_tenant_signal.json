@@ -1,0 +1,825 @@
+{
+  "project_id": "caulobacter_fur_lipida_loss",
+  "tenant_list": [
+    "beril"
+  ],
+  "kberdl_db_list": [
+    "go",
+    "isolates",
+    "paperblast",
+    "pfam",
+    "pubmed",
+    "rb_tnseq"
+  ],
+  "sibling_project_refs": [],
+  "kbase_urls": [],
+  "no_signal_fallback": false,
+  "raw_evidence": [
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 7,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 10,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 21,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 21,
+      "matched_text": "berdl",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 22,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 23,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 7,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 7,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 10,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 49,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/README.md",
+      "line": 34,
+      "matched_text": "caulobacter_fur_lipida_loss",
+      "kind": "sibling_project"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 102,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 112,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 123,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 134,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 138,
+      "matched_text": "berdl",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 165,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 228,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 236,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 246,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 301,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 302,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 26,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 55,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 165,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 191,
+      "matched_text": "GO",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 191,
+      "matched_text": "paperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 192,
+      "matched_text": "paperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 217,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 219,
+      "matched_text": "paperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 241,
+      "matched_text": "Pfam",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 286,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 306,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 306,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/RESEARCH_PLAN.md",
+      "line": 288,
+      "matched_text": "risk",
+      "kind": "external_cohort"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 242,
+      "matched_text": "BERIL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 249,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 365,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 366,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 367,
+      "matched_text": "KBase",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 367,
+      "matched_text": "KBase",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 15,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 37,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 60,
+      "matched_text": "go",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 89,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 89,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 111,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 112,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 113,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 151,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 153,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 155,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 155,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 157,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 159,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 160,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 161,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 162,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 163,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 174,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 200,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 200,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 200,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 200,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 216,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 251,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 252,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 252,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 252,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 253,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 254,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 264,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 287,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 293,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 293,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 304,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 309,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 310,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 339,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 339,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 343,
+      "matched_text": "Pfam",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 366,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+      "line": 343,
+      "matched_text": "RefSeq",
+      "kind": "reference_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/references.md",
+      "line": 75,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/references.md",
+      "line": 5,
+      "matched_text": "PubMed",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/references.md",
+      "line": 5,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/references.md",
+      "line": 6,
+      "matched_text": "PubMed",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/references.md",
+      "line": 34,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/references.md",
+      "line": 48,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/references.md",
+      "line": 60,
+      "matched_text": "isolates",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/references.md",
+      "line": 95,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/references.md",
+      "line": 111,
+      "matched_text": "PubMed",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 2,
+      "matched_text": "BERIL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 23,
+      "matched_text": "BERIL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 28,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 35,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 43,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 50,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 56,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 95,
+      "matched_text": "BERIL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 102,
+      "matched_text": "BERIL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 20,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 30,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 50,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 78,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 90,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 90,
+      "matched_text": "Pfam",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REVIEW.md",
+      "line": 97,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/00_orientation.ipynb",
+      "line": 3,
+      "matched_text": "caulobacter_fur_lipida_loss",
+      "kind": "sibling_project"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/01_leaden2018_fur_signature.ipynb",
+      "line": 14,
+      "matched_text": "RB-TnSeq",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/02_caulo_fitness_ranking.ipynb",
+      "line": 7,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/02b_h2_hypergeometric_verdict.ipynb",
+      "line": 10,
+      "matched_text": "BERIL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/03_chvi_phase_partition_sigU.ipynb",
+      "line": 24,
+      "matched_text": "go",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/03_chvi_phase_partition_sigU.ipynb",
+      "line": 25,
+      "matched_text": "go",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/03_chvi_phase_partition_sigU.ipynb",
+      "line": 25,
+      "matched_text": "go",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/03_chvi_phase_partition_sigU.ipynb",
+      "line": 7,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/03_chvi_phase_partition_sigU.ipynb",
+      "line": 14,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06_comparative_species.ipynb",
+      "line": 16,
+      "matched_text": "BERDL",
+      "kind": "tenant"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06_comparative_species.ipynb",
+      "line": 20,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06_comparative_species.ipynb",
+      "line": 29,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06_comparative_species.ipynb",
+      "line": 1,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06_comparative_species.ipynb",
+      "line": 7,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06_comparative_species.ipynb",
+      "line": 2,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06b_ncbi_annotation_presence.ipynb",
+      "line": 1,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06b_ncbi_annotation_presence.ipynb",
+      "line": 14,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06b_ncbi_annotation_presence.ipynb",
+      "line": 30,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06b_ncbi_annotation_presence.ipynb",
+      "line": 31,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06b_ncbi_annotation_presence.ipynb",
+      "line": 34,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/06b_ncbi_annotation_presence.ipynb",
+      "line": 28,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    },
+    {
+      "source_file": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/notebooks/07_synthesis.ipynb",
+      "line": 133,
+      "matched_text": "PaperBLAST",
+      "kind": "kberdl_db"
+    }
+  ],
+  "files_scanned": [
+    "README.md",
+    "RESEARCH_PLAN.md",
+    "REPORT.md",
+    "references.md",
+    "REVIEW.md"
+  ],
+  "notebooks_scanned": [
+    "notebooks/00_orientation.ipynb",
+    "notebooks/01_leaden2018_fur_signature.ipynb",
+    "notebooks/02_caulo_fitness_ranking.ipynb",
+    "notebooks/02b_h2_hypergeometric_verdict.ipynb",
+    "notebooks/03_chvi_phase_partition_sigU.ipynb",
+    "notebooks/04_sphingolipid_lpt_panel.ipynb",
+    "notebooks/05_pg_remodeling.ipynb",
+    "notebooks/06_comparative_species.ipynb",
+    "notebooks/06b_ncbi_annotation_presence.ipynb",
+    "notebooks/07_synthesis.ipynb"
+  ],
+  "reference_databases": [
+    "RefSeq"
+  ],
+  "external_cohorts": [
+    "RISK"
+  ],
+  "notebook_count": 10
+}

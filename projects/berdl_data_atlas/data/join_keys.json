@@ -1,0 +1,4200 @@
+{
+ "genome_id": [
+  {
+   "tenant": "arkinlab",
+   "topic": "genome",
+   "db": "arkinlab_dbcan",
+   "table": "dbcan_integrated_results"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "mobile_phage",
+   "db": "arkinlab_dbcan",
+   "table": "genomad_summary"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "genome",
+   "db": "arkinlab_dbcan",
+   "table": "t4ss_structural_validation"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "mobile_phage",
+   "db": "arkinlab_mobilome",
+   "table": "genomad_summary"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "mobile_phage",
+   "db": "arkinlab_mobilome",
+   "table": "host_mag_sequences"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "mobile_phage",
+   "db": "arkinlab_mobilome",
+   "table": "t4ss_structural_validation"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "genome",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_contig"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "genome",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_genome_tags"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "genome",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_operon"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "fitness_phenotype",
+   "db": "globalusers_carbon_source_phenotypes",
+   "table": "bacformer_annotation_table"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "fitness_phenotype",
+   "db": "globalusers_carbon_source_phenotypes",
+   "table": "gene_calls_table"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "fitness_phenotype",
+   "db": "globalusers_carbon_source_phenotypes",
+   "table": "genome_table"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "fitness_phenotype",
+   "db": "globalusers_carbon_source_phenotypes",
+   "table": "kofam_annotation_table"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "fitness_phenotype",
+   "db": "globalusers_carbon_source_phenotypes",
+   "table": "phenotype_data_table"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "fitness_phenotype",
+   "db": "globalusers_carbon_source_phenotypes",
+   "table": "taxonomy_table"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "pathway",
+   "db": "globalusers_gapmind_pathways",
+   "table": "gapmind_pathways"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "alphaearth_embeddings_all_years"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pathway",
+   "db": "kbase_ke_pangenome",
+   "table": "gapmind_pathways"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gene"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "genome"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gtdb_taxonomy_r214v1"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "sample"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "gene"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "gene_amr"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "gene_bgc"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "gene_crispr"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "gene_defense"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "gene_eggnog"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "gene_mobilome"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "taxonomy",
+   "db": "kescience_mgnify",
+   "table": "genome"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "genome_annotation_coverage"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "annotation",
+   "db": "kescience_mgnify",
+   "table": "genome_cazy"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "annotation",
+   "db": "kescience_mgnify",
+   "table": "genome_cog"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "annotation",
+   "db": "kescience_mgnify",
+   "table": "genome_kegg_class"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "genome_kegg_module"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "genome_kegg_pathway"
+  },
+  {
+   "tenant": "msyscolo",
+   "topic": "genome",
+   "db": "msyscolo_grow",
+   "table": "growdb_genome_files"
+  },
+  {
+   "tenant": "msyscolo",
+   "topic": "genome",
+   "db": "msyscolo_grow",
+   "table": "growdb_protein_files"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_contig"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_genome_tags"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_operon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_regulon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_site"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_contig"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_genome_tags"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_operon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_regulon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_site"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_contig"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_genome_tags"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_operon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_regulon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_site"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_contig"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_genome_tags"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_operon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_regulon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_site"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_contig"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_genome_tags"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_operon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_regulon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_site"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_contig"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_genome_tags"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_operon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_site"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_strain_modelling",
+   "table": "strainmodelling_feature"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_strain_modelling",
+   "table": "strainmodelling_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_strain_modelling",
+   "table": "strainmodelling_genome_set_genomes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_strain_modelling",
+   "table": "strainmodelling_sequence"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_genomedepot",
+   "table": "browser_contig"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_genomedepot",
+   "table": "browser_operon"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_genomedepot",
+   "table": "browser_regulon"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_genomedepot",
+   "table": "browser_site"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_mind",
+   "table": "mind_genome_coverage"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_jgi_gem_mags",
+   "table": "genome_files"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_jgi_gem_mags",
+   "table": "genome_metadata"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_jgi_gem_mags",
+   "table": "genome_taxonomy"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_spire",
+   "table": "genome_metadata"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_spire",
+   "table": "representative_genome_index"
+  }
+ ],
+ "ec_number": [
+  {
+   "tenant": "arkinlab",
+   "topic": "genome",
+   "db": "arkinlab_dbcan",
+   "table": "dbcan_integrated_results"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "annotation",
+   "db": "arkinlab_dbcan",
+   "table": "fam_substrate_mapping"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "annotation",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_ec_number"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "bakta_annotations"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pathway",
+   "db": "kbase_ke_pangenome",
+   "table": "eggnog_mapper_annotations"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "fitness_phenotype",
+   "db": "kescience_bacdive",
+   "table": "enzyme"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "fitness_phenotype",
+   "db": "kescience_fitnessbrowser",
+   "table": "genedomain"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "gene_eggnog"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "annotation",
+   "db": "nmdc_arkin",
+   "table": "ec_hierarchy_flat"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "annotation",
+   "db": "nmdc_arkin",
+   "table": "ec_hierarchy_graph"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "annotation",
+   "db": "nmdc_arkin",
+   "table": "ec_terms"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "biochemistry",
+   "db": "nmdc_arkin",
+   "table": "metacyc_reaction_ec"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "proteomics_gold"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_ec_number"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_ec_number"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_ec_number"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_ec_number"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_ec_number"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_ec_number"
+  },
+  {
+   "tenant": "protect",
+   "topic": "annotation",
+   "db": "protect_genomedepot",
+   "table": "browser_ec_number"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_enzyme"
+  }
+ ],
+ "feature_id": [
+  {
+   "tenant": "arkinlab",
+   "topic": "genome",
+   "db": "arkinlab_dbcan",
+   "table": "dbcan_integrated_results"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_genomes_test1",
+   "table": "feature_x_protein_cluster"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_genomes_test1",
+   "table": "feature_x_protein_clusterby"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "pangenome",
+   "db": "globalusers_kepangenome_parquet_1",
+   "table": "encoded_feature_x_feature"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "pangenome",
+   "db": "globalusers_kepangenome_parquet_1",
+   "table": "feature"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "system",
+   "db": "globalusers_nmdc_core_test3",
+   "table": "covstats_gold"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "system",
+   "db": "globalusers_nmdc_core_test4",
+   "table": "covstats_gold"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "genome",
+   "db": "kbase_genomes",
+   "table": "contig_collection_x_feature"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "genome",
+   "db": "kbase_genomes",
+   "table": "contig_x_feature"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_genomes",
+   "table": "encoded_feature_x_feature"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "genome",
+   "db": "kbase_genomes",
+   "table": "feature"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "multiomics",
+   "db": "kbase_genomes",
+   "table": "feature_x_protein"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gene"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gene_genecluster_junction"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "gene"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "gene_amr"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "genome",
+   "db": "kescience_mgnify",
+   "table": "gene_defense"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "gene_eggnog"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "integration",
+   "db": "nmdc_arkin",
+   "table": "biochemical_features_metadata"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "lipidomics_gold"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "metabolomics_gold"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "metatranscriptomics_gold"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "nom_feature_metadata"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "nom_gold"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "proteomics_gold"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_results",
+   "table": "annotation_enzyme_commission"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_results",
+   "table": "annotation_kegg_orthology"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_results",
+   "table": "pfam_annotation_gff"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_regulon_regulators"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_site_genes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_regulon_regulators"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_site_genes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_regulon_regulators"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_site_genes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_regulon_regulators"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_site_genes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_regulon_regulators"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_site_genes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_regulon_regulators"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_site_genes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_strain_modelling",
+   "table": "strainmodelling_feature_intervals"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_strain_modelling",
+   "table": "strainmodelling_feature_metric"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_strain_modelling",
+   "table": "strainmodelling_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_strain_modelling",
+   "table": "strainmodelling_protein_family_features"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_strain_modelling",
+   "table": "strainmodelling_protein_family_genes"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_genomedepot",
+   "table": "browser_regulon_regulators"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_genomedepot",
+   "table": "browser_site_genes"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_feature_counts_genus"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_feature_counts_species"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_gene_annotations"
+  },
+  {
+   "tenant": "protect",
+   "topic": "annotation",
+   "db": "protect_mind",
+   "table": "mind_kegg_assignments"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_locus_to_taxon"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_ensembl"
+  }
+ ],
+ "pmid_doi": [
+  {
+   "tenant": "arkinlab",
+   "topic": "literature",
+   "db": "arkinlab_dbcan",
+   "table": "dbcan_pul"
+  },
+  {
+   "tenant": "ese",
+   "topic": "literature",
+   "db": "ese_ganymede",
+   "table": "publications"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_bacdive",
+   "table": "strain"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_paperblast",
+   "table": "curatedpaper"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_paperblast",
+   "table": "genepaper"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_paperblast",
+   "table": "generif"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_paperblast",
+   "table": "paperaccess"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_paperblast",
+   "table": "snippet"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_citations"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_pubmed",
+   "table": "pubmed_article_chemical_fact"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_pubmed",
+   "table": "pubmed_article_id_fact"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_pubmed",
+   "table": "pubmed_article_mesh_fact"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_pubmed",
+   "table": "pubmed_article_wide"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_webofmicrobes",
+   "table": "observation"
+  },
+  {
+   "tenant": "netl",
+   "topic": "literature",
+   "db": "netl_pw_dna",
+   "table": "dna_metadata"
+  },
+  {
+   "tenant": "netl",
+   "topic": "literature",
+   "db": "netl_pw_dna",
+   "table": "study_citations"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "literature",
+   "db": "refdata_ncbi",
+   "table": "assembly_summary_refseq_2026_04"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_citations"
+  }
+ ],
+ "sample_id": [
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_envdbs",
+   "table": "cmmi_ores"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_envdbs",
+   "table": "ngsa_geochemistry"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_envdbs",
+   "table": "tectonic_plates"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_microbeatlas",
+   "table": "enriched_metadata"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_microbeatlas",
+   "table": "enriched_metadata_gee"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_microbeatlas",
+   "table": "otu_counts_long"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_microbeatlas",
+   "table": "sample_metadata"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "taxonomy",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "genome",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_sample"
+  },
+  {
+   "tenant": "ese",
+   "topic": "integration",
+   "db": "ese_ganymede",
+   "table": "instrument_raw_data"
+  },
+  {
+   "tenant": "ese",
+   "topic": "integration",
+   "db": "ese_ganymede",
+   "table": "quantitative_results"
+  },
+  {
+   "tenant": "ese",
+   "topic": "environment",
+   "db": "ese_ganymede",
+   "table": "samples"
+  },
+  {
+   "tenant": "ese",
+   "topic": "environment",
+   "db": "ese_ganymede",
+   "table": "samples_publications"
+  },
+  {
+   "tenant": "netl",
+   "topic": "taxonomy",
+   "db": "netl_pw_dna",
+   "table": "assembly_taxonomy"
+  },
+  {
+   "tenant": "netl",
+   "topic": "literature",
+   "db": "netl_pw_dna",
+   "table": "dna_metadata"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "integration",
+   "db": "nmdc_arkin",
+   "table": "abiotic_embeddings"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "integration",
+   "db": "nmdc_arkin",
+   "table": "abiotic_features"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "contig_taxonomy"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "contig_taxonomy_backup"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "system",
+   "db": "nmdc_arkin",
+   "table": "omics_files_table"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "field_observational",
+   "db": "nmdc_arkin",
+   "table": "sample_file_lookup"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "field_observational",
+   "db": "nmdc_arkin",
+   "table": "sample_file_selections"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "field_observational",
+   "db": "nmdc_arkin",
+   "table": "sample_tokens_v1"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "taxonomy_embeddings"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "fitness_phenotype",
+   "db": "nmdc_arkin",
+   "table": "trait_embeddings"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_sample"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_sample_metadata"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_sample"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_sample_metadata"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_sample"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_sample_metadata"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_sample"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_sample_metadata"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_sample"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_sample_metadata"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_sample"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_sample_metadata"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "field_observational",
+   "db": "planetmicrobe_planetmicrobe",
+   "table": "experiment"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "field_observational",
+   "db": "planetmicrobe_planetmicrobe",
+   "table": "project_to_sample"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "field_observational",
+   "db": "planetmicrobe_planetmicrobe",
+   "table": "sample"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "field_observational",
+   "db": "planetmicrobe_planetmicrobe",
+   "table": "sample_cleaned"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "field_observational",
+   "db": "planetmicrobe_planetmicrobe",
+   "table": "sample_to_sampling_event"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "field_observational",
+   "db": "planetmicrobe_planetmicrobe_raw",
+   "table": "experiment"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "field_observational",
+   "db": "planetmicrobe_planetmicrobe_raw",
+   "table": "project_to_sample"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "field_observational",
+   "db": "planetmicrobe_planetmicrobe_raw",
+   "table": "sample"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "field_observational",
+   "db": "planetmicrobe_planetmicrobe_raw",
+   "table": "sample_to_sampling_event"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_genomedepot",
+   "table": "browser_sample"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_genomedepot",
+   "table": "browser_sample_metadata"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_integration",
+   "table": "protect_isolate_sample_patient_linkage"
+  },
+  {
+   "tenant": "protect",
+   "topic": "environment",
+   "db": "protect_integration",
+   "table": "protect_multiomics_integration"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_integration",
+   "table": "protect_redcap_clinical_clean"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_alignment_stats_metag"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_alignment_stats_metars"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_candidate_prebiotics"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_feature_counts_genus"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_feature_counts_genus_stratified"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_feature_counts_species"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_feature_counts_species_stratified"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_importer_genes"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_importer_substrate_scores"
+  },
+  {
+   "tenant": "protect",
+   "topic": "annotation",
+   "db": "protect_mind",
+   "table": "mind_kegg_pathway_expression"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_pa_alignment_rates"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_pa_competitors"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_prebiotic_candidates_filtered"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_sample_diversity_metag"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_sample_diversity_metars"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_sample_metadata_metag"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_sample_metadata_metars"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_sample_tracking"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_species_abundance_multiomics"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_species_gene_stratified_cpm"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_substrate_candidates_pa_filtered"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_spire",
+   "table": "mag_coordinates"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_spire",
+   "table": "sample_microntology"
+  },
+  {
+   "tenant": "u",
+   "topic": "field_observational",
+   "db": "u_aparkin__planetmicrobe",
+   "table": "experiment"
+  },
+  {
+   "tenant": "u",
+   "topic": "field_observational",
+   "db": "u_aparkin__planetmicrobe",
+   "table": "project_to_sample"
+  },
+  {
+   "tenant": "u",
+   "topic": "field_observational",
+   "db": "u_aparkin__planetmicrobe",
+   "table": "sample"
+  },
+  {
+   "tenant": "u",
+   "topic": "field_observational",
+   "db": "u_aparkin__planetmicrobe",
+   "table": "sample_to_sampling_event"
+  }
+ ],
+ "lat_lon": [
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_envdbs",
+   "table": "epa_tri_metals"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_envdbs",
+   "table": "mining_operations"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_envdbs",
+   "table": "ngsa_geochemistry"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_envdbs",
+   "table": "tectonic_plates"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_microbeatlas",
+   "table": "enriched_metadata"
+  },
+  {
+   "tenant": "arkinlab",
+   "topic": "field_observational",
+   "db": "arkinlab_microbeatlas",
+   "table": "enriched_metadata_gee"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "fitness_phenotype",
+   "db": "kescience_webofmicrobes",
+   "table": "environment"
+  },
+  {
+   "tenant": "msyscolo",
+   "topic": "field_observational",
+   "db": "msyscolo_grow",
+   "table": "growdb_sample_inventory"
+  },
+  {
+   "tenant": "msyscolo",
+   "topic": "field_observational",
+   "db": "msyscolo_grow",
+   "table": "growdb_sample_metadata"
+  },
+  {
+   "tenant": "netl",
+   "topic": "literature",
+   "db": "netl_pw_dna",
+   "table": "dna_metadata"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_jgi_gem_mags",
+   "table": "genome_metadata"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "mobile_phage",
+   "db": "refdata_jgi_virus",
+   "table": "metavr_main"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_spire",
+   "table": "mag_coordinates"
+  },
+  {
+   "tenant": "usgs",
+   "topic": "field_observational",
+   "db": "usgs_produced_waters",
+   "table": "usgspwdb_c"
+  },
+  {
+   "tenant": "usgs",
+   "topic": "field_observational",
+   "db": "usgs_produced_waters",
+   "table": "usgspwdb_n"
+  }
+ ],
+ "genus": [
+  {
+   "tenant": "arkinlab",
+   "topic": "taxonomy",
+   "db": "arkinlab_microbeatlas",
+   "table": "otu_metadata"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "fitness_phenotype",
+   "db": "globalusers_carbon_source_phenotypes",
+   "table": "taxonomy_table"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "alphaearth_embeddings_all_years"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gtdb_taxonomy_r214v1"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "fitness_phenotype",
+   "db": "kescience_bacdive",
+   "table": "taxonomy"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "fitness_phenotype",
+   "db": "kescience_fitnessbrowser",
+   "table": "organism"
+  },
+  {
+   "tenant": "msyscolo",
+   "topic": "taxonomy",
+   "db": "msyscolo_grow",
+   "table": "growdb_taxonomy_gtdb"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "covstats_taxonomy_rollup"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "taxonomy_dim"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_feature_counts_genus_stratified"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_taxonomy_gtdb"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_taxonomy_ncbi"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_jgi_gem_mags",
+   "table": "genome_taxonomy"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_spire",
+   "table": "genome_metadata"
+  }
+ ],
+ "species": [
+  {
+   "tenant": "arkinlab",
+   "topic": "taxonomy",
+   "db": "arkinlab_microbeatlas",
+   "table": "otu_metadata"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "fitness_phenotype",
+   "db": "globalusers_carbon_source_phenotypes",
+   "table": "taxonomy_table"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "alphaearth_embeddings_all_years"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gtdb_taxonomy_r214v1"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_bacdive",
+   "table": "strain"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "fitness_phenotype",
+   "db": "kescience_bacdive",
+   "table": "taxonomy"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "fitness_phenotype",
+   "db": "kescience_fitnessbrowser",
+   "table": "organism"
+  },
+  {
+   "tenant": "msyscolo",
+   "topic": "taxonomy",
+   "db": "msyscolo_grow",
+   "table": "growdb_taxonomy_gtdb"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "covstats_taxonomy_rollup"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "taxonomy_dim"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_candidate_prebiotics"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_feature_counts_species_stratified"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_importer_genes"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_importer_substrate_scores"
+  },
+  {
+   "tenant": "protect",
+   "topic": "annotation",
+   "db": "protect_mind",
+   "table": "mind_kegg_pathway_expression"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_prebiotic_candidates_filtered"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_species_abundance_multiomics"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_species_gene_stratified_cpm"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_substrate_candidates_pa_filtered"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_taxonomy_gtdb"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_mind",
+   "table": "mind_taxonomy_ncbi"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_jgi_gem_mags",
+   "table": "genome_taxonomy"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_spire",
+   "table": "genome_metadata"
+  }
+ ],
+ "cazy": [
+  {
+   "tenant": "enigma",
+   "topic": "annotation",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_cazy_family"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pathway",
+   "db": "kbase_ke_pangenome",
+   "table": "eggnog_mapper_annotations"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "gene_eggnog"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "annotation",
+   "db": "kescience_mgnify",
+   "table": "genome_cazy"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_cazy_family"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_cazy_family"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_cazy_family"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_cazy_family"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_cazy_family"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_cazy_family"
+  },
+  {
+   "tenant": "protect",
+   "topic": "annotation",
+   "db": "protect_genomedepot",
+   "table": "browser_cazy_family"
+  }
+ ],
+ "cog": [
+  {
+   "tenant": "enigma",
+   "topic": "annotation",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_cog_class"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "bakta_annotations"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pathway",
+   "db": "kbase_ke_pangenome",
+   "table": "eggnog_mapper_annotations"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "gene_eggnog"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "annotation",
+   "db": "kescience_mgnify",
+   "table": "genome_cog"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "annotation",
+   "db": "nmdc_arkin",
+   "table": "cog_categories"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "annotation",
+   "db": "nmdc_arkin",
+   "table": "cog_hierarchy_flat"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "proteomics_gold"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_cog_class"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_cog_class"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_cog_class"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_cog_class"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_cog_class"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_cog_class"
+  },
+  {
+   "tenant": "protect",
+   "topic": "annotation",
+   "db": "protect_genomedepot",
+   "table": "browser_cog_class"
+  }
+ ],
+ "protein_id": [
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_cazy_families"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_cog_classes"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_ec_numbers"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_go_terms"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_kegg_orthologs"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_ortholog_groups"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_tc_families"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_genomes_test1",
+   "table": "feature_x_protein_cluster"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_genomes_test1",
+   "table": "feature_x_protein_clusterby"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_genomes_test1",
+   "table": "protein"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_genomes_test1",
+   "table": "protein_cluster"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_genomes_test1",
+   "table": "protein_clusterby"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_kepangenome_parquet_1",
+   "table": "encoded_feature_x_protein"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_kepangenome_parquet_1",
+   "table": "protein"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_kepangenome_parquet_1",
+   "table": "protein_duplicates"
+  },
+  {
+   "tenant": "globalusers",
+   "topic": "multiomics",
+   "db": "globalusers_kepangenome_parquet_1",
+   "table": "protein_duplicates_2"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "multiomics",
+   "db": "kbase_genomes",
+   "table": "contig_collection_x_protein"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "multiomics",
+   "db": "kbase_genomes",
+   "table": "contig_x_protein"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "multiomics",
+   "db": "kbase_genomes",
+   "table": "encoded_feature_x_protein"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "multiomics",
+   "db": "kbase_genomes",
+   "table": "feature_x_protein"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "multiomics",
+   "db": "kbase_genomes",
+   "table": "protein"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "multiomics",
+   "db": "kbase_uniprot_kb",
+   "table": "protein"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_alphafold",
+   "table": "alphafold_entries"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_alphafold",
+   "table": "alphafold_msa_depths"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_paperblast",
+   "table": "seqtoduplicate"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_paperblast",
+   "table": "uniq"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_pfam"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_uniprot_mapping"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_cazy_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_cog_classes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_ec_numbers"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_go_terms"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_kegg_orthologs"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_ortholog_groups"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_tc_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_cazy_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_cog_classes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_ec_numbers"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_go_terms"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_kegg_orthologs"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_ortholog_groups"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_tc_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_cazy_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_cog_classes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_ec_numbers"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_go_terms"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_kegg_orthologs"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_ortholog_groups"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_tc_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_cazy_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_cog_classes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_ec_numbers"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_go_terms"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_kegg_orthologs"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_ortholog_groups"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_tc_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_cazy_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_cog_classes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_ec_numbers"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_go_terms"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_kegg_orthologs"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_ortholog_groups"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_tc_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_gene"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_cazy_families"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_cog_classes"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_ec_numbers"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_kegg_orthologs"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_ortholog_groups"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_tc_families"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_cazy_families"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_cog_classes"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_ec_numbers"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_go_terms"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_kegg_orthologs"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_ortholog_groups"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_tc_families"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_ensembl"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_enzyme"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_go"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_pfam"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_uniprot_mapping"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "multiomics",
+   "db": "refdata_uniprot",
+   "table": "protein"
+  }
+ ],
+ "ncbi_taxon_id": [
+  {
+   "tenant": "enigma",
+   "topic": "taxonomy",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "taxonomy",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "taxonomy",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_strain"
+  },
+  {
+   "tenant": "enigma",
+   "topic": "genome",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_taxon"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "taxonomy",
+   "db": "kbase_genomes",
+   "table": "contig_collection"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_taxonomy"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "centrifuge_gold"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "contig_taxonomy"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "contig_taxonomy_backup"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "gottcha_gold"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "kraken_gold"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "taxonomy_dim"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_arkin",
+   "table": "taxstring_lookup"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "fitness_phenotype",
+   "db": "nmdc_arkin",
+   "table": "trait_taxonomy_mapping"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "fitness_phenotype",
+   "db": "nmdc_arkin",
+   "table": "trait_unified"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_ncbi_biosamples",
+   "table": "biosamples_flattened"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_results",
+   "table": "centrifuge_output_report_file"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_results",
+   "table": "gottcha2_classification_report"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_results",
+   "table": "kraken2_classification_report"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_strain"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_taxon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_strain"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_taxon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_strain"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_taxon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_strain"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_taxon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_strain"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_taxon"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_genome"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_strain"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_taxon"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "taxonomy",
+   "db": "planetmicrobe_ncbi_taxon_mapping",
+   "table": "ncbi_taxon_mapping"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "taxonomy",
+   "db": "planetmicrobe_planetmicrobe",
+   "table": "run_to_taxonomy"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "taxonomy",
+   "db": "planetmicrobe_planetmicrobe",
+   "table": "taxonomy"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "taxonomy",
+   "db": "planetmicrobe_planetmicrobe_raw",
+   "table": "run_to_taxonomy"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "taxonomy",
+   "db": "planetmicrobe_planetmicrobe_raw",
+   "table": "taxonomy"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_genomedepot",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_genomedepot",
+   "table": "browser_strain"
+  },
+  {
+   "tenant": "protect",
+   "topic": "genome",
+   "db": "protect_genomedepot",
+   "table": "browser_taxon"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "literature",
+   "db": "refdata_ncbi",
+   "table": "assembly_summary_refseq_2026_04"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_ncbi",
+   "table": "ncbi_assembly_index"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_taxonomy"
+  },
+  {
+   "tenant": "u",
+   "topic": "taxonomy",
+   "db": "u_aparkin__planetmicrobe",
+   "table": "run_to_taxonomy"
+  },
+  {
+   "tenant": "u",
+   "topic": "taxonomy",
+   "db": "u_aparkin__planetmicrobe",
+   "table": "taxonomy"
+  }
+ ],
+ "eggnog": [
+  {
+   "tenant": "enigma",
+   "topic": "taxonomy",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pathway",
+   "db": "kbase_ke_pangenome",
+   "table": "eggnog_mapper_annotations"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "gene_eggnog"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_ortholog_group"
+  },
+  {
+   "tenant": "protect",
+   "topic": "taxonomy",
+   "db": "protect_genomedepot",
+   "table": "browser_ortholog_group"
+  }
+ ],
+ "kegg_pathway": [
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pathway",
+   "db": "kbase_ke_pangenome",
+   "table": "eggnog_mapper_annotations"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pathway",
+   "db": "kbase_ke_pangenome",
+   "table": "interproscan_pathways"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "gene_eggnog"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "pathway",
+   "db": "nmdc_arkin",
+   "table": "kegg_ko_pathway"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "pathway",
+   "db": "nmdc_arkin",
+   "table": "kegg_pathway_terms"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "biochemistry",
+   "db": "nmdc_arkin",
+   "table": "metacyc_hierarchy_flat"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "biochemistry",
+   "db": "nmdc_arkin",
+   "table": "metacyc_hierarchy_graph"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "biochemistry",
+   "db": "nmdc_arkin",
+   "table": "metacyc_pathway_reactions"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "biochemistry",
+   "db": "nmdc_arkin",
+   "table": "metacyc_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_kegg_pathways"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_kegg_pathways"
+  }
+ ],
+ "reaction_id": [
+  {
+   "tenant": "enigma",
+   "topic": "multiomics",
+   "db": "enigma_genome_depot_enigma",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "biochemistry",
+   "db": "nmdc_arkin",
+   "table": "metacyc_pathway_reactions"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "biochemistry",
+   "db": "nmdc_arkin",
+   "table": "metacyc_reaction_ec"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "annotation",
+   "db": "nmdc_arkin",
+   "table": "rhea_crossrefs"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_acinetobacter_genome_browser",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphages_genomedepot_test",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_ecoliphagesgenomedepot",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_klebsiella_genome_browser_genomedepot",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_paeruginosa_genome_browser",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "phagefoundry",
+   "topic": "mobile_phage",
+   "db": "phagefoundry_pviridiflava_genome_browser",
+   "table": "browser_protein_kegg_reactions"
+  },
+  {
+   "tenant": "protect",
+   "topic": "multiomics",
+   "db": "protect_genomedepot",
+   "table": "browser_protein_kegg_reactions"
+  }
+ ],
+ "gene_cluster_id": [
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "bakta_amr"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "bakta_annotations"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "bakta_db_xrefs"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "bakta_pfam_domains"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gene_cluster"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gene_genecluster_junction"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "interproscan_domains"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "interproscan_go"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pathway",
+   "db": "kbase_ke_pangenome",
+   "table": "interproscan_pathways"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "reference_protein",
+   "db": "kbase_uniprot_kb",
+   "table": "cluster"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "reference_protein",
+   "db": "kbase_uniprot_kb",
+   "table": "clustermember"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_sequence_clusters"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_sequence_clusters"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_spire",
+   "table": "representative_genome_index"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniprot",
+   "table": "cluster"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniprot",
+   "table": "clustermember"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref100_2025_03",
+   "table": "cluster"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref100_2025_03",
+   "table": "clustermember"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref100_2026_01",
+   "table": "cluster"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref100_2026_01",
+   "table": "clustermember"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref50_2025_03",
+   "table": "cluster"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref50_2025_03",
+   "table": "clustermember"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref50_2026_01",
+   "table": "cluster"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref50_2026_01",
+   "table": "clustermember"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref90_2025_03",
+   "table": "cluster"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref90_2025_03",
+   "table": "clustermember"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref90_2026_01",
+   "table": "cluster"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "reference_protein",
+   "db": "refdata_uniref90_2026_01",
+   "table": "clustermember"
+  }
+ ],
+ "pfam": [
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "bakta_pfam_domains"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_pfam"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "proteomics_gold"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "annotation",
+   "db": "nmdc_ref_data",
+   "table": "pfam_terms"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_results",
+   "table": "pfam_annotation_gff"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "annotation",
+   "db": "planetmicrobe_planetmicrobe",
+   "table": "pfam"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "annotation",
+   "db": "planetmicrobe_planetmicrobe",
+   "table": "run_to_pfam"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "annotation",
+   "db": "planetmicrobe_planetmicrobe_raw",
+   "table": "pfam"
+  },
+  {
+   "tenant": "planetmicrobe",
+   "topic": "annotation",
+   "db": "planetmicrobe_planetmicrobe_raw",
+   "table": "run_to_pfam"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "mobile_phage",
+   "db": "refdata_jgi_virus",
+   "table": "metavr_protein"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_pfam"
+  },
+  {
+   "tenant": "u",
+   "topic": "annotation",
+   "db": "u_aparkin__planetmicrobe",
+   "table": "pfam"
+  },
+  {
+   "tenant": "u",
+   "topic": "annotation",
+   "db": "u_aparkin__planetmicrobe",
+   "table": "run_to_pfam"
+  }
+ ],
+ "kegg_ko": [
+  {
+   "tenant": "kbase",
+   "topic": "pathway",
+   "db": "kbase_ke_pangenome",
+   "table": "eggnog_mapper_annotations"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "pathway",
+   "db": "kescience_mgnify",
+   "table": "gene_eggnog"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "pathway",
+   "db": "nmdc_arkin",
+   "table": "kegg_ko_module"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "pathway",
+   "db": "nmdc_arkin",
+   "table": "kegg_ko_pathway"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "annotation",
+   "db": "nmdc_arkin",
+   "table": "kegg_ko_terms"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "proteomics_gold"
+  },
+  {
+   "tenant": "protect",
+   "topic": "annotation",
+   "db": "protect_mind",
+   "table": "mind_kegg_assignments"
+  },
+  {
+   "tenant": "protect",
+   "topic": "integration",
+   "db": "protect_mind",
+   "table": "mind_locus_to_taxon"
+  }
+ ],
+ "gtdb_taxonomy": [
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gtdb_metadata"
+  },
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gtdb_species_clade"
+  },
+  {
+   "tenant": "msyscolo",
+   "topic": "taxonomy",
+   "db": "msyscolo_grow",
+   "table": "growdb_taxonomy_gtdb"
+  },
+  {
+   "tenant": "netl",
+   "topic": "taxonomy",
+   "db": "netl_pw_dna",
+   "table": "assembly_taxonomy"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_jgi_gem_mags",
+   "table": "genome_taxonomy"
+  }
+ ],
+ "biosample_id": [
+  {
+   "tenant": "kbase",
+   "topic": "pangenome",
+   "db": "kbase_ke_pangenome",
+   "table": "gtdb_metadata"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "environment",
+   "db": "nmdc_metadata",
+   "table": "biosample_to_workflow_run"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "environment",
+   "db": "nmdc_ncbi_biosamples",
+   "table": "biosamples_attributes"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "environment",
+   "db": "nmdc_ncbi_biosamples",
+   "table": "sra_biosamples_bioprojects"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "literature",
+   "db": "refdata_ncbi",
+   "table": "assembly_summary_refseq_2026_04"
+  }
+ ],
+ "compound_id": [
+  {
+   "tenant": "kbase",
+   "topic": "biochemistry",
+   "db": "kbase_msd_biochemistry",
+   "table": "molecule"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "fitness_phenotype",
+   "db": "kescience_bacdive",
+   "table": "metabolite_utilization"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "literature",
+   "db": "kescience_webofmicrobes",
+   "table": "observation"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "integration",
+   "db": "nmdc_arkin",
+   "table": "biochemical_features_metadata"
+  },
+  {
+   "tenant": "nmdc",
+   "topic": "multiomics",
+   "db": "nmdc_arkin",
+   "table": "metabolomics_gold"
+  }
+ ],
+ "alphafold_pdb": [
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_alphafold",
+   "table": "alphafold_entries"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_citations"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_entries"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_ligands"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_pfam"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_taxonomy"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_uniprot_mapping"
+  },
+  {
+   "tenant": "kescience",
+   "topic": "structural",
+   "db": "kescience_pdb",
+   "table": "pdb_validation"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_citations"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_ensembl"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_entries"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_enzyme"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_go"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_interpro"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_ligands"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_pfam"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_taxonomy"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_uniprot_mapping"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_validation"
+  }
+ ],
+ "envo": [
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_ncbi_biosamples",
+   "table": "biosamples_flattened"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_jgi_gem_mags",
+   "table": "ecosystem_envo_map"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_jgi_gem_mags",
+   "table": "habitat_envo_map"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_spire",
+   "table": "environment_envo_map"
+  }
+ ],
+ "isolation_src": [
+  {
+   "tenant": "nmdc",
+   "topic": "taxonomy",
+   "db": "nmdc_ncbi_biosamples",
+   "table": "biosamples_flattened"
+  }
+ ],
+ "uvig_phage": [
+  {
+   "tenant": "refdata",
+   "topic": "mobile_phage",
+   "db": "refdata_jgi_virus",
+   "table": "imgvr_host_info"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "mobile_phage",
+   "db": "refdata_jgi_virus",
+   "table": "imgvr_sequence_info"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "mobile_phage",
+   "db": "refdata_jgi_virus",
+   "table": "metavr_main"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "mobile_phage",
+   "db": "refdata_jgi_virus",
+   "table": "metavr_protein"
+  }
+ ],
+ "assembly_acc": [
+  {
+   "tenant": "refdata",
+   "topic": "literature",
+   "db": "refdata_ncbi",
+   "table": "assembly_summary_refseq_2026_04"
+  },
+  {
+   "tenant": "refdata",
+   "topic": "genome",
+   "db": "refdata_ncbi",
+   "table": "ncbi_file_manifest"
+  }
+ ],
+ "gcf_gca": [
+  {
+   "tenant": "refdata",
+   "topic": "taxonomy",
+   "db": "refdata_ncbi",
+   "table": "ncbi_assembly_index"
+  }
+ ],
+ "interpro": [
+  {
+   "tenant": "refdata",
+   "topic": "structural",
+   "db": "refdata_pdb",
+   "table": "pdb_interpro"
+  }
+ ],
+ "kbase_upa": [
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__genomes",
+   "table": "rhodo_41bd69c4"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_003a7679",
+   "table": "rhodo_99c76f4e"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_235761a9",
+   "table": "rhodo_ea4873fc"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_3d17a59e",
+   "table": "rhodo_5839267a"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_3f488a63",
+   "table": "rhodo_728f98de"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_5f325b96",
+   "table": "rhodo_c767e66b"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_73a00b5c",
+   "table": "rhodo_fa898994"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_8369f85c",
+   "table": "rhodo_88de2393"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_99b2613c",
+   "table": "rhodo_1c9d0a63"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_a2e95abf",
+   "table": "rhodo_564020c8"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_a3c83692",
+   "table": "rhodo_d576040d"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__r3_genome_gate_c64c8c1c",
+   "table": "rhodo_41bd69c4"
+  },
+  {
+   "tenant": "u",
+   "topic": "fitness_phenotype",
+   "db": "u_aparkin__r3_test_13ae152b",
+   "table": "fitness_pull_e5b68f51"
+  },
+  {
+   "tenant": "u",
+   "topic": "fitness_phenotype",
+   "db": "u_aparkin__r3_test_2a53e6b1",
+   "table": "fitness_pull_6c69061d"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r3_test_73d2a59d",
+   "table": "genome_pull_146e8032"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r3_test_990f0c4b",
+   "table": "genome_pull_e508bc7b"
+  },
+  {
+   "tenant": "u",
+   "topic": "fitness_phenotype",
+   "db": "u_aparkin__r3_test_ca05c02f",
+   "table": "fitness_pull_37a678b5"
+  },
+  {
+   "tenant": "u",
+   "topic": "fitness_phenotype",
+   "db": "u_aparkin__r3_test_e4ce5af4",
+   "table": "fitness_pull_4bc75b1f"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_05d120c3",
+   "table": "genome_fa3e9ab9"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_0dc972c6",
+   "table": "genome_43048919"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_18e0b3e8",
+   "table": "genome_d391698d"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_4b6b4af4",
+   "table": "genome_86fcc946"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_4edcb3cb",
+   "table": "genome_693415c5"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_735e29b8",
+   "table": "genome_a3c5f24d"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_afa89ac0",
+   "table": "genome_74c492df"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_b1334ce7",
+   "table": "genome_439a68cf"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_cdd38006",
+   "table": "genome_59a6be15"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__r4_3_gate_e249404f",
+   "table": "genome_839f201e"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__wi1_refgraph_471c4891",
+   "table": "assemblies_53487_1146_1"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi1_refgraph_471c4891",
+   "table": "genome_8bea303e"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__wi1_refgraph_cd6817fb",
+   "table": "assemblies_53487_1146_1"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi1_refgraph_cd6817fb",
+   "table": "genome_798fefe0"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__wi1_smoke_0309ef50",
+   "table": "assemblies_53487_1146_1"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__wi1_smoke_0ee1a06e",
+   "table": "assemblies_53487_1146_1"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi1_smoke_0ee1a06e",
+   "table": "genome_bdd09341"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__wi1_smoke_16a2e04b",
+   "table": "assemblies_53487_1146_1"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi1_smoke_16a2e04b",
+   "table": "genome_561b8a4b"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__wi1_smoke_d01724b4",
+   "table": "assemblies_53487_1146_1"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi1_smoke_d01724b4",
+   "table": "genome_7818bbde"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__wi1_smoke_e01a3746",
+   "table": "assemblies_53487_1146_1"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi1_smoke_e01a3746",
+   "table": "genome_80e63af8"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi1_smoke_f8460375",
+   "table": "genome_62782d04"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi1_spike_14f510be",
+   "table": "genome_69d04a5d"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi1_spike_acbad9a2",
+   "table": "genome_dd64ca70"
+  },
+  {
+   "tenant": "u",
+   "topic": "integration",
+   "db": "u_aparkin__wi8_probe_d6f6abed",
+   "table": "assemblies_19217_150788_6"
+  },
+  {
+   "tenant": "u",
+   "topic": "genome",
+   "db": "u_aparkin__wi8_probe_d6f6abed",
+   "table": "genome_ac16509e"
+  }
+ ]
+}

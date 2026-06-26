@@ -1,0 +1,61 @@
+{
+  "schema_version": "v1",
+  "tool": "check_numeric_grounding",
+  "tool_version": "0.2.0-d052",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1",
+  "manuscript_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1/manuscript.md",
+  "inventory_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1/claim_inventory.tsv",
+  "report_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+  "totals": {
+    "numeric_matches_in_manuscript": 27,
+    "allowlisted": 4,
+    "grounded_tier_a_inventory": 22,
+    "grounded_tier_b_report_md": 0,
+    "ungrounded": 1,
+    "skipped_empty_normalization": 0
+  },
+  "findings": [
+    {
+      "claim_text": "2026 preprint identifying the sphingolipid-locus Lpt paralogs is available at bioRxiv 10.1101/2026.04.12.717747.",
+      "matched_text": "1101/2026",
+      "normalized_value": "1101",
+      "match_class": "count_of",
+      "section": "data and code availability",
+      "paragraph": 1,
+      "char_offset": 51842,
+      "severity": "P0",
+      "rationale": "Numeric value '1101' not found in claim_inventory.tsv (Tier A) or REPORT.md (Tier B). Manuscript section: data and code availability, paragraph 1."
+    }
+  ],
+  "allowlisted": [
+    {
+      "matched_text": "1101/2026",
+      "section": "references",
+      "paragraph": 3,
+      "char_offset": 53419,
+      "reason": "section_allowlist:references"
+    },
+    {
+      "matched_text": "1101/2025",
+      "section": "references",
+      "paragraph": 5,
+      "char_offset": 53917,
+      "reason": "section_allowlist:references"
+    },
+    {
+      "matched_text": "1111/1462",
+      "section": "references",
+      "paragraph": 6,
+      "char_offset": 54298,
+      "reason": "section_allowlist:references"
+    },
+    {
+      "matched_text": "1179/096805103125001522",
+      "section": "references",
+      "paragraph": 28,
+      "char_offset": 60432,
+      "reason": "section_allowlist:references"
+    }
+  ],
+  "notes": []
+}
