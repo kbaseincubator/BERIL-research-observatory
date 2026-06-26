@@ -27,8 +27,13 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 import app.context as ctx
-from app.auth import get_beril_user_id, get_current_user_session_or_token
+from app.auth import (
+    get_current_user_session_or_token,
+    require_user_api,
+    require_user_page,
+)
 from app.config import get_settings
+from app.db.models import BerilUser
 from app.context import get_base_context
 from app.db.crud import (
     create_project_file,
@@ -190,19 +195,12 @@ async def _save_upload(
 @ROUTER_USER_DATA.get("/user/data", response_class=HTMLResponse)
 async def user_data(
     request: Request,
+    user: BerilUser = Depends(require_user_page),
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
     """Project list page."""
-    user = context.get("current_user")
-    if user is None:
-        return RedirectResponse(url="/auth/login?next=/user/data", status_code=302)
-
-    beril_user_id = get_beril_user_id(request)
-    if beril_user_id is None:
-        return RedirectResponse(url="/auth/login", status_code=302)
-
-    projects = await get_projects_for_user(db, beril_user_id)
+    projects = await get_projects_for_user(db, user.id)
     context["projects"] = projects
     return ctx.templates.TemplateResponse(request, "user/data_management.html", context)
 
@@ -210,12 +208,10 @@ async def user_data(
 @ROUTER_USER_DATA.get("/user/data/new", response_class=HTMLResponse)
 async def user_data_new(
     request: Request,
+    user: BerilUser = Depends(require_user_page),
     context: dict = Depends(get_base_context),
 ):
     """New project creation form."""
-    user = context.get("current_user")
-    if user is None:
-        return RedirectResponse(url="/auth/login?next=/user/data/new", status_code=302)
     return ctx.templates.TemplateResponse(request, "user/new_project.html", context)
 
 
@@ -224,23 +220,16 @@ async def user_create_project(
     request: Request,
     title: str = Form(...),
     research_question: str = Form(""),
+    user: BerilUser = Depends(require_user_page),
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
     """Create a new project and redirect to its file management page."""
-    user = context.get("current_user")
-    if user is None:
-        return RedirectResponse(url="/auth/login", status_code=302)
-
-    beril_user_id = get_beril_user_id(request)
-    if beril_user_id is None:
-        return RedirectResponse(url="/auth/login", status_code=302)
-
     slug = _slugify(title)
     try:
         project = await create_user_project(
             db,
-            beril_user_id,
+            user.id,
             title=title,
             research_question=research_question or None,
             slug=slug,
@@ -250,7 +239,7 @@ async def user_create_project(
         slug = f"{slug}-{uuid.uuid4().hex[:6]}"
         project = await create_user_project(
             db,
-            beril_user_id,
+            user.id,
             title=title,
             research_question=research_question or None,
             slug=slug,
@@ -263,20 +252,13 @@ async def user_create_project(
 async def user_project_files(
     request: Request,
     project_id: str,
+    user: BerilUser = Depends(require_user_page),
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
     """File management page for an existing project."""
-    user = context.get("current_user")
-    if user is None:
-        return RedirectResponse(url=f"/auth/login?next=/user/projects/{project_id}", status_code=302)
-
-    beril_user_id = get_beril_user_id(request)
-    if beril_user_id is None:
-        return RedirectResponse(url="/auth/login", status_code=302)
-
     project = await get_project_by_id(db, project_id)
-    if project is None or project.owner_id != beril_user_id:
+    if project is None or project.owner_id != user.id:
         return Response(status_code=403)
 
     files = await get_files_for_project(db, project_id)
@@ -292,23 +274,16 @@ async def user_upload_to_project(
     file_type: str = Form("data"),
     is_public: bool = Form(False),
     files: list[UploadFile] = File(default=[]),
+    user: BerilUser = Depends(require_user_page),
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
     """Upload one or more files to an existing project."""
-    user = context.get("current_user")
-    if user is None:
-        return RedirectResponse(url="/auth/login", status_code=302)
-
-    beril_user_id = get_beril_user_id(request)
-    if beril_user_id is None:
-        return RedirectResponse(url="/auth/login", status_code=302)
-
     if file_type not in _ALLOWED_FILE_TYPES:
         return Response(status_code=422, content=f"Invalid file_type: {file_type!r}")
 
     project = await get_project_by_id(db, project_id)
-    if project is None or project.owner_id != beril_user_id:
+    if project is None or project.owner_id != user.id:
         return Response(status_code=403)
 
     # Validate all filenames before writing anything to storage
@@ -323,7 +298,7 @@ async def user_upload_to_project(
         if not file.filename:
             continue
         await _save_upload(
-            db, storage, file, project.id, beril_user_id, project.slug, file_type, is_public
+            db, storage, file, project.id, user.id, project.slug, file_type, is_public
         )
 
     return RedirectResponse(url=f"/user/projects/{project.id}", status_code=302)
@@ -333,24 +308,16 @@ async def user_upload_to_project(
 async def user_data_delete(
     request: Request,
     file_id: str,
-    context: dict = Depends(get_base_context),
+    user: BerilUser = Depends(require_user_api),
     db: AsyncSession = Depends(get_db),
 ):
     """Delete a file — removes the storage blob and the DB record."""
-    user = context.get("current_user")
-    if user is None:
-        return Response(status_code=401)
-
-    beril_user_id = get_beril_user_id(request)
-    if beril_user_id is None:
-        return Response(status_code=401)
-
     file = await get_file_by_id(db, file_id)
     if file is None:
         return Response(status_code=404)
 
     project = await get_project_by_id(db, file.project_id)
-    if project is None or project.owner_id != beril_user_id:
+    if project is None or project.owner_id != user.id:
         return Response(status_code=403)
 
     storage = _storage()
@@ -366,23 +333,16 @@ async def user_github_sync(
     project_id: str,
     github_repo_url: str = Form(...),
     branch: str = Form("main"),
+    user: BerilUser = Depends(require_user_page),
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
     """Store the GitHub repo URL on the project and trigger a sync."""
-    user = context.get("current_user")
-    if user is None:
-        return RedirectResponse(url="/auth/login", status_code=302)
-
-    beril_user_id = get_beril_user_id(request)
-    if beril_user_id is None:
-        return RedirectResponse(url="/auth/login", status_code=302)
-
     if not _is_valid_github_url(github_repo_url):
         return Response(status_code=422, content="github_repo_url must be an https://github.com/... URL")
 
     project = await get_project_by_id(db, project_id)
-    if project is None or project.owner_id != beril_user_id:
+    if project is None or project.owner_id != user.id:
         return Response(status_code=403)
 
     # The form submits an empty string when the optional branch field is
@@ -415,13 +375,10 @@ async def user_github_sync(
 async def api_list_project_files(
     request: Request,
     project_id: str,
+    user: BerilUser = Depends(require_user_api),
     db: AsyncSession = Depends(get_db),
 ):
     """Return JSON list of files for a project. Owner-only."""
-    user = await get_current_user_session_or_token(request, db)
-    if user is None:
-        return Response(status_code=401)
-
     project = await get_project_by_id(db, project_id)
     if project is None or project.owner_id != user.id:
         return Response(status_code=403)
@@ -483,19 +440,11 @@ async def api_get_file(
 @ROUTER_USER_DATA.post("/api/user/token")
 async def api_create_token(
     request: Request,
-    context: dict = Depends(get_base_context),
+    user: BerilUser = Depends(require_user_api),
     db: AsyncSession = Depends(get_db),
 ):
     """Generate or rotate the caller's API token. Session auth only."""
-    user = context.get("current_user")
-    if user is None:
-        return Response(status_code=401)
-
-    beril_user_id = get_beril_user_id(request)
-    if beril_user_id is None:
-        return Response(status_code=401)
-
-    raw_token, record = await get_or_create_api_token(db, beril_user_id)
+    raw_token, record = await get_or_create_api_token(db, user.id)
     return JSONResponse(
         {"token": raw_token, "created_at": record.created_at.isoformat()}
     )

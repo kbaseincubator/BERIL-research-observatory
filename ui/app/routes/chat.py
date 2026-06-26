@@ -10,13 +10,14 @@ from typing import Any
 
 import app.context as ctx
 from fastapi import APIRouter, Depends, Request
-from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
+from fastapi.responses import HTMLResponse, JSONResponse, Response
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sse_starlette.sse import EventSourceResponse
 
-from app.auth import get_current_user_session_or_token
+from app.auth import require_user_api, require_user_page
+from app.db.models import BerilUser
 from app.chat.concurrency import UserChatConcurrencyExceeded, get_concurrency_manager
 from app.chat.config import get_chat_config
 from app.chat.crud import (
@@ -69,18 +70,11 @@ def _provider_catalog_for_template() -> list[dict]:
 @ROUTER_CHAT_PAGES.get("/chat", response_class=HTMLResponse)
 async def chat_list_page(
     request: Request,
+    beril_user: BerilUser = Depends(require_user_page),
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
     """List the user's chat sessions."""
-    user = context.get("current_user")
-    if user is None:
-        return RedirectResponse(url="/auth/login?next=/chat", status_code=302)
-
-    beril_user = await get_current_user_session_or_token(request, db)
-    if beril_user is None:
-        return RedirectResponse(url="/auth/login?next=/chat", status_code=302)
-
     context["active_sessions"] = await list_sessions_for_user(
         db, beril_user.id, include_archived=False
     )
@@ -99,18 +93,11 @@ async def chat_list_page(
 async def chat_session_page(
     session_id: str,
     request: Request,
+    beril_user: BerilUser = Depends(require_user_page),
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
     """Render a single chat session with its transcript."""
-    user = context.get("current_user")
-    if user is None:
-        return RedirectResponse(url=f"/auth/login?next=/chat/{session_id}", status_code=302)
-
-    beril_user = await get_current_user_session_or_token(request, db)
-    if beril_user is None:
-        return RedirectResponse(url=f"/auth/login?next=/chat/{session_id}", status_code=302)
-
     session = await get_session_with_messages(db, session_id)
     if session is None or session.owner_id != beril_user.id:
         return ctx.templates.TemplateResponse(
@@ -169,6 +156,7 @@ async def chat_turn(
     session_id: str,
     body: TurnRequest,
     request: Request,
+    user: BerilUser = Depends(require_user_api),
     db: AsyncSession = Depends(get_db),
 ) -> Response:
     """Run one chat turn to completion and return the assistant's response.
@@ -176,10 +164,6 @@ async def chat_turn(
     Non-streaming. Returns JSON on both success and provider error. The
     streaming variant lives at ``.../stream``.
     """
-    user = await get_current_user_session_or_token(request, db)
-    if user is None:
-        return Response(status_code=401)
-
     session, err = await _load_session_for_user(db, session_id, user.id)
     if err is not None or session is None:
         return Response(status_code=err)
@@ -222,6 +206,7 @@ async def chat_stream(
     session_id: str,
     body: TurnRequest,
     request: Request,
+    user: BerilUser = Depends(require_user_api),
     db: AsyncSession = Depends(get_db),
 ) -> Response:
     """Run one chat turn and stream events to the browser as SSE.
@@ -230,10 +215,6 @@ async def chat_stream(
     synchronously and can return a plain JSON error response. Once the SSE
     stream has started, errors surface as ``error`` events inside the stream.
     """
-    user = await get_current_user_session_or_token(request, db)
-    if user is None:
-        return Response(status_code=401)
-
     session, err = await _load_session_for_user(db, session_id, user.id)
     if err is not None:
         return Response(status_code=err)
@@ -314,13 +295,10 @@ def _validate_provider_and_model(provider_id: str, model: str) -> str | None:
 async def chat_create_session(
     body: CreateSessionRequest,
     request: Request,
+    user: BerilUser = Depends(require_user_api),
     db: AsyncSession = Depends(get_db),
 ) -> Response:
     """Create a new chat session. Returns ``{session_id}`` for client redirect."""
-    user = await get_current_user_session_or_token(request, db)
-    if user is None:
-        return Response(status_code=401)
-
     err = _validate_provider_and_model(body.provider_id, body.model)
     if err:
         return JSONResponse({"error": err}, status_code=400)
@@ -340,13 +318,10 @@ async def chat_update_session(
     session_id: str,
     body: UpdateSessionRequest,
     request: Request,
+    user: BerilUser = Depends(require_user_api),
     db: AsyncSession = Depends(get_db),
 ) -> Response:
     """Rename, archive, or unarchive a chat session."""
-    user = await get_current_user_session_or_token(request, db)
-    if user is None:
-        return Response(status_code=401)
-
     session = await get_session_for_user(db, session_id, user.id)
     if session is None:
         # Don't leak the difference between "doesn't exist" and "not yours".
@@ -369,13 +344,10 @@ async def chat_update_session(
 async def chat_delete_session(
     session_id: str,
     request: Request,
+    user: BerilUser = Depends(require_user_api),
     db: AsyncSession = Depends(get_db),
 ) -> Response:
     """Hard-delete a chat session and its messages."""
-    user = await get_current_user_session_or_token(request, db)
-    if user is None:
-        return Response(status_code=401)
-
     session = await get_session_for_user(db, session_id, user.id)
     if session is None:
         return Response(status_code=404)

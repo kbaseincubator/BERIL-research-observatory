@@ -8,8 +8,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 import app.context as ctx
 from app.context import get_base_context, get_repo_data
-from app.db.crud import get_projects_for_user, get_user_by_orcid, user_project_to_model
-from app.auth import get_beril_user_id
+from app.db.crud import get_projects_for_user, user_project_to_model
+from app.auth import require_user_page
+from app.db.models import BerilUser
 from app.db.session import get_db
 from app.models import RepositoryData
 
@@ -21,17 +22,14 @@ ROUTER_USER = APIRouter(tags=["User"])
 @ROUTER_USER.get("/user_profile", response_class=HTMLResponse)
 async def user_profile(
     request: Request,
+    user: BerilUser = Depends(require_user_page),
     repo_data: RepositoryData = Depends(get_repo_data),
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
     """Logged-in user's profile page."""
-    user = context.get("current_user")
-    if user is None:
-        return ctx.templates.TemplateResponse(request, "unauthenticated.html", context)
-
-    # Load the canonical BERIL user record from the DB
-    beril_user = await get_user_by_orcid(db, user.orcid_id)
+    # The canonical BERIL user record is the dependency's return value
+    beril_user = user
 
     # Find the matching git-repo Contributor record by ORCiD (for project history)
     contributor = next(
@@ -56,13 +54,11 @@ async def user_profile(
     # Also include projects the user created via the DB. Repo-imported rows
     # (origin == "repo") share their slug with the corresponding repo_data
     # project id, so dedup by slug to avoid showing the same project twice.
-    beril_user_id = get_beril_user_id(request)
-    if beril_user_id:
-        db_projects = await get_projects_for_user(db, beril_user_id)
-        for up in db_projects:
-            if up.slug in repo_project_ids:
-                continue
-            owned_projects.append(user_project_to_model(up))
+    db_projects = await get_projects_for_user(db, user.id)
+    for up in db_projects:
+        if up.slug in repo_project_ids:
+            continue
+        owned_projects.append(user_project_to_model(up))
 
     # Collections used across owned projects
     collections_used_ids: set[str] = set()

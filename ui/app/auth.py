@@ -4,7 +4,9 @@ from dataclasses import dataclass
 
 from app.db.crud import get_user_by_api_token, get_user_by_orcid
 from app.db.models import BerilUser
-from fastapi import Request
+from app.db.session import get_db
+from fastapi import Depends, HTTPException, Request, status
+from fastapi.responses import RedirectResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
@@ -61,3 +63,48 @@ async def get_current_user_session_or_token(
         return await get_user_by_api_token(db, raw_token)
 
     return None
+
+
+class _RedirectToLogin(HTTPException):
+    """Raised by ``require_user_page`` to bounce anonymous visitors to login.
+
+    Carries no detail body — the registered exception handler turns it into a
+    302 redirect to ``/auth/login?next=<original path>``.
+    """
+
+    def __init__(self, next_url: str) -> None:
+        super().__init__(status_code=status.HTTP_302_FOUND)
+        self.next_url = next_url
+
+
+async def require_user_page(
+    request: Request, db: AsyncSession = Depends(get_db)
+) -> BerilUser:
+    """Dependency for HTML routes: yield the BerilUser or redirect to login.
+
+    On failure raises ``_RedirectToLogin``, which the app's exception handler
+    converts into a 302 to ``/auth/login?next=<current path>``. Routes that
+    depend on this are guaranteed a non-None ``BerilUser``.
+    """
+    user = await get_current_user_session_or_token(request, db)
+    if user is None:
+        raise _RedirectToLogin(next_url=request.url.path)
+    return user
+
+
+async def require_user_api(
+    request: Request, db: AsyncSession = Depends(get_db)
+) -> BerilUser:
+    """Dependency for API routes: yield the BerilUser or raise 401.
+
+    Routes that depend on this are guaranteed a non-None ``BerilUser``.
+    """
+    user = await get_current_user_session_or_token(request, db)
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)
+    return user
+
+
+def redirect_to_login_handler(request: Request, exc: _RedirectToLogin) -> RedirectResponse:
+    """Exception handler that turns ``_RedirectToLogin`` into a 302 redirect."""
+    return RedirectResponse(url=f"/auth/login?next={exc.next_url}", status_code=302)
