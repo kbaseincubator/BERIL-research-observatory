@@ -1,0 +1,22 @@
+project_id: metal_defense_vs_metabolism_classification
+status: analysis
+title: "Metal Defense vs. Metal Metabolism: A Classification Framework for Bacterial Metal Proteins"
+description: >
+  Pangenome-scale classification of bacterial metal-related proteins into defense
+  (toxic metal resistance) vs. metabolism (adaptive utilization and critical mineral
+  acquisition) categories. Characterizes phylogenetic distributions and ecological
+  signatures of each class across ~27,000 species, then applies the classifier to
+  ENIGMA isolates to identify experimental candidates.
+authors:
+  - name: Heather MacGregor
+    affiliation: Lawrence Berkeley National Laboratory
+data_sources:
+  - kbase.ke_pangenome
+  - nmdc.ncbi_biosamples
+  - enigma.genome_depot_enigma
+artifacts:
+  - notebooks/
+  - data/
+  - figures/
+  report: true
+last_session_at: "2026-06-26T00:00:00Z"
