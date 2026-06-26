@@ -9,8 +9,23 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from fastapi.testclient import TestClient
 
+from pathlib import Path
+
 from app.config import Settings
+from app.lakehouses.base import SyncResult
 from app.main import create_app, generate_base_context
+
+
+def _stub_source(repo_data, projects_dir: Path = Path("/tmp/beril-test-projects")):
+    """Build a stub LakehouseSource that returns ``repo_data`` from sync()."""
+    source = MagicMock()
+    source.sync = AsyncMock(return_value=SyncResult(
+        repo_data=repo_data,
+        projects_dir=projects_dir,
+        source_name="stub",
+        last_updated=repo_data.last_updated,
+    ))
+    return source
 
 # ---------------------------------------------------------------------------
 # HTTP Routes via TestClient
@@ -264,17 +279,27 @@ class TestNotebookViewerRoute:
 
 
 class TestWebhookEndpoint:
-    def test_no_repo_configured_returns_400(self, client):
+    def test_no_secret_no_signature_check(self, client, repository_data):
+        """With no webhook_secret configured, the webhook accepts unsigned
+        requests and reloads via the active lakehouse source. This replaces
+        the old "400 if no data_repo_url" behavior — the legacy source now
+        falls back to local parsing rather than erroring, so unconfigured
+        deployments still get a successful reload."""
         mock_settings = Settings()
-        mock_settings.data_repo_url = None
         mock_settings.webhook_secret = None
 
-        with patch("app.main.get_settings", return_value=mock_settings):
+        with (
+            patch("app.main.get_settings", return_value=mock_settings),
+            patch("app.main.get_lakehouse_source", return_value=_stub_source(repository_data)),
+            patch("app.main.run_full_migration", new_callable=AsyncMock,
+                  return_value=MagicMock(imported=0, skipped=0, failed=0)),
+        ):
             response = client.post(
                 "/api/webhook/data-update",
                 content=b"{}",
             )
-            assert response.status_code == 400
+        assert response.status_code == 200
+        assert response.json()["source"] == "stub"
 
     def test_missing_signature_with_secret_returns_401(self, client):
         mock_settings = Settings()
@@ -312,14 +337,12 @@ class TestWebhookEndpoint:
 
         mock_settings = Settings()
         mock_settings.webhook_secret = secret
-        mock_settings.data_repo_url = "http://example.com/repo"
-        mock_settings.data_repo_path = MagicMock()
-        mock_settings.data_repo_branch = "data-cache"
 
         with (
             patch("app.main.get_settings", return_value=mock_settings),
-            patch("app.main.pull_latest", new_callable=AsyncMock),
-            patch("app.main.load_repository_data", return_value=repository_data),
+            patch("app.main.get_lakehouse_source", return_value=_stub_source(repository_data)),
+            patch("app.main.run_full_migration", new_callable=AsyncMock,
+                  return_value=MagicMock(imported=0, skipped=0, failed=0)),
         ):
             response = client.post(
                 "/api/webhook/data-update",
@@ -337,17 +360,15 @@ class TestWebhookEndpoint:
 
         mock_settings = Settings()
         mock_settings.webhook_secret = secret
-        mock_settings.data_repo_url = "http://example.com/repo"
-        mock_settings.data_repo_path = MagicMock()
-        mock_settings.data_repo_branch = "data-cache"
 
         new_repo_data = MagicMock()
         new_repo_data.last_updated = datetime(2025, 1, 1)
 
         with (
             patch("app.main.get_settings", return_value=mock_settings),
-            patch("app.main.pull_latest", new_callable=AsyncMock),
-            patch("app.main.load_repository_data", return_value=new_repo_data),
+            patch("app.main.get_lakehouse_source", return_value=_stub_source(new_repo_data)),
+            patch("app.main.run_full_migration", new_callable=AsyncMock,
+                  return_value=MagicMock(imported=0, skipped=0, failed=0)),
         ):
             response = client.post(
                 "/api/webhook/data-update",
@@ -366,9 +387,6 @@ class TestWebhookEndpoint:
 
         mock_settings = Settings()
         mock_settings.webhook_secret = secret
-        mock_settings.data_repo_url = "http://example.com/repo"
-        mock_settings.data_repo_path = MagicMock()
-        mock_settings.data_repo_branch = "data-cache"
 
         new_repo_data = MagicMock()
         new_repo_data.last_updated = datetime(2025, 1, 1)
@@ -378,11 +396,14 @@ class TestWebhookEndpoint:
         new_repo_data.collections = [MagicMock(), MagicMock()]
         new_repo_data.contributors = [MagicMock()]
         new_repo_data.skills = [MagicMock(), MagicMock()]
+        new_repo_data.atlas_index = MagicMock()
+        new_repo_data.atlas_index.pages = []
 
         with (
             patch("app.main.get_settings", return_value=mock_settings),
-            patch("app.main.pull_latest", new_callable=AsyncMock),
-            patch("app.main.load_repository_data", return_value=new_repo_data),
+            patch("app.main.get_lakehouse_source", return_value=_stub_source(new_repo_data)),
+            patch("app.main.run_full_migration", new_callable=AsyncMock,
+                  return_value=MagicMock(imported=0, skipped=0, failed=0)),
         ):
             response = client.post(
                 "/api/webhook/data-update",

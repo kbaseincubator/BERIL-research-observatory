@@ -22,7 +22,18 @@ class Settings(BaseSettings):
     ui_dir: Path = app_dir.parent
     repo_dir: Path = ui_dir.parent  # The research repository root
 
-    # Git data source configuration
+    # Lakehouse source — picks which LakehouseSource implementation is active
+    # at startup and on the webhook. "git" reproduces the legacy git-clone flow
+    # (see Git data source configuration below). Future values: "berdl".
+    lakehouse_source: str = "git"
+
+    # Where lakehouse sources materialize their project tree on disk. Defaults
+    # match the legacy data_repo_path so existing deployments keep working
+    # without setting anything new. Mount a persistent volume here in production
+    # so a restart doesn't require re-downloading.
+    lakehouse_cache_dir: Path = Path("/tmp/beril_lakehouse_cache")
+
+    # Git data source configuration (consumed by GitLegacyLakehouse).
     data_repo_url: str | None = None  # Git repository URL
     data_repo_branch: str = "data-cache"  # Branch to checkout
     data_repo_path: Path = Path("/tmp/beril_data_cache")  # Local clone path

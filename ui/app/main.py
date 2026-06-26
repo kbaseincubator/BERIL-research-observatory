@@ -42,6 +42,7 @@ from app.atlas_graph import (
 
 from .auth import _RedirectToLogin, redirect_to_login_handler
 from .auth_providers import get_kbase_token, load_providers
+from .lakehouses import get_lakehouse_source
 from .routes.admin import ROUTER_ADMIN
 from .routes.chat import ROUTER_CHAT, ROUTER_CHAT_PAGES
 from .routes.data import ROUTER_USER_DATA
@@ -49,8 +50,7 @@ from .routes.user import ROUTER_USER
 from .config import get_settings
 from .db.crud import get_project_by_id, user_project_to_model
 from .db.session import get_db
-from .dataloader import load_repository_data, RepositoryParser
-from .git_data_sync import pull_latest
+from .dataloader import RepositoryParser
 from .importer import run_full_migration
 from .models import CollectionCategory, RepositoryData, AtlasPage
 from .storage import LocalFileStorage
@@ -1079,54 +1079,46 @@ async def data_update_webhook(
 
     logger.info("Received data update webhook notification")
 
-    # Pull latest changes and reload
-    if settings.data_repo_url:
-        try:
-            logger.info("Pulling latest changes from git repository")
+    try:
+        source = get_lakehouse_source(settings)
+        result = await source.sync()
 
-            # Pull latest changes
-            await pull_latest(settings.data_repo_path, settings.data_repo_branch)
+        request.app.state.repo_data = result.repo_data
+        request.app.state.base_context = generate_base_context(settings, result.repo_data)
 
-            # Reload from local git repo
-            data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
-            request.app.state.repo_data = load_repository_data(data_file)
-            request.app.state.base_context = generate_base_context(settings, request.app.state.repo_data)
+        logger.info(
+            "Data reloaded from lakehouse source %r. New last_updated: %s",
+            result.source_name, result.last_updated,
+        )
 
-            logger.info(
-                f"Data reloaded successfully. New last_updated: {request.app.state.repo_data.last_updated}"
-            )
+        # Migrate updated project files into the DB from the freshly-synced tree.
+        storage = LocalFileStorage(settings.user_projects_root)
+        summary = await run_full_migration(db, storage, result.projects_dir)
+        logger.info(
+            "Post-webhook import: %d imported, %d skipped, %d failed",
+            summary.imported, summary.skipped, summary.failed,
+        )
 
-            # Migrate updated project files from the freshly-pulled repo into the DB
-            storage = LocalFileStorage(settings.user_projects_root)
-            pulled_projects_dir = settings.data_repo_path / "projects"
-            summary = await run_full_migration(db, storage, pulled_projects_dir)
-            logger.info(
-                "Post-webhook import: %d imported, %d skipped, %d failed",
-                summary.imported, summary.skipped, summary.failed,
-            )
-
-            return JSONResponse(
-                {
-                    "status": "success",
-                    "message": "Data reloaded successfully from git",
-                    "last_updated": request.app.state.repo_data.last_updated.isoformat()
-                    if request.app.state.repo_data.last_updated
-                    else None,
-                    "import": {
-                        "imported": summary.imported,
-                        "skipped": summary.skipped,
-                        "failed": summary.failed,
-                    },
-                }
-            )
-        except Exception as e:
-            logger.error(f"Failed to reload data from git: {e}")
-            raise HTTPException(
-                status_code=500, detail=f"Failed to reload data: {str(e)}"
-            )
-    else:
-        logger.warning("Webhook received but no data_repo_url configured")
-        raise HTTPException(status_code=400, detail="No git repository configured")
+        return JSONResponse(
+            {
+                "status": "success",
+                "message": f"Data reloaded from lakehouse source {result.source_name!r}",
+                "source": result.source_name,
+                "last_updated": result.last_updated.isoformat()
+                if result.last_updated
+                else None,
+                "import": {
+                    "imported": summary.imported,
+                    "skipped": summary.skipped,
+                    "failed": summary.failed,
+                },
+            }
+        )
+    except Exception as e:
+        logger.error("Failed to reload data from lakehouse: %s", e)
+        raise HTTPException(
+            status_code=500, detail=f"Failed to reload data: {str(e)}"
+        )
 
 
 # Health check
