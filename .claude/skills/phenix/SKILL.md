@@ -131,7 +131,7 @@ s3a://cdm-lake/tenant-general-warehouse/kescience/structural-biology/
 
 The agent tracks project state via:
 1. **MinIO directory structure** — what files exist tells us what step we're at
-2. **Delta Lake `refinement_cycles`** — queryable history of all refinement iterations
+2. **Iceberg `refinement_cycles`** — queryable history of all refinement iterations
 3. **Local project notes** — `project_notes.json` in the project directory
 
 ## Compute Strategy
@@ -172,7 +172,7 @@ module load phenix
 {phenix_command}
 ```
 
-## Delta Lake Tables
+## Iceberg Tables
 
 Results are stored in `kescience_structural_biology` — use `berdl_notebook_utils.get_table_schema(database="kescience_structural_biology", table=..., detailed=True, return_json=False)` for the live schema.
 
@@ -212,7 +212,7 @@ Every agent action is logged as a JSON record in the project's `provenance.jsonl
 6. **Run automated steps** and parse outputs carefully
 7. **For human-in-the-loop steps**: generate visualization scripts, highlight problem regions, and wait for the user
 8. **Log provenance** for every action taken
-9. **Store results** — upload to MinIO, update Delta Lake tables
+9. **Store results** — upload to MinIO, update Iceberg tables
 10. **Update memory** — if a new pattern or lesson is learned, update `docs/structural_biology_memory.md`
 
 ### Decision Thresholds

@@ -15,7 +15,7 @@ Present this information directly (no file reads needed):
 
 ### What is BERDL?
 
-The **KBase BER Data Lakehouse (BERDL)** is an on-prem Delta Lakehouse (Spark SQL) hosting databases across multiple tenants. The exact database inventory and access depend on the authenticated user — discover it live in Phase 1.6 below.
+The **KBase BER Data Lakehouse (BERDL)** is an on-prem Iceberg Lakehouse (Spark SQL) hosting databases across multiple tenants. The exact database inventory and access depend on the authenticated user — discover it live in Phase 1.6 below.
 
 Collections currently span: pangenomes (GTDB-derived species pangenomes with functional annotations and pathway predictions), genome structural data, biochemistry (ModelSEED reactions and compounds), genome-wide fitness (RB-TnSeq), environmental microbiology, multi-omics (NMDC), phage-host data, and marine microbial samples. Always discover the exact set live — do not rely on this prose for current inventory.
 

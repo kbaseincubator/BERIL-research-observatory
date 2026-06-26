@@ -692,7 +692,7 @@ def print_preflight_plan(
     """Print the upload and ingest plan.
 
     When user_namespace is provided (user-tenant ingest), it is displayed prominently
-    so the user knows exactly where their data will land (u_username__dataset).
+    so the user knows exactly where their data will land (my.<dataset>).
 
     Raises RuntimeError if confirmed=False so the notebook halts after display.
     Set CONFIRMED = True in the configuration cell and re-run to proceed.

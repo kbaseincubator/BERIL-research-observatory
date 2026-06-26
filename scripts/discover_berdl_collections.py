@@ -28,55 +28,58 @@ TENANT_NAMES = {
     "globalusers": "Development/Test",
 }
 
+# Iceberg catalog.namespace ids (catalog = tenant, namespace = collection).
+# The membership check below only keeps these, so this list also drops legacy
+# flat Delta names (e.g. kbase_genomes) returned during the migration window.
 USER_FACING_DATABASE_IDS = {
-    "arkinlab_dbcan",
-    "arkinlab_microbeatlas",
-    "arkinlab_mobilome",
-    "bervodata_chess",
-    "bervodata_fao_soils",
-    "bervodata_hwsd2",
-    "enigma_coral",
-    "enigma_genome_depot_enigma",
-    "kbase_all_the_bacteria",
-    "kbase_genomes",
-    "kbase_ke_pangenome",
-    "kbase_msd_biochemistry",
-    "kbase_ontology_source",
-    "kbase_phenotype",
-    "kbase_uniprot",
-    "kbase_uniref100",
-    "kbase_uniref50",
-    "kbase_uniref90",
-    "kescience_alphafold",
-    "kescience_bacdive",
-    "kescience_fitnessbrowser",
-    "kescience_interpro",
-    "kescience_mgnify",
-    "kescience_paperblast",
-    "kescience_pdb",
-    "kescience_pubmed",
-    "kescience_webofmicrobes",
-    "msyscolo_grow",
-    "netl_pw_dna",
-    "nmdc_arkin",
-    "nmdc_metadata",
-    "nmdc_ncbi_biosamples",
-    "nmdc_results",
-    "pangenome_bakta",
-    "phagefoundry_acinetobacter_genome_browser",
-    "phagefoundry_ecoliphages_genomedepot",
-    "phagefoundry_ecoliphagesgenomedepot",
-    "phagefoundry_klebsiella_genome_browser_genomedepot",
-    "phagefoundry_paeruginosa_genome_browser",
-    "phagefoundry_pviridiflava_genome_browser",
-    "phagefoundry_strain_modelling",
-    "planetmicrobe_planetmicrobe",
-    "planetmicrobe_planetmicrobe_raw",
-    "plantmicrobeinterfaces_gtdb_mapping",
-    "protect_genomedepot",
-    "protect_integration",
-    "protect_mind",
-    "usgs_produced_waters",
+    "arkinlab.dbcan",
+    "arkinlab.microbeatlas",
+    "arkinlab.mobilome",
+    "bervodata.chess",
+    "bervodata.fao_soils",
+    "bervodata.hwsd2",
+    "enigma.coral",
+    "enigma.genome_depot_enigma",
+    "kbase.all_the_bacteria",
+    "kbase.genomes",
+    "kbase.ke_pangenome",
+    "kbase.msd_biochemistry",
+    "kbase.ontology_source",
+    "kbase.phenotype",
+    "kbase.uniprot",
+    "kbase.uniref100",
+    "kbase.uniref50",
+    "kbase.uniref90",
+    "kescience.alphafold",
+    "kescience.bacdive",
+    "kescience.fitnessbrowser",
+    "kescience.interpro",
+    "kescience.mgnify",
+    "kescience.paperblast",
+    "kescience.pdb",
+    "kescience.pubmed",
+    "kescience.webofmicrobes",
+    "msyscolo.grow",
+    "netl.pw_dna",
+    "kbase.nmdc_arkin",  # migrated into the kbase catalog, not nmdc.arkin
+    "nmdc.metadata",
+    "nmdc.ncbi_biosamples",
+    "nmdc.results",
+    "pangenome.bakta",
+    "phagefoundry.acinetobacter_genome_browser",
+    "phagefoundry.ecoliphages_genomedepot",
+    "phagefoundry.ecoliphagesgenomedepot",
+    "phagefoundry.klebsiella_genome_browser_genomedepot",
+    "phagefoundry.paeruginosa_genome_browser",
+    "phagefoundry.pviridiflava_genome_browser",
+    "phagefoundry.strain_modelling",
+    "planetmicrobe.planetmicrobe",
+    "planetmicrobe.planetmicrobe_raw",
+    "plantmicrobeinterfaces.gtdb_mapping",
+    "protect.genomedepot",
+    "protect.integration",
+    "protect.mind",
+    "usgs.produced_waters",
 }
 
 
@@ -286,21 +289,21 @@ def filter_user_facing_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
     filtered["tenants"] = filtered_tenants
     filtered["visibility_filter"] = "user_facing_v1"
     filtered["visibility_filter_note"] = (
-        "Excludes test, demo, startup, default, globalusers, personal u_*__*, "
-        "and uncategorized namespaces until curated."
+        "Excludes test, demo, startup, default, globalusers, personal "
+        "(my.* / <username>.*) catalogs, and uncategorized namespaces until curated."
     )
     return filtered
 
 
 def infer_tenant_id(database_id: str) -> str:
-    """Infer tenant from BERDL database naming conventions."""
-    if database_id.startswith("u_") and "__" in database_id:
-        return database_id.split("__", 1)[0]
-    if database_id.startswith("kbase_"):
-        return "kbase"
-    if database_id.startswith("kescience_"):
-        return "kescience"
-    return database_id.split("_", 1)[0]
+    """Infer the tenant (catalog) from an Iceberg ``catalog.namespace`` id.
+
+    Under Iceberg/Polaris every database is qualified as ``catalog.namespace``
+    (``kbase.genomes``, ``kbase.ke_pangenome``), so the tenant is the catalog —
+    everything before the first dot. Legacy flat Delta names are filtered out
+    upstream, so there is no underscore-split fallback.
+    """
+    return database_id.split(".", 1)[0] if "." in database_id else database_id
 
 
 def title_from_id(database_id: str) -> str:
