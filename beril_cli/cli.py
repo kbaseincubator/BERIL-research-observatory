@@ -74,12 +74,6 @@ def main(argv: list[str] | None = None) -> int:
         help="Emit machine-readable JSON (summary action)",
     )
 
-    # trace-append (settings.json PostToolUse hook; reads the hook payload from stdin)
-    sub.add_parser(
-        "trace-append",
-        help="Append a redacted provenance row to the active project's TRACE.jsonl (hook)",
-    )
-
     # provenance-snapshot (settings.json SessionStart hook; reads the hook payload from stdin)
     sub.add_parser(
         "provenance-snapshot",
@@ -121,11 +115,6 @@ def main(argv: list[str] | None = None) -> int:
         from beril_cli.claims_cmd import run_claims
 
         return run_claims(args)
-
-    if args.command == "trace-append":
-        from beril_cli.audit_cmd import run_trace_append
-
-        return run_trace_append(args)
 
     if args.command == "provenance-snapshot":
         from beril_cli.audit_cmd import run_provenance_snapshot
