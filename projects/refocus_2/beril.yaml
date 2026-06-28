@@ -1,0 +1,23 @@
+project_id: refocus_2
+status: in_progress
+title: "Per-Stressor CatBoost ML Pipeline for Predicting Metal/Antibiotic Stress Phenotypes"
+description: >
+  Part 4 of PhD thesis: machine learning pipeline to predict which ENIGMA bacterial isolates
+  will exhibit fitness defects under metal and antibiotic stress based on protein sequence
+  features alone. Combines ESM-2 language model embeddings, k-mer frequencies, and
+  physicochemical properties as inputs to per-stressor CatBoost classifiers with LOGO
+  (Leave-One-Genus-Out) cross-validation. Covers 10 metal stressors (Zn, Cu, Cd, Co, Ni,
+  Cr, Hg, Mn, Fe, Se, Al) and 17 antibiotic compounds.
+authors:
+  - name: Heather MacGregor
+    affiliation: Lawrence Berkeley National Laboratory
+data_sources:
+  - enigma.genome_depot_enigma
+  - fitnessbrowser
+artifacts:
+  - notebooks/
+  - data/
+  - figures/
+  - src/
+  report: true
+last_session_at: "2026-06-28T00:00:00Z"
