@@ -100,20 +100,36 @@ A separate analysis (`data/adaptive_metrics.csv`) applied threshold tuning to ma
 
 ## Critical Assessment
 
-### Root Cause: Severe Class Imbalance
+### Root Cause: Missing-Data Contamination in the Negative Class
 
-**Metal stressors**: ~0.2–0.3% positive samples (approximately 1 positive per 300–500 samples)
+**Apparent positive rate (all 60 organisms)**: 0.6% for Zn (1,302 / 215,051 proteins)
 
-**Implication**: When a predictor says "all negatives":
-- Accuracy on Zn: 99.2% (correct by accident)
-- Sensitivity: 0.0% (misses all positives)
-- F1: 0.0% (no true positives)
+**True positive rate (organisms with Zn experiments only)**: 1.8% for Zn (1,302 / 71,945 proteins)
 
-CatBoost's `auto_class_weights='Balanced'` is **insufficient** for this level of imbalance. The model learns that predicting negative minimizes weighted loss.
+The labeled dataset covers 60 ENIGMA organisms but FitnessBrowser Zn experiments exist for only 21 of them. The `fillna(0)` in NB01 Cell 6 (prior to this fix) assigned label=0 to the ~143K proteins from the 39 organisms with **no Zn experiments at all** — not true negatives, but untested proteins masquerading as non-essential. This inflated the effective negative class ~3× and suppressed the achievable positive rate below the threshold where CatBoost can learn.
 
-### Why Antibiotic Models Work Better
+| Metal | Orgs with experiments | True positive rate | Prior apparent rate |
+|-------|----------------------|-------------------|---------------------|
+| Zn    | 21/60                | 1.81%             | 0.61%               |
+| Cu    | 28/60                | 1.48%             | 0.71%               |
+| Co    | 30/60                | 1.40%             | 0.75%               |
+| Ni    | 30/60                | 1.35%             | 0.71%               |
+| Al    | 23/60                | 1.40%             | 0.53%               |
+| Cd    | 2/60                 | 2.44%             | 0.07%               |
+| Cr/Hg/Mn | 2–3/60          | 3–5%              | 0.07–0.14%          |
 
-Antibiotic stressors have higher positive rates (especially Ampicillin, Trimethoprim), providing more learning signal. Additionally, antibiotic resistance mechanisms may be more strongly conserved in protein sequences.
+**Fix implemented (NB05)**: `train_stressor()` now filters to organisms-with-data before splitting and training, eliminating the false-negative contamination. No Spark re-run required — this uses the existing `labeled_pd.parquet`.
+
+**Fix implemented (NB01)**: The label extraction loop now also saves `{stressor}_fit` columns — the raw `fitness_min` value as a continuous float, NaN where no experiment was run. This enables regression training (see below).
+
+### Regression Path for Metals
+
+Binary classification collapses the continuous fitness distribution (ranging from ≈−6 to +2) to 0/1 at a −2.0 threshold, discarding the gradient signal between "strongly essential" (fitness ≈ −5) and "marginally impaired" (fitness ≈ −1.5). Regression on the raw fitness score:
+- Eliminates the threshold artifact entirely
+- Trains on all tested proteins, not just the rare below-threshold ones
+- Enables rank-based candidate selection: predict which ENIGMA isolate proteins have the most negative fitness under Zn stress → those are the metal resistance gene candidates
+
+The regression cell in NB05 (`train_stressor_regression()`) is ready to run once NB01 is re-executed on Seaborg to populate the `{stressor}_fit` columns.
 
 ### Accuracy as a Misleading Metric
 
@@ -132,17 +148,19 @@ Accuracy is useless for highly imbalanced classification. The models achieve 99%
 
 ## Limitations and Pending Fixes
 
-### 1. Insufficient Class Imbalance Mitigation
+### 1. ✅ Missing-data contamination (fixed)
 
-**Problem**: `auto_class_weights='Balanced'` alone is inadequate.
+**Problem**: `fillna(0)` assigned label=0 to proteins from organisms with no experiments, inflating the negative class ~3× and making metal models untrainable.
 
-**Solution**: In NB05, implement additional strategies:
-- Verify `class_weights='Balanced'` is active
-- Apply SMOTE (Synthetic Minority Over-sampling) to training set before model fitting
-- Adjust decision threshold based on validation set F1 maximization
-- Consider ensemble methods (e.g., isolation forests) for anomaly detection
+**Fix**: `train_stressor()` in NB05 now filters to `orgs_with_data` (organisms with ≥1 positive for that stressor) before splitting. This raises effective positive rates from 0.6% to 1.8% for Zn and is equivalent for other well-covered metals (Cu/Co/Ni/Al). Can be retrained immediately on the existing `labeled_pd.parquet`.
 
-### 2. No Threshold Tuning
+### 2. ✅ Continuous fitness scores not saved (fixed in NB01)
+
+**Problem**: `fitness_min` values were computed from Spark but discarded after binary thresholding.
+
+**Fix**: NB01 Cell 6 now saves `{stressor}_fit` as a continuous float column alongside the binary label; NaN for organism/stressor pairs with no experiments. Requires NB01 re-run on Seaborg to take effect.
+
+### 3. No Threshold Tuning (partially addressed)
 
 **Problem**: Default threshold of 0.5 for predict() may be suboptimal.
 
@@ -214,7 +232,7 @@ All notebooks (NB01–NB09) in `notebooks/`. Supporting code:
 
 To reproduce:
 ```bash
-cd projects/refocus_2
+cd projects/enigma_stress_phenotype_ml
 jupyter notebook notebooks/01_Data_Preparation.ipynb  # Requires Spark access
 jupyter notebook notebooks/04_Feature_Evaluation.ipynb  # Local
 jupyter notebook notebooks/05_Model_Training.ipynb      # Local
