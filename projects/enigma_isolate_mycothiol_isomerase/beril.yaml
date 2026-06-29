@@ -1,0 +1,21 @@
+project_id: enigma_isolate_mycothiol_isomerase
+title: "ENIGMA Isolate Survey: Mycothiol-Dependent Malonylpyruvate Isomerase"
+description: >
+  Targeted query of the Enigma Genome Depot to identify which ENIGMA lab isolates
+  carry the mycothiol-dependent malonylpyruvate isomerase flagged as phylogenetically
+  enriched in Actinobacteria, and to rank candidates for experimental validation of
+  adaptive metal function.
+authors:
+  - name: Heather MacGregor
+    affiliation: Lawrence Berkeley National Laboratory
+data_sources:
+  - enigma.genome_depot_enigma
+  - kbase.ke_pangenome
+artifacts:
+  notebooks: true
+  data: true
+  figures: true
+  report: true
+  review: true
+status: reviewed
+last_session_at: "2026-06-29T09:00:00Z"
