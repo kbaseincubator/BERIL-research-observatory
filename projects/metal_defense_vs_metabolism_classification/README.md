@@ -9,7 +9,7 @@ signatures of each class across the BERDL pangenome?
 
 ## Status
 
-Analysis — report drafted, awaiting `/berdl-review` and `/submit`.
+Completed — metal defense genes are near-universal (98.6%) while metal metabolism genes are phylogenetically selective (54.0%) and specifically enriched in contaminated habitats (phylum-adj OR=1.28, q=0.002); co-occurrence is the modal state (53.8%); top ENIGMA candidates identified. (Submission pending; see SUBMISSION_FAILED.md.)
 
 ## Background
 
@@ -78,7 +78,21 @@ ENIGMA isolates.
 ## Quick Links
 
 - [Research Plan](RESEARCH_PLAN.md)
-- [Review](REVIEW.md)
+- [Latest Review](REVIEW_4.md)
+
+## Reproduction
+
+All five notebooks can be re-executed from JupyterHub (Kernel → Restart & Run All) or via nbconvert writing to a separate output file (see `docs/pitfalls.md` — `--inplace` silently drops outputs on this JupyterHub):
+
+| Notebook | Live Spark required? | Notes |
+|----------|----------------------|-------|
+| `01_seed_list_and_annotation.ipynb` | Yes (first run) | Cached: `data/seed_list.tsv`, `data/annotation_vocab_map.parquet` |
+| `02_pangenome_classification.ipynb` | Yes (first run) | Cached: `data/genome_metal_counts.parquet`, `data/species_trait_matrix.csv` |
+| `03_phylogenetic_distribution.ipynb` | No (reads parquets) | Requires R + phytools for Pagel's λ; uses `RSCRIPT=/home/hmacgregor/r_env/bin/Rscript` |
+| `04_ecological_signature.ipynb` | Yes (first run) | Cached: `data/genome_env.parquet`, `data/ecology_results_phylum_adj.csv` |
+| `05_enigma_application.ipynb` | Yes (first run) | Cached: `data/enigma_isolate_classification.parquet` |
+
+After caches exist, NB03 is the only notebook requiring non-standard dependencies (R, phytools). Seaborg cluster is required for first-run Spark queries.
 
 ## Authors
 
