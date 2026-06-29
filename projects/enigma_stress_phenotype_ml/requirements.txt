@@ -1,0 +1,13 @@
+catboost>=1.2
+scikit-learn>=1.3
+scipy>=1.11
+pandas>=2.0
+numpy>=1.24
+pyarrow>=13.0
+matplotlib>=3.7
+seaborn>=0.12
+# NB03 only (GPU recommended)
+# transformers>=4.35
+# torch>=2.0
+# NB01 only (requires Spark cluster)
+# pyspark>=3.4

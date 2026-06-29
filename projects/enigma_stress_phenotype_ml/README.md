@@ -1,71 +1,75 @@
 # Per-Stressor CatBoost ML Pipeline for Predicting Metal/Antibiotic Stress Phenotypes
 
-## Scientific Goal
+## Research Question
 
-Predict which ENIGMA bacterial isolates will exhibit fitness defects under metal and antibiotic stress based on protein sequence features alone. This is Part 4 of a PhD thesis focused on predictive modeling of stress response phenotypes using machine learning.
+Can protein sequence composition features alone predict which ENIGMA bacterial isolates exhibit fitness defects under metal and antibiotic stress? Can regression on continuous fitness scores (rather than binary classification) provide actionable candidate rankings for untested organisms?
+
+## Status
+
+Completed — Regression models predict metal stress phenotype from sequence composition (AUC 0.556–0.774); LOGO cross-validation confirms poor phylogenetic generalization for metals vs. strong generalization for abiotic stressors; 7,840 novel protein candidates ranked across untested ENIGMA organisms.
+
+## Authors
+
+Heather MacGregor (ORCID: 0000-0003-1112-3009)  
+Lawrence Berkeley National Laboratory
 
 ## Pipeline Overview
 
 The complete pipeline comprises 9 Jupyter notebooks executed sequentially:
 
-1. **NB01 — Data Preparation**: Extract labeled fitness data from the FitnessBrowser Spark database for 10 metal stressors (Zn, Cu, Cd, Co, Ni, Cr, Hg, Mn, Fe, Se, Al) and 17 antibiotic compounds across ENIGMA isolates.
+1. **NB01 — Data Preparation**: Extract labeled fitness data from the FitnessBrowser Spark database for 11 metal stressors (Zn, Cu, Cd, Co, Ni, Cr, Hg, Mn, Fe, Se, Al) and abiotic compounds across ENIGMA isolates.
 
-2. **NB02 — Sequence Integration**: Download and integrate protein sequences for all ENIGMA isolates from the genome depot, indexed by protein_id.
+2. **NB02 — Sequence Integration**: Download and integrate protein sequences for all ENIGMA isolates from the genome depot.
 
-3. **NB03 — Feature Engineering**: Compute four complementary feature sets:
-   - **ESM-2 embeddings**: 320-dimensional contextual embeddings from a large pre-trained language model (facebook/esm2_t6_8M_UR50D)
-   - **k-mer frequencies**: 2-mer and 3-mer compositional features (capturing local sequence patterns)
-   - **Physicochemical properties**: Mean values of 7 AAindex properties (hydrophobicity, bulkiness, polarity, charge, isoelectric point, secondary structure propensity, solvent accessibility)
-   - **One-hot encoding**: Direct 20-dimensional amino acid composition
+3. **NB03 — Feature Engineering**: Compute complementary feature sets (aa, kmer2, kmer3, physicochemical, ESM-2).
 
-4. **NB04 — Feature Evaluation**: Select the best-performing feature combination via cross-validation (currently: aa+kmer2, avg AUC 0.656).
+4. **NB04 — Feature Evaluation**: Cross-validate feature combinations; aa+kmer2 selected (mean AUC=0.656).
 
-5. **NB05 — Per-Stressor Model Training**: Train independent CatBoost classifiers for each stressor using balanced class weighting and Platt calibration. Use a held-out calibration set for threshold tuning.
+5. **NB05 — Per-Stressor Model Training**: Train independent CatBoost binary classifiers and CatBoostRegressor models per stressor using organism-aware GroupShuffleSplit.
 
-6. **NB06 — LOGO Cross-Validation**: Leave-One-Genus-Out evaluation to assess generalization to unseen bacterial taxa.
+6. **NB06 — LOGO Cross-Validation**: Leave-One-Genus-Out binary classification across 49+ stressors; complete. Metal LOGO AUC: 0.51–0.65 (near-random). Abiotic/antibiotic: 0.67–0.88. Aggregate results in `data/adaptive_metrics.csv`.
 
-7. **NB07 — Ensemble Model Training**: Train a meta-model combining predictions from multiple per-stressor models.
+7. **NB07 — Ensemble Model Training**: Optional ensemble model.
 
-8. **NB08 — General Essentiality Model**: Train a single multi-label model for simultaneous prediction across all stressors.
+8. **NB08 — General Essentiality Model**: Optional multi-label model.
 
-9. **NB09 — Isolate Prediction**: Apply trained models to predict stress phenotypes for new ENIGMA isolates; rank candidates by predicted risk.
+9. **NB09 — Isolate Prediction**: Apply regression models to all 215,051 proteins; rank novel candidates in untested organisms.
+
+## Key Results
+
+- Regression models trained for 11/14 metals (Spearman ρ=0.050–0.230, AUC-from-ranking 0.556–0.774)
+- Hg has the strongest sequence-fitness signal (AUC=0.774, 9 organisms)
+- As/Pb/Ag: only 1 organism in FitnessBrowser; cannot train
+- Abiotic stressors (UV, Ethanol, Acid): binary AUC=0.771–0.824
+- 7,840 novel top-ranked candidate proteins across 18–58 untested organisms per metal
+
+## Data Sources
+
+- `fitnessbrowser` (fit.genomics.lbl.gov): RB-TnSeq fitness data, 60 ENIGMA isolates
+- `enigma.genome_depot_enigma`: Protein sequences
 
 ## Requirements
 
-- **NB01**: Spark access (requires cluster environment; queries FitnessBrowser)
-- **NB03**: GPU or high-memory CPU for ESM-2 embeddings (~6-8 GB RAM per batch)
-- **NB04–NB09**: Local execution; CatBoost + scikit-learn sufficient
+- **NB01**: Spark access (queries FitnessBrowser)
+- **NB03**: GPU or high-memory CPU for ESM-2 embeddings
+- **NB04–NB09**: Local execution; CatBoost + scikit-learn
 
-## Data Files
+## Reproduction
 
-- `data/labeled_pd.parquet`: ENIGMA isolate × stressor binary fitness labels
-- `data/features_*.parquet`: Pre-computed feature matrices (aa, kmer2, kmer3, onehot, physicochemical, blosum62, esm2)
-- `data/best_feature_combination.json`: Selected feature set for training
-- `data/models/`: Trained per-stressor CatBoost models (.cbm) and Platt calibrators (.pkl)
-- `data/best_thresholds.json`: Tuned decision thresholds per stressor (created by fixed NB05)
+```bash
+cd projects/enigma_stress_phenotype_ml
+jupyter notebook notebooks/01_Data_Preparation.ipynb   # Requires Spark (~hours)
+jupyter notebook notebooks/04_Feature_Evaluation.ipynb  # ~30 min
+jupyter notebook notebooks/05_Model_Training.ipynb      # ~45 min (binary classifiers)
+python scripts/run_regression_only.py                   # ~20 min (regression models; powers Finding 1)
+jupyter notebook notebooks/06_Model_Evaluation.ipynb    # ~26 min (LOGO across 49+ stressors)
+jupyter notebook notebooks/09_Isolate_Prediction.ipynb  # ~10 min
+```
 
-## Known Issues and Status
-
-**Critical**: All metal stressor models currently predict all-negative (Sensitivity=0.0, F1=0.0, AUC≈0.5–0.6) due to severe class imbalance. High apparent accuracy (~99.7%) is driven entirely by the majority-negative class and does not reflect a useful predictor.
-
-Antibiotic stressors show slightly better performance (AUC 0.65–0.88) but still mostly zero sensitivity.
-
-NB09 isolate prediction cannot produce meaningful results until class imbalance is addressed.
-
-**Pending Fixes**:
-- Add `class_weights='Balanced'` to all CatBoostClassifier instantiations in NB05
-- Implement threshold tuning using validation set F1 maximization
-- Replace hard-coded `predict()` calls with threshold-aware predictions
-- Rerun NB05 → NB06 → NB07 after fixes
-
-See `REPORT.md` for detailed analysis and findings.
-
-## Author
-
-Heather MacGregor  
-Lawrence Berkeley National Laboratory
+> **Note**: NB03 (ESM-2 embeddings) requires GPU or high-memory CPU and is multi-hour. NB01 requires Spark cluster access. All other notebooks run locally with dependencies in `requirements.txt`.
 
 ## References
 
-- ESM-2: Rao et al. (2023) "Protein language models enable predictive biology on biosafety risks" bioRxiv
-- CatBoost: Dorogush et al. (2018) "CatBoost: gradient boosting with categorical features support"
+- Price et al. (2018) Nature 557: FitnessBrowser RB-TnSeq data
+- Arkin et al. (2018) Nature Biotechnology 36: KBase/ENIGMA
+- Lin et al. (2023) Science 379: ESM-2 language model
