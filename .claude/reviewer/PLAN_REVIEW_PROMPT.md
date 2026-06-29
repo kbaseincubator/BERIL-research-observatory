@@ -82,6 +82,17 @@ Check against `PROJECT.md` standards:
 - If so, can it build on existing work (e.g., reuse data extracts, reference findings) rather than repeating it?
 - Note any existing projects that could serve as useful references or data sources
 
+### 7. Multiple Working Hypotheses & Falsifiability
+
+A plan should pursue a *line of inquiry*, not advocate for a single favored answer. Flag plans that cannot adjudicate between rivals or that cannot say what would prove them wrong.
+
+- **Single-hypothesis plans**: Does the plan offer genuine competing hypotheses, or only an H0/H1 pair (or a lone favored hypothesis)? If the only alternative is a pro-forma null, note that a real rival the data could distinguish is missing.
+- **Strawman rivals**: Where rivals exist, are they genuine alternatives the available data could actually discriminate, or strawmen set up to lose? Flag rivals that no plausible result would favor.
+- **Falsification test per hypothesis**: Does each hypothesis state the single result that would reject it, plus a decision criterion (a threshold/comparison that adjudicates)? **A plan that cannot state what result would refute its hypothesis is not yet testable.** Flag any hypothesis lacking a stated falsification test or decision criterion.
+- **Discrimination strategy**: Is there a specific query or figure whose result would tell the rivals apart? Flag its absence — without it, the plan cannot resolve which hypothesis the data supports.
+
+Be constructive: a speculative or single-hypothesis plan may be appropriate for genuinely exploratory work — note the gap and suggest adding a rival or a falsification test, rather than treating it as a hard failure.
+
 ## Output Format
 
 Return a concise list of suggestions. Start with a one-sentence overall assessment, then organize by priority:
