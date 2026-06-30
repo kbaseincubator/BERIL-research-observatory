@@ -1,5 +1,7 @@
 """BERIL CLI — launcher and environment manager for the BERIL Research Observatory."""
 
+from __future__ import annotations
+
 import argparse
 import sys
 
@@ -54,6 +56,30 @@ def main(argv: list[str] | None = None) -> int:
         help="Emit machine-readable JSON",
     )
 
+    # claims
+    claims_parser = sub.add_parser(
+        "claims",
+        help="Build or summarize the per-project claims/evidence ledger",
+    )
+    claims_parser.add_argument(
+        "action",
+        choices=["build", "summary"],
+        help="build writes claims.json; summary prints the advisory (read-only)",
+    )
+    claims_parser.add_argument("project", help="Project id under projects/")
+    claims_parser.add_argument(
+        "--json",
+        action="store_true",
+        default=False,
+        help="Emit machine-readable JSON (summary action)",
+    )
+
+    # runtime-snapshot (settings.json SessionStart hook; reads the hook payload from stdin)
+    sub.add_parser(
+        "runtime-snapshot",
+        help="Write/merge the active project's runtime.json (hook)",
+    )
+
     args, remaining = parser.parse_known_args(argv)
 
     if args.command is None:
@@ -84,6 +110,16 @@ def main(argv: list[str] | None = None) -> int:
         from beril_cli.user_cmd import run_user
 
         return run_user(args)
+
+    if args.command == "claims":
+        from beril_cli.claims_cmd import run_claims
+
+        return run_claims(args)
+
+    if args.command == "runtime-snapshot":
+        from beril_cli.audit_cmd import run_runtime_snapshot
+
+        return run_runtime_snapshot(args)
 
     return 0
 

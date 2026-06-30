@@ -5,5 +5,17 @@
   "statusLine": {
     "type": "command",
     "command": "bash .claude/statusline.sh"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/beril-runtime.sh"
+          }
+        ]
+      }
+    ]
   }
 }

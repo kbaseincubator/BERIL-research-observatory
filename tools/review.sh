@@ -90,8 +90,8 @@ if [[ -z "$PROJECT_ID" ]]; then
   usage 1
 fi
 
-if [[ "$REVIEW_TYPE" != "project" && "$REVIEW_TYPE" != "plan" ]]; then
-  echo "Error: --type must be 'project' or 'plan', got '$REVIEW_TYPE'" >&2
+if [[ "$REVIEW_TYPE" != "project" && "$REVIEW_TYPE" != "plan" && "$REVIEW_TYPE" != "refute" ]]; then
+  echo "Error: --type must be 'project', 'plan', or 'refute', got '$REVIEW_TYPE'" >&2
   exit 1
 fi
 
@@ -116,12 +116,17 @@ fi
 # /submit can later verify the review covers the *current* report.
 REPORT_HASH_PRE=""
 REPORT_FILE="${PROJECT_DIR}/REPORT.md"
-if [[ "$REVIEW_TYPE" == "project" ]]; then
+# Both project reviews and refutation passes read REPORT.md; only project reviews
+# capture its hash (for the TOCTOU footer that /submit later verifies). A
+# refutation writes no footer and changes no lifecycle state.
+if [[ "$REVIEW_TYPE" == "project" || "$REVIEW_TYPE" == "refute" ]]; then
   if [[ ! -f "$REPORT_FILE" ]]; then
     echo "Error: REPORT.md not found at $REPORT_FILE — run /synthesize first" >&2
     exit 1
   fi
-  REPORT_HASH_PRE=$(sha256sum "$REPORT_FILE" | awk '{print $1}')
+  if [[ "$REVIEW_TYPE" == "project" ]]; then
+    REPORT_HASH_PRE=$(sha256sum "$REPORT_FILE" | awk '{print $1}')
+  fi
 fi
 
 # --- Resolve model ---
@@ -138,6 +143,8 @@ fi
 if [[ -z "$OUTPUT_FILE" ]]; then
   if [[ "$REVIEW_TYPE" == "project" ]]; then
     PREFIX="REVIEW"
+  elif [[ "$REVIEW_TYPE" == "refute" ]]; then
+    PREFIX="REFUTATION"
   else
     PREFIX="PLAN_REVIEW"
   fi
@@ -163,6 +170,8 @@ fi
 # --- Select system prompt based on type ---
 if [[ "$REVIEW_TYPE" == "project" ]]; then
   SYSTEM_PROMPT_FILE=".claude/reviewer/SYSTEM_PROMPT.md"
+elif [[ "$REVIEW_TYPE" == "refute" ]]; then
+  SYSTEM_PROMPT_FILE=".claude/reviewer/REFUTATION_PROMPT.md"
 else
   SYSTEM_PROMPT_FILE=".claude/reviewer/PLAN_REVIEW_PROMPT.md"
 fi
@@ -184,6 +193,8 @@ fi
 # --- Build the review prompt based on type ---
 if [[ "$REVIEW_TYPE" == "project" ]]; then
   REVIEW_PROMPT="Review the project at ${PROJECT_DIR}/. Read all files in the project directory — especially README.md, RESEARCH_PLAN.md, and REPORT.md. Also read docs/pitfalls.md for known issues. Write your review to ${OUTPUT_FILE}. In the Review Metadata section, set the Reviewer line to: **Reviewer**: BERIL Automated Review (${REVIEWER_LABEL}, ${MODEL}). In the YAML frontmatter, set reviewer to: BERIL Automated Review (${REVIEWER_LABEL}, ${MODEL})."
+elif [[ "$REVIEW_TYPE" == "refute" ]]; then
+  REVIEW_PROMPT="Red-team the project at ${PROJECT_DIR}/. Read ${PROJECT_DIR}/REPORT.md and the notebooks in ${PROJECT_DIR}/notebooks/ — especially the numeric cell outputs (metrics, split sizes, class balances). For each Key Finding, actively try to BREAK it per your instructions, then write your refutation pass to ${OUTPUT_FILE}. In the YAML frontmatter, set reviewer to: BERIL Refutation Pass (${REVIEWER_LABEL}, ${MODEL}). Do not modify REPORT.md, the notebooks, or any other project file."
 else
   REVIEW_PROMPT="Review the research plan at ${PROJECT_DIR}/. Read ${PROJECT_DIR}/RESEARCH_PLAN.md and ${PROJECT_DIR}/README.md. Also read docs/pitfalls.md (per-database H2 sections cover non-derivable gotchas), docs/performance.md, and PROJECT.md. Use BERDL notebook helper discovery (get_databases/get_tables/get_table_schema) for live database/table access for any tables referenced in the plan. Read README.md files of related existing projects to check for overlap. Write your plan review to ${OUTPUT_FILE}. At the end, note: Plan reviewed by ${REVIEWER_LABEL} (${MODEL})."
 fi
