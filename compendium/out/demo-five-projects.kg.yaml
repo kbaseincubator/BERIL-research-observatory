@@ -1,0 +1,438 @@
+project:
+  id: demo_five_projects
+  title: Five-project metal and ecotype demo
+statements:
+- id: stmt:ecotype-phylogeny-dominance-finding
+  kind: finding
+  text: Across species with sufficient data, phylogenetic relatedness generally predicts
+    bacterial gene-content similarity more strongly than environmental similarity.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:alphaearth
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:ecotype-gene-subset-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_analysis
+    source_doc: REPORT.md
+    source_section: Phylogeny Usually Dominates
+    quote: Phylogeny dominates in **60.5%** of species
+    notebook: notebooks/02_ecotype_correlation_analysis.ipynb
+    figure: figures/ecotype_correlation_summary.png
+- id: stmt:ecotype-lifestyle-null-caveat
+  kind: caveat
+  text: Separating environmental and host-associated bacteria did not reveal a stronger
+    environment effect in this analysis.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:alphaearth
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecotype-phylogeny-dominance-finding
+  evidence:
+  - source_project: ecotype_analysis
+    source_doc: REPORT.md
+    source_section: No Difference by Lifestyle
+    quote: Tested whether "environmental" bacteria (free-living, where lat/lon is
+      meaningful) show stronger environment effects than host-associated bacteria.
+      **No significant difference found** (p=0.66).
+    notebook: notebooks/02_ecotype_correlation_analysis.ipynb
+    figure: figures/environmental_vs_host_comparison.png
+- id: stmt:ecotype-gene-subset-claim
+  kind: claim
+  text: Environmental adaptation may be easier to detect in specific functional gene
+    subsets than in whole-genome gene-content similarity.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecotype-phylogeny-dominance-finding
+  evidence:
+  - source_project: ecotype_analysis
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: Environmental adaptation may act on specific gene subsets rather than the
+      whole genome
+- id: stmt:ecotype-functional-widespread-finding
+  kind: finding
+  text: Gene-content ecotypes are widespread in the sampled bacterial species and
+    represent recurring within-species pangenome structure.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:ecotype-functional-differentiation-finding
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_functional_differentiation
+    source_doc: REPORT.md
+    source_section: Gene-content ecotypes are widespread across bacterial species
+    quote: Ecotype clustering via PCA + KMeans on auxiliary gene presence/absence
+      matrices identified valid gene-content ecotypes in 12 of 15 sampled species
+      (80%).
+    notebook: NB02_clustering_and_cog.ipynb
+- id: stmt:ecotype-functional-differentiation-finding
+  kind: finding
+  text: Ecotype gene-content variation is functionally structured rather than random,
+    with COG categories differentiating across all sampled species.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:cog-category
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:ecotype-adaptive-effect-claim
+    contradicts: []
+    refines:
+    - stmt:ecotype-gene-subset-claim
+  evidence:
+  - source_project: ecotype_functional_differentiation
+    source_doc: REPORT.md
+    source_section: Ecotypes show pervasive COG functional differentiation
+    quote: Chi-square and Fisher's exact tests revealed that 170 of 257 species x
+      COG tests (66.1%) were statistically significant after BH-FDR correction (q
+      < 0.05).
+    notebook: NB03_differential_enrichment.ipynb
+    figure: figures/cog_differentiation_rates.png
+- id: stmt:ecotype-adaptive-effect-claim
+  kind: claim
+  text: Adaptive functions differentiate more strongly between ecotypes than housekeeping
+    functions, although both classes can vary.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:cog-category
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecotype-gene-subset-claim
+  evidence:
+  - source_project: ecotype_functional_differentiation
+    source_doc: REPORT.md
+    source_section: Adaptive COG categories show significantly larger effect sizes
+      than housekeeping
+    quote: However, the *magnitude* of differentiation (effect size) is 2.1x larger
+      for adaptive categories, and this difference is highly significant (p = 2.53
+      x 10^-6, Mann-Whitney U, one-sided).
+    notebook: NB03_differential_enrichment.ipynb
+    figure: figures/effect_size_distributions.png
+- id: stmt:ecotype-unknown-mobile-caveat
+  kind: caveat
+  text: The strongest ecotype differences include unknown-function and mobile-element
+    categories, so much of the niche-specific signal remains hard to interpret biologically.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:cog-category
+  - entity:mobile-elements
+  - entity:unknown-function
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecotype-functional-differentiation-finding
+  evidence:
+  - source_project: ecotype_functional_differentiation
+    source_doc: REPORT.md
+    source_section: Replication/mobile elements and unknown function drive the largest
+      ecotype differences
+    quote: The large S-category effect suggests substantial ecotype differentiation
+      involves genes of currently unknown function -- a recurring theme in microbial
+      ecology that highlights annotation gaps in niche-specific genes.
+    notebook: NB03_differential_enrichment.ipynb
+    figure: figures/cog_differentiation_heatmap.png
+- id: stmt:metal-cross-universal-positivity-finding
+  kind: finding
+  text: 'Gene-level metal cross-resistance is directionally conserved: metal-pair
+    fitness correlations are overwhelmingly positive across organisms.'
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-stress
+  - entity:cross-resistance
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:metal-cross-two-layer-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metal_cross_resistance
+    source_doc: REPORT.md
+    source_section: Metal cross-resistance is universal and directionally conserved
+    quote: Across 317 organism-metal pair observations (28 organisms, 85 unique metal
+      pairs), **98.1% of gene-level fitness correlations are positive** (311/317)
+      and **99.1% are statistically significant** (p < 0.05).
+    notebook: 01_metal_experiment_inventory.ipynb
+    figure: figures/dvh_cross_resistance_heatmap.png
+- id: stmt:metal-cross-two-layer-claim
+  kind: claim
+  text: Metal cross-resistance has a universal stress layer and a chemistry-specific
+    magnitude layer, with divalent cations showing especially strong shared responses.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-stress
+  - entity:cross-resistance
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metal-cross-universal-positivity-finding
+  evidence:
+  - source_project: metal_cross_resistance
+    source_doc: REPORT.md
+    source_section: The Two Layers of Cross-Resistance
+    quote: 'This study reveals that metal cross-resistance operates on two layers:'
+  - source_project: metal_cross_resistance
+    source_doc: REPORT.md
+    source_section: The Two Layers of Cross-Resistance
+    quote: '**Chemistry-specific layer (magnitude)**: The *degree* of cross-resistance
+      varies by metal pair and reflects chemical similarity.'
+- id: stmt:metal-cross-tier-architecture-finding
+  kind: finding
+  text: Metal-important genes form a conservation gradient from general stress genes
+    through metal-shared genes to metal-specific genes.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-stress
+  - entity:core-genome
+  - entity:metal-specific-genes
+  links:
+    supports:
+    - stmt:metal-cross-two-layer-claim
+    contradicts: []
+    refines:
+    - stmt:metal-atlas-core-robustness-finding
+  evidence:
+  - source_project: metal_cross_resistance
+    source_doc: REPORT.md
+    source_section: Three-tier gene architecture
+    quote: "The predicted gradient holds: general stress genes (pleiotropic, important\
+      \ across many conditions) are the most conserved in the pangenome, metal-shared\
+      \ genes (cross-resistance drivers, important for \u22652 metals) are intermediate,\
+      \ and metal-specific genes (important for exactly 1 metal) are least conserved."
+    notebook: 04_shared_vs_specific_genes.ipynb
+    figure: figures/core_enrichment_gradient.png
+- id: stmt:metal-cross-bacdive-caveat
+  kind: caveat
+  text: BacDive validation of multi-metal scores is underpowered at the Fitness Browser
+    organism scale.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:bacdive
+  - entity:metal-stress
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metal-atlas-pangenome-distribution-claim
+  evidence:
+  - source_project: metal_cross_resistance
+    source_doc: REPORT.md
+    source_section: BacDive validation is inconclusive at FB organism scale
+    quote: "After matching and collapsing, the effective sample size is **20 independent\
+      \ species** \u2014 far too small for a meaningful correlation test."
+    notebook: 05_pangenome_prediction.ipynb
+    figure: figures/multimetal_validation.png
+- id: stmt:metal-atlas-core-robustness-finding
+  kind: finding
+  text: Cross-species metal fitness defects are enriched in core genes, reframing
+    metal tolerance as a core-genome robustness problem rather than mainly an accessory-resistance
+    problem.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-stress
+  - entity:core-genome
+  - entity:fitness-browser
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:metal-atlas-pangenome-distribution-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metal_fitness_atlas
+    source_doc: REPORT.md
+    source_section: Metal-Important Genes Are Enriched in the Core Genome
+    quote: Across 22 organisms and 14 metals, genes with significant fitness defects
+      under metal stress are **87.4% core** vs 76.9% baseline (OR=2.08, p=4.3e-162).
+    notebook: 03_metal_conservation_analysis.ipynb
+    figure: figures/core_fraction_by_metal.png
+- id: stmt:metal-atlas-conserved-families-finding
+  kind: finding
+  text: The metal atlas identifies conserved metal-phenotype gene families, including
+    novel candidates that can be prioritized from cross-species fitness evidence.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-stress
+  - entity:gene-family
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:metal-atlas-core-robustness-finding
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metal_fitness_atlas
+    source_doc: REPORT.md
+    source_section: 1,182 Conserved Metal Gene Families Identified
+    quote: "Of 2,891 ortholog groups with metal phenotypes, 1,182 are conserved across\
+      \ \u22652 organisms and 601 across \u22653 organisms."
+    notebook: 04_cross_species_metal_families.ipynb
+    figure: figures/metal_family_conservation_heatmap.png
+  - source_project: metal_fitness_atlas
+    source_doc: REPORT.md
+    source_section: 1,182 Conserved Metal Gene Families Identified
+    quote: "149 novel metal biology candidates were identified: gene families with\
+      \ conserved metal fitness phenotypes across \u22652 organisms but lacking full\
+      \ functional annotation."
+    notebook: 04_cross_species_metal_families.ipynb
+- id: stmt:metal-atlas-pangenome-distribution-claim
+  kind: claim
+  text: Genome-size-normalized pangenome scoring suggests that metal tolerance genes
+    are broadly distributed across bacteria rather than concentrated only in specialist
+    taxa.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-stress
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metal-atlas-core-robustness-finding
+  evidence:
+  - source_project: metal_fitness_atlas
+    source_doc: REPORT.md
+    source_section: Pangenome-Scale Prediction Validates Metal Gene Signature
+    quote: "However, bioleaching genera as a group are not significantly enriched\
+      \ over background after normalization (Mann-Whitney p=0.17), indicating that\
+      \ metal tolerance genes are broadly distributed across bacteria rather than\
+      \ concentrated in specialists \u2014 consistent with the core genome robustness\
+      \ model."
+    notebook: 06_pangenome_metal_prediction.ipynb
+    figure: figures/species_metal_score_distribution.png
+- id: stmt:metal-specificity-fraction-finding
+  kind: finding
+  text: A majority of analyzed metal-important gene records are metal-specific rather
+    than generally sick across non-metal conditions.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-specific-genes
+  - entity:metal-stress
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:metal-specificity-core-refinement-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metal_specificity
+    source_doc: REPORT.md
+    source_section: 55% of Metal-Important Genes Are Metal-Specific
+    quote: "Of the 7,609 metal-important gene records with fitness matrix data across\
+      \ 24 organisms, 4,177 (54.9%) are metal-specific \u2014 they show significant\
+      \ fitness defects under metal stress but a <5% sick rate across 5,945 non-metal\
+      \ experiments."
+    notebook: 02_gene_specificity.ipynb
+    figure: figures/specificity_breakdown.png
+- id: stmt:metal-specificity-core-refinement-claim
+  kind: claim
+  text: Metal-specific genes remain core-enriched, but less strongly than general
+    sick genes, preserving the core-genome robustness model while exposing a modest
+    accessory contribution.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-specific-genes
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:metal-atlas-core-robustness-finding
+    contradicts: []
+    refines:
+    - stmt:metal-cross-tier-architecture-finding
+  evidence:
+  - source_project: metal_specificity
+    source_doc: REPORT.md
+    source_section: Metal-Specific Genes Are Core-Enriched but Less So Than General
+      Sick Genes
+    quote: 'Both metrics show the same pattern: metal-specific genes are core-enriched
+      above baseline but less so than general sick genes.'
+    notebook: 03_conservation_analysis.ipynb
+    figure: figures/conservation_by_specificity.png
+  - source_project: metal_specificity
+    source_doc: REPORT.md
+    source_section: The Core Genome Robustness Model Holds
+    quote: Even after removing all pleiotropic genes, the remaining metal-specific
+      set is 88% core.
+- id: stmt:metal-specificity-functional-validation-finding
+  kind: finding
+  text: Metal-specific genes are enriched for metal-resistance annotations, indicating
+    that the specificity filter captures biologically meaningful tolerance determinants.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-specific-genes
+  - entity:metal-stress
+  links:
+    supports:
+    - stmt:metal-specificity-core-refinement-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metal_specificity
+    source_doc: REPORT.md
+    source_section: Metal-Specific Genes Are Enriched for Metal Resistance Functions
+    quote: Metal-specific genes are 1.64x more likely to match metal-resistance keywords
+      (efflux, transporter, metal, CDF, siderophore, etc.) than general sick genes
+      (12.2% vs 7.8%, Fisher exact OR=1.64, p=2.4e-8).
+    notebook: 04_functional_enrichment.ipynb
+    figure: figures/functional_comparison.png

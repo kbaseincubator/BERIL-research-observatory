@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-string-based-condition-alignment",
+    "stmt:caveat-strain-name-collision",
+    "stmt:growth-vs-metabolite-different-features",
+    "stmt:46k-pairs-for-mechanistic-prediction",
+    "stmt:weak-fb-concordance-presence-vs-essentiality",
+    "stmt:global-ph-niche-partition",
+    "stmt:enigma-strains-environmental-outliers",
+    "stmt:binary-growth-predictable-aa-nucleosides",
+    "stmt:continuous-params-not-predictable",
+    "stmt:exometabolomic-univariate-recovery",
+    "stmt:multidataset-anchor-set",
+    "stmt:condition-specific-catabolic-genes",
+    "stmt:opportunity-active-learning-experiments",
+    "stmt:opportunity-geochemistry-linkage"
+  ],
+  "member_hash": "hash:98d95acb81e76809",
+  "model": "haiku",
+  "page_id": "project:genotype_to_phenotype_enigma",
+  "page_plan_hash": "hash:ade6dfc0becdd7ce",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:98d95acb81e76809",
+    "lead": "hash:98d95acb81e76809"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

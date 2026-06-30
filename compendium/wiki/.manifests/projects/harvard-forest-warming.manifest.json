@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-single-timepoint-sample-size",
+    "stmt:caveat-unbalanced-coverage",
+    "stmt:caveat-transcript-pool-composition",
+    "stmt:caveat-no-in-lakehouse-abiotic",
+    "stmt:novel-dna-rna-variance-comparison",
+    "stmt:community-actino-up-acido-down",
+    "stmt:c-cycling-enriched-dna-organic",
+    "stmt:heated-mineral-fewer-metabolites",
+    "stmt:methanotrophy-glyoxylate-up",
+    "stmt:warming-responses-horizon-specific",
+    "stmt:h1-dna-rna-comparable",
+    "stmt:opportunity-add-arkin-quant-layers",
+    "stmt:opportunity-cross-study-meta-analysis"
+  ],
+  "member_hash": "hash:b199e361f3fbbe0e",
+  "model": "haiku",
+  "page_id": "project:harvard_forest_warming",
+  "page_plan_hash": "hash:a37f485752781397",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:b199e361f3fbbe0e",
+    "lead": "hash:b199e361f3fbbe0e"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

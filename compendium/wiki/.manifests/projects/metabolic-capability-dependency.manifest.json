@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:taxid-matching-failed-caveat",
+    "stmt:h2b-non-independence-caveat",
+    "stmt:black-queen-genome-dynamics-level",
+    "stmt:latent-fraction-threshold-robust",
+    "stmt:novel-latent-fraction-quantification",
+    "stmt:latent-capability-fraction",
+    "stmt:openness-correlates-latent-rate",
+    "stmt:metabolic-ecotypes-widespread",
+    "stmt:ecotypes-environment-linked-copiotrophs",
+    "stmt:carbon-vs-aa-latency",
+    "stmt:pathway-conservation-undifferentiated",
+    "stmt:longitudinal-gene-loss-opportunity",
+    "stmt:gene-level-conservation-opportunity"
+  ],
+  "member_hash": "hash:0ee880b477d23064",
+  "model": "haiku",
+  "page_id": "project:metabolic_capability_dependency",
+  "page_plan_hash": "hash:339411b38bad73d7",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:0ee880b477d23064",
+    "lead": "hash:0ee880b477d23064"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

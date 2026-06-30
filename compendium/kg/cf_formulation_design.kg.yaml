@@ -1,0 +1,410 @@
+project:
+  id: cf_formulation_design
+  title: Rational Design of Protective Microbiome Formulations for Competitive Exclusion of *Pseudomonas aeruginosa* in Cystic Fibrosis Airways
+statements:
+- id: stmt:metabolic-overlap-predicts-inhibition
+  kind: finding
+  text: Metabolic carbon-source overlap with Pseudomonas aeruginosa PA14 significantly predicts commensal planktonic inhibition (r = 0.384) but explains only about 27% of the variance.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbiome-engineering
+  entities:
+  - entity:pseudomonas-aeruginosa
+  - entity:pa14
+  - entity:competitive-exclusion
+  - entity:carbon-utilization
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: Summary
+    quote: metabolic overlap with PA14 significantly predicts inhibition (r = 0.384, p = 2.3×10⁻⁶) but explains only 27% of variance — the strongest inhibitors combine metabolic competition with direct antagonism mechanisms.
+- id: stmt:metabolic-model-overfits
+  kind: caveat
+  text: The multivariate metabolic-feature model of inhibition overfits the 142-isolate cohort, with cross-validated R-squared near 0.145 rather than the training R-squared of 0.274, so its true out-of-sample predictive power is closer to 15%.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:pa14
+  - entity:competitive-exclusion
+  - entity:carbon-utilization
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metabolic-overlap-predicts-inhibition
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: 2.3 Metabolic Overlap Predicts Inhibition — But Only Partially
+    quote: Five-fold cross-validation yields **CV R² = 0.145 ± 0.142**, below the training R² of 0.274, indicating the multivariate model overfits to the 142-isolate cohort. The true out-of-sample predictive power of metabolic features is closer to 15% than 27%.
+    notebook: 03_explaining_inhibition.ipynb
+- id: stmt:no-single-organism-outgrows-pa14
+  kind: finding
+  text: No individual commensal outgrows PA14 on any tested carbon substrate, so competitive exclusion of P. aeruginosa requires community-level niche coverage rather than a single dominant strain.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbiome-engineering
+  entities:
+  - entity:pa14
+  - entity:competitive-exclusion
+  - entity:formulation-design
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: Summary
+    quote: No individual commensal outgrows PA14 on any tested substrate, requiring community-level niche coverage.
+- id: stmt:no-selective-amino-acid-prebiotic
+  kind: finding
+  text: PA14 outgrows the average commensal on every tested amino acid and simple sugar, so no single tested substrate works as a selective prebiotic that feeds commensals while starving the pathogen.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbiome-engineering
+  entities:
+  - entity:pa14
+  - entity:prebiotics
+  - entity:carbon-utilization
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: 2.7 PA14 Is a Metabolic Generalist — Amino Acid Prebiotics Don't Work
+    quote: PA14 outgrows the average commensal on **every tested substrate**. The most selective substrates (cysteine, threonine, methionine) have ratios of only 0.77–0.96. There is no amino acid or simple sugar where commensals have a clear growth advantage.
+    notebook: 06_prebiotic_pairing.ipynb
+- id: stmt:five-organism-formulation
+  kind: claim
+  text: A five-organism FDA-safe formulation (Neisseria mucosa, Streptococcus salivarius, Micrococcus luteus, Rothia dentocariosa, Gemella sanguinis) achieves 100% coverage of PA14's amino acid niche with 78% mean inhibition.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:metabolic-pathways
+  entities:
+  - entity:formulation-design
+  - entity:neisseria-mucosa
+  - entity:rothia-dentocariosa
+  - entity:micrococcus-luteus
+  links:
+    supports:
+    - stmt:no-single-organism-outgrows-pa14
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: Summary
+    quote: Multi-criterion optimization identifies a five-organism FDA-safe formulation (*Neisseria mucosa*, *Streptococcus salivarius*, *Micrococcus luteus*, *Rothia dentocariosa*, *Gemella sanguinis*) that achieves 100% coverage of PA14's amino acid niche with 78% mean inhibition.
+- id: stmt:k3-full-niche-coverage
+  kind: finding
+  text: Full amino-acid niche coverage of PA14 is first reached at a three-organism formulation (M. luteus, N. mucosa, S. salivarius), where at least one member grows on every amino acid PA14 can use.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:metabolic-pathways
+  entities:
+  - entity:formulation-design
+  - entity:micrococcus-luteus
+  - entity:neisseria-mucosa
+  - entity:competitive-exclusion
+  links:
+    supports:
+    - stmt:five-organism-formulation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: '2.6 Formulation Optimization: Staged Safety Filters Reveal the Clinical Core'
+    quote: At k=3, the formulation achieves 100% niche coverage — meaning at least one member grows on every amino acid that PA14 can use. The strict filter costs roughly 15% inhibition ceiling but doubles engraftability.
+    notebook: 05b_formulation_strict_safety.ipynb
+- id: stmt:metabolic-traits-species-level
+  kind: finding
+  text: GapMind pangenome analysis across 499 genomes confirms that the formulation species' metabolic capabilities are species-level traits conserved (>95%) across hundreds of genomes, supporting strain-agnostic formulation design.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome
+  - entity:gapmind
+  - entity:formulation-design
+  - entity:carbon-utilization
+  links:
+    supports:
+    - stmt:five-organism-formulation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: '2.8 Metabolic Capabilities Are Species-Level Traits: Pangenome Validation'
+    quote: The metabolic capabilities we measured are species-level traits conserved across hundreds of genomes. *G. sanguinis* shows the most pathway variability (small pangenome, 7 genomes), suggesting strain selection matters most for this species.
+    notebook: 07_pangenome_conservation.ipynb
+- id: stmt:anchor-species-lung-adapted
+  kind: finding
+  text: Two formulation anchor species, Rothia dentocariosa and Neisseria mucosa, are naturally lung-adapted, with 33-38% of their pangenome genomes drawn from respiratory sources rather than being gut commensals repurposed for the airway.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:environment-biogeography
+  entities:
+  - entity:rothia-dentocariosa
+  - entity:neisseria-mucosa
+  - entity:pangenome
+  - entity:cystic-fibrosis-airway
+  links:
+    supports:
+    - stmt:five-organism-formulation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: Summary
+    quote: two anchor species (*R. dentocariosa*, *N. mucosa*) are naturally lung-adapted (33–38% of pangenome genomes from respiratory sources).
+- id: stmt:neisseria-mucosa-engraftability
+  kind: finding
+  text: Across 175 patient samples, Neisseria mucosa has the highest engraftability score (prevalence times log activity ratio) among inhibition-tested species, marking it as the most promising colonization anchor.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:environment-biogeography
+  entities:
+  - entity:neisseria-mucosa
+  - entity:patient-metagenomics
+  - entity:engraftability
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: 2.5 Patient Ecology Identifies Engraftable Species
+    quote: '*Neisseria mucosa* stands out with the highest engraftability (1.595), combining high prevalence with strong transcriptional activity. *Rothia dentocariosa* (0.422) and *Streptococcus salivarius* (0.172) are also above the median.'
+    notebook: 04_patient_ecology.ipynb
+- id: stmt:sugar-alcohol-prebiotics
+  kind: finding
+  text: Genomic pathway comparison identifies sugar alcohols (xylitol, myoinositol) and pentoses (xylose, arabinose, fucose, rhamnose) as candidate prebiotics that formulation commensals can metabolize but PA14 cannot.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbiome-engineering
+  entities:
+  - entity:prebiotics
+  - entity:gapmind
+  - entity:pa14
+  - entity:formulation-design
+  links:
+    supports: []
+    contradicts:
+    - stmt:no-selective-amino-acid-prebiotic
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: 2.11 Genomic Analysis Identifies Sugar Alcohols as Candidate Prebiotics
+    quote: '**Sugar alcohols (xylitol, myoinositol) and pentoses (xylose, arabinose, fucose, rhamnose)** are strong prebiotic candidates. These substrates are: (a) genomically complete in our formulation species, (b) absent from PA14''s metabolic repertoire, (c) actively transported by commensals in patient airways'
+    notebook: 09_genomic_carbon_extension.ipynb
+- id: stmt:pa-lung-metabolic-streamlining
+  kind: finding
+  text: Lung-adapted P. aeruginosa undergoes metabolic streamlining, losing sugar-catabolism pathways under relaxed selection in the amino-acid-rich sputum environment, while its amino acid catabolism remains an invariant evolutionary adaptation.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pseudomonas-aeruginosa
+  - entity:cystic-fibrosis-airway
+  - entity:gapmind
+  - entity:lung-adaptation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: '2.12 PA Lung Adaptation: Metabolic Streamlining Toward Amino Acid Dependence'
+    quote: 'Lung PA is undergoing metabolic streamlining: in the amino acid-rich sputum environment, sugar catabolism is dispensable and under relaxed selection. This validates that PA''s amino acid dependence is not just a preference — it is an **evolutionary adaptation**.'
+    notebook: 10_pa_lung_adaptation.ipynb
+- id: stmt:formulation-target-invariant
+  kind: claim
+  text: The amino-acid catabolic pathways the formulation targets are 97.4% conserved across 1,796 lung PA genomes, so one formulation is predicted to suppress PA equivalently across lung variants including CF-derived strains.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pseudomonas-aeruginosa
+  - entity:pangenome
+  - entity:formulation-design
+  - entity:cystic-fibrosis-airway
+  links:
+    supports:
+    - stmt:pa-lung-metabolic-streamlining
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: '2.13 Formulation Robustness: PA''s Amino Acid Core Is Invariant Across Lung Variants'
+    quote: Across 1,796 lung PA genomes, amino acid catabolic pathways are **97.4% conserved** (mean completeness). Even proline — PA14's top substrate — is complete in 97% of lung isolates.
+    notebook: 10_pa_lung_adaptation.ipynb
+- id: stmt:pa14-not-representative-cf
+  kind: finding
+  text: T3SS effector typing of 6,760 PA genomes shows CF isolates are overwhelmingly ExoS+ (94%), so the ExoU+ reference strain PA14 used in the inhibition assays represents only about 5% of CF P. aeruginosa.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pseudomonas-aeruginosa
+  - entity:pa14
+  - entity:t3ss
+  - entity:cystic-fibrosis-airway
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: '2.14 PA Virulence System Distribution: PA14 Is Not Representative of CF'
+    quote: CF PA is overwhelmingly ExoS+ — the PA14 ExoU+ phenotype represents only 5% of CF isolates.
+    notebook: 13_pa_virulence_systems.ipynb
+- id: stmt:pa14-strain-bias-caveat
+  kind: caveat
+  text: All inhibition assays used PA14, an ExoU+ Pel-only strain representing under 5% of CF PA isolates, so the measured inhibition has not been validated against the dominant ExoS+/PAO1-type clinical strains.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pa14
+  - entity:formulation-design
+  - entity:pseudomonas-aeruginosa
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:pa14-not-representative-cf
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: 3.7 Limitations
+    quote: All inhibition assays used PA14, which is ExoU+ and Pel-only — representing <5% of CF PA isolates. While our pangenome analysis confirms AA catabolism is identical across ExoU+ and ExoS+ strains, the inhibition measurements themselves have not been validated against ExoS+/PAO1-type strains.
+- id: stmt:planktonic-only-caveat
+  kind: caveat
+  text: All inhibition assays measure planktonic competition, whereas PA14 grows primarily in CF-lung biofilms where metabolic dynamics, diffusion gradients, and spatial structure differ substantially.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  entities:
+  - entity:pa14
+  - entity:biofilm
+  - entity:cystic-fibrosis-airway
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: 3.7 Limitations
+    quote: '**Planktonic culture only**: Our inhibition assays measure planktonic competition. PA14 in CF lungs grows primarily in biofilms, where metabolic dynamics, diffusion gradients, and spatial structure differ substantially.'
+- id: stmt:lag-advantage-precolonization
+  kind: finding
+  text: Although commensals rarely exceed PA14's maximum growth rate, they begin growing before PA14 on 43.1% of substrate comparisons, suggesting pre-establishing commensals before pathogen exposure may matter more than raw growth rate.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:metabolic-pathways
+  entities:
+  - entity:growth-kinetics
+  - entity:pa14
+  - entity:competitive-exclusion
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: 2.4 Growth Rate Matters, But Lag Advantage May Matter More
+    quote: Commensals beat PA14's maximum growth rate on only **13.8%** of substrate comparisons — PA14 is generally the fastest grower. However, commensals start growing before PA14 on **43.1%** of comparisons (lag advantage > 0).
+    notebook: 02_growth_kinetics.ipynb
+- id: stmt:pairwise-interaction-gap
+  kind: opportunity
+  text: Measuring the complete 10-pair interaction matrix of the five core species in the PA14 competition assay is the highest-priority validation, since a single untested antagonistic pair could invalidate the additive formulation design.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  entities:
+  - entity:formulation-design
+  - entity:pairwise-interaction
+  - entity:pa14
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: '4.1 Highest Priority: Pairwise Interaction Matrix for Core Formulation'
+    quote: A single antagonistic interaction between untested core members could invalidate the entire formulation design. The additive scoring assumption underlying all formulation rankings (NB05, NB05b) is provisional until the complete interaction matrix is measured.
+- id: stmt:sugar-alcohol-validation-opportunity
+  kind: opportunity
+  text: Experimentally testing the five core species plus PA14 on xylitol, myoinositol, xylose, arabinose, fucose, and rhamnose as sole carbon sources would validate the genomically predicted selective sugar-alcohol prebiotic strategy.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbiome-engineering
+  entities:
+  - entity:prebiotics
+  - entity:formulation-design
+  - entity:carbon-utilization
+  links:
+    supports:
+    - stmt:sugar-alcohol-prebiotics
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: 4.2 Sugar Alcohol Prebiotic Validation
+    quote: Test growth of the 5 core formulation species + PA14 on xylitol, myoinositol, xylose, arabinose, fucose, and rhamnose as sole carbon sources, using the same endpoint OD and growth curve assays as the current study.
+- id: stmt:m-luteus-engraftment-tension
+  kind: caveat
+  text: Micrococcus luteus is the keystone species for full niche coverage yet has zero detected patient engraftability and no lung genomes, creating a design tension where the most metabolically important member is the least likely to persist in the lung.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:environment-biogeography
+  entities:
+  - entity:micrococcus-luteus
+  - entity:formulation-design
+  - entity:engraftability
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:k3-full-niche-coverage
+  evidence:
+  - source_project: cf_formulation_design
+    source_doc: REPORT.md
+    source_section: 3.2 The *M. luteus* Engraftment Question
+    quote: 'This creates a fundamental design tension: the species most important for metabolic coverage is the least likely to persist in the lung.'

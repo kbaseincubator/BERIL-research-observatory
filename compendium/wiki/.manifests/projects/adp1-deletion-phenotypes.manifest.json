@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-growth-ratios-noise",
+    "stmt:caveat-dispensable-bias",
+    "stmt:dispensability-pangenome-link",
+    "stmt:conditions-largely-independent",
+    "stmt:specific-genes-map-to-pathways",
+    "stmt:condition-specific-genes-fraction",
+    "stmt:adp1-three-tier-landscape",
+    "stmt:phenotype-landscape-continuum",
+    "stmt:missing-genes-hypotheticals",
+    "stmt:missing-genes-less-conserved",
+    "stmt:conditions-five-independent-dimensions",
+    "stmt:quinate-aromatic-module",
+    "stmt:opportunity-fitness-browser-comparison",
+    "stmt:opportunity-regulatory-network-inference"
+  ],
+  "member_hash": "hash:ff484351409ce8fd",
+  "model": "haiku",
+  "page_id": "project:adp1_deletion_phenotypes",
+  "page_plan_hash": "hash:d96380115a294fa4",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:ff484351409ce8fd",
+    "lead": "hash:ff484351409ce8fd"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

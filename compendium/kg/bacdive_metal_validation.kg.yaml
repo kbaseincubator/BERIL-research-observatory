@@ -1,0 +1,309 @@
+project:
+  id: bacdive_metal_validation
+  title: 'Report: BacDive Isolation Environment × Metal Tolerance Prediction'
+statements:
+- id: stmt:metal-contaminated-isolates-higher-scores
+  kind: finding
+  text: Bacteria isolated from heavy metal contamination sites have predicted metal tolerance scores a full standard deviation (Cohen's d = +1.00, p=0.006) above the environmental baseline.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:bacdive
+  - entity:metal-fitness-atlas
+  - entity:metal-tolerance-score
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: 1. Bacteria From Metal-Contaminated Environments Have Significantly Higher Metal Tolerance Scores
+    quote: Organisms isolated from heavy metal contamination sites have metal tolerance scores a full standard deviation above the environmental baseline (Cohen's d = +1.00, Mann-Whitney p=0.006, n=10).
+    notebook: 02_environment_metal_scores.ipynb
+    figure: figures/metal_score_by_environment.png
+- id: stmt:dose-dependent-contamination-gradient
+  kind: finding
+  text: The metal tolerance signal is dose-dependent across contamination intensity, with heavy metal sites scoring highest and industrial sites lowest.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:metal-tolerance-score
+  - entity:isolation-source
+  - entity:bacdive
+  links:
+    supports:
+    - stmt:metal-contaminated-isolates-higher-scores
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: 1. Bacteria From Metal-Contaminated Environments Have Significantly Higher Metal Tolerance Scores
+    quote: 'The effect is dose-dependent across contamination intensity: heavy metal (+1.00) > waste/sludge (+0.57) > all contamination (+0.43) > industrial (+0.20).'
+    notebook: 02_environment_metal_scores.ipynb
+- id: stmt:atlas-prediction-validated
+  kind: claim
+  text: The cross-database concordance between predicted metal tolerance and real isolation ecology validates the Metal Fitness Atlas's genome-based prediction method.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:metal-fitness-atlas
+  - entity:metal-tolerance-score
+  - entity:rb-tnseq
+  - entity:bacdive
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: Genome Content Predicts Environmental Metal Tolerance
+    quote: The genome-based metal tolerance score, derived from cross-species RB-TnSeq fitness data and projected onto 27,702 pangenome species via KEGG functional annotations, captures real ecological signal.
+- id: stmt:signal-holds-within-phyla
+  kind: finding
+  text: Contamination isolates retain significantly higher metal scores than environmental isolates within Pseudomonadota and Actinomycetota, showing the signal exceeds phylogenetic structure.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:microbial-ecotypes
+  entities:
+  - entity:metal-tolerance-score
+  - entity:pseudomonadota
+  - entity:actinomycetota
+  - entity:phylum-stratification
+  links:
+    supports:
+    - stmt:metal-contaminated-isolates-higher-scores
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: 2. The Signal Holds Within Major Phyla
+    quote: Within **Pseudomonadota** (the dominant phylum), contamination isolates still show significantly higher metal scores than environmental isolates (delta=+0.040, p<0.001). The same holds for **Actinomycetota** (delta=+0.035, p<0.001).
+    notebook: 02_environment_metal_scores.ipynb
+- id: stmt:phylum-confounding-partial
+  kind: caveat
+  text: The metal tolerance signal is absent in Bacillota and Bacteroidota, so phylogenetic confounding is only partially controlled and may reflect both real biology and limited power.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:microbial-ecotypes
+  entities:
+  - entity:bacillota
+  - entity:bacteroidota
+  - entity:phylum-stratification
+  - entity:metal-tolerance-score
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:signal-holds-within-phyla
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: 2. The Signal Holds Within Major Phyla
+    quote: The signal is not significant within Bacillota (p=0.285) or Bacteroidota (p=0.456), though sample sizes for contamination isolates in these phyla are small.
+    notebook: 02_environment_metal_scores.ipynb
+- id: stmt:bacdive-pangenome-bridge
+  kind: finding
+  text: Species name matching linked 42,227 BacDive strains (43.4% of 97,334) to pangenome metal tolerance scores across 6,426 unique GTDB species.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:pangenome-architecture
+  entities:
+  - entity:bacdive
+  - entity:pangenome
+  - entity:gtdb
+  - entity:species-name-bridge
+  links:
+    supports:
+    - stmt:metal-contaminated-isolates-higher-scores
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: 3. 42,227 BacDive Strains Linked to Pangenome Metal Scores
+    quote: Species name matching between BacDive taxonomy and GTDB pangenome species successfully linked 42,227 BacDive strains (43.4% of 97,334) to metal tolerance scores across 6,426 unique GTDB species.
+    notebook: 01_bacdive_pangenome_bridge.ipynb
+    figure: figures/bridge_summary.png
+- id: stmt:species-matching-lossy
+  kind: caveat
+  text: 'Species-level matching is lossy: 56.6% of BacDive strains matched no GTDB species, primarily because GTDB uses different species boundaries than LPSN/DSMZ.'
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:pangenome-architecture
+  entities:
+  - entity:bacdive
+  - entity:gtdb
+  - entity:species-name-bridge
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:bacdive-pangenome-bridge
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Species-level matching is lossy**: 56.6% of BacDive strains didn''t match any GTDB species, primarily because GTDB uses different species boundaries than LPSN/DSMZ.'
+- id: stmt:metal-utilization-inconclusive
+  kind: caveat
+  text: Metal utilization phenotype validation was inconclusive because only 24 BacDive metal utilization records matched scored strains, leaving the comparison underpowered.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:bacdive
+  - entity:metal-utilization
+  - entity:metal-tolerance-score
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: '4. Metal Utilization Phenotypes: Inconclusive'
+    quote: Only 24 BacDive metal utilization test records (iron, manganese, arsenate, chromate, cobalt, zinc) matched to strains with metal tolerance scores. With 8 positive and 16 negative results, the comparison is underpowered (Mann-Whitney p=0.14, d=-0.57).
+    notebook: 03_metal_utilization.ipynb
+    figure: figures/utilization_vs_score.png
+- id: stmt:heavy-metal-group-at-detection-limit
+  kind: caveat
+  text: With only 10 heavy metal isolates, the analysis was at the detection limit (minimum detectable d about 0.93), so the observed d=1.00 effect size is imprecise.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:power-analysis
+  - entity:metal-tolerance-score
+  - entity:bacdive
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metal-contaminated-isolates-higher-scores
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: '5. Power Analysis: The Heavy Metal Group Was At Detection Limit'
+    quote: With n=10 heavy metal isolates vs ~5,000 environmental baseline, the minimum detectable effect size at 80% power is approximately d=0.93. The observed d=1.00 barely exceeds this threshold, meaning we had just enough power to detect the effect.
+    notebook: 02_environment_metal_scores.ipynb
+- id: stmt:core-genome-reconciliation
+  kind: claim
+  text: Although metal tolerance genes are largely core within species, between-species variation in the total number of metal tolerance genes creates the environmental signal.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:metal-tolerance-score
+  - entity:metal-specificity
+  links:
+    supports:
+    - stmt:atlas-prediction-validated
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: Reconciling With the Core Genome Robustness Model
+    quote: The answer is that core enrichment describes the *within-species* pattern (most metal genes are present in most genomes of a species), while the *between-species* variation in the total number of metal tolerance genes creates the environmental signal.
+- id: stmt:host-associated-genome-size-confounding
+  kind: finding
+  text: Host-associated bacteria score slightly higher than environmental ones (d=+0.14), contrary to prediction, likely due to genome-size confounding from large-genome Pseudomonadota pathogens.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:microbial-ecotypes
+  entities:
+  - entity:metal-tolerance-score
+  - entity:genome-size
+  - entity:pseudomonadota
+  - entity:bacdive
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: Host-Associated Bacteria Score Higher Than Expected
+    quote: 'The data show the opposite: host-associated bacteria score slightly but significantly higher (d=+0.14, p<0.0001). This likely reflects genome size confounding: host-associated bacteria in BacDive are dominated by Pseudomonadota pathogens (e.g., *Pseudomonas*, *Klebsiella*, *Acinetobacter*) with large genomes and correspondingly more KEGG-annotated gene clusters, inflating the normalized metal score.'
+- id: stmt:gca-accession-matching-opportunity
+  kind: opportunity
+  text: Matching BacDive GCA accessions directly to pangenome genome IDs via a Spark query could recover much of the 56.6% of currently unmatched strains.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:pangenome-architecture
+  entities:
+  - entity:bacdive
+  - entity:pangenome
+  - entity:gca-accession
+  - entity:gtdb
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:species-matching-lossy
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**GCA accession-based matching**: Query `kbase_ke_pangenome.genome` to match BacDive GCA accessions directly to pangenome genome_ids, potentially recovering more of the 56.6% unmatched strains.'
+- id: stmt:enigma-field-validation-opportunity
+  kind: opportunity
+  text: Cross-referencing with ENIGMA community data at the Oak Ridge metal-contaminated site offers a complementary field validation of the prediction method.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:subsurface-genomics
+  entities:
+  - entity:enigma
+  - entity:oak-ridge
+  - entity:metal-tolerance-score
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**ENIGMA CORAL integration**: Cross-reference with ENIGMA community data at the Oak Ridge metal-contaminated site for a complementary field validation.'
+- id: stmt:lab-field-ecology-stronger-evidence
+  kind: claim
+  text: This larger BacDive analysis provides stronger evidence for the lab-metal-tolerance-to-field-abundance hypothesis than the prior suggestive Oak Ridge correlation, reflecting a gain in statistical power.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:lab-field-ecology
+  - entity:fitness-browser
+  - entity:oak-ridge
+  - entity:bacdive
+  links:
+    supports:
+    - stmt:metal-contaminated-isolates-higher-scores
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_metal_validation
+    source_doc: REPORT.md
+    source_section: The Lab_Field_Ecology Connection
+    quote: The lab_field_ecology project found a suggestive but non-significant correlation between lab metal tolerance (Fitness Browser) and field abundance at Oak Ridge (rho=0.50, p=0.095, n=11 genera). The present analysis provides stronger evidence for the same hypothesis at much larger scale (n=10 for heavy metal, n=176 for all contamination, d=+0.43-1.00).

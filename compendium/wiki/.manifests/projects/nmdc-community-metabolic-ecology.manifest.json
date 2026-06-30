@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-abiotic-features-missing",
+    "stmt:caveat-freshwater-absent",
+    "stmt:caveat-genomic-potential-not-expression",
+    "stmt:carbon-utilization-primary-axis",
+    "stmt:costly-pathways-lost",
+    "stmt:first-gapmind-metabolomics-integration",
+    "stmt:black-queen-community-signal",
+    "stmt:leucine-arginine-fdr-significant",
+    "stmt:ecosystem-metabolic-separation",
+    "stmt:aa-pathways-differ-by-ecosystem",
+    "stmt:single-study-robustness",
+    "stmt:taxonomy-bridge-coverage",
+    "stmt:opportunity-extend-freshwater",
+    "stmt:opportunity-transcript-validation"
+  ],
+  "member_hash": "hash:b04e87187b778db8",
+  "model": "haiku",
+  "page_id": "project:nmdc_community_metabolic_ecology",
+  "page_plan_hash": "hash:be3b3728f27a2732",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:b04e87187b778db8",
+    "lead": "hash:b04e87187b778db8"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

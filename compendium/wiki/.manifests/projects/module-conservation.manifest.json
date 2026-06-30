@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:essential-genes-excluded-caveat",
+    "stmt:classification-thresholds-arbitrary",
+    "stmt:accessory-families-hgt-speculative",
+    "stmt:enrichment-modest-ceiling",
+    "stmt:organism-subset-caveat",
+    "stmt:conservation-is-gene-property",
+    "stmt:core-enrichment-significant",
+    "stmt:core-concept-extended-to-modules",
+    "stmt:accessory-module-families-exist",
+    "stmt:module-genes-enriched-core",
+    "stmt:family-breadth-no-predict",
+    "stmt:essential-genes-absent",
+    "stmt:most-modules-are-core",
+    "stmt:median-module-core",
+    "stmt:per-organism-analysis-opportunity",
+    "stmt:add-statistical-test-opportunity"
+  ],
+  "member_hash": "hash:ea0505ccabb90b2d",
+  "model": "haiku",
+  "page_id": "project:module_conservation",
+  "page_plan_hash": "hash:4097876f371a8be8",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:ea0505ccabb90b2d",
+    "lead": "hash:ea0505ccabb90b2d"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

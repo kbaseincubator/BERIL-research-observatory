@@ -1,0 +1,337 @@
+project:
+  id: module_conservation
+  title: 'Report: Fitness Modules x Pangenome Conservation'
+statements:
+- id: stmt:module-genes-enriched-core
+  kind: finding
+  text: ICA fitness module genes are enriched in the conserved core genome, at 86.0% core versus 81.5% for all genes (a +4.5 percentage-point shift).
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:ica-fitness-modules
+  - entity:core-genome
+  - entity:pangenome
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:enrichment-modest-ceiling
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Module Genes Are More Core Than Average
+    quote: '**Module genes: 86.0% core** vs all genes: 81.5% (+4.5 percentage points)'
+    notebook: 01_module_conservation.ipynb
+    figure: figures/module_core_distribution.png
+- id: stmt:most-modules-are-core
+  kind: finding
+  text: Of 974 modules with at least three mapped genes, 577 (59%) are core modules (>90% core genes), 349 (36%) are mixed, and 48 (5%) are accessory.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:ica-fitness-modules
+  - entity:core-genome
+  - entity:module-classification
+  links:
+    supports:
+    - stmt:module-genes-enriched-core
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Most Modules Are Core
+    quote: '**577 (59%) are core modules** (>90% core genes)'
+    notebook: 01_module_conservation.ipynb
+- id: stmt:median-module-core
+  kind: finding
+  text: The median module is 93.4% core, indicating that most co-regulated fitness response units are embedded in the conserved genome.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:ica-fitness-modules
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:most-modules-are-core
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Most Modules Are Core
+    quote: The median module is 93.4% core. Most co-regulated fitness response units are embedded in the conserved genome.
+    notebook: 01_module_conservation.ipynb
+- id: stmt:core-enrichment-significant
+  kind: claim
+  text: The core enrichment of fitness modules is statistically significant (OR=1.46, p=1.6e-87), confirming co-regulated functional units preferentially reside in the conserved genome.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:ica-fitness-modules
+  - entity:core-genome
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:module-genes-enriched-core
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: ICA fitness modules are enriched in core genes (86% vs 81.5% baseline, OR=1.46, p=1.6e-87), confirming that co-regulated functional units preferentially reside in the conserved genome.
+- id: stmt:enrichment-modest-ceiling
+  kind: caveat
+  text: The observed core enrichment is modest because the baseline core rate is already ~81.5%, imposing a ceiling effect that limits the maximum observable enrichment.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:pangenome
+  - entity:ceiling-effect
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:module-genes-enriched-core
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Ceiling effect**: The baseline core rate is already ~81.5%, limiting the maximum observable enrichment. The +4.5pp difference to 86% is statistically significant but represents a modest absolute effect.'
+- id: stmt:family-breadth-no-predict
+  kind: finding
+  text: Module families spanning more organisms do not have higher core fractions (Spearman rho=-0.01, p=0.914), a null result for the breadth-conservation hypothesis.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:module-families
+  - entity:core-genome
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Family Breadth Does NOT Predict Conservation
+    quote: Surprisingly, module families spanning more organisms do NOT have higher core fractions (Spearman rho=-0.01, p=0.914). Families are nearly all core regardless of how many organisms they span.
+    notebook: 02_family_conservation.ipynb
+    figure: figures/family_breadth_vs_conservation.png
+- id: stmt:conservation-is-gene-property
+  kind: claim
+  text: Conservation is a property of individual genes rather than of the cross-organism scope of their regulatory module.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:core-genome
+  - entity:module-families
+  - entity:ica-fitness-modules
+  links:
+    supports:
+    - stmt:family-breadth-no-predict
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: The surprising null result for family breadth vs conservation (rho=-0.01) suggests that conservation is a property of individual genes, not of the cross-organism scope of their regulatory module.
+- id: stmt:accessory-module-families-exist
+  kind: finding
+  text: 38 module families have <50% core genes, representing co-regulated accessory gene modules conserved across organisms.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:module-families
+  - entity:accessory-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Accessory Module Families Exist
+    quote: 38 families have <50% core genes -- these are co-regulated accessory gene modules conserved across organisms.
+- id: stmt:accessory-families-hgt-speculative
+  kind: caveat
+  text: The interpretation that accessory module families represent horizontally transferred functional units or niche-specific operons is speculative and not directly supported by the data.
+  confidence: low
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:module-families
+  - entity:accessory-genome
+  - entity:horizontal-gene-transfer
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:accessory-module-families-exist
+  evidence:
+  - source_project: module_conservation
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: The interpretation that these "may represent horizontally transferred functional units or niche-specific operons" is reasonable but speculative — the data don't directly support this claim.
+- id: stmt:essential-genes-absent
+  kind: finding
+  text: No essential genes appear in any ICA module, confirming that the modules only capture non-essential genes with measurable fitness variation from transposon insertions.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:essential-genes
+  - entity:ica-fitness-modules
+  - entity:rb-tnseq
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Essential Genes Are Absent from Modules
+    quote: 0 essential genes appear in any module, confirming that ICA modules only capture genes with measurable fitness variation (non-essential genes with transposon insertions).
+- id: stmt:essential-genes-excluded-caveat
+  kind: caveat
+  text: Because ICA requires fitness data, essential genes (which lack transposon insertions) are absent from all modules, so the analysis only covers the non-essential portion of the genome.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:essential-genes
+  - entity:ica-fitness-modules
+  - entity:rb-tnseq
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:essential-genes-absent
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Essential genes excluded**: ICA requires fitness data, so essential genes (no transposon insertions) are absent from all modules. This means modules only capture the non-essential portion of the genome.'
+- id: stmt:organism-subset-caveat
+  kind: caveat
+  text: Three module organisms (Cola, Kang, SB2B) lack pangenome links because their species had too few genomes in GTDB for pangenome construction, restricting the analysis to a 29/32 organism subset.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:subsurface-genomics
+  entities:
+  - entity:gtdb
+  - entity:pangenome
+  - entity:module-families
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: 3 module organisms (Cola, Kang, SB2B) lack pangenome links because their species had too few genomes in GTDB for pangenome construction.
+- id: stmt:classification-thresholds-arbitrary
+  kind: caveat
+  text: The 90% and 50% cutoffs used to classify modules as core, mixed, or accessory are convenient but not biologically motivated.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:module-classification
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:most-modules-are-core
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The 90% and 50% cutoffs for core/mixed/accessory module classification are convenient but not biologically motivated.
+- id: stmt:core-concept-extended-to-modules
+  kind: claim
+  text: The finding that 59% of fitness modules are >90% core extends the pangenomic concept of 'core' from individual genes to functionally coherent regulatory units.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:core-genome
+  - entity:ica-fitness-modules
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:most-modules-are-core
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: module_conservation
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: Our finding that 59% of fitness modules are >90% core extends the concept of "core" from individual genes to functionally coherent regulatory units.
+- id: stmt:add-statistical-test-opportunity
+  kind: opportunity
+  text: Adding a chi-squared or Fisher's exact test on module versus non-module genes by core versus non-core would strengthen the central core-enrichment claim, which currently lacks a reported significance test in the notebook analysis.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:ica-fitness-modules
+  - entity:core-genome
+  - entity:statistical-testing
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:module-genes-enriched-core
+  evidence:
+  - source_project: module_conservation
+    source_doc: REVIEW.md
+    source_section: Suggestions
+    quote: A chi-squared test or Fisher's exact test on module vs non-module genes × core vs non-core would take 2-3 lines of code and substantially strengthen the main result.
+- id: stmt:per-organism-analysis-opportunity
+  kind: opportunity
+  text: A per-organism paired comparison of module versus baseline core fraction across the 29 organisms (e.g., paired Wilcoxon signed-rank test) would control for organism-level variation and provide a more robust enrichment test.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:ica-fitness-modules
+  - entity:core-genome
+  - entity:statistical-testing
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:module-genes-enriched-core
+  evidence:
+  - source_project: module_conservation
+    source_doc: REVIEW.md
+    source_section: Suggestions
+    quote: A per-organism paired comparison (module core fraction vs baseline core fraction, across 29 organisms) would control for organism-level variation and provide a more robust test (e.g., paired Wilcoxon signed-rank test).

@@ -1,0 +1,20 @@
+{
+  "cited_statement_ids": [
+    "stmt:metal-atlas-pangenome-distribution-claim",
+    "stmt:metal-atlas-core-robustness-finding",
+    "stmt:metal-atlas-conserved-families-finding"
+  ],
+  "member_hash": "hash:853ddeef0ca85c69",
+  "model": "haiku",
+  "page_id": "project:metal_fitness_atlas",
+  "page_plan_hash": "hash:3cff843782da1807",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:853ddeef0ca85c69",
+    "lead": "hash:853ddeef0ca85c69"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

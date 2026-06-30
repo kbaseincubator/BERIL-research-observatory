@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:gapfilling-dependence",
+    "stmt:modality-overlap-limitation",
+    "stmt:adp1-fitness-unique-resource",
+    "stmt:essential-core-pangenome",
+    "stmt:cluster-id-bridge",
+    "stmt:conserved-core-metabolism",
+    "stmt:essential-genes-annotation-rich",
+    "stmt:fba-tnseq-concordance",
+    "stmt:berdl-connectivity",
+    "stmt:essentiality-media-dependence",
+    "stmt:condition-specific-fitness",
+    "stmt:proteomics-targeted-effects",
+    "stmt:adp1-multiomics-database",
+    "stmt:unannotated-essential-genes"
+  ],
+  "member_hash": "hash:806d550f224b5c55",
+  "model": "haiku",
+  "page_id": "project:acinetobacter_adp1_explorer",
+  "page_plan_hash": "hash:999681744fb4b2a3",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:806d550f224b5c55",
+    "lead": "hash:806d550f224b5c55"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

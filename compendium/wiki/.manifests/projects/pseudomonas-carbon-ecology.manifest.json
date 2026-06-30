@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-sampling-bias",
+    "stmt:caveat-gapmind-resolution",
+    "stmt:caveat-phylogenetic-confounding",
+    "stmt:ancestral-streamlining-claim",
+    "stmt:novel-genus-scale-quantification",
+    "stmt:random-forest-modest-accuracy",
+    "stmt:amino-acid-pathways-retained",
+    "stmt:carbon-profiles-environment-signal",
+    "stmt:free-living-greater-richness",
+    "stmt:sugar-pathway-loss-host-associated",
+    "stmt:plant-sugar-pathways-lost",
+    "stmt:aeruginosa-fluorescens-split-dominates",
+    "stmt:data-scale-genomes-species",
+    "stmt:opportunity-within-species-ecotypes",
+    "stmt:opportunity-fitness-browser-validation"
+  ],
+  "member_hash": "hash:9cc16e97856cbdbc",
+  "model": "haiku",
+  "page_id": "project:pseudomonas_carbon_ecology",
+  "page_plan_hash": "hash:5ceb68a4d7d575bd",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:9cc16e97856cbdbc",
+    "lead": "hash:9cc16e97856cbdbc"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

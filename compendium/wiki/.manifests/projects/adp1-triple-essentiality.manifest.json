@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:essentiality-fraction-worse-than-random",
+    "stmt:transposon-not-deletion-caveat",
+    "stmt:methods-measure-different-biology",
+    "stmt:fba-moderate-ko-concordance",
+    "stmt:fba-no-growth-defect-prediction",
+    "stmt:aromatic-fba-discordance",
+    "stmt:fitness-best-essentiality-predictor",
+    "stmt:tnseq-misses-essential",
+    "stmt:proteomics-validates-essentiality",
+    "stmt:rbtnseq-systematic-discordance",
+    "stmt:fba-null-robust-thresholds",
+    "stmt:combined-predictor-opportunity",
+    "stmt:refine-fba-aromatic-media"
+  ],
+  "member_hash": "hash:de66f1abbce77045",
+  "model": "haiku",
+  "page_id": "project:adp1_triple_essentiality",
+  "page_plan_hash": "hash:fad1f99cdb309c33",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:de66f1abbce77045",
+    "lead": "hash:de66f1abbce77045"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

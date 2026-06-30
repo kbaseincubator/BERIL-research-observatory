@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:pangenome-amr-prophage-census",
+    "stmt:prophage-amr-accessory-bias",
+    "stmt:amr-prophage-contig-sharing",
+    "stmt:proximity-weak-mobility-effect",
+    "stmt:proximity-threshold-dependence",
+    "stmt:prophage-density-predicts-amr-breadth",
+    "stmt:density-effect-robust-to-genome-count",
+    "stmt:extends-rendueles-correlation",
+    "stmt:density-mechanism-interpretation",
+    "stmt:novel-pangenome-scale",
+    "stmt:caveat-correlation-not-causation",
+    "stmt:caveat-fitness-data-gap",
+    "stmt:opportunity-expanded-fitness-revisit-h3",
+    "stmt:caveat-keyword-prophage-detection",
+    "stmt:opportunity-dedicated-prophage-prediction"
+  ],
+  "member_hash": "hash:48ecefad0bc6165d",
+  "model": "sonnet",
+  "page_id": "author:claude",
+  "page_plan_hash": "hash:51260ca94c79ffcc",
+  "page_type": "author",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:48ecefad0bc6165d",
+    "projects": "hash:48ecefad0bc6165d",
+    "topics": "hash:48ecefad0bc6165d"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

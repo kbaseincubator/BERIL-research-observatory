@@ -1,0 +1,519 @@
+project:
+  id: plant_microbiome_ecotypes
+  title: 'Report: Plant Microbiome Ecotypes — Compartment-Specific Functional Guilds and Their Genetic
+    Architecture'
+statements:
+- id: stmt:compartment-functional-shift
+  kind: finding
+  text: Plant compartment identity explains only a small fraction (~6% of variance, db-RDA location-only
+    R2=0.060, p=0.001) of microbial functional-profile variation once location and dispersion effects
+    are separated, far below the original PERMANOVA R2 of 0.527.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:plant-compartment
+  - entity:rhizosphere
+  - entity:permanova
+  - entity:db-rda
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 1. Plant compartments impose a small but real functional shift on microbial communities
+      (H1, weakly supported)
+    quote: db-RDA (constrained ordination on PCoA scores of Jaccard distance over the refined 17-marker
+      panel, n=607 plant-compartment species) gives **location-only R² = 0.060** (permutation p = 0.001,
+      999 permutations)
+    notebook: 04_compartment_profiling.ipynb
+    figure: figures/nb01_compartment_census.png
+- id: stmt:permanova-sampling-artifact
+  kind: caveat
+  text: 'The headline compartment effect (PERMANOVA R2=0.527) was largely a taxonomic-sampling artifact:
+    excluding a handful of genome-rich rhizobial and Pseudomonas clades drops the residual R2 to 0.072.'
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:plant-compartment
+  - entity:permanova
+  - entity:pseudomonas
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:compartment-functional-shift
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 1. Plant compartments impose a small but real functional shift on microbial communities
+      (H1, weakly supported)
+    quote: '**most of the original 0.527 was a taxonomic-sampling artifact** of a few genome-rich species
+      rather than a community-wide signal'
+    notebook: 14_deferred_controls.ipynb
+- id: stmt:beneficial-core-pathogenic-accessory
+  kind: finding
+  text: Beneficial plant-growth-promoting gene clusters are predominantly core-encoded (64.6% core fraction)
+    while pathogenic clusters are accessory (45.2% core), a difference far exceeding the genome-wide baseline
+    (Mann-Whitney p=3.38e-125).
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbiome-engineering
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:pgp-genes
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 2. Beneficial genes are core-encoded; pathogenic genes are accessory (H2)
+    quote: Beneficial (PGP) gene clusters are predominantly core genome (64.6% core fraction), significantly
+      exceeding both the genome-wide baseline of 46.8% and pathogenic gene clusters (45.2% core fraction).
+    notebook: 05_genomic_architecture.ipynb
+    figure: figures/core_vs_pathogenic.png
+- id: stmt:pathogenic-transposase-cooccurrence
+  kind: finding
+  text: Plant-associated species carrying singleton marker gene clusters are 16x more likely to also carry
+    transposase/integrase singletons (Fisher OR=15.95, p=8.8e-20), a co-occurrence signature consistent
+    with horizontal gene transfer.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:transposase
+  - entity:horizontal-gene-transfer
+  - entity:singleton-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 3. Pathogenic gene clusters co-occur with transposases, suggesting HGT (H4 — partial)
+    quote: those carrying singleton marker gene clusters were 16× more likely to also carry transposase/integrase
+      singletons (Fisher's exact OR=15.95, p=8.8e-20)
+    notebook: 05_genomic_architecture.ipynb
+    figure: figures/mobility_proxies.png
+- id: stmt:markers-under-purifying-selection
+  kind: caveat
+  text: Despite frequent transposase association, plant-interaction marker genes as a class are less mobile
+    than the genomic average (singleton enrichment ratio 0.78, Wilcoxon p<1e-300), indicating stronger
+    purifying selection rather than ongoing high mobility.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:gene-fitness
+  entities:
+  - entity:purifying-selection
+  - entity:singleton-genes
+  - entity:horizontal-gene-transfer
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:pathogenic-transposase-cooccurrence
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 3. Pathogenic gene clusters co-occur with transposases, suggesting HGT (H4 — partial)
+    quote: the overall singleton enrichment ratio for markers was 0.78 (markers are *less* mobile than
+      the genomic average; Wilcoxon p<1e-300)
+    notebook: 05_genomic_architecture.ipynb
+- id: stmt:functional-redundancy-cooccurring-genera
+  kind: finding
+  text: Co-occurring plant-associated genera in soil communities are slightly less metabolically complementary
+    than random genus pairs (Cohen d about -0.4, permutation p<0.001), supporting functional redundancy
+    at a small effect size.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbial-ecotypes
+  entities:
+  - entity:functional-redundancy
+  - entity:gapmind
+  - entity:metabolic-complementarity
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 4. Co-occurring genera show functional redundancy, not complementarity (H3 — not supported,
+      small effect)
+    quote: co-occurring plant-associated genera in NMDC soil communities are slightly **less** complementary
+      than random genus pairs (Cohen's d ≈ −0.4, permutation p < 0.001), supporting the redundancy interpretation
+      but at a small effect size
+    notebook: 06_complementarity.ipynb
+- id: stmt:cohen-d-formula-error
+  kind: caveat
+  text: The Phase 1 complementarity result of Cohen d=-7.54 was largely a formula error from dividing
+    by the standard deviation of permutation means; the corrected effect size is about -0.4, with the
+    redundancy direction robust under both aggregation methods.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:functional-redundancy
+  - entity:cohen-d
+  - entity:gapmind
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:functional-redundancy-cooccurring-genera
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 4. Co-occurring genera show functional redundancy, not complementarity (H3 — not supported,
+      small effect)
+    quote: 'The Phase 1 NB06 result of "Cohen''s d = −7.54" was **largely a Cohen''s d formula error**:
+      NB06 divided the mean difference by the SD of permutation means (which shrinks toward zero by CLT,
+      asymptotically), while the correct denominator is the raw pair-level SD.'
+    notebook: 14_deferred_controls.ipynb
+- id: stmt:fifty-novel-plant-enriched-ogs
+  kind: finding
+  text: Of 5,341 eggNOG ortholog groups significantly associated with plant association, 50 retained significance
+    after phylum-level phylogenetic control, identifying a robust set of plant-enriched gene families
+    led by COG3569 (phylo-controlled OR=6.01).
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:microbial-ecotypes
+  entities:
+  - entity:eggnog
+  - entity:ortholog-groups
+  - entity:cog3569
+  - entity:phylogenetic-control
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 5. Fifty novel gene families distinguish plant-associated species (H5)
+    quote: After phylogenetic control via phylum-level logistic regression, 50 novel OGs retained significance
+      (all p<0.05, OR>1). The top hit was COG3569 (Fisher OR=8.92, phylo-controlled OR=6.01, q=7.7e-242)
+    notebook: 03_enrichment_analysis.ipynb
+    figure: figures/volcano_enrichment.png
+- id: stmt:enrichment-saturation-taxonomic
+  kind: caveat
+  text: Because 94.2% of tested ortholog groups were significantly plant-associated, the raw enrichment
+    signal mostly reflects genome-wide taxonomic divergence; only the 50 OGs surviving phylogenetic control
+    represent candidate plant-interaction genes.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:ortholog-groups
+  - entity:phylogenetic-control
+  - entity:eggnog
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:fifty-novel-plant-enriched-ogs
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Only the 50 OGs surviving phylogenetic control represent candidate plant-interaction genes;
+      the raw Fisher test is effectively capturing taxonomic divergence.
+    notebook: 03_enrichment_analysis.ipynb
+- id: stmt:novel-og-electron-transport-fe-s
+  kind: finding
+  text: All 50 plant-enriched ortholog groups have characterized functions, dominated by electron-transport/energy
+    metabolism (high-affinity cytochrome oxidases, 7/50) and iron-sulfur cluster biosynthesis (iscA, 94.3%
+    plant), with 60.1-83.1% core gene fractions.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:cytochrome-oxidase
+  - entity:iron-sulfur-cluster
+  - entity:ortholog-groups
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:fifty-novel-plant-enriched-ogs
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: '7. Novel OGs are functionally characterized: electron transport and iron-sulfur biosynthesis
+      dominate (H5 extension)'
+    quote: None were hypothetical proteins — every OG has a characterized function.
+    notebook: 09_novel_og_annotation.ipynb
+    figure: figures/novel_og_annotation.png
+- id: stmt:dual-nature-label-uninformative
+  kind: finding
+  text: All 14 experimentally confirmed beneficial and pathogenic ground-truth species were assigned to
+    the dual-nature class, so the categorical cohort label cannot discriminate beneficial from pathogenic
+    species; the continuous pathogenicity ratio is the discriminating signal (median 0.50 vs 0.60, p=0.027).
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:microbial-ecotypes
+  entities:
+  - entity:dual-nature
+  - entity:pathogenicity-ratio
+  - entity:marker-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 6. Most plant-associated bacteria carry both PGP and pathogenic markers, but the dual-nature
+      label is uninformative at species level — the continuous pathogen ratio is what discriminates
+    quote: '**All 14 of the beneficial + pathogenic ground-truth species were assigned to the dual-nature
+      class**, which means the categorical cohort label is uninformative at the species level — it cannot
+      discriminate beneficial from pathogenic ground truth.'
+    notebook: 13_validation_pfam_subclade.ipynb
+    figure: figures/synthesis_overview.png
+- id: stmt:refined-panel-dual-nature-persists
+  kind: claim
+  text: Even after KEGG-module gating reduced T3SS false positives by 86% and narrowed the panel to 17
+    plant-specific markers, the dual-nature rate among plant-associated species rose to 78.7%, indicating
+    genuine co-occurrence of PGP and pathogenic functions.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:pangenome-architecture
+  entities:
+  - entity:dual-nature
+  - entity:t3ss
+  - entity:kegg-module
+  - entity:marker-genes
+  links:
+    supports:
+    - stmt:dual-nature-label-uninformative
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 8. Refined marker panel with KEGG module gating improves specificity but confirms
+      persistent dual-nature (H0, H6)
+    quote: Despite the stricter panel, the dual-nature rate among plant-associated species **increased**
+      from 60.3% to 78.7% (878/1,115 species).
+    notebook: 10_refined_markers_host_species.ipynb
+    figure: figures/refined_cohort_comparison.png
+- id: stmt:genome-size-confound-dual-nature
+  kind: caveat
+  text: The dual-nature rate is genome-size-dependent (54% in the smallest genome-size quartile vs 87%
+    in the top three quartiles), so the 78.7% figure masks a real gradient and overstates genuine plant-adapted
+    duality.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:dual-nature
+  - entity:genome-size
+  - entity:marker-genes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:refined-panel-dual-nature-persists
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: the dual-nature rate is genome-size-dependent — plant species in the bottom genome-size quartile
+      are 54% dual-nature versus 87% in the top three quartiles, indicating the 78.7% figure masks a real
+      gradient
+    notebook: 14_deferred_controls.ipynb
+- id: stmt:three-tier-marker-robustness
+  kind: finding
+  text: 'Under combined cluster-robust GLM and within-genus permutation tests, plant-association markers
+    split three ways: 3 are species-level robust (nitrogen fixation, ACC deaminase, T3SS), 5 are cassette-level
+    (genus-acquired but not species-distinguishing), and 6 are not robust.'
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:microbial-ecotypes
+  entities:
+  - entity:phylogenetic-control
+  - entity:marker-genes
+  - entity:nitrogen-fixation
+  - entity:t3ss
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 8. Refined marker panel with KEGG module gating improves specificity but confirms
+      persistent dual-nature (H0, H6)
+    quote: 'The combined three-tier verdict is: 3 markers species-level robust, 5 cassette-level (genus-acquired
+      but not species-distinguishing), 6 not robust under any test.'
+    notebook: 14_deferred_controls.ipynb
+- id: stmt:mobilome-enrichment-genus-level
+  kind: finding
+  text: Plant-associated genera carry higher mobilome burden than non-plant genera (median 3.7 vs 2.8
+    mobile elements per genome, Mann-Whitney p=1.49e-5), a genus-level enrichment that contrasts with
+    genome-level studies reporting fewer mobile elements in plant-associated bacteria.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:environment-biogeography
+  entities:
+  - entity:mobilome
+  - entity:mgnify
+  - entity:horizontal-gene-transfer
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 9. MGnify cross-validation reveals mobilome enrichment but low classification concordance
+      (H4, H6)
+    quote: Plant-associated genera carry significantly higher mobilome burden than non-plant genera (median
+      3.7 vs 2.8 mobile elements per genome, Mann-Whitney U p=1.49×10⁻⁵).
+    notebook: 11_mgnify_integration.ipynb
+    figure: figures/mgnify_integration.png
+- id: stmt:t3ss-rhizosphere-enrichment
+  kind: finding
+  text: Independent MGnify metagenome cross-validation found T3SS prevalence roughly 2x higher in rhizosphere
+    biomes (21.6-24.0%) than bulk soil (12.3%), confirming the type III secretion system as a marker of
+    plant association.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:t3ss
+  - entity:rhizosphere
+  - entity:mgnify
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 9. MGnify cross-validation reveals mobilome enrichment but low classification concordance
+      (H4, H6)
+    quote: 'T3SS prevalence was roughly 2× higher in rhizosphere biomes (tomato: 24.0%, maize: 21.6%,
+      barley: 22.3%) vs bulk soil (12.3%), independently confirming T3SS as a marker of plant association.'
+    notebook: 11_mgnify_integration.ipynb
+- id: stmt:xanthomonas-pathovar-host-segregation
+  kind: finding
+  text: 'Within-species subclade analysis showed weak segregation in 5/17 testable species, with two canonical
+    pathovar-host specializations confirmed genomically: Xanthomonas campestris segregating to Brassica
+    hosts and X. vasicola to maize.'
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:pangenome-architecture
+  entities:
+  - entity:xanthomonas
+  - entity:subclade
+  - entity:pathovar
+  - entity:host-specificity
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 10. Within-species subclade analysis shows weak segregation in 5/17 testable species,
+      with two robust pathovar-host specializations (H7 weakly supported, H6 supported)
+    quote: '*Xanthomonas campestris* segregates to Brassica hosts (46/47 genomes in subclade 2 are on
+      Brassica, p = 2.7×10⁻¹² raw, 3.3×10⁻¹¹ after within-species pair-search Bonferroni) and *Xanthomonas
+      vasicola* segregates to *Zea mays* (47/52 in subclade 0, p = 1.4×10⁻¹¹ / 1.7×10⁻¹⁰)'
+    notebook: 13_validation_pfam_subclade.ipynb
+    figure: figures/subclade_corrected.png
+- id: stmt:phylo-tree-coverage-gap
+  kind: caveat
+  text: Only 18 of 65 plant-associated species with sufficient genomes have phylogenetic-tree distance
+    data in BERDL, leaving major taxa such as Bradyrhizobium japonicum absent and making the full within-species
+    adaptation effect unestimable.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:microbial-ecotypes
+  entities:
+  - entity:phylogenetic-tree
+  - entity:berdl
+  - entity:subclade
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:xanthomonas-pathovar-host-segregation
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: 10. Within-species subclade analysis shows weak segregation in 5/17 testable species,
+      with two robust pathovar-host specializations (H7 weakly supported, H6 supported)
+    quote: only **18 (28%) have any phylogenetic-tree distance data** in `kbase_ke_pangenome.phylogenetic_tree_distance_pairs`
+    notebook: 13_validation_pfam_subclade.ipynb
+- id: stmt:transcriptomic-dual-nature-validation
+  kind: opportunity
+  text: RNAseq under beneficial versus pathogenic conditions on the Tier-1 marker genes (nitrogen fixation,
+    ACC deaminase, T3SS) and core rhizosphere genera would test whether dual-nature gene sets are co-expressed
+    or differentially regulated, since current classification is presence-based.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:gene-fitness
+  entities:
+  - entity:dual-nature
+  - entity:transcriptomics
+  - entity:nitrogen-fixation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: RNAseq under beneficial vs. pathogenic conditions would reveal whether both gene sets are co-expressed
+      or differentially regulated.
+- id: stmt:syncom-biocontrol-design
+  kind: opportunity
+  text: The genus dossiers, core rhizosphere genera, host-specificity matrix (117 tomato-specific, 54
+    maize-specific, 5 barley-specific genera), and 84 NRP/siderophore-producing genera provide candidates
+    for synthetic-community design and crop-specific biocontrol formulations.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:environment-biogeography
+  entities:
+  - entity:syncom
+  - entity:biocontrol
+  - entity:rhizosphere
+  - entity:siderophore
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: plant_microbiome_ecotypes
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: The host-specificity matrix (NB11) identified 117 tomato-specific, 54 maize-specific, and 5
+      barley-specific genera

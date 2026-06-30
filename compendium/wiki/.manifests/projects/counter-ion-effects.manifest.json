@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:nacl-not-pure-chloride",
+    "stmt:single-organism-metals",
+    "stmt:psrch2-confounded",
+    "stmt:atlas-validated",
+    "stmt:shared-stress-biology",
+    "stmt:metal-nacl-overlap",
+    "stmt:metal-specific-fraction",
+    "stmt:atlas-core-robust",
+    "stmt:shared-genes-uncharacterized",
+    "stmt:toxicity-hierarchy",
+    "stmt:iron-pathway-specific",
+    "stmt:counter-ions-not-driver",
+    "stmt:choline-chloride-control",
+    "stmt:matched-salt-experiment"
+  ],
+  "member_hash": "hash:d774adab5253c5a9",
+  "model": "haiku",
+  "page_id": "project:counter_ion_effects",
+  "page_plan_hash": "hash:b6103645261ce606",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:d774adab5253c5a9",
+    "lead": "hash:d774adab5253c5a9"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,295 @@
+project:
+  id: pangenome_pathway_geography
+  title: Pangenome Openness, Metabolic Pathways, and Biogeography
+statements:
+- id: stmt:three-hypotheses-supported
+  kind: finding
+  text: All three hypotheses linking pangenome openness, metabolic pathway completeness, and ecological niche breadth showed statistically significant support across 1,872 bacterial species.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome
+  - entity:gapmind-pathways
+  - entity:alphaearth-embeddings
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: Yes, all three hypotheses show statistically significant support
+    notebook: 02_comparative_analysis_REVISED.ipynb
+- id: stmt:niche-breadth-pathway-strongest
+  kind: finding
+  text: Ecological niche breadth (AlphaEarth embedding diversity) was the strongest predictor of mean metabolic pathway completeness, with a moderate positive correlation (r=0.392, p=7.1e-70).
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:niche-breadth
+  - entity:alphaearth-embeddings
+  - entity:gapmind-pathways
+  links:
+    supports:
+    - stmt:three-hypotheses-supported
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: r=0.392, p=7.1e-70 ⭐ **STRONGEST SIGNAL**
+    figure: figures/phylum_stratified_analysis.png
+- id: stmt:embedding-variance-best-metric
+  kind: finding
+  text: Embedding variance was an even stronger predictor of pathway completeness (r=0.412, p=1.8e-77) than the composite niche breadth score.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:embedding-variance
+  - entity:niche-breadth
+  - entity:gapmind-pathways
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:niche-breadth-pathway-strongest
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: 'Embedding variance shows even stronger effect: r=0.412, p=1.8e-77'
+- id: stmt:ecology-beats-geography
+  kind: claim
+  text: Ecological diversity captured by AlphaEarth embeddings predicts metabolic pathway completeness better than spatial spread, since geographic distance alone gave a weaker signal (r=0.360).
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:alphaearth-embeddings
+  - entity:geographic-distance
+  - entity:niche-breadth
+  links:
+    supports:
+    - stmt:niche-breadth-pathway-strongest
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: '**Key insight**: Ecological diversity predicts metabolic completeness better than spatial spread'
+- id: stmt:pangenome-pathway-weak
+  kind: finding
+  text: Pangenome openness correlated only weakly with metabolic pathway completeness across species (r=0.107, p=3.6e-06).
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome-openness
+  - entity:gapmind-pathways
+  - entity:accessory-genome
+  links:
+    supports:
+    - stmt:three-hypotheses-supported
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: '**H1 (Pangenome → Pathways)**: r=0.107, p=3.6e-06'
+- id: stmt:accessory-genes-metabolic-heterogeneity
+  kind: claim
+  text: Accessory genes are interpreted to enable metabolic heterogeneity within a species, consistent with open pangenomes supporting niche-specific metabolic strategies.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:accessory-genome
+  - entity:pangenome-openness
+  - entity:metabolic-heterogeneity
+  links:
+    supports:
+    - stmt:pangenome-pathway-weak
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: 'Interpretation: Accessory genes enable metabolic heterogeneity within species (aligns with revised hypothesis)'
+- id: stmt:pangenome-niche-breadth
+  kind: finding
+  text: Open pangenome species exhibited broader ecological niche breadth, a moderate positive correlation between pangenome openness and niche breadth (r=0.324, p=5.6e-47).
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome-openness
+  - entity:niche-breadth
+  - entity:alphaearth-embeddings
+  links:
+    supports:
+    - stmt:three-hypotheses-supported
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: '**H3 (Pangenome → Niche)**: r=0.324, p=5.6e-47'
+- id: stmt:core-fraction-negative-niche
+  kind: finding
+  text: A high core genome fraction was strongly negatively correlated with ecological niche breadth (r=-0.445, p=1.4e-91), providing converging evidence that pangenome flexibility enables ecological adaptation.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:core-genome
+  - entity:niche-breadth
+  - entity:pangenome-openness
+  links:
+    supports:
+    - stmt:pangenome-niche-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: 'Core fraction shows strong negative correlation with niche breadth: r=-0.445, p=1.4e-91 (converging evidence)'
+- id: stmt:pangenome-flexibility-adaptation
+  kind: claim
+  text: Pangenome flexibility is interpreted to enable ecological adaptation, linking open gene content to wider environmental niches.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:environment-biogeography
+  entities:
+  - entity:pangenome-openness
+  - entity:niche-breadth
+  - entity:ecological-adaptation
+  links:
+    supports:
+    - stmt:pangenome-niche-breadth
+    - stmt:core-fraction-negative-niche
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: 'Interpretation: Pangenome flexibility enables ecological adaptation'
+- id: stmt:gapmind-multirow-pitfall
+  kind: caveat
+  text: Correct GapMind pathway aggregation requires taking the best (MAX) score per genome-pathway pair, because GapMind stores multiple rows per genome-pathway pair (one per step) which can otherwise corrupt completeness counts.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:gapmind-pathways
+  - entity:pathway-aggregation
+  - entity:score-category
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: GapMind has multiple rows per genome-pathway pair
+    notebook: 01_data_extraction_REVISED.ipynb
+- id: stmt:low-data-coverage-caveat
+  kind: caveat
+  text: Only 6.8% of species (1,872/27,690) had complete data across all three datasets, because AlphaEarth embeddings cover just 28% of genomes (83K/293K), limiting generalizability.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:pangenome-architecture
+  entities:
+  - entity:alphaearth-embeddings
+  - entity:data-coverage
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: Explicitly states only 6.8% of species (1,872/27,690) have complete data due to AlphaEarth sparsity
+- id: stmt:unacknowledged-confounders-caveat
+  kind: caveat
+  text: The correlations do not control for phylogenetic non-independence or for genome count per species, so shared ancestry and uneven sampling intensity could confound the reported relationships.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:phylogenetic-non-independence
+  - entity:genome-count
+  - entity:confounding
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: No control for genome count as confounding variable (more genomes → better niche sampling)
+- id: stmt:genome-count-control-opportunity
+  kind: opportunity
+  text: Partial correlation and stratified analysis by genome-count bins could test whether the pangenome-niche-pathway relationships persist after controlling for sampling intensity.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:genome-count
+  - entity:partial-correlation
+  - entity:niche-breadth
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: High Priority
+    quote: Stratified analysis by genome count bins (5-10, 10-50, 50-100, >100)
+- id: stmt:three-stage-aggregation-opportunity
+  kind: opportunity
+  text: The three-stage GapMind aggregation pipeline (305M rows to 27.6M genome-pathway pairs to 293K genomes to 27.7K species) provides a reusable, well-optimized pattern for analyzing the 305M-row pathway table at scale.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:gapmind-pathways
+  - entity:pathway-aggregation
+  - entity:spark-sql
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_geography
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: The three-stage GapMind aggregation (305M rows → 27.6M genome-pathway pairs → 293K genomes → 27.7K species) is well-optimized
+    notebook: 01_data_extraction_REVISED.ipynb

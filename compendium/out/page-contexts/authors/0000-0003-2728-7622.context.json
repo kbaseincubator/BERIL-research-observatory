@@ -1,0 +1,269 @@
+{
+  "adjacent_pages": [
+    {
+      "id": "data:kbase_ke_pangenome",
+      "path": "data/kbase-ke-pangenome.md",
+      "title": "Kbase Ke Pangenome"
+    },
+    {
+      "id": "data:kescience_fitnessbrowser",
+      "path": "data/kescience-fitnessbrowser.md",
+      "title": "Kescience Fitnessbrowser"
+    },
+    {
+      "id": "metal-resistance",
+      "path": "topics/metal-resistance.md",
+      "title": "Metal Resistance"
+    }
+  ],
+  "allowed_citations": [
+    {
+      "source_project": "metal_fitness_atlas",
+      "statement_id": "stmt:metal-atlas-conserved-families-finding"
+    },
+    {
+      "source_project": "metal_fitness_atlas",
+      "statement_id": "stmt:metal-atlas-core-robustness-finding"
+    },
+    {
+      "source_project": "metal_fitness_atlas",
+      "statement_id": "stmt:metal-atlas-pangenome-distribution-claim"
+    }
+  ],
+  "authors": [],
+  "data_collections": [],
+  "entities": [
+    {
+      "definition": "",
+      "id": "entity:core-genome",
+      "kind": "",
+      "label": "Core Genome",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:fitness-browser",
+      "kind": "",
+      "label": "Fitness Browser",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:gene-family",
+      "kind": "",
+      "label": "Gene Family",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:metal-stress",
+      "kind": "",
+      "label": "Metal Stress",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:pangenome",
+      "kind": "",
+      "label": "Pangenome",
+      "url": ""
+    }
+  ],
+  "instructions": {
+    "audience": "scientist-engineer new to this specific niche",
+    "body_rule": "synthesize across statements; do not emit statement-by-statement summaries",
+    "citations": "Put allowed statement citations in one trailing Sources section.",
+    "style": "human-readable Obsidian-style synthesis page"
+  },
+  "narrative": {
+    "lead": "Summarize this contributor's project and topic footprint using only the page context.",
+    "section_plan": [
+      {
+        "heading": "Overview",
+        "id": "overview"
+      },
+      {
+        "heading": "Projects",
+        "id": "projects"
+      },
+      {
+        "heading": "Topics",
+        "id": "topics"
+      }
+    ]
+  },
+  "page": {
+    "backlinks": [
+      "data:kbase_ke_pangenome",
+      "data:kescience_fitnessbrowser",
+      "home",
+      "metal-resistance"
+    ],
+    "id": "author:0000-0003-2728-7622",
+    "manifest_path": ".manifests/authors/0000-0003-2728-7622.manifest.json",
+    "member_hash": "hash:853ddeef0ca85c69",
+    "member_statement_ids": [
+      "stmt:metal-atlas-pangenome-distribution-claim",
+      "stmt:metal-atlas-core-robustness-finding",
+      "stmt:metal-atlas-conserved-families-finding"
+    ],
+    "outgoing_links": [
+      "data:kbase_ke_pangenome",
+      "data:kescience_fitnessbrowser",
+      "metal-resistance"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:853ddeef0ca85c69",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim"
+        ]
+      },
+      {
+        "heading": "Projects",
+        "id": "projects",
+        "member_hash": "hash:853ddeef0ca85c69",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim"
+        ]
+      },
+      {
+        "heading": "Topics",
+        "id": "topics",
+        "member_hash": "hash:853ddeef0ca85c69",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim"
+        ]
+      }
+    ],
+    "title": "Adam Deutschbauer",
+    "type": "author",
+    "wiki_path": "authors/0000-0003-2728-7622.md"
+  },
+  "projects": [
+    "metal_fitness_atlas"
+  ],
+  "statements": [
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:metal-stress",
+        "entity:pangenome"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/species_metal_score_distribution.png",
+          "notebook": "06_pangenome_metal_prediction.ipynb",
+          "quote": "However, bioleaching genera as a group are not significantly enriched over background after normalization (Mann-Whitney p=0.17), indicating that metal tolerance genes are broadly distributed across bacteria rather than concentrated in specialists \u2014 consistent with the core genome robustness model.",
+          "source_doc": "REPORT.md",
+          "source_project": "metal_fitness_atlas",
+          "source_section": "Pangenome-Scale Prediction Validates Metal Gene Signature"
+        }
+      ],
+      "id": "stmt:metal-atlas-pangenome-distribution-claim",
+      "kind": "claim",
+      "links": {
+        "contradicts": [],
+        "refines": [
+          "stmt:metal-atlas-core-robustness-finding"
+        ],
+        "supports": []
+      },
+      "source_excerpt": "onsive_modules.ipynb)*\n\n### 7. Pangenome-Scale Prediction Validates Metal Gene Signature\n\n![Species metal score distribution](figures/species_metal_score_distribution.png)\n\nA metal functional signature of 1,286 KEGG KO terms was derived from the conserved metal gene families and used to score all **27,702 pangenome species**. With genome-size normalization (metal clusters / total KEGG-annotated clusters), the true specialist bioleaching organisms emerge: *Leptospirillum* ranks at the 91st percentile, *Acidithiobacillus* at the 77th, *Marinobacter* at the 75th, and *Sulfobacillus* at the 71st. However, bioleaching genera as a group are not significantly enriched over background after normalization (Mann-Whitney p=0.17), indicating that metal tolerance genes are broadly distributed across bacteria rather than concentrated in specialists \u2014 consistent with the core genome robustness model. Without normalization, species with large open pangenomes (*K. pneumoniae*, *P. aeruginosa*) dominate, reflecting genome size rather than metal biology.\n\n![Bioleaching species scores](figures/bioleaching_species_scores.png)\n\n*(Notebook: 06_pangenome_metal_prediction.ipynb)*\n\n## Results\n\n### Scale of the Metal Fitness Atlas\n\n| Metric | Value |\n|--------|-------|\n| Total metal experiments | 559 |\n| Metals covered | 16 (6 cross-species) |\n| Organisms with metal data | 31 (24 with fitness matrices) |\n| Gene \u00d7 metal fitness records | 383,349 |\n| Metal-important genes (broad) | 12,838 (3.3%) |\n| Me",
+      "text": "Genome-size-normalized pangenome scoring suggests that metal tolerance genes are broadly distributed across bacteria rather than concentrated only in specialist taxa.",
+      "topics": [
+        "topic:metal-resistance"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:metal-stress",
+        "entity:core-genome",
+        "entity:fitness-browser",
+        "entity:pangenome"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/core_fraction_by_metal.png",
+          "notebook": "03_metal_conservation_analysis.ipynb",
+          "quote": "Across 22 organisms and 14 metals, genes with significant fitness defects under metal stress are **87.4% core** vs 76.9% baseline (OR=2.08, p=4.3e-162).",
+          "source_doc": "REPORT.md",
+          "source_project": "metal_fitness_atlas",
+          "source_section": "Metal-Important Genes Are Enriched in the Core Genome"
+        }
+      ],
+      "id": "stmt:metal-atlas-core-robustness-finding",
+      "kind": "finding",
+      "links": {
+        "contradicts": [],
+        "refines": [],
+        "supports": [
+          "stmt:metal-atlas-pangenome-distribution-claim"
+        ]
+      },
+      "source_excerpt": "# Report: Pan-Bacterial Metal Fitness Atlas\n\n## Key Findings\n\n### 1. Metal-Important Genes Are Enriched in the Core Genome\n\n![Core genome fraction by metal](figures/core_fraction_by_metal.png)\n\nAcross 22 organisms and 14 metals, genes with significant fitness defects under metal stress are **87.4% core** vs 76.9% baseline (OR=2.08, p=4.3e-162). This is the opposite of the initial hypothesis (H1a), which predicted accessory enrichment for toxic metal genes based on the prior DvH finding (71.2% core for condition-specific heavy-metal genes). The discrepancy arises because genome-wide metal fitness defects predominantly reflect core cellular processes vulnerable to metal disruption (cell envelope, DNA repair, central metabolism), not specialized metal resistance mechanisms.\n\n21 of 22 organisms show metal-important genes as more core than baseline; 14 are significant at p<0.05. Only *P. fluorescens* FW300-N2E3 shows a negligible negativ",
+      "text": "Cross-species metal fitness defects are enriched in core genes, reframing metal tolerance as a core-genome robustness problem rather than mainly an accessory-resistance problem.",
+      "topics": [
+        "topic:metal-resistance"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:metal-stress",
+        "entity:gene-family",
+        "entity:pangenome"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/metal_family_conservation_heatmap.png",
+          "notebook": "04_cross_species_metal_families.ipynb",
+          "quote": "Of 2,891 ortholog groups with metal phenotypes, 1,182 are conserved across \u22652 organisms and 601 across \u22653 organisms.",
+          "source_doc": "REPORT.md",
+          "source_project": "metal_fitness_atlas",
+          "source_section": "1,182 Conserved Metal Gene Families Identified"
+        },
+        {
+          "figure": null,
+          "notebook": "04_cross_species_metal_families.ipynb",
+          "quote": "149 novel metal biology candidates were identified: gene families with conserved metal fitness phenotypes across \u22652 organisms but lacking full functional annotation.",
+          "source_doc": "REPORT.md",
+          "source_project": "metal_fitness_atlas",
+          "source_section": "1,182 Conserved Metal Gene Families Identified"
+        }
+      ],
+      "id": "stmt:metal-atlas-conserved-families-finding",
+      "kind": "finding",
+      "links": {
+        "contradicts": [],
+        "refines": [],
+        "supports": [
+          "stmt:metal-atlas-core-robustness-finding"
+        ]
+      },
+      "source_excerpt": "the highest fraction of important genes (12.3% for Fe, 11.2% for Mo/W), while toxic metals cluster around 2.7-4.4%. DvH has 1,366 metal-important genes (49.8% of its genome across 13 metals). The cyanobacterium *Synechococcus elongatus* (SynE) is notably metal-sensitive (33.6% of genes important across just 2 metals).\n\n![Metal-important genes by organism](figures/metal_important_genes_by_organism.png)\n\n*(Notebook: 02_metal_fitness_extraction.ipynb)*\n\n### 5. 1,182 Conserved Metal Gene Families Identified\n\n![Metal family breadth and conservation](figures/metal_family_conservation_heatmap.png)\n\nOf 2,891 ortholog groups with metal phenotypes, 1,182 are conserved across \u22652 organisms and 601 across \u22653 organisms. The most broadly conserved family (OG00128) spans 17 organisms and 9 metals. Families with metal phenotypes in more organisms tend to have higher pangenome conservation (% core), consistent with fundamental cellular processes.\n\n149 novel metal biology candidates were identified: gene families with conserved metal fitness phenotypes across \u22652 organisms but lacking full functional annotation. These break down into three categories: 89 truly unknown (no annotation), 43 with DUF/UPF domains (known structural domain, unknown metal role), and 17 with partial functional hints (e.g., \"transporter\", \"",
+      "text": "The metal atlas identifies conserved metal-phenotype gene families, including novel candidates that can be prioritized from cross-species fitness evidence.",
+      "topics": [
+        "topic:metal-resistance"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "definition": "",
+      "id": "topic:metal-resistance",
+      "kind": "",
+      "label": "Metal Resistance",
+      "url": ""
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+project:
+  id: lanthanide_methylotrophy_atlas
+  title: 'Report: Lanthanide Methylotrophy Atlas — Distribution and Environmental Context of REE-Dependent Methanol Oxidation Across 293K Genomes'
+statements:
+- id: stmt:xoxf-outnumbers-mxaf-19to1
+  kind: finding
+  text: Across 293K genomes the lanthanide-dependent methanol dehydrogenase xoxF outnumbers the calcium-dependent mxaF by roughly 19:1, strongly supporting that REE-dependent methanol oxidation dominates the canonical pathway.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:metal-resistance
+  entities:
+  - entity:xoxf
+  - entity:mxaf
+  - entity:lanthanides
+  - entity:berdl-pangenome
+  links:
+    supports:
+    - stmt:xoxf-dominance-phylogeny-robust
+    - stmt:xoxf-high-rate-non-methylotrophs
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 1. xoxF (REE-dependent MDH) outnumbers mxaF (Ca-dependent MDH) by ~19:1 across the BERDL pangenome — H1 strongly supported
+    quote: 'Across 293,059 GTDB-r214 genomes, eggNOG `KEGG_ko = K00114` (xoxF, lanthanide-dependent methanol dehydrogenase, EC 1.1.2.8) is annotated in **3,690 genomes**, while `K14028` (mxaF, Ca-dependent methanol dehydrogenase, EC 1.1.2.7) is annotated in **195 genomes** — a global xoxF:mxaF ratio of **18.92 : 1**, with a Clopper-Pearson 95% CI of [13.07, 27.69].'
+    notebook: 03_h1_formal_test.ipynb
+    figure: figures/xoxF_vs_mxaF_by_phylum.png
+- id: stmt:xoxf-dominance-phylogeny-robust
+  kind: claim
+  text: xoxF dominance is robust to phylogenetic correction, with a Bayesian binomial GLMM yielding a phylogeny-corrected ratio of about 143:1 rather than an artifact of one large phylum.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:pangenome-architecture
+  entities:
+  - entity:xoxf
+  - entity:mxaf
+  - entity:gtdb
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:xoxf-outnumbers-mxaf-19to1
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 1. xoxF (REE-dependent MDH) outnumbers mxaF (Ca-dependent MDH) by ~19:1 across the BERDL pangenome — H1 strongly supported
+    quote: 'The GLMM (variational-Bayes binomial GLMM via `statsmodels.BinomialBayesMixedGLM`, with random intercepts for phylum and family) gives the *strongest* xoxF dominance signal — a phylogeny-corrected ratio of **~143 : 1** with 95% credible interval [122, 169] — because the random effects absorb phylum-level heterogeneity and reveal that *within typical phyla*, xoxF dominance is more extreme than the global pooled estimate suggests.'
+    notebook: 08_phylogenetic_validation.ipynb
+    figure: figures/h1_phylogenetic_validation.png
+- id: stmt:xoxf-high-rate-non-methylotrophs
+  kind: finding
+  text: The highest per-genome xoxF rates occur in phyla rarely linked to one-carbon metabolism, including Acidobacteriota at 28.3 percent, expanding the candidate set of lanthanide-utilizing organisms beyond classical methylotrophs.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:metal-resistance
+  entities:
+  - entity:xoxf
+  - entity:acidobacteriota
+  - entity:gemmatimonadota
+  - entity:methylotrophs
+  links:
+    supports:
+    - stmt:xoxf-outnumbers-mxaf-19to1
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 2. The most striking xoxF carriers are not classical methylotrophs
+    quote: '| Acidobacteriota | 1,006 | 285 | 3 | **28.3 %** | 95 : 1 | 1.2 × 10⁻⁷⁹ |'
+    notebook: 02_phylogenomic_atlas.ipynb
+    figure: figures/h1_phylum_forest_plot.png
+- id: stmt:lanmodulin-clade-restriction-total
+  kind: finding
+  text: Bakta-validated lanmodulin is detected in 62 genomes, all 100 percent confined to three alpha-Proteobacterial methylotroph families, strongly supporting total clade restriction of this lanthanide-binding protein.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:microbial-ecotypes
+  entities:
+  - entity:lanmodulin
+  - entity:beijerinckiaceae
+  - entity:acetobacteraceae
+  - entity:methylotrophs
+  links:
+    supports:
+    - stmt:bakta-product-trustworthy-lanmodulin
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 3. Lanmodulin clade restriction is total; xoxF co-occurrence falls just short of the 80 % threshold
+    quote: 'Bakta-validated `product = ''Lanmodulin''` is detected in **62 genomes** (10 species). Every one of them — **62 / 62 = 100 %** — falls within Beijerinckiaceae, Acetobacteraceae, or Hyphomicrobiaceae, the three α-Proteobacterial methylotroph families pre-specified in H3. One-sided binomial test against the 80 % threshold: **p = 9.8 × 10⁻⁷** — **H3a strongly supported.**'
+    notebook: 05_lanmodulin_h3_test.ipynb
+    figure: figures/h3_lanmodulin_clade_restriction.png
+- id: stmt:lanmodulin-xoxf-cooccurrence-short
+  kind: caveat
+  text: xoxF co-occurs with lanmodulin in only 79.0 percent of lanmodulin genomes, just below the pre-registered 80 percent threshold, so lanmodulin presence does not reliably predict a co-located lanthanide-MDH operon.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:metal-resistance
+  entities:
+  - entity:lanmodulin
+  - entity:xoxf
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:lanmodulin-clade-restriction-total
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 3. Lanmodulin clade restriction is total; xoxF co-occurrence falls just short of the 80 % threshold
+    quote: xoxF co-occurrence (any source) is **49 / 62 = 79.0 %**, just under the pre-registered 80 % threshold (one-sided binomial p = 0.65, **H3b not formally supported**).
+    notebook: 05_lanmodulin_h3_test.ipynb
+- id: stmt:soil-sediment-strongest-enrichment
+  kind: finding
+  text: Soil/sediment is the strongest broad-class environmental enrichment for xoxF presence (OR=1.92, p_BH=6e-39 across 13,779 genomes), consistent with methanol oxidation as a known soil process and soil REE mineral reservoirs.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:xoxf
+  - entity:soil-sediment
+  - entity:ncbi-env
+  links:
+    supports:
+    - stmt:host-associated-xoxf-depleted
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 4. Soil/sediment is the strongest environmental enrichment; REE-impacted sites are descriptively elevated
+    quote: '**H2 is partially supported.** Soil/sediment is by far the strongest broad-class enrichment (OR=1.92, p_BH=6×10⁻³⁹ across 13,779 genomes), consistent with methanol oxidation as a known soil microbial process and the reservoir of lanthanide minerals in soil.'
+    notebook: 04_environmental_association.ipynb
+    figure: figures/h2_cassette_by_environment.png
+- id: stmt:host-associated-xoxf-depleted
+  kind: finding
+  text: Host-associated environments are dramatically depleted in xoxF (OR=0.058, p_BH=0), consistent with the absence of methylotrophy in the gut and host niche.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:xoxf
+  - entity:host-associated
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 4. Soil/sediment is the strongest environmental enrichment; REE-impacted sites are descriptively elevated
+    quote: Host-associated environments are dramatically *depleted* in xoxF (OR=0.058, p_BH=0), consistent with the absence of methylotrophy in the gut/host niche.
+    notebook: 04_environmental_association.ipynb
+- id: stmt:ree-impacted-small-n-caveat
+  kind: caveat
+  text: REE-impacted samples show a 3.5-fold descriptive elevation in xoxF rate but at n=37 the signal is too small to clear the FDR threshold (p_BH=0.082), so it remains descriptive rather than inferential.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:metal-resistance
+  entities:
+  - entity:xoxf
+  - entity:ree-amd
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:soil-sediment-strongest-enrichment
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 4. Soil/sediment is the strongest environmental enrichment; REE-impacted sites are descriptively elevated
+    quote: 'REE-impacted samples (n=37) show a 3.5-fold descriptive elevation (10.8 % vs 3.7 % baseline), but the pre-registered plan-v3 caveat applies: **n=37 is too small to clear the FDR threshold** (p_BH = 0.082).'
+    notebook: 04_environmental_association.ipynb
+- id: stmt:ree-amd-acidophiles-not-methylotrophs
+  kind: finding
+  text: The 37 REE-acid-mine-drainage MAGs are dominated by acidophilic and metal-tolerant lineages rather than methylotrophs, with only 4 of 37 carrying any xoxF and none carrying validated lanmodulin or xoxJ.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:metal-resistance
+  entities:
+  - entity:ree-amd
+  - entity:acidophiles
+  - entity:reeb76
+  - entity:xoxf
+  links:
+    supports: []
+    contradicts:
+    - stmt:ree-impacted-small-n-caveat
+    refines: []
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 5. REE-acid-mine-drainage MAGs are dominated by acidophiles, not methylotrophs
+    quote: 'Only **4/37** REE-AMD MAGs carry any xoxF; **0/37** carry bakta-validated lanmodulin or xoxJ. The functional signature instead reads as a textbook acid-mine-drainage stress profile: high prevalence of DNA-repair enzymes (RecN 33, RadA 32, RecO 31, RecA 28, RadC 24), acid-resistance machinery (FtsH zinc metalloprotease 31, proton-translocating NAD(P)+ transhydrogenase 27), MerR-family heavy-metal-responsive transcriptional regulators (30), and oxidative-stress defense (thioredoxin reductase 25, glutathione peroxidase 24).'
+    notebook: 06_ree_amd_case_study.ipynb
+    figure: figures/ree_amd_marker_presence.png
+- id: stmt:pqq-asymmetry-annotation-gaps
+  kind: finding
+  text: The apparent xoxF-without-PQQ asymmetry is largely an annotation artifact, as 59 percent of xoxF genomes lacking eggNOG PQQ annotations carry at least one bakta PQQ product that eggNOG misses.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:pqq
+  - entity:xoxf
+  - entity:eggnog
+  - entity:bakta
+  links:
+    supports:
+    - stmt:eggnog-bakta-disagreement
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: 6. The "PQQ-without-xoxF / xoxF-without-PQQ" asymmetry is dominated by annotation gaps
+    quote: Of the 2,185 genomes with no eggNOG pqq, **1,288 (59 %) have ≥1 bakta PQQ product** — pure annotation gaps where bakta detects PQQ that eggNOG misses. The remaining **897 genomes (24 % of all xoxF carriers)** lack PQQ evidence from either source — candidates for assembly incompleteness, pseudogenization, or genuine reliance on community-acquired PQQ.
+    notebook: 07_pqq_supply_asymmetry.ipynb
+    figure: figures/pqq_supply_asymmetry.png
+- id: stmt:eggnog-bakta-disagreement
+  kind: finding
+  text: eggNOG and bakta marker calls disagree sharply by marker, with eggNOG Preferred_name lanM producing 505 false positives concentrated in unrelated gut Bacillota that are not lanthanide users.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:eggnog
+  - entity:bakta
+  - entity:lanmodulin
+  links:
+    supports:
+    - stmt:bakta-product-trustworthy-lanmodulin
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: '7. Marker-source calibration: eggNOG and bakta disagree more than expected'
+    quote: The 505 eggNOG `Preferred_name='lanM'` "false positives" are concentrated in unrelated gut Bacillota — *Streptococcus pneumoniae* (10), *Blautia_A wexlerae* (9), *Enterococcus faecalis* (8), *Ruminococcus_B gnavus* (8), *Streptococcus pyogenes* (7), and similar — none of them lanthanide users.
+    notebook: 01_marker_calibration.ipynb
+    figure: figures/lanM_preferred_name_false_positives.png
+- id: stmt:bakta-product-trustworthy-lanmodulin
+  kind: claim
+  text: For BERDL pangenome lanmodulin work the bakta product field should be used exclusively, since it matches 62 genomes all in canonical alpha-Proteobacterial methylotroph clades while eggNOG lanM is noise.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:bakta
+  - entity:eggnog
+  - entity:lanmodulin
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:eggnog-bakta-disagreement
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: '7. Marker-source calibration: eggNOG and bakta disagree more than expected'
+    quote: Bakta `product='Lanmodulin'` matches 62 genomes, all in the canonical α-Proteobacterial methylotroph clades. **For BERDL pangenome lanmodulin work, use bakta product exclusively.**
+    notebook: 01_marker_calibration.ipynb
+- id: stmt:rbtnseq-la-ce-fitness-opportunity
+  kind: opportunity
+  text: Targeted RB-TnSeq under lanthanum or cerium chloride stress in the FitnessBrowser organism panel would identify the first transposon-validated REE-tolerance gene set in soil organisms that already carry xoxF.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:rb-tnseq
+  - entity:lanthanides
+  - entity:fitness-browser
+  - entity:xoxf
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Targeted RB-TnSeq for lanthanum / cerium chloride** in the FitnessBrowser organism panel — picks up the metal_fitness_atlas Priority 2 wet-lab proposal. Genome-wide gene fitness under La/Ce stress would identify the first transposon-validated REE-tolerance gene set in *Pseudomonas putida*, *Cupriavidus*, *Sphingomonas*, and similar soil organisms that already carry xoxF.'
+- id: stmt:larger-ree-metagenome-opportunity
+  kind: opportunity
+  text: Recruiting a larger collection of explicitly REE-impacted metagenomes from sequence archives would convert the descriptive REE-impacted enrichment signal into an inferential test of whether REE supply selects for the cassette.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:subsurface-genomics
+  entities:
+  - entity:ree-amd
+  - entity:xoxf
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ree-impacted-small-n-caveat
+  evidence:
+  - source_project: lanthanide_methylotrophy_atlas
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Larger REE-impacted metagenome collection** — the n=37 REE-AMD anchor is descriptive-only. Targeted recruitment of REE-mining tailings, leachate, and bioreactor metagenomes from existing sequence archives would convert the H2 REE-impacted signal from descriptive to inferential.'

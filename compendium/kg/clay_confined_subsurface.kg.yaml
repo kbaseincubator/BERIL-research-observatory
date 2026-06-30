@@ -1,0 +1,306 @@
+project:
+  id: clay_confined_subsurface
+  title: 'Report: Self-Sufficiency, Anaerobic Toolkit, and Cultivation Bias in Clay-Confined Cultured Bacterial Genomes'
+statements:
+- id: stmt:porewater-signature-h3
+  kind: finding
+  text: BERDL's cultured clay-confined deep-subsurface genomes carry the Bagnoud Mont Terri porewater signature (sulfate-reduction-rich), not the Mitzscherling rock-attached signature (iron-reduction-rich).
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:metabolic-pathways
+  entities:
+  - entity:mont-terri-opalinus
+  - entity:sulfate-reduction
+  - entity:cultivation-bias
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Finding 1 — Cultured clay-confined genomes carry the Bagnoud Mont Terri porewater signature, not the Mitzscherling rock-attached signature (H3, supported)
+    quote: The 9 BERDL genomes traceable to clay-confined deep-subsurface biosamples (8 from Mont Terri Opalinus boreholes, 1 from a bentonite formation) are **strongly enriched for dissimilatory sulfate-reduction (SR) markers** (5/9 = 56%) and depleted for iron-reduction (IR) markers (1/9 = 11%).
+    notebook: 06_h3_porewater_bias.ipynb
+    figure: figures/h3_porewater_vs_rock.png
+- id: stmt:sr-enrichment-binomial
+  kind: finding
+  text: Sulfate-reduction marker enrichment in the clay-confined cohort is overwhelming relative to the Mitzscherling rock-attached null distribution (binomial p = 4.0x10^-12).
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:metabolic-pathways
+  entities:
+  - entity:sulfate-reduction
+  - entity:iron-reduction
+  - entity:mont-terri-opalinus
+  links:
+    supports:
+    - stmt:porewater-signature-h3
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Finding 1 — Cultured clay-confined genomes carry the Bagnoud Mont Terri porewater signature, not the Mitzscherling rock-attached signature (H3, supported)
+    quote: Compared against the Mitzscherling et al. (2023) rock-attached null distribution (SRB ~0.2%, IRB ~7% of community), SR enrichment is overwhelming (binomial p = 4.0×10⁻¹²; observed 5 vs expected 0.018 of 9).
+    notebook: 06_h3_porewater_bias.ipynb
+- id: stmt:cultivation-bias-diagnostic
+  kind: claim
+  text: Because all eight Opalinus genomes trace to BRC-3 or BIC-A1 boreholes, the cohort's marker profile provides a direct, quantitative diagnostic that BERDL captures the porewater fraction rather than the rock-attached fraction.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:cultivation-bias
+  - entity:mont-terri-opalinus
+  - entity:porewater
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:porewater-signature-h3
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Finding 1 — Cultured clay-confined genomes carry the Bagnoud Mont Terri porewater signature, not the Mitzscherling rock-attached signature (H3, supported)
+    quote: 'Because all 8 Opalinus genomes in BERDL trace to BRC-3 or BIC-A1 borehole isolation sources, this is a **direct, quantitative diagnostic of cultivation bias**: BERDL captures the porewater fraction, not the rock-attached fraction.'
+    notebook: 06_h3_porewater_bias.ipynb
+- id: stmt:deep-shallow-mirror-image
+  kind: finding
+  text: Deep clay-confined isolates are dominated by sulfate-reduction-only marker profiles while shallow-clay isolates are dominated by iron-reduction-only profiles, a mirror-image contrast (Fisher OR=infinity, p=2x10^-4 for SR_complete).
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:microbial-ecotypes
+  entities:
+  - entity:sulfate-reduction
+  - entity:iron-reduction
+  - entity:soil-baseline
+  links:
+    supports:
+    - stmt:porewater-signature-h3
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Finding 1 — Cultured clay-confined genomes carry the Bagnoud Mont Terri porewater signature, not the Mitzscherling rock-attached signature (H3, supported)
+    quote: 'the marker-class profiles are mirror-image: anchor_deep is dominated by **SR_only** (5/9), anchor_shallow by **IR_only** (15/30) — a Fisher''s exact OR=∞, p=2×10⁻⁴ for SR_complete and 3.7-fold IR enrichment in shallow versus the broader soil baseline (p=0.0025).'
+    notebook: 06_h3_porewater_bias.ipynb
+- id: stmt:anaerobic-toolkit-enriched
+  kind: finding
+  text: At the cohort level, deep-confined clay isolates jointly carry the Wood-Ljungdahl + group 1 [NiFe]-hydrogenase + dissimilatory sulfate-reduction toolkit at much higher rates than soil baseline or shallow-clay cohorts (mean toolkit score 1.89 vs 0.39 vs 0.03 of 3 modules).
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:subsurface-genomics
+  entities:
+  - entity:wood-ljungdahl-pathway
+  - entity:nife-hydrogenase
+  - entity:sulfate-reduction
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Finding 2 — The "anaerobic toolkit" signal is real but largely phylum-driven; only sulfate reduction is genuinely clay-deep enriched after phylogenetic control (H2, partially supported)
+    quote: deep-confined clay isolates jointly carry the Bagnoud Wood–Ljungdahl + group 1 [NiFe]-hydrogenase + dissimilatory sulfate-reduction toolkit at strikingly higher rates than soil baseline or shallow-clay cohorts (mean toolkit score 1.89 vs 0.39 vs 0.03 of 3 modules).
+    notebook: 05_h2_anaerobic_toolkit.ipynb
+    figure: figures/h2_toolkit_by_cohort.png
+- id: stmt:toolkit-phylum-confound
+  kind: caveat
+  text: 'Within-phylum control reveals the toolkit signal is largely phylogenetic: Wood-Ljungdahl and [NiFe]-hydrogenase track the Bacillota_B lineage rather than deep-clay habitat, since these markers are carried at high background rates even in soil Bacillota_B.'
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:pangenome-architecture
+  entities:
+  - entity:bacillota-b
+  - entity:wood-ljungdahl-pathway
+  - entity:nife-hydrogenase
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:anaerobic-toolkit-enriched
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Finding 2 — The "anaerobic toolkit" signal is real but largely phylum-driven; only sulfate reduction is genuinely clay-deep enriched after phylogenetic control (H2, partially supported)
+    quote: Within Bacillota_B, deep cohort vs baseline comparisons for WL (5/5 vs 15/19, p=0.54) and NiFe (5/5 vs 14/19, p=0.54) are not significant — these markers track the Bacillota_B lineage, not deep-clay habitat per se.
+    notebook: 05_h2_anaerobic_toolkit.ipynb
+- id: stmt:sr-survives-phylo-control
+  kind: finding
+  text: Only dissimilatory sulfate reduction (dsrAB-aprAB-sat) survives within-phylum control, being enriched in 5/5 deep Bacillota_B isolates versus 4/19 soil-baseline Bacillota_B isolates (OR=infinity, p=0.003, p_BH=0.04).
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:subsurface-genomics
+  entities:
+  - entity:sulfate-reduction
+  - entity:bacillota-b
+  - entity:dsrab
+  links:
+    supports:
+    - stmt:anaerobic-toolkit-enriched
+    contradicts: []
+    refines:
+    - stmt:toolkit-phylum-confound
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Finding 2 — The "anaerobic toolkit" signal is real but largely phylum-driven; only sulfate reduction is genuinely clay-deep enriched after phylogenetic control (H2, partially supported)
+    quote: '**Only sulfate reduction (dsrAB-aprAB-sat) survives the phylogenetic control**: 5/5 deep Bacillota_B isolates carry SR vs 4/19 soil-baseline Bacillota_B isolates (OR=∞, p=0.003, p_BH=0.04).'
+    notebook: 05_h2_anaerobic_toolkit.ipynb
+- id: stmt:self-sufficiency-not-supported
+  kind: finding
+  text: 'Biosynthetic self-sufficiency does not generalize to BERDL''s cultured cohort: deep-clay GapMind amino-acid pathway completeness is comparable to or slightly below the soil baseline (CheckM-filtered mean 15.5/18 vs 17.1/18, p=0.009, Cohen''s d=-0.84).'
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:subsurface-genomics
+  entities:
+  - entity:gapmind
+  - entity:soil-baseline
+  - entity:self-sufficiency
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Finding 3 — Biosynthetic self-sufficiency does not generalize from the Beaver & Neufeld synthesis to BERDL's cultured cohort (H1, not supported)
+    quote: 'After CheckM completeness filter (≥80% complete, ≤5% contamination): anchor_deep mean 15.5/18 vs baseline 17.1/18 (p=0.009, d=−0.84).'
+    notebook: 04_h1_self_sufficiency.ipynb
+    figure: figures/h1_self_sufficiency_violin.png
+- id: stmt:self-sufficient-lineages-uncultivated
+  kind: claim
+  text: The negative self-sufficiency result reflects that BERDL's cultured cohort excludes the extreme self-sufficient lineages (e.g. Ca. Desulforudis audaxviator) the literature highlights, which are characteristically uncultivated and recovered as MAGs or single-cell genomes.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:metabolic-pathways
+  entities:
+  - entity:self-sufficiency
+  - entity:desulforudis-audaxviator
+  - entity:cultivation-bias
+  links:
+    supports:
+    - stmt:self-sufficiency-not-supported
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Finding 3 — Biosynthetic self-sufficiency does not generalize from the Beaver & Neufeld synthesis to BERDL's cultured cohort (H1, not supported)
+    quote: '**BERDL''s cultured cohort does not include the extreme self-sufficient lineages** the literature highlights — those organisms are characteristically uncultivated, recovered as MAGs or single-cell genomes.'
+    notebook: 04_h1_self_sufficiency.ipynb
+- id: stmt:bagnoud-lineage-overlap
+  kind: finding
+  text: Anchor_deep genera include exactly the recurrent Mont Terri lineages Bagnoud identified across seven boreholes, including Desulfosporosinus and BRH-c8a (Peptococcaceae c8a), providing cross-platform validation of indigeneity.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:microbial-ecotypes
+  entities:
+  - entity:desulfosporosinus
+  - entity:mont-terri-opalinus
+  - entity:bacillota-b
+  links:
+    supports:
+    - stmt:porewater-signature-h3
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Cohort
+    quote: 'Anchor_deep genera include exactly the lineages Bagnoud (2016) identified as recurrent across 7 Mont Terri boreholes: **Desulfosporosinus** (×2), **BRH-c8a** (Peptococcaceae c8a in Bagnoud''s nomenclature; ×2), **BRH-c4a** (Desulfotomaculales), **Lutibacter** + **BRH-c54** (Bacteroidota), **Roseovarius** (Rhodobacterales), and **Stenotrophomonas** (the bentonite isolate).'
+- id: stmt:cohort-cultured-only-caveat
+  kind: caveat
+  text: All conclusions apply only to cultivable porewater-cultured deep-clay isolates rather than the full Mont Terri or bentonite community, since CPR/DPANN episymbionts and rock-attached Geobacter/Geothrix lineages are essentially absent.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:cultivation-bias
+  - entity:mont-terri-opalinus
+  - entity:iron-reduction
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cultivation-bias-diagnostic
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Because the cohort is cultured-only, all conclusions apply to "cultivable porewater-cultured deep-clay isolates," not to the full Mont Terri / bentonite microbial community. CPR / DPANN episymbionts (Bell 2022) and rock-attached *Geobacter* / *Geothrix* lineages are essentially absent.
+- id: stmt:gapmind-ceiling-caveat
+  kind: caveat
+  text: The 18-pathway GapMind amino-acid universe saturates near 18 for most cultivable bacteria, limiting the resolving power of the self-sufficiency metric at the upper end.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:functional-dark-matter
+  entities:
+  - entity:gapmind
+  - entity:self-sufficiency
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:self-sufficiency-not-supported
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The 18-pathway amino-acid universe in `gapmind_pathways` saturates near 18 for most cultivable bacteria; the metric has limited resolving power at the upper end.
+- id: stmt:mag-augmented-expansion
+  kind: opportunity
+  text: Ingesting deep-subsurface MAGs from Mont Terri, Olkiluoto, MX-80 bentonite, and Oak Ridge and re-running the H1/H2/H3 framework would test whether the self-sufficiency signal emerges once rock-attached and uncultivated lineages are present.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:mont-terri-opalinus
+  - entity:self-sufficiency
+  - entity:cultivation-bias
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: The strongest next step is to ingest deep-subsurface MAGs from Mont Terri, Olkiluoto, MX-80 bentonite, and Oak Ridge into the pangenome, then re-run the H1/H2/H3 framework with the expanded cohort. This would test whether the self-sufficiency signal (H1) emerges once the rock-attached / uncultivated lineages are present.
+- id: stmt:porewater-diagnostic-generalizes
+  kind: opportunity
+  text: The SR/IR marker-rate cultivation-bias diagnostic can be rapidly applied to other subsurface cohorts (granite-hosted Olkiluoto, basalt-hosted Oak Ridge, salt-cavern) to quantify porewater bias across BERDL or future ingests.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:cultivation-bias
+  - entity:sulfate-reduction
+  - entity:iron-reduction
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cultivation-bias-diagnostic
+  evidence:
+  - source_project: clay_confined_subsurface
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Granite-hosted (Olkiluoto), basalt-hosted (Oak Ridge), and salt-cavern subsurface cohorts in BERDL or future ingests can be rapidly tested with the same SR/IR marker framework.

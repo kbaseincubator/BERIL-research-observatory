@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:bbh-over-merging-caveat",
+    "stmt:taxonomic-bias-caveat",
+    "stmt:universal-essentials-only-broad-spectrum-targets",
+    "stmt:essentiality-strain-dependent-cross-species",
+    "stmt:essential-genome-small-conserved",
+    "stmt:essentiality-tracks-core-conservation",
+    "stmt:fifteen-pan-essential-families",
+    "stmt:five-percent-universally-essential",
+    "stmt:orphan-essentials-hypothetical-frontier",
+    "stmt:module-transfer-function-predictions",
+    "stmt:variable-essentiality-is-norm",
+    "stmt:characterize-orphan-essentials-opportunity",
+    "stmt:crispri-validation-opportunity"
+  ],
+  "member_hash": "hash:d7788a19df9ccf6e",
+  "model": "haiku",
+  "page_id": "project:essential_genome",
+  "page_plan_hash": "hash:227670b88f8c838f",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:d7788a19df9ccf6e",
+    "lead": "hash:d7788a19df9ccf6e"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

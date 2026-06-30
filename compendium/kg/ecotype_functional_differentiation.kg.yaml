@@ -1,0 +1,94 @@
+project:
+  id: ecotype_functional_differentiation
+  title: Ecotype Functional Differentiation
+statements:
+  - id: stmt:ecotype-functional-widespread-finding
+    kind: finding
+    text: Gene-content ecotypes are widespread in the sampled bacterial species and represent recurring within-species pangenome structure.
+    confidence: high
+    topics:
+      - topic:microbial-ecotypes
+    entities:
+      - entity:ecotype
+      - entity:pangenome
+    links:
+      supports:
+        - stmt:ecotype-functional-differentiation-finding
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: ecotype_functional_differentiation
+        source_doc: REPORT.md
+        source_section: Gene-content ecotypes are widespread across bacterial species
+        quote: "Ecotype clustering via PCA + KMeans on auxiliary gene presence/absence matrices identified valid gene-content ecotypes in 12 of 15 sampled species (80%)."
+        notebook: NB02_clustering_and_cog.ipynb
+
+  - id: stmt:ecotype-functional-differentiation-finding
+    kind: finding
+    text: Ecotype gene-content variation is functionally structured rather than random, with COG categories differentiating across all sampled species.
+    confidence: high
+    topics:
+      - topic:microbial-ecotypes
+    entities:
+      - entity:ecotype
+      - entity:cog-category
+      - entity:pangenome
+    links:
+      supports:
+        - stmt:ecotype-adaptive-effect-claim
+      contradicts: []
+      refines:
+        - stmt:ecotype-gene-subset-claim
+    evidence:
+      - source_project: ecotype_functional_differentiation
+        source_doc: REPORT.md
+        source_section: Ecotypes show pervasive COG functional differentiation
+        quote: "Chi-square and Fisher's exact tests revealed that 170 of 257 species x COG tests (66.1%) were statistically significant after BH-FDR correction (q < 0.05)."
+        notebook: NB03_differential_enrichment.ipynb
+        figure: figures/cog_differentiation_rates.png
+
+  - id: stmt:ecotype-adaptive-effect-claim
+    kind: claim
+    text: Adaptive functions differentiate more strongly between ecotypes than housekeeping functions, although both classes can vary.
+    confidence: high
+    topics:
+      - topic:microbial-ecotypes
+    entities:
+      - entity:ecotype
+      - entity:cog-category
+    links:
+      supports: []
+      contradicts: []
+      refines:
+        - stmt:ecotype-gene-subset-claim
+    evidence:
+      - source_project: ecotype_functional_differentiation
+        source_doc: REPORT.md
+        source_section: Adaptive COG categories show significantly larger effect sizes than housekeeping
+        quote: "However, the *magnitude* of differentiation (effect size) is 2.1x larger for adaptive categories, and this difference is highly significant (p = 2.53 x 10^-6, Mann-Whitney U, one-sided)."
+        notebook: NB03_differential_enrichment.ipynb
+        figure: figures/effect_size_distributions.png
+
+  - id: stmt:ecotype-unknown-mobile-caveat
+    kind: caveat
+    text: The strongest ecotype differences include unknown-function and mobile-element categories, so much of the niche-specific signal remains hard to interpret biologically.
+    confidence: high
+    topics:
+      - topic:microbial-ecotypes
+    entities:
+      - entity:ecotype
+      - entity:cog-category
+      - entity:mobile-elements
+      - entity:unknown-function
+    links:
+      supports: []
+      contradicts: []
+      refines:
+        - stmt:ecotype-functional-differentiation-finding
+    evidence:
+      - source_project: ecotype_functional_differentiation
+        source_doc: REPORT.md
+        source_section: Replication/mobile elements and unknown function drive the largest ecotype differences
+        quote: "The large S-category effect suggests substantial ecotype differentiation involves genes of currently unknown function -- a recurring theme in microbial ecology that highlights annotation gaps in niche-specific genes."
+        notebook: NB03_differential_enrichment.ipynb
+        figure: figures/cog_differentiation_heatmap.png

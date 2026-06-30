@@ -1,0 +1,77 @@
+project:
+  id: metal_fitness_atlas
+  title: Pan-Bacterial Metal Fitness Atlas
+statements:
+  - id: stmt:metal-atlas-core-robustness-finding
+    kind: finding
+    text: Cross-species metal fitness defects are enriched in core genes, reframing metal tolerance as a core-genome robustness problem rather than mainly an accessory-resistance problem.
+    confidence: high
+    topics:
+      - topic:metal-resistance
+    entities:
+      - entity:metal-stress
+      - entity:core-genome
+      - entity:fitness-browser
+      - entity:pangenome
+    links:
+      supports:
+        - stmt:metal-atlas-pangenome-distribution-claim
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: metal_fitness_atlas
+        source_doc: REPORT.md
+        source_section: Metal-Important Genes Are Enriched in the Core Genome
+        quote: "Across 22 organisms and 14 metals, genes with significant fitness defects under metal stress are **87.4% core** vs 76.9% baseline (OR=2.08, p=4.3e-162)."
+        notebook: 03_metal_conservation_analysis.ipynb
+        figure: figures/core_fraction_by_metal.png
+
+  - id: stmt:metal-atlas-conserved-families-finding
+    kind: finding
+    text: The metal atlas identifies conserved metal-phenotype gene families, including novel candidates that can be prioritized from cross-species fitness evidence.
+    confidence: high
+    topics:
+      - topic:metal-resistance
+    entities:
+      - entity:metal-stress
+      - entity:gene-family
+      - entity:pangenome
+    links:
+      supports:
+        - stmt:metal-atlas-core-robustness-finding
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: metal_fitness_atlas
+        source_doc: REPORT.md
+        source_section: 1,182 Conserved Metal Gene Families Identified
+        quote: "Of 2,891 ortholog groups with metal phenotypes, 1,182 are conserved across ≥2 organisms and 601 across ≥3 organisms."
+        notebook: 04_cross_species_metal_families.ipynb
+        figure: figures/metal_family_conservation_heatmap.png
+      - source_project: metal_fitness_atlas
+        source_doc: REPORT.md
+        source_section: 1,182 Conserved Metal Gene Families Identified
+        quote: "149 novel metal biology candidates were identified: gene families with conserved metal fitness phenotypes across ≥2 organisms but lacking full functional annotation."
+        notebook: 04_cross_species_metal_families.ipynb
+
+  - id: stmt:metal-atlas-pangenome-distribution-claim
+    kind: claim
+    text: Genome-size-normalized pangenome scoring suggests that metal tolerance genes are broadly distributed across bacteria rather than concentrated only in specialist taxa.
+    confidence: high
+    topics:
+      - topic:metal-resistance
+    entities:
+      - entity:metal-stress
+      - entity:pangenome
+    links:
+      supports: []
+      contradicts: []
+      refines:
+        - stmt:metal-atlas-core-robustness-finding
+    evidence:
+      - source_project: metal_fitness_atlas
+        source_doc: REPORT.md
+        source_section: Pangenome-Scale Prediction Validates Metal Gene Signature
+        quote: "However, bioleaching genera as a group are not significantly enriched over background after normalization (Mann-Whitney p=0.17), indicating that metal tolerance genes are broadly distributed across bacteria rather than concentrated in specialists — consistent with the core genome robustness model."
+        notebook: 06_pangenome_metal_prediction.ipynb
+        figure: figures/species_metal_score_distribution.png

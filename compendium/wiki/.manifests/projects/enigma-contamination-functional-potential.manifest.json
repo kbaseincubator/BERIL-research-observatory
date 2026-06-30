@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:unmapped-genera-coarse-cog",
+    "stmt:genus-only-taxonomy-limit",
+    "stmt:exploratory-overweight-risk",
+    "stmt:functional-redundancy-interpretation",
+    "stmt:literature-modest-functional-decline",
+    "stmt:reproducible-bridge-workflow",
+    "stmt:exploratory-defense-coverage-aware",
+    "stmt:confirmatory-defense-null",
+    "stmt:index-sensitivity-null",
+    "stmt:species-proxy-coverage-limited",
+    "stmt:contamination-index-right-skewed",
+    "stmt:within-fraction-no-signal",
+    "stmt:opp-species-strain-bridge",
+    "stmt:opp-curated-metal-gene-sets"
+  ],
+  "member_hash": "hash:31d755870ca96fa1",
+  "model": "haiku",
+  "page_id": "project:enigma_contamination_functional_potential",
+  "page_plan_hash": "hash:58865c17fc719e15",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:31d755870ca96fa1",
+    "lead": "hash:31d755870ca96fa1"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

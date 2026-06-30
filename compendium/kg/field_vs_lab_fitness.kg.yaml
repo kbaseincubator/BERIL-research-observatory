@@ -1,0 +1,352 @@
+project:
+  id: field_vs_lab_fitness
+  title: 'Report: Field vs Lab Gene Importance in *Desulfovibrio vulgaris* Hildenborough'
+statements:
+- id: stmt:enigma-coral-no-dvh-fitness
+  kind: finding
+  text: The ENIGMA CORAL database contains no Desulfovibrio vulgaris Hildenborough fitness data, so all gene-level fitness analysis relies on the Fitness Browser RB-TnSeq dataset.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:gene-fitness
+  entities:
+  - entity:enigma-coral
+  - entity:dvh
+  - entity:fitness-browser
+  - entity:oak-ridge-frc
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: ENIGMA CORAL Contains No DvH Fitness Data (NB01)
+    quote: 'Key finding: **DvH is completely absent** from the database.'
+    notebook: 01_enigma_discovery.ipynb
+- id: stmt:condition-classification-field-lab-split
+  kind: finding
+  text: DvH's 757 RB-TnSeq experiments were classified into six ecological-relevance categories, yielding a broad split of 337 field (44.5%) versus 420 lab (55.5%) conditions.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:dvh
+  - entity:fitness-browser
+  - entity:condition-classification
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Condition Classification (NB02)
+    quote: 'Broad split: 337 field (44.5%) vs 420 lab (55.5%).'
+    notebook: 02_condition_classification.ipynb
+    figure: figures/fig_condition_importance_heatmap.png
+- id: stmt:field-stress-genes-more-conserved
+  kind: finding
+  text: Genes important under field-stress, field-core, and lab-nutrient conditions are significantly enriched in the core genome after BH-FDR correction, with field-stress genes the most conserved (83.6% core, OR=1.58, q=0.026).
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:dvh
+  - entity:rb-tnseq
+  - entity:gene-conservation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Genes Important for Field Conditions Are Significantly More Conserved (NB03)
+    quote: Field-stress (q=0.026), field-core (q=0.026), and lab-nutrient (q=0.037) genes are significantly enriched in the core genome after BH-FDR correction.
+    notebook: 03_fitness_conservation.ipynb
+    figure: figures/fig_conservation_by_condition_class.png
+- id: stmt:lab-specific-genes-surprisingly-core
+  kind: finding
+  text: Counter to the hypothesis, genes with fitness defects only under lab conditions are 96.0% core, slightly higher than field-specific genes at 88.5%, indicating that fitness importance predicts conservation regardless of ecological context.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:gene-conservation
+  - entity:lab-specific-genes
+  - entity:field-specific-genes
+  links:
+    supports: []
+    contradicts:
+    - stmt:field-stress-genes-more-conserved
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: 'Specificity Analysis: Lab-Specific Genes Are Surprisingly More Core'
+    quote: Counter to H1, genes with fitness defects **only under lab conditions** are 96% core (n=50), slightly higher than field-specific genes at 88.5% (n=52).
+    notebook: 03_fitness_conservation.ipynb
+    figure: figures/fig_field_vs_lab_specificity.png
+- id: stmt:any-fitness-importance-predicts-conservation
+  kind: claim
+  text: 'The dominant signal is that any fitness importance, regardless of condition type, predicts pangenome conservation: universally important genes are significantly more core than neutral genes (OR=1.35, p=0.033).'
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:gene-conservation
+  - entity:fitness-magnitude
+  links:
+    supports:
+    - stmt:lab-specific-genes-surprisingly-core
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: 'Specificity Analysis: Lab-Specific Genes Are Surprisingly More Core'
+    quote: Both are well above the 74.5% baseline, suggesting that any fitness importance -- regardless of ecological context -- predicts conservation.
+    notebook: 03_fitness_conservation.ipynb
+- id: stmt:gene-length-stronger-than-fitness
+  kind: finding
+  text: In logistic regression, gene length is a much stronger predictor of core-genome status (CV-AUC 0.645) than field or lab fitness effects, neither of which alone is informative (CV-AUC near 0.5).
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:gene-length
+  - entity:logistic-regression
+  links:
+    supports:
+    - stmt:any-fitness-importance-predicts-conservation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Fitness Effects Are Weak Predictors of Core Status
+    quote: Gene length is a much stronger predictor of core status than fitness effects from either field or lab conditions. Neither fitness dimension alone is informative (CV-AUC near 0.5).
+    notebook: 03_fitness_conservation.ipynb
+    figure: figures/fig_roc_conservation_prediction.png
+- id: stmt:field-stress-robust-across-thresholds
+  kind: finding
+  text: Field-stress genes consistently show the highest conservation and heavy-metals genes the lowest across fitness thresholds from -1 to -3, confirming the pattern is robust to threshold choice.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:fitness-threshold
+  - entity:gene-conservation
+  links:
+    supports:
+    - stmt:field-stress-genes-more-conserved
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Threshold Sensitivity Analysis
+    quote: Field-stress consistently has the highest conservation across all thresholds. Heavy-metals is consistently the lowest.
+    notebook: 03_fitness_conservation.ipynb
+- id: stmt:module-conservation-no-field-lab-difference
+  kind: finding
+  text: At the module level, ICA fitness module conservation shows no significant correlation with field condition activity (Spearman rho=0.071, p=0.62), so module-level conservation does not separate field from lab conditions.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:ica-modules
+  - entity:fitness-modules
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Module-Level Conservation Shows No Field-Lab Difference (NB04)
+    quote: No significant correlation exists between field condition activity and module conservation (Spearman rho=0.071, p=0.62).
+    notebook: 04_module_analysis.ipynb
+    figure: figures/fig_module_conservation_vs_activity.png
+- id: stmt:lab-modules-accessory-genome
+  kind: finding
+  text: Nine low-field-activity "lab" ICA modules are notably less conserved (mean core fraction 0.516), showing that accessory-genome fitness modules exist and tend to respond to lab-type conditions.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:ica-modules
+  - entity:accessory-genome
+  - entity:fitness-modules
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:module-conservation-no-field-lab-difference
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Module-Level Conservation Shows No Field-Lab Difference (NB04)
+    quote: The 9 "lab" modules (mean core fraction 0.516) are notably less conserved, containing genes in the accessory genome.
+    notebook: 04_module_analysis.ipynb
+    figure: figures/fig_ecological_vs_lab_modules.png
+- id: stmt:resistance-genes-accessory-mge
+  kind: claim
+  text: Antibiotic-resistance (73.4% core) and heavy-metal-resistance (71.2% core) genes are the least conserved and fall below baseline, suggesting these resistance functions are disproportionately accessory traits carried on mobile genetic elements.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:amr-resistome
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:accessory-genome
+  - entity:metal-resistance
+  - entity:antibiotic-resistance
+  - entity:mobile-genetic-elements
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Key Biological Insight
+    quote: This suggests that resistance functions are disproportionately in the accessory genome, consistent with these being recently acquired adaptive traits carried on mobile genetic elements.
+- id: stmt:ecological-modules-dark-candidates
+  kind: opportunity
+  text: The 21 conserved "ecological" ICA modules contain 239 member genes, of which 52 are unannotated and are candidate novel functions for environmental adaptation.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ica-modules
+  - entity:unannotated-genes
+  - entity:environmental-adaptation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Module-Level Conservation Shows No Field-Lab Difference (NB04)
+    quote: The 21 ecological modules contain 239 member genes, of which 52 are unannotated -- candidates for novel environmental adaptation functions.
+    notebook: 04_module_analysis.ipynb
+- id: stmt:condition-type-vs-fitness-magnitude
+  kind: claim
+  text: This is the first analysis to stratify RB-TnSeq fitness effects by ecological relevance, finding that condition type matters less than fitness magnitude for predicting conservation, implying the core genome reflects general functional importance rather than niche-specific selection.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:rb-tnseq
+  - entity:core-genome
+  - entity:fitness-magnitude
+  links:
+    supports:
+    - stmt:any-fitness-importance-predicts-conservation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: The finding that condition type matters less than fitness magnitude for conservation prediction was not anticipated and suggests that the core genome reflects general functional importance rather than niche-specific selection.
+- id: stmt:single-organism-coarse-pangenome-caveat
+  kind: caveat
+  text: Results are limited to a single organism (DvH) whose pangenome has few genomes, producing a coarse core/auxiliary classification with a high 76.3% baseline core fraction that compresses effect sizes.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:dvh
+  - entity:pangenome
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The *Nitratidesulfovibrio vulgaris* pangenome has relatively few genomes, creating a coarse core/auxiliary classification with a high baseline core fraction (76.3%), which compresses effect sizes
+- id: stmt:small-specificity-sample-caveat
+  kind: caveat
+  text: The field-specific and lab-specific gene sets are small (n=50-52), limiting statistical power for the key field-versus-lab comparison.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:field-specific-genes
+  - entity:lab-specific-genes
+  - entity:statistical-power
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:lab-specific-genes-surprisingly-core
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The field-specific and lab-specific gene sets are small (n=50-52), limiting statistical power for the key comparison
+- id: stmt:gene-length-confound-caveat
+  kind: caveat
+  text: Gene length is confounded with both fitness measurement quality and core status, since short genes receive fewer transposon insertions and core genes tend to be longer.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:gene-length
+  - entity:rb-tnseq
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:gene-length-stronger-than-fitness
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Gene length is confounded with both fitness measurement quality (short genes get fewer transposon insertions) and core status (core genes tend to be longer)
+- id: stmt:quantitative-conservation-metric-opportunity
+  kind: opportunity
+  text: Replacing the binary core/auxiliary label with a quantitative conservation metric (fraction of genomes carrying each gene cluster) could increase statistical power for the fitness-conservation relationship.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:pangenome
+  - entity:gene-conservation
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: field_vs_lab_fitness
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Replace binary core/auxiliary with quantitative conservation (fraction of genomes carrying the gene cluster) to increase statistical power

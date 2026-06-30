@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:prevalence-ceiling-caveat",
+    "stmt:phylogenetic-control-caveat",
+    "stmt:ralstonia-excluded-caveat",
+    "stmt:coordinated-regulation-constrains-coinheritance",
+    "stmt:accessory-modules-strongest",
+    "stmt:cofit-predicts-cooccurrence",
+    "stmt:functional-enrichment-metabolism",
+    "stmt:operons-not-confound",
+    "stmt:modules-stronger-coinheritance",
+    "stmt:diverse-species-strongest-signal",
+    "stmt:cofit-strength-anticorrelates",
+    "stmt:small-effect-size",
+    "stmt:module-cotransfer-networks",
+    "stmt:auxiliary-only-reanalysis"
+  ],
+  "member_hash": "hash:e19d59afbef45593",
+  "model": "haiku",
+  "page_id": "project:cofitness_coinheritance",
+  "page_plan_hash": "hash:1083cc5910f9026c",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:e19d59afbef45593",
+    "lead": "hash:e19d59afbef45593"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

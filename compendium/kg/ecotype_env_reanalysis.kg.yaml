@@ -1,0 +1,268 @@
+project:
+  id: ecotype_env_reanalysis
+  title: 'Report: Ecotype Reanalysis — Environmental vs Human-Associated Species'
+statements:
+- id: stmt:ecotype-env-null-finding
+  kind: finding
+  text: Restricting the ecotype analysis to environmental species did not yield stronger environment-gene-content correlations than human-associated species, with the Mann-Whitney U test far from significant (p=0.83).
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:ecotype
+  - entity:alphaearth
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: 1. Clinical bias does NOT explain the weak environment signal (H0 not rejected)
+    quote: Environmental species (n=37, median partial correlation 0.051) do NOT show stronger environment–gene content correlations than human-associated species (n=93, median 0.084). The Mann-Whitney U test is far from significant (U=1536, p=0.83, one-sided).
+    notebook: 01_environmental_only_reanalysis.ipynb
+    figure: figures/partial_corr_by_group.png
+- id: stmt:ecotype-opposite-direction-claim
+  kind: claim
+  text: Contrary to the hypothesis, human-associated species showed slightly higher environment-gene-content partial correlations than environmental species, the opposite of the predicted direction.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecotype-env-null-finding
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: 1. Clinical bias does NOT explain the weak environment signal (H0 not rejected)
+    quote: 'The result is the **opposite direction** from the hypothesis: human-associated species actually show slightly higher partial correlations.'
+    notebook: 01_environmental_only_reanalysis.ipynb
+- id: stmt:ecotype-continuous-spearman-finding
+  kind: finding
+  text: 'A continuous Spearman analysis confirmed the null result: the fraction of environmental genomes per species does not predict partial-correlation strength (rho=-0.085, p=0.25).'
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:ecotype
+  - entity:alphaearth
+  links:
+    supports:
+    - stmt:ecotype-env-null-finding
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: 1. Clinical bias does NOT explain the weak environment signal (H0 not rejected)
+    quote: 'The continuous Spearman analysis confirms this: fraction of environmental genomes per species does not predict partial correlation strength (rho=-0.085, p=0.25).'
+    notebook: 01_environmental_only_reanalysis.ipynb
+    figure: figures/frac_env_vs_partial_corr.png
+- id: stmt:ecotype-clinical-sampling-bias-finding
+  kind: finding
+  text: Genome-level isolation-source classification of the ecotype species set found 47% majority human-associated and only 21% majority environmental, confirming a strong clinical sampling bias in the AlphaEarth subset.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:isolation-source
+  - entity:alphaearth
+  - entity:env-category
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: 2. 47% of ecotype species are human-associated, only 21% environmental
+    quote: Of 224 species selected for the ecotype analysis (>=20 genomes with AlphaEarth embeddings, >=30% coverage), 106 (47%) are majority human-associated by genome-level isolation_source classification, 47 (21%) are majority environmental (Soil, Marine, Freshwater, Extreme, Plant), and 71 (32%) are mixed/other.
+    notebook: 01_environmental_only_reanalysis.ipynb
+    figure: figures/species_classification.png
+- id: stmt:ecotype-bias-no-confound-claim
+  kind: claim
+  text: The clinical sampling bias in the AlphaEarth subset, while real and significant for embedding-based analyses, does not account for or confound the weak environment-gene-content relationship in the ecotype analysis.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:alphaearth
+  - entity:isolation-source
+  - entity:ecotype
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecotype-clinical-sampling-bias-finding
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: It demonstrates that the clinical sampling bias in AlphaEarth, while real and significant for embedding-based analyses, does not confound the ecotype environment–gene content relationship.
+- id: stmt:ecotype-genome-level-classification-finding
+  kind: finding
+  text: Using a systematic genome-level harmonized isolation-source classification rather than coarse species-level manual assignment reproduced the prior null result (p=0.83 vs the original p=0.66) for the environment-versus-host comparison.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:isolation-source
+  - entity:env-category
+  links:
+    supports:
+    - stmt:ecotype-env-null-finding
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: Our reanalysis with genome-level harmonized classifications confirms this null result (p=0.83) with a more systematic classification scheme.
+- id: stmt:ecotype-embedding-ecology-claim
+  kind: claim
+  text: AlphaEarth embedding similarity may not equate to ecological relevance, since the environmental variation it captures (climate, vegetation, land use) may not strongly predict which genes a bacterium carries.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:alphaearth
+  - entity:ecotype
+  links:
+    supports:
+    - stmt:ecotype-env-null-finding
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: Why the hypothesis was wrong
+    quote: '**Embedding similarity ≠ ecological relevance**: Environmental embeddings are more geographically differentiated, but the environmental variation they capture (climate, vegetation, land use) may not strongly predict which genes a bacterium has.'
+- id: stmt:ecotype-clinical-geographic-structure-claim
+  kind: claim
+  text: Human-associated pathogens may exhibit real geographic structure from global epidemiological patterns, producing environment-gene-content associations that are epidemiological rather than ecological.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:alphaearth
+  - entity:isolation-source
+  links:
+    supports:
+    - stmt:ecotype-opposite-direction-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: Why the hypothesis was wrong
+    quote: The AlphaEarth embeddings may capture these regional patterns, creating environment–gene content associations that are real but epidemiological rather than ecological.
+- id: stmt:ecotype-nan-bias-caveat
+  kind: caveat
+  text: Environmental species lose more species to NaN partial correlations (21%) than human-associated species (7%), which could bias the comparison but would only strengthen the null result given the observed direction.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecotype-env-null-finding
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: 3. NaN species are disproportionately environmental, not human-associated
+    quote: This means the environmental group loses more species to NaN, which could slightly bias the comparison — but since human-associated species already show higher correlations even with this bias, addressing it would only strengthen the null result.
+    notebook: 01_environmental_only_reanalysis.ipynb
+- id: stmt:ecotype-27x-discrepancy-caveat
+  kind: caveat
+  text: Median partial correlations in this reanalysis are 27x higher than the original ecotype analysis (0.081 vs 0.003) because of the absence of downsampling, so absolute magnitudes are not comparable even though the group comparison remains valid.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:downsampling
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecotype-env-null-finding
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: 4. Overall partial correlations are 27x higher than the original analysis
+    quote: The median partial correlation across all 183 species is 0.081 — compared to 0.003 in the original ecotype analysis.
+    notebook: 01_environmental_only_reanalysis.ipynb
+- id: stmt:ecotype-kpneumoniae-excluded-caveat
+  kind: caveat
+  text: Klebsiella pneumoniae, a major clinical species, was excluded because it exceeded Spark's maxResultSize during gene-cluster extraction and has no correlation data.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:klebsiella-pneumoniae
+  - entity:ecotype
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**K. pneumoniae excluded**: This major clinical species exceeded Spark''s maxResultSize during gene cluster extraction and has no correlation data.'
+- id: stmt:ecotype-gene-subset-opportunity
+  kind: opportunity
+  text: Environment may act on specific functional gene categories (transport, secondary metabolism) rather than whole-genome Jaccard distance, motivating targeted gene-subset tests.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:metabolic-pathways
+  entities:
+  - entity:ecotype
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Test specific gene subsets**: Environment may act on specific functional categories (transport, secondary metabolism) rather than the whole genome Jaccard distance'
+- id: stmt:ecotype-envo-ontology-opportunity
+  kind: opportunity
+  text: Repeating the classification with structured ENVO ontology terms from the env_broad_scale field may classify environments more accurately than keyword-based isolation-source harmonization.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype
+  - entity:envo-ontology
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ecotype_env_reanalysis
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Repeat with ENVO ontology terms**: The `env_broad_scale` field provides structured ENVO terms that may classify environments more accurately'

@@ -1,0 +1,355 @@
+project:
+  id: prophage_ecology
+  title: 'Report: Prophage Gene Modules and Terminase-Defined Lineages Across Bacterial Phylogeny and Environmental Gradients'
+statements:
+- id: stmt:prophage-modules-universal
+  kind: finding
+  text: All 27,702 bacterial species in the BERDL pangenome carry prophage-associated gene clusters, with packaging, lysis, and lysogenic-regulation modules near-universal while head, tail, and anti-defense modules are structurally variable.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:prophage-gene-modules
+  - entity:berdl-pangenome
+  - entity:eggnog-annotations
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 1. Prophage gene modules are universal but structurally variable across 27,702 bacterial species
+    quote: 'All 27,702 species in the BERDL pangenome carry prophage-associated gene clusters, with 4,005,537 total prophage gene clusters identified via eggNOG annotations. Three modules are near-universal: packaging (A, 100%), lysis (D, 99.9%), and lysogenic regulation (F, 100%). The structurally variable modules — head morphogenesis (B, 56.1%), tail (C, 55.6%), and anti-defense (G, 64.3%) — show the most phylogenetic and environmental variation. 34.9% of species carry all 7 modules.'
+    asset: figures/prophage_prevalence_by_phylum.png
+- id: stmt:universal-modules-domesticated-remnants
+  kind: claim
+  text: The near-universal packaging, lysis, and regulatory modules likely include many domesticated prophage remnants under purifying selection, so the structurally variable modules are more informative for prophage ecology.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:domesticated-prophages
+  - entity:prophage-gene-modules
+  - entity:purifying-selection
+  links:
+    supports:
+    - stmt:prophage-modules-universal
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 1. Prophage gene modules are universal but structurally variable across 27,702 bacterial species
+    quote: Modules A, D, and F likely include many "domesticated" prophage remnants (Bobay et al. 2014) — defective prophages under purifying selection that retain packaging, lysis, and regulatory genes. The structurally variable modules (B, C, G) are more informative for understanding prophage ecology because their presence indicates more complete prophage elements.
+- id: stmt:environment-over-phylogeny
+  kind: finding
+  text: Environment explains substantially more variance in prophage module composition than host phylogeny, with PERMANOVA effect sizes of F=30.04 for environment versus F=6.17 for phylogeny.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:permanova
+  - entity:prophage-module-composition
+  - entity:host-phylogeny
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 2. Environment explains more variance in prophage composition than host phylogeny
+    quote: 'PERMANOVA on Bray-Curtis distances of prophage module composition (n=1,773 species subsample, 99 permutations) reveals that all three predictors are significant (p=0.01), but with strikingly different effect sizes:'
+    asset: figures/variance_partitioning.png
+- id: stmt:genome-size-dominant-env-robust
+  kind: finding
+  text: Genome size is the single dominant predictor of prophage burden, yet environment still significantly affects prophage module count within each genome size quartile, showing the environmental signal is not a genome size artifact.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:pangenome-architecture
+  entities:
+  - entity:genome-size
+  - entity:prophage-burden
+  - entity:environment-gradient
+  links:
+    supports:
+    - stmt:environment-over-phylogeny
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 2. Environment explains more variance in prophage composition than host phylogeny
+    quote: Genome size is the dominant predictor (rho=0.717 with prophage cluster count), followed by environment, then phylogeny. However, Kruskal-Wallis tests within each genome size quartile confirm that environment significantly affects prophage module count even after stratification (all p < 6.5e-78), demonstrating that the environmental signal is not a genome size artifact.
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 2. Environment explains more variance in prophage composition than host phylogeny
+    quote: AlphaEarth environmental embedding analysis (2,008 species with ≥5 embedded genomes) confirms a strong partial correlation between environmental niche breadth and prophage module count after controlling for genome size (partial Spearman rho=0.468, p=8.41e-110).
+- id: stmt:structural-antidefense-human-enriched
+  kind: finding
+  text: Constrained permutation null models identify eight significant module-by-environment enrichments, with tail, head morphogenesis, and anti-defense modules enriched in human-associated bacteria beyond phylogenetic expectation.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:anti-defense-module
+  - entity:human-associated-environment
+  - entity:null-model-permutation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 3. Tail, head, and anti-defense modules are enriched in human-associated environments beyond phylogenetic expectation
+    quote: 'Constrained permutation null models (500 permutations preserving host family × genome size quartile strata across 18,031 species) identify 8 significant module × environment enrichments (FDR < 0.05):'
+    asset: figures/module_environment_enrichment.png
+- id: stmt:antidefense-arms-race-human-niche
+  kind: claim
+  text: Anti-defense module depletion in freshwater and animal-associated environments alongside enrichment in human-associated niches suggests host-phage coevolutionary arms races are most intense where bacterial immune systems are under stronger selection.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:microbiome-engineering
+  entities:
+  - entity:anti-defense-module
+  - entity:crispr-cas
+  - entity:coevolution
+  links:
+    supports:
+    - stmt:structural-antidefense-human-enriched
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 3. Tail, head, and anti-defense modules are enriched in human-associated environments beyond phylogenetic expectation
+    quote: The anti-defense module depletion in freshwater and animal-associated environments suggests that host-phage coevolutionary arms races are most intense in human-associated niches, where bacterial immune systems (CRISPR-Cas, restriction-modification) are under stronger selection (Bernheim & Sorek 2020).
+- id: stmt:terL-lineages-phylo-constrained
+  kind: finding
+  text: TerL terminase clustering yields 10,991 lineages whose ecology largely mirrors host ecology, with no individual lineage showing environment-specific enrichment beyond phylogenetic expectation but a mix of 325 specialist and 499 generalist lineages.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:environment-biogeography
+  entities:
+  - entity:terl-lineages
+  - entity:mmseqs2-clustering
+  - entity:specialist-generalist-lineages
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 4. TerL lineages are phylogenetically constrained but include both specialist and generalist strategies
+    quote: MMseqs2 clustering of 38,085 TerL sequences at 70% AAI yields 10,991 lineages, with a highly skewed size distribution (median=1, max=1,094 across 869 species). Threshold sensitivity analysis shows lineage count scaling from 4,001 (50% AAI) to 16,283 (80% AAI).
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 4. TerL lineages are phylogenetically constrained but include both specialist and generalist strategies
+    quote: No individual TerL lineage showed significant environment-specific enrichment after FDR correction (0/500 tests), indicating that lineage-level environmental adaptation does not exceed what host phylogeny predicts.
+    asset: figures/lineage_environment_heatmap.png
+- id: stmt:nmdc-validates-module-signal
+  kind: finding
+  text: Taxonomy-based inference of prophage burden across 6,365 NMDC metagenomic samples reveals 57 significant module-abiotic correlations, with head morphogenesis, tail, and anti-defense modules concordant between pangenome enrichment and metagenomic signal.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:nmdc-metagenomes
+  - entity:abiotic-variables
+  - entity:prophage-burden
+  links:
+    supports:
+    - stmt:environment-over-phylogeny
+    - stmt:structural-antidefense-human-enriched
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 5. NMDC metagenomic data independently validates module-level environmental signal
+    quote: 'Taxonomy-based inference of prophage burden across 6,365 NMDC metagenomic samples (87.2% median matching coverage) reveals 57 significant module-abiotic correlations (FDR < 0.05). The strongest correlations:'
+    asset: figures/nmdc_module_abiotic_heatmap.png
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: 5. NMDC metagenomic data independently validates module-level environmental signal
+    quote: 'Cross-validation between pangenome enrichment and NMDC correlations shows concordance: **B_head_morphogenesis, C_tail, and G_anti_defense are significant in both analyses**.'
+- id: stmt:ph-temperature-prophage-burden
+  kind: claim
+  text: Prophage burden inferred from NMDC samples correlates positively with pH and temperature, with the alkaline-pH association consistent with pH-sensitive stress-induced prophage induction.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:ph-gradient
+  - entity:lysogeny
+  - entity:prophage-induction
+  links:
+    supports:
+    - stmt:nmdc-validates-module-signal
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: NMDC Cross-Validation (NB05)
+    quote: The positive correlation with pH (rho=0.519 for packaging, 0.474 overall) is notable — alkaline environments may favor lysogeny, consistent with stress-induced prophage induction being pH-sensitive.
+- id: stmt:core-modules-cooccur-backbone
+  kind: finding
+  text: Co-occurrence testing across 15 phylogenetically stratified species confirms that core packaging, lysis, and lysogenic-regulation modules cluster on the same contigs as physically linked functional units, whereas integration genes explicitly do not co-occur.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:module-cooccurrence
+  - entity:contig-colocalization
+  - entity:integrase-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: Module Co-occurrence Validation (NB03)
+    quote: The three core modules (A, D, F) show strong co-occurrence and high contig co-localization, consistent with their role as physically linked prophage functional units. Integration (E) genes explicitly do NOT co-occur — this is biologically expected, as integrases are distributed at different genomic insertion sites and many are domesticated remnants.
+    asset: figures/module_cooccurrence_heatmap.png
+- id: stmt:two-tier-prophage-organization
+  kind: claim
+  text: Module-level and lineage-level prophage ecology are decoupled, with modules showing environment effects beyond phylogeny while lineages do not, supporting modular exchange rather than whole-phage adaptation to environments.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:prophage-modularity
+  - entity:core-backbone
+  - entity:accessory-functions
+  links:
+    supports:
+    - stmt:core-modules-cooccur-backbone
+    - stmt:terL-lineages-phylo-constrained
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: '**Module-level and lineage-level ecology are decoupled** — modules show environment effects beyond phylogeny, but lineages do not, suggesting modular exchange rather than whole-phage adaptation to environments'
+- id: stmt:caveat-annotation-based-detection
+  kind: caveat
+  text: Prophages were identified from eggNOG functional annotations rather than dedicated prophage detection tools, likely inflating prevalence by including domesticated remnants and bacterial homologs with an uncharacterized false positive rate.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:functional-dark-matter
+  entities:
+  - entity:eggnog-annotations
+  - entity:prophage-detection
+  - entity:false-positives
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:prophage-modules-universal
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Annotation-based prophage identification**: We use eggNOG functional annotations as proxies for prophage genes, not dedicated prophage detection tools (e.g., geNomad, VIBRANT). This likely inflates prophage prevalence by including domesticated remnants and bacterial homologs of phage genes (e.g., bacterial integrases). The false positive rate is uncharacterized.'
+- id: stmt:caveat-genome-size-confound
+  kind: caveat
+  text: Because genome size is the dominant predictor of prophage burden, residual confounding cannot be fully excluded despite stratification and partial correlations, since larger genomes carry more genes of all types.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:environment-biogeography
+  entities:
+  - entity:genome-size
+  - entity:prophage-burden
+  - entity:confounding
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:genome-size-dominant-env-robust
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Genome size confound**: Genome size is the dominant predictor of prophage burden (rho=0.717), and while we control for it via stratification and partial correlations, residual confounding cannot be excluded. Larger genomes have more genes of all types, not just prophage genes.'
+- id: stmt:caveat-nmdc-indirect-inference
+  kind: caveat
+  text: The NMDC validation is indirect because taxonomy-based prophage burden inference assumes genus-level conservation of prophage content, which may not hold for recently acquired or lost prophages.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:nmdc-metagenomes
+  - entity:taxonomy-inference
+  - entity:prophage-burden
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:nmdc-validates-module-signal
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**NMDC inference is indirect**: Taxonomy-based prophage burden inference assumes genus-level conservation of prophage content, which may not hold for recently acquired or lost prophages.'
+- id: stmt:opportunity-dedicated-detection-tools
+  kind: opportunity
+  text: Running geNomad or VIBRANT on representative genomes would estimate false positive and negative rates of the annotation-based approach and calibrate the module prevalence estimates.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:functional-dark-matter
+  entities:
+  - entity:genomad
+  - entity:vibrant
+  - entity:prophage-detection
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:caveat-annotation-based-detection
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Validate with dedicated prophage detection tools**: Run geNomad or VIBRANT on representative genomes to estimate false positive/negative rates of the annotation-based approach and calibrate module prevalence estimates.'
+- id: stmt:opportunity-induction-signal-crossref
+  kind: opportunity
+  text: Cross-referencing environment-enriched modules with known prophage induction triggers such as the SOS response, pH stress, and temperature shifts could mechanistically explain the pH and temperature correlations observed in NMDC data.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:prophage-induction
+  - entity:sos-response
+  - entity:abiotic-variables
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ph-temperature-prophage-burden
+  evidence:
+  - source_project: prophage_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Prophage induction signals**: Cross-reference environment-enriched modules with known prophage induction triggers (SOS response, pH stress, temperature shifts) to mechanistically explain the pH and temperature correlations observed in NMDC data.'

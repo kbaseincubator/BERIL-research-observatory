@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:cofitness-not-coregulation",
+    "stmt:fb-organism-bias",
+    "stmt:dispensability-confound",
+    "stmt:annotation-methodological-requirement",
+    "stmt:amr-modules-conserved",
+    "stmt:regulatory-architecture-robust",
+    "stmt:pan-bacterial-first-mapping",
+    "stmt:flagellar-biosynthesis-enrichment",
+    "stmt:organism-specific-networks",
+    "stmt:network-size-no-fitness-cost",
+    "stmt:amr-larger-modules",
+    "stmt:annotation-quality-critical",
+    "stmt:fitness-matched-permutation-opportunity",
+    "stmt:condition-specific-cofitness-opportunity"
+  ],
+  "member_hash": "hash:0d96a3f6e13643dc",
+  "model": "haiku",
+  "page_id": "project:amr_cofitness_networks",
+  "page_plan_hash": "hash:b0c74bb9ed881e9b",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:0d96a3f6e13643dc",
+    "lead": "hash:0d96a3f6e13643dc"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

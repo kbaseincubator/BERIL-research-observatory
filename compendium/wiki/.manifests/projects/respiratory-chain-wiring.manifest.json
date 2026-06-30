@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-stoichiometry-theoretical",
+    "stmt:caveat-ndh2-no-growth-data",
+    "stmt:caveat-ndh2-false-positives",
+    "stmt:wiring-pattern-may-be-species-specific",
+    "stmt:rate-vs-yield-principle",
+    "stmt:three-parallel-nadh-dehydrogenases",
+    "stmt:condition-specific-respiratory-wiring",
+    "stmt:cross-species-ndh2-compensation-not-supported",
+    "stmt:respiratory-wiring-is-metabolic-not-transcriptional",
+    "stmt:fba-misses-capacity-constraints",
+    "stmt:ndh2-core-genome",
+    "stmt:quinate-complex-i-paradox-flux-rate",
+    "stmt:opportunity-ndh2-deletion-mutant",
+    "stmt:opportunity-pangenome-ko-cooccurrence"
+  ],
+  "member_hash": "hash:06f3ee9619cfdd6e",
+  "model": "haiku",
+  "page_id": "project:respiratory_chain_wiring",
+  "page_plan_hash": "hash:8cedb0ab9cfba96f",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:06f3ee9619cfdd6e",
+    "lead": "hash:06f3ee9619cfdd6e"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

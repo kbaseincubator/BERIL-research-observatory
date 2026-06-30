@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:gapmind-multirow-pitfall",
+    "stmt:low-data-coverage-caveat",
+    "stmt:unacknowledged-confounders-caveat",
+    "stmt:accessory-genes-metabolic-heterogeneity",
+    "stmt:ecology-beats-geography",
+    "stmt:pangenome-flexibility-adaptation",
+    "stmt:core-fraction-negative-niche",
+    "stmt:three-hypotheses-supported",
+    "stmt:niche-breadth-pathway-strongest",
+    "stmt:embedding-variance-best-metric",
+    "stmt:pangenome-niche-breadth",
+    "stmt:pangenome-pathway-weak",
+    "stmt:genome-count-control-opportunity",
+    "stmt:three-stage-aggregation-opportunity"
+  ],
+  "member_hash": "hash:8ecc3353dc3f3a0b",
+  "model": "haiku",
+  "page_id": "project:pangenome_pathway_geography",
+  "page_plan_hash": "hash:9e1e97d1a045fa6f",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:8ecc3353dc3f3a0b",
+    "lead": "hash:8ecc3353dc3f3a0b"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,314 @@
+project:
+  id: counter_ion_effects
+  title: 'Report: Counter Ion Effects on Metal Fitness Measurements'
+statements:
+- id: stmt:metal-nacl-overlap
+  kind: finding
+  text: Across 19 organisms and 14 metals, 39.8% (4,304/10,821) of metal-important gene fitness records are also important under NaCl stress, indicating substantial shared stress biology between metal and osmotic/ionic stress.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:fitness-browser
+  - entity:rb-tnseq
+  - entity:nacl-stress
+  - entity:metal-fitness
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: 1. 39.8% of Metal-Important Genes Are Also NaCl-Important
+    quote: Across 19 organisms and 14 metals (86 organism × metal pairs), 4,304 of 10,821 metal-important gene records (39.8%) are also important under NaCl stress.
+    notebook: 02_metal_nacl_overlap.ipynb
+    figure: figures/nacl_metal_overlap_heatmap.png
+- id: stmt:counter-ions-not-driver
+  kind: finding
+  text: Zinc sulfate (zero chloride) shows higher NaCl overlap (44.6%) than most chloride-delivered metals, so the metal-NaCl overlap does not scale with chloride delivered by the metal salt.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:zinc-sulfate
+  - entity:counter-ion
+  - entity:chloride
+  - entity:metal-fitness
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: 2. Counter Ions Are NOT the Primary Driver of the Overlap
+    quote: Zinc sulfate (0 mM Cl⁻) shows 44.6% NaCl overlap — higher than most chloride-delivered metals including cobalt (41.3%, up to 500 mM Cl⁻), copper (41.0%), and nickel (39.3%).
+    notebook: 02_metal_nacl_overlap.ipynb
+    figure: figures/metal_nacl_overlap_by_counter_ion.png
+- id: stmt:shared-stress-biology
+  kind: claim
+  text: The metal-NaCl gene overlap reflects shared stress biology—cell envelope damage, ion homeostasis disruption, and general stress response—rather than chloride counter ions.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:shared-stress-response
+  - entity:ion-homeostasis
+  - entity:cell-envelope
+  - entity:counter-ion
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:counter-ions-not-driver
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: 2. Counter Ions Are NOT the Primary Driver of the Overlap
+    quote: The overlap is driven by shared stress biology — cell envelope damage, ion homeostasis disruption, and general stress response — not by chloride counter ions.
+- id: stmt:toxicity-hierarchy
+  kind: finding
+  text: In DvH, the metal-NaCl whole-genome fitness correlation hierarchy follows toxicity mechanism rather than chloride dose, with zinc (delivered as sulfate, zero chloride) ranking first.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:dvh
+  - entity:metal-toxicity
+  - entity:zinc-sulfate
+  - entity:fitness-correlation
+  links:
+    supports:
+    - stmt:counter-ions-not-driver
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: 3. DvH Metal-NaCl Correlation Follows Toxicity Mechanism, Not Chloride Dose
+    quote: This hierarchy does not follow Cl⁻ concentration (zinc is delivered as sulfate with zero Cl⁻ but ranks first). Instead, it follows toxicity mechanism
+    notebook: 02_metal_nacl_overlap.ipynb
+    figure: figures/dvh_nacl_metal_correlation.png
+- id: stmt:iron-pathway-specific
+  kind: finding
+  text: Iron stands apart from other metals (NaCl correlation r=0.086) because iron limitation affects specific Fe-dependent enzymes rather than causing general cellular damage.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:metabolic-pathways
+  entities:
+  - entity:iron
+  - entity:metal-toxicity
+  - entity:iron-sulfur-clusters
+  - entity:dvh
+  links:
+    supports:
+    - stmt:toxicity-hierarchy
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: A Metal Toxicity Hierarchy Emerges
+    quote: Iron stands apart (r=0.086) because iron limitation affects specific Fe-dependent enzymes rather than causing general cellular damage.
+- id: stmt:atlas-core-robust
+  kind: finding
+  text: After removing the ~40% shared-stress genes and restricting to metal-specific genes, core genome enrichment is fully preserved for 12 of 14 metals, so the Metal Fitness Atlas core enrichment is not an artifact of shared stress response.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:pangenome-architecture
+  entities:
+  - entity:metal-fitness-atlas
+  - entity:core-genome
+  - entity:metal-specific-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: 4. Metal Fitness Atlas Core Enrichment Is Robust After Correction
+    quote: After removing the ~40% shared-stress genes and restricting to metal-specific genes, the core genome enrichment is fully preserved for 12 of 14 metals.
+    notebook: 04_corrected_atlas.ipynb
+    figure: figures/atlas_original_vs_corrected.png
+- id: stmt:atlas-validated
+  kind: claim
+  text: Researchers using the Metal Fitness Atlas do not need to filter out NaCl-responsive genes, because the atlas core-enrichment conclusions are robust to removing shared-stress genes.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:pangenome-architecture
+  entities:
+  - entity:metal-fitness-atlas
+  - entity:core-genome
+  - entity:nacl-stress
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:atlas-core-robust
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: The Metal Fitness Atlas Is Validated
+    quote: 'The practical implication: researchers using the Metal Fitness Atlas do not need to filter out NaCl-responsive genes. The atlas conclusions are robust.'
+- id: stmt:metal-specific-fraction
+  kind: finding
+  text: Across all organisms, 60.2% (6,517/10,821) of metal-important gene records are metal-specific—important for metals but not NaCl—while the remaining shared-stress genes tend to be important across more metals.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:metal-specific-genes
+  - entity:shared-stress-response
+  - entity:gene-classification
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: '5. Gene Classification: 60% of Metal Fitness Genes Are Metal-Specific'
+    quote: Across all organisms, 6,517 of 10,821 metal-important gene records (60.2%) are classified as metal-specific (important for metals but not NaCl).
+    notebook: 03_profile_decomposition.ipynb
+    figure: figures/gene_classification_by_metal.png
+- id: stmt:shared-genes-uncharacterized
+  kind: finding
+  text: In DvH, metal-specific genes are more functionally annotated (90.5% with SEED annotations) than shared-stress genes (78.1%), suggesting shared-stress genes include more uncharacterized general stress proteins.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:dvh
+  - entity:seed-annotations
+  - entity:metal-specific-genes
+  - entity:shared-stress-response
+  links:
+    supports:
+    - stmt:metal-specific-fraction
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: '5. Gene Classification: 60% of Metal Fitness Genes Are Metal-Specific'
+    quote: In DvH, metal-specific genes are more functionally annotated (90.5% have SEED annotations) than shared-stress genes (78.1%), suggesting that the metal-specific set includes well-characterized metal homeostasis functions (Ni/Fe-hydrogenase, nitrogenase regulators, metal transporters) while shared-stress genes include more uncharacterized general stress proteins.
+    notebook: 03_profile_decomposition.ipynb
+- id: stmt:psrch2-confounded
+  kind: caveat
+  text: The only within-metal counter ion comparison (psRCH2 CuCl2 vs CuSO4) is severely confounded by aerobic/anaerobic growth, with hundreds of genes differing between conditions independent of copper.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:psrch2
+  - entity:copper
+  - entity:counter-ion
+  - entity:aerobic-anaerobic
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: '6. psRCH2: The Only Within-Metal Counter Ion Comparison'
+    quote: However, this comparison is severely confounded by aerobic/anaerobic growth — hundreds of genes differ between these conditions independent of copper.
+    notebook: 05_psrch2_comparison.ipynb
+    figure: figures/psrch2_copper_comparison.png
+- id: stmt:nacl-not-pure-chloride
+  kind: caveat
+  text: NaCl is not a pure chloride control because it delivers both sodium and chloride, so the NaCl fitness profile includes sodium toxicity and osmotic stress effects beyond chloride.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:nacl-stress
+  - entity:chloride
+  - entity:osmotic-stress
+  - entity:counter-ion
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: NaCl delivers both Na⁺ and Cl⁻. The NaCl fitness profile includes sodium toxicity and osmotic stress effects beyond just chloride.
+- id: stmt:single-organism-metals
+  kind: caveat
+  text: Seven metals (manganese, cadmium, selenium, mercury, iron, molybdenum, tungsten) are tested in only one organism (DvH), so their overlap statistics lack cross-organism replication.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:dvh
+  - entity:metal-fitness
+  - entity:replication
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Manganese, cadmium, selenium, mercury, iron, molybdenum, and tungsten are tested in only 1 organism (DvH). Their overlap statistics have no cross-organism replication.
+- id: stmt:choline-chloride-control
+  kind: opportunity
+  text: Comparing metal overlap against choline chloride experiments, which provide chloride without sodium or osmotic effects, would separate chloride from osmotic confounding.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:choline-chloride
+  - entity:chloride
+  - entity:osmotic-stress
+  - entity:counter-ion
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:nacl-not-pure-chloride
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Several FB organisms have choline chloride experiments (ChCl provides Cl⁻ without Na⁺/osmotic effects). Comparing metal-ChCl overlap vs metal-NaCl overlap would separate chloride from osmotic confounding.
+- id: stmt:matched-salt-experiment
+  kind: opportunity
+  text: Running RB-TnSeq with matched metal chloride and metal sulfate concentrations in a single organism under identical growth conditions would definitively resolve counter ion effects by eliminating the aerobic/anaerobic confound.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:rb-tnseq
+  - entity:counter-ion
+  - entity:metal-fitness
+  - entity:experimental-validation
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:psrch2-confounded
+  evidence:
+  - source_project: counter_ion_effects
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: The most impactful follow-up would be running RB-TnSeq with matched metal chloride and metal sulfate concentrations in a single organism under identical growth conditions, eliminating the aerobic/anaerobic confound that limits the psRCH2 comparison.

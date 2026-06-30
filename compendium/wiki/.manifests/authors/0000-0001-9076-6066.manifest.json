@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:data-scale-genomes-species",
+    "stmt:novel-genus-scale-quantification",
+    "stmt:sugar-pathway-loss-host-associated",
+    "stmt:plant-sugar-pathways-lost",
+    "stmt:amino-acid-pathways-retained",
+    "stmt:aeruginosa-fluorescens-split-dominates",
+    "stmt:free-living-greater-richness",
+    "stmt:carbon-profiles-environment-signal",
+    "stmt:random-forest-modest-accuracy",
+    "stmt:ancestral-streamlining-claim",
+    "stmt:opportunity-within-species-ecotypes",
+    "stmt:caveat-gapmind-resolution",
+    "stmt:opportunity-fitness-browser-validation",
+    "stmt:caveat-sampling-bias",
+    "stmt:caveat-phylogenetic-confounding"
+  ],
+  "member_hash": "hash:9cc16e97856cbdbc",
+  "model": "sonnet",
+  "page_id": "author:0000-0001-9076-6066",
+  "page_plan_hash": "hash:f06d5fd8f0fa5a7e",
+  "page_type": "author",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:9cc16e97856cbdbc",
+    "projects": "hash:9cc16e97856cbdbc",
+    "topics": "hash:9cc16e97856cbdbc"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

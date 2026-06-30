@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-species-name-matching",
+    "stmt:caveat-genome-based-scores",
+    "stmt:caveat-h2s-underpowered",
+    "stmt:phylogenetic-confounding-claim",
+    "stmt:fb-validation-urease-concordant",
+    "stmt:catalase-simpsons-paradox",
+    "stmt:phenotypes-add-nothing-beyond-taxonomy",
+    "stmt:urease-reversal",
+    "stmt:gene-content-is-true-predictor",
+    "stmt:gram-negative-higher-tolerance",
+    "stmt:shap-taxonomy-gene-count-dominate",
+    "stmt:seven-of-ten-features-significant",
+    "stmt:anaerobe-aerobe-negligible",
+    "stmt:opportunity-rbtnseq-urease-nickel",
+    "stmt:opportunity-per-metal-analysis"
+  ],
+  "member_hash": "hash:615b430c8cf92cdb",
+  "model": "haiku",
+  "page_id": "project:bacdive_phenotype_metal_tolerance",
+  "page_plan_hash": "hash:7d3495fcd905eb2c",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:615b430c8cf92cdb",
+    "lead": "hash:615b430c8cf92cdb"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,21 @@
+{
+  "cited_statement_ids": [
+    "stmt:ecotype-unknown-mobile-caveat",
+    "stmt:ecotype-adaptive-effect-claim",
+    "stmt:ecotype-functional-differentiation-finding",
+    "stmt:ecotype-functional-widespread-finding"
+  ],
+  "member_hash": "hash:98d1637ecbb73097",
+  "model": "haiku",
+  "page_id": "project:ecotype_functional_differentiation",
+  "page_plan_hash": "hash:af7b3e0494d6197e",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:98d1637ecbb73097",
+    "lead": "hash:98d1637ecbb73097"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,36 @@
+{
+  "cited_statement_ids": [
+    "stmt:planktonic-only-caveat",
+    "stmt:pa14-strain-bias-caveat",
+    "stmt:m-luteus-engraftment-tension",
+    "stmt:metabolic-model-overfits",
+    "stmt:five-organism-formulation",
+    "stmt:formulation-target-invariant",
+    "stmt:neisseria-mucosa-engraftability",
+    "stmt:lag-advantage-precolonization",
+    "stmt:k3-full-niche-coverage",
+    "stmt:metabolic-traits-species-level",
+    "stmt:sugar-alcohol-prebiotics",
+    "stmt:pa-lung-metabolic-streamlining",
+    "stmt:metabolic-overlap-predicts-inhibition",
+    "stmt:no-single-organism-outgrows-pa14",
+    "stmt:no-selective-amino-acid-prebiotic",
+    "stmt:pa14-not-representative-cf",
+    "stmt:anchor-species-lung-adapted",
+    "stmt:sugar-alcohol-validation-opportunity",
+    "stmt:pairwise-interaction-gap"
+  ],
+  "member_hash": "hash:e24e3c54a5124cfa",
+  "model": "haiku",
+  "page_id": "project:cf_formulation_design",
+  "page_plan_hash": "hash:6df3708e2e62eea0",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:e24e3c54a5124cfa",
+    "lead": "hash:e24e3c54a5124cfa"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

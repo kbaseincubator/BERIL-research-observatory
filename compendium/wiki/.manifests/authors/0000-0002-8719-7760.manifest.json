@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:latent-capability-fraction",
+    "stmt:carbon-vs-aa-latency",
+    "stmt:novel-latent-fraction-quantification",
+    "stmt:latent-fraction-threshold-robust",
+    "stmt:pathway-conservation-undifferentiated",
+    "stmt:openness-correlates-latent-rate",
+    "stmt:black-queen-genome-dynamics-level",
+    "stmt:metabolic-ecotypes-widespread",
+    "stmt:ecotypes-environment-linked-copiotrophs",
+    "stmt:taxid-matching-failed-caveat",
+    "stmt:h2b-non-independence-caveat",
+    "stmt:gene-level-conservation-opportunity",
+    "stmt:longitudinal-gene-loss-opportunity"
+  ],
+  "member_hash": "hash:0ee880b477d23064",
+  "model": "sonnet",
+  "page_id": "author:0000-0002-8719-7760",
+  "page_plan_hash": "hash:1f8b0970585a85c0",
+  "page_type": "author",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:0ee880b477d23064",
+    "projects": "hash:0ee880b477d23064",
+    "topics": "hash:0ee880b477d23064"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

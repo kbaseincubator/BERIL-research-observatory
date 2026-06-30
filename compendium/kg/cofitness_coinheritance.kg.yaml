@@ -1,0 +1,307 @@
+project:
+  id: cofitness_coinheritance
+  title: 'Report: Co-fitness and Co-inheritance in Bacterial Pangenomes'
+statements:
+- id: stmt:cofit-predicts-cooccurrence
+  kind: finding
+  text: Across 9 organisms, co-fit gene pairs show a weak but consistent positive co-occurrence signal, with 7 of 9 organisms showing a positive delta phi and the aggregate signal highly significant.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:cofitness
+  - entity:fitness-browser
+  - entity:pangenome
+  - entity:phi-coefficient
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Pairwise Co-fitness Weakly Predicts Co-occurrence
+    quote: Across 9 organisms with co-fitness data (2.25M cofit pairs vs 22.5M prevalence-matched random pairs), co-fit gene pairs show a weak but consistent positive co-occurrence signal. The mean delta phi (cofit - random) is +0.011 across organisms, with 7 of 9 organisms showing a positive effect and 8 of 9 significant at p<0.05 (Mann-Whitney two-sided).
+    notebook: 02_cooccurrence.ipynb
+    figure: figures/fig1_cofit_cooccurrence.png
+- id: stmt:small-effect-size
+  kind: finding
+  text: The pairwise co-fitness to co-occurrence effect is small in magnitude, indicating lab-measured functional coupling explains only a tiny fraction of co-inheritance patterns.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:cofitness
+  - entity:co-inheritance
+  - entity:phi-coefficient
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cofit-predicts-cooccurrence
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: However, the effect size is small (delta=+0.003 overall, +0.011 mean across organisms), indicating that lab-measured functional coupling explains only a tiny fraction of co-inheritance patterns.
+- id: stmt:modules-stronger-coinheritance
+  kind: finding
+  text: ICA-derived multi-gene modules show a substantially stronger within-module co-inheritance signal than pairwise co-fitness, with 195 modules across 6 organisms exceeding prevalence-matched null expectations.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:ica-modules
+  - entity:co-inheritance
+  - entity:phi-coefficient
+  - entity:fitness-modules
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: ICA Modules Show Co-inheritance, Especially Accessory Modules
+    quote: At the module level, 195 ICA modules across 6 organisms show within-module co-occurrence (mean phi=0.229) significantly exceeding prevalence-matched null expectations (mean phi=0.177, 1000 permutations), with delta=+0.053 and 51/195 modules (26%) significant at p<0.05.
+    notebook: 03_module_coinheritance.ipynb
+    figure: figures/fig5_module_coinheritance.png
+- id: stmt:accessory-modules-strongest
+  kind: finding
+  text: Accessory modules show the strongest co-inheritance signal, with a mean delta phi of +0.108 and 73% significant at p<0.05, exceeding core and mixed modules.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:accessory-genes
+  - entity:ica-modules
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:modules-stronger-coinheritance
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: ICA Modules Show Co-inheritance, Especially Accessory Modules
+    quote: Accessory (<50% core) | 11 | **+0.108** | **8/11 (73%)** | **4/11 (36%)** |
+    notebook: 03_module_coinheritance.ipynb
+- id: stmt:coordinated-regulation-constrains-coinheritance
+  kind: claim
+  text: Coordinated regulation across multiple genes, rather than pairwise functional similarity alone, is what most strongly constrains co-inheritance in bacterial pangenomes.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:ica-modules
+  - entity:co-inheritance
+  - entity:regulation
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:modules-stronger-coinheritance
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: This suggests that coordinated regulation across multiple genes -- not just pairwise functional similarity -- is what most strongly constrains co-inheritance.
+- id: stmt:operons-not-confound
+  kind: finding
+  text: Genomic adjacency (operons) does not confound the co-occurrence signal, since only 0.7% of cofit pairs are adjacent and excluding them does not change the result pattern.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:operon
+  - entity:cofitness
+  - entity:gene-adjacency
+  links:
+    supports:
+    - stmt:cofit-predicts-cooccurrence
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Operons Are Not a Confound
+    quote: Only 0.7% of cofit pairs are genomically adjacent (within 5 genes). Excluding them does not change the result pattern.
+    notebook: 02_cooccurrence.ipynb
+    figure: figures/fig2_operon_control.png
+- id: stmt:cofit-strength-anticorrelates
+  kind: finding
+  text: Stronger co-fitness scores weakly predict lower co-occurrence phi, likely because the strongest co-fitness pairs are near-universal core genes with little variance for co-occurrence detection.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:cofitness
+  - entity:core-genome
+  - entity:phi-coefficient
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Co-fitness Strength Weakly Anti-correlates with Co-occurrence
+    quote: Stronger co-fitness scores weakly predict *lower* phi (Spearman rho=-0.109, p<1e-300 across 1.04M pairs). This likely reflects that the strongest co-fitness pairs are core genes with near-universal prevalence, leaving little variance for co-occurrence detection -- a prevalence ceiling effect.
+    notebook: 02_cooccurrence.ipynb
+    figure: figures/fig4_cofit_strength.png
+- id: stmt:prevalence-ceiling-caveat
+  kind: caveat
+  text: A prevalence ceiling limits the analysis because most Fitness Browser genes map to core clusters above 95% prevalence, where phi approaches zero for both cofit and random pairs due to negligible presence/absence variance.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:fitness-browser
+  - entity:prevalence
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:small-effect-size
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Prevalence ceiling**: Most FB genes map to core clusters (>95% prevalence). At high prevalence, phi approaches 0 for both cofit and random pairs because there is almost no variance to correlate. The analysis is most informative for species with substantial auxiliary gene content.'
+- id: stmt:ralstonia-excluded-caveat
+  kind: caveat
+  text: The two most phylogenetically diverse Ralstonia organisms have zero co-fitness data in the Fitness Browser, excluding the species that would likely be most informative.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ralstonia
+  - entity:fitness-browser
+  - entity:cofitness
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Ralstonia excluded**: The two Ralstonia organisms (most phylogenetically diverse, lowest ANI) have zero co-fitness data in the Fitness Browser, excluding the species that would likely be most informative.'
+- id: stmt:phylogenetic-control-caveat
+  kind: caveat
+  text: Phylogenetic distance stratification is limited to near and medium strata because most species lack genomes in the far stratum, constraining the ability to fully disentangle functional coupling from shared-ancestry signal.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:phylogenetic-distance
+  - entity:co-inheritance
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cofit-predicts-cooccurrence
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Phylogenetic Distance Stratification
+    quote: Cofit pair phi is higher among near genomes (mean=0.102) than medium genomes (mean=0.067), as expected from shared ancestry. Most species lack genomes in the "far" stratum (>0.05 branch distance), limiting the ability to fully disentangle functional coupling from phylogenetic signal.
+    notebook: 02_cooccurrence.ipynb
+    figure: figures/fig3_phylo_control.png
+- id: stmt:functional-enrichment-metabolism
+  kind: finding
+  text: Among high-phi and high-cofit gene pairs, the most common SEED functional categories are metabolism, transport, and regulation.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:seed-annotations
+  - entity:cofitness
+  - entity:metabolism
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Functional Enrichment
+    quote: 'Among high-phi AND high-cofit pairs (top quartile of both), the most common functional categories (SEED annotations) are:'
+    notebook: 04_cross_organism.ipynb
+    figure: figures/fig6_functional.png
+- id: stmt:diverse-species-strongest-signal
+  kind: finding
+  text: Species with more gene-content diversity, such as Ddia6719 and pseudo3_N2E3, show the largest positive co-inheritance deltas, consistent with the prevalence-ceiling explanation.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:gene-content-diversity
+  - entity:co-inheritance
+  - entity:accessory-genes
+  links:
+    supports:
+    - stmt:prevalence-ceiling-caveat
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: Species with more gene content diversity (Ddia6719, pseudo3_N2E3) show the largest positive deltas.
+- id: stmt:auxiliary-only-reanalysis
+  kind: opportunity
+  text: Restricting the analysis to auxiliary-only gene pairs where both clusters are below 95% prevalence could maximize presence/absence variance and improve sensitivity to co-inheritance.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:accessory-genes
+  - entity:prevalence
+  - entity:co-inheritance
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:prevalence-ceiling-caveat
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Restrict to auxiliary-only pairs**: Re-analyze using only gene pairs where both clusters are auxiliary (<95% prevalence) to maximize presence/absence variance.'
+- id: stmt:module-cotransfer-networks
+  kind: opportunity
+  text: Building networks of which modules co-occur across species would allow testing whether co-fitness predicts cross-module co-inheritance.
+  confidence: low
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:ica-modules
+  - entity:co-inheritance
+  - entity:cofitness
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:modules-stronger-coinheritance
+  evidence:
+  - source_project: cofitness_coinheritance
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Module co-transfer networks**: Build networks of which modules co-occur across species and test whether co-fitness predicts cross-module co-inheritance.'

@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-associative-not-causal",
+    "stmt:caveat-threshold-and-null-validation-pending",
+    "stmt:caveat-node4915-blast-pending",
+    "stmt:hgt-conjugative-transfer-claim",
+    "stmt:distinct-from-pul-paradigm",
+    "stmt:t4ss-cazy-synteny",
+    "stmt:cazy-pathway-glm",
+    "stmt:t4ss-prevalence-environmental-mags",
+    "stmt:cazy-not-on-plasmids",
+    "stmt:gt2-metal-resistance-link",
+    "stmt:divergence-synteny-anticorrelation",
+    "stmt:node4915-eight-phyla",
+    "stmt:cross-phylum-hgt-events",
+    "stmt:biome-enrichment-marine-rhizosphere",
+    "stmt:opportunity-biome-factorisation",
+    "stmt:opportunity-housekeeping-null-baseline"
+  ],
+  "member_hash": "hash:cb69f33f3b2c901b",
+  "model": "haiku",
+  "page_id": "project:t4ss_cazy_environmental_hgt",
+  "page_plan_hash": "hash:7f80e5d027174447",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:cb69f33f3b2c901b",
+    "lead": "hash:cb69f33f3b2c901b"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

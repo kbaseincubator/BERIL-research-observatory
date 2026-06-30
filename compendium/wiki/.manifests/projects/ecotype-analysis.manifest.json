@@ -1,0 +1,20 @@
+{
+  "cited_statement_ids": [
+    "stmt:ecotype-lifestyle-null-caveat",
+    "stmt:ecotype-gene-subset-claim",
+    "stmt:ecotype-phylogeny-dominance-finding"
+  ],
+  "member_hash": "hash:67a02327e5e056b8",
+  "model": "haiku",
+  "page_id": "project:ecotype_analysis",
+  "page_plan_hash": "hash:9e86070e27fd4a74",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:67a02327e5e056b8",
+    "lead": "hash:67a02327e5e056b8"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

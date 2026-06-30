@@ -1,0 +1,315 @@
+project:
+  id: metabolic_capability_dependency
+  title: 'Report: Metabolic Capability vs Metabolic Dependency'
+statements:
+- id: stmt:latent-capability-fraction
+  kind: finding
+  text: Across 1,695 pathway-organism pairs from 48 organisms, 15.8% of genomically complete pathways were classified as latent capabilities, encoded by the genome but showing no detectable fitness importance under tested conditions.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:gapmind
+  - entity:fitness-browser
+  - entity:latent-capability
+  - entity:metabolic-pathway
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: 'H1 Supported: A Substantial Fraction of Complete Pathways Are Functionally Neutral'
+    quote: 15.8% of genomically complete pathways were classified as latent capabilities
+    notebook: 03_classify_pathway_dependencies.ipynb
+    figure: figures/nb03_stacked_bar.png
+- id: stmt:carbon-vs-aa-latency
+  kind: finding
+  text: Pathway category strongly predicted dependency class, with carbon source utilization pathways most likely to be latent (24.3%) while amino acid biosynthesis pathways were predominantly active (63.5% active, 6.5% latent).
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:gapmind
+  - entity:carbon-utilization
+  - entity:amino-acid-biosynthesis
+  - entity:latent-capability
+  links:
+    supports:
+    - stmt:latent-capability-fraction
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: 'H1 Supported: A Substantial Fraction of Complete Pathways Are Functionally Neutral'
+    quote: Pathway category strongly predicted dependency class (χ²=163.6, df=4, p=2.5×10⁻³⁴). Carbon source utilization pathways were most likely to be latent (24.3% latent, 39.8% active), while amino acid biosynthesis pathways were predominantly active (63.5% active, 6.5% latent).
+    notebook: 03_classify_pathway_dependencies.ipynb
+    figure: figures/nb03_stacked_bar.png
+- id: stmt:latent-fraction-threshold-robust
+  kind: claim
+  text: The latent fraction is moderately sensitive to classification thresholds, ranging from 4.7% to 21.1% across 16 threshold combinations, but the qualitative conclusion that a non-trivial fraction of complete pathways are fitness-neutral holds across the full range tested.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:latent-capability
+  - entity:classification-threshold
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:latent-capability-fraction
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: Classification Thresholds
+    quote: the latent fraction ranged from 4.7% to 21.1% (SD = 5.9 percentage points across 16 threshold combinations). At the default thresholds the result is 15.8%.
+    notebook: 03_classify_pathway_dependencies.ipynb
+- id: stmt:pathway-conservation-undifferentiated
+  kind: finding
+  text: Pathway-level conservation rates did not differ between latent capabilities and active dependencies, so the Black Queen Hypothesis was not supported at the per-pathway conservation level (H2a).
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:black-queen-hypothesis
+  - entity:conservation-rate
+  - entity:latent-capability
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: 'H2 Mixed: Pathway-Level Conservation Undifferentiated; Pangenome Openness Correlated with Latent Rate'
+    quote: Conservation rates (fraction of species genomes carrying a complete pathway) did not differ between latent capabilities and active dependencies
+    notebook: 04_black_queen_test.ipynb
+    figure: figures/nb04_conservation_boxplot.png
+- id: stmt:openness-correlates-latent-rate
+  kind: finding
+  text: After aggregating 41 organisms to 22 unique species clades, the per-clade fraction of latent capabilities correlated positively with pangenome openness (Spearman rho = 0.69, p = 0.0004), supporting the Black Queen framework at the species level (H2b).
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:black-queen-hypothesis
+  - entity:pangenome-openness
+  - entity:latent-capability
+  - entity:species-clade
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: 'H2 Mixed: Pathway-Level Conservation Undifferentiated; Pangenome Openness Correlated with Latent Rate'
+    quote: the fraction of latent capabilities per clade correlated positively with pangenome openness (Spearman ρ = 0.69, p = 0.0004, n = 22 clades). Clades with more fitness-neutral complete pathways tend to have more dynamic, less-conserved pangenomes — consistent with the Black Queen framework at the species level.
+    notebook: 04_black_queen_test.ipynb
+    figure: figures/nb04_openness_scatter.png
+- id: stmt:black-queen-genome-dynamics-level
+  kind: claim
+  text: The contrast between supported clade-level openness and unsupported pathway-level conservation suggests the Black Queen signal operates at the level of genome dynamics and community context rather than in per-pathway cross-genome conservation ratios.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:black-queen-hypothesis
+  - entity:pangenome
+  - entity:conservation-rate
+  links:
+    supports:
+    - stmt:openness-correlates-latent-rate
+    contradicts: []
+    refines:
+    - stmt:pathway-conservation-undifferentiated
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: 'H2: Mixed Results — Pangenome Openness Supports the Black Queen Framework; Pathway Conservation Does Not'
+    quote: This divergence suggests that the Black Queen signal operates at the level of genome dynamics and community context, rather than being detectable in per-pathway cross-genome conservation ratios.
+- id: stmt:metabolic-ecotypes-widespread
+  kind: finding
+  text: All 10 target species with at least 50 genomes and at least 15 variable pathways showed meaningful metabolic clustering (all silhouette scores > 0.2), demonstrating that within-species metabolic pathway heterogeneity is a general feature.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:metabolic-pathways
+  entities:
+  - entity:metabolic-ecotype
+  - entity:pathway-profile
+  - entity:silhouette-score
+  - entity:hierarchical-clustering
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: 'H3 Supported: All Target Species Show Distinct Metabolic Ecotypes'
+    quote: All 10 target species (≥50 genomes, ≥15 variable pathways) showed meaningful metabolic clustering (all silhouette scores > 0.2).
+    notebook: 05_metabolic_ecotypes.ipynb
+    figure: figures/nb05_pca_all_species.png
+- id: stmt:ecotypes-environment-linked-copiotrophs
+  kind: finding
+  text: Metabolic clusters correlated significantly with isolation environment in the copiotrophs Salmonella enterica and Phenylobacterium sp., but not in marine oligotrophs such as Stutzerimonas and Alteromonas.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:metabolic-ecotype
+  - entity:salmonella-enterica
+  - entity:isolation-source
+  - entity:marine-bacteria
+  links:
+    supports:
+    - stmt:metabolic-ecotypes-widespread
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: 'H3 Supported: All Target Species Show Distinct Metabolic Ecotypes'
+    quote: Metabolic clusters correlated significantly with isolation environment in *Salmonella enterica* (χ²=1570.2, df=25, p<0.0001) and *Phenylobacterium* sp. (χ²=12.2, df=1, p=0.0005), but not in marine organisms (*Stutzerimonas*, *Alteromonas*).
+    notebook: 05_metabolic_ecotypes.ipynb
+- id: stmt:novel-latent-fraction-quantification
+  kind: claim
+  text: This work provides a systematic quantification of the latent capability fraction across diverse bacteria, yielding the testable prediction that carbon source utilization pathways are 3.7-fold more likely to be latent than amino acid biosynthesis pathways (24.3% vs 6.5%).
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:latent-capability
+  - entity:carbon-utilization
+  - entity:amino-acid-biosynthesis
+  - entity:gapmind
+  links:
+    supports:
+    - stmt:carbon-vs-aa-latency
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: The finding that carbon source utilization pathways are 3.7× more likely to be latent than amino acid biosynthesis pathways (24.3% vs 6.5%) is a specific, testable prediction
+- id: stmt:lab-condition-bias-caveat
+  kind: caveat
+  text: Fitness experiments are biased toward laboratory conditions, so lab media may not reflect the full range of conditions under which pathways are expressed, potentially inflating the latent fraction.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:fitness-browser
+  - entity:latent-capability
+  - entity:growth-conditions
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:latent-capability-fraction
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: 'Fitness experiments are biased toward laboratory conditions**: lab media may not reflect the full range of conditions under which pathways are expressed, inflating the latent fraction.'
+- id: stmt:taxid-matching-failed-caveat
+  kind: caveat
+  text: Linking Fitness Browser organisms to GapMind species clades via NCBI taxonomy IDs returned zero matches because the gtdb_metadata taxid column contained boolean strings rather than numeric taxids, so analyses relied on organism-level aggregates without explicit clade linkage.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:gtdb-metadata
+  - entity:fitness-browser
+  - entity:gapmind
+  - entity:taxonomy-matching
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:pathway-conservation-undifferentiated
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: an attempt to link Fitness Browser organisms to GapMind species clades via NCBI taxonomy IDs from `kbase_ke_pangenome.gtdb_metadata` returned zero matches because the relevant column contained boolean strings rather than numeric taxids.
+- id: stmt:h2b-non-independence-caveat
+  kind: caveat
+  text: The H2b openness-latency correlation has a non-independence problem because multiple Fitness Browser organisms map to the same GapMind species clade and share an identical pangenome openness value.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome-openness
+  - entity:species-clade
+  - entity:spearman-correlation
+  - entity:black-queen-hypothesis
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:openness-correlates-latent-rate
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: Multiple FB organisms map to the same GapMind species clade and therefore share an identical pangenome openness value.
+- id: stmt:gene-level-conservation-opportunity
+  kind: opportunity
+  text: Replacing pathway-level conservation with per-gene dN/dS or gene presence/absence across a phylogeny could directly test the Black Queen prediction of progressive gene loss.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:black-queen-hypothesis
+  - entity:dn-ds
+  - entity:phylogeny
+  - entity:gene-loss
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:pathway-conservation-undifferentiated
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Replace pathway-level conservation with per-gene dN/dS or gene presence/absence across a phylogeny to directly test the Black Queen prediction of progressive gene loss.
+- id: stmt:longitudinal-gene-loss-opportunity
+  kind: opportunity
+  text: Identifying lineages with recent gene loss events in pathways classified as latent and verifying that these represent actual deletion events in the phylogeny could provide longitudinal validation of the latent capability framework.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:pangenome-architecture
+  entities:
+  - entity:latent-capability
+  - entity:gene-loss
+  - entity:phylogeny
+  - entity:singleton
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:latent-capability-fraction
+  evidence:
+  - source_project: metabolic_capability_dependency
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Identify lineages with recent gene loss events (singletons or auxiliary genes in pangenome) in pathways classified as latent, and verify that these represent actual deletion events in the phylogeny.

@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:singleton-structural-caveat",
+    "stmt:binary-conservation-caveat",
+    "stmt:ongoing-gene-loss-candidates",
+    "stmt:recent-acquisitions",
+    "stmt:hgt-debris-interpretation",
+    "stmt:novel-cross-organism-characterization",
+    "stmt:poorly-annotated",
+    "stmt:shorter-genes",
+    "stmt:core-metabolism-depleted",
+    "stmt:narrow-ortholog-breadth",
+    "stmt:condition-specific-effects",
+    "stmt:psrch2-outlier",
+    "stmt:costly-dispensable-are-mge",
+    "stmt:black-queen-community-opportunity",
+    "stmt:psrch2-genomic-context-opportunity"
+  ],
+  "member_hash": "hash:a21ef9e147776092",
+  "model": "haiku",
+  "page_id": "project:costly_dispensable_genes",
+  "page_plan_hash": "hash:412d3cd857ba4ef4",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:a21ef9e147776092",
+    "lead": "hash:a21ef9e147776092"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

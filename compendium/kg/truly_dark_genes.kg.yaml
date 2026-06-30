@@ -1,0 +1,344 @@
+project:
+  id: truly_dark_genes
+  title: 'Report: Truly Dark Genes — What Remains Unknown After Modern Annotation?'
+statements:
+- id: stmt:truly-dark-census-16pct
+  kind: finding
+  text: Of 39,532 Fitness Browser dark genes with pangenome links, bakta v1.12.0 reannotates 83.7%, leaving 6,427 (16.3%) truly dark genes where both the original pipeline and bakta agree they are hypothetical proteins.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:truly-dark-genes
+  - entity:bakta
+  - entity:fitness-browser
+  - entity:dark-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: 'Finding 1: Only 16.3% of "dark matter" resists modern annotation'
+    quote: 'Of 39,532 Fitness Browser dark genes with pangenome links, bakta v1.12.0 reannotation reclassifies 33,105 (83.7%) — leaving just 6,427 "truly dark" genes where both the original pipeline and bakta agree: these are hypothetical proteins. An additional 17,479 dark genes lack pangenome links and could not be assessed.'
+    notebook: 01_truly_dark_census.ipynb
+    figure: figures/fig01_organism_distribution.png
+- id: stmt:archaea-methanococcus-concentration
+  kind: finding
+  text: Truly dark genes are concentrated in specific organisms, with Methanococcus strains S2 and JJ accounting for 55% of all truly dark genes, reflecting the underrepresentation of archaea in annotation databases.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:environment-biogeography
+  entities:
+  - entity:truly-dark-genes
+  - entity:methanococcus
+  - entity:archaea
+  links:
+    supports:
+    - stmt:truly-dark-census-16pct
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: 'Finding 1: Only 16.3% of "dark matter" resists modern annotation'
+    quote: 'Truly dark genes are concentrated in specific organisms: Methanococcus strains (S2 and JJ) account for 55% of all truly dark genes, reflecting the underrepresentation of archaea in annotation databases. Across organisms, 4–96% of dark genes resist bakta annotation, with archaeal organisms at the high end.'
+    notebook: 01_truly_dark_census.ipynb
+    figure: figures/fig01_organism_distribution.png
+- id: stmt:structurally-distinct-novelty
+  kind: finding
+  text: Truly dark genes are shorter (median 121 vs 194 aa), less core (43.1% vs 72.7%), lower in GC, and far less likely to have orthologs (29.3% vs 63.7%) than annotation-lag genes, consistent with genuine biological novelty rather than database lag.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:truly-dark-genes
+  - entity:annotation-lag-genes
+  - entity:gc-content
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:truly-dark-census-16pct
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Truly dark genes are structurally distinct from annotation-lag genes (H1 supported)'
+    quote: All effects exceed pre-registered thresholds (Cohen's d ≥ 0.2 or OR ≥ 1.5). Truly dark genes are shorter, less conserved, more taxonomically restricted, and have lower GC content — consistent with genuine biological novelty rather than database lag.
+    notebook: 01_truly_dark_census.ipynb
+    figure: figures/fig02_gene_length.png
+- id: stmt:sequence-known-function-unknown
+  kind: finding
+  text: Although hypothetical, 79.4% of truly dark genes have UniRef50 links and 84.7% have database cross-references, yet only 4.0% have Pfam domains and 4.6% have KEGG KOs, showing databases contain the sequences but cannot assign function.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:truly-dark-genes
+  - entity:uniref50
+  - entity:pfam
+  - entity:eggnog
+  links:
+    supports:
+    - stmt:structurally-distinct-novelty
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: 'Finding 3: Annotation databases recognize the sequences but not the function'
+    quote: 'Despite being "hypothetical," 79.4% of truly dark genes have UniRef50 links and 84.7% have database cross-references (RefSeq, UniParc). The paradox: databases contain these sequences but cannot assign function. Only 4.0% have Pfam domain hits, and only 4.6% have KEGG KOs — confirming they resist all standard functional annotation methods.'
+    notebook: 02_spark_enrichment.ipynb
+- id: stmt:partial-clue-coverage-tiers
+  kind: finding
+  text: A 12-dimensional clue matrix shows only 246 truly dark genes (3.8%) have zero annotation clues, while 96.2% carry partial evidence, stratifying into four tiers in which 2,314 Tier 3 and Tier 4 genes are most promising for functional characterization.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:truly-dark-genes
+  - entity:clue-matrix
+  - entity:annotation-tiers
+  links:
+    supports:
+    - stmt:sequence-known-function-unknown
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: 'Finding 4: 96% of truly dark genes have at least one partial annotation clue (H4 supported)'
+    quote: A 12-dimensional "clue matrix" reveals that only 246 genes (3.8%) have zero annotation clues. The remaining 96.2% have combinations of sequence identifiers, eggNOG hits, orthologs, module membership, and/or fitness phenotypes.
+    notebook: 03_sparse_annotation_mining.ipynb
+    figure: figures/fig04_clue_coverage.png
+- id: stmt:accessory-hgt-signatures
+  kind: finding
+  text: Truly dark genes are 4.2x less likely to have cross-organism orthologs, show significantly higher GC deviation from host genome mean, and 12.0% sit within two genes of a mobile element, consistent with recent horizontal gene transfer outpacing annotation databases.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:truly-dark-genes
+  - entity:horizontal-gene-transfer
+  - entity:gc-content
+  - entity:mobile-genetic-elements
+  links:
+    supports:
+    - stmt:structurally-distinct-novelty
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: 'Finding 5: Truly dark genes are enriched in accessory genomes and show HGT signatures (H3 supported)'
+    quote: GC content deviation from host genome mean is significantly higher for truly dark genes (mean |ΔGC| = 0.047 vs 0.038, d = 0.247, p = 1.3e-43). Strong GC deviation (|z| > 2) affects 9.2% of truly dark genes vs 4.0% of annotation-lag genes — consistent with recent horizontal gene transfer outpacing annotation databases.
+    notebook: 04_cross_organism_concordance.ipynb
+    figure: figures/fig07_gc_deviation.png
+- id: stmt:invisible-cross-organism
+  kind: claim
+  text: Only 3 of 65 dark-gene ortholog groups with cross-organism concordance data contain truly dark genes, making them nearly invisible to cross-organism fitness analysis and limiting guilt-by-association inference.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:truly-dark-genes
+  - entity:ortholog-groups
+  - entity:cofitness
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:accessory-hgt-signatures
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: 'Finding 5: Truly dark genes are enriched in accessory genomes and show HGT signatures (H3 supported)'
+    quote: Truly dark genes are 4.2× less likely to have cross-organism orthologs (OR = 0.236) and when they do, their orthologs span fewer organisms (median 1 vs 4). Only 3 of 65 dark-gene ortholog groups with cross-organism concordance data contain truly dark genes — they are nearly invisible to cross-organism analysis.
+    notebook: 04_cross_organism_concordance.ipynb
+    figure: figures/fig06_ortholog_breadth.png
+- id: stmt:stress-enrichment-rejected
+  kind: finding
+  text: Contrary to hypothesis H2, truly dark genes with strong fitness phenotypes are depleted in stress conditions and instead enriched in nutrient, mixed-community, and iron conditions, suggesting novel metabolic or community-interaction functions rather than stress responses.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:truly-dark-genes
+  - entity:fitness-phenotype
+  - entity:stress-conditions
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: 'Finding 6: Stress enrichment hypothesis rejected (H2 rejected)'
+    quote: Contrary to H2, truly dark genes with strong fitness phenotypes (|f| ≥ 2) are *depleted* in stress conditions relative to annotation-lag genes (28.7% vs 43.2%, OR = 0.53, p < 0.001). Instead, truly dark genes are enriched in nutrient, mixed community, and iron conditions — suggesting they may encode novel metabolic or community-interaction functions rather than stress responses.
+    notebook: 05_genomic_context.ipynb
+    figure: figures/fig08_genomic_context.png
+- id: stmt:dark-islands-neighbors
+  kind: claim
+  text: Within ICA organisms, 41% of the neighbors of truly dark genes are themselves hypothetical, indicating contiguous genomic dark islands that may be recently acquired genomic islands, phage-derived regions, or species-specific neighborhoods.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:functional-dark-matter
+  entities:
+  - entity:truly-dark-genes
+  - entity:dark-islands
+  - entity:operon-context
+  links:
+    supports:
+    - stmt:accessory-hgt-signatures
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: Genomic context
+    quote: 'Among truly dark genes in ICA organisms (4,394 genes):
+
+      - 41% of neighboring genes are also hypothetical ("dark islands")
+
+      - 12.0% are within 2 genes of a mobile element
+
+      - 25.9% show operon-like cofitness (|r| ≥ 0.3) with adjacent genes
+
+      - 594 genes belong to ICA fitness modules, with guilt-by-association revealing functions including phage integrases, metal transporters, chemotaxis systems, and iron regulation'
+    notebook: 05_genomic_context.ipynb
+- id: stmt:top-100-prioritization
+  kind: finding
+  text: A multi-criteria scoring system ranks all 6,427 truly dark genes and identifies 100 top candidates (scores 8–10) across 19 organisms, of which 34 are essential, 53 are in operons, and 30 are in ICA fitness modules.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:truly-dark-genes
+  - entity:candidate-prioritization
+  - entity:fitness-modules
+  links:
+    supports:
+    - stmt:partial-clue-coverage-tiers
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: 'Finding 7: 100 top candidates prioritized for experimental characterization'
+    quote: A multi-criteria scoring system (fitness importance, annotation clues, ortholog breadth, genomic context, tractability; max score 12) ranks all 6,427 truly dark genes and identifies 100 top candidates (scores 8–10) across 19 organisms.
+    notebook: 06_experimental_prioritization.ipynb
+    figure: figures/fig09_prioritization.png
+- id: stmt:unlinked-coverage-gap
+  kind: caveat
+  text: An estimated 17,479 dark genes (31%) lack pangenome links and could not be assessed by bakta, of which roughly 2,841 may be truly dark, leaving a 31% coverage gap in the prioritized list.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:truly-dark-genes
+  - entity:unlinked-dark-genes
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:top-100-prioritization
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '- **Pangenome linkage gap**: 17,479 dark genes (31%) lack pangenome links and could not be assessed by bakta. An estimated ~2,841 of these may be truly dark, representing a 31% coverage gap in our prioritized list.'
+- id: stmt:gene-length-confound
+  kind: caveat
+  text: Short genes are inherently harder to both annotate and measure fitness for, so the length difference between truly dark and annotation-lag genes may partially explain the other observed structural differences.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:truly-dark-genes
+  - entity:gene-length
+  - entity:annotation-lag-genes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:structurally-distinct-novelty
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '- **Gene length confound**: Short genes are inherently harder to annotate (fewer domains, fewer homologs) AND harder to measure fitness for (fewer TA sites). The length difference (d = −0.432) may partially explain other observed differences.'
+- id: stmt:bakta-false-negatives
+  kind: caveat
+  text: Some hypothetical-protein calls may be bakta false negatives — genes with known functions that did not match bakta's PSC database at the version tested — so the truly dark set may include genuinely annotatable genes.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:truly-dark-genes
+  - entity:bakta
+  - entity:gene-annotation
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:truly-dark-census-16pct
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '- **Bakta false negatives**: Some "hypothetical protein" calls may be bakta false negatives — genes with known functions that didn''t match bakta''s PSC database at the version tested (v6.0).'
+- id: stmt:structure-prediction-opportunity
+  kind: opportunity
+  text: Running AlphaFold2/ESMFold on the top-100 candidates and searching Foldseek for remote structural homologs is the most promising path to functional annotation for truly dark sequences that lack detectable sequence homology.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:truly-dark-genes
+  - entity:alphafold
+  - entity:foldseek
+  links:
+    supports:
+    - stmt:top-100-prioritization
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '1. **Structure prediction**: Run AlphaFold2/ESMFold on top-100 candidates and search Foldseek for remote structural homologs — the most promising path to functional annotation for sequences with no detectable sequence homology.'
+- id: stmt:methanococcus-deep-dive
+  kind: opportunity
+  text: Because archaea contribute 55% of truly dark genes, a focused Methanococcus analysis could leverage high cofitness signals to map operonic structure and generate functional predictions for archaeal-specific hypothetical proteins.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:methanococcus
+  - entity:archaea
+  - entity:cofitness
+  links:
+    supports:
+    - stmt:archaea-methanococcus-concentration
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: truly_dark_genes
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '5. **Methanococcus deep-dive**: Given that archaea contribute 55% of truly dark genes, a focused Methanococcus analysis could leverage the high cofitness signals (r > 0.97) to map operonic structure and generate functional predictions for archaeal-specific hypothetical proteins.'

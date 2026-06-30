@@ -1,0 +1,318 @@
+project:
+  id: phb_granule_ecology
+  title: 'Report: Polyhydroxybutyrate Granule Formation Pathways — Distribution Across Clades and Environmental Selection'
+statements:
+- id: stmt:phac-prevalence-21-percent
+  kind: finding
+  text: Across 27,690 GTDB species, 21.9% carry phaC (PHA synthase) and 21.7% have a complete PHB biosynthesis pathway, the first precise pan-bacterial prevalence estimate.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:polyhydroxybutyrate
+  - entity:phac
+  - entity:pangenome
+  - entity:gtdb
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 1: PHB pathways are widespread but phylogenetically concentrated'
+    quote: Across 27,690 GTDB species, **21.9% carry phaC** (PHA synthase, the committed step for PHB biosynthesis) and **21.7% have a complete PHB pathway** (phaC + phaA/phaB).
+    notebook: 01_phb_gene_discovery.ipynb
+    figure: figures/phb_prevalence_by_phylum.png
+- id: stmt:phb-phylogenetically-concentrated
+  kind: finding
+  text: PHB pathway distribution is highly uneven across the bacterial tree, with Pseudomonadota alone accounting for 74.9% of phaC-carrying species and several major phyla entirely lacking PHB.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:polyhydroxybutyrate
+  - entity:phac
+  - entity:pseudomonadota
+  - entity:gtdb
+  links:
+    supports:
+    - stmt:phac-prevalence-21-percent
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: Phylogenetic Distribution (NB02)
+    quote: Pseudomonadota alone accounts for 74.9% of all phaC-carrying species (4,544/6,067), driven by high prevalence across Alpha- and Gammaproteobacteria orders.
+    notebook: 02_phylogenetic_mapping.ipynb
+- id: stmt:phb-enriched-variable-environments
+  kind: finding
+  text: PHB prevalence follows a >10-fold gradient from temporally variable environments (plant 44%, soil 43.6%) to stable host-associated environments (clinical 7.4%, animal 3.3%), supporting environmental selection for PHB.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:polyhydroxybutyrate
+  - entity:phac
+  - entity:feast-famine-hypothesis
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 2: PHB is enriched in environmentally variable habitats (H1a supported)'
+    quote: 'This strongly supports H1a: PHB pathway genes are enriched in bacterial clades from temporally variable "feast/famine" environments and depleted in stable or host-associated environments.'
+    notebook: 03_environmental_correlation.ipynb
+    figure: figures/phb_by_environment.png
+- id: stmt:environment-chi-squared
+  kind: finding
+  text: A chi-squared test of PHB presence against environmental variability category was highly significant (chi2 = 1,656.36, p ~ 0, dof = 2) across 27,690 species.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:polyhydroxybutyrate
+  - entity:phac
+  - entity:chi-squared-test
+  links:
+    supports:
+    - stmt:phb-enriched-variable-environments
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 2: PHB is enriched in environmentally variable habitats (H1a supported)'
+    quote: 'Chi-squared test for PHB presence x environmental variability category: **chi2 = 1,656.36, p ~ 0, dof = 2**.'
+    notebook: 03_environmental_correlation.ipynb
+- id: stmt:niche-breadth-confounded-genome-size
+  kind: caveat
+  text: The apparent association between PHB and broader environmental niche breadth largely disappears after controlling for genome size (partial rho = -0.047), making it a confounded artefact rather than independent evidence.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:environment-biogeography
+  entities:
+  - entity:polyhydroxybutyrate
+  - entity:genome-size
+  - entity:niche-breadth
+  - entity:alphaearth-embeddings
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:phb-enriched-variable-environments
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 3: PHB-niche breadth association is largely explained by genome size (H1b qualified)'
+    quote: 'After controlling for genome size via partial Spearman correlation, **the PHB-niche breadth association largely disappears**: partial rho = **-0.047** (p = 0.037), a **56.3% reduction** in effect size with a sign reversal compared to the raw correlation (rho = 0.106, p = 1.77e-06).'
+    notebook: 03_environmental_correlation.ipynb
+    figure: figures/genome_size_confound.png
+- id: stmt:environment-enrichment-robust-to-size
+  kind: finding
+  text: PHB environmental enrichment is robust to genome size, holding within all four genome size quartiles with 1.4–4.6x fold enrichment in high-variability environments (all p < 1e-11).
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:pangenome-architecture
+  entities:
+  - entity:polyhydroxybutyrate
+  - entity:genome-size
+  - entity:feast-famine-hypothesis
+  links:
+    supports:
+    - stmt:phb-enriched-variable-environments
+    contradicts: []
+    refines:
+    - stmt:niche-breadth-confounded-genome-size
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 3: PHB-niche breadth association is largely explained by genome size (H1b qualified)'
+    quote: 'Critically, however, **the PHB-environment association (H1a) holds robustly within all four genome size quartiles**:'
+    notebook: 03_environmental_correlation.ipynb
+- id: stmt:subclade-heterogeneous-selection
+  kind: finding
+  text: Family-level Fisher tests across 248 families revealed heterogeneous selection within phyla, with 41 PHB-enriched families (skewing freshwater/wastewater) and 62 depleted families (skewing marine/host-associated).
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:polyhydroxybutyrate
+  - entity:fishers-exact-test
+  - entity:pseudomonadota
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 4: Subclade enrichment reveals heterogeneous selection within phyla (H1d partially supported)'
+    quote: Enriched families** skew toward freshwater (5/41) and wastewater (3/41)
+    notebook: 05_subclade_enrichment.ipynb
+    figure: figures/phb_enrichment_heatmap.png
+- id: stmt:hgt-phac-acquisition
+  kind: finding
+  text: Phylogenetically discordant phaC distribution revealed 311 potential horizontal acquisition events and 278 potential loss events, evidencing widespread HGT of phaC across the bacterial tree.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:phac
+  - entity:horizontal-gene-transfer
+  - entity:accessory-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 5: Strong signal of horizontal gene transfer in phaC distribution'
+    quote: '**311 potential HGT acquisition events**: species carrying phaC despite being in families with <20% phaC prevalence'
+    notebook: 05_subclade_enrichment.ipynb
+- id: stmt:hgt-accessory-rate
+  kind: claim
+  text: Discordant phaC-positive species carry phaC as accessory genome at nearly double the baseline rate (60.1% vs 32.3%), consistent with recent horizontal acquisition not yet fixed in the core genome.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:phac
+  - entity:horizontal-gene-transfer
+  - entity:accessory-genome
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:hgt-phac-acquisition
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 5: Strong signal of horizontal gene transfer in phaC distribution'
+    quote: Among the 311 discordant phaC-positive species, **60.1% carry phaC as accessory genome** (not present in all strains), compared to 32.3% accessory rate across all phaC-carrying species — nearly double.
+    notebook: 05_subclade_enrichment.ipynb
+    figure: figures/phb_core_vs_accessory.png
+- id: stmt:nmdc-cross-validation
+  kind: finding
+  text: NMDC metagenomic cross-validation showed PHB-high genera have significantly higher abundance than PHB-low genera (Mann-Whitney p = 8.41e-22), with top genera including known producers like Pseudomonas and Cupriavidus.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:polyhydroxybutyrate
+  - entity:nmdc
+  - entity:metagenome
+  - entity:cupriavidus
+  links:
+    supports:
+    - stmt:phb-enriched-variable-environments
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 6: NMDC metagenomic cross-validation supports pangenome PHB patterns (H1c supported)'
+    quote: PHB-high genera (>=50% phaC prevalence) had significantly higher abundance in NMDC samples than PHB-low genera (**Mann-Whitney p = 8.41 x 10^-22**).
+    notebook: 04_nmdc_metagenomic_analysis.ipynb
+    figure: figures/pangenome_vs_metagenome.png
+- id: stmt:nmdc-abiotic-modest-effects
+  kind: caveat
+  text: NMDC abiotic correlations with PHB inference scores were statistically significant but modest in size (|rho| < 0.12), likely because abiotic measurements are point-in-time snapshots rather than measures of temporal variability.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:polyhydroxybutyrate
+  - entity:nmdc
+  - entity:abiotic-features
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:nmdc-cross-validation
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The metagenomic cross-validation (H1c) yielded statistically significant but small abiotic correlations (|rho| < 0.12). NMDC abiotic measurements are point-in-time values, not measures of temporal variability, which limits their ability to test the feast/famine hypothesis directly.
+    notebook: 04_nmdc_metagenomic_analysis.ipynb
+- id: stmt:phar-absent-annotation
+  kind: caveat
+  text: The PHB regulator phaR (K18080) was absent from eggNOG annotations of all 27K species, indicating an annotation coverage gap or KO misassignment rather than true biological absence.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:phar
+  - entity:eggnog-annotations
+  - entity:kegg-ko
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 1: PHB pathways are widespread but phylogenetically concentrated'
+    quote: Notably, phaR (K18080) was absent from all 27K species in the eggNOG annotations, suggesting either poor annotation coverage or misassignment of this regulatory gene.
+    notebook: 01_phb_gene_discovery.ipynb
+- id: stmt:pha-synthase-class-fix-opportunity
+  kind: opportunity
+  text: Mapping eggNOG Pfam domain names (Abhydrolase_1, PhaC_N) to accession IDs (PF00561, PF07167) would enable proper Class I–IV PHA synthase classification across all 11,792 phaC clusters.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:pha-synthase
+  - entity:phac
+  - entity:pfam
+  - entity:eggnog-annotations
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Map Pfam accession IDs to eggNOG domain names (PF00561 -> Abhydrolase_1 for Class I/II, PF07167 -> PhaC_N for Class III/IV) to enable proper classification of the 11,792 phaC clusters.
+    notebook: 05_subclade_enrichment.ipynb
+- id: stmt:fitness-browser-opportunity
+  kind: opportunity
+  text: Querying the BERDL Fitness Browser for phaC mutant fitness phenotypes could test whether phaC confers a measurable fitness advantage under carbon-variable conditions.
+  confidence: low
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:phac
+  - entity:fitness-browser
+  - entity:polyhydroxybutyrate
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: phb_granule_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Query the BERDL Fitness Browser for phaC mutant fitness phenotypes to test whether phaC confers measurable fitness advantages under carbon-variable conditions.

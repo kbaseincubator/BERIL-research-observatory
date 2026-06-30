@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:cocontamination-confound",
+    "stmt:effect-sizes-unreported",
+    "stmt:spatial-autocorrelation",
+    "stmt:conditional-r2-caveat",
+    "stmt:fdr-anticonservative",
+    "stmt:metal-drives-functional-content",
+    "stmt:copper-mechanism-consistent",
+    "stmt:cog-metal-associations",
+    "stmt:dbrda-variance",
+    "stmt:biome-specific-response",
+    "stmt:chromium-lead-strongest",
+    "stmt:copper-trade-offs",
+    "stmt:mechanistic-classification",
+    "stmt:copper-proximity-sensitivity"
+  ],
+  "member_hash": "hash:c3017f69a94f7266",
+  "model": "haiku",
+  "page_id": "project:soil_metal_functional_genomics",
+  "page_plan_hash": "hash:631c7e50b9701f2d",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:c3017f69a94f7266",
+    "lead": "hash:c3017f69a94f7266"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

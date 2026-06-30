@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:pgp-syndrome-pqqc-acds-module",
+    "stmt:soil-enriches-acds-pqqc",
+    "stmt:pqqc-acds-niche-marker-claim",
+    "stmt:pgp-genes-predominantly-core",
+    "stmt:openness-negatively-correlates-pgp",
+    "stmt:pqqd-hgt-outlier-caveat",
+    "stmt:nifh-separate-guild",
+    "stmt:nifh-depleted-in-soil",
+    "stmt:trp-completeness-predicts-ipdc",
+    "stmt:ipdc-regulation-aromatic-general",
+    "stmt:trp-ipdc-soil-reversal",
+    "stmt:env-classification-caveat",
+    "stmt:pqqc-acds-operon-context-opportunity",
+    "stmt:inoculant-efficacy-opportunity"
+  ],
+  "member_hash": "hash:23d5c12c38c5429f",
+  "model": "sonnet",
+  "page_id": "author:0000-0002-0357-1939",
+  "page_plan_hash": "hash:7ff0f91cad47c6e9",
+  "page_type": "author",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:23d5c12c38c5429f",
+    "projects": "hash:23d5c12c38c5429f",
+    "topics": "hash:23d5c12c38c5429f"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,128 @@
+project:
+  id: adp1_tracer
+  title: ADP1 carbon-fitness synthesis tracer
+statements:
+  - id: stmt:adp1-carbon-tier-finding
+    kind: finding
+    text: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers.
+    confidence: high
+    topics:
+      - topic:adp1-carbon-fitness
+    entities:
+      - entity:adp1
+    links:
+      supports:
+        - stmt:adp1-continuum-claim
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: adp1_deletion_phenotypes
+        source_doc: REPORT.md
+        source_section: Key Findings
+        quote: The 8 carbon sources partition into demanding, moderate, and robust tiers based on the fraction of genes showing growth defects.
+        notebook: 01_data_extraction.ipynb
+        figure: figures/condition_boxplots.png
+
+  - id: stmt:adp1-condition-independence-finding
+    kind: finding
+    text: ADP1 carbon-source growth assays provide several independent phenotypic dimensions rather than one shared growth-sensitivity axis.
+    confidence: high
+    topics:
+      - topic:adp1-carbon-fitness
+    entities:
+      - entity:adp1
+    links:
+      supports:
+        - stmt:adp1-continuum-claim
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: adp1_deletion_phenotypes
+        source_doc: REPORT.md
+        source_section: Results
+        quote: The low pairwise correlations (median Pearson r = 0.25, maximum r = 0.58) demonstrate that each carbon source imposes a largely independent set of gene requirements.
+        notebook: 02_condition_structure.ipynb
+        figure: figures/condition_clustermap.png
+
+  - id: stmt:adp1-continuum-claim
+    kind: claim
+    text: ADP1 condition-dependent essentiality should be treated as a continuous phenotype landscape, with quinate degradation as a discrete exception rather than the rule.
+    confidence: high
+    topics:
+      - topic:adp1-carbon-fitness
+    entities:
+      - entity:adp1
+      - entity:quinate
+    links:
+      supports:
+        - stmt:adp1-carbon-tier-finding
+        - stmt:adp1-condition-independence-finding
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: adp1_deletion_phenotypes
+        source_doc: REPORT.md
+        source_section: Key Findings
+        quote: This indicates that gene essentiality varies continuously across conditions rather than falling into discrete functional categories.
+        notebook: 03_gene_modules.ipynb
+        figure: figures/gene_heatmap.png
+
+  - id: stmt:adp1-continuous-fitness-claim
+    kind: claim
+    text: Continuous ADP1 fitness measurements are more informative for essentiality synthesis than binary essentiality-fraction thresholds.
+    confidence: high
+    topics:
+      - topic:adp1-carbon-fitness
+    entities:
+      - entity:adp1
+    links:
+      supports: []
+      contradicts: []
+      refines:
+        - stmt:adp1-continuum-claim
+    evidence:
+      - source_project: adp1_triple_essentiality
+        source_doc: REPORT.md
+        source_section: Integrated Discussion
+        quote: Continuous fitness values (AUC=0.70-0.73) outperform binary essentiality_fraction (AUC=0.34-0.40).
+        notebook: 04_roc_analysis.ipynb
+        figure: figures/roc_comprehensive.png
+
+  - id: stmt:adp1-aromatic-media-opportunity
+    kind: opportunity
+    text: Refine ADP1 FBA media assumptions by adding trace aromatic compounds and testing whether aromatic-degradation discordance resolves.
+    confidence: medium
+    topics:
+      - topic:adp1-carbon-fitness
+    entities:
+      - entity:adp1
+      - entity:quinate
+    links:
+      supports: []
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: adp1_triple_essentiality
+        source_doc: REPORT.md
+        source_section: Recommendations
+        quote: Model refinement should add trace aromatic compounds to media definition
+
+  - id: stmt:adp1-method-ground-truth-caveat
+    kind: caveat
+    text: ADP1 synthesis pages should avoid treating any one essentiality assay or model as complete ground truth.
+    confidence: high
+    topics:
+      - topic:adp1-carbon-fitness
+    entities:
+      - entity:adp1
+    links:
+      supports: []
+      contradicts: []
+      refines:
+        - stmt:adp1-continuum-claim
+        - stmt:adp1-continuous-fitness-claim
+    evidence:
+      - source_project: adp1_triple_essentiality
+        source_doc: REPORT.md
+        source_section: Integrated Conclusions
+        quote: No single method is ground truth

@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:incorrect-annotation-join",
+    "stmt:analysis-not-executed",
+    "stmt:date-granularity-bias",
+    "stmt:dynamics-vs-sampling-bias",
+    "stmt:heavily-sampled-smaller-cores",
+    "stmt:early-leavers-functional",
+    "stmt:core-not-static-hypothesis",
+    "stmt:multiple-core-thresholds",
+    "stmt:semi-environmental-species-models",
+    "stmt:collection-date-coverage",
+    "stmt:core-genome-static-or-dynamic",
+    "stmt:sliding-window-approach",
+    "stmt:null-model-permutation-test",
+    "stmt:cross-species-stable-core"
+  ],
+  "member_hash": "hash:669e04b335f080b8",
+  "model": "haiku",
+  "page_id": "project:temporal_core_dynamics",
+  "page_plan_hash": "hash:087d220beab53960",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:669e04b335f080b8",
+    "lead": "hash:669e04b335f080b8"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

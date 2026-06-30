@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:amr-lab-adaptation-bias",
+    "stmt:amr-essential-censoring-caveat",
+    "stmt:amr-core-label-imprecision",
+    "stmt:amr-acquisition-not-random",
+    "stmt:amr-cost-is-small",
+    "stmt:amr-uniform-cost-floor",
+    "stmt:amr-first-pan-bacterial",
+    "stmt:amr-universal-cost",
+    "stmt:amr-core-accessory-identical",
+    "stmt:amr-low-essential-rate",
+    "stmt:amr-mechanism-predicts-conservation",
+    "stmt:amr-efflux-mechanism-dependent-flip",
+    "stmt:amr-mechanism-no-cost-difference",
+    "stmt:amr-antibiotic-flip",
+    "stmt:amr-cross-ref-metal-atlas",
+    "stmt:amr-extend-full-pangenome"
+  ],
+  "member_hash": "hash:7545b746c8f44bf3",
+  "model": "haiku",
+  "page_id": "project:amr_fitness_cost",
+  "page_plan_hash": "hash:2b25694ba6fd1ebb",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:7545b746c8f44bf3",
+    "lead": "hash:7545b746c8f44bf3"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:no-temporal-trend",
+    "stmt:ecotype-env-underpowered",
+    "stmt:core-signal-artifact",
+    "stmt:clonal-lineage-surveillance",
+    "stmt:first-cross-species-quantification",
+    "stmt:resistance-islands-coinherited",
+    "stmt:amr-tracks-phylogeny",
+    "stmt:amr-variable-rare-within-species",
+    "stmt:acquired-stronger-signal",
+    "stmt:atlas-class-predicts-prevalence",
+    "stmt:host-associated-more-amr",
+    "stmt:islands-multi-mechanism",
+    "stmt:amr-ecotypes",
+    "stmt:cross-project-integration",
+    "stmt:predict-co-acquisition"
+  ],
+  "member_hash": "hash:63676820299eb599",
+  "model": "haiku",
+  "page_id": "project:amr_strain_variation",
+  "page_plan_hash": "hash:ff15126eb5dc5fdf",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:63676820299eb599",
+    "lead": "hash:63676820299eb599"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

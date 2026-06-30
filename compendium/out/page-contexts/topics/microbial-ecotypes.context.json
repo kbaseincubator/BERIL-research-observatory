@@ -1,0 +1,477 @@
+{
+  "adjacent_pages": [
+    {
+      "id": "author:0000-0001-5810-2497",
+      "path": "authors/0000-0001-5810-2497.md",
+      "title": "0000 0001 5810 2497"
+    },
+    {
+      "id": "author:0000-0002-2170-2250",
+      "path": "authors/0000-0002-2170-2250.md",
+      "title": "0000 0002 2170 2250"
+    },
+    {
+      "id": "data:kbase_ke_pangenome",
+      "path": "data/kbase-ke-pangenome.md",
+      "title": "Kbase Ke Pangenome"
+    }
+  ],
+  "allowed_citations": [
+    {
+      "source_project": "ecotype_functional_differentiation",
+      "statement_id": "stmt:ecotype-adaptive-effect-claim"
+    },
+    {
+      "source_project": "ecotype_functional_differentiation",
+      "statement_id": "stmt:ecotype-functional-differentiation-finding"
+    },
+    {
+      "source_project": "ecotype_functional_differentiation",
+      "statement_id": "stmt:ecotype-functional-widespread-finding"
+    },
+    {
+      "source_project": "ecotype_analysis",
+      "statement_id": "stmt:ecotype-gene-subset-claim"
+    },
+    {
+      "source_project": "ecotype_analysis",
+      "statement_id": "stmt:ecotype-lifestyle-null-caveat"
+    },
+    {
+      "source_project": "ecotype_analysis",
+      "statement_id": "stmt:ecotype-phylogeny-dominance-finding"
+    },
+    {
+      "source_project": "ecotype_functional_differentiation",
+      "statement_id": "stmt:ecotype-unknown-mobile-caveat"
+    }
+  ],
+  "authors": [],
+  "data_collections": [],
+  "entities": [
+    {
+      "definition": "",
+      "id": "entity:alphaearth",
+      "kind": "",
+      "label": "Alphaearth",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:cog-category",
+      "kind": "",
+      "label": "Cog Category",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:ecotype",
+      "kind": "",
+      "label": "Ecotype",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:mobile-elements",
+      "kind": "",
+      "label": "Mobile Elements",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:pangenome",
+      "kind": "",
+      "label": "Pangenome",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:unknown-function",
+      "kind": "",
+      "label": "Unknown Function",
+      "url": ""
+    }
+  ],
+  "instructions": {
+    "audience": "scientist-engineer new to this specific niche",
+    "body_rule": "synthesize across statements; do not emit statement-by-statement summaries",
+    "citations": "Put allowed statement citations in one trailing Sources section.",
+    "style": "human-readable Obsidian-style synthesis page"
+  },
+  "narrative": {
+    "lead": "Introduce the page subject and explain why it matters in this synthesis wiki.",
+    "section_plan": [
+      {
+        "heading": "Overview",
+        "id": "overview"
+      },
+      {
+        "heading": "What the Corpus Shows",
+        "id": "what_the_corpus_shows"
+      },
+      {
+        "heading": "Projects and Evidence",
+        "id": "projects_and_evidence"
+      },
+      {
+        "heading": "Connections",
+        "id": "connections"
+      },
+      {
+        "heading": "Caveats and Open Directions",
+        "id": "caveats_and_open_directions"
+      },
+      {
+        "heading": "Sources",
+        "id": "sources"
+      }
+    ]
+  },
+  "page": {
+    "backlinks": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0002-2170-2250",
+      "data:kbase_ke_pangenome",
+      "home"
+    ],
+    "id": "microbial-ecotypes",
+    "manifest_path": ".manifests/topics/microbial-ecotypes.manifest.json",
+    "member_hash": "hash:84293aff412c609a",
+    "member_statement_ids": [
+      "stmt:ecotype-lifestyle-null-caveat",
+      "stmt:ecotype-unknown-mobile-caveat",
+      "stmt:ecotype-gene-subset-claim",
+      "stmt:ecotype-adaptive-effect-claim",
+      "stmt:ecotype-phylogeny-dominance-finding",
+      "stmt:ecotype-functional-differentiation-finding",
+      "stmt:ecotype-functional-widespread-finding"
+    ],
+    "outgoing_links": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0002-2170-2250",
+      "data:kbase_ke_pangenome"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "What the Corpus Shows",
+        "id": "what_the_corpus_shows",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Projects and Evidence",
+        "id": "projects_and_evidence",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Connections",
+        "id": "connections",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Caveats and Open Directions",
+        "id": "caveats_and_open_directions",
+        "member_hash": "hash:405ad5fc162a67db",
+        "member_statement_ids": [
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Sources",
+        "id": "sources",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      }
+    ],
+    "title": "Topic: Microbial Ecotypes",
+    "type": "topic",
+    "wiki_path": "topics/microbial-ecotypes.md"
+  },
+  "projects": [
+    "ecotype_analysis",
+    "ecotype_functional_differentiation"
+  ],
+  "statements": [
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:alphaearth"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/environmental_vs_host_comparison.png",
+          "notebook": "notebooks/02_ecotype_correlation_analysis.ipynb",
+          "quote": "Tested whether \"environmental\" bacteria (free-living, where lat/lon is meaningful) show stronger environment effects than host-associated bacteria. **No significant difference found** (p=0.66).",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_analysis",
+          "source_section": "No Difference by Lifestyle"
+        }
+      ],
+      "id": "stmt:ecotype-lifestyle-null-caveat",
+      "kind": "caveat",
+      "links": {
+        "contradicts": [],
+        "refines": [
+          "stmt:ecotype-phylogeny-dominance-finding"
+        ],
+        "supports": []
+      },
+      "source_excerpt": "# Report: Ecotype Correlation Analysis\n\n## Key Findings\n\nAnalysis of **172 species** with sufficient environmental and phylogenetic data reveals:\n\n### Phylogeny Usually Dominates\n\n- **Median partial correlation for environment**: 0.0025\n- **Median partial correlation for phylogeny**: 0.0143\n- Phylogeny dominates in **60.5%** of species\n- Environment dominates in **39.5%** of species\n\n![Ecotype correlation summary](figures/ecotype_correlation_summary.png)\n\n> Provenance: `notebooks/02_ecotype_correlation_analysis.ipynb`\n\n### No Difference by Lifestyle\n\nTested whether \"environmental\" bacteria (free-living, where lat/lon is meaningful) show stronger environment effects than host-associated bacteria. **No significant difference found** (p=0.66).\n\n![Environmental vs host comparison](figures/environmental_vs_host_comparison.png)\n\n> Provenance: `notebooks/02_ecotype_correlation_analysis.ipynb`\n\n### Statistical Summary\n\n- Significant positive environment effect (p<0.05): 12 species (7.0%)\n- Significant negative environment effect: 4 species (2.3%)\n- Not significant: 156 species (90.7%)\n\n### Category Breakdown\n\n![Ecotype effects by category](figures/ecotype_by_category.png)\n\n![Ecotype scatter by category](figures/ecotype_scatter_by_category.png)\n\n> Provenance: `notebooks/02_ecotype_correlation_analysis.ipynb`\n\n### Embedding Diversity\n\n![E",
+      "text": "Separating environmental and host-associated bacteria did not reveal a stronger environment effect in this analysis.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:cog-category",
+        "entity:mobile-elements",
+        "entity:unknown-function"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/cog_differentiation_heatmap.png",
+          "notebook": "NB03_differential_enrichment.ipynb",
+          "quote": "The large S-category effect suggests substantial ecotype differentiation involves genes of currently unknown function -- a recurring theme in microbial ecology that highlights annotation gaps in niche-specific genes.",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_functional_differentiation",
+          "source_section": "Replication/mobile elements and unknown function drive the largest ecotype differences"
+        }
+      ],
+      "id": "stmt:ecotype-unknown-mobile-caveat",
+      "kind": "caveat",
+      "links": {
+        "contradicts": [],
+        "refines": [
+          "stmt:ecotype-functional-differentiation-finding"
+        ],
+        "supports": []
+      },
+      "source_excerpt": "differentiation significance across species](figures/cog_differentiation_heatmap.png)\n\nThe two COG categories with the largest mean effect sizes were:\n- **S** (Unknown function): mean effect = 0.039, significant in 11/12 species\n- **L** (Replication, recombination, repair): mean effect = 0.034, significant in 9/12 species\n\nCategory L includes transposases, integrases, and mobile genetic element machinery. Its prominence is consistent with the \"two-speed genome\" pattern identified in the cog_analysis project, where novel genes were enriched in L (+10.88%) and V (+2.83%) relative to core genes. The large S-category effect suggests substantial ecotype differentiation involves genes of currently unknown function -- a recurring theme in microbial ecology that highlights annotation gaps in niche-specific genes.\n\n*(Notebook: NB03_differential_enrichment.ipynb)*\n\n## Results\n\n### Species Selection (NB01)\n\nFrom 27,702 species in the BERDL pangenome database, 457 had >= 50 genomes. After filtering for COG annotation coverage, 456 species were eligible. A stratified random sample of 15 species was drawn (5 per genome-count bin: 50-100, 100-200, 200-300), balancing representation across pangenome sizes. Two species experienced transient Spark S3 read errors; one (*Limisoma* sp.) had insufficient structure for valid clustering.\n\n### Ecotype Clustering (NB02)\n\n| Species | Genomes | Ecotypes | Silhouette | As",
+      "text": "The strongest ecotype differences include unknown-function and mobile-element categories, so much of the niche-specific signal remains hard to interpret biologically.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    },
+    {
+      "confidence": "medium",
+      "entities": [
+        "entity:ecotype",
+        "entity:pangenome"
+      ],
+      "evidence": [
+        {
+          "figure": null,
+          "notebook": null,
+          "quote": "Environmental adaptation may act on specific gene subsets rather than the whole genome",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_analysis",
+          "source_section": "Interpretation"
+        }
+      ],
+      "id": "stmt:ecotype-gene-subset-claim",
+      "kind": "claim",
+      "links": {
+        "contradicts": [],
+        "refines": [
+          "stmt:ecotype-phylogeny-dominance-finding"
+        ],
+        "supports": []
+      },
+      "source_excerpt": "egory Breakdown\n\n![Ecotype effects by category](figures/ecotype_by_category.png)\n\n![Ecotype scatter by category](figures/ecotype_scatter_by_category.png)\n\n> Provenance: `notebooks/02_ecotype_correlation_analysis.ipynb`\n\n### Embedding Diversity\n\n![Embedding diversity distribution](figures/embedding_diversity_distribution.png)\n\n> Provenance: `notebooks/01_data_extraction.ipynb`\n\n## Interpretation\n\nFor most bacterial species, phylogenetic history is a stronger predictor of gene content than environmental similarity. This suggests that:\n1. Vertical inheritance dominates the gene content signal\n2. Environmental adaptation may act on specific gene subsets rather than the whole genome\n3. The AlphaEarth embeddings may not fully capture ecologically relevant environmental variation\n\n### Literature Context\n\n- The finding that phylogeny dominates gene content similarity is consistent with work by Garud et al. (2019) and Shapiro et al. (2012) on within-species population structure, which show that clonal ancestry shapes genome-wide variation more than ecological niche.\n- The weak environmental effects on gene content relate to findings by Polz et al. (2013), who argue that horizontal gene transfer shapes population structure at specific loci rather than genome-wide, consistent",
+      "text": "Environmental adaptation may be easier to detect in specific functional gene subsets than in whole-genome gene-content similarity.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:cog-category"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/effect_size_distributions.png",
+          "notebook": "NB03_differential_enrichment.ipynb",
+          "quote": "However, the *magnitude* of differentiation (effect size) is 2.1x larger for adaptive categories, and this difference is highly significant (p = 2.53 x 10^-6, Mann-Whitney U, one-sided).",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_functional_differentiation",
+          "source_section": "Adaptive COG categories show significantly larger effect sizes than housekeeping"
+        }
+      ],
+      "id": "stmt:ecotype-adaptive-effect-claim",
+      "kind": "claim",
+      "links": {
+        "contradicts": [],
+        "refines": [
+          "stmt:ecotype-gene-subset-claim"
+        ],
+        "supports": []
+      },
+      "source_excerpt": "gories](figures/effect_size_distributions.png)\n\nThe hypothesis (H1) predicted that adaptive categories (V, P, G, E, Q, M, K) would differentiate more than housekeeping categories (J, F, H, C). The results **partially support H1**:\n\n| Metric | Adaptive | Housekeeping | Ratio |\n|--------|----------|--------------|-------|\n| Significance rate | 79.8% (67/84) | 68.8% (33/48) | 1.16x |\n| Mean effect size | 0.0136 | 0.0064 | 2.13x |\n| Mann-Whitney U p-value | | | 2.53 x 10^-6 |\n\nThe significance *rate* difference is modest (1.16x), because housekeeping categories also differentiate in most species. However, the *magnitude* of differentiation (effect size) is 2.1x larger for adaptive categories, and this difference is highly significant (p = 2.53 x 10^-6, Mann-Whitney U, one-sided).\n\nThis means ecotypes differ in both adaptive and housekeeping functions, but the adaptive categories (defense, transport, secondary metabolism, cell wall) show substantially larger proportional shifts between ecotypes than housekeeping categories (translation, nucleotide metabolism, coenzyme metabolism, energy production).\n\n*(Notebook: NB03_differential_enrichment.ipynb)*\n\n### Finding 4: Replication/mobile elements and unknown function drive the largest ecotype differences\n\n![Heatmap of COG differentiation significance across species](figures/cog_differentiation_heatmap.png)\n\nThe two COG cate",
+      "text": "Adaptive functions differentiate more strongly between ecotypes than housekeeping functions, although both classes can vary.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:alphaearth",
+        "entity:pangenome"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/ecotype_correlation_summary.png",
+          "notebook": "notebooks/02_ecotype_correlation_analysis.ipynb",
+          "quote": "Phylogeny dominates in **60.5%** of species",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_analysis",
+          "source_section": "Phylogeny Usually Dominates"
+        }
+      ],
+      "id": "stmt:ecotype-phylogeny-dominance-finding",
+      "kind": "finding",
+      "links": {
+        "contradicts": [],
+        "refines": [],
+        "supports": [
+          "stmt:ecotype-gene-subset-claim"
+        ]
+      },
+      "source_excerpt": "# Report: Ecotype Correlation Analysis\n\n## Key Findings\n\nAnalysis of **172 species** with sufficient environmental and phylogenetic data reveals:\n\n### Phylogeny Usually Dominates\n\n- **Median partial correlation for environment**: 0.0025\n- **Median partial correlation for phylogeny**: 0.0143\n- Phylogeny dominates in **60.5%** of species\n- Environment dominates in **39.5%** of species\n\n![Ecotype correlation summary](figures/ecotype_correlation_summary.png)\n\n> Provenance: `notebooks/02_ecotype_correlation_analysis.ipynb`\n\n### No Difference by Lifestyle\n\nTested whether \"environmental\" bacteria (free-living, where lat/lon is meaningful) show stronger environment effects than host-associated bacteria. **No significant difference found** (p=0.66).\n\n![Environmental vs host comparison](figures/environmental_vs_host_comparison.png)\n\n> Provenance: `notebooks/02_ecotype_correlation_analysis.ipynb`\n\n### Statistical Summary\n\n- Significan",
+      "text": "Across species with sufficient data, phylogenetic relatedness generally predicts bacterial gene-content similarity more strongly than environmental similarity.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:cog-category",
+        "entity:pangenome"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/cog_differentiation_rates.png",
+          "notebook": "NB03_differential_enrichment.ipynb",
+          "quote": "Chi-square and Fisher's exact tests revealed that 170 of 257 species x COG tests (66.1%) were statistically significant after BH-FDR correction (q < 0.05).",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_functional_differentiation",
+          "source_section": "Ecotypes show pervasive COG functional differentiation"
+        }
+      ],
+      "id": "stmt:ecotype-functional-differentiation-finding",
+      "kind": "finding",
+      "links": {
+        "contradicts": [],
+        "refines": [
+          "stmt:ecotype-gene-subset-claim"
+        ],
+        "supports": [
+          "stmt:ecotype-adaptive-effect-claim"
+        ]
+      },
+      "source_excerpt": "Actinomycetota, Bacteroidota). This confirms that within-species gene-content subpopulations are a general feature of bacterial pangenomes, consistent with prior ecotype analyses in this observatory (ecotype_analysis, 172 species) and the broader literature (Hoarfrost et al. 2019; Ahlgren et al. 2020).\n\n*(Notebook: NB02_clustering_and_cog.ipynb, Script: src/run_clustering.py)*\n\n### Finding 2: Ecotypes show pervasive COG functional differentiation\n\n![COG differentiation rates by category, colored by adaptive (red) vs housekeeping (blue) vs other (gray)](figures/cog_differentiation_rates.png)\n\nChi-square and Fisher's exact tests revealed that 170 of 257 species x COG tests (66.1%) were statistically significant after BH-FDR correction (q < 0.05). All 12 species showed at least one significantly differentiated COG category, strongly rejecting H0 (that ecotype gene content variation is functionally random).\n\nThe most frequently differentiated categories were:\n- **E** (Amino acid metabolism): 11/12 species (91.7%)\n- **S** (Unknown function): 11/12 species (91.7%)\n- **V** (Defense): 11/12 species (91.7%)\n- **G** (Carbohydrate metabolism): 10/12 species (83.3%)\n\nThe least differentiated: **A** (RNA processing, 1/9), **B** (Chromatin, 1/8), **Z** (Cytoskeleton, 2/6).\n\n*(Notebook: NB03_differential_enrichment.ipynb)*\n\n### Finding 3: Adaptive",
+      "text": "Ecotype gene-content variation is functionally structured rather than random, with COG categories differentiating across all sampled species.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:pangenome"
+      ],
+      "evidence": [
+        {
+          "figure": null,
+          "notebook": "NB02_clustering_and_cog.ipynb",
+          "quote": "Ecotype clustering via PCA + KMeans on auxiliary gene presence/absence matrices identified valid gene-content ecotypes in 12 of 15 sampled species (80%).",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_functional_differentiation",
+          "source_section": "Gene-content ecotypes are widespread across bacterial species"
+        }
+      ],
+      "id": "stmt:ecotype-functional-widespread-finding",
+      "kind": "finding",
+      "links": {
+        "contradicts": [],
+        "refines": [],
+        "supports": [
+          "stmt:ecotype-functional-differentiation-finding"
+        ]
+      },
+      "source_excerpt": "# Report: Ecotype Functional Differentiation\n\n## Key Findings\n\n### Finding 1: Gene-content ecotypes are widespread across bacterial species\n\nEcotype clustering via PCA + KMeans on auxiliary gene presence/absence matrices identified valid gene-content ecotypes in 12 of 15 sampled species (80%). Species averaged 3.7 ecotypes each (range: 2--6), with a mean silhouette score of 0.215 (median: 0.174). The clearest ecotype separation was observed in *Erwinia amylovora* (silhouette = 0.468, 2 ecotypes) and *Bacteroides xylanisolvens* (silhouette = 0.366, 6 ecotypes). The weakest signals came from *Staphylococcus simulans* (0.118) and *Streptococcus pseudopneumoniae* (0.131).\n\nA total of 1,820 genomes were assigned to ecotypes across 12 species spanning 6 phyla (Bacillota, Pseudomonadota, Actinomycetota, Bacteroidota). This confirms that within-species gene-content subpopulations are a gen",
+      "text": "Gene-content ecotypes are widespread in the sampled bacterial species and represent recurring within-species pangenome structure.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "definition": "",
+      "id": "topic:microbial-ecotypes",
+      "kind": "",
+      "label": "Microbial Ecotypes",
+      "url": ""
+    }
+  ]
+}

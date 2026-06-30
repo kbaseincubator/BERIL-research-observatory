@@ -1,0 +1,321 @@
+project:
+  id: pgp_pangenome_ecology
+  title: 'Report: PGP Gene Distribution Across Environments & Pangenomes'
+statements:
+- id: stmt:pgp-syndrome-pqqc-acds-module
+  kind: finding
+  text: Across 11,272 species carrying at least one PGP gene, plant growth-promoting traits co-occur non-randomly, with pqqC and acdS forming the strongest positive association (OR = 7.24) and an apparent coherent rhizosphere-effectiveness module.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:pangenome-architecture
+  entities:
+  - entity:plant-growth-promoting-bacteria
+  - entity:pqqc
+  - entity:acds
+  - entity:pgp-syndrome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: H1 SUPPORTED — PGP traits form a non-random syndrome, but nitrogen fixation is ecologically distinct
+    quote: Across 11,272 species with at least one PGP gene, 8 of 10 focal-gene pairs were significantly associated after BH-FDR correction. Five pairs showed positive co-occurrence and three showed negative co-occurrence. The strongest positive association was **pqqC × acdS** (OR = 7.24, n = 286 co-occurring species, q = 1.2e-83), indicating that phosphate solubilization (PQQ cofactor biosynthesis) and ethylene reduction (ACC deaminase) are nearly always found together when either is present.
+    notebook: 02_pgp_cooccurrence.ipynb
+    figure: figures/cooccurrence_heatmap.png
+- id: stmt:nifh-separate-guild
+  kind: finding
+  text: Nitrogen fixation (nifH) is negatively associated with the pqqC/acdS rhizosphere module, indicating that diazotrophs form an ecologically separate guild and that the classical PGPB suite is primarily a non-diazotrophic phenotype.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:microbial-ecotypes
+  entities:
+  - entity:nifh
+  - entity:nitrogen-fixation
+  - entity:diazotrophs
+  - entity:plant-growth-promoting-bacteria
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:pgp-syndrome-pqqc-acds-module
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: H1 SUPPORTED — PGP traits form a non-random syndrome, but nitrogen fixation is ecologically distinct
+    quote: In contrast, nifH (nitrogen fixation) was significantly **negatively** associated with both hcnC (OR = 0.23, q = 5.8e-29) and pqqC (OR = 0.57, q = 2.9e-19), and showed no significant association with ipdC (OR = 1.13, q = 0.54). This means diazotrophs form an ecologically separate guild from pqqC/acdS-bearing rhizobacteria — the classical "PGPB" suite appears to be primarily a non-diazotrophic phenotype.
+    notebook: 02_pgp_cooccurrence.ipynb
+- id: stmt:soil-enriches-acds-pqqc
+  kind: finding
+  text: Soil/rhizosphere environment strongly selects for acdS (7× more prevalent than other environments, OR = 7.02) and pqqC (OR = 2.90), with the acdS enrichment surviving phylum-level fixed effects and a strict rhizosphere-only sensitivity analysis.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbiome-engineering
+  entities:
+  - entity:acds
+  - entity:pqqc
+  - entity:rhizosphere
+  - entity:soil
+  links:
+    supports:
+    - stmt:pgp-syndrome-pqqc-acds-module
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: H2 SUPPORTED — Soil/rhizosphere environment strongly selects for acdS and pqqC, but not nifH
+    quote: 'The acdS enrichment is particularly striking: ACC deaminase is 7× more prevalent in soil/rhizosphere species than in other environments and the effect survives phylum-level fixed effects in logistic regression (OR = 6.98, p = 4.8e-61). The enrichment also holds in a strict rhizosphere-only sensitivity analysis using only genomes with "rhizosphere" or "root nodule" in their isolation source (acdS OR = 10.6, q = 7.6e-38).'
+    notebook: 03_environmental_selection.ipynb
+    figure: figures/env_enrichment_barplot.png
+- id: stmt:nifh-depleted-in-soil
+  kind: finding
+  text: Contrary to naive expectation, nifH is significantly depleted in soil-classified species (OR = 0.60) because most database nitrogen fixers are aquatic/marine or host-associated rather than free-living soil diazotrophs.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:nifh
+  - entity:nitrogen-fixation
+  - entity:soil
+  - entity:diazotrophs
+  links:
+    supports:
+    - stmt:nifh-separate-guild
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: H2 SUPPORTED — Soil/rhizosphere environment strongly selects for acdS and pqqC, but not nifH
+    quote: Unexpectedly, nifH is significantly **depleted** in soil-classified species (OR = 0.60). The phylum-stratified analysis reveals Bacillota_A as an exception (nifH enriched in soil; OR = ∞, q = 2.5e-4), reflecting anaerobic diazotrophs such as clostridia that are soil-specific. The overall nifH depletion reflects that the majority of nitrogen fixers in the database are aquatic/marine (cyanobacteria, Azotobacter) or host-associated (rhizobia).
+    notebook: 03_environmental_selection.ipynb
+- id: stmt:pgp-genes-predominantly-core
+  kind: finding
+  text: All 13 PGP genes have significantly higher core fractions than the genome-wide baseline of 46.8%, with a mean accessory fraction of 29.7% versus 53.2% genome-wide, rejecting the hypothesis that PGP genes spread predominantly by horizontal gene transfer.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:horizontal-gene-transfer
+  - entity:plant-growth-promoting-bacteria
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: 'H3 REJECTED — PGP genes are predominantly core, not accessory: vertical inheritance dominates'
+    quote: 'The mean accessory fraction across all PGP genes is **29.7%**, compared to the genome-wide 53.2%. The HGT hypothesis (H3) is clearly rejected: PGP genes are inherited vertically with the core genome, not acquired laterally.'
+    notebook: 04_core_accessory_status.ipynb
+    figure: figures/pgp_core_accessory_pie.png
+- id: stmt:openness-negatively-correlates-pgp
+  kind: finding
+  text: Pangenome openness (singleton fraction) correlates negatively with PGP gene richness (Spearman ρ = −0.195, p = 2.0e-97), so PGP-rich species have more closed pangenomes consistent with stable specialized niches rather than generalist HGT-driven acquisition.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome-openness
+  - entity:singleton-fraction
+  - entity:core-genome
+  - entity:plant-growth-promoting-bacteria
+  links:
+    supports:
+    - stmt:pgp-genes-predominantly-core
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: 'H3 REJECTED — PGP genes are predominantly core, not accessory: vertical inheritance dominates'
+    quote: pangenome openness (singleton fraction) correlates **negatively** with PGP gene richness (Spearman ρ = −0.195, p = 2.0e-97, n = 11,272 species with ≥2 genomes). Species with more PGP genes have *more closed* pangenomes, consistent with stable, specialized ecological niches rather than generalist HGT-driven gene acquisition.
+    notebook: 04_core_accessory_status.ipynb
+    figure: figures/openness_vs_pgp.png
+- id: stmt:trp-completeness-predicts-ipdc
+  kind: finding
+  text: Tryptophan biosynthesis completeness significantly predicts ipdC presence (2.5% vs 0.9% in trp-incomplete species; Fisher OR = 2.81, logit OR = 2.81, 95% CI 1.97–4.01).
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbiome-engineering
+  entities:
+  - entity:tryptophan-biosynthesis
+  - entity:ipdc
+  - entity:gapmind
+  - entity:iaa-biosynthesis
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: H4 PARTIALLY SUPPORTED — trp completeness predicts ipdC, but ipdC regulation is aromatic-amino-acid-general
+    quote: 'Tryptophan biosynthesis completeness (GapMind score ≥ 0.9) significantly predicts ipdC presence: species with complete trp pathway carry ipdC at 2.5% vs 0.9% in trp-incomplete species (Fisher OR = 2.81, p = 6.3e-10; Model 1 logit, trp only: OR = 2.81, 95% CI 1.97–4.01, p = 1.4e-08, n = 11,272; Model 2 adding soil covariate: OR_trp = 2.87, p = 7.0e-09).'
+    notebook: 05_tryptophan_iaa.ipynb
+    figure: figures/trp_iaa_contingency.png
+- id: stmt:ipdc-regulation-aromatic-general
+  kind: claim
+  text: The trp–ipdC association is not trp-specific but reflects general aromatic-amino-acid regulation, because the tyrosine negative control predicts ipdC at similar effect size (OR = 3.62), consistent with TyrR-mediated induction of ipdC by all three aromatic amino acids.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:ipdc
+  - entity:tyrr
+  - entity:aromatic-amino-acids
+  - entity:tryptophan-biosynthesis
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:trp-completeness-predicts-ipdc
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: H4 PARTIALLY SUPPORTED — trp completeness predicts ipdC, but ipdC regulation is aromatic-amino-acid-general
+    quote: 'However, the tyrosine pathway (negative control) also predicts ipdC presence at similar effect size (OR = 3.62, p = 2.3e-11). This is not merely a statistical artifact — it is mechanistically expected: the ipdC gene in *Enterobacter cloacae* and related species is regulated by TyrR, a transcription factor activated by all three aromatic amino acids (tryptophan, phenylalanine, and tyrosine; Ryu & Patten 2008, PMID 18757531).'
+    notebook: 05_tryptophan_iaa.ipynb
+- id: stmt:trp-ipdc-soil-reversal
+  kind: finding
+  text: The trp→ipdC positive coupling holds in non-soil species (OR = 3.56) but reverses within soil/rhizosphere species (OR = 0.30), possibly because soil PGPB obtain tryptophan from plant root exudates and relax selection on autonomous trp biosynthesis.
+  confidence: low
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:ipdc
+  - entity:tryptophan-biosynthesis
+  - entity:rhizosphere
+  - entity:root-exudates
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:trp-completeness-predicts-ipdc
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: H4 PARTIALLY SUPPORTED — trp completeness predicts ipdC, but ipdC regulation is aromatic-amino-acid-general
+    quote: within soil/rhizosphere species (n = 1,039), the association **reverses** (OR = 0.30, p = 0.02), meaning trp-complete soil species are *less* likely to carry ipdC. In non-soil species (n = 10,233) the positive association holds strongly (OR = 3.56, p = 7.7e-13). This may reflect that soil-associated PGPB obtain tryptophan exogenously from plant root exudates, relaxing selective pressure to maintain autonomous trp biosynthesis, while retaining ipdC for IAA production from plant-supplied substrate.
+    notebook: 05_tryptophan_iaa.ipynb
+- id: stmt:pqqc-acds-niche-marker-claim
+  kind: claim
+  text: The canonical PGPB phenotype is built around a tightly co-selected, rhizosphere-enriched, vertically inherited pqqC + acdS module that represents a stable specialized niche adaptation rather than a recently acquired multi-trait package.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:pangenome-architecture
+  entities:
+  - entity:pqqc
+  - entity:acds
+  - entity:rhizosphere
+  - entity:pgp-syndrome
+  links:
+    supports:
+    - stmt:pgp-syndrome-pqqc-acds-module
+    - stmt:soil-enriches-acds-pqqc
+    - stmt:pgp-genes-predominantly-core
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: A non-diazotrophic PGP module dominates soil bacteria
+    quote: the "canonical" PGPB phenotype — as selected in agricultural inoculant strains — is built around **pqqC + acdS**, not around nitrogen fixation. This pqqC–acdS module is tightly co-selected (OR = 7.24), strongly rhizosphere-enriched (acdS OR = 7.0), and vertically inherited as part of the core genome. The module represents a stable, specialized niche adaptation to the plant rhizosphere rather than a recently acquired multi-trait package.
+- id: stmt:pqqd-hgt-outlier-caveat
+  kind: caveat
+  text: pqqD is an outlier to the vertical-inheritance pattern, with the lowest core fraction (55.5%) and highest singleton fraction (27.5%), suggesting it occasionally spreads horizontally as a standalone gene even though the functional pqqB–pqqC operon is predominantly core.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:pqqd
+  - entity:pqq-operon
+  - entity:horizontal-gene-transfer
+  - entity:singleton-fraction
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:pgp-genes-predominantly-core
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: Vertical inheritance over HGT for PGP genes
+    quote: 'An important caveat: pqqD is an outlier (55.5% core vs 63–81% for other PGP genes) and shows the highest singleton fraction (27.5%), suggesting it does occasionally spread horizontally as a standalone gene. But the functional pqq operon (pqqB–pqqC as a unit) is predominantly core.'
+- id: stmt:env-classification-caveat
+  kind: caveat
+  text: Only 5.9% of species are classified soil/rhizosphere-dominant because ncbi_isolation_source is noisy and NCBI is biased toward clinical and host-associated isolates, so the reported soil enrichment effects are likely underestimates.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:ncbi-isolation-source
+  - entity:soil
+  - entity:rhizosphere
+  - entity:sampling-bias
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:soil-enriches-acds-pqqc
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Environment classification**: Only 5.9% of species are soil/rhizosphere-dominant. ncbi_isolation_source is noisy and NCBI is heavily biased toward clinical and host-associated isolates. The soil enrichment effects are likely underestimates.'
+- id: stmt:pqqc-acds-operon-context-opportunity
+  kind: opportunity
+  text: Determining whether co-occurring pqqC and acdS are physically co-located on the same genomic island or operon would distinguish functional operon linkage from independent co-selection.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:microbiome-engineering
+  entities:
+  - entity:pqqc
+  - entity:acds
+  - entity:genomic-island
+  - entity:operon
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Operonic context of pqqC–acdS co-occurrence**: Determine whether pqqC and acdS are physically co-located on the chromosome (same genomic island or operon) or co-occur between separate loci, distinguishing functional operon linkage from independent co-selection.'
+- id: stmt:inoculant-efficacy-opportunity
+  kind: opportunity
+  text: Cross-referencing species carrying the pqqC + acdS + hcnC combination against commercially used inoculant strains could test whether this genomic signature predicts inoculant efficacy.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:environment-biogeography
+  entities:
+  - entity:pqqc
+  - entity:acds
+  - entity:hcnc
+  - entity:microbial-inoculants
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pgp_pangenome_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Agronomic relevance**: Cross-reference species carrying the pqqC + acdS + hcnC combination with commercially used inoculant strains to assess whether the genomic signature can predict inoculant efficacy.'

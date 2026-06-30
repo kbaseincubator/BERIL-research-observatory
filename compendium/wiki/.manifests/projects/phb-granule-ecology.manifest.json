@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:nmdc-abiotic-modest-effects",
+    "stmt:phar-absent-annotation",
+    "stmt:niche-breadth-confounded-genome-size",
+    "stmt:hgt-accessory-rate",
+    "stmt:environment-chi-squared",
+    "stmt:phac-prevalence-21-percent",
+    "stmt:subclade-heterogeneous-selection",
+    "stmt:nmdc-cross-validation",
+    "stmt:environment-enrichment-robust-to-size",
+    "stmt:phb-phylogenetically-concentrated",
+    "stmt:phb-enriched-variable-environments",
+    "stmt:hgt-phac-acquisition",
+    "stmt:pha-synthase-class-fix-opportunity",
+    "stmt:fitness-browser-opportunity"
+  ],
+  "member_hash": "hash:daf1f1cfec604f1b",
+  "model": "haiku",
+  "page_id": "project:phb_granule_ecology",
+  "page_plan_hash": "hash:00644ac0709ddc9a",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:daf1f1cfec604f1b",
+    "lead": "hash:daf1f1cfec604f1b"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

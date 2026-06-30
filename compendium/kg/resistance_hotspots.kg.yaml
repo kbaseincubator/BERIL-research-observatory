@@ -1,0 +1,301 @@
+project:
+  id: resistance_hotspots
+  title: Antibiotic Resistance Hotspots in Microbial Pangenomes
+statements:
+- id: stmt:arg-hotspot-question
+  kind: claim
+  text: The project aims to identify which microbial species and ecological environments harbor the highest concentration of antibiotic resistance genes and whether resistance accumulation can be predicted from phylogenetic and ecological features.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  entities:
+  - entity:antibiotic-resistance-genes
+  - entity:pangenome
+  - entity:microbial-species
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: README.md
+    source_section: Research Question
+    quote: Which microbial species and ecological environments show the highest concentration of antibiotic resistance genes, and can we predict resistance accumulation from phylogenetic and ecological features?
+- id: stmt:pangenome-scale
+  kind: claim
+  text: The analysis is designed to map antibiotic resistance genes across 293,059 genomes spanning 27,690 microbial species in the BERDL kbase_ke_pangenome collection (GTDB r214).
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome
+  - entity:kbase-ke-pangenome
+  - entity:gtdb
+  - entity:antibiotic-resistance-genes
+  links:
+    supports:
+    - stmt:arg-hotspot-question
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: RESEARCH_PLAN.md
+    source_section: Primary Collections
+    quote: '**Pangenome** (`kbase_ke_pangenome`): 293,059 genomes across 27,690 microbial species from GTDB r214'
+- id: stmt:core-vs-accessory-arg
+  kind: claim
+  text: A central planned analysis is to test whether antibiotic resistance genes are preferentially core or accessory genes and to relate pangenome openness to ARG diversity.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:amr-resistome
+  entities:
+  - entity:pangenome-openness
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:antibiotic-resistance-genes
+  links:
+    supports:
+    - stmt:arg-hotspot-question
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: RESEARCH_PLAN.md
+    source_section: 'Phase 4: Pangenome Characterization'
+    quote: 'Analyze correlation between pangenome openness and ARG diversity
+
+      - Test whether ARGs are preferentially core or accessory'
+- id: stmt:open-pangenome-hypothesis
+  kind: opportunity
+  text: A testable hypothesis worth pursuing is that species with open pangenomes (high accessory:core ratio) carry higher ARG diversity than species with closed pangenomes, enabling statistical testing of resistance accumulation.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:amr-resistome
+  entities:
+  - entity:pangenome-openness
+  - entity:accessory-genome
+  - entity:antibiotic-resistance-genes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:core-vs-accessory-arg
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: Critical Issues (Must Fix Before Implementation)
+    quote: 'Add hypothesis to test, e.g.: "Species with open pangenomes (high accessory:core ratio) will have higher ARG diversity than species with closed pangenomes"'
+- id: stmt:fitness-tradeoff-plan
+  kind: claim
+  text: The plan proposes cross-referencing ARG-containing genes against kescience_fitnessbrowser transposon-mutant fitness data to evaluate fitness trade-offs of carrying resistance genes.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:amr-resistome
+  entities:
+  - entity:fitness-browser
+  - entity:antibiotic-resistance-genes
+  - entity:transposon-mutants
+  links:
+    supports:
+    - stmt:arg-hotspot-question
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: RESEARCH_PLAN.md
+    source_section: 'Phase 5: Fitness Analysis'
+    quote: 'Cross-reference ARG genes with `kescience_fitnessbrowser` fitness data
+
+      - Extract fitness effects across experimental conditions
+
+      - Analyze trade-offs between resistance carriage and fitness costs'
+- id: stmt:project-planning-stage
+  kind: finding
+  text: 'The project is currently in the planning stage with no analysis implemented: all six notebooks contain only skeleton code with TODO placeholders, no data files have been generated, and no findings exist.'
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  entities:
+  - entity:research-plan
+  - entity:project-status
+  - entity:notebooks
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: Summary
+    quote: the project is currently in the planning stage with no analysis implemented**. All six notebooks contain only skeleton code with TODO placeholders, no data files have been generated, and no actual findings exist.
+- id: stmt:no-findings-yet
+  kind: caveat
+  text: The project has zero completed analysis, so no conclusions, visualizations, or results currently exist to evaluate.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  entities:
+  - entity:project-status
+  - entity:research-plan
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:project-planning-stage
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: No Findings to Assess
+    quote: The project has **zero completed analysis**, so there are no conclusions, visualizations, or results to evaluate.
+- id: stmt:keyword-arg-caveat
+  kind: caveat
+  text: The planned ARG identification by keyword matching of gene descriptions is underspecified and is expected to yield high false-positive and false-negative rates, with no defined validation strategy to confirm true resistance genes.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:functional-dark-matter
+  entities:
+  - entity:antibiotic-resistance-genes
+  - entity:keyword-matching
+  - entity:card
+  - entity:gene-annotation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: Research Question and Approach
+    quote: '**ARG identification methodology is underspecified**: The approach relies on "keyword matching" of gene descriptions, which will have high false positive/negative rates. No validation strategy is defined for confirming that matched genes are true ARGs'
+- id: stmt:sequence-similarity-opportunity
+  kind: opportunity
+  text: ARG detection could be made more robust by using sequence similarity (BLAST/DIAMOND) against CARD protein sequences with an identity threshold rather than relying on keyword matching of annotations.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  entities:
+  - entity:card
+  - entity:sequence-similarity
+  - entity:antibiotic-resistance-genes
+  links:
+    supports: []
+    contradicts:
+    - stmt:keyword-arg-caveat
+    refines:
+    - stmt:keyword-arg-caveat
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: Critical Issues (Must Fix Before Implementation)
+    quote: '**Recommendation**: Download CARD database ARO ontology, use sequence similarity (BLAST/DIAMOND) against CARD protein sequences, set identity threshold (≥80% for close homologs)'
+- id: stmt:fitness-mapping-caveat
+  kind: caveat
+  text: Mapping pangenome ARG genes to fitness data is problematic because the Fitness Browser uses different model organisms (e.g., E. coli K12) and gene ID schemes than the wild-type strains in the pangenome collection.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:amr-resistome
+  entities:
+  - entity:fitness-browser
+  - entity:gene-id-mapping
+  - entity:escherichia-coli
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:fitness-tradeoff-plan
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: Critical Issues (Must Fix Before Implementation)
+    quote: "Fitness browser uses different organisms (model organisms like E. coli K12) than pangenome (wild-type strains)\n   - Gene ID formats don't match between databases"
+- id: stmt:eggnog-orthogroup-inaccessible
+  kind: finding
+  text: Validation against the BERDL API revealed that the eggnog_mapper_annotations table times out via REST API and the orthogroup table does not exist or is inaccessible, blocking the planned ARG-annotation queries.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:eggnog-annotations
+  - entity:orthogroup
+  - entity:berdl
+  - entity:gene-cluster
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: Data Sources
+    quote: '**eggNOG annotations table inaccessible**: BERDL_VALIDATION_REAL.md reveals this critical table times out via REST API, but notebooks don''t account for this
+
+      - **orthogroup table missing**: Validation shows this table doesn''t exist or is inaccessible, yet notebook 01 queries it'
+- id: stmt:count-query-timeout
+  kind: caveat
+  text: COUNT(*) and SHOW TABLES queries on the billion-row pangenome tables time out, so large-table exploration must rely on LIMIT-based sampling run inside JupyterHub with Spark SQL rather than the REST API.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:berdl
+  - entity:spark-sql
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: SQL Queries
+    quote: '- ❌ `SHOW TABLES IN kbase_ke_pangenome` will timeout (55 seconds)
+
+      - ❌ `COUNT(*)` queries on billion-row tables will timeout'
+- id: stmt:gene-cluster-join-key
+  kind: finding
+  text: eggNOG functional annotations join on gene_cluster_id rather than gene_id and gene clusters are species-specific, so the recommended approach is to use the gene_cluster table with species-level grouping instead of the non-existent orthogroup table.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:gene-cluster
+  - entity:eggnog-annotations
+  - entity:orthogroup
+  links:
+    supports:
+    - stmt:eggnog-orthogroup-inaccessible
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: High-Priority Improvements
+    quote: "Per pitfalls.md line 148, annotations join on `gene_cluster_id`\n    - Update all notebooks to use correct table name"
+- id: stmt:environment-metadata-sparse
+  kind: caveat
+  text: Environmental hotspot analysis will be limited because AlphaEarth embeddings cover only 28.4% of genomes and NCBI environment metadata is sparse and stored in an entity-attribute-value format.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:amr-resistome
+  entities:
+  - entity:alphaearth
+  - entity:environment-metadata
+  - entity:ncbi
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: resistance_hotspots
+    source_doc: REVIEW.md
+    source_section: Nice-to-Have Enhancements
+    quote: "AlphaEarth embeddings only cover 28.4% of genomes (pitfalls.md line 85)\n    - NCBI environment metadata is sparse and EAV format (pitfalls.md line 103)"

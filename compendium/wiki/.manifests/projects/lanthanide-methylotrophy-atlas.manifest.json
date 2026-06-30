@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:ree-impacted-small-n-caveat",
+    "stmt:lanmodulin-xoxf-cooccurrence-short",
+    "stmt:bakta-product-trustworthy-lanmodulin",
+    "stmt:xoxf-dominance-phylogeny-robust",
+    "stmt:xoxf-outnumbers-mxaf-19to1",
+    "stmt:lanmodulin-clade-restriction-total",
+    "stmt:host-associated-xoxf-depleted",
+    "stmt:soil-sediment-strongest-enrichment",
+    "stmt:ree-amd-acidophiles-not-methylotrophs",
+    "stmt:pqq-asymmetry-annotation-gaps",
+    "stmt:xoxf-high-rate-non-methylotrophs",
+    "stmt:eggnog-bakta-disagreement",
+    "stmt:larger-ree-metagenome-opportunity",
+    "stmt:rbtnseq-la-ce-fitness-opportunity"
+  ],
+  "member_hash": "hash:f3b9ad265e0bdf4e",
+  "model": "haiku",
+  "page_id": "project:lanthanide_methylotrophy_atlas",
+  "page_plan_hash": "hash:9cc7ee86ed5bd153",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:f3b9ad265e0bdf4e",
+    "lead": "hash:f3b9ad265e0bdf4e"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:low-cross-database-overlap",
+    "stmt:tryptophan-high-confidence-discordance",
+    "stmt:condition-dependent-media-mismatch",
+    "stmt:production-not-utilization",
+    "stmt:pleiotropic-housekeeping-genes",
+    "stmt:novel-exometabolomics-fitness-integration",
+    "stmt:tryptophan-cross-feeding-candidate",
+    "stmt:rich-fitness-landscapes",
+    "stmt:high-cross-database-concordance",
+    "stmt:gapmind-pathways-validated",
+    "stmt:tryptophan-overflow-discordance",
+    "stmt:four-way-concordant-metabolites",
+    "stmt:produced-metabolites-species-norm-utilization",
+    "stmt:community-metabolic-modeling-opportunity",
+    "stmt:expand-bacdive-matching-opportunity"
+  ],
+  "member_hash": "hash:df798c1b64f1ef31",
+  "model": "haiku",
+  "page_id": "project:fw300_metabolic_consistency",
+  "page_plan_hash": "hash:06ee3258fc307fa2",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:df798c1b64f1ef31",
+    "lead": "hash:df798c1b64f1ef31"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

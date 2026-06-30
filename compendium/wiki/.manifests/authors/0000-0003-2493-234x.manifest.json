@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:baseline-fba-asymmetry",
+    "stmt:five-evidence-integration-novel",
+    "stmt:evidence-streams-complementary",
+    "stmt:no-single-stream-sufficient",
+    "stmt:triangulation-resolves-48pct",
+    "stmt:bcaa-reactions-dominate",
+    "stmt:blast-high-identity-cluster",
+    "stmt:high-confidence-experimentally-testable",
+    "stmt:gapmind-partial-concordance",
+    "stmt:dark-reactions-resist-resolution",
+    "stmt:dark-reactions-high-value-targets",
+    "stmt:resolution-varies-by-organism",
+    "stmt:knockout-validation-inconclusive",
+    "stmt:phylogenetic-bias-caveat"
+  ],
+  "member_hash": "hash:f3070c3371ff5da9",
+  "model": "sonnet",
+  "page_id": "author:0000-0003-2493-234x",
+  "page_plan_hash": "hash:cacc7f6c972ffe4e",
+  "page_type": "author",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:f3070c3371ff5da9",
+    "projects": "hash:f3070c3371ff5da9",
+    "topics": "hash:f3070c3371ff5da9"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

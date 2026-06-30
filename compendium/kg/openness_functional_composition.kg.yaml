@@ -1,0 +1,269 @@
+project:
+  id: openness_functional_composition
+  title: Openness vs Functional Composition
+statements:
+- id: stmt:research-question
+  kind: claim
+  text: This project asks whether pangenome openness predicts the magnitude of COG functional enrichment in novel versus core genes.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:functional-dark-matter
+  entities:
+  - entity:pangenome
+  - entity:pangenome-openness
+  - entity:cog-categories
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: Research Question
+    quote: Does pangenome openness predict the magnitude of COG functional enrichment in novel vs core genes?
+- id: stmt:two-speed-genome-prior
+  kind: finding
+  text: 'A prior cog_analysis project found a universal two-speed genome pattern in which novel genes are enriched in mobile elements (COG L: +10.88%) and defense (COG V: +2.83%).'
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:two-speed-genome
+  - entity:mobile-elements
+  - entity:defense-systems
+  - entity:cog-categories
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: README.md
+    source_section: Overview
+    quote: 'The `cog_analysis` project found a universal "two-speed genome" pattern: novel genes are enriched in mobile elements (L: +10.88%) and defense (V: +2.83%).'
+- id: stmt:scales-with-openness-hypothesis
+  kind: claim
+  text: The project hypothesizes that species acquiring more novel genes (more open pangenomes) also show stronger mobile-element and defense enrichment, linking genome fluidity to functional specialization of the accessory genome.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:pangenome-openness
+  - entity:two-speed-genome
+  - entity:accessory-genome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:two-speed-genome-prior
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: README.md
+    source_section: Overview
+    quote: This project tests whether that enrichment **scales with pangenome openness** -- do species that acquire more novel genes also show stronger L/V enrichment? This would link genome fluidity to functional specialization of the accessory genome.
+- id: stmt:h1-open-lv-enrichment
+  kind: claim
+  text: Hypothesis H1 predicts that open pangenomes show higher mobile-element (L) and defense (V) COG enrichment in novel genes than closed pangenomes.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:pangenome-openness
+  - entity:novel-genes
+  - entity:cog-categories
+  links:
+    supports:
+    - stmt:scales-with-openness-hypothesis
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: Hypothesis
+    quote: '**H1**: Open pangenomes show HIGHER L (mobile element) and V (defense) enrichment in novel genes'
+- id: stmt:h2-closed-metabolic
+  kind: claim
+  text: Hypothesis H2 predicts that closed pangenomes show higher metabolic diversity (COG E, C, G categories) concentrated in core genes.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome-openness
+  - entity:core-genome
+  - entity:cog-categories
+  links:
+    supports:
+    - stmt:scales-with-openness-hypothesis
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: Hypothesis
+    quote: '**H2**: Closed pangenomes show HIGHER metabolic diversity in core (E, C, G categories)'
+- id: stmt:prior-openness-null
+  kind: finding
+  text: A prior pangenome_openness project found no correlation between pangenome openness and eco-phylo dynamics, motivating stratification by gene function as a next step.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome-openness
+  - entity:eco-phylo-dynamics
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: Literature Context
+    quote: '**pangenome_openness project** (this repo) found no correlation between openness and eco-phylo dynamics, but suggested stratifying by gene function as a next step.'
+- id: stmt:cog-analysis-untested-openness
+  kind: finding
+  text: The prior cog_analysis project established universal L/V enrichment in novel genes across 32 species and 9 phyla but did not test whether this enrichment scales with openness.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:two-speed-genome
+  - entity:novel-genes
+  - entity:cog-categories
+  links:
+    supports:
+    - stmt:two-speed-genome-prior
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: Literature Context
+    quote: '**cog_analysis project** (this repo) found universal L/V enrichment in novel genes across 32 species/9 phyla, but did not test whether this scales with openness.'
+- id: stmt:methodology-quartile-stratification
+  kind: claim
+  text: The analysis stratifies roughly 40 species (each with at least 50 genomes) into openness quartiles and computes COG enrichment per quartile across core, auxiliary, and singleton gene clusters.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:functional-dark-matter
+  entities:
+  - entity:pangenome
+  - entity:cog-categories
+  - entity:openness-quartiles
+  - entity:gene-cluster
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: 'Notebook 2: COG Enrichment by Openness'
+    quote: '**Goal**: Query COG distributions for ~40 species across openness quartiles'
+- id: stmt:dataset-pangenome-tables
+  kind: claim
+  text: Openness metrics and COG annotations are drawn from BERDL pangenome tables, joining pangenome openness metrics, gene-cluster core/auxiliary/singleton classifications, and eggNOG COG categories at billion-row scale.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:functional-dark-matter
+  entities:
+  - entity:pangenome
+  - entity:gene-cluster
+  - entity:eggnog-annotations
+  - entity:berdl
+  links:
+    supports:
+    - stmt:methodology-quartile-stratification
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: Tables Required
+    quote: '| `pangenome` | Openness metrics per species | 27K | Filter to >= 50 genomes |'
+- id: stmt:outcome-extends-two-speed
+  kind: opportunity
+  text: If open pangenomes show stronger L/V enrichment, the result would extend the two-speed genome model to show the pattern is not merely universal but scales with genome fluidity.
+  confidence: low
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:two-speed-genome
+  - entity:pangenome-openness
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:h1-open-lv-enrichment
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: Expected Outcomes
+    quote: '**If H1 supported**: Open pangenomes have stronger L/V enrichment -- HGT introduces more mobile/defense cargo in open genomes. This extends the "two-speed genome" to show it''s not just universal but scales with genome fluidity.'
+- id: stmt:outcome-null-universal
+  kind: opportunity
+  text: If openness does not modulate enrichment, the two-speed pattern would be confirmed as truly universal and driven by the nature of HGT events rather than their frequency.
+  confidence: low
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:two-speed-genome
+  - entity:pangenome-openness
+  - entity:horizontal-gene-transfer
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: Expected Outcomes
+    quote: '**If H0 not rejected**: The two-speed pattern is truly universal and independent of openness -- even closed pangenomes have the same L/V enrichment magnitude. This would suggest the pattern is driven by the nature of HGT events, not their frequency.'
+- id: stmt:caveat-confounders
+  kind: caveat
+  text: Genome count, phylum effects, and genome size are potential confounders that must be controlled when relating openness to COG enrichment.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome-openness
+  - entity:confounders
+  - entity:phylogenetic-controls
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:methodology-quartile-stratification
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: RESEARCH_PLAN.md
+    source_section: Expected Outcomes
+    quote: '**Potential confounders**: Genome count (more genomes = better pangenome estimates), phylum effects, genome size'
+- id: stmt:caveat-in-progress
+  kind: caveat
+  text: The study is in progress with notebooks created but not yet executed, so no empirical enrichment results are available.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome-openness
+  - entity:berdl
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: openness_functional_composition
+    source_doc: README.md
+    source_section: Status
+    quote: In Progress -- notebooks created, awaiting execution on BERDL JupyterHub.

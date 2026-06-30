@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-niche-breadth-sequencing-proxy",
+    "stmt:caveat-archaeal-underpowered",
+    "stmt:caveat-direction-not-established",
+    "stmt:nitrification-positive-control",
+    "stmt:metabolic-versatility-hypothesis",
+    "stmt:first-global-metal-niche-link",
+    "stmt:metal-type-diversity-predicts-niche-breadth",
+    "stmt:niche-breadth-phylogenetically-conserved",
+    "stmt:effect-independent-of-richness-and-genome-size",
+    "stmt:enigma-plume-wells-higher-cwm",
+    "stmt:enigma-groundwater-validation",
+    "stmt:breadth-not-depth-distinguishes-generalists",
+    "stmt:metal-amr-intermediate-phylogenetic-signal",
+    "stmt:effect-independent-of-genome-size",
+    "stmt:opportunity-microcosm-validation",
+    "stmt:opportunity-hgt-burden-predictor"
+  ],
+  "member_hash": "hash:74317b898a6d987b",
+  "model": "haiku",
+  "page_id": "project:microbeatlas_metal_ecology",
+  "page_plan_hash": "hash:bd3e8dbd76d380b1",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:74317b898a6d987b",
+    "lead": "hash:74317b898a6d987b"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,326 @@
+project:
+  id: bacdive_phenotype_metal_tolerance
+  title: 'Report: BacDive Phenotype Signatures of Metal Tolerance'
+statements:
+- id: stmt:phenotypes-add-nothing-beyond-taxonomy
+  kind: finding
+  text: Classical BacDive phenotype features add no predictive power for bacterial metal tolerance beyond taxonomy, with the combined taxonomy-plus-phenotype model performing slightly worse than taxonomy alone (delta R-squared = -0.009).
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:microbial-ecotypes
+  entities:
+  - entity:bacdive
+  - entity:metal-tolerance
+  - entity:taxonomy
+  - entity:phylogenetic-confounding
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: 3. Phenotype Features Add Nothing Beyond Taxonomy (Delta R² = -0.009)
+    quote: taxonomy alone (phylum/class/order) explains 35.4% of metal tolerance variance, and phenotype features alone explain 16.3%, but combining taxonomy + phenotype yields R² = 34.5% — slightly *worse* than taxonomy alone. The phenotype signal is entirely captured by phylogenetic structure.
+    notebook: 04_multivariate_model.ipynb
+    figure: figures/model_comparison.png
+- id: stmt:gram-negative-higher-tolerance
+  kind: finding
+  text: Gram-negative species show the largest univariate phenotype effect on metal tolerance, scoring higher than Gram-positive species (Cohen's d = -0.61, p < 1e-60, n = 3,272 species).
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:bacdive
+  - entity:gram-stain
+  - entity:metal-tolerance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: 1. Gram-Negative Bacteria Have Significantly Higher Metal Tolerance Scores (d=-0.61)
+    quote: Gram-negative species have higher metal tolerance scores than Gram-positive species (Cohen's d = -0.61, p < 1e-60, n = 3,272 species). This is the largest effect among all phenotype features tested.
+    notebook: 03_univariate_associations.ipynb
+    figure: figures/univariate_effect_sizes.png
+- id: stmt:seven-of-ten-features-significant
+  kind: finding
+  text: Seven of ten BacDive phenotype features (Gram stain, oxidase, motility, urease, enzyme breadth, nitrate reduction, and catalase) are individually significant predictors of metal tolerance after FDR correction at q < 0.05.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:bacdive
+  - entity:metal-tolerance
+  - entity:fdr-correction
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:phenotypes-add-nothing-beyond-taxonomy
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: 2. Seven of Ten Phenotype Features Are Individually Significant After FDR Correction
+    quote: 'Seven features pass FDR correction at q < 0.05: Gram stain (d = -0.61), oxidase (d = +0.53), motility (d = +0.35), urease (d = -0.18), enzyme breadth (rho = -0.06), nitrate reduction (d = +0.10), and catalase (d = +0.10).'
+    notebook: 03_univariate_associations.ipynb
+- id: stmt:gene-content-is-true-predictor
+  kind: finding
+  text: Genome-encoded metal resistance gene content (n_metal_clusters from the Metal Fitness Atlas) is the true predictor of metal tolerance, raising the full model to R-squared = 0.63 and explaining more variance than all phenotype features combined.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:metal-fitness-atlas
+  - entity:metal-resistance-genes
+  - entity:metal-tolerance
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:phenotypes-add-nothing-beyond-taxonomy
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: What Does Predict Metal Tolerance
+    quote: The genome's metal resistance gene content (`n_metal_clusters` from the Metal Fitness Atlas) explains more variance than all phenotype features combined, and substantially more than taxonomy alone. The full model (taxonomy + phenotype + gene count) achieves R² = 0.63
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: 3. Phenotype Features Add Nothing Beyond Taxonomy (Delta R² = -0.009)
+    quote: Adding the number of metal resistance gene clusters (`n_metal_clusters`) boosts the full model to R² = 0.63, demonstrating that genome-encoded metal resistance repertoire is the true predictor.
+    notebook: 04_multivariate_model.ipynb
+- id: stmt:shap-taxonomy-gene-count-dominate
+  kind: finding
+  text: SHAP importance from the full XGBoost model is dominated by taxonomic class/order codes and metal resistance gene count, while phenotype features contribute minimally once taxonomy is included.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:xgboost
+  - entity:metal-resistance-genes
+  - entity:taxonomy
+  links:
+    supports:
+    - stmt:phenotypes-add-nothing-beyond-taxonomy
+    - stmt:gene-content-is-true-predictor
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: 6. SHAP Analysis Confirms Taxonomy and Gene Count Dominate
+    quote: SHAP feature importance from the full XGBoost model shows that taxonomic class/order codes and `n_metal_clusters` are the top predictors. Phenotype features contribute minimally to individual predictions once taxonomy is included.
+    notebook: 04_multivariate_model.ipynb
+    figure: figures/shap_summary.png
+- id: stmt:urease-reversal
+  kind: finding
+  text: Contrary to the prediction that urease-positive organisms tolerate nickel better, urease-positive species have significantly lower metal tolerance (d = -0.18, p < 1e-5), a reversal driven by lineage composition rather than nickel biology.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:urease
+  - entity:nickel
+  - entity:metal-tolerance
+  - entity:actinomycetes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:phenotypes-add-nothing-beyond-taxonomy
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: 4. Urease-Positive Organisms Have *Lower* Metal Tolerance (H1e Reversed)
+    quote: Urease-positive species have significantly lower metal tolerance scores (d = -0.18, p < 1e-5), opposite to the prediction that urease positivity (requiring nickel import machinery) would confer nickel tolerance.
+    notebook: 03_univariate_associations.ipynb
+- id: stmt:anaerobe-aerobe-negligible
+  kind: finding
+  text: The anaerobe-versus-aerobe difference in metal tolerance is negligible (d = -0.016, p = 0.55) despite 3,751 species with oxygen tolerance data, failing to support the hypothesis that redox lifestyle confers metal tolerance.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:bacdive
+  - entity:oxygen-tolerance
+  - entity:metal-tolerance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: 5. Anaerobe vs Aerobe Difference Is Negligible (H1b Not Supported)
+    quote: Despite 3,751 species with oxygen tolerance data, the anaerobe-aerobe difference in metal tolerance is negligible (d = -0.016, p = 0.55).
+    notebook: 03_univariate_associations.ipynb
+    figure: figures/feature_completeness.png
+- id: stmt:catalase-simpsons-paradox
+  kind: finding
+  text: 'Catalase exhibits Simpson''s paradox: the marginally positive overall effect (d = +0.10) reverses within every major class, where catalase-negative species score higher, exposing the apparent association as a between-class artifact.'
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:catalase
+  - entity:simpsons-paradox
+  - entity:metal-tolerance
+  links:
+    supports:
+    - stmt:phylogenetic-confounding-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: Why Phenotypes Fail as Metal Tolerance Predictors
+    quote: The overall catalase effect is d = +0.10 (catalase-positive species have slightly higher metal scores), marginally supporting H1d. But class-stratified analysis reveals the *opposite* within every major class
+- id: stmt:phylogenetic-confounding-claim
+  kind: claim
+  text: Classical microbiology phenotypes capture real biological differences in metal tolerance, but those differences are entirely explained by phylogenetic structure, making the phenotypes noisier proxies for taxonomy rather than independent predictors.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:microbial-ecotypes
+  entities:
+  - entity:phylogenetic-confounding
+  - entity:metal-tolerance
+  - entity:taxonomy
+  links:
+    supports:
+    - stmt:phenotypes-add-nothing-beyond-taxonomy
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: The Phylogenetic Confounding Wall
+    quote: classical microbiology phenotypes (Gram stain, oxygen tolerance, enzyme activities) capture real biological differences in metal tolerance, but these differences are entirely explained by phylogenetic structure
+- id: stmt:fb-validation-urease-concordant
+  kind: claim
+  text: In twelve Fitness Browser organisms matched to BacDive, all urease-negative organisms are routinely tested against nickel, directly concordant with the pangenome-scale finding that urease status does not predict metal tolerance.
+  confidence: low
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-browser
+  - entity:bacdive
+  - entity:urease
+  - entity:nickel
+  links:
+    supports:
+    - stmt:urease-reversal
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: Direct FB-BacDive Validation (n = 12)
+    quote: All urease-typed organisms are urease-negative yet are routinely tested against nickel, consistent with the pangenome-scale finding that urease status does not predict metal tolerance.
+    notebook: 05_fb_bacdive_case_studies.ipynb
+    figure: figures/fb_bacdive_phenotype_table.png
+- id: stmt:caveat-genome-based-scores
+  kind: caveat
+  text: Metal tolerance scores from the Metal Fitness Atlas are genome-based predictions rather than direct metal tolerance measurements, so phenotype-score associations are ultimately phenotype-to-genome correlations.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:metal-fitness-atlas
+  - entity:metal-tolerance
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:gene-content-is-true-predictor
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Metal Fitness Atlas scores are genome-based predictions**, not direct metal tolerance measurements.
+- id: stmt:caveat-species-name-matching
+  kind: caveat
+  text: BacDive-to-pangenome linkage relies on species name matching that recovers only 38.4% of GTDB species (5,647/27,702), with GCA accession matching left unimplemented.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:bacdive
+  - entity:pangenome
+  - entity:gtdb
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: BacDive species name matching achieves only 38.4%** (5,647/27,702 GTDB species). GCA accession matching could recover additional links but was not implemented.
+- id: stmt:caveat-h2s-underpowered
+  kind: caveat
+  text: The H2S production signal is unreliable because only 8 H2S-negative species are in the matched set, making the large effect size (d = -0.87) likely inflated by small-sample bias.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:h2s-production
+  - entity:metal-tolerance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: 'H₂S production is underpowered**: only 8 H₂S-negative species in the matched set, making the large effect size (d = -0.87) unreliable.'
+- id: stmt:opportunity-per-metal-analysis
+  kind: opportunity
+  text: Testing whether specific phenotypes predict tolerance to specific metals (e.g., catalase to copper, urease to nickel) using per-metal scores could recover signal masked by composite metal tolerance scores.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:metal-tolerance
+  - entity:catalase
+  - entity:urease
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:phenotypes-add-nothing-beyond-taxonomy
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: 'Per-metal phenotype analysis**: Test whether specific phenotypes predict tolerance to specific metals (e.g., catalase → copper, urease → nickel) rather than composite metal scores.'
+- id: stmt:opportunity-rbtnseq-urease-nickel
+  kind: opportunity
+  text: RB-TnSeq profiling of matched urease-positive and urease-negative strains under nickel versus other metals would directly test whether urease enables nickel-specific tolerance.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:rb-tnseq
+  - entity:urease
+  - entity:nickel
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:urease-reversal
+  evidence:
+  - source_project: bacdive_phenotype_metal_tolerance
+    source_doc: REPORT.md
+    source_section: Suggested Experiments
+    quote: RB-TnSeq with matched urease+/- strains under nickel vs other metals would directly test whether urease enables nickel-specific tolerance.

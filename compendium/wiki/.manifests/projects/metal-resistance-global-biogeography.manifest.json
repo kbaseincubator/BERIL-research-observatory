@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:expedition-clustering-pending",
+    "stmt:hotspots-provisional",
+    "stmt:gapmind-narrow-scope",
+    "stmt:coordinate-gap-data-quality",
+    "stmt:metal-vs-t4ss-distinct",
+    "stmt:genome-resolved-vs-otu",
+    "stmt:eleven-hotspots-atacama",
+    "stmt:soil-enriched-marine-depleted",
+    "stmt:ena-spatial-data-gap",
+    "stmt:mag-coordinate-coverage",
+    "stmt:low-global-prevalence",
+    "stmt:gap-is-per-sample-not-geographic",
+    "stmt:underrepresented-biomes-opportunity",
+    "stmt:map-exemplar-generalists"
+  ],
+  "member_hash": "hash:e2aa7e86b3680039",
+  "model": "haiku",
+  "page_id": "project:metal_resistance_global_biogeography",
+  "page_plan_hash": "hash:77e825167645011d",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:e2aa7e86b3680039",
+    "lead": "hash:e2aa7e86b3680039"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

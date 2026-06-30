@@ -1,0 +1,291 @@
+project:
+  id: temporal_core_dynamics
+  title: Temporal Core Genome Dynamics
+statements:
+- id: stmt:core-genome-static-or-dynamic
+  kind: finding
+  text: The project asks how core genome composition changes over sampling time and whether genes transition in and out of core status.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:gene-cluster
+  - entity:collection-date
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: README.md
+    source_section: Research Question
+    quote: How does core genome composition change over sampling time, and do genes transition in and out of core status?
+- id: stmt:core-not-static-hypothesis
+  kind: claim
+  text: The central hypothesis is that the core genome is not static and that genes transition in and out of core status over ecological and evolutionary time.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:core-genome
+  - entity:gene-cluster
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:core-genome-static-or-dynamic
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: RESEARCH_PLAN.md
+    source_section: Hypothesis
+    quote: The core genome is not static - genes transition in and out of core status over ecological/evolutionary time.
+- id: stmt:heavily-sampled-smaller-cores
+  kind: claim
+  text: Species sampled over longer time periods are hypothesized to show smaller cores, potentially explaining why heavily-sampled species exhibit reduced core genomes.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:core-genome
+  - entity:pseudomonas-aeruginosa
+  - entity:acinetobacter-baumannii
+  links:
+    supports:
+    - stmt:core-not-static-hypothesis
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: RESEARCH_PLAN.md
+    source_section: Research Question
+    quote: Do genes "come and go" from core status, explaining why heavily-sampled species show smaller cores?
+- id: stmt:semi-environmental-species-models
+  kind: finding
+  text: P. aeruginosa and A. baumannii were chosen as model species because both are semi-environmental with clinical crossover, making them ideal for temporal dynamics analysis.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:pseudomonas-aeruginosa
+  - entity:acinetobacter-baumannii
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: RESEARCH_PLAN.md
+    source_section: Species
+    quote: Both species are semi-environmental (found in soil, water, biofilms) with clinical crossover, making them ideal models for temporal dynamics.
+- id: stmt:collection-date-coverage
+  kind: finding
+  text: Roughly three-quarters of genomes carry collection dates (P. aeruginosa 73.4% of 6,760; A. baumannii 75.5% of 6,647), providing the dated genome sets for temporal analysis.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:environment-biogeography
+  entities:
+  - entity:collection-date
+  - entity:pseudomonas-aeruginosa
+  - entity:acinetobacter-baumannii
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: RESEARCH_PLAN.md
+    source_section: Species
+    quote: '| Pseudomonas aeruginosa | 6,760 | ~4,960 | 73.4% |'
+- id: stmt:sliding-window-approach
+  kind: finding
+  text: 'Two complementary approaches are used: cumulative expansion sorting genomes chronologically and fixed 2-year time windows with a minimum of 30 genomes per window.'
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:gene-cluster
+  - entity:collection-date
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: RESEARCH_PLAN.md
+    source_section: 2. Sliding Window Analysis
+    quote: '**Fixed Time Windows**: Group genomes into 2-year periods, calculate core within each window (minimum 30 genomes per window).'
+  notebook: 02_sliding_window.ipynb
+- id: stmt:multiple-core-thresholds
+  kind: finding
+  text: Core membership is tested at multiple presence thresholds (90% relaxed, 95% standard, 99% strict) to assess the robustness of temporal core erosion to definition choice.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:gene-cluster
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: RESEARCH_PLAN.md
+    source_section: 3. Core Thresholds
+    quote: 'Compare multiple definitions to test robustness:
+
+      - 90% presence (relaxed)
+
+      - 95% presence (standard)
+
+      - 99% presence (strict)'
+- id: stmt:early-leavers-functional
+  kind: claim
+  text: The analysis aims to functionally characterize early-leaving core genes, expecting mobile elements among early-exit genes and housekeeping functions in the stable core.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:core-genome
+  - entity:cog-category
+  - entity:eggnog-annotations
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: If functional enrichment patterns match biological expectations (housekeeping in stable core, mobile elements in early-exit)
+  notebook: 04_functional.ipynb
+- id: stmt:dynamics-vs-sampling-bias
+  kind: claim
+  text: By tracking core erosion, turnover, and functional enrichment, the project seeks to distinguish genuine population dynamics from sampling bias effects.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:core-genome
+  - entity:gene-cluster
+  - entity:collection-date
+  links:
+    supports:
+    - stmt:core-not-static-hypothesis
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: README.md
+    source_section: Overview
+    quote: it tracks core erosion, gene turnover rates, and the functional enrichment of early-leaving genes to distinguish genuine population dynamics from sampling bias effects.
+  notebook: 03_analysis.ipynb
+- id: stmt:analysis-not-executed
+  kind: caveat
+  text: 'No conclusions can yet be drawn because the analysis has not been executed: all four notebooks contain code without outputs and the data and figures directories are empty.'
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:gene-cluster
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:core-not-static-hypothesis
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: REVIEW.md
+    source_section: Summary
+    quote: However, **the analysis has not been executed** - all four notebooks contain only code without any outputs, the data/ and figures/ directories are empty
+- id: stmt:date-granularity-bias
+  kind: caveat
+  text: Variable date granularity may bias temporal inferences, since using July 1st as a midpoint for a year-only date like "2015" could introduce systematic bias.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:pangenome-architecture
+  entities:
+  - entity:collection-date
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dynamics-vs-sampling-bias
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: This matters because using July 1st as a midpoint for "2015" could introduce systematic bias
+  notebook: 01_data_extraction.ipynb
+- id: stmt:incorrect-annotation-join
+  kind: caveat
+  text: 'A pitfall was flagged in the functional notebook: eggnog_mapper_annotations was joined on gene_id instead of the correct gene_cluster_id, which may return no results or incorrect annotations.'
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:eggnog-annotations
+  - entity:gene-cluster
+  - entity:cog-category
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:early-leavers-functional
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: REVIEW.md
+    source_section: Pitfalls Assessment
+    quote: '**Incorrect annotation join key** (docs/pitfalls.md lines 148-160): Uses `gene_id` instead of `gene_cluster_id` to join eggnog_mapper_annotations'
+  notebook: 04_functional.ipynb
+- id: stmt:null-model-permutation-test
+  kind: opportunity
+  text: A permutation test that shuffles collection dates and recalculates decay curves could establish whether observed temporal patterns exceed random sampling effects.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:collection-date
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dynamics-vs-sampling-bias
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: REVIEW.md
+    source_section: Important Improvements (Strongly Recommended)
+    quote: Add a permutation test where you shuffle collection dates among genomes and recalculate decay curves.
+- id: stmt:cross-species-stable-core
+  kind: opportunity
+  text: Identifying genes in the stable core of both species could reveal truly universal essential functions across the two semi-environmental pathogens.
+  confidence: low
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:core-genome
+  - entity:pseudomonas-aeruginosa
+  - entity:acinetobacter-baumannii
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: temporal_core_dynamics
+    source_doc: REVIEW.md
+    source_section: Nice-to-Have Enhancements
+    quote: '**Cross-species stable core**: Add an analysis identifying genes that are in the stable core of BOTH species - these would be truly universal essential functions.'

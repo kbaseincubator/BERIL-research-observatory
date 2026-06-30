@@ -1,0 +1,309 @@
+project:
+  id: snipe_defense_system
+  title: 'Report: SNIPE Defense System in the BERDL Pangenome'
+statements:
+- id: stmt:snipe-resolves-resistance-cost-tradeoff
+  kind: finding
+  text: SNIPE resolves the phage resistance versus metabolic cost trade-off by cleaving phage DNA at the ManYZ pore while retaining full transporter function, providing the resistance benefit of man knockouts without their metabolic cost.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:metabolic-pathways
+  entities:
+  - entity:snipe
+  - entity:manyz-transporter
+  - entity:phage-lambda
+  - entity:metabolic-cost
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 1. SNIPE resolves the phage resistance vs. metabolic cost trade-off
+    quote: '**SNIPE resolves this trade-off**: rather than losing ManYZ entirely, SNIPE-bearing strains retain full transporter function while cleaving phage DNA during injection. SNIPE provides the phage resistance benefit of *man* knockouts **without the metabolic cost**.'
+- id: stmt:manxyz-fitness-cost-mannose-glucosamine
+  kind: finding
+  text: RB-TnSeq fitness data from 168 E. coli K-12 experiments show ManXYZ knockouts incur severe substrate-specific defects (worst fitness -3.93 to -4.14) on mannose and glucosamine, quantifying the metabolic cost of losing the phage lambda receptor.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:manyz-transporter
+  - entity:rb-tnseq
+  - entity:fitness-browser
+  - entity:escherichia-coli
+  links:
+    supports:
+    - stmt:snipe-resolves-resistance-cost-tradeoff
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 1. SNIPE resolves the phage resistance vs. metabolic cost trade-off
+    quote: 'Direct RB-TnSeq fitness measurements for ManXYZ in *E. coli* K-12 (Keio collection, 168 experiments; Price et al. 2018) confirm severe, substrate-specific fitness defects:'
+    notebook: 01_extract_snipe_domains.ipynb
+- id: stmt:manyz-not-fructose-transporter
+  kind: finding
+  text: Fitness Browser data directly contradict UniProt's fructose-transporter annotation, showing ManXYZ mutants grow normally on fructose but are crippled on mannose and glucosamine, confirming ManYZ is a mannose/glucosamine-specific transporter.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:manyz-transporter
+  - entity:fitness-browser
+  - entity:uniprot
+  - entity:fructose
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:manxyz-fitness-cost-mannose-glucosamine
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 1. SNIPE resolves the phage resistance vs. metabolic cost trade-off
+    quote: ManXYZ mutants grow normally on fructose (fitness ≈ 0) but are crippled on mannose and glucosamine. FruA (the actual fructose PTS) shows the opposite pattern — essential for fructose, dispensable for mannose. This clean substrate separation confirms ManYZ is a **mannose/glucosamine-specific** transporter, consistent with its role as the phage lambda entry receptor.
+    notebook: 01_extract_snipe_domains.ipynb
+- id: stmt:methanococcus-first-snipe-fitness
+  kind: finding
+  text: Methanococcus maripaludis JJ carries a full two-domain SNIPE protein (locus MMJJ_RS01635, PF13250 plus PF13455) with 129 experiments of fitness data, the first SNIPE homologue with genome-wide knockout phenotypes.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:snipe
+  - entity:methanococcus-maripaludis
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 1. SNIPE resolves the phage resistance vs. metabolic cost trade-off
+    quote: '**SNIPE (DUF4041/PF13250)**: One organism carries it — ***Methanococcus maripaludis* JJ** (locus `MMJJ_RS01635`), annotated with **both** PF13250 (DUF4041) **and** PF13455 (Mug113/GIY-YIG nuclease), plus PF10544 (DUF2525). This is a full two-domain SNIPE protein with **129 experiments** of fitness data.'
+    notebook: 01_extract_snipe_domains.ipynb
+- id: stmt:snipe-widespread-1696-species
+  kind: finding
+  text: The diagnostic SNIPE domain DUF4041 (PF13250) was detected in 4,572 gene clusters across 1,696 species spanning 33 bacterial and archaeal phyla, far exceeding the more-than-500 homologues reported in the original paper.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:snipe
+  - entity:duf4041
+  - entity:berdl-pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 2. SNIPE is widespread (1,696 species, 33 phyla)
+    quote: DUF4041 (PF13250, InterPro [IPR025280](https://www.ebi.ac.uk/interpro/entry/InterPro/IPR025280/)), the diagnostic SNIPE domain, was detected in **4,572 gene clusters** across **1,696 species** spanning **33 bacterial and archaeal phyla**. This substantially expands the >500 homologues reported in the original paper.
+    notebook: 01_extract_snipe_domains.ipynb
+- id: stmt:snipe-patchy-distribution-hgt
+  kind: claim
+  text: The patchy distribution of SNIPE across many phyla and families is consistent with horizontal gene transfer of defense islands rather than vertical inheritance.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:snipe
+  - entity:horizontal-gene-transfer
+  - entity:defense-island
+  links:
+    supports:
+    - stmt:snipe-widespread-1696-species
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 2. SNIPE is widespread (1,696 species, 33 phyla)
+    quote: The patchy distribution across many phyla and families is consistent with horizontal gene transfer of defense islands.
+    notebook: 02_taxonomic_distribution.ipynb
+- id: stmt:snipe-predominantly-accessory
+  kind: finding
+  text: SNIPE genes are predominantly accessory, with only 13.3% core and a combined 86.7% accessory-plus-singleton fraction, indicating SNIPE is typically gained or lost rather than vertically inherited.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:snipe
+  - entity:accessory-genome
+  - entity:defense-island
+  links:
+    supports:
+    - stmt:snipe-patchy-distribution-hgt
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 3. SNIPE genes are predominantly accessory (86.7%)
+    quote: The combined 86.7% accessory+singleton fraction strongly supports the defense island mobility hypothesis. Only 13.3% of SNIPE clusters are core genes within their species pangenome, indicating that SNIPE is typically gained or lost rather than vertically inherited.
+    notebook: 01_extract_snipe_domains.ipynb
+- id: stmt:snipe-nuclease-pf13455-not-pf01541
+  kind: finding
+  text: The SNIPE nuclease domain is PF13455 (Mug113), a distinct Pfam family within the GIY-YIG clan CL0418, not the canonical GIY-YIG family PF01541, so zero DUF4041 plus PF01541 co-occurrences is a genuine biological result rather than an annotation artifact.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:snipe-nuclease
+  - entity:pf13455-mug113
+  - entity:pf01541-giy-yig
+  - entity:duf4041
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 4. The SNIPE nuclease domain is PF13455 (Mug113), not PF01541 (GIY-YIG)
+    quote: 'Zero gene clusters contained both DUF4041 and canonical GIY-YIG (PF01541) in their eggNOG Pfam annotations. InterPro/UniProt analysis of the *E. coli* SNIPE protein ([A0A0A1A5Z2](https://www.uniprot.org/uniprotkb/A0A0A1A5Z2)) reveals why: the SNIPE nuclease domain is actually **PF13455** (Mug113, "Meiotically up-regulated gene 113"), not PF01541.'
+    notebook: 01_extract_snipe_domains.ipynb
+- id: stmt:duf4041-renamed-snipe-domain
+  kind: claim
+  text: InterPro has renamed IPR025280 from a domain of unknown function (DUF4041) to the SNIPE associated domain based on the paper's functional characterization, converting a formerly dark domain into a defined antiphage marker.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:duf4041
+  - entity:interpro
+  - entity:snipe
+  links:
+    supports:
+    - stmt:snipe-widespread-1696-species
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: Corrected Pfam Domain Assignments
+    quote: InterPro has already renamed IPR025280 from "Domain of unknown function DUF4041" to "SNIPE associated domain" based on this paper's functional characterization.
+- id: stmt:snipe-distinct-environmental-niche
+  kind: finding
+  text: SNIPE-bearing species occupy statistically distinct environmental niches, with 22 of 64 AlphaEarth dimensions significantly different (Bonferroni-corrected p < 0.05) at small-to-medium effect sizes, indicating a consistent but modest environmental shift.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:snipe
+  - entity:alphaearth
+  - entity:environmental-niche
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 5. SNIPE-bearing species occupy distinct environmental niches
+    quote: '- **22 of 64 dimensions** are significantly different (Bonferroni-corrected p < 0.05)
+
+      - Largest effect: dimension A19 (Cohen''s d = 0.26, p = 5.0e-14)
+
+      - Effect sizes are small-to-medium (|d| = 0.11–0.26), suggesting a consistent but modest environmental shift rather than strict habitat segregation'
+    notebook: 03_environmental_analysis.ipynb
+- id: stmt:snipe-in-klebsiella-phage-therapy
+  kind: finding
+  text: SNIPE (DUF4041) was detected in the phage therapy target Klebsiella, co-occurring with its mannose PTS transporter in the same genome, which is clinically relevant because SNIPE could affect phage therapy efficacy in this pathogen.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:snipe
+  - entity:klebsiella
+  - entity:phage-therapy
+  - entity:phagefoundry
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 6. SNIPE detected in phage therapy target (*Klebsiella*)
+    quote: The detection of DUF4041 in *Klebsiella* is clinically relevant — SNIPE could affect phage therapy efficacy in this pathogen.
+    notebook: 04_phage_databases.ipynb
+- id: stmt:caveat-annotation-sensitivity
+  kind: caveat
+  text: eggNOG Pfam annotations may miss divergent SNIPE homologues, since only 54 of 4,572 DUF4041 clusters show Mug113 (PF13455) co-annotation, suggesting many SNIPE nuclease domains go undetected.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:duf4041
+  - entity:pf13455-mug113
+  - entity:eggnog
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:snipe-nuclease-pf13455-not-pf01541
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Annotation sensitivity**: eggNOG Pfam annotations may miss divergent SNIPE homologues. The SNIPE nuclease domain is PF13455 (Mug113, GIY-YIG clan), not PF01541 (canonical GIY-YIG); only 54/4,572 DUF4041 clusters show Mug113 co-annotation, suggesting many SNIPE nuclease domains go undetected'
+- id: stmt:caveat-duf4041-false-positives
+  kind: caveat
+  text: About 20% of DUF4041 clusters have non-defense primary annotations (e.g. histidine kinase, seryl-tRNA aminoacylation) that likely represent annotation noise where DUF4041 is a secondary domain, so a stricter T5orf172/DUF4041 description filter is needed for a high-confidence SNIPE set.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:duf4041
+  - entity:snipe
+  - entity:false-positives
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:snipe-widespread-1696-species
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 7. Functional annotations are consistent with SNIPE
+    quote: The remaining ~20% (897 clusters) have primary annotations like Histidine kinase (319) and seryl-tRNA aminoacylation (238), suggesting DUF4041 was detected as a secondary/minor domain in multi-domain proteins whose primary function is unrelated to phage defense. These likely represent annotation noise rather than functional SNIPE proteins.
+    notebook: 01_extract_snipe_domains.ipynb
+- id: stmt:opportunity-klebsiella-fitness-curation
+  kind: opportunity
+  text: Generating Klebsiella-specific SNIPE or ManYZ fitness data would require new mutant libraries in natural SNIPE-carrying K. pneumoniae strains, a gap a fitness data curation plan has been developed to address.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:gene-fitness
+  entities:
+  - entity:klebsiella
+  - entity:snipe
+  - entity:manyz-transporter
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:snipe-in-klebsiella-phage-therapy
+  evidence:
+  - source_project: snipe_defense_system
+    source_doc: REPORT.md
+    source_section: 1. SNIPE resolves the phage resistance vs. metabolic cost trade-off
+    quote: Generating *Klebsiella*-specific SNIPE or ManYZ fitness data would require new mutant libraries in natural SNIPE-carrying strains such as *K. pneumoniae* NCTC9140 or HS11286. A [plan for curating external K. pneumoniae Tn-Seq datasets](PLAN_fitness_data_curation.md) has been developed to address this gap.
+    notebook: 04_phage_databases.ipynb

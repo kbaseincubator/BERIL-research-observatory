@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-keyword-prophage-detection",
+    "stmt:caveat-fitness-data-gap",
+    "stmt:caveat-correlation-not-causation",
+    "stmt:extends-rendueles-correlation",
+    "stmt:density-mechanism-interpretation",
+    "stmt:density-effect-robust-to-genome-count",
+    "stmt:novel-pangenome-scale",
+    "stmt:pangenome-amr-prophage-census",
+    "stmt:prophage-amr-accessory-bias",
+    "stmt:amr-prophage-contig-sharing",
+    "stmt:proximity-weak-mobility-effect",
+    "stmt:prophage-density-predicts-amr-breadth",
+    "stmt:proximity-threshold-dependence",
+    "stmt:opportunity-dedicated-prophage-prediction",
+    "stmt:opportunity-expanded-fitness-revisit-h3"
+  ],
+  "member_hash": "hash:48ecefad0bc6165d",
+  "model": "haiku",
+  "page_id": "project:prophage_amr_comobilization",
+  "page_plan_hash": "hash:6a6f5b4695ce6f75",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:48ecefad0bc6165d",
+    "lead": "hash:48ecefad0bc6165d"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

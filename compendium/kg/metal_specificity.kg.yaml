@@ -1,0 +1,75 @@
+project:
+  id: metal_specificity
+  title: Metal-Specific vs General Stress Genes
+statements:
+  - id: stmt:metal-specificity-fraction-finding
+    kind: finding
+    text: A majority of analyzed metal-important gene records are metal-specific rather than generally sick across non-metal conditions.
+    confidence: high
+    topics:
+      - topic:metal-resistance
+    entities:
+      - entity:metal-specific-genes
+      - entity:metal-stress
+      - entity:fitness-browser
+    links:
+      supports:
+        - stmt:metal-specificity-core-refinement-claim
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: metal_specificity
+        source_doc: REPORT.md
+        source_section: 55% of Metal-Important Genes Are Metal-Specific
+        quote: "Of the 7,609 metal-important gene records with fitness matrix data across 24 organisms, 4,177 (54.9%) are metal-specific — they show significant fitness defects under metal stress but a <5% sick rate across 5,945 non-metal experiments."
+        notebook: 02_gene_specificity.ipynb
+        figure: figures/specificity_breakdown.png
+
+  - id: stmt:metal-specificity-core-refinement-claim
+    kind: claim
+    text: Metal-specific genes remain core-enriched, but less strongly than general sick genes, preserving the core-genome robustness model while exposing a modest accessory contribution.
+    confidence: high
+    topics:
+      - topic:metal-resistance
+    entities:
+      - entity:metal-specific-genes
+      - entity:core-genome
+    links:
+      supports:
+        - stmt:metal-atlas-core-robustness-finding
+      contradicts: []
+      refines:
+        - stmt:metal-cross-tier-architecture-finding
+    evidence:
+      - source_project: metal_specificity
+        source_doc: REPORT.md
+        source_section: Metal-Specific Genes Are Core-Enriched but Less So Than General Sick Genes
+        quote: "Both metrics show the same pattern: metal-specific genes are core-enriched above baseline but less so than general sick genes."
+        notebook: 03_conservation_analysis.ipynb
+        figure: figures/conservation_by_specificity.png
+      - source_project: metal_specificity
+        source_doc: REPORT.md
+        source_section: The Core Genome Robustness Model Holds
+        quote: "Even after removing all pleiotropic genes, the remaining metal-specific set is 88% core."
+
+  - id: stmt:metal-specificity-functional-validation-finding
+    kind: finding
+    text: Metal-specific genes are enriched for metal-resistance annotations, indicating that the specificity filter captures biologically meaningful tolerance determinants.
+    confidence: high
+    topics:
+      - topic:metal-resistance
+    entities:
+      - entity:metal-specific-genes
+      - entity:metal-stress
+    links:
+      supports:
+        - stmt:metal-specificity-core-refinement-claim
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: metal_specificity
+        source_doc: REPORT.md
+        source_section: Metal-Specific Genes Are Enriched for Metal Resistance Functions
+        quote: "Metal-specific genes are 1.64x more likely to match metal-resistance keywords (efflux, transporter, metal, CDF, siderophore, etc.) than general sick genes (12.2% vs 7.8%, Fisher exact OR=1.64, p=2.4e-8)."
+        notebook: 04_functional_enrichment.ipynb
+        figure: figures/functional_comparison.png

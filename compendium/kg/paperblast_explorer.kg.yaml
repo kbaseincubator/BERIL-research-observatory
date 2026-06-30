@@ -1,0 +1,325 @@
+project:
+  id: paperblast_explorer
+  title: 'Report: PaperBLAST Data Explorer — Characterizing Literature Coverage Bias in Protein Sequence Space'
+statements:
+- id: stmt:human-dominates-literature
+  kind: finding
+  text: Homo sapiens alone accounts for 46.7% of all gene-paper records in PaperBLAST, and the top five organisms capture 72.8%, reflecting extreme organism-level literature concentration.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:literature-coverage
+  - entity:homo-sapiens
+  - entity:model-organisms
+  links:
+    supports:
+    - stmt:lorenz-gini-inequality
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: 'Finding 1: One organism dominates nearly half of all literature'
+    quote: '*Homo sapiens* alone accounts for **46.7%** of all gene-paper records in PaperBLAST. The top 5 organisms (*H. sapiens*, *M. musculus*, *R. norvegicus*, *A. thaliana*, *D. melanogaster*) capture **72.8%**.'
+    notebook: 02_coverage_skew.ipynb
+    figure: figures/organism_coverage_skew.png
+- id: stmt:most-genes-one-paper
+  kind: finding
+  text: Of 841K genes with any text-mined paper link, 551K (65.6%) have exactly one paper, while just 6% of genes account for 57.7% of all gene-paper links.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:literature-coverage
+  - entity:gene-paper-links
+  links:
+    supports:
+    - stmt:lorenz-gini-inequality
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: 'Finding 2: 65.6% of genes have exactly one paper'
+    quote: Of 841K genes with any text-mined paper link, **551K (65.6%)** have exactly 1 paper. The median is 1, the mean is 3.8.
+    notebook: 02_coverage_skew.ipynb
+    figure: figures/gene_coverage_skew.png
+- id: stmt:lorenz-gini-inequality
+  kind: finding
+  text: Literature attention is extremely unequal, with a Gini coefficient of 0.967 across organisms and 0.669 across genes, mirroring wealth-inequality patterns.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:literature-coverage
+  - entity:gini-coefficient
+  - entity:lorenz-curve
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: 'Finding 3: Literature inequality is extreme — Lorenz curves'
+    quote: For organisms, the Gini coefficient is **0.967** (where 1.0 is perfect inequality), indicating near-total concentration. For genes, the Gini is **0.669** — still very high.
+    notebook: 02_coverage_skew.ipynb
+    figure: figures/lorenz_curves.png
+- id: stmt:bacterial-pathogen-concentration
+  kind: finding
+  text: Among 15,312 bacterial organisms the top 100 capture 44.3% of bacterial literature, led by pathogens and model organisms, leaving environmental and non-pathogenic bacteria dramatically underrepresented.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:microbial-ecotypes
+  entities:
+  - entity:paperblast
+  - entity:literature-coverage
+  - entity:bacterial-pathogens
+  - entity:environmental-microbes
+  links:
+    supports:
+    - stmt:human-dominates-literature
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: 'Finding 4: Bacterial research is concentrated on pathogens'
+    quote: 'Among 15,312 bacterial organisms, the top 100 capture **44.3%** of bacterial literature. The top 3 bacteria are all well-known pathogens or model organisms: *M. tuberculosis* H37Rv (9,079 papers), *E. coli* K-12 (8,860), and *P. aeruginosa* PAO1 (5,928). Environmental and non-pathogenic organisms are dramatically underrepresented.'
+    notebook: 02_coverage_skew.ipynb
+    figure: figures/top20_bacteria.png
+- id: stmt:sequence-clustering-families
+  kind: finding
+  text: MMseqs2 clustering of 815,571 PaperBLAST protein sequences yields 628K clusters at 90% identity, 345K protein families at 50%, and 215K superfamilies at 30% identity.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:paperblast
+  - entity:mmseqs2
+  - entity:protein-families
+  - entity:sequence-clustering
+  links:
+    supports:
+    - stmt:dark-dim-families
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: 'Finding 5: 345K protein families from 816K sequences'
+    quote: 'MMseqs2 clustering of 815,571 PaperBLAST protein sequences at three identity thresholds reveals: **628K clusters at 90%** (77% — low strain-level redundancy), **345K at 50%** (protein family level), and **215K at 30%** (superfamily level).'
+    notebook: 03_sequence_clustering.ipynb
+    figure: figures/sequence_space_reduction.png
+- id: stmt:dark-dim-families
+  kind: finding
+  text: At 50% identity, 9.2% of protein families (31,653) have zero papers and 46.1% have exactly one, so 55% of protein families are functionally dark or dim in the literature.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:paperblast
+  - entity:protein-families
+  - entity:dark-proteome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: 'Finding 6: 55% of protein families are dark or dim'
+    quote: At 50% identity, **9.2% of protein families** (31,653) have **zero papers** across all members, and **46.1%** (159,046) have exactly 1 paper. Only **4.3%** of families (14,904) have 20 or more papers.
+    notebook: 03_sequence_clustering.ipynb
+    figure: figures/literature_coverage_landscape.png
+- id: stmt:database-scale-structure
+  kind: finding
+  text: The kescience_paperblast collection on BERDL contains 12.4 million rows across 14 tables, linking genes to papers via text mining of PubMed Central full-text plus curated and structural annotations.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:kescience-paperblast
+  - entity:berdl
+  - entity:pubmed-central
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: Database Scale and Structure
+    quote: The `kescience_paperblast` collection on BERDL contains **12.4 million rows** across 14 tables. The core data structure links genes to papers through text mining of PubMed Central full-text articles, supplemented by curated annotations from 13 databases and structural data from the PDB.
+    notebook: 01_paperblast_overview.ipynb
+- id: stmt:larger-families-better-studied
+  kind: finding
+  text: Protein family size correlates positively with literature coverage, yet 4.6% of multi-member 50% identity clusters (5,218 families) remain genuinely unstudied, dominated by REBASE methyltransferases and biolip structural entries.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:paperblast
+  - entity:protein-families
+  - entity:rebase-methyltransferases
+  links:
+    supports:
+    - stmt:dark-dim-families
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: 'Clustering and Literature: Larger Families Are Better Studied'
+    quote: 95.4% of multi-member 50% identity clusters have at least one member with a paper, but the remaining 4.6% (5,218 families) represent genuinely unstudied protein families. The "dark" families are dominated by REBASE methyltransferases and biolip structural entries — highly specialized proteins that lack published functional studies.
+    notebook: 03_sequence_clustering.ipynb
+    figure: figures/cluster_vs_literature.png
+- id: stmt:dark-matter-quantification
+  kind: claim
+  text: This work provides the first protein-family-level characterization of the BERDL PaperBLAST collection, quantifying 5,218 multi-member protein families at 50% identity with zero literature coverage as the dark matter of protein biology.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:berdl
+  - entity:protein-families
+  - entity:dark-proteome
+  links:
+    supports:
+    - stmt:dark-dim-families
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: 'By combining sequence clustering with literature coverage data, we quantify the "dark matter" of protein biology: **5,218 multi-member protein families (at 50% identity) have zero literature coverage**.'
+- id: stmt:vimss-fitness-browser-link
+  kind: claim
+  text: 129,823 VIMSS cross-references connect PaperBLAST to the Fitness Browser, creating a path from literature coverage to experimental fitness phenotypes for identifying understudied but functionally important genes.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:fitness-browser
+  - entity:vimss-cross-references
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: The cross-database linkage analysis reveals that 129,823 VIMSS cross-references connect PaperBLAST to the Fitness Browser, creating a path from literature coverage to experimental fitness phenotypes — a resource for identifying functionally important but understudied genes.
+- id: stmt:caveat-text-mining-not-function
+  kind: caveat
+  text: A text-mined gene-paper link does not imply functional characterization, and the 65.6% of genes with a single paper likely include many incidental mentions.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:text-mining
+  - entity:literature-coverage
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:most-genes-one-paper
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Text mining ≠ functional characterization**: A gene mentioned in a paper may be tangential to the study. The 65.6% with 1 paper likely includes many incidental mentions.'
+- id: stmt:caveat-pmc-open-access-bias
+  kind: caveat
+  text: PaperBLAST mines only PubMed Central open-access full text, so paywalled papers are missed, creating a systematic bias against fields and journals with lower open-access rates.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:pubmed-central
+  - entity:open-access
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**PMC open-access only**: PaperBLAST only mines full-text from PubMed Central. Papers behind paywalls are missed, creating a systematic bias against fields/journals with lower open-access rates.'
+- id: stmt:caveat-swissprot-partial
+  kind: caveat
+  text: Only about 19% of SwissProt is present in PaperBLAST because many reviewed entries lack matching PMC full text, so curated knowledge exists for proteins PaperBLAST cannot connect to.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:swissprot
+  - entity:pubmed-central
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**SwissProt coverage is partial**: Only 19% of SwissProt is in PaperBLAST, likely because many SwissProt entries lack matching PMC full-text. This means curated knowledge exists for many proteins that PaperBLAST cannot connect to.'
+- id: stmt:opportunity-fitness-understudied-genes
+  kind: opportunity
+  text: The 130K VIMSS links to the Fitness Browser can be used to identify fitness-important genes that lack literature, surfacing high-impact understudied genes.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:paperblast
+  - entity:fitness-browser
+  - entity:vimss-cross-references
+  links:
+    supports:
+    - stmt:vimss-fitness-browser-link
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Cross-reference with Fitness Browser**: Use the 130K VIMSS links to identify fitness-important genes that lack literature — candidates for "high-impact understudied genes."'
+- id: stmt:opportunity-dark-family-alphafold
+  kind: opportunity
+  text: The 5,218 dark protein families could be functionally annotated using AlphaFold structure prediction and domain annotation to infer putative functions.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:paperblast
+  - entity:protein-families
+  - entity:alphafold
+  links:
+    supports:
+    - stmt:dark-dim-families
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: paperblast_explorer
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Dark family characterization**: For the 5,218 dark protein families, use AlphaFold structure prediction and domain annotation to infer putative functions.'

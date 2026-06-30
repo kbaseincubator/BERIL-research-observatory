@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:capability-not-dependency",
+    "stmt:incomplete-but-important-opportunity",
+    "stmt:composite-importance-score",
+    "stmt:latent-conditionally-active",
+    "stmt:threshold-circularity-caveat",
+    "stmt:variable-pathways-open-pangenomes",
+    "stmt:pathway-variation-openness-correlate",
+    "stmt:amino-acid-accessory-dependence",
+    "stmt:accessory-as-insurance",
+    "stmt:active-deps-core-genomes",
+    "stmt:fb-gapmind-coverage-caveat",
+    "stmt:metabolic-ecotypes",
+    "stmt:phylogeny-confound-caveat",
+    "stmt:alphaearth-niche-opportunity"
+  ],
+  "member_hash": "hash:bad8aeb36ed51ccf",
+  "model": "sonnet",
+  "page_id": "author:dileep-kishore",
+  "page_plan_hash": "hash:387ab36a51edd192",
+  "page_type": "author",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:bad8aeb36ed51ccf",
+    "projects": "hash:bad8aeb36ed51ccf",
+    "topics": "hash:bad8aeb36ed51ccf"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

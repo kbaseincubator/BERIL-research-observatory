@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:metal-nacl-overlap",
+    "stmt:counter-ions-not-driver",
+    "stmt:shared-stress-biology",
+    "stmt:toxicity-hierarchy",
+    "stmt:iron-pathway-specific",
+    "stmt:metal-specific-fraction",
+    "stmt:shared-genes-uncharacterized",
+    "stmt:atlas-core-robust",
+    "stmt:atlas-validated",
+    "stmt:nacl-not-pure-chloride",
+    "stmt:choline-chloride-control",
+    "stmt:single-organism-metals",
+    "stmt:psrch2-confounded",
+    "stmt:matched-salt-experiment"
+  ],
+  "member_hash": "hash:d774adab5253c5a9",
+  "model": "sonnet",
+  "page_id": "author:0000-0002-6513-7425",
+  "page_plan_hash": "hash:4463895f8fd6dc56",
+  "page_type": "author",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:d774adab5253c5a9",
+    "projects": "hash:d774adab5253c5a9",
+    "topics": "hash:d774adab5253c5a9"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

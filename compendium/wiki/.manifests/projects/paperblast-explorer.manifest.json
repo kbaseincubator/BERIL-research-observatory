@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-text-mining-not-function",
+    "stmt:caveat-swissprot-partial",
+    "stmt:caveat-pmc-open-access-bias",
+    "stmt:vimss-fitness-browser-link",
+    "stmt:dark-matter-quantification",
+    "stmt:bacterial-pathogen-concentration",
+    "stmt:dark-dim-families",
+    "stmt:human-dominates-literature",
+    "stmt:lorenz-gini-inequality",
+    "stmt:sequence-clustering-families",
+    "stmt:most-genes-one-paper",
+    "stmt:larger-families-better-studied",
+    "stmt:database-scale-structure",
+    "stmt:opportunity-fitness-understudied-genes",
+    "stmt:opportunity-dark-family-alphafold"
+  ],
+  "member_hash": "hash:ed730c8520ff3d64",
+  "model": "haiku",
+  "page_id": "project:paperblast_explorer",
+  "page_plan_hash": "hash:83f0e5328be8fa06",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:ed730c8520ff3d64",
+    "lead": "hash:ed730c8520ff3d64"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

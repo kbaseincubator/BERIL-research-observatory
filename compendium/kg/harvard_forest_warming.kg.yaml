@@ -1,0 +1,304 @@
+project:
+  id: harvard_forest_warming
+  title: 'Report: Harvard Forest Long-Term Warming — DNA vs RNA Functional Response'
+statements:
+- id: stmt:community-actino-up-acido-down
+  kind: finding
+  text: After 25 years of +5C warming the soil community shows a real but modest compositional shift, with Actinobacteria up and Acidobacteria down, reproducing the published signal for this site.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:harvard-forest-barre-woods
+  - entity:actinobacteria
+  - entity:acidobacteria
+  - entity:soil-warming
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Summary
+    quote: shows a real but modest community-level warming response that **reproduces published findings** for this site (Actinobacteria up, Acidobacteria down — DeAngelis et al. 2015)
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: 1. Community composition reproduces the published Actinobacteria-up / Acidobacteria-down signal
+    quote: The site's published compositional warming signal (Actinobacteria up, Acidobacteria down) is robustly recoverable from kraken2 read-based taxonomy at the q<0.05 level in 14+14 samples.
+    notebook: 03_community_composition.ipynb
+    figure: figures/03_phylum_bars.png
+- id: stmt:h1-dna-rna-comparable
+  kind: finding
+  text: The DNA and RNA functional pools show comparable treatment R2 (10-13%) once a horizon-by-incubation confound is removed, so the transcript pool is not more warming-sensitive than the genome pool.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:metatranscriptome
+  - entity:metagenome
+  - entity:permanova
+  - entity:soil-warming
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: 2. H1 is not supported — DNA and RNA functional pools respond comparably to warming
+    quote: DNA and RNA pools show **comparable** treatment R² (10-13%). H1's premise that the transcript pool is more sensitive is not supported in this dataset.
+    notebook: 04_dna_vs_rna_divergence.ipynb
+    figure: figures/04_dna_vs_rna_pcoa.png
+- id: stmt:novel-dna-rna-variance-comparison
+  kind: claim
+  text: This is the first explicit paired-sample comparison of DNA-pool and RNA-pool warming response variance at Harvard Forest, showing the apparent DNA-vs-RNA imbalance is largely a horizon-by-incubation artifact.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:metatranscriptome
+  - entity:metagenome
+  - entity:harvard-forest-barre-woods
+  links:
+    supports:
+    - stmt:h1-dna-rna-comparable
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Novel contribution
+    quote: To our knowledge, this is the **first explicit comparison of DNA-pool and RNA-pool warming response variance** in a paired-sample design at Harvard Forest, including the H1 sensitivity check that demonstrates the apparent DNA-vs-RNA imbalance is largely a horizon × incubation artifact.
+- id: stmt:methanotrophy-glyoxylate-up
+  kind: finding
+  text: Methanotrophy genes pmoA/pmoB are upregulated in heated soils across both horizons and the glyoxylate cycle is upregulated in heated mineral soil, identifying specific carbon-cycling warming responses.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:methane-monooxygenase
+  - entity:glyoxylate-cycle
+  - entity:isocitrate-lyase
+  - entity:soil-warming
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Summary
+    quote: methanotrophy genes pmoA/pmoB are upregulated** in heated soils across both horizons (RNA log2 FC +0.7 to +0.9, p=0.009-0.054 nominal), and the **glyoxylate cycle** (isocitrate lyase + malate synthase) is upregulated in heated mineral soil (p=0.037 each)
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: 4. Methanotrophy (pmoA/pmoB) and the glyoxylate cycle are upregulated under warming
+    quote: These signals are biologically directional and consistent across horizons even though individual FDR significance is precluded by the multiple-testing burden across 14K KOs at this sample size.
+    notebook: 05_c_cycling_enrichment.ipynb
+    figure: figures/08_synthesis.png
+- id: stmt:c-cycling-enriched-dna-organic
+  kind: finding
+  text: Curated C-cycling KOs are significantly enriched among heated-up genes in the DNA-organic samples (Fisher OR=2.78, p=0.042), partially supporting the carbon-degradation hypothesis.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:cazymes
+  - entity:carbon-cycling-kos
+  - entity:soil-warming
+  links:
+    supports:
+    - stmt:methanotrophy-glyoxylate-up
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Summary
+    quote: At the curated 62-KO C-cycling level, heated-up KOs are significantly enriched in DNA-organic samples (Fisher OR=2.78, p=0.042).
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: 3. H2 is partially supported — C-cycling KOs are enriched in heated DNA-organic; methanotrophy and glyoxylate genes UP in RNA
+    quote: The DNA-organic enrichment is significant.
+    notebook: 05_c_cycling_enrichment.ipynb
+    figure: figures/05_c_cycling_volcano.png
+- id: stmt:warming-responses-horizon-specific
+  kind: finding
+  text: Most warming responses are horizon-specific, with roughly 39% of DNA KOs being organic-only, mineral-only, or sign-flipping between horizons.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:organic-horizon
+  - entity:mineral-horizon
+  - entity:soil-warming
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: 5. H3 is supported compositionally — most warming responses are horizon-specific
+    quote: Most warming responses are horizon-specific (~39% of DNA KOs are organic-only, mineral-only, or sign-flipping).
+    notebook: 06_horizon_interaction.ipynb
+    figure: figures/06_horizon_interaction.png
+- id: stmt:heated-mineral-fewer-metabolites
+  kind: finding
+  text: Heated mineral soils have significantly fewer detectable metabolites than controls (155 vs 167 ChEBI per sample, MW p=0.012), consistent with faster substrate turnover under warming.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:chebi-metabolites
+  - entity:mineral-horizon
+  - entity:soil-warming
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Summary
+    quote: Heated mineral samples also have **fewer detectable metabolites** (155 vs 167 ChEBI per sample, MW p=0.012).
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: What we showed
+    quote: Heated mineral soils have **less metabolite richness**, which would be consistent with faster substrate turnover under warming.
+    notebook: 07_metabolite_view.ipynb
+    figure: figures/07_metabolite_heatmap.png
+- id: stmt:caveat-single-timepoint-sample-size
+  kind: caveat
+  text: All samples come from a single timepoint (2017-05-24) and small omics cohorts (n=28 metagenome, n=39 metatranscriptome), limiting per-KO FDR power and precluding detection of seasonal effects.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:metagenome
+  - entity:metatranscriptome
+  - entity:soil-warming
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:methanotrophy-glyoxylate-up
+    - stmt:heated-mineral-fewer-metabolites
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Single timepoint** (2017-05-24). Cannot detect seasonal effects (which Shinfuku et al. 2024 show are substantial at this site).
+
+      - **Sample size** for omics-rich layers (n=28 metagenome, n=39 metatranscriptome) limits per-KO FDR power across 12-14K KOs.'
+- id: stmt:caveat-unbalanced-coverage
+  kind: caveat
+  text: Coverage is unbalanced because the NMDC pipeline did not produce metagenomes for organic-direct samples, which confounds horizon with incubation and drives the H1 sensitivity caveat.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:metagenome
+  - entity:organic-horizon
+  - entity:nmdc
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:h1-dna-rna-comparable
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Sample design
+    quote: Coverage is unbalanced because the underlying NMDC pipeline did not produce metagenomes from organic-direct or some mineral-direct samples — this drives the H1 sensitivity caveat in Finding 2.
+    notebook: 01_sample_design.ipynb
+    figure: figures/01_design.png
+- id: stmt:caveat-transcript-pool-composition
+  kind: caveat
+  text: Metatranscriptome KO counts are transcript-pool composition from contig annotations rather than TPM-quantified expression and are biased by assembly quality.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:metatranscriptome
+  - entity:kegg-orthology
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:h1-dna-rna-comparable
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Metatranscriptome KO from contig annotations** is *transcript-pool composition*, not TPM-quantified expression. Contig-level annotation count ≈ relative transcript abundance, but is biased by assembly quality.'
+- id: stmt:caveat-no-in-lakehouse-abiotic
+  kind: caveat
+  text: The abiotic_features table is all zeros for these samples, leaving the +5C treatment label as the only environmental contrast with no in-lakehouse soil temperature, pH, or nitrogen.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:abiotic-features
+  - entity:soil-warming
+  - entity:nmdc
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**`abiotic_features` is all zeros** for these samples (NMDC parsing artifact for this specific study) — no in-lakehouse soil temperature, pH, or nitrogen measurements. The +5°C treatment label is the only environmental contrast.'
+- id: stmt:opportunity-cross-study-meta-analysis
+  kind: opportunity
+  text: Linking to other NMDC warming studies (SPRUCE peatland and Alaskan permafrost thaw) could test whether the methanotrophy-up signature is reproducible across sites.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:methane-monooxygenase
+  - entity:spruce-peatland
+  - entity:permafrost-thaw
+  - entity:nmdc
+  links:
+    supports:
+    - stmt:methanotrophy-glyoxylate-up
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Cross-study meta-analysis** — link to other warming studies in NMDC (SPRUCE peatland `nmdc:sty-11-33fbta56`, Alaskan permafrost thaw `nmdc:sty-11-db67n062`) to test whether the methanotrophy-up signature is reproducible across sites.
+- id: stmt:opportunity-add-arkin-quant-layers
+  kind: opportunity
+  text: Adding the excluded nmdc_arkin quantitative layers (NOM, metabolomics, proteomics) would strengthen the carbon-cycling findings with direct soil organic matter chemistry.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:nmdc-arkin
+  - entity:metabolomics
+  - entity:proteomics
+  links:
+    supports:
+    - stmt:c-cycling-enriched-dna-organic
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: harvard_forest_warming
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**No quantitative metabolomics, NOM, or proteomics** because the project excludes `nmdc_arkin` tables. Equivalent quantitative layers exist in `nmdc_arkin.{nom_gold, metabolomics_gold, proteomics_gold}` and could be added if scope expands.'

@@ -1,0 +1,298 @@
+project:
+  id: essential_genome
+  title: 'Report: The Pan-Bacterial Essential Genome'
+statements:
+- id: stmt:fifteen-pan-essential-families
+  kind: finding
+  text: Fifteen gene families -- dominated by ribosomal proteins plus groEL, pyrG, fusA, and valS -- are essential in every one of the 48 surveyed bacteria, forming the irreducible core of bacterial life.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:essential-genome
+  - entity:ortholog-family
+  - entity:ribosomal-proteins
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:essential-genome-small-conserved
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: 15 Gene Families Are Essential in All 48 Bacteria
+    quote: 'The absolute core of bacterial life: ribosomal proteins (rpsC, rplW, rplK, rplB, rplA, rplF, rps11, rpsJ, rpsI, rpsM), chaperonin (groEL), CTP synthase (pyrG), translation elongation factor G (fusA), valyl-tRNA synthetase (valS), and geranyltranstransferase (SelGGPS).'
+    notebook: notebooks/02_essential_families.ipynb
+- id: stmt:five-percent-universally-essential
+  kind: finding
+  text: Only 859 of 17,222 cross-organism ortholog families (5.0%) are universally essential, the great majority being strict single-copy families.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:ortholog-family
+  - entity:essential-genome
+  - entity:single-copy-family
+  links:
+    supports:
+    - stmt:essential-genome-small-conserved
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Only 5% of Ortholog Families Are Universally Essential
+    quote: Of 17,222 ortholog families across 48 bacteria, 859 (5.0%) are universally essential.
+    notebook: notebooks/02_essential_families.ipynb
+    figure: figures/essential_families_overview.png
+- id: stmt:variable-essentiality-is-norm
+  kind: finding
+  text: Variably essential families -- essential in some organisms but dispensable in others -- are the largest class at 4,799 families (27.9%), making context-dependent essentiality the norm rather than the exception.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ortholog-family
+  - entity:variable-essentiality
+  - entity:essential-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Only 5% of Ortholog Families Are Universally Essential
+    quote: 4,799 families (27.9%) are variably essential -- essential in some organisms, non-essential in others. 11,564 (67.1%) are never essential.
+    notebook: notebooks/02_essential_families.ipynb
+- id: stmt:essentiality-strain-dependent-cross-species
+  kind: claim
+  text: Cross-species RB-TnSeq data extend the principle that the pan-genome makes essentiality strain-dependent and evolvable from within a single species to 48 phylogenetically diverse bacteria and archaea.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:variable-essentiality
+  - entity:pangenome
+  - entity:rb-tnseq
+  links:
+    supports:
+    - stmt:variable-essentiality-is-norm
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Variable Essentiality Is the Norm, Not the Exception
+    quote: This directly extends Rosconi et al. (2022), who demonstrated within *S. pneumoniae* that the pan-genome makes gene essentiality "strain-dependent and evolvable." Our analysis shows this principle holds across 48 phylogenetically diverse species spanning Proteobacteria, Bacteroidetes, Firmicutes, and Archaea.
+- id: stmt:orphan-essentials-hypothetical-frontier
+  kind: finding
+  text: The 7,084 essential genes lacking orthologs in any other Fitness Browser organism are 58.7% hypothetical, far more uncharacterized than universally essential genes (8.2%), marking a frontier of unknown essential biology.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:orphan-essential-genes
+  - entity:essential-genome
+  - entity:hypothetical-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Orphan Essential Genes Are 58.7% Hypothetical
+    quote: 7,084 essential genes have no orthologs in any other FB organism. These are 58.7% hypothetical -- the least characterized yet most functionally important genes in each organism. By contrast, universally essential genes are only 8.2% hypothetical.
+    notebook: notebooks/02_essential_families.ipynb
+- id: stmt:module-transfer-function-predictions
+  kind: finding
+  text: Transferring functional context from non-essential orthologs in ICA fitness modules produced 1,382 family-backed function predictions for hypothetical essential genes (35.3% of predictable targets).
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:function-prediction
+  - entity:ica-fitness-modules
+  - entity:hypothetical-genes
+  - entity:module-transfer
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: 1,382 Function Predictions for Hypothetical Essentials
+    quote: Module transfer via non-essential orthologs in ICA fitness modules generated 1,382 function predictions for hypothetical essential genes (35.3% of predictable targets). All predictions are family-backed.
+    notebook: notebooks/03_function_prediction.ipynb
+- id: stmt:essentiality-tracks-core-conservation
+  kind: finding
+  text: 'Conservation breadth tracks essentiality: universally essential genes are 91.7% core versus 80.7% for non-essential, while orphan essentials are only 49.5% core, indicating strain-specific essential functions.'
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:core-genome
+  - entity:essential-genome
+  - entity:orphan-essential-genes
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Universally Essential Families Are Overwhelmingly Core
+    quote: Universally essential genes are 91.7% core vs 80.7% for non-essential. 71% of universally essential families are 100% core across all genomes in their species. Orphan essentials are only 49.5% core -- strain-specific essential functions.
+    notebook: notebooks/04_conservation_architecture.ipynb
+    figure: figures/conservation_architecture.png
+- id: stmt:universal-essentials-only-broad-spectrum-targets
+  kind: claim
+  text: Because most essential gene families are essential in only a minority of organisms, only the 859 universally essential families are reliable broad-spectrum antibiotic targets.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:microbiome-engineering
+  entities:
+  - entity:antibiotic-targets
+  - entity:essential-genome
+  - entity:ortholog-family
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:variable-essentiality-is-norm
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Variable Essentiality Is the Norm, Not the Exception
+    quote: 'This has implications for antibiotic target selection: only the 859 universally essential families are reliable broad-spectrum targets.'
+- id: stmt:essentiality-upper-bound-caveat
+  kind: caveat
+  text: The transposon-based essential gene definition is an upper bound, since genes can lack insertions due to small size, AT-rich sequence, or scaffold edge effects rather than true essentiality.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:rb-tnseq
+  - entity:essential-genome
+  - entity:essentiality-definition
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Essential gene definition is an upper bound**: Genes without transposon insertions may lack insertions due to small size, AT-rich sequence, or scaffold edge effects, not true essentiality.'
+- id: stmt:bbh-over-merging-caveat
+  kind: caveat
+  text: 'Connected-component ortholog grouping can over-merge: transitive BBH-graph connections may combine unrelated genes into one ortholog group, especially for multi-domain proteins.'
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:bbh
+  - entity:ortholog-family
+  - entity:connected-components
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Connected components can over-merge**: Transitive connections in the BBH graph can merge unrelated genes into the same ortholog group, particularly for multi-domain proteins.'
+- id: stmt:taxonomic-bias-caveat
+  kind: caveat
+  text: The 48 Fitness Browser organisms are biased toward culturable Proteobacteria, so essentiality patterns in underrepresented lineages remain uncertain.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:microbial-ecotypes
+  entities:
+  - entity:fitness-browser
+  - entity:taxonomic-bias
+  - entity:proteobacteria
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**48 organisms is taxonomically limited**: The Fitness Browser organisms are biased toward culturable Proteobacteria.'
+- id: stmt:crispri-validation-opportunity
+  kind: opportunity
+  text: The 1,382 module-transfer function predictions could be experimentally validated via CRISPRi knockdown under the specific conditions implied by their module context.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:function-prediction
+  - entity:crispri
+  - entity:module-transfer
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Validate predictions experimentally** -- The 1,382 module-transfer predictions could be tested via CRISPRi knockdown under specific conditions predicted by the module context.'
+- id: stmt:characterize-orphan-essentials-opportunity
+  kind: opportunity
+  text: Characterizing the 7,084 orphan essential genes -- testing whether they sit on mobile elements, are recently acquired, or are rapidly evolving -- is a key direction for mapping unknown essential biology.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:orphan-essential-genes
+  - entity:mobile-elements
+  - entity:essential-genome
+  links:
+    supports:
+    - stmt:orphan-essentials-hypothetical-frontier
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Characterize the 7,084 orphan essentials** -- Are they on mobile elements? Recently acquired? Rapidly evolving? What functional categories do they represent?'
+- id: stmt:essential-genome-small-conserved
+  kind: claim
+  text: The experimentally defined universally essential bacterial genome is small and deeply conserved, smaller than computational minimal-gene-set estimates because it requires transposon disruption to be lethal across all 48 tested organisms.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:essential-genome
+  - entity:minimal-gene-set
+  - entity:rb-tnseq
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_genome
+    source_doc: REPORT.md
+    source_section: The Essential Genome Is Small and Deeply Conserved
+    quote: Our experimentally-defined universally essential set is smaller because it is restricted to genes where transposon disruption is lethal across all 48 tested organisms, which is more stringent than computational conservation.

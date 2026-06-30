@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-confounders",
+    "stmt:caveat-in-progress",
+    "stmt:h1-open-lv-enrichment",
+    "stmt:h2-closed-metabolic",
+    "stmt:dataset-pangenome-tables",
+    "stmt:methodology-quartile-stratification",
+    "stmt:scales-with-openness-hypothesis",
+    "stmt:research-question",
+    "stmt:two-speed-genome-prior",
+    "stmt:prior-openness-null",
+    "stmt:cog-analysis-untested-openness",
+    "stmt:outcome-extends-two-speed",
+    "stmt:outcome-null-universal"
+  ],
+  "member_hash": "hash:9a3a117e85cd9aca",
+  "model": "haiku",
+  "page_id": "project:openness_functional_composition",
+  "page_plan_hash": "hash:3ffe0cc50567bab5",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:9a3a117e85cd9aca",
+    "lead": "hash:9a3a117e85cd9aca"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

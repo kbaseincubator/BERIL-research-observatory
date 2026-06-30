@@ -1,0 +1,296 @@
+project:
+  id: adp1_triple_essentiality
+  title: Triple Essentiality Concordance Analysis for *Acinetobacter baylyi* ADP1
+statements:
+- id: stmt:fitness-best-essentiality-predictor
+  kind: finding
+  text: Continuous RB-TnSeq fitness scores are the best predictor of gene essentiality in Acinetobacter baylyi ADP1 (AUC=0.70-0.73), whereas binary essentiality_fraction performs worse than random (AUC<0.5).
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:adp1-model-system
+  entities:
+  - entity:adp1
+  - entity:rb-tnseq
+  - entity:gene-essentiality
+  - entity:fitness-score
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Executive Summary
+    quote: '- **Fitness is the best predictor of essentiality** (AUC=0.70-0.73), outperforming binary essentiality_fraction (AUC<0.5). Use continuous fitness scores, not binary classifications, for TnSeq analysis.'
+- id: stmt:fba-no-growth-defect-prediction
+  kind: finding
+  text: Among 478 TnSeq-dispensable, triple-covered ADP1 genes, FBA essentiality class was not significantly associated with measured growth-defect status (chi-squared=0.93, p=0.63).
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:adp1-model-system
+  entities:
+  - entity:adp1
+  - entity:flux-balance-analysis
+  - entity:growth-defect
+  - entity:gene-essentiality
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: Among 478 triple-covered genes (all TnSeq-dispensable), FBA class was **not significantly associated** with growth defect status (chi-squared = 0.93, p = 0.63, 2 df).
+    notebook: notebooks/02_concordance_analysis.ipynb
+    figure: figures/fba_growth_concordance.png
+- id: stmt:fba-null-robust-thresholds
+  kind: finding
+  text: The lack of association between FBA class and growth defects is robust to the growth-defect threshold, with chi-squared p>0.05 across Q10-Q35 cutoffs and a threshold-independent Kruskal-Wallis test also non-significant (H=1.67, p=0.43).
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:adp1-model-system
+  entities:
+  - entity:flux-balance-analysis
+  - entity:growth-defect
+  - entity:adp1
+  links:
+    supports:
+    - stmt:fba-no-growth-defect-prediction
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: The chi-squared p-value remained above 0.05 for thresholds Q10–Q35. Only at Q40 did a marginal association appear (p = 0.048), driven by a slight divergence in FBA-essential vs FBA-blocked defect rates (90% vs 81%). The threshold-independent Kruskal-Wallis test on continuous mean growth rates confirms no association (H = 1.67, p = 0.43).
+    figure: figures/threshold_sensitivity.png
+- id: stmt:fba-moderate-ko-concordance
+  kind: finding
+  text: Across all genes, FBA shows moderate concordance with experimental knockout lethality (Cohen's kappa approximately 0.49, F1 approximately 0.62-0.67), making it a useful first-pass computational screen for essential genes.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:flux-balance-analysis
+  - entity:gene-knockout
+  - entity:gene-essentiality
+  - entity:adp1
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Results
+    quote: '**Cohen''s Kappa**: 0.486 (MODERATE agreement)'
+    notebook: notebooks/02_concordance_analysis_refined.ipynb
+    figure: figures/fba_comparison.png
+- id: stmt:rbtnseq-systematic-discordance
+  kind: finding
+  text: RB-TnSeq systematically disagrees with knockout experiments across all tested thresholds (negative Cohen's kappa), capturing fitness cost rather than lethality.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:adp1-model-system
+  entities:
+  - entity:rb-tnseq
+  - entity:gene-knockout
+  - entity:fitness-cost
+  - entity:adp1
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Results
+    quote: '**Critical Finding**: All thresholds show **negative Cohen''s kappa**, indicating systematic disagreement worse than random chance.'
+    notebook: notebooks/02_concordance_analysis_refined.ipynb
+    figure: figures/concordance_comprehensive.png
+- id: stmt:tnseq-misses-essential
+  kind: finding
+  text: Only 7.9% (18/229) of knockout-essential ADP1 genes are flagged as essential by RB-TnSeq at the optimal threshold, with 211 KO-essential genes called TnSeq-dispensable and 293 KO-dispensable genes called TnSeq-essential.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:adp1-model-system
+  entities:
+  - entity:rb-tnseq
+  - entity:gene-knockout
+  - entity:gene-essentiality
+  - entity:adp1
+  links:
+    supports:
+    - stmt:rbtnseq-systematic-discordance
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: From Both Studies
+    quote: "Only 7.9% (18/229) of KO-essential genes are caught by TnSeq at optimal threshold\n   - 211 KO-essential genes are TnSeq-dispensable (tolerate partial function)\n   - 293 KO-dispensable genes are TnSeq-essential (fitness-important but not lethal)"
+- id: stmt:proteomics-validates-essentiality
+  kind: finding
+  text: Protein expression strongly correlates with essentiality (r=0.35, AUC=0.74), with essential ADP1 genes expressed about 6.5-fold higher than dispensable genes (Mann-Whitney p=9.91e-59).
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:adp1-model-system
+  entities:
+  - entity:proteomics
+  - entity:gene-expression
+  - entity:gene-essentiality
+  - entity:adp1
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Results
+    quote: '**Difference**: 2.70 log2 units = **6.5-fold higher expression**
+
+      - **Mann-Whitney U test**: p = 9.91×10⁻⁵⁹ (***HIGHLY SIGNIFICANT***)'
+    notebook: notebooks/03_proteomics_correlation.ipynb
+    figure: figures/proteomics_expression_distribution.png
+- id: stmt:aromatic-fba-discordance
+  kind: finding
+  text: Aromatic degradation genes, including beta-ketoadipate pathway enzymes, are strongly enriched among FBA-discordant ADP1 genes (OR=9.70, q=0.012), revealing a systematic gap in the model's environmental assumptions.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:adp1-model-system
+  entities:
+  - entity:aromatic-catabolism
+  - entity:beta-ketoadipate-pathway
+  - entity:flux-balance-analysis
+  - entity:adp1
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: '**Aromatic degradation**: strongly enriched (OR = 9.70, q = 0.012)
+
+      - **9 of 11** aromatic degradation genes are discordant'
+    notebook: notebooks/03_discordant_characterization.ipynb
+    figure: figures/rast_enrichment_discordant.png
+- id: stmt:methods-measure-different-biology
+  kind: claim
+  text: Knockout, FBA, RB-TnSeq, proteomics, and mutant growth assays each measure a distinct facet of gene importance (lethality, metabolic necessity, fitness cost, expression requirement, and condition-specific optimization), so no single method serves as ground truth.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:adp1-model-system
+  entities:
+  - entity:gene-essentiality
+  - entity:flux-balance-analysis
+  - entity:rb-tnseq
+  - entity:proteomics
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Executive Summary
+    quote: '- **Different methods measure different biology**: FBA captures metabolic necessity, KO measures lethality, TnSeq measures fitness cost, proteomics indicates expression requirement, and growth measurements capture condition-specific optimization'
+- id: stmt:essentiality-fraction-worse-than-random
+  kind: caveat
+  text: Binary essentiality_fraction should not be used as an essentiality classifier because it performs worse than random against knockout truth (AUC=0.34-0.40), aggregating across too many diverse conditions.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:essentiality-fraction
+  - entity:rb-tnseq
+  - entity:gene-essentiality
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:fitness-best-essentiality-predictor
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Results
+    quote: 3. **Essentiality fraction performs worse than random** (AUC<0.5), suggesting it measures something orthogonal to lethality
+    figure: figures/roc_comprehensive.png
+- id: stmt:transposon-not-deletion-caveat
+  kind: caveat
+  text: 'Transposon insertion is not equivalent to gene deletion: some knockout-essential genes appear TnSeq-dispensable because partial or truncated protein function suffices, limiting RB-TnSeq as a lethality proxy.'
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:adp1-model-system
+  entities:
+  - entity:rb-tnseq
+  - entity:gene-knockout
+  - entity:adp1
+  links:
+    supports:
+    - stmt:rbtnseq-systematic-discordance
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Why Does RB-TnSeq Disagree with KO Experiments?
+    quote: '**Result**: Some truly essential genes (KO) appear "dispensable" in TnSeq because partial function suffices. This explains the 211 KO-essential/TnSeq-dispensable genes (mean essentiality_fraction = 0.0034).'
+- id: stmt:refine-fba-aromatic-media
+  kind: opportunity
+  text: Adding trace aromatic compounds to the FBA minimal-media definition could resolve the systematic discordance in beta-ketoadipate pathway genes and better match in silico to experimental conditions.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:adp1-model-system
+  entities:
+  - entity:flux-balance-analysis
+  - entity:aromatic-catabolism
+  - entity:minimal-media
+  - entity:adp1
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:aromatic-fba-discordance
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: 'Aromatic Catabolism: A Case Study in Model Limitations'
+    quote: '- Model refinement should add trace aromatic compounds to media definition
+
+      - Test whether discordance resolves with updated environmental constraints'
+- id: stmt:combined-predictor-opportunity
+  kind: opportunity
+  text: A machine-learning predictor integrating FBA, fitness, and proteomics may outperform any single method for predicting ADP1 gene essentiality.
+  confidence: low
+  topics:
+  - topic:gene-fitness
+  - topic:adp1-model-system
+  entities:
+  - entity:flux-balance-analysis
+  - entity:fitness-score
+  - entity:proteomics
+  - entity:adp1
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Future Work
+    quote: "2. **Develop combined predictor** using FBA + fitness + proteomics\n   - Machine learning integration of multiple data types\n   - May achieve better performance than any single method"

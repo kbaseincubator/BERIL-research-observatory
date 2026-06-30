@@ -1,0 +1,292 @@
+project:
+  id: env_embedding_explorer
+  title: 'Report: AlphaEarth Embeddings, Geography & Environment Explorer'
+statements:
+- id: stmt:geo-signal-monotonic
+  kind: finding
+  text: AlphaEarth embedding cosine distance increases monotonically with geographic distance across 50,000 sampled genome pairs, confirming the embeddings encode real spatially autocorrelated environmental signal rather than noise.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:alphaearth
+  - entity:geographic-embeddings
+  - entity:cosine-distance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: 2. AlphaEarth embeddings encode real geographic signal — not noise
+    quote: Across all 50,000 sampled genome pairs (using only good-quality coordinates), there is a clear monotonic relationship between geographic distance and embedding cosine distance.
+    notebook: 02_interactive_exploration.ipynb
+    figure: figures/geo_vs_embedding_binned.png
+- id: stmt:env-vs-human-geo-signal
+  kind: finding
+  text: Environmental samples show 3.4x stronger geographic signal in AlphaEarth embeddings than human-associated samples (2.0x), because hospitals share similar urban satellite imagery worldwide while natural landscapes differentiate strongly.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:alphaearth
+  - entity:geographic-embeddings
+  - entity:environmental-samples
+  links:
+    supports:
+    - stmt:geo-signal-monotonic
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: 1. Environmental samples show 3.4x stronger geographic signal than human-associated samples
+    quote: 'For **environmental samples** (Soil, Marine, Freshwater, Extreme, Plant), nearby genomes (<100 km) have mean cosine distance 0.27, rising to 0.90 at intercontinental distances (>10,000 km) — a **3.4x ratio**. For **human-associated samples** (gut, clinical, other), the gradient is flatter: 0.37 nearby to 0.75 far — only a **2.0x ratio**.'
+    notebook: 02_interactive_exploration.ipynb
+    figure: figures/geo_vs_embedding_by_env_group.png
+- id: stmt:embeddings-capture-environment
+  kind: claim
+  text: AlphaEarth embeddings encode geographic and environmental context derived from satellite imagery, capturing spatially varying features such as climate, land use, and vegetation, and are most informative for environmental samples and least informative for clinical isolates.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:alphaearth
+  - entity:satellite-imagery
+  - entity:geographic-embeddings
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: What do AlphaEarth embeddings represent?
+    quote: The embeddings encode **geographic/environmental context derived from satellite imagery** at each genome's sampling location.
+- id: stmt:clinical-sampling-bias
+  kind: finding
+  text: The AlphaEarth subset is dominated by a clinical/human sampling bias, with 38% of the 83,287 embedded genomes being human-associated, reflecting NCBI's overall bias toward pathogen sequencing.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:alphaearth
+  - entity:ncbi-metadata
+  - entity:sampling-bias
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: 3. Strong clinical/human sampling bias in the AlphaEarth subset
+    quote: '38% of the 83,287 genomes with AlphaEarth embeddings are human-associated: Human clinical (16,390; 20%), Human gut (13,466; 16%), and Human other (1,669; 2%).'
+    notebook: 02_interactive_exploration.ipynb
+    figure: figures/env_categories.png
+- id: stmt:coordinate-quality-flags
+  kind: finding
+  text: A heuristic flagged 36.6% of embedded genomes (30,469) as clustering at shared coordinates indicative of institutional addresses rather than true sampling sites.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:coordinate-qc
+  - entity:alphaearth
+  - entity:institutional-addresses
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: 4. 36% of coordinates flagged as potential institutional addresses
+    quote: 30,469 genomes (36.6%) cluster at shared coordinates with >50 genomes and >10 species — a heuristic for institutional addresses rather than sampling sites.
+    notebook: 02_interactive_exploration.ipynb
+    figure: figures/coord_quality_map.png
+- id: stmt:coord-qc-crude-caveat
+  kind: caveat
+  text: The coordinate QC heuristic is crude and mislabels several legitimate field research sites (e.g., the DOE Rifle groundwater site and Saanich Inlet) as institutional addresses, requiring refinement using isolation-source homogeneity.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:subsurface-genomics
+  entities:
+  - entity:coordinate-qc
+  - entity:rifle-site
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:coordinate-quality-flags
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Coordinate QC heuristic is crude** — flags some legitimate field sites (Rifle, Saanich Inlet); needs refinement using isolation_source homogeneity'
+- id: stmt:umap-env-clusters
+  kind: finding
+  text: UMAP reduction of the 64-dimensional embeddings reveals substantial structure with 320 DBSCAN clusters, many dominated by a single environment category, with rare environment types concentrating in just a few clusters.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:umap
+  - entity:dbscan-clustering
+  - entity:alphaearth
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: 5. UMAP reveals fine-grained embedding structure with environment-correlated clusters
+    quote: 'UMAP reduction of the 64-dimensional embeddings to 2D reveals substantial structure. DBSCAN clustering identified 320 clusters. The cluster–environment cross-tabulation shows that many clusters are dominated by a single environment category:'
+    notebook: 02_interactive_exploration.ipynb
+    figure: figures/cluster_env_heatmap.png
+- id: stmt:taxonomic-structure
+  kind: finding
+  text: The embedding space also shows taxonomic structure when colored by phylum, though this is partially confounded with environment since some taxa are predominantly tied to specific habitats.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:umap
+  - entity:phylum
+  - entity:alphaearth
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: 6. Embedding space also shows taxonomic structure
+    quote: Coloring the UMAP by phylum reveals some taxonomic clustering, though this is partially confounded with environment (e.g., Campylobacterota are predominantly gut-associated).
+    notebook: 02_interactive_exploration.ipynb
+    figure: figures/umap_by_phylum.png
+- id: stmt:env-harmonization-mapping
+  kind: finding
+  text: A reusable harmonization mapped 5,774 unique free-text isolation_source values to 12 broad environment categories, capturing 71% of labeled genomes while 17% remained as an Other tail.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:isolation-source
+  - entity:environment-harmonization
+  - entity:ncbi-metadata
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: Environment harmonization
+    quote: 5,774 unique `isolation_source` free-text values were mapped to 12 broad categories via keyword matching. The mapping captures 71% of genomes with a label; 17% remain as "Other" and 12.5% are "Unknown" (missing/null isolation_source).
+- id: stmt:alphaearth-coverage
+  kind: finding
+  text: AlphaEarth embeddings cover only 83,287 genomes (28.4% of the 293,059-genome pangenome database) and are biased toward genomes with valid lat/lon metadata.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:alphaearth
+  - entity:pangenome
+  - entity:ncbi-metadata
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: Data coverage
+    quote: The AlphaEarth embeddings table covers 83,287 genomes (28.4% of 293,059 total in the pangenome database).
+    figure: figures/coverage_bar.png
+- id: stmt:coverage-bias-caveat
+  kind: caveat
+  text: Because AlphaEarth coverage is only 28.4% of genomes and the subset carries a 38% human/clinical bias, the embedded population may not represent the overall NCBI or pangenome population.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:alphaearth
+  - entity:sampling-bias
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:alphaearth-coverage
+    - stmt:clinical-sampling-bias
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Clinical/human bias (38%)** may not represent the overall NCBI or pangenome population'
+- id: stmt:bias-explains-weak-ecotype-signal
+  kind: claim
+  text: The strong clinical sampling bias may partially explain why the ecotype_analysis project found AlphaEarth environment similarity to be only a weak predictor of gene content, since interchangeable hospital environments dilute the environment-gene-content relationship.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:ecotype-analysis
+  - entity:alphaearth
+  - entity:gene-content
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: Implications for downstream analysis
+    quote: The strong clinical bias identified here may partially explain that weak signal — if 38% of the genomes being compared are from interchangeable hospital environments, the environment–gene content relationship would be diluted.
+- id: stmt:rerun-ecotype-environmental-only
+  kind: opportunity
+  text: Re-running the ecotype analysis restricted to environmental-only samples could reveal a stronger environment-gene-content signal where the embeddings carry more geographic information.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:ecotype-analysis
+  - entity:environmental-samples
+  - entity:gene-content
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Re-run ecotype analysis with environmental-only samples**: The previous finding that phylogeny dominates over environment (ecotype_analysis project) may be stronger when restricted to environmental samples where the embeddings carry more geographic signal'
+- id: stmt:decode-embedding-dimensions
+  kind: opportunity
+  text: Correlating the 64 individual embedding dimensions (A00–A63) with latitude, temperature, precipitation, NDVI, or land cover could reveal what environmental feature each dimension encodes.
+  confidence: low
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:alphaearth
+  - entity:embedding-dimensions
+  - entity:land-cover
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: env_embedding_explorer
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Investigate individual embedding dimensions**: Correlate A00–A63 with latitude, temperature, precipitation, NDVI, or land cover classifications to understand what each dimension encodes'

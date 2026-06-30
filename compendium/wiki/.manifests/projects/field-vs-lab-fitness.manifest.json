@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:gene-length-confound-caveat",
+    "stmt:single-organism-coarse-pangenome-caveat",
+    "stmt:small-specificity-sample-caveat",
+    "stmt:resistance-genes-accessory-mge",
+    "stmt:any-fitness-importance-predicts-conservation",
+    "stmt:condition-type-vs-fitness-magnitude",
+    "stmt:module-conservation-no-field-lab-difference",
+    "stmt:lab-specific-genes-surprisingly-core",
+    "stmt:condition-classification-field-lab-split",
+    "stmt:field-stress-robust-across-thresholds",
+    "stmt:field-stress-genes-more-conserved",
+    "stmt:gene-length-stronger-than-fitness",
+    "stmt:lab-modules-accessory-genome",
+    "stmt:enigma-coral-no-dvh-fitness",
+    "stmt:quantitative-conservation-metric-opportunity",
+    "stmt:ecological-modules-dark-candidates"
+  ],
+  "member_hash": "hash:eaf58bb0b1a23cd9",
+  "model": "haiku",
+  "page_id": "project:field_vs_lab_fitness",
+  "page_plan_hash": "hash:b4e8dd5cedfd7497",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:eaf58bb0b1a23cd9",
+    "lead": "hash:eaf58bb0b1a23cd9"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

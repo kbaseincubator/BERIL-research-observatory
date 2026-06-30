@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-genome-size-confound",
+    "stmt:caveat-annotation-based-detection",
+    "stmt:caveat-nmdc-indirect-inference",
+    "stmt:antidefense-arms-race-human-niche",
+    "stmt:two-tier-prophage-organization",
+    "stmt:ph-temperature-prophage-burden",
+    "stmt:universal-modules-domesticated-remnants",
+    "stmt:prophage-modules-universal",
+    "stmt:core-modules-cooccur-backbone",
+    "stmt:structural-antidefense-human-enriched",
+    "stmt:environment-over-phylogeny",
+    "stmt:genome-size-dominant-env-robust",
+    "stmt:nmdc-validates-module-signal",
+    "stmt:terL-lineages-phylo-constrained",
+    "stmt:opportunity-induction-signal-crossref",
+    "stmt:opportunity-dedicated-detection-tools"
+  ],
+  "member_hash": "hash:1c275ab7d08d7b55",
+  "model": "haiku",
+  "page_id": "project:prophage_ecology",
+  "page_plan_hash": "hash:a9f72388020a8539",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:1c275ab7d08d7b55",
+    "lead": "hash:1c275ab7d08d7b55"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

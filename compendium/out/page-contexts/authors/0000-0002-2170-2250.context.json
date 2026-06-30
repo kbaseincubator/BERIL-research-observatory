@@ -1,0 +1,295 @@
+{
+  "adjacent_pages": [
+    {
+      "id": "data:kbase_ke_pangenome",
+      "path": "data/kbase-ke-pangenome.md",
+      "title": "Kbase Ke Pangenome"
+    },
+    {
+      "id": "microbial-ecotypes",
+      "path": "topics/microbial-ecotypes.md",
+      "title": "Microbial Ecotypes"
+    }
+  ],
+  "allowed_citations": [
+    {
+      "source_project": "ecotype_functional_differentiation",
+      "statement_id": "stmt:ecotype-adaptive-effect-claim"
+    },
+    {
+      "source_project": "ecotype_functional_differentiation",
+      "statement_id": "stmt:ecotype-functional-differentiation-finding"
+    },
+    {
+      "source_project": "ecotype_functional_differentiation",
+      "statement_id": "stmt:ecotype-functional-widespread-finding"
+    },
+    {
+      "source_project": "ecotype_functional_differentiation",
+      "statement_id": "stmt:ecotype-unknown-mobile-caveat"
+    }
+  ],
+  "authors": [],
+  "data_collections": [],
+  "entities": [
+    {
+      "definition": "",
+      "id": "entity:cog-category",
+      "kind": "",
+      "label": "Cog Category",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:ecotype",
+      "kind": "",
+      "label": "Ecotype",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:mobile-elements",
+      "kind": "",
+      "label": "Mobile Elements",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:pangenome",
+      "kind": "",
+      "label": "Pangenome",
+      "url": ""
+    },
+    {
+      "definition": "",
+      "id": "entity:unknown-function",
+      "kind": "",
+      "label": "Unknown Function",
+      "url": ""
+    }
+  ],
+  "instructions": {
+    "audience": "scientist-engineer new to this specific niche",
+    "body_rule": "synthesize across statements; do not emit statement-by-statement summaries",
+    "citations": "Put allowed statement citations in one trailing Sources section.",
+    "style": "human-readable Obsidian-style synthesis page"
+  },
+  "narrative": {
+    "lead": "Summarize this contributor's project and topic footprint using only the page context.",
+    "section_plan": [
+      {
+        "heading": "Overview",
+        "id": "overview"
+      },
+      {
+        "heading": "Projects",
+        "id": "projects"
+      },
+      {
+        "heading": "Topics",
+        "id": "topics"
+      }
+    ]
+  },
+  "page": {
+    "backlinks": [
+      "data:kbase_ke_pangenome",
+      "home",
+      "microbial-ecotypes"
+    ],
+    "id": "author:0000-0002-2170-2250",
+    "manifest_path": ".manifests/authors/0000-0002-2170-2250.manifest.json",
+    "member_hash": "hash:98d1637ecbb73097",
+    "member_statement_ids": [
+      "stmt:ecotype-unknown-mobile-caveat",
+      "stmt:ecotype-adaptive-effect-claim",
+      "stmt:ecotype-functional-differentiation-finding",
+      "stmt:ecotype-functional-widespread-finding"
+    ],
+    "outgoing_links": [
+      "data:kbase_ke_pangenome",
+      "microbial-ecotypes"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:98d1637ecbb73097",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Projects",
+        "id": "projects",
+        "member_hash": "hash:98d1637ecbb73097",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Topics",
+        "id": "topics",
+        "member_hash": "hash:98d1637ecbb73097",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      }
+    ],
+    "title": "Justin Reese",
+    "type": "author",
+    "wiki_path": "authors/0000-0002-2170-2250.md"
+  },
+  "projects": [
+    "ecotype_functional_differentiation"
+  ],
+  "statements": [
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:cog-category",
+        "entity:mobile-elements",
+        "entity:unknown-function"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/cog_differentiation_heatmap.png",
+          "notebook": "NB03_differential_enrichment.ipynb",
+          "quote": "The large S-category effect suggests substantial ecotype differentiation involves genes of currently unknown function -- a recurring theme in microbial ecology that highlights annotation gaps in niche-specific genes.",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_functional_differentiation",
+          "source_section": "Replication/mobile elements and unknown function drive the largest ecotype differences"
+        }
+      ],
+      "id": "stmt:ecotype-unknown-mobile-caveat",
+      "kind": "caveat",
+      "links": {
+        "contradicts": [],
+        "refines": [
+          "stmt:ecotype-functional-differentiation-finding"
+        ],
+        "supports": []
+      },
+      "source_excerpt": "differentiation significance across species](figures/cog_differentiation_heatmap.png)\n\nThe two COG categories with the largest mean effect sizes were:\n- **S** (Unknown function): mean effect = 0.039, significant in 11/12 species\n- **L** (Replication, recombination, repair): mean effect = 0.034, significant in 9/12 species\n\nCategory L includes transposases, integrases, and mobile genetic element machinery. Its prominence is consistent with the \"two-speed genome\" pattern identified in the cog_analysis project, where novel genes were enriched in L (+10.88%) and V (+2.83%) relative to core genes. The large S-category effect suggests substantial ecotype differentiation involves genes of currently unknown function -- a recurring theme in microbial ecology that highlights annotation gaps in niche-specific genes.\n\n*(Notebook: NB03_differential_enrichment.ipynb)*\n\n## Results\n\n### Species Selection (NB01)\n\nFrom 27,702 species in the BERDL pangenome database, 457 had >= 50 genomes. After filtering for COG annotation coverage, 456 species were eligible. A stratified random sample of 15 species was drawn (5 per genome-count bin: 50-100, 100-200, 200-300), balancing representation across pangenome sizes. Two species experienced transient Spark S3 read errors; one (*Limisoma* sp.) had insufficient structure for valid clustering.\n\n### Ecotype Clustering (NB02)\n\n| Species | Genomes | Ecotypes | Silhouette | As",
+      "text": "The strongest ecotype differences include unknown-function and mobile-element categories, so much of the niche-specific signal remains hard to interpret biologically.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:cog-category"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/effect_size_distributions.png",
+          "notebook": "NB03_differential_enrichment.ipynb",
+          "quote": "However, the *magnitude* of differentiation (effect size) is 2.1x larger for adaptive categories, and this difference is highly significant (p = 2.53 x 10^-6, Mann-Whitney U, one-sided).",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_functional_differentiation",
+          "source_section": "Adaptive COG categories show significantly larger effect sizes than housekeeping"
+        }
+      ],
+      "id": "stmt:ecotype-adaptive-effect-claim",
+      "kind": "claim",
+      "links": {
+        "contradicts": [],
+        "refines": [
+          "stmt:ecotype-gene-subset-claim"
+        ],
+        "supports": []
+      },
+      "source_excerpt": "gories](figures/effect_size_distributions.png)\n\nThe hypothesis (H1) predicted that adaptive categories (V, P, G, E, Q, M, K) would differentiate more than housekeeping categories (J, F, H, C). The results **partially support H1**:\n\n| Metric | Adaptive | Housekeeping | Ratio |\n|--------|----------|--------------|-------|\n| Significance rate | 79.8% (67/84) | 68.8% (33/48) | 1.16x |\n| Mean effect size | 0.0136 | 0.0064 | 2.13x |\n| Mann-Whitney U p-value | | | 2.53 x 10^-6 |\n\nThe significance *rate* difference is modest (1.16x), because housekeeping categories also differentiate in most species. However, the *magnitude* of differentiation (effect size) is 2.1x larger for adaptive categories, and this difference is highly significant (p = 2.53 x 10^-6, Mann-Whitney U, one-sided).\n\nThis means ecotypes differ in both adaptive and housekeeping functions, but the adaptive categories (defense, transport, secondary metabolism, cell wall) show substantially larger proportional shifts between ecotypes than housekeeping categories (translation, nucleotide metabolism, coenzyme metabolism, energy production).\n\n*(Notebook: NB03_differential_enrichment.ipynb)*\n\n### Finding 4: Replication/mobile elements and unknown function drive the largest ecotype differences\n\n![Heatmap of COG differentiation significance across species](figures/cog_differentiation_heatmap.png)\n\nThe two COG cate",
+      "text": "Adaptive functions differentiate more strongly between ecotypes than housekeeping functions, although both classes can vary.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:cog-category",
+        "entity:pangenome"
+      ],
+      "evidence": [
+        {
+          "figure": "figures/cog_differentiation_rates.png",
+          "notebook": "NB03_differential_enrichment.ipynb",
+          "quote": "Chi-square and Fisher's exact tests revealed that 170 of 257 species x COG tests (66.1%) were statistically significant after BH-FDR correction (q < 0.05).",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_functional_differentiation",
+          "source_section": "Ecotypes show pervasive COG functional differentiation"
+        }
+      ],
+      "id": "stmt:ecotype-functional-differentiation-finding",
+      "kind": "finding",
+      "links": {
+        "contradicts": [],
+        "refines": [
+          "stmt:ecotype-gene-subset-claim"
+        ],
+        "supports": [
+          "stmt:ecotype-adaptive-effect-claim"
+        ]
+      },
+      "source_excerpt": "Actinomycetota, Bacteroidota). This confirms that within-species gene-content subpopulations are a general feature of bacterial pangenomes, consistent with prior ecotype analyses in this observatory (ecotype_analysis, 172 species) and the broader literature (Hoarfrost et al. 2019; Ahlgren et al. 2020).\n\n*(Notebook: NB02_clustering_and_cog.ipynb, Script: src/run_clustering.py)*\n\n### Finding 2: Ecotypes show pervasive COG functional differentiation\n\n![COG differentiation rates by category, colored by adaptive (red) vs housekeeping (blue) vs other (gray)](figures/cog_differentiation_rates.png)\n\nChi-square and Fisher's exact tests revealed that 170 of 257 species x COG tests (66.1%) were statistically significant after BH-FDR correction (q < 0.05). All 12 species showed at least one significantly differentiated COG category, strongly rejecting H0 (that ecotype gene content variation is functionally random).\n\nThe most frequently differentiated categories were:\n- **E** (Amino acid metabolism): 11/12 species (91.7%)\n- **S** (Unknown function): 11/12 species (91.7%)\n- **V** (Defense): 11/12 species (91.7%)\n- **G** (Carbohydrate metabolism): 10/12 species (83.3%)\n\nThe least differentiated: **A** (RNA processing, 1/9), **B** (Chromatin, 1/8), **Z** (Cytoskeleton, 2/6).\n\n*(Notebook: NB03_differential_enrichment.ipynb)*\n\n### Finding 3: Adaptive",
+      "text": "Ecotype gene-content variation is functionally structured rather than random, with COG categories differentiating across all sampled species.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    },
+    {
+      "confidence": "high",
+      "entities": [
+        "entity:ecotype",
+        "entity:pangenome"
+      ],
+      "evidence": [
+        {
+          "figure": null,
+          "notebook": "NB02_clustering_and_cog.ipynb",
+          "quote": "Ecotype clustering via PCA + KMeans on auxiliary gene presence/absence matrices identified valid gene-content ecotypes in 12 of 15 sampled species (80%).",
+          "source_doc": "REPORT.md",
+          "source_project": "ecotype_functional_differentiation",
+          "source_section": "Gene-content ecotypes are widespread across bacterial species"
+        }
+      ],
+      "id": "stmt:ecotype-functional-widespread-finding",
+      "kind": "finding",
+      "links": {
+        "contradicts": [],
+        "refines": [],
+        "supports": [
+          "stmt:ecotype-functional-differentiation-finding"
+        ]
+      },
+      "source_excerpt": "# Report: Ecotype Functional Differentiation\n\n## Key Findings\n\n### Finding 1: Gene-content ecotypes are widespread across bacterial species\n\nEcotype clustering via PCA + KMeans on auxiliary gene presence/absence matrices identified valid gene-content ecotypes in 12 of 15 sampled species (80%). Species averaged 3.7 ecotypes each (range: 2--6), with a mean silhouette score of 0.215 (median: 0.174). The clearest ecotype separation was observed in *Erwinia amylovora* (silhouette = 0.468, 2 ecotypes) and *Bacteroides xylanisolvens* (silhouette = 0.366, 6 ecotypes). The weakest signals came from *Staphylococcus simulans* (0.118) and *Streptococcus pseudopneumoniae* (0.131).\n\nA total of 1,820 genomes were assigned to ecotypes across 12 species spanning 6 phyla (Bacillota, Pseudomonadota, Actinomycetota, Bacteroidota). This confirms that within-species gene-content subpopulations are a gen",
+      "text": "Gene-content ecotypes are widespread in the sampled bacterial species and represent recurring within-species pangenome structure.",
+      "topics": [
+        "topic:microbial-ecotypes"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "definition": "",
+      "id": "topic:microbial-ecotypes",
+      "kind": "",
+      "label": "Microbial Ecotypes",
+      "url": ""
+    }
+  ]
+}

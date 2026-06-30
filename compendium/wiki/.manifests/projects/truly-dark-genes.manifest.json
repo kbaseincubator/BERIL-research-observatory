@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:unlinked-coverage-gap",
+    "stmt:gene-length-confound",
+    "stmt:bakta-false-negatives",
+    "stmt:invisible-cross-organism",
+    "stmt:dark-islands-neighbors",
+    "stmt:partial-clue-coverage-tiers",
+    "stmt:sequence-known-function-unknown",
+    "stmt:stress-enrichment-rejected",
+    "stmt:truly-dark-census-16pct",
+    "stmt:accessory-hgt-signatures",
+    "stmt:archaea-methanococcus-concentration",
+    "stmt:structurally-distinct-novelty",
+    "stmt:methanococcus-deep-dive"
+  ],
+  "member_hash": "hash:966acd1641a8f337",
+  "model": "haiku",
+  "page_id": "project:truly_dark_genes",
+  "page_plan_hash": "hash:d85ca09bca25ec6d",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:966acd1641a8f337",
+    "lead": "hash:966acd1641a8f337"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

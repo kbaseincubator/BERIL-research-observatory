@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:ortholog-mixed-signals-caveat",
+    "stmt:pqq-shared-glucose-caveat",
+    "stmt:cofitness-dimensionality-caveat",
+    "stmt:ndh2-compensation-claim",
+    "stmt:cofactor-requirements-claim",
+    "stmt:duf-accessory-factor-claim",
+    "stmt:support-network-51-genes-finding",
+    "stmt:cofitness-unknown-assignment-finding",
+    "stmt:complex-i-dominant-subsystem-finding",
+    "stmt:high-nadh-not-aromatic-finding",
+    "stmt:fba-blind-spot-finding",
+    "stmt:genomic-independence-finding",
+    "stmt:pangenome-cross-species-opportunity",
+    "stmt:ndh2-search-opportunity"
+  ],
+  "member_hash": "hash:f27a6a36434328cd",
+  "model": "haiku",
+  "page_id": "project:aromatic_catabolism_network",
+  "page_plan_hash": "hash:8678ffa5c5f9bff4",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:f27a6a36434328cd",
+    "lead": "hash:f27a6a36434328cd"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

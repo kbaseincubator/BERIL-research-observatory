@@ -1,0 +1,284 @@
+project:
+  id: pangenome_pathway_ecology
+  title: Pangenome Openness, Metabolic Pathways, and Phylogenetic Distances
+statements:
+- id: stmt:research-question
+  kind: claim
+  text: The project asks how pangenome openness (open vs. closed) correlates with metabolic pathway completeness, phylogenetic distances, and species ecology across microbial species.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome-openness
+  - entity:gapmind
+  - entity:phylogenetic-distance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: README.md
+    source_section: Research Question
+    quote: How do pangenome characteristics (open vs. closed) correlate with metabolic pathway completeness, phylogenetic distances, and species ecology?
+- id: stmt:generalist-specialist-hypothesis
+  kind: claim
+  text: The central hypothesis tests whether open pangenomes indicate generalist species with broader niche adaptation and greater metabolic pathway diversity, while closed pangenomes indicate specialists with conserved core pathways.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome-openness
+  - entity:generalist-specialist
+  - entity:niche-adaptation
+  links:
+    supports:
+    - stmt:research-question
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: README.md
+    source_section: Overview
+    quote: It tests whether open pangenomes indicate generalist species with broader niche adaptation and greater metabolic pathway diversity, while closed pangenomes indicate specialists with conserved core pathways.
+- id: stmt:open-pangenome-hgt
+  kind: claim
+  text: Open pangenomes (high auxiliary/singleton gene ratios) are hypothesized to reflect generalist species with greater horizontal gene transfer within ecological niches and increased metabolic pathway flexibility.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:pangenome-openness
+  - entity:horizontal-gene-transfer
+  - entity:accessory-genome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:generalist-specialist-hypothesis
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: RESEARCH_PLAN.md
+    source_section: Hypothesis
+    quote: Greater horizontal gene transfer within ecological niches
+- id: stmt:closed-pangenome-conservation
+  kind: claim
+  text: Closed pangenomes (low auxiliary/singleton ratios) are hypothesized to reflect specialist species with reduced gene acquisition rates and core metabolic pathway conservation.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome-openness
+  - entity:core-genome
+  - entity:niche-adaptation
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:generalist-specialist-hypothesis
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: RESEARCH_PLAN.md
+    source_section: Hypothesis
+    quote: Specialist species with narrow niche adaptation
+- id: stmt:openness-metric
+  kind: finding
+  text: Pangenome openness is operationalized as the ratio of variable genes to total genes, openness = (aux_genes + singleton_genes) / total_genes, a standard measure judged sound in independent review.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome-openness
+  - entity:gene-cluster
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: The formula `(auxiliary_genes + singleton_genes) / total_genes` is a standard and appropriate measure of pangenome openness
+- id: stmt:data-sources-berdl
+  kind: finding
+  text: The analysis draws on BERDL pangenome, GapMind pathway, AlphaEarth structural embedding, and phylogenetic-tree-distance tables from the kbase_ke_pangenome database.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:berdl
+  - entity:gapmind
+  - entity:alphaearth-embeddings
+  - entity:phylogenetic-distance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: Uses relevant BERDL tables (`pangenome`, `gapmind_pathways`, `alphaearth_embeddings_all_years`, `phylogenetic_tree_distance_pairs`)
+- id: stmt:scale-27690-species
+  kind: finding
+  text: The framework is designed to compute pangenome openness distributions and GapMind pathway coverage across all 27,690 microbial species in the pangenome resource.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome
+  - entity:gapmind
+  - entity:species-scale
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: RESEARCH_PLAN.md
+    source_section: 'Phase 1: Data Exploration & Characterization'
+    quote: Query pangenome statistics across all 27,690 species
+- id: stmt:phylogenetic-signal-control
+  kind: finding
+  text: The design controls for phylogenetic signal by relating openness to evolutionary distances using phylogenetic independent contrasts (PIC) or PGLS so that associations are independent of phylogeny.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:pangenome-architecture
+  entities:
+  - entity:phylogenetic-distance
+  - entity:pgls
+  - entity:pangenome-openness
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: RESEARCH_PLAN.md
+    source_section: 'Phase 4: Phylogenetic Signal Control'
+    quote: Use phylogenetic independent contrasts (PIC) or PGLS
+- id: stmt:structural-diversity-test
+  kind: claim
+  text: A planned test asks whether open pangenomes show greater within-species structural diversity by correlating AlphaEarth embedding distances with pangenome openness.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:environment-biogeography
+  entities:
+  - entity:alphaearth-embeddings
+  - entity:pangenome-openness
+  - entity:structural-distance
+  links:
+    supports:
+    - stmt:open-pangenome-hgt
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: RESEARCH_PLAN.md
+    source_section: 'Phase 3: Structural Distance Analysis'
+    quote: 'Test: Do open pangenomes show greater structural diversity?'
+- id: stmt:caveat-alphaearth-coverage
+  kind: caveat
+  text: AlphaEarth structural embeddings cover only about 28% of genomes, so structural-distance analyses must filter to species with sufficient coverage and may be biased by underrepresented isolate types.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:pangenome-architecture
+  entities:
+  - entity:alphaearth-embeddings
+  - entity:data-coverage
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:structural-diversity-test
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: RESEARCH_PLAN.md
+    source_section: Gotchas
+    quote: AlphaEarth embeddings only cover ~28% of genomes (from previous work)
+- id: stmt:caveat-predictions-not-experimental
+  kind: caveat
+  text: GapMind pathway predictions vary in confidence and are probabilistic rather than experimental, limiting the certainty of metabolic-completeness inferences.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:functional-dark-matter
+  entities:
+  - entity:gapmind
+  - entity:pathway-prediction
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:data-sources-berdl
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: RESEARCH_PLAN.md
+    source_section: Data Limitations
+    quote: Pathway predictions are probabilistic, not experimental
+- id: stmt:caveat-execution-pending
+  kind: caveat
+  text: The project is at the proposal stage with only the Phase 1 notebook implemented and no data files or figures generated, so no empirical findings can yet be assessed.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome-openness
+  - entity:berdl
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: REVIEW.md
+    source_section: Findings Assessment
+    quote: No findings can be assessed because the analysis has not been executed.
+- id: stmt:opportunity-execute-and-validate
+  kind: opportunity
+  text: Executing the Phase 1 notebook on BERDL JupyterHub would generate baseline data, reveal bugs, and provide the foundation for the remaining analysis phases.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:berdl
+  - entity:pangenome-openness
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:caveat-execution-pending
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: REVIEW.md
+    source_section: Critical Issues (Must Address)
+    quote: Run `01_data_exploration.ipynb` on BERDL JupyterHub to generate baseline data files and verify queries work correctly.
+- id: stmt:opportunity-statistical-rigor
+  kind: opportunity
+  text: Adding multiple-testing correction (Bonferroni or FDR) when testing many openness-pathway correlations would strengthen the statistical rigor of the correlation analysis.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome-openness
+  - entity:multiple-testing-correction
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_pathway_ecology
+    source_doc: REVIEW.md
+    source_section: Important Improvements
+    quote: Include multiple testing correction (Bonferroni or FDR) when testing multiple correlations in Phase 2.
