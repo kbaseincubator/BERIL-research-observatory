@@ -1,0 +1,16 @@
+project_id: thermodynamic_impact
+status: analysis
+created_at: "2026-05-07T00:00:00Z"
+last_session_at: "2026-05-15T00:00:00Z"
+branch: projects/thermodynamic_impact
+engine:
+  name: claude
+authors:
+  - name: "Andrew Freiburger"
+    affiliation: ""
+    orcid: ""
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: false

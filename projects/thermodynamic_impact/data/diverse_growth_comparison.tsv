@@ -1,0 +1,11 @@
+organism	name	phylum	template	total_reactions	rxns_constrained	growth_unconstrained	growth_tmfa_marvin	growth_tmfa_opam2
+ecoli	Escherichia coli K-12 MG1655	Proteobacteria	GramNeg	1765	1210	0.5624999999999989	0.5625	0.5625
+bsubtilis	Bacillus subtilis 168	Firmicutes	GramPos	1345	941	0.5000000000000001	0.5	0.5
+pputida	Pseudomonas putida KT2440	Proteobacteria	GramNeg	1494	1018	0.16666666666666677	0.16666666666666657	0.16666666666666663
+saureus	Staphylococcus aureus NCTC 8325	Firmicutes	GramPos	1128	775	0.5	0.5	0.5000000000000687
+senterica	Salmonella enterica Typhimurium LT2	Proteobacteria	GramNeg	1683	1153	0.5624999999999974	0.5625	0.5624999999999999
+mtb	Mycobacterium tuberculosis H37Rv	Actinobacteria	GramPos	1150	797	0.4999999999999999	0.5	0.5000000000000002
+cace	Clostridium acetobutylicum ATCC 824	Firmicutes	GramPos	1066	708	1.0000000000000007	1.0	1.0
+synechocystis	Synechocystis sp. PCC 6803 substr. GT-I	Cyanobacteria	GramNeg	980	684	0.5	0.4999999999999999	0.5000000000000001
+kpneumoniae	Klebsiella pneumoniae HS11286	Proteobacteria	GramNeg	1793	1243	0.4999999999999999	0.5000000000000006	0.5000000000000001
+dradiodurans	Deinococcus radiodurans ATCC 13939	Deinococcota	GramNeg	1070	757	0.49999999999999917	0.5	0.5
