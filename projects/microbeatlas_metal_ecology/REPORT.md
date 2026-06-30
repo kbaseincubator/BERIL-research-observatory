@@ -2,7 +2,7 @@
 
 **Project**: `microbeatlas_metal_ecology`
 **Status**: Complete
-**Date**: 2026-04-01 (updated 2026-06-29)
+**Date**: 2026-04-01 (updated 2026-06-30)
 
 ---
 
@@ -1780,12 +1780,13 @@ Full FDR table: `data/all_tests_fdr.csv`
 **Source project**: `soil_metal_functional_genomics` (consolidated 2026-06-30)
 **Notebooks**: 08a_spearman_cog_metal.ipynb, 08b_fdr_associations.ipynb, 08c_copper_specific.ipynb, 08d_dbrda_pgls.ipynb
 
-**Scope**: Spearman correlations between the presence/absence of 5,197 COG families and measured concentrations of 10 metals (Co, Cr, Cu, Ni, Zn, Pb, As, Cd, Hg, U) across ~51K soil samples from the MicrobeAtlas dataset. BH-FDR corrected at q<0.05.
+**Scope**: Spearman correlations between the presence/absence of 5,197 COG families and measured concentrations of 10 metals (Co, Cr, Cu, Ni, Zn, Pb, As, Cd, Hg, U) across ~51,748 soil samples from the MicrobeAtlas dataset. BH-FDR corrected at q<0.05. Note: uranium (U) is included in the NB08a individual-COG sweep but excluded from the NB08b community-weighted FDR analysis (insufficient sample coverage for U).
 
 **Key findings**:
 - Significant COG-metal associations identified across 10 metals (NB08a). Community-weighted
-  analysis (NB08b) yields 2,355 significant COG category–metal associations across all 9 metals
-  (q<0.05), consistent with copper's dual role as essential micronutrient and toxic pollutant.
+  analysis (NB08b) yields 2,355 significant COG category–metal associations across 9 metals
+  (Co, Cr, Cu, Ni, Zn, Pb, As, Cd, Hg; q<0.05), consistent with copper's dual role as
+  essential micronutrient and toxic pollutant.
 - Copper-associated COGs include representatives from efflux pumps (COG V in MNUV: ρ=+0.061, q<0.05) and
   inorganic ion transport (COG P in EPQ: ρ=+0.070, q<0.05), though other P and V combinations show
   negative correlation (NB08c). The copper-specific analysis confirms that functional genomic adaptation
@@ -1837,19 +1838,34 @@ with BH-FDR correction (q<0.05). Metal-resistance genes defined by COG categorie
 (inorganic ion transport and metabolism) and V (defense mechanisms).
 
 **Key findings**:
-- Geographic hotspots of metal-resistance gene enrichment (OR vs. global baseline, NB10b;
-  22,356 MAGs, Fisher's exact + BH-FDR, q<0.05):
-  - Atacama desert (−25°, −70°): OR=9.8 (95% CI 5.8–16.1), q=7.6×10⁻¹²
-  - Eastern USA — Appalachian (40°, −80°): OR=7.9 (95% CI 4.8–12.4), q=2.8×10⁻¹¹
-  - East Asia (25°, 105°–115°): OR=4.4–5.9
-- These hotspots are consistent with anthropogenic and geogenic metal contamination
-  gradients. Single-expedition clustering check (NB10b) confirms ≥2 distinct study prefixes
-  for 4 of the top 5 hotspots; the South Asian hotspot (30°, 85°) flagged as single-expedition.
+
+All 11 geographic hotspots at q<0.05 (OR vs. global baseline, NB10b; 22,357 MAGs with
+coordinates, Fisher's exact + BH-FDR):
+
+| Grid cell (lat, lon) | Approx. location | OR | q | % resistant |
+|---|---|---|---|---|
+| −25°, −70° | Atacama Desert, Chile | 9.83 | 7.6×10⁻¹² | 21.8% |
+| 40°, −80° | Appalachian, Eastern USA | 7.86 | 2.8×10⁻¹¹ | 18.2% |
+| 40°, −90° | Midwest USA (Mississippi basin) | 6.32 | 7.6×10⁻¹² | 15.1% |
+| 30°, 85° | Nepal / southern Tibet | 6.27 | 0.017 | 15.4% |
+| 25°, 105° | Yunnan province, SW China | 5.89 | 0.010 | 14.6% |
+| 25°, 115° | Guangdong / SE China | 4.43 | 5.7×10⁻⁴ | 11.3% |
+| 30°, 120° | Eastern China (Yangtze delta) | 3.77 | 1.9×10⁻³ | 9.8% |
+| 25°, −85° | Caribbean / Gulf coast | 2.71 | 1.8×10⁻³ | 7.2% |
+| 35°, −125° | Pacific coast, California | 2.48 | 1.7×10⁻⁵ | 6.5% |
+| 30°, −120° | Central California coast | 2.57 | 0.017 | 6.9% |
+| 50°, 10° | Central Europe (Germany) | 2.65 | 3.9×10⁻³ | 7.0% |
+
+These hotspots are consistent with anthropogenic (mining, industrial) and geogenic metal
+contamination gradients. Single-expedition clustering check (NB10b) confirms ≥2 distinct
+study prefixes for 4 of the top 5 hotspots; the South Asian hotspot (30°, 85°) flagged as
+single-expedition and should be interpreted with caution.
+
 - Biome-stratified prevalence (NB10b, Fisher's exact + BH-FDR): Soil is strongly enriched
   (OR=5.0, q=1.8×10⁻⁸²); Marine is depleted (OR=0.20, q=9.2×10⁻⁸⁰); Rhizosphere is not
   significantly different from global baseline (OR=0.66, q=0.30).
 
-**Status**: NB10a executed (Spark, via standalone extraction script; 22,356 MAGs with
+**Status**: NB10a executed (Spark, via standalone extraction script; 22,357 MAGs with
 coordinates). NB10b executed (11 hotspots at q<0.05; biome-stratified table produced;
 figures saved to `figures/`). NB10c executed (3 publication figures: global hotspot map,
 biome prevalence chart, hotspot summary table; all at 300 dpi in `figures/`). Path bug
@@ -1891,6 +1907,10 @@ tested. This consistency is ecologically surprising: groundwater, a geochemicall
 often metal-contaminated environment, shows the same degree of phylogenetic conservatism as
 open marine water.
 
+The single archaea-domain test (Marine water genera; n=15) yields λ=0.856 (LRT p=0.035),
+directionally consistent with the bacterial pattern but severely underpowered for phylogenetic
+signal estimation at this sample size; treat as indicative only.
+
 **Status**: Fully executed. `data/pagel_lambda_by_biome.csv` and
 `figures/nb04d_pagels_lambda_by_biome.png` (forest plot, 300 dpi) generated.
 
@@ -1915,16 +1935,37 @@ Pagel's λ (methodological consistency).
 - Marine Sediment: OR=5.6, q=6.3×10⁻²⁷ (23.4%)
 - Marine water: OR=6.3, q=3.0×10⁻³⁴ (22.1%)
 
-*arsC (arsenate reductase)* — enriched in Rhizosphere (OR=22.8, q=4.3×10⁻⁶),
-Groundwater (OR=18.5, q=1.2×10⁻⁵), and all marine biomes (q<0.01).
+*arsC (arsenate reductase)* — enriched in all five biomes vs. GTDB baseline: Rhizosphere
+(OR=22.8, q=4.3×10⁻⁶), Groundwater (OR=18.5, q=1.2×10⁻⁵), Marine Sediment (OR=8.3,
+q=7.7×10⁻⁴), Marine water (OR=5.7, q=4.4×10⁻³), and Soil (OR=5.4, q=9.2×10⁻³). Universal
+enrichment across every biome tested indicates that arsenic exposure is a near-universal
+geochemical stressor driving arsenate reductase retention regardless of environment type.
+
+*arsA (arsenate-translocating ATPase, ars operon)* — enriched in three biomes: Groundwater
+(q=8.1×10⁻⁴; OR not computable — zero arsA-carrying non-groundwater genera in GTDB baseline
+at this depth, consistent with arsA being globally rare), Marine water (OR=21.2, q=3.8×10⁻³),
+and Rhizosphere (OR=22.1, q=4.1×10⁻³); not significant in Soil or Marine Sediment. arsA
+encodes the ATPase subunit of the Ars active efflux pump (ArsABC) and is less universally
+distributed than arsC; its selective enrichment in water-column and groundwater environments
+suggests that active arsenate export — beyond reductive detoxification alone — is specifically
+advantageous in arsenic-contaminated aquatic systems.
 
 *silA (silver efflux, RND family)* — strongly enriched in Rhizosphere (OR=112.6,
 q=4.5×10⁻⁶), Groundwater (OR=15.2, q=9.2×10⁻³), Soil (OR=14.4, q=6.5×10⁻³), and Marine
-water (OR=21.2, q=3.8×10⁻³). The Rhizosphere silA OR is the largest observed; consistent
-with silver exposure from agricultural inputs and minerotrophic niches.
+water (OR=21.2, q=3.8×10⁻³); Marine Sediment q=0.077 (not significant). The Rhizosphere silA
+OR is the largest observed across all gene × biome combinations; consistent with silver
+exposure from agricultural inputs and minerotrophic niches.
 
-*pcoA, cadA, chrA* — not significant in any biome (low sample counts; cadA n≤1, chrA n≤2
-per biome).
+*pcoA, cadA, chrA* — not significant in any biome (pcoA: n≤2 per biome; cadA n≤1, chrA n≤1
+per biome). Counts are too low for reliable Fisher's exact enrichment estimation.
+
+**Pattern summary**: merA and arsC show universal biome enrichment (all five biomes, q<0.01
+each), indicating Hg and As resistance are consistently selected regardless of environment. arsA
+adds a second arsenate-resistance mechanism with biome selectivity — highest in anoxic/metal-
+rich water-column environments. silA (Ag efflux) is rhizosphere-dominant with evidence across
+terrestrial and marine water. Cu/Cd/Cr resistance genes (pcoA, cadA, chrA) fall below
+detectable prevalence in this genus-level dataset, pointing to either sparse distribution or
+annotation coverage limits for these gene families in AMRFinderPlus.
 
 **Status**: Fully executed. `data/gene_biome_enrichment.csv` and publication figures
 (`figures/nb04e_gene_biome_heatmap.png`, `figures/nb04e_gene_biome_bubbleplot.png`) generated.
