@@ -12,7 +12,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/beril-provenance.sh"
+            "command": "bash .claude/hooks/beril-runtime.sh"
           }
         ]
       }

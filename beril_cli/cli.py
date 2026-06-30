@@ -74,10 +74,10 @@ def main(argv: list[str] | None = None) -> int:
         help="Emit machine-readable JSON (summary action)",
     )
 
-    # provenance-snapshot (settings.json SessionStart hook; reads the hook payload from stdin)
+    # runtime-snapshot (settings.json SessionStart hook; reads the hook payload from stdin)
     sub.add_parser(
-        "provenance-snapshot",
-        help="Write/merge the active project's runtime provenance.json (hook)",
+        "runtime-snapshot",
+        help="Write/merge the active project's runtime.json (hook)",
     )
 
     args, remaining = parser.parse_known_args(argv)
@@ -116,10 +116,10 @@ def main(argv: list[str] | None = None) -> int:
 
         return run_claims(args)
 
-    if args.command == "provenance-snapshot":
-        from beril_cli.audit_cmd import run_provenance_snapshot
+    if args.command == "runtime-snapshot":
+        from beril_cli.audit_cmd import run_runtime_snapshot
 
-        return run_provenance_snapshot(args)
+        return run_runtime_snapshot(args)
 
     return 0
 

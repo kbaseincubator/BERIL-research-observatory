@@ -1,19 +1,22 @@
-"""beril provenance-snapshot — best-effort runtime provenance.
+"""beril runtime-snapshot — best-effort runtime provenance.
 
 A single writer, driven by a SessionStart hook: it reads the hook's JSON payload
 from stdin, resolves the active project from a ``projects/<id>/`` path in the
-payload, and writes/merges a per-project ``provenance.json``. Strictly
-best-effort — it swallows every error and always returns 0, so a failed snapshot
-never blocks a session.
+payload, and writes/merges a per-project ``runtime.json``. Strictly best-effort —
+it swallows every error and always returns 0, so a failed snapshot never blocks a
+session.
 
 The snapshot is shaped loosely to **W3C PROV** (https://www.w3.org/TR/prov-overview/):
 the project is the *entity*, the session is the *activity*, and beril + the model
 are the *agent*. This is the passive execution-provenance pattern of
 Sumatra/noWorkflow — capture what produced the record without re-running it.
 
-provenance.json is **non-authoritative** and feeds no trust tier — an inspectable
-record of how an analysis was produced, alongside ``beril.yaml`` (authoritative)
-and ``claims.json`` (the gate-validated claims ledger).
+The file is named ``runtime.json`` (not ``provenance.json``) because on main
+"provenance" already means source/lineage (e.g. a project's ``data/PROVENANCE.md``
+and the Atlas's source frontmatter); this artifact is the narrower *runtime /
+execution* facet. It is **non-authoritative** and feeds no trust tier — an
+inspectable record of how an analysis was produced, alongside ``beril.yaml``
+(authoritative) and ``claims.json`` (the claims ledger).
 """
 
 from __future__ import annotations
@@ -33,7 +36,7 @@ from beril_cli import __version__
 #: real path segment.
 _PROJECT_PATH = re.compile(r"(?:^|[\s/])projects/([^/\s]+)")
 
-PROVENANCE_FILE = "provenance.json"
+RUNTIME_FILE = "runtime.json"
 
 
 def _find_repo_root() -> Path | None:
@@ -102,7 +105,7 @@ def _project_dir(payload: dict) -> Path | None:
     return project_dir if project_dir.is_dir() else None
 
 
-def _build_provenance(project: str, payload: dict) -> dict:
+def _build_runtime(project: str, payload: dict) -> dict:
     """A PROV-shaped snapshot: entity (project) + activity (session) + agent."""
     agent = {"beril_version": __version__}
     model = payload.get("model") or payload.get("model_id")
@@ -120,8 +123,8 @@ def _build_provenance(project: str, payload: dict) -> dict:
     return {"project": project, "updated_at": _now_iso(), "agent": agent, "activity": activity}
 
 
-def run_provenance_snapshot(args: argparse.Namespace) -> int:
-    """SessionStart hook: write/merge the project's provenance.json. Always 0.
+def run_runtime_snapshot(args: argparse.Namespace) -> int:
+    """SessionStart hook: write/merge the project's runtime.json. Always 0.
 
     The ``agent`` and ``activity`` blocks are deep-merged so a later snapshot that
     lacks a field (e.g. model_id) does not clobber one an earlier snapshot
@@ -134,14 +137,14 @@ def run_provenance_snapshot(args: argparse.Namespace) -> int:
         project_dir = _project_dir(payload)
         if project_dir is None:
             return 0
-        path = project_dir / PROVENANCE_FILE
+        path = project_dir / RUNTIME_FILE
         existing = {}
         if path.exists():
             try:
                 existing = json.loads(path.read_text())
             except (json.JSONDecodeError, ValueError):
                 existing = {}
-        snapshot = _build_provenance(project_dir.name, payload)
+        snapshot = _build_runtime(project_dir.name, payload)
         merged = {**existing, **snapshot}
         for block in ("agent", "activity"):
             existing_block = existing.get(block)

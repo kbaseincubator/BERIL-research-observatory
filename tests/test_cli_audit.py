@@ -1,7 +1,7 @@
-"""Tests for `beril provenance-snapshot` — best-effort runtime provenance writer.
+"""Tests for `beril runtime-snapshot` — best-effort runtime-provenance writer.
 
 Driven by a SessionStart hook: reads the hook payload from stdin, resolves the
-active project, and writes/merges a per-project provenance.json shaped loosely to
+active project, and writes/merges a per-project runtime.json shaped loosely to
 W3C PROV (entity = the project, activity = the session, agent = beril + model).
 Must never raise and always exit 0 (never block a turn).
 """
@@ -14,7 +14,7 @@ import json
 
 import pytest
 
-from beril_cli.audit_cmd import resolve_project, run_provenance_snapshot
+from beril_cli.audit_cmd import resolve_project, run_runtime_snapshot
 
 
 # --- project resolution from the hook payload (cwd is repo root, so use paths) ---
@@ -58,7 +58,7 @@ def _stdin(monkeypatch, payload):
     monkeypatch.setattr("sys.stdin", io.StringIO(json.dumps(payload)))
 
 
-# --- provenance-snapshot: PROV-shaped entity / activity / agent ---
+# --- runtime-snapshot: PROV-shaped entity / activity / agent ---
 
 
 def test_provenance_snapshot_writes_prov_shape(repo, monkeypatch):
@@ -72,9 +72,9 @@ def test_provenance_snapshot_writes_prov_shape(repo, monkeypatch):
             "cwd": str(repo / "projects" / "p1"),
         },
     )
-    rc = run_provenance_snapshot(argparse.Namespace())
+    rc = run_runtime_snapshot(argparse.Namespace())
     assert rc == 0
-    data = json.loads((repo / "projects" / "p1" / "provenance.json").read_text())
+    data = json.loads((repo / "projects" / "p1" / "runtime.json").read_text())
     assert data["project"] == "p1"
     assert data["agent"]["beril_version"]
     assert data["agent"]["model_id"] == "claude-x"
@@ -85,34 +85,34 @@ def test_provenance_snapshot_writes_prov_shape(repo, monkeypatch):
 def test_provenance_snapshot_merges_not_overwrites(repo, monkeypatch):
     p = repo / "projects" / "p1"
     _stdin(monkeypatch, {"session_id": "s1", "cwd": str(p)})
-    run_provenance_snapshot(argparse.Namespace())
-    data = json.loads((p / "provenance.json").read_text())
+    run_runtime_snapshot(argparse.Namespace())
+    data = json.loads((p / "runtime.json").read_text())
     data["custom"] = "keep"  # a downstream writer adds a sibling key
-    (p / "provenance.json").write_text(json.dumps(data) + "\n")
+    (p / "runtime.json").write_text(json.dumps(data) + "\n")
     _stdin(monkeypatch, {"session_id": "s2", "cwd": str(p)})
-    run_provenance_snapshot(argparse.Namespace())
-    assert json.loads((p / "provenance.json").read_text())["custom"] == "keep"
+    run_runtime_snapshot(argparse.Namespace())
+    assert json.loads((p / "runtime.json").read_text())["custom"] == "keep"
 
 
 def test_provenance_snapshot_deep_merges_agent(repo, monkeypatch):
     p = repo / "projects" / "p1"
     # an earlier snapshot captures a model_id
     _stdin(monkeypatch, {"session_id": "s1", "model_id": "claude-x", "cwd": str(p)})
-    run_provenance_snapshot(argparse.Namespace())
+    run_runtime_snapshot(argparse.Namespace())
     # a later snapshot lacks model_id; it must NOT clobber the earlier agent field
     _stdin(monkeypatch, {"session_id": "s2", "cwd": str(p)})
-    run_provenance_snapshot(argparse.Namespace())
-    data = json.loads((p / "provenance.json").read_text())
+    run_runtime_snapshot(argparse.Namespace())
+    data = json.loads((p / "runtime.json").read_text())
     assert data["agent"]["model_id"] == "claude-x"  # preserved
     assert data["activity"]["session_id"] == "s2"  # updated
 
 
 def test_provenance_snapshot_skips_when_no_project(repo, monkeypatch):
     _stdin(monkeypatch, {"session_id": "s1", "cwd": str(repo)})
-    assert run_provenance_snapshot(argparse.Namespace()) == 0
-    assert not (repo / "projects" / "p1" / "provenance.json").exists()
+    assert run_runtime_snapshot(argparse.Namespace()) == 0
+    assert not (repo / "projects" / "p1" / "runtime.json").exists()
 
 
 def test_provenance_snapshot_survives_malformed_stdin(repo, monkeypatch):
     monkeypatch.setattr("sys.stdin", io.StringIO("not json{"))
-    assert run_provenance_snapshot(argparse.Namespace()) == 0
+    assert run_runtime_snapshot(argparse.Namespace()) == 0
