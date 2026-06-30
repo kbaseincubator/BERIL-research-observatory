@@ -1,185 +1,161 @@
 # Research Workflow
 
-**Purpose**: Step-by-step guide to conducting a research project using the BERIL Research Observatory, from hypothesis generation through peer review.
-
-See [overview.md](overview.md) for the data architecture and
-[schema.md](schema.md) for schema documentation. Use BERDL notebook helpers for
-live access-aware database and table discovery.
-
----
-
-## Overview
-
-The research workflow is orchestrated by `/berdl_start`. When you choose "Start a new research project", the agent drives the entire process — from ideation through review — checking in with you at natural decision points.
-
-```
-/berdl_start
-  ├── Orientation & Ideation    (read docs, explore data, develop hypotheses)
-  ├── Research Plan             (write RESEARCH_PLAN.md, README.md, create project)
-  ├── Analysis                  (generate & run notebooks, iterate)
-  ├── Synthesis                 (interpret results → REPORT.md via /synthesize)
-  └── Review & Submission       (validate & review via /submit)
-```
-
-You can also enter at any point. If you already have results, jump straight to `/synthesize`. If you have a complete project, use `/submit` for review.
+**Purpose**: How to run a research project in the BERIL Research Observatory — from
+a question to an archived report. For *why* the workflow is shaped this way and the
+scientific ideas behind it, see [scientific-planning.md](scientific-planning.md);
+for the data architecture see [overview.md](overview.md) and [schema.md](schema.md).
 
 ---
 
-## Skills Reference
+## The arc at a glance
 
-### User-Invocable Skills
+A line of inquiry moves through three stages over one shared substrate. Each stage
+is a skill; `beril.yaml.status` records where the project is.
 
-| Skill | Purpose | Key Inputs | Key Outputs |
-|-------|---------|------------|-------------|
-| `/berdl_start` | Orchestrate a full research project or get oriented | Research interest | Complete project (plan, notebooks, report, review) |
-| `/berdl` | Discover BERDL data with access-aware helpers and query with Spark SQL | SQL query or natural-language question | Query results, schema info, data samples |
-| `/berdl-discover` | Explore and document a new BERDL database | Database name | Module file in `.claude/skills/berdl/modules/`, documentation |
-| `/literature-review` | Search PubMed, Europe PMC, CORE, OpenAlex | Research topic or question | Literature summary, `references.md` |
-| `/synthesize` | Interpret results and draft findings | Project ID, notebook outputs (CSV, figures) | `REPORT.md` with findings, literature context, limitations |
-| `/submit` | Validate documentation and request automated review | Project ID, complete project directory | Pre-submission checklist, `REVIEW.md` |
-| `/cts` | Run batch compute jobs on the CTS cluster | Job configuration | Compute results |
+```
+/research-plan   ──►   /execute-plan   ──►   /berdl-review   ──►   /submit
+   PLAN                  EXECUTE               REVIEW                SUBMIT
+exploration→proposed   proposed→active→analysis      →reviewed            →complete
+```
 
-Hypothesis generation, research planning, and notebook creation are handled automatically by `/berdl_start` as part of the orchestrated workflow. The `pitfall-capture` protocol runs automatically when errors or data surprises occur.
+- **`/berdl_start`** is onboarding **and a router**: it scaffolds a project and
+  sends you to the right stage. For an existing project it resumes at the stage
+  matching the current `status`.
+- **`/whereami`** tells you, at any point, which stage you're in and the single
+  best next action.
+
+Run the whole thing through `/berdl_start`, or invoke any stage directly.
 
 ---
 
-## Orchestrated Workflow (via `/berdl_start`)
+## Stage 1 — Plan (`/research-plan`)
 
-### Phase A: Orientation & Ideation
+Turns a research interest + live BERDL data + literature into a **frozen,
+pre-registered** `RESEARCH_PLAN.md`. Owns `exploration → proposed`.
 
-The agent reads the core documentation (`PROJECT.md`, `docs/overview.md`,
-`docs/pitfalls.md`, `docs/performance.md`, `docs/research_ideas.md`), checks
-the environment (auth token, gh CLI), and engages with you about your research
-interest.
+The plan must contain:
+- a sharp, answerable **research question** (FINER / PICO framing);
+- **competing hypotheses** — H0/H1 plus 2–3 *genuine* rivals, drafted before you
+  state a preference (Chamberlin's multiple working hypotheses);
+- per hypothesis: a **prediction**, a **falsification test** (the result that would
+  reject it), and a **decision criterion**;
+- a **discrimination strategy** — the query/figure that tells the rivals apart;
+- a **feasibility verdict** (`answerable | partial | not-answerable`) from cheap
+  data probes; `not-answerable` stops and reshapes the question;
+- a **per-notebook analysis spec** (goal + expected output + the discriminating
+  query that runs first).
 
-**What happens**:
-- Explores relevant BERDL tables and their row counts using access-aware helpers
-- Checks existing projects to avoid duplicating work
-- Proposes 2-3 testable hypotheses with null and alternative formulations
-- Searches literature for context
-- Identifies potential confounders and data limitations
-
-### Phase B: Research Plan
-
-The agent writes a structured research plan and scaffolds the project directory.
-
-**Files produced**:
-
-| File | Description |
-|------|-------------|
-| `projects/{id}/RESEARCH_PLAN.md` | Full plan: question, hypothesis, lit context, query strategy, analysis plan, revision history |
-| `projects/{id}/README.md` | Slim README: question, status, overview, reproduction, authors |
-| `projects/{id}/notebooks/` | Empty directory for notebooks |
-| `projects/{id}/data/` | Empty directory for output data |
-| `projects/{id}/figures/` | Empty directory for visualizations |
-
-**Best practices**: The agent suggests naming the session to match the project ID, creates a `projects/{id}` branch by default, and commits the initial files before proceeding. (If you prefer to stay on main, you can opt out.)
-
-**Optional plan review**: The agent offers to run a quick review of the research plan before starting analysis. A read-only subagent checks the plan against `docs/pitfalls.md`, `docs/performance.md`, schema documentation, and project conventions. It surfaces relevant pitfalls, flags potential query issues, and checks for overlap with existing projects. The suggestions are advisory — the user can address them, note them, or skip.
-
-### Phase C: Analysis (Notebooks)
-
-The agent generates numbered notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, etc.) with PySpark boilerplate, SQL queries, and visualization scaffolding, then runs them.
-
-**What happens**:
-- Notebooks follow safety rules from `docs/pitfalls.md` and query patterns
-- Includes NULL checks, row counts, and data-quality validation cells
-- Updates `RESEARCH_PLAN.md` with revision tags when the approach changes
-- Commits after each major milestone
-
-### Phase D: Synthesis & Writeup
-
-The agent discusses results with you, then runs `/synthesize` to create `REPORT.md`.
-
-**Files produced**:
-
-| File | Description |
-|------|-------------|
-| `REPORT.md` | Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References |
-
-### Phase E: Review & Submission
-
-The agent runs `/submit` to validate documentation and generate an automated review.
-
-**Files produced**:
-
-| File | Description |
-|------|-------------|
-| `REVIEW.md` | Automated review with assessment, suggestions, and metadata |
+It ends at the **mandatory plan-review checkpoint** — approve, run an independent
+review (`tools/review.sh --type plan` and/or the read-only **hypothesis-critic** via
+`/critique-hypotheses`), or iterate. Nothing proceeds to analysis until you approve.
+**The plan is a contract, frozen before any results are seen.**
 
 ---
 
-## Tutorial: Your First Research Project
+## Stage 2 — Execute (`/execute-plan`)
 
-### 1. Start the workflow
+Reads the *frozen* plan and runs it. Owns `proposed → active → analysis`.
+
+- For each planned notebook, runs the **discriminating/refuting query first**
+  (Platt's strong inference — try to break the hypothesis before confirming it),
+  then the rest; commits after each milestone.
+- Updates the cross-session **world-model** as understanding shifts (open
+  questions, assumptions, dead ends) — never findings.
+- **Revision loop:** a minor deviation is logged in the plan's Revision History and
+  execution continues; a *material* change (dropping/adding a hypothesis, moving a
+  decision threshold, abandoning the discrimination strategy) **demotes
+  `active → proposed`** and re-runs the plan-review checkpoint — you can't silently
+  rewrite a pre-registered contract after seeing data.
+- Ends by running `/synthesize` → `REPORT.md`, then hands off to review.
+
+---
+
+## Stage 3 — Review & Submit
+
+- **`/berdl-review`** — independent review of the report (`analysis → reviewed`).
+  When the provenance/trust layer is present, **`/berdl-refute`** adds a post-hoc
+  disconfirmation pass and the claims ledger tracks groundedness.
+- **`/submit`** — ORCID-gated approval and lakehouse archival
+  (`reviewed → complete`). This is the one human hard gate.
+
+---
+
+## Staying oriented across sessions
+
+A long investigation loses its thread when a session ends. Three things keep it
+coherent — **none of which ever gate the lifecycle**:
+
+- **`research_state.json`** — a per-project, non-authoritative **world-model**: the
+  question, open questions, assumptions, dead ends, last checkpoint. Orientation
+  only.
+- **`beril whereami`** / **`/whereami`** — a deterministic readiness surface: the
+  `explore · plan · ▸analyze · review · submit` breadcrumb and a `Next:` action.
+- **SessionStart hook** — best-effort re-injection of the world-model at session
+  start, framed explicitly as "orientation only, NOT established findings."
+
+`beril.yaml` remains the single lifecycle authority; the world-model is advisory.
+Progress renders as words (a breadcrumb, a `Next:` line) — the only numbers shown
+are real counts.
+
+---
+
+## Skills & commands
+
+| Entry point | Stage | What it does |
+|---|---|---|
+| `/berdl_start` | onboarding | Orient, scaffold a project, route to the right stage |
+| `/research-plan` | Plan | Frame the question + competing hypotheses → frozen `RESEARCH_PLAN.md` |
+| `/critique-hypotheses` | Plan | Run the read-only hypothesis-critic on a draft plan (advisory) |
+| `/execute-plan` | Execute | Build/run notebooks from the frozen plan → `REPORT.md` |
+| `/whereami` | any | Show where the project stands and the next action |
+| `/synthesize` | Execute | Interpret notebook outputs → `REPORT.md` |
+| `/berdl-review` | Review | Independent review of the report |
+| `/submit` | Submit | ORCID-gated approval + lakehouse archival |
+| `/berdl`, `/berdl-query` | any | Discover and query BERDL data |
+| `/literature-review` | Plan | Search the literature → `references.md` |
+| `/suggest-research` | — | Propose the next high-impact research topic |
+
+The **hypothesis-critic** subagent (`.claude/agents/hypothesis-critic.md`) is
+read-only and writes nothing — the pre-analysis complement to `/berdl-refute`. The
+`pitfall-capture` protocol runs automatically when errors or data surprises occur.
+
+---
+
+## Tutorial: your first project
+
+1. **Start.** Run `/berdl_start`, choose "Start a new research project", and
+   describe your interest — e.g. *"do species with open pangenomes occupy more
+   diverse environments than those with closed pangenomes?"*
+2. **Plan.** `/research-plan` explores the data, drafts competing hypotheses with a
+   falsification test and decision criterion each, checks feasibility, and writes a
+   frozen `RESEARCH_PLAN.md`. Review it at the checkpoint and approve.
+3. **Execute.** `/execute-plan` runs each notebook's discriminating query first,
+   iterates, and synthesizes `REPORT.md`. If a result forces a material change to
+   the plan, it returns you to the checkpoint.
+4. **Review & submit.** `/berdl-review`, then `/submit` to approve and archive.
+5. **Resume anytime.** `/whereami` (or just reopening `/berdl_start`) shows the
+   current stage and next step; the world-model re-orients you across sessions.
+
+Final project layout:
 
 ```
-/berdl_start
-```
-
-Choose "Start a new research project" and describe your research interest. For example:
-
-> "I'm interested in whether species with open pangenomes tend to occupy more diverse environments than species with closed pangenomes."
-
-### 2. The agent takes it from there
-
-The agent will:
-- Explore BERDL data to check feasibility
-- Propose testable hypotheses
-- Search the literature for context
-- Write a research plan and ask for your approval
-- Generate and run analysis notebooks
-- Draft findings in `REPORT.md`
-- Run an automated review
-
-You'll be consulted at key decision points (hypothesis selection, plan approval, result interpretation). The agent will create a project branch and suggest a session name by default.
-
-### 3. Final project structure
-
-```
-projects/core_size_openness/
-  README.md          <-- project overview, status updated
-  RESEARCH_PLAN.md   <-- hypothesis, approach, revision history
-  REPORT.md          <-- findings, interpretation, evidence
-  REVIEW.md          <-- automated review
+projects/pangenome_openness_environment/
+  beril.yaml            <-- lifecycle authority (status, authors, approval)
+  README.md             <-- overview, status, reproduction
+  RESEARCH_PLAN.md      <-- frozen plan: competing hypotheses, falsification tests
+  research_state.json   <-- non-authoritative world-model (orientation only)
+  REPORT.md             <-- findings, interpretation, evidence
+  REVIEW.md             <-- approved review
   references.md
-  notebooks/
-    01_data_exploration.ipynb
-    02_analysis.ipynb
-  data/
-    species_pangenome_stats.csv
-  figures/
-    core_vs_accessory_scatter.png
+  notebooks/  data/  figures/
 ```
 
 ---
 
-## Standalone Skills for Ad-Hoc Work
+## Key references
 
-| Skill | When to use |
-|-------|-------------|
-| `/berdl` | Run exploratory queries against BERDL without a full project |
-| `/berdl-discover` | Document a new or unfamiliar BERDL database |
-| `/literature-review` | Search papers on a topic outside of a research project |
-| `/synthesize` | Interpret results for an existing project with completed notebooks |
-| `/submit` | Validate and review a complete project |
-| `/berdl_start` | Get oriented if you are new to the system |
-
-### When to use `/berdl` directly
-
-Use `/berdl` for quick, ad-hoc data exploration:
-- Checking what tables exist in a database
-- Sampling rows to understand data shape
-- Running one-off queries to answer a quick question
-- Validating assumptions before committing to a full project
-
-### Handling errors
-
-When queries fail or return unexpected results, the pitfall-capture protocol activates automatically. It documents the issue in [pitfalls.md](pitfalls.md) so future projects avoid the same problem.
-
-### Key references
-
-- [overview.md](overview.md) -- Data architecture and table descriptions
-- [pitfalls.md](pitfalls.md) -- Common query issues and solutions
-- [research_ideas.md](research_ideas.md) -- Backlog of research questions
-- [schema.md](schema.md) -- Schema documentation index
+- [scientific-planning.md](scientific-planning.md) — the design, authority model, and named-idea grounding
+- [overview.md](overview.md) — data architecture and table descriptions
+- [pitfalls.md](pitfalls.md) — common query issues and solutions
+- [performance.md](performance.md) — query strategies for large tables
+- [research_ideas.md](research_ideas.md) — backlog of research questions

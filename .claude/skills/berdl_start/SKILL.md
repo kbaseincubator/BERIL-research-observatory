@@ -42,6 +42,8 @@ data/               # Shared data extracts reusable across projects
 | `/berdl-query` | Run SQL queries locally with remote Spark compute (CLI tools + notebook support) |
 | `/berdl-minio` | Transfer files between BERDL MinIO and local machine |
 | `/berdl-discover` | Explore and document a new BERDL database |
+| `/research-plan` | Turn interests + data + literature into a frozen, pre-registered `RESEARCH_PLAN.md` (Phase A/B) |
+| `/execute-plan` | Read the frozen plan and build, run, and write up the analysis (Phase C/D) |
 | `/literature-review` | Search PubMed, bioRxiv, arXiv, Semantic Scholar, and Google Scholar for relevant biological literature |
 | `/synthesize` | Read analysis outputs, compare against literature, and draft findings |
 | `/submit` | Approve a project and upload it to the lakehouse |
@@ -172,15 +174,13 @@ Once a project context is established, the workflow is the same regardless of en
 | Phase | Status (`beril.yaml`) | What happens |
 |---|---|---|
 | **Phase 0** — Scaffold | (unset → `exploration`) | Create dirs, beril.yaml, stub README; pick branch. Runs only for entry doors 2 and 3. |
-| **Phase A** — Orientation & Exploration | `exploration` | Read docs, explore data, accept `user_data`, develop hypotheses. |
-| **Phase B** — Research Plan | `exploration` → `proposed` | Write `RESEARCH_PLAN.md`. **STOP.** |
-| **Checkpoint** — Plan Review | `proposed` | Mandatory pause: approve, review, or iterate. Do not skip. |
-| **Phase C** — Analysis | `proposed` → `active` | Write & execute notebooks, save figures, capture pitfalls. |
-| **Phase D** — Synthesis | `active` → `analysis` | `/synthesize` → `REPORT.md`. |
+| **Phases A & B** — Exploration & Research Plan | `exploration` → `proposed` | **`/research-plan`**: explore data, frame the question, draft competing hypotheses, write the frozen `RESEARCH_PLAN.md`. **STOP** at the plan-review checkpoint. |
+| **Checkpoint** — Plan Review | `proposed` | Mandatory pause (owned by `/research-plan`): approve, review, or iterate. Do not skip. |
+| **Phases C & D** — Analysis & Synthesis | `proposed` → `active` → `analysis` | **`/execute-plan`**: run the planned notebooks (discriminating query first), then `/synthesize` → `REPORT.md`. |
 | **Phase E1** — Review | `analysis` → `reviewed` | `/berdl-review` produces a numbered `REVIEW_N.md` with hash footer. Iterate freely. |
 | **Phase E2** — Approve & Submit | `reviewed` → `complete` (+ `SUBMITTED.md` on upload success) | `/submit` verifies the latest review is current, asks for explicit approval, uploads to lakehouse, writes marker file. |
 
-For entry door 1 (Continue existing): start at the phase matching the project's current `status`. For doors 2 and 3: start at Phase 0.
+For entry door 1 (Continue existing): start at the phase matching the project's current `status` and route to the owning skill (`exploration`/`proposed` → `/research-plan`; `active` → `/execute-plan`; `analysis` → `/berdl-review`; `reviewed` → `/submit`). For doors 2 and 3: start at Phase 0.
 
 ---
 
@@ -205,93 +205,28 @@ Establish the project directory and manifest **before** any querying, planning, 
 9. **Commit**: `feat(project): scaffold {id} (exploration phase)`.
 10. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch — useful for long-running or remote sessions where the connection may drop."
 
-After Phase 0, **every artifact has a home**. User data → `projects/<id>/user_data/`. Exploration queries → `projects/<id>/notebooks/00_*.ipynb`. References → `projects/<id>/references.md`. Move on to Phase A.
+After Phase 0, **every artifact has a home**. User data → `projects/<id>/user_data/`. Exploration queries → `projects/<id>/notebooks/00_*.ipynb`. References → `projects/<id>/references.md`. Move on to Phases A & B — invoke `/research-plan`.
 
-#### Phase A: Orientation & Exploration
+#### Phases A & B: Exploration & Research Plan → invoke `/research-plan`
 
-Status: `exploration`. Read context, explore data, accept user-supplied input, and develop hypotheses — all inside the project directory.
+Status: `exploration` → `proposed`. The detailed steps for orientation, exploration, framing the question, drafting competing hypotheses, feasibility, and writing the frozen `RESEARCH_PLAN.md` now live in the **`/research-plan`** skill.
 
-**Required reading before designing any queries:**
-1. `PROJECT.md` — dual goals (science + knowledge capture), project structure, reproducibility standards, JupyterHub workflow, Spark notebook patterns.
-2. `docs/overview.md` — data architecture, key tables, generation workflow, known limitations.
-3. `docs/pitfalls.md` and `docs/performance.md` — **critical: read before any query design**. These are the frozen historical archives; per-project pitfalls hit by recent projects also live in `projects/*/memories/pitfalls.md` (worth a scan, especially for projects on the same database family).
-4. `docs/research_ideas.md` — check for related ideas; avoid duplicating work.
-5. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live access-aware discovery. For database-specific gotchas, grep `docs/pitfalls.md` for the database name (e.g., `grep -A 20 "^## kbase\.ke_pangenome$" docs/pitfalls.md`); also check `projects/*/memories/pitfalls.md` for any project-tagged entries on the same database.
+**Invoke `/research-plan {project_id}`.** It owns:
+- Phase A orientation & exploration (required reading, live data discovery, user-data handoff, literature).
+- Phase B planning: a FINER/PICO research question; competing hypotheses (H0/H1 + genuine rivals, drafted *before* asking the user's preference); per-hypothesis prediction + falsification test + decision criteria; the discrimination strategy and confidence prior; a feasibility verdict via cheap probes; a per-notebook Analysis Plan; and `RESEARCH_PLAN.md` (whose enriched template now lives in that skill).
+- Setting `beril.yaml` `status: proposed` and seeding `research_state.json`.
+- The **mandatory plan-review checkpoint** (kept and owned by `/research-plan`): present the plan, then offer (a) approve and start analysis, (b) independent review via `tools/review.sh --type plan` and/or the hypothesis-critic agent, (c) iterate. It does not advance to analysis until the user picks (a). See **Key Principle 6** below — never skip this checkpoint.
 
-**Setup check (Phase 1.5 already verified KBASE_AUTH_TOKEN and proxy):**
-6. `gh auth status` — needed for branches/PRs. Prompt `gh auth login` if missing.
+#### Phases C & D: Analysis & Synthesis → invoke `/execute-plan`
 
-**Engagement (status stays `exploration`):**
-- Discuss the user's research interest and goals.
-- **If the user has input data** (gene lists, phenotype tables, FASTAs, SQLite, etc.): drop it in `projects/<id>/user_data/`. Never leave user-supplied data in `~/` or the repo root.
-- Run exploratory queries with `/berdl`. For any query worth keeping, save it as a numbered exploration notebook (`projects/<id>/notebooks/00_exploration.ipynb`, then `00b_*.ipynb` if you need more). Even rough exploration gets a home.
-- Search literature with `/literature-review` if relevant. References go to `projects/<id>/references.md`.
-- Check related existing projects in `projects/` — read their READMEs to understand prior work.
-- Develop 2-3 testable hypotheses with H0/H1.
+Status: `proposed` → `active` → `analysis`. The detailed steps for building and running the planned notebooks, the revision loop, the results checkpoint, and synthesis now live in the **`/execute-plan`** skill.
 
-When the user has a clear hypothesis and is ready to commit to a plan, transition to Phase B.
-
-#### Phase B: Research Plan
-
-Status transition: `exploration` → `proposed`.
-
-1. Write `projects/<id>/RESEARCH_PLAN.md` (template at the bottom of this file): Research Question, Hypothesis (H0/H1), Literature Context, Approach, Data Sources, Query Strategy (tables, filter strategy, performance tier), Analysis Plan (numbered notebooks with goals + expected outputs), Expected Outcomes, Revision History (v1 with today's date), Authors.
-2. Update `projects/<id>/README.md` Status block to "Proposed — research plan written, awaiting analysis." Fill in any other sections that became clearer (Overview, Research Question).
-3. Update `beril.yaml`: `status: proposed`, `last_session_at` to now, `artifacts.research_plan: true`.
-4. Commit: `feat(project): research plan for {id}`.
-
-**STOP HERE.** The plan is the contract for what comes next. Do NOT write or execute notebooks yet. Proceed to the Checkpoint.
-
-#### Checkpoint: Plan Review (mandatory pause)
-
-This pause is the key guard against the agent rushing from plan to compute without human or independent review. **Do not skip it.**
-
-Present the plan to the user concisely:
-- Title and refined research question
-- Hypothesis (H0/H1)
-- Query strategy summary (tables touched, filter strategy, estimated complexity)
-- Expected outcomes (what supports H1, what supports H0, potential confounders)
-
-Then ask explicitly:
-
-> "Plan ready to start analysis?
-> (a) Approve and continue to Phase C (Analysis)
-> (b) Run an independent review first — `bash tools/review.sh {project_id} --type plan` writes `PLAN_REVIEW_<n>.md`. Use `--reviewer codex` for a second opinion.
-> (c) Iterate on the plan"
-
-**Do not proceed to Phase C until the user picks (a).**
-
-- If (b): invoke the plan reviewer, present `PLAN_REVIEW_<n>.md` to the user, then re-ask. Reviewer output is advisory — the user has final say.
-- If (c): iterate on `RESEARCH_PLAN.md`. Record changes in Revision History as `- **v2** ({date}): {change description}`, then re-ask.
-
-#### Phase C: Analysis (Notebooks)
-
-Status transition: `proposed` → `active`.
-
-- Update `beril.yaml`: `status: active`, `last_session_at` to now.
-- Write numbered analysis notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, ...) following the analysis plan in `RESEARCH_PLAN.md`.
-- Notebooks are the primary audit trail — do as much work as possible in notebooks so humans can inspect intermediate results.
-- When parallel execution or complex pipelines are needed, write scripts in `projects/<id>/src/` but call them from notebooks.
-- **Run notebooks** — execute cells, inspect outputs, iterate.
-- If new information emerges that changes the approach, update `RESEARCH_PLAN.md` Revision History as `- **v{n}** ({date}): {change}` before continuing.
-- **Commit frequently** — after each major milestone (notebook complete, data extracted, key result reproduced).
-- Re-read `docs/pitfalls.md` when something doesn't behave as expected.
-
-##### Checkpoint: Results Review
-
-After notebooks are executed and committed, pause and present key results before synthesis.
-
-- Summarize the key results: main statistics, notable patterns, anything unexpected.
-- Ask: "Look at the notebooks/figures before I write up findings, or proceed with `/synthesize`?"
-- If the user wants to explore first, wait. If they want changes, iterate on the notebooks before proceeding.
-
-#### Phase D: Synthesis & Writeup
-
-Status transition: `active` → `analysis` (handled by `/synthesize` itself).
-
-- Run `/synthesize` to create `REPORT.md`. The skill updates `beril.yaml` automatically (`status: analysis`, `artifacts.report: true`, `last_session_at`) and updates `README.md` Status to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`."
-- Commit the report and updated `beril.yaml`.
-- Discuss the report with the user — revise if needed.
+**Invoke `/execute-plan {project_id}`.** It owns:
+- Reading the frozen `RESEARCH_PLAN.md` + `research_state.json` and confirming the plan-review checkpoint was approved.
+- Phase C analysis: `status: proposed → active`; per planned notebook, running the discriminating/refuting query *first* (Platt), producing the expected output, executing, committing, capturing pitfalls, and updating the world-model via `beril state set`.
+- The revision loop: a minor deviation is logged to Revision History and execution continues; a **material** change to the pre-registered contract demotes `active → proposed` and re-runs the plan-review checkpoint.
+- The results-review checkpoint, then Phase D synthesis via `/synthesize` (`status: active → analysis`).
+- Handing off to the existing back of the arc (`/berdl-review` + `/submit`).
 
 #### Phase E1: Review (`analysis` → `reviewed`)
 
@@ -349,16 +284,16 @@ Phase 0 is skipped. Resume at the phase matching the project's current status.
      - **Notebook hashes** (v5): if `approval.notebook_hashes` is present and non-empty, invoke `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` (use absolute paths; `/berdl_start` may run from anywhere). Parse the JSON output and compare each entry against `approval.notebook_hashes`. Any mismatch, missing notebook from the approval set, or new notebook in the current set → drift. (Empty / omitted `notebook_hashes` field is treated as legacy and skipped.)
      - Any hash mismatch, OR REPORT.md missing, OR both review files missing, OR a notebook drift → offer **demote-to-`analysis`**. Phrase the prompt to match the cause ("REPORT.md changed since approval", "REVIEW.md changed since approval", "REVIEW_N.md changed since approval", "REPORT.md is missing — restore it from version control", "Both REVIEW.md and REVIEW_N.md missing on a complete project", "notebook(s) changed since approval: <list>", etc.). On Yes: move `approval` to `previous_approvals` (append) with an added `archived_at: "<now>"` field, set `status: analysis`, update README `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`.", delete `REVIEW.md` if present, and delete both marker files. If user declines, warn but leave alone.
    - For `reviewed`: parse the latest `REVIEW_N.md` footer hash (extract the hex after `sha256:`) and compare to `sha256sum REPORT.md`. If mismatch → offer demote-to-`analysis` (existing reviews stale). On Yes: set `status: analysis`, update README `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`." If user declines, warn but leave alone.
-6. Resume at the phase matching the (possibly demoted) status:
-   - `exploration` → Phase A (Orientation & Exploration).
-   - `proposed` → Checkpoint (re-present plan, ask the (a)/(b)/(c) question).
-   - `active` → Phase C (Analysis).
-   - `analysis` → Phase E1 (Review) — suggest `/berdl-review`. If `REPORT.md` doesn't exist yet (rare), drop back to Phase D.
-   - `reviewed` → Phase E2 (Approve & Submit) — suggest `/submit`.
+6. Resume at the phase matching the (possibly demoted) status, routing to the owning skill:
+   - `exploration` → **`/research-plan`** (Phases A & B — explore, then draft and freeze the plan).
+   - `proposed` → **`/research-plan`** (re-present the plan and run the plan-review checkpoint — ask the (a)/(b)/(c) question; do not advance to analysis until (a)).
+   - `active` → **`/execute-plan`** (Phase C analysis — resume at the next unfinished notebook, discriminating query first).
+   - `analysis` → **`/berdl-review`** (Phase E1). If `REPORT.md` doesn't exist yet (rare), `/execute-plan` runs `/synthesize` first (Phase D).
+   - `reviewed` → **`/submit`** (Phase E2 — approve & submit).
    - `complete`:
      - `SUBMITTED.md` present → "Project complete and submitted on {SUBMITTED.md submitted_at}; archive: {archive_key}. Inspect, reopen for revisions (run `/synthesize`), or move on?"
      - `SUBMISSION_FAILED.md` present (or both markers absent) → "Project approved locally but lakehouse upload pending. Re-run `/submit` to retry."
-   - missing/legacy → infer from artifacts present (REPORT exists → Phase E1; RESEARCH_PLAN exists but no REPORT → Phase C).
+   - missing/legacy → infer from artifacts present (REPORT exists → `/berdl-review`; RESEARCH_PLAN exists but no REPORT → `/execute-plan`).
 7. Suggest the next concrete action based on the resumed phase.
 
 ---
@@ -386,7 +321,7 @@ This is reading, not a session. After reading, the user re-invokes `/berdl_start
 
 These are project-agnostic helpers — invoke them from inside any project at the right phase:
 
-- **`/berdl`** — query BERDL with Spark SQL. Use during Phase A and Phase C.
+- **`/berdl`** — query BERDL with Spark SQL. Used by `/research-plan` (exploration + feasibility probes) and `/execute-plan` (analysis).
 - **`/berdl-query`** — local-machine variant for off-cluster work.
 - **`/berdl-discover`** — explore and document a new database that isn't yet in `docs/pitfalls.md`.
 - **`/berdl-minio`** — file transfer between BERDL MinIO and local.
@@ -407,8 +342,8 @@ These are project-agnostic helpers — invoke them from inside any project at th
 3. **Notebooks are the audit trail** — numbered sequentially (00 for exploration, 01+ for analysis), each self-contained with a clear purpose. Commit with saved outputs per `PROJECT.md` reproducibility standards.
 4. **Commit early and often** — after scaffold, after plan, after each notebook, after data extraction, after analysis, after synthesis.
 5. **Branch by default** — create a `projects/{project_id}` branch in Phase 0. Extended work on `main` causes merge pain and risks conflicting with other contributors. If the user explicitly prefers `main`, respect that.
-6. **Never skip the plan-review checkpoint** — after writing `RESEARCH_PLAN.md`, STOP. Do not write or execute analysis notebooks until the user explicitly chooses (a) Approve. This is the most important rule and the easiest to violate.
-7. **Update the plan when reality changes** — if analysis reveals something that changes the approach, update `RESEARCH_PLAN.md` Revision History before continuing. The plan is a contract; revisions are explicit, not silent.
+6. **Never skip the plan-review checkpoint** — after writing `RESEARCH_PLAN.md`, STOP. Do not write or execute analysis notebooks until the user explicitly chooses (a) Approve. This is the most important rule and the easiest to violate. The checkpoint itself is owned and run by `/research-plan` (step 8); this guarantee is the contract `/execute-plan` relies on before it begins.
+7. **Update the plan when reality changes** — if analysis reveals something that changes the approach, update `RESEARCH_PLAN.md` Revision History before continuing. The plan is a contract; revisions are explicit, not silent. A *material* change (drop/add a hypothesis, move a decision threshold, abandon the discrimination strategy) demotes `active → proposed` and re-runs the plan-review checkpoint — `/execute-plan` owns this revision loop.
 8. **Drive the process forward between checkpoints** — checkpoints are explicit pause-points (Plan Review, Results Review). Outside of those, keep moving — don't stop after every individual step asking permission.
 9. **Document as you go** — pitfalls live-captured to `projects/<id>/memories/pitfalls.md` via `/pitfall-capture`; discoveries and performance notes drafted in REPORT.md `## Discoveries` / `## Performance Notes` sections (extracted by `/submit` to per-project memories at approval). The central `docs/{pitfalls,discoveries,performance}.md` files are frozen historical archives — don't write to them.
 10. **Use Spark patterns from PROJECT.md** — `get_spark_session()`, PySpark-first, `.toPandas()` only for final small results.
@@ -434,61 +369,7 @@ Surface these early. Database-specific gotchas live in `docs/pitfalls.md` per-da
 
 ### RESEARCH_PLAN.md
 
-```markdown
-# Research Plan: {Title}
-
-## Research Question
-{Refined question after literature review}
-
-## Hypothesis
-- **H0**: {Null hypothesis}
-- **H1**: {Alternative hypothesis}
-
-## Literature Context
-{Summary of what's known, key references, identified gaps}
-
-## Query Strategy
-
-### Tables Required
-| Table | Purpose | Estimated Rows | Filter Strategy |
-|---|---|---|---|
-| {table} | {why needed} | {count} | {how to filter} |
-
-### Key Queries
-1. **{Description}**:
-\```sql
-{query}
-\```
-
-### Performance Plan
-- **Tier**: {local bounded Spark SQL / JupyterHub Spark SQL}
-- **Estimated complexity**: {simple / moderate / complex}
-- **Known pitfalls**: {list from pitfalls.md}
-
-## Analysis Plan
-
-### Notebook 1: Data Exploration
-- **Goal**: {what to verify/explore}
-- **Expected output**: {CSV/figures}
-
-### Notebook 2: Main Analysis
-- **Goal**: {core analysis}
-- **Expected output**: {CSV/figures}
-
-### Notebook 3: Visualization (if needed)
-- **Goal**: {figures for findings}
-
-## Expected Outcomes
-- **If H1 supported**: {interpretation}
-- **If H0 not rejected**: {interpretation}
-- **Potential confounders**: {list}
-
-## Revision History
-- **v1** ({date}): Initial plan
-
-## Authors
-{ORCID, affiliation}
-```
+The enriched, pre-registered `RESEARCH_PLAN.md` template (competing hypotheses, per-hypothesis falsification tests and decision criteria, discrimination strategy, confidence prior, feasibility verdict, per-notebook analysis plan) lives in the **`/research-plan`** skill, which owns plan authoring. See `.claude/skills/research-plan/SKILL.md`.
 
 ### README.md
 
