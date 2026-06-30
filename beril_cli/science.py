@@ -83,7 +83,12 @@ def tier_mismatch(confidence: str, groundedness: str) -> bool:
 
 
 def confidence_from(text: str) -> str | None:
-    """First recognized confidence word (high|medium|low) in a string, else None."""
+    """First recognized confidence word (high|medium|low) in a string, else None.
+
+    The canonical word ladder is ``atlas/methods/evidence-grading.md`` (high/medium/
+    low, graded by independent evidence streams); this matches it. Groundedness is a
+    SEPARATE computed axis — see :func:`groundedness_for_evidence` / :func:`tier_mismatch`.
+    """
     m = re.search(r"\b(high|medium|low)\b", text, re.IGNORECASE)
     return m.group(1).lower() if m else None
 
