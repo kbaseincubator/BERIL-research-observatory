@@ -1,0 +1,40 @@
+project_id: metal_defense_vs_metabolism_classification
+status: complete
+title: "Metal Defense vs. Metal Metabolism: A Classification Framework for Bacterial Metal Proteins"
+description: >
+  Pangenome-scale classification of bacterial metal-related proteins into defense
+  (toxic metal resistance) vs. metabolism (adaptive utilization and critical mineral
+  acquisition) categories. Characterizes phylogenetic distributions and ecological
+  signatures of each class across ~27,000 species, then applies the classifier to
+  ENIGMA isolates to identify experimental candidates.
+authors:
+  - name: Heather MacGregor
+    affiliation: Lawrence Berkeley National Laboratory
+data_sources:
+  - kbase.ke_pangenome
+  - nmdc.ncbi_biosamples
+  - enigma.genome_depot_enigma
+artifacts:
+  notebooks: true
+  data: true
+  figures: true
+  report: true
+  review: true
+last_session_at: "2026-06-29T01:10:49Z"
+approval:
+  by: "0000-0003-1112-3009"
+  at: "2026-06-29T01:10:49Z"
+  report_hash: "sha256:0f8a75e2c4e26d8b1bce4541cbad0488d773c0ddf33bc3fa876743b80c977334"
+  review: "REVIEW_4.md"
+  review_hash: "sha256:2e1f90813ce869a8724498cd3d1ef33dd644c426127c8ab80239d267b1323fdc"
+  notebook_hashes:
+    "notebooks/01_seed_list_and_annotation.ipynb": "sha256:9a3378a32347f0d26fb176185782ba047a7b1bf859cf9f6c23f6054c90dfca75"
+    "notebooks/02_pangenome_classification.ipynb": "sha256:72760e198eb3717da5480078fa36dc2d7941e18f03c781545f9aad0c27fe801e"
+    "notebooks/03_phylogenetic_distribution.ipynb": "sha256:91be393c5040558a7c50f8f9d8e3c21c6f60a40641434a37928fd6c71e787d51"
+    "notebooks/04_ecological_signature.ipynb": "sha256:0b9dad46dc6ea6e095033036ac264699ddada336e5de18edf77060e7fee2e6f7"
+    "notebooks/05_enigma_application.ipynb": "sha256:982e874f2ceea61f2c80d2af5611de5229e78a7f146221a4f56f6f1136ca623a"
+submissions:
+  - status: failed
+    attempted_at: "2026-06-29T01:10:49Z"
+    approved_at: "2026-06-29T01:10:49Z"
+    error: "Insufficient permissions: mc cp returned non-zero for all files (berdl-minio credentials may be expired)"

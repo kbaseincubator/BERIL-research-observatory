@@ -1,0 +1,30 @@
+project_id: metal_resistance_global_biogeography
+status: analysis
+title: "Global Biogeography of Environmental Bacterial Metal Resistance"
+description: >
+  Part 1 of a four-part PhD thesis characterizing the global distribution and hotspots
+  of metal resistance genes in environmental metagenome-assembled genomes (MAGs).
+  Integrates ~22,000 high-quality MAGs from MGnify with geospatial metadata from the
+  ENA REST API to identify 11 significant hotspots (5° grid resolution, Fisher's exact
+  + BH-FDR) and quantify biome-stratified prevalence. Reveals that metal resistance is
+  rare (2.8% global prevalence) but highly enriched in soil (5.8%, OR=5.05) and depleted
+  in marine (1.2%, OR=0.20) environments.
+authors:
+  - name: Heather MacGregor
+    affiliation: Lawrence Berkeley National Laboratory
+thesis_chapter: "Part 1 — Global Ecology"
+data_sources:
+  - kescience_mgnify
+  - ena_sample_coordinates
+notebooks:
+  - notebooks/01_global_distribution.ipynb
+  - notebooks/02_spatial_analysis.ipynb
+  - notebooks/03_figures.ipynb
+artifacts:
+  - notebooks/
+  - data/
+  - figures/
+  - REPORT.md
+  - REVIEW.md
+report: true
+last_session_at: "2026-06-28T00:00:00Z"

@@ -39,10 +39,48 @@ env_metal = (
 )
 
 # Real grid from arkinlab_microbeatlas sample_metadata
-grid = pd.read_csv("/tmp/sample_grid_clean.csv")
-grid = grid.merge(env_metal, on="Env_Level_1", how="left")
-# Remove the artificial diagonal (where Lat is nearly equal to Lon)
+df = pd.read_csv(DATA / "sample_latlon_env.csv")
+
+otu_richness = pd.read_csv(DATA / 'sample_otu_richness.csv')
+
+df = df.merge(otu_richness, on='sample_id', how='left')
+df['otu_richness'] = df['otu_richness'].fillna(0)
+
+# Drop samples with missing or obviously invalid lat/lon
+df = df.dropna(subset=['LatitudeParsed', 'LongitudeParsed'])
+# If 'unknown' appears as a string, remove those too
+df = df[~df['LatitudeParsed'].astype(str).str.lower().eq('unknown')]
+df = df[~df['LongitudeParsed'].astype(str).str.lower().eq('unknown')]
+
+# Ensure numeric types
+df['LatitudeParsed'] = pd.to_numeric(df['LatitudeParsed'], errors='coerce')
+df['LongitudeParsed'] = pd.to_numeric(df['LongitudeParsed'], errors='coerce')
+df = df.dropna(subset=['LatitudeParsed', 'LongitudeParsed'])
+
+# Create the spatial grid
+# Define grid resolution (e.g., 1‑degree bins). Adjust as needed.
+GRID_RES = 5.0
+
+df['lat_grid'] = (df['LatitudeParsed'] / GRID_RES).round() * GRID_RES
+df['lon_grid'] = (df['LongitudeParsed'] / GRID_RES).round() * GRID_RES
+
+grid = (
+    df.groupby(['lat_grid', 'lon_grid', 'Env_Level_1'])
+      .agg(
+          n_samples=('sample_id', 'size'),
+          mean_otu_richness=('otu_richness', 'mean')
+      )
+      .reset_index()
+)
+
+# Merge with env_metal and remove diagonal
+grid = grid.merge(env_metal, on='Env_Level_1', how='left')
+
+# Remove the artificial diagonal (where Lat ≈ Lon)
 grid = grid[~(abs(grid['lat_grid'] - grid['lon_grid']) < 0.1)]
+
+# Result is ready for plotting: each row is a grid cell with its
+# average metal diversity from the environmental category.
 # Env colour palette for legend
 env_colors = {
     "aquatic":      "#1f77b4", "soil":        "#8c564b",

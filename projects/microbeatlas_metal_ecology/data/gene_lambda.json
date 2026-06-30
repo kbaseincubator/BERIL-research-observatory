@@ -1,0 +1,252 @@
+{
+  "merA": {
+    "lambda": 0.6917,
+    "P": 1.3126e-317,
+    "n_species": 1635
+  },
+  "arsD": {
+    "lambda": 0.871,
+    "P": 0,
+    "n_species": 1051
+  },
+  "vanR": {
+    "lambda": 0.7909,
+    "P": 0,
+    "n_species": 516
+  },
+  "merP": {
+    "lambda": 0.5852,
+    "P": 0,
+    "n_species": 687
+  },
+  "arsN1": {
+    "lambda": 0.934,
+    "P": 0,
+    "n_species": 382
+  },
+  "cml": {
+    "lambda": 0.7898,
+    "P": 0,
+    "n_species": 820
+  },
+  "arsN2": {
+    "lambda": 0.8391,
+    "P": 0,
+    "n_species": 459
+  },
+  "merF": {
+    "lambda": 0.6761,
+    "P": 0,
+    "n_species": 333
+  },
+  "helR": {
+    "lambda": 0.9815,
+    "P": 0,
+    "n_species": 568
+  },
+  "merC": {
+    "lambda": 0.5217,
+    "P": 0,
+    "n_species": 355
+  },
+  "merR": {
+    "lambda": 0.4199,
+    "P": 1.3156e-240,
+    "n_species": 320
+  },
+  "merT": {
+    "lambda": 0.379,
+    "P": 1.609e-175,
+    "n_species": 303
+  },
+  "merE": {
+    "lambda": 0.3914,
+    "P": 2.1312e-204,
+    "n_species": 275
+  },
+  "merD": {
+    "lambda": 0.4181,
+    "P": 1.5248e-218,
+    "n_species": 280
+  },
+  "merB": {
+    "lambda": 0.2376,
+    "P": 1.6865e-119,
+    "n_species": 345
+  },
+  "mexE": {
+    "lambda": 0.9999,
+    "P": 0,
+    "n_species": 14
+  },
+  "arsC": {
+    "lambda": 0.7711,
+    "P": 0,
+    "n_species": 235
+  },
+  "sul1": {
+    "lambda": 0.4415,
+    "P": 1.2077e-123,
+    "n_species": 238
+  },
+  "mef.A.": {
+    "lambda": 0.6489,
+    "P": 0,
+    "n_species": 228
+  },
+  "sul2": {
+    "lambda": 0.35,
+    "P": 6.5956e-179,
+    "n_species": 223
+  },
+  "mgt": {
+    "lambda": 0.9388,
+    "P": 0,
+    "n_species": 243
+  },
+  "fieF": {
+    "lambda": 0.8839,
+    "P": 0,
+    "n_species": 79
+  },
+  "arsB": {
+    "lambda": 0.672,
+    "P": 0,
+    "n_species": 126
+  },
+  "arsR": {
+    "lambda": 0.5767,
+    "P": 0,
+    "n_species": 106
+  },
+  "floR": {
+    "lambda": 0.2249,
+    "P": 5.1992e-118,
+    "n_species": 128
+  },
+  "qacEdelta1": {
+    "lambda": 0.309,
+    "P": 1.4932e-99,
+    "n_species": 117
+  },
+  "tet.40.": {
+    "lambda": 0.8317,
+    "P": 2.0046e-197,
+    "n_species": 60
+  },
+  "tet.A.": {
+    "lambda": 0.417,
+    "P": 3.9269e-128,
+    "n_species": 94
+  },
+  "tet": {
+    "lambda": 0.5714,
+    "P": 1.5133e-148,
+    "n_species": 193
+  },
+  "arsA": {
+    "lambda": 0.6521,
+    "P": 1.9383e-313,
+    "n_species": 61
+  },
+  "vanW": {
+    "lambda": 0.8941,
+    "P": 5.8185e-190,
+    "n_species": 18
+  },
+  "vanA": {
+    "lambda": 0.7301,
+    "P": 4.046e-128,
+    "n_species": 86
+  },
+  "mle": {
+    "lambda": 0.934,
+    "P": 0,
+    "n_species": 56
+  },
+  "tet.C.": {
+    "lambda": 0.0373,
+    "P": 6.6581e-13,
+    "n_species": 92
+  },
+  "emhB": {
+    "lambda": null,
+    "P": null,
+    "n_species": 0
+  },
+  "silA": {
+    "lambda": 0.5124,
+    "P": 5.211e-288,
+    "n_species": 58
+  },
+  "mef.En2.": {
+    "lambda": 0.5698,
+    "P": 0,
+    "n_species": 69
+  },
+  "kefB.GI": {
+    "lambda": 0.297,
+    "P": 5.1696e-93,
+    "n_species": 73
+  },
+  "oqxB": {
+    "lambda": 0.8884,
+    "P": 0,
+    "n_species": 60
+  },
+  "silC": {
+    "lambda": 0.4736,
+    "P": 5.9436e-229,
+    "n_species": 52
+  },
+  "tet.B.": {
+    "lambda": 0.5116,
+    "P": 5.1275e-206,
+    "n_species": 74
+  },
+  "abaF": {
+    "lambda": 0.2743,
+    "P": 7.5962e-66,
+    "n_species": 37
+  },
+  "emhC": {
+    "lambda": null,
+    "P": null,
+    "n_species": 0
+  },
+  "silS": {
+    "lambda": 0.5469,
+    "P": 1.0931e-228,
+    "n_species": 48
+  },
+  "silF": {
+    "lambda": 0.5357,
+    "P": 1.1282e-228,
+    "n_species": 49
+  },
+  "silP": {
+    "lambda": 0.5852,
+    "P": 2.2372e-265,
+    "n_species": 48
+  },
+  "cxpE": {
+    "lambda": 0.8932,
+    "P": 0,
+    "n_species": 106
+  },
+  "pcoS": {
+    "lambda": 0.5736,
+    "P": 2.9395e-275,
+    "n_species": 42
+  },
+  "silR": {
+    "lambda": 0.5791,
+    "P": 2.9509e-261,
+    "n_species": 51
+  },
+  "tet.L.": {
+    "lambda": 0.5157,
+    "P": 6.1701e-116,
+    "n_species": 66
+  }
+}
