@@ -467,6 +467,28 @@ class TestUserApiToken:
         assert token.token_hash == "abc123deadbeef" * 4
         assert token.created_at is not None
         assert token.last_used_at is None
+        # New optional fields default to None on unnamed/legacy tokens.
+        assert token.name is None
+        assert token.expires_at is None
+        assert token.revoked_at is None
+
+    async def test_create_named_expiring_revocable_token(self, db_session, user):
+        from datetime import datetime, timedelta, timezone
+
+        expires = datetime.now(timezone.utc) + timedelta(days=90)
+        token = UserApiToken(
+            user_id=user.id,
+            token_hash="feedface" * 8,
+            name="my-laptop",
+            expires_at=expires,
+        )
+        db_session.add(token)
+        await db_session.commit()
+        await db_session.refresh(token)
+
+        assert token.name == "my-laptop"
+        assert token.expires_at is not None
+        assert token.revoked_at is None
 
     async def test_token_hash_is_unique(self, db_session, user):
         from sqlalchemy.exc import IntegrityError
@@ -497,12 +519,18 @@ class TestUserApiToken:
         )
         assert result.scalar_one_or_none() is None
 
-    async def test_user_can_have_only_one_token(self, db_session, user):
-        from sqlalchemy.exc import IntegrityError
+    async def test_user_can_have_multiple_tokens(self, db_session, user):
+        """The one-token-per-user constraint was dropped for the CLI login flow;
+        a user may now hold many active named tokens simultaneously."""
+        from sqlalchemy import select
 
-        db_session.add(UserApiToken(user_id=user.id, token_hash="hash0" * 10))
+        db_session.add(UserApiToken(user_id=user.id, token_hash="hash0" * 10, name="laptop"))
+        db_session.add(UserApiToken(user_id=user.id, token_hash="hash1" * 10, name="workstation"))
         await db_session.commit()
 
-        db_session.add(UserApiToken(user_id=user.id, token_hash="hash1" * 10))
-        with pytest.raises(IntegrityError):
-            await db_session.commit()
+        result = await db_session.execute(
+            select(UserApiToken).where(UserApiToken.user_id == user.id)
+        )
+        tokens = result.scalars().all()
+        assert len(tokens) == 2
+        assert {t.name for t in tokens} == {"laptop", "workstation"}

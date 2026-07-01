@@ -4,7 +4,9 @@ import secrets
 import pytest
 
 from app.db.crud import (
+    TOKEN_PREFIX,
     _hash_token,
+    create_named_api_token,
     create_project_file,
     delete_project_file,
     get_file_by_id,
@@ -15,6 +17,8 @@ from app.db.crud import (
     get_projects_for_user,
     get_user_by_api_token,
     get_user_by_orcid,
+    list_api_tokens_for_user,
+    revoke_api_token,
     update_project_github_url,
 )
 from app.db.models import BerilUser, UserApiToken, UserProject
@@ -446,3 +450,187 @@ class TestApiToken:
                 await get_or_create_api_token(db_session, user.id)
 
         assert attempt_count == 2  # both attempts were made before re-raising
+
+
+# ---------------------------------------------------------------------------
+# create_named_api_token / list_api_tokens_for_user / revoke_api_token
+# ---------------------------------------------------------------------------
+
+
+class TestCreateNamedApiToken:
+    @pytest.fixture
+    async def user(self, db_session):
+        return await _make_user(db_session)
+
+    async def test_creates_prefixed_token(self, db_session, user):
+        raw, record = await create_named_api_token(
+            db_session, user.id, name="laptop"
+        )
+        assert raw.startswith(TOKEN_PREFIX)
+        assert record.user_id == user.id
+        assert record.name == "laptop"
+        assert record.token_hash == _hash_token(raw)
+
+    async def test_default_expiry_is_90_days(self, db_session, user):
+        import datetime as _dt
+
+        before = _dt.datetime.now(_dt.timezone.utc)
+        _, record = await create_named_api_token(db_session, user.id, name="t")
+        after = _dt.datetime.now(_dt.timezone.utc)
+
+        assert record.expires_at is not None
+        # SQLite drops tzinfo on read-back; coerce to UTC for the comparison.
+        expires = record.expires_at.replace(tzinfo=_dt.timezone.utc) if record.expires_at.tzinfo is None else record.expires_at
+        expected_min = before + _dt.timedelta(days=90) - _dt.timedelta(seconds=5)
+        expected_max = after + _dt.timedelta(days=90) + _dt.timedelta(seconds=5)
+        assert expected_min <= expires <= expected_max
+
+    async def test_custom_expiry_days(self, db_session, user):
+        import datetime as _dt
+
+        _, record = await create_named_api_token(
+            db_session, user.id, name="short-lived", expires_in_days=7
+        )
+        expires = record.expires_at.replace(tzinfo=_dt.timezone.utc) if record.expires_at.tzinfo is None else record.expires_at
+        delta = expires - _dt.datetime.now(_dt.timezone.utc)
+        assert _dt.timedelta(days=6, hours=23) < delta <= _dt.timedelta(days=7)
+
+    async def test_no_expiry_when_none(self, db_session, user):
+        _, record = await create_named_api_token(
+            db_session, user.id, name="forever", expires_in_days=None
+        )
+        assert record.expires_at is None
+
+    async def test_creates_multiple_tokens_per_user(self, db_session, user):
+        raw1, r1 = await create_named_api_token(db_session, user.id, name="a")
+        raw2, r2 = await create_named_api_token(db_session, user.id, name="b")
+        assert raw1 != raw2
+        assert r1.id != r2.id
+        # Both tokens remain usable.
+        assert await get_user_by_api_token(db_session, raw1) is not None
+        assert await get_user_by_api_token(db_session, raw2) is not None
+
+
+class TestListApiTokensForUser:
+    @pytest.fixture
+    async def user(self, db_session):
+        return await _make_user(db_session)
+
+    async def test_returns_empty_when_no_tokens(self, db_session, user):
+        tokens = await list_api_tokens_for_user(db_session, user.id)
+        assert tokens == []
+
+    async def test_returns_tokens_newest_first(self, db_session, user):
+        _, r1 = await create_named_api_token(db_session, user.id, name="first")
+        _, r2 = await create_named_api_token(db_session, user.id, name="second")
+        tokens = await list_api_tokens_for_user(db_session, user.id)
+        assert [t.id for t in tokens] == [r2.id, r1.id]
+
+    async def test_hides_revoked_by_default(self, db_session, user):
+        _, r1 = await create_named_api_token(db_session, user.id, name="live")
+        _, r2 = await create_named_api_token(db_session, user.id, name="dead")
+        await revoke_api_token(db_session, r2.id, user.id)
+
+        tokens = await list_api_tokens_for_user(db_session, user.id)
+        assert [t.id for t in tokens] == [r1.id]
+
+    async def test_include_revoked_returns_all(self, db_session, user):
+        _, r1 = await create_named_api_token(db_session, user.id, name="live")
+        _, r2 = await create_named_api_token(db_session, user.id, name="dead")
+        await revoke_api_token(db_session, r2.id, user.id)
+
+        tokens = await list_api_tokens_for_user(
+            db_session, user.id, include_revoked=True
+        )
+        assert {t.id for t in tokens} == {r1.id, r2.id}
+
+    async def test_scopes_to_user(self, db_session, user):
+        other = await _make_user(db_session, orcid="0000-0002-0000-0000")
+        await create_named_api_token(db_session, user.id, name="mine")
+        await create_named_api_token(db_session, other.id, name="theirs")
+
+        tokens = await list_api_tokens_for_user(db_session, user.id)
+        assert len(tokens) == 1
+        assert tokens[0].name == "mine"
+
+
+class TestRevokeApiToken:
+    @pytest.fixture
+    async def user(self, db_session):
+        return await _make_user(db_session)
+
+    async def test_returns_true_and_marks_revoked_at(self, db_session, user):
+        _, record = await create_named_api_token(db_session, user.id, name="doomed")
+        result = await revoke_api_token(db_session, record.id, user.id)
+        assert result is True
+        await db_session.refresh(record)
+        assert record.revoked_at is not None
+
+    async def test_returns_false_for_unknown_token(self, db_session, user):
+        assert await revoke_api_token(db_session, "no-such-id", user.id) is False
+
+    async def test_returns_false_for_wrong_owner(self, db_session, user):
+        other = await _make_user(db_session, orcid="0000-0002-0000-0000")
+        _, record = await create_named_api_token(db_session, user.id, name="mine")
+
+        result = await revoke_api_token(db_session, record.id, other.id)
+        assert result is False
+        await db_session.refresh(record)
+        assert record.revoked_at is None
+
+    async def test_returns_false_when_already_revoked(self, db_session, user):
+        _, record = await create_named_api_token(db_session, user.id, name="t")
+        await revoke_api_token(db_session, record.id, user.id)
+
+        result = await revoke_api_token(db_session, record.id, user.id)
+        assert result is False
+
+
+class TestGetUserByApiTokenExpiryAndRevocation:
+    @pytest.fixture
+    async def user(self, db_session):
+        return await _make_user(db_session)
+
+    async def test_expired_token_returns_none(self, db_session, user):
+        import datetime as _dt
+        from app.db.models import UserApiToken
+
+        raw = "beril_expired"
+        db_session.add(
+            UserApiToken(
+                user_id=user.id,
+                token_hash=_hash_token(raw),
+                name="expired",
+                expires_at=_dt.datetime.now(_dt.timezone.utc) - _dt.timedelta(seconds=1),
+            )
+        )
+        await db_session.commit()
+
+        assert await get_user_by_api_token(db_session, raw) is None
+
+    async def test_future_expiry_is_valid(self, db_session, user):
+        raw, _ = await create_named_api_token(db_session, user.id, name="live")
+        found = await get_user_by_api_token(db_session, raw)
+        assert found is not None
+        assert found.id == user.id
+
+    async def test_no_expiry_is_valid(self, db_session, user):
+        raw, _ = await create_named_api_token(
+            db_session, user.id, name="forever", expires_in_days=None
+        )
+        found = await get_user_by_api_token(db_session, raw)
+        assert found is not None
+
+    async def test_revoked_token_returns_none(self, db_session, user):
+        raw, record = await create_named_api_token(db_session, user.id, name="doomed")
+        await revoke_api_token(db_session, record.id, user.id)
+
+        assert await get_user_by_api_token(db_session, raw) is None
+
+    async def test_legacy_token_still_validates(self, db_session, user):
+        """Unprefixed 64-hex-char tokens created by the legacy flow keep working."""
+        raw, _ = await get_or_create_api_token(db_session, user.id)
+        assert not raw.startswith(TOKEN_PREFIX)
+        found = await get_user_by_api_token(db_session, raw)
+        assert found is not None
+        assert found.id == user.id

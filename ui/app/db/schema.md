@@ -70,10 +70,13 @@ erDiagram
 
     UserApiToken {
         string id PK
-        string user_id FK "NOT NULL, UNIQUE"
+        string user_id FK "NOT NULL, indexed"
         string token_hash UK "NOT NULL"
+        string name "nullable"
         datetime created_at
         datetime last_used_at "nullable"
+        datetime expires_at "nullable"
+        datetime revoked_at "nullable"
     }
 
     ProjectCollection {
@@ -82,7 +85,7 @@ erDiagram
     }
 
     BerilUser ||--o{ UserProject : "owns"
-    BerilUser ||--o| UserApiToken : "has"
+    BerilUser ||--o{ UserApiToken : "has"
     BerilUser ||--o{ ProjectContributor : "credited as"
     UserProject ||--o{ ProjectContributor : "has contributors"
     UserProject ||--o{ ProjectFile : "has files"

@@ -233,17 +233,26 @@ class ProjectReview(Base):
 
 
 class UserApiToken(Base):
-    """A personal API token for a BERIL user. Only the hash is stored."""
+    """A personal API token for a BERIL user. Only the hash is stored.
+
+    A user may hold multiple tokens simultaneously — the old one-per-user
+    constraint was dropped when the CLI login flow landed. Legacy rows created
+    before that migration have ``name``, ``expires_at``, and ``revoked_at``
+    all NULL, which means "unnamed, never expires, not revoked" — still valid.
+    """
 
     __tablename__ = "user_api_token"
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
     user_id: Mapped[str] = mapped_column(
-        String(36), ForeignKey("beril_user.id", ondelete="CASCADE"), nullable=False, unique=True
+        String(36), ForeignKey("beril_user.id", ondelete="CASCADE"), nullable=False, index=True
     )
     token_hash: Mapped[str] = mapped_column(Text, unique=True, nullable=False)
+    name: Mapped[str | None] = mapped_column(String(128), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
     last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    expires_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     user: Mapped["BerilUser"] = relationship("BerilUser", back_populates="api_tokens")
 

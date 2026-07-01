@@ -2,7 +2,7 @@
 
 import hashlib
 import secrets
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import delete, select
 from sqlalchemy.exc import IntegrityError
@@ -275,8 +275,28 @@ async def delete_project_file(db: AsyncSession, file_id: str) -> None:
 # ---------------------------------------------------------------------------
 
 
+TOKEN_PREFIX = "beril_"
+""" Prefix on newly-issued tokens. Included in the hash input, so validation
+    is transparent — legacy unprefixed tokens still hash correctly. The prefix
+    exists purely for grep-ability in logs and secret scanners. """
+
+DEFAULT_TOKEN_EXPIRY_DAYS = 90
+
+
 def _hash_token(raw_token: str) -> str:
     return hashlib.sha256(raw_token.encode()).hexdigest()
+
+
+def _as_aware(dt: datetime) -> datetime:
+    """SQLite drops tzinfo when persisting DateTime(timezone=True); Postgres
+    preserves it. Coerce naive values back to UTC so comparisons work
+    regardless of dialect."""
+    return dt if dt.tzinfo is not None else dt.replace(tzinfo=timezone.utc)
+
+
+def _generate_raw_token() -> str:
+    """Return a new prefixed raw token: ``beril_<48 hex chars>``."""
+    return TOKEN_PREFIX + secrets.token_hex(24)
 
 
 async def get_or_create_api_token(
@@ -284,12 +304,16 @@ async def get_or_create_api_token(
 ) -> tuple[str, UserApiToken]:
     """Generate a new API token for the user, replacing any existing one.
 
+    Legacy single-token-per-user flow used by ``POST /api/user/token``. New
+    callers should use :func:`create_named_api_token` instead — it supports
+    named, expiring, individually revocable tokens and does not disturb the
+    user's other tokens.
+
     Returns (raw_token, record). The raw token is returned exactly once and
     never stored — only its SHA-256 hash is persisted.
 
     The delete and insert run in a single transaction. If a concurrent request
-    wins the insert race, we retry once (the unique constraint on user_id
-    guarantees at most one active token at all times).
+    wins the insert race, we retry once.
     """
     for attempt in range(2):
         try:
@@ -307,12 +331,85 @@ async def get_or_create_api_token(
                 raise
 
 
+async def create_named_api_token(
+    db: AsyncSession,
+    user_id: str,
+    *,
+    name: str,
+    expires_in_days: int | None = DEFAULT_TOKEN_EXPIRY_DAYS,
+) -> tuple[str, UserApiToken]:
+    """Create a new named API token for the user.
+
+    Unlike :func:`get_or_create_api_token`, this does NOT delete existing
+    tokens — a user may hold many active tokens simultaneously, distinguished
+    by name.
+
+    ``expires_in_days=None`` creates a token with no expiry.
+
+    Returns (raw_token, record). The raw token is returned exactly once and
+    never stored — only its SHA-256 hash is persisted.
+    """
+    raw_token = _generate_raw_token()
+    expires_at = None
+    if expires_in_days is not None:
+        expires_at = datetime.now(timezone.utc) + timedelta(days=expires_in_days)
+    record = UserApiToken(
+        user_id=user_id,
+        token_hash=_hash_token(raw_token),
+        name=name,
+        expires_at=expires_at,
+    )
+    db.add(record)
+    await db.commit()
+    await db.refresh(record)
+    return raw_token, record
+
+
+async def list_api_tokens_for_user(
+    db: AsyncSession, user_id: str, *, include_revoked: bool = False
+) -> list[UserApiToken]:
+    """Return the user's tokens, newest first.
+
+    ``include_revoked=False`` (the default) hides revoked tokens; the settings
+    UI uses it for the "active tokens" list. Auditing views can pass True.
+    """
+    stmt = select(UserApiToken).where(UserApiToken.user_id == user_id)
+    if not include_revoked:
+        stmt = stmt.where(UserApiToken.revoked_at.is_(None))
+    stmt = stmt.order_by(UserApiToken.created_at.desc())
+    result = await db.execute(stmt)
+    return list(result.scalars())
+
+
+async def revoke_api_token(
+    db: AsyncSession, token_id: str, user_id: str
+) -> bool:
+    """Mark a token revoked. Returns True if the token existed and belonged
+    to ``user_id``; False otherwise (unknown token, wrong owner, or already
+    revoked). Idempotent on the "already revoked" case: same False result,
+    no state change."""
+    result = await db.execute(
+        select(UserApiToken).where(
+            UserApiToken.id == token_id,
+            UserApiToken.user_id == user_id,
+            UserApiToken.revoked_at.is_(None),
+        )
+    )
+    record = result.scalar_one_or_none()
+    if record is None:
+        return False
+    record.revoked_at = datetime.now(timezone.utc)
+    await db.commit()
+    return True
+
+
 async def get_user_by_api_token(
     db: AsyncSession, raw_token: str
 ) -> BerilUser | None:
     """Look up the user owning the given raw API token.
 
-    Updates last_used_at on the token record if found.
+    Rejects tokens that are revoked or past their ``expires_at``. Updates
+    ``last_used_at`` on the token record on successful lookup.
     """
     token_hash = _hash_token(raw_token)
     result = await db.execute(
@@ -320,6 +417,10 @@ async def get_user_by_api_token(
     )
     record = result.scalar_one_or_none()
     if record is None:
+        return None
+    if record.revoked_at is not None:
+        return None
+    if record.expires_at is not None and _as_aware(record.expires_at) < datetime.now(timezone.utc):
         return None
 
     record.last_used_at = datetime.now(timezone.utc)
