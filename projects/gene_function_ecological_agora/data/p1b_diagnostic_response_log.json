@@ -1,0 +1,120 @@
+{
+  "timestamp_utc": "2026-04-27T01:05:13Z",
+  "n_scores": 1294615,
+  "purpose": "audit-trail capture of the Mann-Whitney discrimination diagnostic that revised REPORT.md Phase 1B narrative",
+  "family_rank_pair_comparisons": [
+    {
+      "comparison": "pos_amr vs neg_ribosomal",
+      "rank": "family (parent=order)",
+      "pos_n": 20760,
+      "pos_median": -7.366,
+      "neg_n": 30302,
+      "neg_median": -6.993,
+      "median_diff": -0.373,
+      "p_one_sided": 0.9408928873211367,
+      "interpretation": "no discrimination"
+    },
+    {
+      "comparison": "pos_betalac vs neg_ribosomal",
+      "rank": "family (parent=order)",
+      "pos_n": 5945,
+      "pos_median": -6.371,
+      "neg_n": 30302,
+      "neg_median": -6.993,
+      "median_diff": 0.622,
+      "p_one_sided": 5.077549640544541e-08,
+      "interpretation": "DISCRIMINATES (HGT signal real, smaller than absolute-zero criterion expected)"
+    },
+    {
+      "comparison": "pos_crispr_cas vs neg_ribosomal",
+      "rank": "family (parent=order)",
+      "pos_n": 5439,
+      "pos_median": -5.811,
+      "neg_n": 30302,
+      "neg_median": -6.993,
+      "median_diff": 1.182,
+      "p_one_sided": 1.0378149250336996e-80,
+      "interpretation": "DISCRIMINATES (HGT signal real, smaller than absolute-zero criterion expected)"
+    },
+    {
+      "comparison": "pos_tcs_hk vs neg_ribosomal",
+      "rank": "family (parent=order)",
+      "pos_n": 4496,
+      "pos_median": -6.567,
+      "neg_n": 30302,
+      "neg_median": -6.993,
+      "median_diff": 0.426,
+      "p_one_sided": 0.0004721513557093823,
+      "interpretation": "weak discrimination"
+    },
+    {
+      "comparison": "hyp_cazyme vs neg_ribosomal",
+      "rank": "family (parent=order)",
+      "pos_n": 8973,
+      "pos_median": -6.212,
+      "neg_n": 30302,
+      "neg_median": -6.993,
+      "median_diff": 0.781,
+      "p_one_sided": 1.09636307210087e-43,
+      "interpretation": "DISCRIMINATES (HGT signal real, smaller than absolute-zero criterion expected)"
+    },
+    {
+      "comparison": "natural_expansion vs neg_ribosomal",
+      "rank": "family (parent=order)",
+      "pos_n": 57448,
+      "pos_median": -7.802,
+      "neg_n": 30302,
+      "neg_median": -6.993,
+      "median_diff": -0.809,
+      "p_one_sided": 1.0,
+      "interpretation": "no discrimination"
+    }
+  ],
+  "per_rank_discrimination": [
+    {
+      "rank": "genus",
+      "n_positive_HGT": 72348,
+      "n_negative_housekeeping": 162382,
+      "positive_median": -12.135,
+      "negative_median": -13.056,
+      "median_diff": 0.921,
+      "mann_whitney_u": 6548075085.0,
+      "p_one_sided_greater": 0.0,
+      "discriminates": true
+    },
+    {
+      "rank": "family",
+      "n_positive_HGT": 32144,
+      "n_negative_housekeeping": 67434,
+      "positive_median": -6.936,
+      "negative_median": -6.806,
+      "median_diff": -0.131,
+      "mann_whitney_u": 1115492980.0,
+      "p_one_sided_greater": 3.9214283805568616e-14,
+      "discriminates": false
+    },
+    {
+      "rank": "order",
+      "n_positive_HGT": 19770,
+      "n_negative_housekeeping": 39413,
+      "positive_median": -4.514,
+      "negative_median": -3.688,
+      "median_diff": -0.826,
+      "mann_whitney_u": 357124183.5,
+      "p_one_sided_greater": 1.0,
+      "discriminates": false
+    },
+    {
+      "rank": "class",
+      "n_positive_HGT": 7857,
+      "n_negative_housekeeping": 17507,
+      "positive_median": -1.654,
+      "negative_median": -1.684,
+      "median_diff": 0.03,
+      "mann_whitney_u": 70046452.5,
+      "p_one_sided_greater": 0.009244936436016716,
+      "discriminates": false
+    }
+  ],
+  "completed_utc": "2026-04-27T01:05:14Z"
+}

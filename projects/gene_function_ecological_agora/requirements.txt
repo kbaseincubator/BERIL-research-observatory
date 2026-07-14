@@ -1,0 +1,11 @@
+pyspark>=3.5
+pandas
+numpy
+scipy
+statsmodels
+pyarrow
+networkx
+matplotlib
+seaborn
+biopython
+ete3

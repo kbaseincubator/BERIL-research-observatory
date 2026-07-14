@@ -1,0 +1,29 @@
+a	b	block	n11	n10	n01	phi	p	q
+xanthine	Abscisic acid	within-other	1	18	1	0.16078226846384175	0.012187186037298613	0.05687353484072686
+3-hydroxybenzoic acid	4-hydroxybenzaldehyde	within-aromatic	39	257	136	0.10621814256777333	1.5646137562100977e-07	4.380918517388274e-06
+3-hydroxybenzoic acid	salicylic acid	within-aromatic	40	256	157	0.09556528322760616	1.4774698542834506e-06	2.068457795996831e-05
+3-hydroxybenzoic acid	Phenylethylamine	cross-block	16	280	65	0.05702030622597952	0.003294961015827382	0.030752969481055565
+4-hydroxybenzaldehyde	Phenylethylamine	cross-block	11	164	70	0.056426266104425166	0.005030669459985235	0.03521468621989665
+phthalic acid	Phenylethylamine	cross-block	6	75	75	0.04930524976760115	0.017780408663043017	0.07112163465217207
+3-hydroxybenzoic acid	TEREPHTHALIC ACID	within-aromatic	17	279	80	0.04894532127429412	0.008837001157335253	0.04948720648107742
+4-hydroxybenzaldehyde	Abscisic acid	cross-block	1	174	1	0.04884464943115852	0.10942512148687768	0.3404337112925083
+TEREPHTHALIC ACID	Phenylethylamine	cross-block	5	92	76	0.028719678829647904	0.1065967050415887	0.3404337112925083
+4-hydroxybenzaldehyde	TEREPHTHALIC ACID	within-aromatic	8	167	89	0.020389177562866814	0.17691903317902494	0.49537329290126986
+salicylic acid	4-hydroxybenzaldehyde	within-aromatic	12	185	163	0.005219978293080222	0.431702126146921	1.0
+3-hydroxybenzoic acid	phthalic acid	within-aromatic	8	288	73	0.0019826992540545505	0.5125138453321202	1.0
+salicylic acid	TEREPHTHALIC ACID	within-aromatic	6	191	91	-0.0011113970696094227	0.5862088035684392	1.0
+4-hydroxybenzaldehyde	xanthine	cross-block	1	174	18	-0.001244080926706854	0.6684738670948576	1.0
+phthalic acid	Abscisic acid	cross-block	0	81	2	-0.004149625895942117	1.0	1.0
+Phenylethylamine	Abscisic acid	within-other	0	81	2	-0.004149625895942117	1.0	1.0
+TEREPHTHALIC ACID	Abscisic acid	cross-block	0	97	2	-0.0045530535117450435	1.0	1.0
+TEREPHTHALIC ACID	phthalic acid	within-aromatic	2	95	79	-0.006122730697423636	0.727130657963948	1.0
+salicylic acid	Abscisic acid	cross-block	0	197	2	-0.006599055774158872	1.0	1.0
+3-hydroxybenzoic acid	Abscisic acid	cross-block	0	296	2	-0.008230104709258324	1.0	1.0
+phthalic acid	xanthine	cross-block	0	81	19	-0.012825140596374435	1.0	1.0
+Phenylethylamine	xanthine	within-other	0	81	19	-0.012825140596374435	1.0	1.0
+4-hydroxybenzaldehyde	phthalic acid	within-aromatic	3	172	78	-0.013661333303748163	0.8445549880576231	1.0
+TEREPHTHALIC ACID	xanthine	cross-block	0	97	19	-0.014072003813174845	1.0	1.0
+salicylic acid	xanthine	cross-block	0	197	19	-0.02039552967646234	1.0	1.0
+3-hydroxybenzoic acid	xanthine	cross-block	0	296	19	-0.02543657010679926	1.0	1.0
+salicylic acid	Phenylethylamine	cross-block	0	197	81	-0.04254044237483707	1.0	1.0
+salicylic acid	phthalic acid	within-aromatic	0	197	81	-0.04254044237483707	1.0	1.0

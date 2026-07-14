@@ -1,0 +1,360 @@
+{
+  "project_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss",
+  "source_file": "REPORT.md",
+  "tables": [
+    {
+      "table_id": "report_tbl_01",
+      "section_heading": "Finding 2 \u2014 Fur-released TBDT subset shows marginal enrichment for envelope-stress phenotypes; SspB-buffered set does NOT exceed background (H2 partially supported)",
+      "column_names": [
+        "Gene set",
+        "n",
+        "phenotype-bearing",
+        "%",
+        "Background-corrected enrichment",
+        "Verdict"
+      ],
+      "column_count": 6,
+      "row_count": 2,
+      "column_types": [
+        "text",
+        "numeric",
+        "numeric",
+        "numeric",
+        "text",
+        "text"
+      ],
+      "markdown_content": "| Gene set | n | phenotype-bearing | % | Background-corrected enrichment | Verdict |\n|---|---|---|---|---|---|\n| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |\n| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "Finding 2 \u2014 Fur-released TBDT subset shows marginal enrichment for envelope-stress phenotypes; SspB-buffered set does NOT exceed background (H2 partially supported)",
+          "context": "REPORT.md line 19"
+        },
+        {
+          "source": "preceding_sentence",
+          "text": "Hypergeometric enrichment against the background:",
+          "context": "paragraph before table at line 19"
+        }
+      ],
+      "origin": {
+        "line_start": 19,
+        "line_end": 22,
+        "section_heading": "Finding 2 \u2014 Fur-released TBDT subset shows marginal enrichment for envelope-stress phenotypes; SspB-buffered set does NOT exceed background (H2 partially supported)"
+      }
+    },
+    {
+      "table_id": "report_tbl_02",
+      "section_heading": "Finding 4 \u2014 Sphingolipid biosynthesis is constitutive; transcript-level Lpt apparatus stable/up with protein-level discordance; CtpA rejected at pre-registered bar; *lptC2* pilot observation (H3 partially supported)",
+      "column_names": [
+        "Sub-claim",
+        "Result",
+        "Verdict"
+      ],
+      "column_count": 3,
+      "row_count": 3,
+      "column_types": [
+        "text",
+        "text",
+        "text"
+      ],
+      "markdown_content": "| Sub-claim | Result | Verdict |\n|---|---|---|\n| CtpA / CCNA_03113 upregulation in 4599-vs-4584 | logFC +0.58, pvalue=0.048, FDR=0.109 (transcript); NOT detected in OM proteome | **REJECTED at pre-registered bar** |\n| Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |\n| Canonical Lpt apparatus maintained (transcript) | 0 components DOWN at transcript; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED at transcript level (but see protein-level discordance below) |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "Finding 4 \u2014 Sphingolipid biosynthesis is constitutive; transcript-level Lpt apparatus stable/up with protein-level discordance; CtpA rejected at pre-registered bar; *lptC2* pilot observation (H3 partially supported)",
+          "context": "REPORT.md line 45"
+        },
+        {
+          "source": "preceding_sentence",
+          "text": "The CtpA verdict has been corrected from earlier draft \"BORDERLINE\" to **REJECTED at the pre-registered bar** in response to adversarial review:",
+          "context": "paragraph before table at line 45"
+        }
+      ],
+      "origin": {
+        "line_start": 45,
+        "line_end": 49,
+        "section_heading": "Finding 4 \u2014 Sphingolipid biosynthesis is constitutive; transcript-level Lpt apparatus stable/up with protein-level discordance; CtpA rejected at pre-registered bar; *lptC2* pilot observation (H3 partially supported)"
+      }
+    },
+    {
+      "table_id": "report_tbl_03",
+      "section_heading": "Finding 4 \u2014 Sphingolipid biosynthesis is constitutive; transcript-level Lpt apparatus stable/up with protein-level discordance; CtpA rejected at pre-registered bar; *lptC2* pilot observation (H3 partially supported)",
+      "column_names": [
+        "Protein",
+        "log2(4672/4659)",
+        "log2(4672/4580)"
+      ],
+      "column_count": 3,
+      "row_count": 2,
+      "column_types": [
+        "text",
+        "numeric",
+        "numeric"
+      ],
+      "markdown_content": "| Protein | log2(4672/4659) | log2(4672/4580) |\n|---|---|---|\n| LptD (CCNA_01760) | **\u22120.47** | \u22120.62 |\n| LptE (CCNA_03866) | **\u22120.78** | \u22120.68 |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "Finding 4 \u2014 Sphingolipid biosynthesis is constitutive; transcript-level Lpt apparatus stable/up with protein-level discordance; CtpA rejected at pre-registered bar; *lptC2* pilot observation (H3 partially supported)",
+          "context": "REPORT.md line 55"
+        },
+        {
+          "source": "preceding_sentence",
+          "text": "**Protein-level discordance for the Lpt apparatus.** Of the canonical Lpt components actually detected in the OM proteome \u2014 **LptD** and **LptE** \u2014 both *decline* in the rescued strain relative to the intermediate AND to WT baseline:",
+          "context": "paragraph before table at line 55"
+        }
+      ],
+      "origin": {
+        "line_start": 55,
+        "line_end": 58,
+        "section_heading": "Finding 4 \u2014 Sphingolipid biosynthesis is constitutive; transcript-level Lpt apparatus stable/up with protein-level discordance; CtpA rejected at pre-registered bar; *lptC2* pilot observation (H3 partially supported)"
+      }
+    },
+    {
+      "table_id": "report_tbl_04",
+      "section_heading": "Hypothesis scorecard",
+      "column_names": [
+        "Hypothesis",
+        "Sub-claim",
+        "Pre-registered threshold",
+        "Observed",
+        "Verdict"
+      ],
+      "column_count": 5,
+      "row_count": 17,
+      "column_types": [
+        "text",
+        "text",
+        "text",
+        "text",
+        "text"
+      ],
+      "markdown_content": "| Hypothesis | Sub-claim | Pre-registered threshold | Observed | Verdict |\n|---|---|---|---|---|\n| **H1** ChvI cooperator + consequence | Phase structure | \u226510 genes per cohort | unique-early=20, both=10, late=49 | PASS |\n| **H1** | SigU drives late cohort | \u226550% envelope/transport/regulator + Fisher p<1e-3 | 24.5% (literature gap, reframed) | PARTIAL |\n| **H2** Critical Fur regulon subset | Path A (concordant_strong) | \u226510% phenotype-bearing | 17/32 = 53% (fold 1.60\u00d7, p=0.016 vs background 33.25%) | PASS (marginal enrichment) |\n| **H2** | Path B (SspB-buffered) | \u226510% phenotype-bearing | 9/26 = 35% (fold 1.04\u00d7, p=0.515 \u2014 NOT enriched vs background) | THRESHOLD-PASSED but **not enriched**; arm demoted to hypothesis |\n| **H2 (preflight)** | iron-limitation experiments \u22653 | \u22653 in Caulo FB | 0 | FAIL \u2192 descoped to envelope-only |\n| **H3** Sphingolipid + Lpt repurposing | CtpA upregulation in 4599-vs-4584 | FDR<0.05 OR \u22652\u00d7 protein; BORDERLINE = 0.05<pvalue<0.15 AND protein detected | logFC +0.58, pvalue=0.048, FDR=0.109; protein NOT detected | **REJECTED at pre-registered bar** (cumulative 4599-vs-4580 FDR=0.035 noted as supplemental) |\n| **H3** | Sphingolipid pathway constitutive | 0 biosynthesis gene UP at FDR<0.05 | 0 up; spt/sphk slightly DOWN | PASS strongly |\n| **H3** | Canonical Lpt maintained (transcript) | 0 components DOWN at FDR<0.05 | 0 down; MsbA-like and LptC-related UP at transcript | PASS at transcript |\n| **H3** | Canonical Lpt at protein level (post-hoc check) | (not pre-registered) | LptD log2(4672/4659) = \u22120.47; LptE = \u22120.78 | DISCORDANT with transcript; single replicate |\n| **H3** | (pilot) *lptC2* protein induction | (post-hoc) | transcript -0.60 (FDR 0.034); protein log2 +1.08 vs intermediate, +0.66 vs WT \u2014 single replicate | PILOT OBSERVATION (needs replication) |\n| **H4** PG remodeling | \u22653 enzymes engaged | \u22653 FDR<0.05 transcript OR \\|log2\\|>1 protein | 28 unique loci (25 transcript, 6 protein) | PASS strongly |\n| **H4** | (post-hoc) Pal-Tol engagement | (post-hoc) | Pal +2.08 transcript, +2.84 protein | NOTABLE FINDING \u2014 interpretation see I5 reframe |\n| **Comparative** | Sphingolipid pathway Caulobacter-unique | (PaperBLAST presence/absence + NB06b NCBI confirmation) | spt: PB(7,0,0,0) + NCBI(7,0,0,0); cerR: PB(1,1,0,0) + NCBI(6,0,0,0) | **CONFIRMED by NCBI annotation in NB06b** + independent literature (Olea-Ozuna 2020/2024) |\n| **Comparative** | ChvG-ChvI alphaproteobacterial only | (PaperBLAST + NB06b NCBI) | NCBI: ChvG(5,0,0,0), ChvI(6,0,0,0) | **CONFIRMED** (consistent with Greenwich 2023) |\n| **Method check** | NB06 PaperBLAST false-negative rate | (NB06b NCBI cross-check) | LpxA/C/D/B/K all 0 in PB Cc, 11-18 in NCBI Cc | **PB false-negative rate ~80% for Caulobacter lipid A genes**; biological claims unaffected because they depend on absences in *comparator* species, where NCBI confirms |\n| **H2 (recalibrated)** | Path A hypergeometric enrichment vs background | (NB02b: p<0.05 AND fold\u22651.5\u00d7) | fold=1.60\u00d7, p=0.016 | SUPPORTED |\n| **H2 (recalibrated)** | Path B hypergeometric enrichment vs background | (NB02b: p<0.05 AND fold\u22651.5\u00d7) | fold=1.04\u00d7, p=0.515 | NOT SUPPORTED |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "Hypothesis scorecard",
+          "context": "REPORT.md line 97"
+        }
+      ],
+      "origin": {
+        "line_start": 97,
+        "line_end": 115,
+        "section_heading": "Hypothesis scorecard"
+      }
+    },
+    {
+      "table_id": "report_tbl_05",
+      "section_heading": "NB06 \u2014 Comparative species presence/absence (PaperBLAST original) + NB06b NCBI confirmation",
+      "column_names": [
+        "Gene",
+        "PaperBLAST C.c. hits",
+        "NCBI C.c. hits",
+        "Verdict"
+      ],
+      "column_count": 4,
+      "row_count": 5,
+      "column_types": [
+        "text",
+        "numeric",
+        "numeric",
+        "text"
+      ],
+      "markdown_content": "| Gene | PaperBLAST C.c. hits | NCBI C.c. hits | Verdict |\n|---|---|---|---|\n| LpxA | 0 | **11** | PaperBLAST false negative |\n| LpxC (the deleted gene!) | 0 | **15** | PaperBLAST false negative |\n| LpxD | 0 | **15** | PaperBLAST false negative |\n| LpxB | 1 | **18** | PaperBLAST under-count |\n| LpxK | 0 | **18** | PaperBLAST false negative |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "NB06 \u2014 Comparative species presence/absence (PaperBLAST original) + NB06b NCBI confirmation",
+          "context": "REPORT.md line 157"
+        },
+        {
+          "source": "preceding_sentence",
+          "text": "**PaperBLAST false negatives in C. crescentus confirmed** (NB06b vs NB06 for genes that PaperBLAST said 0 and NCBI confirms present):",
+          "context": "paragraph before table at line 157"
+        }
+      ],
+      "origin": {
+        "line_start": 157,
+        "line_end": 163,
+        "section_heading": "NB06 \u2014 Comparative species presence/absence (PaperBLAST original) + NB06b NCBI confirmation"
+      }
+    },
+    {
+      "table_id": "report_tbl_06",
+      "section_heading": "NB06 \u2014 Comparative species presence/absence (PaperBLAST original) + NB06b NCBI confirmation",
+      "column_names": [
+        "Gene/family",
+        "NCBI pattern (C/A/N/M)",
+        "Verdict"
+      ],
+      "column_count": 3,
+      "row_count": 4,
+      "column_types": [
+        "text",
+        "numeric",
+        "text"
+      ],
+      "markdown_content": "| Gene/family | NCBI pattern (C/A/N/M) | Verdict |\n|---|---|---|\n| *spt* \u2014 serine palmitoyltransferase | 1000 | **Caulobacter-unique CONFIRMED** |\n| *cerR* \u2014 ceramide reductase | 1000 | **Caulobacter-unique CONFIRMED** |\n| ChvG \u2014 sensor kinase | 1000 | **Caulobacter-unique CONFIRMED** |\n| ChvI \u2014 response regulator | 1000 | **Caulobacter-unique CONFIRMED** |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "NB06 \u2014 Comparative species presence/absence (PaperBLAST original) + NB06b NCBI confirmation",
+          "context": "REPORT.md line 167"
+        },
+        {
+          "source": "preceding_sentence",
+          "text": "**Biological claims CONFIRMED by NCBI annotation** (where NB06 and NB06b agree, pattern 1000 = Caulobacter only):",
+          "context": "paragraph before table at line 167"
+        }
+      ],
+      "origin": {
+        "line_start": 167,
+        "line_end": 172,
+        "section_heading": "NB06 \u2014 Comparative species presence/absence (PaperBLAST original) + NB06b NCBI confirmation"
+      }
+    },
+    {
+      "table_id": "report_tbl_07",
+      "section_heading": "Sources",
+      "column_names": [
+        "Collection",
+        "Tables Used",
+        "Purpose"
+      ],
+      "column_count": 3,
+      "row_count": 2,
+      "column_types": [
+        "text",
+        "text",
+        "text"
+      ],
+      "markdown_content": "| Collection | Tables Used | Purpose |\n|------------|-------------|---------|\n| `kescience_fitnessbrowser` | `organism`, `experiment`, `fitbyexp_caulo`, `gene` | 198-experiment Caulobacter RB-TnSeq fitness ranking for the Fur-released gene set (NB02) |\n| `kescience_paperblast` | `gene`, `genepaper`, `snippet`, `curatedgene` | Caulobacter SigU literature scout (NB03); cross-species presence/absence (NB06) |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "Sources",
+          "context": "REPORT.md line 262"
+        }
+      ],
+      "origin": {
+        "line_start": 262,
+        "line_end": 265,
+        "section_heading": "Sources"
+      }
+    },
+    {
+      "table_id": "report_tbl_08",
+      "section_heading": "Generated Data",
+      "column_names": [
+        "File",
+        "Rows",
+        "Description"
+      ],
+      "column_count": 3,
+      "row_count": 24,
+      "column_types": [
+        "text",
+        "numeric",
+        "text"
+      ],
+      "markdown_content": "| File | Rows | Description |\n|------|------|-------------|\n| `data/NB01_leaden_fur_de.csv` | 93 | Leaden 2018 \u0394fur DEGs (parsed from Frontiers Table 2.XLSX) |\n| `data/NB01_leaden_iron_de.csv` | 491 | Leaden 2018 iron-limitation (2h DP) DEGs |\n| `data/NB01_fur_only_signature.csv` | 93 | Join of Leaden \u0394fur DEGs with our 4584-vs-4580 logFCs |\n| `data/NB01_source_provenance.md` | \u2014 | Records PMC supplementary preflight success (no CTS re-analysis needed) |\n| `data/NB02_caulo_experiments.csv` | 198 | Caulobacter FB experiments classified by condition (envelope=22, oxidative=4, carbon=48, iron=0) |\n| `data/NB02_pathA_concordant_strong_scoring.csv` | 32 | Path A fitness phenotype scoring |\n| `data/NB02_pathB_buffered_scoring.csv` | 53 | Path B SspB-buffered fitness phenotype scoring |\n| `data/NB03_chvi_phase_cohorts.csv` | 89 | ChvI gene-by-gene phase assignment (early/both/late) |\n| `data/NB03_phase_cohort_themes.csv` | 9 | Functional theme breakdown by cohort |\n| `data/NB03_sigU_literature_gap.md` | \u2014 | Provenance for the SigU literature scout (returned no Caulobacter snippets) |\n| `data/NB04_sphingolipid_transcript.csv` | 15 | Sphingolipid biosynthesis + Uchendu transporters expression panel |\n| `data/NB04_lpt_transcript.csv` | 6 | Canonical Lpt apparatus expression panel |\n| `data/NB04_ctpA_transcript.csv` | 1 | CtpA / CCNA_03113 expression panel |\n| `data/NB04_protein_panel.csv` | 22 | OM proteome cross-reference for sphingolipid + Lpt + CtpA sets |\n| `data/NB05_pg_gene_set.csv` | 53 | Pre-curated PG-remodeling gene set, LOCKED before DE analysis |\n| `data/NB05_pg_significant_hits.csv` | 31 | PG enzymes meeting H4 threshold |\n| `data/NB06_comparative_presence_counts.csv` | 25 | Focal-gene PaperBLAST hit counts per species |\n| `data/NB06_comparative_presence_bool.csv` | 25 | Boolean presence/absence matrix |\n| `data/NB07_scorecard.csv` | 12 | Hypothesis scorecard cross-referencing pre-registered thresholds to outcomes |\n| `data/NB02b_h2_hypergeometric_verdict.csv` | 2 | Post-review recalibrated H2 verdict: Path A SUPPORTED (fold 1.60\u00d7, p=0.016), Path B NOT SUPPORTED (1.04\u00d7, p=0.515) |\n| `data/NB06b_ncbi_presence_counts.csv` | 28 | NCBI annotation hit counts per focal family per species |\n| `data/NB06b_ncbi_presence_bool.csv` | 28 | NCBI boolean presence matrix |\n| `data/NB06b_paperblast_vs_ncbi_comparison.csv` | varies | Per-species PaperBLAST vs NCBI agreement; documents the ~80% false-negative rate of PaperBLAST text matching for C. crescentus lipid A biosynthesis genes |\n| Plus NB00 orientation outputs (sphingolipid/Lpt CPM, ChvI enrichment, Zik suppressors, top DEGs, OM proteome strain shifts) | \u2014 | Phase A orientation panel |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "Generated Data",
+          "context": "REPORT.md line 269"
+        }
+      ],
+      "origin": {
+        "line_start": 269,
+        "line_end": 294,
+        "section_heading": "Generated Data"
+      }
+    },
+    {
+      "table_id": "report_tbl_09",
+      "section_heading": "Notebooks",
+      "column_names": [
+        "Notebook",
+        "Purpose"
+      ],
+      "column_count": 2,
+      "row_count": 10,
+      "column_types": [
+        "text",
+        "text"
+      ],
+      "markdown_content": "| Notebook | Purpose |\n|----------|---------|\n| `00_orientation.ipynb` | Phase A scoping: data shape, sphingolipid panel, ChvI overlap, Zik suppressors, top DEGs |\n| `01_leaden2018_fur_signature.ipynb` | Concordance with Leaden 2018 \u0394fur DEGs; identifies the SspB-buffered cbb3/*fix* cohort |\n| `02_caulo_fitness_ranking.ipynb` | RB-TnSeq fitness ranking of Path A + Path B Fur-released sets; H2 threshold check |\n| `02b_h2_hypergeometric_verdict.ipynb` | Post-review recalibration: hypergeometric enrichment vs background as the H2 verdict |\n| `03_chvi_phase_partition_sigU.ipynb` | ChvI early/late phase partition; SigU literature-gap finding |\n| `04_sphingolipid_lpt_panel.ipynb` | H3 sub-claims (CtpA, sphingolipid constitutive, Lpt maintained); lptC2 protein finding |\n| `05_pg_remodeling.ipynb` | H4 PG-remodeling test against pre-curated gene set |\n| `06_comparative_species.ipynb` | Cross-species presence/absence via PaperBLAST (screen) |\n| `06b_ncbi_annotation_presence.ipynb` | Post-review re-test using NCBI annotation; confirms biological claims and diagnoses PaperBLAST false-negative pattern |\n| `07_synthesis.ipynb` | 4-panel master figure + hypothesis scorecard |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "Notebooks",
+          "context": "REPORT.md line 300"
+        }
+      ],
+      "origin": {
+        "line_start": 300,
+        "line_end": 311,
+        "section_heading": "Notebooks"
+      }
+    },
+    {
+      "table_id": "report_tbl_10",
+      "section_heading": "Figures",
+      "column_names": [
+        "Figure",
+        "Description"
+      ],
+      "column_count": 2,
+      "row_count": 9,
+      "column_types": [
+        "text",
+        "text"
+      ],
+      "markdown_content": "| Figure | Description |\n|--------|-------------|\n| `figures/NB07_synthesis_master.png` | 4-panel synthesis (recommended Figure 1 for the manuscript) |\n| `figures/00_sphingolipid_locus_heatmap.png` | Sphingolipid locus log2(CPM+1) heatmap across libraries |\n| `figures/NB01_fur_signature_scatter.png` | Leaden \u0394fur vs our 4584-vs-4580 logFC scatter (recommended Figure 2A) |\n| `figures/NB01_leaden_iron_vs_fur.png` | Leaden internal validation: \u0394fur vs iron-limitation correlation |\n| `figures/NB04_sphingolipid_locus_heatmap.png` | Sphingolipid biosynthesis + Uchendu transporters detailed heatmap |\n| `figures/NB04_lpt_apparatus_heatmap.png` | Canonical Lpt apparatus CPM heatmap |\n| `figures/NB04_ctpA_per_strain.png` | CtpA strain-by-strain expression bar chart |\n| `figures/NB05_pg_remodeling_heatmap.png` | PG remodeling enzymes meeting H4 threshold |\n| `figures/NB06_comparative_heatmap.png` | Comparative species presence/absence matrix |",
+      "captions": [
+        {
+          "source": "heading",
+          "text": "Figures",
+          "context": "REPORT.md line 315"
+        }
+      ],
+      "origin": {
+        "line_start": 315,
+        "line_end": 325,
+        "section_heading": "Figures"
+      }
+    }
+  ],
+  "summary": {
+    "total_tables": 10,
+    "column_counts": [
+      6,
+      3,
+      3,
+      5,
+      4,
+      3,
+      3,
+      3,
+      2,
+      2
+    ],
+    "row_counts": [
+      2,
+      3,
+      2,
+      17,
+      5,
+      4,
+      2,
+      24,
+      10,
+      9
+    ],
+    "wide_tables_gt8": 0,
+    "with_heading_caption": 10,
+    "with_sentence_caption": 5
+  }
+}
+Wrote tables_inventory.md to /home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_2/tables_inventory.md

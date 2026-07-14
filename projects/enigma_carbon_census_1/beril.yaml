@@ -1,0 +1,45 @@
+project_id: enigma_carbon_census_1
+status: complete            # exploration | proposed | active | analysis | review | complete
+created_at: "2026-06-08T23:56:16Z"
+last_session_at: "2026-06-09T15:55:14Z"
+branch: projects/enigma_carbon_census_1
+engine:
+  name: claude
+authors:
+  - name: "Adam Arkin"
+    affiliation: "University of California, Berkeley"
+    orcid: "0000-0002-4999-2931"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true
+approval:
+  by: "0000-0002-4999-2931"
+  at: "2026-06-09T15:55:14Z"
+  report_hash: "sha256:62204d5c4271f61cef9bd5c3aee8b1410bebd0a60d508276d2875691a7194f49"
+  review: "REVIEW_2.md"
+  review_hash: "sha256:fdc608c2a055b568322214e4f286af7068e7a0fb4b051fbce32cc764b7eaab77"
+  notebook_hashes:
+    "notebooks/00_compound_profile.ipynb": "sha256:fab8f0802d7d8bfd0b604b9a6ed5d33f485248a2385e6322ed59d447a6f30a3f"
+    "notebooks/01_identity_resolution.ipynb": "sha256:5a63ecf0d3e1e502c3baee18f422f7c755e2715d171d05d1cceec29866d6d2b8"
+    "notebooks/02_pathway_linkage.ipynb": "sha256:cc11da28439236c125bbaa6d843beb72506297e87ef45c12225ab88c21b5fcd5"
+    "notebooks/02b_linkage_deepening.ipynb": "sha256:f34f608cad9105b719731f54170cb1f9596924759f0132f3f5f489b7616513da"
+    "notebooks/02c_fb_inchikey_rematch.ipynb": "sha256:e7914eda554b2793a423f05ad15d8f1b6149113a8795c0c4f53e9718992ee79a"
+    "notebooks/03_organism_mapping.ipynb": "sha256:4e482502b25be561c88c76ca5b03b7f93b2dfda06601784306e2548753956bd8"
+    "notebooks/04_enigma_utilizers.ipynb": "sha256:984992ed5d5e8fff920341e6c1c4edcda0969f8cc6bd41e3b89540e2c765b60e"
+    "notebooks/05_cooccurrence.ipynb": "sha256:387a2d00c5385a2104dda7991ad8efeb498dcd787e31fa9682f78bac2591b7bb"
+    "notebooks/05b_cooccurrence_effects.ipynb": "sha256:496f205faa4ff0573a263599f494052b7ec71a68a3abfb34de1d762fddf410e0"
+    "notebooks/06_phylo_maps.ipynb": "sha256:d50227c8fd304ee40965f5ba956e213e8110c30b772d140febf1e40f416fe38c"
+    "notebooks/07_environmental_atlas.ipynb": "sha256:757be18edd7404c7cff3a45e57be43cb52db433f6808f87913612d05a0bbee57"
+    "notebooks/07b_environmental_atlas_global.ipynb": "sha256:1359836b1d9d19ebdc9ec3e623195b8520ac701a5451de3b3316c1af12cc3d0b"
+    "notebooks/08_synthesis.ipynb": "sha256:f266c5cced1b42b5338bb6bd0e97ad1df8b38510261ecf37f656838689d06136"
+    "notebooks/09_deepening.ipynb": "sha256:ae61a4e2ef946546adf8a6747a07031b0e0ae1f28d499a7b1ac4f1a05645b2e8"
+submissions:
+  - status: success
+    attempted_at: "2026-06-09T15:57:37Z"
+    archive_key: "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/enigma_carbon_census_1/"
+    file_count: 92
+    byte_total: 3973173
+    duration_seconds: 16.85
+    approved_at: "2026-06-09T15:55:14Z"

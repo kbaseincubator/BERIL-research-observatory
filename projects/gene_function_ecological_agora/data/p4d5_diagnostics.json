@@ -1,0 +1,119 @@
+{
+  "phase": "4",
+  "deliverable": "P4-D5",
+  "purpose": "D2 annotation-density residualization",
+  "n_atlas_rows": 13739162,
+  "covariates": [
+    "clade_size",
+    "mean_annotated_fraction",
+    "mean_gc",
+    "mean_genome_size"
+  ],
+  "producer_ols_rsquared": 0.0,
+  "consumer_ols_rsquared": 0.052652824585284086,
+  "producer_coefficients": {
+    "const": 5.2716039585640064e-18,
+    "clade_size_z": -4.531121651031618e-18,
+    "mean_annotated_fraction_z": 7.258778287377084e-18,
+    "mean_gc_z": -5.588330178469104e-18,
+    "mean_genome_size_z": 1.7699447359775108e-18
+  },
+  "consumer_coefficients": {
+    "const": -8.29790774198115,
+    "clade_size_z": 1.128678152336206,
+    "mean_annotated_fraction_z": -1.2701536880484645,
+    "mean_gc_z": -0.052453490555951734,
+    "mean_genome_size_z": -0.49086144274835614
+  },
+  "hypothesis_test_replication": [
+    {
+      "test": "NB11 producer_z regulatory vs metabolic",
+      "d_raw": 0.0588,
+      "p_raw": 0.712141,
+      "d_residualized": 0.0588,
+      "p_residualized": 0.688056,
+      "n_reg": 1554.0,
+      "n_met": 4970.0,
+      "n_target": NaN,
+      "n_ref": NaN
+    },
+    {
+      "test": "NB11 consumer_z regulatory vs metabolic",
+      "d_raw": -0.2108,
+      "p_raw": 0.0,
+      "d_residualized": -0.2092,
+      "p_residualized": 0.0,
+      "n_reg": 1552.0,
+      "n_met": 4964.0,
+      "n_target": NaN,
+      "n_ref": NaN
+    },
+    {
+      "test": "NB12 Mycobacteriaceae \u00d7 mycolic family producer_z",
+      "d_raw": 0.3092,
+      "p_raw": 2e-06,
+      "d_residualized": 0.3092,
+      "p_residualized": 2e-06,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 582.0,
+      "n_ref": 2628712.0
+    },
+    {
+      "test": "NB12 Mycobacteriaceae \u00d7 mycolic family consumer_z",
+      "d_raw": -0.1925,
+      "p_raw": 0.0,
+      "d_residualized": -0.1553,
+      "p_residualized": 1.6e-05,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 582.0,
+      "n_ref": 2628712.0
+    },
+    {
+      "test": "NB12 Mycobacteriales \u00d7 mycolic order producer_z",
+      "d_raw": 0.2876,
+      "p_raw": 5e-06,
+      "d_residualized": 0.2876,
+      "p_residualized": 5e-06,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 614.0,
+      "n_ref": 1337987.0
+    },
+    {
+      "test": "NB12 Mycobacteriales \u00d7 mycolic order consumer_z",
+      "d_raw": -0.2853,
+      "p_raw": 0.0,
+      "d_residualized": -0.2777,
+      "p_residualized": 0.0,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 614.0,
+      "n_ref": 1337987.0
+    },
+    {
+      "test": "NB16 Cyanobacteriia \u00d7 PSII producer_z (class rank)",
+      "d_raw": 1.496,
+      "p_raw": 2.1e-05,
+      "d_residualized": 1.496,
+      "p_residualized": 2.1e-05,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 21.0,
+      "n_ref": 554280.0
+    },
+    {
+      "test": "NB16 Cyanobacteriia \u00d7 PSII consumer_z (class rank)",
+      "d_raw": 0.6958,
+      "p_raw": 0.000183,
+      "d_residualized": 0.6301,
+      "p_residualized": 2.3e-05,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 21.0,
+      "n_ref": 554280.0
+    }
+  ],
+  "completed_utc": "2026-04-28T04:17:41Z"
+}

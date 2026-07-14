@@ -1,378 +1,418 @@
 ---
 name: berdl-ingest
-description: Ingest a local dataset into the BERDL Lakehouse from a local (off-cluster) machine. Handles data format detection and preparation, MinIO upload, and Delta table creation via the data_lakehouse_ingest pipeline. Use when a user wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace.
+description: Ingest a dataset into the BERDL Lakehouse from within JupyterHub (in-cluster). Data may live on the JH filesystem or a global shared filesystem. Handles schema detection, MinIO upload via Python client, and Iceberg table creation via the data_lakehouse_ingest pipeline. Use when a user is already working inside JupyterHub and wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace. For off-cluster ingestion from a local machine, use berdl-ingest-remote instead.
 allowed-tools: Bash, Read, Write, Edit, Task
 ---
 
-# BERDL Local Ingest Skill
+# BERDL In-Cluster Ingest Skill
 
 ## Overview
 
-Ingests a local dataset into the BERDL Lakehouse as a new tenant namespace, running entirely
-from a local machine via the off-cluster proxy chain. Detects source format, parses schema,
-exports data if needed, then executes a **two-phase ingest**:
+Ingests a dataset into the BERDL Lakehouse from within JupyterHub. Because Spark and
+MinIO are directly accessible inside the cluster, no SSH tunnels, pproxy, or
+`berdl-remote` are needed. The workflow is:
 
-1. **Upload** — all source files uploaded to MinIO bronze in full before any ingest begins.
-2. **Ingest** — Delta tables written to silver. Tables larger than `CHUNK_TARGET_GB` (default 20 GB)
-   are streamed from the local file in line-count chunks to avoid Spark session timeouts.
-   A JSONL progress log is written to MinIO after every chunk so interrupted jobs can resume.
+1. Verify the JH environment (Spark + MinIO connect directly).
+2. Detect source format and parse schema.
+3. Collect dataset metadata.
+4. Upload source files to MinIO bronze via `minio_client.fput_object()`.
+5. Call `ingest()` per table — Spark reads from bronze and writes Iceberg to silver.
+6. Verify row counts.
+7. Report the bronze and silver paths to the user.
 
 ## Preconditions
 
-1. `KBASE_AUTH_TOKEN` set in environment or `.env`.
-2. **Ingest packages installed**: run `bash scripts/bootstrap_ingest.sh` (requires `.venv-berdl` from `bootstrap_client.sh`).
-3. **SSH tunnels on ports 1337 and 1338 must be running** (user must start these —
-   Claude cannot run interactive SSH commands). pproxy (:8123) is started automatically.
-   JupyterHub server is spawned in Step 0 before ingest begins. If tunnels are not running,
-   tell the user to run these two commands in a terminal:
+1. `KBASE_AUTH_TOKEN` set in environment or `.env`. Source it first:
    ```bash
-   ssh -f -N -o ServerAliveInterval=60 -D 1338 ac.<username>@login1.berkeley.kbase.us
-   ssh -f -N -o ServerAliveInterval=60 -D 1337 ac.<username>@login1.berkeley.kbase.us
+   set -a && source .env 2>/dev/null; set +a
+   [ -n "$KBASE_AUTH_TOKEN" ] && echo "token: set" || echo "token: MISSING"
    ```
-4. **`mc` configured**: `~/.mc/config.json` must have a `berdl-minio` alias. Run `bash scripts/configure_mc.sh --berdl-proxy` if not set.
+2. `data_lakehouse_ingest` installed in the active Python environment:
+   ```bash
+   python3 -c "import data_lakehouse_ingest; print('ok')"
+   ```
+   If this fails, the package is not installed. Ask the user to install it via the
+   appropriate environment setup for their JH server.
+3. Source data is accessible on the JH filesystem — either in the user's home directory
+   or on a globally mounted share (e.g. `/global/cfs/`, `/clusterfs/`).
 
 ## Workflow
 
-### Step 0: Ensure JupyterHub server is running
-
-Do this before anything else. The Spark Connect sidecar lives inside the JupyterHub pod —
-without it there is nothing to connect to.
+### Step 0a: Environment Check
 
 ```bash
-source .venv-berdl/bin/activate
-berdl-remote status
+python scripts/berdl_env.py --check
 ```
 
-If the output contains "Kernel available", the server is up — proceed to Step 1.
+This skill runs **in-cluster** (JupyterHub). If `--check` reports off-cluster, switch to `/berdl-ingest-remote`. Do not proceed with this skill off-cluster — Spark and MinIO are reachable directly only inside the cluster.
 
-If not (server stopped, not spawned, or config missing), spawn it now:
+### Step 0b: Verify ingest environment
 
-```bash
-berdl-remote login --hub-url https://hub.berdl.kbase.us
-berdl-remote spawn --timeout 120
+Inside JupyterHub, Spark Connect is reachable directly and the MinIO credentials are
+pre-set as environment variables, so the notebook builds **both clients itself** rather
+than using `ingest_lib`'s `get_spark_session()` (which is the off-cluster version that
+connects through the laptop proxy chain). Importing `ingest_lib` is still needed: it
+installs the lightweight `berdl_notebook_utils` stubs and exposes the
+infrastructure-agnostic helpers (`parse_sql_schema`, `export_sqlite`). `ingest()` is
+imported from `data_lakehouse_ingest`.
+
+This is the in-cluster bypass pattern (see `references/on-cluster-bypass.md`); the
+notebook's Setup cell performs it. Verify the environment is ready:
+
+```python
+import sys, os
+from pathlib import Path
+
+_found = False
+for _p in [Path.cwd()] + list(Path.cwd().parents):
+    if (_p / "scripts" / "ingest_lib.py").exists():
+        sys.path.insert(0, str(_p / "scripts"))
+        _found = True
+        break
+if not _found:
+    raise RuntimeError("Could not find scripts/ingest_lib.py — run from within the BERIL repo.")
+
+import ingest_lib  # installs the berdl_notebook_utils stubs on import
+from data_lakehouse_ingest import ingest
+from pyspark.sql import SparkSession
+from minio import Minio
+
+token        = os.environ["KBASE_AUTH_TOKEN"]
+spark_url    = f"sc://jupyter-{os.environ['USER']}.jupyterhub-prod:15002/;use_ssl=false;x-kbase-token={token}"
+spark        = SparkSession.builder.remote(spark_url).getOrCreate()
+
+endpoint     = os.environ["MINIO_ENDPOINT_URL"].replace("https://", "").replace("http://", "")
+minio_client = Minio(endpoint,
+    access_key=os.environ["MINIO_ACCESS_KEY"],
+    secret_key=os.environ["MINIO_SECRET_KEY"],
+    secure=os.environ.get("MINIO_SECURE", "true").lower() == "true")
+
+# The Iceberg build of data_lakehouse_ingest looks up get_s3_client (renamed from
+# get_minio_client) — register both names on the stubs, plus the Spark session.
+sys.modules["berdl_notebook_utils.setup_spark_session"].get_spark_session = lambda **kw: spark
+sys.modules["berdl_notebook_utils.clients"].get_minio_client = lambda **kw: minio_client
+sys.modules["berdl_notebook_utils.clients"].get_s3_client    = lambda **kw: minio_client
+print("Spark and MinIO ready.")
 ```
 
-`berdl-remote login` authenticates non-interactively using `KBASE_AUTH_TOKEN` — do not ask
-the user to log into JupyterHub in a browser. After spawn completes, wait 40 seconds for the
-Spark Connect sidecar to start before proceeding:
-
-```bash
-sleep 40
-```
-
-Do not skip this step or defer it to the notebook. The ingest must never prompt the user for
-JupyterHub credentials or ask them to visit the hub URL.
-
-### Step 0b: Verify MinIO credentials
-
-Before proceeding, confirm `~/.mc/config.json` exists and has a `berdl-minio` alias:
-
-```bash
-python3 -c "
-import json, pathlib
-cfg = json.load(open(pathlib.Path.home() / '.mc/config.json'))
-alias = cfg['aliases']['berdl-minio']
-print('berdl-minio URL:', alias['url'])
-"
-```
-
-If this fails with `FileNotFoundError` or `KeyError`, the alias is not configured.
-Tell the user to run:
-
-```bash
-bash scripts/configure_mc.sh --berdl-proxy
-```
-
-Do not proceed to Step 1 until this check passes. Connectivity (whether the credentials
-are valid against the live cluster) is verified automatically when `initialize()` runs
-in the notebook — any auth failure there will surface with a clear error message.
+If building the Spark session or MinIO client raises, the JH environment is
+misconfigured (missing env vars or sidecar) — this is not a tunnel issue. Report the
+error verbatim and stop.
 
 ### Step 1: Ask for source directory
 
-Ask the user for the path to their source data directory. The directory should contain:
+Ask the user for the path to their source data directory on the JH filesystem.
+The directory should contain:
 
-- One `.parquet` file per table — Parquet files are read natively by Spark with embedded schema (preferred format), **or**
-- A `.db` / `.sqlite` file — SQLite database (tables exported to TSV automatically), **or**
-- One `.tsv` or `.csv` file per table — used directly, no conversion needed
-- Optionally a `.sql` file with `CREATE TABLE` statements — used to map column types to Spark SQL types for CSV/TSV; all columns default to `STRING` without it (not needed for Parquet)
+- One `.parquet` file per table — schema is embedded (preferred), **or**
+- A `.db` / `.sqlite` file — tables are exported to TSV automatically, **or**
+- One `.tsv` or `.csv` file per table — used directly
+- Optionally a `.sql` file with `CREATE TABLE` statements — used to map column types
 
-Inspect the directory and report what was found before continuing:
+Inspect and report what was found:
 
 ```bash
 ls -lh <DATA_DIR>
 ```
 
-**SQL dump only:** If the user has a `.sql` dump with INSERT statements but no `.db`, restore it first:
+**SQL dump only:** If the user has a `.sql` dump with INSERT statements but no `.db`,
+restore it first:
 ```bash
 sqlite3 /tmp/<dataset>.db < <dump>.sql
-# then move the .db into the source directory
 ```
 
 ### Step 1b: Resolve schema
 
-**If the source is Parquet:** schema is embedded in the file metadata — skip this step
-entirely and proceed to Step 2.
+**Parquet:** schema embedded — skip this step.
 
-After inspecting the directory, check whether a `.sql` file with `CREATE TABLE` statements is present.
+**If a `.sql` file exists:** use it directly — skip to Step 2.
 
-**If a `.sql` file exists:** use it directly — no further action needed. Skip to Step 2.
+**If no `.sql` file:** infer types from the source:
 
-**If no `.sql` file exists:** attempt to infer column types from the data source:
+- **SQLite:** run `PRAGMA table_info(<table>)` for each table.
 
-- **SQLite (`.db`):** run `PRAGMA table_info(<table>)` for each table to get column names and SQLite-declared types. Map to Spark SQL types:
-
-  | SQLite type | Spark SQL type |
-  |-------------|----------------|
-  | `INTEGER`   | `BIGINT`       |
-  | `REAL`      | `DOUBLE`       |
-  | `TEXT`      | `STRING`       |
-  | `BLOB`      | `BINARY`       |
-  | `NUMERIC`   | `DOUBLE`       |
-  | (empty/unknown) | `STRING`   |
+  | SQLite type     | Spark SQL type |
+  |-----------------|----------------|
+  | `INTEGER`       | `BIGINT`       |
+  | `REAL`          | `DOUBLE`       |
+  | `TEXT`          | `STRING`       |
+  | `BLOB`          | `BINARY`       |
+  | `NUMERIC`       | `DOUBLE`       |
+  | (empty/unknown) | `STRING`       |
 
   ```bash
   sqlite3 <DATA_DIR>/<file>.db ".tables"
   sqlite3 <DATA_DIR>/<file>.db "PRAGMA table_info(<table>);"
   ```
 
-- **TSV/CSV:** read the header row and sample ~5 rows. Infer types by inspecting values — integers, floats, and strings. When in doubt, use `STRING`.
-
+- **TSV/CSV:** sample header + 5 rows:
   ```bash
   head -6 <DATA_DIR>/<file>.tsv
   ```
 
-After inference, **present the proposed schema to the user** as a draft `.sql` file (one `CREATE TABLE` block per table). Ask the user to review and confirm or correct it. Example format:
+**Header detection (TSV/CSV):** Determine whether each file's first line is a header
+row. This is critical because `data_lakehouse_ingest` defaults to `header: False` when
+no `defaults` block is provided in the ingest config.
 
-```sql
-CREATE TABLE my_table (
-    id       BIGINT,
-    name     STRING,
-    score    DOUBLE,
-    active   STRING
-);
-```
+Heuristic: inspect the first line — if every field is a plausible column name
+(non-numeric, no special characters beyond `_`), it's a header. If the first line
+contains numeric values or looks like data, it's headerless. When a `.sql` schema file
+is present, compare the first line's fields against the schema's column names — an
+exact match confirms a header row.
 
-- If the inferred schema looks complete and unambiguous, propose writing it as `<DATA_DIR>/schema.sql` and proceed once the user confirms.
-- If there are ambiguous columns (e.g. a column that looks like dates, mixed numeric/text, or unclear nullability), flag them specifically and ask the user what type to use before writing the file.
-- If the data cannot be sampled (e.g. files are too large to inspect headers, or PRAGMA returns no type info), tell the user what's missing and ask them to provide a schema or decide to proceed with all columns as `STRING`.
+Set `HAS_HEADER = True` or `HAS_HEADER = False` based on detection, and present the
+finding to the user for confirmation. This value is passed into the notebook config
+cell and used in the `defaults.csv.header` key of the ingest config.
+
+**SQLite sources:** skip detection — `export_sqlite()` always writes a header row to the
+exported TSV, so the notebook pins `HAS_HEADER = True` right after the export. Leaving it
+`False` would ingest the column-name row as data, and verify would still pass (the source
+line count is inflated by the same row), masking the off-by-one.
+
+Present the proposed schema as a draft `.sql` file and ask the user to confirm or
+correct it before writing `<DATA_DIR>/schema.sql`. Flag any ambiguous columns.
 
 ### Step 2: Choose tenant
 
-List existing tenants:
-
-```bash
-source .venv-berdl/bin/activate
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
+```python
+import berdl_notebook_utils
+databases = berdl_notebook_utils.get_databases(return_json=False)  # → list[str]
 ```
 
-Present the results. Tenants are the unique prefixes before the first `_` in each database name (e.g. `kescience`, `nmdc`, `gtdb`). Ask the user to pick an existing tenant or provide a new name.
+Present results. Tenants are the unique prefixes before the first `.` in each dotted namespace (e.g. `kescience.alphafold` → `kescience`). Ask the user:
+
+1. **Existing tenant** — choose from the list
+2. **New tenant name** — a new namespace will be created
+3. **User-tenant space (private)** — set `USER_TENANT = True` in the notebook config;
+   namespace becomes `my.<dataset>`.
 
 ### Step 3: Choose dataset name and write mode
 
-Ask for the dataset name. Suggest `DATA_DIR.name` (the directory's basename) as a default.
-Check whether the namespace already exists:
+Suggest `DATA_DIR.name` as the dataset name default. Check whether the namespace
+already exists:
 
-```bash
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES LIKE '<tenant>_<dataset>'"
+```python
+namespace        = f"{tenant}.{dataset}"
+namespace_exists = namespace in berdl_notebook_utils.get_databases(return_json=False)
 ```
 
-The final namespace will be `{tenant}_{dataset}`.
+If it exists, list tables and row counts, then ask:
+- **Overwrite** — `MODE = "overwrite"` (replaces existing Iceberg tables)
+- **Append** — `MODE = "append"` (adds rows to existing tables)
 
-**If the namespace already exists**, list its current tables and row counts, then ask the user:
+### Step 3b: Collect dataset metadata
 
-- **Overwrite** — existing Delta tables are replaced. Use `MODE = "overwrite"`.
-- **Append** — new rows are added to existing tables. Use `MODE = "append"`.
+One YAML metadata file per table, stored at `<DATA_DIR>/metadata/{table}.yaml` and
+uploaded to `s3a://cdm-lake/{BRONZE_PREFIX}/metadata/{table}.yaml` twice: before
+ingest (`status: in_progress`) and after (`status: completed` or `failed`).
 
-If the user chooses append, confirm which tables they want to append to. For any table to skip,
-note it now — the user can set `"enabled": false` in the per-table config or skip the relevant
-ingest step in the notebook.
+**Infer `ingested_by`:**
+
+```bash
+git config user.name
+```
+
+**Check for existing metadata (re-ingest warning):** Use the Python MinIO client —
+there is no `mc` CLI in the JH terminal environment:
+
+```python
+objects = list(minio_client.list_objects(
+    "cdm-lake", prefix=f"{BRONZE_PREFIX}/metadata/", recursive=True))
+if objects:
+    print(f"WARNING: {len(objects)} metadata file(s) already exist and will be overwritten.")
+```
+
+**Ask about source:** Same-source or mixed? Follow the same prompting logic as
+`berdl-ingest-remote` Step 3b (create `_source_input.yaml` for mixed sources).
+
+**Generate local metadata files:**
+
+Use the `BRONZE_PREFIX`, `NAMESPACE`, `TENANT`, `DATASET`, `BUCKET`, and `USER_TENANT`
+variables already set by the notebook config cell — do not recompute them here.
+Both shared-tenant and user-tenant paths are handled correctly by those variables.
+
+```python
+import uuid, yaml
+from datetime import date, datetime, timezone
+
+# BRONZE_PREFIX, NAMESPACE, TENANT, DATASET, BUCKET, USER_TENANT already set by config cell
+
+tables        = [<list of table names>]
+ingested_by   = "<name>"
+source_shared = "<source url or None>"
+source_map    = {}  # {table: source} for mixed-source ingests
+
+sql_files  = sorted(DATA_DIR.glob("*.sql"))
+sql_bronze = (f"s3a://{BUCKET}/{BRONZE_PREFIX}/config/{sql_files[0].name}"
+              if sql_files else None)
+
+now   = datetime.now(timezone.utc).isoformat()
+today = date.today().isoformat()
+
+metadata_dir = DATA_DIR / "metadata"
+metadata_dir.mkdir(exist_ok=True)
+
+for table in tables:
+    source = source_map.get(table) or source_shared or ""
+    meta = {
+        "schema_version":       "0.2.0",
+        "identifier":           str(uuid.uuid4()),
+        "tenant":               None if USER_TENANT else TENANT,
+        "dataset":              DATASET,
+        "namespace":            NAMESPACE,
+        "table":                table,
+        "title":                table,
+        "source":               source,
+        "date_accessed":        today,
+        "status":               "in_progress",
+        "ingested_by":          ingested_by,
+        "ingest_started_at":    now,
+        "data_schema_location": sql_bronze,
+        "version":              None,
+        "description":          None,
+        "ingest_contributors":  [],
+        "ingest_completed_at":  None,
+    }
+    out = metadata_dir / f"{table}.yaml"
+    with open(out, "w") as f:
+        yaml.dump(meta, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+    print(f"  wrote {out.name}")
+```
+
+**Present required fields for user confirmation — REQUIRED STOPPING POINT.**
+Same flow as `berdl-ingest-remote` Step 3b: confirm `title`, `source`, `ingested_by`,
+`date_accessed`. Then offer optional fields (`description`, `version`,
+`ingest_contributors`).
+
+**Upload metadata (first push — in_progress):**
+
+```python
+for table in tables:
+    meta_path = metadata_dir / f"{table}.yaml"
+    meta_key  = f"{BRONZE_PREFIX}/metadata/{table}.yaml"
+    minio_client.fput_object("cdm-lake", meta_key, str(meta_path))
+print(f"Metadata uploaded (first push — in_progress) for {len(tables)} table(s)")
+print(f"  → s3a://cdm-lake/{BRONZE_PREFIX}/metadata/")
+```
 
 ### Step 4: Generate, configure, and run the ingest notebook
 
-Copy the reference template into the source directory, named after the dataset:
+Copy the in-cluster template into the source directory:
 
 ```bash
-cp .claude/skills/berdl-ingest/references/ingest.ipynb <DATA_DIR>/<dataset>_ingest.ipynb
+cp .claude/skills/berdl-ingest/references/ingest_jh.ipynb <DATA_DIR>/<dataset>_ingest.ipynb
 ```
 
-Edit the configuration cell (cell id `b0000003`) in the copied notebook, replacing the
-`{PLACEHOLDER}` values. Use the **absolute path** for `DATA_DIR`:
+Edit the configuration cell (`jh0003`) with the absolute `DATA_DIR`, `TENANT`,
+`DATASET`, `MODE`, `USER_TENANT`, and `HAS_HEADER` values. `HAS_HEADER` was determined
+in Step 1b — it controls whether `data_lakehouse_ingest` treats the first row of
+TSV/CSV files as column names or data.
 
-```python
-DATA_DIR        = Path("/absolute/path/to/<source directory>")
-TENANT          = "<chosen tenant>"
-DATASET         = "<chosen dataset>"    # or None to use DATA_DIR.name
-BUCKET          = "cdm-lake"
-MODE            = "overwrite"           # "overwrite" or "append" — determined in Step 3
-CHUNK_TARGET_GB = 20                    # tables above this are ingested in chunks
-CHUNKED_INGEST  = True                  # False = force single-batch (not recommended for large tables)
-CONFIRMED       = False                 # set True after reviewing the pre-flight plan
-```
-
-**Run the notebook through the Pre-flight plan cell** (do not execute the full notebook yet):
-
-```bash
-source .venv-berdl/bin/activate
-jupyter nbconvert --to notebook --execute --inplace \
-    --ExecutePreprocessor.timeout=120 \
-    --ExecutePreprocessor.raise_on_iopub_timeout=False \
-    <DATA_DIR>/<dataset>_ingest.ipynb 2>&1 | tail -5
-```
-
-The Pre-flight cell will raise a `RuntimeError` (intentionally) when `CONFIRMED = False`,
-halting execution after printing the plan.
-
-**Extract the plan output and present it to the user in chat.** Do not ask the user to
-open the notebook or edit it manually — the agent handles all notebook edits.
-
-Extract all cell text output from the notebook:
-
-```bash
-python3 -c "
-import json
-nb = json.load(open('<DATA_DIR>/<dataset>_ingest.ipynb'))
-for cell in nb.get('cells', []):
-    for o in cell.get('outputs', []):
-        if 'text' in o: print(''.join(o['text']))
-"
-```
-
-Format the plan as a clear markdown summary in chat, showing:
-
-- **Upload**: each table name, file size (GB), and total upload size
-- **Ingest**: for each table — single ingest or number of chunks × lines per chunk
-
-**Do not run the full notebook until the user explicitly confirms.** Ask the user:
+**Present the ingest plan to the user before running** — list each table, its file
+size, and source path. Ask:
 
 > "Here is the ingest plan. Would you like to (a) request any changes, or (b) confirm
 > and proceed?"
 
-**(a) Suggest changes** — Make the requested edits to cell
-`b0000003-0000-0000-0000-000000000003` in the notebook (e.g. lower `CHUNK_TARGET_GB`,
-change `MODE`, disable a table), re-run the pre-flight `nbconvert` command, extract the
-updated output, and re-present the revised plan. Repeat until the user is satisfied.
+Do not run the notebook until the user explicitly confirms.
 
-**(b) Confirm and proceed** — Edit cell `b0000003-0000-0000-0000-000000000003` to set
-`CONFIRMED = True`, then execute the full notebook:
+After confirmation, tell the user the notebook was created and where, and that they can
+run it themselves in JupyterHub or Claude can execute it directly (preferred). If the
+user confirms or doesn't object, execute it:
 
 ```bash
-source .venv-berdl/bin/activate
-jupyter nbconvert --to notebook --execute --inplace \
-    --ExecutePreprocessor.timeout=-1 \
-    <DATA_DIR>/<dataset>_ingest.ipynb
+set -a && source .env 2>/dev/null; set +a && jupyter nbconvert --to notebook --execute --inplace <DATA_DIR>/<dataset>_ingest.ipynb
 ```
+
+If the user prefers to run it manually, they can open it in JupyterHub and run cells
+interactively.
 
 **What the notebook does:**
 
-1. Counts lines in each source file and calculates per-table chunk sizes
-2. Prints the pre-flight plan and blocks until `CONFIRMED = True`
-3. Uploads all files to MinIO bronze (full files, no chunking at this stage)
-4. Loads any existing progress log from MinIO (enables resume on restart)
-5. For each table:
-   - **≤ CHUNK_TARGET_GB**: ingests via `ingest()` in one shot
-   - **> CHUNK_TARGET_GB**: streams the local file with `pandas.read_csv(chunksize=N)`,
-     writes each chunk to Delta via `spark.createDataFrame()`, logs progress to MinIO after each chunk
-6. Verifies final row counts against expected line counts
+1. Connects to Spark and MinIO directly (no tunnels).
+2. Detects source format and parses schema.
+3. Uploads source files to MinIO bronze via `minio_client.fput_object()` — skips files
+   already present at the correct size.
+4. For each table: builds a config JSON, uploads it to MinIO, calls `ingest()`, checks
+   `success: true`, logs completion to the progress JSONL in MinIO.
+5. Verifies row counts via `spark.sql(COUNT(*))`.
+6. Performs the metadata second push.
 
-**Resuming an interrupted ingest:** If the notebook fails mid-ingest (e.g. Spark session timeout),
-simply re-run the ingest cell. The progress log is loaded at startup — already-completed chunks
-and tables are skipped automatically.
+**Resuming an interrupted ingest:** Re-run the Ingest cell. The progress log in MinIO
+is read at the start of the cell — completed tables are skipped automatically.
 
-**Disabling chunked ingest:** Set `CHUNKED_INGEST = False` to force all tables through the
-single-batch `ingest()` pipeline regardless of size. Only use this for datasets where all
-tables are small enough to ingest without timeout risk.
+### Step 5: Confirm results and report paths
 
-### Step 5: Confirm results
+After the notebook completes, report:
 
-Report to the user:
-- Namespace created: `{tenant}_{dataset}`
-- Tables ingested and row counts (from notebook verification cell output)
-- Bronze path: `s3a://cdm-lake/tenant-general-warehouse/{tenant}/datasets/{dataset}/`
-- Silver path: `s3a://cdm-lake/tenant-sql-warehouse/{tenant}/{tenant}_{dataset}.db`
-- Progress log: `s3a://cdm-lake/tenant-general-warehouse/{tenant}/datasets/{dataset}/_ingest_progress.jsonl`
+- **Namespace:** `{NAMESPACE}` — query this in BERDL (Polaris manages the physical location)
+- **Tables ingested** and row counts
+- **Bronze path:** `s3a://cdm-lake/{BRONZE_PREFIX}/`
+- **Progress log:** `s3a://cdm-lake/{PROGRESS_KEY}`
+- **Metadata:** `s3a://cdm-lake/{METADATA_PREFIX}/`
 
-Confirm row counts match expected line counts. If there is a mismatch, the progress log
-records `start_line`, `end_line`, and `rows_written` per chunk — the user can query the last
-ingested row in Delta and compare against the logged line range to locate the gap.
-
-## Scripts
-
-- `scripts/bootstrap_client.sh`: create `.venv-berdl` and install base query packages.
-- `scripts/bootstrap_ingest.sh`: install ingest-specific packages on top of `.venv-berdl`.
+These paths can be used to query the data via the `berdl` skill, or to verify the
+upload in the MinIO browser (`https://minio.berdl.kbase.us`).
 
 ## References
 
-- `references/ingest.ipynb`: notebook template — copied into `<DATA_DIR>/` and configured for each ingest job.
-- `berdl-query/references/proxy-setup.md`: SSH tunnel and pproxy setup for off-cluster access.
+- `references/ingest_jh.ipynb`: notebook template for in-cluster ingest.
+- `references/on-cluster-bypass.md`: pattern for bypassing `ingest_lib.initialize()` when running inside JupyterHub.
+- `berdl-ingest-remote/SKILL.md`: off-cluster variant (requires SSH tunnels + pproxy).
 
 ## Progress Log Format
 
-The progress log is a JSONL file at `s3a://cdm-lake/{BRONZE_PREFIX}/_ingest_progress.jsonl`.
-Each line is one JSON object. There are two entry types:
+Same format as `berdl-ingest-remote`. JSONL at
+`s3a://cdm-lake/{BRONZE_PREFIX}/_ingest_progress.jsonl`. Entry types:
 
-**Chunk entry** (written after each chunk or single-table ingest):
-```json
-{"table": "my_table", "chunk": 2, "start_line": 4000001, "end_line": 6000000,
- "rows_written": 2000000, "rows_cumulative": 6000000,
- "status": "ingested", "timestamp": "2026-02-23T14:32:00Z"}
-```
-
-**Completion entry** (written when all chunks for a table are done):
+**Completion entry** (one per table, written by the ingest cell):
 ```json
 {"table": "my_table", "status": "complete",
- "total_rows": 6000000, "total_chunks": 3, "timestamp": "2026-02-23T15:10:00Z"}
+ "rows_written": 228709, "timestamp": "2026-05-05T14:30:00Z"}
 ```
 
-`start_line` and `end_line` are 1-indexed data line numbers (header excluded). If a row
-count mismatch is found, use these to cross-check against the Delta table's last row.
+On re-run, the ingest cell reads the log and skips any table with `"status": "complete"`.
 
 ## Error Handling
 
-- **Ingest packages missing**: run `bash scripts/bootstrap_ingest.sh`.
-- **MinIO config missing or alias not found** (`FileNotFoundError` or `KeyError` on
-  `berdl-minio`): run `bash scripts/configure_mc.sh --berdl-proxy`, then re-run Step 0b.
-- **MinIO connection failed** (credentials invalid or expired): re-run
-  `bash scripts/configure_mc.sh --berdl-proxy` to refresh the alias, confirm pproxy is
-  running on :8123, then retry. Never print `accessKey` or `secretKey` when diagnosing.
-- **SSH tunnels down (ports 1337/1338)**: tell the user to run the missing tunnel command(s)
-  in a terminal (replace `<username>` with their LBNL username), then re-run the
-  initialization cell:
-  ```bash
-  ssh -f -N -o ServerAliveInterval=60 -D 1338 ac.<username>@login1.berkeley.kbase.us
-  ssh -f -N -o ServerAliveInterval=60 -D 1337 ac.<username>@login1.berkeley.kbase.us
-  ```
-- **pproxy not running (:8123)**: started automatically by the notebook.
-- **JupyterHub server not running**: this should have been caught in Step 0. Re-run Step 0
-  (`berdl-remote login` then `berdl-remote spawn --timeout 120`, then `sleep 40`) before
-  retrying. Do not ask the user to log into JupyterHub manually.
-- **Spark session timeout mid-table**: a health check runs once per table before ingest
-  begins. If Spark dies mid-table during a chunked ingest, the chunk write raises and
-  the ingest cell fails. Re-run the cell to resume automatically from the last completed
-  chunk — no data is lost because the progress log records every completed chunk.
-- **Spark session timeout limit (1 hour)**: cluster admin task — request BERDL
-  administrators to increase Spark Connect session timeout to 10 hours.
-- **Namespace already exists**: confirm with user before re-ingesting; `MODE = "overwrite"` on
-  the first chunk will replace the existing Delta table.
-- **Row count mismatch**: inspect the progress log for `start_line`/`end_line` of the last
-  chunk, and check the quarantine path at `{SILVER_BASE}/quarantine/` for rejected rows.
-- **Schema type errors**: recheck `.sql` parsing output in the schema cell and adjust column
-  types in the config cell before re-running the ingest cell.
-- **`createDataFrame` size errors over Spark Connect**: if a chunk is too large for the gRPC
-  channel, reduce `CHUNK_TARGET_GB` (e.g. to 10 or 5) and re-run. The progress log will
-  resume from the last completed chunk.
+- **`KBASE_AUTH_TOKEN` missing:** Same message as `berdl-ingest-remote` — never ask
+  the user to paste their token into chat.
+- **`data_lakehouse_ingest` not importable:** Package not installed in this JH
+  environment. Ask the user to check their environment setup — do not attempt to pip
+  install without confirmation.
+- **Spark Connect build fails:** The JH environment or Spark sidecar is not configured
+  correctly, or `KBASE_AUTH_TOKEN` / `USER` is unset. Report the error verbatim and stop
+  — this is not a tunnel issue and cannot be fixed by the agent.
+- **MinIO client build fails:** The `MINIO_ENDPOINT_URL` / `MINIO_ACCESS_KEY` /
+  `MINIO_SECRET_KEY` env vars are not set in this JH environment. Report the error and
+  ask the user to check with a BERDL admin.
+- **`ingest()` returns `success: false`:** Raise immediately — do not silently continue
+  to the next table. Show the `errors` list from the report.
+- **Row count mismatch:** Check `s3a://cdm-lake/{BRONZE_PREFIX}/_ingest_progress.jsonl`
+  for the per-table completion entries to locate the gap.
+- **Source file not found:** Verify `DATA_DIR` is accessible from the JH pod. Global
+  share paths (e.g. `/clusterfs/`) may require the server to be spawned with the
+  correct mount options.
+- **Namespace already exists:** Confirm with user before `MODE = "overwrite"`.
 
 ## Safety Rules
 
-1. Never print, log, or echo any MinIO credential fields (`accessKey`, `secretKey`).
-   When inspecting `~/.mc/config.json` for diagnostics, only print the `url` field.
-2. Never print, log, or write `KBASE_AUTH_TOKEN` in any notebook, script, or file. Always
-   access it exclusively through `os.getenv("KBASE_AUTH_TOKEN")` or the `.env` file loader —
-   never hardcode or echo the value.
-3. Do not set `MODE = "overwrite"` for an existing namespace without explicit user confirmation.
-4. Do not set `CONFIRMED = True` on behalf of the user — always present the pre-flight plan
-   and wait for explicit confirmation before proceeding.
-5. Do not commit the notebook with credentials visible in cell outputs.
+1. Never print, log, or echo any MinIO credential fields. When diagnosing MinIO issues,
+   never show `accessKey` or `secretKey`.
+2. Never print, log, or write `KBASE_AUTH_TOKEN`. Always access via
+   `os.getenv("KBASE_AUTH_TOKEN")` or the `.env` file loader.
+3. Do not set `MODE = "overwrite"` for an existing namespace without explicit user
+   confirmation.
+4. Always present the ingest plan and wait for explicit user confirmation before
+   executing the notebook.
+5. **If a token appears in the conversation:** stop immediately and send the security
+   alert message from `berdl-ingest-remote` (revoke token, do not use, add to `.env`).
+6. **Never auto-resume a prior ingest.** At Step 1, if memory contains an in-progress
+   ingest, mention it once as an option and wait for explicit user choice.
 
 ## Pitfall Detection
 
-When you encounter errors, unexpected results, retry cycles, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.
+When you encounter errors, unexpected results, retry cycles, or data surprises during
+this task, follow the pitfall-capture protocol. Read
+`.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine
+whether the issue should be added to the active project's `projects/<id>/memories/pitfalls.md`.

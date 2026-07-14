@@ -1,0 +1,157 @@
+{
+  "schema_version": "adversarial-review-paper.v3",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_2",
+  "project_id": "caulobacter_fur_lipida_loss",
+  "draft_number": 2,
+  "reviewed_at": "2026-06-07T00:00:00Z",
+  "reviewer_model": "opus",
+  "prompt_version": "adversarial_paper.v3",
+  "tier": "STRONG",
+  "summary": {
+    "total_findings": 10,
+    "by_severity": {"P0": 0, "P1": 6, "P2": 3, "info": 1},
+    "by_class": {
+      "central_objection": 1,
+      "report_drift": 2,
+      "abstract_body_mismatch": 1,
+      "claim_evidence": 3,
+      "register_drift": 1,
+      "unbacked_quantitative": 1,
+      "missing_section": 1
+    }
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "class": "central_objection",
+      "severity": "info",
+      "confidence": "high",
+      "issue": "The paper's central vulnerability is the distance between its framing — title 'A coordinated envelope-remodeling program' and Discussion's 'a coordinated response in which a single regulatory circuit (ChvG-ChvI) drives a specific effector output (Pal-Tol upregulation)' — and what its own data establish. Of the named mechanistic layers, two are explicitly NOT supported by the paper's own analyses: the Delta-sspB respiratory arm (Path B fold 1.04x, p=0.515, indistinguishable from genome background) and CtpA (formally REJECTED, FDR=0.109, protein undetected). A third, canonical Lpt repurposing, has direct transcript-protein discordance (transcript up, LptD/LptE protein down). A hostile reviewer asks: 'Two of your named layers are negatives by your own pre-registered bar, a third is internally contradictory, and your strongest external validation (Path A fitness) is only marginally enriched (1.60x, p=0.016) — in what sense is this a coordinated program rather than a heterogeneous catalog of layers at very different evidence grades, assembled into a single narrative by the title?' The paper PARTIALLY preempts this: Discussion paragraph (manuscript L177) explicitly corrects the symmetric dual-release-switch framing, and the per-claim evidence grading is honest throughout the Results and Conclusions. But the TITLE and the Discussion synthesis sentence (L187) re-assert the 'coordinated / single circuit drives' language that the body has just disowned, so the most-read elements over-claim the very coordination the body grades down. Fix: bring the title and the L187 synthesis into line with the graded body — e.g., retitle toward 'A multi-layer, evidence-graded envelope-remodeling response' and rewrite L187 to state convergence (Pal is a member of both the late ChvI cohort and the PG set) rather than causal drive. Convert the unstated 'is it really coordinated?' weakness into a stated framing limitation in the Limitations section.",
+      "fix_target": "discussion.v1.md",
+      "fix_hint": "Retitle to drop the unqualified 'coordinated ... program' claim (e.g., 'A multi-layer, evidence-graded envelope-remodeling response enables lipid A dispensability'), rewrite the L187 synthesis sentence from 'drives' to convergent co-membership, and add a Limitations sentence conceding that 'coordination' across layers is an interpretive frame, not a demonstrated regulatory hierarchy, given that two named layers are negatives and one is transcript-protein discordant."
+    },
+    {
+      "id": "F002",
+      "class": "report_drift",
+      "severity": "P1",
+      "confidence": "high",
+      "section": "Results",
+      "line_range": "L167",
+      "paragraph_quote": "FtsH-mediated LpxC proteolysis — the mechanism controlling LPS biosynthesis rate in enterobacteria — is not conserved in alphaproteobacteria [Langklotz2011], a difference that may lower the energetic and regulatory barriers to LpxC deletion in Caulobacter relative to organisms with tight FtsH-mediated LpxC turnover.",
+      "issue": "This sentence introduces an entirely new mechanistic argument — that absence of FtsH-mediated LpxC turnover in alphaproteobacteria 'may lower the energetic and regulatory barriers to LpxC deletion' — that appears NOWHERE in REPORT.md. REPORT contains no mention of Langklotz, FtsH, or LpxC proteolysis at any point, and reframing_log.md is empty ('No reframings recorded yet'). The Langklotz2011 factual premise (FtsH-LpxC proteolysis conserved in enterobacteria but not all Gram-negatives) is accurately represented and the citation is real and correctly mapped, so this is NOT a citation fabrication. The defect is an unacknowledged novel synthesis: a causal/speculative claim ('may lower the barriers to LpxC deletion') is inserted into Results, not derived from any analysis in this study, and not logged. It is also misplaced — a speculative interpretive claim belongs in Discussion, not in the comparative-genomics Results subsection.",
+      "report_evidence": [
+        {"section": "(whole REPORT.md)", "quote": "REPORT.md contains no occurrence of 'Langklotz', 'FtsH', or 'LpxC proteolysis'; the FtsH/barriers argument is absent from Findings 1-6 and the Mechanistic Synthesis."},
+        {"section": "reframing_log.md", "quote": "No reframings recorded yet."}
+      ],
+      "fix_target": "reframing_log.md",
+      "fix_hint": "Either (a) move the Langklotz/FtsH point to Discussion and soften to clearly literature-contextual framing without the unsupported 'lowers the barriers to LpxC deletion' inference, OR (b) if the inference is retained, add a reframing_log.md entry documenting that this comparative-context argument is novel synthesis not present in REPORT.md and the basis for including it."
+    },
+    {
+      "id": "F003",
+      "class": "abstract_body_mismatch",
+      "severity": "P1",
+      "confidence": "high",
+      "issue": "The manuscript is internally inconsistent about how many mechanistic layers it presents. The Abstract (L13: 'to define four mechanistic layers at their actual evidence levels'), the Introduction (L27: 'Four mechanistic layers were tested'), and the Figure 1 caption (L71: 'Synthesis overview of the four mechanistic layers') all say FOUR. But the Results overview (L67) says: 'Figure 1 presents a four-panel synthesis integrating the quantitative outputs of all five analytic layers' — and then enumerates only FOUR items ('Delta-fur concordance and Delta-sspB buffering, ChvI phase structure, sphingolipid-Lpt panel, and PG directionality'). So L67 is doubly broken: it says 'five' where the rest of the paper says 'four', and it says 'five' while listing four. REPORT.md itself consistently uses 'five mechanism layers' (e.g., the master-figure caption '4-panel summary of all five mechanism layers'), so the manuscript's switch to a four-layer framing is also an unlogged reframe (reframing_log.md empty). A reader cannot tell whether the architecture has four or five layers.",
+      "report_evidence": [
+        {"section": "Key Findings (master figure caption)", "quote": "Master synthesis figure - 4-panel summary of all five mechanism layers"}
+      ],
+      "fix_target": "results.v1.md",
+      "fix_hint": "Pick one count and apply it everywhere. Recommended: keep 'four mechanistic layers' (matching H1-H4 and the abstract) and fix L67 to 'integrating the quantitative outputs of the four analytic layers'. If 'five' is intended (counting Delta-fur concordance and Delta-sspB buffering as two separate layers), update the abstract, intro, and Fig 1 caption to match and enumerate all five. Log the four-vs-five reframe relative to REPORT in reframing_log.md."
+    },
+    {
+      "id": "F004",
+      "class": "claim_evidence",
+      "severity": "P1",
+      "confidence": "high",
+      "section": "Results",
+      "line_range": "L79, L88",
+      "paragraph_quote": "The ΔsspB-buffered Path B subset (orange, n = 53 [C-003]) clusters near zero on the ordinate despite strong negative Leaden values ... [Figure 2 caption]  ||  Path B (ΔsspB-buffered, respiratory chain) | 26 | 9 | 34.6% [Table 1]",
+      "issue": "The label 'Path B' is used for two different gene-set cardinalities without reconciliation. The Figure 1 caption (L71), Figure 2 caption (L79), and body text (L75) define the 'ΔsspB-buffered Path B subset' as n=53 (the 53 of 93 Leaden Delta-fur DEGs that are buffered). But the hypergeometric enrichment body (L81: 'Path B (the ΔsspB-buffered respiratory set of 26 genes)') and Table 1 (L88: 'Path B ... | 26') use n=26. Both numbers are individually REPORT-backed (REPORT Finding 1: '53 of those 93 Leaden Delta-fur DEGs are buffered'; REPORT Finding 2 table: 'Path B ... 26'; data files NB02_pathB_buffered_scoring.csv has 53 rows while the hypergeometric verdict uses 26). The problem is that the manuscript never tells the reader that the n=53 buffered cohort and the n=26 fitness-scorable Path B are different sets under the same name. A reviewer reading Figure 2 ('Path B n=53') then Table 1 ('Path B n=26') will flag an apparent contradiction.",
+      "report_evidence": [
+        {"section": "Finding 1", "quote": "53 of those 93 Leaden Delta-fur DEGs are buffered in our data (logFC ~0 in 4584-vs-4580 despite -5 to -9 in Leaden)"},
+        {"section": "Finding 2 (table)", "quote": "Path B (SspB-buffered, cbb3/fix-rich) | 26 | 9 | 34.6% | fold = 1.04x, p = 0.515 | indistinguishable from background"}
+      ],
+      "fix_target": "results.v1.md",
+      "fix_hint": "Disambiguate the two sets: in the figure captions and L75, call the n=53 set 'the buffered cohort (53 of 93 Leaden DEGs)' and reserve 'Path B (n=26)' for the fitness-scorable subset used in the hypergeometric test, OR add an explicit sentence stating that of the 53 buffered genes, 26 had RB-TnSeq fitness coverage and constitute the Path B enrichment set."
+    },
+    {
+      "id": "F005",
+      "class": "register_drift",
+      "severity": "P1",
+      "confidence": "high",
+      "section": "Discussion",
+      "line_range": "L187",
+      "paragraph_quote": "The convergent induction of Pal by both the ChvG-ChvI regulatory pathway (late-consequence cohort, Layer 2) and the PG-remodeling program (Layer 4) is consistent with a coordinated response in which a single regulatory circuit (ChvG-ChvI) drives a specific effector output (Pal-Tol upregulation) that serves multiple purposes simultaneously.",
+      "issue": "The verb 'drives' asserts a causal/regulatory relationship — ChvG-ChvI as the regulator that produces Pal upregulation — that the data do not establish. The evidence is co-membership: Pal (CCNA_00784) appears in the late ChvI cohort AND is up in the PG set. That is correlational convergence across two analytic frameworks, not a demonstration that ChvI regulates Pal (no ChvI deletion, ChIP, or promoter analysis is presented). REPORT is careful to call this 'convergence' / 'cross-notebook convergence', never 'drives'. The 'single regulatory circuit drives a specific effector output' phrasing also re-asserts the over-coordination framing the same Discussion disowns at L177. Over-claim from convergence to causation.",
+      "report_evidence": [
+        {"section": "Finding 5", "quote": "Pal CCNA_00784 +2.08 transcript AND +2.84 protein ... Also a top late-cohort ChvI gene from NB03 - strong cross-notebook convergence."},
+        {"section": "Mechanistic Synthesis (§8)", "quote": "upregulation of the Tol-Pal complex (including Pal itself) is consistent with increased retrograde PL transport to restore OM lipid homeostasis"}
+      ],
+      "fix_target": "discussion.v1.md",
+      "fix_hint": "Replace 'a single regulatory circuit (ChvG-ChvI) drives a specific effector output (Pal-Tol upregulation)' with convergence language, e.g. 'Pal is induced as both a member of the late ChvI cohort and a PG-remodeling effector, convergent evidence consistent with — but not establishing — ChvI regulation of Pal in this state.'"
+    },
+    {
+      "id": "F006",
+      "class": "unbacked_quantitative",
+      "severity": "P1",
+      "confidence": "high",
+      "section": "Results",
+      "line_range": "L150 (also Methods L55)",
+      "paragraph_quote": "LpxA, LpxC, LpxD, LpxB, and LpxK each returned zero PaperBLAST hits for C. crescentus despite NCBI confirming 11, 15, 15, 18, and 18 annotation hits, respectively [C-048, C-049, C-050, C-061].",
+      "issue": "The manuscript states that LpxB 'returned zero PaperBLAST hits' for C. crescentus (repeated in Methods L55: 'LpxA, LpxC, LpxD, LpxB, and LpxK all returning zero PaperBLAST hits'). REPORT.md contradicts this: its PaperBLAST-vs-NCBI table records LpxB at 1 PaperBLAST hit and explicitly classifies it as 'PaperBLAST under-count', distinct from the true false negatives (LpxA, LpxC, LpxD, LpxK = 0). The manuscript folds the 1-hit under-count case into the zero-hit false-negative group, mis-stating the count and slightly inflating the false-negative illustration. The NCBI counts (11/15/15/18/18) are correct. This does not change the headline ~80% false-negative claim, but it is a number that directly contradicts REPORT.",
+      "report_evidence": [
+        {"section": "NB06/NB06b PaperBLAST false-negative table", "quote": "| LpxB | 1 | 18 | PaperBLAST under-count |"}
+      ],
+      "fix_target": "results.v1.md",
+      "fix_hint": "Correct LpxB to '1 PaperBLAST hit (an under-count rather than a false negative)' and restate as 'LpxA, LpxC, LpxD, and LpxK each returned zero PaperBLAST hits, and LpxB returned only 1, despite NCBI confirming 11, 15, 15, 18, and 18 annotation hits respectively.' Apply the same correction in Methods L55."
+    },
+    {
+      "id": "F007",
+      "class": "missing_section",
+      "severity": "P1",
+      "confidence": "high",
+      "issue": "The manuscript names its computational tools (edgeR [Robinson2010]; scipy.stats.spearmanr, fisher_exact, hypergeom; Biopython Entrez) but provides NO version information for any of them anywhere in Methods or Data Availability — no edgeR/Bioconductor version, no Python or scipy version, no Biopython version, no R version. methods_provenance.md confirms the gap ('Packages with version info: 0'; no requirements.txt). The Data Availability section additionally still carries a placeholder repository URL ('[REPOSITORY URL TO BE PROVIDED]'). For a purely computational paper, absent software versions are a reproducibility gap that most journals' methods/reporting checklists require. The committed notebooks (00-07) will carry the environment, so the information is recoverable, which is why this is P1 rather than a hard P0 irreproducibility block — but the manuscript as written cannot be reproduced from its text alone.",
+      "fix_target": "methods.v1.md",
+      "fix_hint": "Add a 'Software and reproducibility' subsection listing exact versions (Python, scipy, R/Bioconductor, edgeR, Biopython) and a code/data availability statement with a resolvable repository DOI/URL replacing the placeholder. Populate methods_provenance.md package-version fields from the notebook environments."
+    },
+    {
+      "id": "F008",
+      "class": "report_drift",
+      "severity": "P2",
+      "confidence": "medium",
+      "section": "Discussion",
+      "line_range": "L175",
+      "paragraph_quote": "The top fitness hit ChvT provides a mechanistic connection to the ChvI layer, as ChvT is a known ChvI co-regulator [QuinteroYanes2022], suggesting that Fur derepression and ChvI engagement are not independent parallel processes but are interconnected through shared genetic components.",
+      "issue": "This sentence builds a new interpretive bridge — that Fur derepression and ChvI engagement are 'interconnected through shared genetic components' because the top Path A fitness hit ChvT is also a ChvI regulon member — that is not present in REPORT.md. REPORT lists ChvT only as a Path A top fitness hit (|t|=43.7) and as OM transport machinery for iron acquisition; it does not assert any Fur-ChvI interconnection. reframing_log.md is empty, so this synthesis is unacknowledged. The claim is hedged ('suggesting'), and the underlying citation ([QuinteroYanes2022]) plausibly supports ChvT as a ChvI regulon member, but the inferential leap to layer-interconnection is novel and unlogged. Confidence medium because the ChvT-ChvI membership premise was not independently verifiable from the provided files.",
+      "report_evidence": [
+        {"section": "Mechanistic Synthesis (§1)", "quote": "Top hits ChvT, HutA, and the FrpB cluster encode OM transport machinery whose normal job is iron acquisition."}
+      ],
+      "fix_target": "reframing_log.md",
+      "fix_hint": "Either soften to a clearly speculative observation ('ChvT's dual membership is suggestive of shared components between the Fur and ChvI layers but is not tested here') or log it in reframing_log.md as a novel Discussion-level synthesis beyond REPORT, and confirm QuinteroYanes2022 actually designates ChvT a ChvI regulon member at the point of citation."
+    },
+    {
+      "id": "F009",
+      "class": "claim_evidence",
+      "severity": "P2",
+      "confidence": "low",
+      "section": "Materials and Methods",
+      "line_range": "L47",
+      "paragraph_quote": "Hypergeometric enrichment was tested using scipy.stats.hypergeom.",
+      "issue": "Methods names scipy.stats.hypergeom as the H2 enrichment test, but methods_provenance.md's 'Statistical Tests Detected' lists only fisher_exact, pearsonr, and spearmanr ('Statistical test calls: 5 (3 unique)') — scipy.stats.hypergeom does not appear in the extracted provenance. REPORT.md independently corroborates the hypergeometric p-values (Path A p=0.016, Path B p=0.515) and the dedicated NB02b verdict, so the test almost certainly was run and the gap is an auto-extractor miss on the call form rather than a fabricated method. Flagged at low confidence so the provenance trail can be reconciled, not because the method is in doubt.",
+      "fix_target": "methods.v1.md",
+      "fix_hint": "Confirm the hypergeometric call in 02b_h2_hypergeometric_verdict.ipynb and ensure methods_provenance.md's detected-test list includes scipy.stats.hypergeom (or document why the extractor missed it), so Methods and the provenance trail agree."
+    },
+    {
+      "id": "F010",
+      "class": "claim_evidence",
+      "severity": "P2",
+      "confidence": "medium",
+      "section": "Abstract",
+      "line_range": "L13 (cf. Introduction L19, Results L167)",
+      "paragraph_quote": "Comparative genomics confirms that the sphingolipid pathway and ChvG-ChvI are absent from the three other Gram-negative species with documented LPS dispensability, explaining the species specificity of the rescue.",
+      "issue": "The abstract groups all three comparator species as having 'documented LPS dispensability', but the body is more precise: M. catarrhalis does NOT lose LPS — Introduction (L19) and Results (L167) state it 'achieves viability with structurally truncated rather than absent LPS via late-acyltransferase modification'. Truncation is not dispensability. The abstract's blanket 'three other ... species with documented LPS dispensability' therefore over-generalizes relative to the body's own careful distinction for M. catarrhalis.",
+      "fix_target": "abstract.v1.md",
+      "fix_hint": "Qualify the abstract to match the body, e.g. 'absent from three comparator Gram-negative species with documented LPS dispensability or, in the case of M. catarrhalis, LPS truncation' — or 'three other Gram-negative species that tolerate loss or truncation of LPS.'"
+    }
+  ]
+}

@@ -2,7 +2,9 @@
 
 **Purpose**: Step-by-step guide to conducting a research project using the BERIL Research Observatory, from hypothesis generation through peer review.
 
-See [overview.md](overview.md) for the data architecture and [collections.md](collections.md) for the database inventory.
+See [overview.md](overview.md) for the data architecture and
+[schema.md](schema.md) for schema documentation. Use BERDL notebook helpers for
+live access-aware database and table discovery.
 
 ---
 
@@ -30,7 +32,7 @@ You can also enter at any point. If you already have results, jump straight to `
 | Skill | Purpose | Key Inputs | Key Outputs |
 |-------|---------|------------|-------------|
 | `/berdl_start` | Orchestrate a full research project or get oriented | Research interest | Complete project (plan, notebooks, report, review) |
-| `/berdl` | Query BERDL databases via REST API | SQL query or natural-language question | Query results, schema info, data samples |
+| `/berdl` | Discover BERDL data with access-aware helpers and query with Spark SQL | SQL query or natural-language question | Query results, schema info, data samples |
 | `/berdl-discover` | Explore and document a new BERDL database | Database name | Module file in `.claude/skills/berdl/modules/`, documentation |
 | `/literature-review` | Search PubMed, Europe PMC, CORE, OpenAlex | Research topic or question | Literature summary, `references.md` |
 | `/synthesize` | Interpret results and draft findings | Project ID, notebook outputs (CSV, figures) | `REPORT.md` with findings, literature context, limitations |
@@ -45,10 +47,13 @@ Hypothesis generation, research planning, and notebook creation are handled auto
 
 ### Phase A: Orientation & Ideation
 
-The agent reads the core documentation (`PROJECT.md`, `docs/overview.md`, `docs/collections.md`, `docs/pitfalls.md`, `docs/performance.md`, `docs/research_ideas.md`), checks the environment (auth token, gh CLI), and engages with you about your research interest.
+The agent reads the core documentation (`PROJECT.md`, `docs/overview.md`,
+`docs/pitfalls.md`, `docs/performance.md`, `docs/research_ideas.md`), checks
+the environment (auth token, gh CLI), and engages with you about your research
+interest.
 
 **What happens**:
-- Explores relevant BERDL tables and their row counts
+- Explores relevant BERDL tables and their row counts using access-aware helpers
 - Checks existing projects to avoid duplicating work
 - Proposes 2-3 testable hypotheses with null and alternative formulations
 - Searches literature for context
@@ -175,7 +180,6 @@ When queries fail or return unexpected results, the pitfall-capture protocol act
 ### Key references
 
 - [overview.md](overview.md) -- Data architecture and table descriptions
-- [collections.md](collections.md) -- Full database inventory
 - [pitfalls.md](pitfalls.md) -- Common query issues and solutions
 - [research_ideas.md](research_ideas.md) -- Backlog of research questions
 - [schema.md](schema.md) -- Schema documentation index

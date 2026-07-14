@@ -96,6 +96,103 @@ class TestLoadRepositoryData:
         assert isinstance(result, RepositoryData)
         mock_parser.parse_all.assert_called_once()
 
+
+# ---------------------------------------------------------------------------
+# RepositoryParser.parse_collections
+# ---------------------------------------------------------------------------
+
+
+class TestParseCollections:
+    def _write_config(self, repo: Path, yaml_text: str):
+        config_dir = repo / "ui" / "config"
+        config_dir.mkdir(parents=True, exist_ok=True)
+        (config_dir / "collections.yaml").write_text(yaml_text)
+
+    def _write_snapshot(self, repo: Path):
+        config_dir = repo / "ui" / "config"
+        config_dir.mkdir(parents=True, exist_ok=True)
+        (config_dir / "berdl_collections_snapshot.json").write_text(
+            json.dumps(
+                {
+                    "source_url": "https://hub.berdl.kbase.us/apis/mcp",
+                    "discovered_at": "2026-04-29T00:00:00+00:00",
+                    "tenants": [
+                        {
+                            "id": "kbase",
+                            "name": "KBase",
+                            "collections": [
+                                {
+                                    "id": "kbase_ke_pangenome",
+                                    "name": "Snapshot Pangenome",
+                                    "description": "Snapshot description.",
+                                    "tables": [
+                                        {
+                                            "name": "genome",
+                                            "description": "Genome table.",
+                                            "columns": [
+                                                {
+                                                    "name": "genome_id",
+                                                    "data_type": "string",
+                                                    "description": "Genome ID.",
+                                                }
+                                            ],
+                                        }
+                                    ],
+                                }
+                            ],
+                        }
+                    ],
+                }
+            )
+        )
+
+    def test_optional_generated_snapshot_loads_before_curated_overlay(self, tmp_path):
+        self._write_snapshot(tmp_path)
+        self._write_config(
+            tmp_path,
+            "collections:\n"
+            "  - id: kbase_ke_pangenome\n"
+            "    name: Curated Pangenome\n"
+            "    category: primary\n"
+            "    icon: X\n"
+            "    description: Curated description.\n",
+        )
+
+        collections = RepositoryParser(tmp_path).parse_collections()
+
+        assert len(collections) == 1
+        assert collections[0].id == "kbase_ke_pangenome"
+        assert collections[0].name == "Curated Pangenome"
+        assert collections[0].tenant_id == "kbase"
+        assert collections[0].schema_status == "discovered"
+        assert collections[0].curation_status == "curated"
+
+    def test_missing_snapshot_falls_back_to_curated_config(self, tmp_path):
+        self._write_config(
+            tmp_path,
+            "collections:\n"
+            "  - id: kbase_ke_pangenome\n"
+            "    name: Curated Pangenome\n"
+            "    category: primary\n"
+            "    icon: X\n"
+            "    description: Curated description.\n",
+        )
+
+        collections = RepositoryParser(tmp_path).parse_collections()
+
+        assert len(collections) == 1
+        assert collections[0].id == "kbase_ke_pangenome"
+        assert collections[0].tenant_id is None
+        assert collections[0].schema_status == "curated"
+
+    def test_optional_generated_snapshot_tables_are_available_as_schema_tables(self, tmp_path):
+        self._write_snapshot(tmp_path)
+
+        tables = RepositoryParser(tmp_path).parse_berdl_snapshot_tables()
+
+        assert tables["kbase_ke_pangenome"][0].name == "genome"
+        assert tables["kbase_ke_pangenome"][0].columns[0].name == "genome_id"
+
     def test_none_source_calls_parser(self):
         with patch("app.dataloader.get_parser") as mock_get_parser:
             mock_parser = MagicMock()
@@ -135,7 +232,7 @@ class TestContributorKey:
 
 class TestAggregateContributors:
     def _make_project(self, pid, contributors):
-        from app.models import Contributor, Project
+        from app.models import Project
         return Project(
             id=pid,
             title=pid,
@@ -620,31 +717,145 @@ class TestParseResearchIdeas:
 
 
 # ---------------------------------------------------------------------------
-# RepositoryParser._parse_row_counts
+# RepositoryParser.parse_atlas
 # ---------------------------------------------------------------------------
 
 
-class TestParseRowCounts:
-    def setup_method(self):
-        self.parser = RepositoryParser.__new__(RepositoryParser)
-
-    def test_parses_row_counts(self):
-        content = (
-            "## Table Summary\n\n"
-            "| Table | Row Count | Description |\n"
-            "|-------|-----------|-------------|\n"
-            "| genome | 293,059 | Genome rows |\n"
-            "| feature | 1,500,000 | Gene features |\n"
-            "\n---\n"
+class TestParseAtlas:
+    def _write_atlas_page(self, tmp_repo, rel_path="topics/example.md", **overrides):
+        atlas_dir = tmp_repo / "atlas"
+        page_path = atlas_dir / rel_path
+        page_path.parent.mkdir(parents=True, exist_ok=True)
+        frontmatter = {
+            "id": "topic.example",
+            "title": "Example Topic",
+            "type": "topic",
+            "status": "draft",
+            "summary": "Example summary.",
+            "source_projects": ["alpha_project"],
+            "source_docs": ["docs/discoveries.md"],
+            "related_collections": ["kbase_ke_pangenome"],
+            "confidence": "medium",
+            "generated_by": "pytest",
+            "last_reviewed": "2026-04-28",
+            "related_pages": ["claim.example"],
+            "order": 7,
+        }
+        frontmatter.update(overrides)
+        yaml_text = "\n".join(
+            f"{key}: {json.dumps(value)}" for key, value in frontmatter.items()
         )
-        result = self.parser._parse_row_counts(content)
-        assert result["genome"] == 293059
-        assert result["feature"] == 1500000
+        page_path.write_text(f"---\n{yaml_text}\n---\n# Example Topic\n\n## Detail\n\nBody.")
+        return page_path
 
-    def test_no_summary_section(self):
-        content = "## Overview\n\nNo table summary here.\n"
-        result = self.parser._parse_row_counts(content)
-        assert result == {}
+    def test_no_atlas_dir_returns_empty_index(self, tmp_repo):
+        parser = RepositoryParser(repo_path=tmp_repo)
+        atlas = parser.parse_atlas()
+        assert atlas.pages == []
+        assert atlas.links == []
+
+    def test_parses_nested_atlas_page(self, tmp_repo):
+        self._write_atlas_page(tmp_repo)
+        parser = RepositoryParser(repo_path=tmp_repo)
+        atlas = parser.parse_atlas()
+        assert len(atlas.pages) == 1
+        page = atlas.pages[0]
+        assert page.id == "topic.example"
+        assert page.path == "topics/example"
+        assert page.section == "topics"
+        assert page.source_projects == ["alpha_project"]
+        assert page.headings[0].title == "Detail"
+        assert atlas.links[0].target_id == "claim.example"
+
+    def test_skips_missing_frontmatter(self, tmp_repo):
+        atlas_dir = tmp_repo / "atlas"
+        atlas_dir.mkdir()
+        (atlas_dir / "bad.md").write_text("# Missing frontmatter")
+        parser = RepositoryParser(repo_path=tmp_repo)
+        assert parser.parse_atlas().pages == []
+
+    def test_skips_invalid_page_type(self, tmp_repo):
+        self._write_atlas_page(tmp_repo, type="unknown")
+        parser = RepositoryParser(repo_path=tmp_repo)
+        assert parser.parse_atlas().pages == []
+
+    def test_get_page_helpers(self, tmp_repo):
+        self._write_atlas_page(tmp_repo)
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        assert atlas.get_page_by_id("topic.example").title == "Example Topic"
+        assert atlas.get_page_by_path("topics/example.md").id == "topic.example"
+        assert atlas.pages_by_type("topic")[0].id == "topic.example"
+
+    def test_section_index_path_resolves_without_index_suffix(self, tmp_repo):
+        self._write_atlas_page(
+            tmp_repo,
+            rel_path="topics/index.md",
+            id="topics.index",
+            title="Topics",
+            type="meta",
+            related_pages=[],
+        )
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        assert atlas.get_page_by_path("topics").id == "topics.index"
+        assert atlas.get_page_by_path("topics/index").url == "/atlas/topics"
+
+    def test_rewrites_relative_links_to_atlas_links(self, tmp_repo):
+        page_path = self._write_atlas_page(tmp_repo)
+        page_path.write_text(
+            page_path.read_text() + "\n[Relative](../claims/example.md)\n"
+        )
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        page = atlas.get_page_by_id("topic.example")
+        assert "/atlas/claims/example" in page.body
+
+    def test_parses_conflict_page_type_and_metadata(self, tmp_repo):
+        self._write_atlas_page(
+            tmp_repo,
+            rel_path="conflicts/example.md",
+            id="conflict.example",
+            title="Example Conflict",
+            type="conflict",
+            source_projects=["alpha_project", "beta_project"],
+            related_pages=["topic.example"],
+            conflict_status="unresolved",
+            affected_pages=["topic.example"],
+            evidence_sides=[
+                {"side": "one", "support": "One side."},
+                {"side": "two", "support": "Other side."},
+            ],
+            resolving_work=["Run a resolving analysis."],
+        )
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        page = atlas.get_page_by_id("conflict.example")
+        assert page.type == "conflict"
+        assert page.metadata["conflict_status"] == "unresolved"
+
+    def test_parses_opportunity_page_type_and_metadata(self, tmp_repo):
+        self._write_atlas_page(
+            tmp_repo,
+            rel_path="opportunities/example.md",
+            id="opportunity.example",
+            title="Example Opportunity",
+            type="opportunity",
+            source_projects=["alpha_project", "beta_project"],
+            related_pages=["topic.example"],
+            opportunity_status="candidate",
+            opportunity_kind="analysis",
+            impact="high",
+            feasibility="medium",
+            readiness="high",
+            evidence_strength="medium",
+            linked_conflicts=["conflict.example"],
+            linked_products=["data.example-product"],
+            target_outputs=["A ranked analysis plan."],
+            review_routes=["alpha_project"],
+            evidence=[{"source": "alpha_project", "support": "Test support."}],
+        )
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        page = atlas.get_page_by_id("opportunity.example")
+        assert page.type == "opportunity"
+        assert page.metadata["opportunity_status"] == "candidate"
+        assert page.metadata["impact"] == "high"
 
 
 # ---------------------------------------------------------------------------

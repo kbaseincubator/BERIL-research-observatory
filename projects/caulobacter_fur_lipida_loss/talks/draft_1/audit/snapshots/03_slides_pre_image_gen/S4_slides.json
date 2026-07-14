@@ -1,0 +1,82 @@
+{
+  "schema_version": "compose-fragment.v2",
+  "substory_id": "S4",
+  "substory_punchline": "Peptidoglycan synthesis downshifts with targeted Pal-Tol induction — a coordinated wall remodel.",
+  "throughline_id": "TL2",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "section_divider",
+      "content": {
+        "punchline": "Peptidoglycan synthesis downshifts with targeted Pal-Tol induction — a coordinated wall remodel.",
+        "substory_number": 4
+      },
+      "speaker_notes": "We have now seen three layers of Caulobacter's adaptive response to lipid A loss: Fur-released transport relief, ChvI's two-phase signaling cascade, and the constitutive sphingolipid pool moved by maintained Lpt machinery. A natural question at this point is whether the outer envelope response stops there — or whether the cell wall itself reorganizes. This section answers that question directly: the peptidoglycan layer does remodel, and it does so in a highly directed way. The broad pattern is a downshift in the normal division and elongation peptidoglycan turnover machinery — penicillin-binding proteins, murein biosynthesis enzymes, endopeptidases — while a specific subset of lytic transglycosylases and, most notably, the Pal anchoring factor of the Tol-Pal complex are specifically induced. The Pal induction is the mechanistically richest finding in this layer because Pal shows up independently in two different analyses: the late-consequence ChvI cohort from NB03 and the pre-curated PG-remodeling set from NB05. That kind of cross-notebook convergence is a meaningful signal. The mechanistic interpretation, grounded in Tan and Chng 2025, is that Tol-Pal upregulation supports retrograde phospholipid transport to restore OM lipid balance when the LPS outer leaflet is gone — a reframing of what Tol-Pal actually does that only became available in the literature recently. The caveat to carry throughout this section: the protein-level data are single-replicate, so the Pal and SdpA protein inductions are directional findings that will need replicated proteomics to confirm. The transcript-level Pal induction is on firmer statistical ground. The next three slides walk through the experimental design, the heatmap of 28 loci, and the mechanistic interpretation in that order.",
+      "evidence_anchors": []
+    },
+    {
+      "position": 1,
+      "layout": "methods_summary",
+      "content": {
+        "title": "H4 PG-remodeling test: pre-curated gene set locked before differential expression",
+        "bullets": [
+          "Pre-curated gene set: 53 PG-remodeling loci (penicillin-binding proteins, murein synthases, endopeptidases, Tol-Pal factors) assembled from GO annotation BEFORE DE analysis to avoid circularity",
+          "Key contrast: rescued strain 4599 (Δfur ΔsspB Δlpxc) vs. intermediate 4584 (Δfur ΔsspB, lipid A intact) — isolates the Δlpxc-specific wall response",
+          "Transcript threshold: edgeR FDR < 0.05 in 4599-vs-4584; 25 of 53 loci pass",
+          "Protein threshold: |log2(4672/4659)| > 1 in single-replicate OM proteome; 6 loci pass (no per-protein FDR available)",
+          "Hits deduplicated across modalities: 28 unique loci (25 transcript + 6 protein, with overlap)",
+          "H4 pre-registered pass criterion: ≥3 unique loci meeting either threshold; 28 observed — well above bar",
+          "Cross-notebook check: NB03 late-ChvI cohort compared independently to identify shared hits; Pal confirmed convergent"
+        ],
+        "tools_versions": [
+          {"tool": "edgeR", "version": "unknown"}
+        ],
+        "see_notes_footer": true
+      },
+      "speaker_notes": "To test whether the peptidoglycan layer remodels when lipid A is lost, we pre-curated a set of 53 PG-remodeling enzymes before running any differential expression. Gene set curation before DE is critical: it means the H4 threshold test is not circular. We are not asking 'did the top hits from DE include PG genes?' but rather 'did our prospectively defined PG gene set show up in the DE data?' The set includes penicillin-binding proteins across class A, B, and non-classical families, murein biosynthesis enzymes including MurD and the lipid-II flippase MviN/MurJ, M23-family endopeptidases, and anchoring factors including Tol-Pal complex members. The key contrast is rescued strain 4599 — Δfur ΔsspB Δlpxc, the fully lipid A-deficient strain — versus intermediate 4584, which carries Δfur ΔsspB but still has intact LpxC and thus still makes lipid A. That contrast isolates the Δlpxc-specific response from the Δfur and ΔsspB background effects. We used two evidence modalities: transcript significance by edgeR FDR < 0.05 in the 4599-vs-4584 contrast, and protein change magnitude defined as |log2| > 1 in the single-replicate OM proteome, where no per-protein FDR is calculable from a single replicate. Twenty-five loci cleared the transcript bar and six cleared the protein bar; after deduplication, 28 unique loci. The H4 pre-registered pass criterion was ≥3 unique loci — set conservatively because peptidoglycan remodeling was a post-hoc hypothesis added after the NB00 orientation surfaced SdpA at +4.8 log2 protein. At 28 loci, we clear the bar with room to spare. Two important caveats to register before the next slide. First, two loci entered the pre-curated set as regex false-positives — CCNA_00565 is a γ-glutamyltranspeptidase involved in glutathione metabolism, not PG, and CCNA_01833 is a glucosylceramidase that matched on 'amidase'. Both are flagged; no mechanistic claims rest on them, and their inclusion does not alter the H4 verdict. Second, the cross-notebook convergence step — comparing NB03's late-ChvI cohort against the NB05 PG hits — identified Pal as shared, which is the interpretive anchor of this layer.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 5"},
+        {"kind": "notebook", "ref": "notebooks/05_pg_remodeling.ipynb cells 1-5"}
+      ]
+    },
+    {
+      "position": 2,
+      "layout": "data_figure",
+      "content": {
+        "title": "28 PG-remodeling loci meet H4 threshold: broad downshift with targeted SdpA and Pal induction",
+        "figure": "figures/NB05_pg_remodeling_heatmap.png",
+        "caption": "PG-remodeling enzymes meeting H4 threshold (28/53 pre-curated loci); 20 DOWN (FtsI, PbpZ/C, MurD, endopeptidases); 8 UP including SdpA +4.8 log2 protein and Pal +2.08 transcript/+2.84 protein.",
+        "data_source": "REPORT.md §Finding 5; NB 05_pg_remodeling.ipynb cell 7"
+      },
+      "speaker_notes": "The heatmap shows the 28 PG-remodeling loci that met the H4 threshold, and the pattern is unmistakably dominated by downregulation. Twenty of the 28 are DOWN — the broad basal machinery of cell division and elongation is being dialed back. The specific losses: FtsI, the penicillin-binding protein responsible for cell-division-stage PG synthesis; PbpZ at −1.08 transcript and PbpC at −1.15 protein, both involved in cell elongation; D,D-transpeptidase at −1.27 protein; MurD biosynthesis enzyme; mviN/murJ, the lipid-II flippase; multiple M23-family endopeptidases including LdpD, LdpE, and LdpF; the amidase AmiC; the hydrolase RipA; and a membrane-bound transglycosylase at −2.47 log2 protein, the single largest protein decline in the set. Against that backdrop of broadly reduced PG synthesis turnover, three specific inductions stand out. SdpA at CCNA_01252 is the largest: +4.8 log2 protein, a soluble lytic murein transglycosylase. PleA and PbpX also increase, both multimodular transpeptidase-transglycosylases. Most mechanistically interesting is Pal at CCNA_00784: +2.08 transcript (FDR significant in 4599-vs-4584) AND +2.84 protein — the only hit in this set showing concordant induction at both transcript and protein level, and a member of the Tol-Pal envelope-integrity complex rather than the PG synthesis machinery per se. That dual-modality agreement, combined with its independent appearance in the NB03 late-ChvI cohort, makes Pal the interpretive anchor of this layer. Framing note: earlier drafts described this as 'coordinated bidirectional reorganization.' The current REPORT framing is more accurate — predominant downshift of synthesis machinery punctuated by specific inductions. The shutdown is the dominant signal; the inductions are targeted exceptions. Caveat: the protein inductions — SdpA at +4.8 and Pal at +2.84 — are from the single-replicate OM proteome. Direction is reliable; magnitudes need replicated proteomics to confirm. The transcript-level Pal induction at +2.08 (FDR < 0.05) stands on independent statistical footing.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 5"},
+        {"kind": "notebook", "ref": "notebooks/05_pg_remodeling.ipynb cells 5 and 8"}
+      ]
+    },
+    {
+      "position": 3,
+      "layout": "claim_evidence",
+      "content": {
+        "title": "Pal-Tol induction is consistent with retrograde phospholipid transport for OM lipid homeostasis",
+        "bullets": [
+          "Pal (CCNA_00784) +2.08 transcript AND +2.84 protein — convergent across NB03 late-ChvI cohort and NB05 H4 PG set, the sole gene with both modalities induced",
+          "Tan & Chng 2025 (Nat Commun 16:2293): primary Tol-Pal function is retrograde phospholipid transport for OM lipid homeostasis, not LPS-Pal structural anchoring — loss of LPS outer leaflet makes retrograde PL transport essential in Δlpxc",
+          "Caulobacter Tol-Pal is essential for OM integrity and cell division (Yeh 2010); Pal upregulation in Δlpxc is consistent with maintaining this essential complex under envelope stress"
+        ],
+        "citations": ["Tan2025", "Yeh2010"]
+      },
+      "speaker_notes": "Pal's appearance in both NB03 and NB05 is the key cross-notebook convergence of this substory. In NB03, Pal at CCNA_00784 was a member of the late-consequence ChvI cohort — induced only after lipid A is lost, at transcript logFC +2.08, flagged as a top late-cohort hit. In NB05, the same gene independently appeared as one of the eight UP hits in the pre-curated PG-remodeling analysis, with both transcript and protein data in agreement. That double-confirmation from analyses designed independently is the strongest signal in this layer. The mechanistic interpretation is grounded in Tan and Chng 2025, Nature Communications 16:2293, PMID 40055349. This paper established that the primary function of the Tol-Pal complex is retrograde phospholipid transport from the outer membrane back to the inner membrane for OM lipid homeostasis — not, as earlier drafts of our own report proposed, LPS-Pal structural anchoring via Mg2+-bridged contacts. Under Δlpxc conditions, the OM outer leaflet has lost its LPS. Maintaining OM lipid homeostasis in that context is precisely where the Tol-Pal retrograde transport function would be most needed, and upregulating Pal is consistent with increased retrograde PL transport to compensate for the altered outer-leaflet composition. A critical qualifier: this is an interpretation, not a direct measurement by our data. Our data show Pal is up at transcript and protein; the mechanistic reading derives from Tan and Chng 2025's redefinition of Tol-Pal function. Caulobacter-specific context adds another dimension: Yeh and colleagues 2010 showed that Caulobacter Tol-Pal is essential for OM integrity and for OM constriction at cell division — unlike E. coli where Tol-Pal is dispensable. That means Pal upregulation in a strain that must complete cell division without an LPS outer leaflet is not merely adaptive; it may be necessary for viability. The single-replicate protein induction (+2.84 log2) needs replicated proteomics to confirm, but the transcript result (+2.08, FDR < 0.05) is independently established. Transition to S5: all four adaptive layers are mechanistically Caulobacter-specific — Fur-regulated TBDTs, the ChvI two-component system, the anionic sphingolipid pathway, and now Tol-Pal-mediated PG remodeling. The next section asks whether those mechanisms are structurally unavailable to the other Gram-negatives that have managed to lose lipid A — and whether that unavailability explains the species specificity of the Δlpxc tolerance.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 5"},
+        {"kind": "report_section", "ref": "REPORT.md §Interpretation §8"},
+        {"kind": "notebook", "ref": "notebooks/05_pg_remodeling.ipynb cell 8"},
+        {"kind": "notebook", "ref": "notebooks/03_chvi_phase_partition_sigU.ipynb cell 4"},
+        {"kind": "citation_pool_key", "ref": "Tan2025"},
+        {"kind": "citation_pool_key", "ref": "Yeh2010"}
+      ]
+    }
+  ]
+}

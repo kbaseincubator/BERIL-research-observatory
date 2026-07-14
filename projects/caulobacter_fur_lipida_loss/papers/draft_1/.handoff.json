@@ -1,0 +1,20 @@
+{
+  "candidates_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1/throughline_candidates.md",
+  "choices": [
+    {
+      "id": "TL1",
+      "label": "Multi-layer mechanistic characterization (5 layers, comprehensive)"
+    },
+    {
+      "id": "TL2",
+      "label": "Sphingolipid substitution + Lpt repurposing + species specificity"
+    },
+    {
+      "id": "TL3",
+      "label": "Regulatory dissection: Fur regulon subset + ChvI two-phase engagement"
+    }
+  ],
+  "phase": "throughline_pick",
+  "prompt_to_user": "throughline_candidates.md written, 3 candidates (tier: STRONG, recommended mode: paper). Review candidates and pick one, then invoke beril-paper-writer continue.",
+  "resume_command": "beril-paper-writer continue /home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1"
+}

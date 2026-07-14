@@ -1,0 +1,42 @@
+{
+  "date": "2026-04-24",
+  "test": "HMP_2019_ibdmdb (HMP2) external replication via curatedMetagenomicData v3.18",
+  "n_hmp2_samples": 1627,
+  "n_hmp2_subjects": 130,
+  "n_hmp2_species": 580,
+  "training_feature_overlap": 255,
+  "subject_level_chi2": {
+    "statistic": 15.609,
+    "dof": 6,
+    "p_value": 0.016015333582797255,
+    "contingency": {
+      "0": {
+        "CD": 0,
+        "UC": 3,
+        "nonIBD": 0
+      },
+      "1": {
+        "CD": 52,
+        "UC": 30,
+        "nonIBD": 24
+      },
+      "2": {
+        "CD": 4,
+        "UC": 5,
+        "nonIBD": 2
+      },
+      "3": {
+        "CD": 9,
+        "UC": 0,
+        "nonIBD": 1
+      }
+    }
+  },
+  "projection_confidence": {
+    "mean_max_posterior": 0.861,
+    "frac_below_0.50": 0.031,
+    "frac_above_0.70": 0.804
+  },
+  "e1_tier_a_replication_sign_concord": 0.882,
+  "verdict": "PASS \u2014 HMP2 ecotype stratification significant AND E1 Tier-A >= 70% sign-concordant"
+}

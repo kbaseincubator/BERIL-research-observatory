@@ -1,0 +1,40 @@
+{
+  "schema_version": "run-summary.v1",
+  "run_n": 2,
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1",
+  "started_at": "2026-06-07T01:04:49Z",
+  "finished_at": "2026-06-07T04:24:32Z",
+  "exit_code": 0,
+  "stages_run": [
+    "ai_image_prompt-S4-pos3",
+    "citation_pool",
+    "cross_tenant.json",
+    "deck_close.json",
+    "intro",
+    "plan",
+    "qa_prep",
+    "slide_compose-S1",
+    "slide_compose-S2",
+    "slide_compose-S3",
+    "slide_compose-S4",
+    "slide_compose-S5",
+    "slide_compose-S6",
+    "speaker_notes-S1",
+    "speaker_notes-S2",
+    "speaker_notes-S3",
+    "speaker_notes-S4",
+    "speaker_notes-S5",
+    "speaker_notes-S6",
+    "throughline_candidates"
+  ],
+  "total_cost_usd": 41.9446,
+  "total_input_tokens": 28642,
+  "total_output_tokens": 493571,
+  "total_cache_read_tokens": 18481068,
+  "total_cache_creation_tokens": 4422586,
+  "total_elapsed_seconds": 10547,
+  "models_used": [
+    "opus",
+    "sonnet"
+  ]
+}

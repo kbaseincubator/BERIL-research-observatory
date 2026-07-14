@@ -1,0 +1,82 @@
+{
+  "phase": "2",
+  "notebook": "NB10",
+  "version": "v2.2 + finalize2 recovery",
+  "n_assignments": 28008764,
+  "n_producer_scores": 13739162,
+  "sankoff_n_scored": 13062,
+  "sankoff_total_gain_events": 17073194,
+  "tree_n_internal_nodes": 18988,
+  "atlas_parquet_size_mb": 94.7,
+  "pp_category_distribution": {
+    "Stable": 11829746,
+    "Innovator-Isolated": 803196,
+    "Sink/Broker-Exchange": 741587,
+    "insufficient_data": 314607,
+    "Innovator-Exchange": 50026
+  },
+  "m21_rail_n_passing": 6,
+  "m21_rail_pairs": [
+    {
+      "positive_class": "pos_betalac",
+      "negative_class": "neg_trna_synth_strict",
+      "n_pos": 110,
+      "n_neg": 21,
+      "cohens_d": 0.7916,
+      "d_ci_lower": 0.683,
+      "d_ci_upper": 0.9045,
+      "meets_d_threshold": true
+    },
+    {
+      "positive_class": "pos_betalac",
+      "negative_class": "neg_rnap_core_strict",
+      "n_pos": 110,
+      "n_neg": 3,
+      "cohens_d": 0.7526,
+      "d_ci_lower": 0.6603,
+      "d_ci_upper": 0.8645,
+      "meets_d_threshold": true
+    },
+    {
+      "positive_class": "pos_crispr_cas",
+      "negative_class": "neg_trna_synth_strict",
+      "n_pos": 6,
+      "n_neg": 21,
+      "cohens_d": 2.5045,
+      "d_ci_lower": 1.3128,
+      "d_ci_upper": 16.1618,
+      "meets_d_threshold": true
+    },
+    {
+      "positive_class": "pos_crispr_cas",
+      "negative_class": "neg_rnap_core_strict",
+      "n_pos": 6,
+      "n_neg": 3,
+      "cohens_d": 1.9053,
+      "d_ci_lower": 1.5547,
+      "d_ci_upper": 11.5801,
+      "meets_d_threshold": true
+    },
+    {
+      "positive_class": "pos_tcs_hk",
+      "negative_class": "neg_trna_synth_strict",
+      "n_pos": 310,
+      "n_neg": 21,
+      "cohens_d": 0.6472,
+      "d_ci_lower": 0.5371,
+      "d_ci_upper": 0.7995,
+      "meets_d_threshold": true
+    },
+    {
+      "positive_class": "pos_tcs_hk",
+      "negative_class": "neg_rnap_core_strict",
+      "n_pos": 310,
+      "n_neg": 3,
+      "cohens_d": 0.6651,
+      "d_ci_lower": 0.5783,
+      "d_ci_upper": 0.8216,
+      "meets_d_threshold": true
+    }
+  ],
+  "completed_utc": "2026-04-27T18:32:36Z"
+}

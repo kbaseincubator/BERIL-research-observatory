@@ -1,0 +1,537 @@
+tenant_a,topic_a,tenant_b,topic_b,shared_keys,keys
+kbase,pathway,kescience,pathway,7,"cazy, cog, ec_number, eggnog, genome_id, kegg_ko, kegg_pathway"
+kescience,pathway,phagefoundry,mobile_phage,7,"cazy, cog, ec_number, eggnog, feature_id, genome_id, kegg_pathway"
+refdata,structural,kescience,structural,6,"alphafold_pdb, gene_cluster_id, ncbi_taxon_id, pfam, pmid_doi, protein_id"
+kbase,pathway,phagefoundry,mobile_phage,6,"cazy, cog, ec_number, eggnog, genome_id, kegg_pathway"
+kbase,pangenome,refdata,taxonomy,5,"gene_cluster_id, genome_id, genus, gtdb_taxonomy, species"
+phagefoundry,mobile_phage,protect,annotation,5,"cazy, cog, ec_number, feature_id, sample_id"
+enigma,multiomics,phagefoundry,mobile_phage,5,"feature_id, genome_id, kegg_pathway, protein_id, reaction_id"
+kescience,pathway,protect,annotation,5,"cazy, cog, ec_number, feature_id, kegg_ko"
+phagefoundry,mobile_phage,refdata,structural,4,"ec_number, feature_id, ncbi_taxon_id, protein_id"
+phagefoundry,mobile_phage,nmdc,multiomics,4,"cog, ec_number, feature_id, ncbi_taxon_id"
+phagefoundry,mobile_phage,protect,genome,4,"feature_id, genome_id, ncbi_taxon_id, sample_id"
+kescience,pathway,nmdc,multiomics,4,"cog, ec_number, feature_id, kegg_ko"
+kbase,pathway,protect,annotation,4,"cazy, cog, ec_number, kegg_ko"
+kbase,pangenome,kescience,pathway,4,"cog, ec_number, feature_id, genome_id"
+kbase,pangenome,phagefoundry,mobile_phage,4,"cog, ec_number, feature_id, genome_id"
+kbase,pangenome,refdata,structural,4,"ec_number, feature_id, gene_cluster_id, pfam"
+kbase,pangenome,protect,annotation,4,"cog, ec_number, feature_id, species"
+nmdc,taxonomy,protect,taxonomy,4,"genus, ncbi_taxon_id, sample_id, species"
+nmdc,multiomics,protect,annotation,4,"cog, ec_number, feature_id, kegg_ko"
+kbase,pangenome,nmdc,multiomics,4,"cog, ec_number, feature_id, pfam"
+nmdc,multiomics,refdata,structural,4,"ec_number, feature_id, ncbi_taxon_id, pfam"
+phagefoundry,mobile_phage,protect,multiomics,3,"kegg_pathway, protein_id, reaction_id"
+enigma,genome,protect,genome,3,"genome_id, ncbi_taxon_id, sample_id"
+phagefoundry,mobile_phage,protect,taxonomy,3,"eggnog, ncbi_taxon_id, sample_id"
+phagefoundry,mobile_phage,enigma,taxonomy,3,"eggnog, ncbi_taxon_id, sample_id"
+enigma,annotation,protect,annotation,3,"cazy, cog, ec_number"
+phagefoundry,mobile_phage,nmdc,biochemistry,3,"ec_number, kegg_pathway, reaction_id"
+phagefoundry,mobile_phage,nmdc,annotation,3,"cog, ec_number, reaction_id"
+phagefoundry,mobile_phage,enigma,annotation,3,"cazy, cog, ec_number"
+kescience,annotation,phagefoundry,mobile_phage,3,"cazy, cog, genome_id"
+enigma,multiomics,kescience,pathway,3,"feature_id, genome_id, kegg_pathway"
+enigma,taxonomy,protect,taxonomy,3,"eggnog, ncbi_taxon_id, sample_id"
+kescience,pathway,nmdc,annotation,3,"cog, ec_number, kegg_ko"
+kescience,pathway,enigma,annotation,3,"cazy, cog, ec_number"
+kbase,pathway,nmdc,multiomics,3,"cog, ec_number, kegg_ko"
+kbase,pathway,nmdc,annotation,3,"cog, ec_number, kegg_ko"
+kbase,pathway,enigma,annotation,3,"cazy, cog, ec_number"
+enigma,multiomics,protect,multiomics,3,"kegg_pathway, protein_id, reaction_id"
+kbase,pathway,kescience,annotation,3,"cazy, cog, genome_id"
+nmdc,annotation,protect,annotation,3,"cog, ec_number, kegg_ko"
+kbase,pangenome,msyscolo,taxonomy,3,"genus, gtdb_taxonomy, species"
+kbase,pangenome,kescience,fitness_phenotype,3,"ec_number, genus, species"
+kbase,pangenome,nmdc,annotation,3,"cog, ec_number, pfam"
+enigma,genome,phagefoundry,mobile_phage,3,"genome_id, ncbi_taxon_id, sample_id"
+refdata,taxonomy,msyscolo,taxonomy,3,"genus, gtdb_taxonomy, species"
+arkinlab,genome,phagefoundry,mobile_phage,3,"ec_number, feature_id, genome_id"
+arkinlab,genome,kbase,pangenome,3,"ec_number, feature_id, genome_id"
+refdata,taxonomy,protect,taxonomy,3,"genus, ncbi_taxon_id, species"
+refdata,taxonomy,nmdc,taxonomy,3,"genus, ncbi_taxon_id, species"
+arkinlab,genome,kescience,pathway,3,"ec_number, feature_id, genome_id"
+refdata,structural,kescience,literature,2,"pmid_doi, protein_id"
+kbase,pathway,nmdc,biochemistry,2,"ec_number, kegg_pathway"
+refdata,genome,nmdc,taxonomy,2,"envo, sample_id"
+kescience,fitness_phenotype,arkinlab,taxonomy,2,"genus, species"
+kbase,pathway,refdata,structural,2,"ec_number, gene_cluster_id"
+kbase,pathway,nmdc,pathway,2,"kegg_ko, kegg_pathway"
+netl,literature,arkinlab,field_observational,2,"lat_lon, sample_id"
+kescience,genome,phagefoundry,mobile_phage,2,"feature_id, genome_id"
+kescience,genome,protect,genome,2,"feature_id, genome_id"
+kescience,fitness_phenotype,protect,taxonomy,2,"genus, species"
+nmdc,biochemistry,protect,multiomics,2,"kegg_pathway, reaction_id"
+refdata,genome,arkinlab,field_observational,2,"lat_lon, sample_id"
+protect,annotation,nmdc,taxonomy,2,"sample_id, species"
+refdata,taxonomy,kescience,fitness_phenotype,2,"genus, species"
+refdata,genome,netl,literature,2,"lat_lon, sample_id"
+kescience,fitness_phenotype,msyscolo,taxonomy,2,"genus, species"
+refdata,structural,kbase,multiomics,2,"feature_id, protein_id"
+refdata,taxonomy,kescience,structural,2,"gene_cluster_id, ncbi_taxon_id"
+nmdc,annotation,refdata,structural,2,"ec_number, pfam"
+kbase,pangenome,arkinlab,taxonomy,2,"genus, species"
+nmdc,multiomics,kescience,structural,2,"ncbi_taxon_id, pfam"
+kbase,pangenome,protect,taxonomy,2,"genus, species"
+kbase,pangenome,nmdc,taxonomy,2,"genus, species"
+nmdc,multiomics,protect,integration,2,"feature_id, kegg_ko"
+kbase,pangenome,kescience,structural,2,"gene_cluster_id, pfam"
+refdata,taxonomy,arkinlab,taxonomy,2,"genus, species"
+kbase,pathway,refdata,taxonomy,2,"gene_cluster_id, genome_id"
+protect,genome,refdata,genome,2,"genome_id, sample_id"
+protect,genome,refdata,taxonomy,2,"genome_id, ncbi_taxon_id"
+phagefoundry,mobile_phage,nmdc,fitness_phenotype,2,"ncbi_taxon_id, sample_id"
+phagefoundry,mobile_phage,nmdc,taxonomy,2,"ncbi_taxon_id, sample_id"
+protect,genome,nmdc,multiomics,2,"feature_id, ncbi_taxon_id"
+phagefoundry,mobile_phage,kescience,structural,2,"ncbi_taxon_id, protein_id"
+phagefoundry,mobile_phage,protect,integration,2,"feature_id, sample_id"
+phagefoundry,mobile_phage,nmdc,integration,2,"feature_id, sample_id"
+phagefoundry,mobile_phage,kbase,multiomics,2,"feature_id, protein_id"
+protect,annotation,nmdc,integration,2,"feature_id, sample_id"
+enigma,annotation,nmdc,multiomics,2,"cog, ec_number"
+protect,genome,refdata,structural,2,"feature_id, ncbi_taxon_id"
+protect,genome,nmdc,integration,2,"feature_id, sample_id"
+enigma,annotation,nmdc,annotation,2,"cog, ec_number"
+kescience,fitness_phenotype,nmdc,taxonomy,2,"genus, species"
+phagefoundry,mobile_phage,refdata,taxonomy,2,"genome_id, ncbi_taxon_id"
+phagefoundry,mobile_phage,refdata,genome,2,"genome_id, sample_id"
+protect,annotation,refdata,structural,2,"ec_number, feature_id"
+kescience,annotation,protect,annotation,2,"cazy, cog"
+kescience,annotation,enigma,annotation,2,"cazy, cog"
+protect,genome,enigma,taxonomy,2,"ncbi_taxon_id, sample_id"
+kescience,pathway,nmdc,pathway,2,"kegg_ko, kegg_pathway"
+kescience,pathway,protect,integration,2,"feature_id, kegg_ko"
+kescience,structural,refdata,literature,2,"ncbi_taxon_id, pmid_doi"
+kescience,pathway,refdata,structural,2,"ec_number, feature_id"
+kescience,fitness_phenotype,nmdc,multiomics,2,"compound_id, ec_number"
+protect,genome,nmdc,taxonomy,2,"ncbi_taxon_id, sample_id"
+kescience,fitness_phenotype,protect,annotation,2,"ec_number, species"
+protect,genome,nmdc,fitness_phenotype,2,"ncbi_taxon_id, sample_id"
+kescience,pathway,nmdc,biochemistry,2,"ec_number, kegg_pathway"
+nmdc,integration,protect,integration,2,"feature_id, sample_id"
+kbase,pangenome,kescience,genome,2,"feature_id, genome_id"
+enigma,multiomics,protect,genome,2,"feature_id, genome_id"
+nmdc,fitness_phenotype,protect,taxonomy,2,"ncbi_taxon_id, sample_id"
+enigma,multiomics,refdata,structural,2,"feature_id, protein_id"
+enigma,genome,nmdc,fitness_phenotype,2,"ncbi_taxon_id, sample_id"
+enigma,genome,protect,taxonomy,2,"ncbi_taxon_id, sample_id"
+arkinlab,genome,protect,genome,2,"feature_id, genome_id"
+enigma,multiomics,kescience,genome,2,"feature_id, genome_id"
+enigma,taxonomy,nmdc,fitness_phenotype,2,"ncbi_taxon_id, sample_id"
+arkinlab,genome,kescience,genome,2,"feature_id, genome_id"
+nmdc,taxonomy,msyscolo,taxonomy,2,"genus, species"
+arkinlab,genome,enigma,multiomics,2,"feature_id, genome_id"
+enigma,multiomics,kbase,multiomics,2,"feature_id, protein_id"
+protect,taxonomy,msyscolo,taxonomy,2,"genus, species"
+protect,taxonomy,arkinlab,taxonomy,2,"genus, species"
+arkinlab,genome,kbase,pathway,2,"ec_number, genome_id"
+nmdc,taxonomy,arkinlab,taxonomy,2,"genus, species"
+enigma,genome,nmdc,taxonomy,2,"ncbi_taxon_id, sample_id"
+kbase,pangenome,enigma,annotation,2,"cog, ec_number"
+enigma,genome,refdata,genome,2,"genome_id, sample_id"
+enigma,multiomics,nmdc,biochemistry,2,"kegg_pathway, reaction_id"
+enigma,taxonomy,nmdc,taxonomy,2,"ncbi_taxon_id, sample_id"
+arkinlab,taxonomy,msyscolo,taxonomy,2,"genus, species"
+enigma,genome,refdata,taxonomy,2,"genome_id, ncbi_taxon_id"
+kbase,pangenome,protect,genome,2,"feature_id, genome_id"
+arkinlab,genome,nmdc,multiomics,2,"ec_number, feature_id"
+kescience,pathway,protect,genome,2,"feature_id, genome_id"
+kbase,pangenome,kescience,annotation,2,"cog, genome_id"
+arkinlab,genome,protect,annotation,2,"ec_number, feature_id"
+arkinlab,genome,refdata,structural,2,"ec_number, feature_id"
+enigma,multiomics,kbase,pathway,2,"genome_id, kegg_pathway"
+enigma,multiomics,kbase,pangenome,2,"feature_id, genome_id"
+refdata,structural,planetmicrobe,annotation,1,pfam
+kbase,genome,protect,integration,1,feature_id
+refdata,structural,planetmicrobe,taxonomy,1,ncbi_taxon_id
+refdata,structural,kbase,reference_protein,1,gene_cluster_id
+refdata,structural,kbase,taxonomy,1,ncbi_taxon_id
+nmdc,field_observational,planetmicrobe,field_observational,1,sample_id
+refdata,structural,protect,multiomics,1,protein_id
+refdata,structural,protect,taxonomy,1,ncbi_taxon_id
+refdata,structural,nmdc,fitness_phenotype,1,ncbi_taxon_id
+refdata,structural,nmdc,taxonomy,1,ncbi_taxon_id
+nmdc,field_observational,protect,environment,1,sample_id
+refdata,structural,enigma,taxonomy,1,ncbi_taxon_id
+nmdc,field_observational,protect,taxonomy,1,sample_id
+kbase,genome,nmdc,integration,1,feature_id
+nmdc,integration,protect,environment,1,sample_id
+netl,taxonomy,nmdc,fitness_phenotype,1,sample_id
+nmdc,integration,planetmicrobe,field_observational,1,sample_id
+nmdc,integration,netl,taxonomy,1,sample_id
+nmdc,integration,ese,environment,1,sample_id
+nmdc,integration,ese,integration,1,sample_id
+netl,taxonomy,planetmicrobe,field_observational,1,sample_id
+netl,taxonomy,protect,taxonomy,1,sample_id
+netl,taxonomy,msyscolo,taxonomy,1,gtdb_taxonomy
+nmdc,taxonomy,planetmicrobe,field_observational,1,sample_id
+nmdc,integration,enigma,taxonomy,1,sample_id
+refdata,structural,netl,literature,1,pmid_doi
+nmdc,taxonomy,protect,environment,1,sample_id
+nmdc,integration,netl,literature,1,sample_id
+nmdc,integration,kescience,literature,1,compound_id
+kbase,multiomics,refdata,multiomics,1,protein_id
+kbase,multiomics,protect,multiomics,1,protein_id
+kbase,multiomics,kescience,structural,1,protein_id
+kbase,multiomics,kescience,literature,1,protein_id
+arkinlab,genome,msyscolo,genome,1,genome_id
+kbase,multiomics,protect,integration,1,feature_id
+nmdc,taxonomy,planetmicrobe,taxonomy,1,ncbi_taxon_id
+kbase,multiomics,nmdc,integration,1,feature_id
+nmdc,integration,arkinlab,field_observational,1,sample_id
+protect,taxonomy,kbase,taxonomy,1,ncbi_taxon_id
+protect,annotation,kbase,multiomics,1,feature_id
+protect,annotation,kbase,genome,1,feature_id
+protect,taxonomy,planetmicrobe,taxonomy,1,ncbi_taxon_id
+msyscolo,field_observational,refdata,mobile_phage,1,lat_lon
+nmdc,multiomics,kbase,biochemistry,1,compound_id
+nmdc,multiomics,planetmicrobe,annotation,1,pfam
+nmdc,multiomics,planetmicrobe,taxonomy,1,ncbi_taxon_id
+nmdc,multiomics,kbase,taxonomy,1,ncbi_taxon_id
+msyscolo,field_observational,usgs,field_observational,1,lat_lon
+nmdc,integration,protect,taxonomy,1,sample_id
+nmdc,multiomics,refdata,mobile_phage,1,pfam
+nmdc,multiomics,protect,taxonomy,1,ncbi_taxon_id
+nmdc,multiomics,enigma,taxonomy,1,ncbi_taxon_id
+nmdc,multiomics,refdata,literature,1,ncbi_taxon_id
+refdata,mobile_phage,planetmicrobe,annotation,1,pfam
+nmdc,multiomics,kescience,literature,1,compound_id
+protect,multiomics,refdata,multiomics,1,protein_id
+nmdc,multiomics,kbase,multiomics,1,feature_id
+nmdc,multiomics,kbase,genome,1,feature_id
+protect,multiomics,nmdc,pathway,1,kegg_pathway
+kbase,taxonomy,planetmicrobe,taxonomy,1,ncbi_taxon_id
+refdata,mobile_phage,usgs,field_observational,1,lat_lon
+nmdc,fitness_phenotype,planetmicrobe,field_observational,1,sample_id
+refdata,structural,ese,literature,1,pmid_doi
+refdata,structural,arkinlab,literature,1,pmid_doi
+refdata,structural,protect,integration,1,feature_id
+nmdc,fitness_phenotype,protect,environment,1,sample_id
+refdata,structural,nmdc,integration,1,feature_id
+refdata,structural,kbase,genome,1,feature_id
+nmdc,fitness_phenotype,kbase,taxonomy,1,ncbi_taxon_id
+protect,annotation,nmdc,pathway,1,kegg_ko
+protect,annotation,msyscolo,taxonomy,1,species
+protect,annotation,arkinlab,taxonomy,1,species
+planetmicrobe,field_observational,protect,taxonomy,1,sample_id
+protect,annotation,planetmicrobe,field_observational,1,sample_id
+protect,annotation,nmdc,fitness_phenotype,1,sample_id
+protect,annotation,nmdc,field_observational,1,sample_id
+planetmicrobe,field_observational,protect,environment,1,sample_id
+protect,annotation,netl,taxonomy,1,sample_id
+protect,annotation,ese,environment,1,sample_id
+protect,annotation,ese,integration,1,sample_id
+protect,annotation,enigma,taxonomy,1,sample_id
+protect,annotation,arkinlab,field_observational,1,sample_id
+protect,annotation,netl,literature,1,sample_id
+protect,annotation,kescience,literature,1,species
+nmdc,fitness_phenotype,planetmicrobe,taxonomy,1,ncbi_taxon_id
+arkinlab,field_observational,usgs,field_observational,1,lat_lon
+enigma,taxonomy,ese,integration,1,sample_id
+enigma,taxonomy,ese,environment,1,sample_id
+netl,literature,nmdc,fitness_phenotype,1,sample_id
+netl,literature,nmdc,field_observational,1,sample_id
+netl,literature,nmdc,taxonomy,1,sample_id
+netl,literature,ese,environment,1,sample_id
+netl,literature,ese,integration,1,sample_id
+netl,literature,enigma,taxonomy,1,sample_id
+enigma,taxonomy,netl,taxonomy,1,sample_id
+netl,literature,refdata,literature,1,pmid_doi
+protect,integration,ese,environment,1,sample_id
+kescience,structural,refdata,reference_protein,1,gene_cluster_id
+kescience,structural,kbase,reference_protein,1,gene_cluster_id
+kescience,structural,planetmicrobe,taxonomy,1,ncbi_taxon_id
+kescience,structural,kbase,taxonomy,1,ncbi_taxon_id
+kescience,structural,refdata,multiomics,1,protein_id
+kescience,structural,protect,multiomics,1,protein_id
+kescience,structural,refdata,mobile_phage,1,pfam
+kescience,structural,protect,taxonomy,1,ncbi_taxon_id
+enigma,taxonomy,nmdc,field_observational,1,sample_id
+arkinlab,genome,kescience,taxonomy,1,genome_id
+kescience,structural,nmdc,fitness_phenotype,1,ncbi_taxon_id
+kescience,structural,nmdc,taxonomy,1,ncbi_taxon_id
+kescience,structural,planetmicrobe,annotation,1,pfam
+arkinlab,field_observational,netl,taxonomy,1,sample_id
+arkinlab,field_observational,ese,environment,1,sample_id
+arkinlab,field_observational,ese,integration,1,sample_id
+arkinlab,field_observational,enigma,taxonomy,1,sample_id
+arkinlab,field_observational,nmdc,taxonomy,1,sample_id
+refdata,literature,nmdc,environment,1,biosample_id
+refdata,literature,planetmicrobe,taxonomy,1,ncbi_taxon_id
+arkinlab,field_observational,nmdc,field_observational,1,sample_id
+refdata,literature,kbase,taxonomy,1,ncbi_taxon_id
+arkinlab,field_observational,nmdc,fitness_phenotype,1,sample_id
+refdata,literature,protect,taxonomy,1,ncbi_taxon_id
+arkinlab,field_observational,refdata,mobile_phage,1,lat_lon
+refdata,literature,nmdc,taxonomy,1,ncbi_taxon_id
+refdata,literature,enigma,taxonomy,1,ncbi_taxon_id
+arkinlab,field_observational,planetmicrobe,field_observational,1,sample_id
+netl,literature,usgs,field_observational,1,lat_lon
+netl,literature,refdata,mobile_phage,1,lat_lon
+arkinlab,field_observational,protect,environment,1,sample_id
+netl,literature,msyscolo,field_observational,1,lat_lon
+netl,literature,protect,taxonomy,1,sample_id
+arkinlab,field_observational,protect,taxonomy,1,sample_id
+netl,literature,protect,environment,1,sample_id
+arkinlab,field_observational,msyscolo,field_observational,1,lat_lon
+netl,literature,planetmicrobe,field_observational,1,sample_id
+refdata,literature,nmdc,fitness_phenotype,1,ncbi_taxon_id
+protect,integration,nmdc,pathway,1,kegg_ko
+ese,integration,nmdc,fitness_phenotype,1,sample_id
+protect,integration,planetmicrobe,field_observational,1,sample_id
+ese,integration,planetmicrobe,field_observational,1,sample_id
+protect,integration,nmdc,fitness_phenotype,1,sample_id
+ese,integration,protect,environment,1,sample_id
+ese,integration,protect,taxonomy,1,sample_id
+ese,environment,netl,taxonomy,1,sample_id
+ese,environment,nmdc,taxonomy,1,sample_id
+ese,environment,nmdc,field_observational,1,sample_id
+protect,integration,nmdc,field_observational,1,sample_id
+kescience,structural,enigma,taxonomy,1,ncbi_taxon_id
+ese,environment,planetmicrobe,field_observational,1,sample_id
+ese,environment,protect,environment,1,sample_id
+protect,integration,nmdc,taxonomy,1,sample_id
+ese,environment,protect,taxonomy,1,sample_id
+protect,integration,netl,taxonomy,1,sample_id
+protect,integration,ese,integration,1,sample_id
+netl,taxonomy,nmdc,taxonomy,1,sample_id
+protect,integration,enigma,taxonomy,1,sample_id
+protect,integration,arkinlab,field_observational,1,sample_id
+protect,integration,netl,literature,1,sample_id
+netl,taxonomy,nmdc,field_observational,1,sample_id
+nmdc,integration,kbase,biochemistry,1,compound_id
+ese,environment,nmdc,fitness_phenotype,1,sample_id
+enigma,taxonomy,planetmicrobe,field_observational,1,sample_id
+enigma,taxonomy,protect,environment,1,sample_id
+enigma,taxonomy,kbase,taxonomy,1,ncbi_taxon_id
+kescience,structural,netl,literature,1,pmid_doi
+kescience,literature,kbase,biochemistry,1,compound_id
+enigma,taxonomy,planetmicrobe,taxonomy,1,ncbi_taxon_id
+kescience,literature,refdata,multiomics,1,protein_id
+kescience,literature,protect,multiomics,1,protein_id
+kescience,literature,msyscolo,taxonomy,1,species
+ese,integration,netl,taxonomy,1,sample_id
+kescience,literature,arkinlab,taxonomy,1,species
+kescience,literature,protect,taxonomy,1,species
+arkinlab,literature,ese,literature,1,pmid_doi
+kescience,literature,refdata,literature,1,pmid_doi
+kescience,literature,netl,literature,1,pmid_doi
+ese,literature,refdata,literature,1,pmid_doi
+ese,literature,netl,literature,1,pmid_doi
+ese,literature,kescience,structural,1,pmid_doi
+ese,literature,kescience,literature,1,pmid_doi
+ese,integration,nmdc,taxonomy,1,sample_id
+arkinlab,literature,refdata,literature,1,pmid_doi
+arkinlab,literature,netl,literature,1,pmid_doi
+ese,integration,nmdc,field_observational,1,sample_id
+arkinlab,literature,kescience,structural,1,pmid_doi
+arkinlab,literature,kescience,literature,1,pmid_doi
+kescience,literature,nmdc,taxonomy,1,species
+kbase,pangenome,refdata,reference_protein,1,gene_cluster_id
+kbase,pangenome,refdata,mobile_phage,1,pfam
+kbase,pangenome,netl,taxonomy,1,gtdb_taxonomy
+kbase,pangenome,refdata,literature,1,biosample_id
+kbase,pangenome,kescience,literature,1,species
+kbase,pangenome,protect,integration,1,feature_id
+kbase,pangenome,nmdc,integration,1,feature_id
+kbase,pangenome,nmdc,biochemistry,1,ec_number
+kbase,pangenome,arkinlab,annotation,1,ec_number
+kbase,pangenome,refdata,genome,1,genome_id
+kbase,pangenome,msyscolo,genome,1,genome_id
+kbase,pangenome,kescience,taxonomy,1,genome_id
+refdata,genome,planetmicrobe,field_observational,1,sample_id
+enigma,multiomics,refdata,multiomics,1,protein_id
+enigma,multiomics,kescience,structural,1,protein_id
+enigma,multiomics,kescience,literature,1,protein_id
+enigma,multiomics,protect,integration,1,feature_id
+enigma,multiomics,nmdc,integration,1,feature_id
+enigma,multiomics,kbase,genome,1,feature_id
+enigma,multiomics,protect,annotation,1,feature_id
+enigma,multiomics,nmdc,multiomics,1,feature_id
+enigma,multiomics,nmdc,annotation,1,reaction_id
+enigma,multiomics,refdata,taxonomy,1,genome_id
+enigma,multiomics,refdata,genome,1,genome_id
+enigma,multiomics,msyscolo,genome,1,genome_id
+enigma,multiomics,nmdc,pathway,1,kegg_pathway
+kescience,pathway,msyscolo,genome,1,genome_id
+kescience,genome,protect,integration,1,feature_id
+kescience,genome,nmdc,integration,1,feature_id
+kescience,genome,kbase,multiomics,1,feature_id
+kescience,genome,kbase,genome,1,feature_id
+kescience,genome,refdata,structural,1,feature_id
+kescience,genome,protect,annotation,1,feature_id
+kescience,genome,nmdc,multiomics,1,feature_id
+kescience,genome,refdata,taxonomy,1,genome_id
+kescience,genome,refdata,genome,1,genome_id
+kescience,genome,msyscolo,genome,1,genome_id
+kbase,pathway,refdata,reference_protein,1,gene_cluster_id
+kbase,pangenome,planetmicrobe,annotation,1,pfam
+kbase,pathway,protect,taxonomy,1,eggnog
+kbase,pathway,enigma,taxonomy,1,eggnog
+kbase,pathway,kescience,structural,1,gene_cluster_id
+kbase,pathway,protect,integration,1,kegg_ko
+kbase,pathway,kescience,fitness_phenotype,1,ec_number
+kbase,pathway,arkinlab,annotation,1,ec_number
+kbase,pathway,refdata,genome,1,genome_id
+kbase,pathway,protect,genome,1,genome_id
+kbase,pathway,msyscolo,genome,1,genome_id
+kbase,pathway,kescience,taxonomy,1,genome_id
+kbase,pathway,kescience,genome,1,genome_id
+kbase,pangenome,nmdc,environment,1,biosample_id
+kbase,pathway,protect,multiomics,1,kegg_pathway
+arkinlab,mobile_phage,protect,genome,1,genome_id
+arkinlab,mobile_phage,phagefoundry,mobile_phage,1,genome_id
+arkinlab,mobile_phage,msyscolo,genome,1,genome_id
+arkinlab,mobile_phage,kescience,taxonomy,1,genome_id
+arkinlab,mobile_phage,kescience,pathway,1,genome_id
+arkinlab,mobile_phage,kescience,genome,1,genome_id
+arkinlab,mobile_phage,kbase,pathway,1,genome_id
+arkinlab,mobile_phage,kbase,pangenome,1,genome_id
+arkinlab,mobile_phage,enigma,multiomics,1,genome_id
+arkinlab,mobile_phage,enigma,genome,1,genome_id
+arkinlab,genome,enigma,genome,1,genome_id
+kbase,reference_protein,refdata,reference_protein,1,gene_cluster_id
+enigma,multiomics,kescience,annotation,1,genome_id
+netl,taxonomy,protect,environment,1,sample_id
+nmdc,taxonomy,kbase,taxonomy,1,ncbi_taxon_id
+enigma,genome,refdata,literature,1,ncbi_taxon_id
+arkinlab,genome,protect,integration,1,feature_id
+arkinlab,genome,nmdc,integration,1,feature_id
+arkinlab,genome,kbase,multiomics,1,feature_id
+arkinlab,genome,kbase,genome,1,feature_id
+arkinlab,genome,nmdc,biochemistry,1,ec_number
+arkinlab,genome,nmdc,annotation,1,ec_number
+arkinlab,genome,kescience,fitness_phenotype,1,ec_number
+arkinlab,genome,enigma,annotation,1,ec_number
+arkinlab,genome,refdata,taxonomy,1,genome_id
+arkinlab,mobile_phage,kescience,annotation,1,genome_id
+enigma,multiomics,kescience,taxonomy,1,genome_id
+enigma,genome,planetmicrobe,taxonomy,1,ncbi_taxon_id
+enigma,genome,kbase,taxonomy,1,ncbi_taxon_id
+enigma,genome,protect,environment,1,sample_id
+enigma,genome,planetmicrobe,field_observational,1,sample_id
+enigma,genome,nmdc,field_observational,1,sample_id
+enigma,genome,netl,taxonomy,1,sample_id
+enigma,genome,ese,environment,1,sample_id
+enigma,genome,ese,integration,1,sample_id
+enigma,genome,arkinlab,field_observational,1,sample_id
+arkinlab,genome,kescience,annotation,1,genome_id
+enigma,genome,netl,literature,1,sample_id
+arkinlab,mobile_phage,refdata,genome,1,genome_id
+enigma,genome,protect,integration,1,sample_id
+enigma,genome,nmdc,integration,1,sample_id
+enigma,genome,refdata,structural,1,ncbi_taxon_id
+enigma,genome,protect,annotation,1,sample_id
+enigma,genome,nmdc,multiomics,1,ncbi_taxon_id
+enigma,genome,msyscolo,genome,1,genome_id
+enigma,genome,kescience,annotation,1,genome_id
+enigma,genome,kescience,taxonomy,1,genome_id
+enigma,genome,kescience,pathway,1,genome_id
+enigma,genome,kescience,genome,1,genome_id
+enigma,genome,kbase,pathway,1,genome_id
+enigma,genome,kbase,pangenome,1,genome_id
+arkinlab,mobile_phage,refdata,taxonomy,1,genome_id
+enigma,genome,kescience,structural,1,ncbi_taxon_id
+arkinlab,annotation,enigma,annotation,1,ec_number
+refdata,taxonomy,kbase,reference_protein,1,gene_cluster_id
+refdata,taxonomy,planetmicrobe,taxonomy,1,ncbi_taxon_id
+refdata,taxonomy,kbase,taxonomy,1,ncbi_taxon_id
+refdata,taxonomy,nmdc,fitness_phenotype,1,ncbi_taxon_id
+refdata,taxonomy,netl,taxonomy,1,gtdb_taxonomy
+refdata,taxonomy,enigma,taxonomy,1,ncbi_taxon_id
+refdata,taxonomy,kescience,literature,1,species
+refdata,taxonomy,protect,annotation,1,species
+refdata,taxonomy,nmdc,multiomics,1,ncbi_taxon_id
+refdata,genome,usgs,field_observational,1,lat_lon
+refdata,genome,msyscolo,field_observational,1,lat_lon
+kescience,pathway,refdata,genome,1,genome_id
+refdata,genome,protect,environment,1,sample_id
+arkinlab,genome,refdata,genome,1,genome_id
+refdata,genome,nmdc,fitness_phenotype,1,sample_id
+refdata,genome,nmdc,field_observational,1,sample_id
+refdata,genome,netl,taxonomy,1,sample_id
+refdata,genome,ese,environment,1,sample_id
+refdata,genome,ese,integration,1,sample_id
+refdata,genome,enigma,taxonomy,1,sample_id
+refdata,genome,protect,integration,1,sample_id
+refdata,genome,nmdc,integration,1,sample_id
+refdata,genome,protect,annotation,1,sample_id
+refdata,genome,kescience,fitness_phenotype,1,lat_lon
+refdata,genome,protect,taxonomy,1,sample_id
+nmdc,biochemistry,refdata,structural,1,ec_number
+nmdc,biochemistry,protect,annotation,1,ec_number
+nmdc,annotation,planetmicrobe,annotation,1,pfam
+nmdc,annotation,protect,multiomics,1,reaction_id
+nmdc,annotation,refdata,mobile_phage,1,pfam
+nmdc,annotation,kescience,structural,1,pfam
+nmdc,annotation,protect,integration,1,kegg_ko
+kescience,fitness_phenotype,kbase,biochemistry,1,compound_id
+kescience,fitness_phenotype,usgs,field_observational,1,lat_lon
+kescience,fitness_phenotype,refdata,mobile_phage,1,lat_lon
+kescience,fitness_phenotype,msyscolo,field_observational,1,lat_lon
+kescience,fitness_phenotype,arkinlab,field_observational,1,lat_lon
+arkinlab,annotation,kescience,fitness_phenotype,1,ec_number
+kescience,fitness_phenotype,nmdc,integration,1,compound_id
+kescience,fitness_phenotype,refdata,structural,1,ec_number
+kescience,fitness_phenotype,nmdc,biochemistry,1,ec_number
+kescience,fitness_phenotype,nmdc,annotation,1,ec_number
+enigma,annotation,refdata,structural,1,ec_number
+enigma,annotation,nmdc,biochemistry,1,ec_number
+enigma,annotation,kescience,fitness_phenotype,1,ec_number
+arkinlab,annotation,refdata,structural,1,ec_number
+arkinlab,annotation,protect,annotation,1,ec_number
+arkinlab,annotation,nmdc,multiomics,1,ec_number
+arkinlab,annotation,nmdc,biochemistry,1,ec_number
+arkinlab,annotation,nmdc,annotation,1,ec_number
+kescience,fitness_phenotype,netl,literature,1,lat_lon
+phagefoundry,mobile_phage,kescience,fitness_phenotype,1,ec_number
+phagefoundry,mobile_phage,arkinlab,annotation,1,ec_number
+msyscolo,genome,refdata,taxonomy,1,genome_id
+msyscolo,genome,refdata,genome,1,genome_id
+msyscolo,genome,protect,genome,1,genome_id
+msyscolo,genome,phagefoundry,mobile_phage,1,genome_id
+kescience,annotation,nmdc,multiomics,1,cog
+kescience,annotation,nmdc,annotation,1,cog
+kescience,annotation,refdata,taxonomy,1,genome_id
+kescience,annotation,refdata,genome,1,genome_id
+kescience,annotation,protect,genome,1,genome_id
+kescience,annotation,msyscolo,genome,1,genome_id
+protect,genome,planetmicrobe,taxonomy,1,ncbi_taxon_id
+kescience,taxonomy,refdata,genome,1,genome_id
+kescience,taxonomy,protect,genome,1,genome_id
+kescience,taxonomy,phagefoundry,mobile_phage,1,genome_id
+kescience,taxonomy,msyscolo,genome,1,genome_id
+kescience,pathway,protect,multiomics,1,kegg_pathway
+kescience,pathway,protect,taxonomy,1,eggnog
+kescience,pathway,enigma,taxonomy,1,eggnog
+kescience,pathway,nmdc,integration,1,feature_id
+kescience,pathway,kbase,multiomics,1,feature_id
+kescience,pathway,kbase,genome,1,feature_id
+kescience,pathway,arkinlab,annotation,1,ec_number
+kescience,pathway,refdata,taxonomy,1,genome_id
+kescience,taxonomy,refdata,taxonomy,1,genome_id
+protect,genome,kbase,taxonomy,1,ncbi_taxon_id
+protect,genome,planetmicrobe,field_observational,1,sample_id
+protect,genome,nmdc,field_observational,1,sample_id
+protect,genome,netl,taxonomy,1,sample_id
+protect,genome,ese,environment,1,sample_id
+protect,genome,ese,integration,1,sample_id
+protect,genome,arkinlab,field_observational,1,sample_id
+protect,genome,refdata,literature,1,ncbi_taxon_id
+protect,genome,netl,literature,1,sample_id
+protect,genome,kescience,structural,1,ncbi_taxon_id
+protect,genome,kbase,multiomics,1,feature_id
+protect,genome,kbase,genome,1,feature_id
+phagefoundry,mobile_phage,kbase,genome,1,feature_id
+phagefoundry,mobile_phage,planetmicrobe,taxonomy,1,ncbi_taxon_id
+phagefoundry,mobile_phage,kbase,taxonomy,1,ncbi_taxon_id
+phagefoundry,mobile_phage,refdata,multiomics,1,protein_id
+phagefoundry,mobile_phage,protect,environment,1,sample_id
+phagefoundry,mobile_phage,planetmicrobe,field_observational,1,sample_id
+phagefoundry,mobile_phage,nmdc,field_observational,1,sample_id
+phagefoundry,mobile_phage,netl,taxonomy,1,sample_id
+phagefoundry,mobile_phage,ese,environment,1,sample_id
+phagefoundry,mobile_phage,ese,integration,1,sample_id
+phagefoundry,mobile_phage,arkinlab,field_observational,1,sample_id
+phagefoundry,mobile_phage,refdata,literature,1,ncbi_taxon_id
+phagefoundry,mobile_phage,netl,literature,1,sample_id
+phagefoundry,mobile_phage,kescience,literature,1,protein_id
+phagefoundry,mobile_phage,nmdc,pathway,1,kegg_pathway

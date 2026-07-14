@@ -1,0 +1,62 @@
+{
+  "schema_version": "compose-fragment.v1",
+  "kind": "intro",
+  "throughline_id": "TL2",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "n_intro_slides_target": 3,
+  "slides": [
+    {
+      "position": 0,
+      "layout": "big_idea",
+      "content": {
+        "title": "*Caulobacter* tolerates Δ*lpxC* — one of only four Gram-negatives to survive lipid A loss"
+      },
+      "speaker_notes_seed": "Lipid A — the hydrophobic anchor of LPS — is essential for outer membrane integrity in virtually all Gram-negative bacteria. Loss of lpxC, the committed step in lipid A biosynthesis, is lethal under standard conditions. Caulobacter crescentus NA1000 is a striking exception: Zik et al. 2022 (Cell Reports) showed that ΔlpxC is viable when fur and sspB are simultaneously co-deleted. Only three other Gram-negative species are known to survive lipid A loss — Acinetobacter baumannii, Neisseria meningitidis, and Moraxella catarrhalis — each by a distinct mechanism. The combination that permits the Caulobacter deletion is specific: removing Fur alone or SspB alone does not suffice. What the regulatory and proteomic machinery of that rescue consists of, and why this particular route works only in Caulobacter, is what this work sets out to characterize.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "RESEARCH_PLAN.md §Refined research question (four Gram-negative species framing)"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 6 (species-specificity of sphingolipid + ChvG-ChvI route)"},
+        {"kind": "report_section", "ref": "REPORT.md §Literature Context (Zik 2022 PMID 35649364 — foundational mechanism)"}
+      ],
+      "intro_role": "background"
+    },
+    {
+      "position": 1,
+      "layout": "claim_evidence",
+      "content": {
+        "title": "Goal: identify the regulatory and proteomic constituents of *Caulobacter*'s unique lipid A rescue route",
+        "bullets": [
+          "Which Fur regulon members are operationally required for the Δ*lpxc* rescue, versus merely derepressed?",
+          "Is the constitutive sphingolipid pool sufficient, and is the canonical Lpt apparatus repurposed for sphingolipid transport in the Δ*lpxc* state?",
+          "Why is this rescue route structurally unavailable to the other three lipid-A-loss-tolerant Gram-negatives?"
+        ]
+      },
+      "speaker_notes_seed": "These three questions come directly from the project's pre-registered research plan. First: Fur derepression releases roughly 250 genes simultaneously; the transcriptome alone cannot distinguish which ones are mechanistically required from which are merely incidentally up. Fitness data are needed to rank the operative subset. Second: the sphingolipid biosynthesis pathway was observed to be flat or slightly down in Phase A — meaning rescue does not require making more sphingolipid, but does require delivering it to the outer membrane. Uchendu et al. 2026 predicted the canonical Lpt apparatus is shared between LPS and sphingolipid transport, but did not directly test this in a Δlpxc strain. Third: three other Gram-negative species tolerate lipid A loss — via PG remodeling, capsule substitution, or late-acyltransferase truncation — but not via the Caulobacter route. Characterizing the structural unavailability of that route in the comparators is the fifth analytical arm.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "RESEARCH_PLAN.md §Refined research question (questions 1, 2+3, 5)"},
+        {"kind": "report_section", "ref": "RESEARCH_PLAN.md §Hypotheses H1–H4 (pre-registered research questions)"}
+      ],
+      "intro_role": "goal"
+    },
+    {
+      "position": 2,
+      "layout": "claim_evidence",
+      "content": {
+        "title": "Approach: fitness ranking, transcript/proteome panel, and cross-species annotation screen — five mechanism layers",
+        "bullets": [
+          "RB-TnSeq fitness ranking across 198 Caulobacter experiments + Leaden 2018 Δ*fur* concordance → operative Fur-released subset (vs 33.25% genome background)",
+          "Transcript + proteome panel across 3 strain contrasts → ChvI phase structure, constitutive sphingolipid state, Lpt repurposing, and PG remodel (28 loci)",
+          "NCBI annotation screen across *A. baumannii*, *N. meningitidis*, *M. catarrhalis* → structural absence of sphingolipid pathway and ChvG-ChvI confirmed"
+        ]
+      },
+      "speaker_notes_seed": "The approach runs three analytical streams that feed five result substories. First: BERDL RB-TnSeq fitness data from 198 Caulobacter experiments — classified by envelope stress, oxidative stress, and carbon-source conditions — ranked Fur-released genes against the genome-wide background phenotype-bearing rate of 33.25%. Leaden 2018 Δfur RNA-seq provided a clean Fur-only DEG signature to separate Fur-driven from SspB-driven effects, validated by Spearman ρ = 0.315 against our 4584-vs-4580 contrast. Second: a transcript and single-replicate OM proteome panel across three strain contrasts tested ChvI phase structure (20 unique-early + 10 both-phase + 49 late-consequence genes), sphingolipid biosynthesis constitutive state (spt, sphk), Lpt apparatus maintenance, and PG enzyme engagement (28 loci meeting the pre-registered H4 threshold). Third: NCBI annotation cross-checked each focal gene family — sphingolipid biosynthesis, ChvG-ChvI — across all four Gram-negative species, confirming structural absence in the comparators and diagnosing a ~80% false-negative rate in the PaperBLAST text-matching screen.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Data Sources (kescience_fitnessbrowser, 198 experiments; genome background 33.25%)"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 5 (28 PG loci meeting H4 threshold)"},
+        {"kind": "report_section", "ref": "RESEARCH_PLAN.md §Analysis Plan (NB01–NB07 analytical design)"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 6 + NB06b (NCBI annotation cross-check confirming species absence)"}
+      ],
+      "intro_role": "approach"
+    }
+  ]
+}

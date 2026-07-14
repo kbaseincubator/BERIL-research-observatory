@@ -3,7 +3,7 @@ import logging
 from fastapi import Request
 from fastapi.templating import Jinja2Templates
 
-from app.auth import get_current_user
+from app.auth import get_current_session_user
 from app.config import Settings
 from app.dataloader import load_repository_data
 from app.git_data_sync import ensure_repo_cloned
@@ -21,7 +21,7 @@ def get_repo_data(request: Request) -> RepositoryData:
 
 def get_base_context(request: Request) -> dict:
     context = dict(request.app.state.base_context)
-    context["current_user"] = get_current_user(request)
+    context["current_user"] = get_current_session_user(request)
     context["path"] = request.url.path
     return context
 
@@ -69,5 +69,6 @@ def generate_base_context(settings: Settings, repo_data: RepositoryData) -> dict
         "collection_count": len(repo_data.collections),
         "contributor_count": len(repo_data.contributors),
         "skill_count": len(repo_data.skills),
+        "atlas_count": len(repo_data.atlas_index.pages),
         "last_updated": repo_data.last_updated,
     }

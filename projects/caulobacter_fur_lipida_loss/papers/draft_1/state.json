@@ -1,0 +1,34 @@
+{
+  "analysis_requests": [],
+  "cost_so_far_usd": 13.396726550000002,
+  "draft_number": 1,
+  "elapsed_seconds": 0.0,
+  "iteration": {
+    "gap_fill_rounds": 0,
+    "rewrite_passes": 0
+  },
+  "last_updated": "2026-06-04T13:32:46Z",
+  "manuscript_files": [
+    {
+      "path": "manuscript.md",
+      "sha256": "7bb908205456fb4bdca7cff2d5e8411c0844f6f7874074caa63b128e513343b7",
+      "user_edited": false,
+      "writer_generated": true
+    }
+  ],
+  "mode": "paper",
+  "phase": "assembled",
+  "project_id": "",
+  "remediation_cycles": [],
+  "source_artifacts": [],
+  "throughline": {
+    "artifact_hash_at_confirmation": null,
+    "candidate_id": "TL1",
+    "chosen_at": "2026-06-04T10:56:38Z",
+    "reevaluations": [],
+    "revision": 1
+  },
+  "tier": "STRONG",
+  "validator_status": {},
+  "version": "0.1"
+}

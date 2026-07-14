@@ -1,0 +1,23 @@
+{
+  "schema_version": "image-request.v1",
+  "slide_id_target": "S4-pos3",
+  "channel": "A",
+  "originator": "slide_compose flagged claim_evidence for LLM-image-gen (3-bullet N-mechanisms pattern, A18-A20; layout is claim_evidence not concept_illustration)",
+  "style": "scientific_illustration",
+  "image_prompt": "Three-panel scientific illustration, 16:9, white background. Style: clean scientific illustration in the style of a textbook figure or Nature publication graphical abstract — flat colors, thin black outlines, professional academic aesthetic. Color palette: #007DC3 (blue), #5E9732 (green), #F78E1E (orange).\n\nPanel 1 — left third, labeled 'NB03+NB05 Convergence': Two convergence arrow streams — one blue (#007DC3) labeled 'NB03 late-ChvI cohort' and one green (#5E9732) labeled 'NB05 H4 PG set' — both pointing to a central oval node labeled 'Pal CCNA_00784'. Below the node, two horizontal evidence bars labeled 'transcript +2.08 logFC' (blue) and 'protein +2.84 logFC' (orange). A star icon beside the node marks it as 'sole dual-modality hit'.\n\nPanel 2 — center third, labeled 'Retrograde PL Transport': Membrane cross-section schematic. Bottom layer labeled 'IM', center space labeled 'periplasm', top layer labeled 'OM outer leaflet: phospholipid (no LPS)'. Tol-Pal complex shown as a transmembrane protein assembly: TolA (IM-spanning rod), TolB (periplasm disk), Pal (OM-anchored anchor). A curved orange arrow runs retrograde from OM outer leaflet downward to IM labeled 'retrograde PL transport'. A small ghost schematic crossed out labeled 'old model: LPS anchoring'.\n\nPanel 3 — right third, labeled 'Caulobacter OM Constriction': Caulobacter predivisional cell shown as an elongated oval with a visible midcell constriction ring. Tol-Pal complex indicated at the constriction ring with a bracket. Label reads 'OM constriction essential (Yeh 2010)'. A bold upward arrow on Pal reads 'Pal upregulated in Δlpxc'.\n\nPanel header labels in clean sans-serif directly above each panel. Do not include any other text, captions, titles, or annotations.",
+  "negative_prompt": "no quantitative content beyond the explicitly named evidence bar labels 'transcript +2.08 logFC' and 'protein +2.84 logFC'; no additional axes; no invented numbers; no data plots; no bar charts; no specific percentages; no p-values; no human figures; no copyrighted imagery; no logos; no text in non-Latin scripts; no decorative background patterns; no other text or annotations beyond the named labels listed in the image prompt",
+  "placement": {
+    "region": "body",
+    "aspect_ratio": "16:9",
+    "max_width_in": 8.5,
+    "max_height_in": 4.0
+  },
+  "model_preference": "gemini-3-pro-image",
+  "worst_case_cost_usd": 0.05,
+  "user_supplied_prompt": null,
+  "user_overrides": {
+    "style": null,
+    "additional_directives": null
+  },
+  "approval_required": true
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "run-record.v1",
+  "skill": "adversarial",
+  "skill_version": "0.8.0",
+  "run_id": "run-1",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_2",
+  "mode": null,
+  "status": "completed",
+  "started_at": "2026-06-08T23:26:12Z",
+  "finished_at": "2026-06-08T23:37:36Z",
+  "exit_code": 0,
+  "current_stage": null,
+  "stages": [
+    {
+      "id": "review",
+      "status": "completed",
+      "model": "opus",
+      "started_at": "2026-06-08T23:26:13Z",
+      "finished_at": "2026-06-08T23:37:36Z",
+      "elapsed_seconds": 683.0,
+      "input_tokens": 32,
+      "output_tokens": 29017,
+      "cache_read_tokens": 1890052,
+      "cache_creation_tokens": 423902,
+      "cost_usd": 12.959995,
+      "subrecord": null
+    }
+  ],
+  "totals": {
+    "cost_usd": 12.959995,
+    "input_tokens": 32,
+    "output_tokens": 29017,
+    "cache_read_tokens": 1890052,
+    "cache_creation_tokens": 423902,
+    "elapsed_seconds": 683.0
+  },
+  "models_used": [
+    "opus"
+  ],
+  "artifacts": {
+    "user_intent": null,
+    "deliverable_validation": null,
+    "deliverable": "audit/adversarial_review.md"
+  }
+}

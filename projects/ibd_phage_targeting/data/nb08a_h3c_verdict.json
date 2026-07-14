@@ -1,0 +1,21 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.8",
+  "test": "H3c \u2014 BGC \u00d7 pathobiont enrichment (genomic mechanism layer)",
+  "tier_a_core_n": 6,
+  "tier_a_core_with_iron_mibig": 1,
+  "theme_supported_count": 3,
+  "themes_supported": [
+    "iron_siderophore",
+    "genotoxin_microcin",
+    "NRPS_PKS_hybrid"
+  ],
+  "ecoli_iron_mibig_count": 54,
+  "other_core_iron_mibig_count": 0,
+  "n_core_with_cd_up_cborf_above_bg": 5,
+  "background_cd_up_rate": 0.025,
+  "ebf_meta_significant": true,
+  "ecf_meta_significant": true,
+  "h3c_verdict": "PARTIALLY SUPPORTED",
+  "narrowing_interpretation": "AIEC-iron-genotoxin BGC repertoire concentrates on E. coli alone. Other Tier-A core species sit in MIBiG dark matter but carry significant BGC content (E. lenta 41, M. gnavus 58, E. bolteae 18) \u2014 their CD-association mechanism is not currently captured by MIBiG-annotated themes."
+}

@@ -1,0 +1,51 @@
+# Next Actions
+
+**Reviewer:** beril-adversarial --type presentation (opus)
+**Reviewed at:** 2026-06-08T00:00:00Z
+**Loop run:** 2026-06-08T23:37:36Z → 2026-06-08T23:45:33Z
+**Total findings:** 16
+**Revised:** 2 (F001, F002)
+**Added:** 1 (F003)
+**Skipped (surface-only):** 13
+**Failed (manual fix needed):** 0
+**Cost:** ~$0.00
+
+## Fixed by the loop
+
+- **F001** (P1 register_drift, slide 7): The title attaches two overclaims to a single modest correlation. First, 'confirms' is strong-register for ρ=0.315 — the speaker_notes themselves concede the sp...
+- **F002** (P1 claim_evidence, slide 1): The title slide is a placeholder that ships embarrassments to a peer audience. (1) The title 'Caulobacter Fur Lipida Loss' is a degenerate auto-title from the d...
+- **F003** (P1 missing_slide, slide n/a): The deck promises to name which Fur targets matter but never shows them. Goal slide 3 asks 'Which of the 93 Fur-released DEGs are operationally required—not mer...
+
+## P1 — quality regressions
+
+- **F004** (citation_reality, slide 34): The audience-facing references slide (34) omits the keystone citation of the entire deck. Leaden 2018 (PMID 30210482) is pinned in-text on slides 4, 7, and 8 and is the source of the ρ=0.315 concordance that the whole S1 driver claim rests on — yet it is NOT in refs_short. Also absent: Price2018 (cited slide 12), QuinteroYanes2022 (cited slide 16), and Greenwich2023 (cited slides 16, 26). The slide sets 'full_pool_in_speaker_notes': true, i.e. the complete reference list is in speaker notes the audience never sees. A peer who wants to look up the foundational Leaden concordance cannot find it on the references slide.
+- **F005** (citation_reality, slide 16): Slide 16's citation pins do not match its content. The citations array is [QuinteroYanes2022, Greenwich2023], but Greenwich2023 supports nothing on this slide — its load-bearing role is the ChvG-ChvI alphaproteobacterial-conservation claim on slide 26 (per slide 26 speaker notes). Meanwhile the slide-16 bullet that DOES need a citation — 'ChvR sRNA (Fröhlich 2018, adversarial review N3) is an untested post-transcriptional alternative' — attributes ChvR to Fröhlich 2018, which is absent from the citations array AND from the references slide (34). So the slide cites a paper it does not use (Greenwich2023, citation drift) and names a paper it does not list (Fröhlich 2018, dangling attribution).
+- **F006** (qa_softball, slide n/a): The three anticipated Q&A (single-condition scope, Lpt transcript-protein discordance, Path A power) are genuinely strong and land their concessions. But the Q&A set omits the sharpest objection to the deck's central word: 'driver.' No Q&A defends the gap between the causal framing ('Δfur derepression is the demonstrable driver') and the fact that this project's own new evidence is correlational (ρ=0.315) plus a marginal enrichment (1.60×); the causal NECESSITY ('Δfur required for lipid A-loss viability') is imported wholesale from Zik 2022, prior work this team did not perform. A hostile reviewer asks: 'Your data show correlation and marginal enrichment; the necessity that licenses the word driver is Zik 2022. What does THIS work demonstrate causally that Zik 2022 did not already establish?' There is no anticipated answer for this.
+- **CO001** (content_overflow, slide 28): slide title (methods_summary): 181 chars at base 28pt in 9.32×0.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)
+- **CO002** (content_overflow, slide 29): slide title (cross_tenant_integration): 134 chars at base 28pt in 9.32×0.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)
+- **CO003** (content_overflow, slide 30): slide title (qa_anticipated): 357 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)
+- **CO004** (content_overflow, slide 31): slide title (qa_anticipated): 412 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)
+- **CO005** (content_overflow, slide 32): slide title (qa_anticipated): 353 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)
+
+## P2 — polish
+
+- **F007** (substory_arc, slide n/a): The deck is 34 slides against the throughline's own talk-30 estimate of 26 slides (00_throughline.md slide-count estimate) — roughly 31% over budget. At a 30-minute talk that is ~10 slides past the budget the spine was designed around; the methods_summary slides (10, 14, 18, 24) plus five section dividers are the most compressible. Overrun risk is real for a peer slot with hard time limits.
+- **F008** (claim_evidence, slide 10): Every methods_summary slide lists tool versions as literal 'unknown': slide 10 Fitness Browser 'unknown', slide 14 edgeR 'unknown', and the same pattern on slides 18 and 24 (Biopython/PaperBLAST). For a peer/reproducibility audience, 'version: unknown' on the statistical engine (edgeR) and the fitness compendium undercuts the deck's otherwise-strong pre-registration discipline.
+- **F009** (claim_evidence, slide 33): The acknowledgments slide is unpopulated: contributors = ['TBD - populated by production orchestrator'] and tenant_attribution = 'TBD'. The data and the question originate with the Kathy Ryan lab (the strains 4580/4584/4599 and the transcriptome/proteome are theirs); shipping a deck whose acknowledgments are placeholder TBD fails to credit the data provider on the audience-facing slide.
+- **F010** (substory_arc, slide n/a): Process/provenance inconsistency: narrative/02_substories.md records 'qa_anticipated not requested,' yet the final deck contains three qa_anticipated slides at positions 30-32 (and a separate working/03_slides/qa_anticipated.json). The Q&A content is good, so this is not a content defect — but the substory design artifact disagrees with the shipped deck, which will confuse the review-rewrite loop about whether Q&A is in scope.
+
+## Info — speaker awareness
+
+- **F011** (central_objection, slide n/a): The deck's central vulnerability is the load-bearing word 'driver.' The throughline, title, big_idea, deck_close, and synthesis scorecard all assert 'Δfur derepression is the demonstrable driver of the lipid A-loss-permissive envelope state.' But the project's OWN new evidence for that claim is correlational and marginal: a modest cross-study concordance (Spearman ρ=0.315) and a marginal, adversarially-reproduced fitness enrichment (1.60×, p=0.016). The causal NECESSITY that actually licenses 'driver' — that Δfur is required for lipid A-loss viability — comes entirely from Zik 2022, prior work this team did not perform. A hostile reviewer asks: 'Strip out Zik 2022 and what does your data demonstrate? Correlation and a 1.6-fold enrichment. Where is the causal driver result that is yours?' The deck does not preempt this anywhere — it leans on Zik 2022's necessity throughout while branding the contribution as a demonstrated driver. The honest and stronger framing is available in the deck's own graded scorecard: this work's contribution is the regulon-to-envelope mechanistic MAP at graded confidence, built on top of Zik 2022's established Δfur precondition.
+
+## The deck's central objection
+
+The deck's central vulnerability is the load-bearing word 'driver.' The throughline, title, big_idea, deck_close, and synthesis scorecard all assert 'Δfur derepression is the demonstrable driver of the lipid A-loss-permissive envelope state.' But the project's OWN new evidence for that claim is correlational and marginal: a modest cross-study concordance (Spearman ρ=0.315) and a marginal, adversarially-reproduced fitness enrichment (1.60×, p=0.016). The causal NECESSITY that actually licenses 'driver' — that Δfur is required for lipid A-loss viability — comes entirely from Zik 2022, prior work this team did not perform. A hostile reviewer asks: 'Strip out Zik 2022 and what does your data demonstrate? Correlation and a 1.6-fold enrichment. Where is the causal driver result that is yours?' The deck does not preempt this anywhere — it leans on Zik 2022's necessity throughout while branding the contribution as a demonstrated driver. The honest and stronger framing is available in the deck's own graded scorecard: this work's contribution is the regulon-to-envelope mechanistic MAP at graded confidence, built on top of Zik 2022's established Δfur precondition.
+
+## Citation verification needed
+
+These citations were flagged by the adversarial reviewer as questionable (fabricated, drifting, or unverifiable). Resolve each before shipping — auto-revision is unsafe for citation surfaces.
+
+- **F004** (slide 34, citation_id `Leaden2018`): The audience-facing references slide (34) omits the keystone citation of the entire deck. Leaden 2018 (PMID 30210482) is pinned in-text on slides 4, 7, and 8 and is the source of the ρ=0.315 concordance that the whole S1 driver claim rests on — yet it is NOT in refs_short. Also absent: Price2018 (cited slide 12), QuinteroYanes2022 (cited slide 16), and Greenwich2023 (cited slides 16, 26). The slide sets 'full_pool_in_speaker_notes': true, i.e. the complete reference list is in speaker notes the audience never sees. A peer who wants to look up the foundational Leaden concordance cannot find it on the references slide.
+- **F005** (slide 16, citation_id `Greenwich2023`): Slide 16's citation pins do not match its content. The citations array is [QuinteroYanes2022, Greenwich2023], but Greenwich2023 supports nothing on this slide — its load-bearing role is the ChvG-ChvI alphaproteobacterial-conservation claim on slide 26 (per slide 26 speaker notes). Meanwhile the slide-16 bullet that DOES need a citation — 'ChvR sRNA (Fröhlich 2018, adversarial review N3) is an untested post-transcriptional alternative' — attributes ChvR to Fröhlich 2018, which is absent from the citations array AND from the references slide (34). So the slide cites a paper it does not use (Greenwich2023, citation drift) and names a paper it does not list (Fröhlich 2018, dangling attribution).
+

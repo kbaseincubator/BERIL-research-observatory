@@ -1,0 +1,27 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.8",
+  "test": "H3a (b) v1.8 \u2014 MetaCyc class hierarchy + Fisher per-theme enrichment",
+  "methodology_change": "Replace v1.7 regex-on-name with structured class assignments from ModelSEEDDatabase MetaCyc_Pathways.tbl",
+  "pathway_class_coverage": {
+    "total_pathways": 409,
+    "with_metacyc_classes": 357,
+    "with_at_least_one_ibd_theme": 262
+  },
+  "thresholds": {
+    "fdr_theme": 0.1,
+    "odds_ratio_min": 1.5
+  },
+  "cohort_level_v18": {
+    "n_themes_supported": 1,
+    "verdict": "SUPPORTED",
+    "supported_themes": [
+      "08_iron_heme_acquisition"
+    ]
+  },
+  "comparison_to_v17": {
+    "v17_verdict": "FAIL (degenerate)",
+    "v18_verdict": "SUPPORTED",
+    "reason_for_v17_failure": "Regex on pathway names matched only 44/409 of background; 7 a-priori categories too narrow; \"0_other\" hid heme/iron, fat/glyoxylate, purine, aromatic-AA themes"
+  }
+}

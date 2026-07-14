@@ -1,0 +1,7 @@
+strain	wom_organism_id	wom_organism_name	ncbi_taxid	match_type	n_observations	n_distinct_compounds	n_environments	n_increased	n_emerged	n_nochange
+FW300-N2E3	31	Pseudomonas sp. (FW300-N2E3)		exact_isolate_id	105	105	1	31	27	47
+GW456-L13	32	Pseudomonas sp. (GW456-L13)		exact_isolate_id	105	105	1	49	34	22
+FW300-N2A2	33	Pseudomonas sp. (FW300-N2A2)		exact_isolate_id	105	105	1	26	32	47
+GW456-L15	34	Pseudomonas sp. (GW456-L15)		exact_isolate_id	105	105	1	44	25	36
+FW507-14TSA	35	Pseudomonas sp. (FW507-14TSA)		exact_isolate_id	105	105	1	44	33	28
+FW300-N2F2	36	Pseudomonas sp. (FW300-N2F2)		exact_isolate_id	105	105	1	33	32	40

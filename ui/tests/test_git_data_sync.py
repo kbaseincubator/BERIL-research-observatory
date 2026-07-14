@@ -1,9 +1,7 @@
 """Unit tests for app.git_data_sync."""
 
 import subprocess
-from pathlib import Path
-from unittest.mock import AsyncMock, MagicMock, patch, call
-import asyncio
+from unittest.mock import AsyncMock, patch
 
 import pytest
 

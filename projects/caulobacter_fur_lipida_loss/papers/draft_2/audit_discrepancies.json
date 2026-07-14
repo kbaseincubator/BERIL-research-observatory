@@ -1,0 +1,49 @@
+{
+  "discrepancies": [
+    {
+      "entry_id": "D-001",
+      "type_": "executed-not-prescribed",
+      "plan_quote": "NB02 — Fur-released gene fitness ranking via BERDL RB-TnSeq. **Outputs**: data/NB02_caulo_fitness_summary.csv, data/NB02_fur_regulon_phenotype_rank.csv, figures/NB02_fur_regulon_phenotype_heatmap.png, figures/NB02_top_fur_genes_volcano.png",
+      "plan_section": "Analysis Plan → NB02",
+      "execution_citation": "Notebook notebooks/02b_h2_hypergeometric_verdict.ipynb exists as a separate, distinct notebook in provenance, with imports: numpy, pandas, pathlib, scipy.stats",
+      "severity": "unclear",
+      "recommendation": "Verify whether NB02b (H2 hypothesis verdict via hypergeometric enrichment test) was always intended as a separate notebook or was split post-hoc. If split post-hoc, determine whether this constitutes a material analytical change or merely a code-organization decision."
+    },
+    {
+      "entry_id": "D-002",
+      "type_": "executed-not-prescribed",
+      "plan_quote": "NB06 — Comparative-species arm. **Approach**: 1. **BERDL coverage preflight** [...] 2. **NCBI fallback (executed if BERDL coverage of any of the 4 species is missing)**: download reference genomes via `datasets download genome accession`... Then run `hmmsearch` (HMMER 3)...",
+      "plan_section": "Analysis Plan → NB06",
+      "execution_citation": "Notebook notebooks/06b_ncbi_annotation_presence.ipynb exists as a separate, distinct notebook (imports: Bio, numpy, pandas, pathlib, time). Plan prescribes NB06 as a single notebook with conditional NCBI fallback; execution splits NCBI arm into a separate NB06b.",
+      "severity": "unclear",
+      "recommendation": "Verify whether NCBI fallback was always intended as a separate NB06b notebook or whether it was conditionally executed within NB06. If split into separate NB06b, confirm the split was driven by BERDL coverage insufficiency (as the plan stipulates) or was a post-hoc code organization choice."
+    },
+    {
+      "entry_id": "D-003",
+      "type_": "executed-not-prescribed",
+      "plan_quote": "Expected Outcomes table: **H1 ChvI engagement** — Threshold for 'supported': 'Hypergeometric p<1e-5 for ChvI-induced ∩ up-DEG in either contrast (Stein OR QY set).'",
+      "plan_section": "Expected Outcomes → Per hypothesis → H1",
+      "execution_citation": "Statistical Tests Detected in methods_provenance: 'Fisher's exact test' in notebooks/03_chvi_phase_partition_sigU.ipynb (cell 10, line 19) — kw: alternative='greater'",
+      "severity": "unclear",
+      "recommendation": "Fisher's exact test and hypergeometric test are related but distinct; Fisher's exact is for 2×2 contingency tables, while hypergeometric tests set-membership enrichment over a finite universe. Verify whether Fisher's exact was intentionally substituted for hypergeometric, or if both tests were computed. If substituted, confirm that the p-value threshold and interpretation remain valid under the alternative test."
+    },
+    {
+      "entry_id": "D-004",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "Stop condition: '**NB01 disagreement**: less than 30% Spearman concordance between Leaden Δfur logFC and our 4584-vs-4580 logFC (over genes with |logFC|>1 in either set). Would indicate Δ*sspB* dominates the signal, requiring reframe of H2...'  **NB02 preflight failure**: 'fewer than 3 envelope-stress AND fewer than 3 iron-limitation experiments in Caulo fitness data — H2 drops to exploratory status...' **NB02 null result**: 'fewer than 10% of Fur-released genes (from NB01 or 4584-vs-4580) reach the H2 phenotype-bearing threshold...' **NB04 contradiction**: 'sphingolipid biosynthesis pathway (any of *spt*, *bcerS*, *acp*, *cerR*, *acps*) significantly induced (logFC>1, FDR<0.05) in 4584-vs-4580 OR 4599-vs-4584.'",
+      "plan_section": "Analysis Plan → Stop condition",
+      "execution_citation": "Methods provenance shows coded stop-condition variables (e.g., 'VERDICT = ... if rho_s >= 0.3 else ...' in NB01 cell 5; 'PREFLIGHT_PASS = n_env >= 3 and n_iron >= 3' in NB02 cell 5), but does not document the evaluated results of these conditions or any plan revisions triggered by them.",
+      "severity": "load-bearing",
+      "recommendation": "Extract the evaluated results of all four pre-registered stop conditions from notebook outputs (NB01, NB02, NB04). Document whether any stop condition triggered a plan revision. If no revision was triggered, document the quantitative results (e.g., actual Spearman rho from NB01, actual % phenotype-bearing from NB02, actual biosynthesis logFC from NB04) to confirm the conditions were met. This is critical for pre-registration integrity."
+    },
+    {
+      "entry_id": "D-005",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "The **pre-curated PG-remodeling gene set** for H4 (NB05) is defined as the union of all `dim_feature` rows matching one of: gene symbol in {...} OR `description` matching [...]. This set is **finalized at the start of NB05** and saved as `data/NB05_pg_gene_set.csv` *before* DE analysis to prevent cherry-picking.",
+      "plan_section": "Expected Outcomes → Pre-curated PG-remodeling gene set (note in H4 section)",
+      "execution_citation": "Methods provenance shows `PG_SYMBOLS = (non-literal: {'murA', 'murB', ...})` and `DESC_PATTERN = (non-literal: re.compile(...))` defined in notebooks/05_pg_remodeling.ipynb (cell 2, lines 2 and 21), but does not document the saving of the finalized set (`data/NB05_pg_gene_set.csv`) or confirm it was saved before DE analysis began.",
+      "severity": "load-bearing",
+      "recommendation": "Verify that NB05 cell 2 or 3 (before DE analysis) explicitly constructs and saves `data/NB05_pg_gene_set.csv`. Confirm that the saved set is identical to the one used in subsequent DE comparisons. This safeguard prevents post-hoc gene selection bias in hypothesis H4."
+    }
+  ]
+}

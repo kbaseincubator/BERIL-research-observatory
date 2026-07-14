@@ -1,0 +1,78 @@
+{
+  "date": "2026-04-24",
+  "criteria": {
+    "crit1_leakage_bound": {
+      "threshold": ">0.5",
+      "E1_value": 0.23,
+      "E3_value": 0.064,
+      "E1_pass": false,
+      "E3_pass": false
+    },
+    "crit2_3way_tier_a": {
+      "threshold": ">=3",
+      "E1_count": 0,
+      "E3_count": 3,
+      "E1_pass": false,
+      "E3_pass": true
+    },
+    "crit3_engraftment_confound_free": {
+      "threshold": ">=3 of 6",
+      "n_passing": 5,
+      "n_tested": 5,
+      "pass": true,
+      "passing_species": [
+        "Mediterraneibacter gnavus",
+        "Eggerthella lenta",
+        "Escherichia coli",
+        "Enterocloster bolteae",
+        "Hungatella hathewayi"
+      ]
+    },
+    "crit4_ecotype_stability_ARI": {
+      "threshold": ">0.30",
+      "median": 0.16,
+      "range": [
+        0.129,
+        0.169
+      ],
+      "pass": false
+    }
+  },
+  "per_ecotype_verdict": {
+    "E1": "BLOCKED",
+    "E3": "PROCEED WITH CAVEAT"
+  },
+  "cohort_caveats": [
+    "Criterion 4 (ecotype stability) fails \u2014 framework is internally weakly stable (ARI 0.13\u20130.17) and has no external replication. Must be flagged in REPORT.md.",
+    "Criterion 1 (feature leakage) fails in both ecotypes \u2014 the original NB04 within-ecotype Tier-A is substantially a leakage artifact and must be retracted."
+  ],
+  "nb05_input_set": {
+    "e3_three_way_evidence": [
+      "Flavonifractor plautii",
+      "Blautia wexlerae",
+      "Mediterraneibacter gnavus"
+    ],
+    "engraftment_confound_free_cross_ecotype": [
+      "Mediterraneibacter gnavus",
+      "Eggerthella lenta",
+      "Escherichia coli",
+      "Enterocloster bolteae",
+      "Hungatella hathewayi"
+    ],
+    "nb05_total_species_pre_deduplication": [
+      "Blautia wexlerae",
+      "Eggerthella lenta",
+      "Enterocloster bolteae",
+      "Escherichia coli",
+      "Flavonifractor plautii",
+      "Hungatella hathewayi",
+      "Mediterraneibacter gnavus"
+    ]
+  },
+  "e1_reformulation_options": [
+    "A_within_substudy_stratified_by_ecotype",
+    "B_functional_pathway_ecotypes",
+    "C_cohort_level_tier_a"
+  ],
+  "recommended_next_step": "Option A (within-substudy CD-vs-nonIBD stratified by ecotype) \u2014 preliminary cell-count check in NB04e before committing to the refit."
+}

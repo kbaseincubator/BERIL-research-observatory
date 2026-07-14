@@ -1,0 +1,46 @@
+# ibd_phage_targeting project dependencies
+
+# Core data processing
+pandas>=2.0
+numpy>=1.24
+pyarrow>=12.0
+
+# Statistics / differential abundance
+scipy>=1.10
+statsmodels>=0.14
+scikit-learn>=1.3
+scikit-bio>=0.5.9
+
+# Compositional-aware DA (verify where we can)
+# ANCOM-BC and MaAsLin2 are R packages; for Python use:
+#   - Composition-adjusted testing via CLR + linear models
+#   - https://github.com/BiomeDataScience/ANCOMBC-python  (optional)
+# We can also shell out to R via rpy2 if needed.
+
+# Microbiome / ecology
+scikit-bio>=0.5.9       # Bray-Curtis, UniFrac, PCoA
+umap-learn>=0.5         # visualization
+biom-format>=2.1        # BIOM tables
+
+# Unsupervised stratification
+# Dirichlet multinomial mixtures: via scikit-bio or R DirichletMultinomial
+# MOFA: mofapy2 (optional, Python wrapper for MOFA+)
+
+# Network / co-occurrence
+networkx>=3.0
+
+# Machine learning / modeling
+lightgbm>=4.0
+shap>=0.42
+
+# Plotting
+matplotlib>=3.7
+seaborn>=0.13
+
+# Notebook execution
+jupyter>=1.0
+nbformat>=5.9
+nbconvert>=7.0
+
+# BERDL access (on-cluster only — provided by the JupyterHub kernel):
+#   pyspark, berdl_notebook_utils

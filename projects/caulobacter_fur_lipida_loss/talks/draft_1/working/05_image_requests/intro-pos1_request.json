@@ -1,0 +1,23 @@
+{
+  "schema_version": "image-request.v1",
+  "slide_id_target": "intro-pos1",
+  "channel": "A",
+  "originator": "slide_compose flagged claim_evidence (intro_role: goal); 3-bullet research-question framing slide",
+  "style": "conceptual_diagram",
+  "image_prompt": "A scientific illustration with three side-by-side panels framing the three open research questions of a Caulobacter lipid A rescue study. Style: clean scientific illustration in the style of a textbook figure or Nature publication graphical abstract — flat colors, thin black outlines, professional academic aesthetic. KBase brand palette: #007DC3 (blue), #5E9732 (green), #F78E1E (orange). White background. Aspect ratio 16:9. Panel 1 (labeled 'Q1: Fur regulon'): A Fur repressor protein (labeled 'Fur') releasing downstream gene icons from repression, divided into two question groups — 'operationally required?' (#5E9732 green; icons: TBDT barrel and envelope transport channel) and 'bystanders?' (gray; icon: respiratory-chain complex). A large question mark over the gene-sorting step. Panel 2 (labeled 'Q2: Sphingolipid + Lpt'): Cross-section of the Caulobacter Gram-negative envelope — inner membrane (labeled 'IM'), periplasm with peptidoglycan layer, outer membrane (labeled 'OM'). In the OM outer leaflet: lipid A molecules marked with a gray X (absent/deleted), replaced by sphingolipid molecules with distinct polar head groups (#F78E1E orange), labeled 'constitutive pool'. A schematic Lpt transport complex (labeled 'Lpt apparatus') bridges IM to OM; a question arrow above it reads 'repurposed for sphingolipid transport?' Panel 3 (labeled 'Q3: Species specificity'): Four bacterial cell outlines in a 2x2 grid. Caulobacter crescentus (#5E9732 green outline) contains two small pathway icons labeled 'spt/cerR' and 'ChvG-ChvI'. Three comparator outlines (#007DC3 blue; labeled 'A. baumannii', 'N. meningitidis', 'M. catarrhalis') display the same pathway icons each marked with a gray X (structurally absent). A bracket label reads 'Why structurally unavailable?' Text labels: 'Q1: Fur regulon', 'Q2: Sphingolipid + Lpt', 'Q3: Species specificity', 'Fur', 'operationally required?', 'bystanders?', 'IM', 'OM', 'Lpt apparatus', 'constitutive pool', 'repurposed for sphingolipid transport?', 'spt/cerR', 'ChvG-ChvI', 'Caulobacter crescentus', 'A. baumannii', 'N. meningitidis', 'M. catarrhalis', 'Why structurally unavailable?' All labels in clean sans-serif. Do not include any other text, captions, titles, or annotations.",
+  "negative_prompt": "no quantitative content, no axes, no data points, no specific numbers or statistics, no p-values, no percentages, no fold-changes, no effect sizes, no result-level findings pre-stating experimental conclusions, no human figures, no logos, no copyrighted imagery, no text in non-Latin scripts, no photorealistic elements, no additional text or annotations beyond the named labels",
+  "placement": {
+    "region": "body",
+    "aspect_ratio": "16:9",
+    "max_width_in": 8.5,
+    "max_height_in": 4.0
+  },
+  "model_preference": "gemini-3-pro-image",
+  "worst_case_cost_usd": 0.05,
+  "user_supplied_prompt": null,
+  "user_overrides": {
+    "style": null,
+    "additional_directives": null
+  },
+  "approval_required": true
+}

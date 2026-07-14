@@ -1,0 +1,273 @@
+orgId	expName	expDesc	condition_1	concentration_1	units_1	media	norm
+acidovorax_3H11	set1IT050	Cobalt chloride 0.16 mM	Cobalt chloride hexahydrate	0.16	mM	LB	cobaltchloridehexa
+acidovorax_3H11	set1IT051	Cobalt chloride 0.32 mM	Cobalt chloride hexahydrate	0.32	mM	LB	cobaltchloridehexa
+acidovorax_3H11	set1IT056	nitrite 10 mM	Sodium nitrite	10	mM	LB	nitrite
+acidovorax_3H11	set1IT062	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+acidovorax_3H11	set1IT064	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+acidovorax_3H11	set1IT071	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+acidovorax_3H11	set1IT073	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+acidovorax_3H11	set1IT074	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+acidovorax_3H11	set1IT077	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+acidovorax_3H11	set1IT079	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+acidovorax_3H11	set1IT085	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+acidovorax_3H11	set1IT087	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+acidovorax_3H11	set1IT088	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+acidovorax_3H11	set1IT089	propionate (C)	Sodium propionate	20	mM	RCH2_defined_noCarbon	propionate
+acidovorax_3H11	set2IT002	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+acidovorax_3H11	set2IT004	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+acidovorax_3H11	set2IT007	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+acidovorax_3H11	set2IT009	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+acidovorax_3H11	set2IT010	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+acidovorax_3H11	set2IT012	Glycerol (C)	Glycerol	20	mM	RCH2_defined_noCarbon	glycerol
+acidovorax_3H11	set2IT016	L-Asparagine (C)	L-Asparagine	20	mM	RCH2_defined_noCarbon	lasparagine
+acidovorax_3H11	set2IT017	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+acidovorax_3H11	set2IT023	Cobalt chloride 0.32 mM	Cobalt chloride hexahydrate	0.32	mM	LB	cobaltchloridehexa
+acidovorax_3H11	set2IT033	nitrite 10 mM	Sodium nitrite	10	mM	LB	nitrite
+acidovorax_3H11	set3IT061	Chloramphenicol 0.0005 mg/ml	Chloramphenicol	5e-04	mg/ml	LB	chloramphenicol
+acidovorax_3H11	set3IT062	Chloramphenicol 0.001 mg/ml	Chloramphenicol	0.001	mg/ml	LB	chloramphenicol
+acidovorax_3H11	set3IT063	Tetracycline 0.00005 mg/ml	Tetracycline hydrochloride	5e-05	mg/ml	LB	tetracyclinehydrochloride
+acidovorax_3H11	set3IT064	Tetracycline 0.0001 mg/ml	Tetracycline hydrochloride	1e-04	mg/ml	LB	tetracyclinehydrochloride
+acidovorax_3H11	set3IT076	Cobalt chloride 0.32 mM	Cobalt chloride hexahydrate	0.32	mM	LB	cobaltchloridehexa
+acidovorax_3H11	set3IT077	Cobalt chloride 0.4 mM	Cobalt chloride hexahydrate	0.4	mM	LB	cobaltchloridehexa
+acidovorax_3H11	set3IT083	nitrate 20 mM	Sodium nitrate	20	mM	LB	nitrate
+acidovorax_3H11	set3IT084	nitrate 45 mM	Sodium nitrate	45	mM	LB	nitrate
+acidovorax_3H11	set3IT085	nitrate 100 mM	Sodium nitrate	100	mM	LB	nitrate
+Cup4G11	set1IT002	R2A with Cobalt chloride 0.5 mM	Cobalt chloride hexahydrate	0.5	mM	R2A	cobaltchloridehexa
+Cup4G11	set1IT012	R2A with nitrate 200 mM	Sodium nitrate	200	mM	R2A	nitrate
+Cup4G11	set1IT035	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+Cup4G11	set1IT037	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+Cup4G11	set1IT038	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+Cup4G11	set1IT039	propionate (C)	Sodium propionate	20	mM	RCH2_defined_noCarbon	propionate
+Cup4G11	set1IT041	Ethanol (C)	Ethanol	20	mM	RCH2_defined_noCarbon	ethanol
+Cup4G11	set1IT044	L-Threonine (C)	L-Threonine	20	mM	RCH2_defined_noCarbon	lthreonine
+Cup4G11	set1IT045	L-Asparagine (C)	L-Asparagine	20	mM	RCH2_defined_noCarbon	lasparagine
+Cup4G11	set1IT046	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+Cup4G11	set2IT049	L-Proline (C)	L-Proline	20	mM	RCH2_defined_noCarbon	lproline
+Cup4G11	set2IT050	L-Alanine (C)	L-Alanine	20	mM	RCH2_defined_noCarbon	lalanine
+Cup4G11	set2IT051	L-Leucine (C)	L-Leucine	20	mM	RCH2_defined_noCarbon	lleucine
+Cup4G11	set2IT052	L-Phenylalanine (C)	L-Phenylalanine	20	mM	RCH2_defined_noCarbon	lphenylalanine
+Cup4G11	set2IT053	L-Tryptophan (C)	L-Tryptophan	12.5	mM	RCH2_defined_noCarbon	ltryptophan
+Cup4G11	set2IT056	butyrate (C)	Sodium butyrate	10	mM	RCH2_defined_noCarbon	butyrate
+Cup4G11	set2IT057	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+Cup4G11	set2IT064	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+Cup4G11	set2IT066	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+Cup4G11	set2IT067	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+Cup4G11	set2IT068	propionate (C)	Sodium propionate	20	mM	RCH2_defined_noCarbon	propionate
+Cup4G11	set2IT070	Ethanol (C)	Ethanol	20	mM	RCH2_defined_noCarbon	ethanol
+Cup4G11	set2IT074	L-Asparagine (C)	L-Asparagine	20	mM	RCH2_defined_noCarbon	lasparagine
+Cup4G11	set2IT075	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+Cup4G11	set2IT077	L-Alanine (C)	L-Alanine	20	mM	RCH2_defined_noCarbon	lalanine
+Cup4G11	set2IT078	L-Leucine (C)	L-Leucine	20	mM	RCH2_defined_noCarbon	lleucine
+Cup4G11	set2IT080	L-Tryptophan (C)	L-Tryptophan	12.5	mM	RCH2_defined_noCarbon	ltryptophan
+Cup4G11	set4IT070	R2A with nitrate 200 mM	Sodium nitrate	200	mM	R2A	nitrate
+Cup4G11	set6IT084	R2A with Cobalt chloride 0.3 mM	Cobalt chloride hexahydrate	0.3	mM	R2A	cobaltchloridehexa
+Cup4G11	set6IT087	R2A with nitrate 150 mM	Sodium nitrate	150	mM	R2A	nitrate
+pseudo1_N1B4	set1IT006	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+pseudo1_N1B4	set1IT008	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+pseudo1_N1B4	set1IT013	acetate (C)	Potassium acetate	20	mM	RCH2_defined_noCarbon	acetate
+pseudo1_N1B4	set1IT017	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+pseudo1_N1B4	set1IT019	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+pseudo1_N1B4	set1IT022	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+pseudo1_N1B4	set1IT024	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+pseudo1_N1B4	set1IT029	acetate (C)	Potassium acetate	20	mM	RCH2_defined_noCarbon	acetate
+pseudo1_N1B4	set1IT033	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+pseudo1_N1B4	set1IT035	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+pseudo1_N1B4	set1IT038	Cobalt chloride 0.3125 mM	Cobalt chloride hexahydrate	0.3125	mM	LB	cobaltchloridehexa
+pseudo1_N1B4	set3IT001	nitrite 10 mM	Sodium nitrite	10	mM	LB	nitrite
+pseudo1_N1B4	set3IT005	benzoic 0.58 mg/ml	benzoic acid	0.58	mg/ml	LB	benzoicacid
+pseudo1_N1B4	set3IT015	Tetracycline 0.0004 mg/ml	Tetracycline hydrochloride	4e-04	mg/ml	LB	tetracyclinehydrochloride
+pseudo1_N1B4	set3IT029	Choline chloride 200 mM	Choline chloride	200	mM	LB	cholinechloride
+pseudo1_N1B4	set3IT032	acetate 20 mM	Sodium acetate	20	mM	LB	acetate
+pseudo1_N1B4	set3IT040	nitrite 10 mM	Sodium nitrite	10	mM	LB	nitrite
+pseudo1_N1B4	set3IT041	nitrate 100 mM	Sodium nitrate	100	mM	LB	nitrate
+pseudo1_N1B4	set4IT063	Glycerol (C)	Glycerol	20	mM	RCH2_defined_noCarbon	glycerol
+pseudo1_N1B4	set4IT067	L-Arginine (C)	L-Arginine	10	mM	RCH2_defined_noCarbon	larginine
+pseudo1_N1B4	set4IT070	L-Asparagine (C)	L-Asparagine	10	mM	RCH2_defined_noCarbon	lasparagine
+pseudo1_N1B4	set4IT071	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+pseudo1_N1B4	set4IT072	L-Alanine (C)	L-Alanine	20	mM	RCH2_defined_noCarbon	lalanine
+pseudo1_N1B4	set4IT074	L-Isoleucine (C)	L-Isoleucine	20	mM	RCH2_defined_noCarbon	lisoleucine
+pseudo1_N1B4	set4IT075	L-Leucine (C)	L-Leucine	20	mM	RCH2_defined_noCarbon	lleucine
+pseudo1_N1B4	set4IT076	D-Alanine (C)	D-Alanine	20	mM	RCH2_defined_noCarbon	dalanine
+pseudo1_N1B4	set4IT077	L-Citrulline (C)	L-Citrulline	20	mM	RCH2_defined_noCarbon	lcitrulline
+pseudo1_N1B4	set4IT082	Uridine (C)	Uridine	20	mM	RCH2_defined_noCarbon	uridine
+pseudo1_N1B4	set4IT083	Cytidine (C)	Cytidine	20	mM	RCH2_defined_noCarbon	cytidine
+pseudo1_N1B4	set4IT085	octanoate (C)	Sodium octanoate	20	mM	RCH2_defined_noCarbon	octanoate
+pseudo1_N1B4	set4IT086	butyrate (C)	Sodium butyrate	10	mM	RCH2_defined_noCarbon	butyrate
+pseudo1_N1B4	set11IT031	carbon source Sucrose 20mM	Sucrose	20	mM	RCH2_defined_noCarbon	sucrose
+pseudo1_N1B4	set11IT032	carbon source Sucrose 5mM	Sucrose	5	mM	RCH2_defined_noCarbon	sucrose
+pseudo1_N1B4	set11IT033	carbon source Sucrose 20mM	Sucrose	20	mM	RCH2_defined_noCarbon	sucrose
+pseudo1_N1B4	set11IT034	carbon source Sucrose 5mM	Sucrose	5	mM	RCH2_defined_noCarbon	sucrose
+pseudo1_N1B4	set11IT047	carbon source Sucrose 1mM	Sucrose	1	mM	RCH2_defined_noCarbon	sucrose
+pseudo1_N1B4	set11IT048	carbon source Sucrose 1mM	Sucrose	1	mM	RCH2_defined_noCarbon	sucrose
+pseudo1_N1B4	set11IT049	carbon source Sucrose 0.5mM	Sucrose	0.5	mM	RCH2_defined_noCarbon	sucrose
+pseudo1_N1B4	set11IT051	carbon source Sucrose 0.25mM	Sucrose	0.25	mM	RCH2_defined_noCarbon	sucrose
+pseudo1_N1B4	set11IT052	carbon source Sucrose 0.25mM	Sucrose	0.25	mM	RCH2_defined_noCarbon	sucrose
+pseudo3_N2E3	set1IT054	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+pseudo3_N2E3	set1IT059	acetate (C)	Potassium acetate	20	mM	RCH2_defined_noCarbon	acetate
+pseudo3_N2E3	set1IT063	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+pseudo3_N2E3	set1IT065	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+pseudo3_N2E3	set1IT066	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+pseudo3_N2E3	set1IT067	propionate (C)	Sodium propionate	20	mM	RCH2_defined_noCarbon	propionate
+pseudo3_N2E3	set1IT069	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+pseudo3_N2E3	set1IT074	acetate (C)	Potassium acetate	20	mM	RCH2_defined_noCarbon	acetate
+pseudo3_N2E3	set1IT078	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+pseudo3_N2E3	set1IT080	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+pseudo3_N2E3	set1IT081	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+pseudo3_N2E3	set1IT082	propionate (C)	Sodium propionate	20	mM	RCH2_defined_noCarbon	propionate
+pseudo3_N2E3	set1IT084	Cobalt chloride 0.16 mM	Cobalt chloride hexahydrate	0.16	mM	LB	cobaltchloridehexa
+pseudo3_N2E3	set1IT085	Cobalt chloride 0.32 mM	Cobalt chloride hexahydrate	0.32	mM	LB	cobaltchloridehexa
+pseudo3_N2E3	set1IT091	Cobalt chloride 0.16 mM	Cobalt chloride hexahydrate	0.16	mM	LB	cobaltchloridehexa
+pseudo3_N2E3	set1IT092	Cobalt chloride 0.32 mM	Cobalt chloride hexahydrate	0.32	mM	LB	cobaltchloridehexa
+pseudo3_N2E3	set2IT015	Ethanol (C)	Ethanol	20	mM	RCH2_defined_noCarbon	ethanol
+pseudo3_N2E3	set2IT016	Glycerol (C)	Glycerol	20	mM	RCH2_defined_noCarbon	glycerol
+pseudo3_N2E3	set2IT021	L-Arginine (C)	L-Arginine	10	mM	RCH2_defined_noCarbon	larginine
+pseudo3_N2E3	set2IT024	L-Aspartic Acid (C)	L-Aspartic Acid	6	mM	RCH2_defined_noCarbon	lasparticacid
+pseudo3_N2E3	set2IT027	L-Asparagine (C)	L-Asparagine	10	mM	RCH2_defined_noCarbon	lasparagine
+pseudo3_N2E3	set2IT028	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+pseudo3_N2E3	set2IT029	L-Proline (C)	L-Proline	20	mM	RCH2_defined_noCarbon	lproline
+pseudo3_N2E3	set2IT033	Ethanol (C)	Ethanol	20	mM	RCH2_defined_noCarbon	ethanol
+pseudo3_N2E3	set2IT034	Glycerol (C)	Glycerol	20	mM	RCH2_defined_noCarbon	glycerol
+pseudo3_N2E3	set2IT039	L-Arginine (C)	L-Arginine	10	mM	RCH2_defined_noCarbon	larginine
+pseudo3_N2E3	set2IT042	L-Aspartic Acid (C)	L-Aspartic Acid	6	mM	RCH2_defined_noCarbon	lasparticacid
+pseudo3_N2E3	set2IT044	L-Serine (C)	L-Serine	20	mM	RCH2_defined_noCarbon	lserine
+pseudo3_N2E3	set2IT045	L-Asparagine (C)	L-Asparagine	10	mM	RCH2_defined_noCarbon	lasparagine
+pseudo3_N2E3	set3IT050	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+pseudo3_N2E3	set3IT051	L-Proline (C)	L-Proline	20	mM	RCH2_defined_noCarbon	lproline
+pseudo3_N2E3	set3IT056	nitrite 10 mM	Sodium nitrite	10	mM	LB	nitrite
+pseudo3_N2E3	set3IT057	nitrate 200 mM	Sodium nitrate	200	mM	LB	nitrate
+pseudo3_N2E3	set3IT066	benzoic 0.58 mg/ml	benzoic acid	0.58	mg/ml	LB	benzoicacid
+pseudo3_N2E3	set3IT078	Chloramphenicol 0.0025 mg/ml	Chloramphenicol	0.0025	mg/ml	LB	chloramphenicol
+pseudo3_N2E3	set3IT079	Chloramphenicol 0.004 mg/ml	Chloramphenicol	0.004	mg/ml	LB	chloramphenicol
+pseudo3_N2E3	set3IT080	Tetracycline 0.0008 mg/ml	Tetracycline hydrochloride	8e-04	mg/ml	LB	tetracyclinehydrochloride
+pseudo3_N2E3	set3IT081	Tetracycline 0.0016 mg/ml	Tetracycline hydrochloride	0.0016	mg/ml	LB	tetracyclinehydrochloride
+pseudo3_N2E3	set4IT066	Choline chloride 268.5 mM	Choline chloride	268.5	mM	LB	cholinechloride
+pseudo3_N2E3	set4IT067	Choline chloride 358 mM	Choline chloride	358	mM	LB	cholinechloride
+pseudo3_N2E3	set4IT071	acetate 17 mM	Sodium acetate	17	mM	LB	acetate
+pseudo3_N2E3	set4IT072	acetate 34 mM	Sodium acetate	34	mM	LB	acetate
+pseudo3_N2E3	set4IT073	acetate 68 mM	Sodium acetate	68	mM	LB	acetate
+pseudo3_N2E3	set5IT001	L-Alanine (C)	L-Alanine	20	mM	RCH2_defined_noCarbon	lalanine
+pseudo3_N2E3	set5IT003	L-Isoleucine (C)	L-Isoleucine	20	mM	RCH2_defined_noCarbon	lisoleucine
+pseudo3_N2E3	set5IT004	L-Leucine (C)	L-Leucine	20	mM	RCH2_defined_noCarbon	lleucine
+pseudo3_N2E3	set5IT005	L-Phenylalanine (C)	L-Phenylalanine	20	mM	RCH2_defined_noCarbon	lphenylalanine
+pseudo3_N2E3	set5IT006	L-Tryptophan (C)	L-Tryptophan	10	mM	RCH2_defined_noCarbon	ltryptophan
+pseudo3_N2E3	set5IT007	D-Serine (C)	D-Serine	20	mM	RCH2_defined_noCarbon	dserine
+pseudo3_N2E3	set5IT008	D-Alanine (C)	D-Alanine	20	mM	RCH2_defined_noCarbon	dalanine
+pseudo3_N2E3	set5IT009	L-Citrulline (C)	L-Citrulline	20	mM	RCH2_defined_noCarbon	lcitrulline
+pseudo3_N2E3	set5IT015	Uridine (C)	Uridine	20	mM	RCH2_defined_noCarbon	uridine
+pseudo3_N2E3	set5IT016	Cytidine (C)	Cytidine	20	mM	RCH2_defined_noCarbon	cytidine
+pseudo3_N2E3	set5IT018	butyrate (C)	Sodium butyrate	10	mM	RCH2_defined_noCarbon	butyrate
+pseudo3_N2E3	set15IT087	L-Ornithine	L-Ornithine	10	mM	RCH2_defined_noCarbon	lornithine
+pseudo3_N2E3	set15IT088	L-Ornithine	L-Ornithine	5	mM	RCH2_defined_noCarbon	lornithine
+pseudo3_N2E3	set15IT089	L-Citrulline	L-Citrulline	10	mM	RCH2_defined_noCarbon	lcitrulline
+pseudo3_N2E3	set15IT090	L-Citrulline	L-Citrulline	5	mM	RCH2_defined_noCarbon	lcitrulline
+pseudo3_N2E3	set15IT092	L-Ornithine	L-Ornithine	10	mM	RCH2_defined_noCarbon	lornithine
+pseudo3_N2E3	set15IT093	L-Ornithine	L-Ornithine	5	mM	RCH2_defined_noCarbon	lornithine
+pseudo3_N2E3	set15IT094	L-Citrulline	L-Citrulline	10	mM	RCH2_defined_noCarbon	lcitrulline
+pseudo3_N2E3	set15IT095	L-Citrulline	L-Citrulline	5	mM	RCH2_defined_noCarbon	lcitrulline
+pseudo6_N2E2	set1IT004	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+pseudo6_N2E2	set1IT010	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+pseudo6_N2E2	set1IT012	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+pseudo6_N2E2	set1IT013	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+pseudo6_N2E2	set1IT014	propionate (C)	Sodium propionate	20	mM	RCH2_defined_noCarbon	propionate
+pseudo6_N2E2	set1IT018	Glycerol (C)	Glycerol	20	mM	RCH2_defined_noCarbon	glycerol
+pseudo6_N2E2	set1IT023	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+pseudo6_N2E2	set1IT025	L-Alanine (C)	L-Alanine	20	mM	RCH2_defined_noCarbon	lalanine
+pseudo6_N2E2	set1IT026	L-Isoleucine (C)	L-Isoleucine	20	mM	RCH2_defined_noCarbon	lisoleucine
+pseudo6_N2E2	set1IT027	L-Phenylalanine (C)	L-Phenylalanine	20	mM	RCH2_defined_noCarbon	lphenylalanine
+pseudo6_N2E2	set1IT028	D-Alanine (C)	D-Alanine	20	mM	RCH2_defined_noCarbon	dalanine
+pseudo6_N2E2	set1IT034	octanoate (C)	Sodium octanoate	20	mM	RCH2_defined_noCarbon	octanoate
+pseudo6_N2E2	set1IT036	Cobalt chloride 0.16 mM	Cobalt chloride hexahydrate	0.16	mM	LB	cobaltchloridehexa
+pseudo6_N2E2	set1IT042	nitrite 10 mM	Sodium nitrite	10	mM	LB	nitrite
+pseudo6_N2E2	set1IT043	nitrate 200 mM	Sodium nitrate	200	mM	LB	nitrate
+pseudo6_N2E2	set2IT002	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+pseudo6_N2E2	set2IT004	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+pseudo6_N2E2	set2IT010	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+pseudo6_N2E2	set2IT012	pyruvate (C)	Sodium pyruvate	20	mM	RCH2_defined_noCarbon	pyruvate
+pseudo6_N2E2	set2IT013	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+pseudo6_N2E2	set2IT014	propionate (C)	Sodium propionate	20	mM	RCH2_defined_noCarbon	propionate
+pseudo6_N2E2	set2IT018	Glycerol (C)	Glycerol	20	mM	RCH2_defined_noCarbon	glycerol
+pseudo6_N2E2	set2IT023	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+pseudo6_N2E2	set2IT025	L-Alanine (C)	L-Alanine	20	mM	RCH2_defined_noCarbon	lalanine
+pseudo6_N2E2	set2IT026	L-Isoleucine (C)	L-Isoleucine	20	mM	RCH2_defined_noCarbon	lisoleucine
+pseudo6_N2E2	set2IT027	L-Phenylalanine (C)	L-Phenylalanine	20	mM	RCH2_defined_noCarbon	lphenylalanine
+pseudo6_N2E2	set2IT028	D-Alanine (C)	D-Alanine	20	mM	RCH2_defined_noCarbon	dalanine
+pseudo6_N2E2	set2IT034	octanoate (C)	Sodium octanoate	20	mM	RCH2_defined_noCarbon	octanoate
+pseudo6_N2E2	set3IT062	Chloramphenicol 0.002 mg/ml	Chloramphenicol	0.002	mg/ml	LB	chloramphenicol
+pseudo6_N2E2	set3IT063	Chloramphenicol 0.004 mg/ml	Chloramphenicol	0.004	mg/ml	LB	chloramphenicol
+pseudo6_N2E2	set3IT064	Chloramphenicol 0.008 mg/ml	Chloramphenicol	0.008	mg/ml	LB	chloramphenicol
+pseudo6_N2E2	set3IT065	Tetracycline 0.0001 mg/ml	Tetracycline hydrochloride	1e-04	mg/ml	LB	tetracyclinehydrochloride
+pseudo6_N2E2	set3IT066	Tetracycline 0.0002 mg/ml	Tetracycline hydrochloride	2e-04	mg/ml	LB	tetracyclinehydrochloride
+pseudo6_N2E2	set3IT079	acetate 80 mM	Sodium acetate	80	mM	LB	acetate
+pseudo6_N2E2	set3IT081	L-Lysine 25 mM	L-Lysine	25	mM	LB	llysine
+pseudo6_N2E2	set7IT013	Tetracycline 0.0002 mg/ml	Tetracycline hydrochloride	2e-04	mg/ml	LB	tetracyclinehydrochloride
+pseudo6_N2E2	set7IT014	Tetracycline 0.0004 mg/ml	Tetracycline hydrochloride	4e-04	mg/ml	LB	tetracyclinehydrochloride
+pseudo6_N2E2	set8IT031	L-Asparagine (C)	L-Asparagine	20	mM	RCH2_defined_noCarbon	lasparagine
+pseudo6_N2E2	set8IT032	L-Leucine (C)	L-Leucine	20	mM	RCH2_defined_noCarbon	lleucine
+pseudo6_N2E2	set8IT036	L-Leucine (C)	L-Leucine	5	mM	RCH2_defined_noCarbon	lleucine
+pseudo6_N2E2	set8IT041	L-Asparagine (C)	L-Asparagine	20	mM	RCH2_defined_noCarbon	lasparagine
+pseudo6_N2E2	set8IT042	L-Leucine (C)	L-Leucine	20	mM	RCH2_defined_noCarbon	lleucine
+pseudo6_N2E2	set8IT046	L-Leucine (C)	L-Leucine	5	mM	RCH2_defined_noCarbon	lleucine
+pseudo6_N2E2	set23IT023	Carbon source Sucrose 10 mM	Sucrose	10	mM	RCH2_defined_noCarbon	sucrose
+pseudo6_N2E2	set23IT024	Carbon source Sucrose 5 mM	Sucrose	5	mM	RCH2_defined_noCarbon	sucrose
+pseudo6_N2E2	set23IT025	Carbon source Sucrose 2.5 mM	Sucrose	2.5	mM	RCH2_defined_noCarbon	sucrose
+pseudo6_N2E2	set23IT028	Carbon source Sucrose 10 mM	Sucrose	10	mM	RCH2_defined_noCarbon	sucrose
+pseudo6_N2E2	set23IT029	Carbon source Sucrose 5 mM	Sucrose	5	mM	RCH2_defined_noCarbon	sucrose
+pseudo6_N2E2	set23IT030	Carbon source Sucrose 2.5 mM	Sucrose	2.5	mM	RCH2_defined_noCarbon	sucrose
+pseudo13_GW456_L13	set1IT002	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+pseudo13_GW456_L13	set1IT004	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+pseudo13_GW456_L13	set1IT012	succinate (C)	Sodium succinate dibasic hexahydrate	20	mM	RCH2_defined_noCarbon	succinatehexa
+pseudo13_GW456_L13	set1IT014	Glycerol (C)	Glycerol	20	mM	RCH2_defined_noCarbon	glycerol
+pseudo13_GW456_L13	set1IT018	L-Asparagine (C)	L-Asparagine	20	mM	RCH2_defined_noCarbon	lasparagine
+pseudo13_GW456_L13	set1IT019	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+pseudo13_GW456_L13	set1IT021	L-Alanine (C)	L-Alanine	20	mM	RCH2_defined_noCarbon	lalanine
+pseudo13_GW456_L13	set1IT025	L-Phenylalanine (C)	L-Phenylalanine	20	mM	RCH2_defined_noCarbon	lphenylalanine
+pseudo13_GW456_L13	set1IT026	L-Tryptophan (C)	L-Tryptophan	12.5	mM	RCH2_defined_noCarbon	ltryptophan
+pseudo13_GW456_L13	set1IT027	D-Serine (C)	D-Serine	20	mM	RCH2_defined_noCarbon	dserine
+pseudo13_GW456_L13	set1IT028	D-Alanine (C)	D-Alanine	20	mM	RCH2_defined_noCarbon	dalanine
+pseudo13_GW456_L13	set1IT036	Cobalt chloride 0.16 mM	Cobalt chloride hexahydrate	0.16	mM	LB	cobaltchloridehexa
+pseudo13_GW456_L13	set2IT050	D-Fructose (C)	D-Fructose	20	mM	RCH2_defined_noCarbon	dfructose
+pseudo13_GW456_L13	set2IT052	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+pseudo13_GW456_L13	set2IT058	L-Lactate (C)	Sodium L-Lactate	20	mM	RCH2_defined_noCarbon	llactate
+pseudo13_GW456_L13	set2IT062	Glycerol (C)	Glycerol	20	mM	RCH2_defined_noCarbon	glycerol
+pseudo13_GW456_L13	set2IT066	L-Asparagine (C)	L-Asparagine	20	mM	RCH2_defined_noCarbon	lasparagine
+pseudo13_GW456_L13	set2IT067	L-Glutamine (C)	L-Glutamine	20	mM	RCH2_defined_noCarbon	lglutamine
+pseudo13_GW456_L13	set2IT069	L-Alanine (C)	L-Alanine	20	mM	RCH2_defined_noCarbon	lalanine
+pseudo13_GW456_L13	set2IT073	L-Phenylalanine (C)	L-Phenylalanine	20	mM	RCH2_defined_noCarbon	lphenylalanine
+pseudo13_GW456_L13	set2IT074	L-Tryptophan (C)	L-Tryptophan	12.5	mM	RCH2_defined_noCarbon	ltryptophan
+pseudo13_GW456_L13	set2IT075	D-Serine (C)	D-Serine	20	mM	RCH2_defined_noCarbon	dserine
+pseudo13_GW456_L13	set2IT076	D-Alanine (C)	D-Alanine	20	mM	RCH2_defined_noCarbon	dalanine
+pseudo13_GW456_L13	set2IT082	octanoate (C)	Sodium octanoate	20	mM	RCH2_defined_noCarbon	octanoate
+pseudo13_GW456_L13	set2IT083	nitrite 5 mM	Sodium nitrite	5	mM	LB	nitrite
+pseudo13_GW456_L13	set2IT084	nitrite 10 mM	Sodium nitrite	10	mM	LB	nitrite
+pseudo13_GW456_L13	set2IT085	nitrate 200 mM	Sodium nitrate	200	mM	LB	nitrate
+Pedo557	set1IT002	R2A with Cobalt chloride 0.04 mM	Cobalt chloride hexahydrate	0.04	mM	R2A	cobaltchloridehexa
+Pedo557	set1IT003	R2A with Cobalt chloride 0.08 mM	Cobalt chloride hexahydrate	0.08	mM	R2A	cobaltchloridehexa
+Pedo557	set1IT020	R2A with nitrite 1.5 mM	Sodium nitrite	1.5	mM	R2A	nitrite
+Pedo557	set1IT021	R2A with nitrite 3 mM	Sodium nitrite	3	mM	R2A	nitrite
+Pedo557	set1IT022	R2A with nitrite 6 mM	Sodium nitrite	6	mM	R2A	nitrite
+Pedo557	set1IT023	R2A with nitrate 100 mM	Sodium nitrate	100	mM	R2A	nitrate
+Pedo557	set1IT024	R2A with nitrate 200 mM	Sodium nitrate	200	mM	R2A	nitrate
+Pedo557	set1IT036	R2A with Cobalt chloride 0.04 mM	Cobalt chloride hexahydrate	0.04	mM	R2A	cobaltchloridehexa
+Pedo557	set1IT037	R2A with Cobalt chloride 0.08 mM	Cobalt chloride hexahydrate	0.08	mM	R2A	cobaltchloridehexa
+Pedo557	set1IT054	R2A with nitrite 1.5 mM	Sodium nitrite	1.5	mM	R2A	nitrite
+Pedo557	set1IT055	R2A with nitrite 3 mM	Sodium nitrite	3	mM	R2A	nitrite
+Pedo557	set1IT056	R2A with nitrite 6 mM	Sodium nitrite	6	mM	R2A	nitrite
+Pedo557	set1IT057	R2A with nitrate 100 mM	Sodium nitrate	100	mM	R2A	nitrate
+Pedo557	set1IT058	R2A with nitrate 200 mM	Sodium nitrate	200	mM	R2A	nitrate
+Pedo557	set1IT072	R2A with Chloramphenicol 0.001 mg/ml	Chloramphenicol	0.001	mg/ml	R2A	chloramphenicol
+Pedo557	set1IT073	R2A with Chloramphenicol 0.005 mg/ml	Chloramphenicol	0.005	mg/ml	R2A	chloramphenicol
+Pedo557	set1IT074	R2A with Tetracycline 0.0005 mg/ml	Tetracycline hydrochloride	5e-04	mg/ml	R2A	tetracyclinehydrochloride
+Pedo557	set1IT090	R2A with benzoic 0.1 mg/ml	benzoic acid	0.1	mg/ml	R2A	benzoicacid
+Pedo557	set2IT009	R2A with Chloramphenicol 0.001 mg/ml	Chloramphenicol	0.001	mg/ml	R2A	chloramphenicol
+Pedo557	set2IT010	R2A with Chloramphenicol 0.005 mg/ml	Chloramphenicol	0.005	mg/ml	R2A	chloramphenicol
+Pedo557	set2IT011	R2A with Tetracycline 0.0005 mg/ml	Tetracycline hydrochloride	5e-04	mg/ml	R2A	tetracyclinehydrochloride
+Pedo557	set2IT027	R2A with benzoic 0.1 mg/ml	benzoic acid	0.1	mg/ml	R2A	benzoicacid
+Pedo557	set2IT046	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+Pedo557	set2IT053	NAG (C)	N-Acetyl-D-Glucosamine	20	mM	RCH2_defined_noCarbon	nacetyldglucosamine
+Pedo557	set2IT056	Beta-Lactose (C)	Beta-Lactose	20	mM	RCH2_defined_noCarbon	betalactose
+Pedo557	set2IT059	L-Arabinose (C)	L-Arabinose	20	mM	RCH2_defined_noCarbon	larabinose
+Pedo557	set2IT066	NAG (C)	N-Acetyl-D-Glucosamine	20	mM	RCH2_defined_noCarbon	nacetyldglucosamine
+Pedo557	set4IT006	Lactulose 20mM (C)	Lactulose	20	mM	RCH2_defined_noCarbon	lactulose
+Pedo557	set4IT008	Maltitol 20mM (C)	Maltitol	20	mM	RCH2_defined_noCarbon	maltitol
+Pedo557	set4IT013	Lactulose 20mM (C)	Lactulose	20	mM	RCH2_defined_noCarbon	lactulose
+Pedo557	set4IT015	Maltitol 20mM (C)	Maltitol	20	mM	RCH2_defined_noCarbon	maltitol

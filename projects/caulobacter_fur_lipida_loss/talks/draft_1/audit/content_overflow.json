@@ -1,0 +1,54 @@
+{
+  "findings": [
+    {
+      "base_pt": 28,
+      "box_height_emu": 572700,
+      "box_width_emu": 8520600,
+      "chars": 336,
+      "computed_scale": 60000,
+      "layout_name": "methods_summary",
+      "message": "slide title (methods_summary): 336 chars at base 28pt in 9.32\u00d70.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 30,
+      "slot_kind": "title",
+      "where": "slide title (methods_summary)"
+    },
+    {
+      "base_pt": 28,
+      "box_height_emu": 1188720,
+      "box_width_emu": 8521700,
+      "chars": 292,
+      "computed_scale": 60000,
+      "layout_name": "qa_anticipated",
+      "message": "slide title (qa_anticipated): 292 chars at base 28pt in 9.32\u00d71.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 32,
+      "slot_kind": "title",
+      "where": "slide title (qa_anticipated)"
+    },
+    {
+      "base_pt": 28,
+      "box_height_emu": 1188720,
+      "box_width_emu": 8521700,
+      "chars": 295,
+      "computed_scale": 60000,
+      "layout_name": "qa_anticipated",
+      "message": "slide title (qa_anticipated): 295 chars at base 28pt in 9.32\u00d71.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 33,
+      "slot_kind": "title",
+      "where": "slide title (qa_anticipated)"
+    },
+    {
+      "base_pt": 28,
+      "box_height_emu": 1188720,
+      "box_width_emu": 8521700,
+      "chars": 313,
+      "computed_scale": 60000,
+      "layout_name": "qa_anticipated",
+      "message": "slide title (qa_anticipated): 313 chars at base 28pt in 9.32\u00d71.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 34,
+      "slot_kind": "title",
+      "where": "slide title (qa_anticipated)"
+    }
+  ],
+  "pptx_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/deliverable/draft.pptx",
+  "schema_version": "content-overflow.v1"
+}

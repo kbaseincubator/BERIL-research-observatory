@@ -1,0 +1,195 @@
+{
+  "phase": "4",
+  "deliverable": "P4-D1 NB23",
+  "purpose": "Biome enrichment for pre-registered atlas findings",
+  "n_species": 18992,
+  "atlas_biome_fractions": {
+    "marine": 2870,
+    "photic_aquatic": 4370,
+    "soil": 2763,
+    "hostpath": 399,
+    "gut_or_rumen": 4896
+  },
+  "h1_cyanobacteriia": {
+    "marine": {
+      "label": "Cyanobacteriia \u00d7 marine",
+      "n_focal_in_biome": 109,
+      "n_focal_total": 309,
+      "pct_focal_in_biome": 35.3,
+      "n_atlas_in_biome": 2870,
+      "n_atlas_total": 18992,
+      "pct_atlas_in_biome": 15.1,
+      "fold_enrichment": 2.33,
+      "fisher_odds_ratio": 3.143,
+      "fisher_p_one_sided": 8.30593632380019e-19
+    },
+    "photic_aquatic": {
+      "label": "Cyanobacteriia \u00d7 photic aquatic",
+      "n_focal_in_biome": 197,
+      "n_focal_total": 309,
+      "pct_focal_in_biome": 63.8,
+      "n_atlas_in_biome": 4370,
+      "n_atlas_total": 18992,
+      "pct_atlas_in_biome": 23.0,
+      "fold_enrichment": 2.77,
+      "fisher_odds_ratio": 6.116,
+      "fisher_p_one_sided": 1.4575559051787931e-53
+    },
+    "mgnify_biomes": {
+      "marine": 34,
+      "marine_sediment": 3,
+      "human-skin": 1,
+      "honeybee-gut": 1
+    }
+  },
+  "h2_mycobacteriaceae": {
+    "soil": {
+      "label": "Mycobacteriaceae \u00d7 soil",
+      "n_focal_in_biome": 59,
+      "n_focal_total": 459,
+      "pct_focal_in_biome": 12.9,
+      "n_atlas_in_biome": 2763,
+      "n_atlas_total": 18992,
+      "pct_atlas_in_biome": 14.5,
+      "fold_enrichment": 0.88,
+      "fisher_odds_ratio": 0.863,
+      "fisher_p_one_sided": 0.8671846818912223
+    },
+    "hostpath": {
+      "label": "Mycobacteriaceae \u00d7 host-pathogen",
+      "n_focal_in_biome": 76,
+      "n_focal_total": 459,
+      "pct_focal_in_biome": 16.6,
+      "n_atlas_in_biome": 399,
+      "n_atlas_total": 18992,
+      "pct_atlas_in_biome": 2.1,
+      "fold_enrichment": 7.88,
+      "fisher_odds_ratio": 11.187,
+      "fisher_p_one_sided": 3.624059859863742e-46
+    },
+    "soil_or_hostpath": {
+      "label": "Mycobacteriaceae \u00d7 (soil OR host-pathogen)",
+      "n_focal_in_biome": 133,
+      "n_focal_total": 459,
+      "pct_focal_in_biome": 29.0,
+      "n_atlas_in_biome": 3124,
+      "n_atlas_total": 18992,
+      "pct_atlas_in_biome": 16.4,
+      "fold_enrichment": 1.76,
+      "fisher_odds_ratio": 2.12,
+      "fisher_p_one_sided": 7.993402875858863e-12
+    },
+    "mgnify_biomes": {
+      "human-skin": 53,
+      "human-vaginal": 16,
+      "human-gut": 15,
+      "marine": 13,
+      "chicken-gut": 11,
+      "marine_sediment": 6,
+      "pig-gut": 5,
+      "soil": 5,
+      "human-oral": 4,
+      "mouse-gut": 3,
+      "maize-rhizosphere": 1,
+      "cow-rumen": 1,
+      "tomato-rhizosphere": 1
+    }
+  },
+  "h3_bacteroidota": {
+    "gut_or_rumen": {
+      "label": "Bacteroidota \u00d7 gut/rumen",
+      "n_focal_in_biome": 932,
+      "n_focal_total": 2581,
+      "pct_focal_in_biome": 36.1,
+      "n_atlas_in_biome": 4896,
+      "n_atlas_total": 18992,
+      "pct_atlas_in_biome": 25.8,
+      "fold_enrichment": 1.4,
+      "fisher_odds_ratio": 1.775,
+      "fisher_p_one_sided": 3.618946335166005e-36
+    },
+    "mgnify_biomes": {
+      "marine": 268,
+      "human-gut": 217,
+      "mouse-gut": 157,
+      "cow-rumen": 145,
+      "sheep-rumen": 141,
+      "chicken-gut": 96,
+      "pig-gut": 82,
+      "marine_sediment": 43,
+      "human-oral": 41,
+      "human-skin": 30,
+      "human-vaginal": 15,
+      "non-model-fish-gut": 11,
+      "tomato-rhizosphere": 4,
+      "soil": 4,
+      "barley-rhizosphere": 3,
+      "maize-rhizosphere": 3,
+      "zebrafish-fecal": 1,
+      "honeybee-gut": 1
+    }
+  },
+  "phylum_biome_pct_distribution": {
+    "is_marine": {
+      "p__Pseudomonadota": 23.77,
+      "p__Actinomycetota": 8.61,
+      "p__Bacteroidota": 15.23,
+      "p__Bacillota_A": 0.79,
+      "p__Bacillota": 3.9,
+      "p__Verrucomicrobiota": 20.88,
+      "p__Cyanobacteriota": 33.23,
+      "p__Campylobacterota": 15.87,
+      "p__Planctomycetota": 38.72,
+      "p__Chloroflexota": 34.19
+    },
+    "is_photic_aquatic": {
+      "p__Pseudomonadota": 32.53,
+      "p__Actinomycetota": 13.02,
+      "p__Bacteroidota": 26.46,
+      "p__Bacillota_A": 1.15,
+      "p__Bacillota": 5.04,
+      "p__Verrucomicrobiota": 65.59,
+      "p__Cyanobacteriota": 60.73,
+      "p__Campylobacterota": 19.44,
+      "p__Planctomycetota": 62.98,
+      "p__Chloroflexota": 47.01
+    },
+    "is_soil": {
+      "p__Pseudomonadota": 17.89,
+      "p__Actinomycetota": 21.44,
+      "p__Bacteroidota": 8.49,
+      "p__Bacillota_A": 1.34,
+      "p__Bacillota": 13.77,
+      "p__Verrucomicrobiota": 12.35,
+      "p__Cyanobacteriota": 4.23,
+      "p__Campylobacterota": 3.97,
+      "p__Planctomycetota": 15.32,
+      "p__Chloroflexota": 20.09
+    },
+    "is_hostpath": {
+      "p__Pseudomonadota": 1.95,
+      "p__Actinomycetota": 5.42,
+      "p__Bacteroidota": 1.28,
+      "p__Bacillota_A": 0.59,
+      "p__Bacillota": 4.45,
+      "p__Verrucomicrobiota": 0.0,
+      "p__Cyanobacteriota": 0.3,
+      "p__Campylobacterota": 0.0,
+      "p__Planctomycetota": 0.0,
+      "p__Chloroflexota": 0.0
+    },
+    "is_gut_or_rumen": {
+      "p__Pseudomonadota": 6.71,
+      "p__Actinomycetota": 18.44,
+      "p__Bacteroidota": 36.11,
+      "p__Bacillota_A": 81.04,
+      "p__Bacillota": 31.4,
+      "p__Verrucomicrobiota": 14.71,
+      "p__Cyanobacteriota": 3.32,
+      "p__Campylobacterota": 24.6,
+      "p__Planctomycetota": 2.55,
+      "p__Chloroflexota": 0.43
+    }
+  },
+  "completed_utc": "2026-04-28T14:46:49Z"
+}

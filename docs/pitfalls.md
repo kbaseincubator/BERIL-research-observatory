@@ -2,11 +2,207 @@
 
 **Purpose**: Quick reference for avoiding common issues when querying BERDL databases.
 
-See [collections.md](collections.md) for the full database inventory and [schemas/](schemas/) for per-collection documentation.
+Use BERDL notebook helpers for live access-aware database and table discovery.
+See [schemas/](schemas/) for per-collection documentation.
 
 ---
 
 ## General BERDL Pitfalls
+
+### [all] Namespace Convention Changed from Underscores to Dots (Delta → Iceberg)
+
+**Problem**: BERDL collections are migrating from Delta to Iceberg, and the table-naming convention changed with it. Iceberg tables are addressed as **`catalog.namespace.table`** (dotted), whereas the old Delta convention flattened that into a single underscore-joined identifier — e.g. what is now `kbase.ke_pangenome.genome` was previously `kbase_ke_pangenome.genome`. A query copied verbatim from an older project's README, REPORT, notebook, or `.py` file will use the underscore form and fail with `TABLE_OR_VIEW_NOT_FOUND` (or an unresolved-relation error) against the migrated catalog.
+
+**Scale**: Underscore-form references are widespread in completed projects (hundreds of files reference `kbase_ke_pangenome`, `kescience_fitnessbrowser`, `nmdc_arkin`, `kescience_mgnify`, `enigma_genome_depot_enigma`, etc.). Those archived files are intentionally **not** rewritten — they are historical. Only the leading underscore needs to change; the table name itself is unchanged (`kbase_ke_pangenome.genome` → `kbase.ke_pangenome.genome`).
+
+**Important — migration is still ongoing**: Not every collection has migrated yet. If a **dotted** namespace cannot be found, the collection may still be Delta-only, in which case the **underscore** form is the correct address. Do not assume a blanket underscore→dot rewrite is always right.
+
+**Fix**: Don't hardcode either form blindly. Use live, access-aware catalog discovery (`SET` + parse `spark.sql.catalog.*`, or the BERDL notebook helpers) to resolve the current address of a collection, then:
+
+- Prefer the dotted (`catalog.namespace.table`) form for migrated collections.
+- If the dotted name is not found, fall back to the underscore (`catalog_namespace.table`) form — that collection has not been migrated yet.
+
+**Applies to**: Any query reused from a project authored before the Iceberg migration, and any code that addresses tables by hardcoded namespace strings.
+
+### [genotype_to_phenotype_enigma] Short Strain Names Collide Across Databases
+
+**Problem**: ENIGMA field isolates often have short strain names (MT20, MT42, GW460-LB6, FW507-14TSA) that are **not globally unique**. When matching to `kbase.ke_pangenome.gtdb_metadata.ncbi_strain_identifiers`, these short names can match **completely unrelated organisms** in NCBI. Example: ENIGMA MT20 is *Rhodanobacter glycinis* (Xanthomonadales, groundwater), but GTDB's MT20 is *Streptococcus pneumoniae* (Lactobacillales, clinical) — 8,434 genomes, 1,751 clinical. This contaminated genus-environment profiles with spurious clinical data.
+
+**Scale**: 12 of 32 pangenome linkages via `ncbi_strain_identifiers` were incorrect genus matches.
+
+**Fix**: Always cross-check the genus from the source database (e.g., `enigma.genome_depot_enigma.browser_taxon`) against the genus from the GTDB match. Reject linkages where genera disagree:
+
+```python
+# After matching via ncbi_strain_identifiers, verify genus consistency
+depot_genus = depot_taxon.split()[0]  # e.g., "Rhodanobacter" from "Rhodanobacter glycinis"
+gtdb_genus = gtdb_taxonomy.split(';g__')[1].split(';')[0]  # from GTDB taxonomy string
+if depot_genus.lower() not in gtdb_genus.lower():
+    # REJECT this linkage — strain name collision
+    pass
+```
+
+**Applies to**: Any project linking ENIGMA CORAL strains or genome depot strains to `kbase_ke_pangenome` via strain name matching. Use assembly accession (GCF_*) matching instead when possible — it's unambiguous.
+
+### [genotype_to_phenotype_enigma] Commit Notebooks Alongside Their Artifacts, Not Just the TSVs
+
+**Problem**: Analyses run interactively in a Claude Code session (pure Python REPL, not a committed `.ipynb`) can produce figures and data files that get staged and committed — while the code that produced them lives only in the session transcript. The project then *looks* reproducible (the README references NB08/NB09/NB10, runtime tables list them, the REPORT cites their findings) but `git log` finds no notebook history for those names. Downstream reviewers read the plan and REPORT at face value and miss the gap.
+
+**Scale**: In this project, three "notebooks" (NB08, NB09, NB10 — the entire Act II/III closing) existed only as outputs. The reconstruction took a few hours once the gap was identified; it would have been far cheaper to have written `.ipynb` cells in the first place.
+
+**Fix**:
+
+- When an analysis is worth committing artifacts for, it is worth committing as a notebook. If you find yourself building figures in a REPL, pause and move the logic into a numbered notebook before saving results.
+- Before running `/submit` (or any milestone commit), run `git log --all --oneline -- projects/{project_id}/notebooks/NB*.ipynb` to verify every NBxx referenced in the README/plan is backed by actual notebook history.
+- If you inherit a project with this gap, reconstruct the notebooks from the committed artifacts; note the reconstruction in `RESEARCH_PLAN.md`'s revision history so reviewers know which numeric counts are the "interactive original" vs. the "reproducible re-run".
+
+**Applies to**: Any Claude Code-assisted project. This is especially easy to trip over late in a project when the user is synthesizing and no longer creating fresh notebooks for each analytical step.
+
+### [genotype_to_phenotype_enigma] Web of Microbes Binary "Produced" Requires Action Code Interpretation
+
+**Problem**: `kescience.webofmicrobes.observation.action` is a single-letter code (`I` increased, `E` emerged, `N` no change, and occasionally `D` decreased). A naive `SELECT action` gives you the raw code; it does NOT give you a binary produced/consumed label. The binary definition used in NB02 and NB08 is `produced = action IN ('I', 'E')` — a compound is counted as produced when it either increased in supernatant (was there and more accumulated) or emerged (was below the detection limit and reached it).
+
+```python
+# correct binary encoding for "did this strain produce this metabolite?"
+obs["produced"] = obs["action"].isin(["I", "E"]).astype(int)
+```
+
+**Why it matters**: Including `N` (no change) in the produced set makes every strain look like a production generalist and collapses the signal. Excluding `E` (emerged, sub-detection-limit → detectable) misses genuinely novel production.
+
+**Applies to**: Any project touching `kescience.webofmicrobes.observation`.
+
+### [ibd_phage_targeting] Agent Sessions Sharing a Checkout — Verify `git branch --show-current` Before Every Commit
+
+**Problem**: Two Claude agent sessions (or any two processes) operating in the same repository clone share one `.git` directory and one working tree. A `git checkout` issued by one session silently reshapes the working tree for the other — files that exist on one branch but not the other simply *disappear* from the working tree, and subsequent `git commit` calls land on whichever branch HEAD is currently pointing at.
+
+**Example** (observed 2026-04-24, during `ibd_phage_targeting` NB00 work): a session working on `projects/ibd_phage_targeting` was operating concurrently with a second `claude` process (PID 22230) working on `projects/plant_microbiome_ecotypes`. During the first session's long `jupyter nbconvert --execute` run, the second session ran `git checkout projects/plant_microbiome_ecotypes`. The first session's subsequent `git commit` landed on the plant-microbiome branch (not ibd), and the user observed `README.md` and `RESEARCH_PLAN.md` "missing" from `projects/ibd_phage_targeting/` when they inspected the directory — both files were still safely in git on the ibd branch, but the checkout had swept them out of the working tree.
+
+**Fix — two layers**:
+
+1. **Defensive hygiene (any session)**:
+   - Call `git branch --show-current` immediately before every `git commit`. If the branch is not the one the session started on, investigate before committing.
+   - Capture the intended branch name at session start; verify `HEAD` before each commit.
+   - If the wrong branch was committed to: `git cherry-pick` onto the correct branch, then `git branch -f <stray> origin/<stray>` to reset the stray. No data loss as long as the stranded commit is recoverable via `git reflog`. Push the corrected branch immediately.
+
+2. **Structural isolation (for parallel sessions)** — use `git worktree add` to give each concurrent session its own working directory on a dedicated branch:
+
+```bash
+git worktree add ../repo-copy-for-branch-X projects/X
+# each session then works inside its own worktree directory
+```
+
+Each worktree has its own `HEAD` and working-tree state while sharing a single object store (cheap). A `git checkout` in one worktree does not affect the other. This is the clean fix for the drift scenario above and is the recommended practice whenever two agents work on the repo simultaneously.
+
+**User-visible symptom to watch for**: "file X is missing from the project directory" when the agent believed it had just committed file X — this is almost always a wrong-branch commit (or, equivalently, a background checkout swept it out of the tree) rather than a genuine deletion. Recovery is cheap if caught early; easier to prevent with worktree isolation.
+
+**Applies to**: Any agent session in this repository longer than a few minutes. Especially: scheduled remote agents, parallel user-started sessions, and auto-import hooks.
+
+### [ibd_phage_targeting] MetaPhlAn3 Cross-Cohort Taxon Names Need a Synonymy Layer, Not Just Format Normalization
+
+**Problem**: Cross-cohort microbiome analysis that pivots on `taxon_name_original` (or any string key) can silently segregate the same species into two non-overlapping rows when cohorts use different MetaPhlAn3 DB vintages / cMD-processing stages. Three divergences observed in the `~/data/CrohnsPhage` integrated mart:
+
+1. **Format** — short name (`Faecalibacterium prausnitzii`) vs. full lineage string (`k__Bacteria|p__Firmicutes|...|s__Faecalibacterium_prausnitzii`). Same database, different export format.
+2. **GTDB r214+ genus renames** — `Bacteroides vulgatus` (CMD_HEALTHY lineage) ↔ `Phocaeicola vulgatus` (CMD_IBD short name) are the same NCBI taxid, treated as separate species. Also affects *B. dorei / coprocola / plebeius / salanitronis / sartorii / massiliensis / coprophilus*, all now *Phocaeicola*.
+3. **Other reclassification splits** — `Eubacterium rectale` → `Agathobacter rectalis`, `E. eligens` → `Lachnospira eligens`, `E. hallii` → `Anaerobutyricum hallii`; `Ruminococcus gnavus` → `Mediterraneibacter gnavus`; `Clostridium bolteae / clostridioforme / symbiosum / innocuum / asparagiforme / hathewayi / citroniae / aldenense` → *Enterocloster* / *Hungatella* / *Erysipelatoclostridium*; `Lactobacillus mucosae / ruminis` → *Limosilactobacillus / Ligilactobacillus*.
+
+**Scale**: In the CrohnsPhage mart, CMD_IBD uses the modern names, CMD_HEALTHY uses legacy names — so a naive pivot gives log₂FC ≈ 28 (≈ 2.68 × 10⁸ fold) for every renamed species because one cohort's mean abundance collapses to pseudocount.
+
+**The committed `ref_taxonomy_crosswalk` does not fully resolve this**: legacy `Bacteroides_X` rows have `ncbi_taxid = NaN`, so joining through taxid leaves them orphaned. The crosswalk lists *B. vulgatus* and *P. vulgatus* as two separate rows with different `canonical_name` values.
+
+**Fix at three levels**:
+
+1. **Format normalization** — parse the `s__Genus_species` component from full lineage strings and strip brackets from short names to get a canonical `"Genus species"`.
+2. **Hand-curated synonym map** — enough for a targeted species battery. NB00 in `projects/ibd_phage_targeting/` ships a 23-entry `SYNONYM_MAP` covering the major renames above.
+3. **Systematic reconciliation** — an NCBI-taxid-backboned synonymy layer with GTDB-version-aware rename tables. Mandatory before any cross-cohort aggregation over the full taxonomy (not just a curated battery). This is an NB01 dependency in `ibd_phage_targeting`.
+
+**Applies to**: Any project using `fact_taxon_abundance` or any other MetaPhlAn3-derived table across multiple cohorts that may have been processed at different times (different mpa DB versions, different cMD releases). Also applies generally to merging MetaPhlAn outputs with GTDB-r214+ downstream analyses.
+
+### [ibd_phage_targeting] curatedMetagenomicData Sub-Studies Are Disjoint Between HC and Disease Cohorts — Pooled LME is Unidentifiable
+
+**Problem**: curatedMetagenomicData bundles samples from ~50+ published studies into `CMD_HEALTHY` and `CMD_IBD` buckets. The healthy and disease sub-studies **do not overlap** — every CMD_HEALTHY sample comes from a healthy-cohort study (LifeLinesDeep_2016, AsnicarF_2021, YachidaS_2019, HansenLBS_2018, …), every CMD_IBD CD sample comes from an IBD-cohort study (HallAB_2017, VilaAV_2018, LiJ_2014, IjazUZ_2017, NielsenHB_2014). **There is no sub-study that contains both CD and HC samples.**
+
+A pooled `log_abundance ~ diagnosis + (1 | substudy)` linear mixed-effects model on the CD-vs-HC contrast is therefore structurally unidentifiable: the substudy random effect perfectly predicts diagnosis, so the model either silently fails to converge or absorbs all of the CD effect into the random intercept. `statsmodels.mixedlm` with `lbfgs` fails silently (returns without error but with no usable fixed-effect estimate) on this design.
+
+**Scale**: In the `~/data/CrohnsPhage` integrated mart scoped to ecotype-assigned samples (8,489 total), 45 sub-studies have ≥ 10 HC samples, 5 sub-studies have ≥ 10 CD samples, and **0** sub-studies have both ≥ 10 of HC and ≥ 10 of CD. Vujkovic-Cvijin 2020 cites this kind of structural confounding as the reason to adjust; it cannot be adjusted via a standard random-effects model on the cMD pooled-cohort contrast.
+
+**Detect**:
+
+```python
+# After parsing substudy from dim_samples.external_ids.study + participant_id 2nd token:
+tbl = sample_meta.groupby('substudy').diagnosis.value_counts().unstack(fill_value=0)
+hc_studies = set(tbl[tbl.get('HC', 0) >= 10].index)
+cd_studies = set(tbl[tbl.get('CD', 0) >= 10].index)
+assert len(hc_studies & cd_studies) > 0, "cMD pooled CD-vs-HC is substudy-confounded"
+```
+
+**Fix** — two-track pattern:
+
+1. **Confound-free contrast: CD-vs-nonIBD within IBD sub-studies.** Four IBD sub-studies in cMD have both CD and nonIBD samples with ≥ 10 each (HallAB_2017, LiJ_2014, IjazUZ_2017, NielsenHB_2014; aggregate 242 CD / 369 nonIBD). Within each sub-study, run a within-study CLR-Δ or regression with no study-level confound. Combine across sub-studies via inverse-variance weighted meta-analysis. This is the clean CD-effect estimate.
+
+2. **Pooled contrast: explicitly flag as substudy-confounded.** If a pooled CD-vs-HC effect must be reported, do not rely on substudy random effects to "adjust" for it. Quote the effect as-is with an explicit caveat that study, cohort, sequencing center, and sample prep are all collinear with diagnosis in this design. The within-substudy meta-analysis in (1) is the benchmark the pooled effect should be sanity-checked against.
+
+3. **Proper substudy resolution**: participant_id format `CMD:HallAB_2017:SKST006` encodes substudy in the middle colon-separated token for IBD samples. For HC samples, the substudy lives in `dim_samples.external_ids` as a JSON blob with key `"study"` (e.g., `"AsnicarF_2021"`). Together these cover ≈ 80 % of cMD samples; short-prefix regex on sample IDs covers < 20 % and produces mostly noise categories.
+
+```python
+import json
+def resolve_substudy(row):
+    ext = row['external_ids']
+    if isinstance(ext, str):
+        try:
+            d = json.loads(ext)
+            if isinstance(d.get('study'), str): return d['study']
+        except Exception: pass
+    pid = row['participant_id']
+    if isinstance(pid, str):
+        parts = pid.split(':')
+        if len(parts) >= 3 and parts[0] in ('CMD', 'HMP2'): return parts[1]
+    return None
+```
+
+**Applies to**: any BERDL project that uses `fact_taxon_abundance` / cMD data for case-vs-control microbiome DA. Also generalizes to any pooled public-dataset analysis (SRA study inventories, Qiita studies, etc.) where the case and control cohorts were collected by different groups. The within-cohort CD-vs-nonIBD contrast is the design-consistent alternative.
+
+### [ibd_phage_targeting] Feature Leakage in Cluster-Stratified DA: Clustering on Taxa Then Testing the Same Taxa Within Cluster
+
+**Problem**: A common pattern in microbiome analysis is (i) define ecotypes / clusters by unsupervised partitioning of the taxon abundance matrix, then (ii) run differential abundance within each cluster. Step (i) selects samples on outcome — cluster membership is a function of the same taxon abundances step (ii) then tests. The result is **selection-on-outcome confounding**: within-cluster effect sizes are mechanically inflated for cluster-defining taxa, and the within-cluster top-N list is substantially the cluster definition itself.
+
+**Scale — observed in `ibd_phage_targeting` NB04**: K=4 LDA ecotypes trained on MetaPhlAn3 species abundances, then within-ecotype CD-vs-HC CLR-Mann-Whitney on the same species matrix. NB04 reported a 33-species within-ecotype Tier-A list with effect sizes +0.5 to +3.0 CLR-Δ. Two leakage checks post-hoc:
+
+- **Held-out-species sensitivity (NB04b §2)**: 5 random 50/50 species splits; refit LDA ecotypes on half A, re-test half B within refit-ecotypes; Jaccard between refit top-30 and original top-30 ∩ half-B. Bound: > 0.5 = leakage bounded, < 0.3 = leakage dominates. Observed: E1 = 0.230, E3 = 0.064.
+- **Leave-one-species-out refit (NB04b §3)**: per battery species, refit ecotypes on all-OTHER species, re-derive cluster labels, re-test held-out species. *C. scindens* went from NB04 "n.s. within both ecotypes" (the basis for the "paradox RESOLVED" claim) to CD↑ in both E1 (CI +0.68, +0.87) and E3 (CI +1.13, +1.71) under LOO — the within-ecotype n.s. call was a self-selection effect.
+
+Cross-check via an independent-design analysis (confound-free within-IBD-substudy CD-vs-nonIBD, see pitfall above) confirmed that most of the NB04 Tier-A E1 candidates had *negative* within-study effects — they are ecotype-markers, not CD-drivers.
+
+**Detect**: any analysis that first clusters on feature matrix `X` and then runs per-cluster DA on subsets of `X` should run at least one of:
+
+1. **Held-out-species sensitivity**: split features 50/50, cluster on one half, DA on the other, compare top-N against clusters-on-full-matrix top-N. Jaccard > 0.5 ⇒ leakage bounded.
+2. **Leave-one-feature-out**: for any feature whose DA call would lead to a decision, refit clusters without that feature and re-test.
+3. **Pathway-level clustering**: define clusters on a *functional* matrix (KEGG pathways, MetaCyc, EC numbers) then test *taxonomic* DA — the two matrices are genuinely different, so leakage is structural-impossible rather than empirical-bounded.
+
+**Fix**: in this project, the NB04c resolution was to gate the within-ecotype Tier-A with a confound-free independent-evidence stream (within-substudy CD-vs-nonIBD). Species that pass *both* within-ecotype DA (possibly leakage-contaminated) AND an independent CD-vs-control contrast are the trustworthy Tier-A. In NB04c this shrank the Tier-A from 33 to 3 rock-solid candidates. The alternative (rebuild Pillar 1 on a functional feature matrix) was flagged as future work.
+
+**Applies to**: any project using ecotype / enterotype / cluster stratification followed by within-stratum DA on the same features. Includes microbiome enterotypes, single-cell type-stratified DE (clustering on gene expression then testing gene DE within cluster is the single-cell analog of this bug), and any analysis where cluster labels are a function of the same features being tested.
+
+### [genotype_to_phenotype_enigma] Fitness Browser KO Mapping Is a Two-Hop Join
+
+**Problem**: There is no single `(orgId, locusId) → KO` table in `kescience_fitnessbrowser`. Mapping a fitness-browser locus to its KEGG ortholog requires two joins:
+
+```sql
+SELECT gf.orgId, gf.locusId, km.kgroup AS KO
+FROM kescience.fitnessbrowser.genefitness gf
+JOIN kescience.fitnessbrowser.besthitkegg bhk
+     ON gf.orgId = bhk.orgId AND gf.locusId = bhk.locusId
+JOIN kescience.fitnessbrowser.keggmember km
+     ON bhk.keggOrg = km.keggOrg AND bhk.keggId = km.keggId
+```
+
+`besthitkegg` maps each FB locus to a KEGG organism and gene (`keggOrg`, `keggId`) via best hit; `keggmember` maps each `(keggOrg, keggId)` pair to its KEGG ortholog group (`kgroup`, which is the KO). Both joins are required — neither table alone is sufficient.
+
+**Additional gotchas in the same schema**:
+
+- `kescience.fitnessbrowser.kgroupdesc` has column `desc` (not `description`). Use `SELECT kgroup, desc AS description FROM ...` if you want a tidier alias.
+- `kescience.fitnessbrowser.genefitness.fit` and `.t` are stored as **strings**; you must `CAST(t AS DOUBLE)` before any `ABS(...)` or comparison.
+- `kescience.fitnessbrowser.experiment.expGroup` (not `Group`) is the experiment class; `SELECT Group` will fail with an `UNRESOLVED_COLUMN` error.
+
+**Applies to**: Any project pulling fitness-browser loci and trying to aggregate at the KO level — concordance analyses, cross-organism conservation, rich-media fitness filtering.
 
 ### `data_lakehouse_ingest` Tenant Name ≠ Database Prefix
 
@@ -55,6 +251,30 @@ genome_ids = [str(g) for g in np.random.choice(all_genome_ids, 300, replace=Fals
 spark.createDataFrame([(g,) for g in genome_ids], ['genome_id'])  # OK
 ```
 
+### Access Denied Errors Mean Tenant Permissions, Not a Technical Fault
+
+When a query fails because the current user does not have access to a table, the underlying error from S3 or the Spark catalog will say things like `S3 access denied`, `403 Forbidden`, `Token denied`, or `AccessControlException`. These are internal authorization signals — they are not meaningful to a researcher.
+
+**Do not surface these raw error strings to the user.** Instead, translate to a plain explanation:
+
+> "You don't have access to the table `<table>` in the `<tenant>` tenant. If you need access, request it through the BERDL Tenant Browser."
+
+**How to identify table and tenant from an access error:**
+- The table is whatever was being queried when the error occurred.
+- The tenant is the database prefix (e.g., `kbase_ke_pangenome` → tenant `kbase`; `kescience_mgnify` → tenant `kescience`).
+- If the path is visible in the error (e.g., `s3a://cdm-lake/tenant-sql-warehouse/kbase/...`), the tenant is the path segment after `tenant-sql-warehouse/`.
+
+**What to tell the user:**
+```
+You don't have access to the table `<database>.<table>`.
+This table resides in the `<tenant>` tenant.
+To request access, use the BERDL Tenant Browser.
+```
+
+Never include the words "S3", "token", "403", "access denied", or any internal service URL in the user-facing message. The user only needs to know: what they can't reach, and how to get access.
+
+**Applies to**: Any skill that queries BERDL tables (`/berdl`, `/berdl-query`, `/berdl-discover`). Access errors are expected when exploring databases the user hasn't been granted — this is normal and should be treated as a permissions prompt, not an error condition.
+
 ### REST API Reliability
 
 The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can experience issues:
@@ -99,25 +319,7 @@ token = (Path.home() / ".berdl_kbase_session").read_text().strip()
 
 ### MinIO Upload Requires Proxy (Off-Cluster)
 
-**[essential_metabolome]** When uploading projects to the lakehouse via `python tools/lakehouse_upload.py`, the `mc` (MinIO client) commands will timeout if proxy environment variables are not set.
-
-**Symptom**: Upload fails with:
-```
-Get 'https://minio.berdl.kbase.us/cdm-lake/?location=': dial tcp 140.221.43.167:443: i/o timeout
-```
-
-**Root cause**: MinIO server (minio.berdl.kbase.us:443) is only reachable from within the BERDL cluster or through the proxy chain.
-
-**Solution**: Set proxy environment variables before running the upload script:
-```bash
-export https_proxy=http://127.0.0.1:8123
-export no_proxy=localhost,127.0.0.1
-python3 tools/lakehouse_upload.py <project_id>
-```
-
-**Prerequisites**: SSH tunnels (ports 1337, 1338) and pproxy (port 8123) must be running. See `.claude/skills/berdl-minio/SKILL.md` for setup details.
-
-**Note**: This applies to ALL `mc` commands when off-cluster, not just uploads. The `lakehouse_upload.py` script should be updated to set these variables automatically, but for now they must be set manually.
+**[essential_metabolome]** When using `mc` (MinIO client) off-cluster, proxy environment variables must be set or commands time out. **For full off-cluster `mc` setup (proxy env vars, alias config, prerequisites), see `.claude/skills/berdl-query/references/off-cluster-mechanics.md`.**
 
 ### String-Typed Numeric Columns
 
@@ -185,7 +387,7 @@ def parse_sql_schema(sql_path):
 **Solution**: Add comment-stripping regex at the top of the per-line loop in `parse_sql_schema` to remove both `/* ... */` and `--` style comments before splitting tokens.
 ### [nmdc_community_metabolic_ecology] Spark DECIMAL Columns Return `decimal.Decimal` in Pandas, Not `float`
 
-**Problem**: Spark SQL `DECIMAL` columns (e.g., `abundance` in `nmdc_arkin.centrifuge_gold`) are returned as Python `decimal.Decimal` objects when collected via `.toPandas()`. Arithmetic with `float` values (e.g., from `AVG()` aggregates) raises `TypeError: unsupported operand type(s) for *: 'float' and 'decimal.Decimal'`.
+**Problem**: Spark SQL `DECIMAL` columns (e.g., `abundance` in `kbase.nmdc_arkin.centrifuge_gold`) are returned as Python `decimal.Decimal` objects when collected via `.toPandas()`. Arithmetic with `float` values (e.g., from `AVG()` aggregates) raises `TypeError: unsupported operand type(s) for *: 'float' and 'decimal.Decimal'`.
 
 **Solution**: `CAST(col AS DOUBLE)` in the SQL query, or `.astype(float)` on the pandas column after collection:
 
@@ -218,12 +420,12 @@ Spark Connect's SQL analyzer rejects `SELECT DISTINCT` combined with an aggregat
 ```sql
 -- WRONG — AnalysisException: MISSING_GROUP_BY
 SELECT DISTINCT score_category, COUNT(*) as n
-FROM kbase_ke_pangenome.gapmind_pathways
+FROM kbase.ke_pangenome.gapmind_pathways
 LIMIT 20
 
 -- CORRECT — GROUP BY only; DISTINCT is redundant when GROUP BY is present
 SELECT score_category, COUNT(*) as n
-FROM kbase_ke_pangenome.gapmind_pathways
+FROM kbase.ke_pangenome.gapmind_pathways
 GROUP BY score_category
 ORDER BY n DESC
 ```
@@ -231,6 +433,16 @@ ORDER BY n DESC
 **Rule**: Never combine `DISTINCT` with aggregate functions. Use `GROUP BY` exclusively for grouped aggregations. `SELECT DISTINCT col, COUNT(*)` is always wrong — replace with `GROUP BY col`.
 
 Observed in `[nmdc_community_metabolic_ecology]` NB03 cell-9 when checking `score_category` value distribution in `gapmind_pathways`.
+
+### [enigma_carbon_census_1] NMDC/Planet Microbe `taxonomy.name` Is Species-Level — Genus Abundance Needs a species→genus Rollup
+
+**Problem**: Both the NMDC `covstats_taxonomy_rollup` and Planet Microbe `run_to_taxonomy` abundance tables key on a `taxonomy.name` that is **species-level**, not genus-level. Filtering those tables by a bare genus name (e.g., `WHERE name = 'Pseudomonas'`) silently matches only the near-zero rows that happen to carry the genus rank as a literal name — it does **not** sum the abundance of all species in that genus. The symptom is deceptively clean: a query returns rows and non-null numbers, so nothing errors, but the abundances are ~0 and entire genera look absent.
+
+**Manifestation**: In `enigma_carbon_census_1` an initial marine-abundance contrast showed 0/68 genera present in Planet Microbe — not because they were absent, but because the genus-name filter matched only genus-rank reference rows instead of aggregating their constituent species.
+
+**Solution**: Aggregate species→genus **before** filtering. Parse/derive the genus from the species `name`, `GROUP BY genus`, and `SUM(abundance)`; only then filter to the genera of interest. Never filter these tables by a bare genus string and trust the result.
+
+**Rule of thumb**: Any project doing genus-level abundance over `covstats_taxonomy_rollup` (NMDC) or `run_to_taxonomy` (Planet Microbe) must do the species→genus rollup first. A genus filter that returns rows is not evidence the rollup happened.
 
 ---
 
@@ -248,13 +460,13 @@ Joining on `gtdb_taxonomy_id` returns **zero rows**. Always join on `genome_id`:
 ```sql
 -- CORRECT: join on genome_id
 SELECT g.gtdb_species_clade_id, t.phylum, t.family
-FROM kbase_ke_pangenome.genome g
-JOIN kbase_ke_pangenome.gtdb_taxonomy_r214v1 t ON g.genome_id = t.genome_id
+FROM kbase.ke_pangenome.genome g
+JOIN kbase.ke_pangenome.gtdb_taxonomy_r214v1 t ON g.genome_id = t.genome_id
 
 -- WRONG: returns 0 rows because taxonomy depth differs
 SELECT g.gtdb_species_clade_id, t.phylum, t.family
-FROM kbase_ke_pangenome.genome g
-JOIN kbase_ke_pangenome.gtdb_taxonomy_r214v1 t ON g.gtdb_taxonomy_id = t.gtdb_taxonomy_id
+FROM kbase.ke_pangenome.genome g
+JOIN kbase.ke_pangenome.gtdb_taxonomy_r214v1 t ON g.gtdb_taxonomy_id = t.gtdb_taxonomy_id
 ```
 
 ### SQL Syntax Issues
@@ -265,23 +477,23 @@ The `gtdb_taxonomy_r214v1` table has a column named `order` (taxonomic rank). In
 
 ```sql
 -- WRONG: AnalysisException: Reserved keyword 'order' used as identifier
-SELECT t.phylum, t.class, t.order, t.family FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1 t
+SELECT t.phylum, t.class, t.order, t.family FROM kbase.ke_pangenome.gtdb_taxonomy_r214v1 t
 
 -- CORRECT: backtick-quote the reserved word
-SELECT t.phylum, t.class, t.`order`, t.family FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1 t
+SELECT t.phylum, t.class, t.`order`, t.family FROM kbase.ke_pangenome.gtdb_taxonomy_r214v1 t
 ```
 
 The same applies to other SQL reserved words that appear as column names (e.g., `class`, `select`, `from`). When in doubt, backtick-quote any column name that looks like a keyword.
 
 ### [pgp_pangenome_ecology] GapMind `score_simplified` is binary (0.0 / 1.0), not continuous
 
-When querying `kbase_ke_pangenome.gapmind_pathways` with `sequence_scope = 'core'`, the `score_simplified` column contains only `0.0` (pathway incomplete) or `1.0` (pathway complete) — it is not a continuous confidence score. The table is genome-level (one row per genome-pathway pair); aggregate to species level with `MAX(score_simplified) GROUP BY clade_name, pathway` before joining to species data.
+When querying `kbase.ke_pangenome.gapmind_pathways` with `sequence_scope = 'core'`, the `score_simplified` column contains only `0.0` (pathway incomplete) or `1.0` (pathway complete) — it is not a continuous confidence score. The table is genome-level (one row per genome-pathway pair); aggregate to species level with `MAX(score_simplified) GROUP BY clade_name, pathway` before joining to species data.
 
 ```sql
 -- CORRECT: aggregate to species level, binary threshold still applies
 SELECT clade_name AS gtdb_species_clade_id, pathway,
        MAX(score_simplified) AS score_simplified  -- still 0.0 or 1.0 after MAX
-FROM kbase_ke_pangenome.gapmind_pathways
+FROM kbase.ke_pangenome.gapmind_pathways
 WHERE pathway IN ('trp', 'tyr') AND metabolic_category = 'aa' AND sequence_scope = 'core'
 GROUP BY clade_name, pathway
 ```
@@ -293,7 +505,7 @@ Species clade IDs contain `--` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`)
 **Direct Spark SQL**: NOT a problem when the ID is inside a quoted string literal:
 ```sql
 -- CORRECT via Spark: The '--' inside quotes is NOT interpreted as a comment
-SELECT * FROM kbase_ke_pangenome.genome
+SELECT * FROM kbase.ke_pangenome.genome
 WHERE gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
 ```
 
@@ -305,7 +517,7 @@ WHERE gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
 query = "SELECT * FROM ... WHERE species_id = 's__E_coli--RS_GCF_000005845.2'"
 
 # CORRECT via REST API: query unfiltered, filter locally
-df_all = query_berdl("SELECT * FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1")
+df_all = query_berdl("SELECT * FROM kbase.ke_pangenome.gtdb_taxonomy_r214v1")
 df_filtered = df_all[df_all['species_id'] == target_species]
 ```
 
@@ -319,7 +531,7 @@ df_filtered = df_all[df_all['species_id'] == target_species]
 
 ### [metabolic_capability_dependency] `gtdb_metadata` NCBI Taxid Column Returns Boolean Strings, Not Numeric IDs
 
-**Problem**: Attempting to join `kescience_fitnessbrowser.organism` to `kbase_ke_pangenome.gtdb_metadata` via NCBI taxonomy IDs returns zero matches. The `ncbi_taxid` (or equivalent) column in `gtdb_metadata` contains the string values `"t"` / `"f"` (boolean tokens) rather than numeric taxonomy IDs.
+**Problem**: Attempting to join `kescience.fitnessbrowser.organism` to `kbase.ke_pangenome.gtdb_metadata` via NCBI taxonomy IDs returns zero matches. The `ncbi_taxid` (or equivalent) column in `gtdb_metadata` contains the string values `"t"` / `"f"` (boolean tokens) rather than numeric taxonomy IDs.
 
 **Symptom**: A query like:
 ```python
@@ -329,7 +541,7 @@ returns 0 rows even when the taxids should match, because the stored values are 
 
 **Solution**: Inspect the column values before joining:
 ```python
-spark.sql("SELECT ncbi_taxid, COUNT(*) FROM kbase_ke_pangenome.gtdb_metadata GROUP BY ncbi_taxid LIMIT 10").show()
+spark.sql("SELECT ncbi_taxid, COUNT(*) FROM kbase.ke_pangenome.gtdb_metadata GROUP BY ncbi_taxid LIMIT 10").show()
 ```
 Use an alternative join key (e.g., organism name string matching or `orgId`-based lookup) or look for a different taxonomy column. In `metabolic_capability_dependency`, the fallback was to match organisms directly by `orgId` without a clade-level link.
 
@@ -343,7 +555,7 @@ Use an alternative join key (e.g., organism name string matching or `orgId`-base
 
 ```python
 # WRONG — uses GTDB_species format (s__Genus_species) which doesn't match clade_name
-gtdb_meta = spark.sql("SELECT GTDB_species FROM kbase_ke_pangenome.gtdb_species_clade").toPandas()
+gtdb_meta = spark.sql("SELECT GTDB_species FROM kbase.ke_pangenome.gtdb_species_clade").toPandas()
 clade_names_df = pd.DataFrame({'clade_name': gtdb_meta['GTDB_species'].tolist()})
 
 # CORRECT — use gtdb_species_clade_id directly (matches clade_name in gapmind_pathways)
@@ -394,7 +606,7 @@ SELECT genome_id, isolation_source, collection_date FROM ncbi_env
 
 -- CORRECT: EAV query
 SELECT accession, attribute_name, content
-FROM kbase_ke_pangenome.ncbi_env
+FROM kbase.ke_pangenome.ncbi_env
 WHERE accession IN (...) AND attribute_name IN ('isolation_source', 'collection_date', 'host')
 ```
 
@@ -430,8 +642,8 @@ Only 83,227 of 293,059 genomes have environmental embeddings.
 -- Check if a species has embeddings before relying on them
 SELECT COUNT(DISTINCT ae.genome_id) as n_with_embeddings,
        COUNT(DISTINCT g.genome_id) as n_total
-FROM kbase_ke_pangenome.genome g
-LEFT JOIN kbase_ke_pangenome.alphaearth_embeddings_all_years ae
+FROM kbase.ke_pangenome.genome g
+LEFT JOIN kbase.ke_pangenome.alphaearth_embeddings_all_years ae
     ON g.genome_id = ae.genome_id
 WHERE g.gtdb_species_clade_id LIKE 's__Klebsiella_pneumoniae%'
 ```
@@ -445,7 +657,7 @@ The `ncbi_env` table uses Entity-Attribute-Value format - multiple rows per samp
 ```sql
 -- Get isolation source for a genome
 SELECT content
-FROM kbase_ke_pangenome.ncbi_env
+FROM kbase.ke_pangenome.ncbi_env
 WHERE accession = 'SAMN12345678'
   AND harmonized_name = 'isolation_source'
 
@@ -453,7 +665,7 @@ WHERE accession = 'SAMN12345678'
 SELECT accession,
        MAX(CASE WHEN harmonized_name = 'isolation_source' THEN content END) as isolation_source,
        MAX(CASE WHEN harmonized_name = 'geo_loc_name' THEN content END) as location
-FROM kbase_ke_pangenome.ncbi_env
+FROM kbase.ke_pangenome.ncbi_env
 WHERE accession IN ('SAMN12345678', 'SAMN87654321')
 GROUP BY accession
 ```
@@ -489,13 +701,13 @@ These are valid pangenomes but filtered from species metadata. Handle with LEFT 
 ```sql
 -- CORRECT: Join on gene_cluster_id
 SELECT gc.gene_cluster_id, e.COG_category, e.Description
-FROM kbase_ke_pangenome.gene_cluster gc
-LEFT JOIN kbase_ke_pangenome.eggnog_mapper_annotations e
+FROM kbase.ke_pangenome.gene_cluster gc
+LEFT JOIN kbase.ke_pangenome.eggnog_mapper_annotations e
     ON gc.gene_cluster_id = e.query_name
 WHERE gc.gtdb_species_clade_id LIKE 's__Mycobacterium%'
 
 -- WRONG: gene_id won't match
-SELECT * FROM kbase_ke_pangenome.eggnog_mapper_annotations
+SELECT * FROM kbase.ke_pangenome.eggnog_mapper_annotations
 WHERE query_name = 'some_gene_id'  -- This won't find anything
 ```
 
@@ -625,7 +837,7 @@ SELECT
     no_gene_clusters as reported_total,
     no_singleton_gene_clusters as singletons,
     no_aux_genome as auxiliary
-FROM kbase_ke_pangenome.pangenome
+FROM kbase.ke_pangenome.pangenome
 LIMIT 5
 ```
 
@@ -641,7 +853,7 @@ There are three environments with different import patterns. Using the wrong one
 |---|---|---|
 | **BERDL JupyterHub notebooks** | `spark = get_spark_session()` (no import) | Injected by `/configs/ipython_startup/00-notebookutils.py` |
 | **BERDL JupyterHub CLI/scripts** | `from berdl_notebook_utils.setup_spark_session import get_spark_session` | Same module, explicit import. **[fitness_modules]** discovered this works from regular Python scripts, not just notebooks. |
-| **Local machine** | `from get_spark_session import get_spark_session` | Uses `scripts/get_spark_session.py`, requires `.venv-berdl` + proxy chain |
+| **Local machine** | `from get_spark_session import get_spark_session` | see `.claude/skills/berdl-query/references/off-cluster-mechanics.md` |
 
 **Common mistakes**:
 - Using `from get_spark_session import get_spark_session` on the BERDL cluster → `ImportError` (that module is `scripts/get_spark_session.py`, only on local machines)
@@ -656,36 +868,7 @@ There are three environments with different import patterns. Using the wrong one
 
 ### Spark Connect Sidecar Startup Race (Off-Cluster Access)
 
-**Context**: Off-cluster access via `scripts/get_spark_session.py` + proxy chain.
-
-**Problem**: After restarting the JupyterHub kernel, the Python kernel becomes ready almost immediately, but the Spark Connect gRPC sidecar (the Java process on port 15002) takes an additional 20–60 seconds to start and register with the BERDL gateway. During this window, any connection attempt from outside the cluster fails with:
-
-```
-SparkConnectGrpcException: FAILED_PRECONDITION
-  "Spark Connect server at jupyter-<username>.jupyterhub-prod.svc.cluster.local:15002
-   is not reachable. Please ensure you have logged in to BERDL JupyterHub and your
-   notebook's Spark Connect service is running."
-```
-
-This is misleading — the session *is* running, the sidecar just hasn't finished starting. The error looks identical to a "not logged in" error, so it's easy to mistake for an authentication problem and keep resetting the kernel unnecessarily.
-
-**Solution**: After restarting the kernel, wait ~30–60 seconds before attempting off-cluster connections, or poll with retries:
-
-```bash
-source .venv-berdl/bin/activate
-for i in $(seq 1 10); do
-    echo "Attempt $i at $(date +%H:%M:%S)..."
-    result=$(python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok" 2>&1)
-    if echo "$result" | grep -q '"ok"'; then
-        echo "Connected!"
-        break
-    fi
-    echo "  Not ready — retrying in 20s"
-    sleep 20
-done
-```
-
-**Do not** reset the kernel repeatedly — this just restarts the race. One reset is enough; then wait and retry from the local side.
+**Off-cluster Spark setup and kernel-restart polling.** For local-machine Spark Connect setup, `.venv-berdl` activation, and kernel-restart retry patterns, see `.claude/skills/berdl-query/references/off-cluster-mechanics.md`.
 
 ### Running Notebooks from CLI
 
@@ -701,9 +884,103 @@ The kernel spawned by nbconvert has `get_spark_session()` available. However, lo
 
 **Tip**: For long pipelines, design notebooks with checkpointing (save intermediate files, skip steps that already have output). This allows re-running after interruptions without repeating completed work.
 
+### `jupyter nbconvert --inplace` Silently Drops Cell Outputs
+
+**[genome_depot_enigma]** On this JupyterHub, `jupyter nbconvert --to notebook --execute --inplace ...` can exit with code 0 but leave the notebook file on disk with **zero cell outputs** — the kernel executes cells successfully, but the outputs are never written back. This is particularly problematic when the pre-flight cell raises an intentional `RuntimeError` (the `CONFIRMED = False` pattern used by `/berdl-ingest`), because the plan output that was supposed to be inspected is lost.
+
+```bash
+# Looks correct but silently strips outputs:
+jupyter nbconvert --to notebook --execute --inplace notebook.ipynb
+# Even with --allow-errors, outputs may still not be persisted.
+
+# Workarounds (any of these):
+# 1. Write to a new file instead of --inplace:
+jupyter nbconvert --to notebook --execute notebook.ipynb --output notebook_executed.ipynb
+
+# 2. Run the equivalent code as a plain Python script and log stdout:
+python3 -u run_ingest.py > ingest.log 2>&1
+```
+
+**Solution**: Don't rely on `--inplace` to capture outputs. Either write to a separate file via `--output`, or for long-running production ingests, run the equivalent logic as a standalone Python script so you get streaming stdout/stderr to a log file.
+
+### `/berdl-ingest` Skill Assumes Off-Cluster — Adapt for On-Cluster Use
+
+**`/berdl-ingest` `initialize()` is off-cluster-only.** On JupyterHub, bypass `initialize()` and build Spark/MinIO clients directly. See `.claude/skills/berdl-ingest/references/on-cluster-bypass.md`.
+
+### MySQL `mysqldump` Exports Aren't Standard TSV/CSV
+
+**[genome_depot_enigma]** A MySQL dump produced by `mysqldump` (especially one packaged with per-table `.sql` + `.txt` file pairs) looks like CSV but has three traps that break `ingest_lib.parse_sql_schema` + standard CSV readers:
+
+1. **No header row** on data files — column names come from the `CREATE TABLE`, not the first line.
+2. **`\N` literal** for NULL — not empty string, not `NULL`.
+3. **MySQL-specific DDL trailer** — `) ENGINE=InnoDB AUTO_INCREMENT=... DEFAULT CHARSET=utf8mb3;` after the column list. `ingest_lib.parse_sql_schema`'s regex `\)\s*;` requires the closing paren be followed only by whitespace and a semicolon — it won't match.
+
+**Solution**: Preprocess before calling the ingest pipeline:
+- **Schema**: strip the `ENGINE=...;` trailer, keep just `CREATE TABLE name (cols);`. Concatenate all per-table `.sql` into one `schema.sql`.
+- **Data**: stream each `.txt` through `csv.reader` (comma-delimited, `doublequote=True`), replace `\N` → empty string, write as TSV with prepended header derived from the `CREATE TABLE`.
+
+See `~/data/genome_depot_enigma/preprocess.py` for a reference implementation (handles 13 GB / 32 tables in ~5 minutes).
+
 ---
 
 ## Pandas-Specific Issues
+
+### [gene_function_ecological_agora] Spark-Connect driver result-size cap (1 GB serialized) — use MinIO staging for >200K-element joins
+
+**Problem**: When joining 1B-row tables (e.g., `kbase.genomes.feature` × `contig_x_feature` × `pangenome.gene_genecluster_junction`) filtered to >200K elements via broadcast, calling `.toPandas()` on the Spark Connect result hits `spark.driver.maxResultSize = 1024 MB` and throws `Total size of serialized results bigger than spark.driver.maxResultSize`. The cap can NOT be raised via `SET spark.driver.maxResultSize` at runtime — that property is read-only after session start.
+
+**Workaround**: write the Spark result to MinIO via `df.coalesce(N).write.mode("overwrite").parquet("s3a://cdm-lake/...")`, then read it back with `spark.read.parquet(path).toPandas()`. The read-back goes through Spark Connect's parquet streaming path which doesn't hit the result-size cap. Alternative: `pyarrow.parquet.read_table(path)` directly via s3fs if pyarrow is configured.
+
+**Scale where this matters**: filtered cxf table at 218K Bacteroidota contigs × ~140 features/contig = 30M+ rows × ~50 bytes serialized ≈ 1.5 GB. Standard pattern in any project doing genome-context cross-walks at >200 species.
+
+**Encountered in**: P4-D2 NB26b/c (per-cluster MGE-machinery atlas-wide), NB26h/k (PUL/mycolic gene-neighborhood at sampled scale).
+
+### [gene_function_ecological_agora] Pandas spatial-merge OOM at ~10M+ rows — batch processing or full-Spark required
+
+**Problem**: After Spark filters down to focal features, the in-pandas spatial-range merge (e.g., focal_features × contig_features on contig_id, then filter by `±NEIGHBOR_BP`) creates a Cartesian-product-then-filter pattern. For 80K focal × 21K contigs × ~105 features/contig avg, the merged DataFrame is ~24M rows × 9 columns ≈ 9 GB working set, OOMing on a 16 GB driver.
+
+**Workarounds** (in order of effort):
+1. Process focal features in batches of ~10K, merge per-batch, accumulate aggregate result
+2. Do the spatial-range filter in Spark (push the BETWEEN clause through), only collect the per-feature aggregate to driver
+3. Reduce scope (sample down focal-species set; restrict to canonical-marker KOs only)
+
+**Encountered in**: P4-D2 NB26h Bacteroidota PUL gene-neighborhood (723K focal × 210K contigs blew it; sampled to 309 species still OOM'd at 80K × 21K). PSII at 27K focal × 16K contigs × 16M-row merge fit; PUL/mycolic at full scale did not.
+
+### [gene_function_ecological_agora] `spark.sql.autoBroadcastJoinThreshold = -1` is HARMFUL, not protective — trust the optimizer
+
+**Problem**: A defensive setting carried over from prior projects (`spark.sql.autoBroadcastJoinThreshold = -1` to "force shuffle joins") caused an NB10 KO atlas job to hang for 17+ minutes on a 13.7M × 18K join. The job was waiting for shuffle that never materialized; the small-side table (18,989 species_tax) is well below the default 10MB broadcast threshold and would have been auto-broadcast had the setting been left at default.
+
+**Workaround**: REMOVE the autoBroadcast disable. Trust the optimizer for small-table joins. Use explicit `F.broadcast(small_df)` hints when the optimizer doesn't auto-detect.
+
+**Generalizable rule**: copy-pasted Spark configuration "defensive defaults" from prior projects can be actively counterproductive. Audit configuration before assuming a working setting.
+
+### [gene_function_ecological_agora] JupyterHub kernel idle-timeout (~17–25 min) silently kills long-running notebooks — convert to .py + nohup + checkpoints
+
+**Problem**: BERDL JupyterHub idle-times out kernels that haven't received user activity for ~17–25 minutes. Long-running notebook cells (Spark jobs that take 30+ min, like NB10 KO atlas construction or NB10b M22 attribution at 17M events) get silently killed mid-execution. The kernel disappears with no error message.
+
+**Workaround pattern**:
+1. Convert long-running notebook to standalone .py script (`jupytext --to py 10_p2_ko_atlas.ipynb`)
+2. Run via `nohup python3 -u <script>.py > /tmp/<name>.log 2>&1 &` from a terminal (not JupyterHub kernel)
+3. Write intermediate parquets at each stage so partial results are recoverable from disk
+4. Provide `_finalize.py` recovery scripts that load intermediates and complete from where the killed run stopped
+
+**Encountered in**: NB10 (atlas construction; required `10_finalize.py` + `10_finalize2.py` recovery), NB10b (M22 attribution; required `10b_finalize.py`), NB26b/c (P4-D2 atlas-wide MGE), NB28e (leaf_consistency build).
+
+### [gene_function_ecological_agora] Pandas `iterrows()` over 6M+ rows is dramatically slower than vectorized merge
+
+**Problem**: Stage 6 of the gene-neighborhood pipeline (NB26e) used `for _, row in focal_features.iterrows()` with per-row groupby lookup over 27K focal features × 218K contigs. The loop ran 30+ minutes without completing.
+
+**Workaround**: vectorized merge via `pd.merge(focal_features, contig_features, on="contig_id")` followed by boolean filter on the merged frame. Same operation completed in ~10 seconds.
+
+**Generalizable rule**: never use iterrows() for >10K rows; vectorize via merge + boolean filter or numpy array operations. The 1000× speedup is consistent across pandas use cases.
+
+### [gene_function_ecological_agora] Algebraic identity replaces explode() when explode would be O(N²) — `R_FK − self_recipient`
+
+**Problem**: NB28b tree-based donor inference (M26) computes per-(donor genus × KO) "donor candidate event" count by exploding 6.3M gain events × ~20 candidate-donor genera per event = 126M-row exploded DataFrame, ~19 GB. OOM.
+
+**Workaround** (algebraic identity): for each (family F × KO K) with R_FK total recipient events, every genus G in F that has K present is a candidate donor for (R_FK − recipient_events_for_G). Computable as a single join + subtraction, no explode. Stage 2b ran in 142s instead of OOMing.
+
+**Generalizable rule**: when an explode produces O(N×M) rows where M is bounded but large (e.g., genera-with-KO per family-KO), look for an algebraic identity that produces the same aggregate without enumerating all combinations. Sum-over-bins reformulations are typically what's needed.
 
 ### Unnecessary `.toPandas()` Calls
 
@@ -711,12 +988,12 @@ The kernel spawned by nbconvert has `get_spark_session()` available. However, lo
 
 ```python
 # BAD: Pull 132M rows to driver, then filter locally
-df = spark.sql("SELECT * FROM kbase_ke_pangenome.gene_cluster").toPandas()
+df = spark.sql("SELECT * FROM kbase.ke_pangenome.gene_cluster").toPandas()
 core = df[df['is_core'] == 1]
 
 # GOOD: Keep as Spark DataFrame, filter in Spark
 df = spark.sql("""
-    SELECT * FROM kbase_ke_pangenome.gene_cluster
+    SELECT * FROM kbase.ke_pangenome.gene_cluster
     WHERE is_core = 1
     AND gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
 """)
@@ -876,14 +1153,14 @@ Always filter by `orgId` at minimum.
 ```sql
 -- CORRECT: Join through besthitkegg
 SELECT bk.locusId, km.kgroup, kd.desc
-FROM kescience_fitnessbrowser.besthitkegg bk
-JOIN kescience_fitnessbrowser.keggmember km
+FROM kescience.fitnessbrowser.besthitkegg bk
+JOIN kescience.fitnessbrowser.keggmember km
     ON bk.keggOrg = km.keggOrg AND bk.keggId = km.keggId
-LEFT JOIN kescience_fitnessbrowser.kgroupdesc kd ON km.kgroup = kd.kgroup
+LEFT JOIN kescience.fitnessbrowser.kgroupdesc kd ON km.kgroup = kd.kgroup
 WHERE bk.orgId = 'DvH'
 
 -- WRONG: keggmember has no orgId column
-SELECT * FROM kescience_fitnessbrowser.keggmember WHERE orgId = 'DvH'
+SELECT * FROM kescience.fitnessbrowser.keggmember WHERE orgId = 'DvH'
 ```
 
 Also: `kgroupec` uses column `ecnum` (not `ec`).
@@ -1136,7 +1413,7 @@ WITH pathway_scores AS (
             WHEN 'not_present' THEN 1
             ELSE 0
         END as score_value
-    FROM kbase_ke_pangenome.gapmind_pathways
+    FROM kbase.ke_pangenome.gapmind_pathways
 ),
 best_scores AS (
     SELECT
@@ -1221,7 +1498,7 @@ Track all four categories separately (`n_positive`, `n_negative`, `n_produced`, 
 
 ### [fw300_metabolic_consistency] GapMind genome IDs lack the RS_/GB_ prefix used in pangenome tables
 
-**Problem**: The `kbase_ke_pangenome.gapmind_pathways` table stores genome IDs without the GTDB `RS_` or `GB_` prefix (e.g., `GCF_001307155.1`), while the pangenome `genome` table uses the prefixed form (`RS_GCF_001307155.1`). A direct equality match between a pangenome genome_id and GapMind genome_id returns zero rows.
+**Problem**: The `kbase.ke_pangenome.gapmind_pathways` table stores genome IDs without the GTDB `RS_` or `GB_` prefix (e.g., `GCF_001307155.1`), while the pangenome `genome` table uses the prefixed form (`RS_GCF_001307155.1`). A direct equality match between a pangenome genome_id and GapMind genome_id returns zero rows.
 
 **Solution**: Strip the `RS_` or `GB_` prefix before matching, or use a fallback chain:
 ```python
@@ -1241,7 +1518,7 @@ if len(gapmind_match) == 0:
 
 ### [nmdc_community_metabolic_ecology] Classifier and metabolomics tables use `file_id`, not `sample_id`
 
-**Problem**: `nmdc_arkin.metabolomics_gold`, `kraken_gold`, `centrifuge_gold`, and
+**Problem**: `kbase.nmdc_arkin.metabolomics_gold`, `kraken_gold`, `centrifuge_gold`, and
 `gottcha_gold` all use `file_id` and `file_name` as their primary identifier — not
 `sample_id`. Queries with `WHERE sample_id = ...` or `COUNT(DISTINCT sample_id)` will throw
 `AnalysisException: UNRESOLVED_COLUMN` and stop notebook execution.
@@ -1249,15 +1526,15 @@ if len(gapmind_match) == 0:
 **Solution**: Use `file_id` as the join key for all classifier and metabolomics tables.
 ```sql
 -- WRONG
-SELECT COUNT(DISTINCT sample_id) FROM nmdc_arkin.metabolomics_gold
+SELECT COUNT(DISTINCT sample_id) FROM kbase.nmdc_arkin.metabolomics_gold
 
 -- CORRECT
-SELECT COUNT(DISTINCT file_id) FROM nmdc_arkin.metabolomics_gold
+SELECT COUNT(DISTINCT file_id) FROM kbase.nmdc_arkin.metabolomics_gold
 ```
 
 ### [nmdc_community_metabolic_ecology] `taxonomy_features` is a wide-format matrix with numeric column names
 
-**Problem**: `nmdc_arkin.taxonomy_features` does not have a `sample_id` or `file_id` column.
+**Problem**: `kbase.nmdc_arkin.taxonomy_features` does not have a `sample_id` or `file_id` column.
 Its columns are numeric NCBI taxon IDs (e.g., `7`, `11`, `33`, `34`, ...). Attempting to
 `SELECT sample_id FROM taxonomy_features` fails immediately. The table is a pivoted matrix
 where rows are likely samples and columns are taxon abundances.
@@ -1265,7 +1542,7 @@ where rows are likely samples and columns are taxon abundances.
 **Solution**: Do not use `taxonomy_features` for tidy-format joins. Use the classifier tables
 (`kraken_gold`, `centrifuge_gold`, `gottcha_gold`) instead — they are tidy format with
 `file_id`, `rank`, `name`/`label`, and `abundance` columns. Count rows with
-`SELECT COUNT(*) FROM nmdc_arkin.taxonomy_features` to verify the row count matches the
+`SELECT COUNT(*) FROM kbase.nmdc_arkin.taxonomy_features` to verify the row count matches the
 expected number of samples.
 
 ### [nmdc_community_metabolic_ecology] Confirmed `metabolomics_gold` compound annotation columns
@@ -1278,8 +1555,8 @@ The `annotation_terms_unified` table is a gene-annotation lookup (COG/EC/GO/KEGG
 
 ### [nmdc_community_metabolic_ecology] Classifier and metabolomics `file_id` namespaces do not overlap — must bridge through `sample_id`
 
-**Problem**: Joining `nmdc_arkin.centrifuge_gold` (or `kraken_gold`, `gottcha_gold`) directly
-to `nmdc_arkin.metabolomics_gold` on `file_id` always returns **zero rows**. The two table
+**Problem**: Joining `kbase.nmdc_arkin.centrifuge_gold` (or `kraken_gold`, `gottcha_gold`) directly
+to `kbase.nmdc_arkin.metabolomics_gold` on `file_id` always returns **zero rows**. The two table
 sets use non-overlapping `file_id` prefixes:
 - Classifier files: `nmdc:dobj-11-*` (metagenomics workflow outputs)
 - Metabolomics files: `nmdc:dobj-12-*` (metabolomics workflow outputs)
@@ -1289,20 +1566,24 @@ the **biosample `sample_id`** (e.g., `nmdc:bsm-11-*`).
 
 **Solution**: Find a `file_id → sample_id` bridge table in `nmdc_arkin` before attempting
 to link classifier and metabolomics data. The `abiotic_features` table uses `sample_id` as
-its primary key; scan all tables in `nmdc_arkin` with `SHOW TABLES` + `DESCRIBE` to find
-any table that has **both** `file_id` and `sample_id` columns. NB02 of
+its primary key; use `get_tables("nmdc_arkin")` and
+`get_table_schema("nmdc_arkin", table_name)` to find any table that has
+**both** `file_id` and `sample_id` columns. NB02 of
 `nmdc_community_metabolic_ecology` does this scan systematically.
 
 ```python
+from berdl_notebook_utils import get_tables, get_table_schema
+
 # Scan all nmdc_arkin tables for file_id + sample_id
+all_tables = get_tables("nmdc_arkin")
 for tbl in all_tables:
-    schema = spark.sql(f'DESCRIBE nmdc_arkin.{tbl}').toPandas()
-    cols = set(schema['col_name'])
+    schema = get_table_schema("nmdc_arkin", tbl)
+    cols = {col["name"] for col in schema}
     if 'file_id' in cols and 'sample_id' in cols:
         print(f'Bridge candidate: {tbl}')
 ```
 
-The bridge table is `nmdc_arkin.omics_files_table` (385,562 rows, confirmed). It has
+The bridge table is `kbase.nmdc_arkin.omics_files_table` (385,562 rows, confirmed). It has
 `file_id`, `sample_id`, `study_id`, `workflow_type`, and `file_type` columns.
 
 ### [nmdc_community_metabolic_ecology] `spark.createDataFrame(pandas_df)` fails with `ChunkedArray` error after `.toPandas()` on Spark Connect
@@ -1323,14 +1604,14 @@ name directly in SQL rather than materializing the bridge to a temp view:
 
 ```python
 # WRONG — fails with ChunkedArray error
-bridge_df = spark.sql("SELECT file_id, sample_id FROM nmdc_arkin.omics_files_table").toPandas()
+bridge_df = spark.sql("SELECT file_id, sample_id FROM kbase.nmdc_arkin.omics_files_table").toPandas()
 bridge_spark = spark.createDataFrame(bridge_df)  # TypeError
 
 # CORRECT — join using the table name directly in SQL
 clf_samples = spark.sql("""
     SELECT DISTINCT b.sample_id
-    FROM (SELECT DISTINCT file_id FROM nmdc_arkin.centrifuge_gold) c
-    JOIN nmdc_arkin.omics_files_table b ON c.file_id = b.file_id
+    FROM (SELECT DISTINCT file_id FROM kbase.nmdc_arkin.centrifuge_gold) c
+    JOIN kbase.nmdc_arkin.omics_files_table b ON c.file_id = b.file_id
 """).toPandas()
 ```
 
@@ -1340,7 +1621,7 @@ Python lists first: `df[col] = df[col].tolist()` for each column before calling
 
 ### [nmdc_community_metabolic_ecology] `abiotic_features` Column Names Use `_has_numeric_value` Suffix; No `water_content` Column
 
-**Problem**: Most numeric columns in `nmdc_arkin.abiotic_features` use a `_has_numeric_value` suffix (e.g., `annotations_tot_org_carb_has_numeric_value`), but two columns do not: `annotations_ph` (no suffix) and depth/temp which do have the suffix. Using the bare name without the suffix raises `UNRESOLVED_COLUMN`.
+**Problem**: Most numeric columns in `kbase.nmdc_arkin.abiotic_features` use a `_has_numeric_value` suffix (e.g., `annotations_tot_org_carb_has_numeric_value`), but two columns do not: `annotations_ph` (no suffix) and depth/temp which do have the suffix. Using the bare name without the suffix raises `UNRESOLVED_COLUMN`.
 
 Additionally, `annotations_water_content` does not exist. Use `annotations_diss_org_carb_has_numeric_value` and `annotations_conduc_has_numeric_value` instead.
 
@@ -1412,6 +1693,97 @@ h1d_or, h1d_p = stats.fisher_exact(table_h1d)
 
 ---
 
+## BacDive (`kescience_bacdive`) Pitfalls
+
+### [plant_microbiome_ecotypes] BacDive JOIN type mismatch between sequence_info and isolation tables
+
+**Problem**: `kescience.bacdive.sequence_info.bacdive_id` is INT but `kescience.bacdive.isolation.bacdive_id` is STRING. A direct join returns zero rows because Spark does not implicitly cast across INT/STRING types.
+
+**Solution**: Use `CAST(si.bacdive_id AS STRING) = iso.bacdive_id` for cross-table joins:
+
+```sql
+-- WRONG: type mismatch, returns 0 rows
+SELECT * FROM kescience.bacdive.sequence_info si
+JOIN kescience.bacdive.isolation iso ON si.bacdive_id = iso.bacdive_id
+
+-- CORRECT: explicit cast
+SELECT * FROM kescience.bacdive.sequence_info si
+JOIN kescience.bacdive.isolation iso ON CAST(si.bacdive_id AS STRING) = iso.bacdive_id
+```
+
+---
+
+## Additional Spark / Python Pitfalls
+
+### [plant_microbiome_ecotypes] Spark driver memory overflow with large aggregations on eggnog_mapper_annotations
+
+**Problem**: The 93M row `eggnog_mapper_annotations` table can produce aggregated results exceeding `spark.driver.maxResultSize` (1024 MiB) when collecting species×OG matrices or similar large cross-tabulations to the driver.
+
+**Solution**: Compute Fisher test contingency inputs (counts per group) server-side rather than collecting species×OG matrices. Push aggregation into Spark SQL and collect only the summary counts needed for statistical tests:
+
+```python
+# WRONG: collect full species×OG matrix
+matrix = spark.sql("SELECT species, OG, COUNT(*) FROM ... GROUP BY species, OG").toPandas()
+
+# CORRECT: compute contingency counts server-side
+counts = spark.sql("""
+    SELECT OG,
+           SUM(CASE WHEN is_plant = 1 THEN 1 ELSE 0 END) AS plant_count,
+           SUM(CASE WHEN is_plant = 0 THEN 1 ELSE 0 END) AS non_plant_count
+    FROM ... GROUP BY OG
+""").toPandas()
+```
+
+### [plant_microbiome_ecotypes] statsmodels Python 3.13 compatibility — use formula API
+
+**Problem**: `import statsmodels.api as sm` fails on Python 3.13 due to a graphics import chain that triggers an ImportError.
+
+**Solution**: Use `import statsmodels.formula.api as smf` instead, which avoids the problematic graphics import path:
+
+```python
+# WRONG on Python 3.13
+import statsmodels.api as sm
+
+# CORRECT
+import statsmodels.formula.api as smf
+```
+
+### [plant_microbiome_ecotypes] bakta_pfam_domains query format — Pfam IDs may not match
+
+**Problem**: Querying `bakta_pfam_domains` with Pfam IDs like `'PF00771'` returned 0 hits across all 11 domains tested. The table may use a different ID format (e.g., domain names instead of accessions, or versioned accessions like `PF00771.1`) or require a different join logic.
+
+**Solution**: Investigate the actual values stored in the table before writing queries:
+
+```python
+# Check what format the table actually uses
+spark.sql("SELECT DISTINCT pfam_id FROM kbase.ke_pangenome.bakta_pfam_domains LIMIT 20").show()
+```
+
+This pitfall needs further investigation to determine the correct query format.
+
+### [plant_microbiome_ecotypes] GapMind core-level completeness scoring yields 0% across all compartments
+
+**Problem**: Using `gapmind_pathways` with `sequence_scope = 'core'` for broad taxonomic comparisons yields 0% completeness across all compartments. The core-level scoring threshold is too stringent for genus-level or cross-species comparisons where pathway genes may not be universally present.
+
+**Solution**: Use max-aggregation at the genus level instead of core-level scoring:
+
+```sql
+-- WRONG: core-level scoring too stringent for cross-species comparison
+SELECT pathway, AVG(score_simplified) FROM gapmind_pathways
+WHERE sequence_scope = 'core' GROUP BY pathway
+
+-- CORRECT: aggregate at genus level with max score per genome-pathway pair
+SELECT genus, pathway, AVG(max_score) FROM (
+    SELECT clade_name, pathway, MAX(score_simplified) AS max_score
+    FROM gapmind_pathways
+    GROUP BY clade_name, pathway
+) grouped
+JOIN taxonomy ON ...
+GROUP BY genus, pathway
+```
+
+---
+
 ## Quick Checklist
 
 Before running a query, verify:
@@ -1449,7 +1821,7 @@ Before running a query, verify:
 
 ### Pangenome `gene_cluster` Uses `gtdb_species_clade_id`, Not `clade_name`
 
-**[cf_formulation_design]** The `kbase_ke_pangenome.gene_cluster` table has `gtdb_species_clade_id` (not `clade_name`). The `gapmind_pathways` table has `clade_name`. The `gene` table has only `gene_id` and `genome_id` — no species/clade column. The `eggnog_mapper_annotations` table uses `query_name` (not `gene_cluster_id`) as its identifier, which maps to `gene_cluster_id` in the gene_cluster table.
+**[cf_formulation_design]** The `kbase.ke_pangenome.gene_cluster` table has `gtdb_species_clade_id` (not `clade_name`). The `gapmind_pathways` table has `clade_name`. The `gene` table has only `gene_id` and `genome_id` — no species/clade column. The `eggnog_mapper_annotations` table uses `query_name` (not `gene_cluster_id`) as its identifier, which maps to `gene_cluster_id` in the gene_cluster table.
 
 **Fix**: Always check column names with `DESCRIBE table` before writing joins. Common join patterns:
 ```sql
@@ -1480,3 +1852,113 @@ WHERE bt.name LIKE '%aeruginosa%'
 - [ ] eggNOG PFAMs column searched by domain NAME, not accession
 - [ ] Auth token is fresh (check `~/.berdl_kbase_session` if `.env` token fails)
 - [ ] Checked ALL databases for a project prefix (e.g., both GenomeDepot and strain_modelling for PhageFoundry)
+
+---
+
+# Per-Database Pitfalls
+
+The sections below were extracted from `docs/schemas/` before deletion. Each section covers non-derivable gotchas for a single database — NULL conventions, ID formats, missing-column workarounds, JOIN-key surprises, large-table guards.
+
+## kbase_ke_pangenome
+- ID format: `gtdb_species_clade_id` is `s__<Genus_species>--<RS_GCF_XXXXXXXXX.X | GB_GCA_XXXXXXXXX.X>` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`).
+- The `--` in species clade IDs is parsed as a SQL line comment inside `IN (...)` clauses — use `LIKE 's__Genus_species%'` patterns instead of equality / `IN` for these IDs.
+- `genome_id` format: `RS_GCF_XXXXXXXXX.X` (RefSeq) or `GB_GCA_XXXXXXXXX.X` (GenBank) — exact equality only.
+- `eggnog_mapper_annotations.query_name` joins to `gene_cluster.gene_cluster_id`, NOT to `gene.gene_id`.
+- Bakta/InterProScan tables (`bakta_*`, `interproscan_*`) join on `gene_cluster_id`, not on `gene_id` — annotations are at cluster-rep level, not per-gene.
+- `gene` and `gene_genecluster_junction` are ~1B rows each; `genome_ani` ~421M; `eggnog_mapper_annotations` ~93M; `interproscan_domains` ~833M; `bakta_db_xrefs` ~572M; `gapmind_pathways` ~305M — never full-scan; always pre-filter by `gtdb_species_clade_id` (or `genome_id`) before joining.
+- `genome_ani` only contains within-species comparisons — cross-species ANI is not stored.
+- `gene_cluster` flags `is_core`, `is_auxiliary`, `is_singleton` are mutually exclusive within their definitions, but singletons are a subset of auxiliary in counts (Core + Auxiliary = total clusters, singletons sit inside auxiliary).
+- `alphaearth_embeddings_all_years` covers only ~28% of genomes (~83K/293K) — use `LEFT JOIN` and check coverage; sparse lat/lon at NCBI is the cause.
+- `pangenome` references 12 species clades that are not in `gtdb_species_clade` (orphan single-genome species/symbionts) — anti-join may be needed.
+- `gene_genecluster_junction` has 141 orphan genes vs `gene` — `INNER JOIN` will silently drop them.
+- `ncbi_env` is EAV (entity-attribute-value): pivot or filter by `harmonized_name`, do not assume one row per sample.
+- `pangenome_build_protocol`, `genomad_mobile_elements`, `IMG_env` are referenced by other tables / project docs but do not exist in BERDL — `protocol_id` is a dangling reference.
+- Pagination requires `ORDER BY`; `LIMIT/OFFSET` without ordering returns inconsistent results.
+- REST API returns transient 503 ("cannot schedule new futures after shutdown") and 504 errors on large queries — retry, or break into per-species batches.
+
+## kbase_msd_biochemistry
+- No EC-number column on `reaction` — EC → reaction mapping does not exist in BERDL. Bridge via eggNOG `KEGG_ko` / `KEGG_Reaction` to `reaction.abbreviation` (KEGG R-numbers), or use GapMind pathways for pathway-level analysis.
+- `reaction.abbreviation` holds KEGG R-numbers but only ~80% of reactions populate it (44,904 / 56,012) — the other 20% have no external ID at all.
+- ID format: ModelSEED IDs use a prefix-colon form: `seed.reaction:rxn00001`, `seed.compound:cpd00001` — not bare `rxnNNNNN`.
+- `reaction_similarity` is ~671M rows — always filter by `reaction_1` or `reaction_2`.
+- `deltag` has extreme outlier values; filter with a sanity bound like `deltag > -10000000` for any aggregation.
+- Many `molecule` rows lack SMILES / InChIKey — `LEFT JOIN` to `structure`, do not `INNER JOIN`.
+- `BiGG_Reaction` is referenced by eggNOG annotations but is not present in ModelSEED tables — there is no biochemistry-side BiGG mapping.
+
+## kescience_fitnessbrowser
+- Numeric columns (`fit`, `t`, `begin`, `end`, `cofit`, `rank`, `ratio`, `protein_length`, etc.) are stored as STRING — `CAST(fit AS FLOAT)` before any numeric comparison or `ORDER BY`.
+- `orgId` is case-sensitive — use exact case (e.g., `'Keio'`, not `'keio'`).
+- `genefitness` ~27M rows and `cofit` ~13.6M rows — always filter by `orgId` (and ideally `locusId`) before scanning.
+- Per-organism `fitbyexp_{orgId}` tables (e.g., `fitbyexp_keio`, `fitbyexp_dvh`) exist as pre-pivoted convenience tables and have non-standard schemas — discover per organism if used.
+- Joins on `(orgId, locusId)` are composite — joining on `locusId` alone collides across organisms.
+
+## kescience_alphafold
+- UniRef100 → UniProt join requires stripping the `UniRef100_` prefix: `REPLACE(uniref100, 'UniRef100_', '') = uniprot_accession`. This is a per-row string op — for large joins consider materializing a mapping table.
+- ~9% of entries have MSA depth < 30 (low-confidence predictions) — filter by `msa_depth` for structure-based analyses.
+- All entries are model version v6 — the `model_version` column exists but currently has no variation.
+- Coverage is UniProt-only — proteins absent from UniProt have no AlphaFold entry, and pLDDT (per-residue confidence) is in the structure files, not in this metadata.
+
+## kescience_pdb
+- `r_work` and `r_free` are NULL for non-X-ray methods (EM, NMR); `resolution` is NULL for NMR — apply method-specific filters before averaging.
+- `pdb_uniprot_mapping.pdb_beg` / `pdb_end` are STRING and can literally be the string `"None"` for unmapped regions — coerce / filter before casting.
+- `pdb_entries.organism` reflects only the first polymer entity — multi-organism complexes appear as single-organism here.
+- SIFTS coverage is SwissProt/TrEMBL only — some PDB chains have no UniProt mapping at all.
+- Use `pdb_uniprot_mapping` for chain-level data; `pdb_entries` is one row per entry, not per chain.
+
+## kescience_structural_biology
+- All four tables start empty and grow with Phenix agent usage — cross-project queries return nothing until projects accumulate.
+- `refinement_cycles` X-ray metrics (`r_work`, `r_free`, `r_gap`) are NULL for cryo-EM rows; cryo-EM metric (`map_model_cc`) is NULL for X-ray rows — filter by `method` first or expect lots of NULLs.
+- `parameters_json` is a STRING column containing JSON — querying inner fields requires JSON parsing functions, not column access.
+
+## kescience_bacdive
+- Taxonomy columns are renamed to avoid SQL reserved words: use `tax_class` and `tax_order` (not `class` / `order`).
+- Sequence accession format mismatch with pangenome: BacDive `sequence_info.accession` is `GCA_*`, but pangenome `genome_id` uses `GB_GCA_*` or `RS_GCF_*` — prefix-match or strip prefixes before joining.
+- NCBI taxid linking to fitnessbrowser is species-level, not strain-level — many-to-one ambiguity.
+- Physiology fields are sparsely populated (Gram stain ~15K/97K, oxygen ~23K/97K) — `IS NOT NULL` filters are usually required.
+- Metabolite test panel is biased (trehalose, arginine, glucose dominate) — frequency-based ranking is misleading.
+
+## kescience_paperblast
+- `year` is a STRING — always `CAST(year AS INT)` for comparisons or `ORDER BY`.
+- `protein_length` in `curatedgene` and `uniq` is a STRING — cast for numeric ops.
+- `isOpen` in `genepaper` is mostly NULL — do not use it to filter for open-access papers.
+- `genepaper` is ~3.2M rows — filter by `geneId` or `pmId`, not full-scan.
+- `geneId` spans multiple namespaces (RefSeq `NP_*`, UniProt-ish `WP_*`, VIMSS, etc.) — cross-namespace queries must go through `seqtoduplicate`.
+- `snippet.snippet` is raw PMC text with formatting artifacts and partial sentences — do not display unfiltered.
+
+## kescience_webofmicrobes
+- Action codes differ between controls and organisms: for the "The Environment" control (organism_id = 1), `D`=Detected, `N`=Not detected; for organisms, `I`=Increased, `E`=Emerged (de novo), `N`=No change. Mixing these without the actor distinction is wrong.
+- E and I are mutually exclusive across organism observations (zero overlap).
+- No "Decreased" / consumption action exists in this 2018 snapshot — absence of consumption data is by design, not a query bug.
+- ~56% of `compound.compound_name` values are unidentified (`Unk_*` prefix) — filter these out for named-metabolite analyses.
+- 2018 frozen snapshot — newer data lives elsewhere (GNPS2), not here.
+
+## kbase_genomes
+- All primary keys are CDM UUIDs, not human-readable — to map an external `gene_id` (e.g., a pangenome `gene_id`) to internal IDs, go through the `name` table (`name.name = '<external_id>'` → `name.entity_id`).
+- No direct `genome_id` column — genomes are identified by `contig_collection_id`; cross-reference via `name` or `gtdb_taxon_id`.
+- Numeric columns (`length`, `start`, `end`, `gc_content`, coordinates) are stored as STRING — cast before comparing.
+- `feature`, `encoded_feature`, and the `*_x_*` junction tables are all ~1B rows — never scan without filtering on a key first.
+- `protein` is deduplicated (253M unique sequences for ~1B features) — many features share the same `protein_id`.
+
+## nmdc_arkin
+- `abiotic_features` numeric measurement columns (e.g., `annotations_ammonium_has_numeric_value`, `annotations_ph`, `annotations_temp_has_numeric_value`) are STRING — cast before numeric comparison.
+- `trait_features` exposes ~90 functional groups as individual `functional_group:*` columns rather than rows — pivoting/long-form requires `stack(...)`, not `GROUP BY`.
+- Embedding dimensions vary across tables (`embeddings_v1` is 256-dim; abiotic / biochemical / taxonomy / trait embeddings differ) — do not assume a fixed dimensionality.
+
+## enigma_coral
+- Tables follow a strict prefix scheme: `sdt_*` are scientific data, `ddt_*` are numerical bricks/arrays, `sys_*` are system/metadata — `sys_*` are not primary scientific data and should not be queried for biology.
+- `ddt_brick*` columns are numerical arrays (non-tabular shape) — standard SQL projections may not work as expected.
+- Many tables timed out during introspection at ingest; expect partial schemas — confirm with `DESCRIBE EXTENDED` before writing queries.
+
+## phagefoundry_*_genome_browser
+- Five databases (`phagefoundry_acinetobacter_genome_browser`, `phagefoundry_klebsiella_genome_browser_genomedepot`, `phagefoundry_paeruginosa_genome_browser`, `phagefoundry_pviridiflava_genome_browser`, `phagefoundry_strain_modelling`) — the four genome browsers share the same GenomeDepot schema; `phagefoundry_strain_modelling` is separate with an unknown schema.
+- Cross-species queries require running the same SQL once per database (no unified table).
+
+## protect_genomedepot
+- Uses "sampled" table variants (`browser_gene_sampled`, `browser_annotation_sampled`) instead of full tables — query the sampled tables, not the un-suffixed names.
+
+## kbase_uniref50 / kbase_uniref90 / kbase_uniref100
+- These are partial / sample datasets, not the full UniRef releases (which would be hundreds of millions of clusters). Do not assume completeness for any cluster lookup.
+
+## planetmicrobe_planetmicrobe / planetmicrobe_planetmicrobe_raw
+- `project` and `library` tables are empty (count=0) — joining through them returns nothing.
+- The `_raw` database mirrors the curated one structurally — pick one explicitly per query.

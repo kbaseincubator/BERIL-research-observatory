@@ -1,0 +1,39 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.7-Pillar3-renamed",
+  "test": "H3a-new \u2014 module-anchor commensal \u00d7 pathobiont metabolic coupling",
+  "cd_specific_modules": {
+    "E1_CD_module_0": {
+      "anchors": [
+        "Clostridiales bacterium 1_7_47FAA",
+        "Anaerostipes caccae",
+        "Bacteroides nordii"
+      ],
+      "pathobionts": [
+        "Hungatella hathewayi",
+        "Flavonifractor plautii",
+        "Enterocloster bolteae",
+        "Eggerthella lenta",
+        "Mediterraneibacter gnavus"
+      ]
+    },
+    "E3_CD_module_1": {
+      "anchors": [
+        "Actinomyces sp. oral taxon 181",
+        "Actinomyces sp. HMSC035G02",
+        "Lactonifactor longoviformis"
+      ],
+      "pathobionts": [
+        "Eggerthella lenta",
+        "Hungatella hathewayi",
+        "Escherichia coli",
+        "Mediterraneibacter gnavus"
+      ]
+    }
+  },
+  "n_pairs_tested": 27,
+  "n_pairs_strong_coupling": 4,
+  "strong_coupling_threshold": "|rho_meta|>0.30 AND sign_concord=1.0",
+  "iron_context_observation": "See data/nb07c_anchor_pathobiont_iron_triple.tsv for 3-way co-variation",
+  "h3a_new_verdict": "PARTIAL \u2014 see per-pair coupling table; metabolite-level disambiguation deferred to NB09c"
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "compose-fragment.v2",
+  "substory_id": "S3",
+  "substory_punchline": "The Fur-set envelope state triggers a two-phase ChvI response; its late regulator stays open.",
+  "throughline_id": "TL1",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "section_divider",
+      "content": {
+        "punchline": "The Fur-set envelope state triggers a two-phase ChvI response; its late regulator stays open.",
+        "substory_number": 3
+      },
+      "speaker_notes": "Coming off the Path A/B partitioning — where we showed only the Fur-released transport subset enriches for envelope-stress fitness — we now follow the Fur-set envelope state into the regulatory signaling layer: the ChvG-ChvI two-component system, Caulobacter's dedicated envelope-homeostasis sensor. The substory has two halves. The first is what the driver activates: the ChvI regulon partitions into three disjoint phases — 20 genes unique-to-early (Fur-release-coincident), 10 in both phases (cooperative continuation), and 49 late-consequence genes that respond specifically to lipid-A loss. All three cohorts clear the pre-registered greater-than-or-equal-to 10-gene threshold strongly; this is the H1 phase-structure verdict, which is SUPPORTED. The second half is what we could not resolve: we tested SigU as the candidate driver of the late 49-gene cohort. SigU has published Caulobacter literature, but the pre-registered coherence test returned 24.5% envelope/transport/regulator enrichment with Fisher p=0.243 — below both the statistical significance threshold and the 50% relaxed criterion. The late-cohort driver is genuinely unassigned in this work. That is the honest result, and it is what the throughline calls 'the supporting and still-open mechanism.' The adversarial review also raised ChvR sRNA as an untested post-transcriptional confound; we acknowledge it without manufacturing evidence we do not have. The three content slides in this section walk through the methodology (how we partitioned the 488-gene ChvI universe), the partition data itself (counts, exemplars, and ChvI autoregulation in the both-phase cohort), and the SigU/ChvR open question. Audiences with a ChvI background should note this is the first partition of ChvI's response into Fur-release-coincident versus lipid-A-loss-specific phases — a framing made possible only by the three-strain comparison design established in S1.",
+      "evidence_anchors": []
+    },
+    {
+      "position": 1,
+      "layout": "methods_summary",
+      "content": {
+        "title": "ChvI phase partition: two published regulons cross-referenced against our strain-series contrasts",
+        "bullets": [
+          "ChvI reference regulon: union of Stein 2021 (PMID 34124942) + Quintero-Yanes 2022 (PMID 36480504) — 488 ChvI-induced genes in the C. crescentus NA1000 tested universe",
+          "Early-phase contrast (4584-vs-4580): Δfur Δsspb ΔrsaA vs ΔrsaA — captures co-release of Fur suppression and SspB buffering, LpxC still present",
+          "Late-phase contrast (4599-vs-4584): Δlpxc rescue vs dual-release intermediate — isolates ChvI response to lipid-A loss with Fur/SspB permissive state already established",
+          "Phase assignment: three fully disjoint sets (unique-to-early / both-phase / late-consequence); no gene counted in two cohorts; total engaged = 79 genes",
+          "Pre-registered phase-structure threshold: ≥10 genes per cohort required for H1 phase-structure verdict (RESEARCH_PLAN §hypotheses)",
+          "SigU coherence test: Fisher exact enrichment of envelope/transport/regulator categories in late cohort vs unique-to-early; relaxed pass bar = 50% enrichment + p<1e-3",
+          "ChvR sRNA (Fröhlich 2018; adversarial review N3) acknowledged as untested post-transcriptional alternative — not in this dataset"
+        ],
+        "tools_versions": [
+          {"tool": "edgeR", "version": "unknown"}
+        ],
+        "see_notes_footer": true
+      },
+      "speaker_notes": "This slide covers how we partitioned the 488-gene ChvI universe into three cohorts. The reference regulon is the union of two independent ChvI RNA-seq datasets from different labs and conditions — Stein 2021 (chvGI deletion in defined medium, J Bacteriol PMID 34124942) and Quintero-Yanes 2022 (vancomycin and osmotic stress, PLoS Genet PMID 36480504). Taking the union gives the broadest possible ChvI-induced set as our working universe, avoiding gene dropout caused by condition-specific induction in either study alone. The early contrast (4584-vs-4580) captures the dual-release state — Fur suppression and SspB buffering are both removed, but LpxC is still present, so the cell is not yet lipid-A-deficient. The late contrast (4599-vs-4584) isolates what ChvI does specifically in response to actual lipid-A loss, with the Fur/SspB permissive state already established and held constant. The phase assignment is fully disjoint: every gene appears in exactly one cohort. The three counts, 20 + 10 + 49 = 79, sum to the total engaged ChvI-regulon genes. The pre-registered threshold (≥10 per cohort, RESEARCH_PLAN §hypotheses H1) ensures that a handful of coincidental regulon overlaps do not get interpreted as a biological phase. All three cohorts clear it strongly. The SigU coherence test was the pre-registered H1 sub-hypothesis: if SigU is the late-cohort driver, the late 49 genes should enrich for envelope/transport/regulator categories relative to the early 20. The relaxed criterion — 50% instead of 75%, p<1e-3 instead of p<0.05 — gave SigU the best possible chance. Even with the relaxed bar, the test returned 24.5% and p=0.243. The ChvR sRNA confound was flagged post-analysis by the adversarial review (N3, Fröhlich 2018). We acknowledge it as an untested post-transcriptional alternative; resolving it requires ChvR expression data in our strain backgrounds, which we do not currently have. One methodological caveat spanning the whole section: the single PYE-rich growth condition means the ChvI partition describes the response to our specific Fur/SspB/LpxC perturbation series. Other envelope stresses may produce different phase structures.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 3"},
+        {"kind": "notebook", "ref": "notebooks/03_chvi_phase_partition_sigU.ipynb cells 1-6"},
+        {"kind": "citation_pool_key", "ref": "Stein2021"},
+        {"kind": "citation_pool_key", "ref": "QuinteroYanes2022"}
+      ]
+    },
+    {
+      "position": 2,
+      "layout": "data_table",
+      "content": {
+        "title": "ChvI two-phase partition: ChvI autoregulation sits in the both-phase cohort",
+        "columns": ["Phase", "n genes", "Key exemplars (log2FC)", "Functional theme"],
+        "rows": [
+          ["Unique-to-early", "20", "CCNA_02794 +8.6, ApbE +3.8, imuB +1.5", "Regulator/SOS (6.7% TCS)"],
+          ["Both-phase (cooperative)", "10", "ChvI +1.45, CCNA_02378 +1.9→+3.9, CpxP-like CCNA_03997", "Cooperative continuation"],
+          ["Late-consequence", "49", "LolA-family +2.89, Pal +2.08, multiple TBDTs", "Envelope/OM structural (10.2% OM, 12.2% TBDT)"]
+        ],
+        "caption": "Disjoint ChvI partition (79 total); all cohorts clear ≥10-gene threshold. Both-phase row: ChvI autoregulation (logFC +1.45) and CpxP-like chaperone engagement. Late row: shift to envelope-structural effectors.",
+        "footnote": "Full gene-by-gene assignment in data/NB03_chvi_phase_cohorts.csv (n=89); theme breakdown in data/NB03_phase_cohort_themes.csv.",
+        "data_source": "REPORT.md §Finding 3; nb 03_chvi_phase_partition_sigU.ipynb cell 7",
+        "highlight_rows": [2]
+      },
+      "speaker_notes": "The three-phase ChvI partition is shown here — 20 unique-to-early, 10 both-phase, and 49 late-consequence genes. All three counts are from REPORT.md §Finding 3 and NB03 cell 7; together they total 79 ChvI-induced genes engaged across at least one of our contrasts. The unique-to-early cohort is notable for its stress-responder composition: the lasso peptide cyclase CCNA_02794 at log2 +8.6 is the highest-magnitude early hit, ApbE iron-sulfur cluster repair protein at +3.8, and imuB (SOS DNA polymerase) at +1.5. The imuB hit corroborates Leaden 2018's observation of SOS activation under Δfur, confirming that the early-phase ChvI engagement co-activates with the Fur-release SOS signature described in S1 — these are not independent signals. The both-phase cohort contains the mechanistically critical observation. ChvI itself, CCNA_00237 at logFC +1.45 in 4584-vs-4580, sits in this both-phase set — direct autoregulation evidence. Once the ChvG-ChvI system activates during the Fur/SspB release phase, ChvI sustains its own transcription through the lipid-A-loss transition. The SIMPL-family CCNA_02378 shows progressive amplification: +1.9 in the early contrast increasing to +3.9 in the late, suggesting continued engagement as LpxC is actually deleted. The amelogenin/CpxP-related CCNA_03997 is mechanistically notable — CpxP in E. coli is the periplasmic chaperone partner of CpxA envelope-stress sensor, making CCNA_03997 a Caulobacter echo of cross-sensor envelope stress signaling. The late cohort (highlighted, 49 genes) shows a functional theme shift toward envelope/OM structural effectors — 10.2% envelope/OM, 12.2% TBDT genes — versus the regulator/SOS flavor of early (6.7% TCS). This shift is suggestive of a regulatory-to-structural handoff as lipid-A loss is established, but the Fisher exact test returned p=0.243, so the theme shift is not statistically discriminated on these cohort sizes. The partition counts themselves are robust and descriptive. The next slide addresses the key open question this table raises: what transcriptional driver controls the late 49-gene cohort.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 3"},
+        {"kind": "notebook", "ref": "notebooks/03_chvi_phase_partition_sigU.ipynb cell 7"},
+        {"kind": "citation_pool_key", "ref": "Stein2021"},
+        {"kind": "citation_pool_key", "ref": "QuinteroYanes2022"}
+      ]
+    },
+    {
+      "position": 3,
+      "layout": "claim_evidence",
+      "content": {
+        "title": "SigU coherence fails the pre-registered bar (24.5%, p=0.243); late-cohort driver unassigned",
+        "bullets": [
+          "SigU coherence in late 49-gene cohort: 24.5% envelope/transport/regulator enrichment, Fisher p=0.243 — below both the 50% relaxed criterion and statistical significance; H1 SigU sub-hypothesis is not supported",
+          "SigU (CCNA_02977) has published alphaproteobacterial literature; targeted SigU-induction RNA-seq (Future Directions §2) is the pre-planned next step to resolve whether SigU drives this specific cohort",
+          "ChvR sRNA (Fröhlich 2018, adversarial review N3) is an untested post-transcriptional alternative for late-cohort modulation; late-cohort regulatory attribution remains open pending both experiments"
+        ],
+        "citations": ["QuinteroYanes2022", "Greenwich2023"]
+      },
+      "speaker_notes": "The largest ChvI cohort — 49 late-consequence genes induced only after lipid-A loss — does not have an identified transcriptional driver in this dataset. The pre-registered SigU coherence test (RESEARCH_PLAN §hypotheses H1, NB03 cell 10) returned 24.5% envelope/transport/regulator enrichment in the late 49 genes with Fisher p=0.243. From REPORT.md §Finding 3: 'The reframed SigU coherence check on the late cohort returned 24.5% envelope/transport/regulator enrichment — below the 50% relaxed criterion.' From REPORT.md §Limitations: 'even the relaxed criterion did not pass (Fisher p=0.243).' This is a genuine negative at the pre-registered bar — not a borderline result, not partial support. The 24.5% figure means roughly one in four late-cohort genes fall into the expected functional categories. For a membrane-centric organism where those categories represent a large fraction of the genome, this offers no discriminatory signal above what you would expect from a random draw. Critically, the test does not falsify SigU as a regulator of the Caulobacter envelope stress response more broadly. SigU is referenced in the alphaproteobacterial literature (Alvarez-Martinez 2007), and it is a reasonable candidate. But the pre-registered coherence test on this specific 49-gene set, under this specific lipid-A-loss condition, does not support SigU as the driver. The correct framing — per the plan's instruction to revisit after adversarial review N2 — is 'late-cohort driver unassigned' rather than 'SigU is uncharacterized.' The planned next experiment, ectopic vanillate-inducible SigU overexpression RNA-seq in the 4599 background (REPORT Future Directions §2), would directly test whether a SigU-induced regulon overlaps the late 49-gene cohort; that will resolve the question. The ChvR sRNA layer adds a second uncertainty. ChvR (Fröhlich 2018), flagged by adversarial review N3, provides post-transcriptional modulation of ChvI-pathway output and could sculpt late-cohort composition independently of sigma-factor logic. We have no ChvR expression data in our strain backgrounds; this is an explicitly acknowledged gap, not an experimental failure. With the ChvI two-phase response characterized and its late driver acknowledged as open, we hand off to S4: what the cell physically does to the envelope without lipid A. Constitutive sphingolipids and reorganized peptidoglycan carry cleaner, direct-tier evidence than the signaling layer just covered.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 3 and §Limitations"},
+        {"kind": "notebook", "ref": "notebooks/03_chvi_phase_partition_sigU.ipynb cell 10"}
+      ]
+    }
+  ]
+}

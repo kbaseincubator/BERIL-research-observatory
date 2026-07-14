@@ -1,0 +1,92 @@
+{
+  "phase": "REVIEW_9 response",
+  "deliverable": "I10 mycolic sub-clade Cohen's d recomputation",
+  "threshold_lc": 0.5,
+  "n_genera_mycolic_positive": 10,
+  "n_genera_mycolic_low": 3,
+  "mycolic_positive_genera": [
+    "g__Dietzia",
+    "g__Gordonia",
+    "g__Hoyosella",
+    "g__Lawsonella",
+    "g__Nocardia",
+    "g__Smaragdicoccus",
+    "g__Tomitella",
+    "g__Tsukamurella",
+    "g__Williamsia",
+    "g__Williamsia_A"
+  ],
+  "mycolic_low_genera": [
+    "g__Corynebacterium",
+    "g__Mycobacterium",
+    "g__Rhodococcus"
+  ],
+  "results": [
+    {
+      "sub_clade": "Mycobacteriaceae (family, all)",
+      "score": "producer_z",
+      "d": 0.30924581549516406,
+      "ci_lo": 0.1979288560013419,
+      "ci_hi": 0.45503735082713437,
+      "n_target": 582
+    },
+    {
+      "sub_clade": "Mycobacteriaceae (family, all)",
+      "score": "consumer_z",
+      "d": -0.19250513208750852,
+      "ci_lo": -0.2771116675638119,
+      "ci_hi": -0.11853272653016937,
+      "n_target": 582
+    },
+    {
+      "sub_clade": "mycolic-positive (genus, LC\u22650.5)",
+      "score": "producer_z",
+      "d": 0.39367204317613363,
+      "ci_lo": 0.30057697881807327,
+      "ci_hi": 0.4561022830035463,
+      "n_target": 2161
+    },
+    {
+      "sub_clade": "mycolic-positive (genus, LC\u22650.5)",
+      "score": "consumer_z",
+      "d": 0.006369838120978877,
+      "ci_lo": -0.029831413143541246,
+      "ci_hi": 0.04132199676819238,
+      "n_target": 2161
+    },
+    {
+      "sub_clade": "mycolic-low (genus, LC<0.5)",
+      "score": "producer_z",
+      "d": 0.2106295402210837,
+      "ci_lo": 0.13751526429643984,
+      "ci_hi": 0.2704718500854154,
+      "n_target": 1267
+    },
+    {
+      "sub_clade": "mycolic-low (genus, LC<0.5)",
+      "score": "consumer_z",
+      "d": 0.04323795002476495,
+      "ci_lo": -0.014386233382418371,
+      "ci_hi": 0.09100681163592546,
+      "n_target": 1267
+    },
+    {
+      "sub_clade": "all Mycobacteriaceae (genus, no LC filter)",
+      "score": "producer_z",
+      "d": 0.3259768193412808,
+      "ci_lo": 0.2492813951112647,
+      "ci_hi": 0.3574163686132525,
+      "n_target": 3428
+    },
+    {
+      "sub_clade": "all Mycobacteriaceae (genus, no LC filter)",
+      "score": "consumer_z",
+      "d": 0.019996807340827153,
+      "ci_lo": -0.012219001349140857,
+      "ci_hi": 0.043004409847334994,
+      "n_target": 3428
+    }
+  ],
+  "elapsed_s": 11.1,
+  "completed_utc": "2026-04-29T15:54:14Z"
+}

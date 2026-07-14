@@ -1,0 +1,84 @@
+compound_id	name	source_short	expensive	npc_pathway	npc_superclass	npc_class	orig_class	mw	LogP	h2o_sol_mM
+Cc1_29	harman	groundwater	True	Alkaloids	Tryptophan alkaloids	Carboline alkaloids	Alkaloid	182.22	3.6	
+Cc1_102	1_prop_2_en_1_yl__1H_indole_3_carboxylic_acid	groundwater	True	Alkaloids	Tryptophan alkaloids	Simple indole alkaloids	Indole	201.22		
+Cc1_22	2-hydroxy-4,7,8-trimethylquinoline	groundwater	True	Alkaloids	Tryptophan alkaloids, Anthranilic acid alkaloids	Quinoline alkaloids	Heterocyclic	187.24	2.0	
+Cc1_46	3,6-dimethylchromone	groundwater	True	Polyketides	Chromanes	Chromones	Chromone	174.2	2.3	
+Cc1_39	7-hydroxy-4,8-dimethylchromen-2-one	groundwater	True	Shikimates and Phenylpropanoids	Coumarins	Simple coumarins	Coumarin	190.19	1.8	
+Cc1_71	Fraxetin	groundwater	True	Shikimates and Phenylpropanoids	Coumarins	Simple coumarins	Coumarin	208.17	1.2	
+Cc1_34	2',5'-dihydroxychalcone	groundwater	True	Shikimates and Phenylpropanoids	Flavonoids	Chalcones	Flavonoid	240.25	3.5	
+Cc1_60	Phthalic acid mono-2-ethylhexyl ester	groundwater	True	Shikimates and Phenylpropanoids	Phenolic acids (C6-C1)	Shikimic acids and derivatives, Simple phenolic acids	Unknown	278.34	4.0	3.6
+Cc1_106	2-Isopropyl-5-methylcyclohexanamine	groundwater	True	Terpenoids	Monoterpenoids	Menthane monoterpenoids, Monocyclic monoterpenoids	Alicyclic amine	155.28	2.8	
+CECREIRZLPLYDM-UHFFFAOYSA-N	Manool	necromass	True	Terpenoids	Diterpenoids	Labdane diterpenoids		290.5	5.7	
+KWILGNNWGSNMPA-UHFFFAOYSA-N	Mellein / Ochracin	necromass	True	Shikimates and Phenylpropanoids	Coumarins	Isocoumarins		178.18	2.4	
+Cc1_216	(-)-Perillyl alcohol	groundwater	False	Terpenoids	Monoterpenoids	Menthane monoterpenoids, Monocyclic monoterpenoids	Monoterpene alcohol	152.23	2.1	
+Cc1_256	Tyramine	groundwater	False	Alkaloids	Tyrosine alkaloids	Phenylethylamines	Phenethylamine	137.18	1.1	75812.8
+Cc1_12	choline sulfate / choline o-sulfuric acid	groundwater	False	Amino acids and Peptides	Amino acids and derivatives	Betaines	Quaternary ammonium sulfate	183.23	-0.9	
+Cc1_25	5,6-Dimethylbenzimidazole	groundwater	False	Alkaloids	Organoheterocyclic compounds	 Benzimidazoles	Heterocyclic	146.19	2.4	
+Cc1_23	acridone	groundwater	False	Alkaloids	Anthranilic acid alkaloids	Acridone alkaloids	Heterocyclic	195.22	3.0	
+Cc1_121	BIOTIN	groundwater	False	Alkaloids	Histidine alkaloids	Imidazole alkaloids	Vitamin	244.31	0.3	0.9
+Cc1_266	Triacetonamine	groundwater	False	Alkaloids	Lysine alkaloids	Piperidine alkaloids	Piperidone	155.24	0.5	
+Cc1_9	xanthine	groundwater	False	Alkaloids	Pseudoalkaloids	Purine alkaloids	Purine	152.11	-0.7	0.5
+Cc1_122	Cadaverine	groundwater	False	Alkaloids	Pseudoalkaloids, Ornithine alkaloids	Acetate-derived alkaloids, Polyamines	Polyamine	102.18	-0.6	
+Cc1_96	4,6,8-trimethylhydroquinolin-2-one	groundwater	False	Alkaloids	Tryptophan alkaloids	Quinoline alkaloids	Quinolone	187.24	2.0	
+Cc1_147	Indole-3-butyric acid	groundwater	False	Alkaloids	Tryptophan alkaloids	Simple indole alkaloids	Indole/Plant hormone	203.24	2.3	
+Cc1_72	indole-3-acetonitrile	groundwater	False	Alkaloids	Tryptophan alkaloids	Simple indole alkaloids	Indole	156.18	1.6	
+Cc1_42	4-hydroxy-1-methyl-2-quinolone	groundwater	False	Alkaloids	Tryptophan alkaloids, Anthranilic acid alkaloids	Quinoline alkaloids	Heterocyclic	175.18	0.9	
+Cc1_24	1,4-dimethylquinolin-2(1h)-one	groundwater	False	Alkaloids	Tryptophan alkaloids, Anthranilic acid alkaloids	Quinoline alkaloids	Heterocyclic	173.21	1.4	
+Cc1_41	2-hydroxyquinoline	groundwater	False	Alkaloids	Tryptophan alkaloids, Anthranilic acid alkaloids	Quinoline alkaloids	Heterocyclic	145.16	1.3	
+Cc1_208	Phenylethylamine	groundwater	False	Alkaloids	Tyrosine alkaloids	Phenylethylamines	Phenethylamine	121.18	1.4	
+Cc1_110	3-Indoleacrylic acid	groundwater	False	Alkaloids, Shikimates and Phenylpropanoids	Tryptophan alkaloids, Phenylpropanoids (C6-C3)	Cinnamic acids and derivatives, Simple indole alkaloids	Indole	187.19	2.2	
+Cc1_143	GUANIDINEACETIC ACID	groundwater	False	Amino acids and Peptides	Small peptides	Aminoacids	Amino acid derivative	117.11	-1.6	30.7
+Cc1_69	DODECANEDIOIC ACID	groundwater	False	Fatty acids	Fatty Acids and Conjugates	Dicarboxylic acids	Dicarboxylic acid	230.3	3.2	0.2
+Cc1_87	TETRADECANEDIOIC ACID	groundwater	False	Fatty acids	Fatty Acids and Conjugates	Dicarboxylic acids	Dicarboxylic acid	258.35	4.3	0.8
+Cc1_76	Decanedioic acid/Sebacic acid	groundwater	False	Fatty acids	Fatty Acids and Conjugates	Dicarboxylic acids	Dicarboxylic acid	202.25	2.1	4.9
+Cc1_66	Brassylic acid	groundwater	False	Fatty acids	Fatty Acids and Conjugates	Dicarboxylic acids	Dicarboxylic acid	244.33	3.7	6.1
+Cc1_54	Hexadecanedioic acid	groundwater	False	Fatty acids	Fatty Acids and Conjugates	Dicarboxylic acids	Unknown	286.41	5.4	
+Cc1_8	alpha-hydroxyisobutyric acid	groundwater	False	Fatty acids	Fatty Acids and Conjugates	Hydroxy fatty acids	Hydroxy acid	104.1	-0.4	
+Cc1_53	12-Hydroxydodecanoic acid	groundwater	False	Fatty acids	Fatty Acids and Conjugates	Hydroxy fatty acids	Hydroxy fatty acid	216.32	3.6	
+Cc1_17	sn-glycero-3-phosphocholine	groundwater	False	Fatty acids	Glycerophospholipids		Phospholipid	257.22	-2.3	
+Cc1_44	6-methylchromone	groundwater	False	Polyketides	Chromanes	Chromones	Chromone	160.17	1.7	
+Cc1_109	3-hydroxybenzyl alcohol	groundwater	False	Shikimates and Phenylpropanoids			Phenolic alcohol	124.14	0.5	
+Cc1_172	4-(4-Hydroxyphenyl)butan-2-one	groundwater	False	Shikimates and Phenylpropanoids			Phenolic ketone	164.2	1.5	
+Cc1_30	zingerone	groundwater	False	Shikimates and Phenylpropanoids			Phenolic	194.23	0.8	
+Cc1_108	3-(2-Hydroxyphenyl)propionic acid	groundwater	False	Shikimates and Phenylpropanoids			Phenolic acid	166.17	1.4	
+Cc1_113	6-aminochromen-2-one	groundwater	False	Shikimates and Phenylpropanoids	Coumarins	Simple coumarins	Coumarin	161.16	0.7	
+Cc1_220	2-Hydroxychalcone 	groundwater	False	Shikimates and Phenylpropanoids	Flavonoids	Chalcones	Flavonoid	224.25	3.3	
+Cc1_33	7-hydroxyflavanone	groundwater	False	Shikimates and Phenylpropanoids	Flavonoids	Flavanones	Flavonoid	240.25	2.5	
+Cc1_112	4-hydroxybenzaldehyde	groundwater	False	Shikimates and Phenylpropanoids	Phenolic acids (C6-C1)	Shikimic acids and derivatives, Simple phenolic acids	Phenolic aldehyde	122.12	1.4	69.2
+Cc1_38	salicylic acid	groundwater	False	Shikimates and Phenylpropanoids	Phenolic acids (C6-C1)	Simple phenolic acids	Phenolic acid	138.12	2.3	16217.8
+Cc1_10	3-hydroxybenzoic acid	groundwater	False	Shikimates and Phenylpropanoids	Phenolic acids (C6-C1)	Simple phenolic acids	Phenolic acid	138.12	1.5	52.5
+Cc1_58	2-Hydroxyphenylacetic acid	groundwater	False	Shikimates and Phenylpropanoids	Phenolic acids (C6-C1)	Simple phenolic acids	Phenolic acid	152.15	0.9	289.2
+Cc1_142	guaiacol	groundwater	False	Shikimates and Phenylpropanoids	Phenylpropanoids (C6-C3)		Phenolic	124.14	1.3	
+Cc1_129	Cinnamic acid	groundwater	False	Shikimates and Phenylpropanoids	Phenylpropanoids (C6-C3)	Cinnamic acids and derivatives	Phenylpropanoid	148.16	2.1	3.7
+Cc1_3	caffeic acid	groundwater	False	Shikimates and Phenylpropanoids	Phenylpropanoids (C6-C3)	Cinnamic acids and derivatives	Phenolic acid	180.16	1.2	5.6
+Cc1_118	ANETHOLE	groundwater	False	Shikimates and Phenylpropanoids	Phenylpropanoids (C6-C3)	Cinnamic acids and derivatives	Phenylpropanoid	148.2	3.3	
+Cc1_175	Benzylideneacetone	groundwater	False	Shikimates and Phenylpropanoids	Phenylpropanoids (C6-C3)	Cinnamic acids and derivatives	Chalcone	146.19	2.1	
+Cc1_104	(±)-Dihydroactinidiolide	groundwater	False	Terpenoids	Apocarotenoids	Apocarotenoids (β-)	Unknown	180.24	2.2	
+Cc1_117	Abscisic acid	groundwater	False	Terpenoids	Apocarotenoids	Apocarotenoids(ε-)	Plant hormone	264.32	1.6	
+Cc1_100	(S)-(-)-Perillic acid	groundwater	False	Terpenoids	Monoterpenoids	Menthane monoterpenoids	Monoterpene acid	166.22	2.7	
+Cc1_126	CARVEOL	groundwater	False	Terpenoids	Monoterpenoids	Menthane monoterpenoids, Monocyclic monoterpenoids	Monoterpene alcohol	152.23	2.1	
+Cc1_99	(1R)-(-)-Nopol	groundwater	False	Terpenoids	Monoterpenoids	Pinane monoterpenoids	Monoterpene alcohol	166.26	2.1	
+Cc1_36	ketopinic acid	groundwater	False	Terpenoids	Monoterpenoids	Pinane monoterpenoids	Bicyclic ketoacid	182.22	2.0	
+Cc1_49	(+)-Nootkatone	groundwater	False	Terpenoids	Sesquiterpenoids	Eremophilane sesquiterpenoids	Sesquiterpene	218.33	3.9	
+ZJTJUVIJVLLGSP-UHFFFAOYSA-N	lumichrome	necromass	False	Alkaloids	Anthranilic acid alkaloids	Phenazine alkaloids		242.23	1.1	
+GDNYELSKMFYCBB-UHFFFAOYSA-N	2,3-dihydro-1H-indole-7-carboxylic acid	necromass	False	Alkaloids				163.17	1.5	
+OLNJUISKUQQNIM-UHFFFAOYSA-N	INDOLE-3-CARBOXALDEHYDE	necromass	False	Alkaloids	Tryptophan alkaloids	Simple indole alkaloids		145.16	1.7	
+OVYWMEWYEJLIER-UHFFFAOYSA-N	6-Hydroxyquinoline	necromass	False	Alkaloids	Tryptophan alkaloids|Anthranilic acid alkaloids	Quinoline alkaloids		145.16	1.8	
+QNRXNRGSOJZINA-UHFFFAOYSA-N	(2S)indoline-2-carboxylic acid	necromass	False	Alkaloids	Tryptophan alkaloids|Anthranilic acid alkaloids	Quinoline alkaloids		163.17	1.6	
+IPCSVZSSVZVIGE-UHFFFAOYSA-N	Palmitic Acid	necromass	False	Fatty acids	Fatty Acids and Conjugates	Branched fatty acids|Unsaturated fatty acids		256.42	6.4	0.2
+POULHZVOKOAJMA-UHFFFAOYSA-N	lauric acid	necromass	False	Fatty acids	Fatty Acids and Conjugates	Branched fatty acids|Unsaturated fatty acids		200.32	4.2	5.0
+FVMDYYGIDFPZAX-UHFFFAOYSA-N	3-Hydroxyphenylacetic acid	necromass	False	Shikimates and Phenylpropanoids	Phenolic acids (C6-C1)	Simple phenolic acids		152.15	0.9	6572.5
+KKEYFWRCBNTPAC-UHFFFAOYSA-N	TEREPHTHALIC ACID	necromass	False	Shikimates and Phenylpropanoids	Phenolic acids (C6-C1)	Simple phenolic acids		166.13	2.0	
+XNGIFLGASWRNHJ-UHFFFAOYSA-N	phthalic acid	necromass	False	Shikimates and Phenylpropanoids	Phenolic acids (C6-C1)	Simple phenolic acids		166.13	0.7	6.0
+CRDAMVZIKSXKFV-YFVJMOTDSA-N	Farnesol	necromass	False	Terpenoids	Sesquiterpenoids|Monoterpenoids	Acyclic monoterpenoids|Farnesane sesquiterpenoids		222.37	4.8	
+DSSYKIVIOFKYAU-XCBNKYQSSA-N	D-camphor	necromass	False	Terpenoids	Monoterpenoids	Camphane monoterpenoids		152.23	2.2	6.6
+FQTLCLSUCSAZDY-SDNWHVSQSA-N	NEROLIDOL	necromass	False	Terpenoids	Sesquiterpenoids|Monoterpenoids	Acyclic monoterpenoids|Farnesane sesquiterpenoids		222.37	4.6	
+RGZSQWQPBWRIAQ-UHFFFAOYSA-N	Bisabolol	necromass	False	Terpenoids	Sesquiterpenoids	Bisabolane sesquiterpenoids		222.37	3.8	
+VZJHQHUOVIDRCF-DGMCESFYSA-N	(-)-Isolongifolol	necromass	False	Terpenoids	Sesquiterpenoids	Longifolane sesquiterpenoids		222.37	4.4	
+NVEQFIOZRFFVFW-UHFFFAOYSA-N	b-Caryophyllene oxide	necromass	False	Terpenoids	Sesquiterpenoids	Caryophyllane sesquiterpenoids		220.35	3.6	
+XVULBTBTFGYVRC-HHUCQEJWSA-N	Sclareol	necromass	False	Terpenoids	Diterpenoids	Labdane diterpenoids		308.5	4.9	
+IBRKLUSXDYATLG-LURJTMIESA-N	SALSOLINOL	necromass	False	Alkaloids	Tyrosine alkaloids	Isoquinoline alkaloids|Tetrahydroisoquinoline alkaloids		179.22	1.0	
+QWJIWJWEGVAMEB-UHFFFAOYSA-N	1H-pyrrolo[3,2-b]pyridine-5-carboxylic acid	necromass	False	Alkaloids	Nicotinic acid alkaloids	Pyridine alkaloids		162.15	0.9	
+WJJMNDUMQPNECX-UHFFFAOYSA-N	2,6-Pyridinedicarboxylic acid	necromass	False	Alkaloids	Nicotinic acid alkaloids	Pyridine alkaloids		167.12	0.6	29.9
+WVMBPWMAQDVZCM-UHFFFAOYSA-N	N-methylanthranilic acid 	necromass	False	Alkaloids	Anthranilic acid alkaloids	Anthranillic acid derivatives		151.16	2.0	1.3
+AFDXODALSZRGIH-QPJJXVBHSA-N	4-Methoxycinnamic acid	necromass	False	Shikimates and Phenylpropanoids	Phenylpropanoids (C6-C3)	Cinnamic acids and derivatives		178.18	1.8	4.0

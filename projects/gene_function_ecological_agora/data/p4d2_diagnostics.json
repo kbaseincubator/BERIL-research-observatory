@@ -1,0 +1,108 @@
+{
+  "phase": "4",
+  "deliverable": "P4-D2",
+  "purpose": "MGE context per recent gain event",
+  "n_total_clusters": 18204007,
+  "n_mge_clusters": 248908,
+  "atlas_mge_pct": 1.367,
+  "n_ko_genus_pairs": 3944041,
+  "n_recent_gains_tagged": 2669910,
+  "t1_per_category": [
+    {
+      "category": "regulatory",
+      "n_gains": 321647,
+      "mean_mge_fraction": 0.04132685302089665,
+      "median_mge_fraction": 0.0,
+      "pct_with_mge_ge_5pct": 5.986998168799958
+    },
+    {
+      "category": "metabolic",
+      "n_gains": 1009690,
+      "mean_mge_fraction": 0.0037018130456700693,
+      "median_mge_fraction": 0.0,
+      "pct_with_mge_ge_5pct": 0.6283116600144599
+    },
+    {
+      "category": "mixed",
+      "n_gains": 625880,
+      "mean_mge_fraction": 0.0027412503468984117,
+      "median_mge_fraction": 0.0,
+      "pct_with_mge_ge_5pct": 0.8298715408704544
+    },
+    {
+      "category": "other",
+      "n_gains": 59737,
+      "mean_mge_fraction": 0.04300104248470848,
+      "median_mge_fraction": 0.0,
+      "pct_with_mge_ge_5pct": 8.075397157540552
+    },
+    {
+      "category": "unannotated",
+      "n_gains": 652956,
+      "mean_mge_fraction": 0.04421126343515693,
+      "median_mge_fraction": 0.0,
+      "pct_with_mge_ge_5pct": 6.566598668210416
+    }
+  ],
+  "t2_per_hypothesis": [
+    {
+      "hypothesis": "Mycobacteriaceae \u00d7 mycolic",
+      "n_gains": 6683,
+      "mean_mge": 0.005652956448678163,
+      "median_mge": 0.0,
+      "pct_high": 2.5736944486009277
+    },
+    {
+      "hypothesis": "Cyanobacteriia \u00d7 PSII (class)",
+      "n_gains": 236,
+      "mean_mge": 0.0,
+      "median_mge": 0.0,
+      "pct_high": 0.0
+    },
+    {
+      "hypothesis": "Bacteroidota \u00d7 PUL",
+      "n_gains": 1023,
+      "mean_mge": 0.0,
+      "median_mge": 0.0,
+      "pct_high": 0.0
+    }
+  ],
+  "t3_per_biome": [
+    {
+      "biome": "marine",
+      "n_gains": 240861,
+      "mean_mge": 0.017154806239973598,
+      "median_mge": 0.0,
+      "pct_high": 2.6230896658238567
+    },
+    {
+      "biome": "soil",
+      "n_gains": 612623,
+      "mean_mge": 0.0178535540424911,
+      "median_mge": 0.0,
+      "pct_high": 2.8085788486556984
+    },
+    {
+      "biome": "hostpath",
+      "n_gains": 27505,
+      "mean_mge": 0.011313170605935082,
+      "median_mge": 0.0,
+      "pct_high": 1.5524450099981821
+    },
+    {
+      "biome": "gut",
+      "n_gains": 697844,
+      "mean_mge": 0.01854280851764496,
+      "median_mge": 0.0,
+      "pct_high": 2.8287124342976364
+    },
+    {
+      "biome": "other",
+      "n_gains": 1091077,
+      "mean_mge": 0.0200372848374992,
+      "median_mge": 0.0,
+      "pct_high": 3.18996734419294
+    }
+  ],
+  "completed_utc": "2026-04-28T17:27:24Z"
+}

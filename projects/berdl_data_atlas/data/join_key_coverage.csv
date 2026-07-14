@@ -1,0 +1,30 @@
+key,tables,tenants,topics,tenant_list
+sample_id,84,10,10,"arkinlab, enigma, ese, netl, nmdc, phagefoundry, planetmicrobe, protect, refdata, u"
+genome_id,88,9,8,"arkinlab, enigma, globalusers, kbase, kescience, msyscolo, phagefoundry, protect, refdata"
+feature_id,60,9,9,"arkinlab, enigma, globalusers, kbase, kescience, nmdc, phagefoundry, protect, refdata"
+ncbi_taxon_id,56,9,7,"enigma, kbase, kescience, nmdc, phagefoundry, planetmicrobe, protect, refdata, u"
+species,23,8,5,"arkinlab, globalusers, kbase, kescience, msyscolo, nmdc, protect, refdata"
+ec_number,21,8,9,"arkinlab, enigma, kbase, kescience, nmdc, phagefoundry, protect, refdata"
+genus,14,8,3,"arkinlab, globalusers, kbase, kescience, msyscolo, nmdc, protect, refdata"
+protein_id,105,7,4,"enigma, globalusers, kbase, kescience, phagefoundry, protect, refdata"
+kegg_pathway,17,6,4,"enigma, kbase, kescience, nmdc, phagefoundry, protect"
+lat_lon,15,6,5,"arkinlab, kescience, msyscolo, netl, refdata, usgs"
+cog,15,6,5,"enigma, kbase, kescience, nmdc, phagefoundry, protect"
+pfam,13,6,5,"kbase, kescience, nmdc, planetmicrobe, refdata, u"
+pmid_doi,18,5,2,"arkinlab, ese, kescience, netl, refdata"
+cazy,11,5,3,"enigma, kbase, kescience, phagefoundry, protect"
+eggnog,10,5,3,"enigma, kbase, kescience, phagefoundry, protect"
+reaction_id,11,4,4,"enigma, nmdc, phagefoundry, protect"
+kegg_ko,8,4,4,"kbase, kescience, nmdc, protect"
+gtdb_taxonomy,5,4,2,"kbase, msyscolo, netl, refdata"
+gene_cluster_id,28,3,5,"kbase, kescience, refdata"
+biosample_id,5,3,3,"kbase, nmdc, refdata"
+compound_id,5,3,5,"kbase, kescience, nmdc"
+alphafold_pdb,19,2,1,"kescience, refdata"
+envo,4,2,2,"nmdc, refdata"
+kbase_upa,46,1,3,u
+uvig_phage,4,1,1,refdata
+assembly_acc,2,1,2,refdata
+gcf_gca,1,1,1,refdata
+isolation_src,1,1,1,nmdc
+interpro,1,1,1,refdata

@@ -1,0 +1,26 @@
+{
+  "note": "Original summary block from the LLM, preserved by validate_presentation_review.py auto-correction. The actual JSON has been rewritten with counts derived from the findings arrays.",
+  "original_summary": {
+    "total_findings": 9,
+    "by_severity": {
+      "P0": 1,
+      "P1": 4,
+      "P2": 3,
+      "info": 1
+    },
+    "by_class": {
+      "throughline": 1,
+      "claim_evidence": 2,
+      "register_drift": 0,
+      "qa_softball": 1,
+      "substory_arc": 1,
+      "citation_reality": 1,
+      "missing_slide": 1,
+      "unbacked_quantitative": 0,
+      "central_objection": 1
+    }
+  },
+  "corrections_applied": [
+    "summary.by_class['claim_evidence']=2 but actual count = 3"
+  ]
+}

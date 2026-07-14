@@ -1,0 +1,36 @@
+{
+  "schema_version": "image-manifest.v1",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1",
+  "entries": [
+    {
+      "slide_id": "S4-pos3",
+      "approved": true,
+      "image_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/working/05_images/S4-pos3.png",
+      "request_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/working/05_image_requests/S4-pos3_request.json",
+      "channel": "A",
+      "model": "gemini-3-pro-image-preview",
+      "cost_usd": 0.06493125,
+      "approved_at": "2026-06-07T16:10:21Z"
+    },
+    {
+      "slide_id": "intro-pos0",
+      "approved": true,
+      "image_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/working/05_images/intro-pos0.png",
+      "request_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/working/05_image_requests/intro-pos0_request.json",
+      "channel": "A",
+      "model": "gemini-3-pro-image-preview",
+      "cost_usd": 0.052415,
+      "approved_at": "2026-06-07T16:13:02Z"
+    },
+    {
+      "slide_id": "intro-pos1",
+      "approved": true,
+      "image_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/working/05_images/intro-pos1.png",
+      "request_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/working/05_image_requests/intro-pos1_request.json",
+      "channel": "A",
+      "model": "gemini-3-pro-image-preview",
+      "cost_usd": 0.0676175,
+      "approved_at": "2026-06-07T16:16:38Z"
+    }
+  ]
+}

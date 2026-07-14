@@ -1,0 +1,52 @@
+{
+  "phase": "4",
+  "deliverable": "P4-D3",
+  "purpose": "Alm 2006 r \u2248 0.74 reproduction",
+  "n_species": 18989,
+  "alm_2006_reference_r": 0.74,
+  "alm_2006_reference_n_genomes": 207,
+  "correlations": [
+    {
+      "label": "HPK count vs recent TCS gains at genus",
+      "metric_x": "n_hpk",
+      "metric_y": "n_recent_tcs_gains_at_genus",
+      "n": 18989,
+      "pearson_r": 0.2882,
+      "pearson_p": 0.0,
+      "spearman_r": 0.3331,
+      "spearman_p": 0.0
+    },
+    {
+      "label": "Alm-2006-style: HPK fraction vs recent-LSE fraction",
+      "metric_x": "hpk_fraction",
+      "metric_y": "recent_lse_fraction_per_gc",
+      "n": 18989,
+      "pearson_r": 0.1051,
+      "pearson_p": 9.146595564150831e-48,
+      "spearman_r": 0.106,
+      "spearman_p": 1.473844448570474e-48
+    },
+    {
+      "label": "HPK count vs recent-LSE fraction",
+      "metric_x": "n_hpk",
+      "metric_y": "recent_lse_fraction_per_gc",
+      "n": 18989,
+      "pearson_r": 0.157,
+      "pearson_p": 4.386594166731004e-105,
+      "spearman_r": 0.2225,
+      "spearman_p": 1.3419939609221397e-211
+    },
+    {
+      "label": "HPK count vs recent-LSE per TCS HK KO",
+      "metric_x": "n_hpk",
+      "metric_y": "recent_lse_fraction_per_tcs_ko",
+      "n": 18989,
+      "pearson_r": 0.1003,
+      "pearson_p": 1.0821530451985443e-43,
+      "spearman_r": 0.1524,
+      "spearman_p": 4.69174769293117e-99
+    }
+  ],
+  "verdict": "NOT REPRODUCED (r = 0.1051, no meaningful correlation)",
+  "completed_utc": "2026-04-28T03:52:39Z"
+}

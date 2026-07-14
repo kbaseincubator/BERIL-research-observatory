@@ -1,0 +1,54 @@
+{
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_2",
+  "findings": [
+    {
+      "gate": "placeholder_or_leaked_template",
+      "id": "g1:acknowledgments_tbd:34",
+      "message": "G1: acknowledgments slide has no real contributors (got: ['TBD - populated by production orchestrator']).",
+      "remediation": {
+        "action": "populate_title_from_beril",
+        "command": null,
+        "kind": "auto",
+        "note": "Populate contributors from beril.yaml authors; re-run assemble."
+      },
+      "severity": "P1",
+      "slide_id_or_target": "34"
+    },
+    {
+      "gate": "slide_count_vs_budget",
+      "id": "g3:slide_count_out_of_band:over",
+      "message": "G3: deck has 35 slides; mode 'talk-30' budget is [25,32] (over-band). May indicate the deck was sized for a different mode (see G4) or the compose stage under/over-produced.",
+      "remediation": {
+        "action": null,
+        "command": null,
+        "kind": "advisory",
+        "note": "If mode is wrong: start a fresh draft with --mode <intended>. If compose under-produced: inspect working/03_slides/ for missing fragments."
+      },
+      "severity": "advisory",
+      "slide_id_or_target": "deck"
+    }
+  ],
+  "schema_version": "deliverable-validation.v1",
+  "summary": {
+    "blocking": 0,
+    "by_gate": {
+      "figure_integrity": 0,
+      "figure_path_resolution": 0,
+      "image_completeness": 0,
+      "mode_vs_user_intent": 0,
+      "placeholder_or_leaked_template": 1,
+      "slide_count_vs_budget": 1
+    },
+    "by_remediation_kind": {
+      "advisory": 1,
+      "auto": 1,
+      "targeted": 0
+    },
+    "by_severity": {
+      "P0": 0,
+      "P1": 1,
+      "advisory": 1
+    },
+    "total": 2
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": "cascade-checkpoint.v1",
+  "phase": "completed",
+  "started_at_utc": "2026-06-07T16:16:40Z",
+  "completed_at_utc": "2026-06-07T16:16:40Z",
+  "skill_git_sha": "unknown",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1",
+  "stages": ["review_cascade.py"]
+}

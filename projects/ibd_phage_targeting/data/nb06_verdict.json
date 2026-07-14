@@ -1,0 +1,33 @@
+{
+  "date": "2026-04-24",
+  "test": "H2d \u2014 modules contain >= 2 Tier-A hubs (SparCC/SpiecEasi style)",
+  "method": "CLR + Spearman correlation, FDR<0.05, |rho|>0.3, Louvain communities",
+  "subnets": {
+    "E1_all": {
+      "n_samples": 2601,
+      "n_nodes": 318,
+      "n_edges": 28730,
+      "n_modules": 6
+    },
+    "E1_CD": {
+      "n_samples": 581,
+      "n_nodes": 255,
+      "n_edges": 15354,
+      "n_modules": 4
+    },
+    "E3_all": {
+      "n_samples": 1364,
+      "n_nodes": 296,
+      "n_edges": 30453,
+      "n_modules": 3
+    },
+    "E3_CD": {
+      "n_samples": 605,
+      "n_nodes": 252,
+      "n_edges": 19909,
+      "n_modules": 7
+    }
+  },
+  "primary_mean_actionable_per_module": 1.375,
+  "h2d_verdict": "PARTIAL (some modules have multiple Tier-A; others are monovalent)"
+}

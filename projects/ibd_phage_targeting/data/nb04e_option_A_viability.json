@@ -1,0 +1,36 @@
+{
+  "date": "2026-04-24",
+  "design": "within-ecotype \u00d7 within-substudy CD-vs-nonIBD meta-analysis",
+  "per_ecotype_viability": {
+    "0": "not-viable",
+    "1": "meta-viable",
+    "2": "not-viable",
+    "3": "single-study-only"
+  },
+  "per_ecotype_tier_a_size": {
+    "1": 51,
+    "3": 40
+  },
+  "eligible_cells_by_ecotype_substudy": [
+    {
+      "ecotype": 1,
+      "substudy": "HallAB_2017",
+      "n_CD": 67,
+      "n_nonIBD": 41
+    },
+    {
+      "ecotype": 1,
+      "substudy": "NielsenHB_2014",
+      "n_CD": 15,
+      "n_nonIBD": 239
+    },
+    {
+      "ecotype": 3,
+      "substudy": "HallAB_2017",
+      "n_CD": 22,
+      "n_nonIBD": 31
+    }
+  ],
+  "conclusion": "Option A rescues Pillar 2 E1 (Tier-A = 51)",
+  "recommendation": "Proceed to NB05 for E1 using Option A Tier-A list; retain NB04d E3 Tier-A for E3."
+}

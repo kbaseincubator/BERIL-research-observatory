@@ -340,3 +340,141 @@ class TestCallbackDbIntegration:
 
         user = await get_user_by_orcid(db_session, "0000-0001-2345-6789")
         assert user is None
+
+
+# ---------------------------------------------------------------------------
+# get_beril_user_id
+# ---------------------------------------------------------------------------
+
+
+class TestGetBerilUserId:
+    def test_returns_none_when_no_session(self):
+        from app.auth import get_beril_user_id
+        request = MagicMock()
+        request.session = {}
+        assert get_beril_user_id(request) is None
+
+    def test_returns_id_from_session(self):
+        from app.auth import get_beril_user_id
+        request = MagicMock()
+        request.session = {"beril_user_id": "abc-123"}
+        assert get_beril_user_id(request) == "abc-123"
+
+
+# ---------------------------------------------------------------------------
+# get_current_user_or_token
+# ---------------------------------------------------------------------------
+
+
+class TestGetCurrentUserOrToken:
+    async def test_returns_none_when_no_auth(self, db_session):
+        from app.auth import get_current_user_session_or_token
+        request = MagicMock()
+        request.session = {}
+        request.headers = {}
+        result = await get_current_user_session_or_token(request, db_session)
+        assert result is None
+
+    async def test_returns_user_from_session(self, db_session):
+        from app.auth import get_current_user_session_or_token
+        from app.db.models import BerilUser
+
+        user = BerilUser(orcid_id="0000-0001-2345-6789")
+        db_session.add(user)
+        await db_session.commit()
+
+        request = MagicMock()
+        request.session = {"orcid_id": "0000-0001-2345-6789"}
+        request.headers = {}
+        result = await get_current_user_session_or_token(request, db_session)
+        assert result is not None
+        assert result.orcid_id == "0000-0001-2345-6789"
+
+    async def test_returns_user_from_bearer_token(self, db_session):
+        from app.auth import get_current_user_session_or_token
+        from app.db.crud import get_or_create_api_token
+        from app.db.models import BerilUser
+
+        user = BerilUser(orcid_id="0000-0001-2345-6789")
+        db_session.add(user)
+        await db_session.commit()
+        await db_session.refresh(user)
+
+        raw_token, _ = await get_or_create_api_token(db_session, user.id)
+
+        request = MagicMock()
+        request.session = {}
+        request.headers = {"Authorization": f"Bearer {raw_token}"}
+        result = await get_current_user_session_or_token(request, db_session)
+        assert result is not None
+        assert result.id == user.id
+
+    async def test_session_takes_priority_over_bearer(self, db_session):
+        from app.auth import get_current_user_session_or_token
+        from app.db.crud import get_or_create_api_token
+        from app.db.models import BerilUser
+
+        user_a = BerilUser(orcid_id="0000-0001-0001-0001")
+        user_b = BerilUser(orcid_id="0000-0001-0002-0002")
+        db_session.add_all([user_a, user_b])
+        await db_session.commit()
+        await db_session.refresh(user_a)
+        await db_session.refresh(user_b)
+
+        raw_token, _ = await get_or_create_api_token(db_session, user_b.id)
+
+        request = MagicMock()
+        request.session = {"orcid_id": "0000-0001-0001-0001"}
+        request.headers = {"Authorization": f"Bearer {raw_token}"}
+        result = await get_current_user_session_or_token(request, db_session)
+        assert result is not None
+        assert result.id == user_a.id
+
+    async def test_bad_bearer_token_returns_none(self, db_session):
+        from app.auth import get_current_user_session_or_token
+        request = MagicMock()
+        request.session = {}
+        request.headers = {"Authorization": "Bearer not-a-real-token"}
+        result = await get_current_user_session_or_token(request, db_session)
+        assert result is None
+
+    async def test_bearer_token_case_insensitive(self, db_session):
+        """Authorization: bearer <token> (lowercase) should be accepted."""
+        from app.auth import get_current_user_session_or_token
+        from app.db.crud import get_or_create_api_token
+        from app.db.models import BerilUser
+
+        user = BerilUser(orcid_id="0000-0001-9999-9999")
+        db_session.add(user)
+        await db_session.commit()
+        await db_session.refresh(user)
+
+        raw_token, _ = await get_or_create_api_token(db_session, user.id)
+
+        request = MagicMock()
+        request.session = {}
+        request.headers = {"Authorization": f"bearer {raw_token}"}
+        result = await get_current_user_session_or_token(request, db_session)
+        assert result is not None
+        assert result.id == user.id
+
+    async def test_stale_session_falls_back_to_bearer(self, db_session):
+        """If the session orcid_id no longer resolves, bearer token is still honoured."""
+        from app.auth import get_current_user_session_or_token
+        from app.db.crud import get_or_create_api_token
+        from app.db.models import BerilUser
+
+        user = BerilUser(orcid_id="0000-0001-2345-6789")
+        db_session.add(user)
+        await db_session.commit()
+        await db_session.refresh(user)
+
+        raw_token, _ = await get_or_create_api_token(db_session, user.id)
+
+        request = MagicMock()
+        # Session references an orcid_id that does not exist in the DB
+        request.session = {"orcid_id": "0000-0000-0000-0000"}
+        request.headers = {"Authorization": f"Bearer {raw_token}"}
+        result = await get_current_user_session_or_token(request, db_session)
+        assert result is not None
+        assert result.id == user.id

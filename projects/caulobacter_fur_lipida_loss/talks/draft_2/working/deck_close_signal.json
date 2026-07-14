@@ -1,0 +1,34 @@
+{
+  "data_source": "Substory conclusions: S1 (C-slot) + S2 (C-slot) + S3 (C-slot) + S4 (C-slot) + S5 (C-slot); narrative/00_throughline.md; REPORT.md \u00a7Future directions",
+  "forward_call": "Replicate the OM proteome (already planned by the data provider for summer 2026). The two novel post-hoc findings \u2014 lptC2 protein induction (transcript-protein decoupling) and Pal-Tol upregulation \u2014 need replication before publication. Targeted Western blots against lptC2-tagged and Pal-tagged strains would also strengthen these claims. *Characterize the Caulobacter SigU regulon* via SigU-induction RNA-seq (ectopic vanillate-inducible SigU expression) followed by genome-wide DE. The published literature contains no Caulobacter SigU regulon; this is a clear gap. The late ChvI cohort from NB03 provides a candidate target list to validate.",
+  "key_takeaways": [
+    "\u0394fur derepression, not iron limitation, drives the lipid A-loss-permissive envelope state.",
+    "Calibrated against genome background, only the Fur-released Path A enriches for envelope-stress fitness.",
+    "The Fur-set envelope state triggers a two-phase ChvI response; its late regulator stays open.",
+    "Without lipid A, constitutive sphingolipids and reorganized peptidoglycan hold the envelope together.",
+    "The machinery is Caulobacter-restricted, and every layer carries its pre-registered grade."
+  ],
+  "no_signal_fallback": false,
+  "project_id": "caulobacter_fur_lipida_loss",
+  "raw_evidence": {
+    "n_substories": 5,
+    "n_takeaways_capped": false,
+    "n_takeaways_total_before_cap": 5,
+    "report_path": "REPORT.md",
+    "report_sections_matched": [
+      "Future directions"
+    ],
+    "substories_path": "narrative/02_substories.md",
+    "substory_ids_seen": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5"
+    ],
+    "throughline_path": "narrative/00_throughline.md",
+    "v3_2_transition_field_present": false
+  },
+  "schema_version": "deck-close-signal.v1",
+  "unified_point": "\u0394fur derepression is the demonstrable driver of the lipid A-loss-permissive envelope state, and everything downstream is the supporting (and still-open) mechanism it sets in motion."
+}

@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-24",
+  "plan_version": "v1.7",
+  "test": "H3a (b) species-resolved re-test (NB07b stratified-pathway DA)",
+  "context": "NB07a clause (b) was structurally degenerate at unstratified-pathway level; NB07b retests at species-resolved level",
+  "tier_a_core_species": [
+    "Hungatella hathewayi",
+    "Mediterraneibacter gnavus",
+    "Escherichia coli",
+    "Eggerthella lenta",
+    "Flavonifractor plautii",
+    "Enterocloster bolteae"
+  ],
+  "substudies": [
+    "HallAB_2017",
+    "IjazUZ_2017",
+    "NielsenHB_2014"
+  ],
+  "thresholds": {
+    "prevalence": 0.1,
+    "effect_clr": 0.5,
+    "fdr": 0.1,
+    "top3_concentration": 0.6
+  },
+  "per_species_h3a_b": {
+    "Hungatella hathewayi": {
+      "verdict": "underpowered",
+      "n_passing_total": 16,
+      "n_passing_in_7": 1,
+      "background_in_7": 7
+    },
+    "Mediterraneibacter gnavus": {
+      "verdict": "untestable",
+      "reason": "sparse background"
+    },
+    "Escherichia coli": {
+      "verdict": "underpowered",
+      "n_passing_total": 2,
+      "n_passing_in_7": 0,
+      "background_in_7": 21
+    },
+    "Eggerthella lenta": {
+      "verdict": "untestable",
+      "reason": "sparse background"
+    },
+    "Flavonifractor plautii": {
+      "verdict": "underpowered",
+      "n_passing_total": 0,
+      "n_passing_in_7": 0,
+      "background_in_7": 9
+    },
+    "Enterocloster bolteae": {
+      "verdict": "untestable",
+      "reason": "sparse background"
+    }
+  },
+  "overall_n_pass": 0,
+  "overall_n_fail": 0,
+  "overall_n_underpowered": 3,
+  "overall_n_untestable": 3
+}

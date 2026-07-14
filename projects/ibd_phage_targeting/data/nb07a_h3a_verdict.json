@@ -1,0 +1,53 @@
+{
+  "date": "2026-04-24",
+  "plan_version": "v1.7",
+  "test": "H3a v1.7 \u2014 pathway DA within-IBD-substudy CD-vs-nonIBD meta + 3-clause falsifiability",
+  "substudies_primary": [
+    "HallAB_2017",
+    "IjazUZ_2017",
+    "NielsenHB_2014"
+  ],
+  "substudies_sensitivity": [
+    "LiJ_2014"
+  ],
+  "tier_a_core_species": [
+    "Hungatella hathewayi",
+    "Mediterraneibacter gnavus",
+    "Escherichia coli",
+    "Eggerthella lenta",
+    "Flavonifractor plautii",
+    "Enterocloster bolteae"
+  ],
+  "n_pathways_after_prevalence_filter": 409,
+  "thresholds": {
+    "prevalence": 0.1,
+    "effect_clr": 0.5,
+    "fdr": 0.1,
+    "rho_meta": 0.4
+  },
+  "clause_a_pathway_count": {
+    "observed_cd_up": 52,
+    "observed_cd_down": 22,
+    "observed_either": 74,
+    "null_mean_up": 0.077,
+    "null_sd_up": 0.8677966351628702,
+    "p_emp_up": 0.0,
+    "verdict": true
+  },
+  "clause_b_category_coherence": {
+    "observed_top3_concentration": 1.0,
+    "null_mean": 1.0,
+    "null_sd": 0.0,
+    "p_emp": 1.0,
+    "verdict": false
+  },
+  "clause_c_pathway_pathobiont_attribution": {
+    "observed_max_rho_meta": 0.7970481643032974,
+    "observed_n_passing": 137,
+    "null_mean_max_rho": 0.1766310305957165,
+    "null_sd_max_rho": 0.018568056001496525,
+    "p_emp_max_rho": 0.0,
+    "verdict": true
+  },
+  "overall_h3a_supported": false
+}

@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "kind": "text_box_overlap",
+      "layout_name": "claim_evidence",
+      "message": "text_box_overlap: 'Text Placeholder 1' (text) overlaps 'TextBox 4' (text); 37.9% of smaller shape's area",
+      "overlap_area_emu": 893987373312,
+      "overlap_fraction": 0.3791489361702128,
+      "severity": "P1",
+      "shape_a": "Text Placeholder 1",
+      "shape_b": "TextBox 4",
+      "slide_id": 22
+    }
+  ],
+  "pad_emu": 36000,
+  "pptx_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/deliverable/draft.pptx",
+  "schema_version": "layout-overlaps.v1"
+}

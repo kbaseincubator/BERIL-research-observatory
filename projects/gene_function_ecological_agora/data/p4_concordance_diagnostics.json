@@ -1,0 +1,24 @@
+{
+  "phase": "4",
+  "deliverable": "NB28 Stage 3",
+  "n_concordance_atlas_rows": 8639522,
+  "concordance_distribution": {
+    "insufficient_data": 5922189,
+    "conflict": 2548291,
+    "agree": 169042
+  },
+  "n_conflict_tuples": 2548291,
+  "conflict_hypotheses": {
+    "low-confidence-tree-proxy": 1282945,
+    "deep-stable-but-genus-active (recent activity below deep-rank threshold)": 1243362,
+    "deep-consumer-but-genus-donor (rank-dependence: receives at deep rank, donates at genus)": 16003,
+    "other-conflict": 3119,
+    "deep-producer-but-genus-recipient (rank-dependence?)": 2850,
+    "deep-exchange-but-genus-recipient (broader donor pattern at deeper rank)": 12
+  },
+  "n_gains_with_leaf_consistency": 0,
+  "leaf_consistency_mean": null,
+  "leaf_consistency_median": null,
+  "elapsed_s": 77.8,
+  "completed_utc": "2026-04-29T13:05:25Z"
+}

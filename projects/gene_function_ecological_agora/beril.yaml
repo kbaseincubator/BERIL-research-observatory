@@ -1,0 +1,16 @@
+project_id: gene_function_ecological_agora
+status: complete
+created_at: "2026-04-26T18:50:39Z"
+last_session_at: "2026-04-29T17:30:00Z"
+branch: projects/gene_function_ecological_agora
+engine:
+  name: claude
+authors:
+  - name: "Adam Arkin"
+    affiliation: "U.C. Berkeley / Lawrence Berkeley National Laboratory"
+    orcid: "0000-0002-4999-2931"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true

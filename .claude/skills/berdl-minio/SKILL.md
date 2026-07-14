@@ -10,6 +10,16 @@ description: Retrieve and use BERDL MinIO credentials and transfer result artifa
 Use this skill to work with BERDL MinIO from local tools.
 It handles credential sourcing, MinIO client setup, and object transfer operations.
 
+## Step 0: Environment Check
+
+Run before anything else:
+
+```bash
+python scripts/berdl_env.py --check
+```
+
+If `--check` reports off-cluster and not ready, follow the printed next steps. The MinIO endpoint (`minio.berdl.kbase.us`) is only reachable through the proxy chain off-cluster, so this check is mandatory.
+
 ## Preconditions
 
 1. `KBASE_AUTH_TOKEN` set in environment or `.env`.
@@ -46,6 +56,9 @@ Use credentials in this order:
 
 ## Scripts
 
+Only the scripts listed below exist. Do not invent script names — if you need behavior that's not covered, ask the user.
+
+- `scripts/berdl_env.py`: environment check entrypoint (Step 0).
 - `scripts/get_minio_creds.py`: resolve MinIO keys locally or via BERDL remote context.
 - `scripts/configure_mc.sh`: configure MinIO CLI alias and test connectivity.
   - Supports `--berdl-proxy` to route through `http://127.0.0.1:8123` (required when off-cluster).

@@ -1,0 +1,36 @@
+{
+  "phase": "2",
+  "notebook": "NB09b",
+  "gate": "M18",
+  "timestamp_utc": "2026-04-27T04:00:37Z",
+  "d_threshold": 0.3,
+  "uniref50_baseline_d": 0.146,
+  "bootstrap_B": 200,
+  "panel_class_ko_counts": {
+    "pos_tcs_hk": 310,
+    "neg_ribosomal": 249,
+    "pos_betalac": 110,
+    "neg_trna_synth": 54,
+    "neg_rnap_core": 19,
+    "pos_crispr_cas": 6
+  },
+  "panel_assignments_n": 2687345,
+  "n_reps_p1b": 18989,
+  "tree_n_leaves_full": 80789,
+  "tree_n_leaves_pruned": 18989,
+  "n_panel_kos_to_score": 748,
+  "sankoff_n_scored": 748,
+  "sankoff_elapsed_s": 11.0,
+  "n_passing_pairs": 0,
+  "best_pair": {
+    "positive_class": "pos_betalac",
+    "negative_class": "neg_trna_synth",
+    "cohens_d": 0.2118,
+    "d_ci_lower": -0.1382,
+    "d_ci_upper": 0.5315,
+    "mannwhitney_p_greater": 1.1e-05
+  },
+  "verdict": "MARGINAL",
+  "decision": "M18 amplification gate MARGINAL \u2014 best pair (pos_betalac vs neg_trna_synth) shows Cohen's d = 0.2118 with 95% CI [-0.1382, 0.5315]. Below the d \u2265 0.3 hard threshold but above the UniRef50 baseline (d = 0.146); aggregation produces partial amplification. Decision deferred to user: proceed cautiously with NB10 atlas treating substrate-hierarchy claim as weakened, or halt for M11 redesign.",
+  "completed_utc": "2026-04-27T04:00:52Z"
+}

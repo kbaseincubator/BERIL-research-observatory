@@ -1,0 +1,18 @@
+{
+  "schema_version": "claim-marker-check.v1",
+  "tool": "check_claim_markers",
+  "tool_version": "0.1.0-stage6-partial",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1",
+  "manuscript_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1/manuscript.md",
+  "inventory_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1/claim_inventory.tsv",
+  "totals": {
+    "markers_in_manuscript": 115,
+    "unique_markers_in_manuscript": 64,
+    "inventory_size": 106,
+    "cited_and_resolved": 64,
+    "cited_but_unresolved": 0,
+    "in_inventory_but_uncited": 42
+  },
+  "findings": [],
+  "notes": []
+}

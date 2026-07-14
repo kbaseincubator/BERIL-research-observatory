@@ -17,17 +17,19 @@ We also have functional profiling from **GapMind**, run on all genomes, which pr
 
 ### 2  Data Generation Workflow
 
-| Step                             | Tool / Filter                                                                                                                 | Resulting scale                                                                               |
-| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| **Genome selection**             | GTDB r214 (402,709 genomes) → remove single-genome species → drop NCBI-flagged assemblies → collapse ≥99.999 % ANI redundancy | **308,494 genomes** in **27,703 species-level clades**                                        |
-| **Within-clade pairwise ANI**    | FastANI                                                                                                                       | 420 M pairwise records                                                                        |
-| **Gene prediction & clustering** | motupan, 90 % AAI                                                                                                             | 100 M gene-family rows                                                                        |
-| **Functional annotation**        | eggNOG v6 on cluster reps                                                                                                     | 1 annot / family                                                                              |
-| **Mobile-element annotation**    | GeNomad                                                                                                                       | gene-level plasmid/virus/prophage/AMR tags                                                    |
-| **Pathway profiling**            | GapMind                                                                                                                       | pathway-level confidence scores + per-step mapping to pangenome gene families                 |
-| **Phylogenetic trees**           | Single-copy core genes → FastTree                                                                                             | one tree / clade                                                                              |
-| **Metadata harvest**             | GTDB & NCBI Biosample                                                                                                         | quality metrics + environment fields                                                          |
-| **Storage**                      | On-prem Delta Lakehouse (Spark SQL)                                                                                           | ~1 B gene rows                                                                                |
+| Step                             | Tool / Filter                                                                                                              | Resulting output                                                                              |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| **Genome selection**             | GTDB r214 → remove single-genome species → drop NCBI-flagged assemblies → collapse ≥99.999 % ANI redundancy                | filtered set of genomes grouped into species-level clades                                     |
+| **Within-clade pairwise ANI**    | FastANI                                                                                                                    | per-pair ANI + alignment fraction within each clade                                           |
+| **Gene prediction & clustering** | motupan, 90 % AAI                                                                                                          | gene-family clusters per clade                                                                |
+| **Functional annotation**        | eggNOG v6 on cluster reps                                                                                                  | one annotation per gene family                                                                |
+| **Mobile-element annotation**    | GeNomad                                                                                                                    | gene-level plasmid/virus/prophage/AMR tags                                                    |
+| **Pathway profiling**            | GapMind                                                                                                                    | pathway-level confidence scores + per-step mapping to pangenome gene families                 |
+| **Phylogenetic trees**           | Single-copy core genes → FastTree                                                                                          | one tree per clade                                                                            |
+| **Metadata harvest**             | GTDB & NCBI Biosample                                                                                                      | quality metrics + environment fields                                                          |
+| **Storage**                      | On-prem Delta Lakehouse (Spark SQL)                                                                                        | gene-level rows queryable via Spark                                                           |
+
+For current row counts and the live accessible inventory, run `berdl_notebook_utils.get_databases(return_json=False)` and use `SELECT COUNT(*)` or `DESCRIBE EXTENDED` against the relevant tables — the lakehouse is the source of truth.
 
 ---
 

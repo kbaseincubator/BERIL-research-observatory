@@ -1,0 +1,12 @@
+# requirements.txt
+# Python dependencies (NB01-NB06, validation scripts)
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+statsmodels>=0.14.0
+pyspark>=3.4.0
+
+# R dependencies (NB04 PGLS; install in R):
+# install.packages(c("vegan", "ape", "nlme"))

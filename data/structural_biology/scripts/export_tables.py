@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Export project data to TSV files for Delta Lake ingestion.
+Export project data to TSV files for Iceberg ingestion.
 
 Produces TSV files matching the schema in structural_biology.json:
 - structure_projects.tsv
@@ -187,7 +187,7 @@ def export_alphafold_structure(metadata, output_dir):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Export structural biology data to TSV for Delta Lake ingestion"
+        description="Export structural biology data to TSV for Iceberg ingestion"
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 

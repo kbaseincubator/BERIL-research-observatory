@@ -5,7 +5,7 @@ How the phenix agent uses and updates the structural biology memory system.
 ## Memory Sources
 
 1. **Living document**: `docs/structural_biology_memory.md` — manually curated lessons and patterns
-2. **Delta Lake queries**: `kescience_structural_biology.refinement_cycles` — quantitative history
+2. **Iceberg queries**: `kescience.structural_biology.refinement_cycles` — quantitative history
 3. **Provenance logs**: Per-project `provenance.jsonl` files on MinIO
 
 ## When to Consult Memory
@@ -36,10 +36,10 @@ SELECT refinement_strategy,
        AVG(r_free) AS avg_rfree,
        AVG(molprobity_score) AS avg_molprobity,
        COUNT(*) AS n_projects
-FROM kescience_structural_biology.refinement_cycles rc
+FROM kescience.structural_biology.refinement_cycles rc
 WHERE rc.cycle_number = (
     SELECT MAX(rc2.cycle_number)
-    FROM kescience_structural_biology.refinement_cycles rc2
+    FROM kescience.structural_biology.refinement_cycles rc2
     WHERE rc2.project_id = rc.project_id
 )
 GROUP BY refinement_strategy
@@ -50,8 +50,8 @@ ORDER BY avg_rfree;
 
 ```sql
 SELECT sp.resolution, rc.refinement_strategy, rc.r_free, rc.molprobity_score
-FROM kescience_structural_biology.refinement_cycles rc
-JOIN kescience_structural_biology.structure_projects sp
+FROM kescience.structural_biology.refinement_cycles rc
+JOIN kescience.structural_biology.structure_projects sp
   ON sp.project_id = rc.project_id
 WHERE sp.resolution BETWEEN 2.5 AND 3.0
   AND rc.cycle_number = 1
@@ -64,8 +64,8 @@ ORDER BY rc.r_free;
 SELECT sp.method, sp.resolution,
        MAX(rc.cycle_number) AS total_cycles,
        MIN(rc.r_free) AS best_rfree
-FROM kescience_structural_biology.refinement_cycles rc
-JOIN kescience_structural_biology.structure_projects sp
+FROM kescience.structural_biology.refinement_cycles rc
+JOIN kescience.structural_biology.structure_projects sp
   ON sp.project_id = rc.project_id
 WHERE sp.status = 'completed'
 GROUP BY sp.method, sp.resolution
@@ -105,7 +105,7 @@ Format for strategy updates:
 
 ## Memory vs Provenance
 
-| Aspect | Memory (docs/) | Provenance (MinIO) | Delta Lake |
+| Aspect | Memory (docs/) | Provenance (MinIO) | Iceberg |
 |--------|---------------|-------------------|------------|
 | Purpose | Human-readable lessons | Machine-readable audit trail | Queryable analytics |
 | Granularity | Patterns across projects | Every action in one project | Aggregated metrics |

@@ -1,0 +1,78 @@
+{
+  "findings": [
+    {
+      "base_pt": 28,
+      "box_height_emu": 572700,
+      "box_width_emu": 8520600,
+      "chars": 131,
+      "computed_scale": 60000,
+      "layout_name": "data_figure",
+      "message": "slide title (data_figure): 131 chars at base 28pt in 9.32\u00d70.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 7,
+      "slot_kind": "title",
+      "where": "slide title (data_figure)"
+    },
+    {
+      "base_pt": 28,
+      "box_height_emu": 572700,
+      "box_width_emu": 8520600,
+      "chars": 181,
+      "computed_scale": 60000,
+      "layout_name": "methods_summary",
+      "message": "slide title (methods_summary): 181 chars at base 28pt in 9.32\u00d70.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 29,
+      "slot_kind": "title",
+      "where": "slide title (methods_summary)"
+    },
+    {
+      "base_pt": 28,
+      "box_height_emu": 572700,
+      "box_width_emu": 8520600,
+      "chars": 134,
+      "computed_scale": 60000,
+      "layout_name": "cross_tenant_integration",
+      "message": "slide title (cross_tenant_integration): 134 chars at base 28pt in 9.32\u00d70.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 30,
+      "slot_kind": "title",
+      "where": "slide title (cross_tenant_integration)"
+    },
+    {
+      "base_pt": 28,
+      "box_height_emu": 1188720,
+      "box_width_emu": 8521700,
+      "chars": 357,
+      "computed_scale": 60000,
+      "layout_name": "qa_anticipated",
+      "message": "slide title (qa_anticipated): 357 chars at base 28pt in 9.32\u00d71.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 31,
+      "slot_kind": "title",
+      "where": "slide title (qa_anticipated)"
+    },
+    {
+      "base_pt": 28,
+      "box_height_emu": 1188720,
+      "box_width_emu": 8521700,
+      "chars": 412,
+      "computed_scale": 60000,
+      "layout_name": "qa_anticipated",
+      "message": "slide title (qa_anticipated): 412 chars at base 28pt in 9.32\u00d71.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 32,
+      "slot_kind": "title",
+      "where": "slide title (qa_anticipated)"
+    },
+    {
+      "base_pt": 28,
+      "box_height_emu": 1188720,
+      "box_width_emu": 8521700,
+      "chars": 353,
+      "computed_scale": 60000,
+      "layout_name": "qa_anticipated",
+      "message": "slide title (qa_anticipated): 353 chars at base 28pt in 9.32\u00d71.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "slide_id": 33,
+      "slot_kind": "title",
+      "where": "slide title (qa_anticipated)"
+    }
+  ],
+  "pptx_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_2/deliverable/draft.pptx",
+  "schema_version": "content-overflow.v1"
+}

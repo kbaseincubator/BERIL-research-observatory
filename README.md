@@ -2,7 +2,7 @@
 
 ![Architecture](docs/figures/architecture_dark.png)
 
-The **Microbial Discovery Forge** is an AI co-scientist and research observatory, enabling researchers to interface with large-scale biological data through natural language, reusable skills, and shared knowledge.  You can browse the Forge through the [Observatory UI](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/), or engage with it through an AI agent.
+The **Microbial Discovery Forge** is an AI co-scientist and research observatory, enabling researchers to interface with large-scale biological data through natural language, reusable skills, and shared knowledge.  You can browse the Forge through the [Observatory UI](https://beril.kbase.us/), or engage with it through an AI agent.
 
 Currently, it connects to the KBase BER Data Lakehouse (K-BERDL), a curated Delta Lakehouse spanning pangenomics, fitness, biochemistry, metagenomics, and more.
 
@@ -12,7 +12,7 @@ Through the Microbial Discovery Forge, users can:
 - **Analyze their own data** in the context of BERDL reference collections
 - **Share discoveries**, lessons learned, pitfalls, and data products
 - **Explore multiple collections** across the data lakehouse
-- **Contribute** to a growing knowledge base with proper attribution
+- **Contribute** to a growing BERIL Atlas with proper attribution
 
 ## What is BERDL?
 
@@ -28,9 +28,13 @@ The **KBase BER Data Lakehouse (K-BERDL)** is a Delta Lakehouse containing curat
 | **PlanetMicrobe** | 2 | Marine microbial ecology (2K samples, 6K experiments) |
 | **PROTECT** | 1 | Pathogen genome browser |
 
-See [docs/collections.md](docs/collections.md) for the full inventory with schema links.
+Use the access-aware BERDL notebook helpers to discover the databases and
+tables available to your account. Schema documentation for commonly used
+collections lives in [docs/schemas/](docs/schemas/).
 
-Access is available via Spark SQL, REST API, or JupyterHub.
+Access-sensitive discovery uses the BERDL notebook helpers. Queries run through
+Spark SQL, either directly on JupyterHub or through the local Spark wrapper when
+off-cluster.
 
 ## Running the AI agent
 
@@ -45,7 +49,31 @@ To use Claude Code you will need an API key. If you are Berkeley Lab staff, you 
 - Python 3.11+
 - Git
 
-### Getting Started with Claude Code
+### Quick Start with BERIL CLI
+
+The fastest way to get started is with the BERIL CLI, which handles environment setup and launches your coding agent:
+
+```bash
+git clone https://github.com/kbaseincubator/BERIL-research-observatory.git
+cd BERIL-research-observatory
+pip install -e .        # installs the `beril` command
+beril setup             # interactive onboarding — configures .env, checks prerequisites, picks your agent
+```
+
+On BERDL JupyterHub, `beril setup` auto-detects your `KBASE_AUTH_TOKEN` and MinIO credentials from the environment.
+
+> 🧭 **Set up OpenViking — the default knowledge layer (do this first).**
+> OpenViking indexes every project report and central doc so the agent can find prior
+> work, related research, and answer "has this been done?" — it's the default way BERIL
+> looks things up. One-time API-key setup, ~2 min:
+> **[docs/remote-openviking-setup.md](docs/remote-openviking-setup.md)**.
+> Skip it now and `/berdl_start` will surface the same steps when you launch the agent.
+
+Once set up, use `beril doctor` to check your environment and `beril start` to launch your coding agent.
+
+### Manual Setup
+
+If you prefer to set up manually without the CLI:
 
 ```bash
 # 1. Clone the repository
@@ -110,6 +138,8 @@ Skills are invoked automatically based on context, or explicitly with `/skill-na
 | **LinkML Schema** | `/linkml-schema` | Generate LinkML schema from markdown, Excel, or plain text |
 | **Phenix** | `/phenix` | Structural biology workflows — AlphaFold, X-ray, cryo-EM, MolProbity |
 
+BERIL CLI commands (`beril doctor`, `beril setup`, `beril start`) handle environment management outside the agent session. Multi-agent support (Codex, Gemini) is planned.
+
 ---
 
 ### Getting BERDL Access
@@ -132,9 +162,9 @@ Skills are invoked automatically based on context, or explicitly with `/skill-na
 ---
 
 ## Observatory UI
-A web application is available for browsing collections, projects, and the knowledge base.
+A web application is available for browsing collections, projects, and the BERIL Atlas.
 
-The hosted instance is available at: **[BERIL Observatory](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/)**
+The hosted instance is available at: **[BERIL Observatory](https://beril.kbase.us/)**
 
 If you want to run it locally:
 
@@ -154,12 +184,13 @@ Then open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 
 ### Starting a New Project
 
-1. Create a directory under `projects/`:
-   ```bash
-   mkdir -p projects/my_project/{notebooks,data,figures}
-   ```
-2. Add a `README.md` with your research question and approach
-3. Use the standard structure: `notebooks/`, `data/`, `figures/`
+The recommended way to start a new project is through your coding agent:
+
+1. Run `beril start` to launch your agent
+2. Use `/berdl_start` and choose "Start a new research project"
+3. The agent will help you brainstorm, explore data, and scaffold the project with all required files
+
+This creates the standard project structure under `projects/` including `README.md`, `RESEARCH_PLAN.md`, `beril.yaml` (project manifest), and the required directories (`notebooks/`, `data/`, `user_data/`, `figures/`).
 
 ### Documenting Discoveries
 
@@ -176,48 +207,61 @@ Use the `/berdl-discover` skill to introspect a new database:
 
 1. Run `/berdl-discover` to generate schema documentation
 2. Create `docs/schemas/{name}.md` with the generated output
-3. Add the database to `docs/collections.md`
+3. Add or update curated display metadata in `ui/config/collections.yaml` if
+   the database should be highlighted in the Observatory UI
 4. Optionally create a skill module in `.claude/skills/berdl/modules/{name}.md`
 
 ## Project Structure
 
 ```
 BERIL-research-observatory/
-├── docs/                       # Shared knowledge base
-│   ├── collections.md          # Full inventory of BERDL databases & tenants
+├── beril_cli/                  # BERIL CLI (pip install -e .)
+│   ├── cli.py                  # Command dispatch (doctor, setup, start)
+│   ├── doctor.py               # Environment health checks
+│   ├── setup_cmd.py            # Interactive onboarding wizard
+│   ├── start.py                # Agent launcher
+│   └── config.py               # User config (~/.config/beril/config.toml)
+│
+├── docs/                       # Shared observatory memory and documentation
 │   ├── schemas/                # Per-collection schema documentation
+│   ├── overview.md             # Scientific context & data workflow
 │   ├── pitfalls.md             # SQL gotchas & common errors
-│   ├── discoveries.md          # Running log of insights across projects
+│   ├── performance.md          # Query optimization strategies
+│   ├── discoveries.md          # Running log of insights
 │   └── research_ideas.md       # Future research directions
 │
-├── projects/                   # Research projects (one directory each)
-│   └── <project_name>/
-│       ├── README.md           # Research question, status, reproduction steps
-│       ├── RESEARCH_PLAN.md    # Hypothesis, approach, query strategy
-│       ├── REPORT.md           # Findings and interpretation
-│       ├── notebooks/          # Analysis notebooks with saved outputs
-│       ├── data/               # Project data extracts
-│       └── figures/            # Visualizations
+├── data/                       # Shared data extracts
 │
+├── projects/                   # Individual research projects
+│   └── {project_id}/           # Each project contains:
+│       ├── README.md           #   Overview, reproduction, authors
+│       ├── RESEARCH_PLAN.md    #   Hypothesis, approach, query strategy
+│       ├── REPORT.md           #   Findings (created by /synthesize)
+│       ├── REVIEW.md           #   Automated review (created by /submit)
+│       ├── beril.yaml          #   Project manifest (status, authors, artifacts)
+│       ├── notebooks/          #   Analysis notebooks with saved outputs
+│       ├── data/               #   Agent-derived data
+│       ├── figures/            #   Visualizations
+│       └── user_data/          #   User-provided input data
+│
+├── scripts/                    # CLI utilities (Spark, ingestion, environment detection)
+├── tools/                      # Review and upload helpers
 ├── exploratory/                # Ad-hoc analysis & prototypes
 │
-├── ui/                         # Observatory web app (see Observatory UI)
+├── ui/                         # BERIL Research Observatory web app
+│   ├── app/                    # FastAPI application
+│   ├── config/                 # Collections and configuration
+│   └── content/                # Content files (discoveries, pitfalls)
 │
-└── .claude/
-    └── skills/                 # Agent skills (one directory per skill)
-        ├── berdl/              # BERDL query skill
-        ├── berdl-query/        # Remote Spark query skill
-        ├── berdl-ingest/       # Data ingest skill
-        ├── literature-review/  # Literature search skill
-        └── ...                 # See Available Skills table above
+└── .claude/                    # Claude Code AI integration
+    └── skills/                 # BERIL skills (berdl, submit, synthesize, etc.)
 ```
 
 ## Resources
 
 - **BERDL JupyterHub**: [https://hub.berdl.kbase.us](https://hub.berdl.kbase.us)
-- **BERIL Observatory UI**: [http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/)
+- **BERIL Observatory UI**: [https://beril.kbase.us/](https://beril.kbase.us/)
 - **KBase**: [https://www.kbase.us](https://www.kbase.us)
-- **Collections Overview**: [docs/collections.md](docs/collections.md)
 - **Schema Documentation**: [docs/schemas/](docs/schemas/)
 - **Query Pitfalls**: [docs/pitfalls.md](docs/pitfalls.md)
 

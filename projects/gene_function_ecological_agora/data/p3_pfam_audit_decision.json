@@ -1,0 +1,12 @@
+{
+  "phase": "3",
+  "notebook": "NB13",
+  "purpose": "Pfam pre-flight audit",
+  "n_markers_tested": 33,
+  "n_markers_zero_in_bakta": 7,
+  "n_markers_zero_in_ips": 1,
+  "median_bakta_vs_ips_ratio": 0.10205129710059867,
+  "substrate_decision": "USE interproscan_domains",
+  "rationale": "bakta_pfam_domains has silent coverage gaps in 7/33 (21%) of marker Pfams (matching the [plant_microbiome_ecotypes] pitfall pattern of 12/22 markers missing). interproscan_domains has only 1/33 markers with zero clusters and is the authoritative Pfam source per Phase 1A substrate audit (833M Pfam hits, 83.8% cluster coverage). Phase 3 architectural deep-dive uses interproscan_domains as the substrate.",
+  "completed_utc": "2026-04-27T23:34:21Z"
+}

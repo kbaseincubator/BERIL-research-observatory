@@ -1,0 +1,1193 @@
+normalized	enigma_name	enigma_chebi	fb_condition	fb_n_experiments	fb_n_orgIds	csp_name	wom_compound	in_enigma	in_fb	in_csp	in_wom	n_datasets
+cytidine	cytidine	CHEBI:17562	Cytidine	32	15	Cytidine	cytidine	True	True	True	True	4
+glycine	glycine	CHEBI:15428	Glycine	41	18	Glycine	glycine	True	True	True	True	4
+inosine	inosine	CHEBI:17596	Inosine	19	9	Inosine	inosine	True	True	True	True	4
+thymidine	thymidine	CHEBI:17748	Thymidine	7	4	Thymidine	thymidine	True	True	True	True	4
+uridine	uridine	CHEBI:16704	Uridine	28	15	Uridine	uridine	True	True	True	True	4
+2deoxydribose	2-deoxy-D-ribose	CHEBI:28816	2-Deoxy-D-Ribose	18	3	2-Deoxy-D-Ribose		True	True	True	False	3
+acetate	sodium acetate	CHEBI:32954	Potassium acetate	167	21	Acetate		True	True	True	False	3
+betaalanine	beta-alanine	CHEBI:16958	Beta-alanine	2	1	Beta-alanine		True	True	True	False	3
+butyrate	sodium butyrate	CHEBI:64103	Sodium butyrate	16	8	Butyrate		True	True	True	False	3
+citricacid	citric acid	CHEBI:30769	Citric Acid	3	1	Citric-Acid		True	True	True	False	3
+cysteine	cysteine	CHEBI:15356		0	0	Cysteine	cysteine	True	False	True	True	3
+cytosine	cytosine	CHEBI:16040	Cytosine	21	12		Cytosine	True	True	False	True	3
+ethanol	ethanol	CHEBI:16236	Ethanol	29	11	Ethanol		True	True	True	False	3
+formate	sodium formate	CHEBI:62965	Sodium Formate	67	1	Formate		True	True	True	False	3
+gelatin	gelatin	CHEBI:5291	Gelatin	7	4	Gelatin		True	True	True	False	3
+glucose	glucose	CHEBI:17234		0	0	Glucose	glucose	True	False	True	True	3
+glycerol	glycerol	CHEBI:17754	Glycerol	51	20	Glycerol		True	True	True	False	3
+glycolicacid	glycolic acid	CHEBI:17497	Glycolic Acid	4	2	Glycolic-Acid		True	True	True	False	3
+histidine	histidine	CHEBI:27570		0	0	Histidine	histidine	True	False	True	True	3
+lactate	sodium lactate	CHEBI:75228		0	0	Lactate	lactate	True	False	True	True	3
+lactulose	lactulose	CHEBI:6359	Lactulose	6	3	Lactulose		True	True	True	False	3
+maltitol	maltitol	CHEBI:68428	Maltitol	6	3	Maltitol		True	True	True	False	3
+melibiose	melibiose	CHEBI:28053	Melibiose	2	1	Melibiose		True	True	True	False	3
+nacetyldglucosamine	N-acetyl-D-glucosamine	CHEBI:506227	N-Acetyl-D-Glucosamine	47	19	N-Acetyl-D-Glucosamine		True	True	True	False	3
+propionate	sodium propionate	CHEBI:132106	Sodium propionate	21	11	Propionate		True	True	True	False	3
+pyruvate	sodium pyruvate	CHEBI:50144	Sodium pyruvate	115	23	Pyruvate		True	True	True	False	3
+sarcosine	sarcosine	CHEBI:15611		0	0	Sarcosine	sarcosine	True	False	True	True	3
+succinicacid	succinic acid	CHEBI:15741	Succinic Acid	1	1	Succinic-Acid		True	True	True	False	3
+sucrose	sucrose	CHEBI:17992	Sucrose	31	5	Sucrose		True	True	True	False	3
+taurine	taurine	CHEBI:15891		0	0	Taurine	taurine	True	False	True	True	3
+uracil	uracil	CHEBI:17568	Uracil	2	1		Uracil	True	True	False	True	3
+xylitol	xylitol	CHEBI:17151	Xylitol	7	4	Xylitol		True	True	True	False	3
+adenosine			Adenosine	30	12	Adenosine	Adenosine	False	True	True	True	3
+betaine			Betaine	2	1	Betaine	betaine	False	True	True	True	3
+thymine			Thymine	9	6	Thymine	thymine	False	True	True	True	3
+2'deoxycytidine	2'-deoxycytidine	CHEBI:15698	2'-Deoxycytidine	4	1			True	True	False	False	2
+4hydroxylproline	4-hydroxy-L-proline	CHEBI:18240		0	0		4-hydroxy-L-proline	True	False	False	True	2
+adeninehydrochloride	adenine hydrochloride hydrate	ME:0000414	Adenine hydrochloride hydrate	11	7			True	True	False	False	2
+alphacyclodextrin	alpha-cyclodextrin	CHEBI:40585		0	0	Alpha-cyclodextrin		True	False	True	False	2
+ammoniumchloride	ammonium chloride	CHEBI:31206	Ammonium chloride	58	25			True	True	False	False	2
+benzoate	sodium benzoate	CHEBI:113455		0	0	Benzoate		True	False	True	False	2
+benzoicacid	benzoic acid	CHEBI:30746	benzoic acid	44	20			True	True	False	False	2
+betalactose	beta-lactose	CHEBI:36218	Beta-Lactose	10	5			True	True	False	False	2
+cellobiose	cellobiose	CHEBI:17057		0	0	Cellobiose		True	False	True	False	2
+chloramphenicol	chloramphenicol	CHEBI:17698	Chloramphenicol	55	25			True	True	False	False	2
+cholinechloride	choline chloride	CHEBI:133341	Choline chloride	25	13			True	True	False	False	2
+cobaltchloridehexa	cobalt chloride hexahydrate	CHEBI:53503	Cobalt chloride hexahydrate	95	31			True	True	False	False	2
+creatinine	creatinine	CHEBI:16737		0	0		creatinine	True	False	False	True	2
+dalanine	D-alanine	CHEBI:15570	D-Alanine	45	17			True	True	False	False	2
+darabinose	D-arabinose	CHEBI:17108	D-Arabinose	3	2			True	True	False	False	2
+dfructose	D-fructose	CHEBI:15824	D-Fructose	37	19			True	True	False	False	2
+dglucose6phosphate	D-glucose 6-phosphate	CHEBI:14314	D-Glucose-6-Phosphate sodium salt	8	4			True	True	False	False	2
+dglucuronicacid	D-glucuronic acid	CHEBI:4178	D-Glucuronic Acid	3	2			True	True	False	False	2
+dmannitol	D-mannitol	CHEBI:16899	D-Mannitol	18	3			True	True	False	False	2
+dserine	D-serine	CHEBI:16523	D-Serine	15	6			True	True	False	False	2
+fumaricacid	fumaric acid	CHEBI:18012		0	0	Fumaric-Acid		True	False	True	False	2
+gluconate	sodium gluconate	CHEBI:84997		0	0	Gluconate		True	False	True	False	2
+glycinebetaine	glycine betaine	CHEBI:17750		0	0		Glycine betaine	True	False	False	True	2
+glyglu	Gly-Glu	CHEBI:73801	Gly-Glu	18	11			True	True	False	False	2
+hydantoin	hydantoin	CHEBI:27612	Hydantoin	2	1			True	True	False	False	2
+itaconicacid	itaconic acid	CHEBI:30838		0	0	Itaconic-Acid		True	False	True	False	2
+lalanine	L-alanine	CHEBI:16977	L-Alanine	62	25			True	True	False	False	2
+larabinose	L-arabinose	CHEBI:30849	L-Arabinose	25	13			True	True	False	False	2
+larginine	L-arginine	CHEBI:16467	L-Arginine	49	23			True	True	False	False	2
+lasparagine	L-asparagine	CHEBI:17196	L-Asparagine	61	25			True	True	False	False	2
+lasparticacid	L-aspartic acid	CHEBI:17053	L-Aspartic Acid	25	14			True	True	False	False	2
+lcitrulline	L-citrulline	CHEBI:16349	L-Citrulline	44	17			True	True	False	False	2
+lglutamine	L-glutamine	CHEBI:18050	L-Glutamine	84	30			True	True	False	False	2
+lisoleucine	L-isoleucine	CHEBI:17191	L-Isoleucine	52	21			True	True	False	False	2
+llactate	sodium L-lactate	CHEBI:232798	Sodium L-Lactate	53	24			True	True	False	False	2
+lleucine	L-leucine	CHEBI:15603	L-Leucine	56	26			True	True	False	False	2
+llysine	L-lysine	CHEBI:18019	L-Lysine	51	23			True	True	False	False	2
+lmethionine	L-methionine	CHEBI:16643	L-Methionine	37	9			True	True	False	False	2
+lornithine	L-ornithine	CHEBI:15729	L-Ornithine	20	5			True	True	False	False	2
+lphenylalanine	L-phenylalanine	CHEBI:17295	L-Phenylalanine	49	18			True	True	False	False	2
+lproline	L-proline	CHEBI:17203	L-Proline	65	24			True	True	False	False	2
+lserine	L-serine	CHEBI:17115	L-Serine	69	21			True	True	False	False	2
+lsorbose	L-sorbose	CHEBI:17266	L-Sorbose	2	1			True	True	False	False	2
+lthreonine	L-threonine	CHEBI:16857	L-Threonine	33	14			True	True	False	False	2
+ltryptophan	L-tryptophan	CHEBI:16828	L-Tryptophan	26	9			True	True	False	False	2
+ltyrosine	L-tyrosine	CHEBI:17895	L-tyrosine	3	1			True	True	False	False	2
+maleicacid	maleic acid	CHEBI:18300		0	0		maleic acid	True	False	False	True	2
+malicacid	malic acid	CHEBI:6650		0	0	Malic-Acid		True	False	True	False	2
+maltose	maltose	CHEBI:17306		0	0	Maltose		True	False	True	False	2
+manganeseiichloridetetra	manganese(II) chloride tetrahydrate	CHEBI:86368	Manganese (II) chloride tetrahydrate	6	1			True	True	False	False	2
+methanol	methanol	CHEBI:17790	Methanol	6	2			True	True	False	False	2
+myoinositol	myo-inositol	CHEBI:17268		0	0		myo-inositol	True	False	False	True	2
+nicotinamide	nicotinamide	CHEBI:17154		0	0		nicotinamide	True	False	False	True	2
+nicotinicacid	nicotinic acid	CHEBI:15940	Nicotinic Acid	2	1			True	True	False	False	2
+nitrate	sodium nitrate	CHEBI:63005	Sodium nitrate	90	30			True	True	False	False	2
+nitrite	sodium nitrite	CHEBI:78870	Sodium nitrite	113	32			True	True	False	False	2
+octanoate	sodium octanoate	CHEBI:132100	Sodium octanoate	6	4			True	True	False	False	2
+octanoicacid	octanoic acid	CHEBI:28837	Octanoic acid	2	1			True	True	False	False	2
+oxalate	oxalate salt	CHEBI:64148		0	0	Oxalate		True	False	True	False	2
+oxalicacid	oxalic acid	CHEBI:16995		0	0	Oxalic-Acid		True	False	True	False	2
+parabanicacid	parabanic acid	CHEBI:74661	Parabanic Acid	12	6			True	True	False	False	2
+pyruvicacid	pyruvic acid	CHEBI:32816		0	0	Pyruvic-Acid		True	False	True	False	2
+rhamnose	rhamnose	CHEBI:26546		0	0	Rhamnose		True	False	True	False	2
+salicin	salicin	CHEBI:17814		0	0	Salicin		True	False	True	False	2
+salicylate	Sodium salicylate	CHEBI:9180		0	0		salicylate	True	False	False	True	2
+stachyose	stachyose	CHEBI:17164		0	0	Stachyose		True	False	True	False	2
+succinatehexa	sodium succinate hexahydrate	CHEBI:63686	Sodium succinate dibasic hexahydrate	42	21			True	True	False	False	2
+tetracyclinehydrochloride	Tetracycline hydrochloride	CHEBI:35006	Tetracycline hydrochloride	53	25			True	True	False	False	2
+urea	urea	CHEBI:16199	Urea	24	12			True	True	False	False	2
+12propanediol			1,2-Propanediol	2	1	1,2-Propanediol		False	True	True	False	2
+4hydroxybenzoicacid			4-Hydroxybenzoic Acid	6	3	4-Hydroxy-Benzoic-Acid		False	True	True	False	2
+alanine				0	0	Alanine	alanine	False	False	True	True	2
+arginine				0	0	Arginine	arginine	False	False	True	True	2
+asparagine				0	0	Asparagine	asparagine	False	False	True	True	2
+aspartate				0	0	Aspartate	aspartate	False	False	True	True	2
+butanol			Butanol	2	1	Butanol		False	True	True	False	2
+carnitine				0	0	Carnitine	carnitine	False	False	True	True	2
+citramalicacid				0	0	Citramalic-Acid	Citramalic acid	False	False	True	True	2
+fumarate			Sodium Fumarate dibasic	29	12	Fumarate		False	True	True	False	2
+glucuronamide			Glucuronamide	23	12	Glucuronamide		False	True	True	False	2
+glutamate				0	0	Glutamate	glutamate	False	False	True	True	2
+glutamicacid				0	0	Glutamic-Acid	glutamic acid	False	False	True	True	2
+glutamine				0	0	Glutamine	glutamine	False	False	True	True	2
+isoleucine				0	0	Isoleucine	isoleucine	False	False	True	True	2
+lactitol			Lactitol	4	2	Lactitol		False	True	True	False	2
+leucine				0	0	Leucine	leucine	False	False	True	True	2
+lysine				0	0	Lysine	lysine	False	False	True	True	2
+malate				0	0	Malate	Malate	False	False	True	True	2
+methionine				0	0	Methionine	methionine	False	False	True	True	2
+minositol			m-Inositol	22	11	m-Inositol		False	True	True	False	2
+myristicacid			Myristic acid	2	1		myristic acid	False	True	False	True	2
+ornithine				0	0	Ornithine	ornithine	False	False	True	True	2
+palatinose			palatinose hydrate	2	1	Palatinose		False	True	True	False	2
+pectin			Pectin	3	1	Pectin		False	True	True	False	2
+phenylalanine				0	0	Phenylalanine	phenylalanine	False	False	True	True	2
+phenylethylamine				0	0	Phenylethyl-amine	phenylethylamine	False	False	True	True	2
+proline				0	0	Proline	proline	False	False	True	True	2
+serine				0	0	Serine	serine	False	False	True	True	2
+starch			Starch	3	1	Starch		False	True	True	False	2
+succinate				0	0	Succinate	Succinate	False	False	True	True	2
+threonine				0	0	Threonine	threonine	False	False	True	True	2
+trehalose				0	0	Trehalose	trehalose	False	False	True	True	2
+tryptophan				0	0	Tryptophan	tryptophan	False	False	True	True	2
+tween20			Tween 20	24	13	Tween-20		False	True	True	False	2
+tyramine				0	0	Tyramine	tyramine	False	False	True	True	2
+tyrosine				0	0	Tyrosine	tyrosine	False	False	True	True	2
+valine				0	0	Valine	valine	False	False	True	True	2
+14butanediammonium	1,4-butanediammonium	CHEBI:326268		0	0			True	False	False	False	1
+26diaminopimelicacid	2,6-diaminopimelic acid	CHEBI:23673		0	0			True	False	False	False	1
+2ammonio2deoxydglucopyranose	2-ammonio-2-deoxy-D-glucopyranose	CHEBI:58723		0	0			True	False	False	False	1
+2hydroxybutyricacid	2-hydroxybutyric acid	CHEBI:1148		0	0			True	False	False	False	1
+2hydroxypropanoicacid	2-hydroxypropanoic acid	CHEBI:78320		0	0			True	False	False	False	1
+2oxoglutaricacid	2-oxoglutaric acid	CHEBI:30915		0	0			True	False	False	False	1
+31hindol3ylpropanoicacid	3-(1H-indol-3-yl)propanoic acid	CHEBI:43580		0	0			True	False	False	False	1
+34dimethoxybenzoicacid	3,4-dimethoxybenzoic acid	CHEBI:296881		0	0			True	False	False	False	1
+3aminobutanoicacid	3-aminobutanoic acid	CHEBI:37081		0	0			True	False	False	False	1
+3methylglutaricacid	3-methylglutaric acid	CHEBI:68566		0	0			True	False	False	False	1
+3omethyldglucopyranose	3-O-Methyl-D-glucopyranose	ME:0000488		0	0			True	False	False	False	1
+4hydroxybenzoate	sodium 4-hydroxybenzoate	CHEBI:113449		0	0			True	False	False	False	1
+4hydroxyphenylaceticacid	4-hydroxyphenylacetic acid	CHEBI:18101		0	0			True	False	False	False	1
+5aminopentanoicacid	5-aminopentanoic acid	CHEBI:15887		0	0			True	False	False	False	1
+5ketodgluconate	5-Keto-D-gluconate	CHEBI:180368		0	0			True	False	False	False	1
+5oxolproline	5-oxo-L-proline	CHEBI:18183		0	0			True	False	False	False	1
+6oalphadglucopyranosyldfructofuranose	6-O-alpha-D-glucopyranosyl-D-fructofuranose	CHEBI:18394		0	0			True	False	False	False	1
+adipicacid	adipic acid	CHEBI:30832		0	0			True	False	False	False	1
+aldehydodlyxose	aldehydo-D-lyxose	CHEBI:16789		0	0			True	False	False	False	1
+aldehydonacetylmuramicacid	aldehydo-N-acetylmuramic acid	CHEBI:47966		0	0			True	False	False	False	1
+allantoin	allantoin	CHEBI:15676		0	0			True	False	False	False	1
+alphaaminobutyricacid	alpha-aminobutyric acid	CHEBI:35621		0	0			True	False	False	False	1
+anthranilicacid	anthranilic acid	CHEBI:30754		0	0			True	False	False	False	1
+ascorbate	sodium ascorbate	CHEBI:113451		0	0			True	False	False	False	1
+betadglucuronamide	beta-D-glucuronamide	CHEBI:32323		0	0			True	False	False	False	1
+butane1234tetrol	butane-1,2,3,4-tetrol	CHEBI:48299		0	0			True	False	False	False	1
+carnitinamidechloride	carnitinamide chloride	CHEBI:48601		0	0			True	False	False	False	1
+cholate	sodium cholate	CHEBI:26711		0	0			True	False	False	False	1
+citramalate2	citramalate(2-)	CHEBI:13997		0	0			True	False	False	False	1
+citratedi	sodium citrate dihydrate	CHEBI:32142		0	0			True	False	False	False	1
+d+galactosaminehydrochloride	D-(+)-Galactosamine hydrochloride	CHEBI:181432		0	0			True	False	False	False	1
+d+melezitose	D(+)-Melezitose	CHEBI:183824		0	0			True	False	False	False	1
+dalphaaminobutyricacid	D-alpha-aminobutyric acid	CHEBI:28797		0	0			True	False	False	False	1
+dasparticacid	D-aspartic acid	CHEBI:17364		0	0			True	False	False	False	1
+dfructose6phosphate2	D-fructose 6-phosphate(2-)	CHEBI:57579		0	0			True	False	False	False	1
+dgalactopyranose	D-galactopyranose	CHEBI:4139		0	0			True	False	False	False	1
+dgalacturonicacid	D-galacturonic acid	CHEBI:18024		0	0			True	False	False	False	1
+dglucitol	D-glucitol	CHEBI:17924		0	0			True	False	False	False	1
+dglucono15lactone	D-glucono-1,5-lactone	CHEBI:16217		0	0			True	False	False	False	1
+dglutamicacid	D-glutamic acid	CHEBI:15966		0	0			True	False	False	False	1
+difumarate	disodium fumarate	CHEBI:115156		0	0			True	False	False	False	1
+diltyrosinate	disodium L-tyrosinate	CHEBI:53696		0	0			True	False	False	False	1
+dleucine	D-leucine	CHEBI:28225		0	0			True	False	False	False	1
+dmannopyranose	D-mannopyranose	CHEBI:4208		0	0			True	False	False	False	1
+dmethionine	D-methionine	CHEBI:16867		0	0			True	False	False	False	1
+dopaminehydrochloride	Dopamine hydrochloride	CHEBI:4698		0	0			True	False	False	False	1
+dproline	D-proline	CHEBI:16313		0	0			True	False	False	False	1
+dribofuranose	D-ribofuranose	CHEBI:47013		0	0			True	False	False	False	1
+dtryptophan	D-tryptophan	CHEBI:16296		0	0			True	False	False	False	1
+dxylopyranose	D-xylopyranose	CHEBI:53455		0	0			True	False	False	False	1
+ectoine	ectoine	CHEBI:27592		0	0			True	False	False	False	1
+erythromycina	erythromycin A	CHEBI:42355		0	0			True	False	False	False	1
+ethylmalonicacid	ethylmalonic acid	CHEBI:741548		0	0			True	False	False	False	1
+gammaaminobutyricacid	gamma-aminobutyric acid	CHEBI:16865		0	0			True	False	False	False	1
+glyasp	Gly-Asp	CHEBI:73804		0	0			True	False	False	False	1
+glycerol2phosphate	glycerol 2-phosphate	CHEBI:17270		0	0			True	False	False	False	1
+glygln	Gly-Gln	CHEBI:73898		0	0			True	False	False	False	1
+hexanoate	sodium hexanoate	CHEBI:114126		0	0			True	False	False	False	1
+indole3aceticacid	indole-3-acetic acid	CHEBI:16411		0	0			True	False	False	False	1
+kanamycinasulfate	kanamycin A sulfate	CHEBI:6109		0	0			True	False	False	False	1
+ketodtagatose	keto-D-tagatose	CHEBI:47693		0	0			True	False	False	False	1
+lascorbicacid	L-ascorbic acid	CHEBI:29073		0	0			True	False	False	False	1
+lasparagineresidue	L-asparagine residue	CHEBI:50347		0	0			True	False	False	False	1
+lcysteicacid	L-cysteic acid	CHEBI:17285		0	0			True	False	False	False	1
+lcysteinehydrochloride	L-cysteine hydrochloride hydrate	CHEBI:91248		0	0			True	False	False	False	1
+leucrose	leucrose	CHEBI:79285		0	0			True	False	False	False	1
+lfucopyranose	L-fucopyranose	CHEBI:2181		0	0			True	False	False	False	1
+lglutamicacid	L-glutamic acid	CHEBI:16015		0	0			True	False	False	False	1
+lhistidineresidue	L-histidine residue	CHEBI:29979		0	0			True	False	False	False	1
+lvalineresidue	L-valine residue	CHEBI:30015		0	0			True	False	False	False	1
+methylalphadglucopyranoside	methyl alpha-D-glucopyranoside	CHEBI:320061		0	0			True	False	False	False	1
+n2acetylglutamine	N(2)-acetylglutamine	CHEBI:73685		0	0			True	False	False	False	1
+n2acetylllysine	N(2)-acetyl-L-lysine	CHEBI:35704		0	0			True	False	False	False	1
+nacetyllasparticacid	N-acetyl-L-aspartic acid	CHEBI:21547		0	0			True	False	False	False	1
+nacetyllglutamate2	N-acetyl-L-glutamate(2-)	CHEBI:44337		0	0			True	False	False	False	1
+nickelchloridehexa	nickel chloride hexahydrate	CHEBI:53542		0	0			True	False	False	False	1
+nndimethylglycine	N,N-dimethylglycine	CHEBI:17724		0	0			True	False	False	False	1
+pimelicacid	pimelic acid	CHEBI:30531		0	0			True	False	False	False	1
+polysorbate20	polysorbate 20	CHEBI:53424		0	0			True	False	False	False	1
+pyridin2ol	pyridin-2-ol	CHEBI:16540		0	0			True	False	False	False	1
+pyrrole2carboxylicacid	pyrrole-2-carboxylic acid	CHEBI:36751		0	0			True	False	False	False	1
+raffinosepenta	Raffinose Pentahydrate	CHEBI:189430		0	0			True	False	False	False	1
+ribothymidine	ribothymidine	CHEBI:45996		0	0			True	False	False	False	1
+rpantolactone	(R)-pantolactone	CHEBI:16719		0	0			True	False	False	False	1
+shikimicacid	shikimic acid	CHEBI:16119		0	0			True	False	False	False	1
+smalicacid	(S)-malic acid	CHEBI:30797		0	0			True	False	False	False	1
+snglycerol3phosphate2	sn-glycerol 3-phosphate(2-)	CHEBI:57597		0	0			True	False	False	False	1
+spermidine3+	spermidine(3+)	CHEBI:57834		0	0			True	False	False	False	1
+subericacid	suberic acid	CHEBI:9300		0	0			True	False	False	False	1
+trehalosedi	trehalose dihydrate	CHEBI:232797		0	0			True	False	False	False	1
+trigonellinehcl	Trigonelline HCl	CHEBI:229203		0	0			True	False	False	False	1
+uridine5'monophosphate2	uridine 5'-monophosphate(2-)	CHEBI:57865		0	0			True	False	False	False	1
+zincdichloride	zinc dichloride	CHEBI:49976		0	0			True	False	False	False	1
++arabinogalactan			(+)-Arabinogalactan	2	1			False	True	False	False	1
+13butandiol			1,3-Butandiol	2	1			False	True	False	False	1
+13propanediol			1,3-Propanediol	9	1			False	True	False	False	1
+14bdgalactobiose			1,4-B-D-Galactobiose	2	1			False	True	False	False	1
+14butanediol			1,4-Butanediol	2	1			False	True	False	False	1
+15pentanediol			1,5-Pentanediol	2	1			False	True	False	False	1
+16hexanediamine			1,6-Hexanediamine	2	1			False	True	False	False	1
+1ethyl3methylimidazoliumacetate			1-ethyl-3-methylimidazolium acetate	28	14			False	True	False	False	1
+1ethyl3methylimidazoliumchloride			1-ethyl-3-methylimidazolium chloride	19	12			False	True	False	False	1
+1ethyl3methylimidazoliumlysine			1-ethyl-3-methylimidazolium lysine	12	8			False	True	False	False	1
+1pentanol			1-Pentanol	2	1			False	True	False	False	1
+2'deoxyadenosine				0	0		2'-deoxyadenosine	False	False	False	True	1
+2'deoxyinosine			2'-Deoxyinosine	10	3			False	True	False	False	1
+22'dipyridyl			2,2'-Dipyridyl	2	1			False	True	False	False	1
+22dibromo2cyanoacetamide			2,2-dibromo-2-cyanoacetamide	2	1			False	True	False	False	1
+23dihydroxybenzoate				0	0		2,3-dihydroxybenzoate	False	False	False	True	1
+2aminoethanol				0	0	2-Aminoethanol		False	False	True	False	1
+2deoxyadenosine				0	0	2-Deoxy-Adenosine		False	False	True	False	1
+2deoxyadenosine5monophosphate			2-Deoxyadenosine 5-monophosphate	7	3			False	True	False	False	1
+2deoxyadenosinemono			2-Deoxyadenosine monohydrate	2	1			False	True	False	False	1
+2deoxydribonicacidlithium			2-Deoxy-D-ribonic acid lithium salt	10	4			False	True	False	False	1
+2furfuraldehyde			2-Furfuraldehyde	21	12			False	True	False	False	1
+2hex+c7h16o7				0	0		2Hex+C7H16O7	False	False	False	True	1
+2hex+glycerol				0	0		2Hex+glycerol	False	False	False	True	1
+2hydroxy4methylthiobutyricacid				0	0		2-hydroxy-4-(methylthio)butyric acid	False	False	False	True	1
+2hydroxybenzoicacid				0	0	2-Hydroxy-Benzoic-Acid		False	False	True	False	1
+2isopropylmalate				0	0		2-isopropylmalate	False	False	False	True	1
+2mercaptopyridinenoxide			2-Mercaptopyridine N-oxide sodium salt	8	1			False	True	False	False	1
+2methyl1butanol			2-methyl-1-butanol	2	1			False	True	False	False	1
+2methylmaleate				0	0		2-methylmaleate	False	False	False	True	1
+2nheptyl4hydroxyquinolinenoxide			2-n-Heptyl-4-hydroxyquinoline N-oxide	9	1			False	True	False	False	1
+2oxobutyricacid			2-oxobutyric acid sodium salt	3	1			False	True	False	False	1
+2piperidinone			2-Piperidinone	4	1			False	True	False	False	1
+3'5'cyclicamp				0	0		3',5'-cyclic AMP	False	False	False	True	1
+30bdgalactopyranosyldarabinose				0	0	3-0-b-D-Galacto-pyranosyl-D-Arabinose		False	False	True	False	1
+3aminobutyricacid			3-aminobutyric acid	2	1			False	True	False	False	1
+3hex+c7h16o7				0	0		3Hex+C7H16O7	False	False	False	True	1
+3hexphosphate				0	0		3Hex phosphate	False	False	False	True	1
+3hydroxy2butanone				0	0	3-Hydroxy-2-Butanone		False	False	True	False	1
+3hydroxy3methylglutarate				0	0		3-hydroxy-3-methylglutarate	False	False	False	True	1
+3hydroxybenzoate				0	0		3-hydroxybenzoate	False	False	False	True	1
+3m2oxybutyrate				0	0	3m2-oxybutyrate		False	False	True	False	1
+3methyl1butanol			3-methyl-1-butanol	2	1			False	True	False	False	1
+3methyl2oxobutanoicacid			3-Methyl-2-oxobutanoic acid sodium salt	3	1			False	True	False	False	1
+3methyl3butenol			3-methyl-3-butenol	2	1			False	True	False	False	1
+3methylglucose				0	0	3-Methyl-Glucose		False	False	True	False	1
+4acetamidobutanoate				0	0		4-acetamidobutanoate	False	False	False	True	1
+4aminobutanoate				0	0		4-aminobutanoate	False	False	False	True	1
+4aminobutyricacid			4-Aminobutyric acid	3	1			False	True	False	False	1
+4guanidinobutanoate				0	0		4-guanidinobutanoate	False	False	False	True	1
+4guanidinobutyricacid			4-Guanidinobutyric acid	2	1			False	True	False	False	1
+4hex+c7h16o7				0	0		4Hex+C7H16O7	False	False	False	True	1
+4hydroxy2quinolinecarboxylicacid				0	0		4-hydroxy-2-quinolinecarboxylic acid	False	False	False	True	1
+4hydroxyphenylacetate				0	0		4-hydroxyphenylacetate	False	False	False	True	1
+4hydroxyvalerate			4-Hydroxyvalerate	2	1			False	True	False	False	1
+4imidazoleaceticacid				0	0		4-imidazoleacetic acid	False	False	False	True	1
+5'deoxyadenosine				0	0		5'-deoxyadenosine	False	False	False	True	1
+5'methylthioadenosine				0	0		5'-methylthioadenosine	False	False	False	True	1
+5aminopentanoate				0	0		5-aminopentanoate	False	False	False	True	1
+5aminovalericacid			5-Aminovaleric acid	4	1			False	True	False	False	1
+5fluorouracil			5-fluorouracil	3	1			False	True	False	False	1
+5hex+c7h16o7				0	0		5Hex+C7H16O7	False	False	False	True	1
+5hydroxylysine				0	0		5-hydroxylysine	False	False	False	True	1
+5hydroxymethylfurfural			5-Hydroxymethylfurfural	27	14			False	True	False	False	1
+5ketodgluconicacid				0	0	5-Keto-D-Gluconic-Acid		False	False	True	False	1
+5oxoproline				0	0		5-oxo-proline	False	False	False	True	1
+6hex+c7h16o7				0	0		6Hex+C7H16O7	False	False	False	True	1
+6hydroxynicotinate				0	0		6-hydroxynicotinate	False	False	False	True	1
+6oacetyldglucose			6-O-Acetyl-D-glucose	2	1			False	True	False	False	1
+7hex+c7h16o7				0	0		7Hex+C7H16O7	False	False	False	True	1
+8hex+c7h16o7				0	0		8Hex+C7H16O7	False	False	False	True	1
+8hydroxynitroquinoline			8-hydroxy-nitroquinoline	5	1			False	True	False	False	1
+9hex+c7h16o7				0	0		9Hex+C7H16O7	False	False	False	True	1
+acetamide				0	0	Acetamide		False	False	True	False	1
+aceticacid				0	0	Acetic-Acid		False	False	True	False	1
+acetoaceticacid				0	0	Acetoacetic-Acid		False	False	True	False	1
+acetylglutamate				0	0		acetylglutamate	False	False	False	True	1
+acetyllysine				0	0		acetyllysine	False	False	False	True	1
+acetylornithine				0	0		acetylornithine	False	False	False	True	1
+acridineorange			Acridine orange	2	2			False	True	False	False	1
+acriflavine			Acriflavine	2	2			False	True	False	False	1
+acyclodextrin			a-Cyclodextrin	14	6			False	True	False	False	1
+adenine				0	0		Adenine	False	False	False	True	1
+adenosylmethionine				0	0		adenosylmethionine	False	False	False	True	1
+adonitol				0	0	Adonitol		False	False	True	False	1
+agar			Agar	66	14			False	True	False	False	1
+agarose				0	0	Agarose		False	False	True	False	1
+agrodefinedtrehalose			Agro_defined_trehalose	3	2			False	True	False	False	1
+aketoglutaricaciddi			a-Ketoglutaric acid disodium salt hydrate	43	20			False	True	False	False	1
+alaala				0	0		Ala-Ala	False	False	False	True	1
+alaninamide				0	0	Alaninamide		False	False	True	False	1
+alanylglycine				0	0	Alanyl-Glycine		False	False	True	False	1
+alginate				0	0	Alginate		False	False	True	False	1
+alphaaminoadipate				0	0		alpha-aminoadipate	False	False	False	True	1
+alphaketoglutaricacid				0	0		alpha-ketoglutaric acid	False	False	False	True	1
+aluminumchloride			Aluminum chloride hydrate	50	24			False	True	False	False	1
+aminobutyricacid				0	0	Amino-Butyric-Acid		False	False	True	False	1
+ammoniumpersulfate			ammonium persulfate	3	1			False	True	False	False	1
+ammoniumsulfidesolution			ammonium sulfide solution	9	1			False	True	False	False	1
+amp				0	0		AMP	False	False	False	True	1
+ampicillin			Ampicillin sodium salt	2	2			False	True	False	False	1
+amygdalin				0	0	Amygdalin		False	False	True	False	1
+amylopectinfrommaize			amylopectin from maize	4	1			False	True	False	False	1
+amylosefrompotato			Amylose from potato	2	1			False	True	False	False	1
+anhydrotetracyclinehydrochloride			Anhydrotetracycline hydrochloride	8	1			False	True	False	False	1
+anthranilate				0	0		anthranilate	False	False	False	True	1
+antimycina			Antimycin A	13	2			False	True	False	False	1
+arabinose				0	0	Arabinose		False	False	True	False	1
+arabitol				0	0	Arabitol		False	False	True	False	1
+arbutin				0	0	Arbutin		False	False	True	False	1
+asparg				0	0		Asp-Arg	False	False	False	True	1
+asparticacid				0	0	Aspartic-Acid		False	False	True	False	1
+bacitracin			Bacitracin	41	20			False	True	False	False	1
+bathophenanthrolinedisulfonicaciddi			Bathophenanthrolinedisulfonic acid disodium salt hydrate	2	1			False	True	False	False	1
+bcyclodextrin				0	0	b-Cyclodextrin		False	False	True	False	1
+bdallose				0	0	b-D-Allose		False	False	True	False	1
+benzalkoniumchloride			Benzalkonium Chloride	27	13			False	True	False	False	1
+benzethoniumchloride			Benzethonium chloride	37	16			False	True	False	False	1
+beoate				0	0	Beoate		False	False	True	False	1
+berberine			Berberine	2	2			False	True	False	False	1
+bhydroxybutyricacid				0	0	b-Hydroxy-Butyric-Acid		False	False	True	False	1
+biles			Bile salts	14	1			False	True	False	False	1
+biotin				0	0		biotin	False	False	False	True	1
+bmethyldgalactoside				0	0	b-Methyl-D-Galactoside		False	False	True	False	1
+bmethyldgalactoside.1				0	0	b-Methyl-D-Galactoside.1		False	False	True	False	1
+bmethyldglucuronicacid				0	0	b-Methyl-D-Glucuronic-Acid		False	False	True	False	1
+bmethyldxyloside				0	0	b-Methyl-D-Xyloside		False	False	True	False	1
+bromosuccinicacid				0	0	Bromo-Succinic-Acid		False	False	True	False	1
+butanediol				0	0	Butanediol		False	False	True	False	1
+butanoate				0	0		butanoate	False	False	False	True	1
+butanone				0	0	Butanone		False	False	True	False	1
+butylstearate			Butyl stearate	2	1			False	True	False	False	1
+butyricacid				0	0	Butyric-Acid		False	False	True	False	1
+butyrolactam			Butyrolactam	2	1			False	True	False	False	1
+c10:0fattyacid				0	0		C10:0 fatty acid	False	False	False	True	1
+c10h19n5o4274.1799p0n22.8rbbiocrustexp				0	0		C10H19N5O4_274.1799p_0n_22.8_RB_BiocrustExp	False	False	False	True	1
+c10h20n2o185.1633p0n16.7rbbiocrustexp				0	0		C10H20N2O_185.1633p_0n_16.7_RB_BiocrustExp	False	False	False	True	1
+c10h20n2o3217.1546p0n24.2rbbiocrustexp				0	0		C10H20N2O3_217.1546p_0n_24.2_RB_BiocrustExp	False	False	False	True	1
+c10h20n4o3245.1637p0n19.7rbbiocrustexp				0	0		C10H20N4O3_245.1637p_0n_19.7_RB_BiocrustExp	False	False	False	True	1
+c10h20n4o4261.1555p0n27.8rbbiocrustexp				0	0		C10H20N4O4_261.1555p_0n_27.8_RB_BiocrustExp	False	False	False	True	1
+c10h7no3190.0461p0n14.7rbbiocrustexp				0	0		C10H7NO3_190.0461p_0n_14.7_RB_BiocrustExp	False	False	False	True	1
+c11h17no7276.1152p0n16.5rbbiocrustexp				0	0		C11H17NO7_276.1152p_0n_16.5_RB_BiocrustExp	False	False	False	True	1
+c11h21n3o3244.1653p0n23.1rbbiocrustexp				0	0		C11H21N3O3_244.1653p_0n_23.1_RB_BiocrustExp	False	False	False	True	1
+c11h22n2o3231.1709p0n24rbbiocrustexp				0	0		C11H22N2O3_231.1709p_0n_24_RB_BiocrustExp	False	False	False	True	1
+c11h23n3o2230.1837p0n30.7rbbiocrustexp				0	0		C11H23N3O2_230.1837p_0n_30.7_RB_BiocrustExp	False	False	False	True	1
+c11h23no2202.1758p0n16.4rbbiocrustexp				0	0		C11H23NO2_202.1758p_0n_16.4_RB_BiocrustExp	False	False	False	True	1
+c12h23no198.1841p0n7.2rbbiocrustexp				0	0		C12H23NO_198.1841p_0n_7.2_RB_BiocrustExp	False	False	False	True	1
+c12h25no2216.1965p0n12.4rbbiocrustexp				0	0		C12H25NO2_216.1965p_0n_12.4_RB_BiocrustExp	False	False	False	True	1
+c13h21n3o3268.1669p0n20.3rbbiocrustexp				0	0		C13H21N3O3_268.1669p_0n_20.3_RB_BiocrustExp	False	False	False	True	1
+c14:0fattyacid				0	0		C14:0 fatty acid	False	False	False	True	1
+c14h23n3o3s314.1542p0n16.1rbbiocrustexp				0	0		C14H23N3O3S_314.1542p_0n_16.1_RB_BiocrustExp	False	False	False	True	1
+c15h22o30p249.149n6rbbiocrustexp				0	0		C15H22O3_0p_249.149n_6_RB_BiocrustExp	False	False	False	True	1
+c15h29o16p497.1291p0n19.9rbbiocrustexp				0	0		C15H29O16P_497.1291p_0n_19.9_RB_BiocrustExp	False	False	False	True	1
+c16:0fattyacid				0	0		C16:0 fatty acid	False	False	False	True	1
+c18:0fattyacid				0	0		C18:0 fatty acid	False	False	False	True	1
+c19h30n2o12479.1877p477.1774n18.5rbbiocrustexp				0	0		C19H30N2O12_479.1877p_477.1774n_18.5_RB_BiocrustExp	False	False	False	True	1
+c21h42o4376.34p0n4.2rbbiocrustexp				0	0		C21H42O4_376.34p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+c27h50o12584.3612p0n14.5rbbiocrustexp				0	0		C27H50O12_584.3612p_0n_14.5_RB_BiocrustExp	False	False	False	True	1
+c34h62o17760.4323p0n14.7rbbiocrustexp				0	0		C34H62O17_760.4323p_0n_14.7_RB_BiocrustExp	False	False	False	True	1
+c4h11no3122.0807p0n29.7rbbiocrustexp				0	0		C4H11NO3_122.0807p_0n_29.7_RB_BiocrustExp	False	False	False	True	1
+c4h4n2o2113.0341p0n13.4rbbiocrustexp				0	0		C4H4N2O2_113.0341p_0n_13.4_RB_BiocrustExp	False	False	False	True	1
+c5h6o6s0p192.9804n18.5rbbiocrustexp				0	0		C5H6O6S_0p_192.9804n_18.5_RB_BiocrustExp	False	False	False	True	1
+c5h7n3o126.0666p0n11.3rbbiocrustexp				0	0		C5H7N3O_126.0666p_0n_11.3_RB_BiocrustExp	False	False	False	True	1
+c5h8n2o2129.0666p0n11.3rbbiocrustexp				0	0		C5H8N2O2_129.0666p_0n_11.3_RB_BiocrustExp	False	False	False	True	1
+c5h8n2o2129.0669p0n21.7rbbiocrustexp				0	0		C5H8N2O2_129.0669p_0n_21.7_RB_BiocrustExp	False	False	False	True	1
+c5h9no3132.0651p0n20.4rbbiocrustexp				0	0		C5H9NO3_132.0651p_0n_20.4_RB_BiocrustExp	False	False	False	True	1
+c6h10n2o3159.0721p0n19.7rbbiocrustexp				0	0		C6H10N2O3_159.0721p_0n_19.7_RB_BiocrustExp	False	False	False	True	1
+c6h12n2o3161.0906p0n20.1rbbiocrustexp				0	0		C6H12N2O3_161.0906p_0n_20.1_RB_BiocrustExp	False	False	False	True	1
+c6h12n2o3161.0928p0n16.9rbbiocrustexp				0	0		C6H12N2O3_161.0928p_0n_16.9_RB_BiocrustExp	False	False	False	True	1
+c6h13n3o2160.1076p0n10rbbiocrustexp				0	0		C6H13N3O2_160.1076p_0n_10_RB_BiocrustExp	False	False	False	True	1
+c6h13n3o2160.1095p0n20.9rbbiocrustexp				0	0		C6H13N3O2_160.1095p_0n_20.9_RB_BiocrustExp	False	False	False	True	1
+c6h13n3o4192.0976p0n22rbbiocrustexp				0	0		C6H13N3O4_192.0976p_0n_22_RB_BiocrustExp	False	False	False	True	1
+c6h14n2o3s195.0817p0n23.1rbbiocrustexp				0	0		C6H14N2O3S_195.0817p_0n_23.1_RB_BiocrustExp	False	False	False	True	1
+c6h15no2134.1175p0n20.1rbbiocrustexp				0	0		C6H15NO2_134.1175p_0n_20.1_RB_BiocrustExp	False	False	False	True	1
+c6h6n4o151.0613p0n11.2rbbiocrustexp				0	0		C6H6N4O_151.0613p_0n_11.2_RB_BiocrustExp	False	False	False	True	1
+c6h7no2126.0558p0n8.9rbbiocrustexp				0	0		C6H7NO2_126.0558p_0n_8.9_RB_BiocrustExp	False	False	False	True	1
+c6h8n2o2141.0657p0n18.9rbbiocrustexp				0	0		C6H8N2O2_141.0657p_0n_18.9_RB_BiocrustExp	False	False	False	True	1
+c7h12n2o2157.0971p0n7rbbiocrustexp				0	0		C7H12N2O2_157.0971p_0n_7_RB_BiocrustExp	False	False	False	True	1
+c7h14n2o2159.1121p0n6.5rbbiocrustexp				0	0		C7H14N2O2_159.1121p_0n_6.5_RB_BiocrustExp	False	False	False	True	1
+c7h14n2o3175.107p0n23.4rbbiocrustexp				0	0		C7H14N2O3_175.107p_0n_23.4_RB_BiocrustExp	False	False	False	True	1
+c7h14n2o3175.108p0n20.3rbbiocrustexp				0	0		C7H14N2O3_175.108p_0n_20.3_RB_BiocrustExp	False	False	False	True	1
+c7h15n3o3190.1185p0n20.5rbbiocrustexp				0	0		C7H15N3O3_190.1185p_0n_20.5_RB_BiocrustExp	False	False	False	True	1
+c7h15no2146.1187p0n25.5rbbiocrustexp				0	0		C7H15NO2_146.1187p_0n_25.5_RB_BiocrustExp	False	False	False	True	1
+c7h16o7213.0931p211.073n22.6rbbiocrustexp				0	0		C7H16O7_213.0931p_211.073n_22.6_RB_BiocrustExp	False	False	False	True	1
+c7h8o3s				0	0		C7H8O3S	False	False	False	True	1
+c8h15no3174.1125p0n21.4rbbiocrustexp				0	0		C8H15NO3_174.1125p_0n_21.4_RB_BiocrustExp	False	False	False	True	1
+c8h15o8195.1223p0n7.8rbbiocrustexp				0	0		C8H15O8_195.1223p_0n_7.8_RB_BiocrustExp	False	False	False	True	1
+c8h16n2o3189.1239p0n22.2rbbiocrustexp				0	0		C8H16N2O3_189.1239p_0n_22.2_RB_BiocrustExp	False	False	False	True	1
+c9h10o40p181.0496n19.4rbbiocrustexp				0	0		C9H10O4_0p_181.0496n_19.4_RB_BiocrustExp	False	False	False	True	1
+c9h15n3o2198.1231p0n20.3rbbiocrustexp				0	0		C9H15N3O2_198.1231p_0n_20.3_RB_BiocrustExp	False	False	False	True	1
+c9h17no156.1381p0n7.8rbbiocrustexp				0	0		C9H17NO_156.1381p_0n_7.8_RB_BiocrustExp	False	False	False	True	1
+c9h17no3188.128p0n21.3rbbiocrustexp				0	0		C9H17NO3_188.128p_0n_21.3_RB_BiocrustExp	False	False	False	True	1
+c9h18n2o171.1499p0n15.5rbbiocrustexp				0	0		C9H18N2O_171.1499p_0n_15.5_RB_BiocrustExp	False	False	False	True	1
+c9h18n2o2187.1452p0n10.3rbbiocrustexp				0	0		C9H18N2O2_187.1452p_0n_10.3_RB_BiocrustExp	False	False	False	True	1
+c9h18n2o3203.14p0n21.7rbbiocrustexp				0	0		C9H18N2O3_203.14p_0n_21.7_RB_BiocrustExp	False	False	False	True	1
+c9h18n2o4219.134p0n24.2rbbiocrustexp				0	0		C9H18N2O4_219.134p_0n_24.2_RB_BiocrustExp	False	False	False	True	1
+c9h18n2o5235.1288p0n20.1rbbiocrustexp				0	0		C9H18N2O5_235.1288p_0n_20.1_RB_BiocrustExp	False	False	False	True	1
+c9h18no10s336.0972p317.0548n19.7rbbiocrustexp				0	0		C9H18NO10S_336.0972p_317.0548n_19.7_RB_BiocrustExp	False	False	False	True	1
+c9h18o10s0p317.0547n19.5rbbiocrustexp				0	0		C9H18O10S_0p_317.0547n_19.5_RB_BiocrustExp	False	False	False	True	1
+c9h18o11s0p333.0505n18.5rbbiocrustexp				0	0		C9H18O11S_0p_333.0505n_18.5_RB_BiocrustExp	False	False	False	True	1
+c9h20n2o2189.1596p0n33.5rbbiocrustexp				0	0		C9H20N2O2_189.1596p_0n_33.5_RB_BiocrustExp	False	False	False	True	1
+cadaverine			Cadaverine	2	1			False	True	False	False	1
+cadmiumchloridehemipenta			Cadmium chloride hemipentahydrate	3	1			False	True	False	False	1
+calciumpantothenate			calcium pantothenate	6	1			False	True	False	False	1
+capricacid				0	0	Capric-Acid		False	False	True	False	1
+caproicacid				0	0	Caproic-Acid		False	False	True	False	1
+caprolactam			Caprolactam	2	1			False	True	False	False	1
+capsaicin			capsaicin	4	2			False	True	False	False	1
+carbenicillindi			Carbenicillin disodium salt	39	17			False	True	False	False	1
+carnitinehydrochloride			Carnitine Hydrochloride	11	6			False	True	False	False	1
+carnosine				0	0		carnosine	False	False	False	True	1
+casaminoacids			casamino acids	103	30			False	True	False	False	1
+cefoxitin			Cefoxitin sodium salt	9	2			False	True	False	False	1
+ceftazidime			Ceftazidime hydrate	26	12			False	True	False	False	1
+ceftriaxonedihemihepta			Ceftriaxone disodium salt hemi(heptahydrate)	6	1			False	True	False	False	1
+cephalothin			Cephalothin sodium salt	40	20			False	True	False	False	1
+chenodeoxycholicacid			Chenodeoxycholic acid	7	1			False	True	False	False	1
+chir090			CHIR-090	3	1			False	True	False	False	1
+chlorate			Sodium Chlorate	25	8			False	True	False	False	1
+chlorhexidinediacetate			Chlorhexidine diacetate salt hydrate	12	1			False	True	False	False	1
+chloride			Sodium Chloride	68	28			False	True	False	False	1
+chlorite			Sodium Chlorite	72	30			False	True	False	False	1
+chlorpromazinehydrochloride			Chlorpromazine hydrochloride	12	1			False	True	False	False	1
+cholinacetate			Cholin acetate	32	14			False	True	False	False	1
+cholinelysine			Choline Lysine	17	11			False	True	False	False	1
+chondroitin				0	0	Chondroitin		False	False	True	False	1
+chondroitinsulfateafrombovinetrachea			Chondroitin sulfate A sodium salt from bovine trachea	2	1			False	True	False	False	1
+chondroitinsulfatec				0	0	Chondroitin-Sulfate-C		False	False	True	False	1
+chromate			Sodium Chromate	2	1			False	True	False	False	1
+ciprofloxacinhydrochloride			Ciprofloxacin Hydrochloride	3	1			False	True	False	False	1
+cis4hydroxyproline				0	0		cis-4-hydroxyproline	False	False	False	True	1
+cisplatin			Cisplatin	74	28			False	True	False	False	1
+citraconicacid				0	0	Citraconic-Acid		False	False	True	False	1
+citrate				0	0	Citrate		False	False	True	False	1
+citrate/isocitrate				0	0		Citrate/Isocitrate	False	False	False	True	1
+citrulline				0	0		citrulline	False	False	False	True	1
+coelutingisomersarabitolribitolxilitol				0	0		coeluting isomers (arabitol, ribitol, xilitol)	False	False	False	True	1
+coniferylalcohol				0	0	Coniferyl_alcohol		False	False	True	False	1
+copperiichloridedi			copper (II) chloride dihydrate	55	26			False	True	False	False	1
+copperiisulfatepenta			Copper (II) sulfate pentahydrate	3	1			False	True	False	False	1
+cv.atlantic			cv.Atlantic	25	3			False	True	False	False	1
+cv.norland			cv.Norland	26	3			False	True	False	False	1
+cv.upstate			cv.Upstate	24	3			False	True	False	False	1
+cyclodextrin				0	0	Cyclodextrin		False	False	True	False	1
+cystathionine				0	0		cystathionine	False	False	False	True	1
+cysteineorothercysorshcontainingmetabolite				0	0		cysteine or other cys or SH containing metabolite	False	False	False	True	1
+cystine				0	0		cystine	False	False	False	True	1
+cytidine2'3'cyclicmonophosphate				0	0		cytidine 2',3'-cyclic monophosphate	False	False	False	True	1
+cytidine5?monophosphate				0	0		cytidine 5?-monophosphate	False	False	False	True	1
+daminovalericacid				0	0	d-Amino-Valeric-Acid		False	False	True	False	1
+dcellobiose			D-Cellobiose	25	9			False	True	False	False	1
+dcycloserine			D-Cycloserine	44	24			False	True	False	False	1
+decanoicacid			Decanoic acid	2	1			False	True	False	False	1
+deoxycarnitine				0	0		deoxycarnitine	False	False	False	True	1
+deoxycholicacid			Deoxycholic acid	7	1			False	True	False	False	1
+deoxyribonucleicacidfromherringsperm			Deoxyribonucleic acid from herring sperm	8	3			False	True	False	False	1
+deoxyuridine				0	0	Deoxyuridine		False	False	True	False	1
+deta/no			DETA/NO	6	1			False	True	False	False	1
+dextran				0	0	Dextran		False	False	True	False	1
+dextranmw~200000			dextran, Mw ~200,000	2	1			False	True	False	False	1
+dextrin				0	0	Dextrin		False	False	True	False	1
+dgalactose			D-Galactose	27	14			False	True	False	False	1
+dgalacturonicacidmono			D-Galacturonic Acid monohydrate	18	8			False	True	False	False	1
+dgluconicacid			D-Gluconic Acid sodium salt	26	14			False	True	False	False	1
+dglucosamine			D-glucosamine	3	1			False	True	False	False	1
+dglucosaminehydrochloride			D-Glucosamine Hydrochloride	40	19			False	True	False	False	1
+dglucose			D-Glucose	119	24			False	True	False	False	1
+dibucaine			Dibucaine	4	1			False	True	False	False	1
+dichromate			Potassium dichromate	3	1			False	True	False	False	1
+dihexose				0	0		Dihexose	False	False	False	True	1
+dihydroxyacetone				0	0	Dihydroxy-Acetone		False	False	True	False	1
+dimethyladenosine				0	0		Dimethyladenosine	False	False	False	True	1
+dimethylcytidine				0	0		Dimethylcytidine	False	False	False	True	1
+dimethylsulfoxide			Dimethyl Sulfoxide	112	31			False	True	False	False	1
+dimetridazole			Dimetridazole	19	1			False	True	False	False	1
+dl2aminobutyricacid			DL-2-Aminobutyric acid	2	1			False	True	False	False	1
+dl3aminoisobutyricacid			DL-3-Aminoisobutyric acid	2	1			False	True	False	False	1
+dlactate			Sodium D-Lactate	40	20			False	True	False	False	1
+dlcysteine			D,L-cysteine	2	1			False	True	False	False	1
+dleucrose			D-Leucrose	2	1			False	True	False	False	1
+dlhistidine			D,L-histidine	1	1			False	True	False	False	1
+dlisocitricacidtri			DL-Isocitric acid trisodium salt hydrate	3	1			False	True	False	False	1
+dllactate			Sodium D,L-Lactate	95	25			False	True	False	False	1
+dlmalicacid			D,L-Malic Acid	2	1			False	True	False	False	1
+dlysine			D-Lysine	4	1			False	True	False	False	1
+dmaltosemono			D-Maltose monohydrate	30	14			False	True	False	False	1
+dmannose			D-Mannose	30	17			False	True	False	False	1
+dnahmw				0	0	Dna-hmw		False	False	True	False	1
+doxycyclinehyclate			Doxycycline hyclate	46	23			False	True	False	False	1
+draffinosepenta			D-Raffinose pentahydrate	13	6			False	True	False	False	1
+dribose			D-Ribose	19	11			False	True	False	False	1
+dsalicin			D-Salicin	11	5			False	True	False	False	1
+dsorbitol			D-Sorbitol	16	10			False	True	False	False	1
+dtagatose			D-Tagatose	1	1			False	True	False	False	1
+dtrehalosedi			D-Trehalose dihydrate	33	14			False	True	False	False	1
+dulcitol				0	0	Dulcitol		False	False	True	False	1
+dxylose			D-Xylose	25	13			False	True	False	False	1
+eaminoncaproicacid			e-Amino-N-Caproic Acid	2	1			False	True	False	False	1
+econazolenitrate			Econazole nitrate salt	9	1			False	True	False	False	1
+epiphytic			epiphytic	2	1			False	True	False	False	1
+erythromycin			Erythromycin	2	2			False	True	False	False	1
+ethanolamine			Ethanolamine	10	2			False	True	False	False	1
+fccp			FCCP	6	1			False	True	False	False	1
+ferulicacid			Ferulic Acid	3	1			False	True	False	False	1
+flavone			Flavone	2	2			False	True	False	False	1
+fluoride			sodium fluoride	48	25			False	True	False	False	1
+fluorophosphate			Sodium Fluorophosphate	3	1			False	True	False	False	1
+formamide			Formamide	6	1			False	True	False	False	1
+formicacid				0	0	Formic-Acid		False	False	True	False	1
+formylmethionylpeptide				0	0		formyl-methionyl peptide	False	False	False	True	1
+fructooligosaccharidesfos			Fructooligosaccharides (FOS)	2	1			False	True	False	False	1
+fructose				0	0	Fructose		False	False	True	False	1
+fructose6phosphate				0	0	Fructose-6-Phosphate		False	False	True	False	1
+fucose				0	0	Fucose		False	False	True	False	1
+furaltadonehydrochloride			Furaltadone hydrochloride	4	1			False	True	False	False	1
+furfurylalcohol			Furfuryl Alcohol	16	7			False	True	False	False	1
+fusaricacid			Fusaric acid	22	2			False	True	False	False	1
+fusidicacid			Fusidic acid sodium salt	71	28			False	True	False	False	1
+g418disulfatesolution			G418 disulfate salt solution	4	1			False	True	False	False	1
+galactan				0	0	Galactan		False	False	True	False	1
+galactonicacidglactone				0	0	Galactonic-Acid-g-Lactone		False	False	True	False	1
+galactosamine				0	0	Galactosamine		False	False	True	False	1
+galactose				0	0	Galactose		False	False	True	False	1
+galacturonate				0	0	Galacturonate		False	False	True	False	1
+galacturonicacid				0	0	Galacturonic-Acid		False	False	True	False	1
+galnac				0	0	Galnac		False	False	True	False	1
+gammagluphe				0	0		gamma-Glu-Phe	False	False	False	True	1
+geneticing418			Geneticin G418	3	1			False	True	False	False	1
+gentamicinsulfate			Gentamicin sulfate salt	20	11			False	True	False	False	1
+gentiobiose				0	0	Gentiobiose		False	False	True	False	1
+glcnac				0	0	Glcnac		False	False	True	False	1
+glnglngln				0	0		Gln-Gln-Gln	False	False	False	True	1
+gluala				0	0		(Glu-Ala)	False	False	False	True	1
+glucomannan				0	0	Glucomannan		False	False	True	False	1
+gluconatelactone				0	0	Gluconate-lactone		False	False	True	False	1
+gluconicacid				0	0	Gluconic-Acid		False	False	True	False	1
+glucosamine				0	0	Glucosamine		False	False	True	False	1
+glucosaminicacid				0	0	Glucosaminic-Acid		False	False	True	False	1
+glucose1phosphate				0	0	Glucose-1-Phosphate		False	False	True	False	1
+glucose6phosphate				0	0	Glucose-6-Phosphate		False	False	True	False	1
+glucosylglycerate				0	0		glucosylglycerate	False	False	False	True	1
+glucosylglycerol				0	0		glucosylglycerol	False	False	False	True	1
+glucosylglycerolphosphate				0	0		Glucosylglycerolphosphate	False	False	False	True	1
+glucote				0	0	Glucote		False	False	True	False	1
+glucuronate				0	0	Glucuronate		False	False	True	False	1
+glucuronatelactone				0	0	Glucuronate-lactone		False	False	True	False	1
+glucuronicacid				0	0	Glucuronic-Acid		False	False	True	False	1
+gluleu/ile				0	0		(Glu-Leu/Ile)	False	False	False	True	1
+glumet				0	0		(Glu-Met)	False	False	False	True	1
+glumethioninesulfoxide				0	0		Glu-methionine sulfoxide	False	False	False	True	1
+glutamylcysteine				0	0		glutamylcysteine	False	False	False	True	1
+glutathione				0	0		glutathione	False	False	False	True	1
+glutathionedisulfide				0	0		glutathione disulfide	False	False	False	True	1
+glutathionylcysteine				0	0		glutathionyl-cysteine	False	False	False	True	1
+gluval				0	0		(Glu-Val)	False	False	False	True	1
+glycerate				0	0		glycerate	False	False	False	True	1
+glycerolphosphate				0	0	Glycerol-Phosphate		False	False	True	False	1
+glycerophosphocholine				0	0		Glycerophosphocholine	False	False	False	True	1
+glycogen				0	0	Glycogen		False	False	True	False	1
+glycolate				0	0	Glycolate		False	False	True	False	1
+glycyllasparticacid				0	0	Glycyl-L-Aspartic-Acid		False	False	True	False	1
+glycyllglutamicacid				0	0	Glycyl-L-Glutamic-Acid		False	False	True	False	1
+glycyllproline				0	0	Glycyl-L-Proline		False	False	True	False	1
+glydlasp			Gly-DL-Asp	16	9			False	True	False	False	1
+glyoxylicacid				0	0	Glyoxylic-Acid		False	False	True	False	1
+glyphe				0	0		Gly-Phe	False	False	False	True	1
+guanidinobutanoate				0	0		Guanidinobutanoate	False	False	False	True	1
+guanine				0	0		Guanine	False	False	False	True	1
+guanosine				0	0		guanosine	False	False	False	True	1
+guanosine3'5'cyclicmonophosphate				0	0		guanosine 3',5'-cyclic monophosphate	False	False	False	True	1
+h2			H2	9	1			False	True	False	False	1
+heparinfromporcineintestinalmucosa			Heparin sodium salt from porcine intestinal mucosa	2	1			False	True	False	False	1
+heptanoicacid			Heptanoic acid	2	1			False	True	False	False	1
+hexahexose6hex				0	0		Hexahexose (6Hex)	False	False	False	True	1
+hexanoicacid			Hexanoic acid	2	1			False	True	False	False	1
+hexosylglycerate				0	0		Hexosylglycerate	False	False	False	True	1
+hexosylglycerol				0	0		Hexosylglycerol	False	False	False	True	1
+histidinebetaine				0	0		Histidine betaine	False	False	False	True	1
+hisval				0	0		His-Val	False	False	False	True	1
+homocysteine				0	0		homocysteine	False	False	False	True	1
+homocystine				0	0		homocystine	False	False	False	True	1
+homogentisate				0	0		homogentisate	False	False	False	True	1
+homoserine				0	0	Homoserine		False	False	True	False	1
+hyaluronicacidfromstreptococcusequi			Hyaluronic acid sodium salt from Streptococcus equi	4	1			False	True	False	False	1
+hydrogenperoxide			Hydrogen peroxide	1	1			False	True	False	False	1
+hydroxybenzoicacid				0	0		Hydroxybenzoic acid	False	False	False	True	1
+hydroxybutyricacid				0	0	Hydroxy-Butyric-Acid		False	False	True	False	1
+hydroxybutyricacidscoelutingisomers:2hydroxybutyricacidalphahydroxyisobutyricacid				0	0		hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	False	False	False	True	1
+hydroxyglutaricacidglactone				0	0	Hydroxy-Glutaric-Acid-g-Lactone		False	False	True	False	1
+hydroxylproline				0	0	Hydroxy-L-Proline		False	False	True	False	1
+hydroxyproline				0	0	Hydroxyproline		False	False	True	False	1
+hypoxanthine				0	0		Hypoxanthine	False	False	False	True	1
+icarrageenan				0	0	I-carrageenan		False	False	True	False	1
+ierythritol				0	0	i-Erythritol		False	False	True	False	1
+indolicidin			Indolicidin	2	1			False	True	False	False	1
+inulin				0	0	Inulin		False	False	True	False	1
+irgasan			Irgasan	11	1			False	True	False	False	1
+iron			Iron	34	1			False	True	False	False	1
+ironiichloridetetra			Iron (II) chloride tetrahydrate	36	2			False	True	False	False	1
+isocitrate				0	0	Isocitrate		False	False	True	False	1
+isomaltose			Isomaltose	1	1			False	True	False	False	1
+kanamycin			kanamycin	33	3			False	True	False	False	1
+kcarrageenan				0	0	K-carrageenan		False	False	True	False	1
+ketobutyricacid				0	0	Keto-Butyric-Acid		False	False	True	False	1
+ketoglutaricacid				0	0	Keto-Glutaric-Acid		False	False	True	False	1
+ketovalericacid				0	0	Keto-Valeric-Acid		False	False	True	False	1
+kynurenicacid				0	0		Kynurenic acid	False	False	False	True	1
+lacticacid				0	0	Lactic-Acid		False	False	True	False	1
+lacticacidmethylester				0	0	Lactic-Acid-Methyl-Ester		False	False	True	False	1
+lactose				0	0	Lactose		False	False	True	False	1
+lambdacarrageenan				0	0	Lambda-carrageenan		False	False	True	False	1
+laminaribiose			Laminaribiose	2	1			False	True	False	False	1
+laminarin				0	0	Laminarin		False	False	True	False	1
+laspartate			L-Aspartate	2	1			False	True	False	False	1
+lauricacid			Lauric acid	2	1			False	True	False	False	1
+lcarnitinehydrochloride			L-Carnitine hydrochloride	3	1			False	True	False	False	1
+lcysteine			L-Cysteine	15	3			False	True	False	False	1
+lcysteinehydrochloridemono			L-Cysteine hydrochloride monohydrate	2	1			False	True	False	False	1
+leucine/isoleucine				0	0		Leucine/Isoleucine	False	False	False	True	1
+leucine/norleucine				0	0		leucine/norleucine	False	False	False	True	1
+levanfromerwiniaherbicola			Levan - from Erwinia herbicola	3	1			False	True	False	False	1
+levofloxacin			Levofloxacin	5	1			False	True	False	False	1
+levulinicacid			Levulinic Acid	4	1			False	True	False	False	1
+lfucose			L-Fucose	10	6			False	True	False	False	1
+lglutamicacidmonomono			L-Glutamic acid monopotassium salt monohydrate	72	22			False	True	False	False	1
+lhistidine			L-Histidine	58	24			False	True	False	False	1
+lhomoserine			L-Homoserine	3	1			False	True	False	False	1
+lincomycinhydrochloride			Lincomycin hydrochloride	3	1			False	True	False	False	1
+lithocholicacid			Lithocholic acid	4	1			False	True	False	False	1
+lmalicaciddimono			L-Malic acid disodium salt monohydrate	41	21			False	True	False	False	1
+lomefloxacinhydrochloride			Lomefloxacin hydrochloride	34	20			False	True	False	False	1
+lpipecolicacid			L-Pipecolic Acid	2	1			False	True	False	False	1
+lpyroglutamicacid			L-pyroglutamic acid	2	1			False	True	False	False	1
+lrhamnosemono			L-Rhamnose monohydrate	13	7			False	True	False	False	1
+ltyrosinedi			L-tyrosine disodium salt	13	7			False	True	False	False	1
+lumichrome				0	0		lumichrome	False	False	False	True	1
+lvaline			L-Valine	28	13			False	True	False	False	1
+lvalinehplcpurified			L-Valine (HPLC purified)	15	1			False	True	False	False	1
+lyxose				0	0	Lyxose		False	False	True	False	1
+malonate				0	0	Malonate		False	False	True	False	1
+malonicacid				0	0	Malonic-Acid		False	False	True	False	1
+maltohexaose			Maltohexaose	2	1			False	True	False	False	1
+maltotetraose			Maltotetraose	2	1			False	True	False	False	1
+maltotriose				0	0	Maltotriose		False	False	True	False	1
+mannan				0	0	Mannan		False	False	True	False	1
+mannanfromsaccharomycescerevisiae			Mannan from Saccharomyces cerevisiae	2	1			False	True	False	False	1
+mannitol				0	0	Mannitol		False	False	True	False	1
+mannosamine				0	0	Mannosamine		False	False	True	False	1
+mannose				0	0	Mannose		False	False	True	False	1
+mcvitamins			Mc_vitamins	18	1			False	True	False	False	1
+melezitose				0	0	Melezitose		False	False	True	False	1
+melibionicacid				0	0	Melibionic-Acid		False	False	True	False	1
+mercaptohistidinebetaine				0	0		Mercaptohistidine betaine	False	False	False	True	1
+mercaptopyruvate				0	0		mercaptopyruvate	False	False	False	True	1
+mercuryiichloride			mercury (II) chloride	5	1			False	True	False	False	1
+methanolla3				0	0	Methanol_La3		False	False	True	False	1
+methioninesulfoxide				0	0		Methionine sulfoxide	False	False	False	True	1
+methylacetoacetate				0	0		methyl acetoacetate	False	False	False	True	1
+methyladenine				0	0		Methyladenine	False	False	False	True	1
+methyladenosine				0	0		methyladenosine	False	False	False	True	1
+methylbdgalactopyranoside			Methyl-B-D-galactopyranoside	4	2			False	True	False	False	1
+methylcytosine				0	0		Methylcytosine	False	False	False	True	1
+methyldglucoside				0	0	Methyl-D-Glucoside		False	False	True	False	1
+methyldmannoside				0	0	Methyl-D-Mannoside		False	False	True	False	1
+methylglyoxal			methylglyoxal	24	14			False	True	False	False	1
+methylguanine				0	0		Methylguanine	False	False	False	True	1
+methylguanosine				0	0		Methylguanosine	False	False	False	True	1
+methylpyruvate				0	0	Methyl-Pyruvate		False	False	True	False	1
+methylthioadenosine				0	0		methylthioadenosine	False	False	False	True	1
+methyluridine				0	0		methyluridine	False	False	False	True	1
+metronidazole			Metronidazole	2	1			False	True	False	False	1
+mhydroxyphenylaceticacid				0	0	m-Hydroxy-Phenylacetic-Acid		False	False	True	False	1
+mitomycinc			Mitomycin C	2	2			False	True	False	False	1
+molybdate			Sodium molybdate	8	1			False	True	False	False	1
+monomethylsuccinate				0	0	Mono-Methyl-Succinate		False	False	True	False	1
+mrebperturbingcompounda22			MreB Perturbing Compound A22	63	28			False	True	False	False	1
+mtartaricacid				0	0	m-Tartaric-Acid		False	False	True	False	1
+mucicacid				0	0	Mucic-Acid		False	False	True	False	1
+n2			N2	9	1			False	True	False	False	1
+nacetylalanine				0	0		N-acetyl-alanine	False	False	False	True	1
+nacetylasparticacid				0	0		N-acetyl-aspartic acid	False	False	False	True	1
+nacetyldgalactosamine				0	0	N-Acetyl-D-Galactosamine		False	False	True	False	1
+nacetyldglucosaminitol				0	0	N-Acetyl-D-Glucosaminitol		False	False	True	False	1
+nacetylglutamicacid				0	0		N-acetyl-glutamic acid	False	False	False	True	1
+nacetylleucine				0	0		N-acetyl-leucine	False	False	False	True	1
+nacetyllglutamicacid				0	0	N-Acetyl-L-Glutamic-Acid		False	False	True	False	1
+nacetylneuraminicacid				0	0	N-Acetyl-Neuraminic-Acid		False	False	True	False	1
+nacetylphenylalanine				0	0		N-acetyl-phenylalanine	False	False	False	True	1
+nacetylputrescine				0	0		N-acetylputrescine	False	False	False	True	1
+nacetylserine				0	0		N-acetyl-serine	False	False	False	True	1
+nacetyltryptophan				0	0		N-acetyl-tryptophan	False	False	False	True	1
+nalidixicacid			Nalidixic acid sodium salt	50	20			False	True	False	False	1
+nalphaacetylasparagine				0	0		N-alpha-acetyl-asparagine	False	False	False	True	1
+nalphaacetyllysine				0	0		N-alpha-acetyl-lysine	False	False	False	True	1
+negativecontrol				0	0	Negative-Control		False	False	True	False	1
+neomycintrisulfate			Neomycin trisulfate salt hydrate	10	4			False	True	False	False	1
+neuraminicacid				0	0	Neuraminic-Acid		False	False	True	False	1
+nickeliichloridehexa			Nickel (II) chloride hexahydrate	86	30			False	True	False	False	1
+nicotinate				0	0		nicotinate	False	False	False	True	1
+nitrofurantoin			Nitrofurantoin	8	3			False	True	False	False	1
+nnn′n′tetramethylethylenediamine			N,N,N′,N′-Tetramethylethylenediamine	6	1			False	True	False	False	1
+nonanoicacid			Nonanoic acid	2	1			False	True	False	False	1
+octopamine				0	0	Octopamine		False	False	True	False	1
+oleicacid			Oleic acid	2	1			False	True	False	False	1
+oligosaccharide				0	0		Oligosaccharide	False	False	False	True	1
+orotate				0	0		orotate	False	False	False	True	1
+oxalacetate				0	0	Oxalacetate		False	False	True	False	1
+oxaloaceticacid			Oxaloacetic acid	3	1			False	True	False	False	1
+oxalomalicacid				0	0	Oxalomalic-Acid		False	False	True	False	1
+oxoglutarate				0	0	Oxoglutarate		False	False	True	False	1
+oxytetracyclinehydrochloride			Oxytetracycline hydrochloride	10	1			False	True	False	False	1
+pantothenicacid				0	0		pantothenic acid	False	False	False	True	1
+paraquatdichloride			Paraquat dichloride	66	28			False	True	False	False	1
+pcoumaricacid			p-Coumaric acid	4	1			False	True	False	False	1
+pentahexose5hex				0	0		Pentahexose (5Hex)	False	False	False	True	1
+perchloratemono			Sodium perchlorate monohydrate	71	25			False	True	False	False	1
+peroxynitrite			peroxynitrite	3	1			False	True	False	False	1
+persulfate			Sodium Persulfate	3	1			False	True	False	False	1
+phba				0	0	Phba		False	False	True	False	1
+phenazineethosulfate			Phenazine ethosulfate	3	1			False	True	False	False	1
+phenylaceticacid			Phenylacetic acid	10	5			False	True	False	False	1
+phloretin			Phloretin	2	2			False	True	False	False	1
+phosphomycindi			Phosphomycin disodium salt	31	13			False	True	False	False	1
+phydroxyphenylaceticacid				0	0	p-Hydroxy-Phenylacetic-Acid		False	False	True	False	1
+pipecolicacid				0	0		Pipecolic acid	False	False	False	True	1
+piperacillin			Piperacillin sodium salt	4	1			False	True	False	False	1
+plant=tomatocvmoneymaker;planttreatment=none;sample=xylemsap;growthsubstrate=calcineclay;collection=direct			Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	5	2			False	True	False	False	1
+plant=tomatomoneymaker;planttreatment=exvivoxylemsapfromhealthyplant;sample=xylemsap;collection=25hraftergrowthinxylemsap			Plant=Tomato_MoneyMaker; PlantTreatment=exvivo_xylem_sap_from_healthy_plant; Sample=xylem_sap; Collection=25hr_after_growth_in_xylem_sap	3	1			False	True	False	False	1
+polyethyleneglycol			Polyethylene glycol	6	1			False	True	False	False	1
+polygalacturonicacid			polygalacturonic acid	2	1			False	True	False	False	1
+polymyxinbsulfate			Polymyxin B sulfate	52	19			False	True	False	False	1
+polysulfide			potassium (poly)sulfide	6	1			False	True	False	False	1
+porphyran				0	0	Porphyran		False	False	True	False	1
+propandiamine			Propandiamine	2	1			False	True	False	False	1
+propanol				0	0	Propanol		False	False	True	False	1
+propionicacid				0	0	Propionic-Acid		False	False	True	False	1
+protocatechuicacid			Protocatechuic Acid	2	1			False	True	False	False	1
+psicose				0	0	Psicose		False	False	True	False	1
+pullulan				0	0	Pullulan		False	False	True	False	1
+putrescine				0	0	Putrescine		False	False	True	False	1
+putrescinedihydrochloride			Putrescine Dihydrochloride	44	16			False	True	False	False	1
+pyridoxine				0	0		pyridoxine	False	False	False	True	1
+pyroglutamicacid				0	0	Pyroglutamic-Acid		False	False	True	False	1
+quinicacid				0	0	Quinic-Acid		False	False	True	False	1
+raffinose				0	0	Raffinose		False	False	True	False	1
+ramoplanin			Ramoplanin	5	1			False	True	False	False	1
+redarabinanfromsugarbeet			Red Arabinan from sugar-beet	3	1			False	True	False	False	1
+rhamnogalacturonanfrompotato			Rhamnogalacturonan - from potato	2	1			False	True	False	False	1
+riboflavin				0	0		riboflavin	False	False	False	True	1
+ribono14lactone				0	0	Ribono-1,4-Lactone		False	False	True	False	1
+ribose				0	0	Ribose		False	False	True	False	1
+rifampicin			Rifampicin	21	12			False	True	False	False	1
+rotenone			Rotenone	6	3			False	True	False	False	1
+rubidiumchloride			rubidium chloride	6	1			False	True	False	False	1
+saccharicacid				0	0	Saccharic-Acid		False	False	True	False	1
+sadenosylhomocysteine			S-adenosyl Homocysteine	9	1			False	True	False	False	1
+sebacicacid				0	0	Sebacic-Acid		False	False	True	False	1
+secbutylamine				0	0	Sec-Butylamine		False	False	True	False	1
+sedoheptulosan				0	0	Sedoheptulosan		False	False	True	False	1
+selenate			Sodium selenate	3	1			False	True	False	False	1
+sisomicinsulfate			Sisomicin sulfate salt	34	20			False	True	False	False	1
+snglycero3phosphocholine				0	0		sn-glycero-3-phosphocholine	False	False	False	True	1
+sorbicacid				0	0	Sorbic-Acid		False	False	True	False	1
+sorbitol				0	0	Sorbitol		False	False	True	False	1
+sorbose				0	0	Sorbose		False	False	True	False	1
+spectinomycindihydrochloridepenta			Spectinomycin dihydrochloride pentahydrate	51	23			False	True	False	False	1
+spermidine			spermidine	7	2			False	True	False	False	1
+spiramycin			Spiramycin	3	1			False	True	False	False	1
+stachyose70%			Stachyose - 70%	2	1			False	True	False	False	1
+succinamicacid				0	0	Succinamic-Acid		False	False	True	False	1
+succite				0	0	Succite		False	False	True	False	1
+sucrosetreatment			sucrose treatment	6	1			False	True	False	False	1
+sulfamethizole			Sulfamethizole	6	1			False	True	False	False	1
+sulfamonomethoxine			Sulfamonomethoxine	6	1			False	True	False	False	1
+sulfaquinoxaline			Sulfaquinoxaline sodium salt	10	1			False	True	False	False	1
+sulfate			Sodium sulfate	5	2			False	True	False	False	1
+sulfidenona			Sodium sulfide nonahydrate	8	1			False	True	False	False	1
+sulfite			sodium sulfite	2	1			False	True	False	False	1
+supernatant;agrobacteriumrhizogenesk599growninagrodefinedtrehalose~7.5mm3ketotrehalose			Supernatant; Agrobacterium rhizogenes K599 grown in Agro_defined_trehalose (~7.5 mM 3-keto-trehalose)	2	1			False	True	False	False	1
+supernatant;trichodermaatrovirideimigrowninvogelsfungalmediafiltered			Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	15	4			False	True	False	False	1
+supernatant;trichodermaatrovirideimitmk3mutantgrowninvogelsfungalmediafiltered			Supernatant; Trichoderma atroviride IMI tmk3mutant grown in Vogels_fungal_media, filtered	11	4			False	True	False	False	1
+syringaldehyde			syringaldehyde	24	13			False	True	False	False	1
+tagatose				0	0	Tagatose		False	False	True	False	1
+tartaricacid				0	0	Tartaric-Acid		False	False	True	False	1
+tetrazoliumviolet			Tetrazolium violet	2	1			False	True	False	False	1
+thalliumiacetate			Thallium(I) acetate	77	29			False	True	False	False	1
+thiamine				0	0		thiamine	False	False	False	True	1
+thioridazinehydrochloride			Thioridazine hydrochloride	9	1			False	True	False	False	1
+thiosulfate			Sodium thiosulfate	3	1			False	True	False	False	1
+thrala				0	0		Thr-Ala	False	False	False	True	1
+threonine/homoserine				0	0		threonine/homoserine	False	False	False	True	1
+threonineisomerscoeluters:threoninehomoserineallothreonine				0	0		threonine isomers (coeluters: threonine, homoserine, allothreonine)	False	False	False	True	1
+thrser				0	0		Thr-Ser	False	False	False	True	1
+trans4hydroxyproline				0	0		trans-4-hydroxyproline	False	False	False	True	1
+transaconitate				0	0		trans-aconitate	False	False	False	True	1
+tricarballylicacid				0	0	Tricarballylic-Acid		False	False	True	False	1
+tricitratedi			Trisodium citrate dihydrate	22	11			False	True	False	False	1
+trigonelline				0	0		trigonelline	False	False	False	True	1
+trihexose				0	0		Trihexose	False	False	False	True	1
+trimethoprim			Trimethoprim	8	3			False	True	False	False	1
+trimethyllysine				0	0		trimethyllysine	False	False	False	True	1
+tungstatedi			Sodium tungstate dihydrate	5	1			False	True	False	False	1
+turanose				0	0	Turanose		False	False	True	False	1
+tween40				0	0	Tween-40		False	False	True	False	1
+tween80				0	0	Tween-80		False	False	True	False	1
+ulvan				0	0	Ulvan		False	False	True	False	1
+unk0p213.963n7.4rbbiocrustexp				0	0		Unk_0p_213.963n_7.4_RB_BiocrustExp	False	False	False	True	1
+unk0p297.1528n6.7rbbiocrustexp				0	0		Unk_0p_297.1528n_6.7_RB_BiocrustExp	False	False	False	True	1
+unk0p426.9698n4.5rbbiocrustexp				0	0		Unk_0p_426.9698n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk0p565.1012n20.1rbbiocrustexp				0	0		Unk_0p_565.1012n_20.1_RB_BiocrustExp	False	False	False	True	1
+unk103.954p0n13rbbiocrustexp				0	0		Unk_103.954p_0n_13_RB_BiocrustExp	False	False	False	True	1
+unk1044.137p0n4.2rbbiocrustexp				0	0		Unk_1044.137p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk112.0769p0n20.5rbbiocrustexp				0	0		Unk_112.0769p_0n_20.5_RB_BiocrustExp	False	False	False	True	1
+unk114.0454p0n4.7rbbiocrustexp				0	0		Unk_114.0454p_0n_4.7_RB_BiocrustExp	False	False	False	True	1
+unk1152.645p0n14.6rbbiocrustexp				0	0		Unk_1152.645p_0n_14.6_RB_BiocrustExp	False	False	False	True	1
+unk116.0679p0n15.3rbbiocrustexp				0	0		Unk_116.0679p_0n_15.3_RB_BiocrustExp	False	False	False	True	1
+unk116.0709p0n9.7rbbiocrustexp				0	0		Unk_116.0709p_0n_9.7_RB_BiocrustExp	False	False	False	True	1
+unk117.1036p0n22.6rbbiocrustexp				0	0		Unk_117.1036p_0n_22.6_RB_BiocrustExp	False	False	False	True	1
+unk118.1224p0n17rbbiocrustexp				0	0		Unk_118.1224p_0n_17_RB_BiocrustExp	False	False	False	True	1
+unk120.0649p0n17.7rbbiocrustexp				0	0		Unk_120.0649p_0n_17.7_RB_BiocrustExp	False	False	False	True	1
+unk123.0545p0n7.6rbbiocrustexp				0	0		Unk_123.0545p_0n_7.6_RB_BiocrustExp	False	False	False	True	1
+unk129.0623p0n14.3rbbiocrustexp				0	0		Unk_129.0623p_0n_14.3_RB_BiocrustExp	False	False	False	True	1
+unk129.0648p0n23.8rbbiocrustexp				0	0		Unk_129.0648p_0n_23.8_RB_BiocrustExp	False	False	False	True	1
+unk130.1592p0n13.4rbbiocrustexp				0	0		Unk_130.1592p_0n_13.4_RB_BiocrustExp	False	False	False	True	1
+unk131.0701p0n15rbbiocrustexp				0	0		Unk_131.0701p_0n_15_RB_BiocrustExp	False	False	False	True	1
+unk134.0296p0n17.7rbbiocrustexp				0	0		Unk_134.0296p_0n_17.7_RB_BiocrustExp	False	False	False	True	1
+unk138.0549p0n14.3rbbiocrustexp				0	0		Unk_138.0549p_0n_14.3_RB_BiocrustExp	False	False	False	True	1
+unk138.0909p0n7.9rbbiocrustexp				0	0		Unk_138.0909p_0n_7.9_RB_BiocrustExp	False	False	False	True	1
+unk141.0544p0n15.7rbbiocrustexp				0	0		Unk_141.0544p_0n_15.7_RB_BiocrustExp	False	False	False	True	1
+unk141.0579p0n12rbbiocrustexp				0	0		Unk_141.0579p_0n_12_RB_BiocrustExp	False	False	False	True	1
+unk141.1142p0n21.5rbbiocrustexp				0	0		Unk_141.1142p_0n_21.5_RB_BiocrustExp	False	False	False	True	1
+unk142.0865p0n15.1rbbiocrustexp				0	0		Unk_142.0865p_0n_15.1_RB_BiocrustExp	False	False	False	True	1
+unk144.0798p0n15.8rbbiocrustexp				0	0		Unk_144.0798p_0n_15.8_RB_BiocrustExp	False	False	False	True	1
+unk149.0292p0n4rbbiocrustexp				0	0		Unk_149.0292p_0n_4_RB_BiocrustExp	False	False	False	True	1
+unk149.0895p0n19.3rbbiocrustexp				0	0		Unk_149.0895p_0n_19.3_RB_BiocrustExp	False	False	False	True	1
+unk158.1507p0n16.3rbbiocrustexp				0	0		Unk_158.1507p_0n_16.3_RB_BiocrustExp	False	False	False	True	1
+unk159.0618p0n12.1rbbiocrustexp				0	0		Unk_159.0618p_0n_12.1_RB_BiocrustExp	False	False	False	True	1
+unk159.0791p0n17.5rbbiocrustexp				0	0		Unk_159.0791p_0n_17.5_RB_BiocrustExp	False	False	False	True	1
+unk160.1138p0n6.7rbbiocrustexp				0	0		Unk_160.1138p_0n_6.7_RB_BiocrustExp	False	False	False	True	1
+unk163.1074p0n8rbbiocrustexp				0	0		Unk_163.1074p_0n_8_RB_BiocrustExp	False	False	False	True	1
+unk164.054p0n14.4rbbiocrustexp				0	0		Unk_164.054p_0n_14.4_RB_BiocrustExp	False	False	False	True	1
+unk166.0716p0n14.5rbbiocrustexp				0	0		Unk_166.0716p_0n_14.5_RB_BiocrustExp	False	False	False	True	1
+unk167.0515p0n17.5rbbiocrustexp				0	0		Unk_167.0515p_0n_17.5_RB_BiocrustExp	False	False	False	True	1
+unk167.0917p0n9.4rbbiocrustexp				0	0		Unk_167.0917p_0n_9.4_RB_BiocrustExp	False	False	False	True	1
+unk168.0624p0n15.2rbbiocrustexp				0	0		Unk_168.0624p_0n_15.2_RB_BiocrustExp	False	False	False	True	1
+unk174.1221p0n20.1rbbiocrustexp				0	0		Unk_174.1221p_0n_20.1_RB_BiocrustExp	False	False	False	True	1
+unk177.0887p0n15.8rbbiocrustexp				0	0		Unk_177.0887p_0n_15.8_RB_BiocrustExp	False	False	False	True	1
+unk178.0751p0n12.8rbbiocrustexp				0	0		Unk_178.0751p_0n_12.8_RB_BiocrustExp	False	False	False	True	1
+unk179.0794p0n7.8rbbiocrustexp				0	0		Unk_179.0794p_0n_7.8_RB_BiocrustExp	False	False	False	True	1
+unk180.1021p0n15.2rbbiocrustexp				0	0		Unk_180.1021p_0n_15.2_RB_BiocrustExp	False	False	False	True	1
+unk181.0244p0n7.7rbbiocrustexp				0	0		Unk_181.0244p_0n_7.7_RB_BiocrustExp	False	False	False	True	1
+unk181.0595p0n13.8rbbiocrustexp				0	0		Unk_181.0595p_0n_13.8_RB_BiocrustExp	False	False	False	True	1
+unk181.0945p0n6.1rbbiocrustexp				0	0		Unk_181.0945p_0n_6.1_RB_BiocrustExp	False	False	False	True	1
+unk182.0645p0n14.1rbbiocrustexp				0	0		Unk_182.0645p_0n_14.1_RB_BiocrustExp	False	False	False	True	1
+unk183.0975p0n14.5rbbiocrustexp				0	0		Unk_183.0975p_0n_14.5_RB_BiocrustExp	False	False	False	True	1
+unk186.0703p0n15.2rbbiocrustexp				0	0		Unk_186.0703p_0n_15.2_RB_BiocrustExp	False	False	False	True	1
+unk186.0767p0n4.3rbbiocrustexp				0	0		Unk_186.0767p_0n_4.3_RB_BiocrustExp	False	False	False	True	1
+unk186.2228p0n11rbbiocrustexp				0	0		Unk_186.2228p_0n_11_RB_BiocrustExp	False	False	False	True	1
+unk187.1102p0n4.3rbbiocrustexp				0	0		Unk_187.1102p_0n_4.3_RB_BiocrustExp	False	False	False	True	1
+unk188.1754p0n4.7rbbiocrustexp				0	0		Unk_188.1754p_0n_4.7_RB_BiocrustExp	False	False	False	True	1
+unk189.1215p0n20.5rbbiocrustexp				0	0		Unk_189.1215p_0n_20.5_RB_BiocrustExp	False	False	False	True	1
+unk195.0251p0n15.8rbbiocrustexp				0	0		Unk_195.0251p_0n_15.8_RB_BiocrustExp	False	False	False	True	1
+unk195.0719p0n7.6rbbiocrustexp				0	0		Unk_195.0719p_0n_7.6_RB_BiocrustExp	False	False	False	True	1
+unk197.1192p0n4.4rbbiocrustexp				0	0		Unk_197.1192p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk198.1135p0n7rbbiocrustexp				0	0		Unk_198.1135p_0n_7_RB_BiocrustExp	False	False	False	True	1
+unk199.1315p0n4.4rbbiocrustexp				0	0		Unk_199.1315p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk199.1804p0n16.4rbbiocrustexp				0	0		Unk_199.1804p_0n_16.4_RB_BiocrustExp	False	False	False	True	1
+unk201.0189p0n8.5rbbiocrustexp				0	0		Unk_201.0189p_0n_8.5_RB_BiocrustExp	False	False	False	True	1
+unk202.2159p0n12.5rbbiocrustexp				0	0		Unk_202.2159p_0n_12.5_RB_BiocrustExp	False	False	False	True	1
+unk202.2174p0n11.4rbbiocrustexp				0	0		Unk_202.2174p_0n_11.4_RB_BiocrustExp	False	False	False	True	1
+unk203.0569p0n22rbbiocrustexp				0	0		Unk_203.0569p_0n_22_RB_BiocrustExp	False	False	False	True	1
+unk204.0431p0n19.4rbbiocrustexp				0	0		Unk_204.0431p_0n_19.4_RB_BiocrustExp	False	False	False	True	1
+unk204.0869p0n16.9rbbiocrustexp				0	0		Unk_204.0869p_0n_16.9_RB_BiocrustExp	False	False	False	True	1
+unk205.1196p0n20.9rbbiocrustexp				0	0		Unk_205.1196p_0n_20.9_RB_BiocrustExp	False	False	False	True	1
+unk207.1583p0n4.5rbbiocrustexp				0	0		Unk_207.1583p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk209.1103p0n16.4rbbiocrustexp				0	0		Unk_209.1103p_0n_16.4_RB_BiocrustExp	False	False	False	True	1
+unk212.094p0n17.4rbbiocrustexp				0	0		Unk_212.094p_0n_17.4_RB_BiocrustExp	False	False	False	True	1
+unk215.0154p0n20.6rbbiocrustexp				0	0		Unk_215.0154p_0n_20.6_RB_BiocrustExp	False	False	False	True	1
+unk216.125p0n23.2rbbiocrustexp				0	0		Unk_216.125p_0n_23.2_RB_BiocrustExp	False	False	False	True	1
+unk217.1045p0n6.3rbbiocrustexp				0	0		Unk_217.1045p_0n_6.3_RB_BiocrustExp	False	False	False	True	1
+unk217.1173p0n19.6rbbiocrustexp				0	0		Unk_217.1173p_0n_19.6_RB_BiocrustExp	False	False	False	True	1
+unk218.1134p0n19.9rbbiocrustexp				0	0		Unk_218.1134p_0n_19.9_RB_BiocrustExp	False	False	False	True	1
+unk220.1148p0n16.4rbbiocrustexp				0	0		Unk_220.1148p_0n_16.4_RB_BiocrustExp	False	False	False	True	1
+unk220.1185p0n14.8rbbiocrustexp				0	0		Unk_220.1185p_0n_14.8_RB_BiocrustExp	False	False	False	True	1
+unk222.0989p0n9.7rbbiocrustexp				0	0		Unk_222.0989p_0n_9.7_RB_BiocrustExp	False	False	False	True	1
+unk228.1772p0n4.3rbbiocrustexp				0	0		Unk_228.1772p_0n_4.3_RB_BiocrustExp	False	False	False	True	1
+unk230.0959p0n19.8rbbiocrustexp				0	0		Unk_230.0959p_0n_19.8_RB_BiocrustExp	False	False	False	True	1
+unk231.1424p0n20.1rbbiocrustexp				0	0		Unk_231.1424p_0n_20.1_RB_BiocrustExp	False	False	False	True	1
+unk233.0618p0n18.5rbbiocrustexp				0	0		Unk_233.0618p_0n_18.5_RB_BiocrustExp	False	False	False	True	1
+unk234.1266p0n15.2rbbiocrustexp				0	0		Unk_234.1266p_0n_15.2_RB_BiocrustExp	False	False	False	True	1
+unk239.146p0n4.7rbbiocrustexp				0	0		Unk_239.146p_0n_4.7_RB_BiocrustExp	False	False	False	True	1
+unk239.2059p0n16.1rbbiocrustexp				0	0		Unk_239.2059p_0n_16.1_RB_BiocrustExp	False	False	False	True	1
+unk240.1709p0n4.5rbbiocrustexp				0	0		Unk_240.1709p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk242.1024p0n13.3rbbiocrustexp				0	0		Unk_242.1024p_0n_13.3_RB_BiocrustExp	False	False	False	True	1
+unk242.2861p0n13.1rbbiocrustexp				0	0		Unk_242.2861p_0n_13.1_RB_BiocrustExp	False	False	False	True	1
+unk244.1113p0n19.3rbbiocrustexp				0	0		Unk_244.1113p_0n_19.3_RB_BiocrustExp	False	False	False	True	1
+unk244.1893p0n6rbbiocrustexp				0	0		Unk_244.1893p_0n_6_RB_BiocrustExp	False	False	False	True	1
+unk244.1911p0n6rbbiocrustexp				0	0		Unk_244.1911p_0n_6_RB_BiocrustExp	False	False	False	True	1
+unk251.1647p249.1486n6.8rbbiocrustexp				0	0		Unk_251.1647p_249.1486n_6.8_RB_BiocrustExp	False	False	False	True	1
+unk253.0869p0n16.8rbbiocrustexp				0	0		Unk_253.0869p_0n_16.8_RB_BiocrustExp	False	False	False	True	1
+unk254.0832p0n20.4rbbiocrustexp				0	0		Unk_254.0832p_0n_20.4_RB_BiocrustExp	False	False	False	True	1
+unk255.1013p253.0852n20rbbiocrustexp				0	0		Unk_255.1013p_253.0852n_20_RB_BiocrustExp	False	False	False	True	1
+unk256.1155p0n6rbbiocrustexp				0	0		Unk_256.1155p_0n_6_RB_BiocrustExp	False	False	False	True	1
+unk257.0965p0n24.6rbbiocrustexp				0	0		Unk_257.0965p_0n_24.6_RB_BiocrustExp	False	False	False	True	1
+unk257.1855p0n11.1rbbiocrustexp				0	0		Unk_257.1855p_0n_11.1_RB_BiocrustExp	False	False	False	True	1
+unk258.1483p0n22.6rbbiocrustexp				0	0		Unk_258.1483p_0n_22.6_RB_BiocrustExp	False	False	False	True	1
+unk259.1094p0n15.4rbbiocrustexp				0	0		Unk_259.1094p_0n_15.4_RB_BiocrustExp	False	False	False	True	1
+unk260.186p0n5.2rbbiocrustexp				0	0		Unk_260.186p_0n_5.2_RB_BiocrustExp	False	False	False	True	1
+unk263.1019p0n24.4rbbiocrustexp				0	0		Unk_263.1019p_0n_24.4_RB_BiocrustExp	False	False	False	True	1
+unk263.2126p0n15.7rbbiocrustexp				0	0		Unk_263.2126p_0n_15.7_RB_BiocrustExp	False	False	False	True	1
+unk266.1233p0n7.6rbbiocrustexp				0	0		Unk_266.1233p_0n_7.6_RB_BiocrustExp	False	False	False	True	1
+unk268.9986p0n43.8rbbiocrustexp				0	0		Unk_268.9986p_0n_43.8_RB_BiocrustExp	False	False	False	True	1
+unk270.3165p0n12.9rbbiocrustexp				0	0		Unk_270.3165p_0n_12.9_RB_BiocrustExp	False	False	False	True	1
+unk271.1234p0n16.3rbbiocrustexp				0	0		Unk_271.1234p_0n_16.3_RB_BiocrustExp	False	False	False	True	1
+unk271.1657p0n10.1rbbiocrustexp				0	0		Unk_271.1657p_0n_10.1_RB_BiocrustExp	False	False	False	True	1
+unk272.1864p0n13.4rbbiocrustexp				0	0		Unk_272.1864p_0n_13.4_RB_BiocrustExp	False	False	False	True	1
+unk274.1535p0n22.1rbbiocrustexp				0	0		Unk_274.1535p_0n_22.1_RB_BiocrustExp	False	False	False	True	1
+unk275.0227p0n20.6rbbiocrustexp				0	0		Unk_275.0227p_0n_20.6_RB_BiocrustExp	False	False	False	True	1
+unk275.1354p0n21.8rbbiocrustexp				0	0		Unk_275.1354p_0n_21.8_RB_BiocrustExp	False	False	False	True	1
+unk276.1001p0n18.5rbbiocrustexp				0	0		Unk_276.1001p_0n_18.5_RB_BiocrustExp	False	False	False	True	1
+unk276.1031p0n15.3rbbiocrustexp				0	0		Unk_276.1031p_0n_15.3_RB_BiocrustExp	False	False	False	True	1
+unk276.1059p0n17.2rbbiocrustexp				0	0		Unk_276.1059p_0n_17.2_RB_BiocrustExp	False	False	False	True	1
+unk276.107p0n14.9rbbiocrustexp				0	0		Unk_276.107p_0n_14.9_RB_BiocrustExp	False	False	False	True	1
+unk281.1501p0n16rbbiocrustexp				0	0		Unk_281.1501p_0n_16_RB_BiocrustExp	False	False	False	True	1
+unk281.1949p0n4.2rbbiocrustexp				0	0		Unk_281.1949p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk282.2799p0n4.1rbbiocrustexp				0	0		Unk_282.2799p_0n_4.1_RB_BiocrustExp	False	False	False	True	1
+unk283.228p0n4rbbiocrustexp				0	0		Unk_283.228p_0n_4_RB_BiocrustExp	False	False	False	True	1
+unk284.2019p0n4.6rbbiocrustexp				0	0		Unk_284.2019p_0n_4.6_RB_BiocrustExp	False	False	False	True	1
+unk285.2229p0n4.1rbbiocrustexp				0	0		Unk_285.2229p_0n_4.1_RB_BiocrustExp	False	False	False	True	1
+unk286.1223p0n18.5rbbiocrustexp				0	0		Unk_286.1223p_0n_18.5_RB_BiocrustExp	False	False	False	True	1
+unk287.1359p0n23.2rbbiocrustexp				0	0		Unk_287.1359p_0n_23.2_RB_BiocrustExp	False	False	False	True	1
+unk287.234p0n23.9rbbiocrustexp				0	0		Unk_287.234p_0n_23.9_RB_BiocrustExp	False	False	False	True	1
+unk288.1902p0n25.8rbbiocrustexp				0	0		Unk_288.1902p_0n_25.8_RB_BiocrustExp	False	False	False	True	1
+unk288.1924p0n22.1rbbiocrustexp				0	0		Unk_288.1924p_0n_22.1_RB_BiocrustExp	False	False	False	True	1
+unk288.2915p0n12.1rbbiocrustexp				0	0		Unk_288.2915p_0n_12.1_RB_BiocrustExp	False	False	False	True	1
+unk288.2928p0n9.9rbbiocrustexp				0	0		Unk_288.2928p_0n_9.9_RB_BiocrustExp	False	False	False	True	1
+unk289.1337p0n27.7rbbiocrustexp				0	0		Unk_289.1337p_0n_27.7_RB_BiocrustExp	False	False	False	True	1
+unk290.2663p0n8rbbiocrustexp				0	0		Unk_290.2663p_0n_8_RB_BiocrustExp	False	False	False	True	1
+unk290.2675p0n13.9rbbiocrustexp				0	0		Unk_290.2675p_0n_13.9_RB_BiocrustExp	False	False	False	True	1
+unk291.0469p0n14.8rbbiocrustexp				0	0		Unk_291.0469p_0n_14.8_RB_BiocrustExp	False	False	False	True	1
+unk291.0684p0n19.6rbbiocrustexp				0	0		Unk_291.0684p_0n_19.6_RB_BiocrustExp	False	False	False	True	1
+unk293.2106p0n4.4rbbiocrustexp				0	0		Unk_293.2106p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk294.1098p0n22rbbiocrustexp				0	0		Unk_294.1098p_0n_22_RB_BiocrustExp	False	False	False	True	1
+unk295.2229p0n4.4rbbiocrustexp				0	0		Unk_295.2229p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk296.0829p0n7.8rbbiocrustexp				0	0		Unk_296.0829p_0n_7.8_RB_BiocrustExp	False	False	False	True	1
+unk298.1028p0n8rbbiocrustexp				0	0		Unk_298.1028p_0n_8_RB_BiocrustExp	False	False	False	True	1
+unk298.1133p0n10.1rbbiocrustexp				0	0		Unk_298.1133p_0n_10.1_RB_BiocrustExp	False	False	False	True	1
+unk298.1221p0n19.2rbbiocrustexp				0	0		Unk_298.1221p_0n_19.2_RB_BiocrustExp	False	False	False	True	1
+unk298.1223p0n17.8rbbiocrustexp				0	0		Unk_298.1223p_0n_17.8_RB_BiocrustExp	False	False	False	True	1
+unk298.1294p0n7.9rbbiocrustexp				0	0		Unk_298.1294p_0n_7.9_RB_BiocrustExp	False	False	False	True	1
+unk298.1679p0n4.6rbbiocrustexp				0	0		Unk_298.1679p_0n_4.6_RB_BiocrustExp	False	False	False	True	1
+unk300.103p0n20.1rbbiocrustexp				0	0		Unk_300.103p_0n_20.1_RB_BiocrustExp	False	False	False	True	1
+unk300.1979p0n6rbbiocrustexp				0	0		Unk_300.1979p_0n_6_RB_BiocrustExp	False	False	False	True	1
+unk302.1171p0n19.6rbbiocrustexp				0	0		Unk_302.1171p_0n_19.6_RB_BiocrustExp	False	False	False	True	1
+unk302.1972p0n18rbbiocrustexp				0	0		Unk_302.1972p_0n_18_RB_BiocrustExp	False	False	False	True	1
+unk302.2132p0n20.9rbbiocrustexp				0	0		Unk_302.2132p_0n_20.9_RB_BiocrustExp	False	False	False	True	1
+unk303.1299p0n16.4rbbiocrustexp				0	0		Unk_303.1299p_0n_16.4_RB_BiocrustExp	False	False	False	True	1
+unk303.1407p0n26.6rbbiocrustexp				0	0		Unk_303.1407p_0n_26.6_RB_BiocrustExp	False	False	False	True	1
+unk304.2808p0n13.1rbbiocrustexp				0	0		Unk_304.2808p_0n_13.1_RB_BiocrustExp	False	False	False	True	1
+unk304.2999p0n10.3rbbiocrustexp				0	0		Unk_304.2999p_0n_10.3_RB_BiocrustExp	False	False	False	True	1
+unk306.2247p0n8.1rbbiocrustexp				0	0		Unk_306.2247p_0n_8.1_RB_BiocrustExp	False	False	False	True	1
+unk309.2374p0n4rbbiocrustexp				0	0		Unk_309.2374p_0n_4_RB_BiocrustExp	False	False	False	True	1
+unk310.1757p0n23.4rbbiocrustexp				0	0		Unk_310.1757p_0n_23.4_RB_BiocrustExp	False	False	False	True	1
+unk312.1457p0n17.8rbbiocrustexp				0	0		Unk_312.1457p_0n_17.8_RB_BiocrustExp	False	False	False	True	1
+unk314.1428p0n16.4rbbiocrustexp				0	0		Unk_314.1428p_0n_16.4_RB_BiocrustExp	False	False	False	True	1
+unk314.1781p0n21.1rbbiocrustexp				0	0		Unk_314.1781p_0n_21.1_RB_BiocrustExp	False	False	False	True	1
+unk316.1329p0n19.4rbbiocrustexp				0	0		Unk_316.1329p_0n_19.4_RB_BiocrustExp	False	False	False	True	1
+unk316.2128p0n6.1rbbiocrustexp				0	0		Unk_316.2128p_0n_6.1_RB_BiocrustExp	False	False	False	True	1
+unk321.1524p0n14.1rbbiocrustexp				0	0		Unk_321.1524p_0n_14.1_RB_BiocrustExp	False	False	False	True	1
+unk325.2007p0n13.5rbbiocrustexp				0	0		Unk_325.2007p_0n_13.5_RB_BiocrustExp	False	False	False	True	1
+unk325.2379p0n4.2rbbiocrustexp				0	0		Unk_325.2379p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk328.137p0n17rbbiocrustexp				0	0		Unk_328.137p_0n_17_RB_BiocrustExp	False	False	False	True	1
+unk330.1445p0n17.2rbbiocrustexp				0	0		Unk_330.1445p_0n_17.2_RB_BiocrustExp	False	False	False	True	1
+unk331.2834p0n4.1rbbiocrustexp				0	0		Unk_331.2834p_0n_4.1_RB_BiocrustExp	False	False	False	True	1
+unk332.331p0n10.1rbbiocrustexp				0	0		Unk_332.331p_0n_10.1_RB_BiocrustExp	False	False	False	True	1
+unk335.0713p0n20.2rbbiocrustexp				0	0		Unk_335.0713p_0n_20.2_RB_BiocrustExp	False	False	False	True	1
+unk338.3451p0n4.1rbbiocrustexp				0	0		Unk_338.3451p_0n_4.1_RB_BiocrustExp	False	False	False	True	1
+unk339.2504p0n4.7rbbiocrustexp				0	0		Unk_339.2504p_0n_4.7_RB_BiocrustExp	False	False	False	True	1
+unk340.142p0n23.2rbbiocrustexp				0	0		Unk_340.142p_0n_23.2_RB_BiocrustExp	False	False	False	True	1
+unk342.1577p0n17.6rbbiocrustexp				0	0		Unk_342.1577p_0n_17.6_RB_BiocrustExp	False	False	False	True	1
+unk342.1752p0n13.3rbbiocrustexp				0	0		Unk_342.1752p_0n_13.3_RB_BiocrustExp	False	False	False	True	1
+unk344.126p0n20rbbiocrustexp				0	0		Unk_344.126p_0n_20_RB_BiocrustExp	False	False	False	True	1
+unk344.157p0n16.9rbbiocrustexp				0	0		Unk_344.157p_0n_16.9_RB_BiocrustExp	False	False	False	True	1
+unk344.2797p0n4rbbiocrustexp				0	0		Unk_344.2797p_0n_4_RB_BiocrustExp	False	False	False	True	1
+unk349.0974p0n22.8rbbiocrustexp				0	0		Unk_349.0974p_0n_22.8_RB_BiocrustExp	False	False	False	True	1
+unk349.2046p0n21.1rbbiocrustexp				0	0		Unk_349.2046p_0n_21.1_RB_BiocrustExp	False	False	False	True	1
+unk352.1933p0n4.2rbbiocrustexp				0	0		Unk_352.1933p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk354.1525p0n23.2rbbiocrustexp				0	0		Unk_354.1525p_0n_23.2_RB_BiocrustExp	False	False	False	True	1
+unk354.1542p0n17.2rbbiocrustexp				0	0		Unk_354.1542p_0n_17.2_RB_BiocrustExp	False	False	False	True	1
+unk356.1625p0n16.9rbbiocrustexp				0	0		Unk_356.1625p_0n_16.9_RB_BiocrustExp	False	False	False	True	1
+unk357.147p0n4.2rbbiocrustexp				0	0		Unk_357.147p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk359.3152p0n4.1rbbiocrustexp				0	0		Unk_359.3152p_0n_4.1_RB_BiocrustExp	False	False	False	True	1
+unk360.1249p0n20rbbiocrustexp				0	0		Unk_360.1249p_0n_20_RB_BiocrustExp	False	False	False	True	1
+unk360.171p0n29.1rbbiocrustexp				0	0		Unk_360.171p_0n_29.1_RB_BiocrustExp	False	False	False	True	1
+unk361.2922p0n4.2rbbiocrustexp				0	0		Unk_361.2922p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk362.2814p0n4.4rbbiocrustexp				0	0		Unk_362.2814p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk371.1806p0n19.2rbbiocrustexp				0	0		Unk_371.1806p_0n_19.2_RB_BiocrustExp	False	False	False	True	1
+unk374.2877p0n4.1rbbiocrustexp				0	0		Unk_374.2877p_0n_4.1_RB_BiocrustExp	False	False	False	True	1
+unk381.1503p0n19.7rbbiocrustexp				0	0		Unk_381.1503p_0n_19.7_RB_BiocrustExp	False	False	False	True	1
+unk387.171p0n4.3rbbiocrustexp				0	0		Unk_387.171p_0n_4.3_RB_BiocrustExp	False	False	False	True	1
+unk387.1806p0n6.4rbbiocrustexp				0	0		Unk_387.1806p_0n_6.4_RB_BiocrustExp	False	False	False	True	1
+unk388.2337p0n4.6rbbiocrustexp				0	0		Unk_388.2337p_0n_4.6_RB_BiocrustExp	False	False	False	True	1
+unk391.2839p0n3.9rbbiocrustexp				0	0		Unk_391.2839p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk393.2919p0n4.1rbbiocrustexp				0	0		Unk_393.2919p_0n_4.1_RB_BiocrustExp	False	False	False	True	1
+unk398.1758p0n16rbbiocrustexp				0	0		Unk_398.1758p_0n_16_RB_BiocrustExp	False	False	False	True	1
+unk398.2028p0n9.8rbbiocrustexp				0	0		Unk_398.2028p_0n_9.8_RB_BiocrustExp	False	False	False	True	1
+unk398.2081p0n20.9rbbiocrustexp				0	0		Unk_398.2081p_0n_20.9_RB_BiocrustExp	False	False	False	True	1
+unk401.1956p0n24.8rbbiocrustexp				0	0		Unk_401.1956p_0n_24.8_RB_BiocrustExp	False	False	False	True	1
+unk403.1335p0n19.7rbbiocrustexp				0	0		Unk_403.1335p_0n_19.7_RB_BiocrustExp	False	False	False	True	1
+unk403.177p0n6.6rbbiocrustexp				0	0		Unk_403.177p_0n_6.6_RB_BiocrustExp	False	False	False	True	1
+unk404.2065p0n6.4rbbiocrustexp				0	0		Unk_404.2065p_0n_6.4_RB_BiocrustExp	False	False	False	True	1
+unk415.2047p0n4.2rbbiocrustexp				0	0		Unk_415.2047p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk419.1691p0n4.4rbbiocrustexp				0	0		Unk_419.1691p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk428.2144p0n20.5rbbiocrustexp				0	0		Unk_428.2144p_0n_20.5_RB_BiocrustExp	False	False	False	True	1
+unk433.1685p0n10.3rbbiocrustexp				0	0		Unk_433.1685p_0n_10.3_RB_BiocrustExp	False	False	False	True	1
+unk457.163p0n25.2rbbiocrustexp				0	0		Unk_457.163p_0n_25.2_RB_BiocrustExp	False	False	False	True	1
+unk459.1863p0n21.8rbbiocrustexp				0	0		Unk_459.1863p_0n_21.8_RB_BiocrustExp	False	False	False	True	1
+unk462.2196p0n21.3rbbiocrustexp				0	0		Unk_462.2196p_0n_21.3_RB_BiocrustExp	False	False	False	True	1
+unk466.5358p0n8.2rbbiocrustexp				0	0		Unk_466.5358p_0n_8.2_RB_BiocrustExp	False	False	False	True	1
+unk480.3311p0n22.4rbbiocrustexp				0	0		Unk_480.3311p_0n_22.4_RB_BiocrustExp	False	False	False	True	1
+unk484.2498p0n14.8rbbiocrustexp				0	0		Unk_484.2498p_0n_14.8_RB_BiocrustExp	False	False	False	True	1
+unk484.2587p0n10.3rbbiocrustexp				0	0		Unk_484.2587p_0n_10.3_RB_BiocrustExp	False	False	False	True	1
+unk494.3482p0n22.8rbbiocrustexp				0	0		Unk_494.3482p_0n_22.8_RB_BiocrustExp	False	False	False	True	1
+unk496.3518p0n7.9rbbiocrustexp				0	0		Unk_496.3518p_0n_7.9_RB_BiocrustExp	False	False	False	True	1
+unk500.3954p0n6.8rbbiocrustexp				0	0		Unk_500.3954p_0n_6.8_RB_BiocrustExp	False	False	False	True	1
+unk504.3179p0n5.8rbbiocrustexp				0	0		Unk_504.3179p_0n_5.8_RB_BiocrustExp	False	False	False	True	1
+unk504.3268p485.2825n3.2rbbiocrustexp				0	0		Unk_504.3268p_485.2825n_3.2_RB_BiocrustExp	False	False	False	True	1
+unk507.2632p0n30.1rbbiocrustexp				0	0		Unk_507.2632p_0n_30.1_RB_BiocrustExp	False	False	False	True	1
+unk508.5461p0n4.1rbbiocrustexp				0	0		Unk_508.5461p_0n_4.1_RB_BiocrustExp	False	False	False	True	1
+unk513.1904p0n23.1rbbiocrustexp				0	0		Unk_513.1904p_0n_23.1_RB_BiocrustExp	False	False	False	True	1
+unk514.2451p0n4.6rbbiocrustexp				0	0		Unk_514.2451p_0n_4.6_RB_BiocrustExp	False	False	False	True	1
+unk522.5901p0n4.9rbbiocrustexp				0	0		Unk_522.5901p_0n_4.9_RB_BiocrustExp	False	False	False	True	1
+unk522.6061p0n8.1rbbiocrustexp				0	0		Unk_522.6061p_0n_8.1_RB_BiocrustExp	False	False	False	True	1
+unk531.2464p0n13.2rbbiocrustexp				0	0		Unk_531.2464p_0n_13.2_RB_BiocrustExp	False	False	False	True	1
+unk534.3642p0n7.9rbbiocrustexp				0	0		Unk_534.3642p_0n_7.9_RB_BiocrustExp	False	False	False	True	1
+unk536.5688p0n4.1rbbiocrustexp				0	0		Unk_536.5688p_0n_4.1_RB_BiocrustExp	False	False	False	True	1
+unk536.5839p0n4rbbiocrustexp				0	0		Unk_536.5839p_0n_4_RB_BiocrustExp	False	False	False	True	1
+unk536.6112p0n8.2rbbiocrustexp				0	0		Unk_536.6112p_0n_8.2_RB_BiocrustExp	False	False	False	True	1
+unk537.5349p0n4.3rbbiocrustexp				0	0		Unk_537.5349p_0n_4.3_RB_BiocrustExp	False	False	False	True	1
+unk538.3202p0n14.2rbbiocrustexp				0	0		Unk_538.3202p_0n_14.2_RB_BiocrustExp	False	False	False	True	1
+unk568.2998p0n4.2rbbiocrustexp				0	0		Unk_568.2998p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk570.3509p0n9rbbiocrustexp				0	0		Unk_570.3509p_0n_9_RB_BiocrustExp	False	False	False	True	1
+unk570.5125p0n3.9rbbiocrustexp				0	0		Unk_570.5125p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk574.3239p0n7.9rbbiocrustexp				0	0		Unk_574.3239p_0n_7.9_RB_BiocrustExp	False	False	False	True	1
+unk584.5314p0n3.9rbbiocrustexp				0	0		Unk_584.5314p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk586.5381p0n3.9rbbiocrustexp				0	0		Unk_586.5381p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk588.2905p0n15.2rbbiocrustexp				0	0		Unk_588.2905p_0n_15.2_RB_BiocrustExp	False	False	False	True	1
+unk598.3841p0n8.1rbbiocrustexp				0	0		Unk_598.3841p_0n_8.1_RB_BiocrustExp	False	False	False	True	1
+unk603.2775p0n15.3rbbiocrustexp				0	0		Unk_603.2775p_0n_15.3_RB_BiocrustExp	False	False	False	True	1
+unk610.1869p0n3.9rbbiocrustexp				0	0		Unk_610.1869p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk625.2631p0n15.4rbbiocrustexp				0	0		Unk_625.2631p_0n_15.4_RB_BiocrustExp	False	False	False	True	1
+unk628.5539p0n3.9rbbiocrustexp				0	0		Unk_628.5539p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk638.2512p0n21.5rbbiocrustexp				0	0		Unk_638.2512p_0n_21.5_RB_BiocrustExp	False	False	False	True	1
+unk640.3337p0n4.2rbbiocrustexp				0	0		Unk_640.3337p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk653.3015p0n3.9rbbiocrustexp				0	0		Unk_653.3015p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk654.3343p0n3.9rbbiocrustexp				0	0		Unk_654.3343p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk656.5807p0n4rbbiocrustexp				0	0		Unk_656.5807p_0n_4_RB_BiocrustExp	False	False	False	True	1
+unk658.4025p0n12.9rbbiocrustexp				0	0		Unk_658.4025p_0n_12.9_RB_BiocrustExp	False	False	False	True	1
+unk662.4849p0n8.6rbbiocrustexp				0	0		Unk_662.4849p_0n_8.6_RB_BiocrustExp	False	False	False	True	1
+unk664.4641p0n4.5rbbiocrustexp				0	0		Unk_664.4641p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk665.3125p0n28.1rbbiocrustexp				0	0		Unk_665.3125p_0n_28.1_RB_BiocrustExp	False	False	False	True	1
+unk666.3639p0n13.4rbbiocrustexp				0	0		Unk_666.3639p_0n_13.4_RB_BiocrustExp	False	False	False	True	1
+unk668.3243p0n13.5rbbiocrustexp				0	0		Unk_668.3243p_0n_13.5_RB_BiocrustExp	False	False	False	True	1
+unk670.4018p0n13.2rbbiocrustexp				0	0		Unk_670.4018p_0n_13.2_RB_BiocrustExp	False	False	False	True	1
+unk679.2675p677.258n23.5rbbiocrustexp				0	0		Unk_679.2675p_677.258n_23.5_RB_BiocrustExp	False	False	False	True	1
+unk680.4921p0n3.9rbbiocrustexp				0	0		Unk_680.4921p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk684.2053p0n3.9rbbiocrustexp				0	0		Unk_684.2053p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk686.4334p0n12.9rbbiocrustexp				0	0		Unk_686.4334p_0n_12.9_RB_BiocrustExp	False	False	False	True	1
+unk692.4242p0n4.6rbbiocrustexp				0	0		Unk_692.4242p_0n_4.6_RB_BiocrustExp	False	False	False	True	1
+unk692.4286p0n8rbbiocrustexp				0	0		Unk_692.4286p_0n_8_RB_BiocrustExp	False	False	False	True	1
+unk694.2936p692.2762n16.4rbbiocrustexp				0	0		Unk_694.2936p_692.2762n_16.4_RB_BiocrustExp	False	False	False	True	1
+unk694.3979p0n13.3rbbiocrustexp				0	0		Unk_694.3979p_0n_13.3_RB_BiocrustExp	False	False	False	True	1
+unk696.4193p0n13.1rbbiocrustexp				0	0		Unk_696.4193p_0n_13.1_RB_BiocrustExp	False	False	False	True	1
+unk717.3086p0n27.1rbbiocrustexp				0	0		Unk_717.3086p_0n_27.1_RB_BiocrustExp	False	False	False	True	1
+unk720.5592p0n7.3rbbiocrustexp				0	0		Unk_720.5592p_0n_7.3_RB_BiocrustExp	False	False	False	True	1
+unk720.5623p0n4.5rbbiocrustexp				0	0		Unk_720.5623p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk724.5112p0n4.2rbbiocrustexp				0	0		Unk_724.5112p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk728.1891p726.1732n28.7rbbiocrustexp				0	0		Unk_728.1891p_726.1732n_28.7_RB_BiocrustExp	False	False	False	True	1
+unk728.4062p0n14.5rbbiocrustexp				0	0		Unk_728.4062p_0n_14.5_RB_BiocrustExp	False	False	False	True	1
+unk728.4241p0n4.5rbbiocrustexp				0	0		Unk_728.4241p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk729.3423p0n28rbbiocrustexp				0	0		Unk_729.3423p_0n_28_RB_BiocrustExp	False	False	False	True	1
+unk732.5578p0n7.3rbbiocrustexp				0	0		Unk_732.5578p_0n_7.3_RB_BiocrustExp	False	False	False	True	1
+unk732.566p0n4.4rbbiocrustexp				0	0		Unk_732.566p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk742.425p0n12.1rbbiocrustexp				0	0		Unk_742.425p_0n_12.1_RB_BiocrustExp	False	False	False	True	1
+unk744.425p0n13rbbiocrustexp				0	0		Unk_744.425p_0n_13_RB_BiocrustExp	False	False	False	True	1
+unk746.4142p0n17.1rbbiocrustexp				0	0		Unk_746.4142p_0n_17.1_RB_BiocrustExp	False	False	False	True	1
+unk746.5806p0n4.4rbbiocrustexp				0	0		Unk_746.5806p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk746.5825p0n7.2rbbiocrustexp				0	0		Unk_746.5825p_0n_7.2_RB_BiocrustExp	False	False	False	True	1
+unk758.5627p0n13.4rbbiocrustexp				0	0		Unk_758.5627p_0n_13.4_RB_BiocrustExp	False	False	False	True	1
+unk760.5834p0n13.5rbbiocrustexp				0	0		Unk_760.5834p_0n_13.5_RB_BiocrustExp	False	False	False	True	1
+unk764.5344p0n7.4rbbiocrustexp				0	0		Unk_764.5344p_0n_7.4_RB_BiocrustExp	False	False	False	True	1
+unk764.5402p0n4.3rbbiocrustexp				0	0		Unk_764.5402p_0n_4.3_RB_BiocrustExp	False	False	False	True	1
+unk766.5415p0n4.3rbbiocrustexp				0	0		Unk_766.5415p_0n_4.3_RB_BiocrustExp	False	False	False	True	1
+unk766.5446p0n7.3rbbiocrustexp				0	0		Unk_766.5446p_0n_7.3_RB_BiocrustExp	False	False	False	True	1
+unk768.5573p0n4.2rbbiocrustexp				0	0		Unk_768.5573p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk768.5613p0n7.3rbbiocrustexp				0	0		Unk_768.5613p_0n_7.3_RB_BiocrustExp	False	False	False	True	1
+unk772.5796p0n13.3rbbiocrustexp				0	0		Unk_772.5796p_0n_13.3_RB_BiocrustExp	False	False	False	True	1
+unk774.252p0n20.8rbbiocrustexp				0	0		Unk_774.252p_0n_20.8_RB_BiocrustExp	False	False	False	True	1
+unk784.553p0n4.4rbbiocrustexp				0	0		Unk_784.553p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk784.5591p0n7.9rbbiocrustexp				0	0		Unk_784.5591p_0n_7.9_RB_BiocrustExp	False	False	False	True	1
+unk786.5917p0n13.4rbbiocrustexp				0	0		Unk_786.5917p_0n_13.4_RB_BiocrustExp	False	False	False	True	1
+unk794.5718p0n7.2rbbiocrustexp				0	0		Unk_794.5718p_0n_7.2_RB_BiocrustExp	False	False	False	True	1
+unk796.539p0n4.4rbbiocrustexp				0	0		Unk_796.539p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk796.5885p0n6.9rbbiocrustexp				0	0		Unk_796.5885p_0n_6.9_RB_BiocrustExp	False	False	False	True	1
+unk798.5406p0n7.9rbbiocrustexp				0	0		Unk_798.5406p_0n_7.9_RB_BiocrustExp	False	False	False	True	1
+unk800.5295p0n8rbbiocrustexp				0	0		Unk_800.5295p_0n_8_RB_BiocrustExp	False	False	False	True	1
+unk800.5545p0n4.5rbbiocrustexp				0	0		Unk_800.5545p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk800.6217p0n13.4rbbiocrustexp				0	0		Unk_800.6217p_0n_13.4_RB_BiocrustExp	False	False	False	True	1
+unk802.5722p0n4.5rbbiocrustexp				0	0		Unk_802.5722p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk804.5792p0n4.5rbbiocrustexp				0	0		Unk_804.5792p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk804.5803p0n4.5rbbiocrustexp				0	0		Unk_804.5803p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk810.5453p0n4rbbiocrustexp				0	0		Unk_810.5453p_0n_4_RB_BiocrustExp	False	False	False	True	1
+unk812.4166p810.3997n22.8rbbiocrustexp				0	0		Unk_812.4166p_810.3997n_22.8_RB_BiocrustExp	False	False	False	True	1
+unk812.558p0n4rbbiocrustexp				0	0		Unk_812.558p_0n_4_RB_BiocrustExp	False	False	False	True	1
+unk816.55p0n4.5rbbiocrustexp				0	0		Unk_816.55p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk824.7706p0n5.3rbbiocrustexp				0	0		Unk_824.7706p_0n_5.3_RB_BiocrustExp	False	False	False	True	1
+unk826.5135p0n8.1rbbiocrustexp				0	0		Unk_826.5135p_0n_8.1_RB_BiocrustExp	False	False	False	True	1
+unk834.5371p0n3.9rbbiocrustexp				0	0		Unk_834.5371p_0n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk836.5569p817.5176n3.9rbbiocrustexp				0	0		Unk_836.5569p_817.5176n_3.9_RB_BiocrustExp	False	False	False	True	1
+unk836.6093p0n4.5rbbiocrustexp				0	0		Unk_836.6093p_0n_4.5_RB_BiocrustExp	False	False	False	True	1
+unk85.0299p0n14.3rbbiocrustexp				0	0		Unk_85.0299p_0n_14.3_RB_BiocrustExp	False	False	False	True	1
+unk850.5403p0n4rbbiocrustexp				0	0		Unk_850.5403p_0n_4_RB_BiocrustExp	False	False	False	True	1
+unk854.4743p0n11.9rbbiocrustexp				0	0		Unk_854.4743p_0n_11.9_RB_BiocrustExp	False	False	False	True	1
+unk855.4774p0n11.7rbbiocrustexp				0	0		Unk_855.4774p_0n_11.7_RB_BiocrustExp	False	False	False	True	1
+unk86.0608p0n10.5rbbiocrustexp				0	0		Unk_86.0608p_0n_10.5_RB_BiocrustExp	False	False	False	True	1
+unk866.5347p0n4.4rbbiocrustexp				0	0		Unk_866.5347p_0n_4.4_RB_BiocrustExp	False	False	False	True	1
+unk871.5782p0n4.2rbbiocrustexp				0	0		Unk_871.5782p_0n_4.2_RB_BiocrustExp	False	False	False	True	1
+unk896.6298p0n4.7rbbiocrustexp				0	0		Unk_896.6298p_0n_4.7_RB_BiocrustExp	False	False	False	True	1
+unk910.6462p0n4.7rbbiocrustexp				0	0		Unk_910.6462p_0n_4.7_RB_BiocrustExp	False	False	False	True	1
+unk910.6489p0n12.7rbbiocrustexp				0	0		Unk_910.6489p_0n_12.7_RB_BiocrustExp	False	False	False	True	1
+unk928.6022p0n8rbbiocrustexp				0	0		Unk_928.6022p_0n_8_RB_BiocrustExp	False	False	False	True	1
+unk930.6262p0n4.6rbbiocrustexp				0	0		Unk_930.6262p_0n_4.6_RB_BiocrustExp	False	False	False	True	1
+unk962.602p0n8.3rbbiocrustexp				0	0		Unk_962.602p_0n_8.3_RB_BiocrustExp	False	False	False	True	1
+unk976.587p0n8.5rbbiocrustexp				0	0		Unk_976.587p_0n_8.5_RB_BiocrustExp	False	False	False	True	1
+unk978.5983p0n8.6rbbiocrustexp				0	0		Unk_978.5983p_0n_8.6_RB_BiocrustExp	False	False	False	True	1
+unk994.5942p0n8.4rbbiocrustexp				0	0		Unk_994.5942p_0n_8.4_RB_BiocrustExp	False	False	False	True	1
+unk998.6592p0n8.2rbbiocrustexp				0	0		Unk_998.6592p_0n_8.2_RB_BiocrustExp	False	False	False	True	1
+unk998.6661p0n10.6rbbiocrustexp				0	0		Unk_998.6661p_0n_10.6_RB_BiocrustExp	False	False	False	True	1
+uranylacetate			Uranyl acetate	9	2			False	True	False	False	1
+urate				0	0		urate	False	False	False	True	1
+uridine5'monophosphate				0	0		uridine-5'-monophosphate	False	False	False	True	1
+urocanicacid				0	0		Urocanic acid	False	False	False	True	1
+valerate				0	0	Valerate		False	False	True	False	1
+valericacid			Valeric acid	2	1			False	True	False	False	1
+valglu				0	0		Val-Glu	False	False	False	True	1
+vancomycinhydrochloride			Vancomycin Hydrochloride Hydrate	43	18			False	True	False	False	1
+vancomycinhydrochloridefromstreptomycesorientalis			Vancomycin Hydrochloride from Streptomyces orientalis	5	1			False	True	False	False	1
+vanillicacid			Vanillic Acid	2	1			False	True	False	False	1
+vanillin			Vanillin	27	14			False	True	False	False	1
+vogelsfungalmedia			Vogels_fungal_media	6	2			False	True	False	False	1
+vogelsfungalmediafiltered			Vogels_fungal_media, filtered	18	4			False	True	False	False	1
+xanthine				0	0		Xanthine	False	False	False	True	1
+xanthosine				0	0		xanthosine	False	False	False	True	1
+xylan				0	0	Xylan		False	False	True	False	1
+xylose				0	0	Xylose		False	False	True	False	1
+zincpyrithione			Zinc Pyrithione	14	1			False	True	False	False	1
+zincsulfatehepta			Zinc sulfate heptahydrate	35	18			False	True	False	False	1

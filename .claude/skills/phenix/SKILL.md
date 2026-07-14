@@ -50,7 +50,7 @@ Read these as needed for parameter details and troubleshooting:
 
 ## Preconditions
 
-1. **Phenix installed** on NERSC — install with `data/structural_biology/scripts/install_phenix.sh`, then:
+1. **Phenix installed** on NERSC — install with the helper at `data/structural_biology/scripts/`, file name `install_phenix.sh`, then:
    ```bash
    module load conda
    conda activate phenix
@@ -73,24 +73,26 @@ phenix.version
 
 ## Pipeline Scripts
 
-The pipeline orchestrator at `data/structural_biology/scripts/run_pipeline.py` handles
+The pipeline orchestrator (`run_pipeline.py` under `data/structural_biology/scripts/`) handles
 project creation, SLURM job submission, output parsing, and provenance logging:
 
 ```bash
 module load python
-python3 data/structural_biology/scripts/run_pipeline.py retrieve --accession P0A6Y8
-python3 data/structural_biology/scripts/run_pipeline.py validate --model model.pdb
-python3 data/structural_biology/scripts/run_pipeline.py xray --data data.mtz --seq seq.fa --project-id struct_YYYYMMDD_name
-python3 data/structural_biology/scripts/run_pipeline.py refine --project-id struct_YYYYMMDD_name
-python3 data/structural_biology/scripts/run_pipeline.py process --project-id struct_YYYYMMDD_name --cycle 3
-python3 data/structural_biology/scripts/run_pipeline.py accept --project-id struct_YYYYMMDD_name --model rebuilt.pdb
-python3 data/structural_biology/scripts/run_pipeline.py converge --project-id struct_YYYYMMDD_name
-python3 data/structural_biology/scripts/run_pipeline.py finalize --project-id struct_YYYYMMDD_name
-python3 data/structural_biology/scripts/run_pipeline.py batch-validate --accessions P0A6Y8 Q9Y6K9 --output-dir results/
-python3 data/structural_biology/scripts/run_pipeline.py advise --resolution 2.5 --method xray
-python3 data/structural_biology/scripts/run_pipeline.py figures --project-id struct_YYYYMMDD_name
-python3 data/structural_biology/scripts/run_pipeline.py dashboard
-python3 data/structural_biology/scripts/run_pipeline.py status --project-id struct_YYYYMMDD_name
+PIPELINE_DIR=data/structural_biology/scripts
+PIPELINE="$PIPELINE_DIR/run_pipeline.py"
+python3 "$PIPELINE" retrieve --accession P0A6Y8
+python3 "$PIPELINE" validate --model model.pdb
+python3 "$PIPELINE" xray --data data.mtz --seq seq.fa --project-id struct_YYYYMMDD_name
+python3 "$PIPELINE" refine --project-id struct_YYYYMMDD_name
+python3 "$PIPELINE" process --project-id struct_YYYYMMDD_name --cycle 3
+python3 "$PIPELINE" accept --project-id struct_YYYYMMDD_name --model rebuilt.pdb
+python3 "$PIPELINE" converge --project-id struct_YYYYMMDD_name
+python3 "$PIPELINE" finalize --project-id struct_YYYYMMDD_name
+python3 "$PIPELINE" batch-validate --accessions P0A6Y8 Q9Y6K9 --output-dir results/
+python3 "$PIPELINE" advise --resolution 2.5 --method xray
+python3 "$PIPELINE" figures --project-id struct_YYYYMMDD_name
+python3 "$PIPELINE" dashboard
+python3 "$PIPELINE" status --project-id struct_YYYYMMDD_name
 ```
 
 ### Refinement Loop Workflow
@@ -129,7 +131,7 @@ s3a://cdm-lake/tenant-general-warehouse/kescience/structural-biology/
 
 The agent tracks project state via:
 1. **MinIO directory structure** — what files exist tells us what step we're at
-2. **Delta Lake `refinement_cycles`** — queryable history of all refinement iterations
+2. **Iceberg `refinement_cycles`** — queryable history of all refinement iterations
 3. **Local project notes** — `project_notes.json` in the project directory
 
 ## Compute Strategy
@@ -170,9 +172,9 @@ module load phenix
 {phenix_command}
 ```
 
-## Delta Lake Tables
+## Iceberg Tables
 
-Results are stored in `kescience_structural_biology` — see [docs/schemas/structural_biology.md](../../../docs/schemas/structural_biology.md) for the full schema.
+Results are stored in `kescience_structural_biology` — use `berdl_notebook_utils.get_table_schema(database="kescience_structural_biology", table=..., detailed=True, return_json=False)` for the live schema.
 
 | Table | Purpose |
 |-------|---------|
@@ -210,7 +212,7 @@ Every agent action is logged as a JSON record in the project's `provenance.jsonl
 6. **Run automated steps** and parse outputs carefully
 7. **For human-in-the-loop steps**: generate visualization scripts, highlight problem regions, and wait for the user
 8. **Log provenance** for every action taken
-9. **Store results** — upload to MinIO, update Delta Lake tables
+9. **Store results** — upload to MinIO, update Iceberg tables
 10. **Update memory** — if a new pattern or lesson is learned, update `docs/structural_biology_memory.md`
 
 ### Decision Thresholds
@@ -237,4 +239,4 @@ Use these defaults unless the user specifies otherwise:
 
 ## Pitfall Detection
 
-When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to the active project's `projects/<id>/memories/pitfalls.md`.

@@ -1,0 +1,164 @@
+{
+  "phase": "4",
+  "deliverable": "P4-D1 NB24b",
+  "purpose": "BacDive phenotype anchoring (NB24 column fix)",
+  "n_species_physiology": 6066,
+  "n_species_metabolite": 6066,
+  "n_species_enzyme": 6066,
+  "focal_clade_summaries": {
+    "Mycobacteriaceae": {
+      "physiology_gram_stain": {
+        "positive": 171,
+        "negative": 1
+      },
+      "physiology_cell_shape": {
+        "rod-shaped": 194,
+        "ovoid-shaped": 7,
+        "coccus-shaped": 7,
+        "oval-shaped": 5,
+        "pleomorphic-shaped": 3,
+        "flask-shaped": 1,
+        "other": 1,
+        "filament-shaped": 1
+      },
+      "physiology_motility": {
+        "no": 195,
+        "yes": 1
+      },
+      "physiology_oxygen_tolerance": {
+        "aerobe": 96,
+        "obligate aerobe": 73,
+        "microaerophile": 41,
+        "facultative anaerobe": 24,
+        "anaerobe": 1
+      },
+      "metabolite_top_compounds": {
+        "nitrate": 552,
+        "esculin": 384,
+        "sucrose": 351,
+        "indole": 283,
+        "maltose": 279,
+        "D-glucose": 276,
+        "D-mannitol": 262,
+        "lactose": 254,
+        "urea": 251,
+        "gelatin": 251,
+        "glycogen": 241,
+        "D-xylose": 226,
+        "nitrite": 200,
+        "D-ribose": 197,
+        "raffinose": 177
+      },
+      "enzyme_top_ecs": {
+        "3.2.1.23": 613,
+        "3.5.1.5": 463,
+        "3.2.1.31": 412,
+        "3.2.1.52": 412,
+        "3.2.1.21": 396,
+        "3.2.1.20": 372,
+        "3.1.3.1": 361,
+        "1.11.1.6": 317,
+        "3.2.1.22": 256,
+        "3.2.1.51": 249
+      },
+      "n_species_physiology": 318,
+      "n_species_metabolite": 318,
+      "n_species_enzyme": 318
+    },
+    "Cyanobacteriia": {
+      "metabolite_top_compounds": {},
+      "enzyme_top_ecs": {},
+      "n_species_physiology": 4,
+      "n_species_metabolite": 4,
+      "n_species_enzyme": 4
+    },
+    "Bacteroidota": {
+      "physiology_gram_stain": {
+        "negative": 339,
+        "positive": 4
+      },
+      "physiology_cell_shape": {
+        "rod-shaped": 344,
+        "ovoid-shaped": 4,
+        "coccus-shaped": 3,
+        "pleomorphic-shaped": 3,
+        "vibrio-shaped": 1,
+        "ring-shaped": 1,
+        "other": 1
+      },
+      "physiology_motility": {
+        "no": 269,
+        "yes": 75
+      },
+      "physiology_oxygen_tolerance": {
+        "aerobe": 186,
+        "anaerobe": 127,
+        "obligate aerobe": 32,
+        "facultative anaerobe": 22,
+        "microaerophile": 7,
+        "obligate anaerobe": 5,
+        "facultative aerobe": 3
+      },
+      "metabolite_top_compounds": {
+        "indole": 403,
+        "nitrate": 396,
+        "esculin": 297,
+        "maltose": 291,
+        "raffinose": 284,
+        "sucrose": 253,
+        "D-mannose": 246,
+        "urea": 220,
+        "lactose": 215,
+        "cellobiose": 204,
+        "glucose": 186,
+        "tryptophan": 181,
+        "trehalose": 163,
+        "D-glucose": 162,
+        "nitrite": 157
+      },
+      "enzyme_top_ecs": {
+        "3.4.11.1": 415,
+        "3.1.3.1": 404,
+        "3.2.1.23": 391,
+        "3.5.1.5": 385,
+        "1.11.1.6": 354,
+        "3.2.1.22": 340,
+        "3.2.1.21": 339,
+        "3.2.1.52": 299,
+        "3.2.1.20": 295,
+        "3.2.1.31": 293
+      },
+      "n_species_physiology": 577,
+      "n_species_metabolite": 577,
+      "n_species_enzyme": 577
+    }
+  },
+  "oxygen_tolerance_compare": {
+    "Mycobacteriaceae": {
+      "aerobe": 0.4085106382978723,
+      "obligate aerobe": 0.31063829787234043,
+      "microaerophile": 0.17446808510638298,
+      "facultative anaerobe": 0.10212765957446808,
+      "anaerobe": 0.00425531914893617
+    },
+    "Cyanobacteriia": {},
+    "Bacteroidota": {
+      "aerobe": 0.4869109947643979,
+      "anaerobe": 0.3324607329842932,
+      "obligate aerobe": 0.08376963350785341,
+      "facultative anaerobe": 0.05759162303664921,
+      "microaerophile": 0.01832460732984293
+    },
+    "atlas": {
+      "aerobe": 0.4069459172852598,
+      "anaerobe": 0.2200424178154825,
+      "facultative anaerobe": 0.12380699893955462,
+      "obligate aerobe": 0.11903499469777307,
+      "microaerophile": 0.11002120890774125,
+      "obligate anaerobe": 0.012195121951219513,
+      "facultative aerobe": 0.007423117709437964,
+      "microaerotolerant": 0.0002651113467656416
+    }
+  },
+  "completed_utc": "2026-04-28T15:00:21Z"
+}

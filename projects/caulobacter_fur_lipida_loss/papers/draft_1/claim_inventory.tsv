@@ -1,0 +1,107 @@
+claim_id	claim_text	source_notebook	source_cell	figure_or_table	effect_size_present	ci_present	pvalue_present	notes
+C-001	Spearman rho = 0.315, p = 2.08e-03 for 4584-vs-4580 vs Leaden 2018 delta-fur logFC over 93 Leaden delta-fur DEGs	01_leaden2018_fur_signature.ipynb	5	Figure NB01_fur_signature_scatter.png	yes	no	yes	Effect size is rho; p-value from spearmanr
+C-002	71% sign concordance between 4584-vs-4580 and Leaden delta-fur DEGs	01_leaden2018_fur_signature.ipynb	5		no	no	no	Proportion; no formal test reported
+C-003	53 of 93 Leaden delta-fur DEGs are buffered in our data (logFC ~0 in 4584-vs-4580 despite -5 to -9 in Leaden)	01_leaden2018_fur_signature.ipynb	5		no	no	no	Count; buffered set dominated by cbb3/cyd/fix-NOPQ
+C-004	93 Leaden delta-fur DEGs used as reference set	01_leaden2018_fur_signature.ipynb	5		no	no	no	Count from Leaden 2018 Table 2
+C-005	HutA at +10.5 in our 4584-vs-4580 vs +2.2 in Leaden delta-fur	01_leaden2018_fur_signature.ipynb	4	Figure NB01_fur_signature_scatter.png	yes	no	no	Individual gene logFC values; extreme top-right point
+C-006	198 experiments in Caulobacter RB-TnSeq fitness compendium (orgId=Caulo)	02_caulo_fitness_ranking.ipynb	5		no	no	no	Total experiment count from kescience_fitnessbrowser
+C-007	0 iron-limitation experiments in Caulobacter fitness compendium	02_caulo_fitness_ranking.ipynb	5		no	no	no	H2 iron-axis preflight FAIL; descoped
+C-008	22 envelope-stress experiments in the compendium	02_caulo_fitness_ranking.ipynb	5		no	no	no	Subset used for H2 envelope-axis test
+C-009	95 stress experiments (envelope-, drug-, metal-related stresses)	02_caulo_fitness_ranking.ipynb	5		no	no	no	Broad stress category count
+C-010	46 nitrogen-source experiments	02_caulo_fitness_ranking.ipynb	5		no	no	no	Experiment classification
+C-011	42 carbon-source experiments	02_caulo_fitness_ranking.ipynb	5		no	no	no	Experiment classification
+C-012	10 PYE control experiments	02_caulo_fitness_ranking.ipynb	5		no	no	no	Experiment classification
+C-013	5 other experiments	02_caulo_fitness_ranking.ipynb	5		no	no	no	Experiment classification remainder
+C-014	Genome background phenotype-bearing rate 33.25% (n=3943 Caulobacter genes; K=1311 phenotype-bearing; threshold |t|>4 in >=2 envelope-stress experiments)	02b_h2_hypergeometric_verdict.ipynb	1		no	no	no	Background rate for hypergeometric enrichment
+C-015	Path A (concordant_strong): n=32, 17 phenotype-bearing, 53.1%, fold=1.60x, hypergeometric p=0.016	02b_h2_hypergeometric_verdict.ipynb	1	Table (Finding 2)	yes	no	yes	Marginally enriched; fold enrichment is effect size
+C-016	Path B (SspB-buffered): n=26, 9 phenotype-bearing, 34.6%, fold=1.04x, hypergeometric p=0.515	02b_h2_hypergeometric_verdict.ipynb	1	Table (Finding 2)	yes	no	yes	Indistinguishable from background
+C-017	ChvT (CCNA_03108) |t| = 43.7 under envelope stress	02_caulo_fitness_ranking.ipynb	9		yes	no	no	Top fitness hit in Path A; t-statistic is effect size proxy
+C-018	Fur-derepressed TBDTs (CCNA_02910, 00210, 02048, 00028) |t| 9-28 under envelope stress	02_caulo_fitness_ranking.ipynb	9		yes	no	no	Range of fitness t-statistics for TBDT subset
+C-019	488 ChvI-induced genes in the tested universe (union of Stein 2021 + Quintero-Yanes 2022)	03_chvi_phase_partition_sigU.ipynb	3		no	no	no	Reference set size for H1 partition test
+C-020	unique-to-early ChvI cohort: 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584	03_chvi_phase_partition_sigU.ipynb	4		no	no	no	Phase partition count; H1 threshold >=10 per cohort
+C-021	both-phases ChvI cohort: 10 genes induced in both contrasts	03_chvi_phase_partition_sigU.ipynb	4		no	no	no	Cooperative continuation subset
+C-022	late-consequence ChvI cohort: 49 genes induced only in 4599-vs-4584	03_chvi_phase_partition_sigU.ipynb	4		no	no	no	Phase partition count
+C-023	Total ChvI-engaged genes: 79 (20 + 10 + 49 disjoint partition)	03_chvi_phase_partition_sigU.ipynb	4		no	no	no	Sum of disjoint partition
+C-024	Lasso peptide cyclase CCNA_02794 logFC +8.6 in early cohort	03_chvi_phase_partition_sigU.ipynb	5		yes	no	no	Individual gene logFC; unique-to-early
+C-025	ApbE iron-sulfur cluster repair protein logFC +3.8 in early cohort	03_chvi_phase_partition_sigU.ipynb	5		yes	no	no	Individual gene logFC; unique-to-early
+C-026	imuB SOS DNA polymerase logFC +1.5 in early cohort	03_chvi_phase_partition_sigU.ipynb	5		yes	no	no	Individual gene logFC; unique-to-early
+C-027	ChvI (CCNA_00237) logFC +1.45 in 4584-vs-4580; sits in the both-phases set	03_chvi_phase_partition_sigU.ipynb	5		yes	no	no	Autoregulation evidence; both-phases
+C-028	SIMPL family CCNA_02378 logFC +1.9 (4584-vs-4580) -> +3.9 (4599-vs-4584)	03_chvi_phase_partition_sigU.ipynb	5		yes	no	no	Both-phases gene; increasing induction
+C-029	LolA-family CCNA_03820 logFC +2.89 in late cohort (4599-vs-4584)	03_chvi_phase_partition_sigU.ipynb	5		yes	no	no	Late-consequence gene; OM lipoprotein carrier
+C-030	Pal-like CCNA_00784 logFC +2.08 in late cohort	03_chvi_phase_partition_sigU.ipynb	5		yes	no	no	Late-consequence gene; Tol-Pal envelope-integrity
+C-031	24.5% envelope/transport/regulator enrichment in late SigU cohort; below 50% relaxed criterion	03_chvi_phase_partition_sigU.ipynb	10		no	no	no	SigU coherence check below threshold
+C-032	Fisher exact test p=0.243 for envelope/transport/regulator enrichment in late vs unique-to-early cohorts	03_chvi_phase_partition_sigU.ipynb	10		yes	no	yes	Odds ratio=1.88; not significant
+C-033	6.7% regulator/TCS theme in unique-to-early cohort (20 genes)	03_chvi_phase_partition_sigU.ipynb	6		no	no	no	Theme classification proportion
+C-034	10.2% envelope/OM theme in late cohort (49 genes)	03_chvi_phase_partition_sigU.ipynb	6		no	no	no	Theme classification proportion
+C-035	12.2% TBDT theme in late cohort (49 genes)	03_chvi_phase_partition_sigU.ipynb	6		no	no	no	Theme classification proportion
+C-036	0% lipid/membrane and PG/cell wall themes in early cohort	03_chvi_phase_partition_sigU.ipynb	6		no	no	no	Theme classification proportion
+C-037	CtpA / CCNA_03113 logFC +0.58, pvalue=0.048, FDR=0.109 in 4599-vs-4584 (transcript)	04_sphingolipid_lpt_panel.ipynb	5	Table (Finding 4, sub-claims)	yes	no	yes	REJECTED at pre-registered bar; FDR fails 0.05 threshold
+C-038	CtpA NOT detected in OM proteome	04_sphingolipid_lpt_panel.ipynb	6	Table (Finding 4, sub-claims)	no	no	no	Protein absence; contributes to REJECTED verdict
+C-039	0/6 sphingolipid biosynthesis genes significantly UP	04_sphingolipid_lpt_panel.ipynb	3	Table (Finding 4, sub-claims)	no	no	no	Constitutive expression; SUPPORTED strongly
+C-040	spt (CCNA_01220) DOWN logFC -0.64, FDR 0.002	04_sphingolipid_lpt_panel.ipynb	3	Table (Finding 4, sub-claims)	yes	no	yes	FDR via edgeR; biosynthesis mildly down
+C-041	sphk (CCNA_01218) DOWN logFC -0.40, FDR 0.02	04_sphingolipid_lpt_panel.ipynb	3	Table (Finding 4, sub-claims)	yes	no	yes	FDR via edgeR; biosynthesis mildly down
+C-042	0 canonical Lpt components DOWN at transcript level (FDR<0.05)	04_sphingolipid_lpt_panel.ipynb	3	Table (Finding 4, sub-claims)	no	no	no	Lpt maintained at transcript; SUPPORTED
+C-043	MsbA-like CCNA_00307 logFC +0.89, FDR 0.01 (transcript, 4599-vs-4584)	04_sphingolipid_lpt_panel.ipynb	3	Table (Finding 4, sub-claims); Figure NB04_lpt_apparatus_heatmap.png	yes	no	yes	Lpt component upregulated; consistent with Uchendu 2026
+C-044	LptC-related CCNA_03716 logFC +0.56, FDR 0.005 (transcript, 4599-vs-4584)	04_sphingolipid_lpt_panel.ipynb	3	Table (Finding 4, sub-claims)	yes	no	yes	Lpt component upregulated
+C-045	LptD (CCNA_01760) protein log2(4672/4659) = -0.47	04_sphingolipid_lpt_panel.ipynb	6	Table (Finding 4, protein discordance)	yes	no	no	Single-replicate OM proteome; no statistical test
+C-046	LptD (CCNA_01760) protein log2(4672/4580) = -0.62	04_sphingolipid_lpt_panel.ipynb	6	Table (Finding 4, protein discordance)	yes	no	no	Single-replicate OM proteome
+C-047	LptE (CCNA_03866) protein log2(4672/4659) = -0.78	04_sphingolipid_lpt_panel.ipynb	6	Table (Finding 4, protein discordance)	yes	no	no	Single-replicate OM proteome
+C-048	LptE (CCNA_03866) protein log2(4672/4580) = -0.68	04_sphingolipid_lpt_panel.ipynb	6	Table (Finding 4, protein discordance)	yes	no	no	Single-replicate OM proteome
+C-049	MsbA-like CCNA_00307 protein abundance 300 in 4672, NaN in others	04_sphingolipid_lpt_panel.ipynb	6		yes	no	no	Detected only in rescued strain; direction uncomputable
+C-050	lptC2 (CCNA_01226) transcript logFC -0.60, FDR 0.034	04_sphingolipid_lpt_panel.ipynb	3		yes	no	yes	Transcript-protein discordance; pilot observation
+C-051	lptC2 (CCNA_01226) protein log2(4672/4659) = +1.08	04_sphingolipid_lpt_panel.ipynb	6		yes	no	no	Single-replicate; post-transcriptional stabilization hypothesis
+C-052	lptC2 protein already DOWN -0.42 log2 in intermediate strain (4659/4580)	04_sphingolipid_lpt_panel.ipynb	6		yes	no	no	Baseline shift in intermediate
+C-053	lptC2 net protein change rescued vs WT baseline = +0.66 log2 (approx 1.58x)	04_sphingolipid_lpt_panel.ipynb	6		yes	no	no	Corrected from +1.08 by accounting for intermediate decline
+C-054	CCNA_01217 (Zik 2022 sphingolipid biosynthesis) protein log2 = +0.77 in 4672 vs 4659	04_sphingolipid_lpt_panel.ipynb	6		yes	no	no	Single-replicate proteome
+C-055	CCNA_01217 protein log2 = +0.74 vs WT	04_sphingolipid_lpt_panel.ipynb	6		yes	no	no	Single-replicate proteome
+C-056	CtpA cumulative 4599-vs-4580 logFC +0.76, FDR 0.035	04_sphingolipid_lpt_panel.ipynb	5		yes	no	yes	Conflates delta-fur + delta-sspB and delta-lpxc effects; supplemental observation
+C-057	CtpA CPM per strain: 37 (4580) -> 42 (4584) -> 63 (4599)	04_sphingolipid_lpt_panel.ipynb	4	Figure NB04_ctpA_per_strain.png	yes	no	no	Monotonic rise despite borderline FDR
+C-058	53 loci in pre-registered PG-remodeling gene set (locked before DE analysis)	05_pg_remodeling.ipynb	2		no	no	no	Pre-curated set size
+C-059	28 genes meeting H4 threshold (>=3 required); 25 transcript-significant (FDR<0.05) + 6 OM-proteome |log2|>1, deduplicated	05_pg_remodeling.ipynb	8		no	no	no	H4 PASS strongly; well above >=3 threshold
+C-060	25 transcript-significant PG genes at FDR<0.05	05_pg_remodeling.ipynb	8		no	no	no	Transcript arm of H4 test
+C-061	6 OM-proteome PG genes with |log2|>1	05_pg_remodeling.ipynb	8		no	no	no	Protein arm of H4 test
+C-062	20 DOWN among 28 H4-meeting PG genes (predominantly downregulation)	05_pg_remodeling.ipynb	5		no	no	no	Basal division/elongation shutdown
+C-063	5 UP transcript + 3 UP protein among H4-meeting PG genes	05_pg_remodeling.ipynb	5		no	no	no	Specific lytic engagements
+C-064	SdpA CCNA_01252 protein log2 = +4.8 (OM proteome)	05_pg_remodeling.ipynb	5	Figure NB05_pg_remodeling_heatmap.png	yes	no	no	Soluble lytic murein transglycosylase; top UP hit
+C-065	Pal CCNA_00784 transcript logFC +2.08 AND protein log2 +2.84	05_pg_remodeling.ipynb	5	Figure NB05_pg_remodeling_heatmap.png	yes	no	no	Cross-notebook convergence with NB03 late cohort
+C-066	PbpZ transcript logFC -1.08	05_pg_remodeling.ipynb	4		yes	no	no	Cell elongation gene; DOWN
+C-067	PbpC protein log2 -1.15	05_pg_remodeling.ipynb	5		yes	no	no	Cell elongation gene; DOWN
+C-068	D,D-transpeptidase protein log2 -1.27	05_pg_remodeling.ipynb	5		yes	no	no	Cell elongation gene; DOWN
+C-069	Membrane-bound transglycosylase A protein log2 -2.47	05_pg_remodeling.ipynb	5		yes	no	no	Largest protein-level DOWN in PG set
+C-070	2 likely regex false-positives in PG gene set: CCNA_00565 (gamma-glutamyltranspeptidase) and CCNA_01833 (glucosylceramidase)	05_pg_remodeling.ipynb	2		no	no	no	Flagged; does not change H4 verdict
+C-071	spt PaperBLAST hits (7,0,0,0) across C.c./A.b./N.m./M.c.	06_comparative_species.ipynb	3		no	no	no	PaperBLAST text-match screen
+C-072	cerR PaperBLAST hits (1,1,0,0) across C.c./A.b./N.m./M.c.	06_comparative_species.ipynb	3		no	no	no	PaperBLAST text-match screen; A.b. hit is a mismatch
+C-073	spt NCBI annotation hits (7,0,0,0) across C.c./A.b./N.m./M.c.	06b_ncbi_annotation_presence.ipynb	3		no	no	no	Confirms Caulobacter-unique; NB06b re-test
+C-074	cerR NCBI annotation hits (6,0,0,0) across C.c./A.b./N.m./M.c.	06b_ncbi_annotation_presence.ipynb	3		no	no	no	Corrects PaperBLAST A.b. false positive
+C-075	ChvG NCBI annotation hits (5,0,0,0) across C.c./A.b./N.m./M.c.	06b_ncbi_annotation_presence.ipynb	3		no	no	no	Alphaproteobacterial-restricted confirmed
+C-076	ChvI NCBI annotation hits (6,0,0,0) across C.c./A.b./N.m./M.c.	06b_ncbi_annotation_presence.ipynb	3		no	no	no	Alphaproteobacterial-restricted confirmed
+C-077	LpxA: PaperBLAST C.c. = 0, NCBI C.c. = 11	06b_ncbi_annotation_presence.ipynb	5	Table (NB06 PB false negatives)	no	no	no	PaperBLAST false negative confirmed
+C-078	LpxC: PaperBLAST C.c. = 0, NCBI C.c. = 15	06b_ncbi_annotation_presence.ipynb	5	Table (NB06 PB false negatives)	no	no	no	PaperBLAST false negative; the deleted gene itself
+C-079	LpxD: PaperBLAST C.c. = 0, NCBI C.c. = 15	06b_ncbi_annotation_presence.ipynb	5	Table (NB06 PB false negatives)	no	no	no	PaperBLAST false negative confirmed
+C-080	LpxB: PaperBLAST C.c. = 1, NCBI C.c. = 18	06b_ncbi_annotation_presence.ipynb	5	Table (NB06 PB false negatives)	no	no	no	PaperBLAST under-count
+C-081	LpxK: PaperBLAST C.c. = 0, NCBI C.c. = 18	06b_ncbi_annotation_presence.ipynb	5	Table (NB06 PB false negatives)	no	no	no	PaperBLAST false negative confirmed
+C-082	PaperBLAST false-negative rate ~80% for Caulobacter lipid A biosynthesis genes (LpxA/C/D/B/K)	06b_ncbi_annotation_presence.ipynb	5		no	no	no	Method limitation; biological claims unaffected
+C-083	PaperBLAST ~50% false-negative rate for known Caulobacter essential genes (adversarial review finding)	06b_ncbi_annotation_presence.ipynb	5		no	no	no	Broader false-negative rate estimate
+C-084	N. meningitidis 9 capsule-biosynthesis PaperBLAST hits	06_comparative_species.ipynb	3		no	no	no	Consistent with Steeghs 2001 capsule-substitution route
+C-085	lpxX/lpxL late acyltransferases: A. baumannii 8 hits, N. meningitidis 3 hits, C. crescentus 0	06_comparative_species.ipynb	3		no	no	no	Consistent with Gao 2008 acylation-truncation route
+C-086	M. catarrhalis 162 genes total in PaperBLAST	06_comparative_species.ipynb	3		no	no	no	Under-annotated; presence/absence rows advisory only
+C-087	NCBI Cc spt=7, ChvG=5, cerR/ChvI=6 annotated with canonical symbols	06b_ncbi_annotation_presence.ipynb	5		no	no	no	Confirms sphingolipid + ChvI findings unaffected by NCBI naming issues
+C-088	Stein 2021 4.75-fold enrichment p=8e-9 for ChvI regulon in 4584-vs-4580 (Phase A evidence, cited in methods provenance)	03_chvi_phase_partition_sigU.ipynb	3		yes	no	yes	Phase A evidence motivating H1; from published reference
+C-089	Stein 2021 4.56-fold enrichment p=1e-15 for ChvI regulon in 4599-vs-4584 (Phase A evidence)	03_chvi_phase_partition_sigU.ipynb	3		yes	no	yes	Phase A evidence; H0 already rejected
+C-090	Quintero-Yanes 2022 3.18-fold enrichment in 4584-vs-4580 (Phase A evidence)	03_chvi_phase_partition_sigU.ipynb	3		yes	no	no	No p-value stated in report for QY
+C-091	Quintero-Yanes 2022 2.87-fold enrichment in 4599-vs-4584 (Phase A evidence)	03_chvi_phase_partition_sigU.ipynb	3		yes	no	no	No p-value stated in report for QY
+C-092	SigU (CCNA_02977) logFC +3.13 in 4599-vs-4584	03_chvi_phase_partition_sigU.ipynb	5		yes	no	no	ECF sigma-factor; PaperBLAST returned zero substantive snippets
+C-093	Fisher exact test late cohort: early 4/30 (13.3%), late 11/49 (22.4%), odds ratio=1.88, p=0.243	03_chvi_phase_partition_sigU.ipynb	10		yes	no	yes	One-sided test; regulator-to-structural shift not statistically discriminated
+C-094	NB01 Leaden 2018 iron-limitation DEGs: 491 genes	01_leaden2018_fur_signature.ipynb	3		no	no	no	Reference set for iron-limitation arm
+C-095	NB02 Path A concordant_strong scoring: 32 genes	02_caulo_fitness_ranking.ipynb	9		no	no	no	Gene set size for H2 enrichment
+C-096	NB02 Path B SspB-buffered scoring: 53 genes (26 in hypergeometric after filtering)	02_caulo_fitness_ranking.ipynb	9		no	no	no	26 genes with fitness data in NB02b
+C-097	NB03 ChvI phase cohorts: 89 genes total assigned	03_chvi_phase_partition_sigU.ipynb	4		no	no	no	Includes 79 engaged + 10 additional from broader categorization
+C-098	NB04 sphingolipid transcript panel: 15 genes	04_sphingolipid_lpt_panel.ipynb	3		no	no	no	Gene panel size
+C-099	NB04 Lpt transcript panel: 6 genes	04_sphingolipid_lpt_panel.ipynb	3		no	no	no	Gene panel size
+C-100	NB04 protein panel: 22 genes	04_sphingolipid_lpt_panel.ipynb	6		no	no	no	OM proteome cross-reference
+C-101	NB05 PG significant hits: 31 genes (before dedup to 28)	05_pg_remodeling.ipynb	5		no	no	no	Pre-deduplication count
+C-102	NB07 hypothesis scorecard: 12 entries	07_synthesis.ipynb	2		no	no	no	Scorecard summary row count
+C-103	NB02b H2 hypergeometric verdict: 2 entries (Path A SUPPORTED, Path B NOT SUPPORTED)	02b_h2_hypergeometric_verdict.ipynb	1		no	no	no	Post-review recalibrated verdicts
+C-104	NB06b NCBI presence counts: 28 focal family entries	06b_ncbi_annotation_presence.ipynb	3		no	no	no	NCBI annotation re-test panel size
+C-105	NB06 comparative presence counts: 25 focal-gene entries	06_comparative_species.ipynb	3		no	no	no	PaperBLAST comparative panel size
+C-106	lptC2 protein >2-fold accumulation despite transcript downregulation	04_sphingolipid_lpt_panel.ipynb	6		yes	no	no	Stated in Interpretation; single-replicate

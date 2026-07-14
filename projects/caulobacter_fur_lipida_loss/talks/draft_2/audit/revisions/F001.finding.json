@@ -1,0 +1,24 @@
+{
+  "id": "F001",
+  "class": "register_drift",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 7,
+  "slide_position": 7,
+  "slide_layout": "data_figure",
+  "substory_id": "S1",
+  "title_quote": "Spearman \u03c1=0.315 concordance with Leaden \u0394fur signal confirms constitutive derepression (n=93 DEGs)",
+  "issue": "The title attaches two overclaims to a single modest correlation. First, 'confirms' is strong-register for \u03c1=0.315 \u2014 the speaker_notes themselves concede the speaker 'must be ready to defend \u03c1=0.315 against that is a modest correlation.' REPORT \u00a7Finding 1 frames this result more conservatively as 'confirming Fur derepression as a major driver' (a major component, not the sole driver). Second, and worse, the title says 'confirms constitutive derepression' \u2014 but constitutivity (\u0394fur allele vs iron-limitation response) is throughline sub-claim A2, explicitly graded 'partial / single growth condition,' and it is established by the iron-discrimination comparison on the NEXT slide (slide 8), NOT by this concordance scatter. The figure shows correlation with Leaden's \u0394fur signal; it does not by itself discriminate constitutive derepression from an iron-status readout. The title imports a partial, single-condition conclusion into a confident verb over a 0.315 correlation.",
+  "report_evidence": [
+    {
+      "section": "\u00a7Finding 1",
+      "quote": "correlates with Leaden 2018's \u0394fur signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394fur DEGs, with 71% sign concordance \u2014 confirming Fur derepression as a major driver"
+    },
+    {
+      "section": "00_throughline.md A2",
+      "quote": "signal is constitutive \u0394fur derepression, not an iron-limitation response ... \u26a0 partial \u2014 single growth condition (PYE rich)"
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Rewrite to scope the verb to what the scatter shows and drop 'constitutive' from this slide: 'Spearman \u03c1=0.315 (p=2.08e-03, 71% sign concordance) confirms Fur derepression as a major component of our signal (n=93 Leaden DEGs).' Reserve the constitutive-vs-iron claim for slide 8 where the iron-discrimination evidence actually appears."
+}

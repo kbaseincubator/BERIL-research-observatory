@@ -1,0 +1,39 @@
+project_id: lignin_community_enrichment
+status: complete
+created_at: "2026-05-07T00:00:00Z"
+last_session_at: "2026-06-10T18:49:59Z"
+branch: main
+engine:
+  name: claude
+authors:
+  - name: "Markus de Raad"
+    affiliation: "Lawrence Berkeley National Laboratory (LBNL)"
+    orcid: "0000-0001-8263-9198"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true
+approval:
+  by: "0000-0001-8263-9198"
+  at: "2026-06-10T18:49:59Z"
+  report_hash: "sha256:f0bce929a335ab8e8ef7a4731d9934d5e53d9244e175f9b21ac411501aad0360"
+  review: "REVIEW_1.md"
+  review_hash: "sha256:1f6f5ca531919e99e79607639c2f7952b2d38def6a1b6b3a0a0022f96c083a6e"
+  notebook_hashes:
+    "notebooks/NB00_setup_and_qc.ipynb": "sha256:b5f4c45b6c1d87450f7e0c391acfed70eca973fe0fe2d9ec27ee44d70cb75510"
+    "notebooks/NB01_read_processing.ipynb": "sha256:43fc67808b3c453e610606d13235766ff41e81b25f758b6fb59ba9f542a497ff"
+    "notebooks/NB02_composition_overview.ipynb": "sha256:03b345144438f324068932fd959e62ea4baaa674de1a8bf3dec93f9982c2f77d"
+    "notebooks/NB03_alpha_diversity.ipynb": "sha256:c1dd19421c515d98ad55b0b9f840906f7e462ca83ac87772e4a54d096c18a918"
+    "notebooks/NB04_beta_diversity.ipynb": "sha256:78ca241739d25521d40f754c450ef9b0a77302f0ec5662ff4515c34bb97266b4"
+    "notebooks/NB05_differential_abundance.ipynb": "sha256:ddac964797953210422f920c2a91056a9a2717cbdc049cd13c308438aa3d91b8"
+    "notebooks/NB06_ecological_memory.ipynb": "sha256:b04575bcf7178dba448dd2ec187489932e04233c7541aa58080fb16131ec9316"
+    "notebooks/NB07_metabolic_capability.ipynb": "sha256:dccadbffd908924b7fcf29db8b3f9662204d4a652273c291ee0f237c2fba2193"
+submissions:
+  - status: success
+    attempted_at: "2026-06-10T19:25:00Z"
+    archive_key: "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/lignin_community_enrichment/"
+    file_count: 174
+    byte_total: 242224114
+    duration_seconds: 263.7
+    approved_at: "2026-06-10T18:49:59Z"

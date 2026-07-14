@@ -1,0 +1,49 @@
+{
+  "phase": "2",
+  "notebook": "NB09",
+  "timestamp_utc": "2026-04-27T03:56:59Z",
+  "n_species_p1b": 18989,
+  "n_gene_clusters": 103629867,
+  "n_eggnog_annotated_clusters": 74450297,
+  "n_gc_to_ko_rows": 43803890,
+  "n_unique_kos": 13062,
+  "n_uniref90_rows": 68381626,
+  "n_uniref50_rows": 84175091,
+  "n_ko_assignments": 28008764,
+  "control_class_cluster_counts": {
+    "tcs_hk": 1906521,
+    "betalac": 610325,
+    "crispr_cas": 23777,
+    "ribosomal": 1723951,
+    "trna_synth": 683431,
+    "rnap_core": 91836,
+    "amr": 74651
+  },
+  "ko_class_distribution": {
+    "none": 12279,
+    "pos_tcs_hk": 310,
+    "neg_ribosomal": 249,
+    "pos_betalac": 110,
+    "neg_trna_synth": 54,
+    "info_amr": 35,
+    "neg_rnap_core": 19,
+    "pos_crispr_cas": 6
+  },
+  "n_uniref50_with_dominant_ko": 3592556,
+  "uniref50_proj_fraction_quantiles": {
+    "0.25": 0.9722222222222222,
+    "0.5": 1.0,
+    "0.75": 1.0,
+    "0.9": 1.0
+  },
+  "n_kos_with_pathway": 10289,
+  "n_kos_with_brite": 13056,
+  "assign_local_write_error": "AnalysisException('[UNABLE_TO_INFER_SCHEMA] Unable to infer schema for Parquet. It must be specified manually. SQLSTATE: 42KD9')",
+  "assign_parquet_minio_path": "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/gene_function_ecological_agora/data/p2_ko_assignments.parquet",
+  "assign_minio_row_count": 28008764,
+  "completed_utc": "2026-04-27T03:59:36Z",
+  "n_panel_kos": 748,
+  "panel_parquet_local_path": "/home/aparkin/BERIL-research-observatory/projects/gene_function_ecological_agora/data/p2_ko_assignments_panel.parquet",
+  "panel_parquet_row_count": 2687345,
+  "panel_parquet_size_mb": 8.2
+}

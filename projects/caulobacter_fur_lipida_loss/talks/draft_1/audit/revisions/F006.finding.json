@@ -1,0 +1,24 @@
+{
+  "id": "F006",
+  "class": "substory_arc",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 17,
+  "slide_position": 17,
+  "slide_layout": "data_table",
+  "substory_id": "S3",
+  "title_quote": "Lpt transcript upregulated; LptD/LptE protein decline and CtpA absence define the layer's limits",
+  "issue": "S3's substory plan explicitly calls for this slot to be a 'data_figure (R-slide \u2014 Lpt transcript maintained vs protein discordance, A14/A15)' \u2014 the NB04 Lpt apparatus CPM heatmap, figures/NB04_lpt_apparatus_heatmap.png. The deck instead emits a data_table with no figure. The Lpt apparatus heatmap exists on disk (REPORT \u00a7Figures table; REPORT \u00a7NB04 image caption: 'Canonical LPS-transport apparatus heatmap \u2014 MsbA-like CCNA_00307 visibly UP in 4599 vs others'). The visual that would let the audience SEE the MsbA-like upregulation against the LptD/LptE decline \u2014 i.e., the central tension of Layer 3 \u2014 is absent. The table conveys numbers but not the strain-by-strain pattern.",
+  "report_evidence": [
+    {
+      "section": "\u00a7Figures table",
+      "quote": "figures/NB04_lpt_apparatus_heatmap.png | Canonical Lpt apparatus CPM heatmap"
+    },
+    {
+      "section": "\u00a7NB04 image caption",
+      "quote": "Canonical LPS-transport apparatus heatmap \u2014 MsbA-like CCNA_00307 visibly UP in 4599 vs others"
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Split slide 17 into a data_figure (NB04_lpt_apparatus_heatmap.png with the 'maintained transcript vs protein decline' framing in the caption) immediately followed by a smaller data_table for the lptC2/CtpA pilots and REJECTED verdicts. Or convert slide 17 in-place to data_figure and demote the table to slide 17's caption/footer."
+}

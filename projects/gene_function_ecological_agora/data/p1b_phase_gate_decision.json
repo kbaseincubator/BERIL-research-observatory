@@ -1,0 +1,347 @@
+{
+  "timestamp_utc": "2026-04-27T00:35:52Z",
+  "overall_verdict": "PASS_REFRAMED",
+  "rationale": "Methodology validates (producer null responsive on natural_expansion; negative controls behave under M2; M1 rank-stratified parents reveal monotone gradient). Bacteroidota PUL Innovator-Exchange is FALSIFIED at UniRef50 across all 4 deep ranks. The falsification is consistent with the Phase 1A M3 substrate-hierarchy claim: UniRef50 is too narrow to capture family-level HGT or paralog signal even for documented HGT classes (\u03b2-lactamase, CRISPR-Cas also fail their cross-phylum HGT priors at UniRef50). Phase 2 (KO functional aggregation) and Phase 3 (Pfam multidomain architecture) are now empirically REQUIRED to test the four pre-registered hypotheses meaningfully.",
+  "natural_expansion_pass_count": 5,
+  "natural_expansion_total": 5,
+  "negative_controls_pass": 15,
+  "negative_controls_total": 15,
+  "bacteroidota_innovator_exchange_count": 0,
+  "bacteroidota_falsified_count": 4,
+  "bacteroidota_per_rank": [
+    {
+      "rank": "family",
+      "bacteroidota_n_producer": 3771,
+      "bacteroidota_producer_mean": -0.069,
+      "bacteroidota_producer_ci_low": -0.094,
+      "bacteroidota_producer_ci_high": -0.044,
+      "bacteroidota_n_consumer": 2076,
+      "bacteroidota_consumer_mean": -9.331,
+      "bacteroidota_consumer_ci_low": -9.576,
+      "bacteroidota_consumer_ci_high": -9.087,
+      "other_phyla_producer_mean": -0.065,
+      "other_phyla_consumer_mean": -5.561,
+      "producer_t": -0.258,
+      "producer_p_one_sided": 0.6017886160141972,
+      "producer_passes_bonferroni": false,
+      "consumer_t": -28.024,
+      "consumer_p_one_sided": 1.0,
+      "consumer_passes_bonferroni": false,
+      "verdict": "STABLE_OR_FALSIFIED"
+    },
+    {
+      "rank": "order",
+      "bacteroidota_n_producer": 2663,
+      "bacteroidota_producer_mean": -0.105,
+      "bacteroidota_producer_ci_low": -0.131,
+      "bacteroidota_producer_ci_high": -0.08,
+      "bacteroidota_n_consumer": 857,
+      "bacteroidota_consumer_mean": -4.216,
+      "bacteroidota_consumer_ci_low": -4.38,
+      "bacteroidota_consumer_ci_high": -4.052,
+      "other_phyla_producer_mean": -0.085,
+      "other_phyla_consumer_mean": -3.851,
+      "producer_t": -1.377,
+      "producer_p_one_sided": 0.9157753826325896,
+      "producer_passes_bonferroni": false,
+      "consumer_t": -4.047,
+      "consumer_p_one_sided": 0.9999723327412259,
+      "consumer_passes_bonferroni": false,
+      "verdict": "STABLE_OR_FALSIFIED"
+    },
+    {
+      "rank": "class",
+      "bacteroidota_n_producer": 2110,
+      "bacteroidota_producer_mean": -0.093,
+      "bacteroidota_producer_ci_low": -0.123,
+      "bacteroidota_producer_ci_high": -0.064,
+      "bacteroidota_n_consumer": 280,
+      "bacteroidota_consumer_mean": -2.794,
+      "bacteroidota_consumer_ci_low": -3.143,
+      "bacteroidota_consumer_ci_high": -2.445,
+      "other_phyla_producer_mean": -0.103,
+      "other_phyla_consumer_mean": -1.907,
+      "producer_t": 0.608,
+      "producer_p_one_sided": 0.271543295463204,
+      "producer_passes_bonferroni": false,
+      "consumer_t": -4.804,
+      "consumer_p_one_sided": 0.9999988171368541,
+      "consumer_passes_bonferroni": false,
+      "verdict": "STABLE_OR_FALSIFIED"
+    },
+    {
+      "rank": "phylum",
+      "bacteroidota_n_producer": 2012,
+      "bacteroidota_producer_mean": -0.089,
+      "bacteroidota_producer_ci_low": -0.119,
+      "bacteroidota_producer_ci_high": -0.058,
+      "bacteroidota_n_consumer": 0,
+      "bacteroidota_consumer_mean": NaN,
+      "bacteroidota_consumer_ci_low": NaN,
+      "bacteroidota_consumer_ci_high": NaN,
+      "other_phyla_producer_mean": -0.111,
+      "other_phyla_consumer_mean": NaN,
+      "producer_t": 1.31,
+      "producer_p_one_sided": 0.09510684135554985,
+      "producer_passes_bonferroni": false,
+      "consumer_t": NaN,
+      "consumer_p_one_sided": NaN,
+      "consumer_passes_bonferroni": false,
+      "verdict": "STABLE_OR_FALSIFIED"
+    }
+  ],
+  "high1_known_hgt_validation": [
+    {
+      "control_class": "pos_betalac",
+      "rank": "genus",
+      "n_producer": 23814,
+      "producer_mean": -0.058,
+      "n_consumer": 14980,
+      "consumer_mean": -12.543,
+      "consumer_ci_low": -12.645,
+      "consumer_ci_high": -12.441,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_betalac",
+      "rank": "family",
+      "n_producer": 15771,
+      "producer_mean": -0.087,
+      "n_consumer": 5945,
+      "consumer_mean": -6.894,
+      "consumer_ci_low": -7.028,
+      "consumer_ci_high": -6.76,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_betalac",
+      "rank": "order",
+      "n_producer": 13554,
+      "producer_mean": -0.113,
+      "n_consumer": 3470,
+      "consumer_mean": -4.291,
+      "consumer_ci_low": -4.381,
+      "consumer_ci_high": -4.202,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_betalac",
+      "rank": "class",
+      "n_producer": 11417,
+      "producer_mean": -0.154,
+      "n_consumer": 1185,
+      "consumer_mean": -2.212,
+      "consumer_ci_low": -2.348,
+      "consumer_ci_high": -2.076,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_betalac",
+      "rank": "phylum",
+      "n_producer": 10981,
+      "producer_mean": -0.163,
+      "n_consumer": 0,
+      "consumer_mean": NaN,
+      "consumer_ci_low": NaN,
+      "consumer_ci_high": NaN,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_crispr_cas",
+      "rank": "genus",
+      "n_producer": 12884,
+      "producer_mean": -0.077,
+      "n_consumer": 10449,
+      "consumer_mean": -10.344,
+      "consumer_ci_low": -10.457,
+      "consumer_ci_high": -10.231,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_crispr_cas",
+      "rank": "family",
+      "n_producer": 8180,
+      "producer_mean": -0.096,
+      "n_consumer": 5439,
+      "consumer_mean": -5.859,
+      "consumer_ci_low": -5.969,
+      "consumer_ci_high": -5.75,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_crispr_cas",
+      "rank": "order",
+      "n_producer": 6374,
+      "producer_mean": -0.115,
+      "n_consumer": 3528,
+      "consumer_mean": -2.85,
+      "consumer_ci_low": -2.927,
+      "consumer_ci_high": -2.773,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_crispr_cas",
+      "rank": "class",
+      "n_producer": 4896,
+      "producer_mean": -0.136,
+      "n_consumer": 1934,
+      "consumer_mean": -1.997,
+      "consumer_ci_low": -2.088,
+      "consumer_ci_high": -1.907,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_crispr_cas",
+      "rank": "phylum",
+      "n_producer": 4395,
+      "producer_mean": -0.155,
+      "n_consumer": 0,
+      "consumer_mean": NaN,
+      "consumer_ci_low": NaN,
+      "consumer_ci_high": NaN,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_amr",
+      "rank": "genus",
+      "n_producer": 48912,
+      "producer_mean": 0.053,
+      "n_consumer": 46919,
+      "consumer_mean": -11.901,
+      "consumer_ci_low": -11.945,
+      "consumer_ci_high": -11.857,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_amr",
+      "rank": "family",
+      "n_producer": 23241,
+      "producer_mean": 0.029,
+      "n_consumer": 20760,
+      "consumer_mean": -6.94,
+      "consumer_ci_low": -6.986,
+      "consumer_ci_high": -6.893,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_amr",
+      "rank": "order",
+      "n_producer": 15479,
+      "producer_mean": 0.026,
+      "n_consumer": 12772,
+      "consumer_mean": -4.618,
+      "consumer_ci_low": -4.653,
+      "consumer_ci_high": -4.584,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_amr",
+      "rank": "class",
+      "n_producer": 8224,
+      "producer_mean": 0.045,
+      "n_consumer": 4738,
+      "consumer_mean": -1.586,
+      "consumer_ci_low": -1.636,
+      "consumer_ci_high": -1.536,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_amr",
+      "rank": "phylum",
+      "n_producer": 7155,
+      "producer_mean": 0.07,
+      "n_consumer": 0,
+      "consumer_mean": NaN,
+      "consumer_ci_low": NaN,
+      "consumer_ci_high": NaN,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_tcs_hk",
+      "rank": "genus",
+      "n_producer": 20684,
+      "producer_mean": -0.029,
+      "n_consumer": 11268,
+      "consumer_mean": -12.224,
+      "consumer_ci_low": -12.342,
+      "consumer_ci_high": -12.105,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_tcs_hk",
+      "rank": "family",
+      "n_producer": 14636,
+      "producer_mean": -0.056,
+      "n_consumer": 4496,
+      "consumer_mean": -6.986,
+      "consumer_ci_low": -7.137,
+      "consumer_ci_high": -6.835,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_tcs_hk",
+      "rank": "order",
+      "n_producer": 12883,
+      "producer_mean": -0.085,
+      "n_consumer": 2628,
+      "consumer_mean": -3.995,
+      "consumer_ci_low": -4.099,
+      "consumer_ci_high": -3.89,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_tcs_hk",
+      "rank": "class",
+      "n_producer": 11308,
+      "producer_mean": -0.122,
+      "n_consumer": 1022,
+      "consumer_mean": -2.307,
+      "consumer_ci_low": -2.48,
+      "consumer_ci_high": -2.134,
+      "interpretation": "clumped (vertical or intra-parent)"
+    },
+    {
+      "control_class": "pos_tcs_hk",
+      "rank": "phylum",
+      "n_producer": 10949,
+      "producer_mean": -0.134,
+      "n_consumer": 0,
+      "consumer_mean": NaN,
+      "consumer_ci_low": NaN,
+      "consumer_ci_high": NaN,
+      "interpretation": "clumped (vertical or intra-parent)"
+    }
+  ],
+  "phase2_methodology_revisions": [
+    {
+      "id": "M6",
+      "title": "Phase 2 substrate is KO not UniRef50",
+      "rationale": "Phase 1B empirically validates the M3 substrate-hierarchy claim from Phase 1A. UniRef50 captures only sequence-cluster-specific variants. Phase 2 aggregates UniRef50s up to KEGG Orthology (KO) \u2014 the functional family level \u2014 which is where Bacteroidota PUL CAZyme aggregation, Mycobacteriota mycolic-acid pathway, and Alm 2006 TCS HK family expansion all live. Phase 2 should NOT use UniRef50 as a function-class unit."
+    },
+    {
+      "id": "M7",
+      "title": "Carry M1 rank-stratified parents forward to Phase 2",
+      "rationale": "M1 was vindicated at Phase 1B scale: rank-stratified parents revealed a monotone consumer-z gradient (-10.5 at genus\u2192family parent, decaying to -1.8 at class\u2192phylum). Phase 2 KO atlas should use the same parent-stratification."
+    },
+    {
+      "id": "M8",
+      "title": "Carry M2 negative-control criterion forward",
+      "rationale": "M2 (CI upper \u2264 0.5 for negative controls instead of 'near zero') worked correctly at Phase 1B. All three negative controls (ribosomal, tRNA-synth, RNAP) showed dosage-constraint signatures (~-12 % below cohort, z ~-0.15). Use the same criterion at Phase 2."
+    },
+    {
+      "id": "M9",
+      "title": "PIC (HIGH 3) deferred from Phase 1B to Phase 2",
+      "rationale": "Plan v2.3 promoted PIC from Phase 2 optional to Phase 1B mandatory. NB06 implementation did not include PIC due to time constraints. Re-promote to Phase 2 mandatory; the KO atlas will report PIC-corrected variance estimates from the start."
+    },
+    {
+      "id": "M10",
+      "title": "Per-class cap stays at 10K UniRefs (or analog at KO scale)",
+      "rationale": "At Phase 1B, the per-class cap of 10K kept driver memory tractable. Phase 2 KO atlas may have far fewer KOs per class (KEGG has ~25K KOs total; functional categories have hundreds to low-thousands), so the cap may not bind. Reuse the cap pattern as a defensive default."
+    },
+    {
+      "id": "M11",
+      "title": "Phase 1B negative result on cross-phylum HGT positive controls is informative",
+      "rationale": "At UniRef50, \u03b2-lactamase (z=-12.5) and class-I CRISPR-Cas (z=-10.3) both fail to show cross-phylum HGT signal \u2014 even more clumped than negative controls. Phase 2 at KO level should re-test these classes; if they STILL show clumping at KO level, the consumer-null framework cannot detect documented HGT and a different metric is required (e.g., direct phyletic-incongruence at KO presence/absence rather than parent-rank dispersion)."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "image-request.v1",
+  "slide_id_target": "intro-pos2",
+  "channel": "A",
+  "originator": "slide_compose claim_evidence approach slide in intro block (intro-pos2, intro_role=approach, 3-bullet layout admitted by LLM-judge per D-088 technical-specificity criterion)",
+  "style": "infographic",
+  "image_prompt": "Three-panel scientific infographic showing three converging evidence streams of the Caulobacter lipid A-loss study. Overall layout: three equal vertical panels arranged side-by-side, each with a colored header band, with convergent arrows from all three panels meeting at a single centered outcome label at far right reading 'Δfur → envelope rescue'. Panel 1 (blue header band, #007DC3, header label 'Fur-signal isolation'): a horizontal strain-series schematic depicting three bacterial cell outlines in a left-to-right row, labeled '4580', '4584', '4599' respectively, with right-pointing arrows between them; the outermost membrane ring of cell '4599' is visually absent to indicate lipid A loss. A dashed crosslink arrow from an external rectangle labeled 'Leaden 2018 Δfur RNA-seq' enters the diagram at the 4580→4584 comparison step, indicating cross-referencing. Panel 2 (green header band, #5E9732, header label 'Regulon triage'): a narrowing funnel schematic. At the top, an input rectangle labeled '198 RB-TnSeq experiments'. The funnel narrows downward to a central block labeled '32 Fur-released genes'. Below the funnel, a horizontal calibration bar labeled '33.25% genome background'. A short exit arrow points right, labeled 'fitness-enriched'. Panel 3 (orange header band, #F78E1E, header label 'Envelope characterization'): a vertical stack of three labeled rows, each with a small icon, all feeding a shared right-pointing exit arrow: top row labeled 'transcript DE', middle row labeled 'OM proteome', bottom row labeled '4-species annotation'. Style: clean scientific infographic in the style of a Nature Methods graphical abstract — flat colors, thin black outlines, professional academic aesthetic. KBase brand palette as specified above for panel headers. White background. Aspect ratio 16:9. All text in clean sans-serif as specified. Do not include any other text, captions, titles, decorative borders, or annotations beyond the named labels.",
+  "negative_prompt": "no quantitative content beyond the explicitly named schematic labels, no specific numbers other than the named labels, no chart axes, no axis tick marks, no data-point scatter, no bar-chart scale bars, no error bars, no text in non-Latin scripts, no copyrighted imagery, no human figures, no logos, no protein ribbon diagrams, no gel images, no other text or annotations beyond the named labels",
+  "placement": {
+    "region": "body",
+    "aspect_ratio": "16:9",
+    "max_width_in": 8.5,
+    "max_height_in": 4.0
+  },
+  "model_preference": "gemini-3-pro-image",
+  "worst_case_cost_usd": 0.05,
+  "user_supplied_prompt": null,
+  "user_overrides": {
+    "style": null,
+    "additional_directives": null
+  },
+  "approval_required": true
+}

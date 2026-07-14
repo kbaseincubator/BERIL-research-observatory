@@ -1,0 +1,15 @@
+{
+  "curated_figures_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_2/working/curated_figures.md",
+  "figures_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/figures",
+  "findings": [],
+  "n_curated_figures": 7,
+  "n_substories": 5,
+  "schema_version": "curator-figure-floor.v1",
+  "substories_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_2/narrative/02_substories.md",
+  "summary": {
+    "coverage_rate": 1.0,
+    "n_substories_no_candidates": 5,
+    "n_substories_uncovered": 0,
+    "n_substories_with_candidates": 0
+  }
+}

@@ -1,0 +1,474 @@
+{
+  "project_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss",
+  "figures_dirs": [
+    "figures"
+  ],
+  "figures": [
+    {
+      "path": "figures/00_sphingolipid_locus_heatmap.png",
+      "filename": "00_sphingolipid_locus_heatmap.png",
+      "size_bytes": 152434,
+      "format": "png",
+      "captions": [
+        {
+          "source": "report",
+          "text": "Sphingolipid locus heatmap from orientation notebook \u2014 neither induced nor strongly suppressed across the strain series",
+          "context": {
+            "line": 119,
+            "section": "Results"
+          }
+        },
+        {
+          "source": "notebook_md",
+          "text": "| Locus | Gene / role |\n|---|---|\n| CCNA_01212 | *bcerS* \u2014 bacterial ceramide synthase |\n| **CCNA_01213** | ***lptG2*** \u2014 sphingolipid IM transporter (Uchendu 2026) |\n| **CCNA_01214** | ***lptF2*** \u2014 sphingolipid IM transporter (Uchendu 2026) |\n| CCNA_01217 | sphingolipid bios...",
+          "context": {
+            "notebook": "notebooks/00_orientation.ipynb",
+            "preceding_cell": 6
+          }
+        },
+        {
+          "source": "filename",
+          "text": "Sphingolipid locus heatmap",
+          "context": {}
+        }
+      ],
+      "savefig_origins": [
+        {
+          "notebook": "notebooks/00_orientation.ipynb",
+          "cell": 6,
+          "line": 16,
+          "raw_call": "plt.savefig(FIG / '00_sphingolipid_locus_heatmap.png', dpi=140, bbox_inches='tight')"
+        }
+      ],
+      "description": {
+        "title": "Sphingolipid biosynthesis + Uchendu 2026 transporters + CtpA \u2014 log2(CPM+1) per replicate",
+        "axes_labels": [
+          "Library",
+          "Locus (role)"
+        ],
+        "legend_labels": [],
+        "notebook_prose": "## 3. Sphingolipid biosynthesis + transport locus (H3 \u2014 primary test)\n\nLoci of interest from Zik 2022 + Olea-Ozuna 2020/2024 + **Uchendu 2026** (new transporters bolded):\n\n| Locus | Gene / role |\n|---|---|\n| CCNA_01212 | *bcerS* \u2014 bacterial ceramide synthase |\n| **CCNA_01213** | ***lptG2*** \u2014 sphingolipid IM transporter (Uchendu 2026) |\n| **CCNA_01214** | ***lptF2*** \u2014 sphingolipid IM transporter (Uchendu 2026) |\n| CCNA_01217 | sphingolipid biosynthesis (required for CHIR-090 tolerance, Zik 2022) |\n| CCNA_01218 | sphingosine kinase |\n| CCNA_01219 | sphingolipid biosynthesis (required, Zik 2022) |\n| CCNA_01220 | *spt* \u2014 serine palmitoyltransferase |\n| CCNA_01221 | *acp* \u2014 acyl carrier protein |\n| CCNA_01222 | *cerR* \u2014 ceramide reductase |\n| CCNA_01223 | *acps* \u2014 ACP synthetase |\n| **CCNA_01226** | ***lptC2*** \u2014 sphingolipid IM transporter (Caulobacter-specific, Uchendu 2026) |\n| CCNA_03113 | *ctpA* \u2014 C-terminal processing protease; LpxE-like (may substitute for LpxF) |",
+        "panels": [],
+        "source_refs": [
+          "notebook_md_walkback(notebooks/00_orientation.ipynb)",
+          "matplotlib_ast(notebooks/00_orientation.ipynb)"
+        ]
+      }
+    },
+    {
+      "path": "figures/NB01_fur_signature_scatter.png",
+      "filename": "NB01_fur_signature_scatter.png",
+      "size_bytes": 104554,
+      "format": "png",
+      "captions": [
+        {
+          "source": "report",
+          "text": "Leaden \u0394fur logFC vs our 4584-vs-4580 logFC; concordant_strong in dark blue, buffered set in orange, discordant in red",
+          "context": {
+            "line": 125,
+            "section": "Results"
+          }
+        },
+        {
+          "source": "notebook_md",
+          "text": "Colored by Leaden category (functional class) where annotated.",
+          "context": {
+            "notebook": "notebooks/01_leaden2018_fur_signature.ipynb",
+            "preceding_cell": 6
+          }
+        },
+        {
+          "source": "filename",
+          "text": "Fur signature scatter",
+          "context": {}
+        }
+      ],
+      "savefig_origins": [
+        {
+          "notebook": "notebooks/01_leaden2018_fur_signature.ipynb",
+          "cell": 6,
+          "line": 23,
+          "raw_call": "plt.savefig(FIG / 'NB01_fur_signature_scatter.png', dpi=140, bbox_inches='tight')"
+        }
+      ],
+      "description": {
+        "title": null,
+        "axes_labels": [
+          "Leaden 2018 \u2014 log2FC \u0394fur / WT",
+          "Our data \u2014 log2FC 4584 / 4580 (\u0394fur \u0394sspB \u0394rsaA vs \u0394rsaA)"
+        ],
+        "legend_labels": [],
+        "notebook_prose": "## 4. Scatter \u2014 Leaden \u0394*fur* logFC vs 4584-vs-4580 logFC\n\nColored by Leaden category (functional class) where annotated.",
+        "panels": [],
+        "source_refs": [
+          "notebook_md_walkback(notebooks/01_leaden2018_fur_signature.ipynb)",
+          "matplotlib_ast(notebooks/01_leaden2018_fur_signature.ipynb)"
+        ]
+      }
+    },
+    {
+      "path": "figures/NB01_leaden_iron_vs_fur.png",
+      "filename": "NB01_leaden_iron_vs_fur.png",
+      "size_bytes": 55899,
+      "format": "png",
+      "captions": [
+        {
+          "source": "report",
+          "text": "Leaden internal: \u0394fur vs iron-limitation response \u2014 shows the Fur regulon and iron-limitation response are correlated but not identical, providing Leaden's own validation of the signal",
+          "context": {
+            "line": 129,
+            "section": "Results"
+          }
+        },
+        {
+          "source": "notebook_md",
+          "text": "Leaden's own data give an upper-bound expectation for what \"Fur-like\" perturbations look like. \u0394*fur* and iron-limitation should be correlated but not identical. Genes that are co-regulated (both up, both down) are the core Fur-iron axis. Genes that respond only to one are con...",
+          "context": {
+            "notebook": "notebooks/01_leaden2018_fur_signature.ipynb",
+            "preceding_cell": 4
+          }
+        },
+        {
+          "source": "filename",
+          "text": "Leaden iron vs fur",
+          "context": {}
+        }
+      ],
+      "savefig_origins": [
+        {
+          "notebook": "notebooks/01_leaden2018_fur_signature.ipynb",
+          "cell": 4,
+          "line": 27,
+          "raw_call": "plt.savefig(FIG / 'NB01_leaden_iron_vs_fur.png', dpi=140, bbox_inches='tight')"
+        }
+      ],
+      "description": {
+        "title": null,
+        "axes_labels": [
+          "Leaden 2018 \u2014 log2FC iron-limited 2h DP / WT",
+          "Leaden 2018 \u2014 log2FC \u0394fur / WT"
+        ],
+        "legend_labels": [],
+        "notebook_prose": "## 2. Internal QC \u2014 Leaden \u0394*fur* vs iron-limitation (2h DP)\n\nLeaden's own data give an upper-bound expectation for what \"Fur-like\" perturbations look like. \u0394*fur* and iron-limitation should be correlated but not identical. Genes that are co-regulated (both up, both down) are the core Fur-iron axis. Genes that respond only to one are condition-specific.",
+        "panels": [],
+        "source_refs": [
+          "notebook_md_walkback(notebooks/01_leaden2018_fur_signature.ipynb)",
+          "matplotlib_ast(notebooks/01_leaden2018_fur_signature.ipynb)"
+        ]
+      }
+    },
+    {
+      "path": "figures/NB04_ctpA_per_strain.png",
+      "filename": "NB04_ctpA_per_strain.png",
+      "size_bytes": 34748,
+      "format": "png",
+      "captions": [
+        {
+          "source": "report",
+          "text": "CtpA / CCNA_03113 expression per strain \u2014 clear monotonic rise 37\u219242\u219263 CPM despite borderline single-contrast FDR",
+          "context": {
+            "line": 145,
+            "section": "Results"
+          }
+        },
+        {
+          "source": "notebook_md",
+          "text": "## 4. Heatmap visualizations",
+          "context": {
+            "notebook": "notebooks/04_sphingolipid_lpt_panel.ipynb",
+            "preceding_cell": 7
+          }
+        },
+        {
+          "source": "filename",
+          "text": "CtpA per strain",
+          "context": {}
+        }
+      ],
+      "savefig_origins": [
+        {
+          "notebook": "notebooks/04_sphingolipid_lpt_panel.ipynb",
+          "cell": 7,
+          "line": 15,
+          "raw_call": "plt.savefig(FIG / 'NB04_ctpA_per_strain.png', dpi=140, bbox_inches='tight')"
+        }
+      ],
+      "description": {
+        "title": "CtpA / CCNA_03113 (LpxE-like) expression per strain",
+        "axes_labels": [
+          "Strain (RNA-seq ID)",
+          "TMM-CPM"
+        ],
+        "legend_labels": [],
+        "notebook_prose": "## 4. Heatmap visualizations",
+        "panels": [],
+        "source_refs": [
+          "notebook_md_walkback(notebooks/04_sphingolipid_lpt_panel.ipynb)",
+          "matplotlib_ast(notebooks/04_sphingolipid_lpt_panel.ipynb)"
+        ]
+      }
+    },
+    {
+      "path": "figures/NB04_lpt_apparatus_heatmap.png",
+      "filename": "NB04_lpt_apparatus_heatmap.png",
+      "size_bytes": 116932,
+      "format": "png",
+      "captions": [
+        {
+          "source": "report",
+          "text": "Canonical LPS-transport apparatus heatmap \u2014 MsbA-like CCNA_00307 visibly UP in 4599 vs others",
+          "context": {
+            "line": 143,
+            "section": "Results"
+          }
+        },
+        {
+          "source": "notebook_md",
+          "text": "## 4. Heatmap visualizations",
+          "context": {
+            "notebook": "notebooks/04_sphingolipid_lpt_panel.ipynb",
+            "preceding_cell": 6
+          }
+        },
+        {
+          "source": "filename",
+          "text": "Lpt apparatus heatmap",
+          "context": {}
+        }
+      ],
+      "savefig_origins": [
+        {
+          "notebook": "notebooks/04_sphingolipid_lpt_panel.ipynb",
+          "cell": 6,
+          "line": 15,
+          "raw_call": "plt.savefig(FIG / 'NB04_lpt_apparatus_heatmap.png', dpi=140, bbox_inches='tight')"
+        }
+      ],
+      "description": {
+        "title": "Canonical LPS-transport apparatus \u2014 log2(CPM+1) per replicate",
+        "axes_labels": [
+          "Library",
+          "Locus (role)"
+        ],
+        "legend_labels": [],
+        "notebook_prose": "## 4. Heatmap visualizations",
+        "panels": [],
+        "source_refs": [
+          "notebook_md_walkback(notebooks/04_sphingolipid_lpt_panel.ipynb)",
+          "matplotlib_ast(notebooks/04_sphingolipid_lpt_panel.ipynb)"
+        ]
+      }
+    },
+    {
+      "path": "figures/NB04_sphingolipid_locus_heatmap.png",
+      "filename": "NB04_sphingolipid_locus_heatmap.png",
+      "size_bytes": 209209,
+      "format": "png",
+      "captions": [
+        {
+          "source": "report",
+          "text": "Sphingolipid biosynthesis cluster heatmap \u2014 flat-to-slightly-decreasing across strain series",
+          "context": {
+            "line": 141,
+            "section": "Results"
+          }
+        },
+        {
+          "source": "notebook_md",
+          "text": "## 4. Heatmap visualizations",
+          "context": {
+            "notebook": "notebooks/04_sphingolipid_lpt_panel.ipynb",
+            "preceding_cell": 5
+          }
+        },
+        {
+          "source": "filename",
+          "text": "Sphingolipid locus heatmap",
+          "context": {}
+        }
+      ],
+      "savefig_origins": [
+        {
+          "notebook": "notebooks/04_sphingolipid_lpt_panel.ipynb",
+          "cell": 5,
+          "line": 16,
+          "raw_call": "plt.savefig(FIG / 'NB04_sphingolipid_locus_heatmap.png', dpi=140, bbox_inches='tight')"
+        }
+      ],
+      "description": {
+        "title": "Sphingolipid biosynthesis cluster \u2014 log2(CPM+1) per replicate",
+        "axes_labels": [
+          "Library",
+          "Locus (role)"
+        ],
+        "legend_labels": [],
+        "notebook_prose": "## 4. Heatmap visualizations",
+        "panels": [],
+        "source_refs": [
+          "notebook_md_walkback(notebooks/04_sphingolipid_lpt_panel.ipynb)",
+          "matplotlib_ast(notebooks/04_sphingolipid_lpt_panel.ipynb)"
+        ]
+      }
+    },
+    {
+      "path": "figures/NB05_pg_remodeling_heatmap.png",
+      "filename": "NB05_pg_remodeling_heatmap.png",
+      "size_bytes": 426707,
+      "format": "png",
+      "captions": [
+        {
+          "source": "report",
+          "text": "PG-remodeling enzymes meeting H4 threshold \u2014 coordinated up/down pattern across the strain series",
+          "context": {
+            "line": 149,
+            "section": "Results"
+          }
+        },
+        {
+          "source": "notebook_md",
+          "text": "## 5. Heatmap visualization",
+          "context": {
+            "notebook": "notebooks/05_pg_remodeling.ipynb",
+            "preceding_cell": 7
+          }
+        },
+        {
+          "source": "filename",
+          "text": "Pg remodeling heatmap",
+          "context": {}
+        }
+      ],
+      "savefig_origins": [
+        {
+          "notebook": "notebooks/05_pg_remodeling.ipynb",
+          "cell": 7,
+          "line": 27,
+          "raw_call": "plt.savefig(FIG / 'NB05_pg_remodeling_heatmap.png', dpi=140, bbox_inches='tight')"
+        }
+      ],
+      "description": {
+        "title": null,
+        "axes_labels": [
+          "Library",
+          "Locus  gene  description"
+        ],
+        "legend_labels": [],
+        "notebook_prose": "## 5. Heatmap visualization",
+        "panels": [],
+        "source_refs": [
+          "notebook_md_walkback(notebooks/05_pg_remodeling.ipynb)",
+          "matplotlib_ast(notebooks/05_pg_remodeling.ipynb)"
+        ]
+      }
+    },
+    {
+      "path": "figures/NB06_comparative_heatmap.png",
+      "filename": "NB06_comparative_heatmap.png",
+      "size_bytes": 158794,
+      "format": "png",
+      "captions": [
+        {
+          "source": "notebook_md",
+          "text": "## 2. Visualize presence/absence matrix",
+          "context": {
+            "notebook": "notebooks/06_comparative_species.ipynb",
+            "preceding_cell": 5
+          }
+        },
+        {
+          "source": "filename",
+          "text": "Comparative heatmap",
+          "context": {}
+        }
+      ],
+      "savefig_origins": [
+        {
+          "notebook": "notebooks/06_comparative_species.ipynb",
+          "cell": 5,
+          "line": 10,
+          "raw_call": "plt.savefig(FIG / 'NB06_comparative_heatmap.png', dpi=140, bbox_inches='tight')"
+        }
+      ],
+      "description": {
+        "title": "Focal gene presence/absence (1=present, 0=absent in PaperBLAST)",
+        "axes_labels": [
+          "Species",
+          ""
+        ],
+        "legend_labels": [],
+        "notebook_prose": "## 2. Visualize presence/absence matrix",
+        "panels": [],
+        "source_refs": [
+          "notebook_md_walkback(notebooks/06_comparative_species.ipynb)",
+          "matplotlib_ast(notebooks/06_comparative_species.ipynb)"
+        ]
+      }
+    },
+    {
+      "path": "figures/NB07_synthesis_master.png",
+      "filename": "NB07_synthesis_master.png",
+      "size_bytes": 380240,
+      "format": "png",
+      "captions": [
+        {
+          "source": "report",
+          "text": "Master synthesis figure \u2014 4-panel summary of all five mechanism layers",
+          "context": {
+            "line": 5,
+            "section": "Key Findings"
+          }
+        },
+        {
+          "source": "notebook_md",
+          "text": "## Build the 4-panel master figure",
+          "context": {
+            "notebook": "notebooks/07_synthesis.ipynb",
+            "preceding_cell": 2
+          }
+        },
+        {
+          "source": "filename",
+          "text": "Synthesis master",
+          "context": {}
+        }
+      ],
+      "savefig_origins": [
+        {
+          "notebook": "notebooks/07_synthesis.ipynb",
+          "cell": 2,
+          "line": 141,
+          "raw_call": "plt.savefig(FIG / 'NB07_synthesis_master.png', dpi=160, bbox_inches='tight')"
+        }
+      ],
+      "description": {
+        "title": "(A) \u0394fur signature: concordance and \u0394sspB-buffered set\nSpearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394fur DEGs",
+        "axes_labels": [
+          "Leaden 2018 \u2014 log2FC \u0394fur / WT",
+          "Our data \u2014 log2FC 4584 / 4580\n(\u0394fur \u0394sspB \u0394rsaA vs \u0394rsaA)",
+          "% of cohort with theme annotation",
+          "",
+          "log2FC 4584-vs-4580  (\u0394fur \u0394sspB effect)",
+          "log2FC 4599-vs-4584  (added \u0394lpxc effect)"
+        ],
+        "legend_labels": [],
+        "notebook_prose": "## Build the 4-panel master figure",
+        "panels": [],
+        "source_refs": [
+          "notebook_md_walkback(notebooks/07_synthesis.ipynb)",
+          "matplotlib_ast(notebooks/07_synthesis.ipynb)"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "total_figures": 9,
+    "total_size_bytes": 1639517,
+    "by_format": {
+      "png": 9
+    },
+    "with_notebook_origin": 9,
+    "with_report_reference": 8,
+    "filename_only": 0
+  }
+}
+Wrote figures_inventory.md to /home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_2/figures_inventory.md

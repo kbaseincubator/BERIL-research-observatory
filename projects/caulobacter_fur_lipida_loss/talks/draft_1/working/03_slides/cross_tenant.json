@@ -1,0 +1,31 @@
+{
+  "schema_version": "compose-fragment.v1",
+  "kind": "cross_tenant_set",
+  "throughline_id": "TL2",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "cross_tenant_integration",
+      "content": {
+        "title": "This work integrates 6 K-BERDL databases + 1 external reference catalog across 10 notebooks — all within the `beril` tenant.",
+        "tenant_list": [
+          "beril"
+        ],
+        "kberdl_db_list": [
+          "go",
+          "isolates",
+          "paperblast",
+          "pfam",
+          "pubmed",
+          "rb_tnseq"
+        ],
+        "data_flow_diagram": null,
+        "no_signal_fallback": false
+      },
+      "speaker_notes_seed": "RB-TnSeq is the primary fitness workhorse — 198 Caulobacter experiments across 3943 genes, grounding the phenotype-bearing rate calibration and the Fur-regulon enrichment test (Findings 1–2); PaperBLAST is the annotation backbone spanning DEG characterization through the comparative species presence/absence panel (Findings 3–6); GO terms (NB03) characterized ChvI phase themes, Pfam (NB05) anchored the PG-remodeling gene set, and PubMed + isolates supported literature anchoring and strain references. RefSeq (external, NCBI) confirmed the NB06b comparative absence calls that make Finding 6 robust against PaperBLAST's ~80% false-negative rate for Caulobacter lipid A genes. All 10 notebooks draw from the single `beril` tenant — this project did not span multiple BERDL tenants.",
+      "kbase_platform_frame": false
+    }
+  ]
+}

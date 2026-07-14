@@ -1,0 +1,73 @@
+{
+  "schema_version": "run-record.v1",
+  "skill": "presentation-maker",
+  "skill_version": "1.3.0",
+  "run_id": "run-1",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_2",
+  "mode": "talk-30",
+  "status": "halted",
+  "started_at": "2026-06-08T17:28:20Z",
+  "finished_at": null,
+  "exit_code": null,
+  "current_stage": "throughline_pick",
+  "stages": [
+    {
+      "id": "plan",
+      "status": "completed",
+      "model": "opus",
+      "started_at": "2026-06-08T17:28:21Z",
+      "finished_at": "2026-06-08T17:32:56Z",
+      "elapsed_seconds": 275.0,
+      "input_tokens": 14,
+      "output_tokens": 16671,
+      "cache_read_tokens": 519396,
+      "cache_creation_tokens": 260582,
+      "cost_usd": 6.915541,
+      "subrecord": null
+    },
+    {
+      "id": "throughline_candidates",
+      "status": "completed",
+      "model": "opus",
+      "started_at": "2026-06-08T17:32:56Z",
+      "finished_at": "2026-06-08T17:38:05Z",
+      "elapsed_seconds": 309.0,
+      "input_tokens": 12,
+      "output_tokens": 27425,
+      "cache_read_tokens": 576979,
+      "cache_creation_tokens": 155972,
+      "cost_usd": 5.846998,
+      "subrecord": null
+    },
+    {
+      "id": "throughline_pick",
+      "status": "running",
+      "model": null,
+      "started_at": "2026-06-08T17:28:20Z",
+      "finished_at": null,
+      "elapsed_seconds": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_read_tokens": 0,
+      "cache_creation_tokens": 0,
+      "cost_usd": 0.0,
+      "subrecord": null
+    }
+  ],
+  "totals": {
+    "cost_usd": 12.762539,
+    "input_tokens": 26,
+    "output_tokens": 44096,
+    "cache_read_tokens": 1096375,
+    "cache_creation_tokens": 416554,
+    "elapsed_seconds": 584.0
+  },
+  "models_used": [
+    "opus"
+  ],
+  "artifacts": {
+    "user_intent": "audit/user_intent.json",
+    "deliverable_validation": null,
+    "deliverable": null
+  }
+}

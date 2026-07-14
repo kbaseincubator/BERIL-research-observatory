@@ -1,0 +1,1990 @@
+{
+  "schema_version": "review-cascade.v1",
+  "version": "0.4.0-m5a-tierC",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1",
+  "tiers": [
+    {
+      "name": "tier1",
+      "status": "fail",
+      "findings": [
+        {
+          "tier": "tier1",
+          "kind": "P1",
+          "severity": "P1",
+          "slide_id": null,
+          "detail": "Mode slide budget: slide count 36 is outside mode 'talk-30' budget 25-32; orchestrator should re-allocate",
+          "evidence": {
+            "where": "(global)",
+            "severity": "error",
+            "escalation_path": "auto-fix"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P3",
+          "severity": "P0",
+          "slide_id": 8,
+          "detail": "Numeric provenance: numeric claim '00210/02048' not grounded in REPORT.md (severity=high): Number '00210/02048' (context: '8) |t|=43.7, tbdts ccna_02910/'/'/00028 |t| 9\u201328.\\nreport.md \u00a7fi') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.. Either add the number to REPORT.md with its source notebook+cell, or remove the claim from the slide. Auto-fix forbidden (would require fabrication).",
+          "evidence": {
+            "where": "slide[8]",
+            "severity": "error",
+            "escalation_path": "escalate"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P3",
+          "severity": "P0",
+          "slide_id": 9,
+          "detail": "Numeric provenance: numeric claim '0/198' not grounded in REPORT.md (severity=high): Number '0/198' (context: 'ground; iron axis untestable ('/' caulobacter fb experiments un') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.. Either add the number to REPORT.md with its source notebook+cell, or remove the claim from the slide. Auto-fix forbidden (would require fabrication).",
+          "evidence": {
+            "where": "slide[9]",
+            "severity": "error",
+            "escalation_path": "escalate"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P3",
+          "severity": "P0",
+          "slide_id": 21,
+          "detail": "Numeric provenance: numeric claim '28/53' not grounded in REPORT.md (severity=high): Number '28/53' (context: 'enzymes meeting h4 threshold ('/' pre-curated loci); 20 down (f') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.. Either add the number to REPORT.md with its source notebook+cell, or remove the claim from the slide. Auto-fix forbidden (would require fabrication).",
+          "evidence": {
+            "where": "slide[21]",
+            "severity": "error",
+            "escalation_path": "escalate"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P3",
+          "severity": "P0",
+          "slide_id": 33,
+          "detail": "Numeric provenance: numeric claim '0/198' not grounded in REPORT.md (severity=high): Number '0/198' (context: 's l#9 + \u00a7finding 2 preflight ('/' caulobacter fb iron-limitatio') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.. Either add the number to REPORT.md with its source notebook+cell, or remove the claim from the slide. Auto-fix forbidden (would require fabrication).",
+          "evidence": {
+            "where": "slide[33]",
+            "severity": "error",
+            "escalation_path": "escalate"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 9,
+          "detail": "Citation pool integrity: citation key 'Leaden2018' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[9].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 9,
+          "detail": "Citation pool integrity: citation key 'Zik2022' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[9].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 9,
+          "detail": "Citation pool integrity: citation key 'Price2018' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[9].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 13,
+          "detail": "Citation pool integrity: citation key 'Stein2021' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[13].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 13,
+          "detail": "Citation pool integrity: citation key 'QuinteroYanes2022' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[13].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 13,
+          "detail": "Citation pool integrity: citation key 'Greenwich2023' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[13].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 16,
+          "detail": "Citation pool integrity: citation key 'Zik2022' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[16].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 16,
+          "detail": "Citation pool integrity: citation key 'OleaOzuna2021' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[16].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 18,
+          "detail": "Citation pool integrity: citation key 'Zik2022' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[18].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 18,
+          "detail": "Citation pool integrity: citation key 'Uchendu2026' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[18].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 22,
+          "detail": "Citation pool integrity: citation key 'Tan2025' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[22].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "P4",
+          "severity": "P0",
+          "slide_id": 22,
+          "detail": "Citation pool integrity: citation key 'Yeh2010' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "evidence": {
+            "where": "slide[22].content.citations",
+            "severity": "error",
+            "escalation_path": "user-modify"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "quantitative_grounding",
+          "severity": "P1",
+          "slide_id": 8,
+          "detail": "ungrounded number '00210/02048': Number '00210/02048' (context: '8) |t|=43.7, tbdts ccna_02910/'/'/00028 |t| 9\u201328.\\nreport.md \u00a7fi') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.",
+          "evidence": {
+            "slide_position": 8,
+            "slide_layout": "data_table",
+            "number": {
+              "raw": "00210/02048",
+              "canonical": "00210/02048",
+              "kind": "ratio",
+              "context_before": "8) |t|=43.7, tbdts ccna_02910/",
+              "context_after": "/00028 |t| 9\u201328.\nreport.md \u00a7fi"
+            },
+            "input_severity": "high"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "quantitative_grounding",
+          "severity": "P1",
+          "slide_id": 9,
+          "detail": "ungrounded number '0/198': Number '0/198' (context: 'ground; iron axis untestable ('/' caulobacter fb experiments un') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.",
+          "evidence": {
+            "slide_position": 9,
+            "slide_layout": "claim_evidence",
+            "number": {
+              "raw": "0/198",
+              "canonical": "0/198",
+              "kind": "ratio",
+              "context_before": "ground; iron axis untestable (",
+              "context_after": " caulobacter fb experiments un"
+            },
+            "input_severity": "high"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "quantitative_grounding",
+          "severity": "P1",
+          "slide_id": 21,
+          "detail": "ungrounded number '28/53': Number '28/53' (context: 'enzymes meeting h4 threshold ('/' pre-curated loci); 20 down (f') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.",
+          "evidence": {
+            "slide_position": 21,
+            "slide_layout": "data_figure",
+            "number": {
+              "raw": "28/53",
+              "canonical": "28/53",
+              "kind": "ratio",
+              "context_before": "enzymes meeting h4 threshold (",
+              "context_after": " pre-curated loci); 20 down (f"
+            },
+            "input_severity": "high"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "quantitative_grounding",
+          "severity": "P1",
+          "slide_id": 33,
+          "detail": "ungrounded number '0/198': Number '0/198' (context: 's l#9 + \u00a7finding 2 preflight ('/' caulobacter fb iron-limitatio') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "number": {
+              "raw": "0/198",
+              "canonical": "0/198",
+              "kind": "ratio",
+              "context_before": "s l#9 + \u00a7finding 2 preflight (",
+              "context_after": " caulobacter fb iron-limitatio"
+            },
+            "input_severity": "high"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 5,
+          "detail": "notebook-id: 'NB00' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 4,
+            "slide_layout": "section_divider",
+            "location": "speaker_notes",
+            "context": "...lytical methods, moves to the NB00 orientation finding that refr...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 6,
+          "detail": "analysis-layer-code: 'H2' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 5,
+            "slide_layout": "methods_summary",
+            "location": "bullets[3]",
+            "context": "...eriments are iron-limitation; H2 reduced to envelope-axis only",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 6,
+          "detail": "analysis-layer-code: 'H2' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 5,
+            "slide_layout": "methods_summary",
+            "location": "bullets[5]",
+            "context": "...s genome background as formal H2 verdict (pre-registered \u226510% ...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 6,
+          "detail": "notebook-id: 'NB00' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 5,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "... briefly acknowledge that the NB00 orientation finding on the ne...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 6,
+          "detail": "analysis-layer-code: 'H2' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 5,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "...nts \u2014 so the iron-axis arm of H2 was descoped to envelope-axis...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 6,
+          "detail": "analysis-layer-code: 'H2' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 5,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "...nistic importance. The formal H2 verdict therefore uses hyperg...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 7,
+          "detail": "notebook-id: 'NB00' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 6,
+            "slide_layout": "data_figure",
+            "location": "title",
+            "context": "NB00: sphingolipid biosynthesis is...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 7,
+          "detail": "report-md-section: 'REPORT.md \u00a7Phase A' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 6,
+            "slide_layout": "data_figure",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Phase A; notebooks/00_orientation.ipy...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 7,
+          "detail": "notebook-id: 'NB00' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 6,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...hypothesis testing began, the NB00 orientation notebook establis...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 7,
+          "detail": "notebook-id: 'NB00' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 6,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...e uses CPM normalization from NB00 and is descriptive rather tha...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 7,
+          "detail": "notebook-id: 'NB04' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 6,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...significantly UP \u2014 belongs to NB04 in Layer 3. What the speaker ...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 7,
+          "detail": "notebook-id: 'NB00' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 6,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...er in S3. The delivery note: 'NB00 showed us the sphingolipid po...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 8,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 2 table' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 7,
+            "slide_layout": "data_table",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Finding 2 table; notebooks/02b_h2_hypergeomet...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 8,
+          "detail": "analysis-layer-code: 'H2' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 7,
+            "slide_layout": "data_table",
+            "location": "speaker_notes",
+            "context": "...his table delivers the formal H2 verdict: hypergeometric enric...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 9,
+          "detail": "analysis-layer-code: 'A1' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 8,
+            "slide_layout": "claim_evidence",
+            "location": "speaker_notes",
+            "context": "... one partial finding. Direct (A1): Spearman rho=0.315, p=2.08e...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 9,
+          "detail": "analysis-layer-code: 'A5' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 8,
+            "slide_layout": "claim_evidence",
+            "location": "speaker_notes",
+            "context": "...fines both gene sets. Direct (A5): Path B fold enrichment 1.04...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 9,
+          "detail": "analysis-layer-code: 'A4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 8,
+            "slide_layout": "claim_evidence",
+            "location": "speaker_notes",
+            "context": "...der envelope stress. Partial (A4): Path A fold enrichment 1.60...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 11,
+          "detail": "analysis-layer-code: 'H1' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 10,
+            "slide_layout": "methods_summary",
+            "location": "bullets[4]",
+            "context": "Pre-registered H1 phase-structure threshold: \u22651...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 11,
+          "detail": "report-md-section: 'REPORT' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 10,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "...ting explicitly: the original REPORT draft described an 'early coh...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 12,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 3' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 11,
+            "slide_layout": "data_table",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Finding 3; NB 03_chvi_phase_partition_s...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 12,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 11,
+            "slide_layout": "data_table",
+            "location": "speaker_notes",
+            "context": "... at +2.08 appears in both the NB03 late ChvI cohort (this slide)...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 12,
+          "detail": "notebook-id: 'NB05' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 11,
+            "slide_layout": "data_table",
+            "location": "speaker_notes",
+            "context": "...I cohort (this slide) and the NB05 PG-remodeling set \u2014 a cross-n...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 12,
+          "detail": "analysis-layer-code: 'A8' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 11,
+            "slide_layout": "data_table",
+            "location": "speaker_notes",
+            "context": "...al. This is a direct finding (A8). Earlier draft's 'early coho...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 13,
+          "detail": "analysis-layer-code: 'A11' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 12,
+            "slide_layout": "claim_evidence",
+            "location": "speaker_notes",
+            "context": "... statistically discriminated (A11 = partial, per plan inventory...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 15,
+          "detail": "analysis-layer-code: 'H3' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 14,
+            "slide_layout": "methods_summary",
+            "location": "title",
+            "context": "Methods: H3 sub-claims tested across tran...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 15,
+          "detail": "analysis-layer-code: 'H3' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 14,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "The H3 evidence comes from two data ...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 15,
+          "detail": "analysis-layer-code: 'H3' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 14,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "...cript contrast is the primary H3 readout; the proteome is a po...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 16,
+          "detail": "notebook-file: 'NB04_sphingolipid_lpt_panel.ipynb' \u2014 Notebook filename (project-internal). Belongs in audit/ logs, not on slides.",
+          "evidence": {
+            "slide_position": 15,
+            "slide_layout": "data_figure",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Finding 4; NB04_sphingolipid_lpt_panel.ipynb cell 3",
+            "suggestion": "Move the path to <draft_dir>/audit/ and replace the slide citation with the underlying paper or cohort reference."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 16,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 4' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 15,
+            "slide_layout": "data_figure",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Finding 4; NB04_sphingolipid_lpt_panel....",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 16,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 4: 0 of 6' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 15,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...declining, not induced.  From REPORT.md \u00a7Finding 4: 0 of 6 biosynthesis genes UP at FDR ...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 17,
+          "detail": "notebook-file: 'NB04_sphingolipid_lpt_panel.ipynb' \u2014 Notebook filename (project-internal). Belongs in audit/ logs, not on slides.",
+          "evidence": {
+            "slide_position": 16,
+            "slide_layout": "data_table",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Finding 4; NB04_sphingolipid_lpt_panel.ipynb cells 3,5,6",
+            "suggestion": "Move the path to <draft_dir>/audit/ and replace the slide citation with the underlying paper or cohort reference."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 17,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 4' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 16,
+            "slide_layout": "data_table",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Finding 4; NB04_sphingolipid_lpt_panel....",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 17,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 4 pilot' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 16,
+            "slide_layout": "data_table",
+            "location": "speaker_notes",
+            "context": "... directional pilot datum (see REPORT.md \u00a7Finding 4 pilot).  CtpA verdict: REJECTED. Tr...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 19,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 18,
+            "slide_layout": "section_divider",
+            "location": "speaker_notes",
+            "context": "...-consequence ChvI cohort from NB03 and the pre-curated PG-remode...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 19,
+          "detail": "notebook-id: 'NB05' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 18,
+            "slide_layout": "section_divider",
+            "location": "speaker_notes",
+            "context": "...urated PG-remodeling set from NB05. That kind of cross-notebook ...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "title",
+            "context": "H4 PG-remodeling test: pre-curat...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "bullets[5]",
+            "context": "H4 pre-registered pass criterion...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "bullets[6]",
+            "context": "Cross-notebook check: NB03 late-ChvI cohort compared ind...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "notebook-id: 'NB00' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "...oc hypothesis added after the NB00 orientation surfaced SdpA at ...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "... convergence step \u2014 comparing NB03's late-ChvI cohort against th...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "notebook-id: 'NB05' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "... late-ChvI cohort against the NB05 PG hits \u2014 identified Pal as s...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "... DE is critical: it means the H4 threshold test is not circula...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "analysis-layer-code: 'M23' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "... lipid-II flippase MviN/MurJ, M23-family endopeptidases, and an...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "...lication, 28 unique loci. The H4 pre-registered pass criterion...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 20,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 19,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "... inclusion does not alter the H4 verdict. Second, the cross-no...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 21,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 20,
+            "slide_layout": "data_figure",
+            "location": "title",
+            "context": "28 PG-remodeling loci meet H4 threshold: broad downshift wi...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 21,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 20,
+            "slide_layout": "data_figure",
+            "location": "caption",
+            "context": "PG-remodeling enzymes meeting H4 threshold (28/53 pre-curated ...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 21,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 5' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 20,
+            "slide_layout": "data_figure",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Finding 5; NB 05_pg_remodeling.ipynb ce...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 21,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 20,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...independent appearance in the NB03 late-ChvI cohort, makes Pal t...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 21,
+          "detail": "report-md-section: 'REPORT' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 20,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "... reorganization.' The current REPORT framing is more accurate \u2014 pr...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 21,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 20,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...-remodeling loci that met the H4 threshold, and the pattern is...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 21,
+          "detail": "analysis-layer-code: 'M23' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 20,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...e lipid-II flippase; multiple M23-family endopeptidases includi...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 22,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 21,
+            "slide_layout": "claim_evidence",
+            "location": "bullets[0]",
+            "context": "...4 protein \u2014 convergent across NB03 late-ChvI cohort and NB05 H4 ...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 22,
+          "detail": "notebook-id: 'NB05' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 21,
+            "slide_layout": "claim_evidence",
+            "location": "bullets[0]",
+            "context": "...oss NB03 late-ChvI cohort and NB05 H4 PG set, the sole gene with...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 22,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 21,
+            "slide_layout": "claim_evidence",
+            "location": "bullets[0]",
+            "context": "...B03 late-ChvI cohort and NB05 H4 PG set, the sole gene with bo...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 22,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 21,
+            "slide_layout": "claim_evidence",
+            "location": "speaker_notes",
+            "context": "Pal's appearance in both NB03 and NB05 is the key cross-not...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 22,
+          "detail": "notebook-id: 'NB05' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 21,
+            "slide_layout": "claim_evidence",
+            "location": "speaker_notes",
+            "context": "...s appearance in both NB03 and NB05 is the key cross-notebook con...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 22,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 21,
+            "slide_layout": "claim_evidence",
+            "location": "speaker_notes",
+            "context": "...vergence of this substory. In NB03, Pal at CCNA_00784 was a memb...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 22,
+          "detail": "notebook-id: 'NB05' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 21,
+            "slide_layout": "claim_evidence",
+            "location": "speaker_notes",
+            "context": "... as a top late-cohort hit. In NB05, the same gene independently ...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 23,
+          "detail": "analysis-layer-code: 'A21' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 22,
+            "slide_layout": "section_divider",
+            "location": "speaker_notes",
+            "context": "...tion rests on three analyses. A21 and A22 establish the phyloge...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 23,
+          "detail": "analysis-layer-code: 'A22' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 22,
+            "slide_layout": "section_divider",
+            "location": "speaker_notes",
+            "context": "...ts on three analyses. A21 and A22 establish the phylogenetic re...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 23,
+          "detail": "analysis-layer-code: 'A23' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 22,
+            "slide_layout": "section_divider",
+            "location": "speaker_notes",
+            "context": "...d (NCBI 5,0,0,0 and 6,0,0,0). A23 closes the explanatory loop: ...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 23,
+          "detail": "analysis-layer-code: 'A24' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 22,
+            "slide_layout": "section_divider",
+            "location": "speaker_notes",
+            "context": "...in M. catarrhalis (Gao 2008). A24 supplies the method-robustnes...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 24,
+          "detail": "notebook-id: 'NB06' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 23,
+            "slide_layout": "methods_summary",
+            "location": "bullets[2]",
+            "context": "Initial screen (NB06): PaperBLAST text-mining via ...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 24,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 23,
+            "slide_layout": "methods_summary",
+            "location": "bullets[3]",
+            "context": "Post-review re-test (NB06b): NCBI protein annotation via...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 24,
+          "detail": "notebook-id: 'NB06' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 23,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "...naming, PaperBLAST misses it. NB06 generated the original presen...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 24,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 23,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "... The critical contribution of NB06b was an NCBI annotation re-tes...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "notebook-id: 'NB06' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "caption",
+            "context": "PaperBLAST screen (NB06) across the four-species pane...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "caption",
+            "context": "...ecies panel; NCBI annotation (NB06b) confirms key absences: spt 7...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "notebook-file: 'NB06b_ncbi_annotation_presence.ipynb' \u2014 Notebook filename (project-internal). Belongs in audit/ logs, not on slides.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "data_source",
+            "context": "NB06b_ncbi_annotation_presence.ipynb cell 3; Olea-Ozuna 2020/2024;...",
+            "suggestion": "Move the path to <draft_dir>/audit/ and replace the slide citation with the underlying paper or cohort reference."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "notebook-id: 'NB06' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...s the four-species panel from NB06. The NCBI annotation re-test ...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...he NCBI annotation re-test in NB06b confirms the headline biologi...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "... respectively \u2014 verbatim from NB06b cell 3 and REPORT.md \u00a7Finding...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 6' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...erbatim from NB06b cell 3 and REPORT.md \u00a7Finding 6. Note that PaperBLAST showed ...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "analysis-layer-code: 'A23' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...the comparative analysis: the A23 analysis \u2014 connecting compara...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "analysis-layer-code: 'A21' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "... The absence data themselves, A21 for sphingolipid and A22 for ...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 25,
+          "detail": "analysis-layer-code: 'A22' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 24,
+            "slide_layout": "data_figure",
+            "location": "speaker_notes",
+            "context": "...ves, A21 for sphingolipid and A22 for ChvG-ChvI, are direct evi...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 26,
+          "detail": "notebook-id: 'NB06' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 25,
+            "slide_layout": "two_column_compare",
+            "location": "speaker_notes",
+            "context": "...tely 9 PaperBLAST hits in our NB06 screen. Caulobacter's surface...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 26,
+          "detail": "analysis-layer-code: 'A23' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 25,
+            "slide_layout": "two_column_compare",
+            "location": "speaker_notes",
+            "context": "...without Fur involvement.  The A23 analysis is categorized as pa...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 26,
+          "detail": "analysis-layer-code: 'A21' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 25,
+            "slide_layout": "two_column_compare",
+            "location": "speaker_notes",
+            "context": "...hvI in all three comparators (A21, A22 \u2014 both direct evidence) ...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 26,
+          "detail": "analysis-layer-code: 'A22' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 25,
+            "slide_layout": "two_column_compare",
+            "location": "speaker_notes",
+            "context": "...n all three comparators (A21, A22 \u2014 both direct evidence) form ...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 26,
+          "detail": "analysis-layer-code: 'A21' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 25,
+            "slide_layout": "two_column_compare",
+            "location": "speaker_notes",
+            "context": "... foundation.  Taken together, A21 through A24 establish that st...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 26,
+          "detail": "analysis-layer-code: 'A24' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 25,
+            "slide_layout": "two_column_compare",
+            "location": "speaker_notes",
+            "context": "...  Taken together, A21 through A24 establish that structural una...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 28,
+          "detail": "analysis-layer-code: 'H1' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 27,
+            "slide_layout": "methods_summary",
+            "location": "bullets[0]",
+            "context": "Pre-registered hypotheses H1\u2013H4 + comparative arm; thresho...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 28,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 27,
+            "slide_layout": "methods_summary",
+            "location": "bullets[0]",
+            "context": "Pre-registered hypotheses H1\u2013H4 + comparative arm; thresholds...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 28,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 27,
+            "slide_layout": "methods_summary",
+            "location": "bullets[4]",
+            "context": "Comparative: NCBI annotation (NB06b) re-confirmed after PaperBLAS...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 28,
+          "detail": "notebook-id: 'NB07' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 27,
+            "slide_layout": "methods_summary",
+            "location": "bullets[6]",
+            "context": "NB07 synthesis notebook integrates...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 28,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 27,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "...notation finds 11 to 18 each. NB06b re-ran the comparative panel ...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 28,
+          "detail": "analysis-layer-code: 'H2' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 27,
+            "slide_layout": "methods_summary",
+            "location": "speaker_notes",
+            "context": "...that background as the formal H2 verdict, using the 198-experi...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 29,
+          "detail": "notebook-file: 'NB07_synthesis.ipynb' \u2014 Notebook filename (project-internal). Belongs in audit/ logs, not on slides.",
+          "evidence": {
+            "slide_position": 28,
+            "slide_layout": "data_table",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Results; NB07_synthesis.ipynb",
+            "suggestion": "Move the path to <draft_dir>/audit/ and replace the slide citation with the underlying paper or cohort reference."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 29,
+          "detail": "report-md-section: 'REPORT.md \u00a7Results' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 28,
+            "slide_layout": "data_table",
+            "location": "data_source",
+            "context": "REPORT.md \u00a7Results; NB07_synthesis.ipynb",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 29,
+          "detail": "analysis-layer-code: 'H4' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 28,
+            "slide_layout": "data_table",
+            "location": "speaker_notes",
+            "context": "...ngly: 28 unique loci meet the H4 threshold \u2014 20 down, includin...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 30,
+          "detail": "report-md-section: 'REPORT.md \u00a7Future directions' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 29,
+            "slide_layout": "deck_close",
+            "location": "data_source",
+            "context": "... narrative/00_throughline.md; REPORT.md \u00a7Future directions",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 30,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 29,
+            "slide_layout": "deck_close",
+            "location": "speaker_notes",
+            "context": "...and the late ChvI cohort from NB03 gives us a ready candidate ta...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 30,
+          "detail": "report-md-section: 'REPORT.md \u00a7Future directions' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 29,
+            "slide_layout": "deck_close",
+            "location": "speaker_notes",
+            "context": "... narrative/00_throughline.md; REPORT.md \u00a7Future directions",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 31,
+          "detail": "notebook-id: 'NB03' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 30,
+            "slide_layout": "cross_tenant_integration",
+            "location": "speaker_notes",
+            "context": "...nel (Findings 3\u20136); GO terms (NB03) characterized ChvI phase the...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 31,
+          "detail": "notebook-id: 'NB05' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 30,
+            "slide_layout": "cross_tenant_integration",
+            "location": "speaker_notes",
+            "context": "...ized ChvI phase themes, Pfam (NB05) anchored the PG-remodeling g...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 31,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 30,
+            "slide_layout": "cross_tenant_integration",
+            "location": "speaker_notes",
+            "context": "...external, NCBI) confirmed the NB06b comparative absence calls tha...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 32,
+          "detail": "report-md-section: \"REPORT.md \u00a7Finding 4 labels this 'suggestive\" \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 31,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "... modest and single-replicate. REPORT.md \u00a7Finding 4 labels this 'suggestive pilot observation requiring r...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 32,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 4 protein table (LptD' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 31,
+            "slide_layout": "qa_anticipated",
+            "location": "evidence_pointer",
+            "context": "REPORT.md \u00a7Finding 4 protein table (LptD \u22120.47, LptE \u22120.78 log2); \u00a7Int...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 33,
+          "detail": "notebook-id: 'NB02' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 32,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...(REPORT \u00a7Finding 2 preflight; NB02 cell 5). Testing this axis re...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 33,
+          "detail": "report-md-section: 'REPORT \u00a7Finding 2 preflight' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 32,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...experiments are iron-limited (REPORT \u00a7Finding 2 preflight; NB02 cell 5). Testing this a...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 33,
+          "detail": "analysis-layer-code: 'H2' \u2014 Looks like a project-internal analysis-layer code (A16, H3c, L13). Reads as jargon to peers; the underlying claim is what they need.",
+          "evidence": {
+            "slide_position": 32,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...ed the iron-limitation arm of H2 explicitly because zero of 19...",
+            "suggestion": "Replace with what the code REFERS TO \u2014 e.g., 'L13' \u2192 'comparator-choice sensitivity analysis'. If the code is defined elsewhere on the deck, define it inline; if not, state the actual finding."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 33,
+          "detail": "report-md-section: 'REPORT.md \u00a7Limitations L#4 (single growth condition' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 32,
+            "slide_layout": "qa_anticipated",
+            "location": "evidence_pointer",
+            "context": "REPORT.md \u00a7Limitations L#4 (single growth condition, PYE rich-medium routine); \u00a7L...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "notebook-id: 'NB06' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...ing via kescience_paperblast (NB06, the original screen) and (b)...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...otation via Biopython Entrez (NB06b, added post-adversarial-revie...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "notebook-id: 'NB06' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...iew correctly identified that NB06 PaperBLAST had ~80% false-neg...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...its each for the same genes). NB06b was added to re-confirm compa...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...6,0,0,0.  However, REPORT.md \u00a7NB06b explicitly documents a second...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "report-md-section: 'REPORT.md \u00a7NB06b explicitly documents a second-tier' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...,0; ChvI = 6,0,0,0.  However, REPORT.md \u00a7NB06b explicitly documents a second-tier caveat: 'NCBI annotation also...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "report-md-section: 'REPORT \u00a7Future Directions \u00a78: run Pfam' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "answer_detail",
+            "context": "...definitive closure, stated in REPORT \u00a7Future Directions \u00a78: run Pfam HMM searches using profile PF...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "evidence_pointer",
+            "context": "...erR 6,0,0,0 NCBI-confirmed); \u00a7NB06b table (PaperBLAST ~80% FN for...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "notebook-id: 'NB06b' \u2014 Notebook ID (project-internal). Peer audiences don't read your notebook inventory.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "evidence_pointer",
+            "context": "...A genes; NCBI confirmation); \u00a7NB06b naming-convention caveat (Msb...",
+            "suggestion": "Replace with the cohort + sample size + primary author/year, e.g. 'NB04h' \u2192 'Lloyd-Price 2019 (HMP2 cohort, n=1,627)'."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "no_artifact_refs",
+          "severity": "P2",
+          "slide_id": 34,
+          "detail": "report-md-section: 'REPORT.md \u00a7Finding 6 (spt 7' \u2014 Reference to REPORT.md (project-internal documentation). Peers don't have access to your REPORT.",
+          "evidence": {
+            "slide_position": 33,
+            "slide_layout": "qa_anticipated",
+            "location": "evidence_pointer",
+            "context": "REPORT.md \u00a7Finding 6 (spt 7,0,0,0; cerR 6,0,0,0 NCBI-conf...",
+            "suggestion": "Replace with the underlying citation (paper + author + year) or, if the result is original to this project, present it directly without the meta-citation."
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "duplicate_figure",
+          "severity": "P1",
+          "slide_id": 7,
+          "detail": "figure 'figures/00_sphingolipid_locus_heatmap.png' is used on 2 slides: [7, 16]. A curated figure should carry one slide; reuse usually means two composers independently reached for the same asset.",
+          "evidence": {
+            "slide_ids": [
+              7,
+              16
+            ],
+            "input_severity": "warning"
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "content_overflow",
+          "severity": "P1",
+          "slide_id": 30,
+          "detail": "slide title (methods_summary): 336 chars at base 28pt in 9.32\u00d70.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+          "evidence": {
+            "slot_kind": "title",
+            "layout_name": "methods_summary",
+            "chars": 336,
+            "base_pt": 28,
+            "computed_scale": 60000,
+            "box_width_emu": 8520600,
+            "box_height_emu": 572700
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "content_overflow",
+          "severity": "P1",
+          "slide_id": 32,
+          "detail": "slide title (qa_anticipated): 292 chars at base 28pt in 9.32\u00d71.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+          "evidence": {
+            "slot_kind": "title",
+            "layout_name": "qa_anticipated",
+            "chars": 292,
+            "base_pt": 28,
+            "computed_scale": 60000,
+            "box_width_emu": 8521700,
+            "box_height_emu": 1188720
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "content_overflow",
+          "severity": "P1",
+          "slide_id": 33,
+          "detail": "slide title (qa_anticipated): 295 chars at base 28pt in 9.32\u00d71.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+          "evidence": {
+            "slot_kind": "title",
+            "layout_name": "qa_anticipated",
+            "chars": 295,
+            "base_pt": 28,
+            "computed_scale": 60000,
+            "box_width_emu": 8521700,
+            "box_height_emu": 1188720
+          }
+        },
+        {
+          "tier": "tier1",
+          "kind": "content_overflow",
+          "severity": "P1",
+          "slide_id": 34,
+          "detail": "slide title (qa_anticipated): 313 chars at base 28pt in 9.32\u00d71.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+          "evidence": {
+            "slot_kind": "title",
+            "layout_name": "qa_anticipated",
+            "chars": 313,
+            "base_pt": 28,
+            "computed_scale": 60000,
+            "box_width_emu": 8521700,
+            "box_height_emu": 1188720
+          }
+        }
+      ],
+      "cost_usd": 0.0,
+      "duration_sec": 0.195458,
+      "note": ""
+    },
+    {
+      "name": "tier2",
+      "status": "skipped",
+      "findings": [],
+      "cost_usd": 0.0,
+      "duration_sec": 0.0,
+      "note": "skipped \u2014 short-circuited at tier1"
+    },
+    {
+      "name": "tier3",
+      "status": "skipped",
+      "findings": [],
+      "cost_usd": 0.0,
+      "duration_sec": 0.0,
+      "note": "skipped \u2014 short-circuited at tier1"
+    }
+  ],
+  "short_circuited_at": "tier1",
+  "total_cost_usd": 0.0,
+  "total_duration_sec": 0.195458,
+  "note": ""
+}

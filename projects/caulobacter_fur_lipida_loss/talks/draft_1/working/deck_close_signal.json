@@ -1,0 +1,35 @@
+{
+  "data_source": "Substory conclusions: S1 (C-slot) + S2 (C-slot) + S3 (C-slot) + S4 (C-slot) + S5 (C-slot); narrative/00_throughline.md; REPORT.md \u00a7Future directions",
+  "forward_call": "Replicate the OM proteome (already planned by the data provider for summer 2026). The two novel post-hoc findings \u2014 lptC2 protein induction (transcript-protein decoupling) and Pal-Tol upregulation \u2014 need replication before publication. Targeted Western blots against lptC2-tagged and Pal-tagged strains would also strengthen these claims. *Characterize the Caulobacter SigU regulon* via SigU-induction RNA-seq (ectopic vanillate-inducible SigU expression) followed by genome-wide DE. The published literature contains no Caulobacter SigU regulon; this is a clear gap. The late ChvI cohort from NB03 provides a candidate target list to validate.",
+  "key_takeaways": [
+    "Fur-released transport relief is real and fitness-bearing in Path A transporters, but the SspB-buffered respiratory arm shows no fitness signal.",
+    "ChvI drives a two-phase program \u2014 regulators early, envelope-structural genes late \u2014 but the membrane substitute itself is set elsewhere.",
+    "A constitutive anionic-sphingolipid pool substitutes for lipid A, transported by maintained Lpt machinery \u2014 not an inducible emergency response.",
+    "Peptidoglycan synthesis is broadly downshifted with targeted Pal-Tol induction \u2014 a coordinated remodel that raises why only Caulobacter survives it.",
+    "The sphingolipid pathway and ChvG-ChvI are taxonomically restricted; comparator species lack the route entirely and use alternative strategies instead."
+  ],
+  "no_signal_fallback": false,
+  "project_id": "caulobacter_fur_lipida_loss",
+  "raw_evidence": {
+    "n_substories": 6,
+    "n_takeaways_capped": true,
+    "n_takeaways_total_before_cap": 6,
+    "report_path": "REPORT.md",
+    "report_sections_matched": [
+      "Future directions"
+    ],
+    "substories_path": "narrative/02_substories.md",
+    "substory_ids_seen": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "throughline_path": "narrative/00_throughline.md",
+    "v3_2_transition_field_present": true
+  },
+  "schema_version": "deck-close-signal.v1",
+  "unified_point": "A single envelope catastrophe \u2014 lipid A loss \u2014 triggers five partially independent adaptive layers (Fur-released transport, ChvI two-phase signaling, constitutive sphingolipid substitution, peptidoglycan remodeling, and cross-species structural unavailability) that together explain how and why Caulobacter alone tolerates the deletion."
+}

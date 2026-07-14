@@ -1,0 +1,17 @@
+{
+  "layout": "data_figure",
+  "content": {
+    "title": "Sphingolipid biosynthesis is constitutive: 0 of 6 genes UP; spt and sphk mildly DOWN",
+    "figure": "figures/00_sphingolipid_locus_heatmap.png",
+    "caption": "Sphingolipid biosynthesis locus expression across strains; spt -0.64 (FDR 0.002), sphk -0.40 (FDR 0.02); 0 of 6 genes significantly upregulated.",
+    "data_source": "REPORT.md \u00a7Finding 4; NB04_sphingolipid_lpt_panel.ipynb cell 3",
+    "citations": [
+      "Zik2022",
+      "OleaOzuna2021"
+    ]
+  },
+  "speaker_notes": "The most important single result in Layer 3 is also the cleanest: not one of the six sphingolipid biosynthesis genes is significantly upregulated in the rescued strain. This figure shows the sphingolipid locus heatmap across the strain series \u2014 the pattern is flat to slightly declining, not induced.\n\nFrom REPORT.md \u00a7Finding 4: 0 of 6 biosynthesis genes UP at FDR < 0.05 in the 4599-vs-4584 contrast. The two most sensitive readouts \u2014 serine palmitoyltransferase spt (log2 -0.64, FDR 0.002) and sphingosine kinase sphk (log2 -0.40, FDR 0.02) \u2014 are significantly DOWN, not up. Both p-values apply to the same 4599-vs-4584 single-contrast test; these are among the few genome-wide significant hits across the biosynthesis panel, and they go in the wrong direction for any emergency induction model.\n\nThe biology this encodes is striking: the cell does not respond to losing lipid A by making more CPG biosynthesis transcript. The existing CPG pool \u2014 constitutive, always present \u2014 is what sustains the outer membrane substitution. This rules out the simplest emergency-response framing. Instead, CPG substitution must be flux-driven or post-transcriptional: when LPS substrate disappears, transport machinery that normally ships LPS is redirected to ship the standing CPG pool. Zik 2022 showed CPG is required for delta-lpxC viability; our data show CPG supply is constitutive, not demand-responsive.\n\nOlea-Ozuna 2021 established the five structural genes required for ceramide synthesis in Caulobacter and for bacterial survival \u2014 those genes are in this locus. None are induced here. One important caveat: we tested transcript-level regulation only. Post-transcriptional regulation of CPG biosynthesis \u2014 enzyme stabilization, allosteric flux redistribution, or substrate competition relief \u2014 is not excluded by these data. The constitutive-transcript finding forecloses transcriptional induction; it does not foreclose post-translational flux routing through the existing machinery. The next slide turns to the transport apparatus.",
+  "id": 16,
+  "substory_id": "S3",
+  "position": 16
+}

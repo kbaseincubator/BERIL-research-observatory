@@ -1,0 +1,313 @@
+{
+  "schema_version": "adversarial-review-presentation.v3",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_2",
+  "project_id": "caulobacter_fur_lipida_loss",
+  "draft_number": 2,
+  "reviewed_at": "2026-06-08T00:00:00Z",
+  "reviewer_model": "opus",
+  "prompt_version": "adversarial_presentation.v3",
+  "tier": "STRONG",
+  "summary": {
+    "by_severity": {
+      "P1": 11,
+      "P2": 4,
+      "info": 1
+    },
+    "by_class": {
+      "register_drift": 1,
+      "claim_evidence": 3,
+      "missing_slide": 1,
+      "citation_reality": 2,
+      "qa_softball": 1,
+      "substory_arc": 2,
+      "central_objection": 1,
+      "content_overflow": 5
+    }
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "class": "register_drift",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "substory_id": "S1",
+      "title_quote": "Spearman ρ=0.315 concordance with Leaden Δfur signal confirms constitutive derepression (n=93 DEGs)",
+      "issue": "The title attaches two overclaims to a single modest correlation. First, 'confirms' is strong-register for ρ=0.315 — the speaker_notes themselves concede the speaker 'must be ready to defend ρ=0.315 against that is a modest correlation.' REPORT §Finding 1 frames this result more conservatively as 'confirming Fur derepression as a major driver' (a major component, not the sole driver). Second, and worse, the title says 'confirms constitutive derepression' — but constitutivity (Δfur allele vs iron-limitation response) is throughline sub-claim A2, explicitly graded 'partial / single growth condition,' and it is established by the iron-discrimination comparison on the NEXT slide (slide 8), NOT by this concordance scatter. The figure shows correlation with Leaden's Δfur signal; it does not by itself discriminate constitutive derepression from an iron-status readout. The title imports a partial, single-condition conclusion into a confident verb over a 0.315 correlation.",
+      "report_evidence": [
+        {
+          "section": "§Finding 1",
+          "quote": "correlates with Leaden 2018's Δfur signal at Spearman ρ = 0.315, p = 2.08e-03 over 93 Leaden Δfur DEGs, with 71% sign concordance — confirming Fur derepression as a major driver"
+        },
+        {
+          "section": "00_throughline.md A2",
+          "quote": "signal is constitutive Δfur derepression, not an iron-limitation response ... ⚠ partial — single growth condition (PYE rich)"
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Rewrite to scope the verb to what the scatter shows and drop 'constitutive' from this slide: 'Spearman ρ=0.315 (p=2.08e-03, 71% sign concordance) confirms Fur derepression as a major component of our signal (n=93 Leaden DEGs).' Reserve the constitutive-vs-iron claim for slide 8 where the iron-discrimination evidence actually appears."
+    },
+    {
+      "id": "F002",
+      "class": "claim_evidence",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 1,
+      "slide_position": 1,
+      "slide_layout": "title",
+      "substory_id": null,
+      "title_quote": "Caulobacter Fur Lipida Loss",
+      "issue": "The title slide is a placeholder that ships embarrassments to a peer audience. (1) The title 'Caulobacter Fur Lipida Loss' is a degenerate auto-title from the directory name — 'Lipida' is a non-word; the subject is 'lipid A,' per REPORT's own title 'Δfur-permitted lipid A loss.' (2) presenter and affiliation are both literal 'TBD.' (3) The subtitle is truncated mid-sentence: 'Δfur derepression is the demonstrable driver of the lipid A-loss-permissive envelope state, and everything…'. The first slide a senior room sees signals an unfinished deck and a garbled subject noun.",
+      "report_evidence": [
+        {
+          "section": "REPORT.md title",
+          "quote": "The regulatory and proteomic architecture of Δ*fur*-permitted lipid A loss in *Caulobacter crescentus*"
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Replace title with a real one, e.g. 'Δfur derepression drives the lipid A-loss-permissive envelope state in Caulobacter crescentus'. Populate presenter/affiliation (production orchestrator). Either complete the subtitle sentence or truncate it cleanly (drop the trailing 'and everything…')."
+    },
+    {
+      "id": "F003",
+      "class": "missing_slide",
+      "severity": "P1",
+      "confidence": "high",
+      "issue": "The deck promises to name which Fur targets matter but never shows them. Goal slide 3 asks 'Which of the 93 Fur-released DEGs are operationally required—not merely incidentally derepressed?' and the S2 punchline is 'only the Fur-released Path A enriches for envelope-stress fitness.' But the only S2 result slide (11) is an enrichment statistics table (Path A 1.60× p=0.016 vs Path B 1.04× p=0.515) — it never names the operationally-important genes. The single highest-priority functional target, ChvT (CCNA_03108) at |t|=43.7 under envelope stress, appears ONLY in the Q&A answer_detail (slide 32), which the audience sees only if someone asks. A peer audience that buys the Path A enrichment immediately asks 'which genes, and what do they do?' and there is no slide to point at.",
+      "report_evidence": [
+        {
+          "section": "§Finding 2",
+          "quote": "ChvT (CCNA_03108) at |t|=43.7 under envelope stress is the highest-priority functional follow-up target"
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Add one claim_evidence slide in S2 (between slide 11 and slide 12) naming the top Path A genes with functions — ChvT (CCNA_03108, |t|=43.7) and the leading TonB-dependent transporters — so the 'which targets matter' question posed on slide 3 is answered on a visible slide, not buried in Q&A."
+    },
+    {
+      "id": "F004",
+      "class": "citation_reality",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 34,
+      "slide_position": 34,
+      "slide_layout": "references",
+      "substory_id": null,
+      "citation_id": "Leaden2018",
+      "issue": "The audience-facing references slide (34) omits the keystone citation of the entire deck. Leaden 2018 (PMID 30210482) is pinned in-text on slides 4, 7, and 8 and is the source of the ρ=0.315 concordance that the whole S1 driver claim rests on — yet it is NOT in refs_short. Also absent: Price2018 (cited slide 12), QuinteroYanes2022 (cited slide 16), and Greenwich2023 (cited slides 16, 26). The slide sets 'full_pool_in_speaker_notes': true, i.e. the complete reference list is in speaker notes the audience never sees. A peer who wants to look up the foundational Leaden concordance cannot find it on the references slide.",
+      "report_evidence": [
+        {
+          "section": "§Finding 1 / Literature",
+          "quote": "Leaden et al. 2018 (PMID 30210482) — published Caulobacter Δ*fur* RNA-seq ... The Spearman ρ = 0.315 concordance with our 4584-vs-4580 confirms Fur derepression as a major component of our signal."
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Add the four in-text-cited-but-unlisted keys to refs_short on slide 34 — at minimum Leaden 2018 (PMID 30210482), Price et al. 2018 (Fitness Browser), Quintero-Yanes 2022, Greenwich 2023. Do not rely on 'full_pool_in_speaker_notes' for citations the audience sees referenced on content slides."
+    },
+    {
+      "id": "F005",
+      "class": "citation_reality",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 16,
+      "slide_position": 16,
+      "slide_layout": "claim_evidence",
+      "substory_id": "S3",
+      "citation_id": "Greenwich2023",
+      "issue": "Slide 16's citation pins do not match its content. The citations array is [QuinteroYanes2022, Greenwich2023], but Greenwich2023 supports nothing on this slide — its load-bearing role is the ChvG-ChvI alphaproteobacterial-conservation claim on slide 26 (per slide 26 speaker notes). Meanwhile the slide-16 bullet that DOES need a citation — 'ChvR sRNA (Fröhlich 2018, adversarial review N3) is an untested post-transcriptional alternative' — attributes ChvR to Fröhlich 2018, which is absent from the citations array AND from the references slide (34). So the slide cites a paper it does not use (Greenwich2023, citation drift) and names a paper it does not list (Fröhlich 2018, dangling attribution).",
+      "report_evidence": [
+        {
+          "section": "§Finding 6 (slide 26 usage)",
+          "quote": "The ChvG-ChvI result is consistent with Greenwich et al. 2023's review documenting alphaproteobacterial conservation of this envelope-stress regulatory circuit"
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "On slide 16, drop Greenwich2023 from the citations array (it belongs to slide 26's ChvG-ChvI claim) and add Fröhlich 2018 to back the ChvR sRNA bullet; ensure Fröhlich 2018 also lands in refs_short on slide 34."
+    },
+    {
+      "id": "F006",
+      "class": "qa_softball",
+      "severity": "P1",
+      "confidence": "high",
+      "issue": "The three anticipated Q&A (single-condition scope, Lpt transcript-protein discordance, Path A power) are genuinely strong and land their concessions. But the Q&A set omits the sharpest objection to the deck's central word: 'driver.' No Q&A defends the gap between the causal framing ('Δfur derepression is the demonstrable driver') and the fact that this project's own new evidence is correlational (ρ=0.315) plus a marginal enrichment (1.60×); the causal NECESSITY ('Δfur required for lipid A-loss viability') is imported wholesale from Zik 2022, prior work this team did not perform. A hostile reviewer asks: 'Your data show correlation and marginal enrichment; the necessity that licenses the word driver is Zik 2022. What does THIS work demonstrate causally that Zik 2022 did not already establish?' There is no anticipated answer for this.",
+      "report_evidence": [
+        {
+          "section": "00_throughline.md A1/A25",
+          "quote": "A1 ... ✓ direct ... A25 — Zik 2022 baseline-mechanism anchoring (Δ*fur* required for rescue) ... ✓ direct — establishes Fur as the precondition this arc characterizes"
+        }
+      ],
+      "fix_target": "qa_anticipated.v1.md",
+      "fix_hint": "Add a fourth Q&A that draws the line explicitly: Zik 2022 established Δfur necessity (causal precondition); this work contributes the regulon-to-envelope mechanistic map at graded confidence (concordance fingerprint, calibrated Path A triage, ChvI phase structure, constitutive sphingolipid + PG reorganization). The new contribution is the graded mechanism, not the causal necessity."
+    },
+    {
+      "id": "F007",
+      "class": "substory_arc",
+      "severity": "P2",
+      "confidence": "high",
+      "issue": "The deck is 34 slides against the throughline's own talk-30 estimate of 26 slides (00_throughline.md slide-count estimate) — roughly 31% over budget. At a 30-minute talk that is ~10 slides past the budget the spine was designed around; the methods_summary slides (10, 14, 18, 24) plus five section dividers are the most compressible. Overrun risk is real for a peer slot with hard time limits.",
+      "fix_target": "substory_design.v1.md",
+      "fix_hint": "Trim toward the 26-slide budget: fold each methods_summary into the adjacent result slide's footer/notes, or merge the thinner dividers. Protect the result slides (7, 11, 15, 19, 20, 22, 25, 27); cut from methods/divider scaffolding."
+    },
+    {
+      "id": "F008",
+      "class": "claim_evidence",
+      "severity": "P2",
+      "confidence": "high",
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "substory_id": "S2",
+      "title_quote": "Hypergeometric enrichment test calibrated against Caulobacter genome background (H2 method)",
+      "issue": "Every methods_summary slide lists tool versions as literal 'unknown': slide 10 Fitness Browser 'unknown', slide 14 edgeR 'unknown', and the same pattern on slides 18 and 24 (Biopython/PaperBLAST). For a peer/reproducibility audience, 'version: unknown' on the statistical engine (edgeR) and the fitness compendium undercuts the deck's otherwise-strong pre-registration discipline.",
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Populate real versions (edgeR x.y, Fitness Browser/Caulo compendium snapshot date, Biopython x.y, PaperBLAST access date). If a version is genuinely unrecoverable, state the access date rather than 'unknown'."
+    },
+    {
+      "id": "F009",
+      "class": "claim_evidence",
+      "severity": "P2",
+      "confidence": "high",
+      "slide_id": 33,
+      "slide_position": 33,
+      "slide_layout": "acknowledgments",
+      "substory_id": null,
+      "title_quote": "contributors: TBD - populated by production orchestrator",
+      "issue": "The acknowledgments slide is unpopulated: contributors = ['TBD - populated by production orchestrator'] and tenant_attribution = 'TBD'. The data and the question originate with the Kathy Ryan lab (the strains 4580/4584/4599 and the transcriptome/proteome are theirs); shipping a deck whose acknowledgments are placeholder TBD fails to credit the data provider on the audience-facing slide.",
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Populate contributors with the Ryan-lab data providers and analysis contributors, and set tenant_attribution to 'beril'. This must be resolved before the deck is presented."
+    },
+    {
+      "id": "F010",
+      "class": "substory_arc",
+      "severity": "P2",
+      "confidence": "medium",
+      "issue": "Process/provenance inconsistency: narrative/02_substories.md records 'qa_anticipated not requested,' yet the final deck contains three qa_anticipated slides at positions 30-32 (and a separate working/03_slides/qa_anticipated.json). The Q&A content is good, so this is not a content defect — but the substory design artifact disagrees with the shipped deck, which will confuse the review-rewrite loop about whether Q&A is in scope.",
+      "fix_target": "substory_design.v1.md",
+      "fix_hint": "Reconcile 02_substories.md with the deck: mark qa_anticipated as requested/in-scope so the design artifact and slide_spec agree."
+    },
+    {
+      "id": "F011",
+      "class": "central_objection",
+      "severity": "info",
+      "confidence": "high",
+      "issue": "The deck's central vulnerability is the load-bearing word 'driver.' The throughline, title, big_idea, deck_close, and synthesis scorecard all assert 'Δfur derepression is the demonstrable driver of the lipid A-loss-permissive envelope state.' But the project's OWN new evidence for that claim is correlational and marginal: a modest cross-study concordance (Spearman ρ=0.315) and a marginal, adversarially-reproduced fitness enrichment (1.60×, p=0.016). The causal NECESSITY that actually licenses 'driver' — that Δfur is required for lipid A-loss viability — comes entirely from Zik 2022, prior work this team did not perform. A hostile reviewer asks: 'Strip out Zik 2022 and what does your data demonstrate? Correlation and a 1.6-fold enrichment. Where is the causal driver result that is yours?' The deck does not preempt this anywhere — it leans on Zik 2022's necessity throughout while branding the contribution as a demonstrated driver. The honest and stronger framing is available in the deck's own graded scorecard: this work's contribution is the regulon-to-envelope mechanistic MAP at graded confidence, built on top of Zik 2022's established Δfur precondition.",
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Reframe the contribution claim once, early (big_idea/goal) and once in close: 'Zik 2022 established Δfur is required; we map what that derepression sets in motion — at graded, pre-registered confidence.' This converts the soft spot (borrowed causality) into the deck's actual strength (the graded mechanism), and inoculates the speaker against the driver objection."
+    },
+    {
+      "id": "CO001",
+      "class": "content_overflow",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 28,
+      "slide_position": 28,
+      "slide_layout": "deck_close",
+      "substory_id": null,
+      "title_quote": "slide title (methods_summary): 181 chars at base 28pt in 9.32×0.63 in box requires sub-floor shrink; clamped at 60%; tit",
+      "issue": "slide title (methods_summary): 181 chars at base 28pt in 9.32×0.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "report_evidence": [],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be ≤120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+      "_content_overflow_origin": {
+        "slot_kind": "title",
+        "chars": 181,
+        "base_pt": 28,
+        "box_width_emu": 8520600,
+        "box_height_emu": 572700,
+        "computed_scale": 60000
+      }
+    },
+    {
+      "id": "CO002",
+      "class": "content_overflow",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 29,
+      "slide_position": 29,
+      "slide_layout": "cross_tenant_integration",
+      "substory_id": null,
+      "title_quote": "slide title (cross_tenant_integration): 134 chars at base 28pt in 9.32×0.63 in box requires sub-floor shrink; clamped at",
+      "issue": "slide title (cross_tenant_integration): 134 chars at base 28pt in 9.32×0.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "report_evidence": [],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be ≤120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+      "_content_overflow_origin": {
+        "slot_kind": "title",
+        "chars": 134,
+        "base_pt": 28,
+        "box_width_emu": 8520600,
+        "box_height_emu": 572700,
+        "computed_scale": 60000
+      }
+    },
+    {
+      "id": "CO003",
+      "class": "content_overflow",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "substory_id": null,
+      "title_quote": "slide title (qa_anticipated): 357 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; titl",
+      "issue": "slide title (qa_anticipated): 357 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "report_evidence": [],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be ≤120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+      "_content_overflow_origin": {
+        "slot_kind": "title",
+        "chars": 357,
+        "base_pt": 28,
+        "box_width_emu": 8521700,
+        "box_height_emu": 1188720,
+        "computed_scale": 60000
+      }
+    },
+    {
+      "id": "CO004",
+      "class": "content_overflow",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "substory_id": null,
+      "title_quote": "slide title (qa_anticipated): 412 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; titl",
+      "issue": "slide title (qa_anticipated): 412 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "report_evidence": [],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be ≤120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+      "_content_overflow_origin": {
+        "slot_kind": "title",
+        "chars": 412,
+        "base_pt": 28,
+        "box_width_emu": 8521700,
+        "box_height_emu": 1188720,
+        "computed_scale": 60000
+      }
+    },
+    {
+      "id": "CO005",
+      "class": "content_overflow",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "substory_id": null,
+      "title_quote": "slide title (qa_anticipated): 353 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; titl",
+      "issue": "slide title (qa_anticipated): 353 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "report_evidence": [],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be ≤120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+      "_content_overflow_origin": {
+        "slot_kind": "title",
+        "chars": 353,
+        "base_pt": 28,
+        "box_width_emu": 8521700,
+        "box_height_emu": 1188720,
+        "computed_scale": 60000
+      }
+    }
+  ]
+}

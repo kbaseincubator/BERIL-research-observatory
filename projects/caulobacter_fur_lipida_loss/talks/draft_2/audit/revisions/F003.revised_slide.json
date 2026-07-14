@@ -1,0 +1,38 @@
+{
+  "id": null,
+  "position": 12,
+  "substory_id": "S2",
+  "layout": "claim_evidence",
+  "content": {
+    "title": "17 Path A genes are phenotype-bearing; ChvT (CCNA_03108, |t|=43.7) is the highest-priority functional target",
+    "bullets": [
+      "ChvT (CCNA_03108): |t|=43.7 under envelope stress — single strongest fitness signal in Path A; TonB-dependent outer-membrane transporter constitutively derepressed by Δ*fur*",
+      "Leading TBDTs HutA (CCNA_02277) and FrpB-cluster genes (CCNA_02910, 00210, 02048, 00028) score |t| 9–28; all encode Fur-released OM iron-acquisition transport machinery",
+      "Functional implication: derepressed OM transport machinery is plausibly available for shared-Lpt CPG trafficking in the Δ*lpxc* state (Uchendu 2026); direct trafficking participation is not established by fitness data"
+    ],
+    "citations": [
+      "Price2018",
+      "Uchendu2026"
+    ]
+  },
+  "speaker_notes_seed": "This slide exists to answer the question the audience carries out of slide 11: 'Path A is enriched 1.60× — but which genes, and what do they do?' Without this answer, the enrichment statistic is a number without a story.\n\nChvT (CCNA_03108) dominates: |t|=43.7 under envelope stress is the single strongest fitness signal in the entire Path A set, and REPORT §Finding 2 names it 'the highest-priority functional follow-up target.' ChvT encodes a TonB-dependent outer-membrane transporter — the canonical class of Fur-repressed iron-acquisition machinery. It is constitutively derepressed in the Δfur background, meaning the rescued strain has this transporter present in the outer membrane as baseline infrastructure.\n\nThe next tier of Path A hits — HutA (CCNA_02277, characterized as a heme/hemoglobin TBDT by Balhesteros et al. 2017) and the FrpB-cluster genes (CCNA_02910, 00210, 02048, 00028) — score |t| 9–28 under the same 22 envelope-stress experiments. All encode OM iron-acquisition transport machinery. The functional coherence of the set is striking: these are not random Caulobacter genes; they are the suite of TBDTs that Fur normally represses under iron-replete conditions and that are now constitutively expressed.\n\nThe third bullet places the mechanistic implication in correct epistemic register. Uchendu et al. 2026 showed that Lpt-paralog machinery is required for sphingolipid (CPG) transport in lipid-A-deficient Caulobacter — a shared-component model. The Path A TBDTs are the Fur-released OM-side components of that shared machinery, *plausibly* available to participate in CPG trafficking once LpxC is deleted. But RB-TnSeq fitness data measure phenotype-bearing under envelope stress, not CPG trafficking specifically; the mechanistic link is not proven by these fitness data. The speaker should lead with gene names and |t| values, treat the Uchendu connection as 'here is why this matters mechanistically,' and be explicit that direct trafficking demonstration is what S4 addresses.",
+  "evidence_anchors": [
+    {
+      "kind": "report_section",
+      "ref": "REPORT.md §Finding 2"
+    },
+    {
+      "kind": "report_section",
+      "ref": "REPORT.md §Interpretation §1"
+    }
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-08T00:00:00Z",
+      "finding_id": "F003",
+      "finding_class": "missing_slide",
+      "summary": "Added new slide naming the 17 Path A phenotype-bearing genes led by ChvT (CCNA_03108, |t|=43.7) and the leading TBDTs (HutA CCNA_02277; FrpB-cluster CCNA_02910/00210/02048/00028, |t| 9–28), answering the 'which targets matter' question posed on slide 3 that was previously visible only in Q&A (slide 32) and absent from S2 result slides."
+    }
+  ],
+  "added_by_revise_loop": true
+}

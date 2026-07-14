@@ -1,0 +1,9 @@
+# Discoveries — enigma_carbon_census_1
+
+<!-- [enigma_carbon_census_1] 2026-06-09T15:55:14Z  approved-report extraction (REVIEW: REVIEW_2.md) -->
+
+- The ENIGMA Carbon Census is **~89% organism-dark** (74/83 compounds with no isolate utilizer call) — the actionable product of a knowledge census can be the map of ignorance, and that map is biased exactly by chemical class (alkaloids/terpenoids dark, aromatics callable), not by sampling source (groundwater 90% vs necromass 88% dark).
+- Callable catabolic capacity among these compounds is **phylogenetically concentrated in Burkholderiales** and is a **specialist** trait: 675 single-capacity genomes vs only 18 generalists (≥3 capacities). Cross-module co-occurrence is near-zero in share terms (Jaccard ≈ 0; only 25/3109 genomes carry both an aromatic and a non-aromatic capacity), even though a Haldane odds ratio surfaces a modest phenylethylamine×aromatic enrichment (OR ≈ 2.8–3.4) that is itself aromatic-derived — so versatility is a clade trait, not a portable module set.
+- **Directional only (n=9 callable, uncorrected p):** "callable" tracks **structural simplicity** — callable compounds have median Complexity 133 vs 207 for dark (Mann–Whitney p=0.034, uncorrected) — and this is at least partly an annotation-coverage ceiling, since simple pollutant-adjacent aromatics are the molecules curated catabolism resources cover.
+- The dark set is **not uniformly orphan**: 6 dark compounds (Tyramine, guanidineacetic acid, cinnamic acid, caffeic acid, palmitic acid, farnesol) are biosynthesis-known/catabolism-unknown — MIBiG-consult triage targets distinct from the 29 fully-orphan (no-KEGG) compounds.
+- A **periphyton (freshwater-biofilm) ENVO/GOLD class**, separated out from bulk freshwater, surfaces a Comamonadaceae/Burkholderiales reservoir at ~97% prevalence that bulk-water labels hide — relevant for siting SSO-relevant enrichments.

@@ -1,0 +1,30 @@
+{
+  "phase": "2",
+  "notebook": "NB09c",
+  "gate": "M18 (strict-class re-test)",
+  "timestamp_utc": "2026-04-27T11:57:11Z",
+  "d_threshold": 0.3,
+  "uniref50_baseline_d": 0.146,
+  "nb09b_marginal_d": 0.2118,
+  "bootstrap_B": 200,
+  "strict_class_distribution": {
+    "pos_tcs_hk": 310,
+    "pos_betalac": 110,
+    "neg_ribosomal_strict": 83,
+    "neg_trna_synth_strict": 20,
+    "pos_crispr_cas": 6,
+    "neg_rnap_core_strict": 3
+  },
+  "n_passing_pairs": 6,
+  "best_pair": {
+    "positive_class": "pos_crispr_cas",
+    "negative_class": "neg_trna_synth_strict",
+    "cohens_d": 3.5579,
+    "d_ci_lower": 2.9284,
+    "d_ci_upper": 21.5337,
+    "mw_p_greater": 4e-06
+  },
+  "verdict": "PASS",
+  "decision": "M18 amplification gate PASS (strict housekeeping) \u2014 6/9 pairs achieve Cohen's d \u2265 0.3 with 95% CI lower bound > 0. Best pair: pos_crispr_cas vs neg_trna_synth_strict, d = 3.5579 [CI 2.9284, 21.5337]. Substrate-hierarchy claim survives. NB09b's MARGINAL verdict was driven by description-match contamination of the negative-housekeeping pool. Proceed to NB10 (full KO atlas).",
+  "completed_utc": "2026-04-27T11:57:11Z"
+}

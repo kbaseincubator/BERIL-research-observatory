@@ -1,0 +1,718 @@
+orgId	expName	expGroup	condition_1	concentration_1	units_1	condition_2	media
+azobra	set1IT067	carbon source	D-Fructose	20	mM		RCH2_defined_noCarbon
+azobra	set1IT069	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		RCH2_defined_noCarbon
+azobra	set1IT070	carbon source	D-Fructose	20	mM		RCH2_defined_noCarbon
+azobra	set1IT072	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		RCH2_defined_noCarbon
+azobra	set2IT001	carbon source	D-Gluconic Acid sodium salt	20	mM		RCH2_defined_noCarbon
+azobra	set2IT002	carbon source	Sodium D-Lactate	20	mM		RCH2_defined_noCarbon
+azobra	set2IT003	carbon source	Sodium L-Lactate	20	mM		RCH2_defined_noCarbon
+azobra	set2IT004	carbon source	Sodium D,L-Lactate	20	mM		RCH2_defined_noCarbon
+azobra	set2IT005	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+azobra	set2IT006	carbon source	Sodium succinate dibasic hexahydrate	20	mM		RCH2_defined_noCarbon
+azobra	set2IT007	carbon source	Ethanol	20	mM		RCH2_defined_noCarbon
+azobra	set2IT008	carbon source	Glycerol	20	mM		RCH2_defined_noCarbon
+azobra	set2IT009	carbon source	L-Malic acid disodium salt monohydrate	20	mM		RCH2_defined_noCarbon
+azobra	set2IT010	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+azobra	set2IT011	carbon source	L-Proline	20	mM		RCH2_defined_noCarbon
+azobra	set2IT014	carbon source	Sodium butyrate	4	mM		RCH2_defined_noCarbon
+azobra	set3IT049	carbon source	D-Gluconic Acid sodium salt	20	mM		RCH2_defined_noCarbon
+azobra	set3IT050	carbon source	Sodium D-Lactate	20	mM		RCH2_defined_noCarbon
+azobra	set3IT051	carbon source	Sodium L-Lactate	20	mM		RCH2_defined_noCarbon
+azobra	set3IT052	carbon source	Sodium D,L-Lactate	20	mM		RCH2_defined_noCarbon
+azobra	set3IT053	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+azobra	set3IT054	carbon source	Sodium succinate dibasic hexahydrate	20	mM		RCH2_defined_noCarbon
+azobra	set3IT055	carbon source	Ethanol	20	mM		RCH2_defined_noCarbon
+azobra	set3IT056	carbon source	Glycerol	20	mM		RCH2_defined_noCarbon
+azobra	set3IT057	carbon source	L-Malic acid disodium salt monohydrate	20	mM		RCH2_defined_noCarbon
+azobra	set3IT058	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+azobra	set3IT059	carbon source	L-Proline	20	mM		RCH2_defined_noCarbon
+azobra	set3IT061	carbon source	L-Leucine	20	mM		RCH2_defined_noCarbon
+azobra	set3IT062	carbon source	Sodium butyrate	4	mM		RCH2_defined_noCarbon
+Btheta	set1IT071	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set1IT072	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set1IT073	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set1IT074	carbon source	D-Arabinose	20	mM		Varel_Bryant_medium
+Btheta	set1IT075	carbon source	D-Raffinose pentahydrate	20	mM		Varel_Bryant_medium
+Btheta	set1IT076	carbon source	L-Fucose	20	mM		Varel_Bryant_medium
+Btheta	set1IT077	carbon source	D-Trehalose dihydrate	20	mM		Varel_Bryant_medium
+Btheta	set1IT078	carbon source	Beta-Lactose	20	mM		Varel_Bryant_medium
+Btheta	set1IT079	carbon source	D-Fructose	20	mM		Varel_Bryant_medium
+Btheta	set1IT080	carbon source	D-Maltose monohydrate	20	mM		Varel_Bryant_medium
+Btheta	set1IT081	carbon source	L-Rhamnose monohydrate	20	mM		Varel_Bryant_medium
+Btheta	set1IT083	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set1IT084	carbon source	D-Mannose	20	mM		Varel_Bryant_medium
+Btheta	set1IT086	carbon source	D-Xylose	20	mM		Varel_Bryant_medium
+Btheta	set1IT087	carbon source	a-Cyclodextrin	20	mM		Varel_Bryant_medium
+Btheta	set1IT088	carbon source	D-Galacturonic Acid monohydrate	20	mM		Varel_Bryant_medium
+Btheta	set1IT089	carbon source	N-Acetyl-D-Glucosamine	20	mM		Varel_Bryant_medium
+Btheta	set1IT091	carbon source	L-Arabinose	20	mM		Varel_Bryant_medium
+Btheta	set1IT092	carbon source	D-Galactose	20	mM		Varel_Bryant_medium
+Btheta	set1IT094	carbon source	L-Fucose	20	mM		Varel_Bryant_medium
+Btheta	set1IT095	carbon source	D-Glucosamine Hydrochloride	20	mM		Varel_Bryant_medium
+Btheta	set1IT096	carbon source	D-Galacturonic Acid monohydrate	20	mM		Varel_Bryant_medium
+Btheta	set2IT004	carbon source	D-Arabinose	20	mM		Varel_Bryant_medium
+Btheta	set2IT005	carbon source	D-Raffinose pentahydrate	20	mM		Varel_Bryant_medium
+Btheta	set2IT006	carbon source	D-Trehalose dihydrate	20	mM		Varel_Bryant_medium
+Btheta	set2IT007	carbon source	Beta-Lactose	20	mM		Varel_Bryant_medium
+Btheta	set2IT008	carbon source	D-Fructose	20	mM		Varel_Bryant_medium
+Btheta	set2IT009	carbon source	D-Maltose monohydrate	20	mM		Varel_Bryant_medium
+Btheta	set2IT010	carbon source	L-Rhamnose monohydrate	20	mM		Varel_Bryant_medium
+Btheta	set2IT012	carbon source	D-Mannose	20	mM		Varel_Bryant_medium
+Btheta	set2IT014	carbon source	D-Xylose	20	mM		Varel_Bryant_medium
+Btheta	set2IT015	carbon source	a-Cyclodextrin	20	mM		Varel_Bryant_medium
+Btheta	set2IT016	carbon source	N-Acetyl-D-Glucosamine	20	mM		Varel_Bryant_medium
+Btheta	set2IT018	carbon source	L-Arabinose	20	mM		Varel_Bryant_medium
+Btheta	set2IT019	carbon source	D-Galactose	20	mM		Varel_Bryant_medium
+Btheta	set2IT020	carbon source	D-Ribose	20	mM		Varel_Bryant_medium
+Btheta	set3IT007	carbon source	(+)-Arabinogalactan	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT008	carbon source	Chondroitin sulfate A sodium salt from bovine trachea	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT009	carbon source	dextran, Mw ~200,000	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT012	carbon source	Mannan from Saccharomyces cerevisiae	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT014	carbon source	Hyaluronic acid sodium salt from Streptococcus equi	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT015	carbon source	Levan - from Erwinia herbicola	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT017	carbon source	polygalacturonic acid	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT018	carbon source	Pectin	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT019	carbon source	Red Arabinan from sugar-beet	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT023	carbon source	(+)-Arabinogalactan	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT024	carbon source	Chondroitin sulfate A sodium salt from bovine trachea	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT025	carbon source	dextran, Mw ~200,000	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT028	carbon source	Mannan from Saccharomyces cerevisiae	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT030	carbon source	Hyaluronic acid sodium salt from Streptococcus equi	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT031	carbon source	Levan - from Erwinia herbicola	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT034	carbon source	Pectin	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT035	carbon source	Red Arabinan from sugar-beet	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT039	carbon source	amylopectin from maize	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT040	carbon source	Hyaluronic acid sodium salt from Streptococcus equi	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT043	carbon source	polygalacturonic acid	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT044	carbon source	Pectin	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT045	carbon source	Red Arabinan from sugar-beet	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT047	carbon source	Amylose from potato	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT049	carbon source	amylopectin from maize	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT050	carbon source	Hyaluronic acid sodium salt from Streptococcus equi	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT051	carbon source	Levan - from Erwinia herbicola	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT056	carbon source	Starch	5	mg/ml		Varel_Bryant_medium
+Btheta	set3IT057	carbon source	Amylose from potato	5	mg/ml		Varel_Bryant_medium
+Btheta	set4IT038	carbon source	Heparin sodium salt from porcine intestinal mucosa	5	mg/ml		Varel_Bryant_medium
+Btheta	set4IT039	carbon source	Heparin sodium salt from porcine intestinal mucosa	5	mg/ml		Varel_Bryant_medium
+Btheta	set4IT042	carbon source	amylopectin from maize	5	mg/ml		Varel_Bryant_medium
+Btheta	set4IT043	carbon source	amylopectin from maize	5	mg/ml		Varel_Bryant_medium
+Btheta	set4IT044	carbon source	Starch	5	mg/ml		Varel_Bryant_medium
+Btheta	set4IT045	carbon source	Starch	5	mg/ml		Varel_Bryant_medium
+Btheta	set4IT047	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set4IT048	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set4IT049	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set4IT050	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set4IT053	carbon source	D-Glucose	20	mM	L-Arginine	Varel_Bryant_medium
+Btheta	set4IT055	carbon source	D-Glucose	20	mM	L-Threonine	Varel_Bryant_medium
+Btheta	set4IT056	carbon source	D-Glucose	20	mM	20AA_mix	Varel_Bryant_medium
+Btheta	set4IT057	carbon source	D-Glucose	20	mM	20AA_mix	Varel_Bryant_medium
+Btheta	set11IT053	carbon source	Isomaltose	20	mM		Varel_Bryant_medium
+Btheta	set11IT054	carbon source	6-O-Acetyl-D-glucose	20	mM		Varel_Bryant_medium
+Btheta	set11IT055	carbon source	Maltotetraose	10	mM		Varel_Bryant_medium
+Btheta	set11IT056	carbon source	Maltohexaose	10	mM		Varel_Bryant_medium
+Btheta	set11IT058	carbon source	Laminaribiose	20	mM		Varel_Bryant_medium
+Btheta	set11IT059	carbon source	1,4-B-D-Galactobiose	10	mM		Varel_Bryant_medium
+Btheta	set11IT061	carbon source	Rhamnogalacturonan - from potato	5	mg/ml		Varel_Bryant_medium
+Btheta	set11IT062	carbon source	D-Leucrose	20	mM		Varel_Bryant_medium
+Btheta	set11IT063	carbon source	Stachyose - 70%	20	mM		Varel_Bryant_medium
+Btheta	set11IT065	carbon source	Fructooligosaccharides (FOS)	5	mg/ml		Varel_Bryant_medium
+Btheta	set11IT066	carbon source	palatinose hydrate	20	mM		Varel_Bryant_medium
+Btheta	set11IT067	carbon source	Melibiose	20	mM		Varel_Bryant_medium
+Btheta	set11IT069	carbon source	6-O-Acetyl-D-glucose	20	mM		Varel_Bryant_medium
+Btheta	set11IT070	carbon source	Maltotetraose	10	mM		Varel_Bryant_medium
+Btheta	set11IT071	carbon source	Maltohexaose	10	mM		Varel_Bryant_medium
+Btheta	set11IT073	carbon source	Laminaribiose	20	mM		Varel_Bryant_medium
+Btheta	set11IT074	carbon source	1,4-B-D-Galactobiose	10	mM		Varel_Bryant_medium
+Btheta	set11IT076	carbon source	Rhamnogalacturonan - from potato	5	mg/ml		Varel_Bryant_medium
+Btheta	set11IT077	carbon source	D-Leucrose	20	mM		Varel_Bryant_medium
+Btheta	set11IT078	carbon source	Stachyose - 70%	20	mM		Varel_Bryant_medium
+Btheta	set11IT080	carbon source	Fructooligosaccharides (FOS)	5	mg/ml		Varel_Bryant_medium
+Btheta	set11IT081	carbon source	palatinose hydrate	20	mM		Varel_Bryant_medium
+Btheta	set11IT082	carbon source	Melibiose	20	mM		Varel_Bryant_medium
+Btheta	set16IT038	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set16IT039	carbon source	Lactulose	20	mM		Varel_Bryant_medium
+Btheta	set16IT040	carbon source	Maltitol	20	mM		Varel_Bryant_medium
+Btheta	set16IT041	carbon source	D-Trehalose dihydrate	20	mM		Varel_Bryant_medium
+Btheta	set16IT042	carbon source	Agro_defined_trehalose	1	x		Varel_Bryant_medium
+Btheta	set16IT043	carbon source	Supernatant; Agrobacterium rhizogenes K599 grown in Agro_defined_trehalose (~7.5 mM 3-keto-trehalose)	0.5	x		Varel_Bryant_medium
+Btheta	set16IT044	carbon source	D-Glucose	20	mM		Varel_Bryant_medium
+Btheta	set16IT045	carbon source	Lactulose	20	mM		Varel_Bryant_medium
+Btheta	set16IT046	carbon source	Maltitol	20	mM		Varel_Bryant_medium
+Btheta	set16IT047	carbon source	D-Trehalose dihydrate	20	mM		Varel_Bryant_medium
+Btheta	set16IT049	carbon source	Supernatant; Agrobacterium rhizogenes K599 grown in Agro_defined_trehalose (~7.5 mM 3-keto-trehalose)	0.5	x		Varel_Bryant_medium
+Cup4G11	set1IT031	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT033	carbon source	Trisodium citrate dihydrate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT034	carbon source	Sodium D-Lactate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT035	carbon source	Sodium L-Lactate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT036	carbon source	Sodium D,L-Lactate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT037	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT038	carbon source	Sodium succinate dibasic hexahydrate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT039	carbon source	Sodium propionate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT040	carbon source	4-Hydroxybenzoic Acid	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT041	carbon source	Ethanol	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT042	carbon source	L-Malic acid disodium salt monohydrate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT043	carbon source	L-Histidine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT044	carbon source	L-Threonine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT045	carbon source	L-Asparagine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set1IT046	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT049	carbon source	L-Proline	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT050	carbon source	L-Alanine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT051	carbon source	L-Leucine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT052	carbon source	L-Phenylalanine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT053	carbon source	L-Tryptophan	12.5	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT056	carbon source	Sodium butyrate	10	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT057	carbon source	D-Fructose	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT059	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT060	carbon source	D-Gluconic Acid sodium salt	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT063	carbon source	Sodium D-Lactate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT064	carbon source	Sodium L-Lactate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT065	carbon source	Sodium D,L-Lactate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT066	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT067	carbon source	Sodium succinate dibasic hexahydrate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT068	carbon source	Sodium propionate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT069	carbon source	4-Hydroxybenzoic Acid	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT070	carbon source	Ethanol	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT071	carbon source	L-Malic acid disodium salt monohydrate	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT072	carbon source	L-Histidine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT074	carbon source	L-Asparagine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT075	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT077	carbon source	L-Alanine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT078	carbon source	L-Leucine	20	mM		RCH2_defined_noCarbon
+Cup4G11	set2IT080	carbon source	L-Tryptophan	12.5	mM		RCH2_defined_noCarbon
+Cup4G11	set12IT059	carbon source	Phenylacetic acid	2.5	mM		RCH2_defined_noCarbon
+Cup4G11	set12IT060	carbon source	Sodium D,L-Lactate	10	mM		RCH2_defined_noCarbon
+Cup4G11	set12IT062	carbon source	Phenylacetic acid	2.5	mM		RCH2_defined_noCarbon
+Dino	setAH23	carbon source	L-Malic acid disodium salt monohydrate	4	mM		DinoMM_noCarbon
+Dino	set3H5	carbon source	D-Glucose	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H7	carbon source	D-Maltose monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H8	carbon source	L-Rhamnose monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H9	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H10	carbon source	Sodium Fumarate dibasic	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H11	carbon source	Trisodium citrate dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H12	carbon source	Sodium D-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H13	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H14	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H15	carbon source	Sodium pyruvate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H16	carbon source	Sodium succinate dibasic hexahydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H17	carbon source	Sodium propionate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H18	carbon source	Xylitol	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H20	carbon source	Glycerol	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H21	carbon source	L-Malic acid disodium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H22	carbon source	D-Trehalose dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H23	carbon source	L-Glutamic acid monopotassium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H24	carbon source	L-Glutamine	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H25	carbon source	casamino acids	0.5	mg/ml		DinoMM_noCarbon_HighNutrient
+Dino	set3H26	carbon source	D-Glucose	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H28	carbon source	D-Maltose monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H29	carbon source	L-Rhamnose monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H30	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H31	carbon source	Sodium Fumarate dibasic	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H32	carbon source	Trisodium citrate dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H33	carbon source	Sodium D-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H34	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H35	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H36	carbon source	Sodium pyruvate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H37	carbon source	Sodium succinate dibasic hexahydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H38	carbon source	Sodium propionate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H39	carbon source	Xylitol	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H41	carbon source	Glycerol	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H42	carbon source	L-Malic acid disodium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H43	carbon source	D-Trehalose dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H44	carbon source	L-Glutamic acid monopotassium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H45	carbon source	L-Glutamine	20	mM		DinoMM_noCarbon_HighNutrient
+Dino	set3H46	carbon source	casamino acids	0.5	mg/ml		DinoMM_noCarbon_HighNutrient
+Dino	set9IT036	carbon source	Sucrose	10	mM		DinoMM_noCarbon_HighNutrient
+Dino	set9IT038	carbon source	Sucrose	2.5	mM		DinoMM_noCarbon_HighNutrient
+Dino	set9IT040	carbon source	Sucrose	10	mM		DinoMM_noCarbon_HighNutrient
+Dino	set9IT042	carbon source	Sucrose	2.5	mM		DinoMM_noCarbon_HighNutrient
+Dyella79	set1IT088	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+Dyella79	set1IT089	carbon source	D-Fructose	20	mM		RCH2_defined_noCarbon
+Dyella79	set1IT091	carbon source	D-Maltose monohydrate	20	mM		RCH2_defined_noCarbon
+Dyella79	set1IT093	carbon source	a-Cyclodextrin	20	mM		RCH2_defined_noCarbon
+Dyella79	set1IT094	carbon source	D-Cellobiose	20	mM		RCH2_defined_noCarbon
+Dyella79	set1IT095	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT003	carbon source	L-Proline	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT004	carbon source	L-Alanine	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT005	carbon source	N-Acetyl-D-Glucosamine	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT006	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT007	carbon source	D-Fructose	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT009	carbon source	D-Maltose monohydrate	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT010	carbon source	D-Galactose	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT011	carbon source	a-Cyclodextrin	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT012	carbon source	D-Cellobiose	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT013	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT015	carbon source	L-Proline	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT016	carbon source	L-Alanine	20	mM		RCH2_defined_noCarbon
+Dyella79	set2IT017	carbon source	N-Acetyl-D-Glucosamine	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT001	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT003	carbon source	L-Arabinose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT005	carbon source	D-Galactose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT006	carbon source	L-Rhamnose monohydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT007	carbon source	D-Ribose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT008	carbon source	L-Fucose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT009	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT010	carbon source	D-Gluconic Acid sodium salt	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT011	carbon source	D-Glucose-6-Phosphate sodium salt	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT012	carbon source	Sodium D-Lactate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT013	carbon source	Sodium L-Lactate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT014	carbon source	Sodium D,L-Lactate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT015	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT016	carbon source	Sodium succinate dibasic hexahydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT017	carbon source	Xylitol	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT019	carbon source	m-Inositol	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT020	carbon source	D-Galacturonic Acid monohydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT021	carbon source	Glycerol	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT022	carbon source	D-Sorbitol	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT023	carbon source	L-Malic acid disodium salt monohydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT024	carbon source	L-Asparagine	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT025	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT026	carbon source	L-Proline	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT028	carbon source	D-Mannose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT029	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT031	carbon source	L-Arabinose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT032	carbon source	D-Xylose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT033	carbon source	D-Galactose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT034	carbon source	L-Rhamnose monohydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT035	carbon source	D-Ribose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT036	carbon source	L-Fucose	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT037	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT038	carbon source	D-Gluconic Acid sodium salt	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT039	carbon source	D-Glucose-6-Phosphate sodium salt	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT040	carbon source	Sodium D-Lactate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT041	carbon source	Sodium L-Lactate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT042	carbon source	Sodium D,L-Lactate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT043	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT044	carbon source	Sodium succinate dibasic hexahydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set1IT045	carbon source	Xylitol	20	mM		RCH2_defined_noCarbon
+HerbieS	set2IT051	carbon source	m-Inositol	20	mM		RCH2_defined_noCarbon
+HerbieS	set2IT052	carbon source	D-Galacturonic Acid monohydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set2IT053	carbon source	Glycerol	20	mM		RCH2_defined_noCarbon
+HerbieS	set2IT055	carbon source	L-Malic acid disodium salt monohydrate	20	mM		RCH2_defined_noCarbon
+HerbieS	set2IT056	carbon source	L-Asparagine	20	mM		RCH2_defined_noCarbon
+HerbieS	set2IT057	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+HerbieS	set2IT058	carbon source	L-Proline	20	mM		RCH2_defined_noCarbon
+HerbieS	set2IT060	carbon source	D-Mannose	20	mM		RCH2_defined_noCarbon
+HerbieS	set6IT086	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+HerbieS	set6IT087	carbon source	Phenylacetic acid	5	mM		RCH2_defined_noCarbon
+HerbieS	set6IT093	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+HerbieS	set6IT094	carbon source	Phenylacetic acid	5	mM		RCH2_defined_noCarbon
+Keio	set1IT003	carbon source	D-Glucose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT004	carbon source	D-Glucose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT005	carbon source	D-Fructose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT006	carbon source	D-Fructose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT009	carbon source	D-Maltose monohydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT010	carbon source	D-Maltose monohydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT011	carbon source	D-Xylose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT012	carbon source	D-Xylose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT013	carbon source	D-Galactose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT014	carbon source	D-Galactose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT015	carbon source	D-Ribose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT016	carbon source	D-Ribose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT017	carbon source	L-Fucose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT018	carbon source	L-Fucose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT019	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT020	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT021	carbon source	D-Glucuronic Acid	20	mM		M9 minimal media_noCarbon
+Keio	set1IT022	carbon source	D-Glucuronic Acid	20	mM		M9 minimal media_noCarbon
+Keio	set1IT023	carbon source	D-Gluconic Acid sodium salt	20	mM		M9 minimal media_noCarbon
+Keio	set1IT024	carbon source	D-Gluconic Acid sodium salt	20	mM		M9 minimal media_noCarbon
+Keio	set1IT025	carbon source	D-Glucose-6-Phosphate sodium salt	20	mM		M9 minimal media_noCarbon
+Keio	set1IT026	carbon source	D-Glucose-6-Phosphate sodium salt	20	mM		M9 minimal media_noCarbon
+Keio	set1IT027	carbon source	Potassium acetate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT028	carbon source	Potassium acetate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT031	carbon source	Sodium D-Lactate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT032	carbon source	Sodium D-Lactate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT035	carbon source	Sodium D,L-Lactate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT036	carbon source	Sodium D,L-Lactate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT037	carbon source	Sodium pyruvate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT038	carbon source	Sodium pyruvate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT039	carbon source	Sodium succinate dibasic hexahydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT040	carbon source	Sodium succinate dibasic hexahydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT041	carbon source	Glycolic Acid	20	mM		M9 minimal media_noCarbon
+Keio	set1IT042	carbon source	Glycolic Acid	20	mM		M9 minimal media_noCarbon
+Keio	set1IT045	carbon source	D-Galacturonic Acid monohydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT046	carbon source	D-Galacturonic Acid monohydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT047	carbon source	Glycerol	20	mM		M9 minimal media_noCarbon
+Keio	set1IT048	carbon source	Glycerol	20	mM		M9 minimal media_noCarbon
+Keio	set1IT051	carbon source	D-Sorbitol	20	mM		M9 minimal media_noCarbon
+Keio	set1IT052	carbon source	D-Sorbitol	20	mM		M9 minimal media_noCarbon
+Keio	set1IT053	carbon source	L-Malic acid disodium salt monohydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT054	carbon source	L-Malic acid disodium salt monohydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT055	carbon source	D-Trehalose dihydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT056	carbon source	D-Trehalose dihydrate	20	mM		M9 minimal media_noCarbon
+Keio	set1IT057	carbon source	D-Serine	20	mM		M9 minimal media_noCarbon
+Keio	set1IT058	carbon source	D-Serine	20	mM		M9 minimal media_noCarbon
+Keio	set1IT059	carbon source	casamino acids	2	mg/ml		M9 minimal media_noCarbon
+Keio	set1IT060	carbon source	casamino acids	2	mg/ml		M9 minimal media_noCarbon
+Keio	set1IT061	carbon source	N-Acetyl-D-Glucosamine	20	mM		M9 minimal media_noCarbon
+Keio	set1IT062	carbon source	N-Acetyl-D-Glucosamine	20	mM		M9 minimal media_noCarbon
+Keio	set1IT063	carbon source	D-Glucosamine Hydrochloride	20	mM		M9 minimal media_noCarbon
+Keio	set1IT064	carbon source	D-Glucosamine Hydrochloride	20	mM		M9 minimal media_noCarbon
+Keio	set1IT065	carbon source	D-Mannose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT066	carbon source	D-Mannose	20	mM		M9 minimal media_noCarbon
+Keio	set1IT067	carbon source	D-Galacturonic Acid monohydrate	20	mM		MOPS Rich Defined media_noCarbon
+Keio	set1IT068	carbon source	D-Galacturonic Acid monohydrate	20	mM		MOPS Rich Defined media_noCarbon
+Keio	set1IT069	carbon source	D-Glucose	22	mM		MOPS Rich Defined media_noCarbon
+Keio	set1IT070	carbon source	D-Glucose	22	mM		MOPS Rich Defined media_noCarbon
+Keio	set2IT093	carbon source	D-Galacturonic Acid monohydrate	20	mM		MOPS minimal media_noCarbon
+Keio	set2IT094	carbon source	D-Glucose	22	mM		MOPS minimal media_noCarbon
+Keio	set2IT095	carbon source	D-Galacturonic Acid monohydrate	20	mM		M9 minimal media_noCarbon
+Keio	set2IT096	carbon source	D-Glucose	22	mM		M9 minimal media_noCarbon
+Keio	set52IT047	carbon source	D-Mannitol	10	mM		RCH2_defined_noCarbon
+Keio	set52IT048	carbon source	D-Mannitol	5	mM		RCH2_defined_noCarbon
+Keio	set52IT049	carbon source	D-Mannitol	2.5	mM		RCH2_defined_noCarbon
+Keio	set52IT051	carbon source	D-Mannitol	10	mM		RCH2_defined_noCarbon
+Keio	set52IT052	carbon source	D-Mannitol	5	mM		RCH2_defined_noCarbon
+Keio	set52IT053	carbon source	D-Mannitol	2.5	mM		RCH2_defined_noCarbon
+Korea	set3IT061	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+Korea	set3IT063	carbon source	D-Maltose monohydrate	20	mM		RCH2_defined_noCarbon
+Korea	set3IT064	carbon source	D-Xylose	20	mM		RCH2_defined_noCarbon
+Korea	set3IT065	carbon source	D-Raffinose pentahydrate	20	mM		RCH2_defined_noCarbon
+Korea	set3IT066	carbon source	a-Cyclodextrin	20	mM		RCH2_defined_noCarbon
+Korea	set3IT067	carbon source	D-Cellobiose	20	mM		RCH2_defined_noCarbon
+Korea	set3IT069	carbon source	L-Glutamic acid monopotassium salt monohydrate	20	mM		RCH2_defined_noCarbon
+Korea	set3IT070	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+Korea	set3IT071	carbon source	casamino acids	2	mg/ml		RCH2_defined_noCarbon
+Korea	set3IT072	carbon source	N-Acetyl-D-Glucosamine	20	mM		RCH2_defined_noCarbon
+Korea	set3IT073	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+Korea	set3IT074	carbon source	D-Fructose	20	mM		RCH2_defined_noCarbon
+Korea	set3IT076	carbon source	D-Maltose monohydrate	20	mM		RCH2_defined_noCarbon
+Korea	set3IT077	carbon source	D-Xylose	20	mM		RCH2_defined_noCarbon
+Korea	set3IT078	carbon source	D-Raffinose pentahydrate	20	mM		RCH2_defined_noCarbon
+Korea	set3IT079	carbon source	a-Cyclodextrin	20	mM		RCH2_defined_noCarbon
+Korea	set3IT080	carbon source	D-Cellobiose	20	mM		RCH2_defined_noCarbon
+Korea	set3IT082	carbon source	L-Glutamic acid monopotassium salt monohydrate	20	mM		RCH2_defined_noCarbon
+Korea	set3IT083	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+Korea	set3IT084	carbon source	casamino acids	2	mg/ml		RCH2_defined_noCarbon
+Korea	set3IT085	carbon source	N-Acetyl-D-Glucosamine	20	mM		RCH2_defined_noCarbon
+Korea	set6IT061	carbon source	L-Glutamic acid monopotassium salt monohydrate	10	mM		RCH2_defined_noCarbon
+Korea	set6IT062	carbon source	D-Cellobiose	20	mM		RCH2_defined_noCarbon
+Korea	set6IT063	carbon source	D-Glucose	5	mM		RCH2_defined_noCarbon
+Korea	set6IT064	carbon source	L-Glutamic acid monopotassium salt monohydrate	10	mM		RCH2_defined_noCarbon
+Korea	set6IT065	carbon source	D-Cellobiose	20	mM		RCH2_defined_noCarbon
+Korea	set6IT066	carbon source	D-Glucose	5	mM		RCH2_defined_noCarbon
+Koxy	set4IT082	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT083	carbon source	D-Fructose	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT086	carbon source	D-Maltose monohydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT087	carbon source	L-Sorbose	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT088	carbon source	D-Xylose	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT089	carbon source	D-Raffinose pentahydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT090	carbon source	L-Rhamnose monohydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT091	carbon source	a-Cyclodextrin	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT092	carbon source	D-Ribose	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT093	carbon source	L-Fucose	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT094	carbon source	D-Gluconic Acid sodium salt	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT095	carbon source	D-Glucose-6-Phosphate sodium salt	20	mM		RCH2_defined_noCarbon
+Koxy	set4IT096	carbon source	Potassium acetate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT001	carbon source	D-Cellobiose	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT002	carbon source	Trisodium citrate dihydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT003	carbon source	Sodium D-Lactate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT004	carbon source	Sodium L-Lactate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT005	carbon source	Sodium D,L-Lactate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT006	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT007	carbon source	Sodium succinate dibasic hexahydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT009	carbon source	m-Inositol	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT010	carbon source	Glycerol	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT011	carbon source	D-Sorbitol	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT012	carbon source	D,L-Malic Acid	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT013	carbon source	L-Malic acid disodium salt monohydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT014	carbon source	D-Trehalose dihydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT015	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT016	carbon source	L-Alanine	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT017	carbon source	D-Serine	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT018	carbon source	D-Alanine	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT021	carbon source	D-Glucosamine Hydrochloride	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT022	carbon source	Adenosine	2	mM		RCH2_defined_noCarbon
+Koxy	set5IT023	carbon source	Inosine	5	mM		RCH2_defined_noCarbon
+Koxy	set5IT024	carbon source	Cytidine	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT025	carbon source	D-Salicin	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT028	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT029	carbon source	D-Fructose	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT032	carbon source	D-Maltose monohydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT033	carbon source	L-Sorbose	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT034	carbon source	D-Xylose	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT035	carbon source	D-Raffinose pentahydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT036	carbon source	L-Rhamnose monohydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT037	carbon source	a-Cyclodextrin	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT038	carbon source	D-Ribose	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT039	carbon source	L-Fucose	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT040	carbon source	D-Gluconic Acid sodium salt	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT041	carbon source	D-Glucose-6-Phosphate sodium salt	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT042	carbon source	Potassium acetate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT043	carbon source	D-Cellobiose	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT044	carbon source	Trisodium citrate dihydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT045	carbon source	Sodium D-Lactate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT046	carbon source	Sodium L-Lactate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT047	carbon source	Sodium D,L-Lactate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT048	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT049	carbon source	Sodium succinate dibasic hexahydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT051	carbon source	m-Inositol	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT053	carbon source	D-Sorbitol	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT054	carbon source	D,L-Malic Acid	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT055	carbon source	L-Malic acid disodium salt monohydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT056	carbon source	D-Trehalose dihydrate	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT058	carbon source	L-Alanine	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT059	carbon source	D-Serine	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT060	carbon source	D-Alanine	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT062	carbon source	Gly-Glu	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT064	carbon source	Adenosine	2	mM		RCH2_defined_noCarbon
+Koxy	set5IT065	carbon source	Inosine	5	mM		RCH2_defined_noCarbon
+Koxy	set5IT066	carbon source	Cytidine	20	mM		RCH2_defined_noCarbon
+Koxy	set5IT067	carbon source	D-Salicin	20	mM		RCH2_defined_noCarbon
+Koxy	set11IT061	carbon source	2-Deoxyadenosine 5-monophosphate	5	mM		RCH2_defined_noCarbon
+Koxy	set11IT064	carbon source	2'-Deoxycytidine	10	mM		RCH2_defined_noCarbon
+Koxy	set11IT065	carbon source	2'-Deoxycytidine	5	mM		RCH2_defined_noCarbon
+Koxy	set11IT066	carbon source	2-Deoxyadenosine monohydrate	4	mM		RCH2_defined_noCarbon
+Koxy	set11IT067	carbon source	2'-Deoxyinosine	10	mM		RCH2_defined_noCarbon
+Koxy	set11IT068	carbon source	2'-Deoxyinosine	5	mM		RCH2_defined_noCarbon
+Koxy	set11IT069	carbon source	2-Deoxy-D-ribonic acid lithium salt	10	mM		RCH2_defined_noCarbon
+Koxy	set11IT070	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+Koxy	set11IT071	carbon source	2-Deoxyadenosine 5-monophosphate	5	mM		RCH2_defined_noCarbon
+Koxy	set11IT074	carbon source	2'-Deoxycytidine	10	mM		RCH2_defined_noCarbon
+Koxy	set11IT075	carbon source	2'-Deoxycytidine	5	mM		RCH2_defined_noCarbon
+Koxy	set11IT076	carbon source	2-Deoxyadenosine monohydrate	4	mM		RCH2_defined_noCarbon
+Koxy	set11IT077	carbon source	2'-Deoxyinosine	10	mM		RCH2_defined_noCarbon
+Koxy	set11IT078	carbon source	2'-Deoxyinosine	5	mM		RCH2_defined_noCarbon
+Koxy	set11IT079	carbon source	2-Deoxy-D-ribonic acid lithium salt	10	mM		RCH2_defined_noCarbon
+Koxy	set11IT080	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+Marino	set1H3	carbon source	a-Ketoglutaric acid disodium salt hydrate	4	mM		DinoMM_noCarbon
+Marino	set1H4	carbon source	Potassium acetate	4	mM		DinoMM_noCarbon
+Marino	set1H5	carbon source	Sodium Fumarate dibasic	4	mM		DinoMM_noCarbon
+Marino	set1H6	carbon source	Trisodium citrate dihydrate	4	mM		DinoMM_noCarbon
+Marino	set1H7	carbon source	Sodium D-Lactate	4	mM		DinoMM_noCarbon
+Marino	set1H8	carbon source	Sodium L-Lactate	4	mM		DinoMM_noCarbon
+Marino	set1H9	carbon source	Sodium D,L-Lactate	4	mM		DinoMM_noCarbon
+Marino	set1H10	carbon source	Sodium pyruvate	4	mM		DinoMM_noCarbon
+Marino	set1H11	carbon source	Sodium succinate dibasic hexahydrate	4	mM		DinoMM_noCarbon
+Marino	set1H12	carbon source	L-Malic acid disodium salt monohydrate	4	mM		DinoMM_noCarbon
+Marino	set1H13	carbon source	L-Glutamic acid monopotassium salt monohydrate	4	mM		DinoMM_noCarbon
+Marino	set1H15	carbon source	L-Proline	4	mM		DinoMM_noCarbon
+Marino	set1H16	carbon source	casamino acids	0.1	mg/ml		DinoMM_noCarbon
+Marino	set5H6	carbon source	Potassium acetate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H7	carbon source	Sodium Fumarate dibasic	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H8	carbon source	Trisodium citrate dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H9	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H10	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H11	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H12	carbon source	Potassium acetate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H13	carbon source	Sodium Fumarate dibasic	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H14	carbon source	Trisodium citrate dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H15	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H16	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H30	carbon source	Potassium acetate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H32	carbon source	Trisodium citrate dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H33	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H34	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H35	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H36	carbon source	Potassium acetate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H37	carbon source	Sodium Fumarate dibasic	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H38	carbon source	Trisodium citrate dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H39	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set5H40	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT003	carbon source	Sodium pyruvate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT005	carbon source	Ethanol	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT006	carbon source	Glycerol	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT007	carbon source	Tween 20	1	vol%		DinoMM_noCarbon_HighNutrient
+Marino	set6IT008	carbon source	L-Malic acid disodium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT009	carbon source	D-Trehalose dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT012	carbon source	L-Proline	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT013	carbon source	L-Phenylalanine	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT014	carbon source	D-Alanine	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT015	carbon source	casamino acids	2	mg/ml		DinoMM_noCarbon_HighNutrient
+Marino	set6IT016	carbon source	Sodium pyruvate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT017	carbon source	Sodium succinate dibasic hexahydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT018	carbon source	Ethanol	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT019	carbon source	Glycerol	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT020	carbon source	Tween 20	1	vol%		DinoMM_noCarbon_HighNutrient
+Marino	set6IT021	carbon source	L-Malic acid disodium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT022	carbon source	D-Trehalose dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT026	carbon source	L-Phenylalanine	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT027	carbon source	D-Alanine	20	mM		DinoMM_noCarbon_HighNutrient
+Marino	set6IT028	carbon source	casamino acids	2	mg/ml		DinoMM_noCarbon_HighNutrient
+MR1	set2H45	carbon source	Sodium L-Lactate	20	mM		ShewMM_noCarbon
+MR1	set2H46	carbon source	Sodium pyruvate	20	mM		ShewMM_noCarbon
+MR1	set2H47	carbon source	Sodium propionate	10	mM		ShewMM_noCarbon
+MR1	set2H48	carbon source	Tween 20	0.5	vol%		ShewMM_noCarbon
+MR1	set3H4	carbon source	L-Glutamine	10	mM		ShewMM_noCarbon
+MR1	set3H5	carbon source	L-Isoleucine	10	mM		ShewMM_noCarbon
+MR1	set3H6	carbon source	Gly-DL-Asp	10	mM		ShewMM_noCarbon
+MR1	set3H7	carbon source	Gly-Glu	10	mM		ShewMM_noCarbon
+MR1	set3H8	carbon source	Gelatin	1	mg/ml		ShewMM_noCarbon
+MR1	set3H9	carbon source	casamino acids	1	mg/ml		ShewMM_noCarbon
+MR1	set3H10	carbon source	N-Acetyl-D-Glucosamine	20	mM		ShewMM_noCarbon
+MR1	set3H11	carbon source	Adenosine	5	mM		ShewMM_noCarbon
+MR1	set3H12	carbon source	Uridine	10	mM		ShewMM_noCarbon
+MR1	set3H13	carbon source	Inosine	7.5	mM		ShewMM_noCarbon
+MR1	set3H14	carbon source	Cytidine	10	mM		ShewMM_noCarbon
+MR1	set3H16	carbon source	Sodium L-Lactate	20	mM		ShewMM_noCarbon
+MR1	set3H17	carbon source	Sodium D,L-Lactate	20	mM		ShewMM_noCarbon
+MR1	set3H18	carbon source	Sodium pyruvate	20	mM		ShewMM_noCarbon
+MR1	set3H19	carbon source	Sodium propionate	10	mM		ShewMM_noCarbon
+MR1	set3H20	carbon source	Tween 20	0.5	vol%		ShewMM_noCarbon
+MR1	set3H22	carbon source	L-Glutamine	10	mM		ShewMM_noCarbon
+MR1	set3H23	carbon source	L-Isoleucine	10	mM		ShewMM_noCarbon
+MR1	set3H24	carbon source	Gly-DL-Asp	10	mM		ShewMM_noCarbon
+MR1	set4H26	carbon source	Gly-Glu	10	mM		ShewMM_noCarbon
+MR1	set4H27	carbon source	Gelatin	1	mg/ml		ShewMM_noCarbon
+MR1	set4H28	carbon source	casamino acids	1	mg/ml		ShewMM_noCarbon
+MR1	set4H29	carbon source	N-Acetyl-D-Glucosamine	20	mM		ShewMM_noCarbon
+MR1	set4H30	carbon source	Adenosine	5	mM		ShewMM_noCarbon
+MR1	set4H31	carbon source	Uridine	10	mM		ShewMM_noCarbon
+MR1	set4H32	carbon source	Inosine	7.5	mM		ShewMM_noCarbon
+MR1	set4H33	carbon source	Cytidine	10	mM		ShewMM_noCarbon
+Phaeo	set3H8	carbon source	D-Glucose	20	mM		DinoMM_noCarbon
+Phaeo	set3H9	carbon source	D-Fructose	20	mM		DinoMM_noCarbon
+Phaeo	set3H11	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		DinoMM_noCarbon
+Phaeo	set3H13	carbon source	Sodium Fumarate dibasic	20	mM		DinoMM_noCarbon
+Phaeo	set3H15	carbon source	Sodium D-Lactate	20	mM		DinoMM_noCarbon
+Phaeo	set3H16	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon
+Phaeo	set3H17	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon
+Phaeo	set3H18	carbon source	Sodium pyruvate	20	mM		DinoMM_noCarbon
+Phaeo	set3H19	carbon source	Sodium succinate dibasic hexahydrate	20	mM		DinoMM_noCarbon
+Phaeo	set3H20	carbon source	m-Inositol	20	mM		DinoMM_noCarbon
+Phaeo	set3H21	carbon source	Glycerol	20	mM		DinoMM_noCarbon
+Phaeo	set3H26	carbon source	Glycine	20	mM		DinoMM_noCarbon
+Phaeo	set3H27	carbon source	L-Proline	20	mM		DinoMM_noCarbon
+Phaeo	set3H28	carbon source	L-Citrulline	20	mM		DinoMM_noCarbon
+Phaeo	set3H29	carbon source	casamino acids	2	mg/ml		DinoMM_noCarbon
+Phaeo	set3H30	carbon source	N-Acetyl-D-Glucosamine	20	mM		DinoMM_noCarbon
+Phaeo	set3H31	carbon source	D-Glucose	20	mM		DinoMM_noCarbon
+Phaeo	set3H32	carbon source	D-Fructose	20	mM		DinoMM_noCarbon
+Phaeo	set3H34	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		DinoMM_noCarbon
+Phaeo	set3H35	carbon source	Potassium acetate	20	mM		DinoMM_noCarbon
+Phaeo	set3H38	carbon source	Sodium D-Lactate	20	mM		DinoMM_noCarbon
+Phaeo	set3H39	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon
+Phaeo	set3H40	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon
+Phaeo	set3H41	carbon source	Sodium pyruvate	20	mM		DinoMM_noCarbon
+Phaeo	set3H42	carbon source	Sodium succinate dibasic hexahydrate	20	mM		DinoMM_noCarbon
+Phaeo	set3H43	carbon source	m-Inositol	20	mM		DinoMM_noCarbon
+Phaeo	set3H44	carbon source	Glycerol	20	mM		DinoMM_noCarbon
+Phaeo	set3H45	carbon source	L-Malic acid disodium salt monohydrate	20	mM		DinoMM_noCarbon
+Phaeo	set3H46	carbon source	L-Glutamic acid monopotassium salt monohydrate	20	mM		DinoMM_noCarbon
+Phaeo	set4H1	carbon source	Glycine	20	mM		DinoMM_noCarbon
+Phaeo	set4H2	carbon source	L-Proline	20	mM		DinoMM_noCarbon
+Phaeo	set4H3	carbon source	L-Citrulline	20	mM		DinoMM_noCarbon
+Phaeo	set4H4	carbon source	casamino acids	2	mg/ml		DinoMM_noCarbon
+Phaeo	set5H5	carbon source	D-Glucose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H6	carbon source	D-Glucose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H7	carbon source	D-Fructose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H8	carbon source	D-Fructose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H11	carbon source	D-Xylose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H12	carbon source	D-Xylose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H13	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H14	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H15	carbon source	Potassium acetate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H16	carbon source	Potassium acetate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H17	carbon source	Sodium Fumarate dibasic	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H18	carbon source	Sodium Fumarate dibasic	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H19	carbon source	D-Cellobiose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H20	carbon source	D-Cellobiose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H21	carbon source	Trisodium citrate dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H22	carbon source	Trisodium citrate dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H23	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H24	carbon source	Sodium L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H25	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H26	carbon source	Sodium D,L-Lactate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H27	carbon source	Sodium pyruvate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H28	carbon source	Sodium pyruvate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H29	carbon source	Sodium succinate dibasic hexahydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H30	carbon source	Sodium succinate dibasic hexahydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H31	carbon source	Sodium propionate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H32	carbon source	Sodium propionate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H35	carbon source	m-Inositol	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H36	carbon source	m-Inositol	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H37	carbon source	D-Sorbitol	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H38	carbon source	D-Sorbitol	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H39	carbon source	L-Malic acid disodium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H40	carbon source	L-Malic acid disodium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H41	carbon source	D-Trehalose dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set5H42	carbon source	D-Trehalose dihydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT010	carbon source	L-Glutamic acid monopotassium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT011	carbon source	N-Acetyl-D-Glucosamine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT012	carbon source	L-Glutamine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT022	carbon source	L-Serine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT023	carbon source	D-Mannose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT024	carbon source	Glycine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT034	carbon source	L-Threonine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT036	carbon source	L-Proline	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT046	carbon source	L-Asparagine	10	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT047	carbon source	Sodium butyrate	4	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set6IT048	carbon source	casamino acids	2	mg/ml		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT058	carbon source	L-Glutamine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT059	carbon source	L-Glutamic acid monopotassium salt monohydrate	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT060	carbon source	N-Acetyl-D-Glucosamine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT070	carbon source	Glycine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT071	carbon source	L-Serine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT072	carbon source	D-Mannose	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT082	carbon source	L-Proline	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT083	carbon source	L-Threonine	20	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT094	carbon source	casamino acids	2	mg/ml		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT095	carbon source	L-Asparagine	10	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set7IT096	carbon source	Sodium butyrate	4	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT074	carbon source	L-Ornithine	10	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT075	carbon source	L-Ornithine	5	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT076	carbon source	L-Citrulline	10	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT077	carbon source	L-Citrulline	5	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT078	carbon source	D-Glucose	10	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT079	carbon source	L-Ornithine	10	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT080	carbon source	L-Ornithine	5	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT081	carbon source	L-Citrulline	10	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT082	carbon source	L-Citrulline	5	mM		DinoMM_noCarbon_HighNutrient
+Phaeo	set12IT083	carbon source	D-Glucose	10	mM		DinoMM_noCarbon_HighNutrient
+PV4	set1H48	carbon source	D-Maltose monohydrate	20	mM		ShewMM_noCarbon
+PV4	set1H47	carbon source	D-Maltose monohydrate	20	mM		ShewMM_noCarbon
+PV4	set1H42	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		ShewMM_noCarbon
+PV4	set1H41	carbon source	Potassium acetate	20	mM		ShewMM_noCarbon
+PV4	set1H40	carbon source	Sodium Fumarate dibasic	10	mM		ShewMM_noCarbon
+PV4	set1H37	carbon source	a-Ketoglutaric acid disodium salt hydrate	20	mM		ShewMM_noCarbon
+PV4	set1H36	carbon source	Potassium acetate	20	mM		ShewMM_noCarbon
+PV4	set2IT003	carbon source	Sodium L-Lactate	20	mM		ShewMM_noCarbon
+PV4	set2IT004	carbon source	Sodium D,L-Lactate	20	mM		ShewMM_noCarbon
+PV4	set2IT005	carbon source	Sodium pyruvate	20	mM		ShewMM_noCarbon
+PV4	set2IT006	carbon source	Sodium succinate dibasic hexahydrate	10	mM		ShewMM_noCarbon
+PV4	set2IT008	carbon source	L-Malic acid disodium salt monohydrate	10	mM		ShewMM_noCarbon
+PV4	set2IT011	carbon source	Gelatin	1	mg/ml		ShewMM_noCarbon
+PV4	set2IT012	carbon source	casamino acids	2	mg/ml		ShewMM_noCarbon
+PV4	set2IT013	carbon source	N-Acetyl-D-Glucosamine	20	mM		ShewMM_noCarbon
+PV4	set2IT015	carbon source	Sodium L-Lactate	20	mM		ShewMM_noCarbon
+PV4	set2IT016	carbon source	Sodium D,L-Lactate	20	mM		ShewMM_noCarbon
+PV4	set2IT017	carbon source	Sodium pyruvate	20	mM		ShewMM_noCarbon
+PV4	set2IT018	carbon source	Sodium succinate dibasic hexahydrate	10	mM		ShewMM_noCarbon
+PV4	set2IT020	carbon source	L-Malic acid disodium salt monohydrate	10	mM		ShewMM_noCarbon
+PV4	set2IT021	carbon source	L-Glutamine	10	mM		ShewMM_noCarbon
+PV4	set2IT023	carbon source	Gelatin	1	mg/ml		ShewMM_noCarbon
+PV4	set2IT024	carbon source	casamino acids	2	mg/ml		ShewMM_noCarbon
+PV4	set2IT025	carbon source	N-Acetyl-D-Glucosamine	20	mM		ShewMM_noCarbon
+Smeli	set1IT001	carbon source	D-Glucose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT002	carbon source	D-Fructose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT004	carbon source	L-Arabinose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT005	carbon source	D-Arabinose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT006	carbon source	D-Maltose monohydrate	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT007	carbon source	D-Xylose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT008	carbon source	D-Galactose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT009	carbon source	D-Raffinose pentahydrate	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT010	carbon source	L-Rhamnose monohydrate	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT011	carbon source	D-Ribose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT012	carbon source	L-Fucose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT013	carbon source	D-Cellobiose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT014	carbon source	Sodium L-Lactate	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT015	carbon source	Sodium D,L-Lactate	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT016	carbon source	Sodium pyruvate	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT017	carbon source	Sodium succinate dibasic hexahydrate	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT019	carbon source	m-Inositol	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT020	carbon source	Glycerol	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT021	carbon source	D-Sorbitol	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT022	carbon source	L-Malic acid disodium salt monohydrate	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT023	carbon source	D-Trehalose dihydrate	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT024	carbon source	L-Histidine	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT025	carbon source	L-Lysine	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT026	carbon source	L-Glutamine	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT027	carbon source	L-Proline	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT028	carbon source	L-Leucine	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT030	carbon source	N-Acetyl-D-Glucosamine	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT031	carbon source	D-Glucosamine Hydrochloride	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT032	carbon source	Uridine	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT033	carbon source	D-Salicin	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT034	carbon source	Beta-Lactose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT035	carbon source	D-Mannose	20	mM		RCH2_defined_noCarbon
+Smeli	set1IT036	carbon source	D-Tagatose	20	mM		RCH2_defined_noCarbon

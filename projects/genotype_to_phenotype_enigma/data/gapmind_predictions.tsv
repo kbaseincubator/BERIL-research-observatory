@@ -1,0 +1,487 @@
+strain	condition	gm_score	gm_pred	y_true
+FW300-N1B4	2'deoxycytidine			False
+FW300-N1B4	2deoxydribose			False
+FW300-N1B4	acetate			True
+FW300-N1B4	adeninehydrochloride			True
+FW300-N1B4	ammoniumchloride			True
+FW300-N1B4	benzoicacid			True
+FW300-N1B4	betaalanine			True
+FW300-N1B4	betalactose			False
+FW300-N1B4	butyrate			False
+FW300-N1B4	cholinechloride			True
+FW300-N1B4	citricacid			True
+FW300-N1B4	cobaltchloridehexa			True
+FW300-N1B4	cytidine			True
+FW300-N1B4	cytosine			True
+FW300-N1B4	dalanine	5.0	1.0	True
+FW300-N1B4	darabinose	5.0	1.0	False
+FW300-N1B4	dfructose	5.0	1.0	True
+FW300-N1B4	dglucose6phosphate			False
+FW300-N1B4	dglucuronicacid			True
+FW300-N1B4	dmannitol	5.0	1.0	True
+FW300-N1B4	dserine	5.0	1.0	False
+FW300-N1B4	ethanol	5.0	1.0	True
+FW300-N1B4	formate			False
+FW300-N1B4	gelatin			False
+FW300-N1B4	glycerol	5.0	1.0	True
+FW300-N1B4	glycine			True
+FW300-N1B4	glycolicacid			False
+FW300-N1B4	glyglu			False
+FW300-N1B4	hydantoin			False
+FW300-N1B4	inosine			True
+FW300-N1B4	lactulose			False
+FW300-N1B4	lalanine	5.0	1.0	True
+FW300-N1B4	larabinose	5.0	1.0	True
+FW300-N1B4	larginine	5.0	1.0	True
+FW300-N1B4	lasparagine	5.0	1.0	True
+FW300-N1B4	lasparticacid			True
+FW300-N1B4	lcitrulline	5.0	1.0	True
+FW300-N1B4	lglutamine			True
+FW300-N1B4	lisoleucine	5.0	1.0	True
+FW300-N1B4	llactate			True
+FW300-N1B4	lleucine	5.0	1.0	True
+FW300-N1B4	llysine	5.0	1.0	True
+FW300-N1B4	lmethionine			True
+FW300-N1B4	lornithine			True
+FW300-N1B4	lphenylalanine	5.0	1.0	True
+FW300-N1B4	lproline	5.0	1.0	True
+FW300-N1B4	lserine	5.0	1.0	True
+FW300-N1B4	lsorbose			False
+FW300-N1B4	lthreonine	5.0	1.0	True
+FW300-N1B4	ltryptophan	5.0	1.0	True
+FW300-N1B4	ltyrosine	5.0	1.0	True
+FW300-N1B4	maltitol			False
+FW300-N1B4	manganeseiichloridetetra			True
+FW300-N1B4	melibiose			False
+FW300-N1B4	methanol			True
+FW300-N1B4	nacetyldglucosamine			True
+FW300-N1B4	nicotinicacid			False
+FW300-N1B4	nitrate			False
+FW300-N1B4	nitrite			False
+FW300-N1B4	octanoate			True
+FW300-N1B4	octanoicacid			True
+FW300-N1B4	parabanicacid			False
+FW300-N1B4	propionate			False
+FW300-N1B4	pyruvate			True
+FW300-N1B4	succinatehexa			True
+FW300-N1B4	succinicacid			True
+FW300-N1B4	sucrose	5.0	1.0	True
+FW300-N1B4	thymidine	5.0	1.0	False
+FW300-N1B4	uracil			False
+FW300-N1B4	urea			False
+FW300-N1B4	uridine			True
+FW300-N1B4	xylitol	3.0	0.0	False
+FW300-N2E2	2'deoxycytidine			False
+FW300-N2E2	2deoxydribose			False
+FW300-N2E2	acetate			True
+FW300-N2E2	adeninehydrochloride			False
+FW300-N2E2	ammoniumchloride			True
+FW300-N2E2	benzoicacid			False
+FW300-N2E2	betaalanine			True
+FW300-N2E2	betalactose			False
+FW300-N2E2	butyrate			True
+FW300-N2E2	cholinechloride			True
+FW300-N2E2	citricacid			True
+FW300-N2E2	cobaltchloridehexa			True
+FW300-N2E2	cytidine			True
+FW300-N2E2	cytosine			False
+FW300-N2E2	dalanine	5.0	1.0	True
+FW300-N2E2	darabinose	5.0	1.0	False
+FW300-N2E2	dfructose	5.0	1.0	True
+FW300-N2E2	dglucose6phosphate			False
+FW300-N2E2	dglucuronicacid			True
+FW300-N2E2	dmannitol	5.0	1.0	True
+FW300-N2E2	dserine	3.0	0.0	False
+FW300-N2E2	ethanol	5.0	1.0	True
+FW300-N2E2	formate			False
+FW300-N2E2	gelatin			False
+FW300-N2E2	glycerol	5.0	1.0	True
+FW300-N2E2	glycine			False
+FW300-N2E2	glycolicacid			False
+FW300-N2E2	glyglu			False
+FW300-N2E2	hydantoin			False
+FW300-N2E2	inosine			True
+FW300-N2E2	lactulose			False
+FW300-N2E2	lalanine	5.0	1.0	True
+FW300-N2E2	larabinose	5.0	1.0	True
+FW300-N2E2	larginine	5.0	1.0	True
+FW300-N2E2	lasparagine	5.0	1.0	True
+FW300-N2E2	lasparticacid			True
+FW300-N2E2	lcitrulline	5.0	1.0	False
+FW300-N2E2	lglutamine			True
+FW300-N2E2	lisoleucine	5.0	1.0	True
+FW300-N2E2	llactate			True
+FW300-N2E2	lleucine	5.0	1.0	True
+FW300-N2E2	llysine	5.0	1.0	True
+FW300-N2E2	lmethionine			False
+FW300-N2E2	lornithine			True
+FW300-N2E2	lphenylalanine	5.0	1.0	True
+FW300-N2E2	lproline	5.0	1.0	True
+FW300-N2E2	lserine	3.0	0.0	True
+FW300-N2E2	lsorbose			False
+FW300-N2E2	lthreonine	5.0	1.0	False
+FW300-N2E2	ltryptophan	5.0	1.0	False
+FW300-N2E2	ltyrosine	5.0	1.0	True
+FW300-N2E2	maltitol			False
+FW300-N2E2	manganeseiichloridetetra			True
+FW300-N2E2	melibiose			False
+FW300-N2E2	methanol			False
+FW300-N2E2	nacetyldglucosamine			False
+FW300-N2E2	nicotinicacid			True
+FW300-N2E2	nitrate			False
+FW300-N2E2	nitrite			False
+FW300-N2E2	octanoate			True
+FW300-N2E2	octanoicacid			True
+FW300-N2E2	parabanicacid			False
+FW300-N2E2	propionate			True
+FW300-N2E2	pyruvate			True
+FW300-N2E2	succinatehexa			True
+FW300-N2E2	succinicacid			True
+FW300-N2E2	sucrose	5.0	1.0	True
+FW300-N2E2	thymidine	5.0	1.0	False
+FW300-N2E2	uracil			False
+FW300-N2E2	urea			False
+FW300-N2E2	uridine			True
+FW300-N2E2	xylitol	3.0	0.0	False
+FW300-N2E3	2'deoxycytidine			False
+FW300-N2E3	2deoxydribose			False
+FW300-N2E3	acetate			True
+FW300-N2E3	adeninehydrochloride			True
+FW300-N2E3	ammoniumchloride			False
+FW300-N2E3	benzoicacid			True
+FW300-N2E3	betaalanine			True
+FW300-N2E3	betalactose			False
+FW300-N2E3	butyrate			True
+FW300-N2E3	cholinechloride			True
+FW300-N2E3	citricacid			True
+FW300-N2E3	cobaltchloridehexa			True
+FW300-N2E3	cytidine			True
+FW300-N2E3	cytosine			False
+FW300-N2E3	dalanine	5.0	1.0	True
+FW300-N2E3	darabinose	3.0	0.0	False
+FW300-N2E3	dfructose	5.0	1.0	True
+FW300-N2E3	dglucose6phosphate			True
+FW300-N2E3	dglucuronicacid			False
+FW300-N2E3	dmannitol	5.0	1.0	True
+FW300-N2E3	dserine	5.0	1.0	True
+FW300-N2E3	ethanol	5.0	1.0	False
+FW300-N2E3	formate			False
+FW300-N2E3	gelatin			False
+FW300-N2E3	glycerol	5.0	1.0	True
+FW300-N2E3	glycine			True
+FW300-N2E3	glycolicacid			False
+FW300-N2E3	glyglu			False
+FW300-N2E3	hydantoin			False
+FW300-N2E3	inosine			True
+FW300-N2E3	lactulose			False
+FW300-N2E3	lalanine	5.0	1.0	True
+FW300-N2E3	larabinose	3.0	0.0	False
+FW300-N2E3	larginine	5.0	1.0	True
+FW300-N2E3	lasparagine	5.0	1.0	True
+FW300-N2E3	lasparticacid			True
+FW300-N2E3	lcitrulline	5.0	1.0	True
+FW300-N2E3	lglutamine			True
+FW300-N2E3	lisoleucine	5.0	1.0	True
+FW300-N2E3	llactate			True
+FW300-N2E3	lleucine	5.0	1.0	True
+FW300-N2E3	llysine	5.0	1.0	True
+FW300-N2E3	lmethionine			False
+FW300-N2E3	lornithine			True
+FW300-N2E3	lphenylalanine	5.0	1.0	True
+FW300-N2E3	lproline	5.0	1.0	True
+FW300-N2E3	lserine	5.0	1.0	True
+FW300-N2E3	lsorbose			False
+FW300-N2E3	lthreonine	5.0	1.0	True
+FW300-N2E3	ltryptophan	5.0	1.0	True
+FW300-N2E3	ltyrosine	5.0	1.0	True
+FW300-N2E3	maltitol			False
+FW300-N2E3	manganeseiichloridetetra			True
+FW300-N2E3	melibiose			False
+FW300-N2E3	methanol			False
+FW300-N2E3	nacetyldglucosamine			True
+FW300-N2E3	nicotinicacid			False
+FW300-N2E3	nitrate			False
+FW300-N2E3	nitrite			False
+FW300-N2E3	octanoate			True
+FW300-N2E3	octanoicacid			True
+FW300-N2E3	parabanicacid			False
+FW300-N2E3	propionate			True
+FW300-N2E3	pyruvate			True
+FW300-N2E3	succinatehexa			True
+FW300-N2E3	succinicacid			True
+FW300-N2E3	sucrose	5.0	1.0	True
+FW300-N2E3	thymidine	5.0	1.0	False
+FW300-N2E3	uracil			False
+FW300-N2E3	urea			False
+FW300-N2E3	uridine			True
+FW300-N2E3	xylitol	3.0	0.0	False
+FW507-4G11	2'deoxycytidine			False
+FW507-4G11	2deoxydribose			True
+FW507-4G11	acetate			True
+FW507-4G11	ammoniumchloride			True
+FW507-4G11	betaalanine			True
+FW507-4G11	betalactose			True
+FW507-4G11	butyrate			True
+FW507-4G11	cholinechloride			False
+FW507-4G11	citricacid			True
+FW507-4G11	cytidine			True
+FW507-4G11	cytosine			False
+FW507-4G11	dalanine			True
+FW507-4G11	darabinose			False
+FW507-4G11	dfructose			True
+FW507-4G11	dglucose6phosphate			False
+FW507-4G11	dglucuronicacid			True
+FW507-4G11	dmannitol			False
+FW507-4G11	dserine			True
+FW507-4G11	ethanol			True
+FW507-4G11	formate			False
+FW507-4G11	gelatin			False
+FW507-4G11	glycerol			True
+FW507-4G11	glycine			True
+FW507-4G11	glycolicacid			True
+FW507-4G11	glyglu			True
+FW507-4G11	hydantoin			False
+FW507-4G11	inosine			False
+FW507-4G11	lactulose			True
+FW507-4G11	lalanine			True
+FW507-4G11	larabinose			True
+FW507-4G11	larginine			True
+FW507-4G11	lasparticacid			True
+FW507-4G11	lcitrulline			True
+FW507-4G11	lglutamine			True
+FW507-4G11	lisoleucine			True
+FW507-4G11	llactate			True
+FW507-4G11	lleucine			True
+FW507-4G11	llysine			True
+FW507-4G11	lmethionine			True
+FW507-4G11	lornithine			True
+FW507-4G11	lphenylalanine			True
+FW507-4G11	lproline			True
+FW507-4G11	lserine			True
+FW507-4G11	lsorbose			True
+FW507-4G11	lthreonine			True
+FW507-4G11	ltryptophan			True
+FW507-4G11	maltitol			False
+FW507-4G11	melibiose			False
+FW507-4G11	nacetyldglucosamine			False
+FW507-4G11	nicotinicacid			True
+FW507-4G11	nitrate			False
+FW507-4G11	nitrite			False
+FW507-4G11	octanoate			True
+FW507-4G11	parabanicacid			False
+FW507-4G11	propionate			True
+FW507-4G11	pyruvate			True
+FW507-4G11	succinatehexa			True
+FW507-4G11	succinicacid			True
+FW507-4G11	sucrose			False
+FW507-4G11	thymidine			False
+FW507-4G11	uracil			False
+FW507-4G11	urea			False
+FW507-4G11	uridine			False
+FW507-4G11	xylitol			True
+GW101-3H11	2'deoxycytidine			False
+GW101-3H11	2deoxydribose			False
+GW101-3H11	acetate			True
+GW101-3H11	ammoniumchloride			False
+GW101-3H11	betaalanine			True
+GW101-3H11	betalactose			False
+GW101-3H11	butyrate			True
+GW101-3H11	cholinechloride			False
+GW101-3H11	citricacid			False
+GW101-3H11	cytidine			False
+GW101-3H11	cytosine			False
+GW101-3H11	dalanine	2.0	0.0	True
+GW101-3H11	darabinose	5.0	1.0	False
+GW101-3H11	dfructose	5.0	1.0	True
+GW101-3H11	dglucose6phosphate			False
+GW101-3H11	dglucuronicacid			False
+GW101-3H11	dmannitol	4.0	1.0	True
+GW101-3H11	dserine	3.0	0.0	False
+GW101-3H11	ethanol	5.0	1.0	False
+GW101-3H11	formate			False
+GW101-3H11	gelatin			False
+GW101-3H11	glycerol	5.0	1.0	True
+GW101-3H11	glycine			False
+GW101-3H11	glycolicacid			False
+GW101-3H11	glyglu			False
+GW101-3H11	hydantoin			False
+GW101-3H11	inosine			False
+GW101-3H11	lactulose			False
+GW101-3H11	lalanine	2.0	0.0	True
+GW101-3H11	larabinose	5.0	1.0	True
+GW101-3H11	larginine	5.0	1.0	False
+GW101-3H11	lasparticacid			True
+GW101-3H11	lcitrulline	5.0	1.0	True
+GW101-3H11	lglutamine			True
+GW101-3H11	lisoleucine	5.0	1.0	True
+GW101-3H11	llactate			True
+GW101-3H11	lleucine	5.0	1.0	True
+GW101-3H11	llysine	5.0	1.0	False
+GW101-3H11	lmethionine			False
+GW101-3H11	lornithine			False
+GW101-3H11	lphenylalanine	5.0	1.0	True
+GW101-3H11	lproline	5.0	1.0	True
+GW101-3H11	lserine	3.0	0.0	False
+GW101-3H11	lsorbose			False
+GW101-3H11	lthreonine	5.0	1.0	True
+GW101-3H11	ltryptophan	5.0	1.0	True
+GW101-3H11	maltitol			False
+GW101-3H11	melibiose			False
+GW101-3H11	nacetyldglucosamine			False
+GW101-3H11	nicotinicacid			False
+GW101-3H11	nitrate			False
+GW101-3H11	nitrite			False
+GW101-3H11	octanoate			False
+GW101-3H11	parabanicacid			False
+GW101-3H11	propionate			False
+GW101-3H11	pyruvate			True
+GW101-3H11	succinatehexa			True
+GW101-3H11	succinicacid			True
+GW101-3H11	sucrose	5.0	1.0	False
+GW101-3H11	thymidine	4.0	1.0	False
+GW101-3H11	uracil			False
+GW101-3H11	urea			False
+GW101-3H11	uridine			False
+GW101-3H11	xylitol	3.0	0.0	False
+GW456-L13	2'deoxycytidine			True
+GW456-L13	2deoxydribose			False
+GW456-L13	acetate			True
+GW456-L13	adeninehydrochloride			True
+GW456-L13	ammoniumchloride			False
+GW456-L13	benzoicacid			True
+GW456-L13	betaalanine			True
+GW456-L13	betalactose			False
+GW456-L13	butyrate			False
+GW456-L13	cholinechloride			True
+GW456-L13	citricacid			True
+GW456-L13	cobaltchloridehexa			True
+GW456-L13	cytidine			False
+GW456-L13	cytosine			True
+GW456-L13	dalanine	5.0	1.0	True
+GW456-L13	darabinose	5.0	1.0	False
+GW456-L13	dfructose	5.0	1.0	True
+GW456-L13	dglucose6phosphate			True
+GW456-L13	dglucuronicacid			False
+GW456-L13	dmannitol	5.0	1.0	True
+GW456-L13	dserine	5.0	1.0	True
+GW456-L13	ethanol	5.0	1.0	False
+GW456-L13	formate			False
+GW456-L13	gelatin			True
+GW456-L13	glycerol	5.0	1.0	True
+GW456-L13	glycine			True
+GW456-L13	glycolicacid			False
+GW456-L13	glyglu			False
+GW456-L13	hydantoin			True
+GW456-L13	inosine			True
+GW456-L13	lactulose			False
+GW456-L13	lalanine	5.0	1.0	True
+GW456-L13	larabinose	5.0	1.0	True
+GW456-L13	larginine	5.0	1.0	True
+GW456-L13	lasparagine	5.0	1.0	True
+GW456-L13	lasparticacid			True
+GW456-L13	lcitrulline	5.0	1.0	False
+GW456-L13	lglutamine			True
+GW456-L13	lisoleucine	5.0	1.0	True
+GW456-L13	llactate			True
+GW456-L13	lleucine	5.0	1.0	True
+GW456-L13	llysine	5.0	1.0	True
+GW456-L13	lmethionine			False
+GW456-L13	lornithine			True
+GW456-L13	lphenylalanine	5.0	1.0	True
+GW456-L13	lproline	5.0	1.0	True
+GW456-L13	lserine	5.0	1.0	True
+GW456-L13	lsorbose			False
+GW456-L13	lthreonine	5.0	1.0	False
+GW456-L13	ltryptophan	5.0	1.0	True
+GW456-L13	ltyrosine	5.0	1.0	True
+GW456-L13	maltitol			False
+GW456-L13	manganeseiichloridetetra			True
+GW456-L13	melibiose			False
+GW456-L13	methanol			False
+GW456-L13	nacetyldglucosamine			True
+GW456-L13	nicotinicacid			True
+GW456-L13	nitrate			False
+GW456-L13	nitrite			False
+GW456-L13	octanoate			True
+GW456-L13	octanoicacid			True
+GW456-L13	parabanicacid			False
+GW456-L13	propionate			True
+GW456-L13	pyruvate			True
+GW456-L13	succinatehexa			True
+GW456-L13	succinicacid			True
+GW456-L13	sucrose	5.0	1.0	False
+GW456-L13	thymidine	5.0	1.0	False
+GW456-L13	uracil			True
+GW456-L13	urea			False
+GW456-L13	uridine			True
+GW456-L13	xylitol	3.0	0.0	False
+GW460-11-11-14-LB5	2'deoxycytidine			False
+GW460-11-11-14-LB5	2deoxydribose			True
+GW460-11-11-14-LB5	acetate			True
+GW460-11-11-14-LB5	adeninehydrochloride			False
+GW460-11-11-14-LB5	ammoniumchloride			False
+GW460-11-11-14-LB5	benzoicacid			False
+GW460-11-11-14-LB5	betaalanine			False
+GW460-11-11-14-LB5	betalactose			True
+GW460-11-11-14-LB5	butyrate			True
+GW460-11-11-14-LB5	cholinechloride			False
+GW460-11-11-14-LB5	citricacid			False
+GW460-11-11-14-LB5	cobaltchloridehexa			True
+GW460-11-11-14-LB5	cytidine			False
+GW460-11-11-14-LB5	cytosine			True
+GW460-11-11-14-LB5	dalanine			False
+GW460-11-11-14-LB5	darabinose			True
+GW460-11-11-14-LB5	dfructose			True
+GW460-11-11-14-LB5	dglucose6phosphate			True
+GW460-11-11-14-LB5	dglucuronicacid			True
+GW460-11-11-14-LB5	dmannitol			False
+GW460-11-11-14-LB5	dserine			False
+GW460-11-11-14-LB5	ethanol			True
+GW460-11-11-14-LB5	formate			True
+GW460-11-11-14-LB5	gelatin			True
+GW460-11-11-14-LB5	glycerol			True
+GW460-11-11-14-LB5	glycine			False
+GW460-11-11-14-LB5	glycolicacid			False
+GW460-11-11-14-LB5	glyglu			False
+GW460-11-11-14-LB5	hydantoin			False
+GW460-11-11-14-LB5	inosine			True
+GW460-11-11-14-LB5	lactulose			True
+GW460-11-11-14-LB5	lalanine			False
+GW460-11-11-14-LB5	larabinose			True
+GW460-11-11-14-LB5	larginine			False
+GW460-11-11-14-LB5	lasparagine			False
+GW460-11-11-14-LB5	lasparticacid			False
+GW460-11-11-14-LB5	lcitrulline			False
+GW460-11-11-14-LB5	lglutamine			False
+GW460-11-11-14-LB5	lisoleucine			False
+GW460-11-11-14-LB5	llactate			True
+GW460-11-11-14-LB5	lleucine			False
+GW460-11-11-14-LB5	llysine			False
+GW460-11-11-14-LB5	lmethionine			False
+GW460-11-11-14-LB5	lornithine			False
+GW460-11-11-14-LB5	lphenylalanine			False
+GW460-11-11-14-LB5	lproline			False
+GW460-11-11-14-LB5	lserine			True
+GW460-11-11-14-LB5	lsorbose			True
+GW460-11-11-14-LB5	lthreonine			False
+GW460-11-11-14-LB5	ltryptophan			True
+GW460-11-11-14-LB5	maltitol			True
+GW460-11-11-14-LB5	manganeseiichloridetetra			True
+GW460-11-11-14-LB5	melibiose			True
+GW460-11-11-14-LB5	methanol			False
+GW460-11-11-14-LB5	nacetyldglucosamine			True
+GW460-11-11-14-LB5	nicotinicacid			True
+GW460-11-11-14-LB5	nitrate			False
+GW460-11-11-14-LB5	nitrite			False
+GW460-11-11-14-LB5	octanoate			True
+GW460-11-11-14-LB5	parabanicacid			False
+GW460-11-11-14-LB5	propionate			True
+GW460-11-11-14-LB5	pyruvate			True
+GW460-11-11-14-LB5	succinatehexa			True
+GW460-11-11-14-LB5	succinicacid			False
+GW460-11-11-14-LB5	sucrose			True
+GW460-11-11-14-LB5	thymidine			False
+GW460-11-11-14-LB5	uracil			True
+GW460-11-11-14-LB5	urea			False
+GW460-11-11-14-LB5	uridine			False
+GW460-11-11-14-LB5	xylitol			True

@@ -1,0 +1,10 @@
+{
+  "elapsed_seconds": 317,
+  "input_tokens": 37,
+  "output_tokens": 13727,
+  "cache_read_tokens": 125578,
+  "cache_creation_tokens": 38503,
+  "estimated_cost_usd": 0.38807565000000005,
+  "model": "claude-sonnet-4-5-20250929",
+  "label": "revise_throughline.v1"
+}

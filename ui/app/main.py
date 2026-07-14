@@ -5,13 +5,16 @@ import hmac
 import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
+from typing import Any
 
 import app.context as ctx
 from app.context import generate_base_context, get_base_context, get_repo_data, initialize_data
-from app.db.session import init_db, close_db
+from app.db.session import init_db, close_db, check_db
 from app.notebook_processors import PlotlyPreprocessor
+from app.routes.openviking import ROUTER_OV
 import nbformat
 from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request
+from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -24,13 +27,34 @@ from app.filters import (
     slugify_filter,
     strip_images_filter,
 )
+from app.atlas_graph import (
+    build_derived_product_context,
+    build_opportunity_context,
+    build_opportunity_contexts,
+    build_reuse_overview,
+    build_topic_overview_map,
+    collection_atlas_reuse,
+    conflicts_for_page,
+    opportunities_for_page,
+    project_atlas_reuse,
+    review_routes_for_page,
+)
 
-from .routes.auth import ROUTER_AUTH
+from .auth import _RedirectToLogin, redirect_to_login_handler
+from .auth_providers import get_kbase_token, load_providers
+from .routes.admin import ROUTER_ADMIN
+from .routes.chat import ROUTER_CHAT, ROUTER_CHAT_PAGES
+from .routes.data import ROUTER_USER_DATA
 from .routes.user import ROUTER_USER
 from .config import get_settings
+from .db.crud import get_project_by_id, user_project_to_model
+from .db.session import get_db
 from .dataloader import load_repository_data, RepositoryParser
 from .git_data_sync import pull_latest
-from .models import CollectionCategory, RepositoryData
+from .importer import run_full_migration
+from .models import CollectionCategory, RepositoryData, AtlasPage
+from .storage import LocalFileStorage
+from .atlas_inventory import build_atlas_inventory
 
 logging.basicConfig(
     level=logging.INFO,
@@ -40,6 +64,21 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 templates = None
+
+
+ATLAS_SECTIONS = [
+    ("Overview", "root", "/atlas"),
+    ("Topics", "topics", "/atlas/topics"),
+    ("Data", "data", "/atlas/data"),
+    ("Claims", "claims", "/atlas/claims"),
+    ("Tensions", "conflicts", "/atlas/conflicts"),
+    ("Opportunities", "opportunities", "/atlas/opportunities"),
+    ("Directions", "directions", "/atlas/directions"),
+    ("Hypotheses", "hypotheses", "/atlas/hypotheses"),
+    ("People", "people", "/atlas/people"),
+    ("Methods", "methods", "/atlas/methods"),
+    ("Meta", "meta", "/atlas/meta"),
+]
 
 
 
@@ -67,6 +106,9 @@ def create_app() -> FastAPI:
 
     app.add_middleware(SessionMiddleware, secret_key=settings.session_secret_key, session_cookie="beril_session")
 
+    # Anonymous visitors to page routes guarded by require_user_page get bounced to login.
+    app.add_exception_handler(_RedirectToLogin, redirect_to_login_handler)
+
     # Mount static files
     app.mount("/static", StaticFiles(directory=settings.static_dir), name="static")
 
@@ -77,9 +119,16 @@ def create_app() -> FastAPI:
         name="project-assets",
     )
 
-    app.include_router(ROUTER_AUTH)
+    auth_providers = load_providers(settings)
+    app.state.auth_providers = auth_providers
+    auth_providers.identity.install_routes(app)
+
+    app.include_router(ROUTER_ADMIN)
+    app.include_router(ROUTER_CHAT)
+    app.include_router(ROUTER_CHAT_PAGES)
     app.include_router(ROUTER_COLLECTIONS)
     app.include_router(ROUTER_USER)
+    app.include_router(ROUTER_USER_DATA)
     app.include_router(ROUTER_COMMUNITY)
     app.include_router(ROUTER_COSCIENTIST)
     app.include_router(ROUTER_DATA)
@@ -87,6 +136,8 @@ def create_app() -> FastAPI:
     app.include_router(ROUTER_KNOWLEDGE)
     app.include_router(ROUTER_PROJECTS)
     app.include_router(ROUTER_SKILLS)
+    app.include_router(ROUTER_ATLAS)
+    app.include_router(ROUTER_OV)
 
     # Configure templates
     global templates
@@ -112,7 +163,7 @@ ROUTER_GENERAL = APIRouter(tags=["General"])
 ROUTER_KNOWLEDGE = APIRouter(tags=["Knowledge"])
 ROUTER_PROJECTS = APIRouter(tags=["Project"])
 ROUTER_SKILLS = APIRouter(tags=["Skills"])
-
+ROUTER_ATLAS = APIRouter(tags=["Atlas"])
 
 # Routes
 @ROUTER_GENERAL.get("/", response_class=HTMLResponse)
@@ -170,10 +221,35 @@ async def projects_list(
     dir: str = "",
     repo_data: RepositoryData = Depends(get_repo_data),
     context: dict = Depends(get_base_context),
+    db: AsyncSession = Depends(get_db),
 ):
     """Projects list page with sortable project grid."""
 
-    projects = list(repo_data.projects)  # copy to avoid mutating cached data
+    # Fetch raw UserProject rows so we can inspect repo_path for de-duplication.
+    # repo_data projects use the filesystem slug as their id (e.g. "my_project").
+    # Imported DB rows have UUID PKs but store repo_path = "projects/{slug}".
+    # We exclude any DB row whose repo_path slug matches a live repo_data project,
+    # preventing the same project from appearing twice in the list.
+    # /projects is a public catalog — only surface DB rows the owner has marked public.
+    from sqlalchemy import select as _sa_select
+    from app.db.models import UserProject as _UserProject
+    _raw = await db.execute(
+        _sa_select(_UserProject)
+        .where(_UserProject.is_public.is_(True))
+        .order_by(_UserProject.created_at.desc())
+    )
+    _raw_rows = _raw.scalars().all()
+
+    repo_slugs = {p.id for p in repo_data.projects}
+    db_projects = []
+    for row in _raw_rows:
+        # Extract slug from repo_path ("projects/slug" → "slug"); None for user-created rows.
+        row_slug = row.repo_path.split("/")[-1] if row.repo_path else None
+        if row_slug in repo_slugs:
+            continue  # already represented by live repo_data entry
+        db_projects.append(user_project_to_model(row))
+
+    projects = list(repo_data.projects) + db_projects
 
     # Default directions: recent=desc, others=asc
     default_dir = "desc" if sort == "recent" else "asc"
@@ -239,11 +315,21 @@ async def project_detail(
     project_id: str,
     repo_data: RepositoryData = Depends(get_repo_data),
     context: dict = Depends(get_base_context),
+    db: AsyncSession = Depends(get_db),
 ):
     """Project detail page."""
 
-    # Find project
+    # Find project — check repo first, then fall back to DB
     project = next((p for p in repo_data.projects if p.id == project_id), None)
+    if project is None:
+        db_project = await get_project_by_id(db, project_id)
+        if db_project is not None:
+            # DB-backed projects default to private; this public route may only
+            # render rows that are public OR owned by the caller. Otherwise we'd
+            # leak private project metadata to anyone who guesses the UUID.
+            viewer_id = request.session.get("beril_user_id")
+            if db_project.is_public or db_project.owner_id == viewer_id:
+                project = user_project_to_model(db_project)
     if not project:
         context["error"] = f"Project '{project_id}' not found"
         return templates.TemplateResponse(
@@ -281,6 +367,7 @@ async def project_detail(
     context["used_by_projects"] = [
         p for p in repo_data.projects if p.id in project.used_by
     ]
+    context["project_atlas_reuse"] = project_atlas_reuse(project.id, repo_data)
 
     return templates.TemplateResponse(request, "projects/detail.html", context)
 
@@ -468,7 +555,29 @@ async def collections_overview(
 ):
     """Collections overview page - browse all BERDL collections."""
 
+    tenant_groups = {}
+    for collection in repo_data.collections:
+        tenant_id = collection.tenant_id or collection.category.value
+        tenant_groups.setdefault(
+            tenant_id,
+            {
+                "id": tenant_id,
+                "name": collection.tenant_name or tenant_id.replace("_", " ").title(),
+                "collections": [],
+            },
+        )
+        tenant_groups[tenant_id]["collections"].append(collection)
+
     context["collections"] = repo_data.collections
+    context["tenant_groups"] = sorted(
+        tenant_groups.values(), key=lambda group: group["name"].lower()
+    )
+    context["snapshot_discovered_at"] = next(
+        (c.discovered_at for c in repo_data.collections if c.discovered_at), None
+    )
+    context["snapshot_source"] = next(
+        (c.snapshot_source for c in repo_data.collections if c.snapshot_source), None
+    )
     context["primary_collections"] = repo_data.get_collections_by_category(
         CollectionCategory.PRIMARY
     )
@@ -512,6 +621,12 @@ async def collection_detail(
     context["related_projects"] = [
         p for p in repo_data.projects if collection_id in p.related_collections
     ]
+    context["related_atlas_pages"] = [
+        page
+        for page in repo_data.atlas_index.pages
+        if collection_id in page.related_collections
+    ]
+    context["collection_atlas_reuse"] = collection_atlas_reuse(collection_id, repo_data)
 
     return templates.TemplateResponse(request, "collections/detail.html", context)
 
@@ -578,6 +693,312 @@ async def research_ideas(
     return templates.TemplateResponse(request, "knowledge/ideas.html", context)
 
 
+def _atlas_nav(atlas_index) -> list[dict[str, Any]]:
+    """Build global Atlas navigation with section counts."""
+    section_counts = {
+        section: len(
+            [
+                page
+                for page in atlas_index.pages_by_section(section)
+                if not page.path.endswith("/index")
+            ]
+        )
+        for _, section, _ in ATLAS_SECTIONS
+    }
+    section_counts["root"] = len(atlas_index.pages_by_section("root"))
+    return [
+        {"label": label, "section": section, "url": url, "count": section_counts[section]}
+        for label, section, url in ATLAS_SECTIONS
+    ]
+
+
+def _page_refs(pages: list[AtlasPage], limit: int | None = None) -> list[dict[str, Any]]:
+    """Return compact page references for map panels."""
+    selected = pages[:limit] if limit else pages
+    return [
+        {
+            "title": page.title,
+            "url": page.url,
+            "summary": page.summary,
+            "type": page.type.replace("_", " "),
+            "source_count": len(page.source_projects),
+            "collection_count": len(page.related_collections),
+            "confidence": page.confidence,
+            "nodes": [],
+        }
+        for page in selected
+    ]
+
+
+def _build_atlas_maps(repo_data: RepositoryData, atlas_inventory: dict[str, Any]) -> list[dict[str, Any]]:
+    """Build deterministic overview maps from Atlas frontmatter and inventory."""
+    atlas_index = repo_data.atlas_index
+    topics = atlas_index.pages_by_type("topic")
+    data_pages = atlas_index.pages_by_section("data")
+    claims = atlas_index.pages_by_type("claim")
+    directions = atlas_index.pages_by_type("direction")
+    hypotheses = atlas_index.pages_by_type("hypothesis")
+    derived_products = atlas_index.pages_by_type("derived_product")
+    conflicts = atlas_index.pages_by_type("conflict")
+    opportunities = atlas_index.pages_by_type("opportunity")
+
+    collection_use = {
+        collection.id: sum(
+            1
+            for page in atlas_index.pages
+            if collection.id in page.related_collections
+        )
+        for collection in repo_data.collections
+    }
+    top_collections = sorted(
+        repo_data.collections,
+        key=lambda collection: (-collection_use.get(collection.id, 0), collection.name.lower()),
+    )[:8]
+
+    topic_links = []
+    for topic in topics:
+        linked = [
+            page
+            for related_id in topic.related_pages
+            if (page := atlas_index.get_page_by_id(related_id))
+        ]
+        topic_links.append(
+            {
+                "title": topic.title,
+                "url": topic.url,
+                "summary": topic.summary,
+                "nodes": [page.title for page in linked[:4]],
+                "source_count": len(topic.source_projects),
+                "collection_count": len(topic.related_collections),
+            }
+        )
+
+    return [
+        {
+            "title": "Topic Landscape",
+            "claim": "Science topics are the first interpretive map: each one connects projects to reusable claims, directions, hypotheses, and data.",
+            "items": topic_links,
+            "fallback": f"{len(topics)} topics integrate {sum(len(t.source_projects) for t in topics)} project references.",
+        },
+        {
+            "title": "Data Landscape",
+            "claim": "Data pages separate physical BERDL collections from cross-collection analytical roles and reusable outputs.",
+            "items": [
+                {
+                    "title": collection.name,
+                    "url": f"/collections/{collection.id}",
+                    "summary": collection.description,
+                    "nodes": [collection.tenant_name or collection.tenant_id or "tenant"],
+                    "source_count": collection_use.get(collection.id, 0),
+                    "collection_count": len(collection.key_tables),
+                }
+                for collection in top_collections
+            ],
+            "fallback": (
+                f"{atlas_inventory['counts']['covered_collections']}/"
+                f"{atlas_inventory['counts']['collections']} collections have Atlas pages."
+            ),
+        },
+        {
+            "title": "Claim to Experiment Flow",
+            "claim": "The Atlas should let a reader move from synthesis to reusable claims, then into directions and concrete hypotheses.",
+            "items": [
+                {
+                    "title": "Claims",
+                    "url": "/atlas/claims",
+                    "summary": "Evidence-backed statements reused across topics.",
+                    "nodes": [page.title for page in claims[:4]],
+                    "source_count": len(claims),
+                    "collection_count": 0,
+                },
+                {
+                    "title": "Directions",
+                    "url": "/atlas/directions",
+                    "summary": "High-value research opportunities grounded in existing work.",
+                    "nodes": [page.title for page in directions[:4]],
+                    "source_count": len(directions),
+                    "collection_count": 0,
+                },
+                {
+                    "title": "Hypotheses",
+                    "url": "/atlas/hypotheses",
+                    "summary": "Testable units that can become projects or experiments.",
+                    "nodes": [page.title for page in hypotheses[:4]],
+                    "source_count": len(hypotheses),
+                    "collection_count": 0,
+                },
+                {
+                    "title": "Opportunities",
+                    "url": "/atlas/opportunities",
+                    "summary": "Concrete next analyses prioritized from Atlas evidence and reusable products.",
+                    "nodes": [page.title for page in opportunities[:4]],
+                    "source_count": len(opportunities),
+                    "collection_count": 0,
+                },
+            ],
+            "fallback": f"{len(claims)} claims, {len(directions)} directions, {len(hypotheses)} hypotheses, and {len(opportunities)} opportunities are currently indexed.",
+        },
+        {
+            "title": "Derived Product Reuse",
+            "claim": "Reusable scores, labels, mappings, and joins are the outputs most likely to compound across projects.",
+            "items": _page_refs(derived_products, limit=6),
+            "fallback": f"{len(derived_products)} derived products are currently tracked from {len(data_pages)} data pages.",
+        },
+        {
+            "title": "Tension and Resolution",
+            "claim": "Apparent conflicts are preserved as reviewable objects with evidence on multiple sides and resolving work.",
+            "items": _page_refs(conflicts, limit=6),
+            "fallback": f"{len(conflicts)} tension pages track where synthesis needs reconciliation.",
+        },
+    ]
+
+
+def _related_page_groups(related_pages: list[AtlasPage]) -> dict[str, list[AtlasPage]]:
+    groups: dict[str, list[AtlasPage]] = {}
+    for page in related_pages:
+        groups.setdefault(page.type, []).append(page)
+    return dict(sorted(groups.items()))
+
+
+def _atlas_landing_context(repo_data: RepositoryData, context: dict) -> dict:
+    atlas_index = repo_data.atlas_index
+    atlas_page = atlas_index.get_page_by_path("atlas") or next(
+        (p for p in atlas_index.pages if p.type == "atlas"), None
+    )
+
+    data_pages = [
+        p for p in atlas_index.pages_by_section("data") if p.path != "data/index"
+    ]
+    data_page_groups = {
+        "collections": atlas_index.pages_by_type("data_collection"),
+        "data_types": atlas_index.pages_by_type("data_type"),
+        "derived_products": atlas_index.pages_by_type("derived_product"),
+        "joins": atlas_index.pages_by_type("join_recipe"),
+        "gaps": atlas_index.pages_by_type("data_gap"),
+    }
+    claim_pages = atlas_index.pages_by_type("claim")
+    direction_pages = atlas_index.pages_by_type("direction")
+    hypothesis_pages = atlas_index.pages_by_type("hypothesis")
+    conflict_pages = atlas_index.pages_by_type("conflict")
+    opportunity_pages = atlas_index.pages_by_type("opportunity")
+    opportunity_contexts = build_opportunity_contexts(repo_data)
+    reuse_overview = build_reuse_overview(repo_data)
+    atlas_inventory = build_atlas_inventory(repo_data)
+    context.update(
+        {
+            "atlas_index": atlas_index,
+            "atlas_page": atlas_page,
+            "atlas_nav": _atlas_nav(atlas_index),
+            "atlas_maps": _build_atlas_maps(repo_data, atlas_inventory),
+            "topic_pages": atlas_index.pages_by_type("topic"),
+            "data_pages": data_pages,
+            "data_page_groups": data_page_groups,
+            "atlas_inventory": atlas_inventory,
+            "claim_pages": claim_pages,
+            "direction_pages": direction_pages,
+            "hypothesis_pages": hypothesis_pages,
+            "conflict_pages": conflict_pages,
+            "opportunity_pages": opportunity_pages,
+            "opportunity_contexts": opportunity_contexts,
+            "reuse_overview": reuse_overview,
+            "research_primitive_pages": (
+                claim_pages + direction_pages + hypothesis_pages
+            ),
+        }
+    )
+    return context
+
+
+@ROUTER_ATLAS.get("/atlas", response_class=HTMLResponse)
+async def atlas_landing(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
+    """BERIL Atlas landing page."""
+    context = _atlas_landing_context(repo_data, context)
+    return templates.TemplateResponse(request, "atlas/index.html", context)
+
+
+@ROUTER_ATLAS.get("/atlas/{atlas_path:path}", response_class=HTMLResponse)
+async def atlas_page(
+    request: Request,
+    atlas_path: str,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
+    """Render an Atlas markdown page."""
+    atlas_index = repo_data.atlas_index
+    page = atlas_index.get_page_by_path(atlas_path)
+    if not page:
+        context["error"] = f"Atlas page '{atlas_path}' not found"
+        return templates.TemplateResponse(
+            request, "error.html", context, status_code=404
+        )
+
+    project_map = {p.id: p for p in repo_data.projects}
+    collection_map = {c.id: c for c in repo_data.collections}
+    source_projects = [
+        project_map[pid] for pid in page.source_projects if pid in project_map
+    ]
+    related_collections = [
+        collection_map[cid]
+        for cid in page.related_collections
+        if cid in collection_map
+    ]
+    related_pages = [
+        p
+        for p in (atlas_index.get_page_by_id(pid) for pid in page.related_pages)
+        if p
+    ]
+    derived_product_context = (
+        build_derived_product_context(page, repo_data)
+        if page.type == "derived_product"
+        else None
+    )
+    opportunity_context = (
+        build_opportunity_context(page, repo_data)
+        if page.type == "opportunity"
+        else None
+    )
+    topic_overview_map = build_topic_overview_map(page, repo_data)
+    page_conflicts = conflicts_for_page(page, repo_data)
+    page_opportunities = opportunities_for_page(page, repo_data)
+    page_review_routes = review_routes_for_page(page, repo_data)
+    reuse_overview = build_reuse_overview(repo_data)
+    opportunity_contexts = build_opportunity_contexts(repo_data)
+
+    context.update(
+        {
+            "page": page,
+            "atlas_index": atlas_index,
+            "atlas_nav": _atlas_nav(atlas_index),
+            "section_pages": atlas_index.pages_by_section(page.section),
+            "related_pages": related_pages,
+            "related_page_groups": _related_page_groups(related_pages),
+            "derived_product_context": derived_product_context,
+            "opportunity_context": opportunity_context,
+            "topic_overview_map": topic_overview_map,
+            "page_conflicts": page_conflicts,
+            "page_opportunities": page_opportunities,
+            "page_review_routes": page_review_routes,
+            "reuse_overview": reuse_overview,
+            "opportunity_contexts": opportunity_contexts,
+            "source_projects": source_projects,
+            "source_project_ids": page.source_projects,
+            "missing_source_project_ids": [
+                pid for pid in page.source_projects if pid not in project_map
+            ],
+            "related_collections": related_collections,
+            "related_collection_ids": page.related_collections,
+            "missing_related_collection_ids": [
+                cid for cid in page.related_collections if cid not in collection_map
+            ],
+        }
+    )
+    return templates.TemplateResponse(request, "atlas/page.html", context)
+
+
 @ROUTER_COMMUNITY.get("/community/contributors", response_class=HTMLResponse)
 async def community_contributors(
     request: Request,
@@ -626,13 +1047,15 @@ async def about(
 # Webhook endpoint for data cache updates
 @ROUTER_GENERAL.post("/api/webhook/data-update")
 async def data_update_webhook(
-    request: Request, x_webhook_signature: str = Header(None)
+    request: Request,
+    x_webhook_signature: str = Header(None),
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Webhook endpoint to receive data cache update notifications.
 
     Expected to be called by GitHub Actions after building new cache.
-    Validates signature and reloads data from the remote source.
+    Validates signature, reloads repo_data, and runs the project importer.
     """
     settings = get_settings()
 
@@ -673,6 +1096,15 @@ async def data_update_webhook(
                 f"Data reloaded successfully. New last_updated: {request.app.state.repo_data.last_updated}"
             )
 
+            # Migrate updated project files from the freshly-pulled repo into the DB
+            storage = LocalFileStorage(settings.user_projects_root)
+            pulled_projects_dir = settings.data_repo_path / "projects"
+            summary = await run_full_migration(db, storage, pulled_projects_dir)
+            logger.info(
+                "Post-webhook import: %d imported, %d skipped, %d failed",
+                summary.imported, summary.skipped, summary.failed,
+            )
+
             return JSONResponse(
                 {
                     "status": "success",
@@ -680,6 +1112,11 @@ async def data_update_webhook(
                     "last_updated": request.app.state.repo_data.last_updated.isoformat()
                     if request.app.state.repo_data.last_updated
                     else None,
+                    "import": {
+                        "imported": summary.imported,
+                        "skipped": summary.skipped,
+                        "failed": summary.failed,
+                    },
                 }
             )
         except Exception as e:
@@ -695,7 +1132,24 @@ async def data_update_webhook(
 # Health check
 @ROUTER_GENERAL.get("/health")
 async def health(
+    request: Request,
     context: dict = Depends(get_base_context),
 ):
     """Health check endpoint."""
-    return {"status": "healthy"} | context
+    db_status = await check_db()
+    status = "healthy"
+    if db_status["status"] != "ok":
+        status = "degraded"
+    settings = get_settings()
+    kbase_token = await get_kbase_token(request)
+    return {
+        "status": status,
+        "services": {
+            "database": db_status
+        },
+        "session": context,
+        "url_scheme": request.url.scheme,
+        "git_commit": settings.git_commit,
+        "build_date": settings.build_date,
+        "kbase_status": kbase_token is not None
+    }

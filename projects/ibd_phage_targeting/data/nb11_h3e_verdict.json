@@ -1,0 +1,16 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "H3e \u2014 HMP2 serology \u00d7 Tier-A pathobiont correlation (n=67 across 3 sites, site as covariate)",
+  "n_subjects_with_metag_and_serology": 67,
+  "n_assay_species_tests": 48,
+  "n_supported_strict": 0,
+  "n_with_abs_r_above_03": 1,
+  "top_pair": {
+    "assay": "ANCA",
+    "species": "M. gnavus",
+    "partial_r": 0.31,
+    "fdr": 0.40411490919844545
+  },
+  "h3e_verdict": "PARTIAL \u2014 moderate correlations (|r|>0.30) but none meeting strict |r|>0.40+FDR<0.10 threshold"
+}

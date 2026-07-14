@@ -18,21 +18,38 @@ from app.main import create_app, generate_base_context
 
 
 @pytest.fixture
-def client(repository_data, app_data_context):
-    """TestClient with injected repository data, no lifespan startup."""
+async def client(repository_data, app_data_context, db_session):
+    """TestClient with injected repository data, no lifespan startup.
+
+    Uses the shared in-memory db_session (which already has all tables created)
+    so that routes that query the DB don't fail with 'no such table'.
+    """
+    from collections.abc import AsyncGenerator
+    from app.db.session import get_db, init_db, close_db
+
+    # init_db populates the module-level engine so check_db() works in /health
+    await init_db("sqlite+aiosqlite:///:memory:")
 
     with patch.dict(os.environ, {"BERIL_TEST_SKIP_LIFESPAN": "True"}):
         app = create_app()
+
+        async def override_get_db() -> AsyncGenerator:
+            yield db_session
+
+        app.dependency_overrides[get_db] = override_get_db
         with TestClient(app, raise_server_exceptions=True) as c:
             app.state.repo_data = repository_data
             app.state.base_context = app_data_context
             yield c
+        app.dependency_overrides.pop(get_db, None)
+    await close_db()
 
 
 class TestHealthEndpoint:
     def test_health_returns_200(self, client):
         response = client.get("/health")
         assert response.status_code == 200
+        print(response.json())
         assert response.json().get("status") == "healthy"
 
 
@@ -101,10 +118,14 @@ class TestCollectionsRoute:
     def test_collections_overview_200(self, client):
         response = client.get("/collections")
         assert response.status_code == 200
+        assert "KBase" in response.text
+        assert "kbase_ke_pangenome" in response.text
 
     def test_collection_detail_200(self, client):
         response = client.get("/collections/kbase_ke_pangenome")
         assert response.status_code == 200
+        assert "Schema status" in response.text
+        assert "Atlas Pages" in response.text
 
     def test_collection_detail_404_for_missing(self, client):
         response = client.get("/collections/nonexistent_collection")
@@ -139,6 +160,64 @@ class TestKnowledgeRoutes:
     def test_ideas_200(self, client):
         response = client.get("/knowledge/ideas")
         assert response.status_code == 200
+
+
+class TestAtlasRoutes:
+    def test_atlas_landing_200(self, client):
+        response = client.get("/atlas")
+        assert response.status_code == 200
+        assert "BERIL Atlas" in response.text
+        assert "Metrics To Watch" in response.text
+        assert "Collection coverage" in response.text
+        assert "Phase 0 Agent-Built Wiki Atlas" not in response.text
+
+    def test_legacy_wiki_landing_removed(self, client):
+        response = client.get("/wiki", follow_redirects=False)
+        assert response.status_code == 404
+
+    def test_atlas_section_indexes_200(self, client):
+        for path in (
+            "/atlas/topics",
+            "/atlas/data",
+            "/atlas/claims",
+            "/atlas/conflicts",
+            "/atlas/opportunities",
+            "/atlas/directions",
+            "/atlas/hypotheses",
+        ):
+            response = client.get(path)
+            assert response.status_code == 200
+
+    def test_existing_atlas_page_200(self, client):
+        response = client.get("/atlas/topics/test")
+        assert response.status_code == 200
+        assert "Test Atlas Topic" in response.text
+        assert "On This Page" in response.text
+        assert "/projects/test_project" in response.text
+        assert "/collections/kbase_ke_pangenome" in response.text
+        assert "Generated topic overview map" in response.text
+        assert "Opportunity Hooks" in response.text
+
+    def test_existing_opportunity_page_200(self, client):
+        response = client.get("/atlas/opportunities/test")
+        assert response.status_code == 200
+        assert "Test Opportunity" in response.text
+        assert "Opportunity Profile" in response.text
+        assert "Test Derived Product" in response.text
+
+    def test_legacy_wiki_page_removed(self, client):
+        response = client.get("/wiki/topics/test", follow_redirects=False)
+        assert response.status_code == 404
+
+    def test_atlas_reuse_page_200(self, client):
+        response = client.get("/atlas/data/reuse")
+        assert response.status_code == 200
+        assert "Reuse Graph Snapshot" in response.text
+        assert "Test Derived Product" in response.text
+
+    def test_missing_atlas_page_404(self, client):
+        response = client.get("/atlas/topics/missing")
+        assert response.status_code == 404
 
 
 class TestCommunityRoutes:

@@ -1,0 +1,157 @@
+name	npc_pathway	source	genus	certainty	field_detected	n_comm_present	prevalence	mean_relab	max_relab
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Sphingomonas	medium	True	46.0	0.9019607843137255	0.004906179085118376	0.0280935903773274
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Pseudomonas	medium	True	44.0	0.8627450980392157	0.005292760846814653	0.026363486571099028
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Reyranella	medium	True	34.0	0.6666666666666666	0.001494673282386739	0.004847520167854429
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Ramlibacter	medium	True	33.0	0.6470588235294118	0.00297815178547982	0.011122095897182402
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Bacillus	medium	True	32.0	0.6274509803921569	0.0027972586093260835	0.019278299555116164
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Acidovorax	high	True	31.0	0.6078431372549019	0.003047539536033545	0.008774097874443896
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Acidovorax	medium	True	31.0	0.6078431372549019	0.003047539536033545	0.008774097874443896
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Brevundimonas	medium	True	29.0	0.5686274509803921	0.0031983818106860046	0.013077451796114749
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Caulobacter	medium	True	28.0	0.5490196078431373	0.0017099782281047315	0.012824223130629815
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Rhodoferax	medium	True	24.0	0.47058823529411764	0.009816421230829285	0.10901494049126362
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Castellaniella	high	True	23.0	0.45098039215686275	0.004166895677632294	0.04514747075300708
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Castellaniella	medium	True	23.0	0.45098039215686275	0.004166895677632294	0.04514747075300708
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Pedobacter	medium	True	23.0	0.45098039215686275	0.0011761888904613144	0.007090402633578121
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Bosea	medium	True	22.0	0.43137254901960786	0.0006152110183309007	0.0035837864557587743
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Comamonas	medium	True	21.0	0.4117647058823529	0.0034954895269494646	0.04749546877574559
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Duganella	medium	True	21.0	0.4117647058823529	0.002688315580652591	0.03237765694513099
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Variovorax	medium	True	20.0	0.39215686274509803	0.0021124450852839016	0.0173099880620772
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Hydrogenophaga	medium	True	19.0	0.37254901960784315	0.002952255869792746	0.016984408349310857
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Polaromonas	medium	True	19.0	0.37254901960784315	0.0008333985944347595	0.005849398582962597
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Cupriavidus	medium	True	18.0	0.35294117647058826	0.0008691618097792496	0.005534855117027819
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Mucilaginibacter	medium	True	17.0	0.3333333333333333	0.0011668490132482258	0.006920415224913495
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Herbaspirillum	medium	True	17.0	0.3333333333333333	0.004670141308654219	0.043458559894546056
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Staphylococcus	medium	True	13.0	0.2549019607843137	0.0030989771474200538	0.014870654144010545
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Aminobacter	medium	True	13.0	0.2549019607843137	0.0006461885407630509	0.0023479980227385073
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Shinella	medium	True	10.0	0.19607843137254902	0.0017754160487724502	0.007703081232492998
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Ensifer	medium	True	8.0	0.1568627450980392	0.0006178942165101334	0.001235788433020267
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Asticcacaulis	medium	True	7.0	0.13725490196078433	0.0003178278148433341	0.0014289331838078356
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Achromobacter	medium	True	7.0	0.13725490196078433	0.0013240590353788574	0.0029246992914812985
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Candidimonas	medium	True	7.0	0.13725490196078433	0.00032929621284707707	0.0006590871642774757
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Pigmentiphaga	medium	True	3.0	0.058823529411764705	0.0003821343928909157	0.000535508320975449
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Methylibium	medium	True	2.0	0.0392156862745098	0.0010083614277790719	0.0016459863256520638
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Chitinophaga	medium	True	2.0	0.0392156862745098	0.00022656121272038226	0.00032954358213873783
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Starkeya	medium	True	2.0	0.0392156862745098	0.0003089471082550667	0.0004943153732081067
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Paraburkholderia	high	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Burkholderia	high	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Burkholderia	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Paraburkholderia	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Roseateles	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Filimonas	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Alcaligenes	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Hylemonella	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Dinoroseobacter	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Rhizobium	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Caballeronia	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Pandoraea	medium	False		0.0	0.0	
+3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	groundwater	Roseococcus	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Pseudomonas	high	True	44.0	0.8627450980392157	0.005292760846814653	0.026363486571099028
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Pseudomonas	medium	True	44.0	0.8627450980392157	0.005292760846814653	0.026363486571099028
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Rhodanobacter	medium	True	43.0	0.8431372549019608	0.02853004441669432	0.18886966551326412
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Nocardioides	medium	True	42.0	0.8235294117647058	0.0013856326298065241	0.0044857649314473825
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Novosphingobium	medium	True	33.0	0.6470588235294118	0.00203120204219865	0.010382375284882249
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Acidovorax	medium	True	31.0	0.6078431372549019	0.003047539536033545	0.008774097874443896
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Rhodococcus	medium	True	29.0	0.5686274509803921	0.0025238682883528185	0.015282583621683967
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Streptomyces	medium	True	29.0	0.5686274509803921	0.0013462735582738415	0.006343713956170703
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Sphingobium	medium	True	27.0	0.5294117647058824	0.009450425166096984	0.13795535940382736
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Rhodoferax	medium	True	24.0	0.47058823529411764	0.009816421230829285	0.10901494049126362
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Bosea	medium	True	22.0	0.43137254901960786	0.0006152110183309007	0.0035837864557587743
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Comamonas	medium	True	21.0	0.4117647058823529	0.0034954895269494646	0.04749546877574559
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Variovorax	medium	True	20.0	0.39215686274509803	0.0021124450852839016	0.0173099880620772
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Hydrogenophaga	medium	True	19.0	0.37254901960784315	0.002952255869792746	0.016984408349310857
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Polaromonas	medium	True	19.0	0.37254901960784315	0.0008333985944347595	0.005849398582962597
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Cupriavidus	medium	True	18.0	0.35294117647058826	0.0008691618097792496	0.005534855117027819
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Sphingopyxis	medium	True	17.0	0.3333333333333333	0.0012827277641734426	0.008320975449003131
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Cellvibrio	medium	True	14.0	0.27450980392156865	0.00048546670541363884	0.0013181743285549513
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Magnetospirillum	medium	True	13.0	0.2549019607843137	0.0006972598682558104	0.0022244191794364805
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Achromobacter	medium	True	7.0	0.13725490196078433	0.0013240590353788574	0.0029246992914812985
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Arthrobacter	medium	True	7.0	0.13725490196078433	0.0011750846049172951	0.003364323698585537
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Nitrobacter	high	True	5.0	0.09803921568627451	0.0016641950898006262	0.00461361014994233
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Terriglobus	medium	True	2.0	0.0392156862745098	0.002512769813807876	0.00498434667984841
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Starkeya	medium	True	2.0	0.0392156862745098	0.0003089471082550667	0.0004943153732081067
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Leifsonia	medium	True	1.0	0.0196078431372549	0.003089471082550667	0.003089471082550667
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Collimonas	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Alteromonas	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Paraburkholderia	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Azonexus	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Rhizorhabdus	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Rhodospirillum	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Bernardetia	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Burkholderia	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Caballeronia	medium	False		0.0	0.0	
+4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	groundwater	Rugosibacter	medium	False		0.0	0.0	
+Abscisic acid	Terpenoids	groundwater	Microbacterium	medium	True	1.0	0.0196078431372549	0.00020596473883671115	0.00020596473883671115
+Phenylethylamine	Alkaloids	groundwater	Acidovorax	medium	True	31.0	0.6078431372549019	0.003047539536033545	0.008774097874443896
+Phenylethylamine	Alkaloids	groundwater	Mesorhizobium	medium	True	29.0	0.5686274509803921	0.002062685395691908	0.020060965562695668
+Phenylethylamine	Alkaloids	groundwater	Curvibacter	medium	True	28.0	0.5490196078431373	0.0031505828464584115	0.024962926347009393
+Phenylethylamine	Alkaloids	groundwater	Cupriavidus	medium	True	18.0	0.35294117647058826	0.0008691618097792496	0.005534855117027819
+Phenylethylamine	Alkaloids	groundwater	Intrasporangium	medium	True	7.0	0.13725490196078433	0.001953722665536803	0.006590871642774757
+Phenylethylamine	Alkaloids	groundwater	Achromobacter	medium	True	7.0	0.13725490196078433	0.0013240590353788574	0.0029246992914812985
+Phenylethylamine	Alkaloids	groundwater	Methylibium	medium	True	2.0	0.0392156862745098	0.0010083614277790719	0.0016459863256520638
+Phenylethylamine	Alkaloids	groundwater	Alcaligenes	medium	False		0.0	0.0	
+Phenylethylamine	Alkaloids	groundwater	Paraburkholderia	medium	False		0.0	0.0	
+Phenylethylamine	Alkaloids	groundwater	Burkholderia	medium	False		0.0	0.0	
+Phenylethylamine	Alkaloids	groundwater	Caballeronia	medium	False		0.0	0.0	
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Reyranella	high	True	34.0	0.6666666666666666	0.001494673282386739	0.004847520167854429
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Ramlibacter	high	True	33.0	0.6470588235294118	0.00297815178547982	0.011122095897182402
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Acidovorax	high	True	31.0	0.6078431372549019	0.003047539536033545	0.008774097874443896
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Variovorax	high	True	20.0	0.39215686274509803	0.0021124450852839016	0.0173099880620772
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Hydrogenophaga	high	True	19.0	0.37254901960784315	0.002952255869792746	0.016984408349310857
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Polaromonas	high	True	19.0	0.37254901960784315	0.0008333985944347595	0.005849398582962597
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Staphylococcus	high	True	13.0	0.2549019607843137	0.0030989771474200538	0.014870654144010545
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Pseudacidovorax	high	True	7.0	0.13725490196078433	0.0012063648989007367	0.003748558246828143
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Pigmentiphaga	high	True	3.0	0.058823529411764705	0.0003821343928909157	0.000535508320975449
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Ferrovibrio	high	True	1.0	0.0196078431372549	3.61755236407047e-05	3.61755236407047e-05
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Cytobacillus	high	False		0.0	0.0	
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Paraburkholderia	high	False		0.0	0.0	
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Collimonas	high	False		0.0	0.0	
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Burkholderia	high	False		0.0	0.0	
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Pusillimonas	high	False		0.0	0.0	
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Hylemonella	high	False		0.0	0.0	
+TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	necromass	Calidifontibacillus	high	False		0.0	0.0	
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Mycobacterium	medium	True	38.0	0.7450980392156863	0.0013896392698575456	0.010834569330391057
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Pseudarthrobacter	medium	True	33.0	0.6470588235294118	0.0017623214663593683	0.009640777050247802
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Bacillus	medium	True	32.0	0.6274509803921569	0.0027972586093260835	0.019278299555116164
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Streptomyces	medium	True	29.0	0.5686274509803921	0.0013462735582738415	0.006343713956170703
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Rhodococcus	medium	True	29.0	0.5686274509803921	0.0025238682883528185	0.015282583621683967
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Bosea	medium	True	22.0	0.43137254901960786	0.0006152110183309007	0.0035837864557587743
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Cupriavidus	medium	True	18.0	0.35294117647058826	0.0008691618097792496	0.005534855117027819
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Paenarthrobacter	medium	True	9.0	0.17647058823529413	0.004223787936716005	0.028505519855000824
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Ensifer	medium	True	8.0	0.1568627450980392	0.0006178942165101334	0.001235788433020267
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Arthrobacter	medium	True	7.0	0.13725490196078433	0.0011750846049172951	0.003364323698585537
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Micrococcus	medium	True	4.0	0.0784313725490196	0.000628192453451969	0.0018536826495304003
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Microbacterium	medium	True	1.0	0.0196078431372549	0.00020596473883671115	0.00020596473883671115
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Alcaligenes	medium	False		0.0	0.0	
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Paraburkholderia	medium	False		0.0	0.0	
+phthalic acid	Shikimates and Phenylpropanoids	necromass	Pusillimonas	medium	False		0.0	0.0	
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Pseudomonas	high	True	44.0	0.8627450980392157	0.005292760846814653	0.026363486571099028
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Pseudomonas	medium	True	44.0	0.8627450980392157	0.005292760846814653	0.026363486571099028
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Massilia	medium	True	42.0	0.8235294117647058	0.008612304449384161	0.12139561707035755
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Xylophilus	medium	True	34.0	0.6666666666666666	0.0025180547684370467	0.009116231957457584
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Acidovorax	medium	True	31.0	0.6078431372549019	0.003047539536033545	0.008774097874443896
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Caulobacter	medium	True	28.0	0.5490196078431373	0.0017099782281047315	0.012824223130629815
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Sphingobium	medium	True	27.0	0.5294117647058824	0.009450425166096984	0.13795535940382736
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Rhodoferax	medium	True	24.0	0.47058823529411764	0.009816421230829285	0.10901494049126362
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Klebsiella	medium	True	21.0	0.4117647058823529	0.0037909959886615534	0.02492173339924205
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Duganella	medium	True	21.0	0.4117647058823529	0.002688315580652591	0.03237765694513099
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Variovorax	medium	True	20.0	0.39215686274509803	0.0021124450852839016	0.0173099880620772
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Polaromonas	medium	True	19.0	0.37254901960784315	0.0008333985944347595	0.005849398582962597
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Hydrogenophaga	medium	True	19.0	0.37254901960784315	0.002952255869792746	0.016984408349310857
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Cupriavidus	medium	True	18.0	0.35294117647058826	0.0008691618097792496	0.005534855117027819
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Herbaspirillum	medium	True	17.0	0.3333333333333333	0.004670141308654219	0.043458559894546056
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Janthinobacterium	medium	True	15.0	0.29411764705882354	0.0006847125366464938	0.0028759541294360235
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Rhizobacter	medium	True	12.0	0.23529411764705882	0.0022710615783212676	0.013185978367036864
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Pseudoxanthomonas	medium	True	3.0	0.058823529411764705	0.00016142684165161057	0.00024715768660405336
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Pigmentiphaga	medium	True	3.0	0.058823529411764705	0.0003821343928909157	0.000535508320975449
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Tardiphaga	medium	True	2.0	0.0392156862745098	0.0009886307464162135	0.0014417531718569781
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Escherichia	medium	False		0.0	0.0	
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Citrobacter	medium	False		0.0	0.0	
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Collimonas	medium	False		0.0	0.0	
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Roseateles	medium	False		0.0	0.0	
+salicylic acid	Shikimates and Phenylpropanoids	groundwater	Rugosibacter	medium	False		0.0	0.0	
+xanthine	Alkaloids	groundwater	Afipia	medium	True	38.0	0.7450980392156863	0.003996268788897294	0.034231339594661396
+xanthine	Alkaloids	groundwater	Caulobacter	medium	True	28.0	0.5490196078431373	0.0017099782281047315	0.012824223130629815
+xanthine	Alkaloids	groundwater	Comamonas	medium	True	21.0	0.4117647058823529	0.0034954895269494646	0.04749546877574559
+xanthine	Alkaloids	groundwater	Mucilaginibacter	medium	True	17.0	0.3333333333333333	0.0011668490132482258	0.006920415224913495
+xanthine	Alkaloids	groundwater	Rhizobium	medium	False		0.0	0.0	
+xanthine	Alkaloids	groundwater	Scandinavium	medium	False		0.0	0.0	

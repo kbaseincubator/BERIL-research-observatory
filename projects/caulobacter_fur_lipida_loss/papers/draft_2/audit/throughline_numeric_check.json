@@ -1,0 +1,182 @@
+{
+  "schema_version": "throughline-numeric-check.v1",
+  "tool": "check_throughline_numerics",
+  "tool_version": "0.1.0-stage7-patch1b",
+  "candidates_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_2/throughline_candidates.md",
+  "report_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+  "inventory_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_2/claim_inventory.tsv",
+  "totals": {
+    "candidates_parsed": 3,
+    "numerics_in_candidates": 156,
+    "grounded": 136,
+    "ungrounded": 20,
+    "ungrounded_by_candidate": {
+      "TL1": 7,
+      "TL2": 6,
+      "TL3": 7
+    }
+  },
+  "findings": [
+    {
+      "candidate_id": "TL1",
+      "numeric": "2.08e-03",
+      "normalized": "2.08e-03",
+      "surrounding": "driver of the 4584-vs-4580 signal (Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, 71% sign concordance) | noteboo",
+      "severity": "P0",
+      "rationale": "Numeric '2.08e-03' in candidate TL1 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL1",
+      "numeric": "1.60",
+      "normalized": "1.60",
+      "surrounding": "itness phenotypes (17/32 = 53.1% vs 33.25% background, fold 1.60\u00d7, p=0.016) | notebook 02b_h2_hypergeometric_verdict.ipynb c",
+      "severity": "P0",
+      "rationale": "Numeric '1.60' in candidate TL1 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL1",
+      "numeric": "1.60",
+      "normalized": "1.60",
+      "surrounding": "ORT.md \u00a7\"Finding 2\" | \u26a0 partial \u2014 enrichment is *marginal* (1.60\u00d7, p=0.016) above a 33.25% background; REPORT labels it \"mar",
+      "severity": "P0",
+      "rationale": "Numeric '1.60' in candidate TL1 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL1",
+      "numeric": "00237",
+      "normalized": "00237",
+      "surrounding": "20, both-phase=10, late=49), with ChvI autoregulation (CCNA_00237 +1.45) | notebook 03_chvi_phase_partition_sigU.ipynb cell 7",
+      "severity": "P0",
+      "rationale": "Numeric '00237' in candidate TL1 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL1",
+      "numeric": "0.40",
+      "normalized": "0.40",
+      "surrounding": "(0/6 biosynthesis genes UP; *spt* \u22120.64 FDR 0.002, *sphk* \u22120.40 FDR 0.02) | notebook 04_sphingolipid_lpt_panel.ipynb cell 4",
+      "severity": "P0",
+      "rationale": "Numeric '0.40' in candidate TL1 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL1",
+      "numeric": "03113",
+      "normalized": "03113",
+      "surrounding": "nb cell 4; REPORT.md \u00a7\"Finding 4\" | \u2713 direct | | CtpA (CCNA_03113) provides the LpxF-equivalent processing step (Zik 2022 pre",
+      "severity": "P0",
+      "rationale": "Numeric '03113' in candidate TL1 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL1",
+      "numeric": "01217",
+      "normalized": "01217",
+      "surrounding": "by-gene listing \u2014 supporting detail; \u2192 appendix. - The CCNA_01217 single-replicate protein increase \u2014 pilot-grade; \u2192 appendix",
+      "severity": "P0",
+      "rationale": "Numeric '01217' in candidate TL1 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL2",
+      "numeric": "0.40",
+      "normalized": "0.40",
+      "surrounding": "(0/6 biosynthesis genes UP; *spt* \u22120.64 FDR 0.002, *sphk* \u22120.40 FDR 0.02) | notebook 04_sphingolipid_lpt_panel.ipynb cell 4",
+      "severity": "P0",
+      "rationale": "Numeric '0.40' in candidate TL2 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL2",
+      "numeric": "00307",
+      "normalized": "00307",
+      "surrounding": "ntained/upregulated at the transcript level (MsbA-like CCNA_00307 +0.89 FDR 0.01; LptC-related CCNA_03716 +0.56 FDR 0.005; 0",
+      "severity": "P0",
+      "rationale": "Numeric '00307' in candidate TL2 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL2",
+      "numeric": "03716",
+      "normalized": "03716",
+      "surrounding": "vel (MsbA-like CCNA_00307 +0.89 FDR 0.01; LptC-related CCNA_03716 +0.56 FDR 0.005; 0 components DOWN) | notebook 04_sphingoli",
+      "severity": "P0",
+      "rationale": "Numeric '03716' in candidate TL2 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL2",
+      "numeric": "01226",
+      "normalized": "01226",
+      "surrounding": "proteome | | Sphingolipid-specific transporter lptC2 (CCNA_01226) accumulates post-transcriptionally (protein up despite tra",
+      "severity": "P0",
+      "rationale": "Numeric '01226' in candidate TL2 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL2",
+      "numeric": "0.60",
+      "normalized": "0.60",
+      "surrounding": "lls 4 & 6; REPORT.md \u00a7\"Finding 4\" | \u26a0 partial \u2014 transcript \u22120.60 FDR 0.034; protein +1.08 vs intermediate but only +0.66 vs",
+      "severity": "P0",
+      "rationale": "Numeric '0.60' in candidate TL2 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL2",
+      "numeric": "1.60",
+      "normalized": "1.60",
+      "surrounding": "echanistic Synthesis \u00a71 | \u25c7 orthogonal \u2014 Path A enrichment (1.60\u00d7, p=0.016) is for *envelope-stress* phenotypes; the sphingo",
+      "severity": "P0",
+      "rationale": "Numeric '1.60' in candidate TL2 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL3",
+      "numeric": "2.08e-03",
+      "normalized": "2.08e-03",
+      "surrounding": "the combined \u0394*fur* \u0394*sspB* signal (Spearman \u03c1 = 0.315, p = 2.08e-03 vs Leaden 2018, 71% sign concordance) | notebook 01_leaden2",
+      "severity": "P0",
+      "rationale": "Numeric '2.08e-03' in candidate TL3 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL3",
+      "numeric": "1.60",
+      "normalized": "1.60",
+      "surrounding": "nriched for envelope-stress phenotypes (17/32 = 53.1%, fold 1.60\u00d7, p=0.016), led by ChvT CCNA_03108 \\|t\\|=43.7 | notebook 02",
+      "severity": "P0",
+      "rationale": "Numeric '1.60' in candidate TL3 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL3",
+      "numeric": "03108",
+      "normalized": "03108",
+      "surrounding": "ypes (17/32 = 53.1%, fold 1.60\u00d7, p=0.016), led by ChvT CCNA_03108 \\|t\\|=43.7 | notebook 02b_h2_hypergeometric_verdict.ipynb c",
+      "severity": "P0",
+      "rationale": "Numeric '03108' in candidate TL3 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL3",
+      "numeric": "1.60",
+      "normalized": "1.60",
+      "surrounding": "partial \u2014 enrichment is statistically real but *marginal* (1.60\u00d7); a single fold-1.6 result above a noisy background is sug",
+      "severity": "P0",
+      "rationale": "Numeric '1.60' in candidate TL3 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL3",
+      "numeric": "01466",
+      "normalized": "01466",
+      "surrounding": "DEGs blunted, dominated by the cbb3/*fix*-NOPQ operon CCNA_01466\u201301476) | notebook 01_leaden2018_fur_signature.ipynb cell 5;",
+      "severity": "P0",
+      "rationale": "Numeric '01466' in candidate TL3 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL3",
+      "numeric": "01476",
+      "normalized": "01476",
+      "surrounding": "blunted, dominated by the cbb3/*fix*-NOPQ operon CCNA_01466\u201301476) | notebook 01_leaden2018_fur_signature.ipynb cell 5; REPOR",
+      "severity": "P0",
+      "rationale": "Numeric '01476' in candidate TL3 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    },
+    {
+      "candidate_id": "TL3",
+      "numeric": "1.60",
+      "normalized": "1.60",
+      "surrounding": "p reviewer would offer: \"Your one positive result is a fold-1.60\u00d7, p=0.016 enrichment of a 32-gene set above a 33% backgroun",
+      "severity": "P0",
+      "rationale": "Numeric '1.60' in candidate TL3 not found in REPORT.md or claim_inventory.tsv. Either verify the source and include a verbatim quote in the evidence-map row, or rephrase qualitatively (e.g., 'modest enrichment' rather than '5% enrichment')."
+    }
+  ],
+  "notes": []
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "image-request.v1",
+  "slide_id_target": "intro-pos0",
+  "channel": "A",
+  "originator": "slide_compose flagged concept_illustration (big_idea layout, intro_role=background)",
+  "style": "scientific_illustration",
+  "image_prompt": "A two-panel scientific illustration contrasting the outer-membrane architecture of a generic Gram-negative bacterium (left) versus Caulobacter crescentus delta-fur (right), side-by-side at equal scale, showing why lipid A is structurally essential in most species but dispensable in Caulobacter under this genetic condition. Left panel labeled 'Most Gram-negatives': a vertical cross-section of the Gram-negative cell envelope. The outer leaflet of the outer membrane is densely decorated with lipopolysaccharide (LPS) molecules whose anchor unit, lipid A, is shown as small orange hexagons packed tightly in the bilayer. The enzyme LpxC is indicated by a small labeled lock icon adjacent to the LPS layer ('LpxC — essential'). Inner membrane, peptidoglycan layer, and periplasm are shown below in muted gray-blue cross-section. Right panel labeled 'Caulobacter delta-fur': identical envelope cross-section in layout and scale, but the outer leaflet is now populated by ceramide phosphoglycerate (CPG) sphingolipid molecules rendered as elongated blue shapes instead of the orange lipid A hexagons. The LpxC icon is shown greyed-out with a strikethrough and labeled 'LpxC (absent)'. A small padlock icon labeled 'Fur (derepressed)' is shown open in the periplasm, indicating Fur regulation has been removed. Both panels share a clean vertical layering: outer membrane (top), periplasm with peptidoglycan mesh (middle), inner membrane (bottom), with structural elements color-coded consistently — lipid A in #F78E1E orange, CPG sphingolipid in #007DC3 blue, peptidoglycan in #5E9732 green, membranes in light gray. Style: clean scientific illustration in the style of a textbook figure or Nature publication graphical abstract — flat colors, thin black outlines, professional academic aesthetic. Use KBase brand palette: #007DC3 (blue), #5E9732 (green), #F78E1E (orange). White background. Aspect ratio 16:9. Text labels in clean sans-serif: 'Most Gram-negatives', 'Caulobacter delta-fur', 'Lipid A (LPS anchor)', 'LpxC (essential)', 'LpxC (absent)', 'CPG sphingolipid', 'Fur (derepressed)', 'Outer membrane', 'Peptidoglycan', 'Inner membrane'. Do not include any other text, captions, titles, or annotations.",
+  "negative_prompt": "no quantitative content, no axes, no data points, no specific numbers, no percentages, no p-values, no bar charts, no scatter plots, no graphs, no human figures, no logos, no copyrighted imagery, no text in non-Latin scripts, no decorative borders, no additional text or annotations beyond the named labels",
+  "placement": {
+    "region": "body",
+    "aspect_ratio": "16:9",
+    "max_width_in": 8.5,
+    "max_height_in": 4.0
+  },
+  "model_preference": "gemini-3-pro-image",
+  "worst_case_cost_usd": 0.05,
+  "user_supplied_prompt": null,
+  "user_overrides": {
+    "style": null,
+    "additional_directives": null
+  },
+  "approval_required": true
+}

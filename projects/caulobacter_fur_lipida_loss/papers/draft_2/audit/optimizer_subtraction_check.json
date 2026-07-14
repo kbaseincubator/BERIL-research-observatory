@@ -1,0 +1,7 @@
+{
+  "phase": "optimize",
+  "new_numerics_count": 0,
+  "suspect_count": 0,
+  "suspect": [],
+  "note": "Numerics present in post-optimizer manuscript but not in pre-optimizer manuscript and not in REPORT.md. Likely fabrications. If list is non-empty, audit the optimizer output before shipping."
+}

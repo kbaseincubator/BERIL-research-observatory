@@ -1,0 +1,58 @@
+project_id: alphafold_msa_annotation
+status: complete
+created_at: "2026-05-06T00:00:00Z"
+last_session_at: "2026-06-15T19:03:07Z"
+branch: projects/alphafold_msa_annotation
+engine:
+  name: claude
+authors:
+  - name: "Gazi S. Mahmud"
+    affiliation: "Lawrence Berkeley National Laboratory"
+    orcid: "0009-0006-4046-889X"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true
+approval:
+  by: "0009-0006-4046-889X"
+  at: "2026-06-15T19:03:07Z"
+  report_hash: "sha256:f66f0c9679cde23e009a56a030fe65d0d4efb49b7f8d057511382970661ac7e1"
+  review: "REVIEW_1.md"
+  review_hash: "sha256:25fe0891c3c68677530524c3aecda0f3483eb5de8cb0779dac1d418f1dda0111"
+  notebook_hashes:
+    "notebooks/NB01_data_extraction.ipynb": "sha256:57f623f45b456e0c6ea457909f757dbebcb2547c6e18bb9c891f8b83134f457a"
+    "notebooks/NB02_domain_annotation.ipynb": "sha256:89f272026ace4fdfc5748df2198075e1d21d5f5b95feaebdc579cef32a3f8fd2"
+    "notebooks/NB02b_msa_domain_join.ipynb": "sha256:82e80654fdc087e2e269807836b2a3055c6c446d92109c04a78d07a9a8e634e5"
+    "notebooks/NB03_statistical_analysis.ipynb": "sha256:f7cdb7ff8a76f43203ec177128679cdb43f3e8deb79ac4942796fd2119483e7b"
+    "notebooks/NB04_paradox_proteins.ipynb": "sha256:a18c05315604fcb9859fd60c952f6e47dd914aae0e2f44ce0abd42791798ae34"
+    "notebooks/NB04b_paradox_ranking.ipynb": "sha256:46a338b3998df279d89a0efa44cc18f751578575dc0e0a963ce6fcbf5b73ac23"
+previous_approvals:
+  - by: "0009-0006-4046-889X"
+    at: "2026-05-27T21:02:27Z"
+    archived_at: "2026-06-15T19:01:31Z"
+    report_hash: "sha256:f66f0c9679cde23e009a56a030fe65d0d4efb49b7f8d057511382970661ac7e1"
+    review: "REVIEW_1.md"
+    review_hash: "sha256:25fe0891c3c68677530524c3aecda0f3483eb5de8cb0779dac1d418f1dda0111"
+    notebook_hashes:
+      "notebooks/NB01_data_extraction.ipynb": "sha256:57f623f45b456e0c6ea457909f757dbebcb2547c6e18bb9c891f8b83134f457a"
+      "notebooks/NB02_domain_annotation.ipynb": "sha256:89f272026ace4fdfc5748df2198075e1d21d5f5b95feaebdc579cef32a3f8fd2"
+      "notebooks/NB02b_msa_domain_join.ipynb": "sha256:82e80654fdc087e2e269807836b2a3055c6c446d92109c04a78d07a9a8e634e5"
+      "notebooks/NB03_statistical_analysis.ipynb": "sha256:f7cdb7ff8a76f43203ec177128679cdb43f3e8deb79ac4942796fd2119483e7b"
+      "notebooks/NB04_paradox_proteins.ipynb": "sha256:a18c05315604fcb9859fd60c952f6e47dd914aae0e2f44ce0abd42791798ae34"
+      "notebooks/NB04b_paradox_ranking.ipynb": "sha256:46a338b3998df279d89a0efa44cc18f751578575dc0e0a963ce6fcbf5b73ac23"
+submissions:
+  - status: success
+    attempted_at: "2026-05-27T21:06:23Z"
+    archive_key: "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/alphafold_msa_annotation/"
+    file_count: 16
+    byte_total: 304478
+    duration_seconds: 24.33
+    approved_at: "2026-05-27T21:02:27Z"
+  - status: success
+    attempted_at: "2026-06-15T19:07:30Z"
+    archive_key: "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/alphafold_msa_annotation/"
+    file_count: 24
+    byte_total: 12840741
+    duration_seconds: 35.39
+    approved_at: "2026-06-15T19:03:07Z"

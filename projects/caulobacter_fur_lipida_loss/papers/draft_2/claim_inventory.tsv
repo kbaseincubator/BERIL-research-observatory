@@ -1,0 +1,66 @@
+claim_id	claim_text	source_notebook	source_cell	figure_or_table	effect_size_present	ci_present	pvalue_present	notes
+C-001	Δfur-vs-4584-logFC Spearman ρ = 0.315, p = 2.08e-03 over 93 Leaden Δfur DEGs	01_leaden2018_fur_signature.ipynb	5	Finding 1; NB01_fur_signature_scatter.png	yes	no	yes	Correlation coefficient ρ is the effect size; Spearman test from scipy.stats
+C-002	71% sign concordance between Leaden Δfur and 4584-vs-4580 contrast	01_leaden2018_fur_signature.ipynb	5	Finding 1	no	no	no	Descriptive percentage; no statistical test reported
+C-003	53 of 93 Leaden Δfur DEGs are buffered (logFC ~0 in 4584-vs-4580)	01_leaden2018_fur_signature.ipynb	5	Finding 1	no	no	no	Count of genes in SspB-buffered set
+C-004	Genome background phenotype-bearing rate = 33.25% (|fitness t| > 4 in ≥2 envelope-stress experiments)	02_caulo_fitness_ranking.ipynb	9	Finding 2; Hypothesis scorecard	no	no	no	n=3943 genes; K=1311 phenotype-bearing; baseline for enrichment test
+C-005	Path A (concordant_strong): 32 genes, 17 phenotype-bearing = 53.1%, fold=1.60×, p=0.016	02b_h2_hypergeometric_verdict.ipynb	2	Finding 2; Hypothesis scorecard H2 Path A	yes	no	yes	Fold-enrichment vs background; hypergeometric test
+C-006	Path B (SspB-buffered): 26 genes, 9 phenotype-bearing = 34.6%, fold=1.04×, p=0.515	02b_h2_hypergeometric_verdict.ipynb	2	Finding 2; Hypothesis scorecard H2 Path B	yes	no	yes	Fold-enrichment vs background; not enriched
+C-007	ChvT (CCNA_03108) |t| = 43.7 under envelope stress	02_caulo_fitness_ranking.ipynb	9	Finding 2	yes	no	no	Test statistic (t-value) from fitness ranking
+C-008	Fur-derepressed TBDTs (CCNA_02910, 00210, 02048, 00028) |t| 9-28 under envelope stress	02_caulo_fitness_ranking.ipynb	9	Finding 2	yes	no	no	Range of test statistics for TBDT set
+C-009	ChvI regulon union (Stein 2021 + Quintero-Yanes 2022) = 488 genes	03_chvi_phase_partition_sigU.ipynb	6	Finding 3	no	no	no	Reference set gene count; denominator for partition
+C-010	ChvI phase structure: unique-to-early=20, both-phases=10, late-consequence=49 (disjoint partition)	03_chvi_phase_partition_sigU.ipynb	7	Finding 3; Hypothesis scorecard H1	no	no	no	Meets pre-registered ≥10 genes per cohort threshold
+C-011	Lasso peptide cyclase CCNA_02794 logFC = +8.6 in 4584-vs-4580	03_chvi_phase_partition_sigU.ipynb	7	Finding 3	yes	no	no	logFC (effect size) for unique-to-early ChvI target
+C-012	ApbE iron-sulfur cluster repair protein logFC = +3.8 in 4584-vs-4580	03_chvi_phase_partition_sigU.ipynb	7	Finding 3	yes	no	no	logFC for unique-to-early ChvI target
+C-013	imuB SOS DNA polymerase logFC = +1.5 in 4584-vs-4580	03_chvi_phase_partition_sigU.ipynb	7	Finding 3	yes	no	no	logFC for unique-to-early ChvI target; validates Leaden SOS finding
+C-014	ChvI itself (CCNA_00237) logFC = +1.45 in 4584-vs-4580	03_chvi_phase_partition_sigU.ipynb	7	Finding 3	yes	no	no	ChvI autoregulation evidence; in both-phases cohort
+C-015	SIMPL family CCNA_02378 logFC = +1.9 (4584-vs-4580), +3.9 (4599-vs-4584)	03_chvi_phase_partition_sigU.ipynb	7	Finding 3	yes	no	no	logFC progression through both phases
+C-016	LolA-family OM lipoprotein carrier CCNA_03820 logFC = +2.89 in 4599-vs-4584	03_chvi_phase_partition_sigU.ipynb	7	Finding 3	yes	no	no	logFC for late-consequence ChvI target
+C-017	Pal-like CCNA_00784 logFC = +2.08 in 4599-vs-4584	03_chvi_phase_partition_sigU.ipynb	7	Finding 3	yes	no	no	Transcript logFC; also +2.84 at protein level
+C-018	Late ChvI cohort: 24.5% envelope/transport/regulator enrichment, Fisher p=0.243	03_chvi_phase_partition_sigU.ipynb	10	Finding 3; Hypothesis scorecard H1 SigU	no	no	yes	Fisher exact test; below 50% relaxed criterion; not significant
+C-019	CtpA (CCNA_03113) in 4599-vs-4584: logFC=+0.58, pvalue=0.048, FDR=0.109 (transcript); protein NOT detected	04_sphingolipid_lpt_panel.ipynb	5	Finding 4; Hypothesis scorecard H3 CtpA	yes	yes	yes	REJECTED at pre-registered bar (pvalue=0.048 fails lower bound)
+C-020	Sphingolipid biosynthesis: 0 of 6 genes UP at FDR<0.05 in 4599-vs-4584	04_sphingolipid_lpt_panel.ipynb	4	Finding 4; Hypothesis scorecard H3	no	no	no	Count of biosynthesis genes showing upregulation
+C-021	spt logFC = -0.64, FDR = 0.002 in 4599-vs-4584	04_sphingolipid_lpt_panel.ipynb	4	Finding 4	yes	yes	no	spt slightly DOWN; FDR as adjusted p-value
+C-022	sphk logFC = -0.40, FDR = 0.02 in 4599-vs-4584	04_sphingolipid_lpt_panel.ipynb	4	Finding 4	yes	yes	no	Sphingosine kinase slightly DOWN; FDR as adjusted p-value
+C-023	Canonical Lpt apparatus: 0 components DOWN at FDR<0.05 in 4599-vs-4584	04_sphingolipid_lpt_panel.ipynb	4	Finding 4; Hypothesis scorecard H3	no	no	no	Count of Lpt components showing downregulation
+C-024	MsbA-like CCNA_00307 logFC = +0.89, FDR = 0.01 in 4599-vs-4584	04_sphingolipid_lpt_panel.ipynb	4	Finding 4	yes	yes	no	Lpt apparatus component upregulated
+C-025	LptC-related CCNA_03716 logFC = +0.56, FDR = 0.005 in 4599-vs-4584	04_sphingolipid_lpt_panel.ipynb	4	Finding 4	yes	yes	no	Lpt apparatus component upregulated
+C-026	LptD (CCNA_01760) log2(4672/4659) = -0.47	04_sphingolipid_lpt_panel.ipynb	6	Finding 4	yes	no	no	Rescued vs intermediate strain; protein-level; single-replicate
+C-027	LptE (CCNA_03866) log2(4672/4659) = -0.78	04_sphingolipid_lpt_panel.ipynb	6	Finding 4	yes	no	no	Rescued vs intermediate strain; protein-level; single-replicate
+C-028	LptD log2(4672/4580) = -0.62	04_sphingolipid_lpt_panel.ipynb	6	Finding 4	yes	no	no	Rescued strain vs WT baseline; protein-level
+C-029	LptE log2(4672/4580) = -0.68	04_sphingolipid_lpt_panel.ipynb	6	Finding 4	yes	no	no	Rescued strain vs WT baseline; protein-level
+C-030	lptC2 (CCNA_01226) transcript logFC = -0.60, FDR = 0.034 in 4599-vs-4584	04_sphingolipid_lpt_panel.ipynb	4	Finding 4; Hypothesis scorecard H3 lptC2	yes	yes	no	Transcript-protein decoupling; FDR as adjusted p-value
+C-031	lptC2 protein log2(4672/4659) = +1.08	04_sphingolipid_lpt_panel.ipynb	6	Finding 4; Hypothesis scorecard H3 lptC2	yes	no	no	Rescued vs intermediate strain; protein induction despite transcript DOWN; pilot observation; single-replicate
+C-032	lptC2 protein log2(4659/4580) = -0.42	04_sphingolipid_lpt_panel.ipynb	6	Finding 4	yes	no	no	Intermediate strain vs WT baseline; prior decrease affects interpretation
+C-033	lptC2 net protein change (rescued vs WT) = +0.66 log2 (≈1.58×)	04_sphingolipid_lpt_panel.ipynb	6	Finding 4	yes	no	no	Adjusted for intermediate decrease; fold-change approximation
+C-034	CCNA_01217 protein log2(4672/4659) = +0.77	04_sphingolipid_lpt_panel.ipynb	6	Finding 4	yes	no	no	Sphingolipid biosynthesis gene; rescued vs intermediate; single-replicate
+C-035	CCNA_01217 protein log2(4672/4580) = +0.74	04_sphingolipid_lpt_panel.ipynb	6	Finding 4	yes	no	no	Sphingolipid biosynthesis gene; rescued strain vs WT; single-replicate
+C-036	Pre-registered PG-remodeling gene set = 53 pre-curated loci	05_pg_remodeling.ipynb	2	Finding 5	no	no	no	Locked before DE analysis; denominator for H4
+C-037	PG-remodeling genes meeting H4 threshold = 28 unique loci	05_pg_remodeling.ipynb	5	Finding 5; Hypothesis scorecard H4	no	no	no	28 of 53 pre-registered; ≥3 threshold PASS strongly
+C-038	PG-remodeling composition: 25 transcript-significant (FDR<0.05) + 6 OM-proteome (|log2|>1) = 28 unique	05_pg_remodeling.ipynb	5	Finding 5	no	no	no	Deduplicated union of transcript and protein hits
+C-039	PG-remodeling direction: 20 DOWN (basal machinery), 5 UP transcript + 3 UP protein	05_pg_remodeling.ipynb	5	Finding 5	no	no	no	Predominantly shutdown with specific inductions
+C-040	SdpA (CCNA_01252) log2 protein = +4.8 in OM proteome	05_pg_remodeling.ipynb	5	Finding 5	yes	no	no	Soluble lytic murein transglycosylase; highest magnitude UP in PG set
+C-041	Pal (CCNA_00784) logFC = +2.08 (transcript) AND log2 = +2.84 (OM protein)	05_pg_remodeling.ipynb	5	Finding 5	yes	no	no	Peptidoglycan-associated OM lipoprotein; both transcript and protein UP
+C-042	PbpZ logFC = -1.08 (transcript) in 4599-vs-4584	05_pg_remodeling.ipynb	5	Finding 5	yes	no	no	Penicillin-binding protein; cell elongation machinery DOWN
+C-043	PbpC log2 = -1.15 (OM protein) in rescued strain	05_pg_remodeling.ipynb	5	Finding 5	yes	no	no	Penicillin-binding protein; cell elongation machinery DOWN
+C-044	D,D-transpeptidase log2 = -1.27 (OM protein) in rescued strain	05_pg_remodeling.ipynb	5	Finding 5	yes	no	no	Cell elongation machinery DOWN; protein-level
+C-045	Membrane-bound transglycosylase A log2 = -2.47 (OM protein) in rescued strain	05_pg_remodeling.ipynb	5	Finding 5	yes	no	no	Cell division/elongation machinery DOWN
+C-046	spt serine palmitoyltransferase: PB(7,0,0,0) NCBI(7,0,0,0) across C.c./A.b./N.m./M.c.	06_comparative_species.ipynb	3	Finding 6; Hypothesis scorecard Comparative	no	no	no	PaperBLAST and NCBI hit counts per species
+C-047	cerR ceramide reductase: PB(1,1,0,0) NCBI(6,0,0,0) across C.c./A.b./N.m./M.c.	06_comparative_species.ipynb	3	Finding 6	no	no	no	PaperBLAST and NCBI hit counts; species pattern mismatch
+C-048	LpxA: PB 0 hits, NCBI 11 hits in Caulobacter crescentus	06b_ncbi_annotation_presence.ipynb	3	Finding 6	no	no	no	PaperBLAST false-negative identified by NCBI re-check
+C-049	LpxC (deleted gene): PB 0 hits, NCBI 15 hits in Caulobacter crescentus	06b_ncbi_annotation_presence.ipynb	3	Finding 6	no	no	no	PaperBLAST false-negative confirmed by NCBI
+C-050	LpxD: PB 0 hits, NCBI 15 hits in Caulobacter crescentus	06b_ncbi_annotation_presence.ipynb	3	Finding 6	no	no	no	PaperBLAST false-negative confirmed by NCBI
+C-051	LpxB: PB 1 hit, NCBI 18 hits in Caulobacter crescentus	06b_ncbi_annotation_presence.ipynb	3	Finding 6	no	no	no	PaperBLAST under-count confirmed by NCBI
+C-052	LpxK: PB 0 hits, NCBI 18 hits in Caulobacter crescentus	06b_ncbi_annotation_presence.ipynb	3	Finding 6	no	no	no	PaperBLAST false-negative confirmed by NCBI
+C-053	spt serine palmitoyltransferase NCBI pattern = 1000 (Caulobacter-unique)	06b_ncbi_annotation_presence.ipynb	5	Finding 6; Hypothesis scorecard Comparative spt	no	no	no	1=C.c. present, 0=A.b./N.m./M.c. absent
+C-054	cerR ceramide reductase NCBI pattern = 1000 (Caulobacter-unique)	06b_ncbi_annotation_presence.ipynb	5	Finding 6; Hypothesis scorecard Comparative cerR	no	no	no	1=C.c. present, 0=A.b./N.m./M.c. absent
+C-055	ChvG sensor kinase NCBI pattern = 1000 (Caulobacter-unique)	06b_ncbi_annotation_presence.ipynb	5	Finding 6; Hypothesis scorecard Comparative ChvG	no	no	no	1=C.c. present, 0=A.b./N.m./M.c. absent
+C-056	ChvI response regulator NCBI pattern = 1000 (Caulobacter-unique)	06b_ncbi_annotation_presence.ipynb	5	Finding 6; Hypothesis scorecard Comparative ChvI	no	no	no	1=C.c. present, 0=A.b./N.m./M.c. absent
+C-057	N. meningitidis capsule biosynthesis locus = 9 PaperBLAST hits	06_comparative_species.ipynb	3	Finding 6	no	no	no	Alternative LPS-replacement route; presence/absence count
+C-058	A. baumannii lpxX/lpxL late acyltransferase = 8 PaperBLAST hits	06_comparative_species.ipynb	3	Finding 6	no	no	no	Alternative LPS-replacement route; presence/absence count
+C-059	N. meningitidis lpxX/lpxL late acyltransferase = 3 PaperBLAST hits	06_comparative_species.ipynb	3	Finding 6	no	no	no	Alternative LPS-replacement route; presence/absence count
+C-060	Caulobacter lpxX/lpxL late acyltransferase = 0 PaperBLAST hits	06_comparative_species.ipynb	3	Finding 6	no	no	no	Absence of this route in Caulobacter
+C-061	PaperBLAST false-negative rate for Caulobacter lipid A biosynthesis genes ≈ 80%	06b_ncbi_annotation_presence.ipynb	3	Finding 6	no	no	no	Measured from LpxA/C/D/B/K discrepancy between PB and NCBI
+C-062	H1 phase structure threshold: unique-early=20, both=10, late=49 passes ≥10 genes per cohort	07_synthesis.ipynb	4	Hypothesis scorecard H1	no	no	no	Pre-registered threshold PASS
+C-063	H2 Path A recalibrated threshold: fold≥1.5× AND p<0.05; observed fold=1.60×, p=0.016	02b_h2_hypergeometric_verdict.ipynb	2	Hypothesis scorecard H2 recalibrated	yes	no	yes	Post-review recalibration; SUPPORTED
+C-064	H2 Path B recalibrated threshold: fold≥1.5× AND p<0.05; observed fold=1.04×, p=0.515	02b_h2_hypergeometric_verdict.ipynb	2	Hypothesis scorecard H2 recalibrated	yes	no	yes	Post-review recalibration; NOT SUPPORTED
+C-065	Iron-limitation experiments in Caulobacter FB compendium = 0	02_caulo_fitness_ranking.ipynb	5	Hypothesis scorecard H2 preflight	no	no	no	FAIL; H2 iron arm descoped to exploratory

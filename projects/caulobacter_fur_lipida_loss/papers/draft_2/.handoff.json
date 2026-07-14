@@ -1,0 +1,22 @@
+{
+  "candidates_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_2/throughline_candidates.md",
+  "tier": "STRONG",
+  "recommended_mode": "paper",
+  "choices": [
+    {
+      "id": "TL1",
+      "label": "Coordinated multi-layer envelope-remodeling program (comprehensive 5-layer atlas, each layer at its actual evidence level)"
+    },
+    {
+      "id": "TL2",
+      "label": "Sphingolipid substitution + Lpt repurposing + species specificity (highest-novelty single mechanism; extends Uchendu 2026 / Zik 2022)"
+    },
+    {
+      "id": "TL3",
+      "label": "Fur-regulon dissection + honest recalibration (most defensible; Path A enriched, Path B not; dual-release switch collapses to one arm)"
+    }
+  ],
+  "phase": "throughline_pick",
+  "prompt_to_user": "throughline_candidates.md written, 3 candidates (tier: STRONG, recommended mode: paper). Review candidates and pick one, then invoke beril-paper-writer continue.",
+  "resume_command": "beril-paper-writer continue /home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_2"
+}

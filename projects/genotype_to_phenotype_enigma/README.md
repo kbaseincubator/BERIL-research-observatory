@@ -1,0 +1,148 @@
+# Genotype × Condition → Phenotype Prediction from ENIGMA Growth Curves
+
+## Research Question
+
+Can we predict bacterial growth phenotype — at multiple resolutions from binary growth through continuous kinetics to complex dynamics — from genome content and growth condition, in a way where the predictive features are biologically interpretable, validated against independent fitness data, and actionable for rational experimental design at a contaminated field site?
+
+## Status
+
+**Complete** — all three acts delivered and fully reproducible (plan v9). Act I (NB00-NB04), Act II (NB05-NB08), Act III (NB09-NB10): 16 findings, 50 figures, 46,389-pair modeling corpus, 50-experiment AL proposal. Binary growth predictable for amino acids (AUC 0.93 tryptophan), nucleosides (0.78 class), and carbon sources (0.90 mannose); NOT for metals/antibiotics/nitrogen. Continuous growth rate NOT predictable from KO content (biological limit, not data problem). 940 mechanistic gene-metabolite associations recovered from WoM via per-metabolite correlation across all 62/62 variable metabolites. Active learning proposes 50 Oak Ridge-relevant experiments (fumaric acid, melibionic acid, nitrate; Prescottella, Microbacterium). See [Report](REPORT.md).
+
+## Context
+
+This project sits within the **ENIGMA SFA**, which studies microbial community assembly and function in the contaminated subsurface at the **Oak Ridge Y-12 field site**. Legacy uranium extraction created contamination plumes high in uranium, heavy metals, and nitrate (which lowers pH) in fractured shale aquifers. Carbon availability is low — simple substrates are consumed rapidly from flowing necromass, leaving complex carbon for specialists. Understanding which strains grow on which substrates, how quickly, and what they produce is directly relevant to predicting field-scale community dynamics.
+
+## Overview
+
+The project sits at a unique convergence of five datasets for the same Oak Ridge field isolates:
+
+| Dataset | Scale | What it provides |
+|---|---|---|
+| **ENIGMA growth curves** | 303 plates, 27,632 curves, 123 strains, 195 molecules | Continuous growth phenotype (lag, µmax, max OD, AUC, diauxy) |
+| **ENIGMA Genome Depot** | 3,110 genomes, 3.7M KO, 6.4M COG, 29.4M OG annotations | Pre-computed genome features for all 123 growth strains |
+| **Fitness Browser** | 7 matching strains, 27M fitness scores | Independent gene-level validation of predictor features |
+| **Web of Microbes** | 6 matching strains, 105 metabolites each | Exometabolomic ground truth |
+| **Carbon source phenotypes** | 795 genomes × 379 conditions = ~53K binary labels | Broad pretraining corpus (Dileep et al., preprint) |
+
+The project is structured in three acts:
+
+**Act I — Know the Collection (NB01-NB04)**:
+- NB01 [done]: Growth curve fitting (27,632 curves, modified Gompertz, QC flags)
+- NB02: Condition canonicalization and cross-dataset alignment (ChEBI-based)
+- NB03: Functional diversity census (phylogeny, metabolic guilds, resistance/motility/mobile elements, pangenome outliers)
+- NB04: Environmental context and biogeography (pangenome species-level via `ncbi_env`, microbeatlas global 16S, CORAL local Oak Ridge, SparCC co-occurrence)
+
+**Act II — Predict and Explain (NB05-NB08)**:
+- NB05 [done]: Feature engineering (4,305 prevalence-filtered KOs, 4 feature levels, no PCA)
+- NB06: GBDT variance partitioning + SHAP + FB concordance (nested M0→M3, the central analytical notebook)
+- NB07: CSP transfer learning (pretrain on 795-genome corpus, fine-tune on ENIGMA)
+- NB08: WoM exometabolomic prediction (pilot, 6 strains)
+
+**Act III — Diagnose and Propose (NB09-NB10)**:
+- NB09 [done]: Conflict detection — 65.1% accuracy, 1,276 high-confidence errors, per-genus × condition-class error hotspots
+- NB10 [done]: Active learning proposal — 50 experiments ranked by error × uncertainty × field relevance (fumaric acid, melibionic acid, nitrate; Prescottella, Microbacterium)
+
+## Six Hypotheses
+
+1. **H1**: Feature resolution must match phenotype resolution (pathways for binary growth, KOs for kinetics, regulatory proxies for complex dynamics)
+2. **H2**: GapMind, CUB/gRodon, and GBDT are complementary by condition class
+3. **H3**: FB concordance is measurable and independent of held-out accuracy
+4. **H4**: CSP pretraining transfers to ENIGMA continuous targets
+5. **H5**: Growth-predictive features also predict exometabolomic output
+6. **H6**: Active learning outperforms random experimental design
+
+## Quick Links
+
+- [Research Plan](RESEARCH_PLAN.md) — hypotheses, approach, data sources, references
+- [Report](REPORT.md) — Act I findings (6 key results, 22 figures)
+
+## Methods Summary
+
+We integrate five complementary datasets (ENIGMA growth curves, ENIGMA Genome Depot annotations, Fitness Browser RB-TnSeq fitness, Web of Microbes exometabolomics, and a 795-genome carbon-source phenotype corpus from Dileep et al.) into a shared genome-condition feature space. **Binary growth** is encoded as a threshold call on modified-Gompertz fits of the ENIGMA curves (27,632 wells, 303 plates); **continuous kinetics** (µmax, lag, max OD) are extracted from the 35.7 % of curves that pass QC. Genomic features are 4,293 **prevalence-filtered KEGG orthologs** (core KOs >95 % and rare KOs <5 % removed) plus one-hot condition class and log-concentration. No PCA — every feature remains a named gene function for downstream SHAP interpretation.
+
+The predictive model is a **gradient-boosted decision tree (LightGBM) trained on 46,389 (genome × condition) pairs across 727 genomes and 135 genera**. Validation uses **genus-blocked holdout** across 106 genera with ≥ 50 pairs — the most stringent phylogenetic holdout available given the corpus — and is complemented by **Fitness Browser concordance analysis** that tests whether top-SHAP KOs show significant fitness effects in the seven matched RB-TnSeq strains. Exometabolomic prediction (WoM) switches methodology because n = 6: a multivariate GBDT fails (AUC 0.5), so we use **per-metabolite univariate point-biserial correlation** against an **FB-cognate KO feature set** (KOs with |t| > 4 on Fitness Browser rich media in Pseudomonas anchor organisms).
+
+Act III converts the corpus-wide predictions into an actionable experimental proposal: NB09 audits the 42,771 held-out predictions to isolate **high-confidence errors** (conditions where the model commits to a wrong answer), and NB10 re-ranks the 343 testable conditions by `error_rate × (1 − mean_confidence) × field_weight`, where `field_weight` doubles for Oak Ridge-relevant substrates (organic acids, nitrate, low-pH-compatible compounds). The top 50 become the proposed next-round screen.
+
+## Key Lessons Learned
+
+Methodological takeaways that generalize beyond this project:
+
+1. **Feature resolution must match phenotype resolution.** Binary growth responds to condition-specific catabolic KOs; continuous kinetics (µmax, lag) require enzyme-kinetic or expression-level features that binary gene presence cannot capture. Trying to predict kinetics from KO content alone fails biologically, not statistically.
+2. **Mechanistic prediction requires ≈ 10⁴ training pairs per phenotype class.** With n = 7 strains, SHAP highlighted genome-scale artifacts ("big genomes grow on amino acids"). At n = 46K pairs the same architecture surfaced **condition-specific catabolic genes** — ribose transporter for ribose growth, protocatechuate cycloisomerase for aromatics. The transition is sharp; below it you learn the wrong thing.
+3. **The analytical method must match the sample size.** Multivariate ML at n = 6 is a recipe for AUC 0.5. Per-metabolite univariate correlation on the same data recovered 940 gene-metabolite associations covering all 62 variable metabolites — the signal was there, but only a method calibrated to n=6 could see it.
+4. **Gene presence ≠ gene essentiality.** Weak (1.19 ×) FB concordance with top SHAP KOs does not invalidate the features — it reflects the fact that *"does a genus have this gene?"* (our task) and *"does disrupting this gene reduce fitness?"* (the RB-TnSeq task) are different biological questions on different data.
+5. **Field relevance is a legitimate feature at the active-learning stage.** The same `al_score` ordering produces very different experimental priorities depending on whether you weight for the domain (Oak Ridge geochemistry, in our case). Being explicit about the weighting rule beats quietly hand-curating a shortlist.
+
+## Anchor Strains (Tier 1)
+
+| ENIGMA strain | FB orgId | WoM? | Curves | Species |
+|---|---|---|---|---|
+| FW300-N2E3 | `pseudo3_N2E3` | Yes | 454 | *P. fluorescens* |
+| FW300-N2E2 | `pseudo6_N2E2` | — | 456 | *P. fluorescens* |
+| FW300-N1B4 | `pseudo1_N1B4` | — | 360 | *P. fluorescens* |
+| GW456-L13 | `pseudo13_GW456_L13` | Yes | 360 | *P. fluorescens* |
+| GW460-11-11-14-LB5 | `Pedo557` | — | 362 | *Pedobacter sp.* |
+| GW101-3H11 | `acidovorax_3H11` | — | 192 | *Acidovorax sp.* |
+| FW507-4G11 | `Cup4G11` | — | 192 | *Cupriavidus basilensis* |
+
+All 123 growth-curve strains have genome depot annotations (KO, COG, OG, EC, GO). 32 also have BERDL pangenome features (GapMind, UniRef, Pfam, ANI).
+
+## Data Collections
+
+This project integrates data from the following BERDL collections:
+
+- `enigma_coral` — ENIGMA CORAL: growth curve bricks, strain metadata, ASV communities, GTDB-Tk taxonomy, isolation locations, geochemistry
+- `enigma_genome_depot_enigma` — ENIGMA Genome Depot: 3,110 genomes with KO, COG, OG, EC, GO annotations
+- `kescience_fitnessbrowser` — Fitness Browser: RB-TnSeq gene fitness for 7 anchor strains
+- `kescience_webofmicrobes` — Web of Microbes: exometabolomics for 6 strains
+- `globalusers_carbon_source_phenotypes` — Carbon source phenotypes: 795 genomes x 379 binary growth labels (Dileep et al.)
+- `kbase_ke_pangenome` — KBase pangenome: species-level biogeography via ncbi_env, GapMind pathways
+- `arkinlab_microbeatlas` — Microbial Atlas: 464K global 16S samples for genus-level biogeography and co-occurrence
+
+## Reproduction
+
+### Prerequisites
+- BERDL JupyterHub access (for NB00-NB05: Spark queries against `enigma_coral`, `enigma_genome_depot_enigma`, `kescience_fitnessbrowser`, `kescience_webofmicrobes`, `globalusers_carbon_source_phenotypes`, `arkinlab_microbeatlas`, `kbase_ke_pangenome`)
+- Python packages: `pandas`, `numpy`, `scipy`, `matplotlib`, `lightgbm`, `shap`, `scikit-learn`, `nbformat`, `pyarrow`. Install with either:
+  - `pip install -r requirements.txt`
+  - `conda env create -f environment.yml && conda activate genotype_to_phenotype_enigma`
+
+### Execution order
+
+| Notebook | Environment | Runtime | What it produces |
+|---|---|---|---|
+| NB00 | JupyterHub (Spark) | ~5 min | Data survey, linkage tables |
+| NB01 | JupyterHub (Spark) → local | ~8 min | 27,632 Gompertz-fitted growth curves |
+| NB02 | JupyterHub (Spark) | ~3 min | Condition alignment, 486 anchor pairs |
+| NB03 | JupyterHub (Spark) | ~15 sec | KO/COG matrices, 8 metabolic guilds |
+| NB04 | JupyterHub (Spark) | ~5 min | Biogeography, co-occurrence matrices |
+| NB05 | JupyterHub (Spark) | ~5 sec | Feature matrices, modeling tables |
+| NB06 | Local (LightGBM) | ~30 sec | Variance partitioning, SHAP, correlation groups |
+| NB07 | JupyterHub (Spark) → local | ~40 min | Full-corpus training, genus-blocked holdout, FB concordance |
+| NB08 | JupyterHub (Spark) → local | ~2 min | WoM production matrix + FB-cognate per-metabolite correlation; 940 KO-metabolite associations across 62 metabolites |
+| NB09 | Local | ~10 sec | Conflict detection: audit of 42,771 predictions, 1,276 confident errors |
+| NB10 | Local | ~5 sec | Active learning ranking with field-relevance weighting, top 50 proposal |
+
+**Environment conventions in this table:**
+
+- **`JupyterHub (Spark)`** — whole notebook runs on BERDL JupyterHub; every cell either queries Spark or processes its small result pandas DataFrame. Not reproducible off-cluster unless you set up the tunnels described in `docs/pitfalls.md`.
+- **`Local (LightGBM)`** — no Spark access needed; consumes parquet/TSV files already cached under `data/`.
+- **`JupyterHub (Spark) → local`** — hybrid: the notebook starts with a Spark query to extract rows from the lakehouse, then the rest of the notebook runs pure-Python on the local pandas DataFrame (e.g. NB01 pulls the 303 growth-curve bricks via Spark, then fits Gompertz curves with scipy; NB07 builds the 46K-pair modeling parquet via Spark, then trains LightGBM locally; NB08 queries WoM + FB, then does sklearn GBDT and scipy correlations). These are the notebooks that can be partially re-run off-cluster once the cached parquet exists.
+
+NB08 in this repository was reconstructed (2026-04-23) from the original artifacts after we discovered it had never been committed as a notebook — only its TSV outputs and figures were on disk. The reconstructed notebook queries a broader FB-cognate KO subset (all six Pseudomonas FB anchor organisms) than the original interactive run, so the correlation count is 940 rather than the original 557. All four mechanistic examples (taurine/K01048, thymine/K05710, lactate/K02613, hypoxanthine/K07334) are preserved at r = ±1.0 and the qualitative H5 outcome is unchanged. See `RESEARCH_PLAN.md` v9 for details.
+
+### Data dependencies
+- `data/growth_parameters_all.parquet` (NB01 → NB02, NB05, NB07)
+- `data/ko_matrix.parquet` (NB03 → NB05, NB06, NB07)
+- `data/modeling/full_corpus.parquet` (NB07 builds from NB01-NB05 outputs)
+- `data/` directory is gitignored (large files). Regenerate by running notebooks in order, or download from BERDL MinIO after `/submit`.
+
+### Key notes
+- NB01 uses `src/batch_fit.py` which is resumable — skips bricks whose output already exists
+- Growth curve bricks have heterogeneous schemas (some lack pH/temperature columns) — `batch_fit.py` handles this automatically
+- Genus-blocked holdout in NB07 tests 106 genera; runtime ~5 min for binary, ~2 min for continuous targets
+
+## Authors
+
+- Adam Arkin (ORCID: 0000-0002-4999-2931), U.C. Berkeley / Lawrence Berkeley National Laboratory

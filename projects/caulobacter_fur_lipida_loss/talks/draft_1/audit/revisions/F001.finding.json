@@ -1,0 +1,14 @@
+{
+  "id": "F001",
+  "class": "claim_evidence",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 1,
+  "slide_position": 1,
+  "slide_layout": "title",
+  "substory_id": null,
+  "title_quote": "Caulobacter Fur Lipida Loss",
+  "issue": "Title slide is the project-slug verbatim and contains a typo: 'Lipida Loss' instead of 'Lipid A Loss'. The subtitle is the throughline punchline truncated mid-word with an ellipsis ('Fur-released\u2026'). Presenter and affiliation are 'TBD'. For a peer-audience STRONG-tier talk this is amateur-hour. The first thing the audience reads is the speaker telegraphing 'I did not finish this'.",
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Rewrite to e.g. 'A single envelope catastrophe: five adaptive layers of Caulobacter \u0394lpxc tolerance' with a non-truncated subtitle and the real presenter/affiliation. At minimum fix 'Lipida'\u2192'Lipid A' and de-truncate the subtitle."
+}

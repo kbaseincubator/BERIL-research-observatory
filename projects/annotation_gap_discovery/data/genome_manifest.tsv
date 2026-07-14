@@ -1,0 +1,15 @@
+orgId	full_name	genus	species	strain	taxonomyId	n_carbon_sources	n_experiments	has_bacdive	gtdb_species_clade_id	GTDB_species	n_genes	n_protein_coding	n_genes_with_fitness	pct_with_fitness
+Btheta	Bacteroides thetaiotaomicron VPI-5482	Bacteroides	thetaiotaomicron	VPI-5482	226186	47	112	True	s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1	s__Bacteroides_thetaiotaomicron	4902	4816	4055	84.2
+Koxy	Klebsiella michiganensis M5al	Klebsiella	michiganensis	M5al	290337	41	84	True	s__Klebsiella_michiganensis--RS_GCF_002925905.1	s__Klebsiella_michiganensis	5586	5309	4608	86.8
+Smeli	Sinorhizobium meliloti 1021	Sinorhizobium	meliloti	1021	266834	33	33	True	s__Sinorhizobium_meliloti--RS_GCF_017876815.1	s__Sinorhizobium_meliloti	6281	6217	5133	82.6
+Phaeo	Phaeobacter inhibens BS107	Phaeobacter	inhibens	BS107	391619	32	99	True	s__Phaeobacter_inhibens--RS_GCF_000473105.1	s__Phaeobacter_inhibens	3944	3875	3099	80.0
+Keio	Escherichia coli BW25113	Escherichia	coli	BW25113	511145	28	68	True	s__Escherichia_coli_E--RS_GCF_011881725.1	s__Escherichia_coli_E	4610	4146	3789	91.4
+HerbieS	Herbaspirillum seropedicae SmR1	Herbaspirillum	seropedicae	SmR1	757424	26	52	True	s__Herbaspirillum_seropedicae--RS_GCF_001040945.1	s__Herbaspirillum_seropedicae	4779	4715	3879	82.3
+Cup4G11	Cupriavidus basilensis FW507-4G11	Cupriavidus	basilensis	FW507-4G11	68895	24	42	True	s__Cupriavidus_basilensis--RS_GCF_008801925.2	s__Cupriavidus_basilensis	7449	7358	6384	86.8
+Dino	Dinoroseobacter shibae DFL-12	Dinoroseobacter	shibae	DFL-12	398580	20	43	True	s__Dinoroseobacter_shibae--RS_GCF_000018145.1	s__Dinoroseobacter_shibae	4562	4192	3187	76.0
+Marino	Marinobacter adhaerens HP15	Marinobacter	adhaerens	HP15	225937	19	54	True	s__Marinobacter_adhaerens--RS_GCF_000166295.1	s__Marinobacter_adhaerens	4470	4410	3650	82.8
+MR1	Shewanella oneidensis MR-1	Shewanella	oneidensis	MR-1	211586	16	31	True	s__Shewanella_oneidensis--RS_GCF_000146165.2	s__Shewanella_oneidensis	4745	4467	3782	84.7
+azobra	Azospirillum brasilense Sp245	Azospirillum	brasilense	Sp245	1064539	15	29	True	s__Azospirillum_brasilense--RS_GCF_001315015.1	s__Azospirillum_brasilense	6447	5488	4833	88.1
+PV4	Shewanella loihica PV-4	Shewanella	loihica	PV-4	323850	13	24	True	s__Shewanella_loihica--RS_GCF_000016065.1	s__Shewanella_loihica	3993	3859	3009	78.0
+Korea	Sphingomonas koreensis DSMZ 15582	Sphingomonas	koreensis	DSMZ 15582	93064	11	27	True	s__Sphingomonas_koreensis--RS_GCF_002797435.1	s__Sphingomonas_koreensis	4245	4149	3393	81.8
+Dyella79	Dyella japonica UNC79MFTsu3.2	Dyella	japonica	UNC79MFTsu3.2	1380365	10	19	True	s__Dyella_japonica_C--RS_GCF_000725385.1	s__Dyella_japonica_C	4395	4317	3625	84.0

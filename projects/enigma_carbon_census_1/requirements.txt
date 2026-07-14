@@ -1,0 +1,10 @@
+# ENIGMA Carbon Census 1 — Python dependencies
+# Pinned to the on-cluster BERDL JupyterHub environment used to build NB00–NB08.
+# pyspark is provided by the cluster; pinned here for off-cluster reproduction.
+pandas==3.0.2
+numpy==2.3.4
+scipy==1.17.1
+requests==2.34.2
+matplotlib==3.10.9
+pyspark==4.0.1
+enviPath-python==0.2.4

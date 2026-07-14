@@ -1,0 +1,59 @@
+{
+  "phase": "2",
+  "notebook": "NB12",
+  "hypothesis": "Mycobacteriota \u2192 Innovator-Isolated on mycolic-acid pathway KOs",
+  "n_mycolic_candidate_kos": 715,
+  "n_curated_specific_kos": 11,
+  "n_mycobacteriaceae_species": 459,
+  "n_mycobacteriales_species": 657,
+  "alpha_bonferroni": 0.0125,
+  "test_results": [
+    {
+      "rank": "family",
+      "clade": "f__Mycobacteriaceae",
+      "n_mycolic_kos_present": 582,
+      "ref_producer_median": -0.2395,
+      "target_producer_median": -0.1416,
+      "ref_consumer_median": -5.2833,
+      "target_consumer_median": -5.9762,
+      "producer_cohens_d": 0.3093,
+      "consumer_cohens_d": -0.1925,
+      "mw_p_producer_greater": 2e-06,
+      "mw_p_consumer_less": 0.0,
+      "producer_high": true,
+      "consumer_low": true,
+      "verdict": "INNOVATOR-ISOLATED (H1 supported)"
+    },
+    {
+      "rank": "order",
+      "clade": "o__Mycobacteriales",
+      "n_mycolic_kos_present": 614,
+      "ref_producer_median": -0.2453,
+      "target_producer_median": -0.177,
+      "ref_consumer_median": -2.8765,
+      "target_consumer_median": -3.9015,
+      "producer_cohens_d": 0.2877,
+      "consumer_cohens_d": -0.2853,
+      "mw_p_producer_greater": 5e-06,
+      "mw_p_consumer_less": 0.0,
+      "producer_high": true,
+      "consumer_low": true,
+      "verdict": "INNOVATOR-ISOLATED (H1 supported)"
+    }
+  ],
+  "mycob_recipient_depth_distribution": {
+    "recent": 79.87,
+    "older_recent": 16.72,
+    "mid": 3.41,
+    "older": 0.0,
+    "ancient": 0.0
+  },
+  "all_mycolic_depth_distribution": {
+    "recent": 48.79,
+    "older_recent": 31.81,
+    "mid": 9.6,
+    "older": 6.12,
+    "ancient": 3.68
+  },
+  "completed_utc": "2026-04-27T21:28:23Z"
+}

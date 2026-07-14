@@ -1,0 +1,31 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "NB12 \u2014 Pathobiont \u00d7 phage targetability matrix (Pillar 4 opener)",
+  "n_actionable_tier_a": 6,
+  "n_phage_score_3_clinical": 1,
+  "n_phage_score_2_lytic_literature": 2,
+  "n_phage_score_1_temperate_or_limited": 1,
+  "n_phage_score_0_gap": 1,
+  "phage_clinical_tier_a": [
+    "Escherichia coli"
+  ],
+  "phage_lytic_literature_tier_a": [
+    "Eggerthella lenta",
+    "Enterocloster bolteae"
+  ],
+  "phage_limited_tier_a": [
+    "Mediterraneibacter gnavus"
+  ],
+  "phage_gap_tier_a": [
+    "Flavonifractor plautii",
+    "Hungatella hathewayi"
+  ],
+  "pillar4_pillar5_handoff_note": "Phage availability stratifies the 6 actionable Tier-A core into 4 classes: clinical-trial-stage (E. coli AIEC); lytic-literature (E. lenta, E. bolteae); temperate-limited (M. gnavus); coverage-gap (H. hathewayi, F. plautii). The 2 coverage-gap targets are the highest-NB05-scored species and require external phage DB queries (INPHARED + IMG/VR) as Pillar-4 follow-up. F. plautii additionally carries the highest BA-coupling cost \u2014 phage targeting may be deprioritized in favor of bile-acid-pool monitoring or biochemical-target alternatives. M. gnavus temperate-only constraint may require either lytic-locked phage engineering or biochemical glucorhamnan-synthesis targeting.",
+  "limitations": [
+    "BERDL Spark auth blocked at NB12 execution (KBASE_AUTH_TOKEN stale); PhageFoundry collections not directly queried. Refresh token + cross-check ref_phage_biology curated synthesis as a Pillar-4 follow-up.",
+    "External phage DB queries (INPHARED / IMG/VR / NCBI Phage RefSeq) are out-of-BERDL and not run in NB12. Coverage gaps for F. plautii / H. hathewayi specifically require these queries.",
+    "ref_phage_biology has 12 organisms \u2014 F. plautii is NOT in the curated set (only 5 of 6 actionable Tier-A core covered).",
+    "Phage-availability scoring is qualitative (0-3 ordinal scale based on lifestyle + clinical status) \u2014 quantitative coverage metrics (n_phages, host-range CDS, receptor-binding-domain diversity) require PhageFoundry / INPHARED genomic data."
+  ]
+}

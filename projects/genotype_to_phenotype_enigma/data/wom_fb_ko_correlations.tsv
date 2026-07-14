@@ -1,0 +1,941 @@
+metabolite	KO	r	p	ko_desc
+2,3-dihydroxybenzoate	K00370	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, alpha subunit 
+2,3-dihydroxybenzoate	K00371	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, beta subunit 
+2,3-dihydroxybenzoate	K00373	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, delta subunit 
+2,3-dihydroxybenzoate	K00374	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, gamma subunit 
+2,3-dihydroxybenzoate	K00721	-0.7071067811865476	0.11611652351681565	dolichol-phosphate mannosyltransferase 
+2,3-dihydroxybenzoate	K00831	-0.7071067811865477	0.11611652351681548	phosphoserine aminotransferase 
+2,3-dihydroxybenzoate	K01141	1.0	0.0	exodeoxyribonuclease I 
+2,3-dihydroxybenzoate	K01153	0.7071067811865476	0.11611652351681565	type I restriction enzyme, R subunit 
+2,3-dihydroxybenzoate	K01654	0.7071067811865477	0.11611652351681548	N-acetylneuraminate synthase 
+2,3-dihydroxybenzoate	K01706	-0.7071067811865477	0.11611652351681548	glucarate dehydratase 
+2,3-dihydroxybenzoate	K01712	0.7071067811865477	0.11611652351681548	urocanate hydratase 
+2,3-dihydroxybenzoate	K02026	-0.7071067811865476	0.11611652351681565	multiple sugar transport system permease protein
+2,3-dihydroxybenzoate	K02038	-0.7071067811865477	0.11611652351681548	phosphate transport system permease protein
+2,3-dihydroxybenzoate	K02305	-0.7071067811865476	0.11611652351681565	nitric oxide reductase, cytochrome c-containing subunit II
+2,3-dihydroxybenzoate	K02445	-0.7071067811865477	0.11611652351681548	MFS transporter, OPA family, glycerol-3-phosphate transporter
+2,3-dihydroxybenzoate	K02652	-1.0	0.0	type IV pilus assembly protein PilB
+2,3-dihydroxybenzoate	K02668	-0.7071067811865477	0.11611652351681548	two-component system, NtrC family, sensor histidine kinase PilS 
+2,3-dihydroxybenzoate	K06986	-0.7071067811865477	0.11611652351681548	
+2,3-dihydroxybenzoate	K06991	-0.7071067811865477	0.11611652351681548	
+2,3-dihydroxybenzoate	K07025	0.7071067811865476	0.11611652351681565	putative hydrolase of the HAD superfamily
+2,3-dihydroxybenzoate	K07218	-0.7071067811865476	0.11611652351681565	nitrous oxidase accessory protein
+2,3-dihydroxybenzoate	K07230	-1.0	0.0	
+2,3-dihydroxybenzoate	K07491	-0.7071067811865476	0.11611652351681565	putative transposase
+2,3-dihydroxybenzoate	K07673	-0.7071067811865476	0.11611652351681565	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+2,3-dihydroxybenzoate	K08482	0.7071067811865477	0.11611652351681548	circadian clock protein KaiC
+2,3-dihydroxybenzoate	K09943	-0.7071067811865476	0.11611652351681565	hypothetical protein
+2,3-dihydroxybenzoate	K11901	-0.7071067811865477	0.11611652351681548	type VI secretion system protein ImpB
+2,3-dihydroxybenzoate	K14335	-0.7071067811865477	0.11611652351681548	alpha-1,6-mannosyltransferase 
+3-hydroxy-3-methylglutarate	K00370	-0.9999999999999999	0.0	nitrate reductase 1, alpha subunit 
+3-hydroxy-3-methylglutarate	K00371	-0.9999999999999999	0.0	nitrate reductase 1, beta subunit 
+3-hydroxy-3-methylglutarate	K00373	-0.9999999999999999	0.0	nitrate reductase 1, delta subunit 
+3-hydroxy-3-methylglutarate	K00374	-0.9999999999999999	0.0	nitrate reductase 1, gamma subunit 
+3-hydroxy-3-methylglutarate	K01141	0.7071067811865476	0.11611652351681565	exodeoxyribonuclease I 
+3-hydroxy-3-methylglutarate	K01153	0.9999999999999997	2.958228394578794e-31	type I restriction enzyme, R subunit 
+3-hydroxy-3-methylglutarate	K02305	-0.9999999999999999	0.0	nitric oxide reductase, cytochrome c-containing subunit II
+3-hydroxy-3-methylglutarate	K02616	0.7071067811865476	0.11611652351681565	phenylacetic acid degradation operon negative regulatory protein
+3-hydroxy-3-methylglutarate	K02652	-0.7071067811865476	0.11611652351681565	type IV pilus assembly protein PilB
+3-hydroxy-3-methylglutarate	K03427	0.7071067811865476	0.11611652351681565	type I restriction enzyme M protein 
+3-hydroxy-3-methylglutarate	K07025	0.9999999999999997	2.958228394578794e-31	putative hydrolase of the HAD superfamily
+3-hydroxy-3-methylglutarate	K07230	-0.7071067811865476	0.11611652351681565	
+3-hydroxy-3-methylglutarate	K07673	-0.9999999999999999	0.0	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+3-hydroxy-3-methylglutarate	K09943	-0.9999999999999999	0.0	hypothetical protein
+3-hydroxy-3-methylglutarate	K12988	0.7071067811865476	0.11611652351681565	alpha-1,3-rhamnosyltransferase 
+3-hydroxybenzoate	K02666	1.0	0.0	type IV pilus assembly protein PilQ
+3-hydroxybenzoate	K08167	-1.0	0.0	MFS transporter, DHA2 family, methyl viologen resistance protein SmvA
+3-hydroxybenzoate	K09709	-1.0	0.0	mesaconyl-C4 CoA hydratase
+3-hydroxybenzoate	K11690	-1.0	0.0	C4-dicarboxylate transporter, DctM subunit
+4-acetamidobutanoate	K00831	0.7071067811865477	0.11611652351681548	phosphoserine aminotransferase 
+4-acetamidobutanoate	K01003	-0.7071067811865477	0.11611652351681548	carboxyvinyl-carboxyphosphonate phosphorylmutase 
+4-acetamidobutanoate	K01187	-0.7071067811865477	0.11611652351681548	alpha-glucosidase 
+4-acetamidobutanoate	K01654	-0.7071067811865477	0.11611652351681548	N-acetylneuraminate synthase 
+4-acetamidobutanoate	K01706	0.7071067811865477	0.11611652351681548	glucarate dehydratase 
+4-acetamidobutanoate	K01711	1.0	0.0	GDPmannose 4,6-dehydratase 
+4-acetamidobutanoate	K02026	0.7071067811865476	0.11611652351681565	multiple sugar transport system permease protein
+4-acetamidobutanoate	K02038	0.7071067811865477	0.11611652351681548	phosphate transport system permease protein
+4-acetamidobutanoate	K02445	0.7071067811865477	0.11611652351681548	MFS transporter, OPA family, glycerol-3-phosphate transporter
+4-acetamidobutanoate	K02668	0.7071067811865477	0.11611652351681548	two-component system, NtrC family, sensor histidine kinase PilS 
+4-acetamidobutanoate	K03495	0.7071067811865476	0.11611652351681565	glucose inhibited division protein A
+4-acetamidobutanoate	K04047	-0.7071067811865477	0.11611652351681548	starvation-inducible DNA-binding protein
+4-acetamidobutanoate	K06986	0.7071067811865477	0.11611652351681548	
+4-acetamidobutanoate	K06991	0.7071067811865477	0.11611652351681548	
+4-acetamidobutanoate	K07184	1.0	0.0	SH3 domain protein
+4-acetamidobutanoate	K07264	-0.7071067811865477	0.11611652351681548	4-amino-4-deoxy-L-arabinose transferase 
+4-acetamidobutanoate	K07403	1.0	0.0	membrane-bound serine protease (ClpP class)
+4-acetamidobutanoate	K07806	-0.7071067811865477	0.11611652351681548	UDP-4-amino-4-deoxy-L-arabinose-oxoglutarate aminotransferase 
+4-acetamidobutanoate	K14335	0.7071067811865477	0.11611652351681548	alpha-1,6-mannosyltransferase 
+4-guanidinobutanoate	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+4-guanidinobutanoate	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+4-guanidinobutanoate	K00274	0.9999999999999999	0.0	monoamine oxidase 
+4-guanidinobutanoate	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+4-guanidinobutanoate	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+4-guanidinobutanoate	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+4-guanidinobutanoate	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+4-guanidinobutanoate	K05375	0.9999999999999999	0.0	MbtH protein
+4-guanidinobutanoate	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+4-guanidinobutanoate	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+4-guanidinobutanoate	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+4-guanidinobutanoate	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+4-guanidinobutanoate	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+4-guanidinobutanoate	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+4-guanidinobutanoate	K11208	0.9999999999999999	0.0	GST-like protein
+4-guanidinobutanoate	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+4-guanidinobutanoate	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+4-hydroxy-2-quinolinecarboxylic acid	K00661	0.7071067811865477	0.11611652351681548	maltose O-acetyltransferase 
+4-hydroxy-2-quinolinecarboxylic acid	K00721	-1.0	0.0	dolichol-phosphate mannosyltransferase 
+4-hydroxy-2-quinolinecarboxylic acid	K01141	0.7071067811865477	0.11611652351681548	exodeoxyribonuclease I 
+4-hydroxy-2-quinolinecarboxylic acid	K01712	1.0	0.0	urocanate hydratase 
+4-hydroxy-2-quinolinecarboxylic acid	K02363	0.7071067811865477	0.11611652351681548	enterobactin 2,3-dihydroxybenzoate-AMP ligase / S-dihydroxybenzoyltransferase 
+4-hydroxy-2-quinolinecarboxylic acid	K02652	-0.7071067811865477	0.11611652351681548	type IV pilus assembly protein PilB
+4-hydroxy-2-quinolinecarboxylic acid	K03427	0.7071067811865477	0.11611652351681548	type I restriction enzyme M protein 
+4-hydroxy-2-quinolinecarboxylic acid	K03760	-0.7071067811865477	0.11611652351681548	phosphoethanolamine transferase
+4-hydroxy-2-quinolinecarboxylic acid	K07089	0.7071067811865477	0.11611652351681548	
+4-hydroxy-2-quinolinecarboxylic acid	K07218	-1.0	0.0	nitrous oxidase accessory protein
+4-hydroxy-2-quinolinecarboxylic acid	K07230	-0.7071067811865477	0.11611652351681548	
+4-hydroxy-2-quinolinecarboxylic acid	K07491	-1.0	0.0	putative transposase
+4-hydroxy-2-quinolinecarboxylic acid	K07677	0.7071067811865477	0.11611652351681548	two-component system, NarL family, capsular synthesis sensor histidine kinase RcsC 
+4-hydroxyphenylacetate	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+4-hydroxyphenylacetate	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+4-hydroxyphenylacetate	K00274	0.9999999999999999	0.0	monoamine oxidase 
+4-hydroxyphenylacetate	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+4-hydroxyphenylacetate	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+4-hydroxyphenylacetate	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+4-hydroxyphenylacetate	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+4-hydroxyphenylacetate	K05375	0.9999999999999999	0.0	MbtH protein
+4-hydroxyphenylacetate	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+4-hydroxyphenylacetate	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+4-hydroxyphenylacetate	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+4-hydroxyphenylacetate	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+4-hydroxyphenylacetate	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+4-hydroxyphenylacetate	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+4-hydroxyphenylacetate	K11208	0.9999999999999999	0.0	GST-like protein
+4-hydroxyphenylacetate	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+4-hydroxyphenylacetate	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+5-aminopentanoate	K00370	1.0	0.0	nitrate reductase 1, alpha subunit 
+5-aminopentanoate	K00371	1.0	0.0	nitrate reductase 1, beta subunit 
+5-aminopentanoate	K00373	1.0	0.0	nitrate reductase 1, delta subunit 
+5-aminopentanoate	K00374	1.0	0.0	nitrate reductase 1, gamma subunit 
+5-aminopentanoate	K01141	-0.7071067811865476	0.11611652351681565	exodeoxyribonuclease I 
+5-aminopentanoate	K01153	-0.9999999999999999	0.0	type I restriction enzyme, R subunit 
+5-aminopentanoate	K02305	1.0	0.0	nitric oxide reductase, cytochrome c-containing subunit II
+5-aminopentanoate	K02616	-0.7071067811865476	0.11611652351681565	phenylacetic acid degradation operon negative regulatory protein
+5-aminopentanoate	K02652	0.7071067811865476	0.11611652351681565	type IV pilus assembly protein PilB
+5-aminopentanoate	K03427	-0.7071067811865476	0.11611652351681565	type I restriction enzyme M protein 
+5-aminopentanoate	K07025	-0.9999999999999999	0.0	putative hydrolase of the HAD superfamily
+5-aminopentanoate	K07230	0.7071067811865476	0.11611652351681565	
+5-aminopentanoate	K07673	1.0	0.0	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+5-aminopentanoate	K09943	1.0	0.0	hypothetical protein
+5-aminopentanoate	K12988	-0.7071067811865476	0.11611652351681565	alpha-1,3-rhamnosyltransferase 
+Hypoxanthine	K01187	-0.7071067811865477	0.11611652351681548	alpha-glucosidase 
+Hypoxanthine	K01971	0.7071067811865476	0.11611652351681565	DNA ligase (ATP) 
+Hypoxanthine	K02361	-0.7071067811865476	0.11611652351681565	isochorismate synthase 
+Hypoxanthine	K03495	0.7071067811865476	0.11611652351681565	glucose inhibited division protein A
+Hypoxanthine	K07264	-0.7071067811865477	0.11611652351681548	4-amino-4-deoxy-L-arabinose transferase 
+Hypoxanthine	K07334	-1.0	0.0	proteic killer suppression protein
+Hypoxanthine	K07806	-0.7071067811865477	0.11611652351681548	UDP-4-amino-4-deoxy-L-arabinose-oxoglutarate aminotransferase 
+Hypoxanthine	K08482	0.7071067811865476	0.11611652351681565	circadian clock protein KaiC
+Hypoxanthine	K11740	0.7071067811865477	0.11611652351681548	bacteriophage N4 adsorption protein B
+Hypoxanthine	K11901	-0.7071067811865477	0.11611652351681548	type VI secretion system protein ImpB
+Hypoxanthine	K11916	-1.0	0.0	serine/threonine-protein kinase Stk1 
+N-acetyl-aspartic acid	K00370	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, alpha subunit 
+N-acetyl-aspartic acid	K00371	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, beta subunit 
+N-acetyl-aspartic acid	K00373	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, delta subunit 
+N-acetyl-aspartic acid	K00374	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, gamma subunit 
+N-acetyl-aspartic acid	K01153	0.7071067811865476	0.11611652351681565	type I restriction enzyme, R subunit 
+N-acetyl-aspartic acid	K01187	-0.7071067811865477	0.11611652351681548	alpha-glucosidase 
+N-acetyl-aspartic acid	K02057	0.7071067811865477	0.11611652351681548	simple sugar transport system permease protein
+N-acetyl-aspartic acid	K02305	-0.7071067811865476	0.11611652351681565	nitric oxide reductase, cytochrome c-containing subunit II
+N-acetyl-aspartic acid	K03495	0.7071067811865476	0.11611652351681565	glucose inhibited division protein A
+N-acetyl-aspartic acid	K07025	0.7071067811865476	0.11611652351681565	putative hydrolase of the HAD superfamily
+N-acetyl-aspartic acid	K07264	-0.7071067811865477	0.11611652351681548	4-amino-4-deoxy-L-arabinose transferase 
+N-acetyl-aspartic acid	K07673	-0.7071067811865476	0.11611652351681565	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+N-acetyl-aspartic acid	K07806	-0.7071067811865477	0.11611652351681548	UDP-4-amino-4-deoxy-L-arabinose-oxoglutarate aminotransferase 
+N-acetyl-aspartic acid	K08482	0.7071067811865476	0.11611652351681565	circadian clock protein KaiC
+N-acetyl-aspartic acid	K09943	-0.7071067811865476	0.11611652351681565	hypothetical protein
+N-acetyl-aspartic acid	K11688	0.7071067811865476	0.11611652351681565	C4-dicarboxylate-binding protein DctP
+N-acetyl-aspartic acid	K12988	1.0	0.0	alpha-1,3-rhamnosyltransferase 
+N-acetyl-aspartic acid	K13016	0.7071067811865476	0.11611652351681565	UDP-D-GlcNAcA oxidase 
+N-acetyl-aspartic acid	K13017	0.7071067811865476	0.11611652351681565	UDP-3-keto-D-GlcNAcA aminotransferase 
+N-acetyl-aspartic acid	K13018	0.7071067811865476	0.11611652351681565	UDP-D-GlcNAc3NA acetyltransferase 
+N-acetyl-aspartic acid	K13655	0.7071067811865476	0.11611652351681565	HTH-type transcriptional regulator / antitoxin for MqsR toxin
+N-acetyl-glutamic acid	K02666	1.0	0.0	type IV pilus assembly protein PilQ
+N-acetyl-glutamic acid	K08167	-1.0	0.0	MFS transporter, DHA2 family, methyl viologen resistance protein SmvA
+N-acetyl-glutamic acid	K09709	-1.0	0.0	mesaconyl-C4 CoA hydratase
+N-acetyl-glutamic acid	K11690	-1.0	0.0	C4-dicarboxylate transporter, DctM subunit
+N-acetyl-leucine	K00023	0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+N-acetyl-leucine	K00162	0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+N-acetyl-leucine	K00274	-0.9999999999999999	0.0	monoamine oxidase 
+N-acetyl-leucine	K00836	-0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+N-acetyl-leucine	K01834	0.9999999999999999	0.0	phosphoglycerate mutase 
+N-acetyl-leucine	K02429	0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+N-acetyl-leucine	K03897	0.9999999999999999	0.0	lysine N6-hydroxylase 
+N-acetyl-leucine	K05375	-0.9999999999999999	0.0	MbtH protein
+N-acetyl-leucine	K05685	-0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+N-acetyl-leucine	K06160	-0.9999999999999999	0.0	putative ATP-binding cassette transporter
+N-acetyl-leucine	K06985	-0.9999999999999999	0.0	aspartyl protease family protein
+N-acetyl-leucine	K08160	0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+N-acetyl-leucine	K09815	-0.9999999999999999	0.0	zinc transport system substrate-binding protein
+N-acetyl-leucine	K10531	-0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+N-acetyl-leucine	K11208	-0.9999999999999999	0.0	GST-like protein
+N-acetyl-leucine	K13888	-0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+N-acetyl-leucine	K14155	-0.9999999999999999	0.0	cystathione beta-lyase 
+N-acetylputrescine	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+N-acetylputrescine	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+N-acetylputrescine	K00274	0.9999999999999999	0.0	monoamine oxidase 
+N-acetylputrescine	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+N-acetylputrescine	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+N-acetylputrescine	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+N-acetylputrescine	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+N-acetylputrescine	K05375	0.9999999999999999	0.0	MbtH protein
+N-acetylputrescine	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+N-acetylputrescine	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+N-acetylputrescine	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+N-acetylputrescine	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+N-acetylputrescine	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+N-acetylputrescine	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+N-acetylputrescine	K11208	0.9999999999999999	0.0	GST-like protein
+N-acetylputrescine	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+N-acetylputrescine	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+N-alpha-acetyl-asparagine	K00661	0.7071067811865477	0.11611652351681548	maltose O-acetyltransferase 
+N-alpha-acetyl-asparagine	K01711	0.7071067811865477	0.11611652351681548	GDPmannose 4,6-dehydratase 
+N-alpha-acetyl-asparagine	K02616	-0.7071067811865477	0.11611652351681548	phenylacetic acid degradation operon negative regulatory protein
+N-alpha-acetyl-asparagine	K07184	0.7071067811865477	0.11611652351681548	SH3 domain protein
+N-alpha-acetyl-asparagine	K07334	-0.7071067811865477	0.11611652351681548	proteic killer suppression protein
+N-alpha-acetyl-asparagine	K07403	0.7071067811865477	0.11611652351681548	membrane-bound serine protease (ClpP class)
+N-alpha-acetyl-asparagine	K11916	-0.7071067811865477	0.11611652351681548	serine/threonine-protein kinase Stk1 
+N-alpha-acetyl-lysine	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+N-alpha-acetyl-lysine	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+N-alpha-acetyl-lysine	K00274	0.9999999999999999	0.0	monoamine oxidase 
+N-alpha-acetyl-lysine	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+N-alpha-acetyl-lysine	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+N-alpha-acetyl-lysine	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+N-alpha-acetyl-lysine	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+N-alpha-acetyl-lysine	K05375	0.9999999999999999	0.0	MbtH protein
+N-alpha-acetyl-lysine	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+N-alpha-acetyl-lysine	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+N-alpha-acetyl-lysine	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+N-alpha-acetyl-lysine	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+N-alpha-acetyl-lysine	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+N-alpha-acetyl-lysine	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+N-alpha-acetyl-lysine	K11208	0.9999999999999999	0.0	GST-like protein
+N-alpha-acetyl-lysine	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+N-alpha-acetyl-lysine	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+Xanthine	K01187	1.0	0.0	alpha-glucosidase 
+Xanthine	K01711	-0.7071067811865477	0.11611652351681548	GDPmannose 4,6-dehydratase 
+Xanthine	K02363	0.7071067811865477	0.11611652351681548	enterobactin 2,3-dihydroxybenzoate-AMP ligase / S-dihydroxybenzoyltransferase 
+Xanthine	K03495	-1.0	0.0	glucose inhibited division protein A
+Xanthine	K03760	-0.7071067811865477	0.11611652351681548	phosphoethanolamine transferase
+Xanthine	K07089	0.7071067811865477	0.11611652351681548	
+Xanthine	K07184	-0.7071067811865477	0.11611652351681548	SH3 domain protein
+Xanthine	K07264	1.0	0.0	4-amino-4-deoxy-L-arabinose transferase 
+Xanthine	K07334	0.7071067811865477	0.11611652351681548	proteic killer suppression protein
+Xanthine	K07403	-0.7071067811865477	0.11611652351681548	membrane-bound serine protease (ClpP class)
+Xanthine	K07677	0.7071067811865477	0.11611652351681548	two-component system, NarL family, capsular synthesis sensor histidine kinase RcsC 
+Xanthine	K07806	1.0	0.0	UDP-4-amino-4-deoxy-L-arabinose-oxoglutarate aminotransferase 
+Xanthine	K11916	0.7071067811865477	0.11611652351681548	serine/threonine-protein kinase Stk1 
+Xanthine	K12988	-0.7071067811865477	0.11611652351681548	alpha-1,3-rhamnosyltransferase 
+alpha-aminoadipate	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+alpha-aminoadipate	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+alpha-aminoadipate	K00274	0.9999999999999999	0.0	monoamine oxidase 
+alpha-aminoadipate	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+alpha-aminoadipate	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+alpha-aminoadipate	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+alpha-aminoadipate	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+alpha-aminoadipate	K05375	0.9999999999999999	0.0	MbtH protein
+alpha-aminoadipate	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+alpha-aminoadipate	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+alpha-aminoadipate	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+alpha-aminoadipate	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+alpha-aminoadipate	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+alpha-aminoadipate	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+alpha-aminoadipate	K11208	0.9999999999999999	0.0	GST-like protein
+alpha-aminoadipate	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+alpha-aminoadipate	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+anthranilate	K00370	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, alpha subunit 
+anthranilate	K00371	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, beta subunit 
+anthranilate	K00373	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, delta subunit 
+anthranilate	K00374	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, gamma subunit 
+anthranilate	K00721	-0.7071067811865476	0.11611652351681565	dolichol-phosphate mannosyltransferase 
+anthranilate	K00831	-0.7071067811865477	0.11611652351681548	phosphoserine aminotransferase 
+anthranilate	K01141	1.0	0.0	exodeoxyribonuclease I 
+anthranilate	K01153	0.7071067811865476	0.11611652351681565	type I restriction enzyme, R subunit 
+anthranilate	K01654	0.7071067811865477	0.11611652351681548	N-acetylneuraminate synthase 
+anthranilate	K01706	-0.7071067811865477	0.11611652351681548	glucarate dehydratase 
+anthranilate	K01712	0.7071067811865477	0.11611652351681548	urocanate hydratase 
+anthranilate	K02026	-0.7071067811865476	0.11611652351681565	multiple sugar transport system permease protein
+anthranilate	K02038	-0.7071067811865477	0.11611652351681548	phosphate transport system permease protein
+anthranilate	K02305	-0.7071067811865476	0.11611652351681565	nitric oxide reductase, cytochrome c-containing subunit II
+anthranilate	K02445	-0.7071067811865477	0.11611652351681548	MFS transporter, OPA family, glycerol-3-phosphate transporter
+anthranilate	K02652	-1.0	0.0	type IV pilus assembly protein PilB
+anthranilate	K02668	-0.7071067811865477	0.11611652351681548	two-component system, NtrC family, sensor histidine kinase PilS 
+anthranilate	K06986	-0.7071067811865477	0.11611652351681548	
+anthranilate	K06991	-0.7071067811865477	0.11611652351681548	
+anthranilate	K07025	0.7071067811865476	0.11611652351681565	putative hydrolase of the HAD superfamily
+anthranilate	K07218	-0.7071067811865476	0.11611652351681565	nitrous oxidase accessory protein
+anthranilate	K07230	-1.0	0.0	
+anthranilate	K07491	-0.7071067811865476	0.11611652351681565	putative transposase
+anthranilate	K07673	-0.7071067811865476	0.11611652351681565	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+anthranilate	K08482	0.7071067811865477	0.11611652351681548	circadian clock protein KaiC
+anthranilate	K09943	-0.7071067811865476	0.11611652351681565	hypothetical protein
+anthranilate	K11901	-0.7071067811865477	0.11611652351681548	type VI secretion system protein ImpB
+anthranilate	K14335	-0.7071067811865477	0.11611652351681548	alpha-1,6-mannosyltransferase 
+betaine	K01194	-0.9999999999999999	0.0	alpha,alpha-trehalase 
+betaine	K01531	0.9999999999999999	0.0	Mg2+-importing ATPase 
+betaine	K01579	0.9999999999999999	0.0	aspartate 1-decarboxylase 
+betaine	K01720	0.9999999999999999	0.0	2-methylcitrate dehydratase 
+betaine	K02041	-0.9999999999999999	0.0	phosphonate transport system ATP-binding protein
+betaine	K02042	-0.9999999999999999	0.0	phosphonate transport system permease protein
+betaine	K02044	-0.9999999999999999	0.0	phosphonate transport system substrate-binding protein
+betaine	K02441	0.9999999999999999	0.0	GlpG protein
+betaine	K03224	-0.9999999999999999	0.0	ATP synthase in type III secretion protein SctN 
+betaine	K03502	-0.9999999999999999	0.0	DNA polymerase V
+betaine	K03635	0.9999999999999999	0.0	molybdopterin synthase catalytic subunit 
+betaine	K05597	0.9999999999999999	0.0	glutamin-(asparagin-)ase 
+betaine	K05789	-0.9999999999999999	0.0	chain length determinant protein (polysaccharide antigen chain regulator)
+betaine	K06159	-0.9999999999999999	0.0	putative ATP-binding cassette transporter
+betaine	K06950	0.9999999999999999	0.0	uncharacterized protein
+betaine	K07391	0.9999999999999999	0.0	magnesium chelatase family protein
+betaine	K08978	0.9999999999999999	0.0	putative membrane protein
+betaine	K11177	-0.9999999999999999	0.0	xanthine dehydrogenase YagR molybdenum-binding subunit 
+betaine	K11178	-0.9999999999999999	0.0	xanthine dehydrogenase YagS FAD-binding subunit 
+betaine	K11811	0.9999999999999999	0.0	arsenical resistance protein ArsH
+betaine	K12251	0.9999999999999999	0.0	N-carbamoylputrescine amidase 
+betaine	K13255	-0.9999999999999999	0.0	ferric iron reductase protein FhuF
+biotin	K01141	0.7071067811865477	0.11611652351681548	exodeoxyribonuclease I 
+biotin	K01654	1.0	0.0	N-acetylneuraminate synthase 
+biotin	K01711	-0.7071067811865477	0.11611652351681548	GDPmannose 4,6-dehydratase 
+biotin	K02026	-1.0	0.0	multiple sugar transport system permease protein
+biotin	K02616	0.7071067811865477	0.11611652351681548	phenylacetic acid degradation operon negative regulatory protein
+biotin	K02652	-0.7071067811865477	0.11611652351681548	type IV pilus assembly protein PilB
+biotin	K07184	-0.7071067811865477	0.11611652351681548	SH3 domain protein
+biotin	K07230	-0.7071067811865477	0.11611652351681548	
+biotin	K07403	-0.7071067811865477	0.11611652351681548	membrane-bound serine protease (ClpP class)
+carnitine	K00661	0.7071067811865476	0.11611652351681565	maltose O-acetyltransferase 
+carnitine	K01003	-0.9999999999999999	0.0	carboxyvinyl-carboxyphosphonate phosphorylmutase 
+carnitine	K01611	0.7071067811865476	0.11611652351681565	S-adenosylmethionine decarboxylase 
+carnitine	K01711	0.7071067811865476	0.11611652351681565	GDPmannose 4,6-dehydratase 
+carnitine	K01761	-0.7071067811865476	0.11611652351681565	methionine-gamma-lyase 
+carnitine	K03427	0.7071067811865476	0.11611652351681565	type I restriction enzyme M protein 
+carnitine	K03606	0.7071067811865476	0.11611652351681565	putative colanic acid biosysnthesis UDP-glucose lipid carrier transferase
+carnitine	K04047	-0.9999999999999999	0.0	starvation-inducible DNA-binding protein
+carnitine	K07154	-0.7071067811865476	0.11611652351681565	
+carnitine	K07184	0.7071067811865476	0.11611652351681565	SH3 domain protein
+carnitine	K07403	0.7071067811865476	0.11611652351681565	membrane-bound serine protease (ClpP class)
+carnitine	K13747	-0.7071067811865476	0.11611652351681565	carboxynorspermidine decarboxylase 
+carnosine	K01141	0.7071067811865477	0.11611652351681548	exodeoxyribonuclease I 
+carnosine	K01611	-0.7071067811865476	0.11611652351681565	S-adenosylmethionine decarboxylase 
+carnosine	K01761	0.7071067811865476	0.11611652351681565	methionine-gamma-lyase 
+carnosine	K02652	-0.7071067811865477	0.11611652351681548	type IV pilus assembly protein PilB
+carnosine	K03606	-0.7071067811865476	0.11611652351681565	putative colanic acid biosysnthesis UDP-glucose lipid carrier transferase
+carnosine	K07154	0.7071067811865476	0.11611652351681565	
+carnosine	K07230	-0.7071067811865477	0.11611652351681548	
+carnosine	K07334	-0.7071067811865476	0.11611652351681565	proteic killer suppression protein
+carnosine	K08482	1.0	0.0	circadian clock protein KaiC
+carnosine	K11916	-0.7071067811865476	0.11611652351681565	serine/threonine-protein kinase Stk1 
+carnosine	K12988	0.7071067811865476	0.11611652351681565	alpha-1,3-rhamnosyltransferase 
+carnosine	K13747	0.7071067811865476	0.11611652351681565	carboxynorspermidine decarboxylase 
+cis-4-hydroxyproline	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+cis-4-hydroxyproline	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+cis-4-hydroxyproline	K00274	0.9999999999999999	0.0	monoamine oxidase 
+cis-4-hydroxyproline	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+cis-4-hydroxyproline	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+cis-4-hydroxyproline	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+cis-4-hydroxyproline	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+cis-4-hydroxyproline	K05375	0.9999999999999999	0.0	MbtH protein
+cis-4-hydroxyproline	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+cis-4-hydroxyproline	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+cis-4-hydroxyproline	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+cis-4-hydroxyproline	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+cis-4-hydroxyproline	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+cis-4-hydroxyproline	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+cis-4-hydroxyproline	K11208	0.9999999999999999	0.0	GST-like protein
+cis-4-hydroxyproline	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+cis-4-hydroxyproline	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+citrulline	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+citrulline	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+citrulline	K00274	0.9999999999999999	0.0	monoamine oxidase 
+citrulline	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+citrulline	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+citrulline	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+citrulline	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+citrulline	K05375	0.9999999999999999	0.0	MbtH protein
+citrulline	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+citrulline	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+citrulline	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+citrulline	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+citrulline	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+citrulline	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+citrulline	K11208	0.9999999999999999	0.0	GST-like protein
+citrulline	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+citrulline	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+coeluting isomers (arabitol, ribitol, xilitol)	K01187	-1.0	0.0	alpha-glucosidase 
+coeluting isomers (arabitol, ribitol, xilitol)	K01711	0.7071067811865476	0.11611652351681565	GDPmannose 4,6-dehydratase 
+coeluting isomers (arabitol, ribitol, xilitol)	K02363	-0.7071067811865476	0.11611652351681565	enterobactin 2,3-dihydroxybenzoate-AMP ligase / S-dihydroxybenzoyltransferase 
+coeluting isomers (arabitol, ribitol, xilitol)	K03495	0.9999999999999997	2.958228394578794e-31	glucose inhibited division protein A
+coeluting isomers (arabitol, ribitol, xilitol)	K03760	0.7071067811865476	0.11611652351681565	phosphoethanolamine transferase
+coeluting isomers (arabitol, ribitol, xilitol)	K07089	-0.7071067811865476	0.11611652351681565	
+coeluting isomers (arabitol, ribitol, xilitol)	K07184	0.7071067811865476	0.11611652351681565	SH3 domain protein
+coeluting isomers (arabitol, ribitol, xilitol)	K07264	-1.0	0.0	4-amino-4-deoxy-L-arabinose transferase 
+coeluting isomers (arabitol, ribitol, xilitol)	K07334	-0.7071067811865476	0.11611652351681565	proteic killer suppression protein
+coeluting isomers (arabitol, ribitol, xilitol)	K07403	0.7071067811865476	0.11611652351681565	membrane-bound serine protease (ClpP class)
+coeluting isomers (arabitol, ribitol, xilitol)	K07677	-0.7071067811865476	0.11611652351681565	two-component system, NarL family, capsular synthesis sensor histidine kinase RcsC 
+coeluting isomers (arabitol, ribitol, xilitol)	K07806	-1.0	0.0	UDP-4-amino-4-deoxy-L-arabinose-oxoglutarate aminotransferase 
+coeluting isomers (arabitol, ribitol, xilitol)	K11916	-0.7071067811865476	0.11611652351681565	serine/threonine-protein kinase Stk1 
+coeluting isomers (arabitol, ribitol, xilitol)	K12988	0.7071067811865476	0.11611652351681565	alpha-1,3-rhamnosyltransferase 
+creatinine	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+creatinine	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+creatinine	K00274	0.9999999999999999	0.0	monoamine oxidase 
+creatinine	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+creatinine	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+creatinine	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+creatinine	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+creatinine	K05375	0.9999999999999999	0.0	MbtH protein
+creatinine	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+creatinine	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+creatinine	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+creatinine	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+creatinine	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+creatinine	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+creatinine	K11208	0.9999999999999999	0.0	GST-like protein
+creatinine	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+creatinine	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+cytidine 2',3'-cyclic monophosphate	K01141	0.7071067811865477	0.11611652351681548	exodeoxyribonuclease I 
+cytidine 2',3'-cyclic monophosphate	K01654	1.0	0.0	N-acetylneuraminate synthase 
+cytidine 2',3'-cyclic monophosphate	K01711	-0.7071067811865477	0.11611652351681548	GDPmannose 4,6-dehydratase 
+cytidine 2',3'-cyclic monophosphate	K02026	-1.0	0.0	multiple sugar transport system permease protein
+cytidine 2',3'-cyclic monophosphate	K02616	0.7071067811865477	0.11611652351681548	phenylacetic acid degradation operon negative regulatory protein
+cytidine 2',3'-cyclic monophosphate	K02652	-0.7071067811865477	0.11611652351681548	type IV pilus assembly protein PilB
+cytidine 2',3'-cyclic monophosphate	K07184	-0.7071067811865477	0.11611652351681548	SH3 domain protein
+cytidine 2',3'-cyclic monophosphate	K07230	-0.7071067811865477	0.11611652351681548	
+cytidine 2',3'-cyclic monophosphate	K07403	-0.7071067811865477	0.11611652351681548	membrane-bound serine protease (ClpP class)
+cytidine 5?-monophosphate	K00370	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, alpha subunit 
+cytidine 5?-monophosphate	K00371	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, beta subunit 
+cytidine 5?-monophosphate	K00373	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, delta subunit 
+cytidine 5?-monophosphate	K00374	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, gamma subunit 
+cytidine 5?-monophosphate	K00721	-0.7071067811865476	0.11611652351681565	dolichol-phosphate mannosyltransferase 
+cytidine 5?-monophosphate	K00831	-0.7071067811865477	0.11611652351681548	phosphoserine aminotransferase 
+cytidine 5?-monophosphate	K01141	1.0	0.0	exodeoxyribonuclease I 
+cytidine 5?-monophosphate	K01153	0.7071067811865476	0.11611652351681565	type I restriction enzyme, R subunit 
+cytidine 5?-monophosphate	K01654	0.7071067811865477	0.11611652351681548	N-acetylneuraminate synthase 
+cytidine 5?-monophosphate	K01706	-0.7071067811865477	0.11611652351681548	glucarate dehydratase 
+cytidine 5?-monophosphate	K01712	0.7071067811865477	0.11611652351681548	urocanate hydratase 
+cytidine 5?-monophosphate	K02026	-0.7071067811865476	0.11611652351681565	multiple sugar transport system permease protein
+cytidine 5?-monophosphate	K02038	-0.7071067811865477	0.11611652351681548	phosphate transport system permease protein
+cytidine 5?-monophosphate	K02305	-0.7071067811865476	0.11611652351681565	nitric oxide reductase, cytochrome c-containing subunit II
+cytidine 5?-monophosphate	K02445	-0.7071067811865477	0.11611652351681548	MFS transporter, OPA family, glycerol-3-phosphate transporter
+cytidine 5?-monophosphate	K02652	-1.0	0.0	type IV pilus assembly protein PilB
+cytidine 5?-monophosphate	K02668	-0.7071067811865477	0.11611652351681548	two-component system, NtrC family, sensor histidine kinase PilS 
+cytidine 5?-monophosphate	K06986	-0.7071067811865477	0.11611652351681548	
+cytidine 5?-monophosphate	K06991	-0.7071067811865477	0.11611652351681548	
+cytidine 5?-monophosphate	K07025	0.7071067811865476	0.11611652351681565	putative hydrolase of the HAD superfamily
+cytidine 5?-monophosphate	K07218	-0.7071067811865476	0.11611652351681565	nitrous oxidase accessory protein
+cytidine 5?-monophosphate	K07230	-1.0	0.0	
+cytidine 5?-monophosphate	K07491	-0.7071067811865476	0.11611652351681565	putative transposase
+cytidine 5?-monophosphate	K07673	-0.7071067811865476	0.11611652351681565	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+cytidine 5?-monophosphate	K08482	0.7071067811865477	0.11611652351681548	circadian clock protein KaiC
+cytidine 5?-monophosphate	K09943	-0.7071067811865476	0.11611652351681565	hypothetical protein
+cytidine 5?-monophosphate	K11901	-0.7071067811865477	0.11611652351681548	type VI secretion system protein ImpB
+cytidine 5?-monophosphate	K14335	-0.7071067811865477	0.11611652351681548	alpha-1,6-mannosyltransferase 
+formyl-methionyl peptide	K00428	-1.0	0.0	cytochrome c peroxidase 
+formyl-methionyl peptide	K01028	-1.0	0.0	3-oxoacid CoA-transferase subunit A 
+formyl-methionyl peptide	K01029	-1.0	0.0	3-oxoacid CoA-transferase subunit B 
+formyl-methionyl peptide	K01840	1.0	0.0	phosphomannomutase 
+formyl-methionyl peptide	K02228	-1.0	0.0	precorrin-6A synthase 
+formyl-methionyl peptide	K03684	1.0	0.0	ribonuclease D 
+formyl-methionyl peptide	K05559	-1.0	0.0	multicomponent K+:H+ antiporter subunit A
+formyl-methionyl peptide	K05561	-1.0	0.0	multicomponent K+:H+ antiporter subunit D
+formyl-methionyl peptide	K05562	-1.0	0.0	multicomponent K+:H+ antiporter subunit E
+formyl-methionyl peptide	K05563	-1.0	0.0	multicomponent K+:H+ antiporter subunit F
+formyl-methionyl peptide	K05564	-1.0	0.0	multicomponent K+:H+ antiporter subunit G
+formyl-methionyl peptide	K05946	1.0	0.0	N-acetylglucosaminyldiphosphoundecaprenol 
+formyl-methionyl peptide	K07222	-1.0	0.0	putative flavoprotein involved in K+ transport
+formyl-methionyl peptide	K07657	-1.0	0.0	two-component system, OmpR family, phosphate regulon response regulator PhoB
+formyl-methionyl peptide	K09930	-1.0	0.0	hypothetical protein
+formyl-methionyl peptide	K11891	-1.0	0.0	type VI secretion system protein ImpL
+formyl-methionyl peptide	K11892	-1.0	0.0	type VI secretion system protein ImpK
+formyl-methionyl peptide	K11893	-1.0	0.0	type VI secretion system protein ImpJ
+formyl-methionyl peptide	K11894	-1.0	0.0	type VI secretion system protein ImpI
+formyl-methionyl peptide	K11895	-1.0	0.0	type VI secretion system protein ImpH
+formyl-methionyl peptide	K11896	-1.0	0.0	type VI secretion system protein ImpG
+formyl-methionyl peptide	K11900	-1.0	0.0	type VI secretion system protein ImpC
+formyl-methionyl peptide	K11903	-1.0	0.0	type VI secretion system secreted protein Hcp
+formyl-methionyl peptide	K12410	-1.0	0.0	NAD-dependent deacetylase 
+glutamine	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+glutamine	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+glutamine	K00274	0.9999999999999999	0.0	monoamine oxidase 
+glutamine	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+glutamine	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+glutamine	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+glutamine	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+glutamine	K05375	0.9999999999999999	0.0	MbtH protein
+glutamine	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+glutamine	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+glutamine	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+glutamine	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+glutamine	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+glutamine	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+glutamine	K11208	0.9999999999999999	0.0	GST-like protein
+glutamine	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+glutamine	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+guanosine 3',5'-cyclic monophosphate	K00370	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, alpha subunit 
+guanosine 3',5'-cyclic monophosphate	K00371	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, beta subunit 
+guanosine 3',5'-cyclic monophosphate	K00373	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, delta subunit 
+guanosine 3',5'-cyclic monophosphate	K00374	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, gamma subunit 
+guanosine 3',5'-cyclic monophosphate	K00721	-0.7071067811865476	0.11611652351681565	dolichol-phosphate mannosyltransferase 
+guanosine 3',5'-cyclic monophosphate	K00831	-0.7071067811865477	0.11611652351681548	phosphoserine aminotransferase 
+guanosine 3',5'-cyclic monophosphate	K01141	1.0	0.0	exodeoxyribonuclease I 
+guanosine 3',5'-cyclic monophosphate	K01153	0.7071067811865476	0.11611652351681565	type I restriction enzyme, R subunit 
+guanosine 3',5'-cyclic monophosphate	K01654	0.7071067811865477	0.11611652351681548	N-acetylneuraminate synthase 
+guanosine 3',5'-cyclic monophosphate	K01706	-0.7071067811865477	0.11611652351681548	glucarate dehydratase 
+guanosine 3',5'-cyclic monophosphate	K01712	0.7071067811865477	0.11611652351681548	urocanate hydratase 
+guanosine 3',5'-cyclic monophosphate	K02026	-0.7071067811865476	0.11611652351681565	multiple sugar transport system permease protein
+guanosine 3',5'-cyclic monophosphate	K02038	-0.7071067811865477	0.11611652351681548	phosphate transport system permease protein
+guanosine 3',5'-cyclic monophosphate	K02305	-0.7071067811865476	0.11611652351681565	nitric oxide reductase, cytochrome c-containing subunit II
+guanosine 3',5'-cyclic monophosphate	K02445	-0.7071067811865477	0.11611652351681548	MFS transporter, OPA family, glycerol-3-phosphate transporter
+guanosine 3',5'-cyclic monophosphate	K02652	-1.0	0.0	type IV pilus assembly protein PilB
+guanosine 3',5'-cyclic monophosphate	K02668	-0.7071067811865477	0.11611652351681548	two-component system, NtrC family, sensor histidine kinase PilS 
+guanosine 3',5'-cyclic monophosphate	K06986	-0.7071067811865477	0.11611652351681548	
+guanosine 3',5'-cyclic monophosphate	K06991	-0.7071067811865477	0.11611652351681548	
+guanosine 3',5'-cyclic monophosphate	K07025	0.7071067811865476	0.11611652351681565	putative hydrolase of the HAD superfamily
+guanosine 3',5'-cyclic monophosphate	K07218	-0.7071067811865476	0.11611652351681565	nitrous oxidase accessory protein
+guanosine 3',5'-cyclic monophosphate	K07230	-1.0	0.0	
+guanosine 3',5'-cyclic monophosphate	K07491	-0.7071067811865476	0.11611652351681565	putative transposase
+guanosine 3',5'-cyclic monophosphate	K07673	-0.7071067811865476	0.11611652351681565	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+guanosine 3',5'-cyclic monophosphate	K08482	0.7071067811865477	0.11611652351681548	circadian clock protein KaiC
+guanosine 3',5'-cyclic monophosphate	K09943	-0.7071067811865476	0.11611652351681565	hypothetical protein
+guanosine 3',5'-cyclic monophosphate	K11901	-0.7071067811865477	0.11611652351681548	type VI secretion system protein ImpB
+guanosine 3',5'-cyclic monophosphate	K14335	-0.7071067811865477	0.11611652351681548	alpha-1,6-mannosyltransferase 
+homogentisate	K01611	-0.7071067811865476	0.11611652351681565	S-adenosylmethionine decarboxylase 
+homogentisate	K01761	0.7071067811865476	0.11611652351681565	methionine-gamma-lyase 
+homogentisate	K01971	0.9999999999999998	7.395570986446986e-32	DNA ligase (ATP) 
+homogentisate	K02616	-0.7071067811865476	0.11611652351681565	phenylacetic acid degradation operon negative regulatory protein
+homogentisate	K03427	-0.7071067811865476	0.11611652351681565	type I restriction enzyme M protein 
+homogentisate	K03606	-0.7071067811865476	0.11611652351681565	putative colanic acid biosysnthesis UDP-glucose lipid carrier transferase
+homogentisate	K07154	0.7071067811865476	0.11611652351681565	
+homogentisate	K07334	-0.7071067811865476	0.11611652351681565	proteic killer suppression protein
+homogentisate	K11916	-0.7071067811865476	0.11611652351681565	serine/threonine-protein kinase Stk1 
+homogentisate	K13747	0.7071067811865476	0.11611652351681565	carboxynorspermidine decarboxylase 
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K00661	0.7071067811865476	0.11611652351681565	maltose O-acetyltransferase 
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K01141	0.7071067811865476	0.11611652351681565	exodeoxyribonuclease I 
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K02652	-0.7071067811865476	0.11611652351681565	type IV pilus assembly protein PilB
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K07230	-0.7071067811865476	0.11611652351681565	
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K07334	-0.7071067811865476	0.11611652351681565	proteic killer suppression protein
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K11901	-0.9999999999999999	0.0	type VI secretion system protein ImpB
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K11916	-0.7071067811865476	0.11611652351681565	serine/threonine-protein kinase Stk1 
+isoleucine	K01141	0.7071067811865477	0.11611652351681548	exodeoxyribonuclease I 
+isoleucine	K01611	-0.7071067811865476	0.11611652351681565	S-adenosylmethionine decarboxylase 
+isoleucine	K01761	0.7071067811865476	0.11611652351681565	methionine-gamma-lyase 
+isoleucine	K02652	-0.7071067811865477	0.11611652351681548	type IV pilus assembly protein PilB
+isoleucine	K03606	-0.7071067811865476	0.11611652351681565	putative colanic acid biosysnthesis UDP-glucose lipid carrier transferase
+isoleucine	K07154	0.7071067811865476	0.11611652351681565	
+isoleucine	K07230	-0.7071067811865477	0.11611652351681548	
+isoleucine	K07334	-0.7071067811865476	0.11611652351681565	proteic killer suppression protein
+isoleucine	K08482	1.0	0.0	circadian clock protein KaiC
+isoleucine	K11916	-0.7071067811865476	0.11611652351681565	serine/threonine-protein kinase Stk1 
+isoleucine	K12988	0.7071067811865476	0.11611652351681565	alpha-1,3-rhamnosyltransferase 
+isoleucine	K13747	0.7071067811865476	0.11611652351681565	carboxynorspermidine decarboxylase 
+lactate	K00370	0.7071067811865476	0.11611652351681565	nitrate reductase 1, alpha subunit 
+lactate	K00371	0.7071067811865476	0.11611652351681565	nitrate reductase 1, beta subunit 
+lactate	K00373	0.7071067811865476	0.11611652351681565	nitrate reductase 1, delta subunit 
+lactate	K00374	0.7071067811865476	0.11611652351681565	nitrate reductase 1, gamma subunit 
+lactate	K01153	-0.7071067811865476	0.11611652351681565	type I restriction enzyme, R subunit 
+lactate	K01179	-0.7071067811865476	0.11611652351681565	endoglucanase 
+lactate	K01654	-0.7071067811865477	0.11611652351681548	N-acetylneuraminate synthase 
+lactate	K01971	0.7071067811865476	0.11611652351681565	DNA ligase (ATP) 
+lactate	K02026	0.7071067811865476	0.11611652351681565	multiple sugar transport system permease protein
+lactate	K02057	-0.7071067811865477	0.11611652351681548	simple sugar transport system permease protein
+lactate	K02305	0.7071067811865476	0.11611652351681565	nitric oxide reductase, cytochrome c-containing subunit II
+lactate	K02472	-0.7071067811865476	0.11611652351681565	UDP-N-acetyl-D-mannosaminuronic acid dehydrogenase 
+lactate	K02567	-0.7071067811865476	0.11611652351681565	periplasmic nitrate reductase NapA 
+lactate	K02569	-0.7071067811865476	0.11611652351681565	cytochrome c-type protein NapC
+lactate	K02570	-0.7071067811865476	0.11611652351681565	periplasmic nitrate reductase NapD
+lactate	K02616	-1.0	0.0	phenylacetic acid degradation operon negative regulatory protein
+lactate	K07025	-0.7071067811865476	0.11611652351681565	putative hydrolase of the HAD superfamily
+lactate	K07673	0.7071067811865476	0.11611652351681565	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+lactate	K07787	-0.7071067811865476	0.11611652351681565	Cu(I)/Ag(I) efflux system membrane protein CusA
+lactate	K07798	-0.7071067811865476	0.11611652351681565	Cu(I)/Ag(I) efflux system membrane protein CusB
+lactate	K07810	-0.7071067811865476	0.11611652351681565	Cu(I)/Ag(I) efflux system periplasmic protein CusF
+lactate	K09943	0.7071067811865476	0.11611652351681565	hypothetical protein
+lactate	K11890	0.7071067811865477	0.11611652351681548	type VI secretion system protein ImpM
+lactate	K11931	0.7071067811865477	0.11611652351681548	biofilm PGA synthesis lipoprotein PgaB 
+lactate	K11935	0.7071067811865477	0.11611652351681548	biofilm PGA synthesis protein PgaA
+lactate	K11936	0.7071067811865477	0.11611652351681548	biofilm PGA synthesis N-glycosyltransferase PgaC 
+lactate	K11937	0.7071067811865477	0.11611652351681548	biofilm PGA synthesis protein PgaD
+lactate	K13926	0.7071067811865477	0.11611652351681548	ribosome-dependent ATPase
+leucine/norleucine	K00355	0.9999999999999999	0.0	NAD(P)H dehydrogenase (quinone) 
+leucine/norleucine	K03181	0.9999999999999999	0.0	chorismate--pyruvate lyase 
+leucine/norleucine	K06199	0.9999999999999999	0.0	CrcB protein
+leucine/norleucine	K06214	-0.9999999999999999	0.0	curli production assembly/transport component CsgG
+leucine/norleucine	K06917	0.9999999999999999	0.0	tRNA 2-selenouridine synthase 
+leucine/norleucine	K09690	0.9999999999999999	0.0	lipopolysaccharide transport system permease protein
+leucine/norleucine	K09691	0.9999999999999999	0.0	lipopolysaccharide transport system ATP-binding protein
+lumichrome	K01179	0.9999999999999997	2.958228394578794e-31	endoglucanase 
+lumichrome	K01611	0.7071067811865476	0.11611652351681565	S-adenosylmethionine decarboxylase 
+lumichrome	K01761	-0.7071067811865476	0.11611652351681565	methionine-gamma-lyase 
+lumichrome	K02363	-0.7071067811865476	0.11611652351681565	enterobactin 2,3-dihydroxybenzoate-AMP ligase / S-dihydroxybenzoyltransferase 
+lumichrome	K02472	0.9999999999999997	2.958228394578794e-31	UDP-N-acetyl-D-mannosaminuronic acid dehydrogenase 
+lumichrome	K02567	0.9999999999999997	2.958228394578794e-31	periplasmic nitrate reductase NapA 
+lumichrome	K02569	0.9999999999999997	2.958228394578794e-31	cytochrome c-type protein NapC
+lumichrome	K02570	0.9999999999999997	2.958228394578794e-31	periplasmic nitrate reductase NapD
+lumichrome	K02616	0.7071067811865476	0.11611652351681565	phenylacetic acid degradation operon negative regulatory protein
+lumichrome	K03606	0.7071067811865476	0.11611652351681565	putative colanic acid biosysnthesis UDP-glucose lipid carrier transferase
+lumichrome	K03760	0.7071067811865476	0.11611652351681565	phosphoethanolamine transferase
+lumichrome	K07089	-0.7071067811865476	0.11611652351681565	
+lumichrome	K07154	-0.7071067811865476	0.11611652351681565	
+lumichrome	K07677	-0.7071067811865476	0.11611652351681565	two-component system, NarL family, capsular synthesis sensor histidine kinase RcsC 
+lumichrome	K07787	0.9999999999999997	2.958228394578794e-31	Cu(I)/Ag(I) efflux system membrane protein CusA
+lumichrome	K07798	0.9999999999999997	2.958228394578794e-31	Cu(I)/Ag(I) efflux system membrane protein CusB
+lumichrome	K07810	0.9999999999999997	2.958228394578794e-31	Cu(I)/Ag(I) efflux system periplasmic protein CusF
+lumichrome	K11890	-0.9999999999999999	0.0	type VI secretion system protein ImpM
+lumichrome	K11931	-0.9999999999999999	0.0	biofilm PGA synthesis lipoprotein PgaB 
+lumichrome	K11935	-0.9999999999999999	0.0	biofilm PGA synthesis protein PgaA
+lumichrome	K11936	-0.9999999999999999	0.0	biofilm PGA synthesis N-glycosyltransferase PgaC 
+lumichrome	K11937	-0.9999999999999999	0.0	biofilm PGA synthesis protein PgaD
+lumichrome	K13747	-0.7071067811865476	0.11611652351681565	carboxynorspermidine decarboxylase 
+lumichrome	K13926	-0.9999999999999999	0.0	ribosome-dependent ATPase
+lysine	K00831	1.0	0.0	phosphoserine aminotransferase 
+lysine	K01141	-0.7071067811865477	0.11611652351681548	exodeoxyribonuclease I 
+lysine	K01611	0.7071067811865477	0.11611652351681548	S-adenosylmethionine decarboxylase 
+lysine	K01706	1.0	0.0	glucarate dehydratase 
+lysine	K01711	0.7071067811865477	0.11611652351681548	GDPmannose 4,6-dehydratase 
+lysine	K01761	-0.7071067811865477	0.11611652351681548	methionine-gamma-lyase 
+lysine	K02038	1.0	0.0	phosphate transport system permease protein
+lysine	K02363	-0.7071067811865477	0.11611652351681548	enterobactin 2,3-dihydroxybenzoate-AMP ligase / S-dihydroxybenzoyltransferase 
+lysine	K02445	1.0	0.0	MFS transporter, OPA family, glycerol-3-phosphate transporter
+lysine	K02652	0.7071067811865477	0.11611652351681548	type IV pilus assembly protein PilB
+lysine	K02668	1.0	0.0	two-component system, NtrC family, sensor histidine kinase PilS 
+lysine	K03606	0.7071067811865477	0.11611652351681548	putative colanic acid biosysnthesis UDP-glucose lipid carrier transferase
+lysine	K03760	0.7071067811865477	0.11611652351681548	phosphoethanolamine transferase
+lysine	K06986	1.0	0.0	
+lysine	K06991	1.0	0.0	
+lysine	K07089	-0.7071067811865477	0.11611652351681548	
+lysine	K07154	-0.7071067811865477	0.11611652351681548	
+lysine	K07184	0.7071067811865477	0.11611652351681548	SH3 domain protein
+lysine	K07230	0.7071067811865477	0.11611652351681548	
+lysine	K07403	0.7071067811865477	0.11611652351681548	membrane-bound serine protease (ClpP class)
+lysine	K07677	-0.7071067811865477	0.11611652351681548	two-component system, NarL family, capsular synthesis sensor histidine kinase RcsC 
+lysine	K13747	-0.7071067811865477	0.11611652351681548	carboxynorspermidine decarboxylase 
+lysine	K14335	1.0	0.0	alpha-1,6-mannosyltransferase 
+maleic acid	K00355	0.9999999999999999	0.0	NAD(P)H dehydrogenase (quinone) 
+maleic acid	K03181	0.9999999999999999	0.0	chorismate--pyruvate lyase 
+maleic acid	K06199	0.9999999999999999	0.0	CrcB protein
+maleic acid	K06214	-0.9999999999999999	0.0	curli production assembly/transport component CsgG
+maleic acid	K06917	0.9999999999999999	0.0	tRNA 2-selenouridine synthase 
+maleic acid	K09690	0.9999999999999999	0.0	lipopolysaccharide transport system permease protein
+maleic acid	K09691	0.9999999999999999	0.0	lipopolysaccharide transport system ATP-binding protein
+methionine	K01141	0.7071067811865477	0.11611652351681548	exodeoxyribonuclease I 
+methionine	K01611	-0.7071067811865476	0.11611652351681565	S-adenosylmethionine decarboxylase 
+methionine	K01761	0.7071067811865476	0.11611652351681565	methionine-gamma-lyase 
+methionine	K02652	-0.7071067811865477	0.11611652351681548	type IV pilus assembly protein PilB
+methionine	K03606	-0.7071067811865476	0.11611652351681565	putative colanic acid biosysnthesis UDP-glucose lipid carrier transferase
+methionine	K07154	0.7071067811865476	0.11611652351681565	
+methionine	K07230	-0.7071067811865477	0.11611652351681548	
+methionine	K07334	-0.7071067811865476	0.11611652351681565	proteic killer suppression protein
+methionine	K08482	1.0	0.0	circadian clock protein KaiC
+methionine	K11916	-0.7071067811865476	0.11611652351681565	serine/threonine-protein kinase Stk1 
+methionine	K12988	0.7071067811865476	0.11611652351681565	alpha-1,3-rhamnosyltransferase 
+methionine	K13747	0.7071067811865476	0.11611652351681565	carboxynorspermidine decarboxylase 
+myo-inositol	K00370	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, alpha subunit 
+myo-inositol	K00371	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, beta subunit 
+myo-inositol	K00373	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, delta subunit 
+myo-inositol	K00374	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, gamma subunit 
+myo-inositol	K00721	-0.7071067811865476	0.11611652351681565	dolichol-phosphate mannosyltransferase 
+myo-inositol	K00831	-0.7071067811865477	0.11611652351681548	phosphoserine aminotransferase 
+myo-inositol	K01141	1.0	0.0	exodeoxyribonuclease I 
+myo-inositol	K01153	0.7071067811865476	0.11611652351681565	type I restriction enzyme, R subunit 
+myo-inositol	K01654	0.7071067811865477	0.11611652351681548	N-acetylneuraminate synthase 
+myo-inositol	K01706	-0.7071067811865477	0.11611652351681548	glucarate dehydratase 
+myo-inositol	K01712	0.7071067811865477	0.11611652351681548	urocanate hydratase 
+myo-inositol	K02026	-0.7071067811865476	0.11611652351681565	multiple sugar transport system permease protein
+myo-inositol	K02038	-0.7071067811865477	0.11611652351681548	phosphate transport system permease protein
+myo-inositol	K02305	-0.7071067811865476	0.11611652351681565	nitric oxide reductase, cytochrome c-containing subunit II
+myo-inositol	K02445	-0.7071067811865477	0.11611652351681548	MFS transporter, OPA family, glycerol-3-phosphate transporter
+myo-inositol	K02652	-1.0	0.0	type IV pilus assembly protein PilB
+myo-inositol	K02668	-0.7071067811865477	0.11611652351681548	two-component system, NtrC family, sensor histidine kinase PilS 
+myo-inositol	K06986	-0.7071067811865477	0.11611652351681548	
+myo-inositol	K06991	-0.7071067811865477	0.11611652351681548	
+myo-inositol	K07025	0.7071067811865476	0.11611652351681565	putative hydrolase of the HAD superfamily
+myo-inositol	K07218	-0.7071067811865476	0.11611652351681565	nitrous oxidase accessory protein
+myo-inositol	K07230	-1.0	0.0	
+myo-inositol	K07491	-0.7071067811865476	0.11611652351681565	putative transposase
+myo-inositol	K07673	-0.7071067811865476	0.11611652351681565	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+myo-inositol	K08482	0.7071067811865477	0.11611652351681548	circadian clock protein KaiC
+myo-inositol	K09943	-0.7071067811865476	0.11611652351681565	hypothetical protein
+myo-inositol	K11901	-0.7071067811865477	0.11611652351681548	type VI secretion system protein ImpB
+myo-inositol	K14335	-0.7071067811865477	0.11611652351681548	alpha-1,6-mannosyltransferase 
+myristic acid	K00372	-1.0	0.0	nitrate reductase catalytic subunit 
+myristic acid	K02025	-1.0	0.0	multiple sugar transport system permease protein
+myristic acid	K02674	-1.0	0.0	type IV pilus assembly protein PilY1
+myristic acid	K02769	-1.0	0.0	PTS system, fructose-specific IIB component 
+myristic acid	K02770	-1.0	0.0	PTS system, fructose-specific IIC component
+myristic acid	K07183	-1.0	0.0	response regulator NasT
+myristic acid	K09969	-1.0	0.0	general L-amino acid transport system substrate-binding protein
+nicotinate	K00355	0.9999999999999999	0.0	NAD(P)H dehydrogenase (quinone) 
+nicotinate	K03181	0.9999999999999999	0.0	chorismate--pyruvate lyase 
+nicotinate	K06199	0.9999999999999999	0.0	CrcB protein
+nicotinate	K06214	-0.9999999999999999	0.0	curli production assembly/transport component CsgG
+nicotinate	K06917	0.9999999999999999	0.0	tRNA 2-selenouridine synthase 
+nicotinate	K09690	0.9999999999999999	0.0	lipopolysaccharide transport system permease protein
+nicotinate	K09691	0.9999999999999999	0.0	lipopolysaccharide transport system ATP-binding protein
+ornithine	K00661	0.7071067811865476	0.11611652351681565	maltose O-acetyltransferase 
+ornithine	K01141	0.7071067811865476	0.11611652351681565	exodeoxyribonuclease I 
+ornithine	K02652	-0.7071067811865476	0.11611652351681565	type IV pilus assembly protein PilB
+ornithine	K07230	-0.7071067811865476	0.11611652351681565	
+ornithine	K07334	-0.7071067811865476	0.11611652351681565	proteic killer suppression protein
+ornithine	K11901	-0.9999999999999999	0.0	type VI secretion system protein ImpB
+ornithine	K11916	-0.7071067811865476	0.11611652351681565	serine/threonine-protein kinase Stk1 
+pantothenic acid	K01141	-0.7071067811865476	0.11611652351681565	exodeoxyribonuclease I 
+pantothenic acid	K01654	-1.0	0.0	N-acetylneuraminate synthase 
+pantothenic acid	K01711	0.7071067811865476	0.11611652351681565	GDPmannose 4,6-dehydratase 
+pantothenic acid	K02026	0.9999999999999998	7.395570986446986e-32	multiple sugar transport system permease protein
+pantothenic acid	K02616	-0.7071067811865476	0.11611652351681565	phenylacetic acid degradation operon negative regulatory protein
+pantothenic acid	K02652	0.7071067811865476	0.11611652351681565	type IV pilus assembly protein PilB
+pantothenic acid	K07184	0.7071067811865476	0.11611652351681565	SH3 domain protein
+pantothenic acid	K07230	0.7071067811865476	0.11611652351681565	
+pantothenic acid	K07403	0.7071067811865476	0.11611652351681565	membrane-bound serine protease (ClpP class)
+proline	K01194	-0.9999999999999999	0.0	alpha,alpha-trehalase 
+proline	K01531	0.9999999999999999	0.0	Mg2+-importing ATPase 
+proline	K01579	0.9999999999999999	0.0	aspartate 1-decarboxylase 
+proline	K01720	0.9999999999999999	0.0	2-methylcitrate dehydratase 
+proline	K02041	-0.9999999999999999	0.0	phosphonate transport system ATP-binding protein
+proline	K02042	-0.9999999999999999	0.0	phosphonate transport system permease protein
+proline	K02044	-0.9999999999999999	0.0	phosphonate transport system substrate-binding protein
+proline	K02441	0.9999999999999999	0.0	GlpG protein
+proline	K03224	-0.9999999999999999	0.0	ATP synthase in type III secretion protein SctN 
+proline	K03502	-0.9999999999999999	0.0	DNA polymerase V
+proline	K03635	0.9999999999999999	0.0	molybdopterin synthase catalytic subunit 
+proline	K05597	0.9999999999999999	0.0	glutamin-(asparagin-)ase 
+proline	K05789	-0.9999999999999999	0.0	chain length determinant protein (polysaccharide antigen chain regulator)
+proline	K06159	-0.9999999999999999	0.0	putative ATP-binding cassette transporter
+proline	K06950	0.9999999999999999	0.0	uncharacterized protein
+proline	K07391	0.9999999999999999	0.0	magnesium chelatase family protein
+proline	K08978	0.9999999999999999	0.0	putative membrane protein
+proline	K11177	-0.9999999999999999	0.0	xanthine dehydrogenase YagR molybdenum-binding subunit 
+proline	K11178	-0.9999999999999999	0.0	xanthine dehydrogenase YagS FAD-binding subunit 
+proline	K11811	0.9999999999999999	0.0	arsenical resistance protein ArsH
+proline	K12251	0.9999999999999999	0.0	N-carbamoylputrescine amidase 
+proline	K13255	-0.9999999999999999	0.0	ferric iron reductase protein FhuF
+pyridoxine	K00355	-0.9999999999999999	0.0	NAD(P)H dehydrogenase (quinone) 
+pyridoxine	K03181	-0.9999999999999999	0.0	chorismate--pyruvate lyase 
+pyridoxine	K06199	-0.9999999999999999	0.0	CrcB protein
+pyridoxine	K06214	0.9999999999999999	0.0	curli production assembly/transport component CsgG
+pyridoxine	K06917	-0.9999999999999999	0.0	tRNA 2-selenouridine synthase 
+pyridoxine	K09690	-0.9999999999999999	0.0	lipopolysaccharide transport system permease protein
+pyridoxine	K09691	-0.9999999999999999	0.0	lipopolysaccharide transport system ATP-binding protein
+riboflavin	K00370	-0.9999999999999999	0.0	nitrate reductase 1, alpha subunit 
+riboflavin	K00371	-0.9999999999999999	0.0	nitrate reductase 1, beta subunit 
+riboflavin	K00373	-0.9999999999999999	0.0	nitrate reductase 1, delta subunit 
+riboflavin	K00374	-0.9999999999999999	0.0	nitrate reductase 1, gamma subunit 
+riboflavin	K01141	0.7071067811865476	0.11611652351681565	exodeoxyribonuclease I 
+riboflavin	K01153	0.9999999999999997	2.958228394578794e-31	type I restriction enzyme, R subunit 
+riboflavin	K02305	-0.9999999999999999	0.0	nitric oxide reductase, cytochrome c-containing subunit II
+riboflavin	K02616	0.7071067811865476	0.11611652351681565	phenylacetic acid degradation operon negative regulatory protein
+riboflavin	K02652	-0.7071067811865476	0.11611652351681565	type IV pilus assembly protein PilB
+riboflavin	K03427	0.7071067811865476	0.11611652351681565	type I restriction enzyme M protein 
+riboflavin	K07025	0.9999999999999997	2.958228394578794e-31	putative hydrolase of the HAD superfamily
+riboflavin	K07230	-0.7071067811865476	0.11611652351681565	
+riboflavin	K07673	-0.9999999999999999	0.0	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+riboflavin	K09943	-0.9999999999999999	0.0	hypothetical protein
+riboflavin	K12988	0.7071067811865476	0.11611652351681565	alpha-1,3-rhamnosyltransferase 
+salicylate	K00370	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, alpha subunit 
+salicylate	K00371	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, beta subunit 
+salicylate	K00373	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, delta subunit 
+salicylate	K00374	-0.7071067811865476	0.11611652351681565	nitrate reductase 1, gamma subunit 
+salicylate	K00721	-0.7071067811865476	0.11611652351681565	dolichol-phosphate mannosyltransferase 
+salicylate	K01003	-0.7071067811865477	0.11611652351681548	carboxyvinyl-carboxyphosphonate phosphorylmutase 
+salicylate	K01153	0.7071067811865476	0.11611652351681565	type I restriction enzyme, R subunit 
+salicylate	K01712	0.7071067811865477	0.11611652351681548	urocanate hydratase 
+salicylate	K01971	-0.7071067811865476	0.11611652351681565	DNA ligase (ATP) 
+salicylate	K02305	-0.7071067811865476	0.11611652351681565	nitric oxide reductase, cytochrome c-containing subunit II
+salicylate	K02361	0.7071067811865476	0.11611652351681565	isochorismate synthase 
+salicylate	K03427	1.0	0.0	type I restriction enzyme M protein 
+salicylate	K04047	-0.7071067811865477	0.11611652351681548	starvation-inducible DNA-binding protein
+salicylate	K07025	0.7071067811865476	0.11611652351681565	putative hydrolase of the HAD superfamily
+salicylate	K07218	-0.7071067811865476	0.11611652351681565	nitrous oxidase accessory protein
+salicylate	K07491	-0.7071067811865476	0.11611652351681565	putative transposase
+salicylate	K07673	-0.7071067811865476	0.11611652351681565	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+salicylate	K09943	-0.7071067811865476	0.11611652351681565	hypothetical protein
+salicylate	K11740	-0.7071067811865477	0.11611652351681548	bacteriophage N4 adsorption protein B
+sarcosine	K00661	0.7071067811865477	0.11611652351681548	maltose O-acetyltransferase 
+sarcosine	K00721	-1.0	0.0	dolichol-phosphate mannosyltransferase 
+sarcosine	K01141	0.7071067811865477	0.11611652351681548	exodeoxyribonuclease I 
+sarcosine	K01712	1.0	0.0	urocanate hydratase 
+sarcosine	K02363	0.7071067811865477	0.11611652351681548	enterobactin 2,3-dihydroxybenzoate-AMP ligase / S-dihydroxybenzoyltransferase 
+sarcosine	K02652	-0.7071067811865477	0.11611652351681548	type IV pilus assembly protein PilB
+sarcosine	K03427	0.7071067811865477	0.11611652351681548	type I restriction enzyme M protein 
+sarcosine	K03760	-0.7071067811865477	0.11611652351681548	phosphoethanolamine transferase
+sarcosine	K07089	0.7071067811865477	0.11611652351681548	
+sarcosine	K07218	-1.0	0.0	nitrous oxidase accessory protein
+sarcosine	K07230	-0.7071067811865477	0.11611652351681548	
+sarcosine	K07491	-1.0	0.0	putative transposase
+sarcosine	K07677	0.7071067811865477	0.11611652351681548	two-component system, NarL family, capsular synthesis sensor histidine kinase RcsC 
+taurine	K01711	0.7071067811865477	0.11611652351681548	GDPmannose 4,6-dehydratase 
+taurine	K03427	0.7071067811865477	0.11611652351681548	type I restriction enzyme M protein 
+taurine	K07184	0.7071067811865477	0.11611652351681548	SH3 domain protein
+taurine	K07403	0.7071067811865477	0.11611652351681548	membrane-bound serine protease (ClpP class)
+taurine	K12988	0.7071067811865477	0.11611652351681548	alpha-1,3-rhamnosyltransferase 
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K00355	0.9999999999999999	0.0	NAD(P)H dehydrogenase (quinone) 
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K03181	0.9999999999999999	0.0	chorismate--pyruvate lyase 
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K06199	0.9999999999999999	0.0	CrcB protein
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K06214	-0.9999999999999999	0.0	curli production assembly/transport component CsgG
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K06917	0.9999999999999999	0.0	tRNA 2-selenouridine synthase 
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K09690	0.9999999999999999	0.0	lipopolysaccharide transport system permease protein
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K09691	0.9999999999999999	0.0	lipopolysaccharide transport system ATP-binding protein
+thymidine	K00370	0.7071067811865476	0.11611652351681565	nitrate reductase 1, alpha subunit 
+thymidine	K00371	0.7071067811865476	0.11611652351681565	nitrate reductase 1, beta subunit 
+thymidine	K00373	0.7071067811865476	0.11611652351681565	nitrate reductase 1, delta subunit 
+thymidine	K00374	0.7071067811865476	0.11611652351681565	nitrate reductase 1, gamma subunit 
+thymidine	K00721	0.7071067811865476	0.11611652351681565	dolichol-phosphate mannosyltransferase 
+thymidine	K01003	0.7071067811865477	0.11611652351681548	carboxyvinyl-carboxyphosphonate phosphorylmutase 
+thymidine	K01153	-0.7071067811865476	0.11611652351681565	type I restriction enzyme, R subunit 
+thymidine	K01712	-0.7071067811865477	0.11611652351681548	urocanate hydratase 
+thymidine	K01971	0.7071067811865476	0.11611652351681565	DNA ligase (ATP) 
+thymidine	K02305	0.7071067811865476	0.11611652351681565	nitric oxide reductase, cytochrome c-containing subunit II
+thymidine	K02361	-0.7071067811865476	0.11611652351681565	isochorismate synthase 
+thymidine	K03427	-1.0	0.0	type I restriction enzyme M protein 
+thymidine	K04047	0.7071067811865477	0.11611652351681548	starvation-inducible DNA-binding protein
+thymidine	K07025	-0.7071067811865476	0.11611652351681565	putative hydrolase of the HAD superfamily
+thymidine	K07218	0.7071067811865476	0.11611652351681565	nitrous oxidase accessory protein
+thymidine	K07491	0.7071067811865476	0.11611652351681565	putative transposase
+thymidine	K07673	0.7071067811865476	0.11611652351681565	two-component system, NarL family, nitrate/nitrite sensor histidine kinase NarX 
+thymidine	K09943	0.7071067811865476	0.11611652351681565	hypothetical protein
+thymidine	K11740	0.7071067811865477	0.11611652351681548	bacteriophage N4 adsorption protein B
+thymine	K00831	1.0	0.0	phosphoserine aminotransferase 
+thymine	K01141	-0.7071067811865477	0.11611652351681548	exodeoxyribonuclease I 
+thymine	K01611	0.7071067811865477	0.11611652351681548	S-adenosylmethionine decarboxylase 
+thymine	K01706	1.0	0.0	glucarate dehydratase 
+thymine	K01711	0.7071067811865477	0.11611652351681548	GDPmannose 4,6-dehydratase 
+thymine	K01761	-0.7071067811865477	0.11611652351681548	methionine-gamma-lyase 
+thymine	K02038	1.0	0.0	phosphate transport system permease protein
+thymine	K02363	-0.7071067811865477	0.11611652351681548	enterobactin 2,3-dihydroxybenzoate-AMP ligase / S-dihydroxybenzoyltransferase 
+thymine	K02445	1.0	0.0	MFS transporter, OPA family, glycerol-3-phosphate transporter
+thymine	K02652	0.7071067811865477	0.11611652351681548	type IV pilus assembly protein PilB
+thymine	K02668	1.0	0.0	two-component system, NtrC family, sensor histidine kinase PilS 
+thymine	K03606	0.7071067811865477	0.11611652351681548	putative colanic acid biosysnthesis UDP-glucose lipid carrier transferase
+thymine	K03760	0.7071067811865477	0.11611652351681548	phosphoethanolamine transferase
+thymine	K06986	1.0	0.0	
+thymine	K06991	1.0	0.0	
+thymine	K07089	-0.7071067811865477	0.11611652351681548	
+thymine	K07154	-0.7071067811865477	0.11611652351681548	
+thymine	K07184	0.7071067811865477	0.11611652351681548	SH3 domain protein
+thymine	K07230	0.7071067811865477	0.11611652351681548	
+thymine	K07403	0.7071067811865477	0.11611652351681548	membrane-bound serine protease (ClpP class)
+thymine	K07677	-0.7071067811865477	0.11611652351681548	two-component system, NarL family, capsular synthesis sensor histidine kinase RcsC 
+thymine	K13747	-0.7071067811865477	0.11611652351681548	carboxynorspermidine decarboxylase 
+thymine	K14335	1.0	0.0	alpha-1,6-mannosyltransferase 
+trans-4-hydroxyproline	K00661	0.7071067811865477	0.11611652351681548	maltose O-acetyltransferase 
+trans-4-hydroxyproline	K01611	0.7071067811865477	0.11611652351681548	S-adenosylmethionine decarboxylase 
+trans-4-hydroxyproline	K01761	-0.7071067811865477	0.11611652351681548	methionine-gamma-lyase 
+trans-4-hydroxyproline	K03606	0.7071067811865477	0.11611652351681548	putative colanic acid biosysnthesis UDP-glucose lipid carrier transferase
+trans-4-hydroxyproline	K07154	-0.7071067811865477	0.11611652351681548	
+trans-4-hydroxyproline	K11688	-1.0	0.0	C4-dicarboxylate-binding protein DctP
+trans-4-hydroxyproline	K12988	-0.7071067811865477	0.11611652351681548	alpha-1,3-rhamnosyltransferase 
+trans-4-hydroxyproline	K13016	-1.0	0.0	UDP-D-GlcNAcA oxidase 
+trans-4-hydroxyproline	K13017	-1.0	0.0	UDP-3-keto-D-GlcNAcA aminotransferase 
+trans-4-hydroxyproline	K13018	-1.0	0.0	UDP-D-GlcNAc3NA acetyltransferase 
+trans-4-hydroxyproline	K13655	-1.0	0.0	HTH-type transcriptional regulator / antitoxin for MqsR toxin
+trans-4-hydroxyproline	K13747	-0.7071067811865477	0.11611652351681548	carboxynorspermidine decarboxylase 
+trehalose	K01194	-0.9999999999999999	0.0	alpha,alpha-trehalase 
+trehalose	K01531	0.9999999999999999	0.0	Mg2+-importing ATPase 
+trehalose	K01579	0.9999999999999999	0.0	aspartate 1-decarboxylase 
+trehalose	K01720	0.9999999999999999	0.0	2-methylcitrate dehydratase 
+trehalose	K02041	-0.9999999999999999	0.0	phosphonate transport system ATP-binding protein
+trehalose	K02042	-0.9999999999999999	0.0	phosphonate transport system permease protein
+trehalose	K02044	-0.9999999999999999	0.0	phosphonate transport system substrate-binding protein
+trehalose	K02441	0.9999999999999999	0.0	GlpG protein
+trehalose	K03224	-0.9999999999999999	0.0	ATP synthase in type III secretion protein SctN 
+trehalose	K03502	-0.9999999999999999	0.0	DNA polymerase V
+trehalose	K03635	0.9999999999999999	0.0	molybdopterin synthase catalytic subunit 
+trehalose	K05597	0.9999999999999999	0.0	glutamin-(asparagin-)ase 
+trehalose	K05789	-0.9999999999999999	0.0	chain length determinant protein (polysaccharide antigen chain regulator)
+trehalose	K06159	-0.9999999999999999	0.0	putative ATP-binding cassette transporter
+trehalose	K06950	0.9999999999999999	0.0	uncharacterized protein
+trehalose	K07391	0.9999999999999999	0.0	magnesium chelatase family protein
+trehalose	K08978	0.9999999999999999	0.0	putative membrane protein
+trehalose	K11177	-0.9999999999999999	0.0	xanthine dehydrogenase YagR molybdenum-binding subunit 
+trehalose	K11178	-0.9999999999999999	0.0	xanthine dehydrogenase YagS FAD-binding subunit 
+trehalose	K11811	0.9999999999999999	0.0	arsenical resistance protein ArsH
+trehalose	K12251	0.9999999999999999	0.0	N-carbamoylputrescine amidase 
+trehalose	K13255	-0.9999999999999999	0.0	ferric iron reductase protein FhuF
+trigonelline	K00661	-1.0	0.0	maltose O-acetyltransferase 
+trigonelline	K00721	0.7071067811865476	0.11611652351681565	dolichol-phosphate mannosyltransferase 
+trigonelline	K01003	0.7071067811865477	0.11611652351681548	carboxyvinyl-carboxyphosphonate phosphorylmutase 
+trigonelline	K01712	-0.7071067811865477	0.11611652351681548	urocanate hydratase 
+trigonelline	K02057	0.7071067811865477	0.11611652351681548	simple sugar transport system permease protein
+trigonelline	K04047	0.7071067811865477	0.11611652351681548	starvation-inducible DNA-binding protein
+trigonelline	K07218	0.7071067811865476	0.11611652351681565	nitrous oxidase accessory protein
+trigonelline	K07491	0.7071067811865476	0.11611652351681565	putative transposase
+trigonelline	K11688	0.7071067811865476	0.11611652351681565	C4-dicarboxylate-binding protein DctP
+trigonelline	K11901	0.7071067811865477	0.11611652351681548	type VI secretion system protein ImpB
+trigonelline	K13016	0.7071067811865476	0.11611652351681565	UDP-D-GlcNAcA oxidase 
+trigonelline	K13017	0.7071067811865476	0.11611652351681565	UDP-3-keto-D-GlcNAcA aminotransferase 
+trigonelline	K13018	0.7071067811865476	0.11611652351681565	UDP-D-GlcNAc3NA acetyltransferase 
+trigonelline	K13655	0.7071067811865476	0.11611652351681565	HTH-type transcriptional regulator / antitoxin for MqsR toxin
+trimethyllysine	K00661	0.7071067811865476	0.11611652351681565	maltose O-acetyltransferase 
+trimethyllysine	K01141	0.7071067811865476	0.11611652351681565	exodeoxyribonuclease I 
+trimethyllysine	K02652	-0.7071067811865476	0.11611652351681565	type IV pilus assembly protein PilB
+trimethyllysine	K07230	-0.7071067811865476	0.11611652351681565	
+trimethyllysine	K07334	-0.7071067811865476	0.11611652351681565	proteic killer suppression protein
+trimethyllysine	K11901	-0.9999999999999999	0.0	type VI secretion system protein ImpB
+trimethyllysine	K11916	-0.7071067811865476	0.11611652351681565	serine/threonine-protein kinase Stk1 
+tryptophan	K00355	0.9999999999999999	0.0	NAD(P)H dehydrogenase (quinone) 
+tryptophan	K03181	0.9999999999999999	0.0	chorismate--pyruvate lyase 
+tryptophan	K06199	0.9999999999999999	0.0	CrcB protein
+tryptophan	K06214	-0.9999999999999999	0.0	curli production assembly/transport component CsgG
+tryptophan	K06917	0.9999999999999999	0.0	tRNA 2-selenouridine synthase 
+tryptophan	K09690	0.9999999999999999	0.0	lipopolysaccharide transport system permease protein
+tryptophan	K09691	0.9999999999999999	0.0	lipopolysaccharide transport system ATP-binding protein
+tyrosine	K01194	-0.9999999999999999	0.0	alpha,alpha-trehalase 
+tyrosine	K01531	0.9999999999999999	0.0	Mg2+-importing ATPase 
+tyrosine	K01579	0.9999999999999999	0.0	aspartate 1-decarboxylase 
+tyrosine	K01720	0.9999999999999999	0.0	2-methylcitrate dehydratase 
+tyrosine	K02041	-0.9999999999999999	0.0	phosphonate transport system ATP-binding protein
+tyrosine	K02042	-0.9999999999999999	0.0	phosphonate transport system permease protein
+tyrosine	K02044	-0.9999999999999999	0.0	phosphonate transport system substrate-binding protein
+tyrosine	K02441	0.9999999999999999	0.0	GlpG protein
+tyrosine	K03224	-0.9999999999999999	0.0	ATP synthase in type III secretion protein SctN 
+tyrosine	K03502	-0.9999999999999999	0.0	DNA polymerase V
+tyrosine	K03635	0.9999999999999999	0.0	molybdopterin synthase catalytic subunit 
+tyrosine	K05597	0.9999999999999999	0.0	glutamin-(asparagin-)ase 
+tyrosine	K05789	-0.9999999999999999	0.0	chain length determinant protein (polysaccharide antigen chain regulator)
+tyrosine	K06159	-0.9999999999999999	0.0	putative ATP-binding cassette transporter
+tyrosine	K06950	0.9999999999999999	0.0	uncharacterized protein
+tyrosine	K07391	0.9999999999999999	0.0	magnesium chelatase family protein
+tyrosine	K08978	0.9999999999999999	0.0	putative membrane protein
+tyrosine	K11177	-0.9999999999999999	0.0	xanthine dehydrogenase YagR molybdenum-binding subunit 
+tyrosine	K11178	-0.9999999999999999	0.0	xanthine dehydrogenase YagS FAD-binding subunit 
+tyrosine	K11811	0.9999999999999999	0.0	arsenical resistance protein ArsH
+tyrosine	K12251	0.9999999999999999	0.0	N-carbamoylputrescine amidase 
+tyrosine	K13255	-0.9999999999999999	0.0	ferric iron reductase protein FhuF
+uridine-5'-monophosphate	K00023	-0.9999999999999999	0.0	acetoacetyl-CoA reductase 
+uridine-5'-monophosphate	K00162	-0.9999999999999999	0.0	pyruvate dehydrogenase E1 component subunit beta 
+uridine-5'-monophosphate	K00274	0.9999999999999999	0.0	monoamine oxidase 
+uridine-5'-monophosphate	K00836	0.9999999999999999	0.0	diaminobutyrate-2-oxoglutarate transaminase 
+uridine-5'-monophosphate	K01834	-0.9999999999999999	0.0	phosphoglycerate mutase 
+uridine-5'-monophosphate	K02429	-0.9999999999999999	0.0	MFS transporter, FHS family, L-fucose permease
+uridine-5'-monophosphate	K03897	-0.9999999999999999	0.0	lysine N6-hydroxylase 
+uridine-5'-monophosphate	K05375	0.9999999999999999	0.0	MbtH protein
+uridine-5'-monophosphate	K05685	0.9999999999999999	0.0	macrolide transport system ATP-binding/permease protein 
+uridine-5'-monophosphate	K06160	0.9999999999999999	0.0	putative ATP-binding cassette transporter
+uridine-5'-monophosphate	K06985	0.9999999999999999	0.0	aspartyl protease family protein
+uridine-5'-monophosphate	K08160	-0.9999999999999999	0.0	MFS transporter, DHA1 family, multidrug/chloramphenicol efflux transport protein
+uridine-5'-monophosphate	K09815	0.9999999999999999	0.0	zinc transport system substrate-binding protein
+uridine-5'-monophosphate	K10531	0.9999999999999999	0.0	L-ornithine N5-oxygenase 
+uridine-5'-monophosphate	K11208	0.9999999999999999	0.0	GST-like protein
+uridine-5'-monophosphate	K13888	0.9999999999999999	0.0	macrolide-specific efflux protein MacA
+uridine-5'-monophosphate	K14155	0.9999999999999999	0.0	cystathione beta-lyase 
+valine	K00661	1.0	0.0	maltose O-acetyltransferase 
+valine	K00721	-0.7071067811865476	0.11611652351681565	dolichol-phosphate mannosyltransferase 
+valine	K01003	-0.7071067811865477	0.11611652351681548	carboxyvinyl-carboxyphosphonate phosphorylmutase 
+valine	K01712	0.7071067811865477	0.11611652351681548	urocanate hydratase 
+valine	K02057	-0.7071067811865477	0.11611652351681548	simple sugar transport system permease protein
+valine	K04047	-0.7071067811865477	0.11611652351681548	starvation-inducible DNA-binding protein
+valine	K07218	-0.7071067811865476	0.11611652351681565	nitrous oxidase accessory protein
+valine	K07491	-0.7071067811865476	0.11611652351681565	putative transposase
+valine	K11688	-0.7071067811865476	0.11611652351681565	C4-dicarboxylate-binding protein DctP
+valine	K11901	-0.7071067811865477	0.11611652351681548	type VI secretion system protein ImpB
+valine	K13016	-0.7071067811865476	0.11611652351681565	UDP-D-GlcNAcA oxidase 
+valine	K13017	-0.7071067811865476	0.11611652351681565	UDP-3-keto-D-GlcNAcA aminotransferase 
+valine	K13018	-0.7071067811865476	0.11611652351681565	UDP-D-GlcNAc3NA acetyltransferase 
+valine	K13655	-0.7071067811865476	0.11611652351681565	HTH-type transcriptional regulator / antitoxin for MqsR toxin

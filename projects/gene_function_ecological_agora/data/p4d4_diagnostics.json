@@ -1,0 +1,172 @@
+{
+  "phase": "4",
+  "deliverable": "P4-D4",
+  "purpose": "M22 recent-acquisition vs pangenome openness cross-validation",
+  "n_species_p1b": 18989,
+  "n_species_multi_genome": 10856,
+  "n_genera_with_multi_species": 3539,
+  "n_genera_solid_substrate": 894,
+  "t1_atlas_wide": [
+    {
+      "x": "openness (1 - core_fraction)",
+      "y": "recent_gain_count",
+      "n": 894,
+      "pearson_r": -0.0357,
+      "pearson_ci": [
+        -0.0731,
+        0.0127
+      ],
+      "spearman_r": -0.0113,
+      "spearman_ci": [
+        -0.0809,
+        0.0562
+      ],
+      "spearman_p": 0.7348120420135621
+    },
+    {
+      "x": "openness (1 - core_fraction)",
+      "y": "log10(recent_gain_count+1)",
+      "n": 894,
+      "pearson_r": 0.0167,
+      "pearson_ci": [
+        -0.0542,
+        0.0896
+      ],
+      "spearman_r": -0.0113,
+      "spearman_ci": [
+        -0.0809,
+        0.0562
+      ],
+      "spearman_p": 0.7348120420135621
+    },
+    {
+      "x": "aux_fraction",
+      "y": "recent_gain_count",
+      "n": 894,
+      "pearson_r": -0.0357,
+      "pearson_ci": [
+        -0.0731,
+        0.0127
+      ],
+      "spearman_r": -0.0113,
+      "spearman_ci": [
+        -0.0809,
+        0.0562
+      ],
+      "spearman_p": 0.7348120420135621
+    },
+    {
+      "x": "aux_fraction",
+      "y": "log10(recent_gain_count+1)",
+      "n": 894,
+      "pearson_r": 0.0167,
+      "pearson_ci": [
+        -0.0542,
+        0.0896
+      ],
+      "spearman_r": -0.0113,
+      "spearman_ci": [
+        -0.0809,
+        0.0562
+      ],
+      "spearman_p": 0.7348120420135621
+    },
+    {
+      "x": "singleton_fraction",
+      "y": "recent_gain_count",
+      "n": 894,
+      "pearson_r": -0.0428,
+      "pearson_ci": [
+        -0.0801,
+        0.0031
+      ],
+      "spearman_r": -0.0159,
+      "spearman_ci": [
+        -0.0827,
+        0.0515
+      ],
+      "spearman_p": 0.6359114438750649
+    },
+    {
+      "x": "singleton_fraction",
+      "y": "log10(recent_gain_count+1)",
+      "n": 894,
+      "pearson_r": 0.009,
+      "pearson_ci": [
+        -0.0607,
+        0.0766
+      ],
+      "spearman_r": -0.0159,
+      "spearman_ci": [
+        -0.0827,
+        0.0515
+      ],
+      "spearman_p": 0.6359114438750649
+    }
+  ],
+  "t2_class_stratified": [
+    {
+      "category": "regulatory",
+      "n_kos": 1554,
+      "n": 894,
+      "pearson_r": 0.023,
+      "pearson_ci": [
+        -0.0488,
+        0.0945
+      ],
+      "spearman_r": -0.0131,
+      "spearman_ci": [
+        -0.0824,
+        0.0543
+      ],
+      "spearman_p": 0.6951994681026691
+    },
+    {
+      "category": "metabolic",
+      "n_kos": 4974,
+      "n": 894,
+      "pearson_r": 0.0102,
+      "pearson_ci": [
+        -0.0607,
+        0.0813
+      ],
+      "spearman_r": -0.0172,
+      "spearman_ci": [
+        -0.0837,
+        0.0495
+      ],
+      "spearman_p": 0.6083014136517636
+    }
+  ],
+  "t3_mycobacteriaceae_mycolic": {
+    "n": 10,
+    "pearson_r": 0.4575,
+    "pearson_ci": [
+      -0.4294,
+      0.8745
+    ],
+    "spearman_r": 0.4061,
+    "spearman_ci": [
+      -0.4251,
+      0.8634
+    ],
+    "spearman_p": 0.24428229408662647,
+    "n_genera": 10
+  },
+  "t3_cyanobacteriia_psii": {
+    "n": 83,
+    "pearson_r": 0.11,
+    "pearson_ci": [
+      -0.1128,
+      0.3087
+    ],
+    "spearman_r": 0.1234,
+    "spearman_ci": [
+      -0.0976,
+      0.3383
+    ],
+    "spearman_p": 0.2662659328099992,
+    "n_genera": 83
+  },
+  "completed_utc": "2026-04-28T14:16:07Z"
+}

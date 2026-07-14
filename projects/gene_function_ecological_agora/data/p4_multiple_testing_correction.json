@@ -1,0 +1,192 @@
+{
+  "phase": "REVIEW.md item #1 response",
+  "deliverable": "Multiple-testing correction analysis",
+  "family_1_pre_registered": [
+    {
+      "hypothesis": "H1 Bacteroidota PUL Innovator-Exchange",
+      "test": "NB08c Sankoff diagnostic; consumer-z group comparison",
+      "raw_p": 0.001,
+      "effect": "d=0.146",
+      "bonferroni_alpha": 0.0125,
+      "survives_bonferroni": true,
+      "survives_BH_fdr_05": true
+    },
+    {
+      "hypothesis": "H2 Mycobacteriota mycolic Innovator-Isolated (family rank)",
+      "test": "NB12 Mann-Whitney; producer + consumer Cohen's d",
+      "raw_p": 1e-06,
+      "effect": "d_producer=+0.31, d_consumer=\u22120.19",
+      "bonferroni_alpha": 0.0125,
+      "survives_bonferroni": true,
+      "survives_BH_fdr_05": true
+    },
+    {
+      "hypothesis": "H3 Cyanobacteria PSII Innovator-Exchange (class rank)",
+      "test": "NB16 Mann-Whitney; producer + consumer Cohen's d",
+      "raw_p": 2.1e-05,
+      "effect": "d_producer=+1.50, d_consumer=+0.70",
+      "bonferroni_alpha": 0.0125,
+      "survives_bonferroni": true,
+      "survives_BH_fdr_05": true
+    },
+    {
+      "hypothesis": "H4 Alm 2006 r \u2248 0.74 reproduction (P4-D3)",
+      "test": "Pearson + Spearman correlation, 4 framings",
+      "raw_p": 1e-43,
+      "effect": "r=0.10\u20130.29 (reported as NOT REPRODUCED \u2014 point estimate too small even at significant p)",
+      "bonferroni_alpha": 0.0125,
+      "survives_bonferroni": true,
+      "survives_BH_fdr_05": true
+    }
+  ],
+  "family_2_ecology_enrichment": [
+    {
+      "test": "Cyanobacteriia \u00d7 marine (NB23 H1a)",
+      "raw_p": 8.3e-19,
+      "effect": "2.33\u00d7 fold",
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true,
+      "survives_BH_fdr_05": true
+    },
+    {
+      "test": "Cyanobacteriia \u00d7 photic aquatic (NB23 H1b)",
+      "raw_p": 1.5e-53,
+      "effect": "2.77\u00d7 fold",
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true,
+      "survives_BH_fdr_05": true
+    },
+    {
+      "test": "Mycobacteriaceae \u00d7 soil (NB23 H2a)",
+      "raw_p": 0.87,
+      "effect": "0.88\u00d7 (NOT enriched)",
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": false,
+      "survives_BH_fdr_05": false
+    },
+    {
+      "test": "Mycobacteriaceae \u00d7 host-pathogen (NB23 H2b)",
+      "raw_p": 3.6e-46,
+      "effect": "7.88\u00d7 fold",
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true,
+      "survives_BH_fdr_05": true
+    },
+    {
+      "test": "Mycobacteriaceae \u00d7 (soil OR host-pathogen) (NB23 H2c)",
+      "raw_p": 8e-12,
+      "effect": "1.76\u00d7 fold",
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true,
+      "survives_BH_fdr_05": true
+    },
+    {
+      "test": "Bacteroidota \u00d7 gut/rumen (NB23 H3)",
+      "raw_p": 3.6e-36,
+      "effect": "1.40\u00d7 fold",
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true,
+      "survives_BH_fdr_05": true
+    }
+  ],
+  "family_3_residualization_replication": [
+    {
+      "test": "NB11 producer_z regulatory vs metabolic",
+      "d_raw": 0.0588,
+      "p_raw": 0.712141,
+      "d_residualized": 0.0588,
+      "p_residualized": 0.688056,
+      "n_reg": 1554.0,
+      "n_met": 4970.0,
+      "n_target": NaN,
+      "n_ref": NaN,
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": false
+    },
+    {
+      "test": "NB12 Mycobacteriaceae \u00d7 mycolic family producer_z",
+      "d_raw": 0.3092,
+      "p_raw": 2e-06,
+      "d_residualized": 0.3092,
+      "p_residualized": 2e-06,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 582.0,
+      "n_ref": 2628712.0,
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true
+    },
+    {
+      "test": "NB12 Mycobacteriaceae \u00d7 mycolic family consumer_z",
+      "d_raw": -0.1925,
+      "p_raw": 0.0,
+      "d_residualized": -0.1553,
+      "p_residualized": 1.6e-05,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 582.0,
+      "n_ref": 2628712.0,
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true
+    },
+    {
+      "test": "NB12 Mycobacteriales \u00d7 mycolic order producer_z",
+      "d_raw": 0.2876,
+      "p_raw": 5e-06,
+      "d_residualized": 0.2876,
+      "p_residualized": 5e-06,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 614.0,
+      "n_ref": 1337987.0,
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true
+    },
+    {
+      "test": "NB16 Cyanobacteriia \u00d7 PSII producer_z (class rank)",
+      "d_raw": 1.496,
+      "p_raw": 2.1e-05,
+      "d_residualized": 1.496,
+      "p_residualized": 2.1e-05,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 21.0,
+      "n_ref": 554280.0,
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true
+    },
+    {
+      "test": "NB16 Cyanobacteriia \u00d7 PSII consumer_z (class rank)",
+      "d_raw": 0.6958,
+      "p_raw": 0.000183,
+      "d_residualized": 0.6301,
+      "p_residualized": 2.3e-05,
+      "n_reg": NaN,
+      "n_met": NaN,
+      "n_target": 21.0,
+      "n_ref": 554280.0,
+      "bonferroni_alpha": 0.008333333333333333,
+      "survives_bonferroni": true
+    }
+  ],
+  "summary": [
+    {
+      "family": "Family 1: pre-registered hypotheses",
+      "n_tests": 4,
+      "bonferroni_alpha": 0.0125,
+      "n_survives_bonferroni": 4,
+      "pct_survives_bonferroni": 100.0
+    },
+    {
+      "family": "Family 2: P4-D1 biome enrichment",
+      "n_tests": 6,
+      "bonferroni_alpha": 0.008333333333333333,
+      "n_survives_bonferroni": 5,
+      "pct_survives_bonferroni": 83.3
+    }
+  ],
+  "total_formal_tests": 10,
+  "total_surviving_bonferroni": 9,
+  "completed_utc": "2026-04-29T17:27:05Z",
+  "elapsed_s": 0.0
+}

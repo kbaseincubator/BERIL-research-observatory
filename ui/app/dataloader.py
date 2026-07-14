@@ -1,11 +1,14 @@
 """Repository parser - reads markdown files and extracts structured data."""
 
 import gzip
+import json
 import pickle
+import posixpath
 import re
 import subprocess
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 import yaml
 
@@ -37,6 +40,10 @@ from .models import (
     Skill,
     Table,
     Visualization,
+    AtlasIndex,
+    AtlasLink,
+    AtlasHeading,
+    AtlasPage,
 )
 
 REPOSITORY_DATA_FILE = "data.pkl.gz"
@@ -198,21 +205,85 @@ def slugify(text: str) -> str:
 class RepositoryParser:
     """Parse git repository file system into structured data."""
 
+    REQUIRED_ATLAS_FIELDS = {
+        "id",
+        "title",
+        "type",
+        "status",
+        "summary",
+        "source_projects",
+        "source_docs",
+        "related_collections",
+        "confidence",
+        "generated_by",
+        "last_reviewed",
+    }
+
+    ATLAS_PAGE_TYPES = {
+        "atlas",
+        "topic",
+        "data_tenant",
+        "data_collection",
+        "data_type",
+        "derived_product",
+        "join_recipe",
+        "data_gap",
+        "conflict",
+        "opportunity",
+        "claim",
+        "direction",
+        "hypothesis",
+        "person",
+        "method",
+        "meta",
+    }
+
     # Collection IDs to scan for in README text
     _COLLECTION_IDS = [
         "kbase_ke_pangenome",
-        "kescience_fitnessbrowser",
-        "kbase_msd_biochemistry",
         "kbase_genomes",
-        "enigma_coral",
+        "kbase_msd_biochemistry",
         "kbase_phenotype",
-        "nmdc_arkin",
-        "phagefoundry",
-        "planetmicrobe",
-        "protect_genomedepot",
         "kbase_uniprot",
-        "kbase_uniref",
+        "kbase_uniref50",
+        "kbase_uniref90",
+        "kbase_uniref100",
+        "kbase_refseq_taxon_api",
+        "kbase_ontology_source",
+        "kescience_alphafold",
+        "kescience_pdb",
+        "kescience_structural_biology",
+        "kescience_fitnessbrowser",
+        "kescience_webofmicrobes",
+        "kescience_bacdive",
+        "kescience_paperblast",
+        "enigma_coral",
+        "nmdc_arkin",
+        "nmdc_ncbi_biosamples",
+        "phagefoundry_acinetobacter_genome_browser",
+        "phagefoundry_klebsiella_genome_browser_genomedepot",
+        "phagefoundry_paeruginosa_genome_browser",
+        "phagefoundry_pviridiflava_genome_browser",
+        "phagefoundry_strain_modelling",
+        "planetmicrobe_planetmicrobe",
+        "planetmicrobe_planetmicrobe_raw",
+        "protect_genomedepot",
+        "globalusers_demo_shared",
+        "globalusers_demo_test",
+        "globalusers_demo_test_1",
+        "globalusers_demo_test_2",
+        "globalusers_gapmind_pathways",
+        "globalusers_kepangenome_parquet_1",
+        "globalusers_nmdc_core_test",
+        "globalusers_nmdc_core_test2",
+        "globalusers_nmdc_core_test3",
+        "globalusers_phenotype_ontology_1",
+        "globalusers_phenotype_parquet_1",
     ]
+
+    _DOTTED_ALIASES: dict[str, str] = {
+        cid.replace("_", ".", 1): cid for cid in _COLLECTION_IDS if "_" in cid
+    }
 
     def __init__(self, repo_path: Path | None = None):
         """Initialize parser with repository path."""
@@ -222,12 +293,15 @@ class RepositoryParser:
         """Parse entire repository into structured data."""
         projects = self.parse_projects()
         discoveries = self.parse_discoveries()
-        tables = self.parse_schema()
+        tables: dict[str, list[Table]] = {}
+        for collection_id, snapshot_tables in self.parse_berdl_snapshot_tables().items():
+            tables[collection_id] = snapshot_tables
         pitfalls = self.parse_pitfalls()
         performance_tips = self.parse_performance()
         research_ideas = self.parse_research_ideas()
         collections = self.parse_collections()
         skills = self.parse_skills()
+        atlas_index = self.parse_atlas()
 
         # Aggregate unique contributors across all projects
         contributors = self._aggregate_contributors(projects)
@@ -255,6 +329,7 @@ class RepositoryParser:
             skills=skills,
             research_areas=research_areas,
             collection_edges=collection_edges,
+            atlas_index=atlas_index,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -809,8 +884,16 @@ class RepositoryParser:
         return content
 
     def _extract_collection_refs(self, readme_content: str) -> list[str]:
-        """Extract BERDL collection IDs mentioned in README text."""
-        return [cid for cid in self._COLLECTION_IDS if cid in readme_content]
+        """Extract BERDL collection IDs mentioned in README text.
+
+        Recognises both underscore form (kbase_ke_pangenome) and Iceberg dotted form
+        (kbase.ke_pangenome); dotted matches are normalised to the canonical underscore slug.
+        """
+        found: set[str] = {cid for cid in self._COLLECTION_IDS if cid in readme_content}
+        for dotted, canonical in self._DOTTED_ALIASES.items():
+            if dotted in readme_content:
+                found.add(canonical)
+        return list(found)
 
     def _parse_contributors(
         self, readme_content: str, project_id: str
@@ -1241,162 +1324,6 @@ class RepositoryParser:
 
         return discoveries
 
-    def parse_schema(self) -> dict[str, list[Table]]:
-        """Parse tables from all docs/schemas/*.md files.
-
-        Returns a dict keyed by database/collection ID mapping to parsed tables.
-        Each schema doc is keyed by its database ID (from the **Database** line)
-        and also by the filename stem. Multi-database docs store under each
-        listed database ID plus the filename stem.
-        """
-        all_tables: dict[str, list[Table]] = {}
-        schemas_dir = self.repo_path / "docs" / "schemas"
-
-        if not schemas_dir.exists():
-            return all_tables
-
-        for schema_file in sorted(schemas_dir.glob("*.md")):
-            content = schema_file.read_text()
-            filename_key = schema_file.stem
-
-            # Extract database ID(s)
-            db_ids: list[str] = []
-            singular = re.search(r"\*\*Database\*\*:\s*`([^`]+)`", content)
-            if singular:
-                db_ids = [singular.group(1)]
-            else:
-                # Multi-database: extract all backtick IDs from the Databases section
-                plural_match = re.search(
-                    r"\*\*Databases?\*\*:?\s*(.*?)(?:\n\*\*|\n---)",
-                    content,
-                    re.DOTALL,
-                )
-                if plural_match:
-                    db_ids = re.findall(r"`([^`]+)`", plural_match.group(1))
-
-            # Parse row counts from Table Summary
-            row_counts = self._parse_row_counts(content)
-
-            # Parse individual table schemas
-            tables = self._parse_table_sections(content, row_counts)
-
-            if not tables:
-                continue
-
-            # Store under filename stem (always)
-            all_tables[filename_key] = tables
-
-            # Also store under each extracted database ID
-            for db_id in db_ids:
-                if db_id != filename_key:
-                    all_tables[db_id] = tables
-
-        return all_tables
-
-    def _parse_row_counts(self, content: str) -> dict[str, int]:
-        """Extract row counts from the Table Summary section."""
-        row_counts: dict[str, int] = {}
-        summary_match = re.search(
-            r"## Table Summary\s*\n(.*?)(?:\n---|\n## )",
-            content,
-            re.DOTALL,
-        )
-        if not summary_match:
-            return row_counts
-
-        for line in summary_match.group(1).split("\n"):
-            if not line.strip() or not line.startswith("|"):
-                continue
-            # Skip header and separator rows
-            if "Table" in line and ("Row Count" in line or "Description" in line):
-                continue
-            if re.match(r"^\|[-\s|]+\|$", line):
-                continue
-            cols = [c.strip() for c in line.split("|") if c.strip()]
-            if len(cols) >= 2:
-                table_name = cols[0].strip("`")
-                try:
-                    row_count = int(cols[1].replace(",", ""))
-                    row_counts[table_name] = row_count
-                except ValueError:
-                    pass
-
-        return row_counts
-
-    def _parse_table_sections(
-        self, content: str, row_counts: dict[str, int]
-    ) -> list[Table]:
-        """Parse individual table schemas from ### headings."""
-        tables: list[Table] = []
-
-        # Match both numbered (### 1. `genome`) and unnumbered (### `organism`)
-        table_sections = re.split(r"\n###\s+(?:\d+\.\s+)?", content)
-
-        for section in table_sections[1:]:  # Skip intro
-            lines = section.split("\n")
-            if not lines:
-                continue
-
-            # First line contains table name in backticks
-            name_match = re.match(r"`(\w+)`", lines[0])
-            if not name_match:
-                continue
-
-            table_name = name_match.group(1)
-
-            # Get description (first paragraph after name)
-            description = ""
-            for line in lines[1:]:
-                if (
-                    line.strip()
-                    and not line.startswith("|")
-                    and not line.startswith("-")
-                ):
-                    description = line.strip()
-                    break
-
-            # Parse columns from markdown table
-            columns = []
-            in_table = False
-            for line in lines:
-                if line.startswith("| Column"):
-                    in_table = True
-                    continue
-                if in_table and line.startswith("|"):
-                    if line.startswith("|--") or line.startswith("| --"):
-                        continue
-                    cols = [c.strip() for c in line.split("|") if c.strip()]
-                    if len(cols) >= 3:
-                        col_name = cols[0].strip("`")
-                        col_type = cols[1]
-                        col_desc = cols[2] if len(cols) > 2 else ""
-
-                        is_pk = "Primary Key" in col_desc
-                        is_fk = "FK" in col_desc or "→" in col_desc
-
-                        columns.append(
-                            Column(
-                                name=col_name,
-                                data_type=col_type,
-                                description=col_desc,
-                                is_primary_key=is_pk,
-                                is_foreign_key=is_fk,
-                            )
-                        )
-                elif in_table and not line.startswith("|"):
-                    in_table = False
-
-            tables.append(
-                Table(
-                    name=table_name,
-                    description=description,
-                    row_count=row_counts.get(table_name, 0),
-                    columns=columns,
-                )
-            )
-
-        return tables
-
     def parse_pitfalls(self) -> list[Pitfall]:
         """Parse pitfalls from docs/pitfalls.md."""
         pitfalls = []
@@ -1593,70 +1520,435 @@ class RepositoryParser:
 
         return ideas
 
+    def parse_berdl_snapshot_tables(self) -> dict[str, list[Table]]:
+        """Parse table schemas from the generated BERDL discovery snapshot."""
+        snapshot = self._load_berdl_snapshot()
+        tables_by_collection: dict[str, list[Table]] = {}
+        if not snapshot:
+            return tables_by_collection
+
+        for tenant in snapshot.get("tenants", []):
+            for coll_data in tenant.get("collections", []):
+                collection_id = str(coll_data.get("id", ""))
+                if not collection_id:
+                    continue
+                tables: list[Table] = []
+                for table_data in coll_data.get("tables", []):
+                    columns = [
+                        Column(
+                            name=str(col.get("name", "")),
+                            data_type=str(col.get("data_type") or col.get("type") or ""),
+                            description=col.get("description"),
+                        )
+                        for col in table_data.get("columns", [])
+                        if col.get("name")
+                    ]
+                    row_count = table_data.get("row_count") or 0
+                    try:
+                        row_count = int(row_count)
+                    except (TypeError, ValueError):
+                        row_count = 0
+                    tables.append(
+                        Table(
+                            name=str(table_data.get("name", "")),
+                            description=str(table_data.get("description", "")).strip(),
+                            row_count=row_count,
+                            columns=columns,
+                        )
+                    )
+                if tables:
+                    tables_by_collection[collection_id] = tables
+        return tables_by_collection
+
     def parse_collections(self) -> list[Collection]:
-        """Parse collections from config/collections.yaml."""
-        collections = []
-        config_path = get_settings().ui_dir / "config" / "collections.yaml"
+        """Parse BERDL collections from discovery snapshot plus curated overlays."""
+        curated = self._load_curated_collection_data()
+        snapshot = self._load_berdl_snapshot()
 
-        if not config_path.exists():
-            return collections
+        if not snapshot:
+            return [
+                self._collection_from_curated(coll_data)
+                for coll_data in curated.values()
+            ]
 
-        with open(config_path, "r") as f:
-            data = yaml.safe_load(f)
+        snapshot_source = str(snapshot.get("source_url") or snapshot.get("source") or "")
+        discovered_at = str(snapshot.get("discovered_at") or "")
+        snapshot_ids = {
+            str(coll.get("id"))
+            for tenant in snapshot.get("tenants", [])
+            for coll in tenant.get("collections", [])
+            if coll.get("id")
+        }
 
-        if not data or "collections" not in data:
-            return collections
-
-        for coll_data in data["collections"]:
-            # Parse category
-            category_str = coll_data.get("category", "primary")
-            try:
-                category = CollectionCategory(category_str)
-            except ValueError:
-                category = CollectionCategory.PRIMARY
-
-            # Parse key tables
-            key_tables = []
-            for table_data in coll_data.get("key_tables", []):
-                key_tables.append(
-                    CollectionTable(
-                        name=table_data.get("name", ""),
-                        description=table_data.get("description", ""),
-                        row_count=table_data.get("row_count"),
+        collections: list[Collection] = []
+        for tenant in snapshot.get("tenants", []):
+            tenant_id = str(tenant.get("id", "")).strip()
+            tenant_name = str(tenant.get("name") or tenant_id).strip()
+            for coll_data in tenant.get("collections", []):
+                collection_id = str(coll_data.get("id", "")).strip()
+                if not collection_id:
+                    continue
+                overlay = curated.get(collection_id, {})
+                group_overlays = self._matching_group_overlays(collection_id, curated)
+                collections.append(
+                    self._collection_from_snapshot(
+                        coll_data=coll_data,
+                        tenant_id=tenant_id,
+                        tenant_name=tenant_name,
+                        snapshot_source=snapshot_source,
+                        discovered_at=discovered_at,
+                        overlay=overlay,
+                        group_overlays=group_overlays,
+                        snapshot_ids=snapshot_ids,
                     )
                 )
-
-            # Parse sample queries
-            sample_queries = []
-            for query_data in coll_data.get("sample_queries", []):
-                sample_queries.append(
-                    SampleQuery(
-                        title=query_data.get("title", ""),
-                        query=query_data.get("query", ""),
-                    )
-                )
-
-            collection = Collection(
-                id=coll_data.get("id", ""),
-                name=coll_data.get("name", ""),
-                category=category,
-                icon=coll_data.get("icon", "&#128194;"),
-                description=coll_data.get("description", "").strip(),
-                philosophy=coll_data.get("philosophy", "").strip(),
-                data_sources=coll_data.get("data_sources", []),
-                scale_stats=coll_data.get("scale_stats", {}),
-                key_tables=key_tables,
-                sample_queries=sample_queries,
-                related_collections=coll_data.get("related_collections", []),
-                sub_collections=coll_data.get("sub_collections", []),
-                citation=coll_data.get("citation"),
-                doi=coll_data.get("doi"),
-                website=coll_data.get("website"),
-                provider=coll_data.get("provider"),
-            )
-            collections.append(collection)
 
         return collections
+
+    def _load_berdl_snapshot(self) -> dict[str, Any]:
+        snapshot_path = self.repo_path / "ui" / "config" / "berdl_collections_snapshot.json"
+        if not snapshot_path.exists():
+            return {}
+        try:
+            with open(snapshot_path) as f:
+                data = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            return {}
+        return data if isinstance(data, dict) else {}
+
+    def _load_curated_collection_data(self) -> dict[str, dict[str, Any]]:
+        config_path = self.repo_path / "ui" / "config" / "collections.yaml"
+        if not config_path.exists():
+            return {}
+        with open(config_path) as f:
+            data = yaml.safe_load(f)
+        if not data or "collections" not in data:
+            return {}
+        return {
+            str(coll_data.get("id", "")): coll_data
+            for coll_data in data["collections"]
+            if coll_data.get("id")
+        }
+
+    def _matching_group_overlays(
+        self, collection_id: str, curated: dict[str, dict[str, Any]]
+    ) -> list[dict[str, Any]]:
+        groups: list[dict[str, Any]] = []
+        for group_id, coll_data in curated.items():
+            if group_id == collection_id:
+                continue
+            for child_id in coll_data.get("sub_collections", []):
+                child_id = str(child_id)
+                if collection_id == child_id or collection_id.startswith(child_id):
+                    groups.append(coll_data)
+                    break
+        return groups
+
+    def _collection_from_curated(self, coll_data: dict[str, Any]) -> Collection:
+        return Collection(
+            id=coll_data.get("id", ""),
+            name=coll_data.get("name", ""),
+            category=self._collection_category(coll_data.get("category", "primary")),
+            icon=coll_data.get("icon", "&#128194;"),
+            description=coll_data.get("description", "").strip(),
+            philosophy=coll_data.get("philosophy", "").strip(),
+            data_sources=coll_data.get("data_sources", []),
+            scale_stats=coll_data.get("scale_stats", {}),
+            key_tables=self._collection_tables(coll_data.get("key_tables", [])),
+            sample_queries=self._sample_queries(coll_data.get("sample_queries", [])),
+            related_collections=coll_data.get("related_collections", []),
+            sub_collections=coll_data.get("sub_collections", []),
+            citation=coll_data.get("citation"),
+            doi=coll_data.get("doi"),
+            website=coll_data.get("website"),
+            provider=coll_data.get("provider"),
+            schema_status="curated",
+            curation_status="curated",
+        )
+
+    def _collection_from_snapshot(
+        self,
+        coll_data: dict[str, Any],
+        tenant_id: str,
+        tenant_name: str,
+        snapshot_source: str,
+        discovered_at: str,
+        overlay: dict[str, Any],
+        group_overlays: list[dict[str, Any]],
+        snapshot_ids: set[str],
+    ) -> Collection:
+        group_ids = [str(group.get("id")) for group in group_overlays if group.get("id")]
+        parent_collection_id = group_ids[0] if group_ids else None
+        name = overlay.get("name") or coll_data.get("name") or self._title_from_id(coll_data.get("id", ""))
+        description = (
+            overlay.get("description")
+            or coll_data.get("description")
+            or "Discovered BERDL database. Add curated description as this collection is used."
+        )
+        group_description = next(
+            (group.get("description", "").strip() for group in group_overlays if group.get("description")),
+            "",
+        )
+        if not overlay and group_description:
+            description = group_description
+
+        category = self._collection_category(
+            overlay.get("category")
+            or next((group.get("category") for group in group_overlays if group.get("category")), None)
+            or ("primary" if tenant_id == "kbase" else "domain")
+        )
+        key_tables = self._collection_tables(coll_data.get("tables", []))
+        if overlay.get("key_tables"):
+            key_tables = self._collection_tables(overlay.get("key_tables", []))
+
+        related = self._canonical_related_collections(
+            overlay.get("related_collections", []), snapshot_ids
+        )
+        if not related:
+            for group in group_overlays:
+                related.extend(
+                    self._canonical_related_collections(
+                        group.get("related_collections", []), snapshot_ids
+                    )
+                )
+        related = sorted(set(related))
+
+        errors = [
+            str(err)
+            for err in coll_data.get("discovery_errors", [])
+            if str(err).strip()
+        ]
+        schema_status = "discovered"
+        if errors:
+            schema_status = "partial"
+        if not coll_data.get("tables"):
+            schema_status = "missing"
+
+        return Collection(
+            id=str(coll_data.get("id", "")),
+            name=str(name),
+            category=category,
+            icon=overlay.get("icon")
+            or next((group.get("icon") for group in group_overlays if group.get("icon")), "&#128194;"),
+            description=str(description).strip(),
+            philosophy=str(overlay.get("philosophy") or "").strip(),
+            data_sources=overlay.get("data_sources", coll_data.get("data_sources", [])),
+            scale_stats=overlay.get("scale_stats", coll_data.get("scale_stats", {})),
+            key_tables=key_tables,
+            sample_queries=self._sample_queries(overlay.get("sample_queries", [])),
+            related_collections=related,
+            sub_collections=[],
+            citation=overlay.get("citation"),
+            doi=overlay.get("doi"),
+            website=overlay.get("website"),
+            provider=overlay.get("provider") or coll_data.get("provider"),
+            tenant_id=tenant_id,
+            tenant_name=tenant_name,
+            snapshot_source=snapshot_source,
+            discovered_at=discovered_at,
+            schema_status=schema_status,
+            curation_status="curated" if overlay else "discovered",
+            parent_collection_id=parent_collection_id,
+            group_ids=group_ids,
+            discovery_errors=errors,
+        )
+
+    @staticmethod
+    def _collection_category(value: str | None) -> CollectionCategory:
+        try:
+            return CollectionCategory(value or "primary")
+        except ValueError:
+            return CollectionCategory.PRIMARY
+
+    @staticmethod
+    def _collection_tables(table_data: list[dict[str, Any]]) -> list[CollectionTable]:
+        tables: list[CollectionTable] = []
+        for item in table_data:
+            row_count = item.get("row_count")
+            try:
+                row_count = int(row_count) if row_count is not None else None
+            except (TypeError, ValueError):
+                row_count = None
+            tables.append(
+                CollectionTable(
+                    name=str(item.get("name", "")),
+                    description=str(item.get("description", "")),
+                    row_count=row_count,
+                )
+            )
+        return tables
+
+    @staticmethod
+    def _sample_queries(query_data: list[dict[str, Any]]) -> list[SampleQuery]:
+        return [
+            SampleQuery(title=str(item.get("title", "")), query=str(item.get("query", "")))
+            for item in query_data
+        ]
+
+    @staticmethod
+    def _canonical_related_collections(
+        related_ids: list[str], snapshot_ids: set[str]
+    ) -> list[str]:
+        canonical: list[str] = []
+        for related_id in related_ids:
+            related_id = str(related_id)
+            if related_id in snapshot_ids:
+                canonical.append(related_id)
+                continue
+            matches = sorted(cid for cid in snapshot_ids if cid.startswith(related_id))
+            canonical.extend(matches)
+        return canonical
+
+    @staticmethod
+    def _title_from_id(collection_id: str) -> str:
+        return collection_id.replace("_", " ").title()
+
+    def parse_atlas(self) -> AtlasIndex:
+        """Parse markdown Atlas pages from the Atlas corpus directory.
+
+        The parser is intentionally permissive: malformed pages are skipped so the
+        app can still boot, while app.atlas_lint reports actionable failures.
+        """
+        atlas_dir = self.repo_path / "atlas"
+        if not atlas_dir.exists():
+            return AtlasIndex()
+
+        pages: list[AtlasPage] = []
+        for atlas_file in sorted(atlas_dir.rglob("*.md")):
+            if any(
+                part.startswith(".") for part in atlas_file.relative_to(atlas_dir).parts
+            ):
+                continue
+            page = self._parse_atlas_file(atlas_file, atlas_dir)
+            if page:
+                pages.append(page)
+
+        pages.sort(key=lambda p: (p.section, p.order, p.title.lower()))
+        links = [
+            AtlasLink(source_id=page.id, target_id=target_id)
+            for page in pages
+            for target_id in page.related_pages
+        ]
+        return AtlasIndex(pages=pages, links=links)
+
+    @classmethod
+    def _parse_atlas_file(cls, atlas_file: Path, atlas_dir: Path) -> AtlasPage | None:
+        """Parse one Atlas markdown file with YAML frontmatter."""
+        try:
+            raw_content = atlas_file.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            return None
+
+        frontmatter_match = re.match(
+            r"^---\s*\n(.*?)\n---\s*\n?", raw_content, re.DOTALL
+        )
+        if not frontmatter_match:
+            return None
+
+        try:
+            frontmatter = yaml.safe_load(frontmatter_match.group(1)) or {}
+        except yaml.YAMLError:
+            return None
+        if not isinstance(frontmatter, dict):
+            return None
+
+        missing = cls.REQUIRED_ATLAS_FIELDS - set(frontmatter)
+        if missing:
+            return None
+        if frontmatter.get("type") not in cls.ATLAS_PAGE_TYPES:
+            return None
+
+        route_path = atlas_file.relative_to(atlas_dir).with_suffix("").as_posix()
+        body = raw_content[frontmatter_match.end() :].strip()
+        section = route_path.split("/", 1)[0] if "/" in route_path else "root"
+
+        known_keys = cls.REQUIRED_ATLAS_FIELDS | {
+            "related_pages",
+            "order",
+            "section",
+        }
+        metadata = {k: v for k, v in frontmatter.items() if k not in known_keys}
+
+        return AtlasPage(
+            id=str(frontmatter["id"]),
+            title=str(frontmatter["title"]),
+            type=str(frontmatter["type"]),
+            status=str(frontmatter["status"]),
+            summary=str(frontmatter["summary"]),
+            path=route_path,
+            body=cls._rewrite_atlas_body_links(body, route_path),
+            source_projects=cls._as_string_list(frontmatter.get("source_projects")),
+            source_docs=cls._as_string_list(frontmatter.get("source_docs")),
+            related_collections=cls._as_string_list(
+                frontmatter.get("related_collections")
+            ),
+            related_pages=cls._as_string_list(frontmatter.get("related_pages")),
+            confidence=str(frontmatter.get("confidence", "medium")),
+            generated_by=str(frontmatter.get("generated_by", "")),
+            last_reviewed=str(frontmatter.get("last_reviewed", "")),
+            section=str(frontmatter.get("section") or section),
+            order=int(frontmatter.get("order", 100)),
+            metadata=metadata,
+            headings=cls._extract_atlas_headings(body),
+        )
+
+    @staticmethod
+    def _as_string_list(value) -> list[str]:
+        """Normalize a frontmatter scalar/list/null into a string list."""
+        if value is None:
+            return []
+        if isinstance(value, list):
+            return [str(v) for v in value if v is not None]
+        return [str(value)]
+
+    @staticmethod
+    def _rewrite_atlas_body_links(content: str, route_path: str) -> str:
+        """Rewrite common repo-relative Atlas links to route links."""
+        source_dir = posixpath.dirname(route_path)
+
+        def _md_link(match: re.Match) -> str:
+            target = match.group(1)
+            anchor = match.group(2) or ""
+            target_route = posixpath.normpath(posixpath.join(source_dir, target))
+            if target_route == ".":
+                target_route = ""
+            return f"](/atlas/{target_route}{anchor})"
+
+        content = re.sub(
+            r"\]\((?:\./)?([A-Za-z0-9_./-]+)\.md(#.*?)?\)",
+            _md_link,
+            content,
+        )
+        content = re.sub(r"\]\((?:\./)?index(#.*?)?\)", r"](/atlas\1)", content)
+        return content
+
+    @staticmethod
+    def _extract_atlas_headings(content: str) -> list[AtlasHeading]:
+        """Extract markdown headings for page-level Atlas navigation."""
+        headings: list[AtlasHeading] = []
+        seen: dict[str, int] = {}
+        for line in content.splitlines():
+            match = re.match(r"^(#{2,4})\s+(.+?)\s*$", line)
+            if not match:
+                continue
+            title = re.sub(r"`([^`]+)`", r"\1", match.group(2)).strip()
+            anchor = RepositoryParser._slugify_heading(title)
+            duplicate_count = seen.get(anchor, 0)
+            seen[anchor] = duplicate_count + 1
+            if duplicate_count:
+                anchor = f"{anchor}_{duplicate_count}"
+            headings.append(
+                AtlasHeading(level=len(match.group(1)), title=title, anchor=anchor)
+            )
+        return headings
+
+    @staticmethod
+    def _slugify_heading(title: str) -> str:
+        """Mirror the markdown TOC extension's simple slug convention."""
+        slug = title.lower().strip()
+        slug = re.sub(r"[^\w\s-]", "", slug)
+        slug = re.sub(r"[\s_]+", "-", slug)
+        return slug
 
     def parse_skills(self) -> list[Skill]:
         """Parse skills from .claude/skills/*/SKILL.md frontmatter."""

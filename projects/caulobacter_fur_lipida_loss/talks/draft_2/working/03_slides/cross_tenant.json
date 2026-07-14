@@ -1,0 +1,31 @@
+{
+  "schema_version": "compose-fragment.v1",
+  "kind": "cross_tenant_set",
+  "throughline_id": "TL1",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "cross_tenant_integration",
+      "content": {
+        "title": "This work integrates 6 K-BERDL databases + 1 external reference catalog (RefSeq) across 10 notebooks within a single tenant (`beril`).",
+        "tenant_list": [
+          "beril"
+        ],
+        "kberdl_db_list": [
+          "go",
+          "isolates",
+          "paperblast",
+          "pfam",
+          "pubmed",
+          "rb_tnseq"
+        ],
+        "data_flow_diagram": null,
+        "no_signal_fallback": false
+      },
+      "speaker_notes_seed": "RB-TnSeq (198-experiment Caulobacter fitness compendium) and PaperBLAST (literature-grounded functional annotation) are the primary K-BERDL workhorses spanning most notebooks; GO, Pfam, PubMed, and Isolates supply GO term enrichment for the ChvI cohort, domain-level classification of the Fur-released set, literature curation, and strain metadata. RefSeq served as the external reference catalog for the Pfam HMM annotation-presence panel in NB06b that confirmed sphingolipid pathway and ChvG-ChvI restriction to alphaproteobacteria. All 10 notebooks ran entirely within the `beril` tenant; no cross-tenant integration occurred in this study.",
+      "kbase_platform_frame": false
+    }
+  ]
+}

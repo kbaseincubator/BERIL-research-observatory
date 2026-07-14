@@ -1,0 +1,25 @@
+{
+  "schema_version": "compose-fragment.v1",
+  "kind": "deck_close_set",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "deck_close",
+      "content": {
+        "unified_point": "Δfur derepression is the demonstrable driver of the lipid A-loss-permissive envelope state, and everything downstream is the supporting (and still-open) mechanism it sets in motion.",
+        "key_takeaways": [
+          "Δfur derepression, not iron limitation, drives the lipid A-loss-permissive envelope state.",
+          "Calibrated against genome background, only the Fur-released Path A enriches for envelope-stress fitness.",
+          "The Fur-set envelope state triggers a two-phase ChvI response; its late regulator stays open.",
+          "Without lipid A, constitutive sphingolipids and reorganized peptidoglycan hold the envelope together.",
+          "The machinery is Caulobacter-restricted, and every layer carries its pre-registered grade."
+        ],
+        "forward_call": "Replicate the OM proteome (already planned by the data provider for summer 2026). Characterize the Caulobacter SigU regulon via SigU-induction RNA-seq (ectopic vanillate-inducible SigU expression) followed by genome-wide DE.",
+        "data_source": "Substory conclusions: S1 (C-slot) + S2 (C-slot) + S3 (C-slot) + S4 (C-slot) + S5 (C-slot); narrative/00_throughline.md; REPORT.md §Future directions"
+      },
+      "speaker_notes_seed": "The OM-proteome replication is the immediate next experiment — the data provider already has it planned for summer 2026, so the two post-hoc findings (lptC2 transcript-protein decoupling, Pal-Tol upregulation) get their confirmation first. The SigU regulon characterization is the bigger open arc: there is no published Caulobacter SigU regulon, and the late ChvI cohort from NB03 hands us a ready candidate list to validate against."
+    }
+  ]
+}

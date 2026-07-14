@@ -1,0 +1,575 @@
+orgId	carbon_source	cpd_id	growth_rate	fba_status	predicted_growth	observed_growth	correct
+Btheta	Sodium pyruvate	cpd00020	0.902233	optimal	True	False	False
+Btheta	Sodium D,L-Lactate	cpd00159	0.421604	optimal	True	False	False
+Btheta	L-Glutamine	cpd00053	0.539514	optimal	True	False	False
+Btheta	L-Malic acid disodium salt monohydrate	cpd00130	0.98564	optimal	True	False	False
+Btheta	Sodium succinate dibasic hexahydrate	cpd00036	1.006607	optimal	True	False	False
+Btheta	Sodium L-Lactate	cpd00159	0.421604	optimal	True	False	False
+Btheta	D-Fructose	cpd00082	1.602096	optimal	True	True	True
+Btheta	D-Glucose	cpd00027	1.602096	optimal	True	True	True
+Btheta	Sodium D-Lactate	cpd00221	0.96969	optimal	True	False	False
+Btheta	N-Acetyl-D-Glucosamine	cpd00122	0.421604	optimal	True	True	True
+Btheta	D-Maltose monohydrate	cpd00179	2.797431	optimal	True	True	True
+Btheta	Glycerol	cpd00100	1.054123	optimal	True	False	False
+Btheta	a-Ketoglutaric acid disodium salt hydrate	cpd00024	0.475247	optimal	True	False	False
+Btheta	D-Xylose	cpd00154	1.391294	optimal	True	True	True
+Btheta	L-Proline	cpd00129	0.635856	optimal	True	False	False
+Btheta	D-Trehalose dihydrate	cpd00794	0.421604	optimal	True	True	True
+Btheta	L-Fucose	cpd00751	0.421604	optimal	True	True	True
+Btheta	Trisodium citrate dihydrate	cpd00137	0.549148	optimal	True	False	False
+Btheta	Potassium acetate	cpd00029	0.801048	optimal	True	False	False
+Btheta	L-Rhamnose monohydrate	cpd00396	0.421604	optimal	True	True	True
+Btheta	D-Sorbitol	cpd00588	0.421604	optimal	True	False	False
+Btheta	D-Galactose	cpd00108	0.421604	optimal	True	True	True
+Btheta	D-Cellobiose	cpd00158	2.755365	optimal	True	False	False
+Btheta	D-Mannose	cpd00138	1.602096	optimal	True	True	True
+Btheta	D-Gluconic Acid sodium salt	cpd00222	0.421604	optimal	True	False	False
+Btheta	D-Ribose	cpd00105	1.433455	optimal	True	True	True
+Btheta	D-Raffinose pentahydrate	cpd30716	0.421604	optimal	True	True	True
+Btheta	m-Inositol	cpd00121	0.421604	optimal	True	False	False
+Btheta	L-Glutamic acid monopotassium salt monohydrate	cpd00023	0.539514	optimal	True	False	False
+Btheta	Sodium Fumarate dibasic	cpd00106	0.977143	optimal	True	False	False
+Btheta	Sodium propionate	cpd00141	0.421604	optimal	True	False	False
+Btheta	D-Glucosamine Hydrochloride	cpd00276	0.421604	optimal	True	True	True
+Btheta	a-Cyclodextrin	cpd24451	0.421604	optimal	True	True	True
+Btheta	Ethanol	cpd00363	0.421604	optimal	True	False	False
+Btheta	D-Glucose-6-Phosphate sodium salt	cpd00079	1.661121	optimal	True	False	False
+Btheta	D-Galacturonic Acid monohydrate	cpd00280	1.399726	optimal	True	True	True
+Btheta	L-Alanine	cpd00035	0.96969	optimal	True	False	False
+Btheta	L-Asparagine	cpd00132	0.986312	optimal	True	False	False
+Btheta	Sodium butyrate	cpd00211	0.421604	optimal	True	False	False
+Btheta	L-Leucine	cpd00107	0.445396	optimal	True	False	False
+Btheta	L-Arabinose	cpd00224	1.399726	optimal	True	True	True
+Koxy	Sodium pyruvate	cpd00020	12.119864	optimal	True	True	True
+Koxy	Sodium D,L-Lactate	cpd00159	12.235291	optimal	True	True	True
+Koxy	L-Glutamine	cpd00053	12.581573	optimal	True	True	True
+Koxy	L-Malic acid disodium salt monohydrate	cpd00130	12.235291	optimal	True	True	True
+Koxy	Sodium succinate dibasic hexahydrate	cpd00036	12.350718	optimal	True	True	True
+Koxy	Sodium L-Lactate	cpd00159	12.235291	optimal	True	True	True
+Koxy	D-Fructose	cpd00082	12.927855	optimal	True	True	True
+Koxy	D-Glucose	cpd00027	12.927855	optimal	True	True	True
+Koxy	Sodium D-Lactate	cpd00221	12.235291	optimal	True	True	True
+Koxy	N-Acetyl-D-Glucosamine	cpd00122	13.389564	optimal	True	False	False
+Koxy	D-Maltose monohydrate	cpd00179	14.312982	optimal	True	True	True
+Koxy	Glycerol	cpd00100	12.350718	optimal	True	True	True
+Koxy	a-Ketoglutaric acid disodium salt hydrate	cpd00024	12.466146	optimal	True	False	False
+Koxy	D-Xylose	cpd00154	12.697	optimal	True	True	True
+Koxy	L-Proline	cpd00129	12.812427	optimal	True	False	False
+Koxy	D-Trehalose dihydrate	cpd00794	14.312982	optimal	True	True	True
+Koxy	L-Fucose	cpd00751	13.043282	optimal	True	True	True
+Koxy	Trisodium citrate dihydrate	cpd00137	12.581573	optimal	True	True	True
+Koxy	Potassium acetate	cpd00029	12.004437	optimal	True	True	True
+Koxy	L-Rhamnose monohydrate	cpd00396	13.043282	optimal	True	True	True
+Koxy	D-Sorbitol	cpd00588	13.043282	optimal	True	True	True
+Koxy	D-Galactose	cpd00108	11.542727	optimal	True	False	False
+Koxy	D-Cellobiose	cpd00158	14.312982	optimal	True	True	True
+Koxy	D-Mannose	cpd00138	12.927855	optimal	True	False	False
+Koxy	D-Gluconic Acid sodium salt	cpd00222	12.812427	optimal	True	True	True
+Koxy	D-Ribose	cpd00105	12.697	optimal	True	True	True
+Koxy	D-Raffinose pentahydrate	cpd30716	11.542727	optimal	True	True	True
+Koxy	m-Inositol	cpd00121	11.542727	optimal	True	True	True
+Koxy	L-Glutamic acid monopotassium salt monohydrate	cpd00023	12.581573	optimal	True	False	False
+Koxy	Sodium Fumarate dibasic	cpd00106	12.235291	optimal	True	False	False
+Koxy	Sodium propionate	cpd00141	11.772398	optimal	True	False	False
+Koxy	D-Glucosamine Hydrochloride	cpd00276	12.927855	optimal	True	True	True
+Koxy	a-Cyclodextrin	cpd24451	11.542727	optimal	True	True	True
+Koxy	Ethanol	cpd00363	12.235291	optimal	True	False	False
+Koxy	D-Glucose-6-Phosphate sodium salt	cpd00079	12.927855	optimal	True	True	True
+Koxy	D-Galacturonic Acid monohydrate	cpd00280	12.697	optimal	True	False	False
+Koxy	L-Alanine	cpd00035	12.235291	optimal	True	True	True
+Koxy	L-Asparagine	cpd00132	12.235291	optimal	True	False	False
+Koxy	Sodium butyrate	cpd00211	11.542727	optimal	True	False	False
+Koxy	L-Leucine	cpd00107	12.343875	optimal	True	False	False
+Koxy	L-Arabinose	cpd00224	12.697	optimal	True	False	False
+Smeli	Sodium pyruvate	cpd00020	6.381152	optimal	True	True	True
+Smeli	Sodium D,L-Lactate	cpd00159	6.497173	optimal	True	True	True
+Smeli	L-Glutamine	cpd00053	6.845236	optimal	True	True	True
+Smeli	L-Malic acid disodium salt monohydrate	cpd00130	6.497173	optimal	True	True	True
+Smeli	Sodium succinate dibasic hexahydrate	cpd00036	6.613194	optimal	True	True	True
+Smeli	Sodium L-Lactate	cpd00159	6.497173	optimal	True	True	True
+Smeli	D-Fructose	cpd00082	7.193298	optimal	True	True	True
+Smeli	D-Glucose	cpd00027	7.193298	optimal	True	True	True
+Smeli	Sodium D-Lactate	cpd00221	6.497173	optimal	True	False	False
+Smeli	N-Acetyl-D-Glucosamine	cpd00122	5.801047	optimal	True	True	True
+Smeli	D-Maltose monohydrate	cpd00179	8.58555	optimal	True	True	True
+Smeli	Glycerol	cpd00100	6.613194	optimal	True	True	True
+Smeli	a-Ketoglutaric acid disodium salt hydrate	cpd00024	6.729215	optimal	True	False	False
+Smeli	D-Xylose	cpd00154	6.961257	optimal	True	True	True
+Smeli	L-Proline	cpd00129	7.077277	optimal	True	True	True
+Smeli	D-Trehalose dihydrate	cpd00794	8.58555	optimal	True	True	True
+Smeli	L-Fucose	cpd00751	5.801047	optimal	True	True	True
+Smeli	Trisodium citrate dihydrate	cpd00137	6.845236	optimal	True	False	False
+Smeli	Potassium acetate	cpd00029	6.265131	optimal	True	False	False
+Smeli	L-Rhamnose monohydrate	cpd00396	5.801047	optimal	True	True	True
+Smeli	D-Sorbitol	cpd00588	7.309319	optimal	True	True	True
+Smeli	D-Galactose	cpd00108	5.801047	optimal	True	True	True
+Smeli	D-Cellobiose	cpd00158	5.801047	optimal	True	True	True
+Smeli	D-Mannose	cpd00138	7.193298	optimal	True	True	True
+Smeli	D-Gluconic Acid sodium salt	cpd00222	7.077277	optimal	True	False	False
+Smeli	D-Ribose	cpd00105	6.961257	optimal	True	True	True
+Smeli	D-Raffinose pentahydrate	cpd30716	5.801047	optimal	True	True	True
+Smeli	m-Inositol	cpd00121	5.801047	optimal	True	True	True
+Smeli	L-Glutamic acid monopotassium salt monohydrate	cpd00023	6.845236	optimal	True	False	False
+Smeli	Sodium Fumarate dibasic	cpd00106	6.497173	optimal	True	False	False
+Smeli	Sodium propionate	cpd00141	5.801047	optimal	True	False	False
+Smeli	D-Glucosamine Hydrochloride	cpd00276	5.801047	optimal	True	True	True
+Smeli	a-Cyclodextrin	cpd24451	5.801047	optimal	True	False	False
+Smeli	Ethanol	cpd00363	6.497173	optimal	True	False	False
+Smeli	D-Glucose-6-Phosphate sodium salt	cpd00079	7.193298	optimal	True	False	False
+Smeli	D-Galacturonic Acid monohydrate	cpd00280	5.801047	optimal	True	False	False
+Smeli	L-Alanine	cpd00035	6.497173	optimal	True	False	False
+Smeli	L-Asparagine	cpd00132	5.883179	optimal	True	False	False
+Smeli	Sodium butyrate	cpd00211	5.801047	optimal	True	False	False
+Smeli	L-Leucine	cpd00107	6.205896	optimal	True	True	True
+Smeli	L-Arabinose	cpd00224	5.801047	optimal	True	True	True
+Phaeo	Sodium pyruvate	cpd00020	37.394149	optimal	True	True	True
+Phaeo	Sodium D,L-Lactate	cpd00159	37.394149	optimal	True	True	True
+Phaeo	L-Glutamine	cpd00053	37.394149	optimal	True	True	True
+Phaeo	L-Malic acid disodium salt monohydrate	cpd00130	37.549958	optimal	True	True	True
+Phaeo	Sodium succinate dibasic hexahydrate	cpd00036	37.549958	optimal	True	True	True
+Phaeo	Sodium L-Lactate	cpd00159	37.394149	optimal	True	True	True
+Phaeo	D-Fructose	cpd00082	37.549958	optimal	True	True	True
+Phaeo	D-Glucose	cpd00027	37.549958	optimal	True	True	True
+Phaeo	Sodium D-Lactate	cpd00221	37.394149	optimal	True	True	True
+Phaeo	N-Acetyl-D-Glucosamine	cpd00122	37.549958	optimal	True	True	True
+Phaeo	D-Maltose monohydrate	cpd00179	37.549958	optimal	True	False	False
+Phaeo	Glycerol	cpd00100	37.394149	optimal	True	True	True
+Phaeo	a-Ketoglutaric acid disodium salt hydrate	cpd00024	37.549958	optimal	True	True	True
+Phaeo	D-Xylose	cpd00154	37.394149	optimal	True	True	True
+Phaeo	L-Proline	cpd00129	37.394149	optimal	True	True	True
+Phaeo	D-Trehalose dihydrate	cpd00794	37.705767	optimal	True	True	True
+Phaeo	L-Fucose	cpd00751	37.394149	optimal	True	False	False
+Phaeo	Trisodium citrate dihydrate	cpd00137	37.473691	optimal	True	True	True
+Phaeo	Potassium acetate	cpd00029	37.394149	optimal	True	True	True
+Phaeo	L-Rhamnose monohydrate	cpd00396	37.394149	optimal	True	False	False
+Phaeo	D-Sorbitol	cpd00588	37.549958	optimal	True	True	True
+Phaeo	D-Galactose	cpd00108	37.394149	optimal	True	False	False
+Phaeo	D-Cellobiose	cpd00158	37.705767	optimal	True	True	True
+Phaeo	D-Mannose	cpd00138	37.394149	optimal	True	True	True
+Phaeo	D-Gluconic Acid sodium salt	cpd00222	37.394149	optimal	True	False	False
+Phaeo	D-Ribose	cpd00105	37.705767	optimal	True	False	False
+Phaeo	D-Raffinose pentahydrate	cpd30716	37.394149	optimal	True	False	False
+Phaeo	m-Inositol	cpd00121	37.394149	optimal	True	True	True
+Phaeo	L-Glutamic acid monopotassium salt monohydrate	cpd00023	37.549958	optimal	True	True	True
+Phaeo	Sodium Fumarate dibasic	cpd00106	37.549958	optimal	True	True	True
+Phaeo	Sodium propionate	cpd00141	37.394149	optimal	True	True	True
+Phaeo	D-Glucosamine Hydrochloride	cpd00276	37.394149	optimal	True	False	False
+Phaeo	a-Cyclodextrin	cpd24451	37.394149	optimal	True	False	False
+Phaeo	Ethanol	cpd00363	37.394149	optimal	True	False	False
+Phaeo	D-Glucose-6-Phosphate sodium salt	cpd00079	37.705767	optimal	True	False	False
+Phaeo	D-Galacturonic Acid monohydrate	cpd00280	37.394149	optimal	True	False	False
+Phaeo	L-Alanine	cpd00035	37.394149	optimal	True	False	False
+Phaeo	L-Asparagine	cpd00132	37.629306	optimal	True	True	True
+Phaeo	Sodium butyrate	cpd00211	37.394149	optimal	True	True	True
+Phaeo	L-Leucine	cpd00107	37.394149	optimal	True	False	False
+Phaeo	L-Arabinose	cpd00224	37.394149	optimal	True	False	False
+Keio	Sodium pyruvate	cpd00020	18.657777	optimal	True	True	True
+Keio	Sodium D,L-Lactate	cpd00159	18.657777	optimal	True	True	True
+Keio	L-Glutamine	cpd00053	19.022424	optimal	True	False	False
+Keio	L-Malic acid disodium salt monohydrate	cpd00130	18.718551	optimal	True	True	True
+Keio	Sodium succinate dibasic hexahydrate	cpd00036	18.718551	optimal	True	True	True
+Keio	Sodium L-Lactate	cpd00159	18.657777	optimal	True	False	False
+Keio	D-Fructose	cpd00082	19.204747	optimal	True	True	True
+Keio	D-Glucose	cpd00027	19.265522	optimal	True	True	True
+Keio	Sodium D-Lactate	cpd00221	18.657777	optimal	True	True	True
+Keio	N-Acetyl-D-Glucosamine	cpd00122	19.630169	optimal	True	True	True
+Keio	D-Maltose monohydrate	cpd00179	20.359463	optimal	True	True	True
+Keio	Glycerol	cpd00100	18.718551	optimal	True	True	True
+Keio	a-Ketoglutaric acid disodium salt hydrate	cpd00024	19.083198	optimal	True	True	True
+Keio	D-Xylose	cpd00154	19.083198	optimal	True	True	True
+Keio	L-Proline	cpd00129	19.083198	optimal	True	False	False
+Keio	D-Trehalose dihydrate	cpd00794	20.359463	optimal	True	True	True
+Keio	L-Fucose	cpd00751	19.143973	optimal	True	True	True
+Keio	Trisodium citrate dihydrate	cpd00137	19.083198	optimal	True	False	False
+Keio	Potassium acetate	cpd00029	18.597002	optimal	True	True	True
+Keio	L-Rhamnose monohydrate	cpd00396	19.143973	optimal	True	False	False
+Keio	D-Sorbitol	cpd00588	19.265522	optimal	True	True	True
+Keio	D-Galactose	cpd00108	19.265522	optimal	True	True	True
+Keio	D-Cellobiose	cpd00158	20.359463	optimal	True	False	False
+Keio	D-Mannose	cpd00138	19.265522	optimal	True	True	True
+Keio	D-Gluconic Acid sodium salt	cpd00222	19.143973	optimal	True	True	True
+Keio	D-Ribose	cpd00105	19.022424	optimal	True	True	True
+Keio	D-Raffinose pentahydrate	cpd30716	18.232355	optimal	True	False	False
+Keio	m-Inositol	cpd00121	18.232355	optimal	True	False	False
+Keio	L-Glutamic acid monopotassium salt monohydrate	cpd00023	19.083198	optimal	True	False	False
+Keio	Sodium Fumarate dibasic	cpd00106	18.718551	optimal	True	False	False
+Keio	Sodium propionate	cpd00141	18.597002	optimal	True	False	False
+Keio	D-Glucosamine Hydrochloride	cpd00276	19.265522	optimal	True	True	True
+Keio	a-Cyclodextrin	cpd24451	18.232355	optimal	True	False	False
+Keio	Ethanol	cpd00363	18.597002	optimal	True	False	False
+Keio	D-Glucose-6-Phosphate sodium salt	cpd00079	19.326296	optimal	True	True	True
+Keio	D-Galacturonic Acid monohydrate	cpd00280	19.143973	optimal	True	True	True
+Keio	L-Alanine	cpd00035	18.657777	optimal	True	False	False
+Keio	L-Asparagine	cpd00132	18.741393	optimal	True	False	False
+Keio	Sodium butyrate	cpd00211	18.232355	optimal	True	False	False
+Keio	L-Leucine	cpd00107	19.148439	optimal	True	False	False
+Keio	L-Arabinose	cpd00224	19.083198	optimal	True	False	False
+HerbieS	Sodium pyruvate	cpd00020	5.00853	optimal	True	True	True
+HerbieS	Sodium D,L-Lactate	cpd00159	5.00853	optimal	True	True	True
+HerbieS	L-Glutamine	cpd00053	5.217658	optimal	True	True	True
+HerbieS	L-Malic acid disodium salt monohydrate	cpd00130	5.00853	optimal	True	True	True
+HerbieS	Sodium succinate dibasic hexahydrate	cpd00036	5.00853	optimal	True	True	True
+HerbieS	Sodium L-Lactate	cpd00159	5.00853	optimal	True	True	True
+HerbieS	D-Fructose	cpd00082	5.828714	optimal	True	False	False
+HerbieS	D-Glucose	cpd00027	5.751192	optimal	True	True	True
+HerbieS	Sodium D-Lactate	cpd00221	5.00853	optimal	True	True	True
+HerbieS	N-Acetyl-D-Glucosamine	cpd00122	6.063255	optimal	True	False	False
+HerbieS	D-Maltose monohydrate	cpd00179	6.876336	optimal	True	False	False
+HerbieS	Glycerol	cpd00100	5.00853	optimal	True	True	True
+HerbieS	a-Ketoglutaric acid disodium salt hydrate	cpd00024	5.217658	optimal	True	True	True
+HerbieS	D-Xylose	cpd00154	5.217658	optimal	True	True	True
+HerbieS	L-Proline	cpd00129	5.217658	optimal	True	True	True
+HerbieS	D-Trehalose dihydrate	cpd00794	6.882732	optimal	True	False	False
+HerbieS	L-Fucose	cpd00751	4.173775	optimal	True	True	True
+HerbieS	Trisodium citrate dihydrate	cpd00137	5.425908	optimal	True	False	False
+HerbieS	Potassium acetate	cpd00029	4.591153	optimal	True	False	False
+HerbieS	L-Rhamnose monohydrate	cpd00396	4.173775	optimal	True	True	True
+HerbieS	D-Sorbitol	cpd00588	4.173775	optimal	True	True	True
+HerbieS	D-Galactose	cpd00108	4.173775	optimal	True	True	True
+HerbieS	D-Cellobiose	cpd00158	6.922797	optimal	True	False	False
+HerbieS	D-Mannose	cpd00138	5.751192	optimal	True	True	True
+HerbieS	D-Gluconic Acid sodium salt	cpd00222	5.783177	optimal	True	True	True
+HerbieS	D-Ribose	cpd00105	5.538185	optimal	True	True	True
+HerbieS	D-Raffinose pentahydrate	cpd30716	4.173775	optimal	True	False	False
+HerbieS	m-Inositol	cpd00121	4.173775	optimal	True	True	True
+HerbieS	L-Glutamic acid monopotassium salt monohydrate	cpd00023	5.217658	optimal	True	False	False
+HerbieS	Sodium Fumarate dibasic	cpd00106	5.00853	optimal	True	False	False
+HerbieS	Sodium propionate	cpd00141	4.591153	optimal	True	False	False
+HerbieS	D-Glucosamine Hydrochloride	cpd00276	5.751192	optimal	True	False	False
+HerbieS	a-Cyclodextrin	cpd24451	4.173775	optimal	True	False	False
+HerbieS	Ethanol	cpd00363	4.591153	optimal	True	False	False
+HerbieS	D-Glucose-6-Phosphate sodium salt	cpd00079	5.751192	optimal	True	True	True
+HerbieS	D-Galacturonic Acid monohydrate	cpd00280	4.173775	optimal	True	True	True
+HerbieS	L-Alanine	cpd00035	5.00853	optimal	True	False	False
+HerbieS	L-Asparagine	cpd00132	5.00853	optimal	True	True	True
+HerbieS	Sodium butyrate	cpd00211	4.173775	optimal	True	False	False
+HerbieS	L-Leucine	cpd00107	4.452417	optimal	True	False	False
+HerbieS	L-Arabinose	cpd00224	4.173775	optimal	True	True	True
+Cup4G11	Sodium pyruvate	cpd00020	40.658877	optimal	True	True	True
+Cup4G11	Sodium D,L-Lactate	cpd00159	40.658877	optimal	True	True	True
+Cup4G11	L-Glutamine	cpd00053	40.793956	optimal	True	True	True
+Cup4G11	L-Malic acid disodium salt monohydrate	cpd00130	40.793956	optimal	True	True	True
+Cup4G11	Sodium succinate dibasic hexahydrate	cpd00036	40.793956	optimal	True	True	True
+Cup4G11	Sodium L-Lactate	cpd00159	40.658877	optimal	True	True	True
+Cup4G11	D-Fructose	cpd00082	41.064115	optimal	True	True	True
+Cup4G11	D-Glucose	cpd00027	40.929035	optimal	True	False	False
+Cup4G11	Sodium D-Lactate	cpd00221	40.658877	optimal	True	True	True
+Cup4G11	N-Acetyl-D-Glucosamine	cpd00122	40.523797	optimal	True	False	False
+Cup4G11	D-Maltose monohydrate	cpd00179	40.523797	optimal	True	False	False
+Cup4G11	Glycerol	cpd00100	40.658877	optimal	True	False	False
+Cup4G11	a-Ketoglutaric acid disodium salt hydrate	cpd00024	40.929035	optimal	True	True	True
+Cup4G11	D-Xylose	cpd00154	40.523797	optimal	True	False	False
+Cup4G11	L-Proline	cpd00129	40.929035	optimal	True	True	True
+Cup4G11	D-Trehalose dihydrate	cpd00794	41.239104	optimal	True	False	False
+Cup4G11	L-Fucose	cpd00751	40.523797	optimal	True	False	False
+Cup4G11	Trisodium citrate dihydrate	cpd00137	40.929035	optimal	True	True	True
+Cup4G11	Potassium acetate	cpd00029	40.523797	optimal	True	False	False
+Cup4G11	L-Rhamnose monohydrate	cpd00396	40.523797	optimal	True	False	False
+Cup4G11	D-Sorbitol	cpd00588	40.523797	optimal	True	False	False
+Cup4G11	D-Galactose	cpd00108	40.523797	optimal	True	False	False
+Cup4G11	D-Cellobiose	cpd00158	41.265946	optimal	True	False	False
+Cup4G11	D-Mannose	cpd00138	40.929035	optimal	True	False	False
+Cup4G11	D-Gluconic Acid sodium salt	cpd00222	40.929035	optimal	True	True	True
+Cup4G11	D-Ribose	cpd00105	40.523797	optimal	True	False	False
+Cup4G11	D-Raffinose pentahydrate	cpd30716	40.523797	optimal	True	False	False
+Cup4G11	m-Inositol	cpd00121	40.523797	optimal	True	False	False
+Cup4G11	L-Glutamic acid monopotassium salt monohydrate	cpd00023	40.929035	optimal	True	False	False
+Cup4G11	Sodium Fumarate dibasic	cpd00106	40.793956	optimal	True	False	False
+Cup4G11	Sodium propionate	cpd00141	40.523797	optimal	True	True	True
+Cup4G11	D-Glucosamine Hydrochloride	cpd00276	40.929035	optimal	True	False	False
+Cup4G11	a-Cyclodextrin	cpd24451	40.523797	optimal	True	False	False
+Cup4G11	Ethanol	cpd00363	40.658877	optimal	True	True	True
+Cup4G11	D-Glucose-6-Phosphate sodium salt	cpd00079	41.064115	optimal	True	False	False
+Cup4G11	D-Galacturonic Acid monohydrate	cpd00280	40.523797	optimal	True	False	False
+Cup4G11	L-Alanine	cpd00035	40.658877	optimal	True	True	True
+Cup4G11	L-Asparagine	cpd00132	40.904764	optimal	True	True	True
+Cup4G11	Sodium butyrate	cpd00211	40.537488	optimal	True	True	True
+Cup4G11	L-Leucine	cpd00107	40.793956	optimal	True	True	True
+Cup4G11	L-Arabinose	cpd00224	40.523797	optimal	True	False	False
+Dino	Sodium pyruvate	cpd00020	2.226162	optimal	True	True	True
+Dino	Sodium D,L-Lactate	cpd00159	2.226162	optimal	True	True	True
+Dino	L-Glutamine	cpd00053	1.687587	optimal	True	True	True
+Dino	L-Malic acid disodium salt monohydrate	cpd00130	2.226162	optimal	True	True	True
+Dino	Sodium succinate dibasic hexahydrate	cpd00036	2.226162	optimal	True	True	True
+Dino	Sodium L-Lactate	cpd00159	2.226162	optimal	True	True	True
+Dino	D-Fructose	cpd00082	3.060973	optimal	True	False	False
+Dino	D-Glucose	cpd00027	3.060973	optimal	True	True	True
+Dino	Sodium D-Lactate	cpd00221	2.226162	optimal	True	True	True
+Dino	N-Acetyl-D-Glucosamine	cpd00122	1.391351	optimal	True	False	False
+Dino	D-Maltose monohydrate	cpd00179	4.730594	optimal	True	True	True
+Dino	Glycerol	cpd00100	2.226162	optimal	True	True	True
+Dino	a-Ketoglutaric acid disodium salt hydrate	cpd00024	1.687587	optimal	True	True	True
+Dino	D-Xylose	cpd00154	2.782702	optimal	True	False	False
+Dino	L-Proline	cpd00129	1.687587	optimal	True	False	False
+Dino	D-Trehalose dihydrate	cpd00794	1.439422	optimal	True	True	True
+Dino	L-Fucose	cpd00751	1.391351	optimal	True	False	False
+Dino	Trisodium citrate dihydrate	cpd00137	2.643567	optimal	True	True	True
+Dino	Potassium acetate	cpd00029	1.808757	optimal	True	False	False
+Dino	L-Rhamnose monohydrate	cpd00396	1.391351	optimal	True	True	True
+Dino	D-Sorbitol	cpd00588	3.060973	optimal	True	False	False
+Dino	D-Galactose	cpd00108	1.391351	optimal	True	False	False
+Dino	D-Cellobiose	cpd00158	4.730594	optimal	True	False	False
+Dino	D-Mannose	cpd00138	3.060973	optimal	True	False	False
+Dino	D-Gluconic Acid sodium salt	cpd00222	1.391351	optimal	True	False	False
+Dino	D-Ribose	cpd00105	2.782702	optimal	True	False	False
+Dino	D-Raffinose pentahydrate	cpd30716	1.391351	optimal	True	False	False
+Dino	m-Inositol	cpd00121	1.391351	optimal	True	False	False
+Dino	L-Glutamic acid monopotassium salt monohydrate	cpd00023	1.687587	optimal	True	True	True
+Dino	Sodium Fumarate dibasic	cpd00106	2.226162	optimal	True	True	True
+Dino	Sodium propionate	cpd00141	1.391351	optimal	True	True	True
+Dino	D-Glucosamine Hydrochloride	cpd00276	3.060973	optimal	True	False	False
+Dino	a-Cyclodextrin	cpd24451	1.391351	optimal	True	False	False
+Dino	Ethanol	cpd00363	1.808757	optimal	True	False	False
+Dino	D-Glucose-6-Phosphate sodium salt	cpd00079	3.060973	optimal	True	False	False
+Dino	D-Galacturonic Acid monohydrate	cpd00280	1.391351	optimal	True	False	False
+Dino	L-Alanine	cpd00035	2.226162	optimal	True	False	False
+Dino	L-Asparagine	cpd00132	1.415041	optimal	True	False	False
+Dino	Sodium butyrate	cpd00211	1.391351	optimal	True	False	False
+Dino	L-Leucine	cpd00107	1.484245	optimal	True	False	False
+Dino	L-Arabinose	cpd00224	1.391351	optimal	True	False	False
+Marino	Sodium pyruvate	cpd00020	3.900337	optimal	True	True	True
+Marino	Sodium D,L-Lactate	cpd00159	3.900337	optimal	True	True	True
+Marino	L-Glutamine	cpd00053	4.157601	optimal	True	False	False
+Marino	L-Malic acid disodium salt monohydrate	cpd00130	3.900337	optimal	True	True	True
+Marino	Sodium succinate dibasic hexahydrate	cpd00036	3.900337	optimal	True	True	True
+Marino	Sodium L-Lactate	cpd00159	3.900337	optimal	True	True	True
+Marino	D-Fructose	cpd00082	4.550393	optimal	True	False	False
+Marino	D-Glucose	cpd00027	4.875421	optimal	True	False	False
+Marino	Sodium D-Lactate	cpd00221	3.250281	optimal	True	True	True
+Marino	N-Acetyl-D-Glucosamine	cpd00122	3.250281	optimal	True	False	False
+Marino	D-Maltose monohydrate	cpd00179	6.500562	optimal	True	False	False
+Marino	Glycerol	cpd00100	3.900337	optimal	True	True	True
+Marino	a-Ketoglutaric acid disodium salt hydrate	cpd00024	4.157601	optimal	True	True	True
+Marino	D-Xylose	cpd00154	3.250281	optimal	True	False	False
+Marino	L-Proline	cpd00129	4.157601	optimal	True	True	True
+Marino	D-Trehalose dihydrate	cpd00794	3.250281	optimal	True	True	True
+Marino	L-Fucose	cpd00751	3.250281	optimal	True	False	False
+Marino	Trisodium citrate dihydrate	cpd00137	4.157601	optimal	True	True	True
+Marino	Potassium acetate	cpd00029	3.900337	optimal	True	True	True
+Marino	L-Rhamnose monohydrate	cpd00396	3.250281	optimal	True	False	False
+Marino	D-Sorbitol	cpd00588	3.250281	optimal	True	False	False
+Marino	D-Galactose	cpd00108	3.250281	optimal	True	False	False
+Marino	D-Cellobiose	cpd00158	3.250281	optimal	True	False	False
+Marino	D-Mannose	cpd00138	4.875421	optimal	True	False	False
+Marino	D-Gluconic Acid sodium salt	cpd00222	3.250281	optimal	True	False	False
+Marino	D-Ribose	cpd00105	3.250281	optimal	True	False	False
+Marino	D-Raffinose pentahydrate	cpd30716	3.250281	optimal	True	False	False
+Marino	m-Inositol	cpd00121	3.250281	optimal	True	False	False
+Marino	L-Glutamic acid monopotassium salt monohydrate	cpd00023	4.157601	optimal	True	True	True
+Marino	Sodium Fumarate dibasic	cpd00106	3.900337	optimal	True	True	True
+Marino	Sodium propionate	cpd00141	3.900337	optimal	True	False	False
+Marino	D-Glucosamine Hydrochloride	cpd00276	4.875421	optimal	True	False	False
+Marino	a-Cyclodextrin	cpd24451	3.250281	optimal	True	False	False
+Marino	Ethanol	cpd00363	3.900337	optimal	True	True	True
+Marino	D-Glucose-6-Phosphate sodium salt	cpd00079	4.875421	optimal	True	False	False
+Marino	D-Galacturonic Acid monohydrate	cpd00280	3.250281	optimal	True	False	False
+Marino	L-Alanine	cpd00035	3.900337	optimal	True	False	False
+Marino	L-Asparagine	cpd00132	3.293213	optimal	True	False	False
+Marino	Sodium butyrate	cpd00211	3.250281	optimal	True	False	False
+Marino	L-Leucine	cpd00107	3.506625	optimal	True	False	False
+Marino	L-Arabinose	cpd00224	3.250281	optimal	True	False	False
+MR1	Sodium pyruvate	cpd00020	5.026721	optimal	True	True	True
+MR1	Sodium D,L-Lactate	cpd00159	4.188934	optimal	True	True	True
+MR1	L-Glutamine	cpd00053	5.237403	optimal	True	True	True
+MR1	L-Malic acid disodium salt monohydrate	cpd00130	5.026721	optimal	True	False	False
+MR1	Sodium succinate dibasic hexahydrate	cpd00036	5.026721	optimal	True	False	False
+MR1	Sodium L-Lactate	cpd00159	4.188934	optimal	True	True	True
+MR1	D-Fructose	cpd00082	5.864508	optimal	True	False	False
+MR1	D-Glucose	cpd00027	5.864508	optimal	True	False	False
+MR1	Sodium D-Lactate	cpd00221	5.026721	optimal	True	False	False
+MR1	N-Acetyl-D-Glucosamine	cpd00122	6.283402	optimal	True	True	True
+MR1	D-Maltose monohydrate	cpd00179	4.188934	optimal	True	False	False
+MR1	Glycerol	cpd00100	5.026721	optimal	True	False	False
+MR1	a-Ketoglutaric acid disodium salt hydrate	cpd00024	5.237403	optimal	True	False	False
+MR1	D-Xylose	cpd00154	4.188934	optimal	True	False	False
+MR1	L-Proline	cpd00129	5.237403	optimal	True	False	False
+MR1	D-Trehalose dihydrate	cpd00794	4.188934	optimal	True	False	False
+MR1	L-Fucose	cpd00751	4.188934	optimal	True	False	False
+MR1	Trisodium citrate dihydrate	cpd00137	5.445615	optimal	True	False	False
+MR1	Potassium acetate	cpd00029	4.607828	optimal	True	False	False
+MR1	L-Rhamnose monohydrate	cpd00396	4.188934	optimal	True	False	False
+MR1	D-Sorbitol	cpd00588	4.188934	optimal	True	False	False
+MR1	D-Galactose	cpd00108	4.188934	optimal	True	False	False
+MR1	D-Cellobiose	cpd00158	4.188934	optimal	True	False	False
+MR1	D-Mannose	cpd00138	4.188934	optimal	True	False	False
+MR1	D-Gluconic Acid sodium salt	cpd00222	4.188934	optimal	True	False	False
+MR1	D-Ribose	cpd00105	5.585246	optimal	True	False	False
+MR1	D-Raffinose pentahydrate	cpd30716	4.188934	optimal	True	False	False
+MR1	m-Inositol	cpd00121	4.188934	optimal	True	False	False
+MR1	L-Glutamic acid monopotassium salt monohydrate	cpd00023	5.237403	optimal	True	False	False
+MR1	Sodium Fumarate dibasic	cpd00106	5.026721	optimal	True	False	False
+MR1	Sodium propionate	cpd00141	4.188934	optimal	True	True	True
+MR1	D-Glucosamine Hydrochloride	cpd00276	5.864508	optimal	True	False	False
+MR1	a-Cyclodextrin	cpd24451	4.188934	optimal	True	False	False
+MR1	Ethanol	cpd00363	4.607828	optimal	True	False	False
+MR1	D-Glucose-6-Phosphate sodium salt	cpd00079	5.864508	optimal	True	False	False
+MR1	D-Galacturonic Acid monohydrate	cpd00280	4.188934	optimal	True	False	False
+MR1	L-Alanine	cpd00035	5.026721	optimal	True	False	False
+MR1	L-Asparagine	cpd00132	5.026721	optimal	True	False	False
+MR1	Sodium butyrate	cpd00211	4.188934	optimal	True	False	False
+MR1	L-Leucine	cpd00107	4.469672	optimal	True	False	False
+MR1	L-Arabinose	cpd00224	4.188934	optimal	True	False	False
+azobra	Sodium pyruvate	cpd00020	3.140867	optimal	True	True	True
+azobra	Sodium D,L-Lactate	cpd00159	3.140867	optimal	True	True	True
+azobra	L-Glutamine	cpd00053	3.505689	optimal	True	True	True
+azobra	L-Malic acid disodium salt monohydrate	cpd00130	3.34111	optimal	True	True	True
+azobra	Sodium succinate dibasic hexahydrate	cpd00036	3.34111	optimal	True	True	True
+azobra	Sodium L-Lactate	cpd00159	3.140867	optimal	True	True	True
+azobra	D-Fructose	cpd00082	3.865683	optimal	True	True	True
+azobra	D-Glucose	cpd00027	3.865683	optimal	True	False	False
+azobra	Sodium D-Lactate	cpd00221	3.140867	optimal	True	True	True
+azobra	N-Acetyl-D-Glucosamine	cpd00122	4.348893	optimal	True	False	False
+azobra	D-Maltose monohydrate	cpd00179	5.315314	optimal	True	False	False
+azobra	Glycerol	cpd00100	3.140867	optimal	True	True	True
+azobra	a-Ketoglutaric acid disodium salt hydrate	cpd00024	3.505689	optimal	True	True	True
+azobra	D-Xylose	cpd00154	2.416052	optimal	True	False	False
+azobra	L-Proline	cpd00129	3.505689	optimal	True	True	True
+azobra	D-Trehalose dihydrate	cpd00794	5.315314	optimal	True	False	False
+azobra	L-Fucose	cpd00751	2.416052	optimal	True	False	False
+azobra	Trisodium citrate dihydrate	cpd00137	3.770571	optimal	True	False	False
+azobra	Potassium acetate	cpd00029	2.899262	optimal	True	False	False
+azobra	L-Rhamnose monohydrate	cpd00396	2.416052	optimal	True	False	False
+azobra	D-Sorbitol	cpd00588	2.416052	optimal	True	False	False
+azobra	D-Galactose	cpd00108	2.416052	optimal	True	False	False
+azobra	D-Cellobiose	cpd00158	5.315314	optimal	True	False	False
+azobra	D-Mannose	cpd00138	3.865683	optimal	True	False	False
+azobra	D-Gluconic Acid sodium salt	cpd00222	3.624077	optimal	True	True	True
+azobra	D-Ribose	cpd00105	2.416052	optimal	True	False	False
+azobra	D-Raffinose pentahydrate	cpd30716	2.416052	optimal	True	False	False
+azobra	m-Inositol	cpd00121	2.416052	optimal	True	False	False
+azobra	L-Glutamic acid monopotassium salt monohydrate	cpd00023	3.505689	optimal	True	False	False
+azobra	Sodium Fumarate dibasic	cpd00106	3.34111	optimal	True	False	False
+azobra	Sodium propionate	cpd00141	2.416052	optimal	True	False	False
+azobra	D-Glucosamine Hydrochloride	cpd00276	3.865683	optimal	True	False	False
+azobra	a-Cyclodextrin	cpd24451	2.416052	optimal	True	False	False
+azobra	Ethanol	cpd00363	2.899262	optimal	True	True	True
+azobra	D-Glucose-6-Phosphate sodium salt	cpd00079	3.865683	optimal	True	False	False
+azobra	D-Galacturonic Acid monohydrate	cpd00280	3.865683	optimal	True	False	False
+azobra	L-Alanine	cpd00035	3.140867	optimal	True	False	False
+azobra	L-Asparagine	cpd00132	2.463803	optimal	True	False	False
+azobra	Sodium butyrate	cpd00211	2.416052	optimal	True	True	True
+azobra	L-Leucine	cpd00107	2.579589	optimal	True	True	True
+azobra	L-Arabinose	cpd00224	2.416052	optimal	True	False	False
+PV4	Sodium pyruvate	cpd00020	5.026721	optimal	True	True	True
+PV4	Sodium D,L-Lactate	cpd00159	4.188934	optimal	True	True	True
+PV4	L-Glutamine	cpd00053	5.237403	optimal	True	True	True
+PV4	L-Malic acid disodium salt monohydrate	cpd00130	5.026721	optimal	True	True	True
+PV4	Sodium succinate dibasic hexahydrate	cpd00036	5.026721	optimal	True	True	True
+PV4	Sodium L-Lactate	cpd00159	4.188934	optimal	True	True	True
+PV4	D-Fructose	cpd00082	5.864508	optimal	True	False	False
+PV4	D-Glucose	cpd00027	5.864508	optimal	True	False	False
+PV4	Sodium D-Lactate	cpd00221	5.026721	optimal	True	False	False
+PV4	N-Acetyl-D-Glucosamine	cpd00122	6.283402	optimal	True	True	True
+PV4	D-Maltose monohydrate	cpd00179	4.188934	optimal	True	True	True
+PV4	Glycerol	cpd00100	5.026721	optimal	True	False	False
+PV4	a-Ketoglutaric acid disodium salt hydrate	cpd00024	5.237403	optimal	True	True	True
+PV4	D-Xylose	cpd00154	4.188934	optimal	True	False	False
+PV4	L-Proline	cpd00129	5.237403	optimal	True	False	False
+PV4	D-Trehalose dihydrate	cpd00794	4.188934	optimal	True	False	False
+PV4	L-Fucose	cpd00751	4.188934	optimal	True	False	False
+PV4	Trisodium citrate dihydrate	cpd00137	5.445615	optimal	True	False	False
+PV4	Potassium acetate	cpd00029	4.607828	optimal	True	True	True
+PV4	L-Rhamnose monohydrate	cpd00396	4.188934	optimal	True	False	False
+PV4	D-Sorbitol	cpd00588	4.188934	optimal	True	False	False
+PV4	D-Galactose	cpd00108	5.864508	optimal	True	False	False
+PV4	D-Cellobiose	cpd00158	4.188934	optimal	True	False	False
+PV4	D-Mannose	cpd00138	4.188934	optimal	True	False	False
+PV4	D-Gluconic Acid sodium salt	cpd00222	4.188934	optimal	True	False	False
+PV4	D-Ribose	cpd00105	5.585246	optimal	True	False	False
+PV4	D-Raffinose pentahydrate	cpd30716	4.188934	optimal	True	False	False
+PV4	m-Inositol	cpd00121	4.188934	optimal	True	False	False
+PV4	L-Glutamic acid monopotassium salt monohydrate	cpd00023	5.237403	optimal	True	False	False
+PV4	Sodium Fumarate dibasic	cpd00106	5.026721	optimal	True	True	True
+PV4	Sodium propionate	cpd00141	4.188934	optimal	True	False	False
+PV4	D-Glucosamine Hydrochloride	cpd00276	5.864508	optimal	True	False	False
+PV4	a-Cyclodextrin	cpd24451	4.188934	optimal	True	False	False
+PV4	Ethanol	cpd00363	4.607828	optimal	True	False	False
+PV4	D-Glucose-6-Phosphate sodium salt	cpd00079	5.864508	optimal	True	False	False
+PV4	D-Galacturonic Acid monohydrate	cpd00280	4.188934	optimal	True	False	False
+PV4	L-Alanine	cpd00035	5.026721	optimal	True	False	False
+PV4	L-Asparagine	cpd00132	5.026721	optimal	True	False	False
+PV4	Sodium butyrate	cpd00211	4.188934	optimal	True	False	False
+PV4	L-Leucine	cpd00107	4.469672	optimal	True	False	False
+PV4	L-Arabinose	cpd00224	4.188934	optimal	True	False	False
+Korea	Sodium pyruvate	cpd00020	29.46002	optimal	True	False	False
+Korea	Sodium D,L-Lactate	cpd00159	29.46002	optimal	True	False	False
+Korea	L-Glutamine	cpd00053	29.726626	optimal	True	True	True
+Korea	L-Malic acid disodium salt monohydrate	cpd00130	29.593323	optimal	True	False	False
+Korea	Sodium succinate dibasic hexahydrate	cpd00036	29.593323	optimal	True	False	False
+Korea	Sodium L-Lactate	cpd00159	29.46002	optimal	True	False	False
+Korea	D-Fructose	cpd00082	29.859929	optimal	True	True	True
+Korea	D-Glucose	cpd00027	29.726626	optimal	True	True	True
+Korea	Sodium D-Lactate	cpd00221	29.46002	optimal	True	False	False
+Korea	N-Acetyl-D-Glucosamine	cpd00122	29.726626	optimal	True	True	True
+Korea	D-Maltose monohydrate	cpd00179	30.126536	optimal	True	True	True
+Korea	Glycerol	cpd00100	29.593323	optimal	True	False	False
+Korea	a-Ketoglutaric acid disodium salt hydrate	cpd00024	29.726626	optimal	True	False	False
+Korea	D-Xylose	cpd00154	29.726626	optimal	True	True	True
+Korea	L-Proline	cpd00129	29.726626	optimal	True	False	False
+Korea	D-Trehalose dihydrate	cpd00794	29.326716	optimal	True	False	False
+Korea	L-Fucose	cpd00751	29.326716	optimal	True	False	False
+Korea	Trisodium citrate dihydrate	cpd00137	29.726626	optimal	True	False	False
+Korea	Potassium acetate	cpd00029	29.326716	optimal	True	False	False
+Korea	L-Rhamnose monohydrate	cpd00396	29.326716	optimal	True	False	False
+Korea	D-Sorbitol	cpd00588	29.326716	optimal	True	False	False
+Korea	D-Galactose	cpd00108	29.326716	optimal	True	False	False
+Korea	D-Cellobiose	cpd00158	30.126536	optimal	True	True	True
+Korea	D-Mannose	cpd00138	29.726626	optimal	True	False	False
+Korea	D-Gluconic Acid sodium salt	cpd00222	29.326716	optimal	True	False	False
+Korea	D-Ribose	cpd00105	29.682192	optimal	True	False	False
+Korea	D-Raffinose pentahydrate	cpd30716	29.326716	optimal	True	True	True
+Korea	m-Inositol	cpd00121	29.326716	optimal	True	False	False
+Korea	L-Glutamic acid monopotassium salt monohydrate	cpd00023	29.726626	optimal	True	True	True
+Korea	Sodium Fumarate dibasic	cpd00106	29.593323	optimal	True	False	False
+Korea	Sodium propionate	cpd00141	29.326716	optimal	True	False	False
+Korea	D-Glucosamine Hydrochloride	cpd00276	29.726626	optimal	True	False	False
+Korea	a-Cyclodextrin	cpd24451	29.326716	optimal	True	True	True
+Korea	Ethanol	cpd00363	29.46002	optimal	True	False	False
+Korea	D-Glucose-6-Phosphate sodium salt	cpd00079	29.993233	optimal	True	False	False
+Korea	D-Galacturonic Acid monohydrate	cpd00280	29.326716	optimal	True	False	False
+Korea	L-Alanine	cpd00035	29.46002	optimal	True	False	False
+Korea	L-Asparagine	cpd00132	29.563817	optimal	True	False	False
+Korea	Sodium butyrate	cpd00211	29.326716	optimal	True	False	False
+Korea	L-Leucine	cpd00107	29.726626	optimal	True	False	False
+Korea	L-Arabinose	cpd00224	29.326716	optimal	True	False	False
+Dyella79	Sodium pyruvate	cpd00020	37.703498	optimal	True	True	True
+Dyella79	Sodium D,L-Lactate	cpd00159	37.658693	optimal	True	False	False
+Dyella79	L-Glutamine	cpd00053	37.994732	optimal	True	False	False
+Dyella79	L-Malic acid disodium salt monohydrate	cpd00130	37.815511	optimal	True	False	False
+Dyella79	Sodium succinate dibasic hexahydrate	cpd00036	37.815511	optimal	True	False	False
+Dyella79	Sodium L-Lactate	cpd00159	37.658693	optimal	True	False	False
+Dyella79	D-Fructose	cpd00082	37.905121	optimal	True	True	True
+Dyella79	D-Glucose	cpd00027	38.039537	optimal	True	True	True
+Dyella79	Sodium D-Lactate	cpd00221	37.658693	optimal	True	False	False
+Dyella79	N-Acetyl-D-Glucosamine	cpd00122	38.196355	optimal	True	True	True
+Dyella79	D-Maltose monohydrate	cpd00179	38.353172	optimal	True	True	True
+Dyella79	Glycerol	cpd00100	37.725901	optimal	True	False	False
+Dyella79	a-Ketoglutaric acid disodium salt hydrate	cpd00024	37.949926	optimal	True	False	False
+Dyella79	D-Xylose	cpd00154	37.949926	optimal	True	False	False
+Dyella79	L-Proline	cpd00129	37.927524	optimal	True	True	True
+Dyella79	D-Trehalose dihydrate	cpd00794	38.456566	optimal	True	False	False
+Dyella79	L-Fucose	cpd00751	37.636291	optimal	True	False	False
+Dyella79	Trisodium citrate dihydrate	cpd00137	37.639365	optimal	True	False	False
+Dyella79	Potassium acetate	cpd00029	37.703498	optimal	True	False	False
+Dyella79	L-Rhamnose monohydrate	cpd00396	37.636291	optimal	True	False	False
+Dyella79	D-Sorbitol	cpd00588	37.636291	optimal	True	False	False
+Dyella79	D-Galactose	cpd00108	37.872529	optimal	True	True	True
+Dyella79	D-Cellobiose	cpd00158	38.487588	optimal	True	True	True
+Dyella79	D-Mannose	cpd00138	38.039537	optimal	True	False	False
+Dyella79	D-Gluconic Acid sodium salt	cpd00222	37.927524	optimal	True	False	False
+Dyella79	D-Ribose	cpd00105	37.949926	optimal	True	False	False
+Dyella79	D-Raffinose pentahydrate	cpd30716	37.636291	optimal	True	False	False
+Dyella79	m-Inositol	cpd00121	37.636291	optimal	True	False	False
+Dyella79	L-Glutamic acid monopotassium salt monohydrate	cpd00023	37.949926	optimal	True	False	False
+Dyella79	Sodium Fumarate dibasic	cpd00106	37.860316	optimal	True	False	False
+Dyella79	Sodium propionate	cpd00141	37.636291	optimal	True	False	False
+Dyella79	D-Glucosamine Hydrochloride	cpd00276	38.084342	optimal	True	False	False
+Dyella79	a-Cyclodextrin	cpd24451	37.636291	optimal	True	True	True
+Dyella79	Ethanol	cpd00363	37.636291	optimal	True	False	False
+Dyella79	D-Glucose-6-Phosphate sodium salt	cpd00079	38.218757	optimal	True	False	False
+Dyella79	D-Galacturonic Acid monohydrate	cpd00280	37.636291	optimal	True	False	False
+Dyella79	L-Alanine	cpd00035	37.703498	optimal	True	True	True
+Dyella79	L-Asparagine	cpd00132	38.007575	optimal	True	False	False
+Dyella79	Sodium butyrate	cpd00211	37.636291	optimal	True	False	False
+Dyella79	L-Leucine	cpd00107	37.837914	optimal	True	False	False
+Dyella79	L-Arabinose	cpd00224	37.636291	optimal	True	False	False

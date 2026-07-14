@@ -1,0 +1,13 @@
+{
+  "layout": "claim_evidence",
+  "content": {
+    "title": "Approach: fitness ranking, transcript/proteome panel, and cross-species annotation screen \u2014 five mechanism layers",
+    "bullets": [
+      "RB-TnSeq fitness ranking across 198 Caulobacter experiments + Leaden 2018 \u0394*fur* concordance \u2192 operative Fur-released subset (vs 33.25% genome background)",
+      "Transcript + proteome panel across 3 strain contrasts \u2192 ChvI phase structure, constitutive sphingolipid state, Lpt repurposing, and PG remodel (28 loci)",
+      "NCBI annotation screen across *A. baumannii*, *N. meningitidis*, *M. catarrhalis* \u2192 structural absence of sphingolipid pathway and ChvG-ChvI confirmed"
+    ]
+  },
+  "id": 4,
+  "position": 4
+}

@@ -1,0 +1,45 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "NB15 \u2014 UC Davis per-patient profile + cocktail draft (Pillar 5 opener)",
+  "n_patients": 23,
+  "ecotype_distribution": {
+    "1": 9,
+    "0": 7,
+    "3": 6,
+    "mixed": 1
+  },
+  "mean_actionable_tier_a_per_patient": 4.39,
+  "patients_with_concrete_phage_component": 14,
+  "cocktail_summary_by_ecotype": [
+    {
+      "ecotype": "E0",
+      "n_patients": 7,
+      "mean_targets_per_patient": 1.71,
+      "n_with_cocktail": 7,
+      "n_with_concrete_phage_component": 0
+    },
+    {
+      "ecotype": "E1",
+      "n_patients": 9,
+      "mean_targets_per_patient": 4.89,
+      "n_with_cocktail": 9,
+      "n_with_concrete_phage_component": 9
+    },
+    {
+      "ecotype": "E3",
+      "n_patients": 6,
+      "mean_targets_per_patient": 2.33,
+      "n_with_cocktail": 5,
+      "n_with_concrete_phage_component": 4
+    },
+    {
+      "ecotype": "Emixed",
+      "n_patients": 1,
+      "mean_targets_per_patient": 3.0,
+      "n_with_cocktail": 1,
+      "n_with_concrete_phage_component": 1
+    }
+  ],
+  "narrative": "23 UC Davis CD patients \u00d7 per-patient profile (ecotype + calprotectin + Montreal + medication + Tier-A pathobiont presence). E0=7, E1=9, E3=6, mixed=1 (patient 6967), nan=0. Mean 4.4 actionable Tier-A targets per patient. Per-patient cocktail draft composition stratified by ecotype-specific module (NB06 H2d) + phage-availability tier (NB12-NB14) + bile-acid coupling cost (NB09c)."
+}

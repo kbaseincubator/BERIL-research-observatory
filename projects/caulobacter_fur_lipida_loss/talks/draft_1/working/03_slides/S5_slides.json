@@ -1,0 +1,96 @@
+{
+  "schema_version": "compose-fragment.v2",
+  "substory_id": "S5",
+  "substory_punchline": "Caulobacter's sphingolipid/ChvI route is taxonomically restricted — comparators lack it and use other routes.",
+  "throughline_id": "TL2",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "section_divider",
+      "content": {
+        "punchline": "Caulobacter's sphingolipid/ChvI route is taxonomically restricted — comparators lack it and use other routes.",
+        "substory_number": 5
+      },
+      "speaker_notes": "The four-layer intra-Caulobacter response is now fully described: Fur-released transport relief carries the Layer 1 fitness signal, the ChvI two-phase cascade organizes the transcriptional timeline, a constitutive sphingolipid pool transported by repurposed Lpt machinery substitutes for lipid A, and the peptidoglycan layer coordinately remodels to accommodate the rebuild. But the prior section ended by raising the question this one answers: if this four-layer program is what enables the deletion, why do other lipid-A-loss-tolerant Gram-negatives not use it?\n\nThree organisms are known to survive loss of lipid A synthesis — Acinetobacter baumannii, Neisseria meningitidis, and Moraxella catarrhalis — and none of them uses the Caulobacter mechanism of Fur derepression plus constitutive sphingolipid substitution plus ChvI signaling. The fifth layer of the throughline's architecture is not a signaling response but a phylogenetic fact: the sphingolipid biosynthesis pathway and ChvG-ChvI are absent from the comparator genomes. They cannot use the route because they lack the parts.\n\nThis section rests on three analyses. A21 and A22 establish the phylogenetic restriction through comparative genomics — NCBI annotation confirms that spt and cerR are Caulobacter-unique (NCBI 7,0,0,0 and 6,0,0,0), and ChvG-ChvI is alphaproteobacterial-restricted (NCBI 5,0,0,0 and 6,0,0,0). A23 closes the explanatory loop: each comparator is consistent with using a distinct alternative available in its own genome — PBP1A and Ldt transpeptidases in A. baumannii (Kang 2021), capsular polysaccharide in N. meningitidis (Steeghs 2001), and late acyltransferase truncation in M. catarrhalis (Gao 2008). A24 supplies the method-robustness argument: PaperBLAST misses approximately 80% of Caulobacter's own known lipid A biosynthesis genes (LpxA/C/D/B/K return 0 in PaperBLAST but 11–18 in NCBI), so the comparative absences here rest on NCBI annotation, not text-mining alone.\n\nOne caveat stated at the outset: the route-to-mechanism link for each comparator is inferred from published genetics in separate experimental systems, not measured in this project. The next slide describes how the comparison was performed.",
+      "evidence_anchors": []
+    },
+    {
+      "position": 1,
+      "layout": "methods_summary",
+      "content": {
+        "title": "NCBI re-test validates comparator absences; PaperBLAST false-negative rate ~80% in Caulobacter",
+        "bullets": [
+          "Four-species panel: Caulobacter crescentus (alphaproteobacterium), Acinetobacter baumannii (Gammaproteobacteria), Neisseria meningitidis (Betaproteobacteria), Moraxella catarrhalis (Gammaproteobacteria)",
+          "Focal gene families: sphingolipid biosynthesis (spt, cerR, sphk); ChvG-ChvI two-component system; comparator alternative routes (PBP1A/Ldt, capsule biosynthesis locus, late-acyltransferase lpxX/lpxL)",
+          "Initial screen (NB06): PaperBLAST text-mining via BERDL kescience_paperblast; hit counts reported as C/A/N/M (Caulobacter/A.b./N.m./M.c.)",
+          "Post-review re-test (NB06b): NCBI protein annotation via Biopython Entrez; curated GenBank records replace description-text matching",
+          "Robustness diagnostic: PaperBLAST vs NCBI for known C. crescentus lipid A genes — LpxA/C/D/B/K return 0 in PaperBLAST, 11–18 in NCBI (~80% false-negative rate for known genes)",
+          "Biological claims rest on NCBI annotation for comparator absences; M. catarrhalis PaperBLAST results advisory only (162 total genes indexed)"
+        ],
+        "tools_versions": [
+          {"tool": "PaperBLAST", "version": "unknown"},
+          {"tool": "Biopython Entrez", "version": "unknown"}
+        ],
+        "see_notes_footer": true
+      },
+      "speaker_notes": "The method for this layer is comparative genomics rather than the transcriptomics and fitness analysis used for Layers 1 through 4. The core question — does the sphingolipid/ChvI route exist in the comparators? — is answered by querying for presence or absence of the gene families that define the route.\n\nThe four-species panel includes Caulobacter as the subject and three phylogenetically diverse Gram-negatives known to tolerate lipid A loss: A. baumannii (Gammaproteobacteria), N. meningitidis (Betaproteobacteria), and M. catarrhalis (Gammaproteobacteria). None is an alphaproteobacterium — the phylogenetic class where sphingolipid biosynthesis and ChvG-ChvI signaling are concentrated.\n\nThe initial screen used PaperBLAST, querying the BERDL kescience_paperblast collection via description-text matching. PaperBLAST is fast and leverages published literature, but it retrieves hits based on vocabulary: if a gene's published literature uses non-canonical naming, PaperBLAST misses it. NB06 generated the original presence/absence matrix.\n\nThe critical contribution of NB06b was an NCBI annotation re-test. The same focal gene families were queried against NCBI curated protein annotations using Biopython Entrez — a different technology anchored to GenBank records rather than text-mining. The robustness diagnostic applied this to Caulobacter's own lipid A biosynthesis genes: LpxA, LpxC (the very gene deleted in the Δlpxc strain — demonstrably present), LpxD, LpxB, and LpxK. PaperBLAST returns 0 hits for LpxA, LpxC, LpxD, and LpxK in Caulobacter and only 1 for LpxB; NCBI returns 11 to 18 hits per gene. An approximately 80% false-negative rate for known, essential Caulobacter genes means PaperBLAST results alone are insufficient for absence claims.\n\nThe implication: comparator absences in this section are grounded in NCBI annotation, where NCBI correctly identifies known-present genes. M. catarrhalis is an additional caveat — only 162 total genes are PaperBLAST-indexed for that organism, so its PaperBLAST results are advisory regardless of the general false-negative rate. The next slide shows the NCBI-confirmed presence/absence results for the sphingolipid pathway and ChvG-ChvI across the four-species panel.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 6"},
+        {"kind": "notebook", "ref": "notebooks/06_comparative_species.ipynb"},
+        {"kind": "notebook", "ref": "notebooks/06b_ncbi_annotation_presence.ipynb cell 3"},
+        {"kind": "citation_pool_key", "ref": "Price2017"}
+      ]
+    },
+    {
+      "position": 2,
+      "layout": "data_figure",
+      "content": {
+        "title": "Sphingolipid pathway and ChvG-ChvI absent in all three comparators (NCBI-confirmed)",
+        "figure": "figures/NB06_comparative_heatmap.png",
+        "caption": "PaperBLAST screen (NB06) across the four-species panel; NCBI annotation (NB06b) confirms key absences: spt 7,0,0,0; cerR 6,0,0,0; ChvG 5,0,0,0; ChvI 6,0,0,0 (Caulobacter/A.b./N.m./M.c.).",
+        "data_source": "NB06b_ncbi_annotation_presence.ipynb cell 3; Olea-Ozuna 2020/2024; Greenwich 2023"
+      },
+      "speaker_notes": "The figure shows the PaperBLAST presence/absence screen across the four-species panel from NB06. The NCBI annotation re-test in NB06b confirms the headline biological claims; the NCBI numbers are the authoritative figures for this slide.\n\nFor the sphingolipid biosynthesis cluster, NCBI returns spt 7, 0, 0, 0 and cerR 6, 0, 0, 0 for Caulobacter, A. baumannii, N. meningitidis, and M. catarrhalis respectively — verbatim from NB06b cell 3 and REPORT.md §Finding 6. Note that PaperBLAST showed cerR as 1, 1, 0, 0 — a text-matching artifact giving a spurious A. baumannii hit; NCBI corrects this to 0, consistent with A. baumannii having no sphingolipid biosynthesis pathway. Serine palmitoyltransferase encoded by spt is the sphingolipid biosynthesis entry point; ceramide reductase cerR acts downstream. Both are present only in Caulobacter among the comparators. Independent confirmation comes from Olea-Ozuna 2020, which characterized the five-gene ceramide biosynthesis cluster required for Caulobacter survival, and Olea-Ozuna 2024, which extended the cluster to eleven sphingolipid genes — neither paper found these genes in the comparator organisms.\n\nFor ChvG-ChvI, NCBI returns ChvG 5, 0, 0, 0 and ChvI 6, 0, 0, 0. ChvG is the sensor kinase and ChvI is the response regulator of the envelope-stress two-component system central to Layer 2. All three comparators are outside the Alphaproteobacteria; Greenwich 2023 confirms that ChvG-ChvI is a conserved alphaproteobacterial circuit absent in other lineages. NCBI annotation and phylogenetic lineage assignment converge.\n\nA partial-evidence caveat applies to the comparative analysis: the A23 analysis — connecting comparator gene absence to specific alternative tolerance mechanisms — is categorized as partial. The hit-count data establish absence; the mechanism inference for each comparator comes from published genetics, not this project's measurements. The absence data themselves, A21 for sphingolipid and A22 for ChvG-ChvI, are direct evidence backed by NCBI annotation and independent literature. The next slide addresses what each comparator uses instead and why the NCBI-validated absence argument is robust.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 6"},
+        {"kind": "notebook", "ref": "notebooks/06b_ncbi_annotation_presence.ipynb cell 3"},
+        {"kind": "citation_pool_key", "ref": "OleaOzuna2021"},
+        {"kind": "citation_pool_key", "ref": "OleaOzuna2024"},
+        {"kind": "citation_pool_key", "ref": "Greenwich2023"}
+      ]
+    },
+    {
+      "position": 3,
+      "layout": "two_column_compare",
+      "content": {
+        "title": "Structural unavailability explains species specificity — each comparator uses its own available route",
+        "left_col_title": "Caulobacter's route (structurally unavailable to comparators)",
+        "left_col_content": [
+          "spt (serine palmitoyltransferase) — NCBI: 7,0,0,0 — Caulobacter-unique",
+          "cerR (ceramide reductase) — NCBI: 6,0,0,0 — Caulobacter-unique",
+          "ChvG-ChvI envelope-stress TCS — NCBI: 5,0,0,0 / 6,0,0,0 — alphaproteobacterial only",
+          "None of the three comparators encodes either component of the Caulobacter rescue route"
+        ],
+        "right_col_title": "Comparator alternative routes (literature-inferred; consistent with gene content)",
+        "right_col_content": [
+          "A. baumannii: PBP1A loss + LdtJ/LdtK ld-transpeptidases for LOS-null viability (Kang 2021)",
+          "N. meningitidis: capsular polysaccharide required for lpxA-null viability (Steeghs 2001)",
+          "M. catarrhalis: late acyltransferase truncation (lpxX/lpxL) yields LOS-modified viable mutants (Gao 2008)",
+          "Caveat (A23 partial): route-mechanism links inferred from published genetics; M. catarrhalis under-annotated in PaperBLAST (162 genes indexed)"
+        ]
+      },
+      "speaker_notes": "If the sphingolipid/ChvI route is absent in the comparators, how do A. baumannii, N. meningitidis, and M. catarrhalis tolerate lipid A loss? Each is consistent with using a distinct alternative that is available in its own genome — and none involves Fur derepression or sphingolipid substitution. The left column summarizes the Caulobacter route's phylogenetic restriction; the right column maps each comparator to the mechanism published for that organism.\n\nFor A. baumannii, Kang 2021 showed that colistin-resistant LPS-null isolates depend on loss of function in PBP1A — the septal class A penicillin-binding protein — combined with ld-transpeptidase activity from LdtJ and LdtK. This is a peptidoglycan-remodeling route driven by specific cell-wall enzymes. A. baumannii encodes PBP1A and Ldt transpeptidases but not spt or ChvI. Caulobacter's Layer 4 PG remodeling uses SdpA, PleA, and Pal-Tol — a different enzyme set for a different envelope-stress context.\n\nFor N. meningitidis, Steeghs 2001 established that viable lpxA-null mutants require capsular polysaccharide; the capsule substitutes for LPS in maintaining outer membrane integrity. The N. meningitidis capsule biosynthesis locus produced approximately 9 PaperBLAST hits in our NB06 screen. Caulobacter's surface layer is the crystalline RsaA S-layer protein — not a polysaccharide capsule and not functionally equivalent.\n\nFor M. catarrhalis, Gao 2008 identified the late acyltransferases lpxX and lpxL, whose truncation yields viable LOS-deficient mutants with altered lipid A acyl-chain content. This is partial modification of lipid A structure rather than wholesale abolition, and it proceeds without Fur involvement.\n\nThe A23 analysis is categorized as partial in the plan inventory because the gene-presence-to-mechanism connections are inferred from published genetics in separate experimental systems, not measured in this project. M. catarrhalis is a further concern — PaperBLAST indexes only 162 genes for that organism. The NCBI-confirmed absences of spt and ChvI in all three comparators (A21, A22 — both direct evidence) form the robust foundation; the specific compensatory mechanism each comparator uses is the partial-evidence layer above that foundation.\n\nTaken together, A21 through A24 establish that structural unavailability — not chance — explains Caulobacter's uniqueness among lipid-A-loss-tolerant Gram-negatives. The five adaptive layers across S1 through S5 now compose a single, testable mechanistic explanation. The final substory integrates them into the throughline's full claim.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 6"},
+        {"kind": "notebook", "ref": "notebooks/06_comparative_species.ipynb cell 3"},
+        {"kind": "notebook", "ref": "notebooks/06b_ncbi_annotation_presence.ipynb cell 3"},
+        {"kind": "citation_pool_key", "ref": "Kang2021"},
+        {"kind": "citation_pool_key", "ref": "Steeghs2001"},
+        {"kind": "citation_pool_key", "ref": "Gao2008"},
+        {"kind": "citation_pool_key", "ref": "Hummels2024"}
+      ]
+    }
+  ]
+}

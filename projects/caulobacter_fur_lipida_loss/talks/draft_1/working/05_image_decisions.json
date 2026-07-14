@@ -1,0 +1,273 @@
+{
+  "schema_version": "image-decisions.v1",
+  "tier": "STRONG",
+  "mode": "talk-30",
+  "user_opt_in_exploratory": false,
+  "llm_judgment_used": true,
+  "decisions": [
+    {
+      "slide_id": "S1-pos0",
+      "substory_id": "S1",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S1-pos1",
+      "substory_id": "S1",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S1-pos2",
+      "substory_id": "S1",
+      "position": 2,
+      "layout": "data_figure",
+      "emit": false,
+      "reason": "data_figure carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S1-pos3",
+      "substory_id": "S1",
+      "position": 3,
+      "layout": "data_table",
+      "emit": false,
+      "reason": "data_table carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S1-pos4",
+      "substory_id": "S1",
+      "position": 4,
+      "layout": "claim_evidence",
+      "emit": false,
+      "reason": "LLM-judged: the Path A vs Path B contrast is purely quantitative (fold enrichments, p-values, gene counts) and any illustration would reduce to unlabeled arrows with no domain anchor that adds interpretive value beyond the statistics themselves."
+    },
+    {
+      "slide_id": "S2-pos0",
+      "substory_id": "S2",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S2-pos1",
+      "substory_id": "S2",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S2-pos2",
+      "substory_id": "S2",
+      "position": 2,
+      "layout": "data_table",
+      "emit": false,
+      "reason": "data_table carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S2-pos3",
+      "substory_id": "S2",
+      "position": 3,
+      "layout": "claim_evidence",
+      "emit": false,
+      "reason": "LLM-judged: the two-phase timeline is defined by p-values and gene-count percentages that require data display, not a conceptual cartoon, and the SigU hypothesis is too speculative to anchor a domain-specific illustration."
+    },
+    {
+      "slide_id": "S3-pos0",
+      "substory_id": "S3",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S3-pos1",
+      "substory_id": "S3",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S3-pos2",
+      "substory_id": "S3",
+      "position": 2,
+      "layout": "data_figure",
+      "emit": false,
+      "reason": "data_figure carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S3-pos3",
+      "substory_id": "S3",
+      "position": 3,
+      "layout": "data_table",
+      "emit": false,
+      "reason": "data_table carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S3-pos4",
+      "substory_id": "S3",
+      "position": 4,
+      "layout": "claim_evidence",
+      "emit": false,
+      "reason": "LLM-judged: illustration would be a generic pathway-suppression cartoon without a domain anchor specific to the CPG/Lpt/CtpA three-way mechanistic logic that defines this slide's claim."
+    },
+    {
+      "slide_id": "S4-pos0",
+      "substory_id": "S4",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S4-pos1",
+      "substory_id": "S4",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S4-pos2",
+      "substory_id": "S4",
+      "position": 2,
+      "layout": "data_figure",
+      "emit": false,
+      "reason": "data_figure carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S4-pos3",
+      "substory_id": "S4",
+      "position": 3,
+      "layout": "claim_evidence",
+      "emit": true,
+      "reason": "LLM-judged: a membrane cross-section cartoon showing the Tol-Pal complex bridging inner and outer membrane with labeled retrograde phospholipid transport arrows would give the audience a concrete mechanistic anchor for the homeostasis claim."
+    },
+    {
+      "slide_id": "S5-pos0",
+      "substory_id": "S5",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S5-pos1",
+      "substory_id": "S5",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S5-pos2",
+      "substory_id": "S5",
+      "position": 2,
+      "layout": "data_figure",
+      "emit": false,
+      "reason": "data_figure carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S5-pos3",
+      "substory_id": "S5",
+      "position": 3,
+      "layout": "two_column_compare",
+      "emit": false,
+      "reason": "LLM-judged: the two-column layout already carries route-specific pathway structures and adding a generic metabolic-fork cartoon would compete with the structural comparison rather than clarify it."
+    },
+    {
+      "slide_id": "S6-pos0",
+      "substory_id": "S6",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S6-pos1",
+      "substory_id": "S6",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S6-pos2",
+      "substory_id": "S6",
+      "position": 2,
+      "layout": "data_table",
+      "emit": false,
+      "reason": "data_table carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "pos0",
+      "substory_id": "",
+      "position": 0,
+      "layout": "cross_tenant_integration",
+      "emit": false,
+      "reason": "cross_tenant_integration is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "pos0",
+      "substory_id": "",
+      "position": 0,
+      "layout": "deck_close",
+      "emit": false,
+      "reason": "deck_close is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "intro-pos0",
+      "substory_id": "intro",
+      "position": 0,
+      "layout": "big_idea",
+      "emit": true,
+      "reason": "LLM-judged: a cartoon of a Gram-negative cell envelope cross-section (LPS/lipid A layer, inner membrane, OM) with a red-X deletion mark over LpxC and *Caulobacter* labeled as one of four surviving species anchors the claim visually."
+    },
+    {
+      "slide_id": "intro-pos1",
+      "substory_id": "intro",
+      "position": 1,
+      "layout": "claim_evidence",
+      "emit": true,
+      "reason": "LLM-judged: a domain-anchored cartoon contrasting the Fur regulon / Lpt apparatus in wild-type versus \u0394lpxc Caulobacter with labeled sphingolipid transport arrows would give the audience a concrete mechanistic scaffold for the three open questions."
+    },
+    {
+      "slide_id": "intro-pos2",
+      "substory_id": "intro",
+      "position": 2,
+      "layout": "claim_evidence",
+      "emit": false,
+      "reason": "LLM-judged: the slide is a five-layer methods inventory where all three bullets list specific quantitative assays and species screens, making it structural/process-oriented content that an illustration would not clarify faster than reading the bullets."
+    },
+    {
+      "slide_id": "pos0",
+      "substory_id": "",
+      "position": 0,
+      "layout": "qa_anticipated",
+      "emit": false,
+      "reason": "qa_anticipated is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "pos1",
+      "substory_id": "",
+      "position": 1,
+      "layout": "qa_anticipated",
+      "emit": false,
+      "reason": "qa_anticipated is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "pos2",
+      "substory_id": "",
+      "position": 2,
+      "layout": "qa_anticipated",
+      "emit": false,
+      "reason": "qa_anticipated is structural; no AI image affordance"
+    }
+  ]
+}

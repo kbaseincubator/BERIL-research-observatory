@@ -20,7 +20,7 @@ class TestMarkdownFilter:
 
     def test_converts_heading(self):
         result = markdown_filter("# Heading")
-        assert "<h1>" in result
+        assert '<h1 id="heading">' in result
 
     def test_empty_string(self):
         result = markdown_filter("")

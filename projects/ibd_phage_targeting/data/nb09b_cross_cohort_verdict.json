@@ -1,0 +1,92 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "NB09b \u2014 cross-cohort metabolomics bridge HMP2 (NB09a) \u2192 FRANZOSA_2019",
+  "n_HMP2_named_metabolites": 592,
+  "n_matched_to_franzosa_by_mz": 122,
+  "n_with_franzosa_DA": 118,
+  "n_strict_replications": 9,
+  "pct_sign_concordance_overall": 64.4,
+  "themes_replicating_above_75pct": [
+    "urobilin_porphyrin",
+    "acyl_carnitines",
+    "long_chain_PUFA"
+  ],
+  "theme_replication_summary": [
+    {
+      "theme": "urobilin_porphyrin",
+      "n_matched_in_theme": 3,
+      "n_CD_up_HMP2": 0,
+      "n_CD_up_Franz": 0,
+      "n_sign_concord": 3,
+      "pct_sign_concord": 100.0,
+      "median_franz_cliff": -0.747
+    },
+    {
+      "theme": "acyl_carnitines",
+      "n_matched_in_theme": 5,
+      "n_CD_up_HMP2": 4,
+      "n_CD_up_Franz": 5,
+      "n_sign_concord": 4,
+      "pct_sign_concord": 80.0,
+      "median_franz_cliff": 0.531
+    },
+    {
+      "theme": "long_chain_PUFA",
+      "n_matched_in_theme": 12,
+      "n_CD_up_HMP2": 12,
+      "n_CD_up_Franz": 9,
+      "n_sign_concord": 9,
+      "pct_sign_concord": 75.0,
+      "median_franz_cliff": 0.273
+    },
+    {
+      "theme": "aromatic_AA_metabolites",
+      "n_matched_in_theme": 3,
+      "n_CD_up_HMP2": 3,
+      "n_CD_up_Franz": 2,
+      "n_sign_concord": 2,
+      "pct_sign_concord": 66.7,
+      "median_franz_cliff": 0.181
+    },
+    {
+      "theme": "bile_acids_primary",
+      "n_matched_in_theme": 7,
+      "n_CD_up_HMP2": 5,
+      "n_CD_up_Franz": 4,
+      "n_sign_concord": 4,
+      "pct_sign_concord": 57.1,
+      "median_franz_cliff": 0.252
+    },
+    {
+      "theme": "lipid_classes",
+      "n_matched_in_theme": 21,
+      "n_CD_up_HMP2": 14,
+      "n_CD_up_Franz": 4,
+      "n_sign_concord": 11,
+      "pct_sign_concord": 52.4,
+      "median_franz_cliff": -0.069
+    },
+    {
+      "theme": "tryptophan_indole",
+      "n_matched_in_theme": 2,
+      "n_CD_up_HMP2": 1,
+      "n_CD_up_Franz": 0,
+      "n_sign_concord": 1,
+      "pct_sign_concord": 50.0,
+      "median_franz_cliff": -0.199
+    },
+    {
+      "theme": "bile_acids_secondary",
+      "n_matched_in_theme": 5,
+      "n_CD_up_HMP2": 3,
+      "n_CD_up_Franz": 2,
+      "n_sign_concord": 2,
+      "pct_sign_concord": 40.0,
+      "median_franz_cliff": -0.159
+    }
+  ],
+  "franzosa_n_cd": 88,
+  "franzosa_n_hc": 56,
+  "narrative": "Cross-cohort sign-concordance overall is 64%, with 3 of 8 themes \u226575% concordant. Strict replications (both FDR<0.10 + |cliff|>0.20): 9."
+}

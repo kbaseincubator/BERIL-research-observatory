@@ -1,0 +1,187 @@
+{
+  "phase": "4",
+  "deliverable": "P4-D1 feasibility",
+  "n_species_p1b": 18989,
+  "gtdb_metadata_coverage": {
+    "total": 18989,
+    "matched": 18989,
+    "with_isolation_source": 18982,
+    "with_country": 18989,
+    "isolates": 0,
+    "mags": 0,
+    "sags": 0
+  },
+  "gtdb_isolation_source_pct": 99.96,
+  "top_isolation_sources": [
+    {
+      "ncbi_isolation_source": "none",
+      "count": 4824
+    },
+    {
+      "ncbi_isolation_source": "lake water",
+      "count": 826
+    },
+    {
+      "ncbi_isolation_source": "feces",
+      "count": 725
+    },
+    {
+      "ncbi_isolation_source": "human gut",
+      "count": 563
+    },
+    {
+      "ncbi_isolation_source": "soil",
+      "count": 533
+    },
+    {
+      "ncbi_isolation_source": "ruminant gastrointestinal tract",
+      "count": 361
+    },
+    {
+      "ncbi_isolation_source": "cattle rumen",
+      "count": 299
+    },
+    {
+      "ncbi_isolation_source": "human feces",
+      "count": 275
+    },
+    {
+      "ncbi_isolation_source": "permafrost active layer soil",
+      "count": 137
+    },
+    {
+      "ncbi_isolation_source": "human stool",
+      "count": 137
+    },
+    {
+      "ncbi_isolation_source": "marine water sample",
+      "count": 133
+    },
+    {
+      "ncbi_isolation_source": "hypersaline soda lake sediment",
+      "count": 132
+    },
+    {
+      "ncbi_isolation_source": "acid mine drainage sediment",
+      "count": 128
+    },
+    {
+      "ncbi_isolation_source": "Faeces",
+      "count": 124
+    },
+    {
+      "ncbi_isolation_source": "groundwater",
+      "count": 124
+    },
+    {
+      "ncbi_isolation_source": "sediment",
+      "count": 119
+    },
+    {
+      "ncbi_isolation_source": "activated sludge from Hong Kong Shatin wastewater treatment plant",
+      "count": 118
+    },
+    {
+      "ncbi_isolation_source": "water",
+      "count": 118
+    },
+    {
+      "ncbi_isolation_source": "saline water (ENVO:00002010); including plankton (ENVO:xxxxxxxx)",
+      "count": 115
+    },
+    {
+      "ncbi_isolation_source": "marine water",
+      "count": 114
+    }
+  ],
+  "bacdive_coverage": {
+    "match_direct_no_version": 210,
+    "match_gcf_to_gca_fallback": 6066,
+    "match_combined_pct": 31.94,
+    "matched_distinct_bacdive_ids": 6053,
+    "phenotype_table_coverage": {
+      "metabolite_utilization": 6053,
+      "physiology": 6053,
+      "isolation": -1,
+      "enzyme": 6053,
+      "culture_condition": -1
+    }
+  },
+  "bacdive_species_pct": 31.94,
+  "fitnessbrowser_overlap_count": 35,
+  "fitnessbrowser_pct": 0.1843,
+  "completed_utc": "2026-04-28T14:24:17Z",
+  "nmdc_taxid_bridge": {
+    "n_our_taxids_genome": 12612,
+    "n_our_taxids_species": 12209,
+    "n_nmdc_taxid_columns": 3492,
+    "overlap_species_taxids": 1791,
+    "overlap_genome_taxids": 1179,
+    "species_pct_in_nmdc": 9.43
+  },
+  "gtdb_isolation_source_meaningful_pct_estimate": 74.56,
+  "decision": {
+    "go_no_go": "GO with scoped scope: GTDB isolation_source as primary environment substrate (~74% meaningful coverage); BacDive secondary phenotype anchor for type-strain species; NMDC for sample-level enrichment in well-covered species; Fitness Browser as 30-organism point-validation only",
+    "primary_substrate": "kbase_ke_pangenome.gtdb_metadata.ncbi_isolation_source",
+    "scope_down_from_v2_9": "do not attempt MGnify (no audit done; deferred); reduce Fitness Browser scope from atlas-wide to 30-organism point-validation"
+  },
+  "pangenome_internal_env": {
+    "sample_table_biosample_coverage": {
+      "total": 18989,
+      "with_biosample": 18989,
+      "distinct_biosamples": 18988
+    },
+    "ncbi_env_attribute_coverage": {
+      "env_broad_scale": {
+        "n": 9235,
+        "pct": 48.6
+      },
+      "env_local_scale": {
+        "n": 8523,
+        "pct": 44.9
+      },
+      "env_medium": {
+        "n": 8534,
+        "pct": 44.9
+      },
+      "isolation_source": {
+        "n": 14584,
+        "pct": 76.8
+      },
+      "geo_loc_name": {
+        "n": 16857,
+        "pct": 88.8
+      },
+      "lat_lon": {
+        "n": 8984,
+        "pct": 47.3
+      },
+      "host": {
+        "n": 6516,
+        "pct": 34.3
+      },
+      "ph": {
+        "n": 645,
+        "pct": 3.4
+      },
+      "temp": {
+        "n": 736,
+        "pct": 3.9
+      },
+      "salinity": {
+        "n": 175,
+        "pct": 0.9
+      },
+      "depth": {
+        "n": 2338,
+        "pct": 12.3
+      },
+      "biome": {
+        "n": 0,
+        "pct": 0.0
+      }
+    },
+    "alphaearth_embeddings_pct": 27.2,
+    "alphaearth_embeddings_count": 5157
+  }
+}

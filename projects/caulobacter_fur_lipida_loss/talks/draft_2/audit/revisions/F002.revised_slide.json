@@ -1,0 +1,32 @@
+{
+  "id": 1,
+  "position": 1,
+  "substory_id": null,
+  "layout": "title",
+  "content": {
+    "title": "Δ*fur* derepression drives the lipid A-loss-permissive envelope state in *Caulobacter crescentus*",
+    "presenter": "Adam Arkin",
+    "date": "2026-06-08",
+    "affiliation": "U.C. Berkeley / Lawrence Berkeley National Laboratory",
+    "subtitle": "Δ*fur* derepression is the demonstrable driver of the lipid A-loss-permissive envelope state, and everything downstream is the supporting (and still-open) mechanism it sets in motion."
+  },
+  "speaker_notes_seed": "Open by grounding the audience: Caulobacter crescentus is a freshwater α-proteobacterium with an unusual capacity — documented by Zik 2022 — to survive and grow after losing lipid A from its outer membrane, provided Fur is absent. This talk asks the mechanistic question: what regulatory and proteomic architecture makes that loss permissive? The one-sentence answer is the subtitle — Δfur derepression is the demonstrable driver, and the five downstream layers (Leaden concordance, Path A/B fitness triage, ChvI two-phase response, sphingolipid/Lpt remodeling, PG reorganization) each contribute one supporting or still-open layer of mechanism. Name the STRONG-tier evidence standard up front if this is a specialist audience: all findings are graded by a pre-registered scorecard; negatives (CtpA rejected, SigU not supported) are reported honestly alongside the supported claims.",
+  "evidence_anchors": [
+    {
+      "kind": "report_section",
+      "ref": "REPORT.md title — 'The regulatory and proteomic architecture of Δfur-permitted lipid A loss in Caulobacter crescentus'"
+    },
+    {
+      "kind": "report_section",
+      "ref": "REPORT.md §00_throughline.md — throughline punchline (TL1)"
+    }
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-08T00:00:00Z",
+      "finding_id": "F002",
+      "finding_class": "claim_evidence",
+      "summary": "Replaced garbled auto-title 'Caulobacter Fur Lipida Loss' (non-word 'Lipida'; wrong subject noun) with REPORT-grounded claim title matching the throughline; populated presenter (Adam Arkin) and affiliation (U.C. Berkeley / Lawrence Berkeley National Laboratory) in place of TBD placeholders; completed the truncated subtitle to the full verbatim throughline punchline sentence, removing the dangling 'and everything…' fragment."
+    }
+  ]
+}

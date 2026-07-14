@@ -1,0 +1,25 @@
+{
+  "id": 7,
+  "position": 7,
+  "substory_id": "S1",
+  "layout": "data_figure",
+  "content": {
+    "title": "NB00: sphingolipid biosynthesis is constitutive across the rescue strain series",
+    "figure": "figures/00_sphingolipid_locus_heatmap.png",
+    "caption": "Sphingolipid locus log2(CPM+1) heatmap (WT, Δfur Δsspb, intermediate, rescued); pathway is flat across strains in NB00 orientation (CPM-descriptive, not DE-tested). FDR-tested formal verdict on slide 16: 0/6 UP; spt −0.64 FDR 0.002.",
+    "data_source": "REPORT.md §Phase A; notebooks/00_orientation.ipynb cell 6"
+  },
+  "speaker_notes_seed": "Before formal hypothesis testing began, the NB00 orientation notebook established a critical reframing. This heatmap shows the sphingolipid biosynthesis gene locus in log2(CPM+1) across all four strains: wild type (4580), the Δfur Δsspb background (4584), the intermediate strain (4659), and the fully rescued Δlpxc strain (4672). The picture is flat to slightly decreasing — not induced.\n\nSpeaker caveat (load-bearing): this CPM heatmap from NB00 is orientation-level and descriptive only. It does NOT license a 'ruling out' claim by itself. The formal statistical ruling-out lives in NB04, presented on slide 16: 0/6 biosynthesis genes UP at FDR<0.05; spt logFC −0.64 FDR 0.002; sphk −0.40 FDR 0.02. If an audience member asks 'does this figure prove the biosynthesis pathway isn't induced?' — the honest answer is: 'No; the CPM heatmap shows it looks flat, but slide 16 gives you the FDR-corrected numbers that license the formal claim.'\n\nDelivery note: 'NB00 showed us the sphingolipid pool looks flat even at this CPM-level view — biosynthesis isn't going up in the rescue strains. Slide 16 gives the formal numbers. What this pattern tells us is that the question Layer 1 must answer is about routing, not synthesis.'\n\nThis observation redirected the analysis: not 'why does Δfur induce sphingolipid biosynthesis?' but 'given that the CPG pool is already present in WT, what Fur-released components enable its trafficking into the outer membrane?' That question frames Layer 1 — the Fur-released TonB-dependent transporters (Path A) carry the envelope-stress fitness signal, plausibly enabling CPG routing via the shared Lpt apparatus (Uchendu 2026 bioRxiv).\n\nTransition: with this orientation established — Fur derepresses transport, not sphingolipid biosynthesis — we turn to the fitness data to ask which part of the Fur regulon carries phenotypic weight under envelope stress.",
+  "evidence_anchors": [
+    {"kind": "report_section", "ref": "REPORT.md §Phase A NB00"},
+    {"kind": "report_section", "ref": "REPORT.md §Finding 4 table (sphingolipid biosynthesis constitutive; 0/6 UP; spt −0.64 FDR 0.002)"}
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-07T00:00:00Z",
+      "finding_id": "F004",
+      "finding_class": "claim_evidence",
+      "summary": "Caption 'ruling out Fur-driven sphingolipid biosynthesis upregulation' removed — a CPM-normalised orientation figure cannot license a rule-out claim; replaced with CPM-descriptive qualifier ('flat across strains in NB00 orientation; CPM-descriptive, not DE-tested') plus forward pointer to FDR-tested slide 16 verdict (0/6 UP; spt −0.64 FDR 0.002). Speaker notes restructured to surface the caveat as a load-bearing delivery instruction, explicitly distinguishing the NB00 orientation-level visual from the NB04 statistical evidence on slide 16."
+    }
+  ]
+}

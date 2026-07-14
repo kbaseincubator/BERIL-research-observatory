@@ -1,0 +1,579 @@
+{
+  "slide_spec": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1/working/slide_spec.json",
+  "mode": "talk-30",
+  "n_slides": 36,
+  "validators": [
+    {
+      "id": "P1",
+      "name": "Mode slide budget",
+      "status": "fail",
+      "violations": [
+        {
+          "severity": "error",
+          "where": "(global)",
+          "message": "slide count 36 is outside mode 'talk-30' budget 25-32; orchestrator should re-allocate",
+          "escalation_path": "auto-fix"
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "name": "Mode time budget",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "id": "P3",
+      "name": "Numeric provenance",
+      "status": "fail",
+      "violations": [
+        {
+          "severity": "error",
+          "where": "slide[8]",
+          "message": "numeric claim '00210/02048' not grounded in REPORT.md (severity=high): Number '00210/02048' (context: '8) |t|=43.7, tbdts ccna_02910/'/'/00028 |t| 9\u201328.\\nreport.md \u00a7fi') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.. Either add the number to REPORT.md with its source notebook+cell, or remove the claim from the slide. Auto-fix forbidden (would require fabrication).",
+          "escalation_path": "escalate"
+        },
+        {
+          "severity": "error",
+          "where": "slide[9]",
+          "message": "numeric claim '0/198' not grounded in REPORT.md (severity=high): Number '0/198' (context: 'ground; iron axis untestable ('/' caulobacter fb experiments un') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.. Either add the number to REPORT.md with its source notebook+cell, or remove the claim from the slide. Auto-fix forbidden (would require fabrication).",
+          "escalation_path": "escalate"
+        },
+        {
+          "severity": "error",
+          "where": "slide[21]",
+          "message": "numeric claim '28/53' not grounded in REPORT.md (severity=high): Number '28/53' (context: 'enzymes meeting h4 threshold ('/' pre-curated loci); 20 down (f') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.. Either add the number to REPORT.md with its source notebook+cell, or remove the claim from the slide. Auto-fix forbidden (would require fabrication).",
+          "escalation_path": "escalate"
+        },
+        {
+          "severity": "error",
+          "where": "slide[33]",
+          "message": "numeric claim '0/198' not grounded in REPORT.md (severity=high): Number '0/198' (context: 's l#9 + \u00a7finding 2 preflight ('/' caulobacter fb iron-limitatio') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide.. Either add the number to REPORT.md with its source notebook+cell, or remove the claim from the slide. Auto-fix forbidden (would require fabrication).",
+          "escalation_path": "escalate"
+        }
+      ]
+    },
+    {
+      "id": "P4",
+      "name": "Citation pool integrity",
+      "status": "fail",
+      "violations": [
+        {
+          "severity": "error",
+          "where": "slide[9].content.citations",
+          "message": "citation key 'Leaden2018' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[9].content.citations",
+          "message": "citation key 'Zik2022' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[9].content.citations",
+          "message": "citation key 'Price2018' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[13].content.citations",
+          "message": "citation key 'Stein2021' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[13].content.citations",
+          "message": "citation key 'QuinteroYanes2022' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[13].content.citations",
+          "message": "citation key 'Greenwich2023' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[16].content.citations",
+          "message": "citation key 'Zik2022' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[16].content.citations",
+          "message": "citation key 'OleaOzuna2021' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[18].content.citations",
+          "message": "citation key 'Zik2022' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[18].content.citations",
+          "message": "citation key 'Uchendu2026' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[22].content.citations",
+          "message": "citation key 'Tan2025' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "error",
+          "where": "slide[22].content.citations",
+          "message": "citation key 'Yeh2010' not in pool (0 keys present); either scope-down (drop the claim), gap-fill (add to pool), or accept-as-limitation",
+          "escalation_path": "user-modify"
+        }
+      ]
+    },
+    {
+      "id": "P5",
+      "name": "Contrast (forbidden pairs)",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "id": "P6",
+      "name": "Figure resolution",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "id": "P7",
+      "name": "Divider slides at substory transitions",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "id": "P8",
+      "name": "Required slides present",
+      "status": "pass",
+      "violations": []
+    },
+    {
+      "id": "P9",
+      "name": "No orphan citations",
+      "status": "soft-warning",
+      "violations": [
+        {
+          "severity": "warning",
+          "where": "slide[9].content.citations",
+          "message": "citation 'Leaden2018' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[9].content.citations",
+          "message": "citation 'Zik2022' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[9].content.citations",
+          "message": "citation 'Price2018' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[13].content.citations",
+          "message": "citation 'Stein2021' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[13].content.citations",
+          "message": "citation 'QuinteroYanes2022' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[13].content.citations",
+          "message": "citation 'Greenwich2023' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[16].content.citations",
+          "message": "citation 'Zik2022' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[16].content.citations",
+          "message": "citation 'OleaOzuna2021' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[18].content.citations",
+          "message": "citation 'Zik2022' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[18].content.citations",
+          "message": "citation 'Uchendu2026' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[22].content.citations",
+          "message": "citation 'Tan2025' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[22].content.citations",
+          "message": "citation 'Yeh2010' not represented on the references slide; orchestrator should append to refs_short",
+          "escalation_path": "auto-fix"
+        }
+      ]
+    },
+    {
+      "id": "P10",
+      "name": "Density discipline",
+      "status": "soft-warning",
+      "violations": [
+        {
+          "severity": "warning",
+          "where": "slide[3].layout=claim_evidence",
+          "message": "slide has 65 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[4].layout=claim_evidence",
+          "message": "slide has 74 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[7].layout=data_figure",
+          "message": "slide has 41 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[8].layout=data_table",
+          "message": "slide has 94 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[9].layout=claim_evidence",
+          "message": "slide has 90 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[12].layout=data_table",
+          "message": "slide has 122 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[13].layout=claim_evidence",
+          "message": "slide has 97 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[16].layout=data_figure",
+          "message": "slide has 43 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[17].layout=data_table",
+          "message": "slide has 103 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[18].layout=claim_evidence",
+          "message": "slide has 86 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[21].layout=data_figure",
+          "message": "slide has 48 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[22].layout=claim_evidence",
+          "message": "slide has 104 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[25].layout=data_figure",
+          "message": "slide has 40 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[26].layout=two_column_compare",
+          "message": "slide has 118 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[29].layout=data_table",
+          "message": "slide has 145 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[30].layout=deck_close",
+          "message": "slide has 187 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[36].layout=references",
+          "message": "slide has 154 words on-slide (excluding speaker notes); SPEC \u00a76.3 caps at 35. Move detail to speaker notes.",
+          "escalation_path": "user-modify"
+        }
+      ]
+    },
+    {
+      "id": "P11",
+      "name": "Register discipline",
+      "status": "soft-warning",
+      "violations": [
+        {
+          "severity": "warning",
+          "where": "slide[7].content.title",
+          "message": "register-discipline: notebook_id `NB00` in audience field (...NB00: sphingolipid biosy...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[8].content.footnote",
+          "message": "register-discipline: section_marker `\u00a7Finding 2` in other field (...anking in REPORT.md \u00a7Finding 2; notebooks/02b_h2_h...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[8].content.footnote",
+          "message": "register-discipline: notebook_cell `cell 1` in other field (...etric_verdict.ipynb cell 1....). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[12].content.footnote",
+          "message": "register-discipline: notebook_id `NB03` in other field (...PORT.md \u00a7Finding 3; NB03 cell 4....). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[12].content.footnote",
+          "message": "register-discipline: section_marker `\u00a7Finding 3` in other field (...verse) in REPORT.md \u00a7Finding 3; NB03 cell 4....). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[12].content.footnote",
+          "message": "register-discipline: notebook_cell `cell 4` in other field (...md \u00a7Finding 3; NB03 cell 4....). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[17].content.footnote",
+          "message": "register-discipline: section_marker `\u00a7Finding 4` in other field (...recard in REPORT.md \u00a7Finding 4 and hypothesis scor...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[20].content.bullets",
+          "message": "register-discipline: notebook_id `NB03` in audience field (...oss-notebook check: NB03 late-ChvI cohort co...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[22].content.bullets",
+          "message": "register-discipline: notebook_id `NB03` in audience field (...\u2014 convergent across NB03 late-ChvI cohort an...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[22].content.bullets",
+          "message": "register-discipline: notebook_id `NB05` in audience field (...ate-ChvI cohort and NB05 H4 PG set, the sole...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[24].content.bullets",
+          "message": "register-discipline: notebook_id `NB06` in audience field (...Initial screen (NB06): PaperBLAST text-m...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[24].content.bullets",
+          "message": "register-discipline: notebook_id `NB06b` in audience field (...ost-review re-test (NB06b): NCBI protein anno...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[25].content.caption",
+          "message": "register-discipline: notebook_id `NB06` in audience field (...PaperBLAST screen (NB06) across the four-sp...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[25].content.caption",
+          "message": "register-discipline: notebook_id `NB06b` in audience field (...l; NCBI annotation (NB06b) confirms key absen...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[28].content.bullets",
+          "message": "register-discipline: notebook_id `NB06b` in audience field (...e: NCBI annotation (NB06b) re-confirmed after...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[28].content.bullets",
+          "message": "register-discipline: notebook_id `NB07` in audience field (...NB07 synthesis notebook ...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[32].content.answer_detail",
+          "message": "register-discipline: section_marker `\u00a7Finding 4` in audience field (...eplicate. REPORT.md \u00a7Finding 4 labels this 'sugges...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[32].content.evidence_pointer",
+          "message": "register-discipline: notebook_filename `04_sphingolipid_lpt_panel.ipynb` in other field (...er 2026); notebooks/04_sphingolipid_lpt_panel.ipynb cell 6 (protein pan...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[32].content.evidence_pointer",
+          "message": "register-discipline: section_marker `\u00a7Finding 4` in other field (...REPORT.md \u00a7Finding 4 protein table (LptD...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[32].content.evidence_pointer",
+          "message": "register-discipline: section_marker `\u00a7Finding 4` in other field (... 6 (protein panel); \u00a7Finding 4 pilot (lptC2 +1.08 ...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[32].content.evidence_pointer",
+          "message": "register-discipline: notebook_cell `cell 6` in other field (...pid_lpt_panel.ipynb cell 6 (protein panel); \u00a7F...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[33].content.answer_detail",
+          "message": "register-discipline: notebook_id `NB02` in audience field (...inding 2 preflight; NB02 cell 5). Testing th...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[33].content.answer_detail",
+          "message": "register-discipline: section_marker `\u00a7Finding 2` in audience field (...ron-limited (REPORT \u00a7Finding 2 preflight; NB02 cel...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[33].content.answer_detail",
+          "message": "register-discipline: notebook_cell `cell 5` in audience field (...g 2 preflight; NB02 cell 5). Testing this axis...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[33].content.evidence_pointer",
+          "message": "register-discipline: notebook_filename `02_caulo_fitness_ranking.ipynb` in other field (...riments); notebooks/02_caulo_fitness_ranking.ipynb cell 5 (experiment ...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[33].content.evidence_pointer",
+          "message": "register-discipline: section_marker `\u00a7Finding 2` in other field (... \u00a7Limitations L#9 + \u00a7Finding 2 preflight (0/198 Ca...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[33].content.evidence_pointer",
+          "message": "register-discipline: notebook_cell `cell 5` in other field (...tness_ranking.ipynb cell 5 (experiment classif...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[34].content.answer_detail",
+          "message": "register-discipline: notebook_id `NB06` in audience field (...science_paperblast (NB06, the original scree...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[34].content.answer_detail",
+          "message": "register-discipline: notebook_id `NB06b` in audience field (...a Biopython Entrez (NB06b, added post-adversa...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[34].content.answer_detail",
+          "message": "register-discipline: notebook_id `NB06` in audience field (...tly identified that NB06 PaperBLAST had ~80%...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[34].content.answer_detail",
+          "message": "register-discipline: notebook_id `NB06b` in audience field (...or the same genes). NB06b was added to re-con...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[34].content.answer_detail",
+          "message": "register-discipline: notebook_id `NB06b` in audience field (...However, REPORT.md \u00a7NB06b explicitly document...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[34].content.evidence_pointer",
+          "message": "register-discipline: notebook_id `NB06b` in other field (...0 NCBI-confirmed); \u00a7NB06b table (PaperBLAST ~...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[34].content.evidence_pointer",
+          "message": "register-discipline: notebook_id `NB06b` in other field (...CBI confirmation); \u00a7NB06b naming-convention c...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[34].content.evidence_pointer",
+          "message": "register-discipline: section_marker `\u00a7Finding 6` in other field (...REPORT.md \u00a7Finding 6 (spt 7,0,0,0; cerR ...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        },
+        {
+          "severity": "warning",
+          "where": "slide[34].content.evidence_pointer",
+          "message": "register-discipline: notebook_cell `cell 3` in other field (...tion_presence.ipynb cell 3...). Audience prose should avoid specialist references; see D-072.",
+          "escalation_path": "user-modify"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 3,
+    "soft_warnings": 3,
+    "not_applicable": 0,
+    "skipped": 0,
+    "overall_status": "fail"
+  }
+}

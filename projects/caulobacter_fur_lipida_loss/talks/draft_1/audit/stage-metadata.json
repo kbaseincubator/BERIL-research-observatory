@@ -1,0 +1,226 @@
+{
+  "schema_version": "stage-metadata.v1",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1",
+  "stages": {
+    "ai_image_prompt-S4-pos3": {
+      "elapsed_seconds": 180,
+      "input_tokens": 9055,
+      "output_tokens": 11840,
+      "cache_read_tokens": 361475,
+      "cache_creation_tokens": 50285,
+      "estimated_cost_usd": 0.50177625,
+      "model": "sonnet",
+      "_source_path": "05_image_requests/S4-pos3_request.json.metadata.json"
+    },
+    "ai_image_prompt-intro-pos0": {
+      "elapsed_seconds": 135,
+      "input_tokens": 7,
+      "output_tokens": 8020,
+      "cache_read_tokens": 136626,
+      "cache_creation_tokens": 41456,
+      "estimated_cost_usd": 0.31676879999999996,
+      "model": "sonnet",
+      "_source_path": "05_image_requests/intro-pos0_request.json.metadata.json"
+    },
+    "ai_image_prompt-intro-pos1": {
+      "elapsed_seconds": 182,
+      "input_tokens": 7,
+      "output_tokens": 12543,
+      "cache_read_tokens": 163570,
+      "cache_creation_tokens": 27822,
+      "estimated_cost_usd": 0.3415695,
+      "model": "sonnet",
+      "_source_path": "05_image_requests/intro-pos1_request.json.metadata.json"
+    },
+    "citation_pool": {
+      "elapsed_seconds": 770,
+      "input_tokens": 4836,
+      "output_tokens": 34792,
+      "cache_read_tokens": 1617975,
+      "cache_creation_tokens": 320760,
+      "estimated_cost_usd": 2.2246305,
+      "model": "sonnet",
+      "_source_path": "citation_pool.json.metadata.json"
+    },
+    "cross_tenant.json": {
+      "elapsed_seconds": 149,
+      "input_tokens": 10,
+      "output_tokens": 8259,
+      "cache_read_tokens": 593622,
+      "cache_creation_tokens": 174843,
+      "estimated_cost_usd": 0.95766285,
+      "model": "sonnet",
+      "_source_path": "03_slides/cross_tenant.json.metadata.json"
+    },
+    "deck_close.json": {
+      "elapsed_seconds": 48,
+      "input_tokens": 10,
+      "output_tokens": 4201,
+      "cache_read_tokens": 258062,
+      "cache_creation_tokens": 170949,
+      "estimated_cost_usd": 3.90761175,
+      "model": "opus",
+      "_source_path": "03_slides/deck_close.json.metadata.json"
+    },
+    "intro": {
+      "elapsed_seconds": 258,
+      "input_tokens": 9,
+      "output_tokens": 15259,
+      "cache_read_tokens": 615158,
+      "cache_creation_tokens": 137546,
+      "estimated_cost_usd": 0.9292569,
+      "model": "sonnet",
+      "_source_path": "03_slides/intro.json.metadata.json"
+    },
+    "plan": {
+      "elapsed_seconds": 206,
+      "input_tokens": 3847,
+      "output_tokens": 17043,
+      "cache_read_tokens": 562495,
+      "cache_creation_tokens": 246132,
+      "estimated_cost_usd": 6.7946475,
+      "model": "opus",
+      "_source_path": "00_plan.md.metadata.json"
+    },
+    "qa_prep": {
+      "elapsed_seconds": 594,
+      "input_tokens": 3597,
+      "output_tokens": 21460,
+      "cache_read_tokens": 946279,
+      "cache_creation_tokens": 313685,
+      "estimated_cost_usd": 1.79289345,
+      "model": "sonnet",
+      "_source_path": "03_slides/qa_anticipated.json.metadata.json"
+    },
+    "slide_compose-S1": {
+      "elapsed_seconds": 841,
+      "input_tokens": 12,
+      "output_tokens": 37879,
+      "cache_read_tokens": 694428,
+      "cache_creation_tokens": 330928,
+      "estimated_cost_usd": 2.0175294,
+      "model": "sonnet",
+      "_source_path": "03_slides/S1_slides.json.metadata.json"
+    },
+    "slide_compose-S2": {
+      "elapsed_seconds": 537,
+      "input_tokens": 15,
+      "output_tokens": 28241,
+      "cache_read_tokens": 1609945,
+      "cache_creation_tokens": 214840,
+      "estimated_cost_usd": 1.7122935,
+      "model": "sonnet",
+      "_source_path": "03_slides/S2_slides.json.metadata.json"
+    },
+    "slide_compose-S3": {
+      "elapsed_seconds": 1044,
+      "input_tokens": 13,
+      "output_tokens": 60365,
+      "cache_read_tokens": 894547,
+      "cache_creation_tokens": 292059,
+      "estimated_cost_usd": 2.2690993500000003,
+      "model": "sonnet",
+      "_source_path": "03_slides/S3_slides.json.metadata.json"
+    },
+    "slide_compose-S4": {
+      "elapsed_seconds": 378,
+      "input_tokens": 9,
+      "output_tokens": 20336,
+      "cache_read_tokens": 660070,
+      "cache_creation_tokens": 227954,
+      "estimated_cost_usd": 1.3579155,
+      "model": "sonnet",
+      "_source_path": "03_slides/S4_slides.json.metadata.json"
+    },
+    "slide_compose-S5": {
+      "elapsed_seconds": 591,
+      "input_tokens": 12,
+      "output_tokens": 34291,
+      "cache_read_tokens": 1101271,
+      "cache_creation_tokens": 298399,
+      "estimated_cost_usd": 1.96377855,
+      "model": "sonnet",
+      "_source_path": "03_slides/S5_slides.json.metadata.json"
+    },
+    "slide_compose-S6": {
+      "elapsed_seconds": 1547,
+      "input_tokens": 11,
+      "output_tokens": 31019,
+      "cache_read_tokens": 279009,
+      "cache_creation_tokens": 397328,
+      "estimated_cost_usd": 2.0390007,
+      "model": "sonnet",
+      "_source_path": "03_slides/S6_slides.json.metadata.json"
+    },
+    "speaker_notes-S1": {
+      "elapsed_seconds": 433,
+      "input_tokens": 15,
+      "output_tokens": 18902,
+      "cache_read_tokens": 1312276,
+      "cache_creation_tokens": 196290,
+      "estimated_cost_usd": 1.4133453,
+      "model": "sonnet",
+      "_source_path": "04_speaker_notes/S1_speaker_notes.md.metadata.json"
+    },
+    "speaker_notes-S2": {
+      "elapsed_seconds": 339,
+      "input_tokens": 11,
+      "output_tokens": 18123,
+      "cache_read_tokens": 972559,
+      "cache_creation_tokens": 146924,
+      "estimated_cost_usd": 1.1146106999999998,
+      "model": "sonnet",
+      "_source_path": "04_speaker_notes/S2_speaker_notes.md.metadata.json"
+    },
+    "speaker_notes-S3": {
+      "elapsed_seconds": 357,
+      "input_tokens": 11,
+      "output_tokens": 17493,
+      "cache_read_tokens": 871472,
+      "cache_creation_tokens": 129752,
+      "estimated_cost_usd": 1.0104396,
+      "model": "sonnet",
+      "_source_path": "04_speaker_notes/S3_speaker_notes.md.metadata.json"
+    },
+    "speaker_notes-S4": {
+      "elapsed_seconds": 929,
+      "input_tokens": 3672,
+      "output_tokens": 27345,
+      "cache_read_tokens": 1425014,
+      "cache_creation_tokens": 383697,
+      "estimated_cost_usd": 2.28755895,
+      "model": "sonnet",
+      "_source_path": "04_speaker_notes/S4_speaker_notes.md.metadata.json"
+    },
+    "speaker_notes-S5": {
+      "elapsed_seconds": 603,
+      "input_tokens": 17,
+      "output_tokens": 34214,
+      "cache_read_tokens": 1718452,
+      "cache_creation_tokens": 213606,
+      "estimated_cost_usd": 1.8298191000000001,
+      "model": "sonnet",
+      "_source_path": "04_speaker_notes/S5_speaker_notes.md.metadata.json"
+    },
+    "speaker_notes-S6": {
+      "elapsed_seconds": 439,
+      "input_tokens": 3468,
+      "output_tokens": 24176,
+      "cache_read_tokens": 1330668,
+      "cache_creation_tokens": 91501,
+      "estimated_cost_usd": 1.11537315,
+      "model": "sonnet",
+      "_source_path": "04_speaker_notes/S6_speaker_notes.md.metadata.json"
+    },
+    "throughline_candidates": {
+      "elapsed_seconds": 304,
+      "input_tokens": 12,
+      "output_tokens": 28333,
+      "cache_read_tokens": 656291,
+      "cache_creation_tokens": 85108,
+      "estimated_cost_usd": 4.7053665,
+      "model": "opus",
+      "_source_path": "00_throughline_candidates.md.metadata.json"
+    }
+  }
+}

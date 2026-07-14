@@ -116,6 +116,15 @@ class Collection:
     doi: str | None = None
     website: str | None = None
     provider: str | None = None
+    tenant_id: str | None = None
+    tenant_name: str | None = None
+    snapshot_source: str | None = None
+    discovered_at: str | None = None
+    schema_status: str = "curated"
+    curation_status: str = "curated"
+    parent_collection_id: str | None = None
+    group_ids: list[str] = field(default_factory=list)
+    discovery_errors: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -345,6 +354,118 @@ class ResearchIdea:
 
 
 @dataclass
+class AtlasLink:
+    """A directed relationship between two Atlas pages."""
+
+    source_id: str
+    target_id: str
+    relationship: str = "related"
+
+
+@dataclass
+class AtlasHeading:
+    """A markdown heading available for Atlas page navigation."""
+
+    level: int
+    title: str
+    anchor: str
+
+
+@dataclass
+class AtlasReuseEdge:
+    """A deterministic reuse/provenance relationship in the Atlas graph."""
+
+    source_type: str
+    source_id: str
+    target_type: str
+    target_id: str
+    relationship: str
+    label: str = ""
+    detail: str = ""
+
+
+@dataclass
+class AtlasReviewRoute:
+    """A suggested human review route derived from explicit project context."""
+
+    page_id: str
+    page_title: str
+    reviewer_id: str
+    reviewer_name: str
+    project_id: str
+    basis: str
+
+
+@dataclass
+class AtlasPage:
+    """A markdown Atlas page with structured frontmatter."""
+
+    id: str
+    title: str
+    type: str
+    status: str
+    summary: str
+    path: str
+    body: str
+    source_projects: list[str] = field(default_factory=list)
+    source_docs: list[str] = field(default_factory=list)
+    related_collections: list[str] = field(default_factory=list)
+    related_pages: list[str] = field(default_factory=list)
+    confidence: str = "medium"
+    generated_by: str = ""
+    last_reviewed: str = ""
+    section: str = ""
+    order: int = 100
+    metadata: dict[str, Any] = field(default_factory=dict)
+    headings: list[AtlasHeading] = field(default_factory=list)
+
+    @property
+    def url(self) -> str:
+        """Canonical browser URL for this Atlas page."""
+        if self.path == "atlas" or self.type == "atlas":
+            return "/atlas"
+        if self.path.endswith("/index"):
+            return f"/atlas/{self.path.removesuffix('/index')}"
+        return f"/atlas/{self.path}"
+
+
+@dataclass
+class AtlasIndex:
+    """Parsed Atlas corpus and helper lookups."""
+
+    pages: list[AtlasPage] = field(default_factory=list)
+    links: list[AtlasLink] = field(default_factory=list)
+
+    def get_page_by_id(self, page_id: str) -> AtlasPage | None:
+        """Get an Atlas page by stable frontmatter ID."""
+        return next((p for p in self.pages if p.id == page_id), None)
+
+    def get_page_by_path(self, path: str) -> AtlasPage | None:
+        """Get an Atlas page by route path."""
+        route_path = path.strip("/")
+        if route_path.endswith(".md"):
+            route_path = route_path[:-3]
+        candidates = [route_path]
+        if route_path:
+            candidates.append(f"{route_path}/index")
+        else:
+            candidates.append("atlas")
+        for candidate in candidates:
+            page = next((p for p in self.pages if p.path == candidate), None)
+            if page:
+                return page
+        return None
+
+    def pages_by_type(self, page_type: str) -> list[AtlasPage]:
+        """Get Atlas pages of a specific type."""
+        return [p for p in self.pages if p.type == page_type]
+
+    def pages_by_section(self, section: str) -> list[AtlasPage]:
+        """Get Atlas pages in a top-level section."""
+        return [p for p in self.pages if p.section == section]
+
+
+@dataclass
 class CollectionEdge:
     """An edge between two collections, derived from explicit links or project co-usage."""
 
@@ -369,6 +490,7 @@ class RepositoryData:
     skills: list[Skill] = field(default_factory=list)
     research_areas: list[ResearchArea] = field(default_factory=list)
     collection_edges: list[CollectionEdge] = field(default_factory=list)
+    atlas_index: AtlasIndex = field(default_factory=AtlasIndex)
 
     # Computed stats
     total_notebooks: int = 0
