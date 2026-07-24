@@ -115,9 +115,14 @@ def run_setup() -> int:
     env_vars = _parse_env_file(env_path)
     file_token = env_vars.get("KBASE_AUTH_TOKEN", "")
     if not file_token or file_token == "YOUR_AUTH_TOKEN_HERE":
-        token = _prompt(
-            "  Enter your KBASE_AUTH_TOKEN (from https://narrative.kbase.us/#auth2/account)"
+        print(
+            "  To get a KBASE_AUTH_TOKEN: sign in at https://narrative.kbase.us/#auth2/account\n"
+            "  and open the 'Developer Tokens' tab. That tab only appears for approved KBase\n"
+            "  developers — if you don't see it, you don't have developer access yet; contact\n"
+            "  the BERIL team about requesting it. A generated token is shown only once, for\n"
+            "  about 5 minutes, so have this prompt ready before you generate one."
         )
+        token = _prompt("  Enter your KBASE_AUTH_TOKEN (leave blank to configure later)")
         if token:
             _update_env_var(env_path, "KBASE_AUTH_TOKEN", token)
             print("  Token saved to .env")

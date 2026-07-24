@@ -1,0 +1,7 @@
+# Runtime deps for the nmdc_context_audit notebook + probe scripts (on-cluster BERDL).
+# berdl_notebook_utils is provided by the JupyterHub kernel (not pip-installable off-cluster).
+pandas
+matplotlib
+nbformat
+nbconvert
+pyspark

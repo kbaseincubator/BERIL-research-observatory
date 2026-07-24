@@ -4,7 +4,7 @@
 
 The **Microbial Discovery Forge** is an AI co-scientist and research observatory, enabling researchers to interface with large-scale biological data through natural language, reusable skills, and shared knowledge.  You can browse the Forge through the [Observatory UI](https://beril.kbase.us/), or engage with it through an AI agent.
 
-Currently, it connects to the KBase BER Data Lakehouse (K-BERDL), a curated Delta Lakehouse spanning pangenomics, fitness, biochemistry, metagenomics, and more.
+Currently, it connects to the KBase BER Data Lakehouse (K-BERDL), a curated Iceberg Lakehouse spanning pangenomics, fitness, biochemistry, metagenomics, and more.
 
 Through the Microbial Discovery Forge, users can:
 
@@ -16,7 +16,7 @@ Through the Microbial Discovery Forge, users can:
 
 ## What is BERDL?
 
-The **KBase BER Data Lakehouse (K-BERDL)** is a Delta Lakehouse containing curated scientific datasets for computational biology research. It hosts more than 35 databases across tenants:
+The **KBase BER Data Lakehouse (K-BERDL)** is an Iceberg Lakehouse containing curated scientific datasets for computational biology research. It hosts more than 35 databases across tenants:
 
 | Tenant | Databases | Highlights |
 |--------|-----------|------------|

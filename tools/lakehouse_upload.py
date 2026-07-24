@@ -442,6 +442,33 @@ def validate_uploads(base_path):
         print(f"{pid:<45} {local_count:<9} {remote_count:<9} {status}")
 
 
+def clean_tenant_path(raw):
+    """Validate and normalize a --tenant-path override.
+
+    The value is interpolated into `<bucket>/<tenant_path>/projects`, so it must
+    be a plain bucket-relative path. Reject a URI scheme, whitespace, `..`
+    traversal, and a trailing `projects` segment (which would archive into a
+    confusing `.../projects/projects`). Returns the normalized path, or exits
+    with a message on invalid input.
+    """
+    cleaned = raw.strip()
+    if "://" in cleaned:
+        sys.exit(f"error: --tenant-path must be a bucket-relative path, not a URI: {raw!r}")
+    if any(ch.isspace() for ch in cleaned):
+        sys.exit(f"error: --tenant-path must not contain whitespace: {raw!r}")
+    segments = [s for s in cleaned.strip("/").split("/") if s]
+    if not segments:
+        sys.exit(f"error: --tenant-path is empty: {raw!r}")
+    if ".." in segments:
+        sys.exit(f"error: --tenant-path must not contain '..' segments: {raw!r}")
+    if segments[-1] == "projects":
+        sys.exit(
+            "error: --tenant-path must not end in 'projects'; it is appended "
+            f"automatically and would archive to .../projects/projects: {raw!r}"
+        )
+    return "/".join(segments)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Upload BERIL Observatory projects to the BERDL lakehouse (MinIO)."
@@ -471,8 +498,29 @@ def main():
         default=".",
         help="Path to BERIL-research-observatory root (default: current dir)",
     )
+    parser.add_argument(
+        "--tenant-path",
+        default=os.environ.get("BERIL_UPLOAD_TENANT_PATH"),
+        help=(
+            "Override the destination tenant path under the bucket "
+            "(default: tenant-general-warehouse/microbialdiscoveryforge). Example: "
+            "'tenant-general-warehouse/nmdc' to archive into the nmdc tenant when the "
+            "caller lacks write access to the default tenant. May also be set via "
+            "BERIL_UPLOAD_TENANT_PATH."
+        ),
+    )
 
     args = parser.parse_args()
+
+    # Retarget the destination tenant if requested. All path-consuming functions
+    # read these module globals at call time, so reassigning them here before
+    # dispatch redirects the whole upload/list/validate flow.
+    if args.tenant_path:
+        global TENANT_PATH, LAKEHOUSE_BASE, S3A_BASE
+        TENANT_PATH = clean_tenant_path(args.tenant_path)
+        LAKEHOUSE_BASE = f"{MC_ALIAS}/{BUCKET}/{TENANT_PATH}/projects"
+        S3A_BASE = f"s3a://{BUCKET}/{TENANT_PATH}/projects"
+        print(f"[tenant override] archiving to {S3A_BASE}/", file=sys.stderr)
 
     if args.list:
         list_projects()

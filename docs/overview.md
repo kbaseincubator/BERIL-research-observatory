@@ -27,7 +27,7 @@ We also have functional profiling from **GapMind**, run on all genomes, which pr
 | **Pathway profiling**            | GapMind                                                                                                                    | pathway-level confidence scores + per-step mapping to pangenome gene families                 |
 | **Phylogenetic trees**           | Single-copy core genes → FastTree                                                                                          | one tree per clade                                                                            |
 | **Metadata harvest**             | GTDB & NCBI Biosample                                                                                                      | quality metrics + environment fields                                                          |
-| **Storage**                      | On-prem Delta Lakehouse (Spark SQL)                                                                                        | gene-level rows queryable via Spark                                                           |
+| **Storage**                      | On-prem Iceberg Lakehouse (Spark SQL)                                                                                      | gene-level rows queryable via Spark                                                           |
 
 For current row counts and the live accessible inventory, run `berdl_notebook_utils.get_databases(return_json=False)` and use `SELECT COUNT(*)` or `DESCRIBE EXTENDED` against the relevant tables — the lakehouse is the source of truth.
 
@@ -75,7 +75,7 @@ For current row counts and the live accessible inventory, run `berdl_notebook_ut
 
 ### 6  Data Access
 
-- **Location:** On-prem Delta Lakehouse cluster (Spark 3.x).
+- **Location:** On-prem Iceberg Lakehouse cluster (Spark 3.x).
 - **Interfaces:** Spark SQL, PySpark, or JDBC.
 - **Primary schema docs:** `/schemas/pangenome_schema_v2025-05-12.sql` (matches tables above).
 - Contact Alcy (or data-engineering slack channel) for credentials, example notebooks, or protocol details.
