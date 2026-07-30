@@ -1,6 +1,6 @@
 [project]
 name = "beril-cli"
-version = "0.1.0"
+dynamic = ["version"]
 description = "BERIL Research Observatory — CLI launcher and environment manager"
 requires-python = ">=3.11"
 license = "MIT"
@@ -19,5 +19,8 @@ knowledge = [
 ]
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
