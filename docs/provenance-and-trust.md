@@ -6,7 +6,7 @@ one human hard gate — the ORCID-bound `/submit` approval. The design borrows
 recognized ideas so each artifact is trackable by name, but adopts the *idea*, not
 a heavyweight dependency.
 
-## The two pillars
+## The pillars
 
 ### 1. Trust — a claims–evidence ledger
 
@@ -67,34 +67,38 @@ a heavyweight dependency.
   which is an **in-toto-style attestation** (subject digests + agent). The two
   hashes are integrity / TOCTOU checks only — never a trust tier.
 
-## Known limitation — claims are captured retrospectively
+### 3. The durable query registry — `journal.jsonl`
 
-The two pillars are **not symmetric**, and the asymmetry is a real gap rather than
-a design preference. Runtime provenance is captured *as a session runs*; claims and
-evidence are written *afterwards*, from a finished `REPORT.md`. Two consequences:
+- An append-only per-project journal, `projects/<id>/journal.jsonl`, one JSON object
+  per line: `{ts, session_id, kind, locator, payload}`. Written with a single
+  `O_APPEND` write per record, so concurrent tool calls cannot corrupt it. `locator`
+  is the evidence pointer exactly as `REPORT.md` cites it — for a query, `q:<id>`.
+- This is the *durable query registry* the `claims.json` `2.0` contract already
+  reserved a slot for. A `query:` pointer now resolves against it: found →
+  `resolved` (with `query_id` and `recorded_at`), absent → `unresolved` with reason
+  `query-not-recorded`. Resolved query pointers feed
+  `computed.resolved_artifact_support` through the existing path — **no schema
+  change and no new version of `claims.json`.**
+- **Capture is agent-invoked and best-effort — the same reliability tier as
+  `WORKLOG.md`, not the passive tier of `runtime.json`.** `beril capture-event` is
+  called by the `berdl-query` and `synthesize` skills. It is deliberately *not* a
+  `PostToolUse` hook: a BERDL query runs inside a notebook cell against a Spark
+  session, so it is never a distinct tool call a matcher could observe, and a `Bash`
+  matcher both produces false positives and is defeated by a single `cd`. Passive
+  capture, if it is ever wanted, belongs in a wrapper around the Spark session in the
+  `berdl-query` skill — the layer that actually sees the query — not in a hook.
+- The consequence is worth stating plainly: an unregistered query grounds nothing.
+  That is the honest failure mode. A pointer written at synthesis time from SQL
+  recalled out of a notebook is reconstructed, not observed, and backfilling one
+  would reintroduce exactly the gap the registry closes.
 
-- Findings observed mid-analysis can be lost — the `## Claims` block is written from
-  memory, so what is not recalled at synthesis time is not recorded at all.
-- Evidence locators are **reconstructed**, not observed. A `query:` pointer therefore
-  can never resolve today (`resolution.status: unresolved`, reason
-  `query-registry-unavailable`), so it never contributes to
-  `computed.resolved_artifact_support`. In practice only notebook pointers can ground
-  a claim.
-
-The named next step is **in-the-moment capture**: an append-only per-project journal
-written as tools run, which is exactly the *durable query registry* that
-[`claims-json-schema.md`](claims-json-schema.md) already anticipates by name. Query
-pointers would then flip `unresolved` → `resolved` and feed the existing computed
-axis — **no schema change and no new version of `claims.json`**; the `2.0` contract
-already reserves the slot.
-
-Two scope boundaries hold when that lands:
+Two scope boundaries hold:
 
 - It is an **evidence / query registry**, not the general per-tool trace, which stays
   out of scope (below). Capturing the queries that ground a claim is not the same as
   tracing every tool call.
-- **Claims stay author-written.** Evidence is an observable event and can be captured
-  passively; a claim is an interpretation and cannot. A journal would feed curation —
+- **Claims stay author-written.** Evidence is an observable event and can be
+  captured; a claim is an interpretation and cannot. The journal *feeds* curation —
   it never replaces the `## Claims` block as the source of truth.
 
 ## Review — one adversarial path
@@ -162,6 +166,7 @@ upward rather than duplicate it:
 |---|---|---|
 | `REPORT.md` `## Claims` | source of truth: claim + evidence + confidence word | author-written |
 | `projects/<id>/claims.json` | versioned author assertions + resolved artifact-support projection | generated, advisory |
+| `projects/<id>/journal.jsonl` | append-only query registry: the locators captured while they ran | observed, best-effort |
 | `projects/<id>/runtime.json` | atomic per-session runtime history (PROV-shaped) | non-authoritative |
 | `beril.yaml.approval` | ORCID + SHA-256 digests (in-toto-style) | authoritative |
 | `REVIEW_N.md` / `REFUTATION_N.md` / `PLAN_REVIEW_N.md` | hashed-subject review artifacts | advisory |

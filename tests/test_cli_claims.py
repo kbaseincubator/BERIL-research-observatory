@@ -144,7 +144,7 @@ def test_notebook_locator_failures_are_safe(repo, locator, status):
     assert pointer["resolution"]["status"] == status
 
 
-def test_query_pointer_is_preserved_but_unresolved_without_registry(repo):
+def test_query_pointer_is_preserved_but_unresolved_when_never_captured(repo):
     pointer = resolve_evidence_pointer(
         repo / "projects" / "p1",
         {"kind": "query", "locator": "q:enrichment_by_ecotype", "exact": "OR 2.4"},
@@ -152,7 +152,7 @@ def test_query_pointer_is_preserved_but_unresolved_without_registry(repo):
     assert pointer["locator"] == "q:enrichment_by_ecotype"
     assert pointer["resolution"] == {
         "status": "unresolved",
-        "reason": "query-registry-unavailable",
+        "reason": "query-not-recorded",
     }
 
 

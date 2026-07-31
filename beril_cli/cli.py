@@ -80,6 +80,35 @@ def main(argv: list[str] | None = None) -> int:
         help="Write/merge the active project's runtime.json (hook)",
     )
 
+    # capture-event — agent-invoked from the berdl-query / synthesize skills.
+    # Not a hook: a BERDL query runs inside a notebook cell against a Spark
+    # session, so it is never a tool call a PostToolUse matcher could see.
+    capture_parser = sub.add_parser(
+        "capture-event",
+        help="Append an evidence event to the project's journal.jsonl",
+    )
+    capture_parser.add_argument(
+        "--locator",
+        required=True,
+        metavar="q:<id>",
+        help="Evidence locator, exactly as it will be cited in REPORT.md",
+    )
+    capture_parser.add_argument(
+        "--payload",
+        default="",
+        help="The SQL that actually ran — what makes the record re-runnable",
+    )
+    capture_parser.add_argument(
+        "--project",
+        default=None,
+        help="Project id under projects/ (default: resolve from cwd or branch)",
+    )
+    capture_parser.add_argument(
+        "--session",
+        default=None,
+        help="Session id (default: $CLAUDE_CODE_SESSION_ID, else omitted)",
+    )
+
     args, remaining = parser.parse_known_args(argv)
 
     if args.command is None:
@@ -120,6 +149,11 @@ def main(argv: list[str] | None = None) -> int:
         from beril_cli.audit_cmd import run_runtime_snapshot
 
         return run_runtime_snapshot(args)
+
+    if args.command == "capture-event":
+        from beril_cli.audit_cmd import run_capture_event
+
+        return run_capture_event(args)
 
     return 0
 

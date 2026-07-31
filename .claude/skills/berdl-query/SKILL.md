@@ -45,6 +45,35 @@ Do not use this proxy workflow when `scripts/berdl_env.py --check` reports an on
 5. If result size is large, use export mode in this same skill:
    - `uv run scripts/export_sql.py --berdl-proxy --query "SELECT ..." --path "s3a://cdm-lake/users-general-warehouse/<user>/exports/<run_id>" --format parquet --mode overwrite`
 
+## Registering a Query as Evidence
+
+A query whose result you will cite in `REPORT.md` must be registered while it runs.
+`REPORT.md` cites it as `query: q:<id>`, and that pointer only grounds a claim if the
+same `q:<id>` is in the project's journal:
+
+```bash
+uv run beril capture-event --locator q:enrichment_by_ecotype \
+  --payload "SELECT ecotype, COUNT(*) FROM db.genomes GROUP BY ecotype"
+```
+
+This appends one line to `projects/<id>/journal.jsonl`. Rules:
+
+- **Only register queries whose numbers will be cited.** Probes, `SELECT 1`, schema
+  peeks, and exploratory scans are noise — the same bar as `WORKLOG.md`.
+- **Register the query that produced the number**, not a cleaned-up version of it.
+  `--payload` is the SQL that actually ran, and is mandatory — a record with no SQL
+  resolves a claim's pointer to nothing re-runnable, so an empty one is refused.
+- **Never blocks.** `capture-event` always exits 0. If it warns on stderr, fix the
+  locator and re-run it, but carry on with the analysis either way.
+- **One `q:<id>` per distinct query.** Re-registering the same id is fine — the
+  resolver takes the most recent record — but two different queries sharing one id
+  means a claim cites evidence that isn't what it says it is.
+- Pass `--project <id>` when the working directory isn't inside the project.
+
+This capture is **agent-invoked and best-effort**: a BERDL query runs inside a Spark
+session, not as a distinct tool call, so no hook can observe it. If you don't register
+it, the claim it grounds resolves as `query-not-recorded` and contributes no support.
+
 ## Connection and Timeout Behavior
 
 - The connection is maintained by the local process, the proxy chain, and the BERDL JupyterHub session.

@@ -28,6 +28,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from beril_cli.journal import QUERY_LOCATOR, find_query
 from beril_cli.science import (
     ARTIFACT_SUPPORT_LEVELS,
     CLAIM_STATUSES,
@@ -58,7 +59,6 @@ _STREAM_SUFFIX = re.compile(
     r"\s+\[stream:\s*([A-Za-z0-9][A-Za-z0-9._-]*)\]\s*$", re.IGNORECASE
 )
 _CELL_ANCHOR = re.compile(r"cell-([1-9][0-9]*)$")
-_QUERY_LOCATOR = re.compile(r"q:[A-Za-z0-9][A-Za-z0-9._-]*$")
 SCHEMA_VERSION = "2.0"
 
 
@@ -156,8 +156,9 @@ def resolve_evidence_pointer(project_dir: Path | None, pointer: dict) -> dict:
     """Return a pointer annotated with a conservative resolution result.
 
     Notebook locators are project-relative. ``#cell-N`` means the one-based
-    ordinal in the notebook's ``cells`` array. Query locators remain unresolved
-    until BERIL has a durable query registry.
+    ordinal in the notebook's ``cells`` array. Query locators resolve against
+    the project's ``journal.jsonl`` — a query grounds a claim only if it was
+    captured while it ran.
     """
     resolved = dict(pointer) if isinstance(pointer, dict) else {}
     kind = resolved.get("kind")
@@ -169,16 +170,27 @@ def resolve_evidence_pointer(project_dir: Path | None, pointer: dict) -> dict:
     locator = locator.strip()
     resolved["locator"] = locator
     if kind == "query":
-        if not _QUERY_LOCATOR.fullmatch(locator):
+        if not QUERY_LOCATOR.fullmatch(locator):
             resolved["resolution"] = {
                 "status": "invalid",
                 "reason": "malformed-query-locator",
             }
-        else:
+        elif project_dir is None:
             resolved["resolution"] = {
                 "status": "unresolved",
-                "reason": "query-registry-unavailable",
+                "reason": "project-directory-unavailable",
             }
+        else:
+            record = find_query(project_dir, locator)
+            resolved["resolution"] = (
+                {
+                    "status": "resolved",
+                    "query_id": locator[len("q:") :],
+                    "recorded_at": record["ts"],
+                }
+                if record
+                else {"status": "unresolved", "reason": "query-not-recorded"}
+            )
         return resolved
 
     if kind != "notebook":

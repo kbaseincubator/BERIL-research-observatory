@@ -42,9 +42,15 @@ including after symlink resolution. `#cell-N` is the one-based ordinal in the
 notebook's `cells` array. Absolute paths, traversal outside the project, malformed
 anchors, missing notebooks, and missing cells never contribute support.
 
-Query locators use `q:<id>`. BERIL currently has no durable query registry, so
-well-formed query pointers are preserved as `unresolved` with reason
-`query-registry-unavailable`; they do not contribute support.
+Query locators use `q:<id>` and resolve against the durable query registry,
+`projects/<id>/journal.jsonl`, written by `beril capture-event` while the query runs.
+A registered locator resolves to `{status: resolved, query_id, recorded_at}` — the
+timestamp of the most recent matching record — and contributes support exactly as a
+resolved notebook pointer does. A well-formed locator that was never registered is
+preserved as `unresolved` with reason `query-not-recorded`, and contributes nothing;
+an absent journal and a journal without that id are the same fact. Capture is
+agent-invoked and best-effort, so an unresolved query pointer means the query was not
+registered, not that it did not run.
 
 `computed.resolved_artifact_support` is `none`, `single-stream`, or
 `multiple-streams`. It is deliberately not called scientific groundedness.
