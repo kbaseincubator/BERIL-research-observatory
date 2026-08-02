@@ -1,0 +1,7 @@
+organism	thermo	CP	CN	FP	FN	accuracy
+ecoli	unconstrained	8	2	1	1	0.833
+ecoli	marvin	0	3	0	9	0.25
+ecoli	opam2	0	3	0	9	0.25
+bsubtilis	unconstrained	7	2	1	2	0.75
+bsubtilis	marvin	0	3	0	9	0.25
+bsubtilis	opam2	0	3	0	9	0.25
