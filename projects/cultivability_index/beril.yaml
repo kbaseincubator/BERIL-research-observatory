@@ -1,0 +1,37 @@
+project_id: cultivability_index
+status: complete
+created_at: "2026-05-26T00:00:00Z"
+last_session_at: "2026-05-26T14:54:40Z"
+branch: projects/cultivability_index
+engine:
+  name: claude
+authors:
+  - name: "Justin Reese"
+    affiliation: "LBL"
+    orcid: "0000-0002-2170-2250"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true
+approval:
+  by: "0000-0002-2170-2250"
+  at: "2026-05-26T14:54:40Z"
+  report_hash: "sha256:a9dc8525ec3fefd33d0f90ad87222e75c436ed42e71d13fd96e0372b727db67a"
+  review: "REVIEW_1.md"
+  review_hash: "sha256:9b0df5242e93e2e43923e07efe918549fc6d5b9e4b7ce46cae4c48eed240ad54"
+  notebook_hashes:
+    "notebooks/00_label_feasibility.ipynb": "sha256:d67d45894d707a5687b50ad1e772f0adf42f4b9f52ba6ce73bade26043ad83a0"
+    "notebooks/01_feature_matrix.ipynb": "sha256:89e87799c85e8a082b276d1ab4609d8d23036329ca318912daa58c30f80fa0cf"
+    "notebooks/02_univariate_signal.ipynb": "sha256:716b537e60203470a60196c5b7899b83750ba423f2eba5bc3906b1891535e15c"
+    "notebooks/03_predictive_model.ipynb": "sha256:300ec1c4d475c1dacd56e780d56b64538be2bf38cb93d1b5cf69477566591e69"
+    "notebooks/04_candidate_ranking.ipynb": "sha256:cc04f625c7a2eb992754bd5013b5df4d2d1e850b2f3fde657ec8523c8fde8c6a"
+    "notebooks/05_anchored_validation.ipynb": "sha256:1bbe6a237339149e233fae32a19c2a53dfd1e6c053574c100241e68d033d1326"
+submissions:
+  - status: success
+    attempted_at: "2026-05-26T14:55:52Z"
+    archive_key: "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/cultivability_index/"
+    file_count: 53
+    byte_total: 23628614
+    duration_seconds: 9.05
+    approved_at: "2026-05-26T14:54:40Z"

@@ -1,0 +1,8 @@
+numpy
+pandas
+scipy
+scikit-learn
+statsmodels
+matplotlib
+pyarrow
+berdl_notebook_utils
