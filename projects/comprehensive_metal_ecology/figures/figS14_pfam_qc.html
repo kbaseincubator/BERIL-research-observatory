@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure S14 – Pfam Metal-Domain Audit</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6; --ns:#c3c2b7; --acc:#e34948; --acc2:#eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5; --ns:#52514e; --acc:#e66767; --acc2:#c98500;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; max-width:680px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; line-height:1.5; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.panels { display:flex; gap:32px; flex-wrap:wrap; align-items:flex-start; margin-top:8px; }
+.panel { flex:1; min-width:220px; }
+.panel-label { font-size:11px; font-weight:600; color:var(--tm); margin-bottom:8px; }
+.note { margin-top:14px; font-size:11px; color:var(--ts); border-left:3px solid var(--gl); padding-left:10px; line-height:1.5; }
+.legend { display:flex; gap:12px; flex-wrap:wrap; font-size:11px; color:var(--ts); margin-bottom:10px; align-items:center; }
+.leg-item { display:flex; align-items:center; gap:5px; }
+.leg-swatch { width:12px; height:12px; border-radius:2px; flex-shrink:0; }
+</style>
+</head>
+<body>
+<h2>Figure S14. Pfam metal-domain audit: 92.9% of primary KOs lack Pfam metal-clan evidence, supporting KEGG-curated gene selection.</h2>
+<div class="sub">Left: Evidence summary for 140 primary KOs — only 10 have a known metal clan (PF) or metal singleton Pfam domain. Right: Category breakdown by functional group. The predominance of Transport/Homeostasis (n = 106/140) reflects the breadth of metal-handling functions beyond structural metal-binding domains. Absence of Pfam evidence does not indicate non-metal function; most ABC-type and P-type ATPase transporters are functionally validated by KEGG biochemistry but lack metal-specific Pfam annotations.</div>
+<div class="panels">
+  <div class="panel">
+    <div class="panel-label">(A) Pfam metal-domain evidence (n = 140 KOs)</div>
+    <svg id="chartA" width="200" height="200" viewBox="0 0 200 200"></svg>
+    <div class="legend" style="margin-top:8px">
+      <div class="leg-item"><div class="leg-swatch" style="background:var(--sig)"></div>Has metal Pfam (n=10, 7.1%)</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:var(--ns)"></div>No Pfam evidence (n=130, 92.9%)</div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-label">(B) Category breakdown (n = 140 KOs)</div>
+    <svg id="chartB"></svg>
+  </div>
+</div>
+
+<div class="note">
+  <strong>Interpretation:</strong> The 92.9% absence of Pfam metal-clan evidence is expected and does not indicate false positives in the gene list. Metal-ion transport (ABC transporters, P-type ATPases), sensing (two-component regulators), and cofactor biosynthesis (vitamin B12, molybdopterin, Fe–S clusters) are functionally well-characterised by KEGG but lack dedicated Pfam metal-binding clans. A Pfam-based gene list would recover only 7% of the curated KO set and would be substantially underpowered for this analysis. KEGG functional annotation is more appropriate for cataloguing these diverse metal-handling roles.
+</div>
+
+<script>
+// Pie chart data
+const PIE = [
+  {label:'Has metal Pfam', n:10, col:'var(--sig)'},
+  {label:'No Pfam evidence', n:130, col:'var(--ns)'},
+];
+const total = 140;
+
+function drawPie() {
+  const cx = 100, cy = 100, r = 72;
+  let angle = -Math.PI / 2;
+  let s = '';
+  PIE.forEach(d => {
+    const frac = d.n / total;
+    const sweep = 2 * Math.PI * frac;
+    const x1 = cx + r * Math.cos(angle);
+    const y1 = cy + r * Math.sin(angle);
+    const x2 = cx + r * Math.cos(angle + sweep);
+    const y2 = cy + r * Math.sin(angle + sweep);
+    const laf = sweep > Math.PI ? 1 : 0;
+    // Label position
+    const midA = angle + sweep / 2;
+    const lx = cx + (r * 0.62) * Math.cos(midA);
+    const ly = cy + (r * 0.62) * Math.sin(midA);
+    s += `<path d="M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${laf},1 ${x2},${y2} Z"
+      fill="${d.col}" stroke="var(--sf)" stroke-width="2"/>`;
+    if (d.n > 8) {
+      s += `<text x="${lx}" y="${ly + 4}" text-anchor="middle" font-size="11" fill="var(--sf)" font-weight="600">${d.n}</text>`;
+    }
+    angle += sweep;
+  });
+  document.getElementById('chartA').innerHTML = s;
+}
+
+// Bar chart for categories
+const CATS = [
+  {label:'Transport/Homeostasis', n:106, col:'var(--sig)'},
+  {label:'Resistance/Detox.',     n:15,  col:'var(--acc)'},
+  {label:'Sensing/Regulation',    n:10,  col:'var(--acc2)'},
+  {label:'Cofactor Biosynthesis', n:5,   col:'var(--acc2)'},
+  {label:'Unknown',               n:3,   col:'var(--ns)'},
+  {label:'Metal-dep. Metabolism', n:1,   col:'var(--ns)'},
+];
+
+function drawBars() {
+  const W = 260, rowH = 26;
+  const M = {top:8, right:40, bottom:30, left:160};
+  const H = M.top + CATS.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+  const xMax = 110;
+  const xS = v => M.left + (v / xMax) * pw;
+
+  const svg = document.getElementById('chartB');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  CATS.forEach((d, i) => {
+    const y = M.top + i * rowH;
+    const barH = rowH - 6;
+    const barW = (d.n / xMax) * pw;
+    s += `<rect x="${M.left}" y="${y + 2}" width="${barW}" height="${barH}"
+      fill="${d.col}" rx="2" opacity="0.75"/>`;
+    s += `<text x="${M.left - 6}" y="${y + barH/2 + 7}" text-anchor="end"
+      font-size="10" fill="var(--ts)">${d.label}</text>`;
+    s += `<text x="${M.left + barW + 4}" y="${y + barH/2 + 7}" text-anchor="start"
+      font-size="10" fill="var(--tm)" font-variant-numeric="tabular-nums">${d.n}</text>`;
+  });
+
+  // X-axis
+  s += `<line x1="${M.left}" y1="${H-M.bottom}" x2="${M.left + pw}" y2="${H-M.bottom}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  [0, 50, 100].forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${H-M.bottom}" x2="${x}" y2="${H-M.bottom+4}" stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${H-M.bottom+14}" text-anchor="middle" font-size="9" fill="var(--tm)">${t}</text>`;
+  });
+  s += `<text x="${M.left + pw/2}" y="${H-2}" text-anchor="middle" font-size="9" fill="var(--ts)">Number of KOs</text>`;
+
+  svg.innerHTML = s;
+}
+
+drawPie();
+drawBars();
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { drawPie(); drawBars(); });
+</script>
+</body>
+</html>

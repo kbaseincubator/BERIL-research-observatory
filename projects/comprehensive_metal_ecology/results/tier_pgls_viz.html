@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Resistance vs Cofactor Tier — Environmental Niche Breadth PGLS</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+.viz-root{
+  --sf:#fcfcfb;--pg:#f9f9f7;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;
+  --gl:#e1e0d9;--bl:#c3c2b7;--s1:#2a78d6;--s2:#1baf7a;
+  font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--pg);color:var(--ink);padding:28px 24px;max-width:860px;margin:0 auto
+}
+@media(prefers-color-scheme:dark){
+  .viz-root{
+    --sf:#1a1a19;--pg:#0d0d0d;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;
+    --gl:#2c2c2a;--bl:#383835;--s1:#3987e5;--s2:#199e70
+  }
+}
+h1{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.2}
+.sub{font-size:12px;color:var(--ink2);margin-bottom:22px}
+
+/* KPI */
+.kpi-row{display:flex;gap:10px;margin-bottom:22px}
+.kpi{flex:1;background:var(--sf);border:1px solid var(--gl);border-radius:6px;padding:14px 16px}
+.kpi-v{font-size:28px;font-weight:700;line-height:1;color:var(--ink)}
+.kpi-v.r{color:var(--s1)}.kpi-v.c{color:var(--s2)}.kpi-v.g{color:#898781}
+.kpi-l{font-size:11px;color:var(--ink2);margin-top:5px;line-height:1.3}
+
+/* Chart card */
+.card{background:var(--sf);border:1px solid var(--gl);border-radius:8px;padding:20px;margin-bottom:16px}
+.card-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.card-t{font-size:12px;font-weight:600;color:var(--ink)}
+.card-st{font-size:11px;color:var(--ink2);margin-top:2px}
+
+/* Legend */
+.leg{display:flex;align-items:center;gap:18px;margin-bottom:14px;flex-wrap:wrap}
+.li{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--ink2)}
+.lm-circle{width:10px;height:10px;border-radius:50%;background:var(--s1);flex-shrink:0}
+.lm-diamond{width:9px;height:9px;background:var(--s2);flex-shrink:0;transform:rotate(45deg)}
+.lm-note{font-size:10px;color:var(--muted);border-left:1px solid var(--gl);padding-left:12px}
+
+/* SVG */
+svg.dot-ch{width:100%;display:block;overflow:visible}
+
+/* Table */
+.tbl-btn{background:none;border:1px solid var(--gl);border-radius:4px;padding:5px 11px;font-size:11px;cursor:pointer;color:var(--ink2);font-family:inherit}
+.tbl-btn:hover{background:var(--pg)}
+.tbl-wrap{margin-top:14px;overflow-x:auto;display:none}
+.tbl-wrap.open{display:block}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{text-align:right;padding:5px 8px;border-bottom:1px solid var(--bl);color:var(--ink2);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+th:first-child,th:nth-child(2){text-align:left}
+td{padding:4px 8px;border-bottom:1px solid var(--gl);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+td:first-child,td:nth-child(2){text-align:left}
+tr.grp-hdr td{background:var(--pg);color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 8px 4px;text-align:left;border-bottom:none}
+.sig{font-weight:700;color:var(--ink)}
+
+/* Tooltip */
+#tt{position:fixed;pointer-events:none;background:var(--sf);border:1px solid var(--gl);
+  border-radius:6px;padding:10px 13px;font-size:11px;max-width:230px;
+  box-shadow:0 4px 14px rgba(0,0,0,.13);opacity:0;transition:opacity .08s;z-index:200}
+#tt.on{opacity:1}
+.tt-t{font-weight:600;font-size:12px;color:var(--ink);margin-bottom:7px}
+.tt-row{display:flex;justify-content:space-between;gap:10px;margin-top:3px;align-items:baseline}
+.tt-lbl{color:var(--ink2)}.tt-val{font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink)}
+.tt-hr{border:none;border-top:1px solid var(--gl);margin:6px 0}
+.tt-r{color:var(--s1)}.tt-c{color:var(--s2)}
+.tt-sub{color:var(--muted);font-size:10px;margin-top:5px}
+</style>
+</head>
+<body>
+<div class="viz-root" data-palette="#2a78d6,#1baf7a">
+
+<h1>Resistance genes, not cofactor genes, predict environmental niche breadth</h1>
+<p class="sub">Tier-split PGLS (Pagel's λ) — n ≈ 1,574 bacterial genera, 33 environmental niche breadth responses, kbase.ke_pangenome</p>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="kpi-v r">22<span style="font-size:16px;font-weight:400"> / 33</span></div><div class="kpi-l">responses where resistance-tier density predicts broader environmental niche (p&nbsp;&lt;&nbsp;0.05)</div></div>
+  <div class="kpi"><div class="kpi-v g">3<span style="font-size:16px;font-weight:400"> / 33</span></div><div class="kpi-l">responses where cofactor-tier density shows significant effect (p&nbsp;&lt;&nbsp;0.05) — all marginal &amp; mixed-sign</div></div>
+  <div class="kpi"><div class="kpi-v c">0<span style="font-size:16px;font-weight:400"> / 33</span></div><div class="kpi-l">responses driven by cofactor genes alone — full power eliminated all cofactor-only signals from n = 386</div></div>
+</div>
+
+<div class="card">
+  <div class="card-hd">
+    <div>
+      <div class="card-t">t-statistic for each predictor across 33 niche breadth responses</div>
+      <div class="card-st">Vertical lines mark p&nbsp;=&nbsp;0.05 threshold (|t|&nbsp;≈&nbsp;1.96). Each row: one response variable, two marks.</div>
+    </div>
+    <button class="tbl-btn" id="tbl-tog">Show table</button>
+  </div>
+
+  <div class="leg">
+    <div class="li"><div class="lm-circle"></div>Resistance / detoxification tier (15 KOs)</div>
+    <div class="li"><div class="lm-diamond"></div>Cofactor biosynthesis tier (5 KOs)</div>
+    <div class="lm-note">Full opacity = p &lt; 0.05 &nbsp;·&nbsp; Faded = not significant</div>
+  </div>
+
+  <svg class="dot-ch" id="chart"></svg>
+
+  <div class="tbl-wrap" id="tbl-wrap">
+    <table id="tbl"></table>
+  </div>
+</div>
+
+</div>
+<div id="tt"></div>
+
+<script>
+const DATA = [
+  {response:"pH_sd",label:"pH",group:"Abiotic",n:1573,lambda:0.291,b_r:0.0273,se_r:0.00694,t_r:3.935,p_r:8.68e-5,b_c:-0.00326,se_c:0.00735,t_c:-0.443,p_c:0.658,sig_r:true,sig_c:false},
+  {response:"temp_sd",label:"Temp",group:"Abiotic",n:1573,lambda:0.432,b_r:0.1439,se_r:0.0537,t_r:2.682,p_r:0.00740,b_c:0.00837,se_c:0.0573,t_c:0.146,p_c:0.884,sig_r:true,sig_c:false},
+  {response:"georoc_Cu_sd",label:"Cu",group:"GeoROC",n:1571,lambda:0.512,b_r:4.213,se_r:3.164,t_r:1.331,p_r:0.183,b_c:-0.189,se_c:3.395,t_c:-0.056,p_c:0.956,sig_r:false,sig_c:false},
+  {response:"georoc_Ni_sd",label:"Ni",group:"GeoROC",n:1573,lambda:0.469,b_r:6.695,se_r:2.035,t_r:3.289,p_r:0.00103,b_c:-2.415,se_c:2.180,t_c:-1.108,p_c:0.268,sig_r:true,sig_c:false},
+  {response:"georoc_Zn_sd",label:"Zn",group:"GeoROC",n:1570,lambda:0.040,b_r:4.112,se_r:2.500,t_r:1.645,p_r:0.100,b_c:1.638,se_c:2.567,t_c:0.638,p_c:0.524,sig_r:false,sig_c:false},
+  {response:"georoc_Co_sd",label:"Co",group:"GeoROC",n:1570,lambda:0.066,b_r:1.833,se_r:0.512,t_r:3.576,p_r:3.59e-4,b_c:0.404,se_c:0.528,t_c:0.765,p_c:0.444,sig_r:true,sig_c:false},
+  {response:"georoc_Cr_sd",label:"Cr",group:"GeoROC",n:1573,lambda:0.333,b_r:10.324,se_r:4.522,t_r:2.283,p_r:0.0226,b_c:-7.457,se_c:4.802,t_c:-1.553,p_c:0.121,sig_r:true,sig_c:false},
+  {response:"georoc_Pb_sd",label:"Pb",group:"GeoROC",n:1570,lambda:0.131,b_r:0.517,se_r:0.165,t_r:3.127,p_r:0.00180,b_c:-0.116,se_c:0.172,t_c:-0.675,p_c:0.500,sig_r:true,sig_c:false},
+  {response:"georoc_As_sd",label:"As",group:"GeoROC",n:1520,lambda:0.739,b_r:-0.945,se_r:0.837,t_r:-1.128,p_r:0.259,b_c:0.317,se_c:0.912,t_c:0.348,p_c:0.728,sig_r:false,sig_c:false},
+  {response:"georoc_Cd_sd",label:"Cd",group:"GeoROC",n:1512,lambda:0.200,b_r:0.0392,se_r:0.00703,t_r:5.576,p_r:2.91e-8,b_c:-0.00678,se_c:0.00738,t_c:-0.920,p_c:0.358,sig_r:true,sig_c:false},
+  {response:"georoc_Hg_sd",label:"Hg",group:"GeoROC",n:1169,lambda:0.180,b_r:0.0987,se_r:0.0345,t_r:2.857,p_r:0.00436,b_c:-0.0445,se_c:0.0367,t_c:-1.213,p_c:0.226,sig_r:true,sig_c:false},
+  {response:"PF1_As_sd",label:"As",group:"CSU",n:1574,lambda:0.462,b_r:-7.06e-4,se_r:2.39e-4,t_r:-2.951,p_r:0.00321,b_c:5.71e-4,se_c:2.56e-4,t_c:2.228,p_c:0.0260,sig_r:true,sig_c:true},
+  {response:"PF1_Cd_sd",label:"Cd",group:"CSU",n:1574,lambda:0.338,b_r:7.06e-4,se_r:1.54e-4,t_r:4.593,p_r:4.72e-6,b_c:-3.72e-4,se_c:1.63e-4,t_c:-2.275,p_c:0.0230,sig_r:true,sig_c:true},
+  {response:"PF1_Cr_sd",label:"Cr",group:"CSU",n:1574,lambda:0.522,b_r:-1.63e-4,se_r:2.50e-4,t_r:-0.652,p_r:0.514,b_c:3.83e-4,se_c:2.69e-4,t_c:1.426,p_c:0.154,sig_r:false,sig_c:false},
+  {response:"PF1_Cu_sd",label:"Cu",group:"CSU",n:1574,lambda:0.509,b_r:-3.46e-4,se_r:2.37e-4,t_r:-1.456,p_r:0.145,b_c:3.02e-4,se_c:2.55e-4,t_c:1.187,p_c:0.235,sig_r:false,sig_c:false},
+  {response:"PF1_Hg_sd",label:"Hg",group:"CSU",n:1574,lambda:0.421,b_r:3.04e-4,se_r:9.9e-5,t_r:3.080,p_r:0.00210,b_c:1.30e-4,se_c:1.05e-4,t_c:1.239,p_c:0.216,sig_r:true,sig_c:false},
+  {response:"PF1_Pb_sd",label:"Pb",group:"CSU",n:1574,lambda:0.354,b_r:2.6e-5,se_r:8.1e-5,t_r:0.326,p_r:0.745,b_c:1.05e-4,se_c:8.6e-5,t_c:1.221,p_c:0.222,sig_r:false,sig_c:false},
+  {response:"Cu_ICP_sd",label:"Cu",group:"NGSA ICP-MS",n:1530,lambda:0.249,b_r:0.0862,se_r:0.0783,t_r:1.102,p_r:0.271,b_c:0.0337,se_c:0.0826,t_c:0.407,p_c:0.684,sig_r:false,sig_c:false},
+  {response:"Ni_ICP_sd",label:"Ni",group:"NGSA ICP-MS",n:1530,lambda:0.226,b_r:0.388,se_r:0.0981,t_r:3.952,p_r:8.11e-5,b_c:-0.0209,se_c:0.103,t_c:-0.202,p_c:0.840,sig_r:true,sig_c:false},
+  {response:"Zn_ICP_sd",label:"Zn",group:"NGSA ICP-MS",n:1526,lambda:0.380,b_r:0.575,se_r:0.223,t_r:2.579,p_r:0.0100,b_c:0.0456,se_c:0.237,t_c:0.192,p_c:0.848,sig_r:true,sig_c:false},
+  {response:"Pb_ICP_sd",label:"Pb",group:"NGSA ICP-MS",n:1530,lambda:0.335,b_r:0.215,se_r:0.169,t_r:1.272,p_r:0.204,b_c:0.0855,se_c:0.180,t_c:0.476,p_c:0.634,sig_r:false,sig_c:false},
+  {response:"As_ICP_sd",label:"As",group:"NGSA ICP-MS",n:1527,lambda:0.292,b_r:0.626,se_r:0.257,t_r:2.438,p_r:0.0149,b_c:-0.0109,se_c:0.272,t_c:-0.040,p_c:0.968,sig_r:true,sig_c:false},
+  {response:"Co_ICP_sd",label:"Co",group:"NGSA ICP-MS",n:1529,lambda:0.111,b_r:-0.0392,se_r:0.0616,t_r:-0.636,p_r:0.525,b_c:-0.0350,se_c:0.0641,t_c:-0.545,p_c:0.586,sig_r:false,sig_c:false},
+  {response:"Cr_ICP_sd",label:"Cr",group:"NGSA ICP-MS",n:1530,lambda:0.180,b_r:2.094,se_r:0.418,t_r:5.008,p_r:6.15e-7,b_c:-0.0328,se_c:0.439,t_c:-0.075,p_c:0.940,sig_r:true,sig_c:false},
+  {response:"Hg_AR_sd",label:"Hg",group:"NGSA ICP-MS",n:1511,lambda:0.720,b_r:0.00965,se_r:0.00338,t_r:2.850,p_r:0.00443,b_c:-0.00182,se_c:0.00368,t_c:-0.496,p_c:0.620,sig_r:true,sig_c:false},
+  {response:"Cu_MMI_sd",label:"Cu",group:"NGSA MMI",n:1530,lambda:0.609,b_r:0.0705,se_r:0.01676,t_r:4.208,p_r:2.73e-5,b_c:-0.00654,se_c:0.01808,t_c:-0.362,p_c:0.718,sig_r:true,sig_c:false},
+  {response:"Ni_MMI_sd",label:"Ni",group:"NGSA MMI",n:1530,lambda:0.361,b_r:0.0580,se_r:0.01036,t_r:5.594,p_r:2.62e-8,b_c:-0.00549,se_c:0.01102,t_c:-0.498,p_c:0.618,sig_r:true,sig_c:false},
+  {response:"Zn_MMI_sd",label:"Zn",group:"NGSA MMI",n:1530,lambda:0.462,b_r:0.0922,se_r:0.02452,t_r:3.758,p_r:1.78e-4,b_c:5.50e-4,se_c:0.02624,t_c:0.021,p_c:0.983,sig_r:true,sig_c:false},
+  {response:"Pb_MMI_sd",label:"Pb",group:"NGSA MMI",n:1525,lambda:0.315,b_r:0.01876,se_r:0.01075,t_r:1.745,p_r:0.0812,b_c:0.01529,se_c:0.01138,t_c:1.344,p_c:0.179,sig_r:false,sig_c:false},
+  {response:"As_MMI_sd",label:"As",group:"NGSA MMI",n:1470,lambda:0.177,b_r:0.01666,se_r:0.00405,t_r:4.112,p_r:4.15e-5,b_c:-5.60e-4,se_c:4.26e-3,t_c:-0.131,p_c:0.896,sig_r:true,sig_c:false},
+  {response:"Co_MMI_sd",label:"Co",group:"NGSA MMI",n:1529,lambda:0.369,b_r:1.3e-5,se_r:0.00310,t_r:0.004,p_r:0.997,b_c:4.36e-3,se_c:3.29e-3,t_c:1.325,p_c:0.186,sig_r:false,sig_c:false},
+  {response:"Cr_MMI_sd",label:"Cr",group:"NGSA MMI",n:1530,lambda:0.215,b_r:0.00856,se_r:0.00121,t_r:7.056,p_r:2.59e-12,b_c:-0.00252,se_c:0.00128,t_c:-1.975,p_c:0.0484,sig_r:true,sig_c:true},
+  {response:"Hg_MMI_sd",label:"Hg",group:"NGSA MMI",n:1072,lambda:0.276,b_r:0.00185,se_r:7.76e-4,t_r:2.388,p_r:0.0171,b_c:4.13e-4,se_c:8.35e-4,t_c:0.495,p_c:0.621,sig_r:true,sig_c:false}
+];
+
+// ── Layout constants ──────────────────────────────────────────────────────
+const ML = 118, MR = 56, MT = 36, MB = 20;
+const ROW_H = 22, GRP_H = 28, GRP_GAP = 8;
+const T_MIN = -4, T_MAX = 8;
+const TICKS = [-4,-2,0,2,4,6,8];
+const THRESH = 1.96;  // |t| for p≈0.05
+
+// ── Build row list ────────────────────────────────────────────────────────
+const GROUP_ORDER = ["Abiotic","GeoROC","CSU","NGSA ICP-MS","NGSA MMI"];
+const rows = [];  // {type:'group'|'data', label, d?}
+let prevGroup = null;
+for (const g of GROUP_ORDER) {
+  const items = DATA.filter(d => d.group === g);
+  if (!items.length) continue;
+  rows.push({type:'group', label:g});
+  for (const d of items) rows.push({type:'data', d});
+}
+
+// ── Compute y positions ───────────────────────────────────────────────────
+let y = MT;
+const rowY = [];
+for (const r of rows) {
+  if (r.type === 'group') {
+    if (rowY.length) y += GRP_GAP;
+    r.y = y + GRP_H / 2;
+    r.yTop = y;
+    r.yBot = y + GRP_H;
+    y += GRP_H;
+  } else {
+    r.y = y + ROW_H / 2;
+    r.yTop = y;
+    r.yBot = y + ROW_H;
+    y += ROW_H;
+  }
+  rowY.push(r);
+}
+const chartH = y + MB;
+
+// ── SVG helpers ───────────────────────────────────────────────────────────
+const SVG_NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs={}, parent) {
+  const e = document.createElementNS(SVG_NS, tag);
+  for (const [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+function pct(t) {
+  // map t-value to [ML, svgW - MR]
+  return ML + (t - T_MIN) / (T_MAX - T_MIN) * (svgW - ML - MR);
+}
+
+// ── Render ────────────────────────────────────────────────────────────────
+const svg = document.getElementById("chart");
+let svgW = svg.getBoundingClientRect().width || 700;
+if (svgW < 400) svgW = 700;
+
+function render() {
+  svg.innerHTML = '';
+  svg.setAttribute("viewBox", `0 0 ${svgW} ${chartH}`);
+  svg.setAttribute("height", chartH);
+
+  const cs = getComputedStyle(document.querySelector(".viz-root"));
+  const clr = {
+    gl: cs.getPropertyValue("--gl").trim(),
+    bl: cs.getPropertyValue("--bl").trim(),
+    muted: cs.getPropertyValue("--muted").trim(),
+    ink: cs.getPropertyValue("--ink").trim(),
+    ink2: cs.getPropertyValue("--ink2").trim(),
+    sf: cs.getPropertyValue("--sf").trim(),
+    s1: cs.getPropertyValue("--s1").trim(),
+    s2: cs.getPropertyValue("--s2").trim(),
+  };
+
+  // ── Group stripe backgrounds ──
+  for (const r of rowY) {
+    if (r.type !== 'group') continue;
+    el("rect", {x:0,y:r.yTop,width:svgW,height:r.yBot-r.yTop,fill:clr.gl,opacity:.35}, svg);
+  }
+
+  // ── Gridlines ──
+  for (const t of TICKS) {
+    const x = pct(t);
+    const isZero = t === 0;
+    el("line", {x1:x,y1:MT,x2:x,y2:chartH-MB,
+      stroke: isZero ? clr.bl : clr.gl,
+      "stroke-width": isZero ? 1.5 : 1}, svg);
+    // tick label at top
+    el("text", {x, y:MT-8, "text-anchor":"middle",
+      "font-size":10, fill:clr.muted,
+      "font-variant-numeric":"tabular-nums"}, svg).textContent = t;
+  }
+
+  // ── Threshold reference lines ──
+  for (const sign of [-1,1]) {
+    const x = pct(sign * THRESH);
+    el("line", {x1:x,y1:MT,x2:x,y2:chartH-MB,
+      stroke:clr.bl,"stroke-width":1,"stroke-dasharray":"4 3",opacity:.7}, svg);
+  }
+  // label at +1.96
+  const xthr = pct(THRESH);
+  el("text", {x:xthr+3,y:MT-2,"font-size":9,fill:clr.muted}, svg).textContent = "p=.05";
+
+  // ── X-axis label ──
+  el("text", {x:ML+(svgW-ML-MR)/2, y:chartH-2,"text-anchor":"middle","font-size":10,fill:clr.muted}, svg)
+    .textContent = "t-statistic (each predictor controlled for genome size, Pagel's λ)";
+
+  // ── Rows ──
+  for (const r of rowY) {
+    if (r.type === 'group') {
+      el("text",{x:ML-8,y:r.y+4,"text-anchor":"end","font-size":10,
+        fill:clr.ink2,"font-weight":600}, svg).textContent = r.label;
+      // right-side source label
+      el("text",{x:svgW-MR+8,y:r.y+4,"text-anchor":"start","font-size":10,
+        fill:clr.muted}, svg).textContent = r.label;
+    } else {
+      const d = r.d;
+      // row label (right-aligned in left gutter)
+      el("text",{x:ML-12,y:r.y+4,"text-anchor":"end","font-size":11,fill:clr.ink2}, svg)
+        .textContent = d.label;
+
+      // ── Resistance mark (circle) ──
+      const xr = pct(d.t_r);
+      const cr = el("circle", {
+        cx:xr, cy:r.y,
+        r: d.sig_r ? 5.5 : 4,
+        fill: clr.s1,
+        opacity: d.sig_r ? 1 : 0.22,
+        "stroke": clr.sf, "stroke-width": 1.5,
+        style:"cursor:pointer"
+      }, svg);
+
+      // ── Cofactor mark (diamond) ──
+      const xc = pct(d.t_c);
+      const s = d.sig_c ? 5 : 3.5;
+      const pts = `${xc},${r.y-s} ${xc+s},${r.y} ${xc},${r.y+s} ${xc-s},${r.y}`;
+      const cd = el("polygon", {
+        points:pts,
+        fill: clr.s2,
+        opacity: d.sig_c ? 1 : 0.22,
+        "stroke": clr.sf, "stroke-width": 1.5,
+        style:"cursor:pointer"
+      }, svg);
+
+      // hover area — invisible rect covering the row
+      const hit = el("rect", {x:ML,y:r.yTop,width:svgW-ML-MR,height:ROW_H,
+        fill:"transparent", style:"cursor:pointer"}, svg);
+
+      // tooltip
+      const fmtT = v => (v>=0?"+":"")+v.toFixed(2);
+      const fmtP = v => {
+        if (v < 0.001) {
+          const e = Math.floor(Math.log10(v));
+          const m = (v/Math.pow(10,e)).toFixed(1);
+          return `${m}×10${sup(e)}`;
+        }
+        return v.toFixed(3);
+      };
+      const sup = n => n < 0 ? `⁻${Math.abs(n)}` : `${n}`;
+
+      const showTT = (evt) => {
+        const tt = document.getElementById("tt");
+        const gs = d.group === "Abiotic" ? "" : d.group + " ";
+        tt.innerHTML = `
+          <div class="tt-t">${gs}${d.label}</div>
+          <div style="font-size:10px;color:var(--muted);margin-bottom:6px">n = ${d.n} · λ = ${d.lambda.toFixed(3)}</div>
+          <hr class="tt-hr">
+          <div class="tt-row"><span class="tt-lbl">Resistance t</span><span class="tt-val tt-r">${fmtT(d.t_r)}</span></div>
+          <div class="tt-row"><span class="tt-lbl">Resistance p</span><span class="tt-val ${d.sig_r?"sig":""}">${fmtP(d.p_r)}</span></div>
+          <div class="tt-row"><span class="tt-lbl">β (resist)</span><span class="tt-val">${d.b_r.toPrecision(3)}</span></div>
+          <hr class="tt-hr">
+          <div class="tt-row"><span class="tt-lbl">Cofactor t</span><span class="tt-val tt-c">${fmtT(d.t_c)}</span></div>
+          <div class="tt-row"><span class="tt-lbl">Cofactor p</span><span class="tt-val ${d.sig_c?"sig":""}">${fmtP(d.p_c)}</span></div>
+          <div class="tt-row"><span class="tt-lbl">β (cofact)</span><span class="tt-val">${d.b_c.toPrecision(3)}</span></div>
+        `;
+        tt.classList.add("on");
+        moveTT(evt);
+      };
+      const moveTT = (evt) => {
+        const tt = document.getElementById("tt");
+        const tw = tt.offsetWidth, th = tt.offsetHeight;
+        let lx = evt.clientX + 14, ly = evt.clientY - 10;
+        if (lx + tw > window.innerWidth - 8) lx = evt.clientX - tw - 14;
+        if (ly + th > window.innerHeight - 8) ly = evt.clientY - th - 10;
+        tt.style.left = lx + "px";
+        tt.style.top  = ly + "px";
+      };
+      const hideTT = () => document.getElementById("tt").classList.remove("on");
+
+      hit.addEventListener("pointerenter", showTT);
+      hit.addEventListener("pointermove",  moveTT);
+      hit.addEventListener("pointerleave", hideTT);
+      cr.addEventListener("pointerenter",  showTT);
+      cr.addEventListener("pointermove",   moveTT);
+      cr.addEventListener("pointerleave",  hideTT);
+      cd.addEventListener("pointerenter",  showTT);
+      cd.addEventListener("pointermove",   moveTT);
+      cd.addEventListener("pointerleave",  hideTT);
+    }
+  }
+}
+
+render();
+window.addEventListener("resize", () => {
+  svgW = svg.getBoundingClientRect().width || 700;
+  render();
+});
+
+// ── Table ─────────────────────────────────────────────────────────────────
+(function buildTable() {
+  const tbl = document.getElementById("tbl");
+  const fmtP = v => v < 0.001 ? v.toExponential(2) : v.toFixed(3);
+  const fmtB = v => v.toPrecision(3);
+  tbl.innerHTML = `<thead><tr>
+    <th>Source</th><th>Response</th>
+    <th>t (resist)</th><th>p (resist)</th>
+    <th>β (resist)</th>
+    <th>t (cofact)</th><th>p (cofact)</th>
+    <th>β (cofact)</th>
+    <th>n</th><th>λ</th>
+  </tr></thead><tbody id="tbody"></tbody>`;
+  const tbody = tbl.querySelector("tbody");
+
+  let curGroup = null;
+  for (const d of DATA) {
+    if (d.group !== curGroup) {
+      curGroup = d.group;
+      const tr = document.createElement("tr");
+      tr.className = "grp-hdr";
+      tr.innerHTML = `<td colspan="10">${curGroup}</td>`;
+      tbody.appendChild(tr);
+    }
+    const tr = document.createElement("tr");
+    const sig = (v, p) => p < 0.05 ? `<span class="sig">${v}</span>` : v;
+    tr.innerHTML = `
+      <td>${d.group}</td><td>${d.label}</td>
+      <td>${sig(d.t_r.toFixed(2), d.p_r)}</td>
+      <td>${sig(fmtP(d.p_r), d.p_r)}</td>
+      <td>${fmtB(d.b_r)}</td>
+      <td>${sig(d.t_c.toFixed(2), d.p_c)}</td>
+      <td>${sig(fmtP(d.p_c), d.p_c)}</td>
+      <td>${fmtB(d.b_c)}</td>
+      <td>${d.n.toLocaleString()}</td>
+      <td>${d.lambda.toFixed(3)}</td>`;
+    tbody.appendChild(tr);
+  }
+})();
+
+document.getElementById("tbl-tog").addEventListener("click", function() {
+  const w = document.getElementById("tbl-wrap");
+  const open = w.classList.toggle("open");
+  this.textContent = open ? "Hide table" : "Show table";
+});
+</script>
+</body>
+</html>

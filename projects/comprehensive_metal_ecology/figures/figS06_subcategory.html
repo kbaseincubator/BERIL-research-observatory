@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure S6. Functional subcategory comparison across AMR, TCS, and ABC transporter families</title>
+  <style>
+    :root {
+      --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+      --gl:#e1e0d9; --bl:#c3c2b7;
+      --sig:#2a78d6; --ns:#c3c2b7; --acc:#e34948; --acc2:#eda100;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+        --gl:#2c2c2a; --bl:#383835;
+        --sig:#3987e5; --ns:#52514e; --acc:#e66767; --acc2:#c98500;
+      }
+    }
+    body {
+      background: var(--sf);
+      color: var(--tp);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      padding: 32px;
+      margin: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      color: var(--tp);
+    }
+    .note {
+      font-size: 12px;
+      color: var(--ts);
+      margin: 32px 0 0 0;
+      line-height: 1.5;
+      max-width: 900px;
+    }
+    .panels {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .panel {
+      flex: 1;
+      position: relative;
+    }
+    svg {
+      background: transparent;
+      overflow: visible;
+    }
+    .panel-label {
+      font-size: 11px;
+      font-weight: bold;
+      color: var(--tm);
+      position: absolute;
+      top: 8px;
+      left: 8px;
+    }
+    .family-label {
+      font-size: 11px;
+      font-weight: bold;
+      color: var(--tp);
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    [data-tooltip] {
+      cursor: pointer;
+    }
+    .tooltip {
+      display: none;
+      position: absolute;
+      background: var(--gl);
+      color: var(--tp);
+      padding: 6px 8px;
+      border-radius: 3px;
+      font-size: 10px;
+      z-index: 1000;
+      white-space: nowrap;
+      border: 1px solid var(--bl);
+    }
+    .tooltip.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Figure S6. Functional subcategory comparison across AMR, TCS, and ABC transporter families</h1>
+    <div class="panels" id="panels"></div>
+    <div class="note">
+      <strong>Note:</strong> AMR efflux pumps (sig, β > 0) are positively associated — specialists avoid efflux burden, consistent with reduced environmental exposure to antibiotics in narrow-niche organisms. The resistance-null pattern is specific to metal resistance genes within the metal-gene panel.
+    </div>
+  </div>
+
+  <script>
+const dataByFamily = {
+  Metal: [
+    {sub:"Resistance/Detoxif.", n_kos:106, beta:0.002523, se:0.005656, q:0.6556, sig:false},
+    {sub:"Transport/Homeostasis", n_kos:69, beta:-0.021781, se:0.004931, q:4.41e-5, sig:true},
+    {sub:"Sensing", n_kos:18, beta:-0.018449, se:0.005443, q:0.00145, sig:true},
+    {sub:"Cofactor Biosynthesis", n_kos:7, beta:-0.032736, se:0.005308, q:2.07e-9, sig:true},
+    {sub:"Metal-dep. Metabolism", n_kos:22, beta:-0.020903, se:0.005257, q:1.49e-4, sig:true}
+  ],
+  AMR: [
+    {sub:"Efflux pumps", n_kos:49, beta:0.018015, se:0.006451, q:0.016003, sig:true},
+    {sub:"Target modif./protection", n_kos:86, beta:0.008626, se:0.005681, q:0.19386, sig:false},
+    {sub:"Enzymatic inactivation", n_kos:106, beta:0.005827, se:0.004636, q:0.20908, sig:false}
+  ],
+  TCS: [
+    {sub:"Response regulators", n_kos:112, beta:0.008682, se:0.005982, q:0.24819, sig:false},
+    {sub:"Sensor histidine kinases", n_kos:121, beta:0.008363, se:0.006026, q:0.24819, sig:false},
+    {sub:"Phosphotransfer/other", n_kos:288, beta:0.002520, se:0.006118, q:0.68052, sig:false}
+  ],
+  ABC: [
+    {sub:"Lipid/LPS", n_kos:16, beta:-0.029518, se:0.006418, q:3.35e-5, sig:true},
+    {sub:"Vitamin/cofactor", n_kos:10, beta:-0.014816, se:0.008205, q:0.2513, sig:false},
+    {sub:"Amino acid/peptide", n_kos:87, beta:-0.008217, se:0.005621, q:0.3363, sig:false},
+    {sub:"Inorganic ion", n_kos:35, beta:-0.003175, se:0.004855, q:0.7983, sig:false}
+  ]
+};
+
+function drawForestPlot(container, data, family) {
+  const w = 200, h = 150 + data.length * 20, pad = 50;
+  const xMin = -0.05, xMax = 0.03;
+  const xRange = xMax - xMin;
+
+  const scaleX = (x) => pad + ((x - xMin) / xRange) * (w - pad - 20);
+
+  let svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`;
+
+  // x-axis
+  svg += `<line x1="${pad}" y1="${35}" x2="${w-20}" y2="${35}" stroke="var(--gl)" stroke-width="1"/>`;
+
+  // zero line
+  const zeroX = scaleX(0);
+  svg += `<line x1="${zeroX}" y1="${35}" x2="${zeroX}" y2="${h-20}" stroke="var(--tp)" stroke-width="1.5"/>`;
+
+  // x-axis ticks and labels
+  [-0.05, -0.025, 0, 0.025].forEach(val => {
+    const x = scaleX(val);
+    svg += `<line x1="${x}" y1="${33}" x2="${x}" y2="${37}" stroke="var(--gl)" stroke-width="0.5"/>`;
+    svg += `<text x="${x}" y="${48}" font-size="8" fill="var(--ts)" text-anchor="middle">${val.toFixed(3)}</text>`;
+  });
+
+  // data rows
+  data.forEach((row, i) => {
+    const y = 65 + i * 20;
+    const ci_lo = row.beta - 1.96 * row.se;
+    const ci_hi = row.beta + 1.96 * row.se;
+    const x_lo = scaleX(ci_lo);
+    const x_center = scaleX(row.beta);
+    const x_hi = scaleX(ci_hi);
+
+    const isCofactorRow = family === 'Metal' && row.sub === 'Cofactor Biosynthesis';
+
+    // highlight row background for cofactor
+    if (isCofactorRow) {
+      svg += `<rect x="0" y="${y-8}" width="${w}" height="16" fill="var(--gl)" opacity="0.2"/>`;
+    }
+
+    // CI bar
+    svg += `<line x1="${x_lo}" y1="${y}" x2="${x_hi}" y2="${y}" stroke="var(--gl)" stroke-width="1"/>`;
+
+    // dot
+    let dotColor = 'var(--ns)';
+    if (row.sig) {
+      if (family === 'AMR' && row.sub === 'Efflux pumps') {
+        dotColor = 'var(--acc)';
+      } else {
+        dotColor = 'var(--sig)';
+      }
+    }
+    svg += `<circle cx="${x_center}" cy="${y}" r="2.5" fill="${dotColor}" class="dot" data-beta="${row.beta.toFixed(6)}" data-se="${row.se.toFixed(6)}" data-q="${row.q.toFixed(6)}" data-sub="${row.sub}"/>`;
+
+    // label (abbreviated)
+    const abbrev = row.sub.length > 18 ? row.sub.substring(0, 15) + '...' : row.sub;
+    svg += `<text x="2" y="${y+3}" font-size="9" fill="var(--ts)" data-sub="${row.sub}">${abbrev}</text>`;
+  });
+
+  svg += `</svg>`;
+  container.innerHTML = svg;
+
+  // Add hover tooltips
+  const dots = container.querySelectorAll('.dot');
+  dots.forEach(dot => {
+    dot.addEventListener('mouseenter', (e) => {
+      const beta = parseFloat(dot.dataset.beta);
+      const se = parseFloat(dot.dataset.se);
+      const ci_lo = (beta - 1.96 * se).toFixed(4);
+      const ci_hi = (beta + 1.96 * se).toFixed(4);
+      const q = parseFloat(dot.dataset.q);
+      const sub = dot.dataset.sub;
+      const tooltip = `${sub}\nβ=${beta.toFixed(4)}\n95% CI: [${ci_lo}, ${ci_hi}]\nq=${q.toFixed(6)}`;
+      console.log(tooltip);
+    });
+  });
+}
+
+const families = ['Metal', 'AMR', 'TCS', 'ABC'];
+const panelsDiv = document.getElementById('panels');
+
+families.forEach(family => {
+  const panelDiv = document.createElement('div');
+  panelDiv.className = 'panel';
+  panelDiv.style.position = 'relative';
+  panelDiv.innerHTML = `<div class="family-label">${family}</div>`;
+  panelsDiv.appendChild(panelDiv);
+  drawForestPlot(panelDiv, dataByFamily[family], family);
+});
+  </script>
+</body>
+</html>

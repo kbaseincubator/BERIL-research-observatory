@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure S3 – Sensitivity Analyses</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6; --ns:#c3c2b7; --acc:#e34948;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5; --ns:#52514e; --acc:#e66767;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; line-height:1.5; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.tt {
+  position:fixed; background:var(--sf); border:1px solid var(--gl);
+  padding:8px 10px; border-radius:4px; font-size:11px; color:var(--tp);
+  pointer-events:none; display:none; max-width:300px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12); z-index:100; line-height:1.6;
+}
+.tbl-btn { margin-top:12px; font-size:11px; color:var(--sig); cursor:pointer; text-decoration:underline; background:none; border:none; padding:0; }
+table { display:none; margin-top:10px; font-size:11px; border-collapse:collapse; }
+th,td { text-align:left; padding:3px 8px; border-bottom:1px solid var(--gl); color:var(--ts); white-space:nowrap; }
+th { color:var(--tm); font-weight:500; }
+td:nth-child(n+2) { font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<h2>Figure S3. Sensitivity analyses: the primary association is robust across alternative specifications.</h2>
+<div class="sub">Forest plot of PGLS β and 95% CI (±1.96 SE) for 8 pre-specified sensitivity checks (S1–S8). Primary estimate (P1: β = −0.021, SE = 0.0037) shown as dashed reference line. S1/S2: fixed λ = 0/1. S3: archaea only (n = 41). S4/S5: minimum 50 and 150 MAG thresholds (identical). S6: raw (unstandardised) Levins' B as response. S7: AusMicrobiome-only niche breadth (NS). S8: northern hemisphere taxa subset.</div>
+<div style="margin-bottom:8px;font-size:11px;color:var(--ts)">
+  <span style="color:var(--sig)">■</span> Significant (p &lt; 0.05) &nbsp;&nbsp;
+  <span style="color:var(--ns)">■</span> Not significant
+</div>
+<svg id="chart"></svg>
+<div class="tt" id="tt"></div>
+<button class="tbl-btn" onclick="toggleTable()">Show data table</button>
+<table id="dtbl">
+  <thead><tr><th>Check</th><th>Description</th><th>n</th><th>λ</th><th>β</th><th>SE</th><th>95% CI</th><th>p</th></tr></thead>
+  <tbody id="dtbody"></tbody>
+</table>
+
+<script>
+const DATA = [
+  {id:'S1', label:'λ = 0 (no phylo)', n:1574, lambda:0.0,   beta:-0.03192, se:0.003773, p:0.0,          sig:true,  note:'OLS equivalent; strongest effect'},
+  {id:'S2', label:'λ = 1 (Brownian)', n:1574, lambda:1.0,   beta:-0.01824, se:0.003925, p:3.66e-6,      sig:true,  note:'Conservative phylo correction'},
+  {id:'S3', label:'Archaea only',     n:41,   lambda:0.746, beta:-0.01826, se:0.01028,  p:0.0836,       sig:false, note:'Directionally consistent, NS (n=41)'},
+  {id:'S4', label:'Min. 50 MAGs',     n:1574, lambda:0.757, beta:-0.02070, se:0.003677, p:2.14e-8,      sig:true,  note:'Identical to primary (threshold met)'},
+  {id:'S5', label:'Min. 150 MAGs',    n:1574, lambda:0.757, beta:-0.02070, se:0.003677, p:2.14e-8,      sig:true,  note:'Identical to primary (threshold met)'},
+  {id:'S6', label:'Raw Levins\' B',   n:1574, lambda:0.678, beta:-0.28583, se:0.04177,  p:1.11e-11,     sig:true,  note:'Unstandardised niche metric; same direction'},
+  {id:'S7', label:'AusMicrobiome niche', n:482, lambda:0.346, beta:-0.00171, se:0.005489, p:0.755,      sig:false, note:'AU niche breadth predictor (NS); within-dataset'},
+  {id:'S8', label:'N. hemisphere taxa',  n:542, lambda:0.901, beta:-0.03015, se:0.006410, p:3.24e-6,    sig:true,  note:'Northern hemisphere geographic subset'},
+];
+
+// Primary reference
+const P1_BETA = -0.021;
+
+const fmtB = b => (b >= 0 ? '+' : '') + b.toFixed(4);
+const fmtP = p => p === 0 ? '< 1×10⁻³⁰' : p < 1e-9 ? p.toExponential(2) : p < 0.001 ? p.toExponential(2) : p.toFixed(4);
+
+// For S6 (different scale), we display on a separate scaled axis or normalise
+// S6 beta is -0.286 vs others -0.018 to -0.032 — we need to note the different scale
+// Display S6 bar as clipped with annotation
+
+function render() {
+  const W = 620, rowH = 34;
+  const M = {top:44, right:140, bottom:52, left:180};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  // Exclude S6 from x scale (different units)
+  const betasForScale = DATA.filter(d => d.id !== 'S6').map(d => d.beta - 1.96*d.se);
+  const xMin = Math.min(...betasForScale) - 0.005, xMax = 0.018;
+  const pw = W - M.left - M.right;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [-0.04, -0.03, -0.02, -0.01, 0, 0.01];
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  // Gridlines
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${t === 0 ? 'var(--bl)' : 'var(--gl)'}" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+  });
+
+  // P1 reference dashed line
+  const p1X = xS(P1_BETA);
+  s += `<line x1="${p1X}" y1="${M.top - 8}" x2="${p1X}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--sig)" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>`;
+  s += `<text x="${p1X}" y="${M.top - 15}" text-anchor="middle"
+    font-size="9" fill="var(--sig)" opacity="0.8">P1 reference β = −0.021</text>`;
+
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const isS6 = d.id === 'S6';
+    const col = d.sig ? 'var(--sig)' : 'var(--ns)';
+    const xb = isS6 ? xS(xMin + 0.005) : xS(d.beta);
+    const xlo = isS6 ? xb - 5 : xS(d.beta - 1.96 * d.se);
+    const xhi = isS6 ? xb : xS(Math.min(xMax - 0.001, d.beta + 1.96 * d.se));
+    const x0 = xS(0);
+
+    s += `<rect class="row-hit" x="${M.left}" y="${M.top + i * rowH + 2}"
+      width="${pw}" height="${rowH - 4}"
+      fill="${d.sig && !isS6 ? 'rgba(42,120,214,0.03)' : 'none'}" rx="3" data-i="${i}" style="cursor:default"/>`;
+
+    if (!isS6) {
+      s += `<line x1="${xlo}" y1="${y}" x2="${xhi}" y2="${y}"
+        stroke="${col}" stroke-width="1.5" opacity="0.6"/>`;
+      [[xlo],[xhi]].forEach(([x]) => {
+        s += `<line x1="${x}" y1="${y-4}" x2="${x}" y2="${y+4}"
+          stroke="${col}" stroke-width="1.5" opacity="0.7"/>`;
+      });
+      s += `<line x1="${x0}" y1="${y}" x2="${xb}" y2="${y}"
+        stroke="${col}" stroke-width="1.5" opacity="0.6"/>`;
+      s += `<circle cx="${xb}" cy="${y}" r="4.5"
+        fill="${col}" stroke="var(--sf)" stroke-width="2"/>`;
+    } else {
+      // S6 has different units: show clipped bar with annotation
+      s += `<line x1="${M.left + 4}" y1="${y}" x2="${M.left + 40}" y2="${y}"
+        stroke="var(--sig)" stroke-width="3" stroke-dasharray="4 2" opacity="0.7"/>`;
+      s += `<text x="${M.left + 44}" y="${y + 4}" font-size="9" fill="var(--sig)">β = −0.286 (different scale)</text>`;
+    }
+
+    s += `<text x="${M.left - 8}" y="${y}" text-anchor="end"
+      font-size="11" fill="${d.sig ? 'var(--tp)' : 'var(--tm)'}">
+        <tspan>${d.id}: </tspan><tspan font-weight="${d.sig ? '600':'400'}">${d.label}</tspan>
+    </text>`;
+
+    if (!isS6) {
+      s += `<text x="${W - M.right + 6}" y="${y}" text-anchor="start"
+        font-size="10" fill="${col}" font-variant-numeric="tabular-nums">${fmtB(d.beta)}</text>`;
+      s += `<text x="${W - M.right + 6}" y="${y + 12}" text-anchor="start"
+        font-size="9" fill="var(--tm)">p = ${fmtP(d.p)}</text>`;
+    }
+  });
+
+  s += `<line x1="${M.left}" y1="${M.top + DATA.length * rowH}"
+    x2="${W - M.right}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t === 0 ? '0' : t.toFixed(2)}</text>`;
+  });
+
+  s += `<text x="${xS(-0.01)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">PGLS β (metal-gene KO density → niche breadth)</text>`;
+
+  svg.innerHTML = s;
+
+  svg.querySelectorAll('.row-hit').forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      const d = DATA[+this.dataset.i];
+      const lo = (d.beta - 1.96*d.se).toFixed(4), hi = (d.beta + 1.96*d.se).toFixed(4);
+      document.getElementById('tt').innerHTML =
+        `<strong>${d.id}: ${d.label}</strong><br>` +
+        `<span>n = ${d.n}, λ = ${d.lambda.toFixed(3)}</span><br>` +
+        `<span>β = ${fmtB(d.beta)} (SE = ${d.se.toFixed(5)})</span><br>` +
+        `<span>95% CI [${lo}, ${hi}]</span><br>` +
+        `<span>p = ${fmtP(d.p)}</span><br>` +
+        `<span style="color:var(--tm)">${d.note}</span>`;
+      document.getElementById('tt').style.display = 'block';
+    });
+    el.addEventListener('mousemove', positionTT);
+    el.addEventListener('mouseleave', () => { document.getElementById('tt').style.display = 'none'; });
+  });
+}
+
+function positionTT(e) {
+  const tt = document.getElementById('tt');
+  let x = e.clientX + 14, y = e.clientY - tt.offsetHeight / 2;
+  if (x + tt.offsetWidth > window.innerWidth - 12) x = e.clientX - 14 - tt.offsetWidth;
+  tt.style.left = x + 'px'; tt.style.top = Math.max(8, y) + 'px';
+}
+
+function toggleTable() {
+  const tbl = document.getElementById('dtbl');
+  const btn = document.querySelector('.tbl-btn');
+  if (tbl.style.display === 'table') {
+    tbl.style.display = 'none'; btn.textContent = 'Show data table';
+  } else {
+    tbl.style.display = 'table'; btn.textContent = 'Hide data table';
+    document.getElementById('dtbody').innerHTML = DATA.map(d => {
+      const lo = (d.beta - 1.96*d.se).toFixed(4), hi = (d.beta + 1.96*d.se).toFixed(4);
+      return `<tr><td>${d.id}</td><td>${d.label}</td><td>${d.n}</td><td>${d.lambda.toFixed(3)}</td>
+        <td>${fmtB(d.beta)}</td><td>${d.se.toFixed(5)}</td><td>[${lo}, ${hi}]</td><td>${fmtP(d.p)}</td></tr>`;
+    }).join('');
+  }
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "essential_set_n_categories": 4,
+  "essential_categories": [
+    "aa",
+    "cofactor",
+    "lipid",
+    "nucleotide"
+  ],
+  "n_genera": 1069,
+  "beta": -0.01834574006485042,
+  "SE": 0.005726685151073685,
+  "p_value": 0.001397660184350169,
+  "lambda": 0.7927
+}

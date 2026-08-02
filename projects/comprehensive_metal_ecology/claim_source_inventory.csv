@@ -1,0 +1,77 @@
+claim_summary,source_type,source_detail
+"Primary PGLS: per-Mb metal-gene KO density negatively associated with niche breadth β=-0.021, p=2.1×10⁻⁸, SE=0.0037, n=1,574",analysis_file,data/01_primary_pgls_results.csv: P1_bacteria_primary
+"Primary PGLS: Pagel's λ=0.757, ΔAIC=-29.4, r²=0.046",analysis_file,data/01_primary_pgls_results.csv: P1_bacteria_primary
+"Archaea replication (P2): β=-0.014, p=0.119, n=95, λ=0.726",analysis_file,data/01_primary_pgls_results.csv: P2_archaea_primary
+"NGSA Australia replication (P3): β=-0.002, p=0.755, n=482",analysis_file,data/01_primary_pgls_results.csv (implied by text)
+"Pervasive genome streamlining: 14 of 19 KEGG functional categories significant (q<0.05)",analysis_file,data/03_category_pgls_results.csv: 14 categories with q<0.05
+"Metal genes rank 11th in functional landscape per-Mb density (β=-0.021)",analysis_file,data/03_category_pgls_results.csv: ranking by β
+"Cofactor biosynthesis: β=-0.033, p=5.2×10⁻⁹, strongest among subcategories",analysis_file,data/03_tier_pgls_results.csv
+"Resistance/detoxification genes: β≈0, p=0.66, null association with niche breadth",analysis_file,data/03_tier_pgls_results.csv
+"Split-magnitude permutation test: Δβ=0.035, p<0.001, 0/1,000 random partitions exceeded observed",analysis_file,data/split_magnitude_permutation.csv
+"Cofactor jackknife: all 4 leave-one-out tests significant (p<0.001), β range -0.016 to -0.029",analysis_file,data/cofactor_jackknife_results.csv
+"Non-metal cofactor set: β=-0.029, p=2.4×10⁻¹¹, n=370 KOs, 1,073 genera, nearly identical to metal cofactor",analysis_file,data/03_category_pgls_results.csv: Cofactors and vitamins row
+"Genome size attenuation: 46.7%, β 0.021→0.011, p=0.006, still significant",analysis_file,data/04_confounder_results.csv: genome size row
+"Soil-restricted signal strengthens (n=162): β=-0.033, p=0.007",analysis_file,data/01_soil_restricted_pgls_results.csv
+"Nine metals tested: all significant after BH-FDR, β range -0.017 (Mn) to -0.027 (Tl)",analysis_file,data/03_metal_pgls_results.csv
+"Sensitivity analyses (S1-S8): 6 of 7 directionally consistent with H1, 5 individually significant p<0.05",analysis_file,data/05_sensitivity_results.csv
+"Soil-enriched genera show stronger signal vs global (β -0.033 vs -0.021)",analysis_file,data/01_soil_restricted_pgls_results.csv
+"AusMicrobiome subset P5: β=-0.052, p=2.2×10⁻¹⁵ (not independent; subset of P1 with different phylo composition)",analysis_file,Descriptive analysis in MANUSCRIPT.md §3.8
+"AusMicrobiome+NGSA P4 Cu: β=-0.011, p=0.016, q=0.041 (BH-FDR)",analysis_file,data/02_metal_aus_pgls_results.csv: Cu row
+"AusMicrobiome+NGSA P4 Zn: β=-0.011, p=0.016, q=0.041 (BH-FDR)",analysis_file,data/02_metal_aus_pgls_results.csv: Zn row
+"Clade-stratified PGLS Proteobacteria: β=-0.021, q=0.00018, significant",analysis_file,data/clade_stratified_pgls_results.csv: Proteobacteria row
+"Clade-stratified PGLS Actinobacteria: β=-0.035, q=0.0025, significant",analysis_file,data/clade_stratified_pgls_results.csv: Actinobacteria row
+"Clade-stratified PGLS Firmicutes: β=-0.015, q=0.073, borderline NS",analysis_file,data/clade_stratified_pgls_results.csv: Firmicutes row
+"Clade-stratified PGLS Bacteroidetes: β=-0.009, q=0.397, NS, λ=0.917",analysis_file,data/clade_stratified_pgls_results.csv: Bacteroidetes row
+"Heterogeneity test: Cochran's Q=3.60, df=3, p=0.309, I²=16.6%, no significant variation across phyla",analysis_file,data/clade_stratified_pgls_results.csv: heterogeneity computed from results
+"EMP cross-platform validation: ρ=0.211, p=7.7×10⁻⁷ correlation with B_std, β=-0.019, p=0.099 (NS but directionally consistent)",analysis_file,MANUSCRIPT.md §3.11
+"Housekeeping-baseline control: metal-gene β=-0.011 (p=0.019) after controlling for genome size and ribosomal density, 53.1% attenuation",analysis_file,data/housekeeping_baseline_pgls.json
+"GC content confounder: 23.7% attenuation, p=7.5×10⁻⁵, signal robust",analysis_file,data/04_confounder_results.csv: GC content row
+"Isolation source confounder: 14.5% attenuation, p=3×10⁻⁶, signal robust",analysis_file,data/04_confounder_results.csv: isolation source row
+"Latitude confounder: amplifies signal (β becomes -0.031), 51.8% amplification, not confounding",analysis_file,data/04_confounder_results.csv: latitude row
+"Dominant biome confounder: 5.8% attenuation, p<10⁻⁴, signal robust",analysis_file,data/04_confounder_results.csv: biome row
+"Predictor permutation: null β mean≈0, SD=0.0029, observed β=-0.0207 is 7.14 SD below null, emp_p<0.001",analysis_file,MANUSCRIPT.md §3.7
+"Coreness-matched permutation (NB20): emp_p=0.298, null median β=-0.018, SD=0.007, observed P1 β not exceptional among gene sets of comparable size",analysis_file,MANUSCRIPT.md §3.7
+"Transport/homeostasis: β=-0.022, p=2.8×10⁻⁵",analysis_file,data/03_tier_pgls_results.csv
+"Sensing/regulation: β=-0.018, p=9.1×10⁻⁴",analysis_file,data/03_tier_pgls_results.csv
+"Metal-dependent metabolism: β=-0.021, p=1.2×10⁻⁴",analysis_file,data/03_tier_pgls_results.csv
+"Hg external validation (Frossard 2017): Hg-tolerant indicator species mean B_std=0.407 vs background 0.233, Mann-Whitney p<0.0001",external_validation,SI_External_Validation.md: Part 2 Frossard 2017
+"Hg external validation (Frossard 2018): soil meadow Hg treatment P1 null (CWM_B shift not significant)",external_validation,SI_External_Validation.md: Part 2 Frossard 2018
+"Hg external validation (Li 2022): partial support P1 (CWM analysis shows trend toward specialist response at extreme Hg levels)",external_validation,SI_External_Validation.md: Part 2 Li 2022
+"Hg external validation (Goff 2024): P2 supported - merA+merR on plasmid in high-contamination ORR zones, zero merA in low-contamination",external_validation,SI_External_Validation.md: Part 2 Goff 2024
+"ABC transporter Δβ=0.032 for Lipid/LPS vs all others, smaller than metal gene Δβ=0.035",analysis_file,MANUSCRIPT.md §3.4
+"AMR Δβ=0.012 across subcategories, smaller than metal gene Δβ=0.035",analysis_file,MANUSCRIPT.md §3.4
+"Two-component systems Δβ=0.006, smaller than metal gene Δβ=0.035",analysis_file,MANUSCRIPT.md §3.4
+"Per-metal resistance densities: Cu (β=+0.005, p=0.15), Ni (β=+0.008, p=0.14), As (β=+0.005, p=0.17), all null",analysis_file,MANUSCRIPT.md §3.4
+"Fitness-validated resistance KOs (7 resistance, 2 transport): resistance β=+0.011, p=0.016, transport β=-0.003, p=0.51",analysis_file,MANUSCRIPT.md §3.6
+"Ribosomal proteins (negative control): β=-0.029, p=7.6×10⁻¹⁰",analysis_file,MANUSCRIPT.md §3.3
+"Amino acid biosynthesis (negative control): β=-0.034, p=9.5×10⁻¹⁵",analysis_file,MANUSCRIPT.md §3.3
+"DNA repair (negative control): β=-0.033, p=4.0×10⁻¹²",analysis_file,MANUSCRIPT.md §3.3
+"Ribosomal proteins per-Mb density baseline: β=-0.029 (housekeeping baseline)",analysis_file,data/nc_ribosomal_proteins_density.csv (implicitly)
+"MAG quality sensitivity: completeness and contamination covariates do not affect signal",analysis_file,MANUSCRIPT.md §3.9
+"High-quality MAG restriction (n=511): β=-0.018, p=0.005",analysis_file,MANUSCRIPT.md §3.9
+"Bootstrap B_std stability: r=0.99869, max |Δ|=0.064 per genus, β change only 4.0%",analysis_file,MANUSCRIPT.md §3.9
+"Niche breadth vs MGnify biome Shannon diversity: ρ=+0.063, p=0.046 (weak positive)",analysis_file,MANUSCRIPT.md §3.9
+"Negative binomial GLM with log(genome size) offset: β=-0.71, SE=0.069, p=2.5×10⁻²⁴, IRR=0.49",analysis_file,MANUSCRIPT.md §3.9
+"Per-KO λ resistance median: 0.780, IQR 0.729-0.797, n=9 KOs",analysis_file,MANUSCRIPT.md §3.5
+"Per-KO λ cofactor median: 0.844, n=2 KOs",analysis_file,MANUSCRIPT.md §3.5
+"Per-KO λ transport median: 0.734, n=20 KOs",analysis_file,MANUSCRIPT.md §3.5
+"Expanded cofactor set (32 KOs) yields same four pangenome KOs for density computation",analysis_file,MANUSCRIPT.md §3.4
+"KEGG cofactors and vitamins (382 KOs): β=-0.029, p=2.4×10⁻¹¹ unadjusted, β=-0.014, p=0.016 after genome-size control, n=1,073",analysis_file,data/03_category_pgls_results.csv: Cofactors and vitamins row
+"Pfam-based cross-validation Transport: β=-0.016, p=2.3×10⁻⁵ (vs KEGG β=-0.022)",analysis_file,data/pfam_category_pgls_results.csv: Transport row
+"Pfam-based cross-validation Cofactor: β=-0.013, p=0.006 (vs KEGG β=-0.033)",analysis_file,data/pfam_category_pgls_results.csv: Cofactor row
+"Pfam-based cross-validation Resistance: β=-0.007, p=0.052 (vs KEGG β=+0.003, directionally consistent null)",analysis_file,data/pfam_category_pgls_results.csv: Resistance row
+"Comparator model Carbohydrate metabolism: metal β=-0.011, p=0.027",analysis_file,MANUSCRIPT.md §3.7
+"Comparator model Amino acid metabolism: metal β=-0.009, p=0.066",analysis_file,MANUSCRIPT.md §3.7
+"Comparator model Energy metabolism: metal β=-0.012, p=0.012",analysis_file,MANUSCRIPT.md §3.7
+"Comparator model Membrane transport ABC: metal β=-0.012, p=0.015",analysis_file,MANUSCRIPT.md §3.7
+"Comparator model Translation: metal β=-0.011, p=0.021",analysis_file,MANUSCRIPT.md §3.7
+"Comparator model Transcription: metal β=-0.011, p=0.022",analysis_file,MANUSCRIPT.md §3.7
+"Latitude mechanism models A-J: metal β stable -0.019 to -0.023 across all models",analysis_file,MANUSCRIPT.md §3.9: latitude mechanism tests
+"GeoROC bedrock metal signal: β_Cr=+0.019, p=1.1×10⁻⁹; Cr dominates composite signal",analysis_file,MANUSCRIPT.md §3.9: per-metal bedrock decomposition
+"Contemporary soil metal hazard (Science 2025): β_sci_hq=+0.004, p=0.291, NS (contrasts with GeoROC)",analysis_file,MANUSCRIPT.md §3.9
+"Soil SOM control: independent negative predictor (β=-0.016, p=6.8×10⁻⁵), pH mediated through SOM",analysis_file,MANUSCRIPT.md §3.9
+"Pfam/InterPro audit: 10/140 KOs with metal-binding clan (7.1%), 113 with metal-processing Pfam (no clan), 15 no KEGG gene, 2 no Pfam",analysis_file,MANUSCRIPT.md §3.13
+"Raw count predictor (not per-Mb): β=-0.003, p=0.401, not significant",analysis_file,MANUSCRIPT.md §3.1
+"Annotation depth suppressor effect: adding annotation depth covariate amplifies β from -0.021 to -0.030, p=7.9×10⁻¹¹",analysis_file,MANUSCRIPT.md §3.1
+"MAG count covariate sensitivity: density β unchanged at -0.026, p=9.8×10⁻⁹ when log(MAG count) added",analysis_file,MANUSCRIPT.md §5.2
+"Confounder joint model (genome size + ribosomal density): metal-gene β=-0.011, SE=0.0045, p=0.019, n=1,073, 50.2% attenuation",analysis_file,MANUSCRIPT.md §3.9

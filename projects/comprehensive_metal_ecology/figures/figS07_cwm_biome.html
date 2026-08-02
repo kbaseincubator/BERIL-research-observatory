@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure S7 – Community-Weighted Metal-Gene Investment by Biome</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7; --sig:#2a78d6; --ns:#c3c2b7; --acc:#e34948;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835; --sig:#3987e5; --ns:#52514e; --acc:#e66767;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; line-height:1.5; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.note { margin-top:14px; font-size:11px; color:var(--ts); border-left:3px solid var(--gl); padding-left:10px; line-height:1.5; }
+</style>
+</head>
+<body>
+<h2>Figure S7. Community-weighted metal-gene investment is highest in aquatic and farm environments.</h2>
+<div class="sub">Community-weighted mean (CWM) of KO/Mb metal-gene density across 13 biomes (AusMicrobiome × MicrobeAtlas, n = 42,037 samples). CWM computed as Σ(relative abundance × genus KO/Mb density) / Σ(relative abundance) per sample; points show biome mean ± 1.96 SE. Reference line at grand mean (weighted by sample count). 1,561 / 1,574 PGLS genera matched to 16S genera.</div>
+<svg id="chart"></svg>
+<div class="note"><strong>Interpretation:</strong> Farm and aquatic communities have the highest metal-gene investment. Leaf-associated and plant communities rank lowest, consistent with more nutritionally restricted niches. The within-genus PGLS signal (P1) is therefore not driven by biome-level ecological structure: the correlation direction would need to be reversed within each biome to confound P1.</div>
+
+<script>
+const DATA = [
+  {biome:"Farm",         mean:11.854, se:0.118, n:751,   above:true},
+  {biome:"Aquatic",      mean:9.729,  se:0.027, n:8060,  above:true},
+  {biome:"Field",        mean:9.083,  se:0.032, n:3783,  above:true},
+  {biome:"Soil",         mean:8.996,  se:0.029, n:10276, above:true},
+  {biome:"Paddy",        mean:8.915,  se:0.040, n:379,   above:true},
+  {biome:"Shrub",        mean:8.737,  se:0.195, n:159,   above:false},
+  {biome:"Peatland",     mean:8.643,  se:0.231, n:26,    above:false},
+  {biome:"Agricultural", mean:8.624,  se:0.044, n:2579,  above:false},
+  {biome:"Desert",       mean:8.467,  se:0.087, n:768,   above:false},
+  {biome:"Forest",       mean:8.131,  se:0.054, n:1577,  above:false},
+  {biome:"Plant",        mean:8.114,  se:0.018, n:13283, above:false},
+  {biome:"Leaf",         mean:7.262,  se:0.150, n:86,    above:false},
+];
+const GRAND_MEAN = 8.845;
+
+function render() {
+  const W = 520, rowH = 30;
+  const M = {top: 28, right: 110, bottom: 44, left: 108};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+
+  const xMin = 6.8, xMax = 13.0;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [7, 8, 9, 10, 11, 12, 13];
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W);
+  svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  let s = '';
+
+  // Gridlines
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${t === GRAND_MEAN ? 'var(--sig)' : 'var(--gl)'}" stroke-width="1" opacity="${t === GRAND_MEAN ? 0.6 : 1}"/>`;
+  });
+
+  // Grand mean reference line
+  const gmX = xS(GRAND_MEAN);
+  s += `<line x1="${gmX}" y1="${M.top - 6}" x2="${gmX}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--tm)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>`;
+  s += `<text x="${gmX}" y="${M.top - 9}" text-anchor="middle" font-size="9" fill="var(--tm)">grand mean</text>`;
+
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const xb = xS(d.mean);
+    const xgm = xS(GRAND_MEAN);
+    const xlo = xS(d.mean - 1.96 * d.se);
+    const xhi = xS(d.mean + 1.96 * d.se);
+    const col = d.above ? 'var(--sig)' : 'var(--ns)';
+    const barCol = d.above ? 'rgba(42,120,214,0.15)' : 'rgba(195,194,183,0.2)';
+
+    // Row bg
+    s += `<rect x="${M.left}" y="${M.top + i * rowH + 2}" width="${pw}" height="${rowH - 4}"
+      fill="${barCol}" rx="2"/>`;
+
+    // Bar from grand mean to bar value
+    const barX1 = Math.min(xgm, xb), barX2 = Math.max(xgm, xb);
+    s += `<rect x="${barX1}" y="${y - 6}" width="${barX2 - barX1}" height="12"
+      fill="${col}" opacity="${d.above ? 0.35 : 0.2}" rx="2"/>`;
+
+    // CI bar
+    s += `<line x1="${xlo}" y1="${y}" x2="${xhi}" y2="${y}" stroke="${col}" stroke-width="1.5" opacity="0.6"/>`;
+    [xlo, xhi].forEach(x => {
+      s += `<line x1="${x}" y1="${y - 4}" x2="${x}" y2="${y + 4}" stroke="${col}" stroke-width="1.5" opacity="0.7"/>`;
+    });
+
+    // Point
+    s += `<circle cx="${xb}" cy="${y}" r="4" fill="${col}" stroke="var(--sf)" stroke-width="1.5"/>`;
+
+    // Biome label left
+    s += `<text x="${M.left - 8}" y="${y + 4}" text-anchor="end"
+      font-size="11" fill="var(--tp)">${d.biome}</text>`;
+
+    // n label right
+    s += `<text x="${W - M.right + 6}" y="${y + 4}" text-anchor="start"
+      font-size="10" fill="var(--tm)">n=${d.n.toLocaleString()}</text>`;
+
+    // Value right (after n)
+    s += `<text x="${W - M.right + 6}" y="${y + 15}" text-anchor="start"
+      font-size="9" fill="${col}">${d.mean.toFixed(2)} ± ${(1.96*d.se).toFixed(2)}</text>`;
+  });
+
+  // X-axis
+  s += `<line x1="${M.left}" y1="${M.top + DATA.length * rowH}"
+    x2="${W - M.right}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)">${t}</text>`;
+  });
+  s += `<text x="${xS(9.9)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">Community-weighted KO/Mb metal-gene density</text>`;
+
+  svg.innerHTML = s;
+}
+
+render();
+window.addEventListener('resize', render);
+</script>
+</body>
+</html>
