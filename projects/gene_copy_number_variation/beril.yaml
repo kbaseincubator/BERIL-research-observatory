@@ -1,0 +1,36 @@
+project_id: gene_copy_number_variation
+status: complete
+created_at: "2026-07-07T19:58:28Z"
+last_session_at: "2026-07-08T10:27:42Z"
+branch: projects/gene_copy_number_variation
+engine:
+  name: claude
+authors:
+  - name: "Justin Reese"
+    affiliation: "LBL"
+    orcid: "0000-0002-2170-2250"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true
+approval:
+  by: "0000-0002-2170-2250"
+  at: "2026-07-08T10:27:42Z"
+  report_hash: "sha256:d13f78106dca898b743f95cd91a3768261ab5a3ffaa02907ebf80a0bbbf3d416"
+  review: "REVIEW_2.md"
+  review_hash: "sha256:9f7aa87f221e759bf1cbb867e378a5acb4c78d801b2c12b92f1b5341c32726c9"
+  notebook_hashes:
+    "notebooks/01_pilot_exploration.ipynb": "sha256:ac09078af215bacc5ee15c0dd75e7eae55192354854fa2cc4ad0b3c5f81dab1c"
+    "notebooks/01b_pilot_refined_metrics.ipynb": "sha256:e5424f6220561e3fec36213118877ac3949554538ddd76eb3e2b757d9e492cf8"
+    "notebooks/02_multi_species_scale.ipynb": "sha256:4ef7a4f8f73fe548fb448499211057f76985f7fab4e128e0e8fd7dc417c58c58"
+    "notebooks/03_statistical_analysis.ipynb": "sha256:b64598fa9ff5076cde01b52bd93dcf7dabd814906c8ead90df86f18fa7488876"
+    "notebooks/04_core_accessory_interaction.ipynb": "sha256:40caf72317b95762d33edc369eae92d804b3bf5b841b41c91fbcf28028faa668"
+submissions:
+  - status: success
+    attempted_at: "2026-07-08T10:28:00Z"
+    archive_key: "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/gene_copy_number_variation/"
+    file_count: 61
+    byte_total: 23377556
+    duration_seconds: 10.99
+    approved_at: "2026-07-08T10:27:42Z"

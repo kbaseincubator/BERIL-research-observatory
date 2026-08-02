@@ -1,0 +1,12 @@
+# Pinned versions used for the analysis (BERDL JupyterHub, 2026-07-07)
+# Statistical test outputs depend on scipy/statsmodels versions.
+pandas==3.0.3
+numpy==2.3.4
+scipy==1.17.1
+matplotlib==3.10.9
+statsmodels==0.14.5
+
+# BERDL notebook helper (JupyterHub-provided, not pip-installable off-cluster)
+# On JupyterHub: available in the default kernel environment.
+# Off-cluster: install via `bash scripts/bootstrap_client.sh` (see repo root).
+# berdl_notebook_utils
