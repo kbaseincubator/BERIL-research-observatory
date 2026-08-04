@@ -5,8 +5,7 @@ from fastapi.templating import Jinja2Templates
 
 from app.auth import get_current_session_user
 from app.config import Settings
-from app.dataloader import load_repository_data
-from app.git_data_sync import ensure_repo_cloned
+from app.lakehouses import get_lakehouse_source
 from app.models import RepositoryData
 
 logger = logging.getLogger(__name__)
@@ -27,34 +26,18 @@ def get_base_context(request: Request) -> dict:
 
 
 async def initialize_data(settings: Settings) -> RepositoryData:
-    """Initialize app on startup."""
-    logger.info("Initializing repository data")
+    """Initialize app on startup via the active lakehouse source.
 
-    if settings.force_local_data:
-        logger.info("Forcing parsing and loading of local data")
-        print("Forcing parsing and loading of local data")
-        repo_data = load_repository_data(None)
-    elif settings.data_repo_url:
-        try:
-            logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
-            await ensure_repo_cloned(
-                settings.data_repo_url,
-                settings.data_repo_branch,
-                settings.data_repo_path,
-            )
-            data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
-            repo_data = load_repository_data(data_file)
-            logger.info(
-                f"Repository data loaded from git. Last updated: {repo_data.last_updated}"
-            )
-        except Exception as e:
-            logger.error(f"Failed to load from git repo: {e}")
-            logger.info("Falling back to local parsing")
-            repo_data = load_repository_data(None)
-    else:
-        logger.info("No git repo configured, parsing local files")
-        repo_data = load_repository_data(None)
-    return repo_data
+    The source's ``sync()`` owns the decision tree (git clone vs. local parse,
+    retry, fallback). Startup only needs the parsed ``RepositoryData``; the
+    importer reads ``projects_dir`` from the same result inside the webhook
+    handler.
+    """
+    logger.info("Initializing repository data")
+    source = get_lakehouse_source(settings)
+    result = await source.sync()
+    logger.info("Loaded repository data from lakehouse source %r", result.source_name)
+    return result.repo_data
 
 
 def generate_base_context(settings: Settings, repo_data: RepositoryData) -> dict:
