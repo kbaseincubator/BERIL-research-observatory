@@ -1195,6 +1195,11 @@ def run_ingest(
         now = datetime.now(timezone.utc).isoformat()
         for tbl_result in (result or {}).get("tables", []):
             table     = tbl_result["name"]
+            # `rows_written` is the authoritative count that verify_ingest checks
+            # against. If the pipeline omits it, this falls back to the source-file
+            # line count (`data_lines`); for binary sources (Parquet, etc.) that is
+            # not the row count, so verify_ingest can then report a false MISMATCH
+            # for the table. The fallback only triggers when `rows_written` is absent.
             rows_done = tbl_result.get("rows_written", table_stats[table]["data_lines"])
             _append_progress(minio_client, bucket, progress_key, {
                 "table": table, "chunk": 0,
@@ -1258,19 +1263,32 @@ def verify_ingest(
     bucket: str,
     progress_key: str,
 ) -> None:
-    """Query row counts from Iceberg and compare against expected line counts.
+    """Query row counts from Iceberg and compare against recorded row counts.
 
-    Prints a pass/fail summary for each table and flags any mismatches.
+    The expected value comes from the ingest progress log's `total_rows` (the
+    rows actually written), not from the source-file line count. For Parquet
+    and other binary sources the line count is not the row count, so comparing
+    against it produced false MISMATCHes. Tables absent from the progress log
+    are flagged INCOMPLETE. Prints a pass/fail summary for each table.
     """
     print("=" * 60)
     print("VERIFICATION")
     print("=" * 60)
 
     progress_log = _load_progress_log(minio_client, bucket, progress_key)
+    complete_from_log = {
+        e["table"]: e["total_rows"]
+        for e in progress_log
+        if e.get("status") == "complete" and "total_rows" in e
+    }
     all_match    = True
 
     print("Row counts (Iceberg vs expected):")
-    for table, stats in table_stats.items():
+    for table in table_stats:
+        if table not in complete_from_log:
+            print(f"  {table:<45s}  {'(not in progress log)':>32}  [INCOMPLETE]")
+            all_match = False
+            continue
         # Quote each segment of a (possibly dotted, multi-level Iceberg) namespace
         # separately — backtick-quoting the whole "tenant.dataset" as one identifier
         # makes Spark look for a schema literally named "tenant.dataset".
@@ -1278,7 +1296,7 @@ def verify_ingest(
         count    = spark.sql(
             f"SELECT COUNT(*) FROM {fqn}"
         ).collect()[0][0]
-        expected = stats["data_lines"]
+        expected = complete_from_log[table]
         match    = "OK" if count == expected else "MISMATCH"
         if count != expected:
             all_match = False
