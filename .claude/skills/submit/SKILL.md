@@ -280,6 +280,8 @@ The script archives all project files to `s3a://cdm-lake/tenant-general-warehous
 mc alias set berdl-minio $MINIO_ENDPOINT_URL $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
 ```
 
+On a successful archive, the upload tool also submits the project files to the BERIL-managed context service so the knowledge layer can see the completed project. That step is handled entirely inside `lakehouse_upload.py` and is **best-effort**: it runs only when BERIL and the context service are available and the user is logged in, and if it is skipped or fails the lakehouse archive still succeeds (the tool reports it in its JSON but does not fail the upload). `/submit` needs no extra handling for it — the exit-code contract below is unchanged.
+
 **Re-submission overwrite semantics**: the upload script pre-clears the remote prefix (`mc rm --recursive --force`) before `mc cp` whenever the prefix already has contents. This prevents stale files from a previous submission from contaminating the new archive when files are dropped or renamed between submissions. The brief mid-upload window during which the archive is empty is acceptable: a `complete + SUBMISSION_FAILED.md` state already signals "incomplete archive" to anyone consuming it. First-time submissions skip the clear because the remote prefix is empty.
 
 The script's **final stdout line is a single-line JSON object** describing the outcome. Exit-code contract:

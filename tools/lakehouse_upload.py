@@ -57,6 +57,99 @@ SKIP_PATTERNS = {
 }
 
 
+# --- BERIL context service (knowledge layer) mirror ------------------------
+#
+# After a project is archived to the lakehouse, we also submit its files to the
+# BERIL-managed context service so the knowledge layer can see the completed
+# project. This is a *best-effort* mirror, deliberately kept subordinate to the
+# lakehouse upload: the archive is the source of truth for "submitted", and a
+# context service that is down (or a user who isn't logged in) must never fail
+# the upload.
+#
+# The actual gate-check + ingest lives in `knowledge/scripts/submit_context_mirror.py`
+# and is run as a separate `uv run --script` process. That indirection is
+# deliberate: this upload tool runs under whatever interpreter the caller has
+# active (which frequently lacks the `openviking` SDK — e.g. the webapp venv),
+# whereas the mirror script's PEP-723 header pins its own environment. Shelling
+# out keeps all the knowledge-layer dependencies out of the upload path and
+# lets the mirror provision itself. The script always exits 0 and emits a
+# single-line JSON verdict; we never let it fail the upload.
+
+
+def _mirror_script_path(base_path):
+    """Locate `knowledge/scripts/submit_context_mirror.py`.
+
+    Prefer the caller-supplied `base_path` (the repo root /submit passes in);
+    fall back to this file's parent-of-tools. Returns None if neither holds the
+    script, so the caller can skip cleanly.
+    """
+    for candidate in (Path(base_path).resolve(), Path(__file__).resolve().parents[1]):
+        script = candidate / "knowledge" / "scripts" / "submit_context_mirror.py"
+        if script.is_file():
+            return script
+    return None
+
+
+def submit_to_context_service(project_id, base_path):
+    """Best-effort mirror of a just-archived project into the context service.
+
+    Never raises; returns a dict describing the outcome so the caller can fold
+    it into the upload result JSON:
+
+        {"status": "ok"|"skipped"|"failed", "reason": str}
+
+    - "ok":      the project was submitted to the context service.
+    - "skipped": a gate wasn't met (service down, not logged in, key rejected),
+                 or the mirror script/uv is unavailable. The archive is
+                 unaffected.
+    - "failed":  gates passed but the submission itself errored. Again the
+                 archive is unaffected and the mirror can be retried later.
+
+    Runs `knowledge/scripts/submit_context_mirror.py` via `uv run --script` so
+    the mirror gets its own pinned environment regardless of the interpreter
+    running this tool.
+    """
+    script = _mirror_script_path(base_path)
+    if script is None:
+        return {
+            "status": "skipped",
+            "reason": "context-mirror script not found (knowledge/scripts/submit_context_mirror.py)",
+        }
+
+    try:
+        proc = subprocess.run(
+            ["uv", "run", "--script", str(script), project_id],
+            cwd=str(Path(base_path).resolve()),
+            capture_output=True,
+            text=True,
+        )
+    except FileNotFoundError:
+        # `uv` isn't installed on PATH — skip the mirror rather than fail.
+        return {
+            "status": "skipped",
+            "reason": "`uv` not found on PATH; cannot run the context-mirror script",
+        }
+
+    # The script emits its JSON verdict as the final stdout line and always
+    # exits 0. Parse the last non-empty line; if anything is off (script crash,
+    # dependency build failure, non-JSON output), degrade to a skip with the
+    # captured stderr so the operator can see why — never a hard failure.
+    last_line = ""
+    for line in (proc.stdout or "").splitlines():
+        if line.strip():
+            last_line = line.strip()
+    try:
+        verdict = json.loads(last_line)
+        if isinstance(verdict, dict) and "status" in verdict:
+            return {"status": verdict["status"], "reason": verdict.get("reason", "")}
+    except (ValueError, TypeError):
+        pass
+
+    detail = (proc.stderr or "").strip().splitlines()
+    reason = detail[-1] if detail else f"mirror script exited {proc.returncode} with no verdict"
+    return {"status": "skipped", "reason": f"context mirror did not report a verdict: {reason}"}
+
+
 def _mc(*args, capture=True):
     """Run an mc command and return (returncode, stdout, stderr)."""
     cmd = ["mc"] + list(args)
@@ -217,12 +310,17 @@ def generate_metadata(project_id, base_path):
     return metadata
 
 
-def upload_project(project_id, base_path):
+def upload_project(project_id, base_path, mirror_to_context=False):
     """Upload a single project to the lakehouse via mc cp.
 
     Args:
         project_id: project directory name (e.g., "metal_fitness_atlas")
         base_path: path to the BERIL-research-observatory root
+        mirror_to_context: when True and the lakehouse upload succeeds, also
+            submit the project to the BERIL context service (best-effort — see
+            `submit_to_context_service`). Off by default so batch/list callers
+            don't trigger a re-ingest; `/submit`'s single-project upload turns
+            it on. The outcome is recorded under result["context_submission"].
 
     Returns dict with upload results, or None on failure.
     """
@@ -340,6 +438,18 @@ def upload_project(project_id, base_path):
     print(f"  Result: {remote_count} files uploaded")
     if remote_count < expected_remote_count:
         print(f"  WARNING: expected {expected_remote_count} (manifest + project_metadata.json), got {remote_count}")
+
+    # Mirror into the BERIL context service only on a clean lakehouse archive.
+    # A partial upload ("warning") means the archive itself is incomplete, so
+    # there is nothing trustworthy to mirror yet — the caller will treat that
+    # as a submission failure and retry, which re-runs this on the next pass.
+    if mirror_to_context and result["status"] == "ok":
+        outcome = submit_to_context_service(project_id, base_path)
+        result["context_submission"] = outcome
+        label = {"ok": "submitted", "skipped": "skipped", "failed": "FAILED"}.get(
+            outcome["status"], outcome["status"]
+        )
+        print(f"  Context service: {label} ({outcome['reason']})")
 
     return result
 
@@ -509,6 +619,16 @@ def main():
             "BERIL_UPLOAD_TENANT_PATH."
         ),
     )
+    parser.add_argument(
+        "--no-context-mirror",
+        action="store_true",
+        help=(
+            "Skip the best-effort submission of the project to the BERIL context "
+            "service after a successful single-project upload. By default a "
+            "single-project upload mirrors into the context service; batch "
+            "(--all) uploads never do."
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -529,7 +649,11 @@ def main():
     elif args.all:
         upload_all_projects(args.base_path)
     elif args.project_id:
-        result = upload_project(args.project_id, args.base_path)
+        result = upload_project(
+            args.project_id,
+            args.base_path,
+            mirror_to_context=not args.no_context_mirror,
+        )
         if result is None:
             sys.exit(1)
         # Emit a single-line JSON summary as the final line of stdout so
@@ -544,12 +668,20 @@ def main():
         #        "error" field describing the count mismatch. The archive
         #        exists at archive_key but is incomplete; the caller should
         #        treat this as a submission failure (write SUBMISSION_FAILED.md).
+        #
+        # The optional "context_submission" field ({status, reason}) reports the
+        # best-effort context-service mirror. It is advisory only and does NOT
+        # affect the exit code: a skipped/failed mirror on an otherwise-clean
+        # upload still exits 0, because the lakehouse archive — not the context
+        # index — is the source of truth for "submitted".
         payload = {
             "archive_key": result["s3a_path"],
             "file_count": result["remote_files"],
             "byte_total": result["total_size_bytes"],
             "duration_seconds": result["duration_seconds"],
         }
+        if "context_submission" in result:
+            payload["context_submission"] = result["context_submission"]
         if result["status"] != "ok":
             # `remote_files` counts everything at archive_key including the
             # generated `project_metadata.json`; subtract 1 so the message
