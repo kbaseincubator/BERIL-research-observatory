@@ -43,7 +43,8 @@ a heavyweight dependency.
   version**, the **model** (e.g. `claude-opus-4-8`) and effort, the session
   id / source / permission mode, the **git sha** of the code, the **tenant** (the
   observatory's fixed warehouse), the **actor** (shell user + the ORCID from
-  `beril.yaml`), and a **documented datasets snapshot** (BERDL collections +
+  `beril.yaml`), the **agent cost** of the session, and a **documented datasets
+  snapshot** (BERDL collections +
   tables parsed from the report's `## Data` section, with the report hash and
   observation time). Every field is omitted when absent, never
   fabricated; the whole writer always exits 0. This is the **Sumatra / noWorkflow**
@@ -62,6 +63,20 @@ a heavyweight dependency.
 - `documented_datasets_snapshot` is what the author wrote in `REPORT.md` at
   SessionStart. It does **not** prove which queries the session executed; the
   heavier per-tool trace remains deliberately out of scope.
+- **Agent cost is a floor, and is labelled as one.** It is observable in exactly
+  one place — the status line's payload carries `cost.total_cost_usd`, while no
+  hook payload carries cost at all and the transcript records token counts, not
+  dollars. So the status line writes `sessions[].cost` and the runtime hook, which
+  fires on the very edit that changes `status:`, appends one delta entry to
+  `beril.yaml.agent_cost.stages[]` for the stage that just ended. A project worked
+  on by a human or by another agent undercounts, which is why the block carries a
+  `note` saying so and is named *agent cost*, never *project cost*. A stage nobody
+  observed records `sessions_observed: 0` and **omits `usd`** rather than writing
+  `0.00` — the same omitted-when-absent rule as every other field here, and the
+  only way an unwatched stage stays distinguishable from a free one. Per-session
+  `counted_usd` tracks what a closed stage already consumed, so a session that
+  outlives the stage it started in is attributed once, to each stage it earned
+  spend in. Token-level and per-tool cost attribution are out of scope.
 - The **integrity** of an approved submission already lives in
   `beril.yaml.approval` (report / review / notebook SHA-256 digests + ORCID),
   which is an **in-toto-style attestation** (subject digests + agent). The two
@@ -170,6 +185,7 @@ upward rather than duplicate it:
 | `projects/<id>/claims.json` | versioned author assertions + resolved artifact-support projection | generated, advisory |
 | `projects/<id>/runtime.json` | atomic per-session runtime history (PROV-shaped) | non-authoritative |
 | `beril.yaml.approval` | ORCID + SHA-256 digests (in-toto-style) | authoritative |
+| `beril.yaml.agent_cost` | per-stage agent cost (delta) observed by Claude Code | observed, non-authoritative; a floor |
 | `beril.yaml.plan_approval` | ORCID + timestamp + `via` + digest of the approved plan | human- or agent-written (`via` says which); gates nothing |
 | `projects/<id>/plan_deviations.jsonl` | analysis code written under a missing or stale `plan_approval` | append-only, advisory |
 | `projects/<id>/SCOREBOARD.md` | per-*hypothesis* standing against the plan's decision criteria, in the `CLAIM_STATUSES` vocabulary | derived, advisory; agent-written, gates nothing |

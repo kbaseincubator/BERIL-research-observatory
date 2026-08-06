@@ -40,6 +40,11 @@ margin:0 auto 6px;background:#2b3040;}
 .d-rail li[data-state=current]{color:#79b8ff;font-weight:700;}
 .d-rail li[data-state=current] i{background:var(--d-accent);box-shadow:0 0 0 4px #58a6ff2e;}
 .d-rail li[data-state=future]{opacity:.32;}
+/* Per-stage agent cost. Dim and small: it is context for the stage above
+   it, never the headline, and it is a floor over one harness. */
+.d-rail li .d-cost{display:block;font-size:10px;font-weight:600;
+  font-variant-numeric:tabular-nums;opacity:.75;margin-top:2px;}
+.d-rail li .d-cost-none{opacity:.4;font-weight:400;}
 .d-rail li:not(:last-child):after{content:'';position:absolute;top:4px;
 left:calc(50% + 11px);right:calc(-50% + 11px);height:1px;background:#2b3040;}
 /* Inline readouts. Tabular figures matter here: the page repaints every 4s and

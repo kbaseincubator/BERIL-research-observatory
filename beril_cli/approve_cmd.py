@@ -29,6 +29,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from beril_cli import config
+from beril_cli.audit_cmd import block_span
 from beril_cli.claims_cmd import _find_repo_root
 from beril_cli.detect import _normalize_orcid
 from beril_cli.setup_cmd import _confirm
@@ -87,32 +88,12 @@ def _drop_plan_approval(manifest_text: str) -> str:
 
     Re-approving replaces the record rather than stacking a second block that
     YAML would resolve to whichever came last.
-
-    Blank and comment lines carry no indentation meaning in YAML, so they cannot
-    end the block on their own: dropped when more block lines follow, kept when
-    the next real line is top-level (they belong to whatever comes after).
     """
-    kept: list[str] = []
-    pending: list[str] = []  # blank/comment lines of undecided membership
-    skipping = False
-    for line in manifest_text.splitlines(keepends=True):
-        if skipping:
-            stripped = line.strip()
-            if not stripped or stripped.startswith("#"):
-                pending.append(line)
-                continue
-            if line.startswith((" ", "\t")):
-                pending.clear()
-                continue
-            skipping = False
-            kept.extend(pending)
-            pending.clear()
-        if line.startswith("plan_approval:"):
-            skipping = True
-            continue
-        kept.append(line)
-    kept.extend(pending)
-    return "".join(kept)
+    span = block_span(manifest_text, "plan_approval:")
+    if span is None:
+        return manifest_text
+    start, end = span
+    return manifest_text[:start] + manifest_text[end:]
 
 
 def run_approve(args: argparse.Namespace) -> int:

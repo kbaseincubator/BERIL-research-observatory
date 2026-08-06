@@ -25,6 +25,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from tools.dashboard import (  # noqa: E402
+    _cost_readout,
+    _rail,
+    agent_cost,
     jupyter_python,
     _approval_chip,
     count_deviations,
@@ -1445,3 +1448,77 @@ def test_setup_refuses_rather_than_installing_against_the_wrong_python(tmp_path,
     assert setup_cmd._install_server_proxy(ROOT, assume_yes=True) == 1
     assert not ran, "ran an install with no idea which interpreter to target"
     assert "jupyter" in capsys.readouterr().err.lower()
+
+
+# --------------------------------------------------------------------------
+# Agent cost — a floor over one harness, and the page must say so
+# --------------------------------------------------------------------------
+
+LEDGER = """project_id: demo
+status: analysis
+agent_cost:
+  observed_by: claude-code
+  note: "Agent cost observed by Claude Code only."
+  stages:
+    - stage: exploration
+      ended_at: "2026-08-05T12:00:00Z"
+      usd: 4.12
+      sessions_observed: 1
+    - stage: proposed
+      ended_at: "2026-08-05T15:30:00Z"
+      usd: 5.68
+      sessions_observed: 2
+    - stage: active
+      ended_at: "2026-08-06T09:14:00Z"
+      sessions_observed: 0
+"""
+
+
+def test_agent_cost_parses_the_ledger_and_keeps_unobserved_distinct(tmp_path):
+    """`None` is not a parse failure — it is "nobody watched this stage", which
+    has to survive all the way to the page as something other than 0.00."""
+    project = _project(tmp_path, {"beril.yaml": LEDGER})
+    assert agent_cost(project) == {"exploration": 4.12, "proposed": 5.68, "active": None}
+
+    # 61 of 78 projects have no beril.yaml at all, and older ones have no ledger.
+    assert agent_cost(_project(tmp_path, name="bare")) == {}
+    assert agent_cost(_project(tmp_path, {"beril.yaml": "status: active\n"}, "old")) == {}
+
+
+def test_a_repeated_stage_sums_rather_than_overwrites(tmp_path):
+    """/synthesize and /berdl-review demote `reviewed` back to `analysis`, so a
+    stage legitimately appears twice. Taking the last entry would silently drop
+    the first pass's spend."""
+    project = _project(
+        tmp_path,
+        {"beril.yaml": LEDGER + '    - stage: exploration\n      usd: 1.00\n'},
+    )
+    assert agent_cost(project)["exploration"] == 5.12
+
+
+def test_the_rail_shows_a_stage_cost_but_never_invents_a_zero(tmp_path):
+    html = _rail("analysis", {"exploration": 4.12, "proposed": 5.68, "active": None})
+    assert "$4.12" in html and "$5.68" in html
+    assert "$0.00" not in html, "an unobserved stage must not read as free"
+    assert "—" in html
+    assert "no agent cost observed for this stage" in html
+    assert "floor" in html, "the page must not present this as the project total"
+    # Stages the ledger never named carry no figure at all.
+    assert _rail("exploration", {}).count("d-cost") == 0
+
+
+def test_the_header_total_sums_only_what_was_observed(tmp_path):
+    """The rail says where the money went; this says how much, which is the
+    question asked before re-running an expensive notebook round."""
+    html = _cost_readout({"exploration": 4.12, "proposed": 5.68, "active": None})
+    assert "$9.80" in html
+    assert "agent cost" in html
+    assert "floor" in html, "the most prominent number on the page must be qualified"
+    assert "1 further stage(s) had no observation" in html
+
+
+def test_no_observation_shows_no_total_at_all(tmp_path):
+    """A project finished before this shipped, or worked by a human, must not
+    get a confident $0.00 in the header."""
+    assert _cost_readout({}) == ""
+    assert _cost_readout({"exploration": None, "proposed": None}) == ""

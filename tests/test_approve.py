@@ -285,3 +285,4 @@ def test_hashes_the_plan_after_the_answer(repo, monkeypatch):
 
     manifest = (repo / "beril.yaml").read_text(encoding="utf-8")
     assert _field(manifest, "plan_hash") == f"sha256:{plan_digest(edited.encode())}"
+

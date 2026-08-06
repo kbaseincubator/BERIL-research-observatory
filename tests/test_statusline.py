@@ -121,7 +121,7 @@ def _repo(tmp_path: Path, projects: dict) -> Path:
 
 
 def _render(repo: Path, session_id: str = "no-such-session", cwd=None, added=(),
-            model=None) -> str:
+            model=None, cost=None) -> str:
     payload = {
         "session_id": session_id,
         "workspace": {
@@ -132,6 +132,8 @@ def _render(repo: Path, session_id: str = "no-such-session", cwd=None, added=(),
     }
     if model is not None:
         payload["model"] = model
+    if cost is not None:
+        payload["cost"] = {"total_cost_usd": cost}
     done = subprocess.run(
         ["bash", str(STATUSLINE)],
         input=json.dumps(payload),
@@ -695,3 +697,92 @@ def test_a_write_that_merely_cites_another_project_does_not_rebind(tmp_path):
 
     assert "my_work" in line
     assert "other_proj" not in line, "citing another project switched the session to it"
+
+
+
+# --- agent cost ------------------------------------------------------------
+
+
+def test_the_statusline_persists_the_cost_it_displays(tmp_path):
+    """It is the only component that can. No hook payload carries cost — probed
+    against SessionStart, PostToolUse and Stop, all three omit it — and the
+    transcript records token counts, not dollars. An unreported cost writes no
+    `cost` key: 0.00 would make an unwatched session look like a free one."""
+    repo = _repo(tmp_path, {"demo": ["s1"]})
+    pdir = repo / "projects" / "demo"
+
+    assert "$4.12" in _render(repo, session_id="s1", cwd=pdir, cost=4.12)
+    cost = json.loads((pdir / "runtime.json").read_text())["sessions"][0]["cost"]
+    assert cost["usd"] == 4.12
+    assert cost["observer"] == "claude-code-statusline"
+
+    (tmp_path / "second").mkdir()
+    repo2 = _repo(tmp_path / "second", {"demo": ["s1"]})
+    _render(repo2, session_id="s1", cwd=repo2 / "projects" / "demo")  # no cost key
+    assert "cost" not in json.loads(
+        (repo2 / "projects" / "demo" / "runtime.json").read_text()
+    )["sessions"][0]
+
+
+def test_the_hook_stamps_a_stage_boundary_end_to_end(tmp_path):
+    """The only test that proves the wiring works, because it is the only one
+    that runs the real scripts.
+
+    Everything else drives `run_runtime_snapshot` in-process, which cannot see a
+    hook that never starts, a guard that eats the payload, or a payload shape
+    that stopped matching. Here the status line observes the cost (nothing else
+    can), the hook witnesses the beril.yaml edit, and the ledger has to come out
+    the far side.
+
+    What this does NOT cover, despite looking like it should: the import-chain
+    failure that once left this feature entirely dead behind a green suite
+    (`block_span` sourced from `approve_cmd`, which reaches `tomllib` 3.11+,
+    against the bare-`python3` fallback the BERDL pod uses). This fixture has no
+    venv, so the hook does take that fallback — but under `uv run pytest` the
+    project venv is on PATH, so `python3` finds a modern interpreter and the
+    import succeeds. Verified by reverting the fix: this test still passed.
+    `test_audit_cmd_stays_off_the_cli_import_chain` is what actually catches it,
+    deterministically. Neither test replaces the other.
+    """
+    repo = _repo(tmp_path, {"demo": None})
+    pdir, sid = repo / "projects" / "demo", "sess-e2e"
+    manifest = pdir / "beril.yaml"
+    manifest.write_text("project_id: demo\nstatus: exploration\n")
+
+    def edit(payload_path=manifest):
+        """One PostToolUse write into the project, exactly as Claude Code sends it."""
+        done = _hook(repo, {
+            "session_id": sid,
+            "hook_event_name": "PostToolUse",
+            "cwd": str(pdir),
+            "tool_name": "Edit",
+            "tool_input": {"file_path": str(payload_path)},
+        }, sid)
+        assert done.returncode == 0, done.stderr   # never blocks a tool call
+        return done
+
+    _render(repo, session_id=sid, cwd=pdir, cost=4.12)
+    edit()
+
+    # The transition. Note the hook payload is byte-identical to the one above:
+    # nothing in a session snapshot depends on lifecycle status, so the writer's
+    # idempotency short-circuit would swallow this if the stamp sat behind it.
+    manifest.write_text(manifest.read_text().replace("exploration", "proposed"))
+    edit()
+
+    text = manifest.read_text()
+    assert "- stage: exploration" in text, (
+        f"the hook witnessed the transition but stamped nothing:\n{text}"
+    )
+    assert "usd: 4.12" in text
+    assert "sessions_observed: 1" in text
+
+    # A second stage, to pin that appending does not clobber the first entry.
+    _render(repo, session_id=sid, cwd=pdir, cost=9.80)
+    manifest.write_text(manifest.read_text().replace("status: proposed", "status: active"))
+    edit()
+
+    text = manifest.read_text()
+    assert text.count("agent_cost:") == 1
+    assert text.index("- stage: exploration") < text.index("- stage: proposed")
+    assert "usd: 5.68" in text, f"delta wrong for the second stage:\n{text}"

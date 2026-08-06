@@ -163,6 +163,10 @@ _STATUS_RE = re.compile(r"^status:\s*([\w-]+)", re.M)
 _APPROVAL_RE = re.compile(r"^approval:\s*$", re.M)
 _PLAN_BLOCK_RE = re.compile(r"^plan_approval:\s*$(.*?)(?=^\S|\Z)", re.M | re.S)
 _FIELD_RE = re.compile(r'^\s+(\w+):\s*"?([^"\n]*?)"?\s*$', re.M)
+_COST_BLOCK_RE = re.compile(r"^agent_cost:\s*$(.*?)(?=^\S|\Z)", re.M | re.S)
+_COST_ENTRY_RE = re.compile(
+    r"^\s+- stage:\s*(\w+)$(.*?)(?=^\s+- stage:|\Z)", re.M | re.S
+)
 # Byte-identical twin of beril_cli.approve_cmd.plan_digest / plan-gate.py.
 # Bytes, not text, and no strip(): see plan_digest below.
 _REVHIST_RE = re.compile(rb"^##[ \t]+Revision History[ \t\r]*$", re.M)
@@ -306,6 +310,7 @@ class State:
     routes: JupyterRoutes | None
     plan: dict = field(default_factory=dict)
     agent: dict = field(default_factory=dict)
+    cost: dict = field(default_factory=dict)
 
 
 # ---------------------------------------------------------------------------
@@ -581,6 +586,42 @@ def plan_approval(project: Path, stage: str) -> dict:
     }
 
 
+def agent_cost(project: Path) -> dict:
+    """Per-stage agent cost from ``beril.yaml``, as ``{stage: usd | None}``.
+
+    Written by the runtime hook at each lifecycle transition (see
+    ``beril_cli.audit_cmd``). Parsed here rather than imported because this file
+    runs under a bare ``python3`` in an ephemeral pod and cannot import
+    ``beril_cli`` — the same constraint that makes ``plan_digest`` a deliberate
+    copy.
+
+    ``None`` is the load-bearing value, not a parse failure: a stage nobody
+    observed has no ``usd`` key at all, and rendering it as ``$0.00`` would tell
+    the reader a stage was free when the truth is that nothing watched it. A
+    stage repeats in the ledger after a demotion, so later entries are summed
+    onto earlier ones rather than replacing them.
+    """
+    try:
+        manifest = (project / "beril.yaml").read_text(encoding="utf-8")
+    except OSError:
+        return {}
+    block = _COST_BLOCK_RE.search(manifest)
+    if not block:
+        return {}
+    costs: dict = {}
+    for stage, body in _COST_ENTRY_RE.findall(block.group(1)):
+        fields = dict(_FIELD_RE.findall(body))
+        if "usd" not in fields:
+            costs.setdefault(stage, None)
+            continue
+        try:
+            usd = float(fields["usd"])
+        except ValueError:
+            continue
+        costs[stage] = round((costs.get(stage) or 0.0) + usd, 2)
+    return costs
+
+
 def count_deviations(project: Path) -> int:
     """Advisory count from ``.claude/hooks/plan-gate.py``.
 
@@ -817,6 +858,7 @@ def scan(project: Path) -> State:
         routes=jupyter_routes(project),
         plan=plan_summary(project),
         agent=agent,
+        cost=agent_cost(project),
     )
 
 
@@ -982,8 +1024,18 @@ def _approval_chip(approval: dict) -> str:
     return '<span class="d-chip bad">plan not approved &#10007;</span>'
 
 
-def _rail(stage: str) -> str:
+def _rail(stage: str, cost: dict | None = None) -> str:
     """The stage rail, labelled for humans rather than with the raw enum.
+
+    Carries the per-stage agent cost, because the rail is already the list of
+    stages in order — a stage's cost is per-rail-item data, not a second panel
+    that would have to repeat the labels to say where each number belongs.
+
+    Only stages the ledger names get a figure. A stage recorded with no
+    observation shows an em dash, never ``$0.00``: this page's entire job is not
+    asserting things it cannot back, and "free" is a different claim from
+    "nothing was watching". Everything shown is a floor over one harness, which
+    the title says on hover rather than in six repeated captions.
 
     ``analysis`` is the one status whose name says the opposite of what it
     means: analysis *happens* during ``active``, and ``analysis`` means the
@@ -995,16 +1047,61 @@ def _rail(stage: str) -> str:
     ``title``, so nothing that reads ``beril.yaml`` is hidden. A rename of the
     enum itself (``analysis`` → ``synthesized``) is planned as its own change.
     """
+    cost = cost or {}
     current = STAGES.index(stage)
     items = []
     for index, name in enumerate(STAGES):
         state = "done" if index < current else ("current" if index == current else "future")
         aria = ' aria-current="step"' if state == "current" else ""
+        title = f"beril.yaml status: {name}"
+        spend = ""
+        if name in cost:
+            usd = cost[name]
+            spend = (
+                f'<b class="d-cost">${usd:.2f}</b>'
+                if usd is not None
+                else '<b class="d-cost d-cost-none">—</b>'
+            )
+            title += (
+                f" · agent cost ${usd:.2f} (Claude Code only — a floor)"
+                if usd is not None
+                else " · no agent cost observed for this stage"
+            )
         items.append(
-            f'<li data-state="{state}"{aria} title="beril.yaml status: {name}">'
-            f"<i></i>{STAGE_LABELS[name]}</li>"
+            f'<li data-state="{state}"{aria} title="{e(title)}">'
+            f"<i></i>{STAGE_LABELS[name]}{spend}</li>"
         )
     return '<ol class="d-rail" aria-live="polite">' + "".join(items) + "</ol>"
+
+
+def _cost_readout(cost: dict) -> str:
+    """The project total, as a header readout beside `last activity`.
+
+    The rail answers "where did the money go"; this answers "how much", which is
+    the question you ask before deciding whether to re-run a notebook round.
+
+    Omitted entirely when no stage has an observation — a project worked on
+    before this shipped, or by a human, would otherwise get a confident `$0.00`
+    in the most prominent row on the page. Stages recorded with no observation
+    contribute nothing and are counted in the tooltip instead, so the total is
+    never quietly padded with zeros.
+    """
+    observed = [usd for usd in cost.values() if usd is not None]
+    if not observed:
+        return ""
+    missing = len(cost) - len(observed)
+    plural = "" if len(observed) == 1 else "s"
+    title = (
+        f"Agent cost observed by Claude Code across {len(observed)} stage{plural}"
+        " — a floor, not a project total: work by a human or another agent is"
+        " not counted."
+    )
+    if missing:
+        title += f" {missing} further stage(s) had no observation at all."
+    return (
+        f'<span class="d-read" title="{e(title)}">'
+        f"<b>${sum(observed):.2f}</b><i>agent cost</i></span>"
+    )
 
 
 def _open_href(routes: JupyterRoutes | None, path: str) -> str:
@@ -1374,8 +1471,9 @@ def render(state: State, css: str, live: bool = True) -> str:
         '<span class="d-read">'
         f'<b data-epoch="{state.first_activity}" data-mode="since"></b>'
         "<i>elapsed</i></span>"
+        f"{_cost_readout(state.cost)}"
         "</div>"
-        f"{_rail(state.stage)}"
+        f"{_rail(state.stage, state.cost)}"
         f"{now_card}"
         "</header>\n"
         f"{_plan_html(state)}\n"

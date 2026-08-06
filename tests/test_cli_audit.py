@@ -7,10 +7,17 @@ import hashlib
 import io
 import json
 import os
+import re
+from pathlib import Path
 
 import pytest
 
-from beril_cli.audit_cmd import resolve_project, run_runtime_snapshot
+from beril_cli import audit_cmd
+from beril_cli.audit_cmd import (
+    record_session_cost,
+    resolve_project,
+    run_runtime_snapshot,
+)
 
 
 @pytest.fixture()
@@ -323,3 +330,145 @@ def test_non_v2_runtime_file_is_replaced_with_fresh_v2_state(repo, monkeypatch):
     assert data["schema_version"] == "2.0"
     assert "legacy_snapshot" not in data
     assert [s["session_id"] for s in data["sessions"]] == ["new-session"]
+
+
+
+# --- agent cost ------------------------------------------------------------
+#
+# Scoped like the rest of this file: only what breaks *silently*. The stamp
+# actually working end-to-end is proved in tests/test_statusline.py, which runs
+# the real hook script — these cover the arithmetic and the honesty rules that a
+# green in-process run would otherwise hide.
+
+
+def _runtime(repo, project="p1"):
+    return json.loads((repo / "projects" / project / "runtime.json").read_text())
+
+
+def _yaml(repo, project="p1"):
+    return (repo / "projects" / project / "beril.yaml").read_text()
+
+
+def _set_status(repo, status, project="p1"):
+    """Edit `status:` in place, the way a skill performing a transition does.
+
+    Rewriting the whole manifest would silently wipe the ledger under test.
+    """
+    manifest = repo / "projects" / project / "beril.yaml"
+    text = manifest.read_text()
+    if re.search(r"^status:", text, re.MULTILINE):
+        text = re.sub(
+            r"^status:(\s*)[^\s#]+",
+            rf"status:\g<1>{status}",
+            text,
+            count=1,
+            flags=re.MULTILINE,
+        )
+    else:
+        text += f"status: {status}\n"
+    manifest.write_text(text)
+
+
+def test_a_session_spanning_two_stages_is_never_counted_twice(repo, monkeypatch):
+    """The core arithmetic. One session outlives the stage it started in, so
+    each stage gets the spend earned inside it and the deltas sum to the total
+    observed. A window over session start times would misattribute both."""
+    _set_status(repo, "exploration")
+    _snap(repo, monkeypatch)
+    record_session_cost(repo / "projects" / "p1", "s1", 4.12)
+    _set_status(repo, "proposed")
+    _snap(repo, monkeypatch)
+    record_session_cost(repo / "projects" / "p1", "s1", 9.80)  # same session
+    _set_status(repo, "active")
+    _snap(repo, monkeypatch)
+
+    stages = re.findall(r"- stage: (\w+)\n.*?\n(?:      usd: ([\d.]+)\n)?", _yaml(repo))
+    assert stages == [("exploration", "4.12"), ("proposed", "5.68")]
+
+
+def test_an_unobserved_stage_omits_usd_rather_than_recording_zero(repo, monkeypatch):
+    """`usd: 0.00` reads as "this stage was free". A missing key reads as
+    "nobody watched", which is the true statement — and the same rule holds at
+    the input side, where an unreported cost writes no `cost` key at all."""
+    _set_status(repo, "exploration")
+    _snap(repo, monkeypatch)
+    record_session_cost(repo / "projects" / "p1", "s1", 0)  # harness reported none
+    assert "cost" not in _runtime(repo)["sessions"][0]
+
+    _set_status(repo, "proposed")
+    _snap(repo, monkeypatch)
+    text = _yaml(repo)
+    assert "- stage: exploration" in text
+    assert "sessions_observed: 0" in text
+    assert "usd:" not in text
+
+
+def test_a_snapshot_replace_carries_cost_forward(repo, monkeypatch):
+    """The two writers of runtime.json must not clobber each other. Only the
+    status line sees cost; only the hook sees the model. A re-snapshot replaces
+    the whole record, so without this every model switch erased the spend."""
+    _snap(repo, monkeypatch, session_id="s1", model="claude-opus-5")
+    record_session_cost(repo / "projects" / "p1", "s1", 4.12)
+    session = _snap(repo, monkeypatch, session_id="s1", model="claude-sonnet-5")[
+        "sessions"
+    ][0]
+    assert session["agent"]["model_id"] == "claude-sonnet-5"
+    assert session["cost"]["usd"] == 4.12
+
+
+def test_the_ledger_leaves_the_rest_of_the_manifest_alone(repo, monkeypatch):
+    """beril.yaml is a reviewed file carrying an authoritative approval block and
+    inline comments. Appending to it by text is what avoids a YAML round-trip
+    eating them — silently, in a file nobody re-reads after a transition."""
+    manifest = repo / "projects" / "p1" / "beril.yaml"
+    manifest.write_text(
+        "project_id: p1\n"
+        "status: exploration          # exploration | proposed | active\n"
+        "approval:\n"
+        '  by: "0000-0001-9076-6066"\n'
+        "\n"
+        "# trailing note about submissions\n"
+        "submissions: []\n"
+    )
+    _snap(repo, monkeypatch)
+    record_session_cost(repo / "projects" / "p1", "s1", 1.50)
+    _set_status(repo, "proposed")
+    _snap(repo, monkeypatch)
+
+    text = manifest.read_text()
+    assert "# exploration | proposed | active" in text
+    assert "# trailing note about submissions" in text
+    assert '  by: "0000-0001-9076-6066"' in text
+    assert "submissions: []" in text
+    assert "- stage: exploration" in text
+
+
+def test_an_unchanged_cents_value_does_not_rewrite_runtime_json(repo, monkeypatch):
+    """The status line renders every turn. Rewriting on each render would churn
+    a file the hook also writes, for no new information."""
+    _snap(repo, monkeypatch, session_id="s1")
+    path = repo / "projects" / "p1" / "runtime.json"
+    record_session_cost(repo / "projects" / "p1", "s1", 4.12)
+    before = path.stat().st_mtime_ns
+    record_session_cost(repo / "projects" / "p1", "s1", 4.1234)  # same cents
+    assert path.stat().st_mtime_ns == before
+    record_session_cost(repo / "projects" / "p1", "s1", 4.13)  # a cent more
+    assert path.stat().st_mtime_ns != before
+
+
+def test_audit_cmd_stays_off_the_cli_import_chain():
+    """The hook falls back to a bare `python3` when there is no venv — the BERDL
+    pod. `approve_cmd` reaches `tomllib` (3.11+) via its config import, and
+    sourcing `block_span` from there made every stamp raise ModuleNotFoundError
+    into this module's blanket `except`: no error, no stamp, on exactly the
+    image the fallback exists for.
+
+    The end-to-end test in test_statusline.py catches this for real, but only
+    when the system python3 happens to be old. This one is deterministic.
+    """
+    source = Path(audit_cmd.__file__).read_text()
+    reached = set(re.findall(r"^\s*from (beril_cli\.[\w.]+) import", source, re.MULTILINE))
+    assert reached == {"beril_cli.project_resolution"}, (
+        f"audit_cmd runs under the hook's bare-python3 fallback; {reached} may"
+        " drag in tomllib/httpx and silently disable stage stamping"
+    )

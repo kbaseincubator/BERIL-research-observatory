@@ -137,8 +137,28 @@ print(" | ".join(line))
 if not pdir:
     sys.exit(0)
 
-# Stage and URL come from the dashboard itself, so the two cannot disagree.
 sys.path.insert(0, str(root))
+
+# Persist what was displayed above. This is the only component that CAN: no hook
+# payload carries cost — SessionStart, PostToolUse and Stop were each probed and
+# all three omit it — and the session transcript records token counts, not
+# dollars, so deriving USD anywhere else would mean shipping a per-model price
+# table. runtime.json is where the rest of the per-session provenance already
+# lives, and audit_cmd owns that file; from there the runtime hook stamps a
+# per-stage delta into beril.yaml at each lifecycle transition.
+#
+# A second side effect in a display component, so it is bounded the same way the
+# dashboard spawn below is: it writes only when the *cents* value changed (an
+# ordinary turn is one small read), it never records a zero, and it can never
+# break a turn.
+try:
+    from beril_cli.audit_cmd import record_session_cost
+
+    record_session_cost(pdir, d.get("session_id"), cost)
+except Exception:
+    pass
+
+# Stage and URL come from the dashboard itself, so the two cannot disagree.
 try:
     from tools.dashboard import (SETUP_CMD, STAGE_LABELS, can_serve_live, port_for,
                                  public_url, resolve_stage, snapshot_url)
