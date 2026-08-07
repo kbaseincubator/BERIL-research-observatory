@@ -4,7 +4,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "bash .claude/statusline.sh"
+    "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/statusline.sh\""
   },
   "hooks": {
     "SessionStart": [
@@ -12,7 +12,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/beril-runtime.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/beril-runtime.sh\""
           }
         ]
       }
@@ -43,7 +43,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/beril-runtime.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/beril-runtime.sh\""
           }
         ]
       },
@@ -61,7 +61,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/agent_state.py"
+            "command": "sh -c 'cd \"${CLAUDE_PROJECT_DIR:-.}\" 2>/dev/null; python3 .claude/hooks/agent_state.py'"
           }
         ]
       }
@@ -71,7 +71,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/agent_state.py"
+            "command": "sh -c 'cd \"${CLAUDE_PROJECT_DIR:-.}\" 2>/dev/null; python3 .claude/hooks/agent_state.py'"
           }
         ]
       }
@@ -81,7 +81,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/agent_state.py"
+            "command": "sh -c 'cd \"${CLAUDE_PROJECT_DIR:-.}\" 2>/dev/null; python3 .claude/hooks/agent_state.py'"
           }
         ]
       }
@@ -91,7 +91,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/agent_state.py"
+            "command": "sh -c 'cd \"${CLAUDE_PROJECT_DIR:-.}\" 2>/dev/null; python3 .claude/hooks/agent_state.py'"
           }
         ]
       }
@@ -101,7 +101,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 .claude/hooks/dash_stop.py"
+            "command": "sh -c 'cd \"${CLAUDE_PROJECT_DIR:-.}\" 2>/dev/null; python3 .claude/hooks/dash_stop.py'"
           }
         ]
       }
