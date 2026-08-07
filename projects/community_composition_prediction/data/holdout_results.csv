@@ -1,0 +1,17 @@
+holdout,model,target,n,rmse
+AusMicrobiome_NGSA,B0,log_Cu_ppm,731,1.346475392377244
+AusMicrobiome_NGSA,B1,log_Cu_ppm,731,1.2966034635276256
+AusMicrobiome_NGSA,M1,log_Cu_ppm,731,1.2856847871695454
+AusMicrobiome_NGSA,M2,log_Cu_ppm,731,0.9608164467901409
+AusMicrobiome_NGSA,B0,log_Zn_ppm,737,1.5347932646831361
+AusMicrobiome_NGSA,B1,log_Zn_ppm,737,1.5195777960351289
+AusMicrobiome_NGSA,M1,log_Zn_ppm,737,1.5722987944810827
+AusMicrobiome_NGSA,M2,log_Zn_ppm,737,1.4641624198603485
+AusMicrobiome_NGSA,B0,log_Pb_ppm,745,0.8549250131267019
+AusMicrobiome_NGSA,B1,log_Pb_ppm,745,1.0665599562400736
+AusMicrobiome_NGSA,M1,log_Pb_ppm,745,1.0331247671421866
+AusMicrobiome_NGSA,M2,log_Pb_ppm,745,0.9565247321660706
+AusMicrobiome_NGSA,B0,log_Ni_ppm,740,1.640834398308418
+AusMicrobiome_NGSA,B1,log_Ni_ppm,740,1.6437913624043425
+AusMicrobiome_NGSA,M1,log_Ni_ppm,740,1.6813564774124494
+AusMicrobiome_NGSA,M2,log_Ni_ppm,740,1.8146223704036482

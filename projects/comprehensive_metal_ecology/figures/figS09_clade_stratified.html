@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure S9 – Clade-Stratified PGLS</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6; --ns:#c3c2b7; --acc:#e34948;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5; --ns:#52514e; --acc:#e66767;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; line-height:1.5; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.tt {
+  position:fixed; background:var(--sf); border:1px solid var(--gl);
+  padding:8px 10px; border-radius:4px; font-size:11px; color:var(--tp);
+  pointer-events:none; display:none; max-width:300px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12); z-index:100; line-height:1.6;
+}
+.tbl-btn { margin-top:12px; font-size:11px; color:var(--sig); cursor:pointer; text-decoration:underline; background:none; border:none; padding:0; }
+table { display:none; margin-top:10px; font-size:11px; border-collapse:collapse; }
+th,td { text-align:left; padding:3px 8px; border-bottom:1px solid var(--gl); color:var(--ts); white-space:nowrap; }
+th { color:var(--tm); font-weight:500; }
+td:nth-child(n+2) { font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<h2>Figure S9. Clade-stratified PGLS: the metal-gene streamlining signal replicates within Proteobacteria and Actinobacteria.</h2>
+<div class="sub">Separate PGLS analyses within each of the four largest phyla. Error bars = 95% CI (precomputed from notebook). BH-FDR across 4 clades. Primary estimate (β = −0.021) shown as reference. Firmicutes and Bacteroidetes are directionally consistent but not significant after FDR; low effective sample sizes (n_eff) after phylogenetic correction limit power.</div>
+<div style="margin-bottom:8px;font-size:11px;color:var(--ts)">
+  <span style="color:var(--sig)">■</span> Significant (BH q &lt; 0.05) &nbsp;&nbsp;
+  <span style="color:var(--ns)">■</span> Not significant
+</div>
+<svg id="chart"></svg>
+<div class="tt" id="tt"></div>
+<button class="tbl-btn" onclick="toggleTable()">Show data table</button>
+<table id="dtbl">
+  <thead><tr><th>Clade</th><th>n</th><th>n_eff</th><th>λ</th><th>β</th><th>95% CI</th><th>q (BH)</th></tr></thead>
+  <tbody id="dtbody"></tbody>
+</table>
+
+<script>
+const DATA = [
+  {label:'Proteobacteria', n:677,  n_eff:150.6, lambda:0.7775, beta:-0.020875, ci_lo:-0.030826, ci_hi:-0.010924, q:1.76e-4, sig:true},
+  {label:'Actinobacteria', n:204,  n_eff:45.0,  lambda:0.7793, beta:-0.035409, ci_lo:-0.056613, ci_hi:-0.014205, q:2.50e-3, sig:true},
+  {label:'Firmicutes',     n:334,  n_eff:123.9, lambda:0.6291, beta:-0.015210, ci_lo:-0.030671, ci_hi: 0.000251, q:7.29e-2, sig:false},
+  {label:'Bacteroidetes',  n:183,  n_eff:15.1,  lambda:0.9174, beta:-0.008792, ci_lo:-0.029081, ci_hi: 0.011496, q:3.97e-1, sig:false},
+];
+const P1_BETA = -0.021;
+
+const fmtB = b => (b >= 0 ? '+' : '') + b.toFixed(4);
+const fmtQ = q => q < 0.001 ? q.toExponential(2) : q.toFixed(4);
+
+function render() {
+  const W = 520, rowH = 44;
+  const M = {top:44, right:120, bottom:52, left:165};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+  const xMin = -0.068, xMax = 0.022;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [-0.06, -0.04, -0.02, 0, 0.02];
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${t === 0 ? 'var(--bl)' : 'var(--gl)'}" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+  });
+
+  const p1X = xS(P1_BETA);
+  s += `<line x1="${p1X}" y1="${M.top - 8}" x2="${p1X}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--sig)" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>`;
+  s += `<text x="${p1X}" y="${M.top - 16}" text-anchor="middle"
+    font-size="9" fill="var(--sig)" opacity="0.8">P1 all-genera β = −0.021</text>`;
+
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const col = d.sig ? 'var(--sig)' : 'var(--ns)';
+    const xb = xS(d.beta);
+    const xlo = xS(d.ci_lo);
+    const xhi = xS(d.ci_hi);
+    const x0 = xS(0);
+
+    s += `<rect class="row-hit" x="${M.left}" y="${M.top + i * rowH + 2}"
+      width="${pw}" height="${rowH - 4}"
+      fill="${d.sig ? 'rgba(42,120,214,0.04)' : 'none'}" rx="3" data-i="${i}" style="cursor:default"/>`;
+
+    s += `<line x1="${xlo}" y1="${y}" x2="${xhi}" y2="${y}"
+      stroke="${col}" stroke-width="2" opacity="0.6"/>`;
+    [[xlo],[xhi]].forEach(([x]) => {
+      s += `<line x1="${x}" y1="${y-5}" x2="${x}" y2="${y+5}"
+        stroke="${col}" stroke-width="2" opacity="0.7"/>`;
+    });
+    s += `<line x1="${x0}" y1="${y}" x2="${xb}" y2="${y}"
+      stroke="${col}" stroke-width="2" opacity="0.7"/>`;
+    s += `<circle cx="${xb}" cy="${y}" r="5.5"
+      fill="${col}" stroke="var(--sf)" stroke-width="2"/>`;
+
+    s += `<text x="${M.left - 8}" y="${y - 4}" text-anchor="end"
+      font-size="12" font-weight="${d.sig ? '600' : '400'}" fill="${d.sig ? 'var(--tp)' : 'var(--tm)'}">${d.label}</text>`;
+    s += `<text x="${M.left - 8}" y="${y + 10}" text-anchor="end"
+      font-size="9" fill="var(--tm)">n=${d.n}, n_eff=${d.n_eff}</text>`;
+
+    s += `<text x="${W - M.right + 6}" y="${y}" text-anchor="start"
+      font-size="10" fill="${col}" font-variant-numeric="tabular-nums">${fmtB(d.beta)}</text>`;
+    s += `<text x="${W - M.right + 6}" y="${y + 12}" text-anchor="start"
+      font-size="9" fill="${d.sig ? col : 'var(--tm)'}">q = ${fmtQ(d.q)}${d.sig ? ' ✓' : ''}</text>`;
+  });
+
+  s += `<line x1="${M.left}" y1="${M.top + DATA.length * rowH}"
+    x2="${W - M.right}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t === 0 ? '0' : t.toFixed(2)}</text>`;
+  });
+
+  s += `<text x="${xS(-0.02)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">PGLS β (metal-gene density → niche breadth)</text>`;
+
+  svg.innerHTML = s;
+
+  svg.querySelectorAll('.row-hit').forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      const d = DATA[+this.dataset.i];
+      document.getElementById('tt').innerHTML =
+        `<strong>${d.label}</strong><br>` +
+        `<span>n = ${d.n} genera, n_eff = ${d.n_eff} (after phylo correction)</span><br>` +
+        `<span>λ = ${d.lambda.toFixed(4)}</span><br>` +
+        `<span>β = ${fmtB(d.beta)}</span><br>` +
+        `<span>95% CI [${d.ci_lo.toFixed(4)}, ${d.ci_hi.toFixed(4)}]</span><br>` +
+        `<span>BH q = ${fmtQ(d.q)}${d.sig ? ' — significant ✓' : ' — NS'}</span>`;
+      document.getElementById('tt').style.display = 'block';
+    });
+    el.addEventListener('mousemove', positionTT);
+    el.addEventListener('mouseleave', () => { document.getElementById('tt').style.display = 'none'; });
+  });
+}
+
+function positionTT(e) {
+  const tt = document.getElementById('tt');
+  let x = e.clientX + 14, y = e.clientY - tt.offsetHeight / 2;
+  if (x + tt.offsetWidth > window.innerWidth - 12) x = e.clientX - 14 - tt.offsetWidth;
+  tt.style.left = x + 'px'; tt.style.top = Math.max(8, y) + 'px';
+}
+
+function toggleTable() {
+  const tbl = document.getElementById('dtbl');
+  const btn = document.querySelector('.tbl-btn');
+  if (tbl.style.display === 'table') {
+    tbl.style.display = 'none'; btn.textContent = 'Show data table';
+  } else {
+    tbl.style.display = 'table'; btn.textContent = 'Hide data table';
+    document.getElementById('dtbody').innerHTML = DATA.map(d =>
+      `<tr><td>${d.label}</td><td>${d.n}</td><td>${d.n_eff}</td><td>${d.lambda.toFixed(4)}</td>
+       <td>${fmtB(d.beta)}</td><td>[${d.ci_lo.toFixed(4)}, ${d.ci_hi.toFixed(4)}]</td>
+       <td>${fmtQ(d.q)}${d.sig?' ✓':''}</td></tr>`
+    ).join('');
+  }
+}
+
+render();
+</script>
+</body>
+</html>

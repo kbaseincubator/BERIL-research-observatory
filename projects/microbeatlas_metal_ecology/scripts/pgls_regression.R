@@ -43,7 +43,7 @@ cat(sprintf('\nTree:        %d tips\n', length(tree$tip.label)))
 cat(sprintf('Trait table: %d genera, %d cols\n', nrow(traits), ncol(traits)))
 
 # Check metal AMR columns present
-amr_raw <- c('mean_n_metal_amr_clusters', 'mean_metal_core_fraction', 'mean_n_metal_types')
+amr_raw <- c('mean_n_metal_clusters', 'mean_metal_core_fraction', 'mean_n_metal_types')
 missing_cols <- amr_raw[!amr_raw %in% colnames(traits)]
 if (length(missing_cols) > 0) stop(sprintf('Missing AMR columns: %s', paste(missing_cols, collapse=', ')))
 
@@ -54,7 +54,7 @@ if (length(missing_cols) > 0) stop(sprintf('Missing AMR columns: %s', paste(miss
 sub <- traits[
     traits$n_otus >= 3 &
     traits$genus_lower %in% tree$tip.label &
-    !is.na(traits$mean_n_metal_amr_clusters) &
+    !is.na(traits$mean_n_metal_clusters) &
     !is.na(traits$mean_levins_B_std) &
     !is.na(traits$mean_n_envs),
 ]
@@ -180,7 +180,7 @@ cor_multi <- tryCatch(
 fit_multi <- NULL
 if (!is.null(cor_multi)) {
     fit_multi <- tryCatch(
-        gls(mean_levins_B_std ~ mean_n_metal_amr_clusters_z +
+        gls(mean_levins_B_std ~ mean_n_metal_clusters_z +
                 mean_metal_core_fraction_z + mean_n_metal_types_z,
             data = sub, correlation = cor_multi, method = 'ML'),
         error = function(e) { cat('ERROR (multi):', conditionMessage(e), '\n'); NULL }

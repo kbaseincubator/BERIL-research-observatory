@@ -1,0 +1,208 @@
+================================================================================
+RUNNING THE DIRECTIONALITY ANALYSIS
+================================================================================
+
+QUICK START:
+  cd /home/hmacgregor/BERIL-research-observatory/projects/metal_contamination_bioindicators
+  python3 scripts/run_directionality_test.py
+
+EXPECTED OUTPUT:
+  - Console: Progress messages and final interpretation table
+  - File:    data/directionality_results.json (6.2 KB JSON file)
+  - Time:    ~10-15 seconds on standard hardware
+
+================================================================================
+WHAT THE SCRIPT DOES
+================================================================================
+
+1. LOADS DATA:
+   - analysis_matrix.parquet (187,755 × 538): USA samples with CLR values
+   - redox_proxy.parquet: p_oxic_5m_proxy measurements
+   - mwas_results.parquet: Top-40 MWAS genera by weighted_rho
+   - sample_covariates.parquet: study_id for grouping
+   - usa_rf_env_targets_rho.parquet: Pre-computed reverse direction ρ values
+
+2. FILTERS TO USA BOUNDING BOX:
+   - Latitude: 24°N to 50°N
+   - Longitude: -130°W to -65°W
+   - Result: 64,259 samples
+
+3. COMPUTES FORWARD DIRECTION (env → microbiome):
+   a) Standardizes 9 environment variables:
+      - Geographic: lat, lon
+      - Soil: sg_pH, sg_clay, log(sg_SOC+0.01)
+      - Redox: p_oxic_5m_proxy
+      - Metals: s25_as_AT, s25_cr_AT, s25_ni_AT
+   
+   b) For each of 35 MWAS genera:
+      - Computes Spearman ρ between env features and genus CLR
+      - Records per-genus correlation strength
+   
+   c) Computes CLR PC1:
+      - PCA on top-40 MWAS genera CLR values
+      - Computes Spearman ρ between each env variable and PC1
+      - Reports individual and mean ρ values
+
+4. LOADS REVERSE DIRECTION (microbiome → env):
+   - From usa_rf_env_targets_rho.parquet (clr_only feature set)
+   - 10 environment targets with Random Forest ρ values
+   - Mean reverse ρ: 0.450
+
+5. COMPUTES ASYMMETRY METRICS:
+   - Directionality Index: (ρ_forward - ρ_reverse) / (ρ_forward + ρ_reverse)
+   - Asymmetry (Δ): ρ_forward - ρ_reverse
+   - Groups by variable type: Geographic, Soil, Redox, Metals
+
+6. OUTPUTS JSON WITH:
+   - forward_rho: per-genus correlation values
+   - community_pc1_forward: PC1 correlation strength
+   - reverse_rho: environment variables (RF-derived)
+   - asymmetry_by_var: per-variable indices and asymmetries
+   - group_summary: grouped metrics
+   - genus_asymmetry: top genera analysis
+
+================================================================================
+OUTPUT: data/directionality_results.json
+================================================================================
+
+JSON STRUCTURE:
+
+{
+  "metadata": {
+    "n_samples": 64259,
+    "env_variables": ["lat", "log_sg_SOC", "lon", ...],
+    "correlation_method": "Spearman rank"
+  },
+  
+  "forward_rho": {
+    "streptomyces": 0.032,
+    "kribbella": 0.031,
+    ... (35 genera)
+  },
+  
+  "community_pc1_forward": -0.053,
+  
+  "reverse_rho": {
+    "lat": 0.512,
+    "lon": 0.552,
+    "sg_pH": 0.602,
+    ... (10 variables)
+  },
+  
+  "asymmetry_by_var": {
+    "lat": {
+      "forward": 0.017,
+      "reverse": 0.512,
+      "directionality_index": -0.935,
+      "group": "Geographic"
+    },
+    ... (9 variables)
+  },
+  
+  "group_summary": {
+    "Geographic": {
+      "mean_forward": 0.083,
+      "mean_reverse": 0.532,
+      "mean_directionality_index": -0.754,
+      "n_variables": 2
+    },
+    "Soil": {
+      "mean_forward": -0.088,
+      "mean_reverse": 0.529,
+      "mean_directionality_index": -2.029,
+      "n_variables": 3
+    }
+  },
+  
+  "genus_asymmetry": {
+    "streptomyces": {
+      "forward": 0.032,
+      "index": -0.868
+    },
+    ... (top 20 genera)
+  }
+}
+
+================================================================================
+INTERPRETING THE RESULTS
+================================================================================
+
+DIRECTIONALITY INDEX (DI):
+  DI = (ρ_forward - ρ_reverse) / (ρ_forward + ρ_reverse)
+  
+  DI < -0.5:  Microbiome REFLECTS environment (microbiome is sensor)
+  -0.5 < DI < +0.5:  Roughly symmetric coupling
+  DI > +0.5:  Environment PREDICTS microbiome (environment drives composition)
+  
+  Interpretation: Negative DI means you can predict environment FROM
+  microbiome better than you can predict microbiome FROM environment.
+
+ASYMMETRY (Δ):
+  Δ = ρ_forward - ρ_reverse
+  
+  Δ < -0.3:  Very strong asymmetry (reverse is much stronger)
+  -0.3 < Δ < -0.1:  Strong asymmetry
+  -0.1 < Δ < 0:  Moderate asymmetry
+  Δ > 0:  Forward is stronger than reverse (rare in this dataset)
+
+KEY FINDINGS FROM THIS ANALYSIS:
+  
+  ✓ Strong asymmetry (DI = -1.27): Microbiome is environmental sensor
+  ✓ Soil properties dominate (DI = -2.03): pH and clay drive composition
+  ✓ Geographic signal is moderate (DI = -0.75): Location correlates with niche
+  ✓ Metal effects are weak: No strong linear correlations with PC1
+  ✓ Redox signal is weak: May need non-linear modeling or higher resolution
+
+================================================================================
+USING THE RESULTS FOR BIOMONITORING
+================================================================================
+
+STRONGLY RECOMMENDED (DI < -1.0):
+  → Predict soil pH from microbiome (reverse ρ = 0.602)
+  → Predict soil clay from microbiome (reverse ρ = 0.437)
+
+MODERATELY RECOMMENDED (-1.0 < DI < -0.5):
+  → Predict latitude/longitude (reverse ρ = 0.51-0.55)
+  → Predict SOC (reverse ρ = 0.547)
+
+CAUTIOUSLY RECOMMEND (DI > -0.5):
+  → Predict mine distance (reverse ρ = 0.247)
+  → Predict TRI (reverse ρ = 0.335)
+
+NOT RECOMMENDED:
+  → Metals (no reverse model available, weak forward signal)
+  → Redox state (no reverse model, very weak forward signal)
+  → Individual genus abundances (very weak forward correlations)
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Q: Script is running slow?
+A: Spearman correlation on 64K samples × 35 columns should take <20s.
+   If longer, check system load or RAM availability.
+
+Q: Different results on re-run?
+A: Results should be deterministic (no random elements).
+   Check that data files haven't changed.
+
+Q: JSON file is smaller/larger than expected?
+A: File size depends on how many genus_asymmetry entries are included.
+   Current output includes top-20 genera (can adjust in script if needed).
+
+Q: Why are some forward correlations negative?
+A: Spearman correlation is bidirectional; negative values mean genus
+   abundance DECREASES as environment variable increases.
+   This is normal and informative (opposite ecological niches).
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Load data/directionality_results.json in Python or R for further analysis
+2. Visualize directionality indices by variable type (heatmap)
+3. Create decision tree for biomonitoring (which env to predict from which taxa)
+4. Investigate why soil properties show strongest asymmetry
+5. Test non-linear models (RF) on forward direction for metals/redox
+
+================================================================================

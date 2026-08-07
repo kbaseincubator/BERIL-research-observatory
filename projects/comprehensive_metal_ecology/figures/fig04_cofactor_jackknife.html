@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 4 – Cofactor Jackknife</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6; --acc2:#eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5; --acc2:#c98500;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.tt {
+  position:fixed; background:var(--sf); border:1px solid var(--gl);
+  padding:8px 10px; border-radius:4px; font-size:11px; color:var(--tp);
+  pointer-events:none; display:none; max-width:280px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12); z-index:100; line-height:1.6;
+}
+.tbl-btn { margin-top:12px; font-size:11px; color:var(--sig); cursor:pointer; text-decoration:underline; background:none; border:none; padding:0; }
+table { display:none; margin-top:10px; font-size:11px; border-collapse:collapse; }
+th,td { text-align:left; padding:3px 8px; border-bottom:1px solid var(--gl); color:var(--ts); white-space:nowrap; }
+th { color:var(--tm); font-weight:500; }
+td:nth-child(n+2) { font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<h2>Figure 4. Cofactor jackknife: the signal is distributed across Fe–S cluster, molybdopterin, and cobalamin pathway KOs.</h2>
+<div class="sub">Leave-one-KO-out jackknife for 4 cofactor KOs with detectable representation in the MGnify MAG dataset. Error bars = 95% CI (±1.96 SE). Dashed line = full 4-KO cofactor estimate (β = −0.033, SE = 0.005). All p &lt; 0.001; no sign changes.</div>
+<svg id="chart"></svg>
+<div class="tt" id="tt"></div>
+<button class="tbl-btn" onclick="toggleTable()">Show data table</button>
+<table id="dtbl">
+  <thead><tr><th>KO excluded</th><th>β</th><th>SE</th><th>95% CI</th><th>p</th></tr></thead>
+  <tbody id="dtbody"></tbody>
+</table>
+
+<script>
+const DATA = [
+  {label:"K01772 excluded",          beta:-0.016, se:0.00441, p:0.000222,  isRef:false},
+  {label:"K22225 excluded",          beta:-0.028, se:0.00478, p:8.2e-9,    isRef:false},
+  {label:"K02225 excluded",          beta:-0.027, se:0.00444, p:1.4e-9,    isRef:false},
+  {label:"K03635 excluded",          beta:-0.029, se:0.00443, p:1.3e-10,   isRef:false},
+  {label:"All 4 KOs (reference)",    beta:-0.033, se:0.005,   p:5.2e-9,    isRef:true},
+];
+
+const fmtB = b => (b >= 0 ? '+' : '') + b.toFixed(3);
+const fmtP = p => p < 1e-9 ? p.toExponential(1) : p < 0.001 ? p.toExponential(1) : p.toFixed(5);
+
+function render() {
+  const W = 520, rowH = 36;
+  const M = {top:36, right:90, bottom:52, left:185};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+  const xMin = -0.046, xMax = 0.010;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [-0.04, -0.03, -0.02, -0.01, 0];
+  const refBeta = -0.033;
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  // Gridlines
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${t === 0 ? 'var(--bl)' : 'var(--gl)'}" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+  });
+
+  // Reference line (full 4-KO estimate)
+  const refX = xS(refBeta);
+  s += `<line x1="${refX}" y1="${M.top}" x2="${refX}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--acc2)" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.7"/>`;
+  s += `<text x="${refX}" y="${M.top - 10}" text-anchor="middle"
+    font-size="9" fill="var(--acc2)" font-weight="600">full estimate β = −0.033</text>`;
+
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const x0 = xS(0);
+    const xb = xS(d.beta);
+    const xlo = xS(d.beta - 1.96 * d.se);
+    const xhi = xS(d.beta + 1.96 * d.se);
+    const col = d.isRef ? 'var(--acc2)' : 'var(--sig)';
+    const rowBg = d.isRef ? 'rgba(237,161,0,0.08)' : 'none';
+
+    s += `<rect class="row-hit" x="${M.left - 4}" y="${M.top + i * rowH + 2}"
+      width="${pw + 4}" height="${rowH - 4}"
+      fill="${rowBg}" rx="3" data-i="${i}" style="cursor:default"/>`;
+
+    // CI bar
+    s += `<line x1="${xlo}" y1="${y}" x2="${xhi}" y2="${y}"
+      stroke="${col}" stroke-width="1.5" opacity="0.6"/>`;
+    [[xlo],[xhi]].forEach(([x]) => {
+      s += `<line x1="${x}" y1="${y - 4}" x2="${x}" y2="${y + 4}"
+        stroke="${col}" stroke-width="1.5" opacity="0.7"/>`;
+    });
+    // Stem
+    s += `<line x1="${x0}" y1="${y}" x2="${xb}" y2="${y}"
+      stroke="${col}" stroke-width="${d.isRef ? 2.5 : 1.5}" opacity="0.75"/>`;
+    // Dot
+    s += `<circle cx="${xb}" cy="${y}" r="${d.isRef ? 6 : 5}"
+      fill="${col}" stroke="var(--sf)" stroke-width="2"/>`;
+
+    s += `<text x="${M.left - 8}" y="${y + 4}" text-anchor="end"
+      font-size="11" fill="${d.isRef ? 'var(--acc2)' : 'var(--tp)'}"
+      font-weight="${d.isRef ? '600' : '400'}">${d.label}</text>`;
+
+    s += `<text x="${W - M.right + 6}" y="${y + 4}" text-anchor="start"
+      font-size="10" fill="${col}" font-variant-numeric="tabular-nums">${fmtB(d.beta)}</text>`;
+  });
+
+  // X-axis
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t === 0 ? '0' : t.toFixed(2)}</text>`;
+  });
+
+  s += `<text x="${xS(-0.02)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">PGLS β (per-Mb cofactor KO density → niche breadth)</text>`;
+
+  svg.innerHTML = s;
+
+  svg.querySelectorAll('.row-hit').forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      const d = DATA[+this.dataset.i];
+      const lo = (d.beta - 1.96 * d.se).toFixed(4), hi = (d.beta + 1.96 * d.se).toFixed(4);
+      document.getElementById('tt').innerHTML =
+        `<strong>${d.label}</strong><br>` +
+        `<span>β = ${fmtB(d.beta)} (SE = ${d.se.toFixed(4)})</span><br>` +
+        `<span>95% CI [${lo}, ${hi}]</span><br>` +
+        `<span>p = ${fmtP(d.p)}</span><br>` +
+        `<span>${d.isRef ? 'Full cofactor reference estimate' : 'All p < 0.001; signal is distributed'}</span>`;
+      document.getElementById('tt').style.display = 'block';
+    });
+    el.addEventListener('mousemove', positionTT);
+    el.addEventListener('mouseleave', () => { document.getElementById('tt').style.display = 'none'; });
+  });
+}
+
+function positionTT(e) {
+  const tt = document.getElementById('tt');
+  let x = e.clientX + 14, y = e.clientY - tt.offsetHeight / 2;
+  if (x + tt.offsetWidth > window.innerWidth - 12) x = e.clientX - 14 - tt.offsetWidth;
+  tt.style.left = x + 'px'; tt.style.top = Math.max(8, y) + 'px';
+}
+
+function toggleTable() {
+  const tbl = document.getElementById('dtbl');
+  const btn = document.querySelector('.tbl-btn');
+  if (tbl.style.display === 'table') {
+    tbl.style.display = 'none'; btn.textContent = 'Show data table';
+  } else {
+    tbl.style.display = 'table'; btn.textContent = 'Hide data table';
+    document.getElementById('dtbody').innerHTML = DATA.map(d => {
+      const lo = (d.beta - 1.96 * d.se).toFixed(4), hi = (d.beta + 1.96 * d.se).toFixed(4);
+      return `<tr><td>${d.label}</td><td>${fmtB(d.beta)}</td>
+        <td>${d.se.toFixed(4)}</td><td>[${lo}, ${hi}]</td><td>${fmtP(d.p)}</td></tr>`;
+    }).join('');
+  }
+}
+
+render();
+</script>
+</body>
+</html>

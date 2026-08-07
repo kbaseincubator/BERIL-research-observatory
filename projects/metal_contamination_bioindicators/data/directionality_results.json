@@ -1,0 +1,220 @@
+{
+  "metadata": {
+    "n_samples": 64259,
+    "env_variables": [
+      "lat",
+      "log_sg_SOC",
+      "lon",
+      "p_oxic_5m_proxy",
+      "s25_as_AT",
+      "s25_cr_AT",
+      "s25_ni_AT",
+      "sg_clay",
+      "sg_pH"
+    ],
+    "correlation_method": "Spearman rank",
+    "notes": "Forward direction uses Spearman correlation (not RF) for computational efficiency"
+  },
+  "forward_rho": {
+    "cupriavidus": -0.06366791174184133,
+    "streptomyces": 0.031837074224308065,
+    "rhodomicrobium": -0.028808873700835933,
+    "acidobacterium": -0.010858845767261581,
+    "brevibacillus": -0.009438799846375868,
+    "lactobacillus": 0.0016681633616770035,
+    "methylobacterium": -0.04435621167170821,
+    "trabulsiella": -0.0094014149266601,
+    "methylomonas": 0.012402015523093966,
+    "lactococcus": 0.008106203128355745,
+    "sulfuricurvum": 0.009182873110148747,
+    "ruminiclostridium": 0.008852481436297374,
+    "methanocella": 0.010437736988897094,
+    "neobacillus": 0.008086117040415425,
+    "methanothrix": 0.011274445973627348,
+    "conexibacter": -0.02159543074215334,
+    "pseudogulbenkiania": -0.02394343832230791,
+    "occallatibacter": -0.030474136582733007,
+    "alistipes": 0.009775784077547154,
+    "xanthomonas": 0.00011042070482222138,
+    "aquipuribacter": 0.02056672578973825,
+    "methylovorus": -0.006317770492719461,
+    "geobacillus": 0.012359911068668168,
+    "duncaniella": 0.013316663938633412,
+    "ammoniphilus": 0.001659298847858913,
+    "leuconostoc": 0.013757645278512635,
+    "corallococcus": 0.0011275362937583232,
+    "catenulispora": -0.013631569869920923,
+    "paludisphaera": -0.0432517892148354,
+    "kribbella": 0.030634374027018414,
+    "desnuesiella": 0.0019154578619490863,
+    "paraburkholderia": -0.045051342739593644,
+    "ktedonobacter": -0.004467643462762867,
+    "flavisolibacter": 0.013674072467933526,
+    "dyella": -0.0369494026627593
+  },
+  "community_pc1_forward": -0.05262379690199361,
+  "reverse_rho": {
+    "lat": 0.5120445050978475,
+    "lon": 0.5516046882417576,
+    "sg_pH": 0.6023729027691056,
+    "sg_clay": 0.4365694156967332,
+    "log_sg_SOC": 0.5471657807099382,
+    "polaris_ph": 0.5271520676893725,
+    "polaris_clay": 0.355398318753566,
+    "polaris_om": 0.390077912977403,
+    "dist_mine_km": 0.2466224724207943,
+    "log_tri_pressure": 0.33507177337008814
+  },
+  "asymmetry_by_var": {
+    "lat": {
+      "forward": 0.017149492223643606,
+      "reverse": 0.5120445050978475,
+      "directionality_index": -0.9351863690425608,
+      "group": "Geographic"
+    },
+    "log_sg_SOC": {
+      "forward": 0.23711195027614088,
+      "reverse": 0.5471657807099382,
+      "directionality_index": -0.3953367769909315,
+      "group": "Soil"
+    },
+    "lon": {
+      "forward": 0.14955557685567056,
+      "reverse": 0.5516046882417576,
+      "directionality_index": -0.5734054415223048,
+      "group": "Geographic"
+    },
+    "p_oxic_5m_proxy": {
+      "forward": 0.007881138793869634,
+      "reverse": null,
+      "directionality_index": null,
+      "group": "Redox"
+    },
+    "s25_as_AT": {
+      "forward": -0.15383930125273107,
+      "reverse": null,
+      "directionality_index": null,
+      "group": "Metals"
+    },
+    "s25_cr_AT": {
+      "forward": -0.09414717998567719,
+      "reverse": null,
+      "directionality_index": null,
+      "group": "Metals"
+    },
+    "s25_ni_AT": {
+      "forward": -0.13660079892323823,
+      "reverse": null,
+      "directionality_index": null,
+      "group": "Metals"
+    },
+    "sg_clay": {
+      "forward": -0.20282554704396177,
+      "reverse": 0.4365694156967332,
+      "directionality_index": -2.735451271624677,
+      "group": "Soil"
+    },
+    "sg_pH": {
+      "forward": -0.2978995030616589,
+      "reverse": 0.6023729027691056,
+      "directionality_index": -2.956817924639037,
+      "group": "Soil"
+    }
+  },
+  "group_summary": {
+    "Geographic": {
+      "mean_forward": 0.08335253453965707,
+      "mean_reverse": 0.5318245966698025,
+      "mean_directionality_index": -0.7542959052824327,
+      "n_variables": 2
+    },
+    "Soil": {
+      "mean_forward": -0.08787103327649326,
+      "mean_reverse": 0.528702699725259,
+      "mean_directionality_index": -2.0292019910848818,
+      "n_variables": 3
+    }
+  },
+  "genus_asymmetry": {
+    "streptomyces": {
+      "forward": 0.031837074224308065,
+      "index": -0.8679630876610946
+    },
+    "kribbella": {
+      "forward": 0.030634374027018414,
+      "index": -0.8726333615728056
+    },
+    "aquipuribacter": {
+      "forward": 0.02056672578973825,
+      "index": -0.9126631414716617
+    },
+    "leuconostoc": {
+      "forward": 0.013757645278512635,
+      "index": -0.9407209650286454
+    },
+    "flavisolibacter": {
+      "forward": 0.013674072467933526,
+      "index": -0.9410704538817831
+    },
+    "duncaniella": {
+      "forward": 0.013316663938633412,
+      "index": -0.9425665036164992
+    },
+    "methylomonas": {
+      "forward": 0.012402015523093966,
+      "index": -0.9464055852640791
+    },
+    "geobacillus": {
+      "forward": 0.012359911068668168,
+      "index": -0.9465826769469128
+    },
+    "methanothrix": {
+      "forward": 0.011274445973627348,
+      "index": -0.951159302380976
+    },
+    "methanocella": {
+      "forward": 0.010437736988897094,
+      "index": -0.9547018166007986
+    },
+    "alistipes": {
+      "forward": 0.009775784077547154,
+      "index": -0.9575135640997697
+    },
+    "sulfuricurvum": {
+      "forward": 0.009182873110148747,
+      "index": -0.9600389216946921
+    },
+    "ruminiclostridium": {
+      "forward": 0.008852481436297374,
+      "index": -0.961448972394044
+    },
+    "lactococcus": {
+      "forward": 0.008106203128355745,
+      "index": -0.9646414293823989
+    },
+    "neobacillus": {
+      "forward": 0.008086117040415425,
+      "index": -0.9647274980154563
+    },
+    "desnuesiella": {
+      "forward": 0.0019154578619490863,
+      "index": -0.9915305832701176
+    },
+    "lactobacillus": {
+      "forward": 0.0016681633616770035,
+      "index": -0.9926199894763246
+    },
+    "ammoniphilus": {
+      "forward": 0.001659298847858913,
+      "index": -0.9926590624376072
+    },
+    "corallococcus": {
+      "forward": 0.0011275362937583232,
+      "index": -0.9950057692312114
+    },
+    "xanthomonas": {
+      "forward": 0.00011042070482222138,
+      "index": -0.9995098060202434
+    }
+  }
+}

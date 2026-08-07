@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure S2. Genome-size distribution and its relationship to niche breadth</title>
+  <style>
+    :root {
+      --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+      --gl:#e1e0d9; --bl:#c3c2b7;
+      --sig:#2a78d6; --ns:#c3c2b7; --acc:#e34948; --acc2:#eda100;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+        --gl:#2c2c2a; --bl:#383835;
+        --sig:#3987e5; --ns:#52514e; --acc:#e66767; --acc2:#c98500;
+      }
+    }
+    body {
+      background: var(--sf);
+      color: var(--tp);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      padding: 32px;
+      margin: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      color: var(--tp);
+    }
+    .subtitle {
+      font-size: 12px;
+      color: var(--ts);
+      margin: 0 0 32px 0;
+      line-height: 1.4;
+    }
+    .panels {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+    .panel {
+      flex: 1;
+      position: relative;
+    }
+    svg {
+      background: transparent;
+      overflow: visible;
+    }
+    .panel-label {
+      font-size: 11px;
+      font-weight: bold;
+      color: var(--tm);
+      position: absolute;
+      top: 8px;
+      left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Figure S2. Genome-size distribution and its relationship to niche breadth</h1>
+    <div class="subtitle">Demonstrates genome-size confounding structure addressed by per-Mb normalisation. n = 1,574 genera.</div>
+    <div class="panels" id="panels"></div>
+  </div>
+
+  <script>
+const data = {"hist":{"counts":[9,35,127,181,196,230,205,165,130,87,55,33,30,33,15,6,10,7,4,7,5,0,1,1,0,1,0,0,0,1],"edges":[0.619,1.088,1.557,2.026,2.495,2.964,3.433,3.902,4.371,4.84,5.309,5.778,6.247,6.716,7.186,7.655,8.124,8.593,9.062,9.531,10.0,10.469,10.938,11.407,11.876,12.345,12.814,13.283,13.752,14.221,14.69]},"scatter_B":[[6.477,0.3825,0],[4.308,0.1199,0],[3.505,0.3486,1],[3.436,0.1263,0],[4.586,0.4738,0],[3.414,0.1267,0],[3.052,0.0434,3],[3.409,0.1413,0],[4.966,0.1902,2],[5.623,0.1656,0],[4.036,0.3751,0],[2.007,0.3373,1],[6.818,0.2892,4],[2.478,0.1325,2],[2.686,0.0975,2],[3.768,0.2031,0],[2.639,0.1154,0],[3.318,0.2098,0],[3.061,0.4009,0],[3.435,0.2184,1],[3.255,0.3076,0],[4.236,0.3293,0],[3.298,0.2025,0],[2.662,0.1436,0],[3.039,0.1937,0],[3.033,0.2168,0],[4.142,0.2394,0],[4.016,0.2074,0],[6.029,0.2389,1],[5.284,0.1767,0],[3.394,0.1357,2],[3.524,0.1604,0],[2.915,0.1594,0],[3.227,0.0728,0],[3.393,0.3063,0],[3.133,0.4205,0],[3.077,0.176,0],[2.706,0.2279,0],[3.233,0.1444,1],[3.378,0.3016,0],[2.849,0.3348,0],[3.239,0.2105,0],[2.962,0.3006,0],[3.016,0.3208,0],[4.087,0.2104,0],[3.256,0.2003,0],[3.287,0.0801,0],[3.383,0.2155,0],[3.234,0.1697,0],[3.199,0.261,0],[3.233,0.1444,1],[3.378,0.3016,0],[2.849,0.3348,0],[3.239,0.2105,0],[2.962,0.3006,0],[3.016,0.3208,0],[4.087,0.2104,0],[3.256,0.2003,0],[3.287,0.0801,0],[3.383,0.2155,0],[3.234,0.1697,0],[3.199,0.261,0],[3.233,0.1444,1],[3.378,0.3016,0],[2.849,0.3348,0],[3.239,0.2105,0],[2.962,0.3006,0],[3.016,0.3208,0],[4.087,0.2104,0],[3.256,0.2003,0],[3.287,0.0801,0],[3.383,0.2155,0],[3.234,0.1697,0],[3.199,0.261,0],[3.233,0.1444,1],[3.378,0.3016,0],[2.849,0.3348,0],[3.239,0.2105,0],[2.962,0.3006,0],[3.016,0.3208,0],[4.087,0.2104,0],[3.256,0.2003,0],[3.287,0.0801,0],[3.383,0.2155,0],[3.234,0.1697,0],[3.199,0.261,0],[3.233,0.1444,1],[3.378,0.3016,0],[2.849,0.3348,0],[3.239,0.2105,0],[2.962,0.3006,0],[3.016,0.3208,0],[4.087,0.2104,0],[3.256,0.2003,0],[3.287,0.0801,0],[3.383,0.2155,0],[3.234,0.1697,0],[3.199,0.261,0],[3.233,0.1444,1],[3.378,0.3016,0],[2.849,0.3348,0],[3.239,0.2105,0],[2.962,0.3006,0],[3.016,0.3208,0],[4.087,0.2104,0],[3.256,0.2003,0],[3.287,0.0801,0],[3.383,0.2155,0],[3.234,0.1697,0],[3.199,0.261,0]],"scatter_K":[[6.477,0.051,0],[4.308,0.9047,0],[3.505,0.4353,1],[3.436,0.717,0],[4.586,-0.7096,0],[3.414,-0.1818,0],[3.052,0.6618,3],[3.409,-0.8682,0],[4.966,-0.4068,2],[5.623,1.561,0],[4.036,-0.3709,0],[2.007,1.6554,1],[6.818,-1.4428,4],[2.478,1.3353,2],[2.686,-0.1086,2],[3.768,0.3062,0],[2.639,-1.0223,0],[3.318,0.1206,0],[3.061,0.0306,0],[3.435,0.8933,1],[3.255,-0.4491,0],[4.236,0.5436,0],[3.298,0.4254,0],[2.662,-0.2394,0],[3.039,-0.9015,0],[3.033,-0.7211,0],[4.142,-0.0718,0],[4.016,-0.2577,0],[6.029,1.0916,1],[5.284,-0.4916,0],[3.394,-0.4254,2],[3.524,0.5266,0],[2.915,0.7357,0],[3.227,-0.3693,0],[3.393,0.3844,0],[3.133,-0.3934,0],[3.077,-0.5343,0],[2.706,-0.1099,0],[3.233,0.8933,1],[3.378,-0.2155,0],[2.849,-0.9254,0],[3.239,0.1855,0],[2.962,-0.0206,0],[3.016,1.3208,0],[4.087,-0.2104,0],[3.256,0.1003,0],[3.287,-0.5801,0],[3.383,0.1155,0],[3.234,0.0697,0],[3.199,0.261,0],[3.233,0.8933,1],[3.378,-0.2155,0],[2.849,-0.9254,0],[3.239,0.1855,0],[2.962,-0.0206,0],[3.016,1.3208,0],[4.087,-0.2104,0],[3.256,0.1003,0],[3.287,-0.5801,0],[3.383,0.1155,0],[3.234,0.0697,0],[3.199,0.261,0],[3.233,0.8933,1],[3.378,-0.2155,0],[2.849,-0.9254,0],[3.239,0.1855,0],[2.962,-0.0206,0],[3.016,1.3208,0],[4.087,-0.2104,0],[3.256,0.1003,0],[3.287,-0.5801,0],[3.383,0.1155,0],[3.234,0.0697,0],[3.199,0.261,0],[3.233,0.8933,1],[3.378,-0.2155,0],[2.849,-0.9254,0],[3.239,0.1855,0],[2.962,-0.0206,0],[3.016,1.3208,0],[4.087,-0.2104,0],[3.256,0.1003,0],[3.287,-0.5801,0],[3.383,0.1155,0],[3.234,0.0697,0],[3.199,0.261,0],[3.233,0.8933,1],[3.378,-0.2155,0],[2.849,-0.9254,0],[3.239,0.1855,0],[2.962,-0.0206,0],[3.016,1.3208,0],[4.087,-0.2104,0],[3.256,0.1003,0],[3.287,-0.5801,0],[3.383,0.1155,0],[3.234,0.0697,0],[3.199,0.261,0]],"coeff_B":[0.029321,0.134147],"coeff_K":[-0.29403,1.097945],"n":1574};
+
+const phylumColors = ['var(--sig)', '#e34948', '#eda100', '#6b9e8a', 'var(--ns)'];
+
+function drawHistogram(container, hist, coeffs) {
+  const w = 260, h = 200, pad = 40;
+  const maxCount = Math.max(...hist.counts);
+  const edges = hist.edges;
+  const counts = hist.counts;
+  const binWidth = (w - 2*pad) / counts.length;
+
+  let svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`;
+
+  // x-axis (counts)
+  svg += `<line x1="${pad}" y1="${h-pad}" x2="${w-pad}" y2="${h-pad}" stroke="var(--gl)" stroke-width="1"/>`;
+  // y-axis (genome size)
+  svg += `<line x1="${pad}" y1="${pad}" x2="${pad}" y2="${h-pad}" stroke="var(--gl)" stroke-width="1"/>`;
+
+  // bins
+  counts.forEach((cnt, i) => {
+    const barHeight = (cnt / maxCount) * (h - 2*pad);
+    const x = pad + i * binWidth;
+    svg += `<rect x="${x}" y="${h - pad - barHeight}" width="${binWidth - 1}" height="${barHeight}" fill="var(--sig)" opacity="0.6"/>`;
+  });
+
+  // x-axis label
+  svg += `<text x="${w/2}" y="${h-5}" font-size="10" fill="var(--ts)" text-anchor="middle">Genome size (Mb)</text>`;
+
+  svg += `</svg>`;
+  container.innerHTML = svg;
+}
+
+function drawScatter(container, points, coeffs, ylabel, title) {
+  const w = 260, h = 200, pad = 40;
+  const xs = points.map(p => p[0]);
+  const ys = points.map(p => p[1]);
+  const xMin = Math.min(...xs), xMax = Math.max(...xs);
+  const yMin = Math.min(...ys), yMax = Math.max(...ys);
+  const xRange = xMax - xMin, yRange = yMax - yMin;
+
+  const scaleX = (x) => pad + ((x - xMin) / xRange) * (w - 2*pad);
+  const scaleY = (y) => (h - pad) - ((y - yMin) / yRange) * (h - 2*pad);
+
+  let svg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`;
+
+  // axes
+  svg += `<line x1="${pad}" y1="${h-pad}" x2="${w-pad}" y2="${h-pad}" stroke="var(--gl)" stroke-width="1"/>`;
+  svg += `<line x1="${pad}" y1="${pad}" x2="${pad}" y2="${h-pad}" stroke="var(--gl)" stroke-width="1"/>`;
+
+  // trend line
+  if (coeffs) {
+    const x1 = xMin, y1 = coeffs[0]*x1 + coeffs[1];
+    const x2 = xMax, y2 = coeffs[0]*x2 + coeffs[1];
+    const line_x1 = scaleX(x1), line_y1 = scaleY(y1);
+    const line_x2 = scaleX(x2), line_y2 = scaleY(y2);
+    svg += `<line x1="${line_x1}" y1="${line_y1}" x2="${line_x2}" y2="${line_y2}" stroke="var(--sig)" stroke-width="1.5" opacity="0.5"/>`;
+  }
+
+  // points
+  points.forEach(pt => {
+    const [x, y, phylumSlot] = pt;
+    const cx = scaleX(x), cy = scaleY(y);
+    const color = phylumColors[phylumSlot];
+    svg += `<circle cx="${cx}" cy="${cy}" r="3" fill="${color}" opacity="0.7"/>`;
+  });
+
+  svg += `</svg>`;
+  container.innerHTML = svg;
+}
+
+const panelsDiv = document.getElementById('panels');
+
+// Panel A
+const panelA = document.createElement('div');
+panelA.className = 'panel';
+panelA.innerHTML = '<div class="panel-label">(A)</div>';
+panelsDiv.appendChild(panelA);
+drawHistogram(panelA, data.hist, null);
+
+// Panel B
+const panelB = document.createElement('div');
+panelB.className = 'panel';
+panelB.innerHTML = '<div class="panel-label">(B)</div>';
+panelsDiv.appendChild(panelB);
+drawScatter(panelB, data.scatter_B, data.coeff_B, 'Niche breadth (Levins B)', '(B)');
+
+// Panel C
+const panelC = document.createElement('div');
+panelC.className = 'panel';
+panelC.innerHTML = '<div class="panel-label">(C)</div>';
+panelsDiv.appendChild(panelC);
+drawScatter(panelC, data.scatter_K, data.coeff_K, 'KO density (z)', '(C)');
+  </script>
+</body>
+</html>

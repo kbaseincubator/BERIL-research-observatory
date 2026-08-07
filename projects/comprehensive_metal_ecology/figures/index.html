@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprehensive Metal Ecology — Manuscript Figures</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7; --sig:#2a78d6;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835; --sig:#3987e5;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:32px; max-width:760px; }
+h1 { font-size:15px; font-weight:600; margin-bottom:4px; }
+.subtitle { font-size:12px; color:var(--ts); margin-bottom:28px; line-height:1.5; }
+.fig-list { list-style:none; }
+.fig-list li { border-bottom:1px solid var(--gl); }
+.fig-list li:first-child { border-top:1px solid var(--gl); }
+.fig-list a {
+  display:flex; align-items:baseline; gap:12px;
+  padding:12px 6px; text-decoration:none; color:var(--tp);
+  transition: background 0.12s;
+}
+.fig-list a:hover { background:rgba(42,120,214,0.06); }
+.fig-num { font-size:11px; font-weight:600; color:var(--sig); min-width:68px; flex-shrink:0; }
+.fig-desc { font-size:12px; color:var(--ts); line-height:1.4; }
+.fig-desc strong { color:var(--tp); font-weight:500; }
+.missing { padding:12px 6px; display:flex; gap:12px; align-items:baseline; }
+.missing .fig-num { color:var(--tm); }
+.missing .fig-desc { color:var(--tm); font-size:12px; }
+.notes { margin-top:28px; font-size:11px; color:var(--ts); line-height:1.6; }
+.notes h2 { font-size:11px; font-weight:600; color:var(--tm); margin-bottom:6px; }
+.notes li { margin-left:16px; margin-bottom:3px; }
+</style>
+</head>
+<body>
+<h1>Comprehensive Metal Ecology — Manuscript Figures</h1>
+<div class="subtitle">
+  Interactive HTML figures for the manuscript: <em>Genome streamlining is pervasive across prokaryotic functional categories, but a distinctive cofactor-versus-resistance split links metal-gene investment to ecological specialisation.</em><br>
+  Palette validated (CVD ΔE = 74.6, all checks pass). Hover each chart for data tooltips; use "Show data table" for the accessible table view.
+</div>
+
+<ul class="fig-list">
+  <li>
+    <a href="fig01_scatter.html" target="_blank">
+      <span class="fig-num">Figure 1</span>
+      <span class="fig-desc"><strong>Primary scatter: metal-gene density vs niche breadth.</strong> 1,574 bacterial genera; canvas+SVG hybrid; coloured by phylum. PGLS regression line + 95% CI band (β = −0.021, FDR q = 6.4×10⁻⁸, λ = 0.757). Hover for genus name.</span>
+    </a>
+  </li>
+  <li>
+    <a href="fig02_functional_landscape.html" target="_blank">
+      <span class="fig-num">Figure 2</span>
+      <span class="fig-desc"><strong>Functional landscape forest plot.</strong> PGLS β for 19 KEGG categories (BH-FDR) + P1 metal reference. Metal signal ranks 11th. 14/19 significant.</span>
+    </a>
+  </li>
+  <li>
+    <a href="fig03_internal_split.html" target="_blank">
+      <span class="fig-num">Figure 3</span>
+      <span class="fig-desc"><strong>Internal functional split + permutation.</strong> (A) Forest plot: resistance null (β ≈ 0), cofactor strongest (β = −0.033). (B) Split-magnitude permutation: Δβ = 0.035, emp_p = 0.0 vs 1,000 null partitions.</span>
+    </a>
+  </li>
+  <li>
+    <a href="fig04_cofactor_jackknife.html" target="_blank">
+      <span class="fig-num">Figure 4</span>
+      <span class="fig-desc"><strong>Cofactor jackknife.</strong> Leave-one-KO-out for 4 cofactor KOs. All 3-KO remainders significant (β range −0.016 to −0.029, all p &lt; 0.001). Signal is distributed.</span>
+    </a>
+  </li>
+  <li>
+    <a href="fig05_metal_specific.html" target="_blank">
+      <span class="fig-num">Figure 5</span>
+      <span class="fig-desc"><strong>Metal-specific uniformity.</strong> All 9 metals significant after BH-FDR (β range −0.017 to −0.027). No single element drives the signal.</span>
+    </a>
+  </li>
+  <li>
+    <a href="fig06_confounders.html" target="_blank">
+      <span class="fig-num">Figure 6</span>
+      <span class="fig-desc"><strong>Confounder dumbbell.</strong> Before/after β for 5 covariates. Genome size: 46.7% attenuation, p = 0.006 (robust). Latitude: amplifies signal. None meet the pre-specified decision rule.</span>
+    </a>
+  </li>
+  <li>
+    <a href="fig07_replication.html" target="_blank">
+      <span class="fig-num">Figure 7</span>
+      <span class="fig-desc"><strong>AusMicrobiome + NGSA replication.</strong> P4 geochemical β for Cu and Zn: FDR q = 0.041 each (independent replication). Pb, Ni directionally consistent (NS). Co reversed. P5 reference shown as within-dataset sensitivity check only.</span>
+    </a>
+  </li>
+</ul>
+
+<h2 style="font-size:12px;font-weight:600;margin:24px 0 8px;color:var(--sig)">Supplementary Figures</h2>
+<ul class="fig-list">
+  <li>
+    <a href="figS01_phylogenetic_tree.html" target="_blank">
+      <span class="fig-num">Figure S1</span>
+      <span class="fig-desc"><strong>Phylogenetic distribution of metal-gene density.</strong> Circular GTDB r207 cladogram (n = 2,283 bacterial genera). Inner ring: phylum colour. Outer ring: KO/Mb density (blue gradient). Metal-gene density is distributed across all major phyla — no strong phylogenetic clustering.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS02_genome_size.html" target="_blank">
+      <span class="fig-num">Figure S2</span>
+      <span class="fig-desc"><strong>Genome-size distribution and confounding structure.</strong> (A) Histogram of mean genome size (n = 1,574 genera). (B) Genome size vs niche breadth. (C) Genome size vs KO density. Demonstrates per-Mb normalisation rationale.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS03_sensitivity.html" target="_blank">
+      <span class="fig-num">Figure S3</span>
+      <span class="fig-desc"><strong>Sensitivity analyses forest plot.</strong> 8 pre-specified checks (S1–S8): fixed λ, archaea-only, MAG threshold, raw niche metric, AU niche, N. hemisphere subset. All directionally consistent.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS04_negative_controls.html" target="_blank">
+      <span class="fig-num">Figure S4</span>
+      <span class="fig-desc"><strong>Named negative controls.</strong> Ribosomal proteins, amino acid biosynthesis, DNA repair vs metal-gene target. All controls significant — expected from genome-wide streamlining; internal split distinguishes metal genes.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS05_permutation.html" target="_blank">
+      <span class="fig-num">Figure S5</span>
+      <span class="fig-desc"><strong>Coreness-matched permutation null distribution.</strong> 1,000 coreness-matched null KO sets; P1 β = −0.021 vs null median = −0.018 (emp_p = 0.298). Demonstrates the primary β is not exceptional relative to pan-genome-prevalence-matched gene sets.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS06_subcategory.html" target="_blank">
+      <span class="fig-num">Figure S6</span>
+      <span class="fig-desc"><strong>Functional subcategory comparison: AMR, TCS, ABC transporters.</strong> Side-by-side forest plots for 4 gene families. Resistance-null / cofactor-significant split is specific to metal genes; AMR, TCS, and most ABC subcategories are near-null or positive.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS07_cwm_biome.html" target="_blank">
+      <span class="fig-num">Figure S7</span>
+      <span class="fig-desc"><strong>Community-weighted metal-gene investment by biome.</strong> CWM of KO/Mb density across 12 biomes (n = 42,037 samples, 1,561 genera). Farm and aquatic highest; leaf lowest. Demonstrates biome structure cannot confound the within-genus P1 signal.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS08_ko_cooccurrence.html" target="_blank">
+      <span class="fig-num">Figure S8</span>
+      <span class="fig-desc"><strong>Tier 1+2 KO co-occurrence heatmap.</strong> Spearman ρ between 118 KO frequencies across 1,573 genera. Resistance and Transport KOs form distinct co-occurrence blocks. Demonstrates functional modularity of the metal-gene panel.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS09_clade_stratified.html" target="_blank">
+      <span class="fig-num">Figure S9</span>
+      <span class="fig-desc"><strong>Clade-stratified PGLS.</strong> Proteobacteria (q = 1.8×10⁻⁴) and Actinobacteria (q = 2.5×10⁻³) replicate. Firmicutes and Bacteroidetes directionally consistent, NS (low n_eff after phylo correction).</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS10_heterogeneity.html" target="_blank">
+      <span class="fig-num">Figure S10</span>
+      <span class="fig-desc"><strong>Heterogeneity test: phylum-level β estimates are statistically consistent.</strong> Funnel plot of β vs 1/SE for 4 clade-stratified estimates. Cochran's Q = 3.60 (df = 3, p = 0.309); I² = 16.6% — no significant heterogeneity.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS11_mag_quality.html" target="_blank">
+      <span class="fig-num">Figure S11</span>
+      <span class="fig-desc"><strong>MAG quality metrics and sensitivity.</strong> (A) Completeness and contamination distributions (n = 1,107 genera). (B) PGLS β under quality covariates and high-quality restriction (≥90% complete, ≤5% contamination). Primary β robust across all scenarios.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS12_niche_validation.html" target="_blank">
+      <span class="fig-num">Figure S12</span>
+      <span class="fig-desc"><strong>Niche-breadth metric validation.</strong> (A) MicrobeAtlas B_std vs EMP B_std (n = 539, ρ = 0.211, p = 7.7×10⁻⁷). (B) B_std vs MGnify biome Shannon (n = 549, ρ ≈ 0.24). (C) Bootstrap stability: median |Δ B_std| = 0.0026.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS13_emp_pgls.html" target="_blank">
+      <span class="fig-num">Figure S13</span>
+      <span class="fig-desc"><strong>EMP niche breadth PGLS.</strong> β = −0.019, p = 0.099 (NS). Directionally consistent; power limited by coarser EMPO environment taxonomy. Compared to P1 MicrobeAtlas result.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS14_pfam_qc.html" target="_blank">
+      <span class="fig-num">Figure S14</span>
+      <span class="fig-desc"><strong>Pfam metal-domain audit.</strong> 10/140 primary KOs have Pfam metal-clan evidence (7.1%); 130 lack it. Validates KEGG-curated approach over Pfam-based filtering.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS15_ausmicrobiome.html" target="_blank">
+      <span class="fig-num">Figure S15</span>
+      <span class="fig-desc"><strong>P5 AusMicrobiome within-dataset check.</strong> β = −0.052 (p = 2.2×10⁻¹⁵, n = 482). Framed as within-dataset sensitivity, not independent replication. Compared to P1. Larger |β| explained by Proteobacteria-enriched AU subset.</span>
+    </a>
+  </li>
+  <li>
+    <a href="figS16_ngsa_map.html" target="_blank">
+      <span class="fig-num">Figure S16</span>
+      <span class="fig-desc"><strong>P4 geochemical replication: NGSA spatial coverage.</strong> Map of ~1,315 NGSA ICP-MS sites across Australia coloured by Cu concentration. Inset histogram of per-site Cu (ppm). 200 km join radius to AusMicrobiome 16S samples → 482 genera with geochemical data.</span>
+    </a>
+  </li>
+</ul>
+
+<div class="notes">
+  <h2>Design system notes</h2>
+  <ul>
+    <li>Palette: reference instance (palette.md). Light surface #fcfcfb, dark #1a1a19. Significant = blue (#2a78d6 / #3987e5), NS = gray (#c3c2b7), P1 accent = red (#e34948). CVD ΔE = 74.6 — all pairs pass.</li>
+    <li>Marks: 8–10px dots with 2px surface ring; 1.5px hairline CI bars; 1px hairline grid. No borders on data marks.</li>
+    <li>Figures 5 and 7 updated with real 95% CI bars from notebook output CSVs (<code>03_metal_pgls_results.csv</code>, <code>ngsa_replication_proper_comprehensive.csv</code>).</li>
+    <li>Figure 3A updated with real β/SE from <code>03_category_pgls_results.csv</code>. Figure 3B null parameters updated from <code>split_magnitude_permutation.csv</code> (N(−0.00620, 0.00691²)).</li>
+    <li>Supplementary figures complete: S1–S16 (all). S1 = matplotlib circular tree (gtdb_bac_genus_pruned.tree); S7 = HTML+SVG bar chart (genus_ra.parquet × sample_latlon_env.csv CWM); S8 = matplotlib heatmap (nb25_ko_presence_matrix.parquet Spearman ρ).</li>
+    <li>PNG export: <code>python3 /tmp/export_pngs.py</code> — transparent-background 2× PNGs in <code>png/</code>.</li>
+    <li>Dark mode: auto via <code>prefers-color-scheme: dark</code>. All figures switch automatically.</li>
+  </ul>
+</div>
+</body>
+</html>

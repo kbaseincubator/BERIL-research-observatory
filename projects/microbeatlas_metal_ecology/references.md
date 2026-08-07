@@ -65,8 +65,31 @@
   high-throughput DNA sequencing." *Current Microbiology* 77: 2330–2340.
   https://link.springer.com/article/10.1007/s00284-020-02138-5
 
-## Genome size and niche breadth
+## Genome size, streamlining, and niche breadth
+
+- Giovannoni SJ, Thrash JC, Temperton B. (2014). "Implications of streamlining theory for
+  microbial ecology." *ISME Journal* 8(8): 1553–1565.
+  https://doi.org/10.1038/ismej.2014.60
 
 - Goodall T, Griffiths RI, Emmett B, Jones B, Thorpe A, et al. (2026). "Environmental
   filtering shapes divergent bacterial strategies and genomic traits across soil niches."
-  *bioRxiv*. https://www.biorxiv.org/content/10.64898/2026.01.16.699881.abstract
+  *bioRxiv*. https://doi.org/10.64898/2026.01.16.699881
+
+## OTU-metal soil associations
+
+- Dai Z, Guo X, Lin J, et al. (2023). "Metallic micronutrients are associated with the
+  structure and function of the soil microbiome." *Nature Communications* 14: 8104.
+  https://doi.org/10.1038/s41467-023-44182-2
+
+- McReynolds E, Elshahed MS. (2025). "An ecological-evolutionary perspective on the genomic
+  diversity and habitat preferences of the Acidobacteriota." *Microbial Genomics* 11(3):
+  001344. https://doi.org/10.1099/mgen.0.001344
+
+## Metal homeostasis and Burkholderiales
+
+- Nies DH. (1999). "Microbial heavy-metal resistance." *Applied Microbiology and
+  Biotechnology* 51(6): 730–750. https://doi.org/10.1007/s002530051457
+
+- Li M, Liu J, Cao D, et al. (2025). "Heavy metal pollution simplifies microbial networks
+  and enhances modularity during tailings primary succession." *Frontiers in Microbiology*
+  16: 1566627. https://doi.org/10.3389/fmicb.2025.1566627

@@ -1,0 +1,7 @@
+{
+  "source": "spire_download_endpoints",
+  "n_mags_total": 15957,
+  "n_with_csu": 15368,
+  "n_with_soilgrids": 13182,
+  "mean_ko_per_mb_primary": 51.600571070241
+}

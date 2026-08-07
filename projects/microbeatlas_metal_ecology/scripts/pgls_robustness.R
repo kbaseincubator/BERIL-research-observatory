@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 # pgls_robustness.R
 # Three robustness analyses to address caveats in the main PGLS (NB05):
-#   1. Add n_species_with_amr as a covariate to control for pangenome sampling depth
+#   1. Add n_species_with_metal as a covariate to control for pangenome sampling depth
 #   2. Pangenome rarefaction: sample 1 species per genus, 200 iterations
 #   3. Archaeal PGLS (n = 48 genera; low-power, exploratory)
 #
@@ -70,19 +70,19 @@ run_pgls <- function(sub, tree, response_col, predictor_cols, label = "") {
   })
 }
 
-# ── Analysis 1: n_species_with_amr as covariate ──────────────────────────────
-cat("=== Analysis 1: PGLS with n_species_with_amr as covariate ===\n")
+# ── Analysis 1: n_species_with_metal as covariate ──────────────────────────────
+cat("=== Analysis 1: PGLS with n_species_with_metal as covariate ===\n")
 
 sub1 <- pgls_sub
-sub1$n_species_with_amr_z <- as.numeric(scale(sub1$n_species_with_amr))
+sub1$n_species_with_metal_z <- as.numeric(scale(sub1$n_species_with_metal))
 
-# 1a: B_std ~ metal_types_z + n_species_with_amr_z
+# 1a: B_std ~ metal_types_z + n_species_with_metal_z
 r1a <- run_pgls(sub1, bac_tree, "mean_levins_B_std",
-                c("mean_n_metal_types_z", "n_species_with_amr_z"),
+                c("mean_n_metal_types_z", "n_species_with_metal_z"),
                 label = "B_std~types+n_species")
 
 if (!is.null(r1a)) {
-  cat(sprintf("  B_std ~ metal_types_z + n_species_with_amr_z  (n=%d  λ=%.3f)\n",
+  cat(sprintf("  B_std ~ metal_types_z + n_species_with_metal_z  (n=%d  λ=%.3f)\n",
               r1a$n_taxa[1], r1a$lambda[1]))
   for (i in seq_len(nrow(r1a))) {
     cat(sprintf("    %-35s  β=%+.4f  SE=%.4f  p=%.4g\n",
@@ -90,14 +90,14 @@ if (!is.null(r1a)) {
   }
 }
 
-# 1b: B_std ~ all 3 AMR + n_species_with_amr_z (extend the multi-predictor model)
+# 1b: B_std ~ all 3 AMR + n_species_with_metal_z (extend the multi-predictor model)
 r1b <- run_pgls(sub1, bac_tree, "mean_levins_B_std",
-                c("mean_n_metal_types_z", "mean_n_metal_amr_clusters_z",
-                  "mean_metal_core_fraction_z", "n_species_with_amr_z"),
+                c("mean_n_metal_types_z", "mean_n_metal_clusters_z",
+                  "mean_metal_core_fraction_z", "n_species_with_metal_z"),
                 label = "B_std~all3+n_species")
 
 if (!is.null(r1b)) {
-  cat(sprintf("\n  B_std ~ all 3 AMR + n_species_with_amr_z  (n=%d  λ=%.3f)\n",
+  cat(sprintf("\n  B_std ~ all 3 AMR + n_species_with_metal_z  (n=%d  λ=%.3f)\n",
               r1b$n_taxa[1], r1b$lambda[1]))
   for (i in seq_len(nrow(r1b))) {
     cat(sprintf("    %-35s  β=%+.4f  SE=%.4f  p=%.4g\n",
@@ -109,6 +109,10 @@ if (!is.null(r1b)) {
 cat("\n=== Analysis 2: Rarefied PGLS (1 species per genus, 200 iterations) ===\n")
 
 amr_species$gtdb_genus_lower <- tolower(amr_species$gtdb_genus)
+# Derive fraction from count if the pre-computed fraction column is absent
+if (!"metal_core_fraction" %in% colnames(amr_species) && "n_core_metal" %in% colnames(amr_species)) {
+  amr_species$metal_core_fraction <- amr_species$n_core_metal / pmax(amr_species$n_metal_clusters, 1)
+}
 pgls_genera <- unique(pgls_sub$genus_lower)
 amr_match   <- amr_species[amr_species$gtdb_genus_lower %in% pgls_genera, ]
 
@@ -135,11 +139,11 @@ for (iter in seq_len(200)) {
   sub_r <- merge(
     pgls_sub[, c("genus_lower", "mean_levins_B_std")],
     samp[, c("gtdb_genus_lower", "n_metal_types",
-             "n_metal_amr_clusters", "metal_core_fraction")],
+             "n_metal_clusters", "metal_core_fraction")],
     by.x = "genus_lower", by.y = "gtdb_genus_lower"
   )
   names(sub_r)[names(sub_r) == "n_metal_types"]        <- "mean_n_metal_types"
-  names(sub_r)[names(sub_r) == "n_metal_amr_clusters"] <- "mean_n_metal_amr_clusters"
+  names(sub_r)[names(sub_r) == "n_metal_clusters"] <- "mean_n_metal_clusters"
   names(sub_r)[names(sub_r) == "metal_core_fraction"]  <- "mean_metal_core_fraction"
 
   # Z-score predictors
@@ -209,12 +213,12 @@ cat(sprintf("  Archaeal genera with AMR + B_std + in tree: %d\n", nrow(arc_sub))
 
 if (nrow(arc_sub) >= 10) {
   arc_sub$mean_n_metal_types_z        <- as.numeric(scale(arc_sub$mean_n_metal_types))
-  arc_sub$mean_n_metal_amr_clusters_z <- as.numeric(scale(arc_sub$mean_n_metal_amr_clusters))
+  arc_sub$mean_n_metal_clusters_z <- as.numeric(scale(arc_sub$mean_n_metal_clusters))
   arc_sub$mean_metal_core_fraction_z  <- as.numeric(scale(arc_sub$mean_metal_core_fraction))
 
   arc_results <- list()
   for (pred_z in c("mean_n_metal_types_z",
-                   "mean_n_metal_amr_clusters_z",
+                   "mean_n_metal_clusters_z",
                    "mean_metal_core_fraction_z")) {
     r <- run_pgls(arc_sub, arc_tree, "mean_levins_B_std", pred_z,
                   label = paste0("arc_B_std~", pred_z))

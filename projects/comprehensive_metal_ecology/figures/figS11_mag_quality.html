@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure S11. MAG Quality</title>
+  <style>
+    :root {
+      --sf: #fcfcfb; --tp: #0b0b0b; --ts: #52514e; --tm: #898781;
+      --gl: #e1e0d9; --bl: #c3c2b7;
+      --sig: #2a78d6; --ns: #c3c2b7; --acc: #e34948; --acc2: #eda100;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sf: #1a1a19; --tp: #ffffff; --ts: #c3c2b7; --tm: #898781;
+        --gl: #2c2c2a; --bl: #383835;
+        --sig: #3987e5; --ns: #52514e; --acc: #e66767; --acc2: #c98500;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--sf); color: var(--tp); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; padding: 24px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .subtitle { font-size: 12px; color: var(--ts); margin-bottom: 16px; }
+    .panels { display: flex; gap: 32px; margin-bottom: 16px; flex-wrap: wrap; }
+    .panel { flex: 1; min-width: 320px; }
+    .panel-title { font-size: 13px; font-weight: 600; color: var(--tp); margin-bottom: 8px; }
+    svg { display: block; margin: 0 auto; }
+    .annotation { background: var(--gl); padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 11px; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      .annotation { background: var(--bl); }
+    }
+    .annotation-title { font-weight: 600; color: var(--tp); }
+    .annotation-text { color: var(--ts); margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Figure S11. MAG Quality Metrics and Their Effect on the Primary Association</h1>
+    <div class="subtitle">Panel A: Distribution of MAG quality metrics across 10,855 genera. Panel B: β estimates remain significant under quality scenarios.</div>
+
+    <div class="panels">
+      <div class="panel">
+        <div class="panel-title">(A) MAG Quality Distributions</div>
+        <div id="plot-a"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">(B) Forest Plot: Quality Sensitivity</div>
+        <div id="plot-b"></div>
+      </div>
+    </div>
+
+    <div class="annotation">
+      <div class="annotation-title">Robustness Across Quality Scenarios</div>
+      <div class="annotation-text">
+        All quality-adjusted models recover a significant negative relationship (p &lt; 0.01). Restriction to high-quality MAGs (≥90% complete, ≤5% contaminated; n=511) reduces sample size but preserves the effect direction and significance (β=−0.0178, p=0.0052), confirming that results are robust to MAG quality variation.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const QUAL_DATA = [
+      {label: "Baseline (n=1,107)",          beta: -0.023129, se: 0.004180, p: 3.92e-8,  note: "all genera with quality metadata"},
+      {label: "+ Completeness covariate",    beta: -0.023466, se: 0.004200, p: 2.90e-8,  note: "quality as covariate"},
+      {label: "+ Contamination covariate",   beta: -0.022865, se: 0.004176, p: 5.42e-8,  note: "quality as covariate"},
+      {label: "High-quality only (n=511)",   beta: -0.017774, se: 0.006328, p: 5.16e-3,  note: "≥90% complete, ≤5% contam"},
+    ];
+    const P1 = {beta: -0.021, se: 0.0037};
+
+    // Panel A: Histograms
+    const c_counts = [13, 32, 58, 72, 94, 132, 137, 206, 311, 411, 561, 750, 977, 1127, 1142, 1153, 938, 885, 752, 1104];
+    const c_edges = [50.0, 52.5, 55.0, 57.5, 60.0, 62.5, 65.0, 67.5, 70.0, 72.5, 75.0, 77.5, 80.0, 82.5, 85.0, 87.5, 90.0, 92.5, 95.0, 97.5, 100.0];
+
+    const cont_counts = [1890, 2189, 2053, 1633, 1269, 751, 459, 295, 183, 133, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const cont_edges = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0];
+
+    function renderPanelA() {
+      const width = 360;
+      const height = 280;
+      const margin = {top: 20, right: 20, bottom: 40, left: 50};
+      const plotWidth = width - margin.left - margin.right;
+      const plotHeight = height - margin.top - margin.bottom;
+
+      const c_max = Math.max(...c_counts);
+      const cont_max = Math.max(...cont_counts);
+
+      let s = `<svg width="${width}" height="${height * 2 + 20}" xmlns="http://www.w3.org/2000/svg">`;
+      s += `<rect width="${width}" height="${height * 2 + 20}" fill="var(--sf)" />`;
+
+      // Completeness histogram (top)
+      s += `<text x="${width / 2}" y="15" font-size="12" font-weight="600" text-anchor="middle" fill="var(--tp)">Completeness (%)</text>`;
+      s += `<rect x="${margin.left}" y="${margin.top}" width="${plotWidth}" height="${plotHeight}" fill="none" stroke="var(--bl)" stroke-width="1" />`;
+
+      const c_bin_width = plotWidth / c_counts.length;
+      for (let i = 0; i < c_counts.length; i++) {
+        const barHeight = (c_counts[i] / c_max) * plotHeight;
+        const x = margin.left + i * c_bin_width;
+        const y = margin.top + plotHeight - barHeight;
+        s += `<rect x="${x}" y="${y}" width="${c_bin_width}" height="${barHeight}" fill="var(--sig)" opacity="0.8" />`;
+      }
+
+      // Completeness x-axis
+      s += `<line x1="${margin.left}" y1="${margin.top + plotHeight}" x2="${width - margin.right}" y2="${margin.top + plotHeight}" stroke="var(--tp)" stroke-width="1.5" />`;
+      for (let i = 0; i <= 4; i++) {
+        const x = margin.left + (i / 4) * plotWidth;
+        const label = (50 + i * 12.5).toFixed(0);
+        s += `<text x="${x}" y="${margin.top + plotHeight + 18}" font-size="9" text-anchor="middle" fill="var(--ts)">${label}</text>`;
+      }
+
+      // Completeness y-axis
+      s += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${margin.top + plotHeight}" stroke="var(--tp)" stroke-width="1.5" />`;
+      for (let i = 0; i <= 3; i++) {
+        const y = margin.top + plotHeight - (i / 3) * plotHeight;
+        const label = (i * Math.ceil(c_max / 3)).toFixed(0);
+        s += `<text x="${margin.left - 8}" y="${y + 4}" font-size="9" text-anchor="end" fill="var(--ts)">${label}</text>`;
+      }
+
+      // Contamination histogram (bottom)
+      const contHeight = height + 20;
+      s += `<text x="${width / 2}" y="${contHeight + 15}" font-size="12" font-weight="600" text-anchor="middle" fill="var(--tp)">Contamination (%)</text>`;
+      s += `<rect x="${margin.left}" y="${contHeight + margin.top}" width="${plotWidth}" height="${plotHeight}" fill="none" stroke="var(--bl)" stroke-width="1" />`;
+
+      const cont_bin_width = plotWidth / cont_counts.length;
+      for (let i = 0; i < cont_counts.length; i++) {
+        const barHeight = (cont_counts[i] / cont_max) * plotHeight;
+        const x = margin.left + i * cont_bin_width;
+        const y = contHeight + margin.top + plotHeight - barHeight;
+        s += `<rect x="${x}" y="${y}" width="${cont_bin_width}" height="${barHeight}" fill="var(--acc2)" opacity="0.8" />`;
+      }
+
+      // Contamination x-axis
+      s += `<line x1="${margin.left}" y1="${contHeight + margin.top + plotHeight}" x2="${width - margin.right}" y2="${contHeight + margin.top + plotHeight}" stroke="var(--tp)" stroke-width="1.5" />`;
+      for (let i = 0; i <= 4; i++) {
+        const x = margin.left + (i / 4) * plotWidth;
+        const label = (i * 2.5).toFixed(1);
+        s += `<text x="${x}" y="${contHeight + margin.top + plotHeight + 18}" font-size="9" text-anchor="middle" fill="var(--ts)">${label}</text>`;
+      }
+
+      // Contamination y-axis
+      s += `<line x1="${margin.left}" y1="${contHeight + margin.top}" x2="${margin.left}" y2="${contHeight + margin.top + plotHeight}" stroke="var(--tp)" stroke-width="1.5" />`;
+      for (let i = 0; i <= 3; i++) {
+        const y = contHeight + margin.top + plotHeight - (i / 3) * plotHeight;
+        const label = (i * Math.ceil(cont_max / 3)).toFixed(0);
+        s += `<text x="${margin.left - 8}" y="${y + 4}" font-size="9" text-anchor="end" fill="var(--ts)">${label}</text>`;
+      }
+
+      s += `</svg>`;
+      document.getElementById('plot-a').innerHTML = s;
+    }
+
+    function renderPanelB() {
+      const width = 360;
+      const height = 240;
+      const margin = {top: 20, right: 20, bottom: 40, left: 140};
+      const plotWidth = width - margin.left - margin.right;
+
+      const xMin = -0.040, xMax = 0.005;
+      const xScale = (beta) => margin.left + ((beta - xMin) / (xMax - xMin)) * plotWidth;
+
+      let s = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">`;
+      s += `<rect width="${width}" height="${height}" fill="var(--sf)" />`;
+
+      // Plot background
+      s += `<rect x="${margin.left}" y="${margin.top}" width="${plotWidth}" height="${height - margin.top - margin.bottom}" fill="none" stroke="var(--bl)" stroke-width="1" />`;
+
+      // Grid
+      for (let i = 0; i <= 5; i++) {
+        const x = margin.left + (i / 5) * plotWidth;
+        s += `<line x1="${x}" y1="${margin.top}" x2="${x}" y2="${height - margin.bottom}" stroke="var(--gl)" stroke-width="0.5" />`;
+      }
+
+      // Zero line
+      s += `<line x1="${xScale(0)}" y1="${margin.top}" x2="${xScale(0)}" y2="${height - margin.bottom}" stroke="var(--tm)" stroke-width="1" stroke-dasharray="3,2" />`;
+
+      // P1 reference
+      s += `<line x1="${xScale(P1.beta)}" y1="${margin.top}" x2="${xScale(P1.beta)}" y2="${height - margin.bottom}" stroke="var(--sig)" stroke-width="2" stroke-dasharray="4,3" opacity="0.6" />`;
+
+      // Data points with error bars
+      const rowHeight = (height - margin.top - margin.bottom) / (QUAL_DATA.length + 1);
+      for (let i = 0; i < QUAL_DATA.length; i++) {
+        const d = QUAL_DATA[i];
+        const y = margin.top + (i + 0.5) * rowHeight;
+        const ci_lower = d.beta - 1.96 * d.se;
+        const ci_upper = d.beta + 1.96 * d.se;
+
+        // CI bar
+        s += `<line x1="${xScale(ci_lower)}" y1="${y}" x2="${xScale(ci_upper)}" y2="${y}" stroke="var(--sig)" stroke-width="2" />`;
+        // Cap ends
+        s += `<line x1="${xScale(ci_lower)}" y1="${y - 3}" x2="${xScale(ci_lower)}" y2="${y + 3}" stroke="var(--sig)" stroke-width="1.5" />`;
+        s += `<line x1="${xScale(ci_upper)}" y1="${y - 3}" x2="${xScale(ci_upper)}" y2="${y + 3}" stroke="var(--sig)" stroke-width="1.5" />`;
+
+        // Point
+        s += `<circle cx="${xScale(d.beta)}" cy="${y}" r="5" fill="var(--sig)" />`;
+
+        // Label
+        s += `<text x="${margin.left - 10}" y="${y + 4}" font-size="10" text-anchor="end" fill="var(--tp)">${d.label}</text>`;
+      }
+
+      // X-axis
+      s += `<line x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}" stroke="var(--tp)" stroke-width="1.5" />`;
+      for (let i = 0; i <= 5; i++) {
+        const beta = xMin + (i / 5) * (xMax - xMin);
+        const x = xScale(beta);
+        s += `<line x1="${x}" y1="${height - margin.bottom}" x2="${x}" y2="${height - margin.bottom + 5}" stroke="var(--tp)" stroke-width="1" />`;
+        s += `<text x="${x}" y="${height - margin.bottom + 16}" font-size="9" text-anchor="middle" fill="var(--ts)">${beta.toFixed(3)}</text>`;
+      }
+
+      // X-axis label
+      s += `<text x="${margin.left + plotWidth / 2}" y="${height - 5}" font-size="11" font-weight="600" text-anchor="middle" fill="var(--tp)">β estimate (95% CI)</text>`;
+
+      s += `</svg>`;
+      document.getElementById('plot-b').innerHTML = s;
+    }
+
+    window.addEventListener('load', () => {
+      renderPanelA();
+      renderPanelB();
+    });
+  </script>
+</body>
+</html>

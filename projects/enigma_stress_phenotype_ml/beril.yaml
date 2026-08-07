@@ -1,0 +1,50 @@
+project_id: enigma_stress_phenotype_ml
+status: complete
+title: Per-Stressor CatBoost ML Pipeline for Predicting Metal/Antibiotic Stress Phenotypes
+description: 'Part 4 of PhD thesis: machine learning pipeline to predict which ENIGMA
+  bacterial isolates
+
+  will exhibit fitness defects under metal and antibiotic stress based on protein
+  sequence
+
+  features alone. Combines ESM-2 language model embeddings, k-mer frequencies, and
+
+  physicochemical properties as inputs to per-stressor CatBoost classifiers with LOGO
+
+  (Leave-One-Genus-Out) cross-validation. Covers 10 metal stressors (Zn, Cu, Cd, Co,
+  Ni,
+
+  Cr, Hg, Mn, Fe, Se, Al) and 17 antibiotic compounds.
+
+  '
+authors:
+- name: Heather MacGregor
+  affiliation: Lawrence Berkeley National Laboratory
+  orcid: 0000-0003-1112-3009
+data_sources:
+- enigma.genome_depot_enigma
+- fitnessbrowser
+artifacts:
+  notebooks: true
+  data: true
+  figures: true
+  src: true
+  report: true
+  review: true
+approval:
+  by: 0000-0003-1112-3009
+  at: '2026-06-29T10:52:00Z'
+  report_hash: sha256:f8ef38dd8072ac11eb5b541ec25d7291809e19cdf775c7cedd829c22c19c1e67
+  review: REVIEW_5.md
+  review_hash: sha256:287440f10adef25d2c3bfe29fba575824e429230b4b5f70f7797829e26b9ce3c
+  notebook_hashes:
+    notebooks/01_Data_Preparation.ipynb: sha256:46e35b1c490cc095cb7c5509d683b94c7a4e58bf53e65fd0fb217ae08808a255
+    notebooks/02_Integrate_Downloaded_Data.ipynb: sha256:1b69e0af860e484287ad28d301b2fe423e67eae946c119c42d1ebbdae19c5c1d
+    notebooks/03_Feature_Engineering.ipynb: sha256:a2ed2f20fd389eeeb64f7239c29d3baa0bff2ca4bf08c6ab9dd83cb13432f5f7
+    notebooks/04_Feature_Evaluation.ipynb: sha256:7e69729374eea9103eecb2f8a48d80507272a9e6691c82862ee06047d5462def
+    notebooks/05_Model_Training.ipynb: sha256:3b08d443cd4e2f8df5bb631125ff0976d7941c6811bca4d34640b2191aec1cdb
+    notebooks/06_Model_Evaluation.ipynb: sha256:78b902e08e579ad04fb4f8adc85f56811b177240742cd16f50c98f55bc63de6e
+    notebooks/07_Ensemble_Model_Training.ipynb: sha256:3becef616fbb49675cfa2f491297814db9b2b5c42f3553bc4999f1e3174fbfbc
+    notebooks/08_General_Essentiality_Model.ipynb: sha256:10670a77c4671bf8c9e0e1f80587147bddb73a5a9af77e51edfef9fc580868fa
+    notebooks/09_Isolate_Prediction.ipynb: sha256:48d2abafcb0ac22e845568a7a6760c6d3f2d73bcebcd743d2ae4bf62c38cac67
+last_session_at: '2026-06-29T10:52:00Z'

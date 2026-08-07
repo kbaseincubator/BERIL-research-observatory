@@ -1,0 +1,44 @@
+approval:
+  at: '2026-06-29T08:45:00Z'
+  by: 0000-0003-1112-3009
+  notebook_hashes:
+    notebooks/01_Data_Extraction.ipynb: sha256:4811067641f7bb33bb7b436e9534d73588f7b390ee5d85f6791fad64fed07def
+    notebooks/02_Feature_Engineering.ipynb: sha256:fca2e8a7d75b56f85015ebac71866aa3d0e40f9e76bd66d299eafd391073e45e
+    notebooks/03_General_Essentiality_Model.ipynb: sha256:adfc95c170ec9375b9eca0d0d2f5cb15fee311e5177389af2f7391ccb95b9070
+  report_hash: sha256:a7b70bc11096e048bb29cbce01ea1a2eb5faa247282fb0ccc1eb6663d91308e0
+  review: REVIEW_3.md
+  review_hash: sha256:d8b22902c13ea1c94d5bbbfe111f62379af8c50895873f3d8f5d5c7a240ec7d2
+artifacts:
+  data: true
+  figures: true
+  notebooks: true
+  report: true
+  review: true
+  src: false
+authors:
+- affiliation: Lawrence Berkeley National Laboratory
+  name: Heather MacGregor
+  orcid: 0000-0003-1112-3009
+data_sources:
+- fitnessbrowser
+- enigma.genome_depot_enigma
+description: 'Re-implementation of general gene essentiality prediction with corrected
+  methodology. Predicts whether a protein is conditionally essential (fitness < -2
+  in ANY stressor) from sequence composition features alone, using organism-stratified
+  train/test splits and true leave-one-genus-out cross-validation. Addresses critical
+  methodological flaws (protein-level splits, LOOO mislabeled as LOGO, biologically
+  implausible positive rates) found in the prior refocus implementation. Data source:
+  FitnessBrowser RB-TnSeq (same 60 ENIGMA organisms as enigma_stress_phenotype_ml),
+  binarized via fitness < -2 union threshold across all stressors.
+
+  '
+last_session_at: '2026-06-29T08:45:00Z'
+project_id: enigma_general_essentiality
+status: complete
+submissions:
+- approved_at: '2026-06-29T08:45:00Z'
+  attempted_at: '2026-06-29T08:46:00Z'
+  error: 'mc cp: Insufficient permissions to access MinIO path — credentials may have
+    expired; re-run beril login or mc alias set berdl-minio'
+  status: failed
+title: Cross-Stressor Conditional Essentiality Prediction in ENIGMA Isolates

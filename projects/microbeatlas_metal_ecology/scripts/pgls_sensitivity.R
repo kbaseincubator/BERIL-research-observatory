@@ -22,15 +22,19 @@ cat("Data dir:", data_dir, "\n\n")
 # ── Load data ──────────────────────────────────────────────────────────────
 pgls_sub    <- read.csv(file.path(data_dir, "pgls_subset.csv"),
                         stringsAsFactors = FALSE)
-amr_species <- read.csv(file.path(data_dir, "species_metal_amr.csv"),
-                        stringsAsFactors = FALSE)
+permetal_file <- file.path(data_dir, "species_metal_amr_permetal.csv")
+amr_species_file <- if (file.exists(permetal_file)) permetal_file else file.path(data_dir, "species_metal_amr.csv")
+amr_species <- read.csv(amr_species_file, stringsAsFactors = FALSE)
+cat("AMR species file:", amr_species_file, "\n")
 prev_wide   <- read.csv(file.path(data_dir, "otu_env_prevalence_wide.csv"),
                         stringsAsFactors = FALSE, row.names = 1)
 otu_nb      <- read.csv(file.path(data_dir, "otu_niche_breadth.csv"),
                         stringsAsFactors = FALSE)
 bac_tree    <- read.tree(file.path(data_dir, "gtdb_bac_genus_pruned.tree"))
 
-METALS <- c("Hg", "As", "Cu", "Zn", "Cd", "Cr", "Ni")
+# Full metal names matching species_metal_amr_permetal.csv columns (n_<metal>)
+METALS <- c("antimony", "arsenic", "cadmium", "chromium", "cobalt",
+            "copper", "iron", "mercury", "nickel", "silver", "tellurium", "zinc")
 ENVS   <- colnames(prev_wide)
 cat("Metals:      ", paste(METALS, collapse = ", "), "\n")
 cat("Environments:", paste(ENVS,   collapse = ", "), "\n")
@@ -84,9 +88,19 @@ amr_in <- amr_species[amr_species$genus_lower %in% pgls_sub$genus_lower, ]
 # Metal count columns in species-level AMR data
 metal_cols <- paste0("n_", METALS)
 
+# S1 requires per-metal columns (n_Hg, n_As, etc.) in species_metal_amr.csv.
+# The curated 46-KO gene list aggregates to n_metal_types (count of distinct types)
+# without retaining per-type breakdowns. S1 is therefore not runnable with this gene list.
+has_per_metal <- all(metal_cols %in% colnames(amr_in))
+if (!has_per_metal) {
+  cat("SKIP S1 (leave-one-metal-out): per-metal columns absent from species_metal_amr.csv.\n")
+  cat("       This is expected with the curated 46-KO gene list; only n_metal_types is stored.\n")
+}
+
 lomo_results <- list()
 
 for (excl_metal in METALS) {
+  if (!has_per_metal) break
   remaining <- METALS[METALS != excl_metal]
   remain_cols <- paste0("n_", remaining)
 
@@ -190,7 +204,7 @@ loeo_df <- do.call(rbind, loeo_results)
 # ── Analysis 3: Within-genus variance in metal types ──────────────────────
 cat("\n=== Analysis 3: Within-genus SD of metal types as covariate ===\n")
 
-amr_in$n_types <- rowSums(amr_in[, metal_cols, drop = FALSE] > 0)
+amr_in$n_types <- amr_in$n_metal_types   # curated list: use pre-aggregated column
 genus_sd <- aggregate(n_types ~ genus_lower, data = amr_in,
                       FUN = function(x) if (length(x) > 1) sd(x) else 0)
 names(genus_sd)[2] <- "sd_n_metal_types"
@@ -212,10 +226,10 @@ if (!is.null(r3)) {
 }
 
 # ── Analysis 4: log(n_species) as PGLS covariate ──────────────────────────
-cat("\n=== Analysis 4: log(n_species_with_amr) as PGLS covariate ===\n")
+cat("\n=== Analysis 4: log(n_species_with_metal) as PGLS covariate ===\n")
 
 sub5 <- pgls_sub
-sub5$log_n_species_z <- as.numeric(scale(log1p(sub5$n_species_with_amr)))
+sub5$log_n_species_z <- as.numeric(scale(log1p(sub5$n_species_with_metal)))
 
 r4 <- run_pgls(sub5, bac_tree, "mean_levins_B_std",
                c("mean_n_metal_types_z", "log_n_species_z"),

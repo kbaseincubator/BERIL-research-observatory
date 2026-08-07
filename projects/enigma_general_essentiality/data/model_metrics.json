@@ -1,0 +1,15 @@
+{
+  "test_auc": 0.6594182546646734,
+  "test_mcc": 0.14853571992734496,
+  "test_threshold": 0.5206457440182067,
+  "logo_n_folds": 32,
+  "logo_n_reliable": 27,
+  "logo_mean_auc_reliable": 0.6179775202246434,
+  "logo_std_auc_reliable": 0.03689064897277829,
+  "logo_mean_mcc_reliable": 0.12602588379719332,
+  "logo_std_mcc_reliable": 0.04948131756992265,
+  "scale_pos_weight": 6.440194590734625,
+  "n_features": 420,
+  "n_train": 166705,
+  "n_test": 48346
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure S15 – P5 AusMicrobiome Within-Dataset Check</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6; --acc:#e34948; --acc2:#eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5; --acc:#e66767; --acc2:#c98500;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; max-width:640px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; line-height:1.5; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+.stat-block { border:1px solid var(--gl); border-radius:6px; padding:10px 14px; }
+.stat-label { font-size:10px; color:var(--tm); margin-bottom:3px; }
+.stat-value { font-size:14px; font-weight:600; font-variant-numeric:tabular-nums; }
+.stat-desc { font-size:10px; color:var(--ts); margin-top:2px; }
+.note { margin-top:14px; font-size:11px; color:var(--ts); border-left:3px solid var(--acc2); padding-left:10px; line-height:1.5; }
+</style>
+</head>
+<body>
+<h2>Figure S15. P5 AusMicrobiome within-dataset sensitivity check: β = −0.052 (p = 2.2×10⁻¹⁵).</h2>
+<div class="sub">PGLS of per-Mb primary KO density vs MicrobeAtlas niche breadth, restricted to the 482 genera with AusMicrobiome MAG coverage. This is a <strong>within-dataset sensitivity check</strong>, not independent replication: both the predictor (KO density from AusMicrobiome MAGs) and response (MicrobeAtlas niche breadth) are derived from the same or closely related genera. The larger |β| vs P1 (−0.052 vs −0.021) is expected given the Proteobacteria-enriched composition of the Australian subset (Proteobacteria show stronger streamlining, Figure S9).</div>
+
+<div class="stat-grid">
+  <div class="stat-block">
+    <div class="stat-label">P5 β (AusMicrobiome subset)</div>
+    <div class="stat-value" style="color:var(--acc2)">−0.052</div>
+    <div class="stat-desc">SE = 0.00634; 95% CI [−0.065, −0.039]</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-label">p-value</div>
+    <div class="stat-value" style="color:var(--acc2)">2.2×10⁻¹⁵</div>
+    <div class="stat-desc">PGLS; Pagel's λ = 0.734</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-label">n genera (P5)</div>
+    <div class="stat-value">482</div>
+    <div class="stat-desc">AusMicrobiome soil MAGs; ≥3 MAGs/genus</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-label">Primary P1 β for comparison</div>
+    <div class="stat-value" style="color:var(--sig)">−0.021</div>
+    <div class="stat-desc">n = 1,574; FDR q = 6.4×10⁻⁸; λ = 0.757</div>
+  </div>
+</div>
+
+<svg id="chart"></svg>
+
+<div class="note">
+  <strong>Why P5 is not independent replication:</strong> P1 and P5 use the same KO-density predictor on different genus subsets (global n = 1,574 vs Australian n = 482). The larger β in P5 reflects subset phylogenetic composition — Australian agricultural soils are Proteobacteria-rich, and Proteobacteria show β ≈ −0.021 in the clade-stratified analysis (Figure S9) — and may reflect additional soil-habitat streamlining not captured globally. This framing is pre-specified in the analysis plan. For independent replication see P4 (NGSA geochemical PGLS, Figure 7).
+</div>
+
+<script>
+// Forest plot comparing P1 and P5
+const DATA = [
+  {label:'P1 (global, n=1,574)',    beta:-0.02070, se:0.003700, p:2.1e-8,  lambda:0.757, isP5:false},
+  {label:'P5 (AusMicrobiome, n=482)', beta:-0.05204, se:0.006344, p:2.2e-15, lambda:0.734, isP5:true},
+];
+
+const fmtB = b => (b >= 0 ? '+' : '') + b.toFixed(4);
+const fmtP = p => p < 1e-9 ? p.toExponential(2) : p < 0.001 ? p.toExponential(2) : p.toFixed(4);
+
+function render() {
+  const W = 500, rowH = 46;
+  const M = {top:28, right:120, bottom:46, left:220};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+  const xMin = -0.076, xMax = 0.012;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [-0.06, -0.04, -0.02, 0];
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${t === 0 ? 'var(--bl)' : 'var(--gl)'}" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+  });
+
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const col = d.isP5 ? 'var(--acc2)' : 'var(--sig)';
+    const xb = xS(d.beta);
+    const xlo = xS(d.beta - 1.96 * d.se);
+    const xhi = xS(d.beta + 1.96 * d.se);
+    const x0 = xS(0);
+
+    s += `<line x1="${xlo}" y1="${y}" x2="${xhi}" y2="${y}"
+      stroke="${col}" stroke-width="2.5" opacity="0.6"/>`;
+    [[xlo],[xhi]].forEach(([x]) => {
+      s += `<line x1="${x}" y1="${y-5}" x2="${x}" y2="${y+5}"
+        stroke="${col}" stroke-width="2.5" opacity="0.7"/>`;
+    });
+    s += `<line x1="${x0}" y1="${y}" x2="${xb}" y2="${y}"
+      stroke="${col}" stroke-width="2.5" opacity="0.7"/>`;
+    s += `<circle cx="${xb}" cy="${y}" r="6"
+      fill="${col}" stroke="var(--sf)" stroke-width="2"/>`;
+    if (d.isP5) {
+      s += `<text x="${xb}" y="${y - 9}" text-anchor="middle"
+        font-size="9" fill="var(--acc2)" font-weight="600">within-dataset only</text>`;
+    }
+
+    s += `<text x="${M.left - 8}" y="${y - 5}" text-anchor="end"
+      font-size="11" font-weight="600" fill="${d.isP5 ? 'var(--acc2)' : 'var(--sig)'}">${d.label}</text>`;
+    s += `<text x="${M.left - 8}" y="${y + 10}" text-anchor="end"
+      font-size="9" fill="var(--tm)">λ = ${d.lambda.toFixed(3)}</text>`;
+
+    s += `<text x="${W - M.right + 6}" y="${y}" text-anchor="start"
+      font-size="10" fill="${col}" font-variant-numeric="tabular-nums">${fmtB(d.beta)}</text>`;
+    s += `<text x="${W - M.right + 6}" y="${y + 12}" text-anchor="start"
+      font-size="9" fill="var(--tm)">p = ${fmtP(d.p)}</text>`;
+  });
+
+  s += `<line x1="${M.left}" y1="${M.top + DATA.length * rowH}"
+    x2="${W - M.right}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t === 0 ? '0' : t.toFixed(2)}</text>`;
+  });
+
+  s += `<text x="${xS(-0.030)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">PGLS β (metal-gene KO density → niche breadth)</text>`;
+
+  svg.innerHTML = s;
+}
+
+render();
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+</script>
+</body>
+</html>

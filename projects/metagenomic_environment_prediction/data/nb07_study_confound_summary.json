@@ -1,0 +1,23 @@
+{
+  "notebook": "NB07_study_design_confound",
+  "n_genera_eligible": 643,
+  "n_genera_pgls": 328,
+  "lambda_levins_b_nb06v2": 0.2042,
+  "lambda_log_n_studies": 0.2179,
+  "r_levins_b_vs_n_studies": 0.8016915462770943,
+  "r_levins_b_vs_n_biomes": 0.8623169643935388,
+  "r2_levins_b_vs_log_n_studies": 0.7061102768861799,
+  "r_orig_vs_rarefied_levins_b": 0.7310237780504402,
+  "beta_primary_baseline": -0.0556,
+  "beta_cofactor_baseline": -0.0723,
+  "beta_primary_residual": 0.032751258565594944,
+  "beta_cofactor_residual": -0.014562791390696923,
+  "beta_primary_rarefied": 0.041855499670074625,
+  "beta_cofactor_rarefied": 0.012506131443374919,
+  "p_primary_residual": 0.5776190853149212,
+  "p_cofactor_residual": 0.7958667963924444,
+  "p_primary_rarefied": 0.7083699502400176,
+  "p_cofactor_rarefied": 0.9061918190140719,
+  "lambda_residual_primary": 0.0001,
+  "lambda_rarefied_primary": 0.0001
+}

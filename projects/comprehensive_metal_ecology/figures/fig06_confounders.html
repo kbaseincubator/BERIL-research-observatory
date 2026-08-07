@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 6 – Confounder Analyses</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6; --ns:#c3c2b7; --acc:#e34948; --acc2:#eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5; --ns:#52514e; --acc:#e66767; --acc2:#c98500;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.legend { display:flex; gap:20px; margin-bottom:12px; font-size:11px; color:var(--ts); align-items:center; }
+.leg-item { display:flex; align-items:center; gap:5px; }
+.leg-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.leg-sq { width:8px; height:8px; border-radius:2px; flex-shrink:0; }
+.tt {
+  position:fixed; background:var(--sf); border:1px solid var(--gl);
+  padding:8px 10px; border-radius:4px; font-size:11px; color:var(--tp);
+  pointer-events:none; display:none; max-width:280px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12); z-index:100; line-height:1.6;
+}
+.tbl-btn { margin-top:12px; font-size:11px; color:var(--sig); cursor:pointer; text-decoration:underline; background:none; border:none; padding:0; }
+table { display:none; margin-top:10px; font-size:11px; border-collapse:collapse; }
+th,td { text-align:left; padding:3px 8px; border-bottom:1px solid var(--gl); color:var(--ts); white-space:nowrap; }
+th { color:var(--tm); font-weight:500; }
+td:nth-child(n+2) { font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<h2>Figure 6. No pre-specified confounder eliminates the primary association.</h2>
+<div class="sub">Dumbbell chart showing |β| before (circle = primary P1 estimate, 0.021) and after (square = β with confounder as covariate) adding each of five covariates. Pre-specified decision rule: attenuation &gt; 50% AND p &gt; 0.05 simultaneously. Dashed line = 50% attenuation threshold (|β| = 0.0105). Latitude amplifies the signal (β becomes more negative).</div>
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:var(--sig)"></div>Before (|β| = 0.021, primary)</div>
+  <div class="leg-item"><div class="leg-sq" style="background:var(--sig)"></div>After (|β| with confounder)</div>
+  <div class="leg-item"><div class="leg-sq" style="background:var(--acc)"></div>Amplitude increased (confounder amplifies signal)</div>
+</div>
+<svg id="chart"></svg>
+<div class="tt" id="tt"></div>
+<button class="tbl-btn" onclick="toggleTable()">Show data table</button>
+<table id="dtbl">
+  <thead><tr><th>Confounder</th><th>|β| before</th><th>|β| after</th><th>% attenuation</th><th>p (with conf.)</th><th>Decision</th></tr></thead>
+  <tbody id="dtbody"></tbody>
+</table>
+
+<script>
+// Sorted by attenuation magnitude ascending (latitude at top — amplifies)
+const DATA = [
+  {conf:"Mean latitude",    before:0.021, after:0.031, atten:-51.8, amplified:true,  p:'<0.0001', sig:true},
+  {conf:"Dominant biome",   before:0.021, after:0.020, atten: 5.8,  amplified:false, p:'<0.0001', sig:true},
+  {conf:"Isolation source", before:0.021, after:0.018, atten: 14.5, amplified:false, p:'3×10⁻⁶',  sig:true},
+  {conf:"GC content",       before:0.021, after:0.016, atten: 23.7, amplified:false, p:'7.5×10⁻⁵',sig:true},
+  {conf:"Genome size",      before:0.021, after:0.011, atten: 46.7, amplified:false, p:'0.006',    sig:true},
+];
+
+const fmtB = b => b.toFixed(3);
+
+function render() {
+  const W = 540, rowH = 38;
+  const M = {top:40, right:130, bottom:54, left:160};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+  const xMin = 0, xMax = 0.038;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [0, 0.01, 0.02, 0.03];
+  const threshold = 0.021 * 0.5; // 50% attenuation threshold = 0.0105
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  // Gridlines
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${t === 0 ? 'var(--bl)' : 'var(--gl)'}" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+  });
+
+  // 50% threshold dashed line
+  const thrX = xS(threshold);
+  s += `<line x1="${thrX}" y1="${M.top - 10}" x2="${thrX}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--acc)" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.55"/>`;
+  s += `<text x="${thrX}" y="${M.top - 18}" text-anchor="middle"
+    font-size="9" fill="var(--acc)" opacity="0.8">50% threshold</text>`;
+  s += `<text x="${thrX}" y="${M.top - 8}" text-anchor="middle"
+    font-size="9" fill="var(--acc)" opacity="0.8">(|β| = 0.0105)</text>`;
+
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const xBefore = xS(d.before); // always 0.021
+    const xAfter = xS(d.after);
+    const colAfter = d.amplified ? 'var(--acc)' : 'var(--sig)';
+    const diff = d.after - d.before;
+
+    s += `<rect class="row-hit" x="${M.left}" y="${M.top + i * rowH + 2}"
+      width="${pw}" height="${rowH - 4}"
+      fill="none" rx="3" data-i="${i}" style="cursor:default"/>`;
+
+    // Dumbbell connector
+    const x1 = Math.min(xBefore, xAfter), x2 = Math.max(xBefore, xAfter);
+    s += `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}"
+      stroke="${d.amplified ? 'var(--acc)' : 'var(--ns)'}" stroke-width="2" opacity="0.5"/>`;
+
+    // Before dot (circle)
+    s += `<circle cx="${xBefore}" cy="${y}" r="5"
+      fill="var(--sig)" stroke="var(--sf)" stroke-width="2"/>`;
+
+    // After square (approx with rounded rect)
+    const sqR = 4;
+    s += `<rect x="${xAfter - sqR}" y="${y - sqR}" width="${sqR * 2}" height="${sqR * 2}"
+      rx="2" fill="${colAfter}" stroke="var(--sf)" stroke-width="2"/>`;
+
+    // Confounder label
+    s += `<text x="${M.left - 8}" y="${y + 4}" text-anchor="end"
+      font-size="11" fill="var(--tp)">${d.conf}</text>`;
+
+    // Attenuation annotation
+    const attenStr = d.amplified
+      ? `amplified ${Math.abs(d.atten).toFixed(0)}%`
+      : `${d.atten.toFixed(0)}% attenuated`;
+    const attenColor = d.amplified ? 'var(--acc)' : d.atten > 40 ? 'var(--acc2)' : 'var(--ts)';
+    s += `<text x="${W - M.right + 6}" y="${y}" text-anchor="start"
+      font-size="10" fill="${attenColor}">${attenStr}</text>`;
+    s += `<text x="${W - M.right + 6}" y="${y + 12}" text-anchor="start"
+      font-size="9" fill="var(--tm)">p = ${d.p}</text>`;
+  });
+
+  // X-axis
+  s += `<line x1="${M.left}" y1="${M.top + DATA.length * rowH}"
+    x2="${W - M.right}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t === 0 ? '0' : t.toFixed(2)}</text>`;
+  });
+
+  s += `<text x="${xS(0.019)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">|β| (PGLS estimate magnitude)</text>`;
+
+  svg.innerHTML = s;
+
+  svg.querySelectorAll('.row-hit').forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      const d = DATA[+this.dataset.i];
+      const decision = d.amplified
+        ? 'Amplifies signal — not a confounder'
+        : d.atten >= 50
+        ? 'Would meet 50% threshold — but p remains significant'
+        : 'Below 50% threshold → ROBUST';
+      document.getElementById('tt').innerHTML =
+        `<strong>${d.conf}</strong><br>` +
+        `<span>|β| before: ${fmtB(d.before)} → after: ${fmtB(d.after)}</span><br>` +
+        `<span>% change: ${d.atten > 0 ? '+' : ''}${d.atten.toFixed(1)}%${d.amplified ? ' (amplified)' : ' (attenuated)'}</span><br>` +
+        `<span>p (with confounder): ${d.p}</span><br>` +
+        `<span>${decision}</span>`;
+      document.getElementById('tt').style.display = 'block';
+    });
+    el.addEventListener('mousemove', positionTT);
+    el.addEventListener('mouseleave', () => { document.getElementById('tt').style.display = 'none'; });
+  });
+}
+
+function positionTT(e) {
+  const tt = document.getElementById('tt');
+  let x = e.clientX + 14, y = e.clientY - tt.offsetHeight / 2;
+  if (x + tt.offsetWidth > window.innerWidth - 12) x = e.clientX - 14 - tt.offsetWidth;
+  tt.style.left = x + 'px'; tt.style.top = Math.max(8, y) + 'px';
+}
+
+function toggleTable() {
+  const tbl = document.getElementById('dtbl');
+  const btn = document.querySelector('.tbl-btn');
+  if (tbl.style.display === 'table') {
+    tbl.style.display = 'none'; btn.textContent = 'Show data table';
+  } else {
+    tbl.style.display = 'table'; btn.textContent = 'Hide data table';
+    document.getElementById('dtbody').innerHTML = DATA.map(d =>
+      `<tr><td>${d.conf}</td><td>${fmtB(d.before)}</td><td>${fmtB(d.after)}</td>
+       <td>${d.amplified ? '−' : '+'}${Math.abs(d.atten).toFixed(1)}%</td>
+       <td>${d.p}</td>
+       <td>${d.amplified ? 'Amplified' : 'ROBUST'}</td></tr>`
+    ).join('');
+  }
+}
+
+render();
+</script>
+</body>
+</html>

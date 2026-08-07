@@ -1,0 +1,13 @@
+target,metal,stratum,n,rmse
+log_Cu_ppm,Cu,All,731,1.2580467391144239
+log_Cu_ppm,Cu,High coverage (≥0.70),456,1.2702983439069175
+log_Cu_ppm,Cu,Low coverage (<0.70),275,1.237464054286834
+log_Zn_ppm,Zn,All,737,1.643597607555239
+log_Zn_ppm,Zn,High coverage (≥0.70),463,1.711016802311462
+log_Zn_ppm,Zn,Low coverage (<0.70),274,1.522906133371901
+log_Pb_ppm,Pb,All,745,0.7005411354921627
+log_Pb_ppm,Pb,High coverage (≥0.70),470,0.772062988216602
+log_Pb_ppm,Pb,Low coverage (<0.70),275,0.5574501406849103
+log_Ni_ppm,Ni,All,740,1.3735238057251633
+log_Ni_ppm,Ni,High coverage (≥0.70),465,1.3585902965876777
+log_Ni_ppm,Ni,Low coverage (<0.70),275,1.3984122503359362

@@ -1,0 +1,33 @@
+# ── Manuscript (LaTeX source + build artifacts) ──────────────────────────────
+manuscript.tex
+manuscript.md
+MANUSCRIPT.md
+manuscript*.pdf
+manuscript.aux
+manuscript.bbl
+manuscript.blg
+manuscript.fdb_latexmk
+manuscript.fls
+manuscript.log
+manuscript.out
+manuscript.synctex.gz
+
+# ── Poster (Beamer source + build artifacts) ──────────────────────────────────
+poster.tex
+poster.pdf
+poster.aux
+poster.log
+poster.nav
+poster.out
+poster.snm
+poster.toc
+
+# ── Manuscript planning / submission docs ─────────────────────────────────────
+COVER_LETTER.md
+INTERPRETATION_TABLE.md
+RESEARCH_PLAN.md
+references.md
+section_*.md
+
+# ── Jupyter checkpoints (belt-and-suspenders; root .gitignore also covers) ───
+.ipynb_checkpoints/

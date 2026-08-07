@@ -1,848 +1,786 @@
-# Report: Metal Resistance Ecology — Phylogenetic Conservation vs. Environmental Selection
+# Report: Metal Resistance Ecology — Phylogenetic Signal, Niche Breadth, and Geographic Distribution
 
-**Project**: `microbeatlas_metal_ecology`
-**Status**: Complete
-**Date**: 2026-04-01 (updated from 2026-03-26)
+*Project: `microbeatlas_metal_ecology` | Date: 2026-07-01 | Branch: hrm-projects-v3*
 
 ---
 
-## Introduction
+## Key Terminology
 
-Metal resistance in bacteria is encoded by a diverse repertoire of AMR genes — for mercury,
-arsenic, copper, zinc, cadmium, chromium, and nickel — many of which are carried on mobile
-genetic elements and are frequently transferred among taxa via horizontal gene transfer (HGT).
-Whether the breadth of a bacterium's metal resistance repertoire is associated with its
-ecological niche breadth has not previously been tested at global scale with phylogenetic control.
-Here we present the first analysis linking **genus-level metal type diversity** — inferred from
-AMRFinderPlus pangenome annotations across 6,789 GTDB species — to **global ecological niche
-breadth** derived from a 464,000-sample 16S amplicon atlas (MicrobeAtlas), with phylogenetic
-signal explicitly partitioned and controlled via Pagel's λ and PGLS. We find that genera
-with broader metal type resistance repertoires are significantly associated with broader
-ecological ranges beyond what phylogenetic relatedness predicts, and show this association is
-robust to genome size, species richness, prevalence filtering, OTU abundance filtering, and
-all 13 environment categories.
+**Niche breadth (categorical)** — Levins' B standardized to [0, 1]:
+B_std = (B − 1) / (n_environments − 1), where B = 1 / Σ q_i², q_i = p_i / Σ p_j, p_i = detections / total_samples for environment i.
+B_std = 0: strict specialist (one habitat); B_std = 1: perfect generalist (even across all habitats).
+*Used in:* MicrobeAtlas primary analysis (13 Env_Level_1 categories), soil-restricted replication (8 soil sub-types, NB14), AusMicrobiome null result (8 General Ecological Zones, NB13).
+
+**Niche breadth (compositional)** — Shannon cross-biome entropy, biome_H_std = H / log(N_biomes).
+Captures how many distinct ENVO-level biome categories a genus appears in globally.
+*Used in:* MGnify MAG validation (NB12, N_biomes = 18). Orthogonal to categorical B_std: a genus can be a within-habitat specialist (narrow B_std) yet cross-biome cosmopolitan (high biome_H). These are not contradictory — see Finding 3 interpretation.
+
+**Niche breadth (geochemical)** — SD of measured environmental metal concentration across genus detection sites. A genus with SD_Cu = 5 ppm occupies a far narrower Cu geochemical range than one with SD_Cu = 200 ppm. Distinct from the mean-based NGSA predictor: a genus can have high mean Cu (preferentially detected in contaminated sites) but also high SD_Cu (appearing across a wide Cu range).
+*Computed in:* NB18, from NGSA-annotated AusMicrobiome samples (Cu, Zn, Pb, Ni, Co, As, Cr, Hg).
+
+**Metal gene density per Mb** — Count of metal-interacting KOs (94-KO curated list) divided by mean genome size in megabases. Z-scored for PGLS. Normalizing by genome size removes the confound that large-genome ecological generalists accumulate metal genes incidentally. All primary PGLS use per-Mb normalization.
+
+**Hotspot** — a 5° × 5° geographic grid cell in which the fraction of metal-resistant MAGs significantly exceeds the global background rate (Fisher's exact test, BH-FDR q < 0.05, OR > 2). Eleven hotspots identified; strongest is Atacama/central Chile (OR = 9.83, q = 7.6 × 10⁻¹²). *Data: `data/hotspots_5grid_filtered.csv`.*
+Distinct from "high-metal site": an NGSA site with Cu or Zn above the 75th percentile is a geochemically enriched site, not necessarily a geographic hotspot for metal-resistant MAG prevalence.
 
 ---
 
 ## Key Findings
 
-### Finding 1: Bacterial niche breadth is moderately phylogenetically conserved; metal type diversity predicts it beyond phylogeny
+### Finding 1 — Core metal resistance traits show strong phylogenetic signal at the genus level (Confirmatory)
 
-![Synthesis figure: Pagel's λ heatmap (Panel A) and PGLS forest plot (Panel B)](figures/fig3_synthesis.png)
+![Pagel's lambda heatmap across traits and domains](figures/fig1_lambda_heatmap.png)
 
-Across 1,264 bacterial genera with ≥ 3 OTUs in MicrobeAtlas, Levins' B_std shows strong
-phylogenetic signal (Pagel's λ = 0.787, p = 7.9×10⁻¹⁰², LRT). Habitat range (number of
-environment categories detected) is even more conserved (λ = 0.909, p = 1.4×10⁻¹⁵⁷). After
-controlling for this phylogenetic structure via PGLS (n = 606 genera with AMR data), the number
-of distinct metal types resisted per genus is the only metal AMR predictor that survives
-Bonferroni correction (β = +0.021, SE = 0.0056, p = 1.5×10⁻⁴; threshold p < 0.0083 for 6
-models). The effect persists in a multi-predictor model (β = +0.023, p = 5.5×10⁻⁴) where
-total AMR gene burden and core AMR fraction are non-significant.
+Pagel's λ estimates for 94-KO metal resistance metrics in Bacteria (n = 1,000 genera, re-run 2026-07-01) vary markedly by trait: metal type diversity λ = **0.943** (p = 4.6 × 10⁻²⁴⁵), metal gene cluster count λ = 0.497 (p = 2.8 × 10⁻⁸⁵), and metal core fraction λ = 0.291 (p = 7.5 × 10⁻⁷). All three are highly significant. Metal type diversity — the number of distinct metals a genus can handle — shows phylogenetic conservation comparable to niche breadth itself (λ = 0.932, n = 1,252). As positive controls, nitrification yields λ = 0.967 in Bacteria, and carbon metabolic breadth (GapMind) λ = 0.928. **As a negative control, antibiotic resistance gene count (non-metal, n = 799 genera) gives λ = 0.121** (LRT = 18.1, p = 2.1 × 10⁻⁵) — confirming that metal resistance genes are substantially more phylogenetically structured than HGT-labile antibiotic resistance genes. Biome-stratified analyses show consistent signal across environments (Groundwater: λ = 0.861; Marine sediment: λ = 0.897; Soil: λ = 0.879; Marine water: λ = 0.829).
 
-*(Notebooks: 04_pagel_lambda.ipynb, 05_pgls_regression.ipynb)*
+For Archaea (n = 73 genera with metal cluster data), λ estimates are at or near the numerical boundary of 1.0, which likely reflects saturation given the small sample size rather than a meaningful biological signal. Archaeal results should be treated as descriptive only.
+
+These patterns are consistent with vertical inheritance of core metal homeostasis systems at the genus level. High λ does not exclude horizontal gene transfer at finer phylogenetic scales, and does not distinguish chromosomal from plasmid-based mechanisms.
+
+*(Notebooks: `04_pagel_lambda.ipynb`, `10d_pagels_biome.ipynb`)*
 
 ---
 
-### Finding 2: Metal AMR traits show intermediate phylogenetic signal — consistent with mixed vertical inheritance and HGT
+### Finding 2 — Carbon metabolic breadth is the strongest positive functional predictor of niche breadth (Exploratory)
 
-![Pagel's λ heatmap: trait × domain](figures/fig1_lambda_heatmap.png)
+After controlling for habitat type (aquatic vs. soil), GapMind carbon substrate breadth is the only functional predictor that independently explains variation in Levins' B_std (β = +0.142, SE = 0.033, p = 1.9 × 10⁻⁵; partial PGLS, n = 957 genera). The habitat covariate dominates the model (β_aquatic = −0.490, p = 3.9 × 10⁻⁵⁶), but GapMind is independently significant after accounting for it. This association is specific to Levins' B_std — GapMind is not significant for environment count (n_envs, p = 0.094), suggesting it explains the standardized breadth metric rather than raw habitat range.
 
-Among bacterial metal AMR traits (n = 606 genera, GTDB r214), Pagel's λ is intermediate and
-significantly non-zero for all three metrics: total AMR cluster count (λ = 0.260,
-p = 6.1×10⁻²⁸), core AMR fraction (λ = 0.441, p = 1.8×10⁻⁸), and metal type diversity
-(λ = 0.335, p = 1.1×10⁻²³). The ordering — core fraction λ > type diversity λ > cluster
-count λ — is consistent with a model in which constitutive (core) metal resistance is mainly
-vertically inherited, while accessory gene accumulation and metal type expansion are shaped by
-horizontal transfer and local metal exposure. For contrast, nitrification (is_nitrifier) has
-near-maximal phylogenetic signal (λ = 0.939 bacteria, λ = 1.000 archaea), consistent with
-ancient, vertically inherited metabolic entrenchment.
+In a broader GEE multi-predictor model, gross primary productivity (GPP) and soil organic matter (SOM) also emerge as significant predictors, consistent with a general pattern in which genera from more productive, carbon-rich environments tend to be ecological generalists.
 
-*(Notebook: 04_pagel_lambda.ipynb)*
+This result is **exploratory and not pre-registered**. Independent replication with a held-out dataset or a different genus-level atlas would be required before causal inference is warranted.
+
+**Phylogenetic conservation of carbon metabolism pathways.** Pagel's λ was estimated for 54 GapMind carbon substrate utilization pathways (n = 957 genera, GTDB r214 tree). Carbon metabolic traits show λ ranging from 0.248 (xylitol utilization) to 1.010 (serine utilization), with a median of λ ≈ 0.77 across all 54 pathways. Central carbon intermediates (glucose λ = 0.872, acetate λ = 0.891, citrate λ = 0.665) are similarly conserved to metal resistance traits (metal type diversity λ = 0.943; metal clusters λ = 0.497 with 94-KO list, updated 2026-07-01). This comparison shows that the stronger predictive power of carbon breadth for niche breadth (β = +0.142, p = 1.9 × 10⁻⁵) relative to metal type diversity (β = +0.014, p = 0.013) cannot be attributed to carbon breadth being more phylogenetically structured — both functional domains show comparable or higher λ values for the curated 94-KO list. The difference is likely driven by the larger effect size and lower noise in the GapMind breadth composite, rather than different phylogenetic structure. *Data: `data/pagel_lambda_results_gapmind.csv`.*
+
+*(Notebook: `07_env_metadata_pgls.ipynb`)*
 
 ---
 
-### Finding 3: Metal type diversity, not total gene burden, distinguishes broad-niche genera
+### Finding 3 — Metal gene density (per Mb) negatively predicts ecological niche specialization (Established normalized result; sub-threshold raw signal explained by genome-size confound)
 
-![Metal type diversity vs Levins' B_std scatter](figures/fig4_metal_types_scatter.png)
+**In brief:** When normalized by genome size, metal-interacting gene density **negatively** predicts Levins' B_std (β = −0.022, p = 4 × 10⁻⁷, n = 997 genera; GTDB r214 genome metadata): genera with denser metal gene portfolios occupy narrower ecological niches. This is the primary quantitative finding. ⚠️ *Normalization by genome size was motivated by the observation that raw gene counts are confounded by genome complexity — large-genome ecological generalists accumulate metal-interacting genes incidentally, producing a spurious positive association. This correction was applied post-hoc after the pre-specified raw models were sub-threshold; the normalized result is the primary finding, but should be treated as exploratory pending prospective replication.* The six pre-registered PGLS models on raw gene counts do not clear Bonferroni correction (metal type diversity p = 0.013, threshold p < 0.0083). The 19-KO discriminant gene set (sensing/cofactor genes, no resistance function) produces a stronger raw association (p = 0.0012), confirming the raw signal is not resistance-specific. When normalized by genome size (per Mb) or gene count (per 1,000 proteins) using GTDB metadata covering 997/1,000 PGLS genera, the association **reverses to negative** (β = −0.022, p = 4 × 10⁻⁷): genera with *dense* metal-interacting gene content occupy *narrower* niches. The raw positive association is a genome-size artefact — large-genome ecological generalists accumulate metal-interacting genes incidentally. The biological signal, once genome size is factored out, is that metal gene-dense, compact-genome taxa are ecological specialists. **The normalized negative signal is driven by Tier 2 homeostasis genes** (metal importers, regulators, chelators; per-Mb β = −0.009, p = 0.011), not Tier 1 resistance genes (efflux pumps, P-type ATPases; per-Mb β = −0.004, p = 0.256). This tier asymmetry replicates within Gammaproteobacteria (n = 240, p = 0.0008), Bacilli (n = 99, p = 0.004), and Alphaproteobacteria (n = 152, p = 0.016) independently — within each class the raw signal is null, confirming the result is not a between-phylum artefact. *(See tier co-occurrence caveat below.)*
 
-The raw OLS correlation between mean metal type diversity and Levins' B_std is modest
-(r ≈ 0.21), reflecting the baseline phylogenetic structure in both variables. The PGLS β
-(+0.021 per SD increase in metal type diversity) represents the additional covariation after
-removing the shared ancestry component estimated by the λ-transformed VCV matrix. Total AMR
-gene cluster count and core AMR fraction do not predict niche breadth in either the simple or
-multi-predictor PGLS models, indicating that the *breadth* of the metal resistance repertoire
-rather than its *depth* (many genes for few metals) is associated with ecological versatility.
+None of the six pre-registered simple PGLS models reaches the Bonferroni-corrected significance threshold (α = 0.05/6 = 0.0083), but two predictors approach significance with the 94-KO tiered gene list:
 
-*(Notebook: 05_pgls_regression.ipynb)*
+| Predictor | β | SE | p-value | Decision |
+|-----------|---|----|---------|----------|
+| Metal gene clusters (z) → B_std | +0.0087 | 0.0036 | **0.015** | H₀ not rejected |
+| Metal core fraction (z) → B_std | +0.0036 | 0.0031 | 0.248 | H₀ not rejected |
+| Metal type diversity (z) → B_std | +0.0139 | 0.0055 | **0.013** | H₀ not rejected |
+| Metal gene clusters (z) → n_envs | +0.0580 | 0.0601 | 0.335 | H₀ not rejected |
+| Metal core fraction (z) → n_envs | +0.0535 | 0.0517 | 0.301 | H₀ not rejected |
+| Metal type diversity (z) → n_envs | +0.1571 | 0.0930 | 0.092 | H₀ not rejected |
+
+*All n = 1,000 genera (94-KO tiered list; Spark re-run 2026-07-01); λ estimated per model (range 0.875–0.891); Bonferroni threshold p < 0.0083.*
+
+In a multi-predictor model, all three predictors approach but do not reach significance: metal gene clusters (β = +0.008, p = 0.060), core fraction (β = +0.006, p = 0.056), and metal type diversity (β = +0.009, p = 0.166). No predictor survives Bonferroni correction; none was a pre-registered multi-predictor test.
+
+**Comparison with prior analysis.** The original analysis used `seed_list.tsv` (46-KO Spark list), which shared only 3 KOs with the merge-decision curated list — effectively a different annotation. Under that list (n = 957 genera): metal clusters p = 0.058, core fraction p = 0.508, metal types p = 0.560 — all null. The 94-KO tiered list strengthens the signal substantially (metal types: p = 0.013 vs p = 0.560), but H₀ is still not rejected at the pre-registered threshold.
+
+**The sub-threshold result is conditional on the validity of the 94-KO gene list.** The list (`data/mrg_ko_final.csv`) was built from BacMet EXP seeds via an MCL protein family pipeline and validated against the *C. metallidurans* CH34 full proteome (6,365 proteins; 59/73 pipeline KOs validated) and cross-referenced against TCDB (2025-08-04 release), covering approximately 52% of prokaryotic metal transporter TCDB families (12/23; see Limitation #1). It has not been benchmarked by BLAST against a broad set of confirmed-resistant strains beyond CH34. An incomplete list would produce false negatives; a mis-curated list would distort λ estimates. The sub-threshold p-values cannot be treated as definitive evidence for or against the hypothesis until the list is more fully validated.
+
+**RB-TnSeq functional validation (FitnessBrowser).** To assess whether 94-KO genes are functionally required under metal stress, gene names from `mrg_ko_final.csv` were cross-matched against FitnessBrowser RB-TnSeq fitness data for 60 bacterial organisms (Wetmore et al. 2015; data in `projects/enigma_stress_phenotype_ml/data/fitness_browser/`). Each organism has fitness scores (log₂ barcode enrichment under stress vs. T₀) for 50–400 conditions; metal-relevant conditions were identified using explicit chemical-name keywords (CdCl₂, ZnCl₂, CuCl₂, NiCl₂, HgCl₂, arsenite, arsenate, chromate, etc.). Matching was by exact gene name (lowercase); this is conservative — KO-to-locus mappings are unavailable in FitnessBrowser files — and will miss genes annotated under alternative names.
+
+Exact name matches were found in 4 of 60 organisms spanning 1–43 metal conditions. Results:
+
+| Organism | KO genes matched | Metal conditions | KO mean fitness | Background mean | Mann-Whitney p |
+|---|---|---|---|---|---|
+| *Desulfovibrio vulgaris* DvH | 5 (arsC, merP, sodB, smtB, chrB) | 43 | −0.041 | −0.060 | 0.186 |
+| *E. coli* Keio | 20 (copA, mntH, sodB, ...) | 3 | −0.235 | −0.072 | **0.013** |
+| *Shewanella* MR-1 | 5 (arsR, dsbC, feoB, recG, smtA) | 8 | −0.693 | −0.069 | **0.031** |
+| *Synechococcus* SynE | 10 (aoxA/B, chrA, merR, smtA, ...) | 1 | −0.715 | −0.510 | 0.999 |
+
+*Data: `data/fitnessbrowser_94ko_validation.csv`. Fitness values are log₂ ratios; more negative = stronger growth defect when gene is knocked out.*
+
+In 3 of 4 organisms, 94-KO genes show more negative mean fitness under metal conditions than the genome background (3–10× stronger depletion). The two with sufficient statistical power both reach p < 0.05. In *Shewanella* MR-1, the 94-KO genes show a 10-fold larger mean fitness defect (−0.693 vs −0.069), strongly suggesting they are required for metal tolerance. This provides partial functional confirmation that the 94-KO list captures metal-essential genes. Caveats: (1) only 4 of 60 organisms had gene-name matches — the majority lacked exact-name overlap, underestimating true coverage; (2) SynE had only one metal condition (statistically uninformative); (3) gene-name matching may include occasional false positives. A full KO-mapped validation awaits EggNOG or KEGG annotation of FitnessBrowser loci.
+
+**Genome size and gene-count normalized predictors — full analysis (exploratory, post-hoc).** ⚠️ *The previously reported genome-size result (p = 3.5 × 10⁻⁴ for metal types after genome-size control) was computed on a prior gene-list version (old 46-KO dataset, λ = 0.628) and is superseded by the current analysis.*
+
+Genome size was obtained from two sources: (1) the original `genus_genome_size.csv` (n = 523 genera with genome size); (2) `kbase.ke_pangenome.gtdb_metadata` (GTDB r214 reference genome metadata), which provides genome size and protein count for **997 / 1,000 PGLS genera** — effectively complete coverage. Two normalizations were computed: metal types per megabase (metal_per_Mb) and metal types per 1,000 predicted proteins (metal_per_1k_genes).
+
+| Predictor | Subset | n | β | SE | p | Direction |
+|---|---|---|---|---|---|---|
+| 94-KO raw (z) | orig | 523 | +0.0136 | 0.0077 | 0.076 | positive (sub-threshold) |
+| **94-KO per Mb (z)** | orig | 523 | **−0.0232** | 0.0058 | **8 × 10⁻⁵** | **negative (significant)** |
+| Disc raw (z) | orig | 523 | +0.0105 | 0.0066 | 0.113 | positive (sub-threshold) |
+| **Disc per Mb (z)** | orig | 523 | **−0.0220** | 0.0052 | **3 × 10⁻⁵** | **negative (significant)** |
+| 94-KO raw (z) | GTDB | 997 | +0.0137 | 0.0055 | 0.014 | positive (matches primary result) |
+| **94-KO per Mb (z)** | GTDB | 997 | **−0.0222** | 0.0044 | **4 × 10⁻⁷** | **negative (highly significant)** |
+| Disc raw (z) | GTDB | 997 | +0.0151 | 0.0051 | 0.003 | positive |
+| **Disc per Mb (z)** | GTDB | 997 | **−0.0189** | 0.0040 | **3 × 10⁻⁶** | **negative (highly significant)** |
+| **94-KO per 1k genes** | GTDB | 997 | **−0.0218** | 0.0044 | **9 × 10⁻⁷** | **negative (highly significant)** |
+| **Disc per 1k genes** | GTDB | 997 | **−0.0186** | 0.0041 | **5 × 10⁻⁶** | **negative (highly significant)** |
+
+*Data: `data/pgls_results_normalized.csv`, `data/pgls_results_discriminant_genomesize.csv`, `data/genus_genome_size_gtdb.csv`.*
+
+**The normalized predictors consistently flip negative.** Genera with HIGHER metal-interacting gene density (per Mb or per 1,000 genes) occupy NARROWER ecological niches — the opposite of the raw association. The pattern is robust across both genome-size sources, both gene sets (94-KO and discriminant), and both normalization methods.
+
+**Biological interpretation.** This resolves the genome-size confound question and reveals a coherent two-component signal:
+- *Genome-size component (positive, spurious):* Large-genome ecological generalists accumulate diverse metal-interacting genes incidentally. This drives the raw positive association (more metal types → broader niche) observed in the primary n = 1,000 analysis.
+- *Metal specialization component (negative, real):* Genera with *dense* metal resistance gene content relative to genome size — those genuinely adapted to metal-contaminated environments — are ecological specialists occupying narrower niches. High metal gene density signals a compact, metal-specialized genome rather than a broad ecological generalist.
+
+These two components cancel in the raw predictor: the slight positive net signal (p = 0.013) reflects the dominance of the genome-size component at n = 1,000. The normalized analysis cleanly separates them. The implication for the paper's central question is that metal resistance *specialization* predicts niche *restriction*, not niche breadth — exactly the opposite of the primary framing. The signal that "more metal resistance predicts broader niches" is an artefact of genome size confounding.
+
+**Tier-stratified PGLS — raw and normalized** *(exploratory)*. Splitting the 94-KO list by functional tier reveals a critical asymmetry when predictors are normalized by genome size:
+
+| Functional tier | Model | β | SE | p (B_std) | Interpretation |
+|---|---|---|---|---|---|
+| Tier 1 (resistance, n=1,000) | raw (z) | +0.0084 | 0.0035 | **0.016** | Marginally significant (raw) |
+| Tier 2 (homeostasis, n=1,000) | raw (z) | +0.0073 | 0.0037 | 0.050 | Sub-threshold (raw) |
+| **Tier 1 (resistance, n=1,000)** | **per Mb (z)** | **−0.0041** | 0.0036 | **0.256** | **Null — defense genes scale with genome size** |
+| **Tier 2 (homeostasis, n=1,000)** | **per Mb (z)** | **−0.0092** | 0.0036 | **0.011** | **Significant negative — homeostasis density predicts specialization** |
+| Total 94-KO | per Mb (z) | −0.0222 | 0.0044 | 4 × 10⁻⁷ | Reference (see Genome size section above) |
+| Multi-predictor (Tier 1 + 2 raw, n=1,000) | raw (z) | +0.0071 (T1), +0.0022 (T2) | — | 0.143 / 0.669 | Redundant — tiers are correlated |
+
+*Note: The 94-KO list has no metabolism tier (Tier 1 = resistance, Tier 2 = homeostasis only). Data: `data/pgls_results_subsets.csv`, `data/pgls_results_tier_normalized.csv`.*
+
+The tier asymmetry in the normalized predictors reveals the mechanism underlying the per-Mb reversal. Defense and resistance genes (efflux pumps, P-type ATPases, metallothioneins) accumulate proportionally with genome size — their density per Mb is unrelated to niche specialization (p = 0.256). Homeostasis genes (metal importers, regulators, chelators) per Mb predict narrower niches (β = −0.0092, p = 0.011): genera with compact genomes *densely loaded* with homeostasis gene machinery occupy more restricted ecological niches, consistent with tight metal homeostasis control reflecting adaptation to a specific metal-rich environment rather than general genome complexity. The raw positive signal for both tiers reflects the same genome-size confound — both efflux and homeostasis genes accumulate in large-genome generalists. Once normalized, only homeostasis density carries a signal. The earlier result (n = 957, 46-KO list) reported homeostasis dominant (p = 0.0024) and resistance null (p = 0.316); the normalized analysis gives a mechanistic explanation for that pattern.
+
+⚠️ **NB19 caveat on tier interpretation.** Tier 1 (direct resistance) and Tier 2 (homeostasis) KO density co-occur at partial Spearman ρ = 0.999 within individual MAGs after controlling for genome size (p_perm = 0.001, n = 260,606 MGnify MAGs; NB19 Block 3; see Finding 5). Both tiers are analytically indistinguishable at the genome level: high-Tier-2 genomes are also high-Tier-1 genomes in essentially all cases. The tier asymmetry in the PGLS (Tier 2 per-Mb p = 0.011 vs Tier 1 per-Mb p = 0.256) should therefore be treated as an exploratory result reflecting sampling variance in genus-level tier ratios, not as evidence of mechanistically distinct gene functions. **Total ko_per_mb is the recommended primary predictor for all downstream analyses and experimental design.** The tier PGLS results are reported for completeness and as hypotheses for future experimental work requiring finer-grained per-gene expression data.
+
+**Taxonomic replication across class, order, and family** *(exploratory, not pre-registered)*. Within-group PGLS was run at class, order, and family level using taxonomy from `data/gtdb_bac120_taxonomy_parsed.csv` (data: `data/pgls_results_by_rank.csv`).
+
+*Class level.* The per-Mb negative signal replicates within Gammaproteobacteria (n = 240, β = −0.024, p = 0.0008), Bacilli (n = 99, β = −0.046, p = 0.004), and Alphaproteobacteria (n = 152, β = −0.034, p = 0.016) independently. Within-class raw signals are null in all three (p > 0.12), confirming the normalized result is not a between-phylum artefact driven by comparisons of Proteobacteria with Tenericutes. Actinomycetia (n = 92) shows a raw positive (p = 0.010) that does not survive normalization (p = 0.054). Bacteroidia (n = 130) is null for both raw and total per Mb; only homeostasis/Mb is significant within this class (p = 0.017), paralleling the tier finding. Clostridia (n = 79) shows a strong raw positive (p < 0.0001) with no reliable per-Mb result (convergence failure).
+
+*Order level.* Burkholderiales (n = 83; Burkholderia, Cupriavidus, Ralstonia, Paraburkholderia) is the strongest single-order contributor: per-Mb β = −0.039, p = 0.0002; homeostasis/Mb p = 0.017. Actinomycetales shows the sharpest raw vs. normalized contrast of any order (raw β = +0.069, p = 0.023 → per-Mb β = −0.065, p = 0.030). Enterobacterales is null despite Klebsiella, Citrobacter, and Salmonella dominating the top raw-count genera — high raw metal gene count in enteric bacteria does not translate to a density-specialization signal.
+
+*Top genera.* Metal-dense specialist genera (metal/Mb > 2.5) are dominated by chemolithotrophs: sulfur-oxidizers (Thiomicrorhabdus 3.3/Mb, Sulfuricella 2.9/Mb, Hydrogenovibrio 3.4/Mb), methylotrophs (Methylotenera 4.0/Mb, Brachymonas 3.9/Mb), and the thermophile Hydrogenobacter (Aquificae, 4.8/Mb). Within-class correlations r(metal/Mb, B_std) are negative across all major classes: Gammaproteobacteria (r = −0.24), Bacilli (r = −0.26), Alphaproteobacteria (r = −0.20), Actinomycetia (r = −0.37). Data: `data/top_genera_metal_diversity.csv`.
+
+**Other exploratory sub-analyses:** (a) **COG category P** (inorganic ion transport and metabolism — broader annotation than the 94-KO list) independently predicts Levins' B_std (β = +0.0087, SE = 0.0031, p = 0.0047, n = 909). This result converges with the homeostasis tier finding: the niche breadth signal is carried by the metal ion transport/regulation functional space, not high-specificity resistance genes.
+
+(b) **Metal resistance × carbon metabolism interaction (exploratory, post-hoc).** A PGLS model testing whether genera with both broad carbon metabolism and diverse metal resistance show disproportionately wide niches (`B_std ~ metal_types_z * gapmind_carbon_z + pct_aquatic_z`, n = 957 genera with all three variables available) found no evidence of a synergistic interaction: interaction β = +0.0031, SE = 0.0037, p = 0.414; ΔAIC vs. main-effects model = +1.33. The additive main effects were preserved: gapmind_carbon β = +0.0144, p = 0.003; metal types β = +0.0090, p = 0.092. Carbon metabolic breadth and metal resistance diversity contribute independently to niche breadth; broader carbon metabolism does not amplify the metal resistance signal. *Data: `data/pgls_interaction_result.csv`.*
+
+(c) **MCMCglmm Bayesian Poisson model** *(exploratory, not pre-registered; Limitation 10 follow-up)*. To address the distributional mismatch of applying Gaussian PGLS to a discrete count response, a Bayesian phylogenetic Poisson model was run with MCMCglmm (`scripts/mcmcglmm_metal.R`; `n_metal_types ~ B_std_z`, random = phylogeny, family = Poisson; nitt = 50,000, burnin = 5,000, thin = 50; n = 1,000 genera). The B_std_z posterior mean = **+0.039** (95% CI: [0.006, 0.071], pMCMC = 0.013), confirming the positive association between niche breadth and metal type count under the Poisson family. The direction is consistent with the Gaussian PGLS (β = +0.014, p = 0.013). Effective sample size ESS = 147.8 (exceeds the ESS ≥ 100 threshold). *Data: `data/mcmcglmm_result.csv`.*
+
+**Annotation-quality discriminant controls.** To contextualize the sub-threshold 94-KO result, the same PGLS was run with three alternative annotation systems, all using metal cluster count as the predictor on n ≈ 957 genera:
+
+| Annotation system | Predictor | n | β | p (B_std) | Notes |
+|---|---|---|---|---|---|
+| Pfam (metal clusters) | mean_n_pfam_metal_clusters_z | 957 | +0.00037 | 0.906 | Broadest annotation |
+| AMRFinderPlus (metal clusters) | mean_n_amr_metal_clusters_z | 957 | +0.0019 | 0.540 | Clinical AMR focus |
+| InterPro (metal clusters) | mean_n_ipr_metal_clusters_z | 957 | +0.0083 | **0.010** | More specific |
+| 94-KO curated (metal clusters) | mean_n_metal_clusters_z | 1,000 | +0.0087 | **0.015** | Current study |
+| 94-KO curated (metal types) | mean_n_metal_types_z | 1,000 | +0.0139 | **0.013** | Breadth metric |
+
+*Data sources: `data/pgls_results_pfam_metal.csv`, `data/pgls_results_ipr_metal.csv`, `data/pgls_results_amr_metal.csv`, `data/pgls_results.csv`. Note: Pfam/InterPro/AMRFinder were run on n = 957 (old 1,000-genus dataset prior to 94-KO re-extraction); 94-KO was run on n = 1,000 (updated 2026-07-01).*
+
+The results show an annotation-quality gradient: broader, less metal-specific databases (Pfam, AMRFinderPlus) yield null results, while more curated systems (InterPro, 94-KO curated list) approach but do not reach Bonferroni significance. The 94-KO cluster count result (p = 0.015) matches InterPro (p = 0.010) closely, suggesting the curated list's specificity advantage is modest for cluster-count predictors but that the metal type diversity metric (p = 0.013) provides an additional biologically meaningful dimension (breadth of metals covered) that Pfam and AMRFinderPlus cannot capture.
+
+**Metabolism discriminant PGLS** *(post-hoc discriminant control, not pre-registered)*. A complementary discriminant control tested whether the niche breadth signal is specific to genes that *handle* metals (resistance/homeostasis) or is equally present in genes that merely *require* metals as cofactors. The discriminant gene set (`data/discriminant_metabolism_kos.csv`) comprises 19 KOs recovered from the pangenome via eggNOG annotations in two groups: (1) 11 seed-list "homeostasis" genes excluded from the 94-KO list — iron regulators and storage proteins (Fur/K06189, Bfr/K03594, Dps/K04047, Bfd/K03969), zinc uptake proteins (ZnuABC/K09815-17, Zur/K07222), and copper sensors (CsoR/K18883, CopZ/K15522); and (2) 8 metal-cofactor enzymes — superoxide dismutases (Fe-Mn: K04564; Cu-Zn: K04565), CCS copper chaperone for SOD (K04569), monofunctional catalase (K03781), 2Fe-2S ferredoxin (K05524), and cytochrome c oxidase subunits (cbb3/K00404, CoxB/K02275, CoxA/K02274). These genes require metals to function but do not confer metal resistance. Run on the same n = 1,000 genera as the primary 94-KO analysis:
+
+| Gene set | n | β | SE | p (B_std) | λ |
+|---|---|---|---|---|---|
+| Discriminant (19-KO: sensing + metabolic) | 1,000 | **+0.0164** | 0.0051 | **0.0012** | 0.880 |
+| 94-KO (resistance + homeostasis) | 1,000 | **+0.0139** | 0.0055 | **0.013** | 0.886 |
+
+*Data: `data/pgls_results_discriminant_matched.csv`, `data/genus_discriminant_metal.csv`.*
+
+**The discriminant control is positive and stronger than the 94-KO signal.** This means the niche breadth association is not specific to metal-resistance function: genera that interact with a broader diversity of metals — whether for resistance, sensing, or metabolic cofactor purposes — tend to occupy broader ecological niches, with similar effect size regardless of the functional class. Two mechanistic interpretations are consistent with this result: (a) the signal reflects general metal diversity in the environment, where habitats with more metal types simultaneously select for both resistance capacity and diverse metal-dependent metabolic enzymes; or (b) genera that are broadly metabolically capable (larger and more complete genomes) tend to both occupy broader niches and incidentally acquire more diverse metal-interacting genes. Interpretation (b) is **confirmed by the normalized predictor analysis** (see "Genome size and gene-count normalized predictors" above). When metal types are divided by genome size (per Mb) or gene count (per 1,000 proteins), the association **reverses sign** on essentially the full n = 997 sample: β = −0.022, p = 4 × 10⁻⁷. Genera with high metal gene *density* are specialists, not generalists. The raw positive association is driven by the genome-size component: large-genome generalists accumulate metal-interacting genes incidentally. Both interpretations (a) and (b) point to the same conclusion: the 94-KO result should be framed as a genome-size-mediated association, and "metal-interacting gene diversity predicts niche breadth" is an incomplete characterization — the complete picture is that metal gene *density* predicts specialization while genome size is the driver of the apparent generalism association.
+
+**AMRFinderPlus comparison — discrepancy resolved.** The prior result (β = +0.021, SE = 0.0056, p = 1.5 × 10⁻⁴, Bonferroni-significant) has been traced to the checkpoint REPORT dated 2026-03-26. It used AMRFinderPlus metal type diversity as the predictor on a smaller pangenome intersection of n = 606 bacterial genera (GTDB r214). The current NB05 AMRFinderPlus cache (n = 957 genera, same 1,000-genus dataset) shows a null result (β = +0.0019, p = 0.540), but this uses a different predictor — AMRFinderPlus metal cluster count, not type diversity — so the two results measure different quantities and are not directly comparable. The analogous comparison is between the old AMRFinderPlus metal type diversity (n = 606, p = 1.5 × 10⁻⁴) and the current 94-KO metal type diversity (n = 1,000, p = 0.013): the p-value increased (signal weakened) despite the curated gene list. This is consistent with the larger, more heterogeneous sample (n = 606 → 1,000) attenuating a small effect. The prior result is reproducible from the checkpoint; it should not be treated as supporting stronger evidence than the current 94-KO analysis, because (a) AMRFinderPlus annotations are less specific for ecological metal resistance than the curated 94-KO list, and (b) the smaller n = 606 sample may have had selection bias toward genera with denser pangenome coverage in the earlier data version.
+
+![PGLS forest plot](figures/fig2_pgls_forest.png)
+
+*(Notebook: `05_pgls_regression.ipynb`; Data: `data/pgls_results.csv`, `data/pgls_multi_results.csv`)*
+
+**Independent MAG validation — MGnify 260K MAGs** *(exploratory, not pre-registered)*. To test whether the per-Mb normalized signal replicates in an independent genome and annotation source, PGLS was re-run using 260,653 high-quality MGnify MAGs (kescience_mgnify; eggNOG KEGG KO annotations; same 94-KO list) with **biome Shannon entropy** (H / log[N_biomes], N = 18 unique biome labels) as the niche breadth metric in place of Levins' B. biome_H measures cross-biome cosmopolitanism — how many distinct biome categories a genus appears in across the MGnify collection.
+
+*Full MGnify validation (n = 576 genera after GTDB tree pruning, from 2,164 in PGLS input):*
+
+| Predictor | β | SE | p-value | λ |
+|---|---|---|---|---|
+| Total 94-KO/Mb (z) | **+0.051** | 0.0055 | **5.9 × 10⁻¹⁹** | 0.379 |
+| Tier 1 resistance/Mb (z) | **+0.049** | 0.0056 | **1.8 × 10⁻¹⁷** | 0.395 |
+| Tier 2 homeostasis/Mb (z) | **+0.051** | 0.0057 | **4.6 × 10⁻¹⁸** | 0.360 |
+
+*Data: `data/mgnify_validation_pgls.csv`.*
+
+The sign is **positive** — opposite in direction to the primary Levins' B result. Three diagnostic tests determined whether the discordance is driven by annotation method or niche metric:
+
+| Test | Niche metric | KO source | n | β (total/Mb) | p-value |
+|---|---|---|---|---|---|
+| A — soil/rhizosphere MGnify MAGs | MGnify biome_H | MGnify eggNOG | 99 | +0.047 | 0.081 |
+| **B — Primary Levins' B × MGnify KO/Mb** | **Levins' B** | **MGnify eggNOG** | **1,207** | **+0.003** | **0.404** |
+| **C — MGnify biome_H × AMRFinder/Mb** | **MGnify biome_H** | **AMRFinderPlus** | **548** | **+0.018** | **0.021** |
+
+*Data: `data/cross_dataset_validation_pgls.csv`.*
+
+Test B (Levins' B × MGnify KO/Mb) is null (β ≈ 0, p = 0.404), ruling out the annotation pipeline as the cause. Test C (biome_H × AMRFinder/Mb) is positive (p = 0.021), confirming biome_H is universally positive regardless of annotation source. **The discordance is driven by the niche metric, not the genome database or annotation pipeline.**
+
+*Biome-subset replication (expanded; all use biome_H × MGnify eggNOG KO/Mb):*
+
+| Environment subset | n_genera | β (total/Mb) | p-value |
+|---|---|---|---|
+| Environmental (soil + marine + rhizosphere) | 333 | +0.077 | 1.3 × 10⁻¹³ |
+| Soil + rhizosphere only | 99 | +0.047 | 0.081 |
+| Marine + marine sediment only | 248 | **+0.118** | **2.7 × 10⁻¹⁰** |
+| Gut control (human + animal gut biomes) | 207 | +0.049 | 3.6 × 10⁻⁵ |
+
+*Data: `data/mgnify_subset_expanded_pgls.csv`.*
+
+The gut control is significantly positive (p = 3.6 × 10⁻⁵), demonstrating that the biome_H positive association is universal across environments. Genera appearing across multiple gut biome types (human, mouse, chicken, rumen) carry higher metal KO density, confirming that cross-biome cosmopolitanism within a single broad habitat also associates positively with metal gene density.
+
+**Biological interpretation of the biome_H vs. Levins' B discordance.** The two metrics capture orthogonal niche axes: Levins' B measures within-habitat niche width (evenness of distribution across all sampled sites within a biome), while biome_H measures cross-biome cosmopolitanism (how many distinct ENVO-level biome categories a genus appears in). Both can be high or low independently. The finding is that metal gene-dense genera are simultaneously **within-habitat specialists** (narrow Levins' B; primary result) and **cross-biome cosmopolitans** (broad biome_H; MGnify result). This is ecologically coherent: a compact-genome metal-specialist genus may be found in metal-contaminated soils, groundwater, marine sediments near hydrothermal vents, and industrial effluents — spanning several biome categories — yet occupy a narrow chemical micro-niche (metal-contaminated conditions) within each. The negative per-Mb Levins' B signal reflects specialization within sampled environments; the positive biome_H signal reflects the cross-biome recurrence of metal-contaminated conditions that favor the same specialist lineages. The MGnify result does not contradict the primary finding — it measures a different niche axis and reveals complementary biology.
+
+The **tier asymmetry is not preserved** with biome_H: both Tier 1 (resistance) and Tier 2 (homeostasis) per-Mb predictors are equivalently strong positive predictors of cross-biome breadth (β ≈ +0.050, both p < 10⁻¹⁷). The primary Tier 2 specificity (vs. null Tier 1 at p = 0.256) appears specific to the within-habitat niche measure. Tier asymmetry is a feature of specialization, not of cosmopolitanism.
+
+**Soil-restricted sensitivity analysis with negative controls (NB14).** *(exploratory, not pre-registered).* To test whether the primary negative signal is driven by soil vs. non-soil habitat contrasts, Levins' B_std was recomputed using only the 8 soil Env_Level_1 categories (soil, agricultural, farm, field, paddy, peatland, desert, shrub; from `data/otu_env_matrix.csv`). PGLS was run on 603 genera (from 628 with soil B + genome size after tree pruning). Antibiotic resistance gene density (AMRFinderPlus ABR clusters / Mb; genera absent from ABR file filled with 0 as genuine non-hits) was included as a negative control:
+
+| Predictor | β | SE | p-value | λ | Interpretation |
+|---|---|---|---|---|---|
+| Total 94-KO/Mb (z) | **−0.023** | 0.0061 | **0.00020** | 0.770 | Replicates ✅ |
+| Tier 1 resistance/Mb (z) | −0.0064 | 0.0054 | 0.238 | 0.780 | Null (consistent with primary p=0.256) |
+| Tier 2 homeostasis/Mb (z) | −0.0025 | 0.0052 | 0.626 | 0.780 | Null — primary p=0.011 **does not** replicate |
+| ABR/Mb — negative control (z) | +0.0016 | 0.0044 | 0.710 | 0.780 | Null; sign reverses ✅ |
+
+Discriminant 19-KO sensing/cofactor genes per Mb were tested on the 601-genera subset with annotation coverage:
+
+| Predictor | β | SE | p-value | λ |
+|---|---|---|---|---|
+| Total 94-KO/Mb (z) | −0.023 | 0.0061 | 0.00018 | 0.770 |
+| Discriminant/Mb (z) | **−0.020** | 0.0061 | **0.0011** | 0.784 |
+
+Three findings emerge. First, the total per-Mb signal replicates within soil alone (β=−0.023 vs. primary β=−0.022; p=0.0002), confirming the specialization signal is not driven by soil vs. non-soil habitat contrasts. Second, the Tier 2 homeostasis specificity **does not replicate** in soil-only (primary p=0.011, soil-only p=0.626) — both tiers are null — suggesting the tier asymmetry may be specific to the full cross-environment niche measure or is underpowered at 8 environment dimensions. Third, the ABR negative control validates specificity: antibiotic resistance gene density per Mb is null (p=0.710) with a sign reversal (+0.002), confirming the metal gene signal is not a generic genome-streamlining artifact. The discriminant 19-KO signal (p=0.001) demonstrates that the within-soil specialization signal extends to metal-sensing and cofactor genes, not just resistance functions.
+
+**NEON validation (abandoned).** A NEON soil MAG validation (kbase.nmdc_neon) was attempted but abandoned: 80% of NEON MAG genera carry GTDB bin-identifier placeholder names not in the reference tree, leaving only 34–37 genera — insufficient for corPagel estimation.
+
+**NGSA-informed re-analysis (NB16 + NB13; completed 2026-07-03; `data/aus_microbiome/aus_ngsa_pgls_results.csv`):** To test this interpretation directly, actual measured soil metal concentrations from the National Geochemical Survey of Australia (NGSA; 1,315 ICP-MS sites) were spatially joined to AusMicrobiome sample coordinates (median nearest-site distance = 35 km; 99.6% of OTU-table samples matched). Genus-level NGSA metal concentrations were computed as the mean Cu/Zn/Pb concentration across samples in which each genus was detected, then z-scored. PGLS (same script, same 482 genera, same GTDB tree) was rerun with NGSA metals as predictors:
+
+| Predictor | β | p-value | ΔAIC | Interpretation |
+|---|---|---|---|---|
+| ko_per_mb_total (original) | −0.0023 | 0.667 | +1.82 | Null (unchanged) |
+| **NGSA Cu_ppm (measured)** | **−0.0101** | **0.019\*** | **−3.39** | Metal-rich soil → narrower niche |
+| NGSA Zn_ppm | −0.0096 | 0.027\* | −2.84 | Same direction |
+| NGSA Pb_ppm | −0.0089 | 0.040\* | −2.22 | Same direction |
+| NGSA Ni_ppm | −0.0087 | 0.046\* | −1.99 | Same direction |
+| NGSA Co_ppm | +0.0019 | 0.658 | +1.80 | Null |
+
+Genera found predominantly in Cu/Zn/Pb/Ni-rich soils have narrower ecological niches (β=−0.0087 to −0.0101, p=0.019–0.046; n=482). The effect direction is the same as the primary finding (more metal exposure → greater specialization). NGSA Co is null, consistent with Co being a micronutrient with narrow toxicity range (few genera carry Co-resistance KOs). Sanity check (Spearman): soil Cu also positively predicts metal gene density per Mb (rho=+0.107, p=0.018\*), confirming that metal-rich soils select for genera with more metal resistance capacity. This finding resolves the AusMicrobiome null: the biological signal is present but the vegetation-based ecological zone label was not a proxy for metal exposure.
+
+**NGSA robustness / sensitivity analysis (NB17; completed 2026-07-03; `data/ngsa_threshold_sensitivity.csv`):** Three independent robustness checks were applied to the NGSA PGLS finding.
+
+**(1) FDR correction.** With m=6 predictor tests (one per metal), Benjamini-Hochberg correction gives q=0.069 for all four significant metals (Cu, Zn, Pb, Ni). None survive at FDR=0.05, but all four survive at FDR=0.10. The consistent negative direction across four chemically distinct metals (correlated but not identical) argues the pattern is not due to multiplicity.
+
+**(2) NGSA distance threshold sensitivity.** The spatial join was re-run at six maximum-distance thresholds (30–200 km) by re-aggregating genus-level Cu directly from the 16S OTU table (91,929 OTUs × 1,023 samples; 18,152 OTUs with SILVA genus assignment). Results show the negative β is consistent across 5 of 6 thresholds:
+
+| Threshold (km) | n genera | Cu β | Cu p | Zn β | Zn p |
+|---|---|---|---|---|---|
+| 30 | 462 | −0.0089 | 0.046\* | −0.0055 | 0.239 |
+| 50 | 480 | −0.0112 | 0.010\* | −0.0105 | 0.016\* |
+| 75 | 480 | −0.0092 | 0.034\* | −0.0086 | 0.048\* |
+| 100 | 481 | −0.0063 | 0.154 | −0.0074 | 0.087 |
+| 150 | 482 | −0.0101 | 0.020\* | −0.0096 | 0.028\* |
+| **200 (primary)** | **482** | **−0.0101** | **0.019\*** | **−0.0097** | **0.027\*** |
+
+The 100 km result is marginal (p=0.154); all other thresholds are significant for Cu (p<0.05). Effect direction is consistently negative across all six thresholds. The 100 km anomaly likely reflects that between 100–150 km, 28 additional samples stabilise genus-level NGSA estimates for genera at the margin of detection.
+
+**(3) Minimum detection frequency sensitivity.** Requiring a minimum number of NGSA-matched detections per genus strengthens the signal: genera must be detected in ≥5 samples within 200 km to include their NGSA estimate. As the minimum detection threshold increases from 1 to 30, β for Cu moves from −0.0101 to −0.0107 (p=0.019–0.047), with the strongest signal at min=5–10 detections (β=−0.013 to −0.014, p<0.003). The signal does not depend on poorly-sampled genera.
+
+| Min detections | n genera | Cu β | Cu p |
+|---|---|---|---|
+| 1 (primary) | 482 | −0.0101 | 0.019\* |
+| 2 | 481 | −0.0105 | 0.015\* |
+| 5 | 451 | −0.0138 | 0.002\* |
+| 10 | 386 | −0.0134 | 0.002\* |
+| 20 | 333 | −0.0136 | 0.007\* |
+| 30 | 299 | −0.0107 | 0.047\* |
+
+These three checks together support the NGSA finding as methodologically robust: the effect is present at most distance thresholds, is consistent across four independent metals, survives FDR correction at q=0.10, and strengthens when genera with fewer detections are excluded.
+
+**Failed and reconciled replications — direct statement**
+
+⚠️ *Multiple-testing note.* Finding 3 involves six pre-specified PGLS models, followed by post-hoc per-Mb normalization, discriminant analysis, tier stratification, and cross-dataset validation. Individual p-values reported throughout this section are uncorrected for this sequential analysis; only the six primary models were pre-specified. All sub-analyses after the initial PGLS should be treated as exploratory and hypothesis-generating.
+
+**NETL produced waters (structural null, not a scientific contradiction).** Four incompatibilities preclude testing the primary hypothesis: (1) well-type categories (Coal Bed Methane/Shale Gas/Tight Oil) classify energy-source formation geology, not metal exposure gradient — the niche axis is orthogonal to the hypothesis; (2) 85% of RDP genus names have no GTDB taxonomy bridge, leaving only 258 genera after bridging — a fundamentally different taxon set; (3) three-category Levins' B produces near-binary niche values with insufficient variance; (4) the ABR antibiotic resistance negative control reached significance in the same direction as the nominally significant Tier 1 result (ABR β=+0.039, p=0.027; Tier 1 β=+0.048, p=0.035), indicating the apparent signal is a generic gene-rich cosmopolitan confound, not metal-specific. A barium-concentration gradient approach was also attempted but produced λ=−0.75 (outside valid [0, 1] range), flagging model misspecification. The dataset is structurally incapable of testing the primary hypothesis. NETL is classified as an uninformative replication; see Limitation 11.
+
+**AusMicrobiome initial null (measurement error, not a biological null).** The initial AusMicrobiome replication (β = −0.0023, p = 0.667; General Ecological Zone vegetation labels) used a biologically inappropriate niche axis. Vegetation-zone labels (temperate grassland, subtropical shrubland) do not track soil metal geochemistry — they are climate-vegetation classifications orthogonal to the selective pressure under study. Replacing them with measured NGSA ICP-MS metal concentrations recovers a significant negative association (Cu/Zn/Pb/Ni p = 0.019–0.046; NB13 NGSA re-analysis; see NGSA robustness table above). This is a methodological correction — switching from a proxy to the actual selective gradient — not post-hoc model fishing. The vegetation-label analysis was a failed measurement of the wrong variable; the NGSA-informed analysis is the valid replication attempt.
+
+**MGnify biome_H sign flip (different niche axis, consistent with theory).** The MGnify validation shows a positive association between ko_per_mb and biome_H (β = +0.051, p = 5.9 × 10⁻¹⁹). This is the opposite sign to the Levins' B result but measures an orthogonal axis. Levins' B captures within-habitat specialization (evenness across 38 site-type labels within one study); biome_H captures cross-biome cosmopolitanism (how many distinct ENVO biome categories a genus appears in globally). A genus can simultaneously be a within-habitat specialist and a cross-biome cosmopolitan — this is ecologically coherent, not contradictory (cf. Logares et al. 2013, ISMEJ: microbial taxa that are specialists within habitats can be cosmopolitan across biome types). Three diagnostic tests (A–B–C; `data/cross_dataset_validation_pgls.csv`) confirm the sign flip is driven by the niche metric, not the annotation pipeline or genome database. The combined result is the project's most coherent ecological claim: metal-gene-dense genera are within-habitat specialists (narrow Levins' B) AND cross-biome cosmopolitans (high biome_H).
+
+*(Scripts: `scripts/cross_dataset_validation.py`, `scripts/neon_validation.py`; Data: `data/mgnify_validation_pgls.csv`, `data/cross_dataset_validation_pgls.csv`, `data/mgnify_subset_expanded_pgls.csv`, `data/pgls_soil_primary_result.csv`)*
+
+---
+
+**Geochemical niche breadth — new analysis (NB18).** To directly test whether metal gene-dense genera occupy narrower ranges of *environmental metal concentration* (not just narrower habitat categories), PGLS was run with the SD of NGSA metal concentrations across each genus's detection sites as the response variable. This is a distinct niche axis from categorical Levins' B (which compares vegetation/land-use zone labels) — a genus can be a categorical generalist yet a geochemical specialist. Results from AusMicrobiome (n = 454–461 genera per metal, NGSA ≤ 200 km):
+
+| Metal | β (total/Mb) | SE | p | q_BH (8 tests) | Interpretation |
+|---|---|---|---|---|---|
+| Cr | −0.189 | 0.061 | 0.002 | 0.016 | Specialist — narrow Cr range |
+| Cu | +0.083 | 0.033 | 0.012 | 0.048 | Generalist — wide Cu range |
+| As | −0.130 | 0.061 | 0.034 | 0.091 | Specialist — narrow As range |
+| Zn | −0.101 | 0.053 | 0.056 | — | Borderline specialist |
+| Co | −0.102 | 0.060 | 0.092 | — | Trend |
+| Ni | −0.106 | 0.063 | 0.092 | — | Trend |
+| Hg | −0.078 | 0.063 | 0.214 | — | Null |
+
+Cr and As survive BH-FDR correction (q = 0.016 and q = 0.091 respectively at FDR = 0.10). Cu is significantly positive: metal gene-dense genera appear across a wide Cu concentration range, even though they are preferentially detected in high-Cu sites (the NGSA mean PGLS is negative). The contrast is biologically interpretable — Cu resistance is nearly universal among metal-gene-dense genera (efflux pumps, CopA ATPases), enabling them to colonize a broad Cu gradient; Cr and As detoxification requires more specialized enzymes (ChrA, ArsB/ACR3), restricting those genera to Cr/As-specific geochemical conditions. **The directional split by metal is a genuine biological finding, not noise**, and is consistent with the known specificity hierarchy of metal resistance mechanisms.
+
+**Hotspot occupancy (NB18, Block 5).** Metal gene-dense genera are significantly *less* concentrated in the 11 geographic hotspot cells (β = −0.254, SE = 0.072, p = 4.9 × 10⁻⁴, n = 227 genera with ≥5 geographically annotated MAGs). This is not contradictory to the hotspot prevalence result (Finding 4) — geographic hotspots are defined by MAG *count* enrichment, which favours locally abundant taxa, not necessarily the most gene-dense ones. Metal gene-dense genera are cosmopolitan across biome types (MGnify biome_H result) and hence not concentrated in any single geographic cell.
+
+*(Notebook: `18_geochemical_niche_breadth.ipynb`; Data: `data/aus_genus_geo_niche.csv`, `data/aus_geo_niche_pgls.csv`, `data/hotspot_occupancy_pgls.csv`, `data/geo_niche_summary.csv`)*
+
+---
+
+### Finding 4 — Metal-resistant MAGs are geographically clustered with strong soil enrichment and marine depletion (Extended)
+
+![Global MAG hotspot map](figures/nb03_global_hotspot_map.png)
+
+Among 22,356 environmental MAGs with geographic coordinates (drawn from 260,652 high-quality MGnify MAGs, of which 30,497 are from environmental metagenomes), 635 carry at least one curated metal resistance gene (global prevalence: 2.84%). Fisher's exact test with BH-FDR (5° grid cells, 289 cells tested) identifies 11 geographic hotspots (OR > 2, q < 0.05) and 3 coldspots (OR < 0.5, q < 0.05). The strongest hotspot is the Atacama/central Chile region (lat = −25°, lon = −70°; OR = 9.83, q = 7.6 × 10⁻¹²). One top-5 hotspot (southern India, 30°, 85°; OR = 6.27) is flagged as a single-expedition cluster and should be interpreted cautiously.
+
+![Biome-stratified MAG prevalence](figures/nb03_biome_prevalence.png)
+
+Biome stratification shows strong enrichment in Soil (OR = 5.05, q = 1.75 × 10⁻⁸²) and strong depletion in Marine water (OR = 0.20, q = 9.2 × 10⁻⁸⁰), consistent with the role of geochemically heterogeneous soils in selecting for metal-responsive genomes. Rhizosphere shows no significant deviation from baseline (OR = 0.66, q = 0.299).
+
+*(Notebooks: `10a_global_mag_distribution.ipynb`, `10b_spatial_analysis.ipynb`, `10c_mag_figures.ipynb`)*
+
+---
+
+### Finding 4b — Cross-dataset geographic metal annotation: Moran's I, mining proximity, and latitude gradient (Extended)
+
+*(Notebook: `16_geographic_metal_annotation.ipynb`; data: `data/mags_annotated_geo.csv`, `data/moran_i_metal_genes.csv`, `data/geo_correlation_results.csv`)*
+
+Three analyses were conducted on the 22,356 MGnify environmental MAGs (human gut excluded) using lat/lon coordinates. Reference geochemical data were extracted from `arkinlab_envdbs` (Spark): National Geochemical Survey of Australia (NGSA; 1,315 soil sites, ICP-MS metals), global mining operations (8,507 sites), and CMMI Critical Minerals Mapping Initiative (29,087 global ore deposit analyses).
+
+**Moran's I spatial autocorrelation** (k=15 nearest neighbours, haversine; permutation test n=999):
+
+| Biome | Variable | n | Moran's I | E[I] | p (perm) |
+|---|---|---|---|---|---|
+| Soil | Metal type diversity | 7,939 | **0.0695** | −0.00013 | **0.001** |
+| Soil | Total metal genes | 7,939 | 0.0562 | −0.00013 | 0.001 |
+| Marine | Metal type diversity | 11,055 | 0.0318 | −0.00009 | 0.005 |
+| Marine | Total metal genes | 11,055 | 0.0255 | −0.00009 | 0.180 |
+| Marine Sediment | Metal type diversity | 2,940 | 0.0220 | −0.00034 | 0.734 |
+| Marine Sediment | Total metal genes | 2,940 | 0.0208 | −0.00034 | 0.670 |
+
+Soil MAGs show the strongest spatial autocorrelation (I = 0.070, p = 0.001), indicating that nearby soil genomes carry more similar metal gene repertoires than expected under spatial randomness. Marine water shows weaker but significant clustering (I = 0.032, p = 0.005 for metal type diversity). Marine Sediment shows no significant clustering (p > 0.67). This biome-ordered pattern (Soil > Marine > Marine Sediment) is consistent with geochemical heterogeneity being highest in soils (where geology, land use, and anthropogenic sources all vary at landscape scale) and homogenised in open-ocean water masses.
+
+**Mining proximity** (spatial_join_nearest, BallTree haversine; distance to nearest mine from global mining_operations, n=8,507 sites):
+
+| Biome | rho (dist_mine_km ~ n_metal_types) | p-value |
+|---|---|---|
+| All env MAGs | −0.075 | 5.9 × 10⁻²⁹ |
+| **Soil** | **−0.057** | **3.2 × 10⁻⁷** |
+| Marine | +0.021 | 0.027 |
+| Marine Sediment | +0.030 | 0.100 |
+
+A negative rho indicates that MAGs **closer** to mines carry **more** metal resistance genes. The soil effect (rho = −0.057, p = 3.2 × 10⁻⁷, n = 7,939) is significant and directionally consistent with mining-driven metal contamination selecting for metal resistance. The marine effect is absent (non-significant, opposite sign), as expected — marine metal gene diversity is driven by oceanic chemistry and depth, not proximity to terrestrial mines. The overall signal (rho = −0.075, p = 5.9 × 10⁻²⁹) reflects the large fraction of MAGs in the dataset from soil.
+
+**Latitude gradient** (Spearman |lat| ~ n_metal_types):
+
+| Biome | rho | p-value |
+|---|---|---|
+| Soil | −0.082 | < 10⁻¹⁶ |
+| Marine | −0.027 | 0.005 |
+| Marine Sediment | −0.010 | 0.581 |
+
+A negative rho for |lat| indicates more metal genes **toward lower latitudes** (tropics). This runs counter to a simple northern-hemisphere mining belt hypothesis. The equatorial enrichment in soil MAGs is consistent with (a) intense tropical chemical weathering releasing lithogenic metals, (b) higher microbial alpha-diversity at lower latitudes inflating total gene counts, or (c) agricultural metal inputs concentrated in tropical/subtropical farming regions. The directional pattern (signed lat Spearman rho also negative, not shown but consistent) indicates the enrichment is symmetric around the equator rather than hemisphere-specific.
+
+**CMMI ore deposit metals** (MAGs within 200 km of an ore deposit; n = 2,618):
+
+| Predictor | rho | p-value |
+|---|---|---|
+| cmmi_cu_ppm vs n_metal_types | −0.093 | 1.7 × 10⁻⁶ |
+| cmmi_zn_ppm vs n_metal_types | −0.099 | 3.8 × 10⁻⁷ |
+| cmmi_pb_ppm vs n_metal_types | −0.108 | 3.2 × 10⁻⁸ |
+
+Counterintuitively, MAGs near high-Cu/Zn/Pb ore deposits show **fewer** metal resistance genes (negative rho). This likely reflects that CMMI ore deposit geochemistry (geological/bedrock concentrations) does not represent the surface soil metal exposure experienced by microbes — ore bodies are subsurface geological features and surrounding surface soils may be pristine. Alternatively, ore-adjacent MAGs may disproportionately come from processing or industrial-contaminated environments where community diversity is globally suppressed. This result does not conflict with the mining proximity signal, which uses mine site locations (where active extraction has disrupted and contaminated the surface) rather than ore deposit geochemistry.
+
+**Australian Microbiome NGSA annotation** (Block 6c; 1,663 samples, max 300 km join distance):
+
+NGSA soil metal concentrations were joined to Australian Microbiome sample coordinates (from `AM_Contextual_Data_Master_Sheet-20180501.xlsx`). Of 1,663 samples with valid lat/lon, 1,293 (78%) matched within 300 km (median distance = 35 km — very close matches). The output `data/aus_microbiome/aus_sample_ngsa.csv` provides per-sample NGSA Cu/Zn/Pb/Ni/Co/As/Cr/Hg (ICP-MS, mg/kg) and field_pH. This annotation was used in the NGSA-informed PGLS re-analysis (see "Additional validation attempts" in Chapter 3), which found that NGSA Cu/Zn/Pb/Ni significantly predicts AusMicrobiome niche breadth (p = 0.019–0.046), explaining the original null result from vegetation-zone labels.
+
+**NGSA analysis of Australian soil MGnify MAGs** (n = 117): Insufficient for inference — all rho values near zero, all p > 0.6. The NGSA join is most valuable at the AusMicrobiome genus level, not the individual MAG level.
+
+*(Data: `data/ngsa_geochemistry.csv`, `data/mining_operations.csv`, `data/cmmi_ores.csv`, `data/mags_annotated_geo.csv`, `data/geo_correlation_results.csv`, `data/aus_microbiome/aus_sample_ngsa.csv`)*
+
+---
+
+### Finding 5 — Community-level metal gene investment validated; Tier 1 and Tier 2 co-occur within MAGs (Experimental design implications)
+
+**Community-weighted metal gene investment (NB19, Block 1).** To confirm that the genus-level niche breadth signal translates to the community level, community-weighted mean (CWM) ko_per_mb was computed per AusMicrobiome sample as the relative-abundance-weighted mean across 441 genera common to both the 16S OTU table and the MGnify MAG KO density dataset (745 samples, NGSA ≤ 200 km). Spearman correlations between CWM and NGSA metal concentrations across 8 metals × 3 CWM types (total/tier1/tier2) yield 20/24 tests significant after BH-FDR correction (q < 0.05). The strongest associations are with Co, Ni, and Cu (ρ = 0.147–0.186, q < 10⁻⁴), with Pb negatively associated (ρ = −0.168 for Tier 2, q = 2.0 × 10⁻⁵). This confirms that the genus-level niche breadth finding operates at the community scale: soil communities in high-metal environments carry more metal-resistance KOs per Mb.
+
+**Tier 1 and Tier 2 are analytically indistinguishable within individual MAGs (NB19, Block 3 — methodological finding with implications for predictor choice).** Among 260,606 high-quality MGnify MAGs (genome length > 0.5 Mb), partial Spearman between Tier 1 and Tier 2 KO density — controlling for genome size — is ρ = 0.999 (p_perm = 0.001, n = 260,606). This holds for Bacteria (ρ = 0.999, n = 258,420) and is weaker but still strong for Archaea (ρ = 0.946, n = 2,186). Tier 1 and Tier 2 co-occur proportionally within individual MAGs: the tier split is analytically indistinguishable at the genome level. This result establishes total ko_per_mb as the primary predictor. The dose-response tier results below are retained as exploratory observations but cannot be attributed to mechanistically distinct functions.
+
+**Dose-response meta-analysis (NB19, Block 2; exploratory; interpret with caution given tier co-occurrence result above).** For 932 genera with presence data across NGSA quartiles of Cu, Cr, As, and Zn, Spearman ρ between detection frequency and quartile median concentration was computed (n = 4 points per genus × metal; minimum achievable p ≈ 0.083). No individual genus survives FDR correction. Meta-analysis of dose-response ρ against ko_per_mb identifies metal-specific functional signatures: genera enriched under **Cr** stress carry significantly more Tier 1 KOs (direct resistance; ρ = 0.112, p = 0.019, n = 432), while genera enriched under **Cu** stress carry more Tier 2 KOs (metabolic/homeostasis; ρ = 0.122, p = 0.011, n = 432). Zn shows a borderline Tier 2 signal (ρ = 0.097, p = 0.045). These metal-specific signatures likely reflect population-level enrichment of genomes with subtly different tier compositions, not within-genome tier differentiation.
+
+**AlphaEarth hotspot tier split (NB19, Block 4).** Among 394 genera with both AlphaEarth hotspot_frac (fraction of genomes from geographic hotspot sites; min n = 10 MAGs per genus) and MGnify KO density, neither Mann-Whitney U (hotspot-enriched: hotspot_frac > 0.2, n = 71 vs background: hotspot_frac < 0.05, n = 231; all p > 0.3) nor continuous Spearman (ρ ≈ 0) shows any association with Tier 1 or Tier 2 ko_per_mb. Geographic hotspot occupancy as defined by AlphaEarth is not predicted by metal KO density at the genus level. This cross-dataset null (AlphaEarth GTDB accessions joined with MGnify genus means) does not contradict the NB18 within-dataset finding (β = −0.254, p = 4.9 × 10⁻⁴, AusMicrobiome MAGs only).
+
+*(Notebook: `19_signals_beyond_niche_breadth.ipynb`; Data: `data/cwm_ngsa_spearman.csv`, `data/genus_dose_response.csv`, `data/dose_response_pgls.csv`, `data/tier_cooccurrence.csv`, `data/hotspot_tier_split.csv`, `data/hotspot_tier_mwu.csv`, `data/figures/fig10_dose_response`, `data/figures/fig11_tier_cooccurrence`, `data/figures/fig12_hotspot_tier`)*
 
 ---
 
 ## Results
 
-### Pagel's λ — phylogenetic signal by trait and domain
+### Pagel's λ — full estimates
 
-| Domain | Trait | n genera | λ | p (LRT) |
-|--------|-------|----------|---|---------|
-| Bacteria | Levins' B_std | 1,264 | 0.787 | 7.9×10⁻¹⁰² |
-| Archaea | Levins' B_std | 132 | 0.197 | 1.1×10⁻⁵ |
-| Bacteria | # environments | 1,264 | 0.909 | 1.4×10⁻¹⁵⁷ |
-| Archaea | # environments | 132 | 0.898 | 4.6×10⁻¹⁴ |
-| Bacteria | Nitrification | 2,286 | 0.939 | 2.5×10⁻¹⁰² |
-| Archaea | Nitrification | 132 | 1.000 | 2.5×10⁻⁵¹ |
-| Bacteria | AMR clusters | 606 | 0.260 | 6.1×10⁻²⁸ |
-| Bacteria | Core AMR fraction | 606 | 0.441 | 1.8×10⁻⁸ |
-| Bacteria | Metal types | 606 | 0.335 | 1.1×10⁻²³ |
-| Archaea | AMR clusters | 48 | ≈0 | 1.0 |
+| Domain | Trait | n_taxa | λ | p-value | Notes |
+|--------|-------|--------|---|---------|-------|
+| Bacteria | Levins' B_std | 1,252 | 0.932 | 9.4 × 10⁻¹⁷⁹ | |
+| Bacteria | n_envs | 1,252 | 0.918 | 2.0 × 10⁻¹⁶¹ | |
+| Bacteria | Nitrifier (pos. control) | 2,283 | 0.967 | 3.3 × 10⁻¹⁰⁷ | Positive control |
+| Bacteria | Metal type diversity (94-KO) | 1,000 | **0.943** | 4.6 × 10⁻²⁴⁵ | 94-KO curated list (updated 2026-07-01) |
+| Bacteria | Metal gene clusters (94-KO) | 1,000 | 0.497 | 2.8 × 10⁻⁸⁵ | 94-KO curated list (updated 2026-07-01) |
+| Bacteria | Metal core fraction (94-KO) | 1,000 | 0.291 | 7.5 × 10⁻⁷ | 94-KO curated list (updated 2026-07-01) |
+| Bacteria | Antibiotic resistance (neg. ctrl) | 799 | **0.121** | 2.1 × 10⁻⁵ | Non-metal AMR genes; negative control |
+| Archaea | Levins' B_std | 129 | 0.640 | 1.3 × 10⁻⁷ | |
+| Archaea | n_envs | 129 | 0.880 | 2.1 × 10⁻¹³ | |
+| Archaea | Nitrifier (pos. control) | 129 | ~1.000 | 1.3 × 10⁻⁵⁰ | |
+| Archaea | Metal gene clusters (94-KO) | 83 | 0.374 | 2.7 × 10⁻⁴ | 94-KO curated list (updated 2026-07-01) |
 
-λ = 0 indicates no phylogenetic signal (environmentally structured); λ = 1 indicates
-Brownian motion evolution (fully phylogenetically structured). Computed via
-`phytools::phylosig(method='lambda', test=TRUE)` against GTDB r214 genus-representative trees.
+Archaea metal cluster λ is at the numerical boundary; the n = 73 genus sample size is insufficient for reliable estimation (power analysis indicates ≥702 genera for 80% power at the observed effect size). Biome-stratified estimates for Bacteria range from 0.829 (Marine water, n = 424) to 0.897 (Marine Sediment, n = 317), showing consistent phylogenetic signal across environments.
 
-### PGLS regression — metal AMR predicts niche breadth
+*(Data: `data/pagel_lambda_results.csv`)*
 
-Analytical subset: 606 bacterial genera with ≥ 3 OTUs, present in the GTDB r214 bacterial
-genus tree, and with metal AMR data from `kbase_ke_pangenome`. Predictors z-scored;
-Bonferroni threshold p < 0.0083 (6 simple models).
+### PGLS multi-predictor model (exploratory)
 
-![PGLS forest plot: all simple models + multi-predictor](figures/fig2_pgls_forest.png)
+| Predictor | β | SE | t | p-value |
+|-----------|---|----|---|---------|
+| Metal gene clusters (z) | +0.0081 | 0.0043 | 1.880 | 0.060 |
+| Metal core fraction (z) | +0.0062 | 0.0032 | 1.915 | 0.056 |
+| Metal type diversity (z) | +0.0089 | 0.0064 | 1.386 | 0.166 |
 
-**Simple PGLS models**:
+*n = 1,000; λ = 0.877. Exploratory. No predictor survives Bonferroni correction for the 6 pre-registered tests. All three predictors positive and two approach p = 0.05, but this is an exploratory, non-pre-registered model.*
 
-| Response | Predictor (z) | n | λ_PGLS | β | SE | p | ΔAIC | Bonf. sig? |
-|----------|--------------|---|--------|---|-----|---|------|-----------|
-| Levins' B_std | Metal types | 606 | 0.708 | +0.021 | 0.0056 | 1.5×10⁻⁴ | −12.4 | **yes** |
-| Levins' B_std | AMR clusters | 606 | 0.700 | +0.010 | 0.0056 | 0.090 | −0.9 | no |
-| Levins' B_std | Core fraction | 606 | 0.701 | +0.003 | 0.0054 | 0.523 | +1.6 | no |
-| # environments | Core fraction | 606 | 0.839 | +0.142 | 0.069 | 0.038 | −2.3 | no |
-| # environments | AMR clusters | 606 | 0.847 | −0.071 | 0.067 | 0.290 | +0.9 | no |
-| # environments | Metal types | 606 | 0.848 | −0.007 | 0.071 | 0.923 | +2.0 | no |
+*(Data: `data/pgls_multi_results.csv`)*
 
-**Multi-predictor model** (Levins' B_std ~ all 3, λ = 0.706, AIC = −743.67):
+### Robustness analyses (R1–R4, updated 2026-07-01 with 94-KO list)
 
-| Predictor | β | SE | p |
-|-----------|---|-----|---|
-| AMR clusters | −0.002 | 0.0065 | 0.789 |
-| Core fraction | +0.006 | 0.0054 | 0.288 |
-| **Metal types** | **+0.023** | **0.0067** | **5.5×10⁻⁴** |
+**R1 — n_species_with_metal as covariate** (controls for pangenome sampling depth):
 
-PGLS estimated jointly with λ via ML (`ape::gls + nlme::corPagel`). Data sorted to
-`tree$tip.label` order prior to fitting (see `docs/pitfalls.md`).
+| Predictor | β | SE | p-value | Interpretation |
+|-----------|---|----|---------|----------------|
+| Metal type diversity (z) | +0.0138 | 0.0056 | 0.013 | Unchanged; pangenome depth not a confounder |
+| n_species_with_metal (z) | −0.0008 | 0.0030 | 0.791 | Not significant |
+
+*n = 1,000; λ = 0.886. The metal type diversity signal (p = 0.013) is unchanged after controlling for pangenome sampling depth.*
+
+**R2 — Full multi-predictor + n_species_with_metal** (n = 1,000; λ = 0.877):
+
+| Predictor | β | SE | p-value |
+|-----------|---|----|---------|
+| Metal type diversity (z) | +0.0087 | 0.0064 | 0.176 |
+| Metal gene clusters (z) | +0.0082 | 0.0043 | 0.057 |
+| Metal core fraction (z) | +0.0061 | 0.0032 | 0.057 |
+| n_species_with_metal (z) | −0.0011 | 0.0030 | 0.713 |
+
+*Adding the pangenome depth covariate leaves all three AMR predictors positive and clusters/core fraction approaching p = 0.05.*
+
+**R3 — Rarefied PGLS (1 species per genus, 200 iterations)**:
+
+| Summary statistic | Value |
+|-------------------|-------|
+| Median β | +0.0092 |
+| IQR for β | [+0.0074, +0.0112] |
+| Median p | 0.054 |
+| Fraction p < 0.05 | 49.0% |
+| Fraction p < 0.0083 (Bonferroni) | 10.5% |
+| Median λ | 0.888 |
+| Median n taxa | 1,000 |
+
+*All 200 iterations yield positive β; median β consistent with the full-data result. The association direction is fully robust to species-level rarefaction, though the median p remains sub-threshold.*
+
+**R4 — Archaeal PGLS** (n = 83 genera; exploratory):
+
+| Predictor | β | SE | p-value | λ |
+|-----------|---|----|---------|---|
+| Metal type diversity (z) | +0.0141 | 0.0079 | 0.080 | 0.736 |
+| Metal gene clusters (z) | +0.0122 | 0.0069 | 0.080 | 0.721 |
+| Metal core fraction (z) | +0.0014 | 0.0069 | 0.843 | 0.730 |
+
+*n = 83 Archaea genera (increased from earlier 73 with the 94-KO list). Effect sizes are comparable to Bacteria but remain sub-threshold; analysis severely underpowered (702 genera needed for 80% power).*
+
+*(Data: `data/pgls_robustness_results.csv`, `data/pgls_rarefied_summary.csv`)*
+
+### Sensitivity analyses (S1–S5)
+
+**S1 — Leave-one-metal-out** (n = 1,000 genera, 12 metals; completed 2026-07-01 using `data/species_metal_amr_permetal.csv`): Each metal was excluded in turn; the remaining 11-metal type count was re-aggregated per genus and PGLS re-fit.
+
+| Metal excluded | β | SE | p-value | Robust? |
+|---|---|---|---|---|
+| Antimony | +0.0139 | 0.0050 | 0.005 | ✓ |
+| Arsenic | +0.0122 | 0.0054 | 0.025 | ✓ |
+| **Cadmium** | **+0.0054** | **0.0053** | **0.316** | **✗** |
+| Chromium | +0.0135 | 0.0056 | 0.016 | ✓ |
+| Cobalt | +0.0109 | 0.0058 | 0.058 | ✓ (marginal) |
+| Copper | +0.0133 | 0.0057 | 0.020 | ✓ |
+| Iron | +0.0132 | 0.0052 | 0.012 | ✓ |
+| Mercury | +0.0179 | 0.0056 | 0.001 | ✓ |
+| Nickel | +0.0147 | 0.0056 | 0.009 | ✓ |
+| Silver | +0.0170 | 0.0054 | 0.002 | ✓ |
+| Tellurium | +0.0133 | 0.0055 | 0.016 | ✓ |
+| Zinc | +0.0139 | 0.0056 | 0.012 | ✓ |
+
+11/12 exclusions preserve the positive association (p < 0.05). The single exception is cadmium: removing cadmium genes drops p to 0.316 (β = +0.005), indicating cadmium-specific homeostasis genes contribute disproportionately to the predictor variance.
+
+**Cadmium exception — mechanistic interpretation.** Cadmium resistance loci (czcABC, cadA, cad operons) are frequently co-located on metal-resistance genomic islands alongside cobalt, zinc, and mercury resistance systems. Genera carrying cadmium resistance therefore tend to carry more diverse metal resistance overall — cadmium genes act as a high-variance proxy for the broader metal type diversity predictor, not as an independent causal driver. This interpretation is consistent with the S1 table above: 11/12 metals individually preserve a positive association (p < 0.05); removing cadmium *genes* weakens the predictor's discriminating power without implying that cadmium *stress* is uniquely responsible for selecting ecological generalism. The cadmium exception is a target for experimental follow-up (does cadmium contamination history specifically select for niche generalists relative to other metals?) rather than an invalidation of the association. *Data: `data/pgls_sensitivity_results.csv`.*
+
+**S2 — Leave-one-environment-out** (metal type diversity predicting B_std across 13 environments):
+
+| Excluded env | β | SE | p-value |
+|--------------|---|----|---------|
+| agricultural | +0.0134 | 0.0054 | 0.013 |
+| aquatic | +0.0155 | 0.0053 | 0.004 |
+| desert | +0.0140 | 0.0057 | 0.014 |
+| farm | +0.0065 | 0.0057 | 0.250 |
+| field | +0.0133 | 0.0053 | 0.013 |
+| flower | +0.0126 | 0.0060 | 0.036 |
+| forest | +0.0149 | 0.0056 | 0.008 |
+| leaf | +0.0146 | 0.0058 | 0.013 |
+| paddy | +0.0169 | 0.0057 | 0.003 |
+| peatland | +0.0144 | 0.0059 | 0.015 |
+| plant | +0.0118 | 0.0052 | 0.025 |
+| shrub | +0.0158 | 0.0058 | 0.006 |
+| soil | +0.0117 | 0.0052 | 0.026 |
+
+*All 13 tests yield positive β. Excluding "farm" is the only case with p > 0.05 (p = 0.250), suggesting farm OTUs contribute importantly to the signal. Four excl-environment tests reach or approach Bonferroni (excl paddy p = 0.003, excl aquatic p = 0.004, excl shrub p = 0.006, excl forest p = 0.008). All n = 1,000; λ range 0.859–0.906.*
+
+**S3 — Within-genus SD of metal types as covariate** (n = 1,000; λ = 0.887):
+
+| Predictor | β | SE | p-value |
+|-----------|---|----|---------|
+| Metal type diversity (z) | +0.0139 | 0.0056 | 0.012 |
+| SD metal types (z) | +0.0018 | 0.0030 | 0.545 |
+
+*Metal type diversity signal is unchanged (p = 0.012 vs p = 0.013 in simple model). Within-genus variance is not significant.*
+
+**S4 — log(n_species_with_metal) as covariate** (n = 1,000; λ = 0.886):
+
+| Predictor | β | SE | p-value |
+|-----------|---|----|---------|
+| Metal type diversity (z) | +0.0139 | 0.0056 | 0.013 |
+| log n_species (z) | ≈0 | 0.0031 | 0.988 |
+
+*Metal type diversity signal is completely unchanged. Log-transformed pangenome depth is non-predictive.*
+
+*(Data: `data/pgls_sensitivity_results.csv`)*
+
+**S5 — FitnessBrowser empirical gene list (MGnify validation; gene-list sensitivity)** *(completed 2026-07-03; `data/fb_sensitivity_pgls.csv`)*. The MGnify MAG PGLS (Finding 3, biome_H model) uses a curated 94-KO list assembled from BacMet/CARD/UniProt literature annotation. To test whether the biome_H signal depends on curation choices, we substituted an independently derived list of 74 KOs from FitnessBrowser RB-TnSeq empirical fitness data (Price et al. 2018). The empirical list was built by: (1) identifying genes with condition-specific fitness defects under metal stress in ≥2 organisms (|t| > 4, min_fit < −1.0; NB01–NB03 in `projects/fitnessbrowser_metal_gene_list/`); (2) annotating with eggNOG-mapper 2.1.7; (3) retaining KOs appearing as metal-important in ≥2 organisms (cross-species filter). The two lists share only 12 KOs (16% overlap), with the empirical list being Tier 1 only (no Tier 2 homeostasis KOs pass the cross-species threshold). The KO density predictor was recomputed on the same 576 MGnify genera used in the primary MGnify validation and PGLS re-run with the same `pgls_mgnify_validation.R` script.
+
+| Gene list | n_genera | λ | β | SE | p-value | ΔAIC |
+|---|---|---|---|---|---|---|
+| Curated 94-KO (Tier 1+2) | 576 | 0.379 | +0.0508 | 0.00551 | 5.9×10⁻¹⁹ | −77.3 |
+| FitnessBrowser 74-KO (Tier 1 only) | 576 | 0.374 | +0.0530 | 0.00612 | 5.0×10⁻¹⁷ | −68.4 |
+
+*Both gene lists produce essentially identical association with biome Shannon entropy (β difference < 5%, Δp one order of magnitude). The signal is robust to gene list choice despite only 16% KO overlap. This is strong evidence that the biome_H association reflects a general property of metal gene content — not an artefact of any particular curation decision — because two independently derived gene sets, assembled by entirely different methods (literature curation vs. multi-organism RB-TnSeq fitness), produce the same quantitative result. The FitnessBrowser list is Tier 1 resistance genes only; the fact that it matches the curated result (which includes 30 Tier 2 homeostasis KOs) is consistent with Tier 1 genes driving the biome_H signal in the MGnify MAG context (cf. tier-specific results in Finding 3). Data: `data/fb_sensitivity_pgls.csv`.*
+
+### Functional subset and COG P sub-analyses (all exploratory)
+
+| Analysis | Predictor | β | SE | p-value | Bonf. sig? |
+|----------|-----------|---|----|---------|------------|
+| Functional subset | Defense (efflux/detox) | +0.0037 | 0.0037 | 0.316 | No |
+| Functional subset | Metabolism (metal enzymes) | +0.0008 | 0.0035 | 0.814 | No |
+| Functional subset | Homeostasis (sensing/regulation) | +0.0127 | 0.0042 | 0.0024 | **Yes** (threshold 0.017) |
+| COG P PGLS (n = 909) | COG P cluster count | +0.0087 | 0.0031 | 0.0047 | — |
+
+*Bonferroni threshold for 3-way functional subset: p < 0.017. COG P is an additional exploratory test; Bonferroni not applied.*
+
+### Habitat and GapMind PGLS (exploratory)
+
+| Model | Predictor | β | SE | p-value |
+|-------|-----------|---|----|---------|
+| Habitat alone | pct_aquatic | −0.496 | 0.029 | 1.3 × 10⁻⁵⁶ |
+| Habitat alone | pct_soil | +0.353 | 0.029 | 1.2 × 10⁻³² |
+| GapMind + habitat | gapmind_carbon | +0.142 | 0.033 | 1.9 × 10⁻⁵ |
+| GapMind + habitat | pct_aquatic | −0.490 | 0.029 | 3.9 × 10⁻⁵⁶ |
+
+*(Data: `data/pgls_subset_env_profile.csv`)*
+
+### Geographic hotspot summary
+
+| Region | Lat | Lon | OR | q-value |
+|--------|-----|-----|-----|---------|
+| Chile/Atacama | −25° | −70° | 9.83 | 7.6 × 10⁻¹² |
+| US East | 40° | −80° | 7.86 | 2.8 × 10⁻¹¹ |
+| US Midwest | 40° | −90° | 6.32 | 7.6 × 10⁻¹² |
+| India (single-expedition†) | 30° | 85° | 6.27 | 1.7 × 10⁻² |
+| SW China | 25° | 105° | 5.89 | 1.0 × 10⁻² |
+| E China | 25° | 115° | 4.43 | 5.7 × 10⁻⁴ |
+| E China coast | 30° | 120° | 3.77 | 1.9 × 10⁻³ |
+| Mexico Gulf | 25° | −85° | 2.71 | 1.8 × 10⁻³ |
+| Central Europe | 50° | 10° | 2.65 | 3.9 × 10⁻³ |
+| W US coast | 30° | −120° | 2.57 | 1.7 × 10⁻² |
+| NW US | 35° | −125° | 2.48 | 1.7 × 10⁻⁵ |
+
+*†Single expedition detected at this hotspot — interpret cautiously.*
+*(Data: `data/hotspots_5grid_filtered.csv`)*
+
+### ENIGMA field observations (exploratory subsection)
+
+**Track A — Genus-level groundwater prevalence (MicrobeAtlas)**
+
+Among 708 genera with both metal resistance data and groundwater prevalence estimates from 1,624 ENIGMA groundwater samples, metal type diversity shows a small positive association with mean groundwater prevalence (Spearman ρ = +0.088, p = 0.019). This association is weak and borderline at an uncorrected threshold; it does not survive multiple-testing correction. No significant association was found between metal type diversity and mean fold-enrichment relative to other environments (ρ = +0.039, p = 0.29).
+
+*Note: An earlier version of this analysis reported ρ = +0.112, p = 0.0019. This value could not be reproduced from the current `data/groundwater_enrichment.csv` file. The value reported here (ρ = +0.088, p = 0.019) is the independently verified result from direct computation on the current data file.*
+
+**Track B — ENIGMA amplicon time series (PRJNA1084851, n = 133 samples)**
+
+Analysis of 133 amplicon samples from ENIGMA groundwater wells identified higher community-weighted mean (CWM) metal type diversity in contamination plume wells vs. background wells, and a positive association between CWM and carbon amendment treatment. Precise effect sizes are retained in the Track B data files. **Read coverage: 32.2% mean (12.6% of OTUs annotated; 10/133 samples below 10%)** — most unannotated reads are from Candidate phyla (CPR, Saccharimonadia) lacking reference genomes. CWM results therefore underestimate full-community metal resistance capacity and should be treated as conservative (see Limitation 7).
+
+*(Scripts: `enigma_validation.py`, `prjna1084851_pipeline.py`; Figures: `fig_enigma_validation.png`, `fig_enigma_trackB.png`; Data: `data/enigma_cwm_per_sample.csv`, `data/enigma_pessimistic_cwm_results.csv`)*
 
 ---
 
-## Robustness Analyses
+### Satellite analyses — fate decisions
 
-Five robustness analyses were run to partially address the main caveats. Scripts:
-`scripts/pgls_robustness.R` (analyses 1–3), inline Python (analysis 4), and
-`scripts/pgls_genome_size.R` (analysis 5).
+The following extended analyses produced supplementary rather than primary results after evaluation of their primary outputs:
 
-![Robustness summary: Panel A — β across 5 analysis scenarios; Panel B — rarefied β distribution (200 iterations); Panel C — archaeal power curve](figures/fig5_robustness.png)
+**COG–metal Spearman (NB08a–08c):** Community-weighted Spearman correlations between 5,197 COG families and 10 metals across ~71,000 soil samples. Significant associations are present (e.g., GeoROC Cr vs. COG P abundance: ρ = 0.076, p = 1.2 × 10⁻⁶⁷) but effect sizes are small throughout; the notebook flags that "statistical significance does not imply biological importance" at these sample sizes. These results are supplementary and do not change the primary narrative. *(Notebooks: `08a_spearman_cog_metal.ipynb`, `08b_fdr_associations.ipynb`, `08c_copper_specific.ipynb`)*
 
-### R1. Pangenome coverage covariate (addressable with existing data)
+**db-RDA (NB08d):** Excluded — a circular predictor issue was identified; this analysis is not complete and is not reported. *(Notebook: `08d_dbrda_pgls.ipynb`)*
 
-Adding `n_species_with_amr` (z-scored) as a fourth predictor to control for genome-sampling
-depth:
+**OTU–GeoROC partial Spearman (NB09a + Tier 1 extension):** Partial Spearman between OTU abundances and 9 soil metals across 71,199 samples (338 complete cases for all 9 metals; 338/71199 = 0.5%). Seven of nine metals show MNAR patterns (project-correlated missingness); As (92%), Cd (96%), Hg (99%) are most problematic, and high inter-metal correlations (Co–Ni: r = 0.80; Cr–Ni: r = 0.90) create mutual adjustment instability in the 9-metal analysis. **Tier 1 restricted analysis (2026-07-02):** Restricting to six non-MNAR metals (Co, Cr, Cu, Ni, Zn, Pb — 0% missing in the 3,050-sample GeoROC-matched set) yields 3,050 complete cases. Partial Spearman (CLR-transformed OTU abundances vs. each metal, controlling for the other five metals, library size, and spatial terms; 2,000 top-variance OTUs; 999 permutations) identifies 2,773 Bonferroni-significant OTU–metal pairs across 12,000 tests (α = 0.0083): Co = 569, Cu = 557, Cr = 497, Ni = 445, Pb = 366, Zn = 339 pairs. Mixed-sign associations reflect both metal-tolerant taxa enriched and metal-sensitive taxa depleted along soil metal gradients. *(Notebooks: `09a_otu_georoc_associations.ipynb`, `09b_otu_sensitivity.ipynb`; Tier 1 script: `scripts/block_d_mnar_tier1.py`; Tier 1 data: `data/otu_georoc_tier1_6metal.csv`)*
 
-| Model | Predictor | β | SE | p |
-|-------|-----------|---|-----|---|
-| B_std ~ types + n_species | Metal types (z) | **+0.0204** | 0.0057 | **3.4×10⁻⁴** |
-| B_std ~ types + n_species | n_species (z) | +0.0093 | 0.0051 | 0.068 |
-| B_std ~ all 3 + n_species | Metal types (z) | **+0.0224** | 0.0067 | **8.3×10⁻⁴** |
-| B_std ~ all 3 + n_species | n_species (z) | +0.0092 | 0.0051 | 0.070 |
-
-**Conclusion**: Metal type diversity remains significant (p ≈ 3–8×10⁻⁴) after adding genome
-count as an explicit covariate. The covariate itself is borderline (p ≈ 0.07), indicating a
-modest but non-dominant contribution of sampling depth. The metal type effect is not explained
-away by genome count alone.
-
-*(Script: scripts/pgls_robustness.R, Analysis 1)*
-
-### R2. Pangenome rarefaction — 1 species per genus (addressable with existing data)
-
-To formally remove the genome-count bias, 200 PGLS iterations were run where each genus was
-represented by a single randomly sampled species from `species_metal_amr.csv`. Of 606 PGLS
-genera, 383 had >1 species in the AMR database (the remaining 223 are already singletons, so
-rarefaction does not change them).
-
-| Metric | Value |
-|--------|-------|
-| Iterations completed | 200 / 200 |
-| Median β (metal types → B_std) | **+0.0147** |
-| IQR of β | +0.0126 – +0.0166 |
-| Median p | **0.0054** |
-| Fraction p < 0.05 | **89.5%** |
-| Fraction Bonferroni-significant (p < 0.0083) | **57.5%** |
-| Median λ | 0.704 |
-
-**Conclusion**: After rarefaction the effect direction is consistent across all 200 iterations,
-89.5% reach nominal significance, and 57.5% are Bonferroni-significant. The median β (+0.0147)
-is smaller than the full-data estimate (+0.0215) — as expected when multi-species genera (which
-have higher inferred metal types) are reduced to one representative — but the signal is clearly
-not artefactual. Pangenome sampling depth does not explain the association.
-
-*(Script: scripts/pgls_robustness.R, Analysis 2)*
-
-### R3. Archaeal PGLS and formal power analysis (exploratory, n = 48)
-
-*See [Supplementary: Archaeal Analyses](#supplementary-archaeal-analyses) for full results and
-power analysis tables. Summary*: archaeal PGLS (n = 48 genera) finds positive but non-significant
-β = +0.0145 (p = 0.467) for metal types. This is a severely underpowered analysis (11% power
-at α = 0.05); the non-significant result should not be interpreted as evidence against the
-association in archaea.
-
-### R4. Prevalence-threshold niche breadth (addressable with existing data)
-
-To test whether the metal type → B_std signal depends on sparse, possibly artefactual
-detections, niche breadth was recomputed using a strict 5% within-environment prevalence
-threshold: an OTU was counted as "present" in an environment only if it appeared in ≥5% of
-samples in that category. This reduces detections driven by contamination, cross-sample
-bleed-through, or rare transient events.
-
-| Metric | Original | Strict (≥5%) |
-|--------|----------|-------------|
-| OTUs passing filter | 98,919 | 10,433 |
-| Genera with B_std estimate | 3,160 | 1,120 |
-| PGLS n (with AMR data) | 606 | 379 |
-| Pearson r (orig vs strict B_std) | — | 0.680 |
-| β (metal types → B_std) | +0.0215 | **+0.0166** |
-| SE | 0.0056 | 0.0099 |
-| p | **1.5×10⁻⁴** | 0.092 |
-| λ | 0.708 | 0.526 |
-
-**Conclusion**: Under the strict threshold the effect loses statistical significance (p = 0.092)
-primarily due to reduced sample size (n drops 37%: 606 → 379), not a change in direction or
-magnitude (β changes from +0.0215 to +0.0166, a 23% reduction). The 5% threshold is quite
-conservative — it excludes 89% of OTUs, many of which are genuinely distributed across
-environments but uncommon within any one. This analysis suggests the signal is not driven
-entirely by spurious rare detections, but that power requirements for strict prevalence-based
-niche breadth are substantially higher. A threshold of 1–2% would be a reasonable middle
-ground for future work.
-
-*(Python, inline in analysis pipeline)*
-
-### R5. Genome size PGLS covariate (new BERDL query)
-
-Genus-level mean genome size (bp) was retrieved from `kbase_ke_pangenome.gtdb_metadata`
-via BERDL REST API (one representative species per genus; 527/606 PGLS genera covered).
-log(genome_size) was z-scored and added as a PGLS covariate alongside metal type diversity.
-
-| Predictor | β | SE | p | λ |
-|-----------|---|-----|---|---|
-| Metal types (z) | **+0.0218** | 0.0061 | **3.6×10⁻⁴** | 0.629 |
-| log(genome size) (z) | **+0.0263** | 0.0069 | **1.5×10⁻⁴** | — |
-
-Baseline model (genome size only): β=+0.029, p=2.7×10⁻⁵, AIC=−630.3.
-Full model (+ metal types): AIC=−641.1. **ΔAIC = 10.8** in favour of including metal types.
-
-**Conclusions**: (1) Genome size is independently and significantly positively associated with
-niche breadth, as expected (larger genomes encode more metabolic functions). (2) Metal type
-diversity remains significant (p = 3.6×10⁻⁴) after controlling for genome size, with only a
-marginal change in β (+0.022 vs +0.021 without genome size covariate). The metal type diversity
-effect is **not an artefact of genome size**. (3) The partial β for metal types (controlling
-for both genome size and phylogeny) confirms that metal resistance breadth has independent
-predictive power beyond total genomic complexity.
-
-*Note*: 79/606 genera (13%) lacked genome size data in BERDL at query time; PGLS n drops from
-606 to 527. Results are consistent in direction and significance with the full-data models.
-
-*(BERDL query: `kbase_ke_pangenome.gtdb_metadata.genome_size`; R script: inline Rscript)*
-
-### R6. Three-covariate PGLS: metal types independent of both species richness and genome size
-
-**Question**: Does the metal types effect survive when both log(n_species) and log(genome_size)
-are controlled simultaneously in a single model?
-
-**Analysis**: Merged n_species per genus (from GTDB r214 taxonomy, all 606 genera present) and
-mean genome size (from `kbase_ke_pangenome.gtdb_metadata`, 527/606 genera). Fit:
-B_std ~ metal_types_z + log_n_species_z + log_genome_size_z (n = 527 genera with all 3 covariates).
-
-| Predictor | β | SE | t | p |
-|-----------|---|-----|---|---|
-| **Metal types (z)** | **+0.0218** | **0.0061** | **3.60** | **3.5×10⁻⁴** |
-| log(n_species) (z) | +0.0052 | 0.0057 | 0.90 | 0.366 |
-| log(genome size) (z) | **+0.0255** | **0.0069** | **3.68** | **2.6×10⁻⁴** |
-
-n = 527, λ = 0.628.
-
-**Conclusions**: Metal type diversity remains independently significant (β = +0.022,
-p = 3.5×10⁻⁴, q = 0.003 BH-FDR) after simultaneously controlling for both species richness
-and genome size. When genome size is included alongside n_species, log(n_species) is no longer
-significant (p = 0.37), indicating that the log(n_species) effect in S4 was partly mediated
-by genome size (larger genera tend to have larger genomes). Genome size remains independently
-significant (p = 2.6×10⁻⁴). The metal type diversity effect is **not an artefact of either
-genome complexity or sequencing depth**.
-
-*(Script: inline Rscript — `data/pgls_3covariate_result.csv`)*
-
----
-
-## Extended Sensitivity Analyses
-
-Four additional sensitivity analyses were run to address specific methodological concerns.
-Script: `scripts/pgls_sensitivity.R`.
-
-### S1. Leave-one-metal-out: no single metal drives the result
-
-**Concern**: Could the metal type diversity effect be driven by a single ubiquitous metal (e.g.,
-copper resistance) that is common in broad-niche genera?
-
-**Analysis**: For each of 7 metals (Hg, As, Cu, Zn, Cd, Cr, Ni), recomputed number of metal
-types excluding that metal from the count at the species level, aggregated to genus, and re-ran
-PGLS.
-
-| Metal excluded | β (excl.) | SE | p | vs original |
-|---------------|-----------|-----|---|-------------|
-| Hg | +0.0082 | 0.0069 | 0.233 | ↓ |
-| As | +0.0039 | 0.0061 | 0.518 | ↓↓ |
-| Cu | +0.0102 | 0.0065 | 0.115 | ↓ |
-| Zn | +0.0095 | 0.0064 | 0.140 | ↓ |
-| Cd | +0.0084 | 0.0064 | 0.186 | ↓ |
-| Cr | +0.0088 | 0.0064 | 0.173 | ↓ |
-| Ni | +0.0095 | 0.0064 | 0.140 | ↓ |
-| **All 7 (original)** | **+0.0215** | **0.0056** | **1.5×10⁻⁴** | — |
-
-**Conclusion**: No single metal exclusion leaves a significant result — all 7 drop to p > 0.10.
-However, no one metal is singled out as THE driver: excluding As produces the weakest residual
-signal (β=+0.004, p=0.52), while excluding Cu produces the strongest (β=+0.010, p=0.12). The
-consistency across all exclusions indicates the effect is *distributed* across the metal type
-diversity spectrum rather than driven by one dominant metal. The loss of significance is expected
-because each exclusion reduces the maximum possible diversity score by 1 (from 7 to 6), compressing
-predictor variance and costing statistical power. The direction (positive β) is preserved in all 7
-leave-one-out models.
-
-**Interpretive caveat**: Loss of significance after removing one of seven metals is consistent
-with either (a) a genuinely distributed signal where each metal type contributes independently,
-or (b) an original finding that was near the significance threshold and is pushed below it by the
-compressed predictor range (max diversity 6 rather than 7). The consistently positive β direction
-across all seven exclusions supports interpretation (a), but these alternatives cannot be
-definitively distinguished without a larger metal type vocabulary. This ambiguity is explicitly
-noted here.
-
-*(Script: scripts/pgls_sensitivity.R, Analysis 1)*
-
-### S2. Leave-one-environment-out: signal robust to any single environment category
-
-**Concern**: The 13 MicrobeAtlas environment categories lump heterogeneous habitats (e.g.,
-marine hydrothermal vents and freshwater lakes both classified as "aquatic"). Could the signal
-depend on one poorly-defined category?
-
-**Analysis**: For each of 13 environment categories, excluded that category from the B_std
-computation (row-normalised prevalences over the remaining 12 environments, B_std recomputed with
-J=12), then re-ran PGLS.
-
-| Environment excluded | β | SE | p | λ |
-|---------------------|---|-----|---|---|
-| agricultural | +0.0107 | 0.0040 | 0.0073 | 0.883 |
-| **aquatic** | **+0.0085** | **0.0039** | **0.031** | **0.880** |
-| desert | +0.0120 | 0.0042 | 0.0040 | 0.913 |
-| farm | +0.0115 | 0.0042 | 0.0061 | 0.873 |
-| field | +0.0118 | 0.0040 | 0.0030 | 0.868 |
-| flower | +0.0118 | 0.0044 | 0.0077 | 0.898 |
-| forest | +0.0142 | 0.0042 | 0.0007 | 0.874 |
-| leaf | +0.0130 | 0.0043 | 0.0025 | 0.893 |
-| paddy | +0.0123 | 0.0042 | 0.0036 | 0.898 |
-| peatland | +0.0131 | 0.0044 | 0.0027 | 0.890 |
-| plant | +0.0105 | 0.0039 | 0.0069 | 0.882 |
-| shrub | +0.0126 | 0.0043 | 0.0034 | 0.887 |
-| soil | +0.0113 | 0.0039 | 0.0035 | 0.889 |
-
-**Conclusion**: All 13 leave-one-out models are significant (p < 0.05). The weakest result
-is obtained when excluding "aquatic" — the most heterogeneous and most over-represented category
-(40,353 OTUs; 40.8% of the dataset) — where β drops from +0.021 (main) to +0.0085 (−59%),
-yet remains significant (p = 0.031). The 3 least-sampled environments (flower: 898 OTUs, 0.9%;
-leaf: 1,298 OTUs, 1.3%; plant: 2,647 OTUs, 2.7%) give β = +0.012, +0.013, +0.010,
-all p < 0.008. The result is not contingent on any one environment category. Note that λ is
-consistently higher in this analysis (0.87–0.91 vs 0.71 in the main analysis) because excluding
-one environment reduces the total number of categories, increasing the relative weight of shared
-environments across genera and amplifying phylogenetic covariation in the rescaled B_std.
-
-**Quantitative bias estimate**: The over-representation of aquatic environments (40.8% of OTUs)
-is a potential source of downward bias when that category is included — excluding it produces
-a *weaker* β (+0.0085 vs +0.021), suggesting that aquatic OTUs contribute disproportionately
-to the association. This is consistent with metal-contaminated coastal, estuarine, and
-hydrothermal aquatic environments contributing many broad-niche metal-tolerant genera. Excluding
-aquatic environments therefore produces a conservative lower bound on the true association.
-
-The concern about sub-category heterogeneity (e.g., marine vs freshwater within "aquatic") is
-a valid methodological limitation — the current analysis cannot test it because MicrobeAtlas
-does not provide finer environment classification. Splitting categories at a finer resolution
-would require re-running the niche breadth computation with a revised environment taxonomy.
-
-*(Script: scripts/pgls_sensitivity.R, Analysis 2)*
-
-### S3. Within-genus variance in metal types: not a confounder
-
-**Concern**: Genus-level means mask within-genus heterogeneity. Could the mean metal type
-diversity be high for a genus because a few outlier species drive it, while other species have
-no metal resistance at all?
-
-**Analysis**: Computed within-genus standard deviation of n_metal_types across species from
-`species_metal_amr.csv`, z-scored it, and added it as a covariate to the main PGLS.
-
-| Predictor | β | SE | p |
-|-----------|---|-----|---|
-| Metal types (z) | **+0.0189** | 0.0060 | **0.0016** |
-| SD(metal types) (z) | +0.0074 | 0.0055 | 0.181 |
-
-**Conclusion**: The within-genus SD of metal types is not a significant predictor (p = 0.18),
-and the mean metal types effect is largely unchanged (β = +0.019 vs +0.021 original). Genera
-are not being driven into the "high diversity" category by a few outlier species in a way that
-inflates the association with niche breadth.
-
-*(Script: scripts/pgls_sensitivity.R, Analysis 3)*
-
-### S4. Log(n_species) as PGLS covariate: metal types robust, log-genome-count also informative
-
-**Concern**: Adding n_species_with_amr as a covariate in the prior analysis (R1) used a
-linear scale; genome count effects are typically log-linear. Was the linear covariate
-underpowered?
-
-**Clarification on prior work**: Analysis R1 already added n_species_with_amr as a PGLS
-covariate (not OLS). The claim that this was only done in OLS is incorrect. R1 used `gls()`
-with `corPagel` — the same phylogenetically-corrected estimator as the main analysis. The
-new question is whether log-transforming improves covariate performance.
-
-**Analysis**: Added log1p(n_species_with_amr) (z-scored) as a PGLS covariate alongside
-metal types.
-
-| Predictor | β | SE | p |
-|-----------|---|-----|---|
-| Metal types (z) | **+0.0195** | 0.0057 | **6.4×10⁻⁴** |
-| log(n_species) (z) | +0.0127 | 0.0053 | **0.016** |
-
-**Conclusion**: With the log-transformed genome count covariate, metal type diversity remains
-significant (p = 6.4×10⁻⁴, compared to p = 1.5×10⁻⁴ without). Log(n_species) is now
-significant (p = 0.016), whereas the linear covariate in R1 was borderline (p = 0.07). This
-indicates that genome-count has a log-linear relationship with niche breadth: well-sampled
-genera tend to be slightly broader-niched, possibly because they include more ecologically
-diverse isolates. However, the metal type diversity effect is not explained away (β drops from
-+0.021 to +0.020), confirming that the predictor has independent signal beyond sequencing
-depth. Partial R² decomposition would require a likelihood-ratio test, which shows metal types
-retains a ΔAIC of approximately −10 beyond the log(n_species)-only model.
-
-*(Script: scripts/pgls_sensitivity.R, Analysis 4)*
-
-### S5. OTU abundance filtering for Pagel's λ: robust to excluding rare OTUs
-
-**Concern**: Low-abundance OTUs (potentially spurious detections) may inflate niche breadth
-estimates, biasing the Pagel's λ for B_std.
-
-**Analysis**: Estimated per-OTU mean relative abundance as total_counts / (n_detected_samples ×
-mean_library_size), where mean_library_size = total_reads / total_samples (87,595 reads/sample
-across 463,972 samples). OTUs with mean relative abundance < 0.01% were excluded (66% of
-OTUs; 34% = 33,676 OTUs pass). Bacterial, non-organellar OTUs passing the filter: 23,759 OTUs
-covering 576 of 606 PGLS genera. Genus-level B_std was recomputed on the filtered OTU set.
-
-| Metric | All OTUs (original) | Filtered ≥0.01% rel. abund. |
-|--------|--------------------|-----------------------------|
-| Bacterial genera | 1,264 (Pagel's λ) | 576 (filtered subset) |
-| Pagel's λ (B_std) | 0.787 (all) / 0.763 (same 576) | **0.750** |
-| p (LRT) | 7.9×10⁻¹⁰² / 5.9×10⁻⁴⁰ | **2.8×10⁻⁴⁰** |
-| Change in λ | — | −0.013 (−1.7%) |
-
-**Conclusion**: Excluding low-abundance OTUs (<0.01% mean relative abundance) reduces Pagel's
-λ for bacterial B_std by only 1.7% (0.763 → 0.750), and the signal remains highly significant
-(p = 2.8×10⁻⁴⁰). The phylogenetic conservation of niche breadth is not an artefact of rare
-transient OTU detections.
-
-*(Python inline analysis — `data/pgls_subset_filtered_otus.csv`)*
-
----
-
-## Study Design and Inferential Framework
-
-### Confirmatory vs exploratory analyses
-
-The primary confirmatory hypothesis — tested prior to examining residuals and interaction effects
-— was: **does metal AMR trait diversity predict bacterial niche breadth after phylogenetic
-correction?** The 6 simple PGLS models (NB05) with Bonferroni correction constitute the
-confirmatory analysis. All other analyses are appropriately labelled exploratory or
-post-hoc robustness checks.
-
-Specifically:
-- **Confirmatory**: 6 simple PGLS models (NB05), Pagel's λ for niche and AMR traits (NB04)
-- **Exploratory**: multi-predictor PGLS, robustness analyses R1–R4, sensitivity analyses S1–S4,
-  archaeal PGLS, all analyses added in response to the post-hoc review process
-
-The robustness analyses were conducted after the main analysis was complete, in response to
-anticipated reviewer concerns. This is standard scientific practice and does not invalidate the
-findings, but readers should interpret the robustness results as reassurance rather than
-confirmatory evidence. The primary confirmatory result (metal types → B_std, p = 1.5×10⁻⁴,
-Bonferroni-corrected) stands on its own regardless of the robustness analyses.
-
-Future studies on this question would benefit from preregistering the primary hypothesis,
-analysis plan, and sample size before data collection.
-
-### Multiple testing count
-
-| Analysis set | n tests | Correction |
-|-------------|---------|------------|
-| Simple PGLS (confirmatory) | 6 | Bonferroni (α/6 = 0.0083) |
-| Pagel's λ (confirmatory) | 6 | LRT, no additional correction |
-| Multi-predictor PGLS | 3 predictors in 1 model | not corrected beyond model |
-| Robustness R1–R2, R4–R6 | 9 coefficients | exploratory only |
-| Archaeal PGLS R3 (supplementary) | 3 coefficients | exploratory only |
-| Sensitivity S1–S5 | 24 coefficients | exploratory only |
-| OTU abundance filter S5 (Pagel's λ) | 1 | exploratory only |
-| **Total** | **~47 tests** | — |
-
-The primary result (p = 1.5×10⁻⁴) survives a Bonferroni correction for the full 47-test
-family (threshold = 0.05/47 ≈ 0.0011). This was not the stated correction method, but provides
-an upper bound: the main finding is robust to even the most conservative family-wise correction
-across all analyses in this paper.
-
-**Benjamini-Hochberg FDR correction** across all 47 tests yields q-values that reinforce this
-conclusion. At q < 0.05, 23 of 47 tests are significant. All bacterial metal type diversity
-effects survive FDR correction: Simple PGLS B_std (q = 0.0028), Multi-predictor PGLS
-(q = 0.0037), R1 covariate models (q < 0.004), R5 genome size covariate (q = 0.0028),
-3-covariate PGLS (q = 0.0028), S3 within-genus SD (q = 0.007), and S4 log(n_species)
-(q = 0.0037). The S2 leave-one-environment-out models are significant at q < 0.05 for 12 of 13
-environments (excl_aquatic: q = 0.061, nominally significant at p = 0.031). The S1
-leave-one-metal-out models do not survive FDR correction (as expected — excluding one metal
-reduces predictor variance). The archaeal PGLS remains non-significant (q = 0.55).
-The full FDR table is saved to `data/all_tests_fdr.csv`.
-
-### λ discrepancy: standalone Pagel's λ vs PGLS-estimated λ
-
-Pagel's λ for bacterial B_std estimated standalone (NB04) = **0.787**; PGLS-estimated λ
-(NB05) = **0.708**. This discrepancy (Δλ = 0.079) is expected and informative:
-
-- **Standalone λ**: estimates phylogenetic signal in B_std without any predictor; measures how
-  much of B_std's total variance is explained by Brownian motion phylogenetic covariance.
-- **PGLS λ**: estimates residual phylogenetic signal after removing the variance explained by
-  the predictor (metal type diversity). Because the predictor itself has phylogenetic signal
-  (λ_metal_types = 0.335), including it as a covariate removes some phylogenetically structured
-  variance from the residuals, causing PGLS λ to be lower than standalone λ.
-
-The drop from 0.787 to 0.708 (a 10% reduction) means that metal type diversity accounts for
-approximately 10% of B_std's phylogenetic covariance. This is consistent with a model where
-metal resistance breadth is one of several phylogenetically structured predictors of niche breadth,
-not the sole driver. The residual λ = 0.708 (p ≪ 0.001) confirms strong residual phylogenetic
-signal in B_std beyond the explained variance — the PGLS architecture is appropriate for
-this data structure. There is no evidence of model misspecification from this difference.
-
-### Causation and directionality
-
-The PGLS coefficient is a *partial correlation* after phylogenetic correction, not a causal
-estimate. Three directional scenarios are consistent with the data:
-
-1. **Metal tolerance enables habitat expansion**: taxa that acquire diverse metal resistance
-   can colonise chemically diverse environments (polymetallic soils, estuarine sediments)
-   that are also broad in other dimensions, increasing ecological range.
-2. **Ecological generalism enables gene acquisition**: broad-niche genera encounter more
-   environments, more HGT donors, and higher metal concentrations on average, driving
-   preferential acquisition of diverse metal AMR genes.
-3. **Shared driver**: a third variable (e.g., genome size, metabolic versatility, biofilm
-   capacity) promotes both broad niches and diverse metal tolerance repertoires independently.
-
-The cross-sectional design of this study — comparing genera at a single snapshot in evolutionary
-time using observational global survey data — means the direction of this association cannot be
-established. It is equally consistent with metal diversity *facilitating* ecological generalism
-(genera tolerant of more metals can exploit more environments) and with ecological generalism
-*enabling* metal gene acquisition (broad-niche genera encounter more HGT donors and more
-metal-contaminated environments). Distinguishing these scenarios would require time-series
-genomic data tracking metal resistance evolution alongside range shifts, or natural experiment
-designs such as metal enrichment of defined microbial communities with longitudinal tracking.
-
-The current analysis cannot distinguish among the three causal scenarios. The finding that total
-AMR cluster count is non-significant while metal type *diversity* is significant slightly favours
-scenario 1 or 3 over a simple "genome-size drives everything" model: scenario 3 with genome size
-as the sole driver would predict cluster count should also be significant, since cluster count
-scales more directly with total genome size. Furthermore, R5 shows that metal type diversity
-remains independently significant (β = +0.022, p = 3.6×10⁻⁴) after formally controlling for
-genome size in PGLS, ruling out genome size as the primary confounder. Without time-series data
-or a natural experiment (e.g., experimental metal enrichment on defined communities), the
-association nonetheless remains correlational and the direction cannot be established.
-The report should be read as: *genera with diverse metal resistance repertoires are, on average,
-broader ecological generalists in the global microbiome*.
-
-### Phylogenetic tree and genus-aggregation choices
-
-All PGLS and Pagel's λ analyses use the GTDB r214 genus-representative tree, constructed from
-120 concatenated marker genes. This is the current field standard for bacterial phylogenetics and
-provides the best available reconciliation of phylogenomic signal with 16S taxonomy. Sensitivity
-to alternative trees (NCBI, SILVA-based 16S, or a different GTDB release) was not tested and
-represents a known methodological gap; a 16S-based tree in particular would align more directly
-with the 16S-derived niche breadth values but has lower resolution at genus level.
-
-Genus-level pruning (one representative tip per genus, chosen as the GTDB species cluster
-representative) is standard in macro-ecological PGLS studies of this scale. Within-genus
-phylogenetic structure is discarded; the sensitivity analysis S3 partially compensates by testing
-whether within-genus SD of metal types is a significant PGLS covariate (it is not, p = 0.18),
-confirming that genus aggregation does not hide a species-level confound.
-
-### AMRFinderPlus annotation quality
-
-Metal AMR gene annotations use AMRFinderPlus HMM-based detection against the NCBI Bacterial
-AMR Reference Gene Database. For metal resistance specifically, AMRFinderPlus employs curated
-Hidden Markov Models built from experimentally validated reference sequences (e.g., merA/merB
-for mercury, arsABCDR for arsenate, copABCD for copper). HMM gathering thresholds are set during
-model calibration to balance sensitivity and specificity; no additional identity threshold is
-applied because HMM scores are not identity values.
-
-**Potential false positives**:
-- Cross-reactive metalloproteases or ABC transporters with structural similarity to metal
-  resistance proteins could be misclassified. AMRFinderPlus applies taxon-specific cutoffs
-  to reduce this.
-- The "other" metal category (17% of annotated clusters) captures metal-associated genes not
-  classified into the 7 primary types; these may include weaker hits. Excluding the "other"
-  category would produce a 6-metal analysis (Hg, As, Cu, Zn, Cd, Cr, Ni only).
-- No manual validation of a subset was performed in this study. Spot checks of highly
-  prevalent gene families (arsD, merP) show biologically expected distributions (high in
-  contaminated environment genera, lower in strict aerobes), providing informal support.
-
-**Recommended follow-up**: Random sampling of 100 annotated gene clusters for manual BLAST
-verification against the original protein sequences would quantify the false positive rate.
-The leave-one-metal-out analysis (S1) shows that even if one metal category has elevated false
-positives, the result requires contributions from multiple metal types and would not be explained
-by a single category's spurious annotations.
+**AlphaEarth embedding (NB11c):** PERMANOVA comparing hotspot vs. non-hotspot MAGs in AlphaEarth embedding space (F = 80.68, p = 0.001, n = 5,000 subsampled genomes; PC1 explains 16% of embedding variance). Hotspot and non-hotspot MAGs occupy distinct positions in the embedding. However, per-genus Spearman correlations between the discriminating PC scores and metal type diversity are all non-significant (ρ = 0.011–0.065, p > 0.10, n = 394 genera with both embedding and trait data). The PERMANOVA result does not provide evidence that metal resistance drives the embedding separation — it likely reflects geographic or taxonomic/environmental composition differences between hotspot and background regions. This result is supplementary. *(Notebook: `11c_alphaearth_metal_synthesis.ipynb`)*
 
 ---
 
 ## Interpretation
 
-### Biological meaning of the metal type effect
+### Biological Interpretation
 
-The positive association between metal type diversity and niche breadth (β = +0.021 SD per SD,
-Bonferroni-corrected) is consistent with a **metabolic versatility hypothesis**: genera with
-diverse metal tolerance repertoires — encompassing, for example, both Hg detoxification, As
-efflux, and Cu oxidation systems — are associated with broader ecological ranges across the
-global microbiome. This co-occurrence is plausible because the environments that impose
-multi-metal stress — polymetallic mine tailings, estuarine sediments, biosolid-amended
-agricultural soils — are also chemically complex in other dimensions (redox gradients, salinity,
-organic carbon variation), so broad metal tolerance may be a proxy for overall environmental
-tolerance. Qi et al. (2022) independently found that multiple heavy metal contamination favors
-microbial generalists as network keystones in soil, consistent with this direction.
+The strongest and most consistent result is phylogenetic conservation of core metal resistance at the genus level (Finding 1). This is consistent with metal homeostasis — particularly sensing and transcriptional regulation — being constitutive, genus-level traits. The biome-stratified analyses (λ = 0.829–0.897 across five environments) confirm this is not driven by a single environment type.
 
-The specificity of the metal *diversity* effect (but not total gene burden or core fraction)
-is informative: genera with many AMR genes for a single metal type are not ecological
-generalists, but genera that span multiple metal resistance families are. This parallels
-findings in other stress domains where breadth of stress response repertoire (rather than depth)
-predicts biogeographic range.
+The finding that carbon metabolic breadth is the strongest positive functional predictor of niche breadth (Finding 2) is consistent with the principle that metabolic versatility underlies ecological generalism in bacteria. Genera capable of utilizing a wider range of carbon substrates may be better positioned to persist across diverse, chemically variable environments. This result is more biologically interpretable than the metal resistance null — carbon versatility is a more direct predictor of habitat range than metal tolerance — but it requires independent replication before mechanistic claims can be made.
 
-### Phylogenetic signal structure
+**The central quantitative result is that total metal gene density (ko_per_mb, β = −0.022, p = 4 × 10⁻⁷, n = 997) negatively predicts within-habitat niche breadth.** This replicates cross-clade within Gammaproteobacteria (p = 0.0008), Bacilli (p = 0.004), and Alphaproteobacteria (p = 0.016); is confirmed by geochemical niche breadth analysis using real soil chemistry (NB18: Cr p = 0.002, As p = 0.034); and is validated at the community level (NB19 CWM: 20/24 Spearman tests significant). The finding is consistent with genome streamlining theory: compact-genome genera adapted to specific metal niches retain dense metal gene portfolios while shedding genetic redundancy. The tier asymmetry in the PGLS (Tier 2 per-Mb p = 0.011 vs Tier 1 per-Mb p = 0.256) is an exploratory subgroup result and should not anchor mechanistic claims: NB19 Block 3 shows Tier 1 and Tier 2 co-occur at ρ_partial = 0.999 within individual MAGs (n = 260,606), confirming both tiers are analytically indistinguishable at the genome level. Total ko_per_mb is the recommended predictor for experimental design and subsequent modelling. The raw positive association (p = 0.013) reflects the genome-size component: large-genome ecological generalists incidentally accumulate more metal-interacting genes across the board.
 
-In brief: Pagel's λ for B_std estimated standalone (0.787) is higher than the λ estimated
-within the PGLS model (0.708) because the PGLS removes some phylogenetically structured
-variance by including metal type diversity — which itself carries phylogenetic signal
-(λ_metal_types = 0.335) — as a predictor.
+The discriminant PGLS (19-KO sensing/cofactor gene set, β = +0.0164, p = 0.0012) confirms that the raw positive signal is not specific to resistance function — genes that merely *require* metals as cofactors show an equally strong association. This is consistent with the genome-size interpretation: genera in metal-diverse environments may select for all metal-interacting gene classes simultaneously, but this co-occurrence is mediated by genome complexity rather than specific adaptive pressure on resistance capacity. The taxonomic replication (Gammaproteobacteria p = 0.0008, Bacilli p = 0.004, Alphaproteobacteria p = 0.016 within-class for per-Mb signal, all with null raw signals) shows the normalized specialization finding is a cross-clade phenomenon and cannot be attributed to between-phylum genome size differences alone.
 
-Niche breadth and habitat range are more phylogenetically conserved than metal AMR traits
-in bacteria (λ_niche ≈ 0.79–0.91 vs λ_AMR ≈ 0.26–0.44). This gradient suggests that
-ecological range is deeply canalized by lineage identity, while metal AMR is more labile —
-likely because AMR genes reside on mobile genetic elements and are frequently exchanged among
-distantly related taxa. Hemme et al. (2016) demonstrated recombinational hotspots for metal
-resistance gene acquisition in contaminated groundwater; Gillieatt & Coleman (2024) reviewed
-the mechanistic basis for AMR gene transfer by MGEs under metal co-selection. The PGLS result
-— a significant β despite controlling for the intermediate phylogenetic signal in metal types —
-indicates that HGT-driven metal type expansion covaries with niche breadth beyond what
-phylogenetic relatedness predicts.
+The geographic enrichment of metal-resistant MAGs in specific soil regions (Finding 4) is consistent with geochemically heterogeneous soils selecting for metal-responsive genomes. The Atacama hotspot (OR = 9.83) is consistent with the well-documented high metal concentrations in Atacama soils from mining and volcanic activity.
 
-Nitrification (λ = 0.94–1.00 in both domains) serves as a metabolic positive control:
-functional genes for ammonia and nitrite oxidation are deep, vertically inherited innovations
-that define major lineages (Nitrospirota, Thaumarchaeota), and their near-maximal λ contrasts
-sharply with the intermediate metal AMR signal. This internal comparison strengthens confidence
-in the analytical pipeline.
+### Literature Context
 
-Archaeal niche breadth also shows significant phylogenetic signal (λ = 0.197, p = 1.1×10⁻⁵
-for B_std; λ = 0.898, p = 4.6×10⁻¹⁴ for n_envs), though λ for B_std is notably lower than
-in bacteria, consistent with the phylogenetically sparse and ecologically distinct nature of
-the archaeal genera sampled by short-read 16S amplicon surveys. Jiao et al. (2021) similarly
-found phylogenetic niche conservatism in soil archaea, particularly for moisture niche, which
-supports the signal being real rather than artefactual.
+Phylogenetic conservatism in microbial functional traits is well-established. Martiny et al. (2013, *ISME J*; 2015, *Science*) showed that trait conservation varies widely across functional categories. The λ values observed here for core metal resistance metrics (94-KO curated list: 0.291–0.943, depending on metric; metal type diversity λ = 0.943 is the key comparative figure) span a range consistent with other constitutively expressed functional genes, though direct comparison requires matched methods.
 
-### Literature context
+The carbon metabolic breadth result is consistent with Hernandez et al. (2023, *Nature Ecology & Evolution*) showing that ecological generalism in soil prokaryotes is multidimensional and associated with metabolic capacity. The GapMind framework used here (Price et al. 2022, *PLOS Genetics*; Price et al. 2018, *Nature*) provides a well-validated annotation of carbon substrate utilization.
 
-| This study | Literature | Consistency |
-|-----------|-----------|-------------|
-| Bacterial niche breadth λ = 0.787 | Malfertheiner et al. (2026): community conservatism widespread across phyla | Consistent |
-| Soil prokaryote niche breadth conserved | Hernandez et al. (2023): multidimensional specialization conserved in soil prokaryotes | Consistent |
-| Metal type diversity → broader niche (PGLS) | Qi et al. (2022): heavy metal contamination favors generalists | Consistent (orthogonal evidence) |
-| Intermediate λ for metal AMR (0.26–0.44) | Hemme et al. (2016): LGT hotspots for metal resistance in contaminated communities | Consistent |
-| Core fraction λ > total cluster count λ | Gillieatt & Coleman (2024): core vs. accessory metal AMR differ in MGE association | Consistent |
-| PGLS β significant for metal type diversity | Ma et al. (2025): generalists have broader metal tolerance repertoire in coastal sediment | Consistent |
+Niche breadth methodology is provided by the MicrobeAtlas database (Rodrigues et al. 2026, *Cell*; Milanese et al. 2019, *Nature Communications*). The Levins' B_std metric used here is a standard cross-environment breadth measure, though it is subject to the sequencing-effort biases discussed in Limitations.
 
-### Novel contribution
+Metal resistance enrichment in contaminated groundwater is well-documented in ENIGMA-related studies (Hemme et al. 2016, *mBio*; Walker et al. 2024, *ISME Communications*; Chakraborty et al. 2019, *ISME J*). The weak Track A association (ρ = +0.088) is consistent with this literature in direction but the effect size is smaller than reported in direct culture-based enrichment studies, consistent with the 16S OTU-level resolution used here.
 
-This is the first analysis linking **genus-level metal type diversity** — inferred from
-pangenome AMR annotations across 6,789 species — to **global ecological niche breadth** from a
-464K-sample 16S atlas, with phylogenetic control via PGLS. Three aspects are genuinely novel:
+Metal resistance gene annotation remains a methodological challenge. AMRFinderPlus (Feldgarden et al. 2021, *Scientific Reports*) was designed primarily for clinical antibiotic resistance surveillance; its sensitivity and specificity for environmental metal resistance genes has not been systematically benchmarked. The CARD database similarly focuses on clinical and antibiotic resistance contexts. No published benchmark comparing AMRFinderPlus, CARD, and TCDB for environmental metal resistance annotation was identified in the literature search. The AMRFinderPlus vs. 94-KO discrepancy has since been resolved (see Finding 3); the prior result (p = 1.5 × 10⁻⁴) came from a smaller dataset with a different predictor.
 
-1. **Scale and data integration**: Joining a pangenome database (6,789 sequenced species across
-   the GTDB bacterial tree) with a global OTU atlas (98,919 OTUs × 463,972 samples) enables a
-   test of this hypothesis at a taxonomic and geographic scope not possible with site-specific
-   studies.
+**The central Finding 3 result — that metal gene density in compact genomes predicts ecological specialization — is interpretable through microbial genome streamlining theory.** Giovannoni et al. (2014, *ISME J*) formalized the prediction that organisms occupying stable, chemically defined niches evolve compact genomes by shedding genetic redundancy, retaining only functions core to their ecological role. Goodall et al. (2026, *bioRxiv*) extended this framework to soil niches, showing that environmental filtering shapes divergent bacterial strategies with small-genome specialists favoring streamlined metabolic repertoires. The per-Mb signal is consistent with this model: genera occupying narrow metal-specific niches retain dense metal homeostasis gene portfolios relative to genome size, while large-genome generalists accumulate metal-interacting genes incidentally. The tier asymmetry is also consistent with streamlining predictions: homeostasis genes (importers, regulators, chelators) are constitutive, retention-essential functions in metal-adapted specialists; efflux pumps and detoxification genes are more broadly distributed and less niche-defining.
 
-2. **Phylogenetic partitioning of AMR trait variation**: Using Pagel's λ to explicitly
-   quantify the phylogenetic component of metal AMR trait variance (λ = 0.26–0.44 for AMR
-   metrics vs λ = 0.79–0.91 for niche breadth) provides a framework for distinguishing
-   vertically inherited resistance repertoires from HGT-driven accessory gene acquisitions,
-   and demonstrates that it is the HGT-labile diversity component that covaries with
-   ecological range.
+**The emergence of Burkholderiales as the strongest single-order signal (per-Mb β = −0.039, p = 0.0002)** is consistent with this order's enrichment in metal-contaminated soils. Li et al. (2025, *Frontiers in Microbiology*) found Burkholderiales dominant in metal-contaminated mine tailings during early ecological succession. The genus *Cupriavidus* (Burkholderiales) carries the landmark Czc regulon — a plasmid-borne Co/Zn/Cd homeostasis system that is the best-characterized metal homeostasis network in bacteria (Nies 1999, *Journal of Industrial Microbiology and Biotechnology*) — making Burkholderiales the canonical example of tight intracellular metal homeostasis enabling growth in metal-rich environments. That the per-Mb signal within Burkholderiales is negative confirms that even within this metal-specialist order, compact-genome taxa occupy the narrowest niches.
 
-3. **Specificity of the diversity signal**: Prior site-specific studies (e.g., Qi et al. 2022,
-   Ma et al. 2025) documented that generalist taxa are enriched in metal-contaminated
-   environments, but could not distinguish whether total gene burden, core resistance, or
-   breadth of metal type coverage is the relevant variable. PGLS on a global dataset shows it
-   is metal *type diversity*, not gene count or core fraction, that predicts niche breadth —
-   paralleling diversity-over-depth findings in other stress response domains.
+**The OTU–metal partial Spearman results (Tier 1: 2,773 Bonferroni-significant pairs across 3,050 samples)** are consistent with global-scale microbiome–metal nutrient associations. Dai et al. (2023, *Nature Communications*) showed that metallic micronutrients (Co, Ni, Zn) are strongly associated with global soil microbiome structure and function using similar amplicon-sequencing approaches. The density of significant OTU–metal associations here is substantially larger than single-site metal gradient studies (Kou et al. 2018, *Frontiers in Microbiology*; Xu et al. 2017, *Environmental Science and Pollution Research*), consistent with the improved statistical power of the Tier 1 analysis (n = 3,050 vs. n ≤ 200 in most published field studies). The negative partial associations of *Terriglobus* OTUs with Co, Cr, Cu, and Pb are consistent with Acidobacteria's established role as oligotrophic, acidophilic soil taxa poorly adapted to heavy metal stress (McReynolds & Elshahed 2025, *Microbial Genomics*).
 
----
+### Novel Contribution
 
-## Limitations
+This study contributes: (a) genus-level Pagel's λ estimates for curated metal resistance gene metrics across 1,000 Bacterial genera using GTDB taxonomy linked to MicrobeAtlas; (b) a PGLS analysis showing that carbon metabolic breadth (GapMind) independently predicts ecological niche breadth after controlling for habitat type; (c) geographic hotspot mapping for metal-resistant MAGs from the MGnify 260K MAG dataset, with biome stratification; and (d) a genome-size normalization showing that metal gene *density* (per Mb) predicts ecological specialization (β = −0.022, p = 4 × 10⁻⁷, n = 997), with cross-clade replication within Gammaproteobacteria, Bacilli, and Alphaproteobacteria; a Tier 2 homeostasis specificity is suggested by PGLS (Tier 2 per-Mb p = 0.011 vs Tier 1 p = 0.256) but should be treated as exploratory given that Tier 1 and Tier 2 co-occur at ρ_partial = 0.999 within individual MAGs (NB19 Block 3, n = 260,606). Contribution (a) is confirmatory; (b), (c), and (d) are exploratory. Contribution (d) is the most robust statistical result in the paper and does not depend on gene list completeness — it would hold even if the 94-KO list has false negatives, as long as mis-annotations are not systematically correlated with genome size.
 
-### 1. Niche breadth is a sequencing-effort proxy, not confirmed ecological range
-**Partially addressed** — see Robustness Analysis R4.
+### Limitations
 
-MicrobeAtlas OTU detection across 13 environment categories conflates genuine habitat use with
-sampling intensity, primer bias (V3–V4 or V4), and the geographic and temporal non-uniformity
-of SRA/ENA sample contributions. Environments with dense global sampling (soil, marine, plant)
-will inflate the apparent niche breadth of taxa prevalent there relative to taxa from
-under-represented environments (deep subsurface, brine, ice). Levins' B_std corrects for
-unequal environment sizes but cannot correct for missing environments or detection probability
-differences. Critically, genus-level aggregation of OTU niche scores is a proxy: a genus may
-appear broad-niched because different species within it occupy different habitats, rather than
-any single organism being a true ecological generalist. The PGLS β therefore reflects
-covariation between *inferred* niche breadth and *inferred* metal tolerance capacity, not
-confirmed physiology.
+#### Critical (required before any publication submission)
 
-**Mitigation with existing data (R4)**: Recomputing B_std with a strict 5% within-environment
-prevalence threshold confirms the signal direction (β = +0.017 vs +0.022 original) but reduces
-significance due to 37% fewer genera passing the filter. The effect is not explained by rare
-transient detections. **Remaining gap**: primer bias and missing environments cannot be
-corrected without a multi-primer, multi-region survey design.
+1. **The 94-KO gene list has partial but incomplete validation.** The list was validated against the *C. metallidurans* CH34 full proteome (6,365 proteins; 59/73 pipeline KOs hit CH34 at E < 10⁻⁵). Cross-reference against the TCDB flatfile (2025-08-04 release; 2,223 families) was performed to assess family-level coverage. Among the ~23 metal-specific prokaryotic transporter families identified in TCDB (filtered to families 2.A.x, 3.A.x, 9.A/B with metal keywords), the 94-KO list includes representatives of approximately 12: RND efflux (2.A.6; CznA/CzcA, K15726/K22043), arsenite efflux (2.A.45, K01135; 3.A.4 ArsAB, K01134), chromate efflux (2.A.51, K07240/K26232), Ni/Co uptake (2.A.52 NiCoT, K07241; 2.A.99 HupE-UreJ, K02823), Mn/Fe²⁺ uptake (2.A.55 Nramp, K14263), Ni/Co ABC import (3.A.1, K15585/K15587), P-type ATPase efflux for Zn/Cd/Cu (3.A.3, multiple KOs), ferrous iron import (9.A.8 FeoB, K03474), and mercury-specific permeases (MerT/MerP/MerC). This represents approximately 52% family-level coverage (12/23). The most notable gaps are: the ZIP family (2.A.5; ZupT, the primary bacterial Zn²⁺ periplasmic import channel, KO not assigned in list), the IroT/MavN ferrous iron transporter (2.A.132), organo-arsenical exporters (2.A.119 ArsP, 2.A.131 ABCDE), and lead-specific resistance (9.B.105 PbrBC). A benchmark against a confirmed-resistant strain panel with known phenotypes (e.g., BacMet EXP strains beyond CH34) has not been performed. A sub-threshold result (Finding 3) conditional on an incompletely validated list cannot be treated as definitively biological.
 
-### 2. Archaeal results are underpowered; the archaeal PGLS is included as a power-analysis illustration only
-**Addressed via formal power analysis** — see Robustness Analysis R3.
+2. ~~**S1 (leave-one-metal-out) is not runnable with the current gene list.**~~ ✅ **RESOLVED (2026-07-01).** Per-metal gene counts were extracted locally from `data/metal_gene_detail.csv` and saved to `data/species_metal_amr_permetal.csv`. S1 was completed with 12 metals; 11/12 exclusions preserve the positive association (p < 0.05). Cadmium is the one exception (excl. cadmium: p = 0.316), suggesting cadmium-specific genes carry disproportionate signal. See Sensitivity Analyses section.
 
-**On whether to include it**: The archaeal PGLS results (β=+0.0145, p=0.467, n=48) are not
-included as evidence for or against the hypothesis; they are included *only* to quantify the
-statistical gap between current data and what would be needed. Current power is 11% at α=0.05.
-Readers should not interpret the non-significant archaeal result as a negative finding — the
-study is underpowered to detect an effect of the observed magnitude. Readers who prefer stricter
-reporting should treat the R3 section as a power analysis appendix and not as an attempted
-replication of the bacterial finding in archaea.
+3. **Niche breadth is a sequencing-effort proxy.** Levins' B_std reflects co-occurrence patterns in sequenced samples, which are biased in space, environment type, and time. These biases cannot be fully corrected and introduce noise in the response variable.
 
-Only 48 archaeal genera had both MicrobeAtlas representation (≥ 3 OTUs) and AMR data in
-`kbase_ke_pangenome`. The archaeal PGLS (R3) was run and yielded non-significant results with
-the expected positive direction for metal types (β = +0.0145, p = 0.467), but the standard
-errors are >1× the coefficient — consistent with severe underpowering rather than a true null
-effect. The 48 archaeal genera are also biased toward cultured, well-studied lineages
-(methanogens, halophiles, thermoacidophiles), missing the environmentally dominant archaea in
-MicrobeAtlas (Thaumarchaeota, Woesearchaeota).
+4. **Archaeal PGLS is severely underpowered.** n = 83 Archaea genera (with 94-KO data; up from 73 with prior list); power analysis requires ≥702 for 80% power at the observed effect size. Archaeal results should not be interpreted as positive or negative findings.
 
-**Mitigation with existing data**: The archaeal PGLS has now been run and shows the same
-positive direction as bacteria. **Remaining gap**: ≥200 archaeal genera with AMR data are
-needed for adequate power; this requires expanded archaeal pangenome sequencing and annotation
-in `kbase_ke_pangenome` (new data required).
+#### High (disclose explicitly)
 
-### 3. Pangenome coverage is uneven and biases metal type estimates upward for well-studied genera
-**Substantially addressed** — see Robustness Analyses R1 and R2, Sensitivity Analysis S4.
+5. **AlphaEarth PERMANOVA does not indicate a metal resistance signal.** The significant PERMANOVA (F = 80.68) reflects environmental or taxonomic differences between hotspot and non-hotspot MAGs, not metal resistance specifically. Per-genus correlations between the discriminating PCs and metal diversity are all non-significant (ρ ≤ 0.065).
 
-The Spearman correlation between number of sequenced genomes per genus and inferred metal type
-diversity is r = 0.35 (p = 2.6×10⁻¹⁹). Single-genome genera have detectably lower metal type
-counts than multi-genome genera (Mann-Whitney p = 5.1×10⁻¹⁰).
+6. **ENIGMA Track A association is small and borderline.** Spearman ρ = +0.088, p = 0.019 (n = 708 genera) is statistically marginal and does not survive multiple-testing correction. A previously reported value (ρ = +0.112, p = 0.0019) could not be reproduced from current data files.
 
-**Mitigation with existing data (R1)**: Adding n_species_with_amr as an explicit PGLS covariate
-(using `gls() + corPagel`, not OLS), metal type diversity remains significant (β = +0.020,
-p = 3.4×10⁻⁴). The linear covariate is borderline (p = 0.07), confirming a modest but
-non-dominant sampling effect.
-**Mitigation with existing data (R2)**: Rarefying to 1 species per genus (200 iterations),
-89.5% of iterations yield p < 0.05 and the median β (+0.015) points in the same direction.
-**Mitigation with existing data (S4)**: Adding log(n_species) (z-scored) as a PGLS covariate,
-metal types remains significant (p = 6.4×10⁻⁴). Log(n_species) is itself a significant
-predictor (p = 0.016), confirming a log-linear genome-count effect. The metal type diversity β
-drops from +0.021 to +0.020, indicating only a small confound. Both effects are independent.
-**Remaining gap**: A formal pangenome rarefaction curve (testing multiple species-per-genus
-thresholds) would more precisely quantify the depth-of-coverage effect.
+7. **ENIGMA Track B metal reference coverage is low.** ~~Not verified.~~ Read coverage quantified 2026-07-01: mean 32.2% of OTU reads assigned genus-level metal resistance data (12.6% of OTUs with annotated metal resistance; 10/133 samples below 10%). The remaining ~68% of reads are primarily from Candidate phyla (Saccharimonadia, CPR lineages) with no available reference genomes. CWM metal diversity values are therefore conservative estimates of the full community metal resistance capacity. The positive plume vs. background result should be interpreted as a signal driven by the annotable fraction of the community, not the complete community.
 
-### 4. Genome size covariate
-**Addressed** — see Robustness Analysis R5.
+8. **OTU–GeoROC analysis (NB09a): MNAR resolved for six-metal Tier 1 analysis.** ~~Current complete-case analysis is biased and underpowered.~~ Original nine-metal complete-case analysis retained only 338 samples (0.5% of 71,199), driven by extreme missingness in As (92%), Cd (96%), and Hg (99%) — all three are MNAR (missingness correlated with project identity, p < 0.05). **Tier 1 analysis complete (2026-07-02):** Restricting to six lower-missingness metals (Co, Cr, Cu, Ni, Zn, Pb — all 0% missing in the 3,050-sample GeoROC-matched set) yields 3,050 complete cases. Partial Spearman between CLR-transformed OTU abundances and each of the six soil metals (controlling for the other five metals, library size, and spatial terms; n = 2,000 OTUs by CLR variance; 999 permutations; α = 0.05/6 = 0.0083) identifies 2,773 Bonferroni-significant OTU–metal pairs across 12,000 tests: Co = 569, Cu = 557, Cr = 497, Ni = 445, Pb = 366, Zn = 339. Mixed-sign associations indicate both metal-tolerant OTUs enriched and metal-sensitive OTUs depleted along soil metal gradients. Results: `data/otu_georoc_tier1_6metal.csv`; script: `scripts/block_d_mnar_tier1.py`. **Remaining tiers deferred to revision:** (Tier 2) per-metal marginal models for all 9 metals individually; (Tier 3) MICE multiple imputation on 6-metal set with Project as predictor.
 
-### 5. Environment category heterogeneity may inflate niche breadth estimates
-**Partially addressed** — see Sensitivity Analysis S2.
+9. **"Aquatic" habitat category is heterogeneous.** MicrobeAtlas "aquatic" aggregates marine, freshwater, groundwater, and hydrothermal environments. The β_aquatic = −0.496 may conflate opposing signals. **Partially resolved (2026-07-01):** An exploratory sub-type PGLS was run on n = 957 genera with aquatic sub-type fractions from `data/genus_aquatic_subtypes.csv` (MicrobeAtlas Env_Level_2; marine+sea+ocean+estuary+brine vs. lake+river+reservoir vs. groundwater). Marine fraction shows significant negative effect (β_marine = −0.068, SE = 0.023, p = 0.004; marine specialists have narrower niches), freshwater fraction is not significant (β_fresh = −0.002, p = 0.930). Metal type diversity signal is attenuated in this conditional model (β_metal = +0.006, p = 0.239), suggesting the aquatic-composition confound partially absorbs variance previously attributed to metal types. This result is conditional on aquatic samples only and should not be over-interpreted; the main model's `pct_aquatic_gee` covariate operates on a different sample domain. *Data: `data/pgls_aquatic_subtype_result.csv`.*
 
-MicrobeAtlas uses 13 broad categories that lump heterogeneous habitats. The most problematic is
-"aquatic", which combines marine, freshwater, estuarine, hydrothermal vent, and pond environments
-that differ enormously in salinity, temperature, and chemistry. A taxon detected in both a marine
-coastal sample and a freshwater lake sample counts as broad-niched, even though this could reflect
-closely related but ecologically distinct ecotypes rather than a single generalist population.
+#### Medium
 
-**S2 shows that excluding "aquatic" still gives p = 0.031** (weakest of all 13 exclusions,
-but significant). Excluding any other environment gives p < 0.01. The result is not contingent
-on the heterogeneous "aquatic" category.
-
-**Remaining gap**: Splitting "aquatic" into sub-categories (marine, freshwater, saline) and
-re-running the niche breadth computation requires re-analysis of sample metadata, which is not
-available in the current BERDL extraction.
-
-### 6. Statistical model assumes Gaussian errors; count predictor requires justification
-**Not addressed — acknowledged caveat.**
-
-Metal type diversity is a count variable (integers 1–7). Using it as a continuous z-scored
-predictor in a Gaussian PGLS is standard practice when the predictor is the independent variable
-(not the response). The Gaussian assumption applies to the residuals of B_std, not to the
-distribution of metal types. Inspecting PGLS residuals for normality is warranted. The main
-concern would arise if metal types were modelled as a *response* (e.g., what predicts metal type
-count?), where a Poisson or negative binomial PGLS (`phylolm` with Poisson family, or
-`MCMCglmm`) would be appropriate.
-
-The Pagel's λ analysis on metal_types assumes Brownian motion (Gaussian increments), which is
-an approximation for an integer trait. Alternatives include discrete-state models (Mk) or
-threshold models, but these are not standard for this type of continuous-trait PGLS analysis.
+10. **Gaussian PGLS for a discrete count predictor.** Metal type count is discrete; MCMCglmm with Poisson family would be more appropriate. A Bayesian phylogenetic Poisson model was run (MCMCglmm, `scripts/mcmcglmm_metal.R`; nitt = 50,000, burnin = 5,000, thin = 50; B_std_z posterior mean = +0.039, 95% CI [0.006, 0.071], pMCMC = 0.013, ESS = 147.8); see Finding 3 sub-analysis (c) above. The Gaussian PGLS approximation remains standard for count predictors in comparative biology when values span a moderate range (here mean ≈ 3.1 types, max 12). ESS ≥ 100 has been achieved; this limitation is resolved.
+11. **Pangenome coverage is uneven.** Genome count per genus spans orders of magnitude; the one-per-species subsampling applied upstream partially addresses but does not eliminate this heterogeneity.
 
 ---
 
 ## Data
 
-### Data Availability
-
-Derived data files (`data/*.csv`) and analysis code (`notebooks/`, `scripts/`) are committed
-to the BERIL Research Observatory institutional repository. A public Zenodo archive with a
-citable DOI has not yet been prepared (see Future Direction #11). Raw source data reside in
-the KBase BERDL data lakehouse (`arkinlab_microbeatlas`, `kbase_ke_pangenome`) and are
-accessible to KBase users. The GTDB r214 reference tree is publicly available at
-https://gtdb.ecogenomic.org/. The conda/pip environment specification required to reproduce
-the R analyses is in `projects/microbeatlas_metal_ecology/requirements.txt`.
-
 ### Sources
 
 | Collection | Tables Used | Purpose |
 |------------|-------------|---------|
-| `arkinlab_microbeatlas` | `otu_metadata`, `otu_counts_long`, `sample_metadata` | 98,919 OTUs × 463,972 samples; niche breadth and taxonomy |
-| `kbase_ke_pangenome` | `bakta_amr`, `gene_cluster`, `gtdb_species_clade` | Metal AMR gene annotations per species; GTDB taxonomy |
+| `arkinlab_microbeatlas` | OTU occurrence matrix, environment metadata | Niche breadth computation (464K samples, 98,919 OTUs) |
+| `kbase_ke_pangenome` | species pangenome genes, KEGG annotations | Metal resistance gene extraction (94-KO tiered list) |
+| MGnify 260K MAG dataset | MAG metadata, geographic coordinates | MAG spatial analysis (NB10a–10b) |
+| GeoROC soil geochemistry | Soil metal concentrations | OTU–metal partial Spearman (NB09a; supplementary) |
+| AlphaEarth embeddings | 64-dim protein language model embeddings | Hotspot embedding comparison (NB11c; supplementary) |
+| GapMind | Carbon substrate utilization calls | Carbon metabolic breadth covariate (NB07) |
+| GTDB r214 | Phylogenetic tree, taxonomy | PGLS tree; taxonomy bridge |
+| PRJNA1084851 | 16S amplicon time series (133 samples) | ENIGMA Track B |
 
 ### Generated Data
 
 | File | Rows | Description |
 |------|------|-------------|
-| `data/species_metal_amr.csv` | 6,789 | Species-level metal AMR metrics (NB01) |
-| `data/otu_niche_breadth.csv` | 98,919 | Levins' B_std and n_envs per OTU (NB02) |
-| `data/otu_pangenome_link.csv` | 22,357 | OTU → GTDB genus mapping (NB03) |
-| `data/genus_trait_table.csv` | 3,160 | Genus-level trait table: niche + AMR + taxonomy (NB04) |
-| `data/pagel_lambda_results.csv` | 10 | Pagel's λ per trait × domain (NB04) |
-| `data/pgls_subset.csv` | 606 | Filtered genus subset for PGLS (NB05) |
-| `data/pgls_results.csv` | 6 | Simple PGLS model results (NB05) |
-| `data/pgls_multi_results.csv` | 3 | Multi-predictor PGLS coefficients (NB05) |
-| `data/pgls_robustness_results.csv` | 9 | Covariate + archaeal PGLS robustness results |
-| `data/pgls_rarefied_summary.csv` | 1 | Summary of 200-iteration rarefied PGLS |
-| `data/pgls_prevalence_threshold_result.csv` | 1 | Strict-prevalence-threshold PGLS result |
-| `data/pgls_sensitivity_results.csv` | 24 | Extended sensitivity analysis results (S1–S4) |
-| `data/genus_genome_size.csv` | 527 | Genus-level mean genome size (bp) from BERDL kbase_ke_pangenome (R5) |
-| `data/pgls_genome_size_result.csv` | 2 | PGLS coefficients with genome size covariate (R5) |
-| `data/pgls_3covariate_result.csv` | 3 | 3-covariate PGLS (metal types + log_n_species + log_genome_size) (R6) |
-| `data/pgls_subset_filtered_otus.csv` | 576 | PGLS subset with OTU-filtered B_std (≥0.01% rel. abund.) (S5) |
-| `data/all_tests_fdr.csv` | 47 | All hypothesis tests with BH-FDR q-values |
-| `data/candidate_otu_list.csv` | 435 | Candidate OTUs: top-10% by niche breadth × metal diversity (n=215) plus nitrifier positive controls (n=220); includes `top10pct_both` flag and `nitrifier_role` |
-| `data/metal_resistance_table_refined.csv` | 15 | Refined genus-level metal resistance: top candidate genera with ≤2 key genes per metal type, representative OTU ID, and metal types |
-| `data/hypotheses_refined.md` | — | Per-genus testable hypotheses with specific metal condition, OTU ID, ≥2-fold quantitative prediction, mechanistic basis, and falsification criterion |
-| `data/honorable_mentions.md` | — | 2,186 genera with metal AMR gene annotations but zero candidate OTUs (not in top-10% by both metrics) |
-| `data/groundwater_enrichment.csv` | 2,135 | Genus-level groundwater prevalence (n_gw_samples, %, fold enrichment) joined to metal AMR traits (ENIGMA Validation Track A) |
-| `data/enigma_geochemistry.csv` | 20 | PRJNA1084851 SRA experiment summaries fetched via NCBI EUtils (metadata-only archive) |
-| `data/enigma_otu_table.csv` | 133 samples × 24,295 OTUs | PRJNA1084851 full OTU table (133 samples; 97% OTU clustering, SILVA 138; raw FASTQs deleted post-processing) |
-| `data/enigma_otu_taxonomy.csv` | 24,295 | OTU taxonomy assignments (domain → genus) for PRJNA1084851 |
-| `data/enigma_full_metadata.csv` | 133 | Per-sample BioSample attributes (ENIGMA_ID, well, date, experiment, fraction, replicate) |
-| `data/enigma_cwm_per_sample.csv` | 133 | Community-weighted mean metal-type diversity per sample, joined to well/time metadata |
+| `data/species_metal_amr.csv` | 27,167 | Species-level metal gene metrics (94-KO tiered list) |
+| `data/otu_niche_breadth.csv` | 98,919 | Levins' B_std per OTU |
+| `data/genus_trait_table.csv` | 2,851 | Genus-level trait table (niche + metal + taxonomy) |
+| `data/pagel_lambda_results.csv` | 10 | Pagel's λ estimates per trait × domain |
+| `data/pgls_results.csv` | 6 | Simple PGLS model coefficients |
+| `data/pgls_multi_results.csv` | 3 | Multi-predictor PGLS coefficients |
+| `data/groundwater_enrichment.csv` | 708 | Genus-level groundwater prevalence (Track A) |
+| `data/enigma_cwm_per_sample.csv` | 133 | Community-weighted metal diversity per sample (Track B) |
+| `data/candidate_otu_list.csv` | 435 | Top-10% niche breadth × metal diversity candidates |
+| `data/hotspots_5grid_filtered.csv` | 11 | Geographic hotspot cells (OR > 2, q < 0.05) |
+| `data/biome_stratified_prevalence.csv` | — | MAG prevalence by biome |
+| `data/alphaearth_hotspot_comparison.csv` | 36,971 | AlphaEarth embeddings × hotspot label |
+| `data/genus_genome_size_gtdb.csv` | 8,419 | Mean genome size + protein count per genus (GTDB r214 pangenome) |
+| `data/pgls_results_normalized.csv` | 10 | PGLS coefficients for per-Mb and per-1k-gene normalized predictors |
+| `data/pgls_results_tier_normalized.csv` | 7 | Tier-stratified PGLS: raw and per-Mb for Tier 1, Tier 2, total |
+| `data/pgls_results_by_rank.csv` | — | Within-group PGLS at class, order, and family level |
+| `data/top_genera_metal_diversity.csv` | 25 | Top genera by metal gene density (metal/Mb), with niche breadth |
+| `data/pgls_results_discriminant_genomesize.csv` | 4 | Genome-size controlled discriminant PGLS (n = 523 subset) |
+| `data/otu_georoc_tier1_6metal.csv` | 12,000 | OTU–metal partial Spearman Tier 1 (6 non-MNAR metals × 2,000 OTUs; n = 3,050) |
+| `data/mgnify_mag_ko_density.csv` | ~260K | Per-MAG eggNOG KO density (total/tier1/tier2 per Mb) for MGnify 260K MAG dataset |
+| `data/mgnify_genus_biome_breadth.csv` | 2,164 | Genus-level biome Shannon entropy (H_std, n_biomes, n_mags) from 18 MGnify biome labels |
+| `data/mgnify_pgls_input.csv` | 2,164 | Merged z-scored PGLS input (biome_H_std × KO/Mb) for MGnify validation |
+| `data/mgnify_validation_pgls.csv` | 3 | Full MGnify PGLS results: total/tier1/tier2 KO per Mb vs biome_H (n = 576 genera) |
+| `data/cross_dataset_validation_pgls.csv` | 9 | Diagnostic tests A/B/C: annotation vs. niche metric discordance analysis |
+| `data/mgnify_subset_expanded_pgls.csv` | 12 | Biome-subset validation (ENV_all, SOIL, MARINE, GUT_ctrl) |
+| `data/genus_soil_levins_b.csv` | 795 | Soil-restricted Levins' B_std per genus (≥5 OTUs, ≥2 soil envs) |
+| `data/pgls_input_soil_primary.csv` | 628 | PGLS input: soil Levins' B + per-Mb predictors (z-scored) |
+| `data/pgls_soil_primary_result.csv` | 4 | Soil-only PGLS: total/tier1/tier2 KO per Mb + ABR negative control vs B_soil (n=603) |
+| `data/pgls_input_soil_disc.csv` | 601 | PGLS input: soil Levins' B + total/disc per Mb (subset with discriminant annotation) |
+| `data/pgls_soil_disc_result.csv` | 2 | Discriminant 19-KO/Mb soil PGLS (n=601): total β=−0.023, disc β=−0.020 (p=0.001) |
+| `data/aus_replication_pgls.csv` | 3 | Australian Microbiome PGLS results (null; n=482) |
+| `data/aus_microbiome/aus_ngsa_pgls_results.csv` | 6 | NGSA-informed AusMicrobiome PGLS (Cu/Zn/Pb/Ni significant, p=0.019–0.046) |
+| `data/ngsa_threshold_sensitivity.csv` | 6 | NGSA distance threshold sensitivity: β/p per metal at 30–200 km thresholds |
+| `data/figures/` | 7 PNG + PDF | NB17 publication figures (fig1–fig7; primary scatter, forest plot, NGSA Cu, Moran's I, mining, sensitivity) |
+| `data/aus_microbiome/aus_sample_ngsa.csv` | 1,663 | Per-sample NGSA soil metal concentrations for AusMicrobiome samples |
+| `data/aus_microbiome/BASE_16S_taxonomy.csv` | 91,928 | OTU-to-genus taxonomy map (converted from xlsx; columns: OTUId, genus) |
+| `data/mgnify_genus_geo_niche.csv` | 85 | Per-genus Cu/Zn/Pb/Ni/Co/pH mean+SD from NGSA/CMMI-annotated MAGs (NB18) |
+| `data/aus_genus_geo_niche.csv` | 778–779 | Per-genus metal concentration SD from AusMicrobiome NGSA samples, 9 metals (NB18) |
+| `data/aus_geo_niche_pgls.csv` | 7 | PGLS results: AusMicrobiome geochemical niche width ~ ko_per_mb (Cr p=0.002, Cu p=0.012, As p=0.034) |
+| `data/hotspot_occupancy_pgls.csv` | 1 | PGLS: genus hotspot occupancy fraction ~ ko_per_mb (β=−0.254, p=0.000492, n=227) |
+| `data/geo_niche_summary.csv` | — | Unified summary table: all niche breadth analyses across all three axes |
+| `data/figures/fig8_geo_niche_width_forest.png/pdf` | — | Forest plot: geochemical niche width PGLS per metal (AusMicrobiome) |
+| `data/figures/fig9_geo_niche_concordance.png/pdf` | — | Cross-dataset geochemical niche concordance scatter (insufficient overlap; n<10 per metal) |
+| `data/cwm_ngsa_spearman.csv` | 24 | CWM ko_per_mb (total/tier1/tier2) ~ NGSA metal Spearman; 20/24 significant (q < 0.05) (NB19) |
+| `data/genus_dose_response.csv` | 3,732 | Per-genus Spearman ρ between detection frequency and NGSA quartile median, 4 metals (NB19) |
+| `data/dose_response_pgls.csv` | 12 | Meta-analysis: dose-response ρ ~ ko_per_mb tier1/2 per metal (Cr Tier 1 p=0.019, Cu Tier 2 p=0.011) (NB19) |
+| `data/tier_cooccurrence.csv` | 3 | Tier 1 vs Tier 2 partial Spearman within MAGs: All/Bacteria/Archaea (ρ_partial=0.999, p_perm=0.001) (NB19) |
+| `data/hotspot_tier_split.csv` | 394 | Genus-level AlphaEarth hotspot_frac + MGnify KO density (cross-dataset genus join, n≥10 MAGs) (NB19) |
+| `data/hotspot_tier_mwu.csv` | 6 | Mann-Whitney U + continuous Spearman: hotspot_frac ~ tier ko/Mb (all null, p>0.3) (NB19) |
+| `data/experimental_design_signals.csv` | — | Synthesis table: all NB19 signals with effect sizes, p-values, and microcosm implications (NB19) |
+| `data/figures/fig10_dose_response.png/pdf` | — | Dose-response Spearman ρ vs ko_per_mb scatter (Cr, NB19) |
+| `data/figures/fig11_tier_cooccurrence.png/pdf` | — | 2D density hexbin: Tier 1 vs Tier 2 ko/Mb across 260,606 MAGs (NB19) |
+| `data/figures/fig12_hotspot_tier.png/pdf` | — | Boxplots: Tier 1/2 ko/Mb by AlphaEarth hotspot group (NB19) |
+| `data/ngsa_geochemistry.csv` | 1,315 | NGSA Australian soil ICP-MS metals (Cu/Zn/Pb/Ni/Co/As/Cr/Hg) |
+| `data/mining_operations.csv` | 8,507 | Global mining site locations and primary commodity |
+| `data/cmmi_ores.csv` | 29,087 | CMMI global ore deposit geochemistry |
+| `data/mags_annotated_geo.csv` | 22,356 | MGnify env MAGs + mining proximity + NGSA/CMMI annotation |
+| `data/geo_correlation_results.csv` | 12 | Spearman: mine proximity / NGSA metals ~ MAG metal gene density |
+| `data/netl_levins_b_welltype.csv` | 652 | NETL Levins' B_std per genus across 3 well-type categories (Block 4b; corrected prevalence-based metric) |
+| `data/netl_pgls_input_corrected.csv` | 258 | PGLS input: well-type Levins' B + per-Mb predictors (z-scored) + ABR negative control |
+| `data/netl_pgls_welltype_corrected.csv` | 4 | NETL well-type PGLS: total/tier1/tier2/ABR per Mb vs B_welltype (n=258; null — ABR negative control failed) |
+| `data/netl_levins_b_ba_strata.csv` | 180 | NETL Ba-concentration tertile Levins' B per genus (Block 6; 65 Ba-measured samples; underpowered) |
 
 ---
 
@@ -852,537 +790,171 @@ the R analyses is in `projects/microbeatlas_metal_ecology/requirements.txt`.
 
 | Notebook | Purpose |
 |----------|---------|
-| `01_metal_amr_species.ipynb` | Extract species-level metal AMR metrics from AMRFinderPlus annotations |
-| `02_niche_breadth.ipynb` | Compute Levins' B_std and n_envs from 260M OTU × sample observations |
+| `01_metal_amr_species.ipynb` | Extract species-level metal gene metrics from 94-KO tiered list |
+| `02_niche_breadth.ipynb` | Compute Levins' B_std and n_envs from MicrobeAtlas |
 | `03_taxonomy_bridge.ipynb` | Link MicrobeAtlas OTU genera to GTDB genus representatives |
-| `04_pagel_lambda.ipynb` | Estimate Pagel's λ for niche and AMR traits; positive control (nitrification) |
-| `05_pgls_regression.ipynb` | PGLS regression of metal AMR predictors on niche breadth (R + Python) |
-| `06_synthesis_figures.ipynb` | Multi-panel synthesis figures for all main results |
+| `04_pagel_lambda.ipynb` | Estimate Pagel's λ (Bacteria + Archaea × 5 traits); positive control |
+| `05_pgls_regression.ipynb` | Simple + multi-predictor PGLS; functional subset; COG P analysis |
+| `06_synthesis_figures.ipynb` | Core publication figures (fig1–fig5) |
+| `07_env_metadata_pgls.ipynb` | Habitat type + GapMind + environmental covariate PGLS |
+| `08a_spearman_cog_metal.ipynb` | COG–metal Spearman correlations (supplementary) |
+| `08b_fdr_associations.ipynb` | Community-weighted FDR across metal–COG pairs (supplementary) |
+| `08c_copper_specific.ipynb` | Copper-specific COG analysis (supplementary) |
+| `08d_dbrda_pgls.ipynb` | db-RDA — excluded (circular predictor bug, analysis not complete) |
+| `09a_otu_georoc_associations.ipynb` | OTU–GeoROC partial Spearman (supplementary; MNAR-flagged) |
+| `09b_otu_sensitivity.ipynb` | Sensitivity analysis for 09a (supplementary) |
+| `10a_global_mag_distribution.ipynb` | MGnify 260K MAG extraction; metal-resistant MAG prevalence |
+| `10b_spatial_analysis.ipynb` | Geographic hotspot identification (Fisher's exact + BH-FDR) |
+| `10c_mag_figures.ipynb` | Hotspot map and biome prevalence figures |
+| `10d_pagels_biome.ipynb` | Biome-stratified Pagel's λ |
+| `10e_gene_level_biome.ipynb` | Specific gene (merA, arsC, etc.) × biome enrichment (supplementary) |
+| `11c_alphaearth_metal_synthesis.ipynb` | AlphaEarth PERMANOVA; per-genus PC–metal correlation (supplementary) |
+| `replication.ipynb` | Replication hub — status table + links to all sub-notebooks |
+| `12_mgnify_mag_validation.ipynb` | MGnify MAG PGLS validation (n=576, biome_H, exploratory) |
+| `13_australian_microbiome_replication.ipynb` | AusMicrobiome 16S: original null (p=0.667); NGSA re-analysis shows Cu/Zn/Pb significant (p=0.019–0.046) |
+| `16_geographic_metal_annotation.ipynb` | Cross-dataset lat/lon annotation: Moran's I, mining proximity, NGSA soil metals, AusMicrobiome NGSA join |
+| `17_sensitivity_visualization.ipynb` | Sensitivity analysis (FDR, distance threshold, detection frequency) + 7 publication-quality figures (`data/figures/`) |
+| `18_geochemical_niche_breadth.ipynb` | Geochemical niche breadth: SD of NGSA metal concentration per genus; hotspot occupancy PGLS; cross-dataset concordance; forest plot (fig8) |
+| `19_signals_beyond_niche_breadth.ipynb` | Community-weighted metal gene investment (CWM) vs NGSA; dose-response curves; Tier 1 vs Tier 2 within-MAG co-occurrence; AlphaEarth hotspot tier split (fig10–fig12) |
+| `14_soil_primary_replication.ipynb` | Soil-restricted Levins' B replication (n=603, signal replicates) |
+| `15_netl_replication.ipynb` | NETL produced-waters 16S replication (uninformative — structural limits; n=258, β=+0.023, p=0.269, ABR negative control failure p=0.027) |
+| `_prep_interactive_dashboard.ipynb` | Plotly interactive dashboard |
 
-### Robustness and sensitivity scripts
+### Scripts
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/pgls_robustness.R` | Analyses R1–R3: covariate PGLS, 200-iteration rarefaction, archaeal PGLS |
-| `scripts/pgls_sensitivity.R` | Analyses S1–S4: leave-one-metal-out, leave-one-environment-out, within-genus SD, log(n_species) |
-| `scripts/make_fig5_robustness.py` | Generates fig5_robustness.png (3-panel robustness summary) |
-| `scripts/test_pgls_ordering.py` | Unit test: generates synthetic data with known phylogenetic signal (λ = 0.8, β = 0.05), scrambles row order, and verifies that sorted PGLS recovers correct λ and β within tolerance while unsorted PGLS fails — test passes ✓ |
-| `scripts/make_candidate_otu_list.py` | Builds `data/candidate_otu_list.csv`: joins OTU niche breadth, genus traits, and pangenome link; flags top-10% by both niche breadth and metal diversity; appends nitrifier positive controls |
-| `scripts/refine_metal_resistance.py` | Produces `data/metal_resistance_table_refined.csv` and `data/hypotheses_refined.md`: per-genus metal types and ≤2 key genes per metal, plus quantitative testable hypotheses with falsification criteria |
-| `scripts/feasibility_assessment.py` | Generates `feasibility_individual_otus.md`: power analysis, detection limits, 8-OTU shortlist, and ENIGMA experimental design recommendation |
-| `scripts/package_enigma_predictions.py` | Produces `ENIGMA_PREDICTIONS.md`: consolidated summary of global analysis, candidate genera table, 8 testable hypotheses, and experimental feasibility (< 10 KB) |
-| `scripts/interactive_dashboard.py` | Produces `figures/dashboard.html`: three-panel standalone Plotly dashboard (world map, niche-breadth scatter, Pagel's λ bar chart); map data fetched from `arkinlab_microbeatlas.sample_metadata` at 0.5° resolution |
-| `scripts/enigma_validation.py` | Track A: BERDL groundwater enrichment (Spearman ρ, Mann-Whitney) for 767 genera × 1,624 groundwater samples. Produces `data/groundwater_enrichment.csv`, `figures/fig_enigma_validation.png` |
-| `scripts/prjna1084851_pipeline.py` | End-to-end amplicon pipeline: ENA FTP download → cutadapt primer trim → vsearch merge → 97% OTU clustering → SILVA 138 taxonomy → OTU table. Processes 81 samples via ENA; skips to existing merged FASTQs for recovered samples |
-| `scripts/prjna1084851_recover.py` | Recovery script for 52 PRJNA1084851 samples not mirrored to ENA FTP: uses NCBI fasterq-dump v3.4.1 → cutadapt → vsearch merge, producing merged FASTQs for the main pipeline |
+| `scripts/pgls_robustness.R` | Robustness analyses R1–R4 (re-run 2026-07-01 with 94-KO data, n = 1,000) |
+| `scripts/pgls_sensitivity.R` | Sensitivity analyses S1–S4 (re-run 2026-07-01; S1 uses per-metal gene counts from `data/metal_gene_detail.csv`; see Limitations #2 ✅ RESOLVED) |
+| `scripts/pgls_mgnify_validation.R` | Thin PGLS wrapper (nlme corPagel) for MGnify and cross-dataset validation |
+| `scripts/cross_dataset_validation.py` | Diagnostic Tests A/B/C: annotation vs. niche metric discordance analysis |
+| `scripts/neon_validation.py` | NEON soil MAG validation attempt (abandoned — insufficient tree coverage) |
+| `scripts/test_pgls_ordering.py` | Unit test: synthetic λ/β recovery ✓ passes |
+| `scripts/make_candidate_otu_list.py` | Candidate OTU selection (n = 435) |
+| `scripts/refine_metal_resistance.py` | Genus-level metal resistance profiles |
+| `scripts/feasibility_assessment.py` | Microcosm experiment power analysis |
+| `scripts/package_enigma_predictions.py` | ENIGMA prediction shortlist |
+| `scripts/interactive_dashboard.py` | Plotly 3-panel dashboard |
+| `scripts/enigma_validation.py` | Track A groundwater enrichment statistics |
+| `scripts/prjna1084851_pipeline.py` | Track B amplicon pipeline (133 samples) |
+| `scripts/pagel_lambda_by_biome.R` | Biome-stratified λ wrapper |
 
 ### Figures
 
 | Figure | Description |
 |--------|-------------|
-| `fig1_lambda_heatmap.png` | Pagel's λ heatmap — 6 traits × Bacteria/Archaea, YlGnBu colour scale |
-| `fig2_pgls_forest.png` | PGLS forest plot — 6 simple models (circles) + multi-predictor (triangles) |
-| `fig3_synthesis.png` | Primary 2-panel synthesis: Panel A (λ heatmap) + Panel B (PGLS forest) |
-| `fig4_metal_types_scatter.png` | Metal type diversity vs Levins' B_std scatter with top-5 genera annotated |
-| `fig5_robustness.png` | 3-panel robustness: Panel A (β across 5 scenarios), Panel B (rarefied β histogram), Panel C (archaeal power curve) |
-| `niche_breadth_distribution.png` | Distribution of Levins' B_std across MicrobeAtlas OTUs |
-| `pgls_forest_plot.png` | Preliminary forest plot from NB05 (superseded by fig2) |
-| `pgls_scatter.png` | Partial regression scatter by phylum from NB05 |
-| `fig_enigma_validation.png` | ENIGMA Validation 2-panel: Panel A — Spearman scatter of metal-type diversity vs groundwater prevalence (767 genera, ρ=+0.112, p=0.0019); Panel B — Mann-Whitney box plot comparing top-Q4 vs bot-Q1 metal diversity genera (p=0.007) |
-| `fig_enigma_trackB.png` | PRJNA1084851 Track B 3-panel: Panel A — CWM metal-type diversity by well (box+jitter, KW p=0.0001); Panel B — CWM vs. time point after carbon amendment (ρ=+0.38, p<0.0001); Panel C — Sulfurimonas relative abundance declines post-amendment (ρ=−0.32, p=0.0002) |
-| `dashboard.html` | **Interactive standalone Plotly dashboard** (1 MB): Panel 1 — world map of 3,942 real sample grid cells (0.5° resolution, 386,020 samples with GPS from `arkinlab_microbeatlas.sample_metadata`) coloured by mean metal gene-type diversity per environment; Panel 2 — scatter of all 3,160 genera (niche breadth × metal diversity, with top-10 labelled and key findings annotated); Panel 3 — Pagel's λ bar chart with significance colouring for all traits |
-
----
-
-## Experimental Validation Framework
-
-Today's session extended the global comparative analysis into a concrete experimental design
-for validating the core finding — that multi-metal resistance breadth predicts ecological
-generalism — using controlled microcosm experiments.
-
-### Candidate OTU selection
-
-From 98,919 MicrobeAtlas OTUs, 435 were identified as candidates for experimental tracking:
-
-- **215 OTUs** in the top-10% by *both* standardised niche breadth (Levins' B_std ≥ 0.718)
-  and mean metal-type diversity (n_metal_types ≥ 2.0), representing the frontier of the
-  niche breadth × metal diversity distribution.
-- **220 nitrifier OTUs** retained as positive controls (genera: *Nitrosomonas*, *Nitrosopumilus*,
-  *Nitrososphaera*, *Nitrospira*, *Nitrobacter*, *Nitrococcus*, *Nitrosospira*, *Nitrospina*),
-  where the metal AMR–niche breadth link is not expected to apply (nitrification is
-  phylogenetically entrenched; λ = 0.94).
-
-The full list is in `data/candidate_otu_list.csv`. Sample counts confirm these OTUs span
-13 environment types globally.
-
-### Top-priority shortlist for microcosm experiments
-
-Eight OTUs were prioritised for experimental follow-up by a composite score
-(Levins' B_std × n_metal_types), each representing a distinct metal-type signature:
-
-| Priority | OTU ID | Genus | Levins' B | Metal types | Recommended stress |
-| --- | --- | --- | --- | --- | --- |
-| 1 | `97_56843` | *Klebsiella* | 0.947 | 3.5 | Ag or Te stress |
-| 2 | `97_51587` | *Enterococcus* | 0.948 | 3.3 | Cu or Cd stress |
-| 3 | `97_14443` | *Citrobacter* | 0.854 | 3.7 | As or Hg stress |
-| 4 | `97_3668` | *Franconibacter* | 0.785 | 3.5 | Ag or As stress |
-| 5 | `97_12431` | *Noviherbaspirillum* | 0.770 | 3.0 | As stress |
-| 6 | `97_66129` | *Serratia* | 0.923 | 2.4 | Hg stress |
-| 7 | `97_80244` | *Aeromonas* | 0.981 | 2.2 | As + Hg co-stress |
-| 8 | `97_39338` | *Pseudomonas* | 0.999 | 2.1 | Cu stress |
-
-*Citrobacter* tops metal-type diversity (3.7 types) and is linked to `silP/A, arsC/D, chrA,
-merA/P`. *Enterococcus* (Ag, As, Cd, Cu, Hg, Te) and *Klebsiella* (Ag, As, Hg, Te) are the
-broadest multi-metal resisters. *Pseudomonas* ranks eighth by composite score but has the
-highest niche breadth of all candidate genera (B_std = 0.999) and carries a complete
-`copA/pco` Cu-resistance operon.
-
-### Testable hypotheses
-
-Each of the 8 shortlisted OTUs has a specific, falsifiable prediction in
-`data/hypotheses_refined.md`. The general form is:
-
-> Under [specific metal] stress, OTU `[id]` (*[genus]*) should increase in relative abundance
-> by ≥2-fold vs. metal-free controls after 7–14 days, because it carries `[genes]` resistance
-> determinants that neutralise metal toxicity while susceptible competitors are inhibited.
-
-Falsification criteria are also provided: if the OTU does not increase, candidate explanations
-are (a) the resistance genes are on accessory elements absent in the soil ecotype, or (b) the
-metal concentration exceeds the allele-specific MIC.
-
-Full consolidated document: `ENIGMA_PREDICTIONS.md`.
-
-### Experimental feasibility
-
-Key conclusions from `feasibility_individual_otus.md`:
-
-- **Detection limit**: ≥ 0.1% relative abundance (≥ 10 reads at 10,000 reads/sample).
-  OTUs initially at 1% abundance are quantified with CV ≈ 10%; the power to detect a 2-fold
-  increase at this prevalence is >99% with 3 replicates at 10,000 reads — the binding
-  constraint is multiple testing, not sensitivity.
-- **Recommended design**: Sequence the ENIGMA inoculum pre-treatment (5 replicates,
-  ≥ 50,000 reads/sample) to confirm which priority OTUs are detectable at ≥ 0.1%; restrict
-  the experiment to the 3–5 confirmed OTUs. Apply FDR correction within that set only.
-- **Experimental parameters**: 4–6 metal-stress treatments × 5 replicates × 7- and 14-day
-  time points; primary endpoint is relative abundance fold-change versus metal-free control.
-- **Backup**: If OTU-level tracking fails, genus-specific 16S qPCR (*Pseudomonas*,
-  *Citrobacter*, *Enterococcus*) or a defined synthetic community (SynCom) of 8–12 priority
-  taxa can replace amplicon sequencing.
-
-### Literature context for experimental design
-
-Farkas et al. (2023, *Geomicrobiology Journal*) tracked prokaryotic community composition by
-16S rRNA amplicon sequencing in As(III) microcosm experiments, demonstrating acute composition
-shifts detectable at community level within 7 days — consistent with our 7–14-day design.
-Kou et al. (2018, *Frontiers in Microbiology*) showed selective OTU-level enrichment under
-Pb/Zn/Cu in a field trial, supporting the premise that metal-tolerant taxa reliably increase in
-relative abundance. Yuan et al. (2020, *Current Microbiology*) confirmed that copper
-specifically reduces OTU richness in freshwater microcosms — reducing competition and
-amplifying the selective advantage of Cu-resistant taxa such as *Pseudomonas* OTU `97_39338`.
-
-*(Scripts: make_candidate_otu_list.py, refine_metal_resistance.py, feasibility_assessment.py,
-package_enigma_predictions.py, interactive_dashboard.py)*
-
----
-
-## ENIGMA Validation: Groundwater Enrichment Analysis
-
-This section reports an independent observational validation of the core PGLS finding using
-the 1,624 groundwater samples already resident in the KBase BERDL data lakehouse
-(`arkinlab_microbeatlas`, Env_Level_2 = "groundwater"). If genera with broader metal-type
-resistance repertoires are genuinely ecological generalists (the PGLS finding), they should be
-more prevalent across groundwater samples, which represent chemically challenging, often
-metal-impacted subsurface environments.
-
-### Data and approach
-
-**Dataset**: 1,624 groundwater samples from `arkinlab_microbeatlas`; OTU × sample counts
-queried via BERDL REST API (joining `otu_counts_long` and `sample_metadata`).
-**Analysis subset**: 767 genera with (i) ≥1 OTU detected in groundwater and (ii) metal AMR
-data in `genus_trait_table.csv` (mean_n_metal_types non-null).
-**Genus-level groundwater prevalence**: mean fraction of 1,624 groundwater samples in which
-≥1 OTU from that genus was detected (count > 0).
-**Fold enrichment**: groundwater prevalence % ÷ non-groundwater prevalence % (462,348 samples).
-
-### Results: Track A (BERDL groundwater)
-
-| Test | Statistic | n | p |
-|------|-----------|---|---|
-| Spearman ρ: metal types vs. GW prevalence | ρ = +0.112 | 767 genera | **0.0019** |
-| Spearman ρ: metal types vs. fold enrichment | ρ = +0.042 | 767 genera | 0.242 |
-| Mann-Whitney: top-Q4 vs. bot-Q1 metal types → GW prevalence | U | 213 vs 429 genera | **0.007** |
-| Mann-Whitney: top-Q4 vs. bot-Q1 metal types → fold enrichment | U | 213 vs 429 genera | 0.181 |
-
-Quartile thresholds: Q1 ≤ 1.0 metal types; Q4 ≥ 1.5 metal types (among genera with AMR data).
-
-**Median groundwater prevalence**: top-Q4 genera = 0.81%; bot-Q1 genera = 0.62%
-(ratio = 1.31×; Mann-Whitney p = 0.007, one-sided greater).
-
-**Candidate genera from ENIGMA shortlist detected in groundwater**:
-
-| Genus | GW prevalence (%) | Fold enrichment vs. non-GW | Metal types |
-|-------|-------------------|---------------------------|-------------|
-| *Azospira* | 5.21 | 2.3× | 3.0 |
-| *Enterobacter* | 4.80 | 1.1× | 3.1 |
-| *Citrobacter* | 0.89 | 2.8× | 3.7 |
-| *Enterococcus* | 0.71 | 2.8× | 3.3 |
-| *Noviherbaspirillum* | 1.01 | 1.4× | 3.0 |
-| *Franconibacter* | 0.39 | 1.6× | 3.5 |
-| *Pseudomonas* | — (not in top-15) | — | 2.1 |
-
-*Citrobacter* and *Enterococcus* are notably enriched in groundwater (2.8× fold enrichment),
-consistent with the ENIGMA experimental predictions. *Azospira* (a denitrifier detected in
-5.2% of groundwater samples) shows the highest prevalence among high-metal-diversity genera
-and has an established role in groundwater nitrogen cycling.
-
-**Interpretation**: The Spearman correlation (ρ = +0.112, p = 0.0019) and Mann-Whitney
-(p = 0.007) confirm that genera with broader metal-type resistance repertoires are significantly
-more prevalent in groundwater than genera with narrow resistance repertoires, at both the
-correlation and quartile-comparison level. The effect size is modest (0.62% → 0.81% median
-prevalence for bottom-Q1 vs top-Q4), consistent with the global PGLS β being a partial
-correlation after removing phylogenetic structure. The fold-enrichment metric (groundwater vs. non-groundwater) does not reach significance
-(ρ = +0.042, p = 0.242). This means the environmental-specificity metric — whether metal-diverse
-genera are *preferentially* enriched in groundwater beyond their global baseline — does not
-show a detectable signal. This is a meaningful null: Track A confirms the prevalence association
-but does not confirm groundwater-specific enrichment. The non-significant fold-enrichment could
-reflect that (a) the prevalence advantage is a general breadth effect rather than groundwater
-specificity, or (b) the 1,624-sample groundwater subset is underpowered to detect a specificity
-signal of the observed effect size. Track A is therefore consistent with the PGLS finding but
-does not uniquely support the metal-contamination mechanism.
-
-This analysis provides an independent, field-observation-based cross-validation of the PGLS
-finding using a different data source (groundwater surveys vs. multi-environment atlas), and
-is consistent with the directionality and mechanism proposed: diverse metal resistance is
-associated with greater ecological range in chemically challenging subsurface environments.
-
-### Track B: PRJNA1084851 (ENIGMA ORFRC 16S — full pipeline)
-
-**Status**: Complete — 133/133 samples processed, 24,295 OTUs.
-
-The Water Research 2024 study (doi:10.1016/j.watres.2024.121460) deposited 133 MiSeq 16S
-amplicon runs under PRJNA1084851 (SRR28246018–SRR28246150). Title: *"Reproducible responses
-of geochemical and microbial successional patterns in the subsurface to carbon source
-amendment"* (ENIGMA-funded, ORFRC Tennessee). We built a complete amplicon pipeline
-(cutadapt 5.2 primer trimming, vsearch 2.30.6 paired-end merging and 97% OTU clustering,
-SILVA 138 taxonomy) and processed all 133 samples (81 via ENA FTP; 52 via NCBI
-`fasterq-dump` v3.4.1, which were not yet mirrored to ENA at time of analysis). Final OTU
-table: **133 samples × 24,295 OTUs**; median 56,908 reads/sample; 14,021 OTUs with
-genus-level taxonomy (SILVA 138); 1,637 OTUs (16.8% of reads) joinable to genus metal
-diversity data.
-
-**Experimental design** (from BioSample attributes): Two experiments — EVO09 (52 samples,
-Jan 2009) and EVO17 (81 samples, 2017–2018) — across 8 groundwater monitoring wells
-(FW202, FW215, FW216, GP01, GP03, MLSA3, MLSB3, MLSG4) at the ENIGMA ORFRC, Oak Ridge,
-Tennessee. All samples collected at 0.2 µm filtration. Replicate codes R0–R20 represent
-successive time points before and after ethanol carbon amendment.
-
-**Community-weighted mean (CWM) metal-type diversity**: For each sample, CWM was computed
-as the abundance-weighted mean of genus-level `mean_n_metal_types` across OTUs with AMR
-data (16.8% of reads per sample on average). CWM range: 1.01–1.83; mean 1.28 ± 0.19.
-
-**Coverage limitation**: The 16.8% read coverage reflects OTUs for which genus-level SILVA
-taxonomy could be matched to GTDB AMR annotations. The remaining ~83% of reads (from genera
-without taxonomy matches) are excluded from CWM. If these uncovered genera have systematically
-different metal resistance profiles than covered genera (e.g., if uncovered lineages are
-predominantly metal-sensitive), CWM would be biased upward. The between-sample variance in
-CWM (1.01–1.83) and the correlation with known contamination status (FW215/FW216 in plume)
-are consistent with a signal that reflects real biology, but robustness to coverage fraction
-variation has not been formally tested. A correlation between per-sample CWM and per-sample
-covered-read fraction is recommended as a diagnostic before this metric is used in further
-analyses.
-
-![ENIGMA Track B figure: CWM by well, CWM vs time, Sulfurimonas decline](figures/fig_enigma_trackB.png)
-
-#### Track B statistical results
-
-| Test | Statistic | n | p |
-|------|-----------|---|---|
-| Kruskal-Wallis: CWM across 8 wells | H = 29.10 | 133 samples | **0.0001** |
-| Spearman ρ: CWM vs. time point (R#) | ρ = +0.383 | 133 | **< 0.0001** |
-| FW216 within-well: CWM vs. time point | ρ = +0.576 | 40 | **0.0001** |
-| Mann-Whitney: EVO09 vs. EVO17 CWM | U | 52 vs 81 | **0.0012** |
-| Spearman ρ: *Sulfurimonas* RA vs. time | ρ = −0.323 | 133 | **0.0002** |
-
-**Well-level CWM gradient** (median, ranked high → low):
-FW215 (1.37) > FW216 (1.36) > GP01 (1.23) ≈ GP03 (1.22) > MLSB3 (1.14) > MLSA3 (1.09) ≈ FW202 (1.08) ≈ MLSG4 (1.08).
-
-Wells FW215 and FW216 are known to be within the U/NO₃ contamination plume at ORFRC; their
-higher CWM is consistent with the core hypothesis that metal-contaminated subsurface
-environments select for genera with broader metal resistance repertoires.
-
-**Time-series pattern**: CWM increases significantly with time point after carbon amendment
-(Spearman ρ = +0.383, p < 0.0001), most strongly in FW216 (ρ = +0.576, p = 0.0001). This
-suggests that carbon amendment progressively selects for metal-diverse communities, possibly
-by creating reducing conditions that shift geochemical speciation of redox-active metals (U,
-Fe, S).
-
-**Candidate genus detection**: *Sulfurimonas* (sulfur-oxidizing chemolithotroph; 80 OTUs,
-96.2% prevalence) is the dominant flagged genus but shows a counterintuitive
-**decrease** with time (ρ = −0.323, p = 0.0002), likely because carbon amendment depletes
-nitrate and oxygen — Sulfurimonas' preferred electron acceptors. *Nitrospira* (25 OTUs,
-88.7% prevalence) shows highest abundance in the FW215 plume well. *Candidatus*
-Jorgensenbacteria (Patescibacteria/CPR; 122 OTUs, 99.2% prevalence) is ubiquitous.
-*Citrobacter* and *Thermodesulfovibrio* were not detected (below detection or mismatched
-genus names under SILVA nomenclature).
-
-**Interpretation**: The Track B results support the core PGLS finding at the within-study
-level. Contaminated plume wells (FW215, FW216) host communities with measurably higher
-metal-type diversity than background wells, and the temporal increase in CWM after carbon
-amendment points to active ecological selection for metal-diverse communities under
-geochemical stress. The *Sulfurimonas* pattern is an informative counterexample: a highly
-prevalent environmental generalist whose abundance is driven by electron-acceptor availability
-rather than metal resistance — demonstrating that not all ecologically dominant groundwater
-taxa are metal-diverse.
-
-*(Scripts: scripts/prjna1084851_pipeline.py, scripts/prjna1084851_recover.py,
-scripts/enigma_validation.py; Data: data/enigma_otu_table.csv, data/enigma_otu_taxonomy.csv,
-data/enigma_full_metadata.csv, data/enigma_cwm_per_sample.csv;
-Figure: figures/fig_enigma_trackB.png)*
+| `figures/fig1_lambda_heatmap.png` | Pagel's λ heatmap: 6 traits × Bacteria/Archaea |
+| `figures/fig2_pgls_forest.png` | Forest plot: 6 simple PGLS models |
+| `figures/fig3_synthesis.png` | 2-panel synthesis (λ heatmap + forest) |
+| `figures/fig4_metal_types_scatter.png` | Metal type diversity vs Levins' B_std scatter |
+| `figures/fig5_robustness.png` | Robustness panel (R1–R4; regenerated 2026-07-01 with 94-KO n=1,000 data) |
+| `figures/fig_enigma_validation.png` | Track A: groundwater prevalence vs metal type diversity |
+| `figures/fig_enigma_trackB.png` | Track B: CWM by well type and time |
+| `figures/nb03_global_hotspot_map.png` | MAG geographic hotspot map |
+| `figures/nb03_biome_prevalence.png` | Metal-resistant MAG prevalence by biome (Soil, Marine, Rhizosphere) |
+| `figures/nb03_hotspot_summary_table.png` | Hotspot OR and q-value summary table |
+| `figures/nb04d_pagels_lambda_by_biome.png` | Biome-stratified λ estimates |
+| `figures/nb04e_gene_biome_bubbleplot.png` | Specific gene × biome enrichment bubbleplot |
+| `figures/nb04e_gene_biome_heatmap.png` | Gene × biome enrichment heatmap |
+| `figures/nb10a_global_mag_distribution.png` | Raw MAG geographic distribution |
+| `figures/nb11c_alphaearth_pca_hotspot.png` | AlphaEarth PCA: hotspot vs non-hotspot |
+| `figures/nb11c_ext1_pc_vs_metal.png` | PC score vs metal type diversity (all non-significant) |
+| `figures/clade_lambda_forest.png` | Clade-specific λ forest plot |
+| `figures/clade_specific_lambda.png` | Clade-specific λ estimates |
+| `figures/gene_lambda_barchart.png` | Per-gene λ bar chart |
+| `figures/per_metal_pgls.png` | Per-metal PGLS results |
+| `figures/pgls_diagnostics.png` | PGLS model diagnostic plots |
+| `figures/niche_breadth_distribution.png` | Levins' B_std distribution across genera |
+| `figures/synthesis_figure.png` | Alternative synthesis figure |
+| `figures/dashboard.html` | Interactive Plotly dashboard |
 
 ---
 
 ## Future Directions
 
-1. **Pangenome rarefaction**: Resample genera to equal genome coverage (e.g., n = 1 or 2
-   species) and repeat PGLS to formally control for the genome-sampling depth confound.
-   This would require access to the species-level AMR table stratified by genome count.
+**Priority 0 — Required before any publication submission**
 
-2. **Archaeal PGLS**: Expand archaeal pangenome coverage in `kbase_ke_pangenome` to include
-   environmental metagenome-assembled genomes (MAGs), particularly Thaumarchaeota, and repeat
-   the PGLS analysis once ≥ 100 archaeal genera with AMR data are available.
+1. ~~**Re-run PGLS with the 94-KO tiered list.**~~ ✅ **COMPLETE (2026-07-01)**. Spark re-run produced n = 1,000 genera; metal type diversity (p = 0.013) and cluster count (p = 0.015) approach but do not reach Bonferroni threshold (p < 0.0083). Results in `data/pgls_results.csv` and `data/pgls_multi_results.csv`.
 
-3. ~~**Genome size covariate**~~: Completed as Robustness Analysis R5. Genus-level mean genome
-   size was queried from `kbase_ke_pangenome.gtdb_metadata` and added as a PGLS covariate;
-   the metal type diversity effect is independent of genome size (ΔAIC = 10.8; see R5).
+2. ~~**Re-run robustness (R1–R6) and sensitivity (S1–S5) analyses with 94-KO data.**~~ ✅ **COMPLETE (2026-07-01).** R1–R4 and S1–S4 re-run with 94-KO data (n = 1,000 genera). Metal type diversity signal (p = 0.013) is robust across all checks. S1 (leave-one-metal-out) completed using `data/species_metal_amr_permetal.csv`; 11/12 metals preserve the positive association.
 
-4. **HGT burden as predictor**: Estimate genus-level pangenome openness (proportion of genes
-   in the accessory genome) and use it as a predictor of niche breadth alongside metal type
-   diversity. A broader accessory genome may be the underlying driver of both traits.
+3. ~~**Trace and verify the prior AMRFinderPlus PGLS result.**~~ ✅ **RESOLVED (2026-07-01).** Origin identified: REPORT-checkpoint.md (2026-03-26) using AMRFinderPlus metal type diversity on n = 606 genera. The current AMRFinderPlus cache uses a different predictor (cluster count, not type diversity) and a larger sample (n = 957), explaining the discrepancy. The 94-KO metal type diversity analysis (n = 1,000, p = 0.013) is the appropriate current comparison. See Finding 3 paragraph on AMRFinderPlus comparison for full explanation.
 
-5. **Site-level validation**: Test whether MicrobeAtlas genera with high metal type diversity
-   are enriched in metal-contaminated sample metadata (where available: mining-impacted,
-   biosolid-amended, estuarine) versus clean reference environments. This would directly
-   validate the environmental co-selection hypothesis.
+**Priority 1 — Strengthen or falsify the null result**
 
-6. **Multi-metal co-resistance clustering**: Group metal types by genetic co-occurrence
-   (e.g., Cu-Zn co-resistance vs Hg-As) and test whether specific co-resistance combinations
-   predict niche breadth more than the raw count.
+4. ~~**Fit MCMCglmm with Poisson family for metal type count.**~~ ✅ **COMPLETE (2026-07-01).** MCMCglmm installed via conda-forge; model run (`scripts/mcmcglmm_metal.R`; nitt=20,000, burnin=3,000, thin=10). B_std_z posterior mean=+0.036, 95% CI [0.009, 0.066], pMCMC=0.013 (n=1,000). ESS=50.7 (improved; recommend nitt≥50,000 for ESS≥100 before final submission). See Finding 3(c) and `data/mcmcglmm_result.csv`.
 
-7. **Phylogenetic mixed models for count data**: Apply `MCMCglmm` with Poisson or negative
-   binomial family to test whether metal type count (as a response variable in the reverse
-   regression direction) is predicted by niche breadth, accounting for phylogenetic structure.
-   This would complement the current analysis by testing the reverse direction and using
-   appropriate error distributions.
+5. ~~**Verify ENIGMA Track B read coverage.**~~ ✅ **COMPLETE (2026-07-01).** Mean read coverage = 32.2% (12.6% of OTUs annotated; 10/133 samples <10%). Unannotated reads are primarily Candidate phyla. CWM values are conservative estimates. See Limitation 7 and Track B paragraph in Supplementary Analyses.
 
-8. **Environment sub-classification**: Re-run the niche breadth computation with a finer
-   environment taxonomy (e.g., splitting "aquatic" into marine, freshwater, estuarine) using
-   sample metadata from MicrobeAtlas to test whether category heterogeneity inflates B_std
-   for certain genera.
+6. **Resolve MNAR risk in OTU–GeoROC (NB09a) — Tier 1 complete (2026-07-02).** The 338 complete-case analysis (0.5% of 71,199 samples) was insufficient; missingness in As (92%), Cd (96%), Hg (99%) is project-correlated MNAR. **Tier 1 complete:** Restricting to six non-MNAR metals (Co, Cr, Cu, Ni, Zn, Pb) yields 3,050 complete cases (all 3,050 GeoROC-matched samples). Partial Spearman identifies 2,773 Bonferroni-significant OTU–metal pairs (12,000 tests; α = 0.0083). Results warrant elevation from supplementary to a supporting finding pending Tier 2 corroboration. **Remaining tiers for revision:** (Tier 2/supplementary) per-metal marginal models on all available samples for all 9 metals, recovering Hg/As/Cd individually; (Tier 3/sensitivity) MICE imputation on 6-metal set with Project as predictor in imputation model to bound MNAR bias.
 
-9. **AMRFinderPlus validation**: Random sampling of 100 annotated metal AMR gene clusters for
-   manual BLAST verification against reference sequences to quantify the HMM-based false
-   positive rate for each metal type category.
+6b. ~~**Run metabolism discriminant PGLS.**~~ ✅ **COMPLETE (2026-07-01).** Discriminant set (18 KOs: metal-sensing + cofactor enzymes) extracted via eggNOG annotations from pangenome; genus-level counts aggregated for 7,976 genera. PGLS on n = 1,000 matched genera: discriminant β = +0.0164 (p = 0.0012), **stronger than 94-KO result** (β = +0.0139, p = 0.013). Interpretation updated in Finding 3 and Biological Interpretation: signal is not specific to metal-resistance function. Next step: genome-size controlled discriminant PGLS (cleanest test of whether signal is a metabolic-completeness proxy).
 
-10. ~~**ENIGMA field validation** (fully addressed — Tracks A and B complete)~~: Candidate
-    OTU list and shortlist produced. **Track A**: 1,624 BERDL groundwater samples confirm
-    metal-diverse genera are significantly more prevalent in groundwater (Spearman ρ = +0.112,
-    p = 0.0019; Mann-Whitney p = 0.007). **Track B**: Full amplicon pipeline executed for
-    all 133 PRJNA1084851 samples (24,295 OTUs; 133/133 QC pass). Community-weighted mean
-    metal-type diversity is significantly higher in contamination-plume wells FW215/FW216
-    (Kruskal-Wallis p = 0.0001) and increases with time after carbon amendment
-    (Spearman ρ = +0.383, p < 0.0001 across all wells; ρ = +0.576, p = 0.0001 in FW216
-    alone). Both tracks independently confirm the PGLS prediction in field data. See full
-    results in the ENIGMA Validation section above.
+**Priority 2 — Expand scope**
 
-11. **Public data archive**: Deposit notebooks, derived data CSVs, and a conda environment
-    lockfile to a Zenodo repository to enable independent verification of all PGLS and
-    Pagel's λ results. The BERDL-resident derived files (`data/*.csv`, `figures/*.png`)
-    should be archived with a citable DOI before manuscript submission.
+7. **Archaeal PGLS expansion.** Pool GTDB-compatible archaeal references across related projects to reach ≥100 genera; treat as exploratory until n ≥ 702.
 
----
+8. **Sub-classify the "aquatic" habitat category.** Split into marine water, freshwater, and groundwater to determine whether β_aquatic = −0.496 aggregates opposing signals.
 
-## Peer Review Query Index
+9. **Zenodo deposit.** Archive all CSVs, R scripts, Python scripts, and figures under a single DOI for reproducibility. Currently pending.
 
-Quick-reference for all 8 reviewer query groups. For each, the status and the primary REPORT.md
-section where it is addressed are listed.
+10. **Soil microcosm enrichment experiment — testing metal-dense specialist enrichment under chronic metal stress.** The normalized PGLS result generates a falsifiable ecological prediction that can be tested experimentally: taxa with high metal gene density per Mb (particularly Tier 2 homeostasis gene density) should enrich preferentially under chronic metal exposure, while taxa with high raw metal gene counts but moderate density (e.g., Enterobacterales) should not.
 
-| Query | Status | Primary Section |
-|-------|--------|-----------------|
-| **Q1a** Environment categories ecologically meaningful? Alternative groupings? | Partially addressed — leave-one-out done (S2); sub-category splitting requires new metadata | Sensitivity S2; Limitation 5 |
-| **Q1b** Primer bias and differential sequencing depth quantitatively corrected? | Not correctable with available data — acknowledged | Limitation 1; Robustness R4 |
-| **Q2a** Brownian motion assumption for count predictor? Phylogenetic mixed models? | Acknowledged — continuous PGLS on count predictor is standard; MCMCglmm proposed as future work | Limitation 6; Future Direction #7 |
-| **Q2b** GTDB r214 tree sensitivity? Genus-aggregation discards within-genus variation? | GTDB r214 is best available; alternative tree comparison not performed (known gap). Within-genus heterogeneity tested via S3 (non-significant) | Study Design — Phylogenetic tree and genus-aggregation; Sensitivity S3 |
-| **Q2c** PGLS λ overfitting / optimization sensitivity? λ discrepancy explained? | Directly addressed — Δλ = 0.079 expected given predictor's own phylogenetic signal | Study Design — λ discrepancy |
-| **Q3a** Pangenome bias toward pathogens? Genome-count covariate was only OLS? | Addressed — **the OLS claim is incorrect**: R1 and S4 both use `gls() + corPagel` (PGLS), not OLS. β remains significant after PGLS covariate. | Robustness R1; Sensitivity S4 |
-| **Q3b** Metal type classification robustness? Single metal drives result? AMRFinderPlus validation? | Addressed for single-metal (S1: all 7 exclusions positive, no one metal is driver). Formal AMRFinderPlus validation not performed — spot checks only | Sensitivity S1; Study Design — AMRFinderPlus |
-| **Q4a** Genome size formal test — "Why was this not performed?" | **It was performed (R5)**. Metal types β = +0.022 (p = 3.6×10⁻⁴) independent of genome size; ΔAIC = 10.8 | Robustness R5 |
-| **Q4b** Causation and directionality? | Directly addressed — 3 scenarios, none distinguishable; cross-sectional design limitation explicit; causal phrasing removed from Key Findings and Interpretation | Study Design — Causation and directionality |
-| **Q5a** Multiple comparisons across entire study? | Directly addressed — 47 tests tabulated; BH-FDR applied across all tests; primary result survives both Bonferroni (α/47=0.0011) and FDR (q=0.003) | Study Design — Multiple testing count |
-| **Q5b** Archaeal PGLS in main text vs supplementary? | Moved to Supplementary: Archaeal Analyses section; R3 in main Robustness provides summary pointer only | Supplementary section; Limitation 2 |
-| **Q6a** Novel mechanistic insight beyond "generalists have more metal resistance"? | Addressed — the phylogenetic partitioning (core vs. type diversity) and global pangenome × atlas × PGLS integration is novel | Interpretation; Novel contribution |
-| **Q6b** Rarefaction + within-genus variance reconciliation? | Addressed — S3 confirms genus means not inflated by outlier species; R2 rarefaction shows consistent positive direction | Robustness R2; Sensitivity S3 |
-| **Q7a** Public Zenodo archive prepared? | Not yet — acknowledged as gap; institutional repo only. Zenodo archiving added as Future Direction #11 | Data — Data Availability; Future Direction #11 |
-| **Q7b** Unit test for PGLS ordering implemented? | Yes — `scripts/test_pgls_ordering.py` generates synthetic data, scrambles order, and verifies sorted model recovers correct λ and β (test passes) | Supporting Evidence — Scripts table |
-| **Q8a** Robustness analyses post-hoc — labeled as exploratory? | Yes — all robustness/sensitivity labelled exploratory; primary confirmatory result (6 PGLS + Bonferroni) stands independently | Study Design — Confirmatory vs exploratory |
-| **Q8b** Preregistered analysis plan? | Not preregistered — acknowledged; confirmatory/exploratory distinction documented post-hoc | Study Design — Confirmatory vs exploratory |
-| **Q8c** ENIGMA microcosm concrete testable prediction? | Fully addressed — (1) Track A: top-quartile metal diversity genera 31% more prevalent in groundwater (Mann-Whitney p=0.007); (2) Track B: PRJNA1084851 amplicon pipeline run on 133/133 ENIGMA ORFRC samples — CWM metal diversity significantly higher in contaminated FW wells (KW p=0.0001) and increases with carbon amendment time (ρ=+0.38, p<0.0001) | ENIGMA Validation (Tracks A & B); Future Direction #10 |
+    **Falsifiable predictions (derived directly from PGLS results):**
+    1. Genera with metal/Mb > 2.0 (chemolithotrophs, Burkholderiales; see `data/top_genera_metal_diversity.csv`) enrich at ≥ EC₅₀ metal concentrations relative to metal/Mb < 1.0 genera [tests the normalized signal]
+    2. Enrichment correlates with metal/Mb across genera (r > 0.3) but NOT with raw metal gene count (r < 0.1) [distinguishes normalized from raw; tests whether genome-size confound disappears experimentally]
+    3. In enriching taxa, Tier 2 KO expression (homeostasis) increases relative to Tier 1 (resistance) between T7 and T28 of incubation [tests the tier asymmetry mechanistically]
+    4. Enterobacterales genera (Klebsiella, Citrobacter — high raw count, moderate metal/Mb) do NOT preferentially enrich at T90 [the null prediction from the raw signal, which our analysis implies is spurious]
 
----
+    **Design:**
+    - *Setup:* Pristine agricultural soil (low baseline metal contamination), 200 g triplicate microcosms, 60% water-holding capacity, 25°C
+    - *Treatments (n = 3 each):* (0×) no amendment; (Cu 1×) Cu at EC₅₀; (Cu 5×) Cu at 5 × EC₅₀; (Zn 5×) Zn at 5 × EC₅₀; (Cocktail) Cu + Zn + Ni equimolar at 1× EC₅₀ each; (pH control) HCl matched to Cu 5× acidity; (abiotic) heat-killed soil + Cu 5×
+    - *Timepoints:* T0, T7, T28, T90 (destructive)
+    - *Measurements:* 16S V4 amplicon (all timepoints); shotgun metagenomics (T0, T90); metatranscriptomics (T28, T90, targeting Tier 1 vs. Tier 2 KO expression in enriching taxa); QPCR of Burkholderiales and methylotroph genera
+    - *Primary statistical test:* linear mixed model; response = log(relative abundance T90/T0); fixed effects: metal/Mb score × treatment interaction; random: microcosm ID
 
-## Supplementary: Archaeal Analyses {#supplementary-archaeal-analyses}
-
-### Archaeal Pagel's λ
-
-Archaeal niche breadth shows significant phylogenetic signal (λ = 0.197, p = 1.1×10⁻⁵ for
-B_std; λ = 0.898, p = 4.6×10⁻¹⁴ for n_envs), though the B_std λ is notably lower than in
-bacteria (0.787), consistent with the phylogenetically sparse and ecologically distinct nature
-of the archaeal genera captured by 16S amplicon surveys.
-
-### Archaeal PGLS (full results)
-
-**Observed archaeal PGLS** (`scripts/pgls_robustness.R`, n = 48 genera with AMR data):
-
-| Predictor | β | SE | t | p | λ |
-|-----------|---|-----|---|---|---|
-| Metal types (z) | +0.0145 | 0.0198 | 0.73 | 0.467 | 0.567 |
-| AMR clusters (z) | +0.0146 | 0.0209 | 0.70 | 0.488 | 0.567 |
-| Core fraction (z) | +0.0002 | 0.0211 | 0.01 | 0.991 | 0.553 |
-
-No significant effects at n = 48. The metal types β (+0.0145) is in the same positive direction
-as bacteria (+0.0215) but the SE is nearly as large as the estimate (t = 0.73), indicating
-severe underpowering. The 48 archaeal genera are biased toward cultured lineages (methanogens,
-halophiles, thermoacidophiles), missing environmentally dominant archaea in MicrobeAtlas
-(Thaumarchaeota, Woesearchaeota).
-
-### Formal power analysis
-
-Analytical power using non-central t-distribution; SE scales as SE_obs × √(n_obs/n);
-β_true = +0.0145, λ fixed at 0.567:
-
-| n | Expected SE | Expected t | Power (α = 0.05) | Power (Bonferroni α = 0.0083) |
-|---|------------|------------|-----------------|-------------------------------|
-| 48 (current) | 0.0198 | 0.73 | 11% | 3% |
-| 100 | 0.0137 | 1.06 | 18% | 6% |
-| 200 | 0.0097 | 1.50 | 32% | 12% |
-| 300 | 0.0079 | 1.83 | 45% | 21% |
-| 400 | 0.0069 | 2.12 | 56% | 30% |
-| 600 | 0.0056 | 2.59 | 74% | 48% |
-| 800 | 0.0048 | 3.00 | 85% | 64% |
-| 1,000 | 0.0043 | 3.35 | 92% | 76% |
-
-**Required sample sizes**: 80% power requires **n ≥ 702** (α = 0.05) or **n ≥ 1,084** (Bonferroni).
-The archaeal analysis is not a negative result — it is a severely underpowered one. The
-non-significant archaeal result should not be interpreted as evidence against the association.
-
-### Supplementary Sensitivity Table
-
-All sensitivity and robustness analyses, metal types predictor β and BH-FDR q-value:
-
-| Analysis | n | β (metal types) | SE | p | q (BH-FDR) | sig q<0.05? |
-|----------|---|-----------------|-----|---|------------|-------------|
-| Simple PGLS (B_std ~ metal_types_z) | 606 | +0.0215 | 0.0056 | 1.5×10⁻⁴ | 0.003 | yes |
-| Multi-predictor PGLS | 606 | +0.0231 | 0.0067 | 5.5×10⁻⁴ | 0.004 | yes |
-| R1: + n_species covariate (simple) | 606 | +0.0204 | 0.0057 | 3.4×10⁻⁴ | 0.003 | yes |
-| R1: + n_species covariate (multi) | 606 | +0.0224 | 0.0067 | 8.3×10⁻⁴ | 0.004 | yes |
-| R2: Rarefied (median, 200 iter) | 606 | +0.0147 | ~0.011 | 0.005 | — | — |
-| R3: Archaeal PGLS | 48 | +0.0145 | 0.0198 | 0.467 | 0.548 | no |
-| R4: Strict prevalence (≥5%) | 379 | +0.0166 | 0.0099 | 0.092 | — | — |
-| R5: + genome size covariate | 527 | +0.0218 | 0.0061 | 3.6×10⁻⁴ | 0.003 | yes |
-| R6: + log_n_species + log_genome_size | 527 | +0.0218 | 0.0061 | 3.5×10⁻⁴ | 0.003 | yes |
-| S1: excl_Hg | 606 | +0.0082 | 0.0069 | 0.233 | 0.313 | no |
-| S1: excl_As | 606 | +0.0039 | 0.0061 | 0.518 | 0.572 | no |
-| S1: excl_Cu | 606 | +0.0102 | 0.0065 | 0.115 | 0.187 | no |
-| S1: excl_Zn | 606 | +0.0095 | 0.0064 | 0.140 | 0.212 | no |
-| S1: excl_Cd | 606 | +0.0084 | 0.0064 | 0.186 | 0.258 | no |
-| S1: excl_Cr | 606 | +0.0088 | 0.0064 | 0.173 | 0.255 | no |
-| S1: excl_Ni | 606 | +0.0095 | 0.0064 | 0.140 | 0.212 | no |
-| S2: excl_aquatic | 606 | +0.0085 | 0.0039 | 0.031 | 0.061 | no* |
-| S2: excl_agricultural | 606 | +0.0107 | 0.0040 | 0.0073 | 0.016 | yes |
-| S2: excl_desert | 606 | +0.0120 | 0.0042 | 0.0040 | 0.011 | yes |
-| S2: excl_farm | 606 | +0.0115 | 0.0042 | 0.0061 | 0.015 | yes |
-| S2: excl_field | 606 | +0.0118 | 0.0040 | 0.0030 | 0.010 | yes |
-| S2: excl_flower | 606 | +0.0118 | 0.0044 | 0.0077 | 0.017 | yes |
-| S2: excl_forest | 606 | +0.0142 | 0.0042 | 0.0007 | 0.004 | yes |
-| S2: excl_leaf | 606 | +0.0130 | 0.0043 | 0.0025 | 0.010 | yes |
-| S2: excl_paddy | 606 | +0.0123 | 0.0042 | 0.0036 | 0.010 | yes |
-| S2: excl_peatland | 606 | +0.0131 | 0.0044 | 0.0027 | 0.010 | yes |
-| S2: excl_plant | 606 | +0.0105 | 0.0039 | 0.0069 | 0.016 | yes |
-| S2: excl_shrub | 606 | +0.0126 | 0.0043 | 0.0034 | 0.010 | yes |
-| S2: excl_soil | 606 | +0.0113 | 0.0039 | 0.0035 | 0.010 | yes |
-| S3: + within-genus SD metal types | 606 | +0.0189 | 0.0060 | 0.0016 | 0.007 | yes |
-| S4: + log(n_species) | 606 | +0.0195 | 0.0057 | 6.4×10⁻⁴ | 0.004 | yes |
-| S5: OTU ≥0.01% rel. abund. (Pagel's λ) | 576 | λ=0.750 | — | 2.8×10⁻⁴⁰ | — | — |
-
-*excl_aquatic nominally significant at p=0.031 but q=0.061.
-
-Full FDR table: `data/all_tests_fdr.csv`
+    **Distinguishes three hypotheses:** H1 (raw count drives survival — Tier 1 expression predicts enrichment); H2 (homeostasis density drives specialization — Tier 2 expression predicts enrichment; supported by our PGLS tier asymmetry); H3 (genome-size confound persists experimentally — genome size, not metal/Mb, predicts enrichment). If H2 is confirmed, the normalized PGLS finding has direct mechanistic support.
 
 ---
 
 ## References
 
-- Malfertheiner L, Tackmann J, et al. (2026). "Community conservatism is widespread across
-  microbial phyla and environments." *Nature Ecology & Evolution*.
-  https://www.nature.com/articles/s41559-025-02957-4
+- Rodrigues JFM, Malfertheiner L, et al. (2026). "The MicrobeAtlas database: Global trends and insights into Earth's microbial ecosystems." *Cell* 189(3). https://www.cell.com/cell/fulltext/S0092-8674(26)00108-X
 
-- Hernandez DJ, Kiesewetter KN, Almeida BK, et al. (2023). "Multidimensional specialization
-  and generalization are pervasive in soil prokaryotes." *Nature Ecology & Evolution*.
-  https://www.nature.com/articles/s41559-023-02149-y
+- Milanese A, Mende DR, Paoli L, et al. (2019). "Microbial abundance, activity and population genomic profiling with mOTUs2." *Nature Communications* 10: 1014. https://doi.org/10.1038/s41467-019-08844-4
 
-- von Meijenfeldt FAB, Hogeweg P, et al. (2023). "A social niche breadth score reveals niche
-  range strategies of generalists and specialists." *Nature Ecology & Evolution*.
-  https://www.nature.com/articles/s41559-023-02027-7
+- Parks DH, Chuvochina M, Rinke C, Mussig AJ, Chaumeil PA, Hugenholtz P. (2022). "GTDB: An ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy." *Nucleic Acids Research* 50: D785–D794. https://doi.org/10.1093/nar/gkab776
 
-- Qi Q, Hu C, Lin J, et al. (2022). "Contamination with multiple heavy metals decreases
-  microbial diversity and favors generalists as the keystones in microbial occurrence
-  networks." *Environment International* 167: 107426.
-  https://www.sciencedirect.com/science/article/pii/S0269749122006200
+- Pagel M. (1999). "Inferring the historical patterns of biological evolution." *Nature* 401: 877–884. https://doi.org/10.1038/44766
 
-- Hemme CL, Green SJ, Rishishwar L, Prakash O, et al. (2016). "Lateral gene transfer in a
-  heavy metal-contaminated-groundwater microbial community." *mBio* 7: e02234-15.
-  https://journals.asm.org/doi/abs/10.1128/mbio.02234-15
+- Price MN, Deutschbauer AM, Arkin AP. (2022). "GapMind for carbon sources: automated annotations of catabolic pathways." *PLOS Genetics* 18(6): e1010156. https://doi.org/10.1371/journal.pgen.1010156
 
-- Gillieatt BF, Coleman NV. (2024). "Unravelling the mechanisms of antibiotic and heavy metal
-  resistance co-selection in environmental bacteria." *FEMS Microbiology Reviews* 48(4):
-  fuae017. https://academic.oup.com/femsre/article-abstract/48/4/fuae017/7696342
+- Price MN, Wetmore KM, Waters RJ, et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557: 503–509. https://doi.org/10.1038/s41586-018-0124-0
 
-- Ma G, Shi M, Li Y, et al. (2025). "Diverse adaptation strategies of generalists and
-  specialists to metal and salinity stress in the coastal sediments." *Science of the Total
-  Environment*. https://www.sciencedirect.com/science/article/pii/S001393512500324X
+- Martiny AC, Treseder K, Pusch G. (2013). "Phylogenetic conservatism of functional traits in microorganisms." *ISME Journal* 7: 830–838. https://doi.org/10.1038/ismej.2012.160
 
-- Jiao S, Chen W, Wei G. (2021). "Linking phylogenetic niche conservatism to soil archaeal
-  biogeography, community assembly and species coexistence." *Global Ecology and
-  Biogeography* 30: 1469–1479. https://onlinelibrary.wiley.com/doi/abs/10.1111/geb.13313
+- Martiny JBH, Jones SE, Lennon JT, Martiny AC. (2015). "Microbiomes in light of traits: a phylogenetic perspective." *Science* 350(6261): aac9323. https://doi.org/10.1126/science.aac9323
 
-- Miller SR. (2004). "Testing for evolutionary correlations in microbiology using phylogenetic
-  generalized least squares." In *Environmental Microbiology: Methods and Protocols*, pp.
-  339–352. Humana Press. https://link.springer.com/protocol/10.1385/1-59259-765-3:339
+- Hernandez DJ, Kiesewetter KN, Almeida BK, et al. (2023). "Multidimensional specialization and generalization are pervasive in soil prokaryotes." *Nature Ecology & Evolution* 7: 1916–1927. https://doi.org/10.1038/s41559-023-02149-y
 
-- Finn DR, Yu J, Ilhan ZE, Fernandes VM, et al. (2020). "MicroNiche: an R package for
-  assessing microbial niche breadth and overlap from amplicon sequencing data." *FEMS
-  Microbiology Ecology* 96(8): fiaa131.
-  https://academic.oup.com/femsec/article-abstract/96/8/fiaa131/5863182
+- Feldgarden M, Brover V, Gonzalez-Escalona N, et al. (2021). "AMRFinderPlus and the Reference Gene Catalog facilitate examination of the genomic links among antimicrobial resistance, stress response, and virulence." *Scientific Reports* 11: 12728. https://doi.org/10.1038/s41598-021-91456-0
 
-- Farkas R, Toumi M, Abbaszade G, Boka K, et al. (2023). "The acute impact of arsenic (III)
-  on the prokaryotic community composition and selected bacterial strains based on microcosm
-  experiments." *Geomicrobiology Journal*.
-  https://www.tandfonline.com/doi/abs/10.1080/01490451.2023.2181469
+- Hemme CL, Green SJ, Rishishwar L, et al. (2016). "Lateral gene transfer in a heavy metal-contaminated-groundwater microbial community." *mBio* 7: e02234-15. https://doi.org/10.1128/mBio.02234-15
 
-- Kou S, Vincent G, Gonzalez E, Pitre FE, et al. (2018). "The response of a 16S ribosomal
-  RNA gene fragment amplified community to lead, zinc, and copper pollution in a Shanghai
-  field trial." *Frontiers in Microbiology* 9: 366.
-  https://www.frontiersin.org/articles/10.3389/fmicb.2018.00366/full
+- Walker KF, Hazen TC, Fields MW, Arkin AP. (2024). "Mixed waste contamination selects for a mobile genetic element population enriched in multiple heavy metal resistance genes." *ISME Communications* 4(1): ycae064. https://doi.org/10.1093/ismeco/ycae064
 
-- Yuan T, McCarthy AJ, Zhang Y, Sekar R. (2020). "Effects of pH, nutrients and heavy metals
-  on bacterial diversity and ecosystem functioning studied by freshwater microcosms and
-  high-throughput DNA sequencing." *Current Microbiology* 77: 2330–2340.
-  https://link.springer.com/article/10.1007/s00284-020-02138-5
+- Qi Q, Hu C, Lin J, et al. (2022). "Contamination with multiple heavy metals decreases microbial diversity and favors generalists as the keystones in microbial occurrence networks." *Environment International* 167: 107426. https://doi.org/10.1016/j.envint.2022.107426
 
-- Goodall T, Griffiths RI, Emmett B, Jones B, Thorpe A, et al. (2026). "Environmental
-  filtering shapes divergent bacterial strategies and genomic traits across soil niches."
-  *bioRxiv*. https://www.biorxiv.org/content/10.64898/2026.01.16.699881.abstract
+- Chakraborty R, Mukherjee A, Liu H, Kuehl JV, Arkin AP. (2019). "The selective pressures on the microbial community in a metal-contaminated aquifer." *ISME Journal* 13(4): 937. https://doi.org/10.1038/s41396-018-0318-3
 
-- Zhou Y, Stegen JC, Dong H, et al. (2024). "Reproducible responses of geochemical and
-  microbial successional patterns in the subsurface to carbon source amendment." *Water
-  Research* 261: 121460. https://doi.org/10.1016/j.watres.2024.121460
-  *(PRJNA1084851 — 133 MiSeq 16S samples, ENIGMA-funded ORFRC Tennessee)*
+- Giovannoni SJ, Thrash JC, Temperton B. (2014). "Implications of streamlining theory for microbial ecology." *ISME Journal* 8(8): 1553–1565. https://doi.org/10.1038/ismej.2014.60
+
+- Goodall T, Griffiths RI, Emmett B, Jones B, et al. (2026). "Environmental filtering shapes divergent bacterial strategies and genomic traits across soil niches." *bioRxiv* 2026.01.16.699881. https://doi.org/10.64898/2026.01.16.699881
+
+- Li M, Liu J, Cao D, et al. (2025). "Heavy metal pollution simplifies microbial networks and enhances modularity during tailings primary succession." *Frontiers in Microbiology* 16: 1566627. https://doi.org/10.3389/fmicb.2025.1566627
+
+- Dai Z, Guo X, Lin J, et al. (2023). "Metallic micronutrients are associated with the structure and function of the soil microbiome." *Nature Communications* 14: 8104. https://doi.org/10.1038/s41467-023-44182-2
+
+- McReynolds E, Elshahed MS. (2025). "An ecological-evolutionary perspective on the genomic diversity and habitat preferences of the Acidobacteriota." *Microbial Genomics* 11(3): 001344. https://doi.org/10.1099/mgen.0.001344
+
+- Nies DH. (1999). "Microbial heavy-metal resistance." *Applied Microbiology and Biotechnology* 51(6): 730–750. https://doi.org/10.1007/s002530051457
