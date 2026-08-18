@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NEON Metagenome Lineage Novelty &amp; Functional Ecology</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<style>
+:root {
+  --brand-soil:    #8B4513;
+  --brand-water:   #1f77b4;
+  --brand-benthic: #2ca02c;
+  --brand-highlight: #AA3377;
+  --bg:           #0f1419;
+  --bg-card:      #182030;
+  --bg-card-soft: #1f2a3f;
+  --fg:           #e8eef5;
+  --fg-soft:      #a8b3c5;
+  --accent:       #f0c674;
+  --line:         #2a3a55;
+  --pos:          #2ca02c;
+  --neg:          #d62728;
+}
+
+.reveal {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Helvetica Neue','Inter','Segoe UI',sans-serif;
+}
+
+.reveal .slides section {
+  text-align: left;
+  padding: 0 1.2em;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  color: var(--fg);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  margin-bottom: 0.35em;
+}
+
+.reveal h1 { font-size: 2.2em; line-height: 1.1; }
+.reveal h2 { font-size: 1.5em; color: var(--accent); border-bottom: 2px solid var(--line); padding-bottom: 0.2em; }
+.reveal h3 { font-size: 1.1em; color: var(--accent); }
+
+.reveal p, .reveal li { color: var(--fg); font-size: 0.85em; line-height: 1.45; }
+.reveal small, .reveal .small { color: var(--fg-soft); font-size: 0.6em; }
+.reveal em { color: var(--accent); font-style: normal; font-weight: 600; }
+.reveal strong { color: #fff; }
+
+.reveal code, .reveal pre {
+  background: var(--bg-card-soft);
+  color: #e8eef5;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+.reveal table {
+  margin: 0.4em 0;
+  font-size: 0.6em;
+  border-collapse: collapse;
+  width: 100%;
+}
+.reveal table th, .reveal table td {
+  padding: 0.3em 0.55em;
+  border-bottom: 1px solid var(--line);
+}
+.reveal table th { background: var(--bg-card); color: var(--accent); text-align: left; }
+.reveal table tr:nth-child(even) td { background: rgba(255,255,255,0.03); }
+
+.title-slide {
+  background: linear-gradient(140deg, #0f1419 0%, #1a2942 60%, #2a3a55 100%) !important;
+  text-align: left !important;
+  padding: 0 3em !important;
+}
+.title-slide h1 {
+  font-size: 2.6em;
+  color: #fff;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.2em;
+}
+.title-slide .subtitle {
+  color: var(--accent);
+  font-size: 1.15em;
+  font-weight: 500;
+  margin-bottom: 1.2em;
+}
+.title-slide .author {
+  color: var(--fg-soft);
+  font-size: 0.85em;
+}
+.title-slide .meta {
+  position: absolute;
+  bottom: 1.5em;
+  left: 3em;
+  right: 3em;
+  color: var(--fg-soft);
+  font-size: 0.7em;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 0.8em;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.8em;
+  margin: 0.6em 0;
+}
+.card {
+  background: var(--bg-card);
+  border-left: 4px solid var(--line);
+  padding: 0.7em 0.9em;
+  border-radius: 4px;
+}
+.card.soil { border-left-color: var(--brand-soil); }
+.card.water { border-left-color: var(--brand-water); }
+.card.benthic { border-left-color: var(--brand-benthic); }
+.card.highlight { border-left-color: var(--brand-highlight); }
+.card .label {
+  font-size: 0.7em;
+  color: var(--fg-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3em;
+}
+.card .value {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #fff;
+}
+.card .sub {
+  font-size: 0.65em;
+  color: var(--fg-soft);
+  margin-top: 0.2em;
+}
+
+.figure-frame {
+  background: white;
+  padding: 0.4em;
+  border-radius: 4px;
+  display: inline-block;
+  max-width: 100%;
+}
+.figure-frame img { display: block; max-width: 100%; max-height: 480px; border-radius: 2px; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 1em;
+  align-items: start;
+}
+.two-col.even { grid-template-columns: 1fr 1fr; }
+
+.callout {
+  background: linear-gradient(140deg, #2a1a3a 0%, #3a2a5a 100%);
+  border-left: 4px solid var(--brand-highlight);
+  padding: 0.7em 1em;
+  margin: 0.6em 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout .label {
+  color: var(--brand-highlight);
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+.callout p { margin: 0.25em 0 0 0; font-size: 0.85em; }
+
+.tag {
+  display: inline-block;
+  font-size: 0.65em;
+  padding: 0.15em 0.55em;
+  border-radius: 999px;
+  margin-right: 0.3em;
+  font-weight: 600;
+}
+.tag.pass { background: rgba(44,160,44,0.2); color: #6fdc6f; }
+.tag.partial { background: rgba(240,198,116,0.18); color: var(--accent); }
+.tag.fail { background: rgba(214,39,40,0.18); color: #ff8888; }
+.tag.novel { background: rgba(170,51,119,0.2); color: #f08fc8; }
+
+.verdict {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7em;
+  margin: 0.4em 0 0.6em 0;
+  font-size: 0.95em;
+}
+.verdict .h { color: var(--accent); font-weight: 700; min-width: 1.6em; }
+.verdict .v { color: #fff; }
+
+.kbd {
+  background: var(--bg-card-soft);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.05em 0.4em;
+  font-family: 'SF Mono','Consolas',monospace;
+  font-size: 0.85em;
+  color: var(--accent);
+}
+
+.reveal .footnote {
+  position: absolute;
+  bottom: 0.6em;
+  left: 1.4em;
+  right: 1.4em;
+  font-size: 0.55em;
+  color: var(--fg-soft);
+  border-top: 1px solid var(--line);
+  padding-top: 0.3em;
+}
+
+.reveal .pathway-table td { font-size: 0.95em; }
+.reveal .pathway-table td.cls { color: var(--accent); font-weight: 700; }
+.reveal .pathway-table td.cnt { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; color: #fff; }
+
+.bignum {
+  font-size: 3.6em;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.bignum-label {
+  font-size: 0.8em;
+  color: var(--fg-soft);
+  margin-top: 0.3em;
+}
+
+.reveal section img { background: transparent; border: none; box-shadow: none; }
+
+ul.tight li { margin: 0.05em 0; }
+ul.compact li { font-size: 0.78em; line-height: 1.35; margin: 0.1em 0; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 1. TITLE -->
+<section class="title-slide" data-background-color="#0f1419">
+  <h1>NEON Metagenome Lineage Novelty<br>&amp; Functional Ecology</h1>
+  <p class="subtitle">Soil pH drives novelty in the <em>reverse</em> direction — and reveals a cold-active enzyme niche</p>
+  <p class="author">Chris Mungall · LBNL · ORCID 0000-0002-6601-2165</p>
+  <div class="meta">
+    <span>BERIL Research Observatory · NMDC re-host of NEON metagenomes</span>
+    <span>Submitted 2026-05-22</span>
+  </div>
+</section>
+
+<!-- 2. THE DATA -->
+<section>
+  <h2>The data</h2>
+  <p>Three NMDC-rehosted NEON metagenome studies, all soil/water/benthic — bacterial &amp; archaeal metagenomics only (no metaT/metaP/metabolomics).</p>
+  <div class="cards">
+    <div class="card soil">
+      <div class="label">Soil · sty-11-34xj1150</div>
+      <div class="value">6,489</div>
+      <div class="sub">biosamples · 1,177 MQ+HQ MAGs · pH 3.23–9.13</div>
+    </div>
+    <div class="card water">
+      <div class="label">Surface water · sty-11-hht5sb92</div>
+      <div class="value">234</div>
+      <div class="sub">biosamples · 110 MQ+HQ MAGs · cyanobacteria-rich</div>
+    </div>
+    <div class="card benthic">
+      <div class="label">Benthic · sty-11-pzmd0x14</div>
+      <div class="value">736</div>
+      <div class="sub">biosamples · 322 MQ+HQ MAGs · sediment</div>
+    </div>
+  </div>
+  <h3 style="margin-top:1em">Four pre-registered hypotheses</h3>
+  <table style="font-size:0.65em">
+    <tr><th style="width:3em">ID</th><th>Hypothesis</th><th style="width:9em">Verdict</th></tr>
+    <tr><td><strong>H1</strong></td><td>Soil pH drives MAG lineage novelty</td><td><span class="tag pass">Supported</span> direction reversed</td></tr>
+    <tr><td><strong>H2</strong></td><td>Habitat-discriminating KOs enriched for biogeochemistry modules</td><td><span class="tag pass">Supported</span></td></tr>
+    <tr><td><strong>H3</strong></td><td>Soil pH AND horizon each explain ≥5% of soil KO variance</td><td><span class="tag partial">Partial</span> pH passes, horizon doesn't</td></tr>
+    <tr><td><strong>H4</strong></td><td>Environmental MAGs carry accessory KOs absent from cultured pangenome</td><td><span class="tag pass">Supported</span> per-MAG test</td></tr>
+  </table>
+</section>
+
+<!-- 3. H1 — REVERSED DIRECTION -->
+<section>
+  <h2>H1: Lineage novelty rises with soil pH — reversed direction</h2>
+  <div class="two-col">
+    <div>
+      <p>Per-MAG-record analysis on <strong>3,161 soil MQ+HQ MAG–biosample pairs</strong> with pH.</p>
+      <table>
+        <tr><th>Soil pH bin</th><th>n records</th><th>Novel fraction</th></tr>
+        <tr><td>&lt; 4.5 (acid)</td><td>396</td><td><span style="color:var(--pos)">7.6%</span></td></tr>
+        <tr><td>4.5–5.5</td><td>678</td><td>16.2%</td></tr>
+        <tr><td>5.5–6.5</td><td>980</td><td>25.0%</td></tr>
+        <tr><td>&gt; 6.5 (neutral/alkaline)</td><td>1,107</td><td><span style="color:var(--neg);font-weight:700">37.0%</span></td></tr>
+      </table>
+      <p class="small" style="margin-top:0.4em">OLS on raw per-record data: slope = <strong>+0.079 / pH unit</strong>, <em>p = 9.1 × 10⁻⁴⁷</em>. 29.4-pp spread across the gradient.</p>
+      <div class="callout">
+        <div class="label">Direction is reversed from the literature prior</div>
+        <p>Acidic peats were expected to be the novel-lineage reservoir. They aren't. Most parsimonious explanation: <em>GTDB culture-mining bias</em> — Acidobacteriota have been intensively cultured, so acidic-soil GTDB representation is mature; alkaline / neutral soils are under-mined.</p>
+      </div>
+    </div>
+    <div class="figure-frame"><img src="figures/02_novelty_vs_ph.png" alt="Soil novelty vs pH"></div>
+  </div>
+</section>
+
+<!-- 4. H2 / H3 — HABITAT + CHEMISTRY -->
+<section>
+  <h2>H2 / H3: Habitat dominates; soil pH structures function</h2>
+  <div class="two-col">
+    <div>
+      <div class="card highlight" style="margin-bottom:0.6em">
+        <div class="label">Habitat PERMANOVA (Aitchison)</div>
+        <div class="value">F = 137</div>
+        <div class="sub">p = 0.001 · n = 2,506 workflows × 9,584 KOs · PC1 captures 43.8% variance</div>
+      </div>
+      <h3 style="margin-top:0.6em">Soil chemistry → KO composition (H3)</h3>
+      <table>
+        <tr><th>Factor</th><th>n</th><th>F</th><th>p</th><th>R²</th></tr>
+        <tr><td>pH bin (4 levels)</td><td>1,700</td><td>32.5</td><td>0.001</td><td><span style="color:var(--pos)">5.4%</span> ✓</td></tr>
+        <tr><td>Horizon (O / M)</td><td>1,800</td><td>40.5</td><td>0.001</td><td><span style="color:var(--neg)">2.2%</span> ✗</td></tr>
+      </table>
+      <p class="small">Both highly significant; only pH clears the pre-registered 5% effect-size threshold.</p>
+      <h3 style="margin-top:0.6em">Habitat-discriminating KEGG modules at FDR &lt; 0.05</h3>
+      <ul class="compact">
+        <li><span class="tag" style="background:rgba(139,69,19,0.25);color:#d4a373">Soil</span> 3 modules</li>
+        <li><span class="tag" style="background:rgba(44,160,44,0.2);color:#6fdc6f">Benthic</span> 23 modules (strongest: M00178 ribosome FDR 3×10⁻¹⁹)</li>
+        <li><span class="tag" style="background:rgba(31,119,180,0.25);color:#7bb8f0">Water</span> 16 modules</li>
+      </ul>
+    </div>
+    <div class="figure-frame"><img src="figures/03_pcoa_habitat.png" alt="Functional PCoA by habitat"></div>
+  </div>
+</section>
+
+<!-- 5. H4b — Per-MAG -->
+<section>
+  <h2>H4b: Environmental MAGs carry hundreds of "field-only" KOs</h2>
+  <p>For each MQ+HQ NEON MAG in a genus with ≥5 cultured KE pangenome reps, compare per-MAG KO content (via <span class="kbd">mags_list.members_id → gene_id</span> join) to cultured accessory pangenome.</p>
+  <div class="cards">
+    <div class="card highlight">
+      <div class="label">Median field-only KOs / MAG</div>
+      <div class="value">343</div>
+      <div class="sub">range 46–723 across 73 usable MAGs in 19 genera</div>
+    </div>
+    <div class="card highlight">
+      <div class="label">Median Jaccard (MAG vs cultured accessory)</div>
+      <div class="value">0.42</div>
+      <div class="sub">~58% of MAG KO content is non-overlapping with cultured-pangenome accessory</div>
+    </div>
+    <div class="card highlight">
+      <div class="label">KEGG modules enriched (FDR &lt; 0.05)</div>
+      <div class="value">29</div>
+      <div class="sub">photosystems, Calvin cycle, transport systems, housekeeping</div>
+    </div>
+  </div>
+  <div class="two-col" style="margin-top:0.6em">
+    <div class="figure-frame"><img src="figures/04b_field_only_per_mag.png" alt="Per-MAG field-only count by genus"></div>
+    <div class="figure-frame"><img src="figures/04b_module_enrichment.png" alt="Top modules enriched in field-only KOs"></div>
+  </div>
+</section>
+
+<!-- 6. PATHWAY DISSECTION -->
+<section>
+  <h2>Module-level enrichment misleads — per-KO dissection corrects it</h2>
+  <p>The M00322 (limonene degradation) enrichment looked like a striking finding. Per-step dissection of which KOs each MAG actually carries:</p>
+  <table class="pathway-table">
+    <tr><th>Pathway class</th><th style="width:5em">Count</th><th>What it means biologically</th></tr>
+    <tr><td class="cls">GENERIC_ONLY</td><td class="cnt">43</td><td>Carry only <strong>K00128</strong> (NAD aldehyde dehydrogenase, housekeeping). False positive. <strong>Includes all 14 cyanobacterial MAGs</strong>.</td></tr>
+    <tr><td class="cls">LATE_ONLY</td><td class="cnt">15</td><td>Carry <strong>K14731</strong> (ε-lactone hydrolase). Process downstream lactones, can't initiate. <em>Concentrated in soil Acidobacteriota.</em></td></tr>
+    <tr><td class="cls">PARTIAL</td><td class="cnt">2</td><td>Entry + late, no diol step (both Bradyrhizobium). Need community partner.</td></tr>
+    <tr><td class="cls">OTHER / ENTRY_ONLY</td><td class="cnt">2</td><td>Single Rubrivivax / 13-2-20CM-66-19 fragments.</td></tr>
+    <tr><td class="cls">FULL pathway</td><td class="cnt">1</td><td><em>Mycobacterium</em> MAG — but Mycobacterium is the established cultured limonene biocatalyst (van Beilen 2005).</td></tr>
+  </table>
+  <div class="callout" style="margin-top:0.7em">
+    <div class="label">Methodological takeaway</div>
+    <p>Module-level enrichment should be cross-checked with per-KO step assignment before drawing biology. Broad-substrate housekeeping enzymes (e.g., aldehyde dehydrogenase shared by dozens of pathways) can drive spurious module enrichment by themselves.</p>
+  </div>
+</section>
+
+<!-- 7. BIOTECH PIVOT TO LACTONE -->
+<section>
+  <h2>The actionable signal: cold-active ε-lactone hydrolases</h2>
+  <div class="two-col">
+    <div>
+      <p>15 sub-Arctic palsa-peat Acidobacteriota MAGs carry <strong>K14731 (EC 3.1.1.83)</strong> that's absent from cultured pangenome accessory of their genus.</p>
+      <h3>The published gap</h3>
+      <p class="small">Targeted PubMed + bioRxiv + Scholar search (May 2026) returned <em>zero hits</em> coupling "cold-active" or "psychrophilic" with "lactone hydrolase" or EC 3.1.1.83.</p>
+      <ul class="compact tight">
+        <li>Prototype MlhB (R. erythropolis DCL14) is mesophilic (T_opt ≈ 30°C, Van der Vlugt-Bergmans 2001)</li>
+        <li>Metagenomic LEH mining: <em>hot</em> springs only (Ferrandi 2015) or mesophilic soil (Stojanovski 2020)</li>
+        <li>Engineering effort directionally <em>upward</em>: Re-LEH from T_m 50 → 85°C (Wijma 2014, FRESCO)</li>
+      </ul>
+      <h3 style="margin-top:0.5em">Industrial demand</h3>
+      <ul class="compact tight">
+        <li>D-pantolactone resolution → vitamin B5 (Fuji commercial; Jin 2023, 107 g/L/d benchmark)</li>
+        <li>Baeyer-Villiger product workup in monoterpene / flavor chemistry</li>
+        <li>Zearalenone mycotoxin detoxification</li>
+        <li>Engineered LEH for chiral N-/O-heterocycle synthesis (Li 2022 Nat Commun)</li>
+        <li>ε-Caprolactone polymer chemistry — white space at low temp</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Carrier MAGs — all at NEON Toolik (Alaska)</h3>
+      <p class="small" style="color:var(--accent)">68.62°N, −149.63°W · elev 782 m · pH 5.24 · O horizon · sub-Arctic palsa peatland</p>
+      <table>
+        <tr><th>Genus</th><th>K14731 MAGs</th></tr>
+        <tr><td>Sulfotelmatobacter</td><td>4</td></tr>
+        <tr><td>Palsa-465</td><td>3</td></tr>
+        <tr><td>Palsa-1447</td><td>3</td></tr>
+        <tr><td>Acidoferrum</td><td>1</td></tr>
+        <tr><td>13-2-20CM-66-19</td><td>1</td></tr>
+        <tr><td>Terracidiphilus</td><td>1</td></tr>
+        <tr><td>Rhizomicrobium</td><td>1</td></tr>
+        <tr><td>Palsa-295 / Rubrivivax / Puia</td><td>1 each</td></tr>
+      </table>
+      <div class="callout">
+        <div class="label">Sourcing</div>
+        <p>NEON Biorepository (ASU) archives the source biosamples. Enrichment cultivation at 5–10°C, pH 5, on lactone substrates as sole C source.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CAVEATS — SENSITIVITY -->
+<section>
+  <h2>Caveat: NMDC per-gene tables are partial &amp; habitat-biased</h2>
+  <p><strong>57%</strong> of NEON MetagenomeAnnotation workflows have rows in <span class="kbd">annotation_kegg_orthology</span>. The gap is non-random.</p>
+  <table>
+    <tr><th>Habitat / genus class</th><th>Per-gene KO coverage</th><th>NB04b cohort outcome</th></tr>
+    <tr><td>Surface-water cyanobacteria (Planktothrix, Dolichospermum, Rubrivivax)</td><td><span class="tag pass">100%</span></td><td>27 / 27 MAGs analyzed</td></tr>
+    <tr><td>Benthic generalists (Ferruginibacter, Flavobacterium, UBA953)</td><td>~85%</td><td>16 / 19 MAGs analyzed</td></tr>
+    <tr><td>Soil acidobacteria (Sulfotelmatobacter, Palsa-465, Palsa-1447)</td><td>~30%</td><td>12 / 40</td></tr>
+    <tr><td>Soil cultured genera (Mycobacterium, Bradyrhizobium, Acidoferrum)</td><td>~10%</td><td>5 / 65</td></tr>
+    <tr><td><em>Soil unculturable / novel</em> (Acidocella, BOG-234, Pseudolabrys, Pseudonocardia, Reyranella)</td><td><span class="tag fail">0%</span></td><td><strong>0 / 28 — dropped entirely</strong></td></tr>
+  </table>
+  <h3>Sensitivity analysis bounds the gap</h3>
+  <table>
+    <tr><th>Estimator</th><th>Median field-only KOs/MAG</th><th>Frac MAGs ≥ 10 field-only</th></tr>
+    <tr><td>Naive (observed, n = 73)</td><td>371</td><td>100%</td></tr>
+    <tr><td>Inverse-coverage reweighted (effective n = 218)</td><td>319</td><td>100%</td></tr>
+    <tr><td>Best-case imputation (missing = genus median)</td><td>371</td><td>100%</td></tr>
+    <tr><td><em>Worst-case (missing = 0 field-only)</em></td><td>0</td><td><em>29.7%</em></td></tr>
+  </table>
+  <p class="small">H4b survives inverse-coverage reweighting and best-case imputation cleanly. Only an unrealistic worst-case scenario — every missing MAG would have been a cyanobacterial-style housekeeping artifact — drops the cohort-wide ≥10-field-only fraction below the 30% threshold.</p>
+  <p class="small footnote">Captured as a project-level pitfall in <span class="kbd">docs/pitfalls.md</span> for future BERDL projects using per-gene NMDC tables.</p>
+</section>
+
+<!-- 9. SUMMARY / FUTURE -->
+<section>
+  <h2>Summary &amp; what's next</h2>
+  <div class="two-col even">
+    <div>
+      <h3>Findings as one-liners</h3>
+      <div class="verdict"><span class="h">H1</span><span class="v"><span class="tag pass">Supported</span> Lineage novelty rises with soil pH (slope = +0.079, p = 9e-47) — <em>opposite</em> the literature prior. Likely culture-mining bias.</span></div>
+      <div class="verdict"><span class="h">H2</span><span class="v"><span class="tag pass">Supported</span> All 3 habitats show enriched KEGG modules; partly housekeeping (per-KO check needed).</span></div>
+      <div class="verdict"><span class="h">H3</span><span class="v"><span class="tag partial">Partial</span> Soil pH 5.4% R² ✓; horizon 2.2% R² ✗ at strict threshold.</span></div>
+      <div class="verdict"><span class="h">H4</span><span class="v"><span class="tag pass">Supported</span> Per-MAG: median 343 field-only KOs/MAG, 29 modules enriched.</span></div>
+      <div class="verdict"><span class="h">Bio</span><span class="v"><span class="tag novel">Novel</span> Cold-active ε-lactone hydrolase candidates from 15 sub-Arctic palsa-peat MAGs.</span></div>
+    </div>
+    <div>
+      <h3>Future directions</h3>
+      <ul class="compact">
+        <li><strong>JupyterHub-scale pfam coverage audit</strong> — does Pfam fill the soil-genera gap that KEGG misses?</li>
+        <li><strong>K14731 sequence-first mining</strong> — express from 15 Toolik MAGs in E. coli at 15°C; screen on limonene-1,2-epoxide / pantolactone / ε-caprolactone / zearalenone.</li>
+        <li><strong>NEON Biorepository sample-back</strong> — enrichment at 5–10°C, pH 5, on lactone substrates.</li>
+        <li><strong>Direct H1 mechanism test</strong> — independent GTDB-representation-by-pH analysis to distinguish culture-bias from biology.</li>
+        <li><strong>Phylogenetic context for field-only KOs</strong> — convergent acquisition vs vertical inheritance?</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footnote">
+    <strong>Archive</strong>: s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/neon_mag_functional_discovery/ &nbsp;·&nbsp;
+    <strong>REPORT.md</strong> sha256:a4bb7071… &nbsp;·&nbsp;
+    <strong>Reviewed</strong>: REVIEW_2.md (Claude sonnet-4) &nbsp;·&nbsp;
+    Chris Mungall · LBNL · 2026-05-22
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  controls: true,
+  progress: true,
+  slideNumber: 'c/t',
+  transition: 'fade',
+  width: 1280,
+  height: 800,
+  margin: 0.04,
+  minScale: 0.4,
+  maxScale: 1.4
+});
+</script>
+</body>
+</html>
