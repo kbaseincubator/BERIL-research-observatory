@@ -1,0 +1,5 @@
+Model,n,R2
+Count breadth ~ KO + genome,550,0.034143438214769395
+Shannon breadth ~ KO + genome,550,0.014213427083807906
+Count breadth ~ KO + genome + log(n),550,0.0428003939188728
+Count breadth ~ KO + cross_biome_B + genome,550,0.036801246129373855

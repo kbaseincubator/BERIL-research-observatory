@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 2 – Functional Landscape</title>
+<style>
+:root {
+  --sf: #fcfcfb; --tp: #0b0b0b; --ts: #52514e; --tm: #898781;
+  --gl: #e1e0d9; --bl: #c3c2b7;
+  --sig: #2a78d6; --ns: #c3c2b7; --acc: #e34948;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf: #1a1a19; --tp: #ffffff; --ts: #c3c2b7; --tm: #898781;
+    --gl: #2c2c2a; --bl: #383835;
+    --sig: #3987e5; --ns: #52514e; --acc: #e66767;
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--sf); color: var(--tp); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; padding: 24px; }
+h2 { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.sub { font-size: 11px; color: var(--ts); margin-bottom: 16px; }
+svg { display: block; overflow: visible; }
+svg text { font-family: inherit; }
+.legend { display: flex; gap: 18px; margin-bottom: 12px; font-size: 11px; color: var(--ts); align-items: center; }
+.leg-item { display: flex; align-items: center; gap: 5px; }
+.leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.tt {
+  position: fixed; background: var(--sf); border: 1px solid var(--gl);
+  padding: 8px 10px; border-radius: 4px; font-size: 11px; color: var(--tp);
+  pointer-events: none; display: none; max-width: 260px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12); z-index: 100; line-height: 1.6;
+}
+.tt strong { color: var(--tp); font-weight: 600; }
+.tt span { color: var(--ts); }
+.tbl-btn { margin-top: 12px; font-size: 11px; color: var(--sig); cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; }
+table { display: none; margin-top: 10px; font-size: 11px; border-collapse: collapse; width: 100%; }
+th, td { text-align: left; padding: 3px 8px; border-bottom: 1px solid var(--gl); color: var(--ts); white-space: nowrap; }
+th { color: var(--tm); font-weight: 500; }
+td:nth-child(n+2) { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<h2>Figure 2. Streamlining is pervasive across 19 KEGG functional categories; metal genes rank 11th.</h2>
+<div class="sub">PGLS β (per-Mb KO density vs niche breadth), n ≈ 1,073 genera per category. BH-FDR across 19 categories. Point estimates only (SE not available at category level). Metal Tier 1+2 (P1) shown as reference — not in BH-FDR family.</div>
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:var(--sig)"></div>Significant (q &lt; 0.05)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--ns)"></div>Not significant</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--acc)"></div>Metal Tier 1+2 reference (P1)</div>
+</div>
+<svg id="chart"></svg>
+<div class="tt" id="tt"></div>
+<button class="tbl-btn" onclick="toggleTable()">Show data table</button>
+<table id="dtbl">
+  <thead><tr><th>Category</th><th>n KOs</th><th>β</th><th>q (BH-FDR)</th><th>Significant</th></tr></thead>
+  <tbody id="dtbody"></tbody>
+</table>
+
+<script>
+const DATA = [
+  {cat:"Two-component systems",    n:521,  beta: 0.006, q:0.457,    sig:false, type:'kegg'},
+  {cat:"Cell motility",            n:153,  beta: 0.004, q:0.505,    sig:false, type:'kegg'},
+  {cat:"Glycan biosynthesis",      n:73,   beta: 0.001, q:0.767,    sig:false, type:'kegg'},
+  {cat:"AMR (beta-lactam)",        n:112,  beta:-0.004, q:0.505,    sig:false, type:'kegg'},
+  {cat:"ABC transporters (non-metal)",n:475,beta:-0.006,q:0.457,   sig:false, type:'kegg'},
+  {cat:"Terpenoids & polyketides", n:66,   beta:-0.010, q:0.049,    sig:true,  type:'kegg'},
+  {cat:"Energy metabolism",        n:224,  beta:-0.015, q:3.5e-3,   sig:true,  type:'kegg'},
+  {cat:"Xenobiotics biodegradation",n:1449,beta:-0.017, q:1.1e-3,   sig:true,  type:'kegg'},
+  {cat:"Quorum sensing",           n:283,  beta:-0.017, q:1.1e-3,   sig:true,  type:'kegg'},
+  {cat:"Metal Tier 1+2 (P1)",     n:140,  beta:-0.021, q:null,      sig:true,  type:'p1'},
+  {cat:"Lipid metabolism",         n:84,   beta:-0.021, q:5.8e-6,   sig:true,  type:'kegg'},
+  {cat:"Carbohydrate metabolism",  n:387,  beta:-0.026, q:3.1e-9,   sig:true,  type:'kegg'},
+  {cat:"Transcription (RNA pol.)", n:66,   beta:-0.028, q:6.3e-8,   sig:true,  type:'kegg'},
+  {cat:"Secondary metabolism",     n:2326, beta:-0.028, q:3.1e-10,  sig:true,  type:'kegg'},
+  {cat:"Cofactors and vitamins",   n:382,  beta:-0.029, q:1.4e-10,  sig:true,  type:'kegg'},
+  {cat:"Protein folding/degradation",n:49, beta:-0.030, q:1.4e-10,  sig:true,  type:'kegg'},
+  {cat:"Translation (ribosome)",   n:206,  beta:-0.030, q:1.2e-9,   sig:true,  type:'kegg'},
+  {cat:"Amino acid metabolism",    n:242,  beta:-0.031, q:3.7e-12,  sig:true,  type:'kegg'},
+  {cat:"Nucleotide metabolism",    n:123,  beta:-0.032, q:2.3e-10,  sig:true,  type:'kegg'},
+  {cat:"Replication and repair",   n:60,   beta:-0.035, q:1.0e-11,  sig:true,  type:'kegg'},
+];
+
+const W = 680, rowH = 27;
+const M = {top:40, right:100, bottom:52, left:235};
+const H = M.top + DATA.length * rowH + M.bottom;
+const pw = W - M.left - M.right;
+const xMin = -0.042, xMax = 0.014;
+const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+const yS = i => M.top + i * rowH + rowH / 2;
+const ticks = [-0.04, -0.03, -0.02, -0.01, 0, 0.01];
+const fmtQ = q => q === null ? '— (reference)' : q < 1e-10 ? q.toExponential(1) : q < 0.001 ? q.toExponential(1) : q.toFixed(3);
+const fmtB = b => (b >= 0 ? '+' : '') + b.toFixed(3);
+const colOf = d => d.type === 'p1' ? 'var(--acc)' : d.sig ? 'var(--sig)' : 'var(--ns)';
+
+function render() {
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W);
+  svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  // Gridlines
+  ticks.forEach(t => {
+    const x = xS(t);
+    const isDark = t === 0;
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${isDark ? 'var(--bl)' : 'var(--gl)'}" stroke-width="${isDark ? 1.5 : 1}"/>`;
+  });
+
+  // Rows
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const x0 = xS(0);
+    const xb = xS(d.beta);
+    const col = colOf(d);
+    const isP1 = d.type === 'p1';
+    const rowBg = isP1 ? 'rgba(227,73,72,0.06)' : 'none';
+
+    // Row hover area
+    s += `<rect class="row-hit" x="${M.left - 4}" y="${M.top + i * rowH + 1}"
+      width="${pw + 4}" height="${rowH - 2}"
+      fill="${rowBg}" rx="3"
+      data-i="${i}" style="cursor:default"/>`;
+
+    // Lollipop stem
+    s += `<line x1="${x0}" y1="${y}" x2="${xb}" y2="${y}"
+      stroke="${col}" stroke-width="${isP1 ? 2 : 1.5}" stroke-opacity="0.7"/>`;
+
+    // Dot (8px diameter, 4px radius)
+    s += `<circle cx="${xb}" cy="${y}" r="4"
+      fill="${col}" stroke="var(--sf)" stroke-width="2"/>`;
+
+    // Category label
+    const labelAnchor = 'end';
+    s += `<text x="${M.left - 10}" y="${y + 4}" text-anchor="${labelAnchor}"
+      font-size="11" fill="${isP1 ? 'var(--acc)' : d.sig ? 'var(--tp)' : 'var(--tm)'}"
+      font-weight="${isP1 ? '600' : '400'}">${d.cat}</text>`;
+
+    // β annotation right side
+    s += `<text x="${W - M.right + 6}" y="${y + 4}" text-anchor="start"
+      font-size="10" fill="${isP1 ? 'var(--acc)' : 'var(--ts)'}"
+      font-variant-numeric="tabular-nums">${fmtB(d.beta)}</text>`;
+  });
+
+  // X-axis ticks and labels
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t === 0 ? '0' : t.toFixed(2)}</text>`;
+  });
+
+  // Axis label
+  s += `<text x="${xS(0)}" y="${H - 6}" text-anchor="middle"
+    font-size="11" fill="var(--ts)">PGLS β (per-Mb KO density → niche breadth)</text>`;
+
+  // Panel label
+  s += `<text x="${M.left}" y="20" text-anchor="start"
+    font-size="12" font-weight="600" fill="var(--tm)">← specialist    generalist →</text>`;
+
+  // Housekeeping baseline annotation
+  const hkX = xS(-0.032);
+  s += `<line x1="${hkX}" y1="${M.top}" x2="${hkX}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--sig)" stroke-width="1" stroke-dasharray="4 3" opacity="0.35"/>`;
+  s += `<text x="${hkX - 4}" y="${M.top - 6}" text-anchor="middle"
+    font-size="9" fill="var(--sig)" opacity="0.7">housekeeping baseline</text>`;
+
+  svg.innerHTML = s;
+
+  // Tooltip events
+  svg.querySelectorAll('.row-hit').forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      const d = DATA[+this.dataset.i];
+      const col = colOf(d);
+      document.getElementById('tt').innerHTML =
+        `<strong>${d.cat}</strong><br>` +
+        `<span>β = ${fmtB(d.beta)}</span><br>` +
+        `<span>n KOs = ${d.n.toLocaleString()}</span><br>` +
+        `<span>q (BH-FDR) = ${fmtQ(d.q)}</span><br>` +
+        `<span>${d.type === 'p1' ? 'P1 reference (not in FDR family)' : d.sig ? 'Significant at q < 0.05' : 'Not significant'}</span>`;
+      document.getElementById('tt').style.display = 'block';
+    });
+    el.addEventListener('mousemove', positionTT);
+    el.addEventListener('mouseleave', () => { document.getElementById('tt').style.display = 'none'; });
+  });
+}
+
+function positionTT(e) {
+  const tt = document.getElementById('tt');
+  let x = e.clientX + 14, y = e.clientY - tt.offsetHeight / 2;
+  if (x + tt.offsetWidth > window.innerWidth - 12) x = e.clientX - 14 - tt.offsetWidth;
+  tt.style.left = x + 'px';
+  tt.style.top = Math.max(8, y) + 'px';
+}
+
+function toggleTable() {
+  const tbl = document.getElementById('dtbl');
+  const btn = document.querySelector('.tbl-btn');
+  if (tbl.style.display === 'table') {
+    tbl.style.display = 'none'; btn.textContent = 'Show data table';
+  } else {
+    tbl.style.display = 'table'; btn.textContent = 'Hide data table';
+    const tbody = document.getElementById('dtbody');
+    tbody.innerHTML = DATA.map(d =>
+      `<tr><td>${d.cat}</td><td>${d.n.toLocaleString()}</td>
+       <td>${fmtB(d.beta)}</td><td>${fmtQ(d.q)}</td>
+       <td>${d.type === 'p1' ? 'Reference' : d.sig ? 'Yes' : 'No'}</td></tr>`
+    ).join('');
+  }
+}
+
+render();
+</script>
+</body>
+</html>

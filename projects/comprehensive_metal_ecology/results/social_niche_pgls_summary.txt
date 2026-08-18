@@ -1,0 +1,165 @@
+================================================================================
+SOCIAL NICHE BREADTH PGLS ANALYSIS - FULL RESULTS
+================================================================================
+
+ANALYSIS OVERVIEW
+─────────────────
+Data source: 700 bacterial genera from Earth Microbiome Project (EMP)
+Response variables: Social niche breadth metrics (count, Shannon)
+Predictor: Cross-biome ecological breadth (Levins' B_std)
+Phylogenetic tree: GTDB r214 bacterial genus-level (2,283 tips)
+Tree-data overlap: 535 of 550 genera (97.3%)
+Method: Phylogenetic GLS with Pagel's λ correlation structure
+Software: R packages ape v5+ and nlme
+Setting: OMP_NUM_THREADS=1 on 128-CPU system
+
+================================================================================
+MODEL 1: COUNT BREADTH ~ LEVINS B (CROSS-BIOME)
+================================================================================
+
+Sample size: n = 535 genera
+Pagel's λ = 0.0121 ± 0.002
+Log-likelihood = 893.2207
+AIC = -1778.441
+
+COEFFICIENT TABLE
+─────────────────────────────────────────────────────────────
+Parameter      Value        Std.Error     t-value    p-value
+─────────────────────────────────────────────────────────────
+Intercept      0.9696       0.002849      340.31     <0.0001 ***
+Levins B       0.00273      0.002013      1.3587     0.1748
+─────────────────────────────────────────────────────────────
+
+INTERPRETATION
+──────────────
+Phylogenetic signal (λ):
+  - Pagel's λ ≈ 0.012 indicates NO phylogenetic signal in the residuals
+  - This validates OLS results from the original analysis
+  - Closely related genera do not tend to have similar social niche positions
+
+Main effect:
+  - NO significant association between social and ecological breadth (p = 0.175)
+  - A genus's habitat generalism (Levins B) does not predict its co-occurrence
+    network diversity (count breadth)
+  - Effect size is negligible (β = 0.0027, nearly zero)
+
+================================================================================
+MODEL 2: SHANNON BREADTH ~ LEVINS B
+================================================================================
+
+STATUS: SKIPPED
+
+REASON
+──────
+Shannon breadth has extreme homogeneity across 535 genera:
+  - Mean: 0.9835
+  - SD: 0.0048
+  - Range: 0.9616 to 0.9882
+
+This near-zero variance (CV = 0.49%) creates singular matrix issues in the GLS
+correlation estimation. The metric is not informative for PGLS modeling.
+
+BIOLOGICAL INSIGHT
+───────────────────
+Most genera have nearly identical Shannon diversity in co-occurrence distributions.
+This suggests that while count breadth (number of co-occurring partners) varies,
+the evenness of those interactions is highly conserved. Count breadth is the
+more variable and analytically informative metric.
+
+================================================================================
+MODEL 3: COUNT BREADTH SES ~ LEVINS B
+================================================================================
+
+Sample size: n = 62 genera (with SES permutation data)
+Pagel's λ: Fixed to 0 (OLS-equivalent, due to small sample)
+Log-likelihood: Not computed (fixed λ)
+AIC: Not computed
+
+COEFFICIENT TABLE
+─────────────────────────────────────────────────────────────
+Parameter      Value        Std.Error     t-value    p-value
+─────────────────────────────────────────────────────────────
+Intercept      0.0425       0.1203        0.3531     0.7253
+Levins B      -0.3802       0.1268       -3.0004     0.0039 **
+─────────────────────────────────────────────────────────────
+
+INTERPRETATION
+──────────────
+SES = Standardized Effect Size (observed count - null expectation) / null SD
+
+Surprising reversal from Model 1:
+  - Count breadth SES shows NEGATIVE association with Levins B (p = 0.004)
+  - Genera with WIDER ecological ranges have LOWER-than-expected social breadth
+  - Genera with NARROWER ecological ranges have HIGHER-than-expected diversity
+
+Hypotheses:
+  1. Niche differentiation: Ecological specialists may maintain distinctive
+     social partnerships (high SES), while generalists encounter the "average"
+     co-occurrence pattern (low SES)
+  2. Sampling artefact: SES data available for only 62 genera; permutation-based
+     effect sizes may be unstable
+
+================================================================================
+COMPARISON: OLS vs PGLS (Model 1)
+================================================================================
+
+                    OLS              PGLS
+                    ───              ────
+β (Levins B)        0.00264          0.00273
+SE                  0.00201          0.00201
+t-value             1.314            1.3587
+p-value             0.1942           0.1748
+Pagel's λ           —                0.0121
+Conclusion          No signal        No phylogenetic signal; OLS valid
+
+IMPLICATION
+───────────
+The near-identity of OLS and PGLS estimates confirms that λ ≈ 0. This means:
+  - Phylogenetic distance does not confound the ecological-social breadth relationship
+  - The original OLS analysis is valid
+  - Any failure to find an association is not due to phylogenetic non-independence
+
+================================================================================
+KEY FINDINGS
+================================================================================
+
+1. Phylogenetic independence: λ ≈ 0 confirms no phylogenetic signal
+   → OLS analysis is appropriate; no confounding by shared evolutionary history
+
+2. Social and ecological breadth are weakly linked (p = 0.175)
+   → Broad ecological distributions (Levins B) do NOT predict broad social networks
+   → These are distinct axes of community position
+
+3. SES results reverse the pattern (p = 0.004 for n=62)
+   → Ecological specialists have unexpectedly high social breadth SES
+   → Suggests specialists maintain distinctive network roles
+
+4. Shannon breadth is uninformative
+   → Extreme homogeneity (SD = 0.0048) across genera
+   → Count breadth is more analytically robust
+
+================================================================================
+DATA AND CODE AVAILABILITY
+================================================================================
+
+Input data:
+  /home/hmacgregor/BERIL-research-observatory/projects/comprehensive_metal_ecology/
+    results/social_niche_breadth_pgls_input.csv (550 genera × 7 columns)
+
+R script:
+  /home/hmacgregor/BERIL-research-observatory/projects/comprehensive_metal_ecology/
+    results/social_niche_pgls.R
+
+Full output:
+  /home/hmacgregor/BERIL-research-observatory/projects/comprehensive_metal_ecology/
+    results/social_niche_pgls_output.txt
+
+Results table (CSV):
+  /home/hmacgregor/BERIL-research-observatory/projects/comprehensive_metal_ecology/
+    results/social_niche_pgls_results_table.csv
+
+Phylogenetic tree (GTDB):
+  /home/hmacgregor/BERIL-research-observatory/projects/microbeatlas_metal_ecology/
+    data/gtdb_bac_genus_pruned.tree (2,283 bacterial genera)
+
+================================================================================

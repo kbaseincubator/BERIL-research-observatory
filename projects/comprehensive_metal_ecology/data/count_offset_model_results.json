@@ -1,0 +1,12 @@
+{
+  "method": "Negative Binomial GLM (statsmodels), phylum fixed effects, log(genome_mb) offset, n=1574",
+  "n": 1574,
+  "beta_niche": -0.706502540696287,
+  "SE_niche": 0.06941575830438736,
+  "p_niche": 2.4902541597382203e-24,
+  "ci_lo": -0.8425549269324234,
+  "ci_hi": -0.5704501544601507,
+  "irr": 0.49336671349250216,
+  "overdispersion_alpha": 0.11550827548009622,
+  "aic": 12022.214113827402
+}

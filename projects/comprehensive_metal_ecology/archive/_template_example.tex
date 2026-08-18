@@ -1,0 +1,139 @@
+\documentclass[times, twoside]{zHenriquesLab-StyleBioRxiv}
+\usepackage{blindtext}
+
+% Please give the surname of the lead author for the running footer
+\leadauthor{Sanderson} 
+\usepackage[per-mode=symbol]{siunitx}
+\DeclareSIUnit\molar{\mole\per\cubic\deci\metre}
+\DeclareSIUnit\Molar{\textsc{m}}
+\usepackage{dblfloatfix}
+\usepackage{stfloats}
+\usepackage{float}
+\urlstyle{rm}
+
+\usepackage{xcolor}
+\definecolor{navy}{HTML}{2F729C}
+\colorlet{linkcolor}{navy}
+
+
+\begin{document}
+
+
+
+
+\noindent%
+
+\title{Mixology: a tool for calculating required masses and volumes for laboratory solutions}
+\shorttitle{Mixology}
+
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[1,\Letter]{Theo Sanderson}
+
+\affil[1]{Francis Crick Institute, London}
+
+\maketitle
+
+
+
+%TC:break Abstract
+%the command above serves to have a word count for the abstract
+\begin{abstract}
+We have created a tool to calculate the amount of each ingredient required to make up a custom solution with defined concentrations. It can convert between many kinds of volumetric, mass and concentration units. This includes the ability to convert between molarities and mass-based concentrations, using molecular masses retrieved from the ChEBI database. Mixology can be accessed at \url{http://mixology.science}.
+\end {abstract}
+%TC:break main
+%the command above serves to have a word count for the abstract
+
+
+
+\begin{corrauthor}
+%\texttt{r.henriques{@}ucl.ac.uk}
+theo.sanderson \at crick.ac.uk
+\end{corrauthor}
+
+\begin{figure*}[b!]
+\centering
+\fbox{\includegraphics[width=6in]{Figures/mixology-vector-screenshot.pdf}}
+\caption{A screenshot of the Mixology interface, featuring the single compound solution described in the Introduction. The permalink for this recipe is \url{https://mixology.science/?recipe=ngEh5UbDZX}.}
+\end{figure*}
+
+
+
+\section*{Introduction}
+Performing calculations to make up solutions is one of the first skills that a laboratory researcher learns. Despite efforts to facilitate sharing of laboratory protocols \cite{TeytelmanStoliartchouk2015}, solutions are often described in publications only in terms of the molarities of their constituent parts, meaning that calculations are needed to determine the absolute amounts needed to make up some defined volume.  These calculations can be surprisingly lengthy.
+
+Suppose a researcher is implementing a new protocol, and needs to make a buffer containing, amongst other ingredients, ``\SI[per-mode=symbol]{500}{\ug\per\ml} sodium chloride''. She wants to make up 2 liters of the new buffer. On her bench she happens to already have a stock solution labelled ``\SI{1.5}{\Molar} NaCl''. What volume of stock solution does she need to add for the new buffer? One approach that she might follow to calculate this would be to:
+\begin{enumerate}
+    \item Look up the molar mass of sodium chloride: $$\SI[per-mode=symbol]{58.44}{\g\per\mol}$$
+    \item Convert the desired concentration, \SI[per-mode=symbol]{500}{\ug\per\ml}, to \si[per-mode=symbol]{\ug\per\liter}: $$\SI[per-mode=symbol]{500}{\ug\per\ml} \times \SI{1000}{\ml\per\liter} = \SI{500000}{\ug\per\liter} $$
+   \item  Convert the desired concentration to \si{\g\per\liter}:  $$ \SI{500000}{\ug\per\liter} \div \SI{1000000}{\ug\per\gram} = \SI{0.5}{\g\per\liter} $$ 
+ \item Convert the desired concentration to \si{\mol\per\liter} (molarity): 
+ $$ \SI{0.5}{\g\per\liter} \div \SI{58.44}{\g\per\mol} = \SI{0.0085}{\Molar} $$ 
+ \item Calculate the ratio of the two concentrations:
+  $$ \SI{0.0085}{\Molar} \div \SI{1.5}{\Molar} = \num{0.0056} $$ 
+ \item Calculate the volume to add:
+ $$ \SI{2}{\liter} \times \num{0.0056} = \SI{0.0112}{\liter} $$ 
+ \item Convert this volume to  \si{\ml} for pipetting:
+  $$ \SI{0.0112}{\liter} \times \SI{1000}{\ml\per\liter} = \SI{11.2}{\ml} $$ 
+\end{enumerate}
+
+If her buffer contains five different such ingredients, she might need to perform a similar set of steps five times, requiring perhaps 35 individual steps. If an error occurs in just one of these, the final buffer will not be to the expected specification.
+\begin{figure*}[t!]
+\centering
+\fbox{\includegraphics[width=6in]{Figures/mixology-complex.pdf}}
+\caption{A screenshot of the Mixology interface, with an example buffer demonstrating many of the different classes of interconversion of which Mixology is capable. The permalink for this recipe is \url{https://mixology.science/?recipe=mN1j1sNSD5}.}
+\end{figure*}
+
+We decided to build a simple tool to perform calculations such as these (Fig. 1). Mixology automates the retrieval of molecular masses, and the mathematical operations needed to calculate the required masses of reagent, or volumes of stock solutions, needed for  desired final concentrations. It is available at \url{http://mixology.science}.
+
+\section*{Usage}
+
+Mixology provides a simple interface to record the specifications of a solution and calculate the required amount of each ingredient (Fig. 1). A user first enters the  volume of the solution they want to make, and a descriptive name. Then they add any number of components to the solution. For each component, they enter a desired final concentration. Concentrations can be entered in any of several unit forms:
+\begin{itemize}
+    \item mass-based:  \si{\g\per\ml}, \si{\ug\per\ml}, \si{\mg\per\l}, \% (w/v), etc.
+    \item molarity-based: \si{\mol\per\l}, nM, \si{\micro\Molar}, mM,  M, etc.
+    \item volume-based: \% (v/v), X
+    \item other: units/ml, etc.
+\end{itemize}
+
+The user also enters the name of the chemical. Chemical names are autocompleted with known entities from ChEBI \cite{chebi}. Where a known chemical is entered, its molecular mass is inferred from the ChEBI database. Alternatively a custom compound name can be entered, and a molecular mass (if needed) entered manually.
+
+If the desired concentration is mass- or molarity-based, the user can select whether to weigh out the compound (mass units) or to measure out a volume of stock solution (with a mass- or molarity-based stock concentration). If the desired concentration is volumetric, a volume of stock solution (which can be 100\% (v/v)) is required.
+
+In either case, the user enters the units of mass or volume to weigh out, and Mixology automatically calculates the quantity of this unit required to make up the final volume at the desired concentration.
+
+The user can add as many components as required, and also add notes, which might contain instructions such as ``adjust pH to 7.2''. Finally they can create a `permalink' pointing to their solution, creating a unique URL for the solution that can be saved and shared.
+
+
+\section*{Implementation}
+
+The code behind Mixology is available in our GitHub repository (\url{https://github.com/theosanderson/mixology}).
+
+Mixology is developed with the Vue.js framework. This allows reactive behaviour in which all fields are updated in real time as others are changed. We use the vue-simple-suggest component \cite{vss} to list available units and chemical entities from ChEBI.
+
+All concentration terms are converted into a standard format consisting of some quantity (moles, grams, liters, activity units) per liter, facilitating downstream steps. Mol/l and g/l can be interconverted using the molecular mass, but these cannot be interconverted to the other unit types (volumetric and activity units).
+
+Molecular masses, and compound names for autocompletion, are taken from ChEBI\cite{chebi}. ChEBI entities are processed into JSON with a custom R notebook, available in our GitHub repository, using R and the tidyverse \cite{R,tidyverse}. We take as input ChEBI's three-star chemicals, which are those that have been curated. We exclude any name that is mapped to multiple distinct chemicals to avoid potential confusion. Sometimes multiple mass measurements are available for a chemical in ChEBI. Normally these are extremely similar, so we exclude only chemicals for which the standard deviation of masses is greater than 0.001.
+
+Recipes can be saved using a ``permalink'' feature. This deposits a copy of the recipe in JSON format into an external Firebase database, with a unique identifier which can be used to retrieve it at the correct URL. 
+
+
+\section*{Discussion}
+
+We have created a simple tool which we hope will be useful to laboratory scientists. In the day following Mixology's release on Twitter, a user testing it identified an inconsistency with the calculations in a published protocol \cite{pub_protocol}. This turned out not to be a problem with the tool, but the use of an incorrect molar mass (hydrated vs. anhydrate) for calculations in the official protocol. This provides one example of how easily small mistakes can occur performing these operations manually.
+
+Mixology has some limitations. It cannot currently perform any calculations which would require knowing the density of a substance (interconversion between mass and purely volumetric units). Additionally, it does not provide the facility to calculate quantities required to obtain a particular pH or osmolarity. We welcome feature suggestions and pull requests in our GitHub repository.
+
+We do not argue that the availability of a tool such as this replaces the need for scientists to know how to perform these types of calculations. However, we hope that by providing a streamlined tool that eases this process, Mixology can make one aspect of routine laboratory life simpler, and reduce errors.
+
+
+
+
+
+\section*{Bibliography}
+\bibliography{zHenriquesLab-Mendeley}
+
+
+\section*{Acknowledgements}
+This manuscript uses a LaTeX template developed by Ricardo Henriques.
+
+\end{document}

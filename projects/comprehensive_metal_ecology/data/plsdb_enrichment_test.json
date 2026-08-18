@@ -1,0 +1,108 @@
+{
+  "method": "ncbi_plasmid_fraction",
+  "description": "Mann-Whitney U test comparing NCBI plasmid fraction (n_plasmid/n_total) between double-signal and background resistance KOs. Filtered to genes with >= 50 total NCBI nuccore hits. Genes absent from NCBI (gesA n=1, gesB n=1, nrsD n=16) are excluded. plasmid[Filter] search in nuccore is sequence-based, not AMR-database-based.",
+  "n_double_signal_included": 3,
+  "n_background_included": 51,
+  "double_signal_kos_included": [
+    "norB",
+    "aoxB",
+    "merD"
+  ],
+  "median_frac_double_signal": 0.0041782729805013,
+  "median_frac_background": 0.0003860029395608,
+  "min_ncbi_n_threshold": 50,
+  "U_statistic": 122.0,
+  "p_value": 0.044623019771494174,
+  "plsdb_api_counts": {
+    "nrsD": 0,
+    "merD": 692,
+    "merE": 1630,
+    "iucD": 790,
+    "nicC": 0,
+    "nikB": 0,
+    "aoxB": 0,
+    "norB": 2,
+    "shp": 0,
+    "golS": 2,
+    "doxDA": 0,
+    "gesB": 0,
+    "gesA": 0
+  },
+  "plsdb_api_note": "PLSDB filter_nuccore uses CARD/AMRFinder annotations. gesA/gesB/nrsD/aoxB return 0 due to AMR database gaps, not true chromosomal location.",
+  "caveats": [
+    "PLSDB AMR filter confounded: CARD/AMRFinder does not cover gesA, gesB, nrsD, aoxB \u2014 zeros reflect database gaps, not true plasmid absence.",
+    "MGnify/geNomad plasmid set (1,053 contigs) is environmentally biased: mercury/gold/arsenite resistance plasmids are predominantly clinical/industrial.",
+    "NCBI test underpowered: only 3 double-signal resistance KOs have n_total >= 50 (merD, norB, aoxB). gesA/gesB absent from NCBI. Result driven by merD.",
+    "golS (K19592) has high D=0.26 and low lambda=0.13 but plasmid_frac=1.7e-5 \u2014 a gold-sensing regulator, not a resistance effector; HGT may have occurred chromosomally rather than via plasmids.",
+    "Fisher threshold test (threshold=median background): [[3,0],[25,26]], OR=inf, p=0.132 \u2014 not significant."
+  ],
+  "bvbrc_validation": {
+    "description": "Independent validation using BV-BRC (PATRIC) reference genomes. For each gene, genome_feature accessions are matched against genome_sequences with \"plasmid\" in the NCBI description (84,446 plasmid sequences). PATRIC annotations only (not RefSeq). Filtered to genes with >= 50 BV-BRC features.",
+    "n_double_signal_included": 2,
+    "n_background_included": 48,
+    "double_signal_kos_included": [
+      "norB",
+      "merD"
+    ],
+    "median_frac_double_signal": 0.03729679713297405,
+    "median_frac_background": 0.0005060786952371,
+    "min_bvbrc_n_threshold": 50,
+    "U_statistic": 83.0,
+    "p_value": 0.04377970665369755,
+    "key_results": {
+      "merD_bvbrc_frac": 0.0718554849776205,
+      "merD_ncbi_frac": 0.0427,
+      "norB_bvbrc_frac": 0.0027381092883276,
+      "norB_ncbi_frac": 0.0007,
+      "golS_bvbrc_frac": 0.000347995545657,
+      "golS_ncbi_frac": 1.73e-05
+    },
+    "convergence_note": "NCBI Entrez (p=0.045, n_double=3) and BV-BRC (p=0.044, n_double=2, deduplicated) give consistent marginal significance from independent databases. Result driven primarily by merD; golS near-zero in both.",
+    "deduplication_note": "arsC has two KO IDs (K00537, K03741) with identical BV-BRC counts. Deduplicated to 48 background KOs (keeping row with larger n). p changes from 0.047 to 0.044 \u2014 result is robust to this choice.",
+    "high_plasmid_frac_background_kos": {
+      "pcoB": {
+        "bvbrc_frac": 0.0681,
+        "D": 0.068,
+        "lambda": 0.687,
+        "not_double_signal_reason": "D < 0.2"
+      },
+      "merA": {
+        "bvbrc_frac": 0.0453,
+        "D": 0.646,
+        "lambda": 0.527,
+        "not_double_signal_reason": "lambda >= 0.3"
+      },
+      "tetA": {
+        "bvbrc_frac": 0.0411,
+        "D": 0.086,
+        "lambda": 0.717,
+        "not_double_signal_reason": "D < 0.2"
+      },
+      "arsA": {
+        "bvbrc_frac": 0.0267,
+        "D": 0.126,
+        "lambda": 0.732,
+        "not_double_signal_reason": "D < 0.2"
+      },
+      "arsH": {
+        "bvbrc_frac": 0.0267,
+        "D": 0.138,
+        "lambda": 0.458,
+        "not_double_signal_reason": "D < 0.2"
+      },
+      "chrA": {
+        "bvbrc_frac": 0.0122,
+        "D": 0.171,
+        "lambda": 0.577,
+        "not_double_signal_reason": "D < 0.2"
+      },
+      "czcA": {
+        "bvbrc_frac": 0.0103,
+        "D": 0.063,
+        "lambda": 0.655,
+        "not_double_signal_reason": "D < 0.2"
+      }
+    },
+    "background_composition_note": "Background includes genuinely plasmid-associated genes (pcoB 6.8%, merA 4.5%, tetA 4.1%) that fail double-signal criteria: pcoB/tetA have D < 0.2 (phylogenetically structured distribution despite plasmid carriage); merA has lambda=0.527 > 0.3 (phylogenetic signal present at genus level). Their presence in background makes the test conservative \u2014 p=0.044 is achieved despite merD (7.19%) being only marginally higher than pcoB (6.8%)."
+  }
+}

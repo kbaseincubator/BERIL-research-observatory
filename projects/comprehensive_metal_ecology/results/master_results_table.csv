@@ -1,0 +1,54 @@
+analysis_id,description,key_statistic,interpretation,source_file,manuscript_location
+P1_primary,Primary PGLS: metal-gene density vs cross-biome niche breadth (Levins' B),"β=−0.021, SE=0.002, p=2.1×10⁻⁸, λ=0.750, n=1574",Metal-gene density significantly predicts narrower niche breadth; genome size attenuates 46.7%,data/01_primary_pgls_results.csv,Main
+P1_archaea,Archaea replication: metal-gene density vs Levins' B,"β=−0.018, p=0.031, n=247",Consistent direction in Archaea,data/01_primary_pgls_results.csv,SI
+P1_soil,Soil-restricted PGLS (ENIGMA taxa with geochemical data),"β=−0.026, p=0.008, n=312",Stronger signal in soil-specialist taxa,data/02_ngsa_pgls_input.csv,SI
+P2_tier1,Tier 1 (constitutive metal-dep enzymes) vs Levins' B,"β=−0.034, p<10⁻⁵, n=1574",Constitutive metal-dep genes drive signal,data/03_tier_pgls_results.csv,Main
+P2_tier2,Tier 2 (cofactor biosynthesis) vs Levins' B,"β=−0.034, p<10⁻⁵, n=1574",Cofactor biosynthesis equally strong as Tier 1,data/03_tier_pgls_results.csv,Main
+P3_resistance,Resistance/detox category vs Levins' B,"β=+0.007, p=0.655, n=1574",Resistance genes not associated with niche breadth,data/03_category_pgls_results.csv,Main
+P3_cofactor,Metal cofactor category (curated 9 KOs) vs Levins' B,"β=−0.006, p=0.142 (full-set; p<10⁻⁵ conditioned)",Cofactor negative; full-set null due to coverage,data/03_category_pgls_results.csv,Main
+P3_split,Split-magnitude permutation: Δβ (resistance−cofactor),"Δβ=0.035, permutation p<0.001",Resistance-cofactor polarity is non-random,data/split_magnitude_permutation.csv,Main
+L1_landscape,KEGG functional landscape: 19 categories vs Levins' B,14/19 categories significant (p<0.05); translation β=−0.029 most negative,Metal-gene signal sits within pervasive genome-streamlining landscape,data/functional_landscape_results.csv,Main
+M1_resistance_levinsB,Resistance genes vs Levins' B (multi-axis analysis),"β=+0.007, p=0.655, λ=0.71, n=1574",Resistance null on cross-biome breadth,data/multiaxis_pgls_results.csv,Main
+M2_resistance_envPC1,Resistance genes vs env PC1 geochemical breadth,"β=+0.073, p=0.013, λ=0.42, n=1562",Resistance expands geochemical tolerance,data/multiaxis_pgls_results.csv,Main
+M3_resistance_soilB,Resistance genes vs soil niche breadth,"β=+0.004, p=0.290, λ=0.49, n=1543",Resistance null on soil scale,data/multiaxis_pgls_results.csv,SI
+M4_resistance_degree,Resistance genes vs co-occurrence degree,"β=+4.10, p<10⁻⁶, λ=0.50, n=1547",Resistance highly positive on co-occurrence,data/cooccurrence_functional_pgls_results.csv,Main
+M5_cofactor_levinsB,Expanded KEGG cofactor (47 KOs) vs Levins' B,"β=−0.011, p=0.010, λ=0.71, n=1574",Cofactor significantly negative; cobalamin is driver,data/expanded_kegg_metal_cofactor_densities.csv,Main
+M6_cofactor_envPC1,Expanded KEGG cofactor vs env PC1,"β=+0.014, p=0.660, n=1562",Cofactor null on geochemical axis,data/expanded_kegg_metal_cofactor_densities.csv,SI
+M7_cofactor_soilB,Expanded KEGG cofactor vs soil niche breadth,"β=−0.003, p=0.040, n=1543",Cofactor negative on soil breadth,data/expanded_kegg_metal_cofactor_densities.csv,Main
+M8_cofactor_degree,Expanded KEGG cofactor vs co-occurrence degree,"β=+7.87, p=5.6×10⁻⁹, n=1547",Cofactor-rich genera are co-occurrence hubs,data/cooccurrence_functional_pgls_results.csv,Main
+M9_nonmetal_levinsB,Non-metal cofactor/vitamin vs Levins' B,"β=−0.029, p=2.4×10⁻¹¹, n=1574",Non-metal cofactor strongly negative — strongest signal,data/multiaxis_pgls_results.csv,Main
+E1_cobalamin,Cobalamin biosynthesis (18 KOs) vs Levins' B,"β=−0.011, p=0.005, n=1574",Cobalamin is the driver of expanded cofactor Levins' B signal,data/expanded_kegg_metal_cofactor_densities.csv,Main
+E2_fes_envPC1,Fe-S assembly (13 KOs) vs env PC1,"β=+0.065, p=0.017, n=1562",Fe-S assembly uniquely positive on geochemical breadth,data/expanded_kegg_metal_cofactor_densities.csv,Main
+E3_molybdo_soilB,Molybdopterin (6 KOs) vs soil niche breadth,"β=−0.0038, p=0.008, n=1543",Molybdopterin is driver of soil breadth signal,data/expanded_kegg_metal_cofactor_densities.csv,SI
+E4_fes_degree,Fe-S assembly vs co-occurrence degree,"β=+6.21, p=1.1×10⁻⁷, n=1547",Fe-S assembly behaves like resistance on co-occurrence axis,data/cooccurrence_functional_pgls_results.csv,SI
+E5_joint_degree,"Joint model: expanded cofactor vs non-metal cofactor, degree","expanded β=+10.60 (p<10⁻⁹), non-metal β=−6.93 (p=0.001)",Non-metal cofactor becomes negative when metal cofactor controlled,data/expanded_kegg_metal_cofactor_densities.csv,Main
+NE1_resistance_ne,Non-exclusive resistance category vs Levins' B,"β=+0.006, p=0.683, n=1574",Result unchanged with non-exclusive classification,data/non_exclusive_category_densities.csv,SI
+NE2_cofactor_ne,Non-exclusive cofactor category vs Levins' B,"β=−0.008, p=0.070†, n=1574",Marginal negative; consistent direction,data/non_exclusive_category_densities.csv,SI
+D1_genome_D,Fritz-Purvis D at genome level (276 KOs),Median D=0.48; 87% KOs D<1 (non-random clustering),Metal genes are phylogenetically clustered at the genome level,data/fritz_purvis_D_genome.csv,Main
+D2_lambda_scatter,Genome D vs genus λ two-scale scatter,Double-signal KOs (low D + high λ): cofactor-enriched. Single-scale KOs (low D + low λ): resistance-enriched,Two-scale framework separates cofactor (vertically-inherited) from resistance (HGT),data/two_scale_phylo_D_vs_lambda.pdf,Main
+HGT1_transposase,Transposase proximity of resistance vs cofactor KOs,Resistance: 23% within 5 kb of transposase; Cofactor: 4%,Direct evidence for mobile resistance genes,results/hgt_synthesis_table.csv,SI
+HGT2_tree_discord,Gene tree discordance: resistance vs cofactor,Resistance KOs: mean discordance 0.41; Cofactor: 0.18,Resistance genes show significantly higher HGT signal,results/hgt_synthesis_table.csv,SI
+C1_pH,pH as additional covariate in PGLS,β (metal-gene) unchanged after pH control,pH does not confound the primary signal,data/04_confounder_results.csv,SI
+C2_nitrogen,Nitrogen limitation control,β unchanged after N-limitation proxy control,Nutrient limitation does not confound signal,data/04_confounder_results.csv,SI
+C3_latitude,Latitude as covariate,β unchanged after latitude control,Latitudinal gradient does not confound signal,data/04_confounder_results.csv,SI
+C4_translation,H4c: translation density as covariate (residualised),"ρ(expanded, translation)=0.038; residualised β=−0.013, p=0.004",Cofactor-translation confounding is absent; signal strengthens after residualisation,H4c_residualised_sensitivity.md,Main
+S1_jackknife,Leave-one-KO-out jackknife (curated cofactor set),All 7 jackknife estimates p<0.001; median β=−0.032,Signal is not driven by any single KO,data/cofactor_jackknife_results.csv,SI
+S2_mag_quality,MAG quality sensitivity (completeness/contamination filters),β unchanged across quality thresholds,MAG quality does not drive the signal,data/mag_quality_sensitivity.csv,SI
+S3_niche_metric,"Alternative niche breadth metrics (EMP, soil-sample)",EMP: β=−0.019 p=0.004; soil-sample: consistent direction,Signal replicates across niche breadth operationalisations,data/emp_niche_pgls_input.csv,SI
+S4_clade_strat,"Clade-stratified PGLS (Proteobacteria, Actinobacteria)",Proteobacteria β=−0.018 p=0.001; Actino β=−0.023 p=0.004,Signal consistent within major clades,data/clade_stratified_pgls_results.csv,SI
+S5_gam,Phylogenetic GAM (nonlinear test),"Cofactor smooth: edf=1.0, p=0.003 (linear)",Signal is genuinely linear; no threshold effects,data/phylo_gam_aic_comparison.csv,SI
+S6_interaction,Genome size × category interaction test,Interaction p=0.42 (not significant),No differential attenuation by genome size across categories,data/interaction_test_results.csv,SI
+S7_inverse,Inverse PGLS: niche breadth predicts gene density,"β=−0.019, p=0.003",Signal consistent under reversed directionality assumption,figures/nb27_inverse_pgls_forest.png,SI
+V1_aus_soil,AusMicrobiome soil Cu/Zn vs genus abundance-weighted KO density,"Cu: FDR q=0.041, Zn: FDR q=0.041",Independent replication in Australian soil metagenomes,data/pgls_ausmicrobiome_density_replication.csv,Main
+V2_enigma_isolate,ENIGMA isolate fitness data: metal-KO density vs tolerance,"r=0.31, p=0.003, n=87 isolates",Consistent with isolate-level fitness data,data/enigma_frc_burden_correlations.csv,SI
+V3_frossard_hg,Frossard 2017: Hg-contaminated soil Levins' B vs reference,Hg-tolerant genera: mean B_std=0.31; reference: mean B_std=0.48; t-test p=0.012,"Hg-tolerant genera are ecologically narrower, as predicted",report/NICHE_BREADTH_HG_VALIDATION_REPORT.md,SI
+V4_ngsa_geog,NGSA geographic replication (Australia national soil survey),"Cu β=−0.016 p=0.042, Zn β=−0.018 p=0.031",Consistent in independent NGSA dataset,data/02_ngsa_pgls_results.csv,Main
+V5_mgnify,MGnify MAG replication (global metagenomes),"Direction consistent; β=−0.012, p=0.08†",Marginal replication in global metagenome database,data/mgnify_pgls_input.csv,SI
+SN1_bacdive,BacDive-proxy social niche breadth vs metal-gene density,λ≈0 for all categories (PGLS invalid),BacDive proxy has no phylogenetic signal; results uninterpretable,data/bacdive_niche_pgls_input.csv,SI
+SN2_cooccurrence_resistance,Co-occurrence degree vs resistance genes,"β=+4.10, p<10⁻⁶, λ=0.50, n=1547",Resistance genes associate with co-occurrence hubs,data/cooccurrence_functional_pgls_results.csv,Main
+SN3_cooccurrence_cofactor,Co-occurrence degree vs metal cofactor (expanded),"β=+7.87, p=5.6×10⁻⁹, λ=0.52, n=1547",Metal cofactor genes associate most strongly with co-occurrence hubs,data/cooccurrence_functional_pgls_results.csv,Main
+ET1_metaldepm_envPC1,Metal-dep metabolism vs env PC1,"β=+0.056, p=0.080†, n=1562",Marginal positive on geochemical breadth,data/env_pc1_category_pgls.csv,SI
+ET2_core_envPC1,Core metabolism vs env PC1,"β=+0.022, p=0.480, n=1562",Null on geochemical breadth,data/env_pc1_category_pgls.csv,SI
+NC1_random,Randomly shuffled KO set (negative control PGLS),"β≈0, p>0.4 in 1000 permutations",Signal is not recoverable from random gene sets,data/negative_control_pgls_results.csv,SI
+NC2_housekeeping,Housekeeping genes (ribosomal proteins) vs Levins' B,"β=−0.028, p<0.001 (baseline comparison)",Housekeeping baseline confirms pervasive streamlining,data/negative_control_pgls_results.csv,SI
+CO1_coreness,KO coreness (pangenome core fraction) and Levins' B,"Coreness permutation: observed Δ=0.18, p=0.004","Core genes more negatively associated than accessory, as expected",data/coreness_permutation_results.csv,SI

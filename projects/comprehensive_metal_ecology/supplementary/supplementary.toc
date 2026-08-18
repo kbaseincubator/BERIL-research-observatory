@@ -1,0 +1,29 @@
+\contentsline {section}{\numberline {1}Gene list construction and evidence tiers}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Candidate KO universe}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Evidence tiers}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Functional categories}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Metal coverage}{4}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Pfam / InterPro structural QC}{4}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Per-megabase KO density calculation}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Genomic data sources}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}KO density formula}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Predictor standardisation}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Primary dataset summary}{5}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Ecological niche breadth quantification}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Levins' standardised niche breadth}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Primary niche breadth dataset (MicrobeAtlas)}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}EMP niche breadth (secondary, exploratory)}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Soil-specialist definition}{6}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Phylogenetic tree}{6}{section.4}%
+\contentsline {section}{\numberline {5}Phylogenetic generalised least squares}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Implementation}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Primary result}{8}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Multiple testing correction}{8}{section.6}%
+\contentsline {section}{\numberline {7}Confounder analyses}{8}{section.7}%
+\contentsline {section}{\numberline {8}Sensitivity analyses}{9}{section.8}%
+\contentsline {section}{\numberline {9}Pre-registration and analysis governance}{10}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Pre-registration}{10}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Analysis governance}{10}{subsection.9.2}%
+\contentsline {section}{\numberline {10}Latitude mechanism tests}{10}{section.10}%
+\contentsline {section}{Supplementary Tables}{11}{section.10}%
+\contentsline {section}{Supplementary Figures}{22}{table.4}%

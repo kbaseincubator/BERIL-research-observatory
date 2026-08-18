@@ -1,0 +1,80 @@
+{
+  "expanded_cofactor_n_kos": 32,
+  "expanded_cofactor_n_with_data": 4,
+  "kegg_cofvit_n": 1073,
+  "kegg_cofvit_beta_unadj": -0.029211456063394925,
+  "kegg_cofvit_p_unadj": 2.4196866732495437e-11,
+  "kegg_cofvit_beta_gs_adj": -0.013505060560693997,
+  "kegg_cofvit_p_gs_adj": 0.0163856747135529,
+  "kegg_cofvit_lambda": 0.7837,
+  "resistance_beta": 0.0025231973308198,
+  "delta_beta_cofvit_vs_resistance_gs_adj": 0.016028257891513797,
+  "comparator_results": [
+    {
+      "comparator": "carbohydrate_metabolism",
+      "n": 1073,
+      "metal_beta": -0.01054619707194018,
+      "metal_SE": 0.004751020565048492,
+      "metal_p": 0.026643239870281832,
+      "comp_beta": -0.007985670115363996,
+      "comp_SE": 0.005502770023239941,
+      "comp_p": 0.14701501468986367,
+      "lambda_est": 0.7837
+    },
+    {
+      "comparator": "amino_acid_metabolism",
+      "n": 1073,
+      "metal_beta": -0.008776261771147646,
+      "metal_SE": 0.004766767410072002,
+      "metal_p": 0.06587875176000724,
+      "comp_beta": -0.016800984758568754,
+      "comp_SE": 0.005141920417592972,
+      "comp_p": 0.0011197229717019308,
+      "lambda_est": 0.7833
+    },
+    {
+      "comparator": "energy_metabolism",
+      "n": 1073,
+      "metal_beta": -0.011957088361455252,
+      "metal_SE": 0.004745177409018557,
+      "metal_p": 0.011885618234879658,
+      "comp_beta": 0.0074146670188347695,
+      "comp_SE": 0.00560916711184926,
+      "comp_p": 0.1864896488246819,
+      "lambda_est": 0.777
+    },
+    {
+      "comparator": "membrane_transport_ABC",
+      "n": 1073,
+      "metal_beta": -0.011598173380854615,
+      "metal_SE": 0.0047370251727687105,
+      "metal_p": 0.014508724689713759,
+      "comp_beta": 0.005092396900860266,
+      "comp_SE": 0.006204590716684606,
+      "comp_p": 0.41197358717773014,
+      "lambda_est": 0.7813
+    },
+    {
+      "comparator": "translation",
+      "n": 1073,
+      "metal_beta": -0.010935757519052462,
+      "metal_SE": 0.00472368486649501,
+      "metal_p": 0.020796646840698818,
+      "comp_beta": -0.01153324937026509,
+      "comp_SE": 0.005981912184269875,
+      "comp_p": 0.054117205009186264,
+      "lambda_est": 0.7791
+    },
+    {
+      "comparator": "transcription",
+      "n": 1071,
+      "metal_beta": -0.010865098464422983,
+      "metal_SE": 0.004736566312990378,
+      "metal_p": 0.0219912173039305,
+      "comp_beta": -0.009130718036585826,
+      "comp_SE": 0.005843367621617794,
+      "comp_p": 0.1184483971315955,
+      "lambda_est": 0.7788
+    }
+  ]
+}

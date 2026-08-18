@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure S10. Heterogeneity Test</title>
+  <style>
+    :root {
+      --sf: #fcfcfb; --tp: #0b0b0b; --ts: #52514e; --tm: #898781;
+      --gl: #e1e0d9; --bl: #c3c2b7;
+      --sig: #2a78d6; --ns: #c3c2b7; --acc: #e34948; --acc2: #eda100;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --sf: #1a1a19; --tp: #ffffff; --ts: #c3c2b7; --tm: #898781;
+        --gl: #2c2c2a; --bl: #383835;
+        --sig: #3987e5; --ns: #52514e; --acc: #e66767; --acc2: #c98500;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--sf); color: var(--tp); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; padding: 24px; }
+    .container { max-width: 600px; margin: 0 auto; }
+    h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .subtitle { font-size: 12px; color: var(--ts); margin-bottom: 16px; }
+    .plot-wrapper { margin-bottom: 16px; }
+    svg { display: block; margin: 0 auto; }
+    .annotation { background: var(--gl); padding: 12px; border-radius: 4px; margin-top: 12px; font-size: 11px; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      .annotation { background: var(--bl); }
+    }
+    .annotation-title { font-weight: 600; color: var(--tp); }
+    .annotation-text { color: var(--ts); margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Figure S10. Heterogeneity Test: Phylum-Level β Estimates Are Statistically Consistent</h1>
+    <div class="subtitle">Funnel plot showing stratified PGLS estimates with Cochran's Q heterogeneity test</div>
+
+    <div class="plot-wrapper" id="plot"></div>
+
+    <div class="annotation">
+      <div class="annotation-title">Cochran's Heterogeneity Test</div>
+      <div class="annotation-text">
+        Q = 3.60 (df = 3, p = 0.309); I² = 16.6%<br>
+        <strong>Interpretation:</strong> No significant heterogeneity detected. Effect sizes are statistically homogeneous across phyla, validating the pooled estimate of β = −0.021 (P1).
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DATA = [
+      {phylum: "Proteobacteria",  beta: -0.020875, se: 0.005077, n: 677,  q_bh: 1.76e-4},
+      {phylum: "Firmicutes",      beta: -0.015210, se: 0.007888, n: 334,  q_bh: 0.0729},
+      {phylum: "Actinobacteria",  beta: -0.035409, se: 0.010818, n: 204,  q_bh: 2.50e-3},
+      {phylum: "Bacteroidetes",   beta: -0.008792, se: 0.010351, n: 183,  q_bh: 0.3968},
+    ];
+    const COCHRAN = {Q: 3.60, df: 3, p: 0.309, I2: 16.6};
+    const P1 = {beta: -0.021, se: 0.0037};
+
+    const COLORS = {
+      "Proteobacteria": "var(--sig)",
+      "Actinobacteria": "var(--acc)",
+      "Firmicutes": "var(--acc2)",
+      "Bacteroidetes": "#6b9e8a"
+    };
+
+    function render() {
+      const width = 480;
+      const height = 380;
+      const margin = {top: 20, right: 30, bottom: 50, left: 60};
+      const plotWidth = width - margin.left - margin.right;
+      const plotHeight = height - margin.top - margin.bottom;
+
+      const xMin = -0.055, xMax = 0.010;
+      const yMin = 0, yMax = 250;
+
+      const xScale = (beta) => margin.left + ((beta - xMin) / (xMax - xMin)) * plotWidth;
+      const yScale = (prec) => height - margin.bottom - (prec / yMax) * plotHeight;
+
+      let s = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">`;
+
+      // No background rect — transparent
+
+      // Plot area background
+      s += `<rect x="${margin.left}" y="${margin.top}" width="${plotWidth}" height="${plotHeight}" fill="none" stroke="var(--bl)" stroke-width="1" />`;
+
+      // Grid lines
+      for (let i = 0; i <= 5; i++) {
+        const y = margin.top + (i / 5) * plotHeight;
+        const prec = (i / 5) * yMax;
+        s += `<line x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}" stroke="var(--gl)" stroke-width="0.5" />`;
+      }
+      for (let i = 0; i <= 10; i++) {
+        const x = margin.left + (i / 10) * plotWidth;
+        s += `<line x1="${x}" y1="${margin.top}" x2="${x}" y2="${height - margin.bottom}" stroke="var(--gl)" stroke-width="0.5" />`;
+      }
+
+      // Funnel CI lines
+      const beta_pool = P1.beta;
+      for (let yval = 0; yval <= yMax; yval += 5) {
+        if (yval === 0) continue;
+        const ci_width = 1.96 / yval;
+        const x1 = xScale(beta_pool - ci_width);
+        const x2 = xScale(beta_pool + ci_width);
+        const y = yScale(yval);
+        s += `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="var(--ns)" stroke-width="0.5" opacity="0.3" />`;
+      }
+
+      // Zero line
+      s += `<line x1="${xScale(0)}" y1="${margin.top}" x2="${xScale(0)}" y2="${height - margin.bottom}" stroke="var(--tm)" stroke-width="1" stroke-dasharray="3,2" />`;
+
+      // P1 reference line
+      s += `<line x1="${xScale(P1.beta)}" y1="${margin.top}" x2="${xScale(P1.beta)}" y2="${height - margin.bottom}" stroke="var(--sig)" stroke-width="2" stroke-dasharray="4,3" opacity="0.6" />`;
+
+      // Data points
+      for (const d of DATA) {
+        const x = xScale(d.beta);
+        const y = yScale(1 / d.se);
+        const color = COLORS[d.phylum];
+        s += `<circle cx="${x}" cy="${y}" r="7" fill="${color}" opacity="0.8" />`;
+        s += `<text x="${x}" y="${y + 18}" font-size="11" text-anchor="middle" fill="var(--tp)">${d.phylum}</text>`;
+      }
+
+      // X-axis
+      s += `<line x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}" stroke="var(--tp)" stroke-width="1.5" />`;
+      for (let i = 0; i <= 6; i++) {
+        const beta = xMin + (i / 6) * (xMax - xMin);
+        const x = xScale(beta);
+        s += `<line x1="${x}" y1="${height - margin.bottom}" x2="${x}" y2="${height - margin.bottom + 5}" stroke="var(--tp)" stroke-width="1" />`;
+        s += `<text x="${x}" y="${height - margin.bottom + 20}" font-size="10" text-anchor="middle" fill="var(--tp)">${beta.toFixed(3)}</text>`;
+      }
+
+      // Y-axis
+      s += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height - margin.bottom}" stroke="var(--tp)" stroke-width="1.5" />`;
+      for (let i = 0; i <= 5; i++) {
+        const prec = (i / 5) * yMax;
+        const y = yScale(prec);
+        s += `<line x1="${margin.left - 5}" y1="${y}" x2="${margin.left}" y2="${y}" stroke="var(--tp)" stroke-width="1" />`;
+        s += `<text x="${margin.left - 10}" y="${y + 4}" font-size="10" text-anchor="end" fill="var(--tp)">${prec.toFixed(0)}</text>`;
+      }
+
+      // Axis labels
+      s += `<text x="${margin.left + plotWidth / 2}" y="${height - 5}" font-size="12" font-weight="600" text-anchor="middle" fill="var(--tp)">β estimate</text>`;
+      s += `<text x="15" y="${margin.top + plotHeight / 2}" font-size="12" font-weight="600" text-anchor="middle" fill="var(--tp)" transform="rotate(-90 15 ${margin.top + plotHeight / 2})">Precision (1/SE)</text>`;
+
+      // Legend for P1 line
+      s += `<line x1="${width - margin.right - 80}" y1="${margin.top + 10}" x2="${width - margin.right - 60}" y2="${margin.top + 10}" stroke="var(--sig)" stroke-width="2" stroke-dasharray="4,3" />`;
+      s += `<text x="${width - margin.right - 55}" y="${margin.top + 14}" font-size="10" fill="var(--ts)">P1 pooled (β=−0.021)</text>`;
+
+      s += `</svg>`;
+      document.getElementById('plot').innerHTML = s;
+    }
+
+    window.addEventListener('load', render);
+    window.addEventListener('resize', render);
+  </script>
+</body>
+</html>

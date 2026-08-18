@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure S4 – Named Negative Controls</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6; --acc:#e34948; --acc2:#eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5; --acc:#e66767; --acc2:#c98500;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; line-height:1.5; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.tt {
+  position:fixed; background:var(--sf); border:1px solid var(--gl);
+  padding:8px 10px; border-radius:4px; font-size:11px; color:var(--tp);
+  pointer-events:none; display:none; max-width:300px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12); z-index:100; line-height:1.6;
+}
+.note { margin-top:14px; font-size:11px; color:var(--ts); border-left:3px solid var(--gl); padding-left:10px; line-height:1.5; }
+</style>
+</head>
+<body>
+<h2>Figure S4. Named negative controls: universal housekeeping gene sets show similar associations.</h2>
+<div class="sub">PGLS β and 95% CI (±1.96 SE) for three named negative control gene sets (ribosomal proteins, amino acid biosynthesis, DNA repair) compared to the primary metal-gene target (β = −0.021). All three controls are significant, reflecting the genome-wide streamlining signal present in universal genes. The metal signal does not substantially exceed these controls at the whole-set level; the key distinction emerges internally (cofactor vs resistance split, Figure 3).</div>
+<svg id="chart"></svg>
+<div class="tt" id="tt"></div>
+<div class="note"><strong>Interpretation note:</strong> Named negative controls are expected to also show a streamlining signal because genome-wide gene density correlates with niche breadth. The relevant comparison is whether metal genes show a <em>distinctive</em> pattern (cofactor/resistance split) rather than a larger overall effect. See Figure 3 for the internal split permutation.</div>
+
+<script>
+const DATA = [
+  {label:'Primary: metal genes (target)', n:1574, beta:-0.020696, se:0.003700, p:2.1e-8,     isTarget:true},
+  {label:'Ribosomal proteins (n=52 KOs)', n:1073, beta:-0.029417, se:0.004737, p:7.58e-10,   isTarget:false},
+  {label:'Amino acid biosynthesis (n=38)', n:1073, beta:-0.033505, se:0.004265, p:9.55e-15,   isTarget:false},
+  {label:'DNA repair (n=23 KOs)',          n:1073, beta:-0.033414, se:0.004761, p:3.98e-12,   isTarget:false},
+];
+
+const fmtB = b => (b >= 0 ? '+' : '') + b.toFixed(4);
+const fmtP = p => p < 1e-9 ? p.toExponential(2) : p < 0.001 ? p.toExponential(2) : p.toFixed(4);
+
+function render() {
+  const W = 560, rowH = 42;
+  const M = {top:36, right:110, bottom:52, left:240};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+  const xMin = -0.050, xMax = 0.006;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [-0.04, -0.03, -0.02, -0.01, 0];
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  // Gridlines + zero line
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${t === 0 ? 'var(--bl)' : 'var(--gl)'}" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+  });
+
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const col = d.isTarget ? 'var(--acc)' : 'var(--sig)';
+    const xb = xS(d.beta);
+    const xlo = xS(d.beta - 1.96 * d.se);
+    const xhi = xS(d.beta + 1.96 * d.se);
+    const x0 = xS(0);
+    const bg = d.isTarget ? 'rgba(227,73,72,0.06)' : 'rgba(42,120,214,0.03)';
+
+    s += `<rect class="row-hit" x="${M.left}" y="${M.top + i * rowH + 2}"
+      width="${pw}" height="${rowH - 4}"
+      fill="${bg}" rx="3" data-i="${i}" style="cursor:default"/>`;
+
+    s += `<line x1="${xlo}" y1="${y}" x2="${xhi}" y2="${y}"
+      stroke="${col}" stroke-width="2" opacity="0.6"/>`;
+    [[xlo],[xhi]].forEach(([x]) => {
+      s += `<line x1="${x}" y1="${y-5}" x2="${x}" y2="${y+5}"
+        stroke="${col}" stroke-width="2" opacity="0.7"/>`;
+    });
+    s += `<line x1="${x0}" y1="${y}" x2="${xb}" y2="${y}"
+      stroke="${col}" stroke-width="${d.isTarget ? 2.5 : 2}" opacity="0.7"/>`;
+    s += `<circle cx="${xb}" cy="${y}" r="${d.isTarget ? 6.5 : 5}"
+      fill="${col}" stroke="var(--sf)" stroke-width="2"/>`;
+    if (d.isTarget) {
+      s += `<text x="${xb}" y="${y - 9}" text-anchor="middle"
+        font-size="9" fill="var(--acc)" font-weight="600">TARGET</text>`;
+    }
+
+    s += `<text x="${M.left - 8}" y="${y}" text-anchor="end"
+      font-size="11" fill="${d.isTarget ? 'var(--acc)' : 'var(--tp)'}"
+      font-weight="${d.isTarget ? '600' : '400'}">${d.label}</text>`;
+
+    s += `<text x="${W - M.right + 6}" y="${y}" text-anchor="start"
+      font-size="10" fill="${col}" font-variant-numeric="tabular-nums">${fmtB(d.beta)}</text>`;
+    s += `<text x="${W - M.right + 6}" y="${y + 12}" text-anchor="start"
+      font-size="9" fill="var(--tm)">p = ${fmtP(d.p)}</text>`;
+  });
+
+  s += `<line x1="${M.left}" y1="${M.top + DATA.length * rowH}"
+    x2="${W - M.right}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t === 0 ? '0' : t.toFixed(2)}</text>`;
+  });
+
+  s += `<text x="${xS(-0.022)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">PGLS β (gene set density → niche breadth)</text>`;
+
+  svg.innerHTML = s;
+
+  svg.querySelectorAll('.row-hit').forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      const d = DATA[+this.dataset.i];
+      const lo = (d.beta - 1.96*d.se).toFixed(4), hi = (d.beta + 1.96*d.se).toFixed(4);
+      document.getElementById('tt').innerHTML =
+        `<strong>${d.label}</strong><br>` +
+        `<span>n genera = ${d.n}</span><br>` +
+        `<span>β = ${fmtB(d.beta)} (SE = ${d.se.toFixed(5)})</span><br>` +
+        `<span>95% CI [${lo}, ${hi}]</span><br>` +
+        `<span>p = ${fmtP(d.p)}</span><br>` +
+        `<span style="color:var(--tm)">${d.isTarget ? 'Primary analysis target' : 'Named negative control — expected to be significant'}</span>`;
+      document.getElementById('tt').style.display = 'block';
+    });
+    el.addEventListener('mousemove', positionTT);
+    el.addEventListener('mouseleave', () => { document.getElementById('tt').style.display = 'none'; });
+  });
+}
+
+function positionTT(e) {
+  const tt = document.getElementById('tt');
+  let x = e.clientX + 14, y = e.clientY - tt.offsetHeight / 2;
+  if (x + tt.offsetWidth > window.innerWidth - 12) x = e.clientX - 14 - tt.offsetWidth;
+  tt.style.left = x + 'px'; tt.style.top = Math.max(8, y) + 'px';
+}
+
+render();
+</script>
+</body>
+</html>
