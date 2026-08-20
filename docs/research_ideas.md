@@ -292,32 +292,19 @@
 
 ---
 
-### [cog_analysis] Gene Copy Number Variation
-**Status**: PROPOSED
-**Priority**: MEDIUM
-**Effort**: Medium (new analysis type)
+### [gene_copy_number_variation] (COMPLETED 2026-07-08)
+Originally PROPOSED above. Completion summary:
 
-**Research Question**: Beyond presence/absence, do adaptive vs housekeeping genes show different copy number patterns?
+**Result**: Across 24 species / 5 phyla (Pseudomonadota, Bacillota, Bacteroidota, Actinomycetota, Campylobacterota), adaptive gene clusters (L, V, M, K) show **8.14× higher species-level weighted multi-copy rate** than housekeeping clusters (F, H). 24/24 species direction-consistent; paired Wilcoxon p = 5.96 × 10⁻⁸. All 8 pairwise F/H × L/V/M/K tests significant at BH-FDR < 0.01. Effect size varies 4× (Campylobacterota) to 15× (Pseudomonadota).
 
-**Approach**:
-- For core genes with COG annotations, count paralogs (gene cluster multiplicity)
-- Compare copy number distributions between COG categories
-- Test: Do housekeeping genes (J, F, H) have fixed copy numbers while adaptive genes (V, L, M) show variation?
+**Reframe from H4 (core vs accessory interaction)**: The class effect concentrates in accessory clusters. Adaptive-accessory (median 1.55%) is 25× adaptive-core (0.06%; p = 5.96 × 10⁻⁸); housekeeping-accessory (0.29%) is 10× housekeeping-core (0.03%). Adaptive-core vs housekeeping-core is only 2× (p = 4.9 × 10⁻⁴). The dosage-constraint story is largely encoded in the core/accessory split, not the COG label.
 
-**Hypothesis**:
-- Core housekeeping genes exist in fixed copy numbers (dosage constraint)
-- Adaptive genes show copy number variation even in core (dosage flexibility)
+**Methodology lessons**:
+- Weighted metric (SUM(multicopy_genomes) / SUM(carrier_genomes)) is essential — binary "any multi-copy" flags underestimate the effect by ~6× (1.4× vs 8.1×).
+- COG J (translation) behaves as "mixed" at species scale (rRNA operon paralogs, ribosomal protein duplicates) — housekeeping = {F, H} is a stricter operationalization than the classic informational-vs-operational divide.
+- `jupyter nbconvert --execute` is fragile for long-running Spark work (>1 hr per notebook); use standalone resumable scripts (`src/extract_multi_species.py` pattern).
 
-**Impact**: Medium - adds mechanistic depth to functional partitioning
-
-**Dependencies**:
-- Need to count `gene_cluster_id` per genome per COG category
-- Requires understanding gene cluster membership vs paralogy
-
-**Next Steps**:
-1. Prototype on single species (N. gonorrhoeae)
-2. Define copy number metric (mean, variance, coefficient of variation)
-3. Scale to multi-species analysis
+See `projects/gene_copy_number_variation/`.
 
 ---
 
