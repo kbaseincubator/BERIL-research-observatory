@@ -1,0 +1,8 @@
+pyspark
+berdl_notebook_utils
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+pyarrow
