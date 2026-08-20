@@ -241,7 +241,6 @@ wheels = [
 
 [[package]]
 name = "beril-cli"
-version = "0.0.6"
 source = { editable = "." }
 dependencies = [
     { name = "certifi" },
