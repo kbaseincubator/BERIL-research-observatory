@@ -1,0 +1,24 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+m63_quarter_strength	set1IT077		RALBFv3_RS04250	RALBFv3_RS04250		phosphoenolpyruvate carboxylase	-4.54459337715119	-12.6653289748412	TRUE
+m63_quarter_strength	set3IT040		RALBFv3_RS04250	RALBFv3_RS04250		phosphoenolpyruvate carboxylase	-3.31112494516477	-16.6436580107673	TRUE
+m63_quarter_strength	set1IT077		RALBFv3_RS09660	RALBFv3_RS09660		6-phosphogluconolactonase	-1.23431094512715	-8.27041134103254	FALSE
+m63_quarter_strength	set3IT040		RALBFv3_RS09660	RALBFv3_RS09660		6-phosphogluconolactonase	-1.16329113740858	-8.53900030038625	FALSE
+m63_quarter_strength	set1IT077		RALBFv3_RS15395	RALBFv3_RS15395		MurR/RpiR family transcriptional regulator	1.83585748738669	10.8367871930228	FALSE
+m63_quarter_strength	set1IT077		RALBFv3_RS16400	RALBFv3_RS16400		glucokinase	-2.33667103714433	-7.76328527597145	FALSE
+m63_quarter_strength	set3IT040		RALBFv3_RS16400	RALBFv3_RS16400		glucokinase	-1.78763580289528	-9.18807141169369	FALSE
+m63_quarter_strength	set1IT077		RALBFv3_RS23500	RALBFv3_RS23500		xylose ABC transporter ATP-binding protein	-3.59406606400574	-8.76647439295251	TRUE
+m63_quarter_strength	set3IT040		RALBFv3_RS23500	RALBFv3_RS23500		xylose ABC transporter ATP-binding protein	-3.19553126766042	-10.2631636107405	TRUE
+xylem sap	set4IT042	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS04445	RALBFv3_RS04445		cobyric acid synthase	-1.22214397915148	-5.34185876641191	FALSE
+xylem sap	set4IT039	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS04475	RALBFv3_RS04475		adenosylcobinamide-GDP ribazoletransferase	-1.39908392781195	-5.3094757945284	FALSE
+xylem sap	set4IT039	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS08960	RALBFv3_RS08960		copper-translocating P-type ATPase	-1.99989706179988	-5.30031746120325	FALSE
+xylem sap	set4IT039	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS10610	RALBFv3_RS10610		methionine synthase	-1.0920886245338	-6.68065117544851	FALSE
+xylem sap	set4IT045	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20490	RALBFv3_RS20490		cobaltochelatase subunit CobN	-1.09665452470834	-9.31615892807127	FALSE
+xylem sap	set4IT039	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20495	RALBFv3_RS20495		magnesium chelatase	-1.2506315140352	-5.4040809137306	FALSE
+xylem sap	set4IT042	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20505	RALBFv3_RS20505		membrane protein	-1.33330232121659	-6.57563304264652	FALSE
+xylem sap	set4IT039	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20510	RALBFv3_RS20510		cobalamin biosynthesis protein CbiD	-1.09920637723568	-5.03877496116172	FALSE
+xylem sap	set4IT045	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20530	RALBFv3_RS20530		bifunctional precorrin-3 methyltransferase/precorrin-6x reductase	-1.13605301101408	-6.11475472217959	FALSE
+xylem sap	set4IT042	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20530	RALBFv3_RS20530		bifunctional precorrin-3 methyltransferase/precorrin-6x reductase	-1.12198446700581	-5.78715629618442	FALSE
+xylem sap	set4IT039	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20530	RALBFv3_RS20530		bifunctional precorrin-3 methyltransferase/precorrin-6x reductase	-1.03678242295398	-5.42130023736738	FALSE
+xylem sap	set4IT042	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20545	RALBFv3_RS20545		cobyrinate a,c-diamide synthase	-1.36846118282793	-9.95177692664003	FALSE
+xylem sap	set4IT045	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20545	RALBFv3_RS20545		cobyrinate a,c-diamide synthase	-1.15472824785721	-6.54352676028244	FALSE
+xylem sap	set4IT039	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RALBFv3_RS20545	RALBFv3_RS20545		cobyrinate a,c-diamide synthase	-1.0982189116567	-6.7185822547839	FALSE

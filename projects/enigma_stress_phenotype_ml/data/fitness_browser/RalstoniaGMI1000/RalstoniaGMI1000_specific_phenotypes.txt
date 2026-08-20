@@ -1,0 +1,14 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+m63_quarter_strength	set2IT063		RS_RS09120	RS_RS09120		TonB-dependent receptor	-1.01564052610868	-6.31487741033	FALSE
+m63_quarter_strength	set2IT059		RS_RS09125	RS_RS09125		ABC transporter ATP-binding protein	-1.81867684568599	-9.53794104520048	FALSE
+m63_quarter_strength	set4IT034		RS_RS09125	RS_RS09125		ABC transporter ATP-binding protein	-1.77338240214371	-10.0224543068338	FALSE
+m63_quarter_strength	set2IT063		RS_RS09125	RS_RS09125		ABC transporter ATP-binding protein	-1.46630966359005	-7.24524137548511	FALSE
+m63_quarter_strength	set4IT034		RS_RS09130	RS_RS09130		ABC transporter ATP-binding protein	-1.63246175582364	-6.70821777106913	FALSE
+m63_quarter_strength	set2IT063		RS_RS09130	RS_RS09130		ABC transporter ATP-binding protein	-1.62321761257263	-7.84892727022176	FALSE
+m63_quarter_strength	set2IT059		RS_RS09130	RS_RS09130		ABC transporter ATP-binding protein	-1.53095477495433	-6.48213823679803	FALSE
+m63_quarter_strength	set4IT034		RS_RS09145	RS_RS09145		hypothetical protein	-1.55089849617887	-5.31452133540397	FALSE
+m63_quarter_strength	set2IT059		RS_RS09145	RS_RS09145		hypothetical protein	-1.53416760077463	-5.67931103665289	FALSE
+m63_quarter_strength	set4IT034		RS_RS24940	RS_RS24940		porin	-1.23846235602222	-8.47769013174789	FALSE
+m63_quarter_strength	set4IT034		RS_RS24945	RS_RS24945		D-xylose ABC transporter substrate-binding protein	-1.72815036120441	-7.21865377493719	TRUE
+m63_quarter_strength	set2IT059		RS_RS24950	RS_RS24950		D-xylose ABC transporter ATP-binding protein	-1.26472747080739	-6.85736704135859	TRUE
+xylem sap	set1IT067	Plant=Tomato_cv_Moneymaker; PlantTreatment=None; Sample=Xylem_sap; GrowthSubstrate=calcine_clay; Collection=direct	RS_RS01450	RS_RS01450		5-methyltetrahydrofolate--homocysteine methyltransferase	-1.14465277730816	-5.25288671436911	FALSE

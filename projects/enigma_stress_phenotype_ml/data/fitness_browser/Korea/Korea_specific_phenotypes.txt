@@ -1,0 +1,641 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set6IT062	D-Cellobiose	Ga0059261_1166	Ga0059261_1166		Beta-glucosidase-related glycosidases	-2.55530158092586	-19.5852126740916	TRUE
+carbon source	set6IT065	D-Cellobiose	Ga0059261_1166	Ga0059261_1166		Beta-glucosidase-related glycosidases	-2.41410104179296	-18.9174385745889	TRUE
+carbon source	set3IT067	D-Cellobiose	Ga0059261_1166	Ga0059261_1166		Beta-glucosidase-related glycosidases	-2.2208275968129	-18.0225202105698	TRUE
+carbon source	set3IT080	D-Cellobiose	Ga0059261_1166	Ga0059261_1166		Beta-glucosidase-related glycosidases	-2.07342911737989	-16.2178279600624	TRUE
+carbon source	set6IT065	D-Cellobiose	Ga0059261_2678	Ga0059261_2678		DNA-binding ferritin-like protein (oxidative damage protectant)	-6.36375727722381	-9.68852170786282	FALSE
+carbon source	set6IT062	D-Cellobiose	Ga0059261_2678	Ga0059261_2678		DNA-binding ferritin-like protein (oxidative damage protectant)	-5.12627253124958	-8.64825926164613	FALSE
+carbon source	set6IT065	D-Cellobiose	Ga0059261_3988	Ga0059261_3988		Methylmalonyl-CoA mutase, N-terminal domain/subunit	-1.04810315078582	-9.11973101765576	FALSE
+carbon source	set6IT062	D-Cellobiose	Ga0059261_3988	Ga0059261_3988		Methylmalonyl-CoA mutase, N-terminal domain/subunit	-1.00469339035023	-8.2038164764484	FALSE
+carbon source	set3IT074	D-Fructose	Ga0059261_1776	Ga0059261_1776		Transcriptional regulator/sugar kinase	-5.41446580676275	-17.3595180481672	FALSE
+carbon source	set3IT074	D-Fructose	Ga0059261_1777	Ga0059261_1777		MFS transporter, sugar porter (SP) family	-4.70680808024921	-21.0213657848792	TRUE
+carbon source	set6IT066	D-Glucose	Ga0059261_2678	Ga0059261_2678		DNA-binding ferritin-like protein (oxidative damage protectant)	-3.49670216835922	-8.22462844454713	FALSE
+carbon source	set6IT063	D-Glucose	Ga0059261_2678	Ga0059261_2678		DNA-binding ferritin-like protein (oxidative damage protectant)	-2.68415476742239	-5.38729149494042	FALSE
+carbon source	set3IT063	D-Maltose monohydrate	Ga0059261_1581	Ga0059261_1581		Glycosidases	-3.17635070277687	-22.7441296194879	FALSE
+carbon source	set3IT076	D-Maltose monohydrate	Ga0059261_1581	Ga0059261_1581		Glycosidases	-3.10180520694881	-21.947067904663	FALSE
+carbon source	set3IT063	D-Maltose monohydrate	Ga0059261_1582	Ga0059261_1582		Tryptophan halogenase	-2.5723462124649	-15.9923354476024	FALSE
+carbon source	set3IT076	D-Maltose monohydrate	Ga0059261_1582	Ga0059261_1582		Tryptophan halogenase	-2.45716289723231	-16.2841498706725	FALSE
+carbon source	set3IT063	D-Maltose monohydrate	Ga0059261_1583	Ga0059261_1583		TonB-dependent receptor	-1.50278044148934	-13.4118854227011	FALSE
+carbon source	set3IT076	D-Maltose monohydrate	Ga0059261_1583	Ga0059261_1583		TonB-dependent receptor	-1.45827968616912	-12.7477908375308	FALSE
+carbon source	set3IT063	D-Maltose monohydrate	Ga0059261_1584	Ga0059261_1584		transcriptional regulator, LacI family	-1.79008251165938	-9.21619789271332	TRUE
+carbon source	set3IT076	D-Maltose monohydrate	Ga0059261_1584	Ga0059261_1584		transcriptional regulator, LacI family	-1.61521174710801	-7.26379124914959	TRUE
+carbon source	set3IT063	D-Maltose monohydrate	Ga0059261_1585	Ga0059261_1585		Major Facilitator Superfamily	-2.13260903046851	-17.1990083266315	TRUE
+carbon source	set3IT076	D-Maltose monohydrate	Ga0059261_1585	Ga0059261_1585		Major Facilitator Superfamily	-2.12748236612698	-16.9236212285243	TRUE
+carbon source	set3IT076	D-Maltose monohydrate	Ga0059261_3403	Ga0059261_3403		Uncharacterized protein conserved in bacteria	1.57750137466998	12.7251941469412	FALSE
+carbon source	set3IT063	D-Maltose monohydrate	Ga0059261_3926	Ga0059261_3926		L-proline dehydrogenase (EC 1.5.99.8)/delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	1.54710157917931	13.8897369847194	FALSE
+carbon source	set3IT076	D-Maltose monohydrate	Ga0059261_3926	Ga0059261_3926		L-proline dehydrogenase (EC 1.5.99.8)/delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	1.94216425499307	17.6005186070396	FALSE
+carbon source	set3IT076	D-Maltose monohydrate	Ga0059261_3969	Ga0059261_3969		Serine hydrolase	-2.5826684876707	-6.0306600035795	FALSE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_0549	Ga0059261_0549		Domain of Unknown Function (DUF1080)	-1.06966376324154	-6.7442086859884	TRUE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_0553	Ga0059261_0553		Sugar phosphate isomerases/epimerases	-1.07353976229851	-8.37658282331071	FALSE
+carbon source	set3IT065	D-Raffinose pentahydrate	Ga0059261_1776	Ga0059261_1776		Transcriptional regulator/sugar kinase	-5.11355171878064	-19.5557475174431	FALSE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_1776	Ga0059261_1776		Transcriptional regulator/sugar kinase	-5.03604094084208	-19.4832377309051	FALSE
+carbon source	set3IT065	D-Raffinose pentahydrate	Ga0059261_1777	Ga0059261_1777		MFS transporter, sugar porter (SP) family	-5.04384875045519	-21.5888963952981	FALSE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_1777	Ga0059261_1777		MFS transporter, sugar porter (SP) family	-5.00742884470572	-22.0132645999626	FALSE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_1778	Ga0059261_1778		Beta-fructosidases (levanase/invertase)	-5.01626737300522	-20.8651567023119	FALSE
+carbon source	set3IT065	D-Raffinose pentahydrate	Ga0059261_1778	Ga0059261_1778		Beta-fructosidases (levanase/invertase)	-4.66797577043161	-19.9443708103435	FALSE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_3256	Ga0059261_3256		glycine cleavage system T protein	-1.73350449522533	-10.1135829411002	FALSE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_3257	Ga0059261_3257		glycine cleavage system H protein	-1.59366640878271	-5.16048051869249	FALSE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_3258	Ga0059261_3258		Glycine cleavage system protein P (pyridoxal-binding), N-terminal domain	-1.4797982233145	-8.80649325270608	FALSE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_3259	Ga0059261_3259		Glycine cleavage system protein P (pyridoxal-binding), C-terminal domain	-1.38795003528783	-9.59952872802027	FALSE
+carbon source	set3IT078	D-Raffinose pentahydrate	Ga0059261_3277	Ga0059261_3277		polyhydroxyalkanoate depolymerase, intracellular	-1.5562943252979	-10.5109685177428	FALSE
+carbon source	set3IT064	D-Xylose	Ga0059261_1313	Ga0059261_1313		acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.45974295511809	-12.4836370698424	FALSE
+carbon source	set3IT077	D-Xylose	Ga0059261_1313	Ga0059261_1313		acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.43029912280386	-12.0791823991595	FALSE
+carbon source	set3IT077	D-Xylose	Ga0059261_1893	Ga0059261_1893		Gluconolactonase	-4.1645697375527	-16.5018783606434	TRUE
+carbon source	set3IT064	D-Xylose	Ga0059261_1893	Ga0059261_1893		Gluconolactonase	-4.04174528801656	-17.27991386085	TRUE
+carbon source	set3IT077	D-Xylose	Ga0059261_1894	Ga0059261_1894		Dehydrogenases with different specificities (related to short-chain alcohol dehydrogenases)	-5.39231871667841	-7.37462870741735	TRUE
+carbon source	set3IT064	D-Xylose	Ga0059261_1894	Ga0059261_1894		Dehydrogenases with different specificities (related to short-chain alcohol dehydrogenases)	-5.14292829977363	-8.55724850819212	TRUE
+carbon source	set3IT064	D-Xylose	Ga0059261_1895	Ga0059261_1895		Fumarylacetoacetate (FAA) hydrolase family protein	-4.07332262603435	-18.7358064713455	TRUE
+carbon source	set3IT077	D-Xylose	Ga0059261_1895	Ga0059261_1895		Fumarylacetoacetate (FAA) hydrolase family protein	-3.68439671563952	-17.6472128926324	TRUE
+carbon source	set3IT077	D-Xylose	Ga0059261_1896	Ga0059261_1896		NAD-dependent aldehyde dehydrogenases	-4.34638427270821	-11.5365188746963	TRUE
+carbon source	set3IT064	D-Xylose	Ga0059261_1896	Ga0059261_1896		NAD-dependent aldehyde dehydrogenases	-4.34043981542109	-12.156298691742	TRUE
+carbon source	set3IT077	D-Xylose	Ga0059261_2649	Ga0059261_2649		Dihydroxyacid dehydratase/phosphogluconate dehydratase	-4.50559930441417	-19.884335567462	TRUE
+carbon source	set3IT064	D-Xylose	Ga0059261_2649	Ga0059261_2649		Dihydroxyacid dehydratase/phosphogluconate dehydratase	-4.23672521803153	-18.2956279019446	TRUE
+carbon source	set3IT077	D-Xylose	Ga0059261_2662	Ga0059261_2662		Transcriptional regulators	-1.16643179831038	-8.74074747256963	FALSE
+carbon source	set6IT064	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_2678	Ga0059261_2678		DNA-binding ferritin-like protein (oxidative damage protectant)	-5.7139335584203	-7.97746985762637	FALSE
+carbon source	set6IT061	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_2678	Ga0059261_2678		DNA-binding ferritin-like protein (oxidative damage protectant)	-5.38331894328803	-7.706087716433	FALSE
+carbon source	set3IT070	L-Glutamine	Ga0059261_0324	Ga0059261_0324		Pyruvate:ferredoxin oxidoreductase and related 2-oxoacid:ferredoxin oxidoreductases, beta subunit	-1.54982442533841	-12.1147384782753	FALSE
+carbon source	set3IT070	L-Glutamine	Ga0059261_0325	Ga0059261_0325		2-oxoacid:acceptor oxidoreductase, alpha subunit	-1.72218509195414	-12.5815654141736	FALSE
+carbon source	set3IT070	L-Glutamine	Ga0059261_1066	Ga0059261_1066		hypothetical protein	-1.33399617961068	-9.37218201399033	FALSE
+carbon source	set3IT070	L-Glutamine	Ga0059261_1504	Ga0059261_1504		Uncharacterized protein conserved in bacteria	-1.6458685206928	-5.8278684878324	FALSE
+carbon source	set3IT070	L-Glutamine	Ga0059261_3327	Ga0059261_3327		hypothetical protein	-1.3783355744079	-5.0291599134202	FALSE
+carbon source	set3IT070	L-Glutamine	Ga0059261_3328	Ga0059261_3328		Uncharacterized iron-regulated membrane protein	-1.51874213403187	-12.2196345144178	FALSE
+carbon source	set3IT072	N-Acetyl-D-Glucosamine	Ga0059261_1644	Ga0059261_1644		Predicted phosphosugar isomerases	-5.75342453455047	-16.9869827134716	TRUE
+carbon source	set3IT085	N-Acetyl-D-Glucosamine	Ga0059261_1644	Ga0059261_1644		Predicted phosphosugar isomerases	-5.43030006858758	-18.6278362381177	TRUE
+carbon source	set3IT072	N-Acetyl-D-Glucosamine	Ga0059261_1645	Ga0059261_1645		N-acetylglucosamine-6-phosphate deacetylase	-5.43892096571027	-12.650494515899	TRUE
+carbon source	set3IT085	N-Acetyl-D-Glucosamine	Ga0059261_1645	Ga0059261_1645		N-acetylglucosamine-6-phosphate deacetylase	-5.21167610269153	-13.8555332439608	TRUE
+carbon source	set3IT085	N-Acetyl-D-Glucosamine	Ga0059261_1646	Ga0059261_1646		Phosphocarrier protein HPr/phosphoenolpyruvate--protein phosphotransferase (EC 2.7.3.9)/PTS system IIA component, Glc family (TC 4.A.1)	-5.42540631654256	-14.0095678011724	TRUE
+carbon source	set3IT072	N-Acetyl-D-Glucosamine	Ga0059261_1646	Ga0059261_1646		Phosphocarrier protein HPr/phosphoenolpyruvate--protein phosphotransferase (EC 2.7.3.9)/PTS system IIA component, Glc family (TC 4.A.1)	-4.50298735466287	-12.4778310574391	TRUE
+carbon source	set3IT085	N-Acetyl-D-Glucosamine	Ga0059261_1647	Ga0059261_1647		PTS system, N-acetylglucosamine-specific IIBC component	-5.58147247430417	-20.0302718325193	TRUE
+carbon source	set3IT072	N-Acetyl-D-Glucosamine	Ga0059261_1647	Ga0059261_1647		PTS system, N-acetylglucosamine-specific IIBC component	-5.41047051007173	-18.8623198087663	TRUE
+carbon source	set3IT072	N-Acetyl-D-Glucosamine	Ga0059261_3265	Ga0059261_3265		Glycerol-3-phosphate dehydrogenase	-2.7596886942498	-16.9284122719348	FALSE
+carbon source	set3IT085	N-Acetyl-D-Glucosamine	Ga0059261_3265	Ga0059261_3265		Glycerol-3-phosphate dehydrogenase	-2.37410778496439	-13.8336155618224	FALSE
+carbon source	set3IT085	N-Acetyl-D-Glucosamine	Ga0059261_3277	Ga0059261_3277		polyhydroxyalkanoate depolymerase, intracellular	-1.61949910568211	-11.2239754383914	FALSE
+carbon source	set3IT072	N-Acetyl-D-Glucosamine	Ga0059261_3277	Ga0059261_3277		polyhydroxyalkanoate depolymerase, intracellular	-1.47501083136433	-10.0050735779612	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_0549	Ga0059261_0549		Domain of Unknown Function (DUF1080)	-1.09672025747733	-7.05889911652432	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_0549	Ga0059261_0549		Domain of Unknown Function (DUF1080)	-1.01958221640224	-7.21732489065807	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_0553	Ga0059261_0553		Sugar phosphate isomerases/epimerases	-1.17019351143201	-8.73745694293776	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_0553	Ga0059261_0553		Sugar phosphate isomerases/epimerases	-1.16081533831161	-9.6948869801513	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_1580	Ga0059261_1580		Glycosidases	-1.31144345961891	-10.1643301587677	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_1580	Ga0059261_1580		Glycosidases	-1.21151032253655	-9.30876008808605	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_1581	Ga0059261_1581		Glycosidases	-5.40597361221281	-24.8106193819841	TRUE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_1581	Ga0059261_1581		Glycosidases	-5.21184759599939	-27.3454474541577	TRUE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_1582	Ga0059261_1582		Tryptophan halogenase	-4.07492570929739	-23.3498391543575	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_1582	Ga0059261_1582		Tryptophan halogenase	-3.72855652075877	-21.225550951066	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_1583	Ga0059261_1583		TonB-dependent receptor	-5.03299554097038	-30.2480529200475	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_1583	Ga0059261_1583		TonB-dependent receptor	-4.99472449370793	-32.0662833774298	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_1584	Ga0059261_1584		transcriptional regulator, LacI family	-5.26948360945987	-13.5899939498416	TRUE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_1584	Ga0059261_1584		transcriptional regulator, LacI family	-4.60505446604412	-10.5467491341458	TRUE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_1585	Ga0059261_1585		Major Facilitator Superfamily	-5.36392720777786	-28.4053768952124	TRUE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_1585	Ga0059261_1585		Major Facilitator Superfamily	-4.93692963741714	-25.6195050732883	TRUE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_3256	Ga0059261_3256		glycine cleavage system T protein	-1.81166630127072	-12.0971122098726	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_3256	Ga0059261_3256		glycine cleavage system T protein	-1.79006499917195	-10.5133739012155	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_3257	Ga0059261_3257		glycine cleavage system H protein	-2.03524510047571	-8.62648888295455	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_3257	Ga0059261_3257		glycine cleavage system H protein	-1.55239797626789	-6.62680086603645	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_3258	Ga0059261_3258		Glycine cleavage system protein P (pyridoxal-binding), N-terminal domain	-1.66648160295005	-11.1014717489361	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_3258	Ga0059261_3258		Glycine cleavage system protein P (pyridoxal-binding), N-terminal domain	-1.60605390017816	-9.69842533002978	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_3259	Ga0059261_3259		Glycine cleavage system protein P (pyridoxal-binding), C-terminal domain	-2.0087571237713	-13.7101944130798	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_3259	Ga0059261_3259		Glycine cleavage system protein P (pyridoxal-binding), C-terminal domain	-1.61498473278006	-10.4161772928728	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_3277	Ga0059261_3277		polyhydroxyalkanoate depolymerase, intracellular	-1.98513723822923	-12.1663869695732	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_3277	Ga0059261_3277		polyhydroxyalkanoate depolymerase, intracellular	-1.87120497419466	-11.2862013336797	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_3494	Ga0059261_3494		Glutamine synthetase adenylyltransferase	-1.51188619065771	-12.5087229672437	FALSE
+carbon source	set3IT066	a-Cyclodextrin	Ga0059261_3926	Ga0059261_3926		L-proline dehydrogenase (EC 1.5.99.8)/delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	1.50570222609522	13.6446526616593	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_3926	Ga0059261_3926		L-proline dehydrogenase (EC 1.5.99.8)/delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	1.55167446132451	14.3686821646736	FALSE
+carbon source	set3IT079	a-Cyclodextrin	Ga0059261_3969	Ga0059261_3969		Serine hydrolase	-1.5866445470012	-5.81569748305964	FALSE
+carbon source	set3IT084	casamino acids	Ga0059261_3993	Ga0059261_3993		Acetyl/propionyl-CoA carboxylase, alpha subunit	1.03735517621748	9.63996691944232	FALSE
+motility	set5IT085	Agar	Ga0059261_0155	Ga0059261_0155		peroxiredoxin	-1.15757092989343	-5.88467194691018	FALSE
+motility	set5IT086	Agar	Ga0059261_0655	Ga0059261_0655		Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase/Hpt domain/CheW-like domain/Signal transducing histidine kinase, homodimeric domain	1.17107010429416	5.02313433300308	FALSE
+motility	set5IT085	Agar	Ga0059261_0983	Ga0059261_0983		TonB dependent receptor/TonB-dependent Receptor Plug Domain	1.41221719065127	11.2588789990291	FALSE
+motility	set5IT084	Agar	Ga0059261_0983	Ga0059261_0983		TonB dependent receptor/TonB-dependent Receptor Plug Domain	1.47541819139798	11.7953395975325	FALSE
+motility	set5IT086	Agar	Ga0059261_0983	Ga0059261_0983		TonB dependent receptor/TonB-dependent Receptor Plug Domain	2.06885659491651	16.7050210074746	FALSE
+motility	set5IT081	Agar	Ga0059261_1409	Ga0059261_1409		hypothetical protein	-2.00205382991823	-5.85285189829929	FALSE
+motility	set5IT086	Agar	Ga0059261_1915	Ga0059261_1915		transcriptional regulator, MucR family	-2.26400664509872	-5.89152239667784	TRUE
+motility	set5IT080	Agar	Ga0059261_2057	Ga0059261_2057		flagellar biosynthetic protein FliS	-2.16056805023557	-6.84538549910364	FALSE
+motility	set5IT080	Agar	Ga0059261_2059	Ga0059261_2059		Flagellar biosynthesis pathway, component FlhB	-1.43996732557464	-6.03070399206684	TRUE
+motility	set5IT081	Agar	Ga0059261_2069	Ga0059261_2069		ATPase, FliI/YscN family	-1.60760488327893	-6.17047790907074	TRUE
+motility	set5IT081	Agar	Ga0059261_2070	Ga0059261_2070		Flagellar assembly protein FliH	-2.0032905595963	-5.4359364146156	FALSE
+motility	set5IT080	Agar	Ga0059261_2074	Ga0059261_2074		Sigma-54 interaction domain/Bacterial regulatory protein, Fis family	-1.70087323615427	-5.56598159793072	FALSE
+motility	set5IT080	Agar	Ga0059261_2081	Ga0059261_2081		RNA polymerase sigma factor, FliA/WhiG family	-1.87905517704299	-11.1730296342359	TRUE
+motility	set5IT081	Agar	Ga0059261_2081	Ga0059261_2081		RNA polymerase sigma factor, FliA/WhiG family	-1.64860309803626	-10.1580853714189	TRUE
+motility	set5IT081	Agar	Ga0059261_2082	Ga0059261_2082		flagellar biosynthesis protein FlhA	-2.02964046723663	-7.90130015197971	TRUE
+motility	set5IT080	Agar	Ga0059261_2083	Ga0059261_2083		hypothetical protein	-1.42308804322283	-7.54286384017279	FALSE
+motility	set5IT081	Agar	Ga0059261_2083	Ga0059261_2083		hypothetical protein	-1.34151686733349	-6.6508177902646	FALSE
+motility	set5IT080	Agar	Ga0059261_2092	Ga0059261_2092		flagellar hook-basal body protein	-1.59616850800932	-7.9170766993223	TRUE
+motility	set5IT081	Agar	Ga0059261_2092	Ga0059261_2092		flagellar hook-basal body protein	-1.26583010089277	-5.44018285074761	TRUE
+motility	set5IT081	Agar	Ga0059261_2093	Ga0059261_2093		flagellar basal-body rod protein FlgF	-2.42908894866796	-5.5546622121154	TRUE
+motility	set5IT081	Agar	Ga0059261_2095	Ga0059261_2095		Flagellar basal body L-ring protein	-1.76860362491861	-5.29130779389106	TRUE
+motility	set5IT081	Agar	Ga0059261_2096	Ga0059261_2096		Flagellar basal-body P-ring protein	-1.65191042506911	-8.24268204025914	TRUE
+motility	set5IT080	Agar	Ga0059261_2096	Ga0059261_2096		Flagellar basal-body P-ring protein	-1.60755960592979	-8.71245206566753	TRUE
+motility	set5IT081	Agar	Ga0059261_2117	Ga0059261_2117		Transposase and inactivated derivatives	1.38689131015709	7.62575552990719	FALSE
+motility	set5IT086	Agar	Ga0059261_2164	Ga0059261_2164		Acyl-CoA dehydrogenases	-1.2746398931805	-6.06094882285562	FALSE
+motility	set5IT081	Agar	Ga0059261_3621	Ga0059261_3621		FOG: EAL domain	-1.88532747906963	-5.63080600411351	FALSE
+motility	set5IT085	Agar	Ga0059261_3621	Ga0059261_3621		FOG: EAL domain	-1.48870208332242	-6.86132498210232	FALSE
+motility	set5IT080	Agar	Ga0059261_3698	Ga0059261_3698		Response regulators consisting of a CheY-like receiver domain and a winged-helix DNA-binding domain	-1.76611686207712	-8.58302284050802	FALSE
+motility	set5IT080	Agar	Ga0059261_4190	Ga0059261_4190		Periplasmic protein involved in polysaccharide export	-1.35698850496066	-5.26426365288671	FALSE
+nitrogen source	set5IT067	L-Alanine	Ga0059261_1348	Ga0059261_1348		Predicted membrane protein	2.5048899189055	18.2467997409844	FALSE
+nitrogen source	set5IT067	L-Alanine	Ga0059261_1887	Ga0059261_1887		cation diffusion facilitator family transporter	-1.59463725794951	-8.64308310604842	FALSE
+nitrogen source	set5IT067	L-Alanine	Ga0059261_3327	Ga0059261_3327		hypothetical protein	-1.5880336158753	-5.75123894892102	FALSE
+nitrogen source	set5IT067	L-Alanine	Ga0059261_3899	Ga0059261_3899		alanine dehydrogenase	-2.91330369497923	-13.386770542405	TRUE
+nitrogen source	set5IT067	L-Alanine	Ga0059261_3900	Ga0059261_3900		Transcriptional regulators	-2.95974128623091	-9.53249619775208	FALSE
+nitrogen source	set5IT067	L-Alanine	Ga0059261_3969	Ga0059261_3969		Serine hydrolase	-2.77890835875911	-6.76331174036782	FALSE
+nitrogen source	set5IT069	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_2234	Ga0059261_2234		Glycerol-3-phosphate dehydrogenase	-1.79323156617952	-7.42263387142235	FALSE
+nitrogen source	set5IT063	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_2234	Ga0059261_2234		Glycerol-3-phosphate dehydrogenase	-1.71733455843159	-6.42033366860401	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0053	Ga0059261_0053		Protein of unknown function (DUF4230)	-1.58588967933033	-5.45292252481174	FALSE
+nitrogen source	set5IT065	L-Glutamine	Ga0059261_0065	Ga0059261_0065		ABC-type dipeptide transport system, periplasmic component	1.52196638449583	10.509117724813	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0065	Ga0059261_0065		ABC-type dipeptide transport system, periplasmic component	2.73801328592108	18.895485220448	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0079	Ga0059261_0079		Protein of unknown function (DUF3089)	-2.05271824520642	-9.62085260834487	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0095	Ga0059261_0095		Ribosomal protein L7/L12 C-terminal domain	-1.73141065300285	-5.48881502446868	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0152	Ga0059261_0152		Protein of unknown function (DUF2794)	-1.06728984986743	-5.09648807866636	FALSE
+nitrogen source	set5IT065	L-Glutamine	Ga0059261_0220	Ga0059261_0220		L-serine dehydratase, iron-sulfur-dependent, single chain form	1.05790456040565	8.43337336019156	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0220	Ga0059261_0220		L-serine dehydratase, iron-sulfur-dependent, single chain form	2.4762157727378	19.7222480695199	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0243	Ga0059261_0243		Major Facilitator Superfamily	1.03822442393052	8.83736565192819	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0265	Ga0059261_0265		3-oxoacid CoA-transferase, A subunit	-1.16770389435853	-8.55645670460734	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0282	Ga0059261_0282		ribosomal protein S12 methylthiotransferase RimO	1.16944797750566	9.3787507096783	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0332	Ga0059261_0332		Esterase/lipase	2.56682965298343	20.5471969641087	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0632	Ga0059261_0632		hypothetical protein	-1.04056767971746	-8.63985392199657	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0743	Ga0059261_0743		Kef-type K+ transport systems, membrane components	2.51748709157927	12.097940700606	TRUE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0832	Ga0059261_0832		Predicted permease	-1.0867675396251	-8.04996192116583	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0883	Ga0059261_0883		hypothetical protein	-1.16170015621154	-6.53939149670898	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0917	Ga0059261_0917		Predicted P-loop-containing kinase	1.50031660995086	11.089551141381	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_0960	Ga0059261_0960		transcription-repair coupling factor (mfd)	1.20635343116838	10.9114290693225	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1014	Ga0059261_1014		cation diffusion facilitator family transporter	-1.77609203753031	-7.16906876803369	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1015	Ga0059261_1015		Predicted phosphatases	-2.18925401889079	-6.37265634177804	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1066	Ga0059261_1066		hypothetical protein	-2.86953802509581	-12.9253926675498	FALSE
+nitrogen source	set5IT065	L-Glutamine	Ga0059261_1066	Ga0059261_1066		hypothetical protein	-1.83358629611972	-11.7256179713449	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1306	Ga0059261_1306		methionine-S-sulfoxide reductase	-1.76884074906332	-9.22244075595943	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1385	Ga0059261_1385		Glycosyltransferase	1.56571443285858	13.9771984408656	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1414	Ga0059261_1414		Uncharacterized proteins, homologs of microcin C7 resistance protein MccF	-1.58898803413459	-5.20312672888747	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1420	Ga0059261_1420		Protein of unknown function (DUF2490)	2.06446133095532	13.3117308933821	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1443	Ga0059261_1443		Hemolysins and related proteins containing CBS domains	1.71323699098852	13.8029330580544	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1464	Ga0059261_1464		Aspartyl/Asparaginyl beta-hydroxylase	1.270212034357	8.43205988583099	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1465	Ga0059261_1465		Predicted Zn-dependent peptidases	-2.38644418431267	-13.6789254725119	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1467	Ga0059261_1467		Long-chain acyl-CoA synthetases (AMP-forming)	-1.93098054054072	-12.6670562946689	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1487	Ga0059261_1487		GMP synthase - Glutamine amidotransferase domain	3.78784386225631	26.9504343484379	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1490	Ga0059261_1490		Glycosyltransferase	-1.93164251916907	-10.5030889229114	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1492	Ga0059261_1492		Predicted hydrolases or acyltransferases (alpha/beta hydrolase superfamily)	1.00261113687167	6.91172985279486	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1504	Ga0059261_1504		Uncharacterized protein conserved in bacteria	1.87569552272503	12.3058194417276	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1535	Ga0059261_1535		Predicted transcriptional regulators	-2.33566866231241	-9.88742799440153	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1541	Ga0059261_1541		Predicted esterase of the alpha/beta hydrolase fold	1.43730650693197	7.97475323647461	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1571	Ga0059261_1571		SapC	1.21907404431833	10.2253183443819	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1574	Ga0059261_1574		Superfamily II DNA and RNA helicases	2.14888374396626	11.7663138393682	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1577	Ga0059261_1577		amino acid/polyamine/organocation transporter, APC superfamily (TC 2.A.3)	-2.20168675346654	-11.2151745615778	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1775	Ga0059261_1775		Transcriptional regulator/sugar kinase	-1.03242418690222	-7.26173968422968	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1805	Ga0059261_1805		penicillin-binding protein, 1A family	-1.87648634851673	-11.48870741957	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1815	Ga0059261_1815		hypothetical protein	1.17027834226482	7.77034751728755	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1842	Ga0059261_1842		Protease II	-1.49297051033868	-11.5373912495075	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1855	Ga0059261_1855		Outer membrane cobalamin receptor protein	3.21638089046389	25.0934293397436	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1887	Ga0059261_1887		cation diffusion facilitator family transporter	-2.38095238327669	-8.48732485423525	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1915	Ga0059261_1915		transcriptional regulator, MucR family	-2.38235802779617	-7.50472526974407	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1970	Ga0059261_1970		Bacterial aa3 type cytochrome c oxidase subunit IV	1.20582307137485	7.85062493738001	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_1998	Ga0059261_1998		Predicted SAM-dependent methyltransferases	-1.03032857867399	-6.33487808360796	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2024	Ga0059261_2024		aminopeptidase N, Escherichia coli type	-1.62334288507442	-12.1892090170679	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2180	Ga0059261_2180		methionine-R-sulfoxide reductase	-1.64863116861984	-8.52582724169993	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2185	Ga0059261_2185		FOG: Ankyrin repeat	-2.99105472069214	-15.3643475948528	FALSE
+nitrogen source	set5IT065	L-Glutamine	Ga0059261_2185	Ga0059261_2185		FOG: Ankyrin repeat	-1.53695030310306	-11.468070435519	FALSE
+nitrogen source	set5IT065	L-Glutamine	Ga0059261_2234	Ga0059261_2234		Glycerol-3-phosphate dehydrogenase	-1.34085622313843	-6.49700195453355	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2315	Ga0059261_2315		Protein-disulfide isomerase	-1.57262247007275	-7.62485292999739	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2421	Ga0059261_2421		Sterol desaturase	-1.1804198071642	-8.07608033339925	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2460	Ga0059261_2460		Uncharacterized protein conserved in bacteria	-1.65039016185883	-10.2660277137128	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2512	Ga0059261_2512		Uncharacterized protein conserved in bacteria	1.3583276021717	9.55005703175716	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2536	Ga0059261_2536		Glutamine cyclotransferase	-2.45853031813728	-8.42108027053542	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2695	Ga0059261_2695		Methyltransferase domain	1.65414580196304	12.0624073074551	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_2771	Ga0059261_2771		3-hydroxybutyrate dehydrogenase	-1.05344020113883	-6.70699935822899	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_3266	Ga0059261_3266		ribonuclease R	2.40848827087229	20.7838120703095	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_3523	Ga0059261_3523		Acetyltransferases, including N-acetylases of ribosomal proteins	-1.25622238448661	-8.26796743246058	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_3612	Ga0059261_3612		Dehydrogenases with different specificities (related to short-chain alcohol dehydrogenases)	-1.3206773186317	-7.77294640511394	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_3770	Ga0059261_3770		Beta-lactamase class A	-3.21322967065761	-8.90967826657607	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_3842	Ga0059261_3842		PAS domain S-box	1.36805201429652	12.6031097161294	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_3937	Ga0059261_3937		Imidazolonepropionase and related amidohydrolases	1.59595129681999	12.4244766765853	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_4066	Ga0059261_4066		FAD/FMN-containing dehydrogenases	-2.1971432058766	-11.7563358176396	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_4172	Ga0059261_4172		hypothetical protein	1.14688267555189	8.28825357930782	FALSE
+nitrogen source	set5IT071	L-Glutamine	Ga0059261_4202	Ga0059261_4202		Putative bacterial sensory transduction regulator	1.71211942209859	15.2509169109013	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_0056	Ga0059261_0056		Predicted transcriptional regulator	-1.23405391539054	-5.75996582105722	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_0332	Ga0059261_0332		Esterase/lipase	1.0857485797297	8.56110049214478	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_0653	Ga0059261_0653		Response regulator receiver domain	-1.19699056241627	-7.60071380367304	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_0654	Ga0059261_0654		Chemotaxis signal transduction protein	-1.37098257047455	-5.08441625249694	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_0655	Ga0059261_0655		Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase/Hpt domain/CheW-like domain/Signal transducing histidine kinase, homodimeric domain	-1.41835735970669	-6.94170053717395	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_1015	Ga0059261_1015		Predicted phosphatases	-1.41507296400381	-5.61683791134464	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_1304	Ga0059261_1304		membrane protein, MarC family	1.13908348263628	7.81046655723223	TRUE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_1306	Ga0059261_1306		methionine-S-sulfoxide reductase	-1.12657826078532	-8.16621997215664	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_1487	Ga0059261_1487		GMP synthase - Glutamine amidotransferase domain	1.55720125603156	11.9203935160409	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_1521	Ga0059261_1521		diguanylate cyclase (GGDEF) domain	-1.41583017676164	-6.90177773323779	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_1535	Ga0059261_1535		Predicted transcriptional regulators	-1.21593107600375	-6.89451684581484	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_1577	Ga0059261_1577		amino acid/polyamine/organocation transporter, APC superfamily (TC 2.A.3)	-1.45111422330072	-10.4958688530514	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_1855	Ga0059261_1855		Outer membrane cobalamin receptor protein	1.13783960539745	10.4190178644075	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_1953	Ga0059261_1953		Na+/H+-dicarboxylate symporters	-1.15002951484863	-9.23116695513976	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_2180	Ga0059261_2180		methionine-R-sulfoxide reductase	-1.46202705279402	-7.73068812080392	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_2234	Ga0059261_2234		Glycerol-3-phosphate dehydrogenase	-1.53929678370233	-7.49249389093741	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_2607	Ga0059261_2607		transcriptional regulator, XRE family with cupin sensor	1.79608679671584	9.97811361554769	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_3309	Ga0059261_3309		formate-dependent phosphoribosylglycinamide formyltransferase (EC 6.3.4.-)	1.57687279979702	12.473396337076	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_3881	Ga0059261_3881		Osmosensitive K+ channel histidine kinase	1.25696123670308	8.04113339950025	FALSE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_3961	Ga0059261_3961		urocanate hydratase (EC 4.2.1.49)	-3.35462800660889	-16.588567592963	TRUE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_3962	Ga0059261_3962		N-formylglutamate amidohydrolase	-3.00257340645577	-13.5014241839833	TRUE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_3963	Ga0059261_3963		histidine ammonia-lyase (EC 4.3.1.3)	-3.26030588953902	-11.4843998177865	TRUE
+nitrogen source	set5IT062	L-Histidine	Ga0059261_3964	Ga0059261_3964		imidazolonepropionase (EC 3.5.2.7)	-3.6410396597119	-17.3042966779035	TRUE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0065	Ga0059261_0065		ABC-type dipeptide transport system, periplasmic component	1.17050154190134	7.39562543499389	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_0065	Ga0059261_0065		ABC-type dipeptide transport system, periplasmic component	1.25772822929259	8.69920714794649	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0095	Ga0059261_0095		Ribosomal protein L7/L12 C-terminal domain	-2.00338737460168	-5.63513789433311	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0120	Ga0059261_0120		lytic murein transglycosylase	1.27525575612313	10.3237953347111	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_0220	Ga0059261_0220		L-serine dehydratase, iron-sulfur-dependent, single chain form	1.12635023471971	8.57854008051213	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0220	Ga0059261_0220		L-serine dehydratase, iron-sulfur-dependent, single chain form	1.40191859573319	8.83172307465812	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_0303	Ga0059261_0303		Predicted membrane protein	1.1271409203437	10.3795786470318	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0303	Ga0059261_0303		Predicted membrane protein	1.27122897810963	11.3084663139639	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0332	Ga0059261_0332		Esterase/lipase	1.38861677060903	10.3608308274676	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_0743	Ga0059261_0743		Kef-type K+ transport systems, membrane components	2.20343783470455	11.6769921495785	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0743	Ga0059261_0743		Kef-type K+ transport systems, membrane components	2.81180997509181	12.3743737207934	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_0817	Ga0059261_0817		GTP-binding protein TypA/BipA	1.86528758464839	12.132917950207	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0817	Ga0059261_0817		GTP-binding protein TypA/BipA	2.64085157944369	14.9888581327174	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0883	Ga0059261_0883		hypothetical protein	-1.03241465468629	-5.53087011607162	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_0917	Ga0059261_0917		Predicted P-loop-containing kinase	3.07639790646112	21.9994204023147	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_1043	Ga0059261_1043		Uncharacterized protein conserved in bacteria	2.32403186279786	9.04455994104602	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_1313	Ga0059261_1313		acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.08847704591882	-9.34437125716782	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_1420	Ga0059261_1420		Protein of unknown function (DUF2490)	1.48853651109176	10.6407239341825	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_1420	Ga0059261_1420		Protein of unknown function (DUF2490)	1.77593626463474	12.8220775111656	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_1464	Ga0059261_1464		Aspartyl/Asparaginyl beta-hydroxylase	1.46771677921307	11.2655097979966	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_1465	Ga0059261_1465		Predicted Zn-dependent peptidases	-1.87789521473047	-11.638045430955	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_1465	Ga0059261_1465		Predicted Zn-dependent peptidases	-1.26720962663465	-9.78926861434517	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_1487	Ga0059261_1487		GMP synthase - Glutamine amidotransferase domain	2.45422478856039	19.1276448019956	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_1487	Ga0059261_1487		GMP synthase - Glutamine amidotransferase domain	3.71994646820784	25.7913500384977	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_1490	Ga0059261_1490		Glycosyltransferase	-2.15785609250709	-12.703401962544	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_1490	Ga0059261_1490		Glycosyltransferase	-1.51983978635089	-10.3666571149108	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_1541	Ga0059261_1541		Predicted esterase of the alpha/beta hydrolase fold	1.50642431986949	9.59737963257982	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_1577	Ga0059261_1577		amino acid/polyamine/organocation transporter, APC superfamily (TC 2.A.3)	1.84723554387637	16.6591609765357	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_1577	Ga0059261_1577		amino acid/polyamine/organocation transporter, APC superfamily (TC 2.A.3)	2.21717618651325	19.1639482413421	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_1855	Ga0059261_1855		Outer membrane cobalamin receptor protein	1.78644510883938	15.6612341633391	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_1855	Ga0059261_1855		Outer membrane cobalamin receptor protein	3.21853158687834	26.40145641064	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_2185	Ga0059261_2185		FOG: Ankyrin repeat	-2.43163527852541	-12.9323473380253	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_2185	Ga0059261_2185		FOG: Ankyrin repeat	-1.81454047361784	-12.3879327803345	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_2234	Ga0059261_2234		Glycerol-3-phosphate dehydrogenase	-2.28278073247061	-6.17838078984714	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_2234	Ga0059261_2234		Glycerol-3-phosphate dehydrogenase	-1.86775130251163	-7.33460515813589	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_2276	Ga0059261_2276		Fatty acid hydroxylase superfamily	-1.44554380658029	-9.20372074410217	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_2460	Ga0059261_2460		Uncharacterized protein conserved in bacteria	-1.1009586858185	-6.56148412547012	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_2512	Ga0059261_2512		Uncharacterized protein conserved in bacteria	1.26076600848032	8.81485711211922	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_2536	Ga0059261_2536		Glutamine cyclotransferase	-1.67977797193053	-6.14681278188365	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_2739	Ga0059261_2739		heat-inducible transcription repressor HrcA	1.39966062059094	8.09965087733761	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_3266	Ga0059261_3266		ribonuclease R	1.29453716951547	11.0818165393057	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_3602	Ga0059261_3602		Glutaredoxin, GrxC family	1.37257730214103	5.4945653826478	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_3770	Ga0059261_3770		Beta-lactamase class A	-1.90376154586742	-7.22699179378087	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_3881	Ga0059261_3881		Osmosensitive K+ channel histidine kinase	1.2982099737807	6.5494952169167	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_3926	Ga0059261_3926		L-proline dehydrogenase (EC 1.5.99.8)/delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	1.91699550819973	16.9640673374486	TRUE
+nitrogen source	set5IT072	L-Proline	Ga0059261_4066	Ga0059261_4066		FAD/FMN-containing dehydrogenases	-1.33537752398845	-8.02692634816801	FALSE
+nitrogen source	set5IT066	L-Proline	Ga0059261_4066	Ga0059261_4066		FAD/FMN-containing dehydrogenases	-1.00585876517779	-6.45273418278197	FALSE
+nitrogen source	set5IT072	L-Proline	Ga0059261_4202	Ga0059261_4202		Putative bacterial sensory transduction regulator	1.43285606155886	12.2649279640811	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_0033	Ga0059261_0033		transcriptional regulator, AsnC family	-4.91801110215453	-12.2798703745073	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_0033	Ga0059261_0033		transcriptional regulator, AsnC family	-4.15473675969718	-9.47102864327043	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_0034	Ga0059261_0034		Putative threonine efflux protein	-5.00308076493986	-8.96270811137789	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_0034	Ga0059261_0034		Putative threonine efflux protein	-4.40081746343615	-10.5080755920479	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_0060	Ga0059261_0060		Uncharacterized conserved protein	1.48860574060649	5.9958931947298	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_0257	Ga0059261_0257		hypothetical protein	1.57771951257939	7.66848740198388	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_0257	Ga0059261_0257		hypothetical protein	1.62865521208506	8.7072357514343	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_0257	Ga0059261_0257		hypothetical protein	1.6340130759643	8.40353040167347	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_0257	Ga0059261_0257		hypothetical protein	1.7582107331048	12.8680880206129	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_0282	Ga0059261_0282		ribosomal protein S12 methylthiotransferase RimO	1.09014324264446	7.40993578469383	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_0837	Ga0059261_0837		3-hydroxyacyl-CoA dehydrogenase	-1.0288260872695	-5.82447647077274	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_0917	Ga0059261_0917		Predicted P-loop-containing kinase	-2.41036228267917	-10.1185036030474	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_0917	Ga0059261_0917		Predicted P-loop-containing kinase	-2.15706198038417	-8.83759444630924	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_0917	Ga0059261_0917		Predicted P-loop-containing kinase	-1.48270853007944	-6.61013969418806	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_1166	Ga0059261_1166		Beta-glucosidase-related glycosidases	-4.70322266944438	-21.4788223094291	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_1166	Ga0059261_1166		Beta-glucosidase-related glycosidases	-3.88167558863057	-21.3541727043464	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_1166	Ga0059261_1166		Beta-glucosidase-related glycosidases	-2.92080957199308	-17.7597353343685	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_1166	Ga0059261_1166		Beta-glucosidase-related glycosidases	-2.50957553759826	-15.7633806773393	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_1414	Ga0059261_1414		Uncharacterized proteins, homologs of microcin C7 resistance protein MccF	1.50930857205365	8.06026346211398	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_1453	Ga0059261_1453		Aerobic-type carbon monoxide dehydrogenase, large subunit CoxL/CutL homologs	-1.66051063859479	-6.63422263397051	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_1453	Ga0059261_1453		Aerobic-type carbon monoxide dehydrogenase, large subunit CoxL/CutL homologs	-1.59723597483091	-6.66140680670426	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_1453	Ga0059261_1453		Aerobic-type carbon monoxide dehydrogenase, large subunit CoxL/CutL homologs	-1.47777312582049	-6.17003659817825	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_1458	Ga0059261_1458		Cystathionine beta-lyases/cystathionine gamma-synthases	-1.99818659463179	-9.52708030672882	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_1458	Ga0059261_1458		Cystathionine beta-lyases/cystathionine gamma-synthases	-1.76740910951099	-10.8746064718367	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_1458	Ga0059261_1458		Cystathionine beta-lyases/cystathionine gamma-synthases	1.54328646293855	10.4161266363406	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_1458	Ga0059261_1458		Cystathionine beta-lyases/cystathionine gamma-synthases	1.58184902792825	11.0371617699066	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_1505	Ga0059261_1505		Lyzozyme M1 (1,4-beta-N-acetylmuramidase)	1.15181032802452	5.29881585026383	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_1610	Ga0059261_1610		CBS domain/Transporter associated domain	1.5509743629877	8.88802675808222	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_1759	Ga0059261_1759		Phosphoadenosine phosphosulfate reductase family	1.17923300787456	5.74854795383775	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_1932	Ga0059261_1932		Peptidase family M23	-1.72513964087481	-9.18220028303468	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_1932	Ga0059261_1932		Peptidase family M23	-1.65304497451666	-10.0106454872047	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_1932	Ga0059261_1932		Peptidase family M23	-1.54394108166771	-11.4910900741083	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_1932	Ga0059261_1932		Peptidase family M23	-1.4903170290962	-10.3521614915497	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_2014	Ga0059261_2014		Predicted permease	-1.82055935304083	-10.6983205208138	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_2014	Ga0059261_2014		Predicted permease	-1.797700300926	-10.0311308089385	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_2044	Ga0059261_2044		peptide chain release factor 3	1.06086543273711	6.17790848984571	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_2044	Ga0059261_2044		peptide chain release factor 3	1.16757855727211	6.04353171833237	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_2170	Ga0059261_2170		Thioredoxin domain-containing protein	-1.16139988076215	-5.55719648645205	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_2204	Ga0059261_2204		tRNA modification GTPase trmE	-1.41861304259922	-5.30948102771407	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_2222	Ga0059261_2222		Peptidyl-prolyl cis-trans isomerase (rotamase) - cyclophilin family	-1.57818505448825	-5.19187120118067	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_2466	Ga0059261_2466		DnaJ domain/DnaJ C terminal domain	-1.12688647073956	-5.91030090019753	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_2512	Ga0059261_2512		Uncharacterized protein conserved in bacteria	-1.41995801387292	-7.78255300476441	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_2662	Ga0059261_2662		Transcriptional regulators	-1.14122619202322	-6.64883493811019	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_2662	Ga0059261_2662		Transcriptional regulators	-1.11316703240579	-6.5199533295814	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_2695	Ga0059261_2695		Methyltransferase domain	1.20426906830935	9.55452751458707	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_2695	Ga0059261_2695		Methyltransferase domain	1.5174136065647	11.6813087746586	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_2695	Ga0059261_2695		Methyltransferase domain	1.8667340714012	14.1325987572375	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_2695	Ga0059261_2695		Methyltransferase domain	1.89881089628305	13.8337012390223	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3094	Ga0059261_3094		Domain amino terminal to FKBP-type peptidyl-prolyl isomerase/FKBP-type peptidyl-prolyl cis-trans isomerase	1.29200689787372	7.40569074744546	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3099	Ga0059261_3099		dTDP-glucose 4,6-dehydratase (EC 4.2.1.46)	-1.16822528569309	-6.49239340616012	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3099	Ga0059261_3099		dTDP-glucose 4,6-dehydratase (EC 4.2.1.46)	-1.146906268198	-5.95098512949179	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_3163	Ga0059261_3163		hypothetical protein	1.34934820413319	11.7598733708366	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3163	Ga0059261_3163		hypothetical protein	1.49854664695484	11.6878305647225	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3163	Ga0059261_3163		hypothetical protein	1.52355737436304	12.6755704996813	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_3163	Ga0059261_3163		hypothetical protein	1.68836958225507	14.765406407466	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_3182	Ga0059261_3182		Opacity protein and related surface antigens	-1.38802420366292	-8.76843868551829	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_3182	Ga0059261_3182		Opacity protein and related surface antigens	-1.36519666205966	-8.84986858318981	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3182	Ga0059261_3182		Opacity protein and related surface antigens	-1.3450881953895	-6.55409665982989	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3207	Ga0059261_3207		Disulfide bond chaperones of the HSP33 family	1.48867340667376	6.86430346591792	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3207	Ga0059261_3207		Disulfide bond chaperones of the HSP33 family	1.53689391171958	7.1822654989399	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3265	Ga0059261_3265		Glycerol-3-phosphate dehydrogenase	1.12693543607622	8.80688737309984	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3403	Ga0059261_3403		Uncharacterized protein conserved in bacteria	1.78508557155736	13.6026387565826	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3403	Ga0059261_3403		Uncharacterized protein conserved in bacteria	1.79725129889721	12.9784783133289	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3472	Ga0059261_3472		Sporulation related domain	-1.6266914074147	-5.73760881328606	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3491	Ga0059261_3491		hypothetical protein	1.58710421740428	7.20437259343885	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3526	Ga0059261_3526		hemimethylated DNA binding domain	1.17759689071256	7.33438938029054	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3642	Ga0059261_3642		Predicted membrane protein	-1.09229728604278	-6.38994392212852	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3770	Ga0059261_3770		Beta-lactamase class A	-1.57671849088631	-6.75244479802004	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3807	Ga0059261_3807		Uncharacterized conserved protein	1.96464391395604	10.6157493409904	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3807	Ga0059261_3807		Uncharacterized conserved protein	1.99240802573723	13.5559173146143	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3876	Ga0059261_3876		Signal transduction histidine kinase	-1.38534394114447	-5.67331411436373	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3878	Ga0059261_3878		Response regulators consisting of a CheY-like receiver domain and a winged-helix DNA-binding domain	-1.69455096445089	-8.48326087822023	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3878	Ga0059261_3878		Response regulators consisting of a CheY-like receiver domain and a winged-helix DNA-binding domain	-1.38877802783581	-6.51023695017642	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3880	Ga0059261_3880		Glycosyltransferase	-1.65307737151366	-7.28846454198388	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3880	Ga0059261_3880		Glycosyltransferase	-1.42415366934008	-6.49096152414767	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3881	Ga0059261_3881		Osmosensitive K+ channel histidine kinase	1.27398174167218	5.37018075964993	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3881	Ga0059261_3881		Osmosensitive K+ channel histidine kinase	1.39581270378698	5.54987137510744	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_3889	Ga0059261_3889		Beta-glucosidase-related glycosidases	-1.5159468438234	-10.3436567566611	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_3889	Ga0059261_3889		Beta-glucosidase-related glycosidases	-1.43990656492939	-8.97389131756517	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_3899	Ga0059261_3899		alanine dehydrogenase	-1.11485963714705	-7.01963501835834	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_3900	Ga0059261_3900		Transcriptional regulators	-1.23214825490555	-5.66913458210583	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3930	Ga0059261_3930		Putative protein-S-isoprenylcysteine methyltransferase	-1.40616954576294	-6.98780520031733	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3930	Ga0059261_3930		Putative protein-S-isoprenylcysteine methyltransferase	-1.30907626848017	-6.78141300870672	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3949	Ga0059261_3949		type II secretion system protein G	-1.34620314007783	-7.5548201149242	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3950	Ga0059261_3950		Type II secretion system (T2SS), protein L	-1.33365412093233	-8.00361876871248	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3950	Ga0059261_3950		Type II secretion system (T2SS), protein L	-1.21875959076642	-7.55156000749437	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3952	Ga0059261_3952		Type II secretory pathway, ATPase PulE/Tfp pilus assembly pathway, ATPase PilB	-1.30039344879653	-6.35078396642747	FALSE
+nutrient	set6IT053	D-Cellobiose	Ga0059261_3953	Ga0059261_3953		Type II secretory pathway, component PulF	-1.24511800400521	-7.44502936057953	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_3953	Ga0059261_3953		Type II secretory pathway, component PulF	-1.24302083461278	-7.44371262887536	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_3968	Ga0059261_3968		Uncharacterized protein conserved in bacteria	-1.63646924543631	-8.64038721108209	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_3968	Ga0059261_3968		Uncharacterized protein conserved in bacteria	-1.15452094992113	-7.59932702860178	FALSE
+nutrient	set6IT050	D-Cellobiose	Ga0059261_4049	Ga0059261_4049		Aerobic-type carbon monoxide dehydrogenase, small subunit CoxS/CutS homologs	-2.02184318551343	-5.75636892714347	FALSE
+nutrient	set6IT059	D-Cellobiose	Ga0059261_4049	Ga0059261_4049		Aerobic-type carbon monoxide dehydrogenase, small subunit CoxS/CutS homologs	-1.59976717797612	-5.98008740719381	FALSE
+nutrient	set6IT056	D-Cellobiose	Ga0059261_4049	Ga0059261_4049		Aerobic-type carbon monoxide dehydrogenase, small subunit CoxS/CutS homologs	-1.42341026322735	-7.12411431396791	FALSE
+nutrient	set6IT057	D-Glucose	Ga0059261_0033	Ga0059261_0033		transcriptional regulator, AsnC family	-1.44217819158171	-6.91074039941467	FALSE
+nutrient	set6IT060	D-Glucose	Ga0059261_0034	Ga0059261_0034		Putative threonine efflux protein	-1.685775392908	-6.75925656275032	FALSE
+nutrient	set6IT057	D-Glucose	Ga0059261_0034	Ga0059261_0034		Putative threonine efflux protein	-1.35403161345566	-5.65057923469019	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_0039	Ga0059261_0039		His Kinase A (phospho-acceptor) domain	1.99625779149895	9.94129421210392	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_0039	Ga0059261_0039		His Kinase A (phospho-acceptor) domain	2.12414202004291	11.516219681551	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_0060	Ga0059261_0060		Uncharacterized conserved protein	1.54237100644173	7.01682125066889	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_0232	Ga0059261_0232		patatin-related protein	1.03340559575243	5.87124088792336	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_0257	Ga0059261_0257		hypothetical protein	1.47579494058216	8.80798408781897	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_0282	Ga0059261_0282		ribosomal protein S12 methylthiotransferase RimO	1.07055383065684	6.97967863239916	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_0729	Ga0059261_0729		MOSC domain	1.17374799800431	5.20701892322066	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_0837	Ga0059261_0837		3-hydroxyacyl-CoA dehydrogenase	-1.12201566199996	-6.50236711794548	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_0837	Ga0059261_0837		3-hydroxyacyl-CoA dehydrogenase	-1.09449188881957	-6.17345844495761	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_0848	Ga0059261_0848		transcriptional regulator, TetR family	1.46214369709543	7.34539980994611	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_1043	Ga0059261_1043		Uncharacterized protein conserved in bacteria	1.64410870513573	5.04498124585879	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_1453	Ga0059261_1453		Aerobic-type carbon monoxide dehydrogenase, large subunit CoxL/CutL homologs	-1.58809245145301	-6.17065661310144	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_1458	Ga0059261_1458		Cystathionine beta-lyases/cystathionine gamma-synthases	1.79593968949445	11.7570926725569	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_1458	Ga0059261_1458		Cystathionine beta-lyases/cystathionine gamma-synthases	1.90011108912699	12.1784703923681	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_1464	Ga0059261_1464		Aspartyl/Asparaginyl beta-hydroxylase	1.32734834448719	6.14616796242908	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_1464	Ga0059261_1464		Aspartyl/Asparaginyl beta-hydroxylase	1.37625248800782	8.50689118357286	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_1467	Ga0059261_1467		Long-chain acyl-CoA synthetases (AMP-forming)	-1.63658840375378	-9.06342948295569	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_1571	Ga0059261_1571		SapC	1.26201934880108	9.53264997841763	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_1571	Ga0059261_1571		SapC	1.57753507983229	11.1678794734883	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_1932	Ga0059261_1932		Peptidase family M23	-1.8877937455029	-9.68983963110885	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_1932	Ga0059261_1932		Peptidase family M23	-1.3822061415693	-8.03016388204949	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2025	Ga0059261_2025		Predicted aminopeptidases	-1.25432768112899	-7.21681379459421	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_2025	Ga0059261_2025		Predicted aminopeptidases	-1.24539789963817	-7.87905991462295	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_2044	Ga0059261_2044		peptide chain release factor 3	1.37819468159114	7.45134355514822	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2044	Ga0059261_2044		peptide chain release factor 3	1.65497506362995	7.92387846103996	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_2170	Ga0059261_2170		Thioredoxin domain-containing protein	-1.43631379429948	-6.00656593813588	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2170	Ga0059261_2170		Thioredoxin domain-containing protein	-1.36298323280479	-6.76196341088126	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_2204	Ga0059261_2204		tRNA modification GTPase trmE	-1.75431639559827	-5.97551972394963	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2204	Ga0059261_2204		tRNA modification GTPase trmE	-1.53471674003449	-5.07036929904735	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2466	Ga0059261_2466		DnaJ domain/DnaJ C terminal domain	-1.44228110472914	-7.06726610083958	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2570	Ga0059261_2570		Type IV secretory pathway, TrbD component	1.45682715688094	5.89933091146025	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2682	Ga0059261_2682		Response regulator receiver domain	1.34649752955881	5.55397409330524	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_2695	Ga0059261_2695		Methyltransferase domain	1.97654220717587	14.667682571712	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2695	Ga0059261_2695		Methyltransferase domain	2.18901302736144	15.5822609451679	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_2739	Ga0059261_2739		heat-inducible transcription repressor HrcA	1.66140575331903	7.21198824994578	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2739	Ga0059261_2739		heat-inducible transcription repressor HrcA	1.92303752230913	6.72256470560404	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_2765	Ga0059261_2765		Cu/Zn superoxide dismutase	1.6513627352005	7.45732983623889	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_2765	Ga0059261_2765		Cu/Zn superoxide dismutase	1.7124294156875	8.18649317664399	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3094	Ga0059261_3094		Domain amino terminal to FKBP-type peptidyl-prolyl isomerase/FKBP-type peptidyl-prolyl cis-trans isomerase	1.32213764846225	5.72879756150862	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3094	Ga0059261_3094		Domain amino terminal to FKBP-type peptidyl-prolyl isomerase/FKBP-type peptidyl-prolyl cis-trans isomerase	1.45527691697212	7.55922105965017	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3163	Ga0059261_3163		hypothetical protein	1.33774691848417	10.2354783138096	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3163	Ga0059261_3163		hypothetical protein	1.46395103048325	11.8466441227224	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3207	Ga0059261_3207		Disulfide bond chaperones of the HSP33 family	1.88689161948695	9.5476093286429	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3207	Ga0059261_3207		Disulfide bond chaperones of the HSP33 family	2.06874212756913	9.30273292420455	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3237	Ga0059261_3237		hypothetical protein	1.25036238036748	7.98167609043363	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3390	Ga0059261_3390		methionine aminopeptidase, type I	-1.38901603215226	-7.41331065394046	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3403	Ga0059261_3403		Uncharacterized protein conserved in bacteria	1.6854459573832	10.785264704501	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3403	Ga0059261_3403		Uncharacterized protein conserved in bacteria	1.71480076229819	10.8786437132008	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3473	Ga0059261_3473		deoxyguanosinetriphosphate triphosphohydrolase, putative	1.18133938743425	7.73327733802657	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3473	Ga0059261_3473		deoxyguanosinetriphosphate triphosphohydrolase, putative	1.45728570761689	8.73744839427284	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3491	Ga0059261_3491		hypothetical protein	1.43372901250562	5.95413185340045	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3491	Ga0059261_3491		hypothetical protein	1.59470598251707	5.67728633508943	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3526	Ga0059261_3526		hemimethylated DNA binding domain	1.23438570261729	7.50456280463565	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3526	Ga0059261_3526		hemimethylated DNA binding domain	1.33126301519543	7.64675169924287	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3770	Ga0059261_3770		Beta-lactamase class A	-1.65813345924385	-7.68781895650388	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3807	Ga0059261_3807		Uncharacterized conserved protein	1.84895363171886	8.14583753590063	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3807	Ga0059261_3807		Uncharacterized conserved protein	2.11225658822579	13.0167410579104	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3876	Ga0059261_3876		Signal transduction histidine kinase	-1.2101350525642	-6.09293808504963	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3880	Ga0059261_3880		Glycosyltransferase	-1.65706795041792	-7.34753165725535	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3899	Ga0059261_3899		alanine dehydrogenase	1.07272446581751	6.96208615069	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3899	Ga0059261_3899		alanine dehydrogenase	1.19104641212541	8.61079085451412	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3900	Ga0059261_3900		Transcriptional regulators	1.17891370788001	6.34081561931366	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3930	Ga0059261_3930		Putative protein-S-isoprenylcysteine methyltransferase	-1.43693109889941	-6.42073889050319	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_3930	Ga0059261_3930		Putative protein-S-isoprenylcysteine methyltransferase	-1.32779749266318	-6.756591038337	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3950	Ga0059261_3950		Type II secretion system (T2SS), protein L	-1.21194795337833	-6.99299266931266	FALSE
+nutrient	set6IT051	D-Glucose	Ga0059261_3956	Ga0059261_3956		amino acid/amide ABC transporter substrate-binding protein, HAAT family (TC 3.A.1.4.-)	-1.34627711711143	-5.03212922845706	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_4049	Ga0059261_4049		Aerobic-type carbon monoxide dehydrogenase, small subunit CoxS/CutS homologs	-1.99782580165252	-5.04343581720058	FALSE
+nutrient	set6IT054	D-Glucose	Ga0059261_4212	Ga0059261_4212		TPR repeat	1.31055450322267	5.02638775379314	FALSE
+nutrient	set6IT055	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0324	Ga0059261_0324		Pyruvate:ferredoxin oxidoreductase and related 2-oxoacid:ferredoxin oxidoreductases, beta subunit	-3.82921401128717	-16.4368458666554	FALSE
+nutrient	set6IT058	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0324	Ga0059261_0324		Pyruvate:ferredoxin oxidoreductase and related 2-oxoacid:ferredoxin oxidoreductases, beta subunit	-3.61752341278308	-15.3764963883064	FALSE
+nutrient	set6IT049	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0324	Ga0059261_0324		Pyruvate:ferredoxin oxidoreductase and related 2-oxoacid:ferredoxin oxidoreductases, beta subunit	-1.70511070296586	-13.0255931054478	FALSE
+nutrient	set6IT052	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0324	Ga0059261_0324		Pyruvate:ferredoxin oxidoreductase and related 2-oxoacid:ferredoxin oxidoreductases, beta subunit	-1.59817330869073	-12.9603495682863	FALSE
+nutrient	set6IT055	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0325	Ga0059261_0325		2-oxoacid:acceptor oxidoreductase, alpha subunit	-4.23739669643243	-19.8619780757842	FALSE
+nutrient	set6IT058	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0325	Ga0059261_0325		2-oxoacid:acceptor oxidoreductase, alpha subunit	-3.89981916854373	-15.4162023689955	FALSE
+nutrient	set6IT049	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0325	Ga0059261_0325		2-oxoacid:acceptor oxidoreductase, alpha subunit	-1.65596104715104	-12.9874228554816	FALSE
+nutrient	set6IT052	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0325	Ga0059261_0325		2-oxoacid:acceptor oxidoreductase, alpha subunit	-1.65372209291747	-13.072165025996	FALSE
+nutrient	set6IT049	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0692	Ga0059261_0692		Predicted secreted protein	-1.88919250241047	-8.51522155750218	FALSE
+nutrient	set6IT058	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0692	Ga0059261_0692		Predicted secreted protein	-1.71351457206407	-8.58565129090058	FALSE
+nutrient	set6IT052	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0692	Ga0059261_0692		Predicted secreted protein	-1.53492188740386	-6.57675680480216	FALSE
+nutrient	set6IT052	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0765	Ga0059261_0765		FecR family protein	1.4250738809191	7.68362677247057	FALSE
+nutrient	set6IT049	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0765	Ga0059261_0765		FecR family protein	1.4365881338015	7.73151966611757	FALSE
+nutrient	set6IT055	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0765	Ga0059261_0765		FecR family protein	1.67234009455244	8.18131258761093	FALSE
+nutrient	set6IT058	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_0765	Ga0059261_0765		FecR family protein	1.93112946631404	9.63678543047552	FALSE
+nutrient	set6IT052	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_1504	Ga0059261_1504		Uncharacterized protein conserved in bacteria	1.22562046349955	8.50179098358713	FALSE
+nutrient	set6IT052	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_1876	Ga0059261_1876		Predicted membrane protein	-1.13792703272824	-6.0588590648198	FALSE
+nutrient	set6IT058	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_2000	Ga0059261_2000		Uncharacterized conserved protein	-1.35562672788201	-6.12723330310341	FALSE
+nutrient	set6IT052	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_2626	Ga0059261_2626		transcriptional regulator, DeoR family	-1.37873601842697	-7.01767529426369	FALSE
+nutrient	set6IT055	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_3536	Ga0059261_3536		hypothetical protein	-2.64680083908847	-5.34247612802412	FALSE
+nutrient	set6IT058	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_3536	Ga0059261_3536		hypothetical protein	-2.40356589802721	-5.67378306408763	FALSE
+nutrient	set6IT049	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_3536	Ga0059261_3536		hypothetical protein	-2.12105343319448	-5.07417199021788	FALSE
+nutrient	set6IT052	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_3536	Ga0059261_3536		hypothetical protein	-1.88993462990768	-7.57138250770561	FALSE
+nutrient	set6IT058	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_3625	Ga0059261_3625		Short-chain dehydrogenases of various substrate specificities	-2.23863026177606	-7.4661981036316	FALSE
+nutrient	set6IT049	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_3625	Ga0059261_3625		Short-chain dehydrogenases of various substrate specificities	-1.73662934094741	-5.60848572181472	FALSE
+nutrient	set6IT052	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_3625	Ga0059261_3625		Short-chain dehydrogenases of various substrate specificities	-1.71909784802991	-6.09154784759357	FALSE
+nutrient	set6IT055	L-Glutamic acid monopotassium salt monohydrate	Ga0059261_3625	Ga0059261_3625		Short-chain dehydrogenases of various substrate specificities	-1.4884926356931	-7.01889522790339	FALSE
+pH	set5IT087		Ga0059261_1006	Ga0059261_1006		NAD-dependent aldehyde dehydrogenases	-1.59865632711907	-7.1225044412189	FALSE
+pH	set5IT088		Ga0059261_1006	Ga0059261_1006		NAD-dependent aldehyde dehydrogenases	-1.41869257615691	-6.05248832676271	FALSE
+stress	set1IT044	1-ethyl-3-methylimidazolium acetate	Ga0059261_4203	Ga0059261_4203		Arabinose efflux permease	-1.69609050271625	-6.37776319321614	FALSE
+stress	set1IT047	1-ethyl-3-methylimidazolium chloride	Ga0059261_4203	Ga0059261_4203		Arabinose efflux permease	-3.72796260386994	-8.20234247663447	FALSE
+stress	set1IT046	1-ethyl-3-methylimidazolium chloride	Ga0059261_4203	Ga0059261_4203		Arabinose efflux permease	-3.00087881057499	-6.28477676689189	FALSE
+stress	set4IT027	5-Hydroxymethylfurfural	Ga0059261_3685	Ga0059261_3685		Enoyl-CoA hydratase/carnithine racemase	-2.31256011232414	-10.8061406159309	FALSE
+stress	set4IT048	Bacitracin	Ga0059261_0638	Ga0059261_0638		type I secretion outer membrane protein, TolC family	-4.49016846221184	-21.5092416599472	FALSE
+stress	set4IT048	Bacitracin	Ga0059261_0814	Ga0059261_0814		hypothetical protein	-1.44436851221457	-6.65454070527161	FALSE
+stress	set4IT048	Bacitracin	Ga0059261_1877	Ga0059261_1877		Cation/multidrug efflux pump	-4.53431622439589	-23.8918212853862	FALSE
+stress	set4IT048	Bacitracin	Ga0059261_1878	Ga0059261_1878		RND family efflux transporter, MFP subunit	-3.73081390590774	-8.60421015268398	FALSE
+stress	set4IT048	Bacitracin	Ga0059261_4145	Ga0059261_4145		phage shock protein C (PspC) family protein	-3.87585597953888	-10.8104572723613	FALSE
+stress	set4IT048	Bacitracin	Ga0059261_4146	Ga0059261_4146		phage shock protein B	-3.62675048309625	-13.0117031160218	FALSE
+stress	set4IT048	Bacitracin	Ga0059261_4149	Ga0059261_4149		psp operon transcriptional activator PspF	-4.91858158522557	-6.71912848948983	TRUE
+stress	set4IT043	Benzalkonium Chloride	Ga0059261_0211	Ga0059261_0211		Uncharacterized protein conserved in bacteria	-1.34346881885928	-6.23843015148797	FALSE
+stress	set4IT043	Benzalkonium Chloride	Ga0059261_2291	Ga0059261_2291		putative efflux protein, MATE family	-1.23183433613094	-5.84558142910159	FALSE
+stress	set5IT052	Cephalothin sodium salt	Ga0059261_0243	Ga0059261_0243		Major Facilitator Superfamily	-4.14624259601001	-17.4774198988047	FALSE
+stress	set5IT052	Cephalothin sodium salt	Ga0059261_3143	Ga0059261_3143		Zn-dependent hydrolases, including glyoxylases	-3.74788770017569	-15.0422426741564	FALSE
+stress	set2IT083	Choline Lysine	Ga0059261_1959	Ga0059261_1959		Predicted permease, DMT superfamily	-5.25727911559572	-12.6255889444779	FALSE
+stress	set4IT036	Choline chloride	Ga0059261_2271	Ga0059261_2271		branched-chain alpha-keto acid dehydrogenase E2 component (EC 2.3.1.168)	-1.39636848576791	-6.86347211595865	FALSE
+stress	set4IT036	Choline chloride	Ga0059261_2272	Ga0059261_2272		Pyruvate/2-oxoglutarate dehydrogenase complex, dehydrogenase (E1) component, eukaryotic type, beta subunit	-1.14034927895663	-9.59632045428436	FALSE
+stress	set4IT036	Choline chloride	Ga0059261_3685	Ga0059261_3685		Enoyl-CoA hydratase/carnithine racemase	-2.95878661607453	-10.0311055813526	FALSE
+stress	set3IT094	Cisplatin	Ga0059261_0249	Ga0059261_0249		Superfamily I DNA and RNA helicases	-4.60359632808111	-13.5428033601472	TRUE
+stress	set3IT093	Cisplatin	Ga0059261_0249	Ga0059261_0249		Superfamily I DNA and RNA helicases	-3.85650780273145	-14.4781925088158	TRUE
+stress	set3IT094	Cisplatin	Ga0059261_0645	Ga0059261_0645		DNA replication and repair protein RecR	-5.14735139297621	-6.11155966106204	TRUE
+stress	set3IT093	Cisplatin	Ga0059261_0645	Ga0059261_0645		DNA replication and repair protein RecR	-4.04672318394467	-7.70648861514011	TRUE
+stress	set3IT094	Cisplatin	Ga0059261_0674	Ga0059261_0674		excinuclease ABC, A subunit	-4.3808584662325	-19.3133766383828	TRUE
+stress	set3IT093	Cisplatin	Ga0059261_0674	Ga0059261_0674		excinuclease ABC, A subunit	-3.95843334368042	-19.2746717391598	TRUE
+stress	set3IT094	Cisplatin	Ga0059261_0751	Ga0059261_0751		DNA repair protein RadA	-1.06740472567728	-7.46671151254259	TRUE
+stress	set3IT094	Cisplatin	Ga0059261_0958	Ga0059261_0958		ATP-dependent DNA helicase RecG (EC 3.6.1.-)	-1.60170629518993	-10.1549651734363	TRUE
+stress	set3IT094	Cisplatin	Ga0059261_0960	Ga0059261_0960		transcription-repair coupling factor (mfd)	-1.25077790685499	-10.3332519711913	TRUE
+stress	set3IT094	Cisplatin	Ga0059261_1941	Ga0059261_1941		DEXH box helicase, DNA ligase-associated	-4.02791072950477	-20.0769292003121	TRUE
+stress	set3IT093	Cisplatin	Ga0059261_1941	Ga0059261_1941		DEXH box helicase, DNA ligase-associated	-2.87566306442222	-16.723799315389	TRUE
+stress	set3IT094	Cisplatin	Ga0059261_3186	Ga0059261_3186		Excinuclease ABC subunit C	-3.75288706360511	-13.7487572929021	TRUE
+stress	set3IT093	Cisplatin	Ga0059261_3186	Ga0059261_3186		Excinuclease ABC subunit C	-3.15386540730966	-13.7978077912394	TRUE
+stress	set3IT094	Cisplatin	Ga0059261_3189	Ga0059261_3189		DNA replication and repair protein RecO	-5.13421877802556	-8.56718235375155	TRUE
+stress	set3IT093	Cisplatin	Ga0059261_3189	Ga0059261_3189		DNA replication and repair protein RecO	-4.58986926865982	-9.77698398019396	TRUE
+stress	set3IT094	Cisplatin	Ga0059261_3779	Ga0059261_3779		Excinuclease ABC subunit B	-4.2493958753464	-20.0942017547071	TRUE
+stress	set3IT093	Cisplatin	Ga0059261_3779	Ga0059261_3779		Excinuclease ABC subunit B	-4.19306487632818	-21.2019219645387	TRUE
+stress	set3IT088	Cobalt chloride hexahydrate	Ga0059261_0852	Ga0059261_0852		Transcriptional regulators	-1.43654924197619	-6.22452927052341	FALSE
+stress	set5IT057	D-Cycloserine	Ga0059261_2678	Ga0059261_2678		DNA-binding ferritin-like protein (oxidative damage protectant)	-4.88056144081921	-12.1390908060701	TRUE
+stress	set5IT058	Doxycycline hyclate	Ga0059261_2714	Ga0059261_2714		drug resistance transporter, Bcr/CflA subfamily	-1.44382581672224	-9.93007708491967	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_0120	Ga0059261_0120		lytic murein transglycosylase	-1.79111862496025	-12.3220600609832	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_0638	Ga0059261_0638		type I secretion outer membrane protein, TolC family	-2.08546374672478	-16.3107009407285	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_1450	Ga0059261_1450		Opacity protein and related surface antigens	-1.01362923397492	-7.00191444349156	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_1513	Ga0059261_1513		hypothetical protein	-2.19427643110393	-8.9244866612356	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_2146	Ga0059261_2146		Glyoxalase-like domain	-1.65367416011562	-7.44945870706599	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_2697	Ga0059261_2697		Membrane carboxypeptidase/penicillin-binding protein	-1.19078609346577	-10.3734594274873	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_2714	Ga0059261_2714		drug resistance transporter, Bcr/CflA subfamily	-1.55431764860702	-11.4995105350784	TRUE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_2754	Ga0059261_2754		ABC-type branched-chain amino acid transport systems, periplasmic component	-1.29902748164766	-11.1421159352945	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_3200	Ga0059261_3200		Opacity protein and related surface antigens	-2.05957038740302	-14.2888287339383	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_3431	Ga0059261_3431		Uncharacterized protein conserved in bacteria	-1.14451607030951	-6.58612484341973	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_3780	Ga0059261_3780		hypothetical protein	-1.23605345940577	-6.44049120731012	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_4005	Ga0059261_4005		drug resistance transporter, EmrB/QacA subfamily	-2.26970129358346	-10.7656435529859	FALSE
+stress	set5IT049	Fusidic acid sodium salt	Ga0059261_4006	Ga0059261_4006		Multidrug resistance efflux pump	-1.86625258362093	-10.0256926174818	FALSE
+stress	set4IT021	Gentamicin sulfate salt	Ga0059261_1482	Ga0059261_1482		Acetyltransferase (GNAT) family	-2.86930326423544	-15.8764856011676	FALSE
+stress	set4IT020	Gentamicin sulfate salt	Ga0059261_1482	Ga0059261_1482		Acetyltransferase (GNAT) family	-2.48803356939701	-14.9734948774554	FALSE
+stress	set4IT021	Gentamicin sulfate salt	Ga0059261_1483	Ga0059261_1483		acetyl-CoA acetyltransferases	-2.00245489826639	-12.8407608956428	FALSE
+stress	set4IT020	Gentamicin sulfate salt	Ga0059261_1483	Ga0059261_1483		acetyl-CoA acetyltransferases	-1.25582877312848	-8.42508000187124	FALSE
+stress	set4IT021	Gentamicin sulfate salt	Ga0059261_2137	Ga0059261_2137		ABC-type multidrug transport system, ATPase and permease components	-2.29433044497668	-16.9097883807738	FALSE
+stress	set4IT020	Gentamicin sulfate salt	Ga0059261_2137	Ga0059261_2137		ABC-type multidrug transport system, ATPase and permease components	-1.28925268745945	-10.610241633701	FALSE
+stress	set2IT086	L-Lysine	Ga0059261_1404	Ga0059261_1404		transcriptional regulator, BadM/Rrf2 family	-1.47754655857582	-6.62542025721312	FALSE
+stress	set2IT085	L-Lysine	Ga0059261_1958	Ga0059261_1958		Transcriptional regulators	-4.46037753305575	-6.75361373402478	FALSE
+stress	set2IT086	L-Lysine	Ga0059261_1958	Ga0059261_1958		Transcriptional regulators	-3.84036688280731	-6.07741085373557	FALSE
+stress	set2IT085	L-Lysine	Ga0059261_1959	Ga0059261_1959		Predicted permease, DMT superfamily	-5.83738300542011	-14.0933099531729	FALSE
+stress	set2IT086	L-Lysine	Ga0059261_1959	Ga0059261_1959		Predicted permease, DMT superfamily	-3.01964038773749	-11.8845832755624	FALSE
+stress	set2IT086	L-Lysine	Ga0059261_2014	Ga0059261_2014		Predicted permease	-1.39309734037427	-10.2748753002496	FALSE
+stress	set2IT086	L-Lysine	Ga0059261_2222	Ga0059261_2222		Peptidyl-prolyl cis-trans isomerase (rotamase) - cyclophilin family	-1.11522642788726	-5.85679961441906	FALSE
+stress	set2IT086	L-Lysine	Ga0059261_3685	Ga0059261_3685		Enoyl-CoA hydratase/carnithine racemase	-1.80093568161623	-7.34196054571302	FALSE
+stress	set5IT055	Lomefloxacin hydrochloride	Ga0059261_0751	Ga0059261_0751		DNA repair protein RadA	-2.3264118652598	-13.869706580316	TRUE
+stress	set5IT056	Lomefloxacin hydrochloride	Ga0059261_0751	Ga0059261_0751		DNA repair protein RadA	-1.96497868779798	-12.4496218578918	TRUE
+stress	set5IT055	Lomefloxacin hydrochloride	Ga0059261_3937	Ga0059261_3937		Imidazolonepropionase and related amidohydrolases	1.75671217183779	14.8930437571385	TRUE
+stress	set5IT056	Lomefloxacin hydrochloride	Ga0059261_3937	Ga0059261_3937		Imidazolonepropionase and related amidohydrolases	2.53011538377697	19.4954091293218	TRUE
+stress	set5IT053	MreB Perturbing Compound A22	Ga0059261_3865	Ga0059261_3865		cytochrome bd-I ubiquinol oxidase subunit 1 apoprotein (EC 1.10.3.10)	-1.55300967130696	-8.54345717909369	FALSE
+stress	set5IT053	MreB Perturbing Compound A22	Ga0059261_3866	Ga0059261_3866		cytochrome bd-I ubiquinol oxidase subunit 2 apoprotein (EC 1.10.3.10)	-1.63573131418492	-10.1743972342921	FALSE
+stress	set4IT019	Nalidixic acid sodium salt	Ga0059261_0751	Ga0059261_0751		DNA repair protein RadA	-1.3975024748917	-9.64831239997588	TRUE
+stress	set4IT018	Nalidixic acid sodium salt	Ga0059261_0751	Ga0059261_0751		DNA repair protein RadA	-1.22083107606616	-8.81169034062684	TRUE
+stress	set4IT019	Nalidixic acid sodium salt	Ga0059261_3937	Ga0059261_3937		Imidazolonepropionase and related amidohydrolases	1.96084441463589	15.5960990349937	FALSE
+stress	set3IT086	Nickel (II) chloride hexahydrate	Ga0059261_1206	Ga0059261_1206		Arabinose efflux permease	-2.30832405969859	-15.607625884721	TRUE
+stress	set3IT086	Nickel (II) chloride hexahydrate	Ga0059261_1210	Ga0059261_1210		heavy metal efflux pump, CzcA family	-1.78364577229157	-12.9888794709028	FALSE
+stress	set3IT086	Nickel (II) chloride hexahydrate	Ga0059261_1211	Ga0059261_1211		HlyD family secretion protein	-2.03337845066125	-12.5969493587326	FALSE
+stress	set3IT086	Nickel (II) chloride hexahydrate	Ga0059261_1212	Ga0059261_1212		Outer membrane protein	-1.7909725843698	-10.7819267083418	FALSE
+stress	set4IT038	Paraquat dichloride	Ga0059261_4203	Ga0059261_4203		Arabinose efflux permease	-2.76431429530256	-6.99027295332283	FALSE
+stress	set4IT037	Paraquat dichloride	Ga0059261_4203	Ga0059261_4203		Arabinose efflux permease	-2.12664062612406	-7.29713941179833	FALSE
+stress	set4IT047	Phosphomycin disodium salt	Ga0059261_0224	Ga0059261_0224		Exopolyphosphatase	-1.90547605787227	-5.02926539868135	FALSE
+stress	set4IT047	Phosphomycin disodium salt	Ga0059261_0243	Ga0059261_0243		Major Facilitator Superfamily	-3.05782664867633	-16.0440150807802	FALSE
+stress	set4IT047	Phosphomycin disodium salt	Ga0059261_0920	Ga0059261_0920		rRNA methylases	-2.32915228229479	-5.57803710778139	FALSE
+stress	set4IT047	Phosphomycin disodium salt	Ga0059261_0952	Ga0059261_0952		Uncharacterized protein conserved in bacteria	-3.38891675341108	-19.9035590313054	FALSE
+stress	set4IT047	Phosphomycin disodium salt	Ga0059261_0953	Ga0059261_0953		hypothetical protein	-2.94588933765981	-13.751739738356	FALSE
+stress	set4IT047	Phosphomycin disodium salt	Ga0059261_1319	Ga0059261_1319		EamA-like transporter family	-3.3870875636737	-13.3353229677954	FALSE
+stress	set4IT047	Phosphomycin disodium salt	Ga0059261_4001	Ga0059261_4001		NTP pyrophosphohydrolases including oxidative damage repair enzymes	1.53406068561291	8.72169082466544	FALSE
+stress	set4IT047	Phosphomycin disodium salt	Ga0059261_4002	Ga0059261_4002		Esterase/lipase	1.10635277494947	6.67158257993545	FALSE
+stress	set4IT047	Phosphomycin disodium salt	Ga0059261_4024	Ga0059261_4024		Predicted phosphotransferase related to Ser/Thr protein kinases	-3.51387069997636	-9.01861555254053	TRUE
+stress	set4IT011	Polymyxin B sulfate	Ga0059261_0638	Ga0059261_0638		type I secretion outer membrane protein, TolC family	-2.38413596709465	-16.8637954574687	FALSE
+stress	set4IT011	Polymyxin B sulfate	Ga0059261_0741	Ga0059261_0741		Domain of unknown function (DUF4403)	-3.83837342641455	-17.9447443445678	FALSE
+stress	set4IT010	Polymyxin B sulfate	Ga0059261_0741	Ga0059261_0741		Domain of unknown function (DUF4403)	-1.88248375996664	-13.6973142674586	FALSE
+stress	set4IT011	Polymyxin B sulfate	Ga0059261_1877	Ga0059261_1877		Cation/multidrug efflux pump	-1.63832149760365	-13.5911179076966	FALSE
+stress	set4IT011	Polymyxin B sulfate	Ga0059261_1878	Ga0059261_1878		RND family efflux transporter, MFP subunit	-1.19630142051339	-5.11759218259188	FALSE
+stress	set4IT011	Polymyxin B sulfate	Ga0059261_3340	Ga0059261_3340		Predicted oxidoreductases (related to aryl-alcohol dehydrogenases)	-1.79219747988451	-8.08547595961462	FALSE
+stress	set4IT011	Polymyxin B sulfate	Ga0059261_3876	Ga0059261_3876		Signal transduction histidine kinase	-1.91627343055843	-9.43874939014938	FALSE
+stress	set4IT011	Polymyxin B sulfate	Ga0059261_3878	Ga0059261_3878		Response regulators consisting of a CheY-like receiver domain and a winged-helix DNA-binding domain	-1.85684865494451	-11.9835041140553	FALSE
+stress	set4IT011	Polymyxin B sulfate	Ga0059261_3879	Ga0059261_3879		outer membrane autotransporter barrel domain	-1.89027783487797	-6.63218562328728	FALSE
+stress	set4IT010	Polymyxin B sulfate	Ga0059261_3879	Ga0059261_3879		outer membrane autotransporter barrel domain	-1.44263023072157	-5.32638964308359	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_0257	Ga0059261_0257		hypothetical protein	-1.98142442756824	-7.55122131416992	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_0638	Ga0059261_0638		type I secretion outer membrane protein, TolC family	-4.87060869708757	-18.13958998935	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_0734	Ga0059261_0734		RNA	-4.0309033023037	-11.5094981488854	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_1273	Ga0059261_1273		DnaJ domain	-3.96981882280333	-6.53824552052234	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_1877	Ga0059261_1877		Cation/multidrug efflux pump	-5.07945861326882	-20.9253488608378	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_1878	Ga0059261_1878		RND family efflux transporter, MFP subunit	-4.23399083671076	-8.04791953874368	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_3200	Ga0059261_3200		Opacity protein and related surface antigens	-1.2141779405289	-9.30833869736211	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_3374	Ga0059261_3374		NAD-dependent aldehyde dehydrogenases	-1.3689969827351	-5.16599452673656	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_4135	Ga0059261_4135		DnaJ domain	-2.31349462533489	-5.6948294096564	FALSE
+stress	set4IT023	Rifampicin	Ga0059261_4149	Ga0059261_4149		psp operon transcriptional activator PspF	-1.86344259059548	-6.28983209349231	FALSE
+stress	set4IT005	Sisomicin sulfate salt	Ga0059261_1482	Ga0059261_1482		Acetyltransferase (GNAT) family	-5.88905724526827	-12.5708990894191	TRUE
+stress	set4IT005	Sisomicin sulfate salt	Ga0059261_1483	Ga0059261_1483		acetyl-CoA acetyltransferases	-4.77158030614346	-18.001672898745	FALSE
+stress	set4IT005	Sisomicin sulfate salt	Ga0059261_2137	Ga0059261_2137		ABC-type multidrug transport system, ATPase and permease components	-1.69616526277033	-12.0296473668206	FALSE
+stress	set4IT005	Sisomicin sulfate salt	Ga0059261_3209	Ga0059261_3209		queuosine biosynthesis protein QueC	-1.18650527573548	-8.13411170784678	FALSE
+stress	set4IT005	Sisomicin sulfate salt	Ga0059261_3340	Ga0059261_3340		Predicted oxidoreductases (related to aryl-alcohol dehydrogenases)	-2.13704492995924	-7.73057946991526	FALSE
+stress	set4IT007	Sodium Chlorite	Ga0059261_3625	Ga0059261_3625		Short-chain dehydrogenases of various substrate specificities	-1.84167375569267	-5.01208143567263	FALSE
+stress	set4IT007	Sodium Chlorite	Ga0059261_3865	Ga0059261_3865		cytochrome bd-I ubiquinol oxidase subunit 1 apoprotein (EC 1.10.3.10)	-1.92547629977604	-8.69357668101552	TRUE
+stress	set4IT006	Sodium Chlorite	Ga0059261_3865	Ga0059261_3865		cytochrome bd-I ubiquinol oxidase subunit 1 apoprotein (EC 1.10.3.10)	-1.37648136170009	-6.86066744079304	TRUE
+stress	set4IT007	Sodium Chlorite	Ga0059261_3866	Ga0059261_3866		cytochrome bd-I ubiquinol oxidase subunit 2 apoprotein (EC 1.10.3.10)	-1.98373319294433	-11.0172625482013	TRUE
+stress	set4IT006	Sodium Chlorite	Ga0059261_3866	Ga0059261_3866		cytochrome bd-I ubiquinol oxidase subunit 2 apoprotein (EC 1.10.3.10)	-1.90697902359692	-11.0177161742114	TRUE
+stress	set4IT007	Sodium Chlorite	Ga0059261_4008	Ga0059261_4008		Alpha/beta hydrolase family	-1.03839614852902	-6.27625961107661	FALSE
+stress	set2IT096	Spectinomycin dihydrochloride pentahydrate	Ga0059261_2137	Ga0059261_2137		ABC-type multidrug transport system, ATPase and permease components	-3.63395901949437	-19.4333602569837	TRUE
+stress	set2IT092	Tetracycline hydrochloride	Ga0059261_2714	Ga0059261_2714		drug resistance transporter, Bcr/CflA subfamily	-1.86131358857642	-11.1905996575264	FALSE
+stress	set2IT093	Tetracycline hydrochloride	Ga0059261_2714	Ga0059261_2714		drug resistance transporter, Bcr/CflA subfamily	-1.30876961162243	-8.42680533705814	FALSE
+stress	set3IT092	Thallium(I) acetate	Ga0059261_1942	Ga0059261_1942		Uncharacterized conserved protein	-4.08987923122482	-10.8348787371684	TRUE
+stress	set4IT028	Vanillin	Ga0059261_0530	Ga0059261_0530		4-carboxy-2-hydroxymuconate semialdehyde dehydrogenase (EC 1.1.1.-)	-4.08120658828568	-11.9495262789268	FALSE
+stress	set4IT029	Vanillin	Ga0059261_0530	Ga0059261_0530		4-carboxy-2-hydroxymuconate semialdehyde dehydrogenase (EC 1.1.1.-)	-3.50865574521202	-13.2242183248455	FALSE
+stress	set4IT028	Vanillin	Ga0059261_3683	Ga0059261_3683		Enoyl-CoA hydratase/carnithine racemase	-1.16980268003616	-7.13361605530137	FALSE
+stress	set4IT028	Vanillin	Ga0059261_3685	Ga0059261_3685		Enoyl-CoA hydratase/carnithine racemase	-2.36308421079572	-9.65375439173321	FALSE
+stress	set3IT095	Zinc sulfate heptahydrate	Ga0059261_2678	Ga0059261_2678		DNA-binding ferritin-like protein (oxidative damage protectant)	-5.38258905377483	-10.9128008351264	FALSE
+stress	set3IT095	Zinc sulfate heptahydrate	Ga0059261_3033	Ga0059261_3033		ATPase, P-type (transporting), HAD superfamily, subfamily IC/heavy metal translocating P-type ATPase	-3.51938793668833	-12.9606517300343	FALSE
+stress	set3IT095	Zinc sulfate heptahydrate	Ga0059261_3035	Ga0059261_3035		heavy metal efflux pump, CzcA family	-2.24489884526952	-13.4215471817624	TRUE
+stress	set3IT095	Zinc sulfate heptahydrate	Ga0059261_3036	Ga0059261_3036		RND family efflux transporter, MFP subunit	-1.79856863848243	-6.14185863476535	FALSE
+stress	set3IT095	Zinc sulfate heptahydrate	Ga0059261_3037	Ga0059261_3037		Outer membrane protein	-1.17793934968835	-5.72428309559886	FALSE
+stress	set4IT046	benzoic acid	Ga0059261_2618	Ga0059261_2618		Protein of unknown function (DUF2721)	1.52555280120005	7.03327201045902	FALSE
+stress	set3IT089	copper (II) chloride dihydrate	Ga0059261_2952	Ga0059261_2952		RNA polymerase sigma factor, sigma-70 family	-5.08613688456407	-6.95435949202663	FALSE
+stress	set3IT089	copper (II) chloride dihydrate	Ga0059261_2953	Ga0059261_2953		copper-resistance protein, CopA family	-3.91606057120013	-19.3386850367685	TRUE
+stress	set3IT089	copper (II) chloride dihydrate	Ga0059261_2954	Ga0059261_2954		Uncharacterized protein involved in copper resistance	-4.68710185351671	-17.7003178376845	FALSE
+stress	set4IT025	methylglyoxal	Ga0059261_0155	Ga0059261_0155		peroxiredoxin	-1.48962527557623	-9.58097261962607	FALSE
+stress	set4IT025	methylglyoxal	Ga0059261_0156	Ga0059261_0156		alkyl hydroperoxide reductase subunit F	-1.87012907946093	-9.77357275755018	TRUE
+stress	set4IT025	methylglyoxal	Ga0059261_0249	Ga0059261_0249		Superfamily I DNA and RNA helicases	-2.12624532879358	-11.8094376352597	FALSE
+stress	set4IT024	methylglyoxal	Ga0059261_0249	Ga0059261_0249		Superfamily I DNA and RNA helicases	-1.67153496580635	-10.5544692940132	FALSE
+stress	set4IT025	methylglyoxal	Ga0059261_0645	Ga0059261_0645		DNA replication and repair protein RecR	-3.08387612002621	-6.7024490214017	TRUE
+stress	set4IT024	methylglyoxal	Ga0059261_0645	Ga0059261_0645		DNA replication and repair protein RecR	-2.15231209010823	-5.37339139981099	TRUE
+stress	set4IT025	methylglyoxal	Ga0059261_0674	Ga0059261_0674		excinuclease ABC, A subunit	-1.94187004575318	-13.9565238916183	TRUE
+stress	set4IT024	methylglyoxal	Ga0059261_0674	Ga0059261_0674		excinuclease ABC, A subunit	-1.67521009503905	-12.7574238429344	TRUE
+stress	set4IT025	methylglyoxal	Ga0059261_0751	Ga0059261_0751		DNA repair protein RadA	-1.36669066049524	-9.57112008803831	TRUE
+stress	set4IT025	methylglyoxal	Ga0059261_0758	Ga0059261_0758		ATPase related to the helicase subunit of the Holliday junction resolvase	-1.38605469231519	-11.0113436250426	FALSE
+stress	set4IT025	methylglyoxal	Ga0059261_0958	Ga0059261_0958		ATP-dependent DNA helicase RecG (EC 3.6.1.-)	-1.76743740939119	-10.9904227315507	TRUE
+stress	set4IT024	methylglyoxal	Ga0059261_0958	Ga0059261_0958		ATP-dependent DNA helicase RecG (EC 3.6.1.-)	-1.3134162891273	-9.09752022997594	TRUE
+stress	set4IT025	methylglyoxal	Ga0059261_2759	Ga0059261_2759		hydroxyacylglutathione hydrolase	-3.80151632711423	-15.7983026358532	TRUE
+stress	set4IT024	methylglyoxal	Ga0059261_2759	Ga0059261_2759		hydroxyacylglutathione hydrolase	-2.37450917737573	-13.062333209505	TRUE
+stress	set4IT025	methylglyoxal	Ga0059261_2761	Ga0059261_2761		Lactoylglutathione lyase and related lyases	-3.96495436038707	-15.1775438836753	TRUE
+stress	set4IT024	methylglyoxal	Ga0059261_2761	Ga0059261_2761		Lactoylglutathione lyase and related lyases	-3.69783008792685	-15.7556570273849	TRUE
+stress	set4IT024	methylglyoxal	Ga0059261_3186	Ga0059261_3186		Excinuclease ABC subunit C	-2.46696601828076	-13.2630871790746	TRUE
+stress	set4IT025	methylglyoxal	Ga0059261_3186	Ga0059261_3186		Excinuclease ABC subunit C	-2.1918537562385	-11.9834205630176	TRUE
+stress	set4IT025	methylglyoxal	Ga0059261_3189	Ga0059261_3189		DNA replication and repair protein RecO	-3.74269858760035	-9.85985786411237	FALSE
+stress	set4IT024	methylglyoxal	Ga0059261_3189	Ga0059261_3189		DNA replication and repair protein RecO	-1.95716213072239	-9.40360040200756	FALSE
+stress	set4IT025	methylglyoxal	Ga0059261_3779	Ga0059261_3779		Excinuclease ABC subunit B	-2.07082529960658	-14.8988066493415	TRUE
+stress	set4IT024	methylglyoxal	Ga0059261_3779	Ga0059261_3779		Excinuclease ABC subunit B	-1.77127476321386	-13.1838773664186	TRUE
+stress	set4IT025	methylglyoxal	Ga0059261_4215	Ga0059261_4215		Predicted N-formylglutamate amidohydrolase	-1.50899050609329	-7.14028132234615	FALSE
+stress	set3IT090	sodium fluoride	Ga0059261_1032	Ga0059261_1032		protein CrcB	-5.5794945488481	-5.42223466820055	TRUE
+temperature	set5IT077		Ga0059261_2512	Ga0059261_2512		Uncharacterized protein conserved in bacteria	-1.60799937560275	-9.50669768739262	FALSE
+temperature	set5IT078		Ga0059261_2512	Ga0059261_2512		Uncharacterized protein conserved in bacteria	-1.50457598770168	-9.80448023983888	FALSE
+temperature	set5IT074		Ga0059261_3186	Ga0059261_3186		Excinuclease ABC subunit C	-1.53556466100563	-8.46389759326261	FALSE
+temperature	set5IT073		Ga0059261_4197	Ga0059261_4197		sugar transferase, PEP-CTERM/EpsH1 system associated	-1.41510994061812	-8.5155673140754	FALSE

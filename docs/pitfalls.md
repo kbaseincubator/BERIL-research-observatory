@@ -43,6 +43,31 @@ if depot_genus.lower() not in gtdb_genus.lower():
 
 **Applies to**: Any project linking ENIGMA CORAL strains or genome depot strains to `kbase_ke_pangenome` via strain name matching. Use assembly accession (GCF_*) matching instead when possible — it's unambiguous.
 
+### [enigma_general_essentiality] ENIGMA Strain Codes Require Manual Genus Mapping for True LOGO
+
+**Problem**: ENIGMA organism names (e.g. "Keio", "pseudo1_N1B4", "RalstoniaBSBF1503") are lab-assigned codes, not binomial nomenclature. They contain no spaces, so `str.split().str[0]` returns the full code — every organism gets a unique "genus", making any LOGO equivalent to leave-one-organism-out (LOOO):
+
+```python
+# WRONG — returns the full code for all ENIGMA organisms (no spaces to split on):
+df['genus'] = df['organism'].str.split().str[0]  # → "Keio", "pseudo1_N1B4", "MR1", etc.
+```
+
+**Fix**: Build a manual `GENUS_MAP` dict from known strain identities. The full 60-organism dict is in `enigma_general_essentiality/notebooks/01_Data_Extraction.ipynb`.
+
+```python
+GENUS_MAP = {
+    "Keio": "Escherichia",       # E. coli K-12
+    "MR1": "Shewanella",         # S. oneidensis MR-1
+    "pseudo1_N1B4": "Pseudomonas",
+    # ... 57 more entries
+}
+df['genus'] = df['organism'].map(GENUS_MAP)
+```
+
+Multi-organism genera in the 60-organism ENIGMA set: Pseudomonas (12), Ralstonia (4), Dickeya (3), Rhodanobacter (3), Bacteroides (2), Burkholderia (2), Methanococcus (2); remaining 39 organisms are singletons. Of the 7 multi-organism genera, only 5 provide reliable multi-organism LOGO folds — Rhodanobacter has 0 positive proteins in its test fold; Burkholderia's 2 organisms split across train/test leaving only 1 in training.
+
+**Applies to**: Any project using `labeled_pd.parquet` from `enigma_stress_phenotype_ml`, organism names from `enigma.genome_depot_enigma`, or `orgId` values from `kescience_fitnessbrowser` for ENIGMA isolates. The prior `refocus/` project silently ran LOOO due to this pitfall (claimed LOGO AUC 0.960 vs. corrected LOGO AUC 0.618).
+
 ### [genotype_to_phenotype_enigma] Commit Notebooks Alongside Their Artifacts, Not Just the TSVs
 
 **Problem**: Analyses run interactively in a Claude Code session (pure Python REPL, not a committed `.ipynb`) can produce figures and data files that get staged and committed — while the code that produced them lives only in the session transcript. The project then *looks* reproducible (the README references NB08/NB09/NB10, runtime tables list them, the REPORT cites their findings) but `git log` finds no notebook history for those names. Downstream reviewers read the plan and REPORT at face value and miss the gap.

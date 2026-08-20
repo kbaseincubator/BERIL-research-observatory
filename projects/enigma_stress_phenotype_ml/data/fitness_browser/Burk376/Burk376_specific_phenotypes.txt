@@ -1,0 +1,216 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set4IT082	2'-Deoxyinosine	H281DRAFT_00845	H281DRAFT_00845		hypothetical protein	-3.34105246241292	-6.99260989721411	FALSE
+carbon source	set4IT073	2'-Deoxyinosine	H281DRAFT_00845	H281DRAFT_00845		hypothetical protein	-2.33112375563171	-5.2376447481303	FALSE
+carbon source	set4IT083	2'-Deoxyinosine	H281DRAFT_00845	H281DRAFT_00845		hypothetical protein	-1.94271437606225	-7.42301112874728	FALSE
+carbon source	set4IT074	2'-Deoxyinosine	H281DRAFT_00845	H281DRAFT_00845		hypothetical protein	-1.8418236202093	-5.91150996678727	FALSE
+carbon source	set4IT087	2-Deoxy-D-Ribose	H281DRAFT_03954	H281DRAFT_03954		Gamma-glutamyl-gamma-aminobutyrate hydrolase PuuD (putrescine degradation), contains GATase1-like domain	-1.40899504864496	-5.67397037294834	FALSE
+carbon source	set1IT048	2-Deoxy-D-Ribose	H281DRAFT_04036	H281DRAFT_04036		tRNA (guanine-N(7)-)-methyltransferase (EC 2.1.1.33)	-1.64597993375511	-6.09475493025457	TRUE
+carbon source	set1IT046	2-Deoxy-D-Ribose	H281DRAFT_04591	H281DRAFT_04591		acyl-CoA dehydrogenase	-1.46207781664345	-5.93813798249482	FALSE
+carbon source	set1IT045	2-Deoxy-D-Ribose	H281DRAFT_04591	H281DRAFT_04591		acyl-CoA dehydrogenase	-1.44256691444752	-6.06626965924053	FALSE
+carbon source	set1IT049	2-Deoxy-D-ribonic acid lithium salt	H281DRAFT_03528	H281DRAFT_03528		ureidoglycolate lyase	-1.13125755272297	-7.0971414629783	FALSE
+carbon source	set1IT050	2-Deoxy-D-ribonic acid lithium salt	H281DRAFT_03567	H281DRAFT_03567		transcriptional regulator, GntR family	-1.99271368542924	-7.7338980545851	FALSE
+carbon source	set1IT049	2-Deoxy-D-ribonic acid lithium salt	H281DRAFT_03567	H281DRAFT_03567		transcriptional regulator, GntR family	-1.82112731085537	-7.00598195485748	FALSE
+carbon source	set4IT075	2-Deoxy-D-ribonic acid lithium salt	H281DRAFT_03567	H281DRAFT_03567		transcriptional regulator, GntR family	-1.75456165482823	-8.99694628003644	FALSE
+carbon source	set4IT084	2-Deoxy-D-ribonic acid lithium salt	H281DRAFT_03567	H281DRAFT_03567		transcriptional regulator, GntR family	-1.74529710609691	-7.44073525075338	FALSE
+carbon source	set1IT050	2-Deoxy-D-ribonic acid lithium salt	H281DRAFT_03988	H281DRAFT_03988		alanyl aminopeptidase. Metallo peptidase. MEROPS family M01	-1.89896902290741	-13.9661164037259	FALSE
+carbon source	set1IT049	2-Deoxy-D-ribonic acid lithium salt	H281DRAFT_03988	H281DRAFT_03988		alanyl aminopeptidase. Metallo peptidase. MEROPS family M01	-1.66633333252542	-11.3396662307372	FALSE
+carbon source	set4IT075	2-Deoxy-D-ribonic acid lithium salt	H281DRAFT_05435	H281DRAFT_05435		DNA-binding transcriptional regulator, LysR family	-1.04825868572741	-5.59601421657881	FALSE
+carbon source	set4IT084	2-Deoxy-D-ribonic acid lithium salt	H281DRAFT_05921	H281DRAFT_05921		Sugar phosphate permease	-1.94388997842325	-6.30019912498166	FALSE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_00270	H281DRAFT_00270		Enamine deaminase RidA, house cleaning of reactive enamine intermediates, YjgF/YER057c/UK114 family	2.09586115972984	5.71484608316649	FALSE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_01919	H281DRAFT_01919		Threonine/homoserine/homoserine lactone efflux protein	1.60000380252112	7.74550560712429	FALSE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_01919	H281DRAFT_01919		Threonine/homoserine/homoserine lactone efflux protein	1.69270637234789	8.33605544995107	FALSE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_01920	H281DRAFT_01920		adenine phosphoribosyltransferase	4.12991798785794	28.3325225472414	TRUE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_01920	H281DRAFT_01920		adenine phosphoribosyltransferase	4.19291677092241	26.4853089206188	TRUE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_03156	H281DRAFT_03156		solute:Na+ symporter, SSS family	-1.45347497516379	-8.04423427155678	TRUE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_03156	H281DRAFT_03156		solute:Na+ symporter, SSS family	-1.24026750285614	-5.23370266102637	TRUE
+carbon source	set4IT081	2-Deoxyadenosine 5-monophosphate	H281DRAFT_03961	H281DRAFT_03961		xanthine dehydrogenase small subunit	-1.71282119721773	-6.03573180374277	TRUE
+carbon source	set4IT072	2-Deoxyadenosine 5-monophosphate	H281DRAFT_03961	H281DRAFT_03961		xanthine dehydrogenase small subunit	-1.66496832607459	-6.74528549914587	TRUE
+carbon source	set4IT072	2-Deoxyadenosine 5-monophosphate	H281DRAFT_03962	H281DRAFT_03962		xanthine dehydrogenase, molybdenum binding subunit apoprotein	-1.740624607866	-10.9083949784827	TRUE
+carbon source	set4IT081	2-Deoxyadenosine 5-monophosphate	H281DRAFT_03962	H281DRAFT_03962		xanthine dehydrogenase, molybdenum binding subunit apoprotein	-1.49193193998431	-8.12385572953712	TRUE
+carbon source	set4IT081	2-Deoxyadenosine 5-monophosphate	H281DRAFT_03964	H281DRAFT_03964		adenosine deaminase	-1.50120529375904	-5.61586379139614	TRUE
+carbon source	set4IT072	2-Deoxyadenosine 5-monophosphate	H281DRAFT_03964	H281DRAFT_03964		adenosine deaminase	-1.21592106105231	-6.87111473916323	TRUE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04250	H281DRAFT_04250		DNA-binding protein Fis	1.47683029580615	6.71539650329025	FALSE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04250	H281DRAFT_04250		DNA-binding protein Fis	1.47741749137773	6.18865216301148	FALSE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04487	H281DRAFT_04487		CBS domain-containing protein	-1.57061760928788	-6.46933819718644	FALSE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04643	H281DRAFT_04643		methylmalonyl-CoA epimerase	-1.76885401626011	-5.95870700192009	FALSE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04691	H281DRAFT_04691		glutamate-ammonia-ligase adenylyltransferase	3.32537886685448	18.8770329582059	TRUE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04691	H281DRAFT_04691		glutamate-ammonia-ligase adenylyltransferase	3.40907560389382	19.6289631744281	TRUE
+carbon source	set4IT072	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04752	H281DRAFT_04752		xanthine dehydrogenase small subunit	-1.42974223290714	-8.40166269945724	FALSE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04752	H281DRAFT_04752		xanthine dehydrogenase small subunit	-1.38316659616513	-6.96916477858289	FALSE
+carbon source	set4IT081	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04752	H281DRAFT_04752		xanthine dehydrogenase small subunit	-1.33288013409209	-6.59473487001333	FALSE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04752	H281DRAFT_04752		xanthine dehydrogenase small subunit	-1.29333389564071	-5.58997284783129	FALSE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04753	H281DRAFT_04753		xanthine dehydrogenase, molybdenum binding subunit apoprotein	-1.57524645917885	-9.92589862160331	FALSE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04753	H281DRAFT_04753		xanthine dehydrogenase, molybdenum binding subunit apoprotein	-1.54089670507243	-9.54485727778944	FALSE
+carbon source	set4IT072	2-Deoxyadenosine 5-monophosphate	H281DRAFT_04753	H281DRAFT_04753		xanthine dehydrogenase, molybdenum binding subunit apoprotein	-1.43071387076513	-9.97173955724613	FALSE
+carbon source	set4IT081	2-Deoxyadenosine 5-monophosphate	H281DRAFT_05165	H281DRAFT_05165		transcriptional regulator, LysR family	-2.24420114227453	-7.025488459858	TRUE
+carbon source	set4IT072	2-Deoxyadenosine 5-monophosphate	H281DRAFT_05165	H281DRAFT_05165		transcriptional regulator, LysR family	-2.00698350141716	-5.569881171301	TRUE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_05846	H281DRAFT_05846		malate dehydrogenase (oxaloacetate-decarboxylating)(NADP+)	1.00469625205371	7.41423738845583	FALSE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_05846	H281DRAFT_05846		malate dehydrogenase (oxaloacetate-decarboxylating)(NADP+)	1.16503285389798	8.13534850838066	FALSE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_05852	H281DRAFT_05852		transcriptional regulator, TetR family	-1.49598455091642	-6.04721910892544	FALSE
+carbon source	set4IT080	2-Deoxyadenosine 5-monophosphate	H281DRAFT_06281	H281DRAFT_06281		MJ0042 family finger-like domain-containing protein	1.21413893877296	6.50218922458143	FALSE
+carbon source	set4IT071	2-Deoxyadenosine 5-monophosphate	H281DRAFT_06289	H281DRAFT_06289		hypothetical protein	-1.22330170997696	-5.75207221289624	FALSE
+carbon source	set7IT041	Azelaic acid	H281DRAFT_00826	H281DRAFT_00826		Arabinose efflux permease	2.25891311930753	16.0113946989652	TRUE
+carbon source	set7IT041	Azelaic acid	H281DRAFT_00827	H281DRAFT_00827		transcriptional regulator, MerR family	2.28980041312627	9.07353290279415	FALSE
+carbon source	set7IT041	Azelaic acid	H281DRAFT_02908	H281DRAFT_02908		RNA polymerase, sigma 54 subunit, RpoN/SigL	1.09352829175211	5.32527924865751	FALSE
+carbon source	set7IT041	Azelaic acid	H281DRAFT_04124	H281DRAFT_04124		Cys-tRNA(Pro) deacylase	3.30466918336424	6.29591872384621	FALSE
+carbon source	set7IT041	Azelaic acid	H281DRAFT_04125	H281DRAFT_04125		Acyl-CoA synthetase (AMP-forming)/AMP-acid ligase II	-3.67910354358676	-9.71549690919031	TRUE
+carbon source	set7IT041	Azelaic acid	H281DRAFT_04586	H281DRAFT_04586		hypothetical protein	-1.28207681189153	-5.77638734432622	TRUE
+carbon source	set7IT041	Azelaic acid	H281DRAFT_04737	H281DRAFT_04737		glutaryl-CoA dehydrogenase	-4.27420282031434	-8.85428698851183	TRUE
+carbon source	set7IT041	Azelaic acid	H281DRAFT_05108	H281DRAFT_05108		membrane fusion protein, multidrug efflux system	2.10274642677036	11.1574421522033	TRUE
+carbon source	set7IT041	Azelaic acid	H281DRAFT_05109	H281DRAFT_05109		efflux transporter, outer membrane factor (OMF) lipoprotein, NodT family	2.46686484667628	17.5938468592525	TRUE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_00270	H281DRAFT_00270		Enamine deaminase RidA, house cleaning of reactive enamine intermediates, YjgF/YER057c/UK114 family	2.70661448396455	6.85698220587385	FALSE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_00528	H281DRAFT_00528		hypothetical protein	2.59541824129239	6.58508456017705	TRUE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_00766	H281DRAFT_00766		tRNA-U16,U17-dihydrouridine synthase	-1.07717113038283	-5.41425378625905	FALSE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_01919	H281DRAFT_01919		Threonine/homoserine/homoserine lactone efflux protein	1.70049124899887	5.52200997524483	FALSE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_01920	H281DRAFT_01920		adenine phosphoribosyltransferase	5.24915676538091	28.4249641517755	TRUE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_01920	H281DRAFT_01920		adenine phosphoribosyltransferase	5.83449377867267	31.0097745974811	TRUE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_02088	H281DRAFT_02088		carbonic anhydrase	1.31294691317829	5.35872672579481	FALSE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_02088	H281DRAFT_02088		carbonic anhydrase	1.53707434660174	5.39382021078857	FALSE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_02239	H281DRAFT_02239		resistance to homoserine/threonine (RhtB) family protein	4.69293194939495	29.2248614561053	TRUE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_02239	H281DRAFT_02239		resistance to homoserine/threonine (RhtB) family protein	5.00450204018896	25.3822144082914	TRUE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_03524	H281DRAFT_03524		hypothetical protein	1.37156891837941	5.8617222925557	FALSE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_03616	H281DRAFT_03616		4-hydroxy-3-methylbut-2-enyl diphosphate reductase	1.60653996121286	9.22814816260871	FALSE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_03616	H281DRAFT_03616		4-hydroxy-3-methylbut-2-enyl diphosphate reductase	1.7191058841264	9.64382317481228	FALSE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_03964	H281DRAFT_03964		adenosine deaminase	1.54592245256926	5.750784106896	TRUE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_03964	H281DRAFT_03964		adenosine deaminase	1.73318880296583	6.31039590848156	TRUE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_04222	H281DRAFT_04222		ATP-dependent RNA helicase RhlE	1.18106875346619	6.78459198675676	FALSE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_04222	H281DRAFT_04222		ATP-dependent RNA helicase RhlE	1.27784282820906	7.0208897628984	FALSE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_04691	H281DRAFT_04691		glutamate-ammonia-ligase adenylyltransferase	5.19719481760951	24.0740264686921	TRUE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_04691	H281DRAFT_04691		glutamate-ammonia-ligase adenylyltransferase	5.60216053239584	23.7868512362366	TRUE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_04751	H281DRAFT_04751		Predicted arabinose efflux permease, MFS family	-1.59981225228646	-9.81103512267669	FALSE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_04751	H281DRAFT_04751		Predicted arabinose efflux permease, MFS family	-1.47064617870069	-10.7569166983385	FALSE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_05802	H281DRAFT_05802		dipeptide transport system substrate-binding protein	-1.22251951440866	-8.06382763520057	FALSE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_05803	H281DRAFT_05803		dipeptide transport system permease protein	-1.19015275813303	-6.03945485475101	FALSE
+carbon source	set4IT085	Deoxyribonucleic acid from herring sperm	H281DRAFT_05805	H281DRAFT_05805		dipeptide transport system ATP-binding protein	-1.04232590650987	-5.60350605854447	FALSE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_05806	H281DRAFT_05806		dipeptide transport system ATP-binding protein	-1.14709779119313	-5.78339310607887	FALSE
+carbon source	set4IT076	Deoxyribonucleic acid from herring sperm	H281DRAFT_06281	H281DRAFT_06281		MJ0042 family finger-like domain-containing protein	1.26641984228042	5.46176700274697	FALSE
+carbon source	set7IT043	Dodecandioic acid	H281DRAFT_05108	H281DRAFT_05108		membrane fusion protein, multidrug efflux system	1.66520914569525	10.1215077714604	FALSE
+carbon source	set7IT043	Dodecandioic acid	H281DRAFT_05109	H281DRAFT_05109		efflux transporter, outer membrane factor (OMF) lipoprotein, NodT family	1.49076007969235	10.7221980591173	FALSE
+carbon source	set7IT043	Dodecandioic acid	H281DRAFT_06226	H281DRAFT_06226		long-chain acyl-CoA synthetase	-4.79681692305614	-19.3825761454779	TRUE
+carbon source	set7IT033	Hexanoic acid	H281DRAFT_02086	H281DRAFT_02086		transcriptional regulator, MerR family	2.00268292916311	10.083872799713	FALSE
+carbon source	set7IT050	Hexanoic acid	H281DRAFT_02086	H281DRAFT_02086		transcriptional regulator, MerR family	2.17714659572453	16.0493940246847	FALSE
+carbon source	set7IT050	Hexanoic acid	H281DRAFT_02378	H281DRAFT_02378		amino acid/amide ABC transporter membrane protein 1, HAAT family	1.30820276019919	7.7132273386441	FALSE
+carbon source	set7IT033	Hexanoic acid	H281DRAFT_02378	H281DRAFT_02378		amino acid/amide ABC transporter membrane protein 1, HAAT family	1.52013480161831	9.06114772633963	FALSE
+carbon source	set7IT033	Hexanoic acid	H281DRAFT_02398	H281DRAFT_02398		fatty-acyl-CoA synthase	-1.78837477993608	-9.36849522735322	FALSE
+carbon source	set7IT050	Hexanoic acid	H281DRAFT_02398	H281DRAFT_02398		fatty-acyl-CoA synthase	-1.47704835712507	-7.87816698450555	FALSE
+carbon source	set7IT033	Hexanoic acid	H281DRAFT_03655	H281DRAFT_03655		hypothetical protein	-1.378099258818	-6.09201439515871	FALSE
+carbon source	set7IT050	Hexanoic acid	H281DRAFT_04181	H281DRAFT_04181		D-alanyl-D-alanine carboxypeptidase / D-alanyl-D-alanine-endopeptidase (penicillin-binding protein 4)	-1.54069776144422	-6.26939760564151	FALSE
+carbon source	set7IT050	Hexanoic acid	H281DRAFT_04224	H281DRAFT_04224		Fatty acid desaturase	-1.15716370719767	-5.52047665410793	FALSE
+carbon source	set7IT050	Hexanoic acid	H281DRAFT_04286	H281DRAFT_04286		hypothetical protein	-2.30345873829655	-8.99716670803005	TRUE
+carbon source	set7IT033	Hexanoic acid	H281DRAFT_04286	H281DRAFT_04286		hypothetical protein	-1.73963447442593	-6.41556731581836	TRUE
+carbon source	set7IT033	Hexanoic acid	H281DRAFT_04681	H281DRAFT_04681		glycolate oxidase iron-sulfur subunit	1.3958916988948	8.28493656057243	FALSE
+carbon source	set7IT050	Hexanoic acid	H281DRAFT_04681	H281DRAFT_04681		glycolate oxidase iron-sulfur subunit	1.49930660553352	9.039685943767	FALSE
+carbon source	set7IT033	Hexanoic acid	H281DRAFT_04682	H281DRAFT_04682		glycolate oxidase FAD binding subunit	1.38769868574253	8.5447662471676	FALSE
+carbon source	set7IT050	Hexanoic acid	H281DRAFT_04683	H281DRAFT_04683		glycolate oxidase	1.65449673613848	9.92085775047433	FALSE
+carbon source	set7IT050	Hexanoic acid	H281DRAFT_06226	H281DRAFT_06226		long-chain acyl-CoA synthetase	-1.27331652965603	-6.91315892589894	FALSE
+carbon source	set7IT033	Hexanoic acid	H281DRAFT_06226	H281DRAFT_06226		long-chain acyl-CoA synthetase	-1.0733022587438	-5.63298350611339	FALSE
+carbon source	set7IT054	Malonic acid	H281DRAFT_05276	H281DRAFT_05276		malonate decarboxylase epsilon subunit	-2.1370909491373	-6.35359309647459	TRUE
+carbon source	set7IT054	Malonic acid	H281DRAFT_05282	H281DRAFT_05282		malonate decarboxylase alpha subunit	-3.31560469177858	-9.42515375687076	TRUE
+carbon source	set7IT037	Malonic acid	H281DRAFT_05282	H281DRAFT_05282		malonate decarboxylase alpha subunit	-2.42637359375719	-6.98456357087718	TRUE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_00297	H281DRAFT_00297		Glucoamylase (glucan-1,4-alpha-glucosidase), GH15 family	-1.0164750480229	-6.20712162053767	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_00308	H281DRAFT_00308		Superfamily II DNA and RNA helicase	-2.30941032239917	-6.97603191220978	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_00308	H281DRAFT_00308		Superfamily II DNA and RNA helicase	-1.76263769498755	-6.30447636393225	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_00475	H281DRAFT_00475		hypothetical protein	-1.08305625969672	-5.0566917475447	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_00799	H281DRAFT_00799		PhoH-like ATPase	-1.9046906095475	-8.33558088941734	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_00880	H281DRAFT_00880		transcription-repair coupling factor	-1.01898776174022	-6.28356202941035	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_01613	H281DRAFT_01613		Phosphatidylglycerophosphate synthase	-2.28521854661928	-9.09916637167708	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_01613	H281DRAFT_01613		Phosphatidylglycerophosphate synthase	-1.96412416082676	-5.78789413396213	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_02059	H281DRAFT_02059		phospholipid/cholesterol/gamma-HCH transport system substrate-binding protein	-1.5072752506902	-6.1202859664064	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_02061	H281DRAFT_02061		phospholipid/cholesterol/gamma-HCH transport system permease protein	-1.7574816652036	-7.65608490659896	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_02061	H281DRAFT_02061		phospholipid/cholesterol/gamma-HCH transport system permease protein	-1.36142802992158	-6.65694593593843	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_02101	H281DRAFT_02101		hydroxymethylglutaryl-CoA lyase	-2.11939127503738	-7.57073891305634	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_02109	H281DRAFT_02109		nitronate monooxygenase	-1.10000450703708	-6.47503517418132	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_02122	H281DRAFT_02122		indolepyruvate ferredoxin oxidoreductase	-3.72398432432105	-9.18175202672369	TRUE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_02122	H281DRAFT_02122		indolepyruvate ferredoxin oxidoreductase	-2.67987463596489	-9.91694617455094	TRUE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_02156	H281DRAFT_02156		transcriptional regulator, AsnC family	-3.89249533951749	-10.4951096481854	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_02156	H281DRAFT_02156		transcriptional regulator, AsnC family	-3.36617757345015	-10.5448062974463	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_02386	H281DRAFT_02386		16S rRNA m(7)G-527 methyltransferase (EC 2.1.1.170)	-1.39100761892512	-5.29719542522122	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_03218	H281DRAFT_03218		transcriptional regulator, TetR family	-1.39874736535557	-5.73758244407559	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_04042	H281DRAFT_04042		aromatic amino acid:proton symporter, AAT family	-2.64426222875302	-11.7524732417477	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_04042	H281DRAFT_04042		aromatic amino acid:proton symporter, AAT family	-2.29296003164035	-12.3353450785013	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_04203	H281DRAFT_04203		integral membrane protein, YjbE family	-1.93849198122177	-5.78102358274299	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_04452	H281DRAFT_04452		amino acid/amide ABC transporter membrane protein 2, HAAT family (TC 3.A.1.4.-)	-1.25302608016979	-5.12736720289034	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_04601	H281DRAFT_04601		hypothetical protein	1.63109494943986	11.109089165285	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_04622	H281DRAFT_04622		putative cardiolipin synthase	-1.72137837655551	-7.84839662409335	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_04622	H281DRAFT_04622		putative cardiolipin synthase	-1.50363377107491	-6.62312977916014	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_05327	H281DRAFT_05327		Outer membrane protein (porin)	1.30416914497276	10.0181155943238	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05327	H281DRAFT_05327		Outer membrane protein (porin)	1.36326732625448	10.2522370206581	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05687	H281DRAFT_05687		amino acid/polyamine/organocation transporter, APC superfamily	1.33219776565961	12.082301620786	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05720	H281DRAFT_05720		phenylacetate-CoA ligase	-5.74961409397512	-14.6440158458549	TRUE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_05720	H281DRAFT_05720		phenylacetate-CoA ligase	-3.4971205572692	-10.1637183015095	TRUE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05722	H281DRAFT_05722		short chain enoyl-CoA hydratase /Enoyl-CoA hydratase	-6.00328682053776	-8.1027117843903	TRUE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_05722	H281DRAFT_05722		short chain enoyl-CoA hydratase /Enoyl-CoA hydratase	-2.96458126871095	-6.46260082348194	TRUE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05723	H281DRAFT_05723		acetyl-CoA acyltransferase	-5.15949668081969	-10.0498618763196	TRUE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_05723	H281DRAFT_05723		acetyl-CoA acyltransferase	-3.57043988793979	-9.95043960896333	TRUE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05724	H281DRAFT_05724		phenylacetic acid degradation protein paaN	-4.71394108927545	-8.73993486819924	TRUE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_05724	H281DRAFT_05724		phenylacetic acid degradation protein paaN	-2.7734605825939	-6.61989306480403	TRUE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05725	H281DRAFT_05725		short chain enoyl-CoA hydratase	-5.80852209950209	-13.4237464250061	TRUE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_05725	H281DRAFT_05725		short chain enoyl-CoA hydratase	-3.01304943447923	-11.7848822467231	TRUE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_05809	H281DRAFT_05809		Uncharacterized membrane protein	1.51244022262943	8.87082365775966	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05809	H281DRAFT_05809		Uncharacterized membrane protein	1.55877016960727	10.6263363936253	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_05810	H281DRAFT_05810		Uncharacterized membrane protein	1.48484719349636	8.63484359887859	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05810	H281DRAFT_05810		Uncharacterized membrane protein	1.62421936441008	9.97886643861691	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05851	H281DRAFT_05851		Protein N-acetyltransferase, RimJ/RimL family	1.16770883391218	8.85586217624758	FALSE
+carbon source	set6IT036	Phenylacetic acid	H281DRAFT_05852	H281DRAFT_05852		transcriptional regulator, TetR family	3.47705227635669	28.5958352887687	FALSE
+carbon source	set6IT018	Phenylacetic acid	H281DRAFT_05852	H281DRAFT_05852		transcriptional regulator, TetR family	3.85212124640271	27.8370518042824	FALSE
+carbon source	set8IT026	Pimelic acid	H281DRAFT_04737	H281DRAFT_04737		glutaryl-CoA dehydrogenase	-1.46137273857511	-7.33471805733034	FALSE
+carbon source	set8IT026	Pimelic acid	H281DRAFT_05235	H281DRAFT_05235		hypothetical protein	1.29847886482251	9.85650176089393	FALSE
+carbon source	set8IT026	Pimelic acid	H281DRAFT_05236	H281DRAFT_05236		MFS transporter, MHS family, alpha-ketoglutarate permease	-1.84280190485653	-10.867843755852	FALSE
+carbon source	set8IT026	Pimelic acid	H281DRAFT_05807	H281DRAFT_05807		hypothetical protein	-1.54226419508113	-8.42052098114346	FALSE
+carbon source	set7IT044	Protocatechuic Acid	H281DRAFT_00385	H281DRAFT_00385		2-isopropylmalate synthase	-1.93924166912896	-6.52638375862313	FALSE
+carbon source	set7IT044	Protocatechuic Acid	H281DRAFT_06348	H281DRAFT_06348		MFS transporter, AAHS family, 4-hydroxybenzoate transporter	-3.32396830418377	-5.40447545419304	FALSE
+carbon source	set7IT061	Protocatechuic Acid	H281DRAFT_06348	H281DRAFT_06348		MFS transporter, AAHS family, 4-hydroxybenzoate transporter	-2.76878141984025	-5.77687855725289	FALSE
+carbon source	set7IT059	Sebacic acid	H281DRAFT_00826	H281DRAFT_00826		Arabinose efflux permease	2.4548580581165	19.7842870066929	FALSE
+carbon source	set7IT059	Sebacic acid	H281DRAFT_00827	H281DRAFT_00827		transcriptional regulator, MerR family	2.0997581865022	12.3896297298963	FALSE
+carbon source	set7IT059	Sebacic acid	H281DRAFT_04124	H281DRAFT_04124		Cys-tRNA(Pro) deacylase	4.15020629646724	5.75233745409696	FALSE
+carbon source	set7IT059	Sebacic acid	H281DRAFT_04125	H281DRAFT_04125		Acyl-CoA synthetase (AMP-forming)/AMP-acid ligase II	-2.56911678823365	-6.08153875999086	FALSE
+carbon source	set7IT059	Sebacic acid	H281DRAFT_04127	H281DRAFT_04127		methylated-DNA-[protein]-cysteine S-methyltransferase	1.77118154466858	6.07539741283815	FALSE
+carbon source	set7IT059	Sebacic acid	H281DRAFT_04128	H281DRAFT_04128		epoxyqueuosine reductase	1.5150378988616	6.26891145960516	FALSE
+carbon source	set7IT059	Sebacic acid	H281DRAFT_05108	H281DRAFT_05108		membrane fusion protein, multidrug efflux system	2.79770895020329	14.5296982857333	FALSE
+carbon source	set7IT059	Sebacic acid	H281DRAFT_05109	H281DRAFT_05109		efflux transporter, outer membrane factor (OMF) lipoprotein, NodT family	3.00662850164186	23.3825251477387	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_00782	H281DRAFT_00782		transcriptional regulator, LysR family	2.33765260948147	9.20265592981234	FALSE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_00782	H281DRAFT_00782		transcriptional regulator, LysR family	2.45780887087589	7.91581085730552	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_01830	H281DRAFT_01830		transcriptional regulator, LacI family	1.65447116236982	7.72502559853563	FALSE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_01830	H281DRAFT_01830		transcriptional regulator, LacI family	1.7791264828425	7.60886875711528	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_01931	H281DRAFT_01931		UPF0042 nucleotide-binding protein	1.40984471241914	6.17700742384328	FALSE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_02086	H281DRAFT_02086		transcriptional regulator, MerR family	1.77880692919118	9.95278279132063	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_02086	H281DRAFT_02086		transcriptional regulator, MerR family	1.87635070569641	10.7388654486985	FALSE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_03361	H281DRAFT_03361		2-keto-3-deoxy-L-rhamnonate aldolase RhmA	2.67552962892935	5.35427867398271	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_03361	H281DRAFT_03361		2-keto-3-deoxy-L-rhamnonate aldolase RhmA	2.7880898348234	5.25715766007589	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_03904	H281DRAFT_03904		D-methionine transport system substrate-binding protein	-1.98800557047369	-5.97618057748013	FALSE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_03904	H281DRAFT_03904		D-methionine transport system substrate-binding protein	-1.63889923300096	-5.14528333007438	FALSE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_04198	H281DRAFT_04198		Protein of unknown function (DUF2946)	-2.32021888689793	-6.91730331972466	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_04198	H281DRAFT_04198		Protein of unknown function (DUF2946)	-2.29510398459892	-6.148757640613	FALSE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_04691	H281DRAFT_04691		glutamate-ammonia-ligase adenylyltransferase	1.33137035113036	9.3314971179067	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_04691	H281DRAFT_04691		glutamate-ammonia-ligase adenylyltransferase	1.43546231588429	9.95776233623404	FALSE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_04737	H281DRAFT_04737		glutaryl-CoA dehydrogenase	1.03463056601685	5.32443633165636	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_04737	H281DRAFT_04737		glutaryl-CoA dehydrogenase	1.42249306893552	7.6383854888771	FALSE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_05209	H281DRAFT_05209		transcriptional regulator, LysR family	-2.35882668515697	-6.08454546198001	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_05209	H281DRAFT_05209		transcriptional regulator, LysR family	-2.27938912793326	-5.90952337983803	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_05236	H281DRAFT_05236		MFS transporter, MHS family, alpha-ketoglutarate permease	-3.17351922992874	-11.1021377217057	TRUE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_05236	H281DRAFT_05236		MFS transporter, MHS family, alpha-ketoglutarate permease	-2.74457718467394	-9.91685648560501	TRUE
+carbon source	set7IT057	Sodium adipate	H281DRAFT_06225	H281DRAFT_06225		Anaerobic selenocysteine-containing dehydrogenase	1.87722944684712	14.4810010656744	FALSE
+carbon source	set7IT040	Sodium adipate	H281DRAFT_06225	H281DRAFT_06225		Anaerobic selenocysteine-containing dehydrogenase	2.00572128610069	16.563070970229	FALSE
+carbon source	set7IT031	Sodium butyrate	H281DRAFT_01205	H281DRAFT_01205		transcriptional regulator, AraC family	-1.39816698651653	-6.13284904419897	TRUE
+carbon source	set7IT048	Sodium butyrate	H281DRAFT_04286	H281DRAFT_04286		hypothetical protein	-2.61649183139458	-8.92809634140285	TRUE
+carbon source	set7IT031	Sodium butyrate	H281DRAFT_04286	H281DRAFT_04286		hypothetical protein	-2.60702189840597	-10.5792897208659	TRUE
+carbon source	set7IT031	Sodium butyrate	H281DRAFT_06077	H281DRAFT_06077		transcriptional regulator, LysR family	1.08807953498779	7.08537250081136	FALSE
+carbon source	set7IT048	Sodium butyrate	H281DRAFT_06077	H281DRAFT_06077		transcriptional regulator, LysR family	1.32438898528236	7.5327103346694	FALSE
+carbon source	set7IT047	Sodium propionate	H281DRAFT_06328	H281DRAFT_06328		transcriptional regulator, propionate catabolism operon regulatory protein	-3.01762542038553	-5.53569448950211	TRUE
+carbon source	set7IT055	Sodium succinate dibasic hexahydrate	H281DRAFT_02038	H281DRAFT_02038		two-component system, NtrC family, C4-dicarboxylate transport sensor histidine kinase DctB	-3.76906984682779	-10.739968969276	TRUE
+carbon source	set7IT038	Sodium succinate dibasic hexahydrate	H281DRAFT_02038	H281DRAFT_02038		two-component system, NtrC family, C4-dicarboxylate transport sensor histidine kinase DctB	-3.32574504210246	-10.9785660655539	TRUE
+carbon source	set7IT055	Sodium succinate dibasic hexahydrate	H281DRAFT_02039	H281DRAFT_02039		aerobic C4-dicarboxylate transport protein	-3.98921445942004	-6.30846194601096	TRUE
+carbon source	set7IT038	Sodium succinate dibasic hexahydrate	H281DRAFT_02039	H281DRAFT_02039		aerobic C4-dicarboxylate transport protein	-3.97522584503993	-7.22763805500323	TRUE
+carbon source	set8IT028	Suberic acid	H281DRAFT_04367	H281DRAFT_04367		beta-N-acetylhexosaminidase	-1.54501108825122	-9.61403497411908	FALSE
+carbon source	set8IT028	Suberic acid	H281DRAFT_04737	H281DRAFT_04737		glutaryl-CoA dehydrogenase	-1.77786887596247	-7.57709913935605	FALSE
+carbon source	set8IT028	Suberic acid	H281DRAFT_05235	H281DRAFT_05235		hypothetical protein	1.25280972110176	8.50044804610338	FALSE
+carbon source	set8IT028	Suberic acid	H281DRAFT_05236	H281DRAFT_05236		MFS transporter, MHS family, alpha-ketoglutarate permease	-1.73824873647937	-12.103516906374	FALSE
+carbon source	set8IT028	Suberic acid	H281DRAFT_05807	H281DRAFT_05807		hypothetical protein	-1.93799229277088	-9.69966612632103	FALSE
+carbon source	set7IT049	Valeric acid	H281DRAFT_00729	H281DRAFT_00729		O-antigen ligase like membrane protein	1.24282735374827	5.34150790610724	FALSE
+carbon source	set7IT049	Valeric acid	H281DRAFT_02398	H281DRAFT_02398		fatty-acyl-CoA synthase	-1.55693342652708	-9.32841960135527	FALSE
+carbon source	set7IT032	Valeric acid	H281DRAFT_02398	H281DRAFT_02398		fatty-acyl-CoA synthase	-1.52548255148968	-8.52470690114251	FALSE
+carbon source	set7IT032	Valeric acid	H281DRAFT_04181	H281DRAFT_04181		D-alanyl-D-alanine carboxypeptidase / D-alanyl-D-alanine-endopeptidase (penicillin-binding protein 4)	-1.26648156488321	-6.73434981083541	FALSE
+carbon source	set7IT032	Valeric acid	H281DRAFT_04286	H281DRAFT_04286		hypothetical protein	-2.31179324060914	-10.2555602887485	FALSE
+carbon source	set7IT049	Valeric acid	H281DRAFT_04286	H281DRAFT_04286		hypothetical protein	-2.2865699897356	-9.52204642564956	FALSE
+carbon source	set7IT032	Valeric acid	H281DRAFT_05562	H281DRAFT_05562		indolepyruvate ferredoxin oxidoreductase	-1.41774621941271	-6.28774789679229	FALSE
+carbon source	set7IT049	Valeric acid	H281DRAFT_05562	H281DRAFT_05562		indolepyruvate ferredoxin oxidoreductase	-1.39258117664713	-7.93600602050045	FALSE

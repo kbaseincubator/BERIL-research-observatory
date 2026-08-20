@@ -1,0 +1,7 @@
+catboost==1.2.10
+scikit-learn>=1.3
+pandas>=2.0
+numpy>=1.24
+pyarrow>=12.0
+matplotlib>=3.7
+seaborn>=0.12

@@ -1,0 +1,820 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+stress	set3IT023	Carbenicillin disodium salt	CA264_00835	CA264_00835		hypothetical protein	1.58579461227823	5.82901987944347	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_00855	CA264_00855		RNA helicase	-1.25131148724591	-6.31669448038095	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_00855	CA264_00855		RNA helicase	-1.12138745962582	-6.62451558956984	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_00860	CA264_00860		CPBP family intramembrane metalloprotease	-1.03408849847878	-5.7999156960864	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_02155	CA264_02155		peptidase M23	-2.27541868903249	-10.9815804459449	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_02155	CA264_02155		peptidase M23	-1.62958026572254	-7.84172526226102	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_02255	CA264_02255		hypothetical protein	1.08561838479923	6.04703710772161	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_02650	CA264_02650		DNA topoisomerase III	-1.26175664929996	-7.25152957300654	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_03445	CA264_03445		anhydro-N-acetylmuramic acid kinase	1.44007664070758	8.88491899213624	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_04570	CA264_04570		undecaprenyl-phosphate glucose phosphotransferase	-2.55529489309192	-13.3366227415283	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_04570	CA264_04570		undecaprenyl-phosphate glucose phosphotransferase	-1.80308865749209	-12.1176813473435	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_05010	CA264_05010		hypothetical protein	-1.39641373070061	-6.89029840520478	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_07810	CA264_07810		hypothetical protein	-1.3627652879828	-7.40297549831451	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_07810	CA264_07810		hypothetical protein	-1.33421299267173	-7.15782110782105	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_08690	CA264_08690		dipeptide epimerase	1.33507233686242	10.4384574899492	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_08690	CA264_08690		dipeptide epimerase	1.34821353234388	8.94086758708355	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_08790	CA264_08790		LamB/YcsF family protein	-1.18099933231837	-5.21748179687982	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_09050	CA264_09050		hypothetical protein	1.17165145200323	7.04768514983731	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_10995	CA264_10995		hypothetical protein	-1.2531228852806	-6.58892020926732	TRUE
+stress	set3IT023	Carbenicillin disodium salt	CA264_11245	CA264_11245		hypothetical protein	1.42644823870036	5.62304870604454	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_11250	CA264_11250		hypothetical protein	1.01529712465819	8.05349882983951	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_11250	CA264_11250		hypothetical protein	1.03863760578531	8.23244299112417	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_12075	CA264_12075		PAS domain S-box protein	-1.39872987811841	-8.04740934784026	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_12965	CA264_12965		hypothetical protein	-3.3011352990072	-5.63794961379921	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_12970	CA264_12970		hypothetical protein	-1.63374905780658	-6.03513444768291	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_14875	CA264_14875		hypothetical protein	1.36600383725855	11.1136917228096	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_14875	CA264_14875		hypothetical protein	1.54632604209748	12.5730344915461	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_15640	CA264_15640		hypothetical protein	-2.02679404273778	-10.9896839070188	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_15640	CA264_15640		hypothetical protein	-1.77467174920645	-11.2147966650344	FALSE
+stress	set2IT077	Carbenicillin disodium salt	CA264_16725	CA264_16725		hypothetical protein	-1.17455749913035	-8.20425641332334	FALSE
+stress	set3IT021	Carbenicillin disodium salt	CA264_16725	CA264_16725		hypothetical protein	-1.1230569956961	-7.10730744469044	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_16965	CA264_16965		hypothetical protein	1.48080059727421	9.26204274922258	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_17445	CA264_17445		peptidase M28	2.7767433394324	7.74680299585885	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_17445	CA264_17445		peptidase M28	3.08546131517203	7.37401550801746	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_17450	CA264_17450		acyl-CoA thioesterase	2.62332462851395	7.33731774355627	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_17450	CA264_17450		acyl-CoA thioesterase	3.23559868548313	7.96065302765165	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_17455	CA264_17455		hypothetical protein	1.51385770880693	9.31121156557649	FALSE
+stress	set2IT079	Carbenicillin disodium salt	CA264_17455	CA264_17455		hypothetical protein	1.56575330592718	10.1515695801047	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_17530	CA264_17530		hemolysin	-1.29050050232796	-5.58929237505547	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_18375	CA264_18375		T9SS C-terminal target domain-containing protein	-1.48007653682845	-7.39398061452671	FALSE
+stress	set3IT023	Carbenicillin disodium salt	CA264_19210	CA264_19210		SAM-dependent methyltransferase	-1.67200086634379	-5.12943728245568	FALSE
+stress	set3IT054	Ceftazidime hydrate	CA264_18375	CA264_18375		T9SS C-terminal target domain-containing protein	-1.44847169663137	-9.73876024702043	FALSE
+stress	set3IT014	Ceftazidime hydrate	CA264_18375	CA264_18375		T9SS C-terminal target domain-containing protein	-1.40160373350113	-9.11703932971546	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_00030	CA264_00030		peptidoglycan-binding protein	-1.53897634836959	-7.31640838153215	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_00030	CA264_00030		peptidoglycan-binding protein	-1.28815790813125	-6.12438488841525	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_00185	CA264_00185		SusC/RagA family TonB-linked outer membrane protein	1.33947574206921	11.1455094572093	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_00185	CA264_00185		SusC/RagA family TonB-linked outer membrane protein	1.35547333758794	11.5155779838383	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_00190	CA264_00190		RagB/SusD family nutrient uptake outer membrane protein	1.73464066651091	13.8096758814539	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_00190	CA264_00190		RagB/SusD family nutrient uptake outer membrane protein	1.87187044469138	15.1238233227919	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_00345	CA264_00345		peptidyl-prolyl cis-trans isomerase	-1.27593126291124	-5.16788439936931	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_00515	CA264_00515		hypothetical protein	1.35166374096421	9.50195641107623	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_00515	CA264_00515		hypothetical protein	1.61135934984062	11.0885863129528	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_00915	CA264_00915		hypothetical protein	1.27849216380631	9.22834972881958	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_00915	CA264_00915		hypothetical protein	1.29164670727106	9.75172442284611	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_03020	CA264_03020		hypothetical protein	1.71427950373389	7.61519397790988	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_03020	CA264_03020		hypothetical protein	1.86496805893272	8.68884330506903	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_03805	CA264_03805		serine protease	1.38718691573694	7.80860386608091	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_03805	CA264_03805		serine protease	1.40748923548196	8.4058246943651	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_05535	CA264_05535		hypothetical protein	1.69552312486635	13.5569460153035	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_05535	CA264_05535		hypothetical protein	1.84801552751291	14.4309054819414	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_05960	CA264_05960		peptidase M48	-1.39035899249147	-6.6245830224299	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_07460	CA264_07460		hypothetical protein	1.72683316137556	14.5556742107164	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_07460	CA264_07460		hypothetical protein	1.81292422661157	15.4519399155214	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_07465	CA264_07465		hypothetical protein	1.7427464989212	13.7110833122221	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_07465	CA264_07465		hypothetical protein	2.01670696432299	16.0768587313795	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_07810	CA264_07810		hypothetical protein	-1.4924145291846	-7.02956293665513	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_07810	CA264_07810		hypothetical protein	-1.48721642117713	-7.30216113584793	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_07815	CA264_07815		hypothetical protein	-1.18121737053138	-5.0512682373311	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_07920	CA264_07920		response regulator	1.05975633019152	6.57076972158717	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_07920	CA264_07920		response regulator	1.09522805627887	7.81935362321898	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_08675	CA264_08675		hypothetical protein	-1.35507601575942	-6.16421082897476	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_08680	CA264_08680		glycoside hydrolase	-1.56895578607267	-6.00656123262663	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_08685	CA264_08685		class I and II aminotransferase	1.12348568420773	6.61545143612437	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_08685	CA264_08685		class I and II aminotransferase	1.30335817315262	9.18747391451844	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_08690	CA264_08690		dipeptide epimerase	1.99327267455922	15.2629023684931	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_08690	CA264_08690		dipeptide epimerase	2.20027490431619	16.3653667843428	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_08705	CA264_08705		SusD/RagB family nutrient-binding outer membrane lipoprotein	-1.5635556882999	-8.07770130520511	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_08705	CA264_08705		SusD/RagB family nutrient-binding outer membrane lipoprotein	-1.3802262339505	-7.84949092462641	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_09055	CA264_09055		PAS domain-containing sensor histidine kinase	1.05068395865754	8.53883110996104	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_09055	CA264_09055		PAS domain-containing sensor histidine kinase	1.16419751865905	9.37284796992439	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_10905	CA264_10905		phytoene synthase	1.52046553226094	11.3765000676789	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_10905	CA264_10905		phytoene synthase	1.70142114191255	13.2582018164342	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_10910	CA264_10910		phytoene dehydrogenase	1.53746530881012	11.2817304162969	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_10910	CA264_10910		phytoene dehydrogenase	1.66003033262657	13.2578276470354	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_12270	CA264_12270		hypothetical protein	1.38321146653732	11.9222270076124	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_12270	CA264_12270		hypothetical protein	1.40750258716117	12.3549584016835	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_12770	CA264_12770		hypothetical protein	-1.85109817429415	-5.8615618317536	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_12965	CA264_12965		hypothetical protein	-2.53108010343165	-5.34904749725072	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_12970	CA264_12970		hypothetical protein	-1.51993135564422	-5.91360943636623	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_13075	CA264_13075		thioesterase	1.51127255983511	9.079444470849	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_13155	CA264_13155		response regulator	1.37777055456697	7.78976986549283	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_13155	CA264_13155		response regulator	1.64925734716694	9.70924373162298	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_14415	CA264_14415		hypothetical protein	1.54626565212237	9.76195855201641	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_14415	CA264_14415		hypothetical protein	1.68257765748732	8.79233856279264	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_14470	CA264_14470		hypothetical protein	1.54110143418476	6.23825537259497	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_14470	CA264_14470		hypothetical protein	1.60835318279707	7.5393697667521	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_15325	CA264_15325		hypothetical protein	1.23159911141491	8.87963817972663	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_15325	CA264_15325		hypothetical protein	1.25471114749308	9.18473738704428	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_15695	CA264_15695		T9SS C-terminal target domain-containing protein	-1.47211474285017	-7.38871680265994	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_15970	CA264_15970		hypothetical protein	1.55383943527921	5.77740192840946	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_16715	CA264_16715		flagellar motor protein MotB	1.3837011877965	10.8366192740396	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_16715	CA264_16715		flagellar motor protein MotB	1.4095112627873	10.9166215653091	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_16970	CA264_16970		hypothetical protein	1.51893405370267	10.5284249574577	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_16970	CA264_16970		hypothetical protein	1.67971666856661	12.341167020443	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_17230	CA264_17230		hypothetical protein	1.30390502873475	10.3486596540303	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_17230	CA264_17230		hypothetical protein	1.55702233640921	11.331265470598	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_17440	CA264_17440		subclass B1 metallo-beta-lactamase	-3.8615601672691	-12.7629307024216	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_17440	CA264_17440		subclass B1 metallo-beta-lactamase	-3.5795467564331	-12.2967711955364	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_17445	CA264_17445		peptidase M28	2.21819528359027	15.2497964775049	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_17445	CA264_17445		peptidase M28	2.28719792254482	14.8554862352178	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_17450	CA264_17450		acyl-CoA thioesterase	1.928998925487	11.6296465776304	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_17450	CA264_17450		acyl-CoA thioesterase	2.12334302824146	15.5989453697099	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_17455	CA264_17455		hypothetical protein	2.1194573789001	18.3222162842436	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_17455	CA264_17455		hypothetical protein	2.20757487304227	18.1446849300772	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_17460	CA264_17460		hypothetical protein	1.63964233073715	10.5385463167057	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_17460	CA264_17460		hypothetical protein	1.68367602623492	10.0456478046418	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_18795	CA264_18795		hypothetical protein	1.01846095405568	8.10092770439111	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_19210	CA264_19210		SAM-dependent methyltransferase	-1.43358250823406	-5.97619944321902	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_20330	CA264_20330		hypothetical protein	1.43888097946953	8.09813793699702	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_20525	CA264_20525		prenyltransferase	-1.69745134314427	-6.72780076351409	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_20525	CA264_20525		prenyltransferase	-1.44175064167309	-6.23704543720993	FALSE
+stress	set3IT003	Cephalothin sodium salt	CA264_20540	CA264_20540		transglycosylase	1.0216490808215	8.4290440730579	FALSE
+stress	set3IT043	Cephalothin sodium salt	CA264_20540	CA264_20540		transglycosylase	1.07633770036052	8.97307310926802	FALSE
+stress	set1IT060	Cisplatin	CA264_00305	CA264_00305		hypothetical protein	-1.18078536636757	-5.49395441625325	FALSE
+stress	set1IT060	Cisplatin	CA264_07430	CA264_07430		DNA polymerase III subunit epsilon	-3.35522375972831	-17.5652062812803	TRUE
+stress	set1IT032	Cisplatin	CA264_07430	CA264_07430		DNA polymerase III subunit epsilon	-2.97612375702919	-17.0068588346624	TRUE
+stress	set1IT033	Cisplatin	CA264_07430	CA264_07430		DNA polymerase III subunit epsilon	-2.07893732655198	-9.20182640955622	TRUE
+stress	set1IT060	Cisplatin	CA264_07560	CA264_07560		DNA helicase RecQ	-1.66613189435877	-9.72493453166211	TRUE
+stress	set1IT032	Cisplatin	CA264_07560	CA264_07560		DNA helicase RecQ	-1.31323214336461	-8.16117961372955	TRUE
+stress	set1IT060	Cisplatin	CA264_12605	CA264_12605		stress protection protein MarC	2.02983364044841	14.4168826824494	FALSE
+stress	set1IT032	Cisplatin	CA264_12605	CA264_12605		stress protection protein MarC	2.08278932795168	13.2596419616405	FALSE
+stress	set1IT033	Cisplatin	CA264_12605	CA264_12605		stress protection protein MarC	2.67272197660113	8.64969498128364	FALSE
+stress	set1IT060	Cisplatin	CA264_13655	CA264_13655		DNA metabolism protein	1.19730367026763	7.7049546786323	FALSE
+stress	set1IT032	Cisplatin	CA264_13655	CA264_13655		DNA metabolism protein	1.53427300823237	8.96347972480697	FALSE
+stress	set1IT033	Cisplatin	CA264_13655	CA264_13655		DNA metabolism protein	4.31793800756557	8.01497814669002	FALSE
+stress	set1IT033	Cisplatin	CA264_14820	CA264_14820		hypothetical protein	-1.40619115787228	-5.90557050414636	FALSE
+stress	set1IT033	Cisplatin	CA264_14825	CA264_14825		hypothetical protein	-1.31758583071888	-5.7176757853935	FALSE
+stress	set1IT060	Cisplatin	CA264_15820	CA264_15820		transcription-repair coupling factor	-1.5510276903391	-11.5261836255304	TRUE
+stress	set1IT060	Cisplatin	CA264_17475	CA264_17475		DNA replication and repair protein RecF	-4.53537274581812	-6.33329122218199	TRUE
+stress	set1IT032	Cisplatin	CA264_17475	CA264_17475		DNA replication and repair protein RecF	-3.98753358111569	-7.66412456135386	TRUE
+stress	set1IT060	Cisplatin	CA264_17545	CA264_17545		single-stranded-DNA-specific exonuclease RecJ	-1.19956976450322	-6.90271426225893	FALSE
+stress	set1IT060	Cisplatin	CA264_19220	CA264_19220		hypothetical protein	1.62002255172354	5.01554357558994	FALSE
+stress	set1IT032	Cisplatin	CA264_19965	CA264_19965		dipeptidyl aminopeptidase	1.17011465954544	5.59441249817672	FALSE
+stress	set1IT060	Cisplatin	CA264_19965	CA264_19965		dipeptidyl aminopeptidase	1.20141916341377	6.22472043101889	FALSE
+stress	set1IT022	Cobalt chloride hexahydrate	CA264_01650	CA264_01650		YebC/PmpR family DNA-binding transcriptional regulator	-2.54569929136334	-7.89241683529739	TRUE
+stress	set1IT050	Cobalt chloride hexahydrate	CA264_01650	CA264_01650		YebC/PmpR family DNA-binding transcriptional regulator	-1.57717226808033	-6.05101511151756	TRUE
+stress	set1IT022	Cobalt chloride hexahydrate	CA264_01670	CA264_01670		ABC transporter	-1.01196436836716	-6.22212309692217	FALSE
+stress	set1IT022	Cobalt chloride hexahydrate	CA264_02615	CA264_02615		DNA-binding response regulator	1.15806719881263	5.51762720608671	FALSE
+stress	set1IT022	Cobalt chloride hexahydrate	CA264_03675	CA264_03675		hypothetical protein	1.32528595181458	5.32793991322888	FALSE
+stress	set1IT050	Cobalt chloride hexahydrate	CA264_03680	CA264_03680		hypothetical protein	1.36662932963961	5.59003575182891	FALSE
+stress	set1IT022	Cobalt chloride hexahydrate	CA264_05040	CA264_05040		bifunctional imidazole glycerol-phosphate dehydratase/histidinol phosphatase	-1.46387718890164	-6.1601382873094	FALSE
+stress	set1IT022	Cobalt chloride hexahydrate	CA264_13010	CA264_13010		DNA-binding response regulator	-1.46585706397573	-7.31106456057171	FALSE
+stress	set1IT050	Cobalt chloride hexahydrate	CA264_13010	CA264_13010		DNA-binding response regulator	-1.38687027297898	-7.69566898863533	FALSE
+stress	set1IT021	Cobalt chloride hexahydrate	CA264_13010	CA264_13010		DNA-binding response regulator	-1.32743476356641	-7.02262987288402	FALSE
+stress	set1IT050	Cobalt chloride hexahydrate	CA264_16225	CA264_16225		TonB-dependent siderophore receptor	-2.07855507649325	-11.9361939859753	FALSE
+stress	set1IT021	Cobalt chloride hexahydrate	CA264_16225	CA264_16225		TonB-dependent siderophore receptor	-1.67836985934058	-10.5013824190207	FALSE
+stress	set1IT022	Cobalt chloride hexahydrate	CA264_16225	CA264_16225		TonB-dependent siderophore receptor	-1.63645597721922	-9.27464938407433	FALSE
+stress	set1IT049	Cobalt chloride hexahydrate	CA264_16225	CA264_16225		TonB-dependent siderophore receptor	-1.43862829413466	-9.84158069747137	FALSE
+stress	set1IT050	Cobalt chloride hexahydrate	CA264_18630	CA264_18630		bifunctional phosphoribosylaminoimidazolecarboxamide formyltransferase/inosine monophosphate cyclohydrolase	-1.31936052923055	-5.84386221681303	FALSE
+stress	set1IT050	Cobalt chloride hexahydrate	CA264_20115	CA264_20115		phosphoribosylamine--glycine ligase	-1.22929548842283	-6.29497128811064	FALSE
+stress	set3IT050	D-Cycloserine	CA264_00410	CA264_00410		enoyl-CoA hydratase	1.2755691430138	6.71142675753476	FALSE
+stress	set3IT050	D-Cycloserine	CA264_00485	CA264_00485		peptidase M4	-2.25989431884553	-12.8459660676267	FALSE
+stress	set3IT010	D-Cycloserine	CA264_00485	CA264_00485		peptidase M4	-1.9912005237615	-12.2743393391976	FALSE
+stress	set3IT010	D-Cycloserine	CA264_00490	CA264_00490		TonB-dependent siderophore receptor	-1.8461312011429	-10.0848983207011	FALSE
+stress	set3IT050	D-Cycloserine	CA264_00490	CA264_00490		TonB-dependent siderophore receptor	-1.67614216143208	-8.88108358552747	FALSE
+stress	set3IT010	D-Cycloserine	CA264_00500	CA264_00500		hypothetical protein	-1.86995995912025	-10.5439952833112	FALSE
+stress	set3IT050	D-Cycloserine	CA264_00500	CA264_00500		hypothetical protein	-1.61412433067146	-9.217631250374	FALSE
+stress	set3IT010	D-Cycloserine	CA264_00645	CA264_00645		EamA family transporter	-1.32971931730115	-5.4370516336472	FALSE
+stress	set3IT050	D-Cycloserine	CA264_06280	CA264_06280		sodium:solute symporter	-1.41155616673638	-7.64162664023277	FALSE
+stress	set3IT010	D-Cycloserine	CA264_06280	CA264_06280		sodium:solute symporter	-1.34609080183957	-7.5502708338325	FALSE
+stress	set3IT010	D-Cycloserine	CA264_09280	CA264_09280		phosphoribosylaminoimidazolesuccinocarboxamide synthase	-1.53164797492254	-5.38693909035742	FALSE
+stress	set3IT050	D-Cycloserine	CA264_12205	CA264_12205		DNA starvation/stationary phase protection protein	-2.06981020287025	-6.02388306915541	TRUE
+stress	set3IT050	D-Cycloserine	CA264_12470	CA264_12470		UDP-N-acetyl-D-galactosamine dehydrogenase	-1.34885710770617	-7.79349411661283	FALSE
+stress	set3IT010	D-Cycloserine	CA264_12470	CA264_12470		UDP-N-acetyl-D-galactosamine dehydrogenase	-1.199722468333	-6.29439998254965	FALSE
+stress	set3IT010	D-Cycloserine	CA264_13765	CA264_13765		DNA-binding transcriptional regulator OxyR	-4.42006058619082	-11.4278356884762	FALSE
+stress	set3IT050	D-Cycloserine	CA264_13765	CA264_13765		DNA-binding transcriptional regulator OxyR	-3.95658091411306	-7.376137992231	FALSE
+stress	set3IT010	D-Cycloserine	CA264_13775	CA264_13775		hypothetical protein	-1.34565699292009	-7.36672803474006	FALSE
+stress	set3IT050	D-Cycloserine	CA264_13775	CA264_13775		hypothetical protein	-1.12402491490242	-6.13236496186794	FALSE
+stress	set3IT050	D-Cycloserine	CA264_13900	CA264_13900		transcriptional regulator	-1.24253867181064	-6.00430346867307	FALSE
+stress	set3IT050	D-Cycloserine	CA264_14955	CA264_14955		endonuclease III	-3.08382047416677	-6.70109444282781	TRUE
+stress	set3IT010	D-Cycloserine	CA264_14955	CA264_14955		endonuclease III	-2.90416286054131	-6.22274498484127	TRUE
+stress	set3IT050	D-Cycloserine	CA264_15945	CA264_15945		NAD-dependent epimerase	-1.77129573747985	-7.91812153910596	FALSE
+stress	set3IT010	D-Cycloserine	CA264_15945	CA264_15945		NAD-dependent epimerase	-1.63022134851835	-7.47648693241169	FALSE
+stress	set3IT050	D-Cycloserine	CA264_20480	CA264_20480		ubiquinol-cytochrome C reductase	-1.55516601517165	-6.1109227740096	TRUE
+stress	set2IT095	Dimethyl Sulfoxide	CA264_03915	CA264_03915		hydrolase TatD	-2.48457026406087	-6.13620513588149	FALSE
+stress	set3IT039	Dimethyl Sulfoxide	CA264_03915	CA264_03915		hydrolase TatD	-1.59144208508242	-6.56956843019768	FALSE
+stress	set3IT039	Dimethyl Sulfoxide	CA264_06280	CA264_06280		sodium:solute symporter	-1.52576900777006	-9.64732673199555	FALSE
+stress	set2IT094	Dimethyl Sulfoxide	CA264_13900	CA264_13900		transcriptional regulator	1.45326143817226	7.56573838628781	FALSE
+stress	set3IT039	Dimethyl Sulfoxide	CA264_15805	CA264_15805		hypothetical protein	-1.18202677039044	-5.30739079296526	FALSE
+stress	set2IT095	Dimethyl Sulfoxide	CA264_20900	CA264_20900		hypothetical protein	-1.96781251539697	-5.54006781986596	FALSE
+stress	set2IT095	Dimethyl Sulfoxide	CA264_20905	CA264_20905		hypothetical protein	-1.46141009026	-7.2216277251264	FALSE
+stress	set3IT039	Dimethyl Sulfoxide	CA264_20905	CA264_20905		hypothetical protein	-1.42696885369539	-5.5237636346661	FALSE
+stress	set3IT052	Doxycycline hyclate	CA264_00040	CA264_00040		hypothetical protein	1.49006350569182	11.3372561118594	FALSE
+stress	set3IT012	Doxycycline hyclate	CA264_00745	CA264_00745		ribonuclease III	-1.46964315840589	-6.157075955845	FALSE
+stress	set3IT052	Doxycycline hyclate	CA264_02130	CA264_02130		pseudouridine synthase	-1.59993623878017	-5.02623938921166	FALSE
+stress	set3IT012	Doxycycline hyclate	CA264_04630	CA264_04630		TIGR00341 family protein	-1.14152997900029	-5.74906562090375	FALSE
+stress	set3IT011	Doxycycline hyclate	CA264_04630	CA264_04630		TIGR00341 family protein	-1.09474767069682	-5.71040309109519	FALSE
+stress	set3IT052	Doxycycline hyclate	CA264_05165	CA264_05165		potassium transporter KefB	-1.24052614056223	-7.14240586102343	FALSE
+stress	set3IT012	Doxycycline hyclate	CA264_05165	CA264_05165		potassium transporter KefB	-1.2320019510113	-6.9793449186852	FALSE
+stress	set3IT012	Doxycycline hyclate	CA264_05635	CA264_05635		efflux transporter periplasmic adaptor subunit	-3.66029391021822	-8.96050630836018	FALSE
+stress	set3IT051	Doxycycline hyclate	CA264_05635	CA264_05635		efflux transporter periplasmic adaptor subunit	-3.26982863489052	-10.006430060658	FALSE
+stress	set3IT052	Doxycycline hyclate	CA264_05635	CA264_05635		efflux transporter periplasmic adaptor subunit	-3.150990182086	-11.6430344262385	FALSE
+stress	set3IT011	Doxycycline hyclate	CA264_05635	CA264_05635		efflux transporter periplasmic adaptor subunit	-2.16759554338729	-8.48065415506712	FALSE
+stress	set3IT052	Doxycycline hyclate	CA264_09800	CA264_09800		DNA-binding response regulator	1.34526739728358	8.07856356485854	FALSE
+stress	set3IT012	Doxycycline hyclate	CA264_12205	CA264_12205		DNA starvation/stationary phase protection protein	-1.12111713259564	-5.83189740073531	FALSE
+stress	set3IT036	Fusidic acid sodium salt	CA264_02130	CA264_02130		pseudouridine synthase	-1.54474762982621	-5.17359420539377	FALSE
+stress	set3IT037	Fusidic acid sodium salt	CA264_03195	CA264_03195		alpha-glucan family phosphorylase	1.38693842481823	7.67205648670919	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_03195	CA264_03195		alpha-glucan family phosphorylase	1.43036012370884	8.41276533657517	FALSE
+stress	set3IT036	Fusidic acid sodium salt	CA264_07055	CA264_07055		hypothetical protein	1.34584294140469	8.98223912759579	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_11195	CA264_11195		phosphatase	-2.03446381659861	-7.1244328448799	FALSE
+stress	set3IT037	Fusidic acid sodium salt	CA264_11195	CA264_11195		phosphatase	-1.68928843833667	-6.17639407014836	FALSE
+stress	set3IT037	Fusidic acid sodium salt	CA264_17335	CA264_17335		HAD family hydrolase	1.28918745267042	7.35441089882102	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_17335	CA264_17335		HAD family hydrolase	1.79821748660675	12.891645004349	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_17340	CA264_17340		hypothetical protein	1.39747829927137	11.8083144128278	FALSE
+stress	set3IT037	Fusidic acid sodium salt	CA264_17340	CA264_17340		hypothetical protein	1.58316237115705	13.6270991027278	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_17350	CA264_17350		hypothetical protein	1.69809181694823	12.2591486354733	FALSE
+stress	set3IT037	Fusidic acid sodium salt	CA264_17350	CA264_17350		hypothetical protein	1.74563775614279	12.4496760532255	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_17370	CA264_17370		hypothetical protein	-1.72968082145925	-6.212562120421	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_17380	CA264_17380		SLC13 family permease	-1.13397831709884	-6.6387261398257	FALSE
+stress	set3IT037	Fusidic acid sodium salt	CA264_17380	CA264_17380		SLC13 family permease	-1.00959910347595	-5.32418744345895	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_17815	CA264_17815		hypothetical protein	-1.51892549201295	-5.97420741542852	FALSE
+stress	set2IT092	Fusidic acid sodium salt	CA264_17815	CA264_17815		hypothetical protein	-1.3863432284801	-5.9392215099686	FALSE
+stress	set3IT036	Fusidic acid sodium salt	CA264_20200	CA264_20200		hypothetical protein	-1.37962189039773	-7.89136089071308	FALSE
+stress	set3IT036	Fusidic acid sodium salt	CA264_20210	CA264_20210		two-component sensor histidine kinase	-1.18341563913479	-8.39396755249786	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_20210	CA264_20210		two-component sensor histidine kinase	-1.08801150198759	-7.23380994731108	FALSE
+stress	set3IT036	Fusidic acid sodium salt	CA264_20215	CA264_20215		hypothetical protein	-1.60268386893153	-6.8476188547349	FALSE
+stress	set3IT037	Fusidic acid sodium salt	CA264_20215	CA264_20215		hypothetical protein	-1.16567032484827	-5.2961546763511	FALSE
+stress	set2IT093	Fusidic acid sodium salt	CA264_20220	CA264_20220		phosphatase PAP2 family protein	-1.30043843925324	-7.81430378790351	FALSE
+stress	set3IT036	Fusidic acid sodium salt	CA264_20220	CA264_20220		phosphatase PAP2 family protein	-1.28588931121813	-7.02246474936979	FALSE
+stress	set3IT047	Lomefloxacin hydrochloride	CA264_20390	CA264_20390		peptidase M16	-1.21580951804595	-6.54841063486876	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_00145	CA264_00145		DNA mismatch repair protein MutT	1.09327143358192	6.93502929354734	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_00230	CA264_00230		hypothetical protein	-1.23685762748984	-5.64038304081611	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_00430	CA264_00430		hypothetical protein	1.10375916895497	7.4747289096738	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_00965	CA264_00965		sugar transporter	-1.15507144244664	-6.22215916016914	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_00980	CA264_00980		polysaccharide biosynthesis protein	-1.27325838866062	-9.06926751531022	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_00980	CA264_00980		polysaccharide biosynthesis protein	-1.0093681551446	-6.63319481210749	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_00985	CA264_00985		hypothetical protein	-1.28205077930257	-7.86556052271879	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_01260	CA264_01260		hypothetical protein	1.55763562186511	8.8262688174004	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_01360	CA264_01360		DUF983 domain-containing protein	-1.84382137219456	-7.66635696322362	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_01360	CA264_01360		DUF983 domain-containing protein	-1.28130928520951	-6.08211790795795	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_01480	CA264_01480		dihydroorotase	-1.72935580529585	-6.37374601021499	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_01950	CA264_01950		PhoH family protein	1.10461184106872	6.99886903834067	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_02720	CA264_02720		peroxiredoxin	-1.36132730402373	-6.39870040816967	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_03155	CA264_03155		hypothetical protein	-1.50315455315998	-5.80593906005749	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_03360	CA264_03360		hypothetical protein	1.09978925911494	9.07090866608417	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_03845	CA264_03845		peptidase M17	1.65539461598601	12.2096925773438	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_03845	CA264_03845		peptidase M17	1.94440051510289	13.4814710897162	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_03875	CA264_03875		HIT family protein	-2.90457349451492	-6.87242940655265	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_04400	CA264_04400		ABC transporter permease	-1.36819190591538	-6.08061812339033	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_04730	CA264_04730		uracil-DNA glycosylase	-2.87069713101349	-6.52263268810471	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_04730	CA264_04730		uracil-DNA glycosylase	-2.64312820335121	-6.68810763540953	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_04770	CA264_04770		metal-dependent hydrolase	-2.02719264612677	-5.53672832305914	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_04865	CA264_04865		ATPase	-1.33089706417631	-5.14967762883403	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_05575	CA264_05575		hypothetical protein	1.28581690700379	8.94086291205079	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_05580	CA264_05580		hypothetical protein	-2.25679464011208	-5.24787489102814	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_05700	CA264_05700		RNA methyltransferase	1.14503804747229	7.47841888968771	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_05740	CA264_05740		DUF389 domain-containing protein	-1.36679668525375	-9.25582437462989	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_05740	CA264_05740		DUF389 domain-containing protein	-1.29235876561693	-8.02633540956483	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_05850	CA264_05850		hypothetical protein	-3.77397902148118	-8.21087986378137	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_05850	CA264_05850		hypothetical protein	-3.71323432915021	-8.37039340031896	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_05855	CA264_05855		hypothetical protein	1.41269034774716	7.30635238745868	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_05855	CA264_05855		hypothetical protein	1.43306195950519	6.35909044584957	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_06260	CA264_06260		N-acetyltransferase	1.53869561000371	6.4174253884579	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_06465	CA264_06465		orotate phosphoribosyltransferase	1.39738732794642	8.57930359186517	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_06470	CA264_06470		YfcE family phosphodiesterase	1.82760987663171	5.77170619263	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_06470	CA264_06470		YfcE family phosphodiesterase	1.94259017737962	5.07378772482306	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_06540	CA264_06540		hypothetical protein	-2.28885415487423	-9.80776955546686	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_06540	CA264_06540		hypothetical protein	-2.14411565056456	-7.57909198382145	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_06995	CA264_06995		fatty acid hydroxylase	-3.51088655108503	-8.35024368667918	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_06995	CA264_06995		fatty acid hydroxylase	-3.17896445945455	-7.40522317774204	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_08585	CA264_08585		hypothetical protein	-1.26141529285947	-5.91367372076252	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_08620	CA264_08620		hypothetical protein	-1.58943228320382	-5.52279644947896	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_08820	CA264_08820		histidine phosphatase family protein	1.5228919648235	12.2895133139981	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_08990	CA264_08990		FeS-binding protein	-1.35214305147117	-7.11595079668087	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_08990	CA264_08990		FeS-binding protein	-1.13300814221267	-7.46268475309182	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_08995	CA264_08995		FAD-dependent oxidoreductase	-2.21676059807504	-8.27763385533277	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_08995	CA264_08995		FAD-dependent oxidoreductase	-1.94643183053376	-8.0662038091531	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_09000	CA264_09000		hypothetical protein	-2.49367614348862	-8.0451521313106	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_09000	CA264_09000		hypothetical protein	-2.02436983259924	-6.62167331244229	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_09615	CA264_09615		hypothetical protein	-1.12074393671658	-6.54345183905166	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_09630	CA264_09630		hypothetical protein	-1.11380936794004	-6.55200795860257	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_09905	CA264_09905		hypothetical protein	-1.82750553211136	-8.7386678834613	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_09905	CA264_09905		hypothetical protein	-1.73074336448877	-9.58566752884797	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_10940	CA264_10940		phenylacetate-CoA oxygenase subunit PaaA	-1.33615180177156	-5.0802417656566	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_10965	CA264_10965		oligoendopeptidase F	1.20441923603681	7.93996544550523	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_11205	CA264_11205		hypothetical protein	-1.6390280090786	-5.57871484751598	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_11350	CA264_11350		glycerol kinase	-1.61783881621862	-7.67458812149065	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_11350	CA264_11350		glycerol kinase	-1.24675230063836	-6.74042891944881	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_11415	CA264_11415		carbohydrate kinase	-1.08804918017284	-6.87139818526911	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_11450	CA264_11450		serine/threonine protein phosphatase	-1.05240803700574	-5.81501214670524	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_11810	CA264_11810		HAD family hydrolase	1.22625275243303	5.14332726349134	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_12380	CA264_12380		hypothetical protein	-1.61818849532946	-8.68474391185782	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_12380	CA264_12380		hypothetical protein	-1.45088424526631	-10.0317283968751	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_12475	CA264_12475		alanine dehydrogenase	-3.47107350910218	-14.794855478334	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_12475	CA264_12475		alanine dehydrogenase	-3.25052417309414	-14.4239423392788	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_12520	CA264_12520		sodium:proton exchanger	-3.21356984883892	-9.86960852766579	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_12520	CA264_12520		sodium:proton exchanger	-2.86347162154295	-9.60067189866126	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_14195	CA264_14195		1-pyrroline-5-carboxylate dehydrogenase	1.48651455006437	11.3597959502287	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_14285	CA264_14285		mannosyltransferase	-1.72861682588382	-9.98205925524617	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_14285	CA264_14285		mannosyltransferase	-1.44848767609339	-9.88725827679663	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_14295	CA264_14295		multidrug ABC transporter ATP-binding protein	-1.52094098209461	-6.38385150411675	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_14305	CA264_14305		hypothetical protein	-1.2403745291983	-10.331101880231	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_14690	CA264_14690		peptidase S41	1.15628320719327	7.05464374633341	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_14775	CA264_14775		hypothetical protein	-1.9715678903742	-5.98027825180659	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_14945	CA264_14945		RNA polymerase subunit sigma-24	-2.05826075248982	-5.85579170121832	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_15270	CA264_15270		glutamyl-tRNA amidotransferase	-1.80410366860673	-5.46308031965844	TRUE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_15330	CA264_15330		SusD/RagB family nutrient-binding outer membrane lipoprotein	1.19389124689875	7.47098414121553	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_15505	CA264_15505		phosphatase PAP2 family protein	-1.09298890355993	-5.85074838447676	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_15715	CA264_15715		GTPase HflX	1.12124007413473	7.1282517954747	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_15800	CA264_15800		hypothetical protein	-1.15920738866308	-5.30206191647477	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_16765	CA264_16765		coproporphyrinogen III oxidase	1.0480877165052	7.25186035547917	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_16765	CA264_16765		coproporphyrinogen III oxidase	1.12348235117115	7.85393027434609	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_17160	CA264_17160		ketosteroid isomerase	-1.08562647382812	-6.01906098930637	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_17660	CA264_17660		hypothetical protein	-1.99754710595693	-7.06301674464582	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_17665	CA264_17665		molecular chaperone DnaJ	-1.37101384597145	-5.71772349460202	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_19100	CA264_19100		hypothetical protein	-1.56493593710555	-10.0651447138083	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_19100	CA264_19100		hypothetical protein	-1.43165841710189	-10.3046068975138	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_20195	CA264_20195		hypothetical protein	-1.07150636209015	-7.04409658921833	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_20195	CA264_20195		hypothetical protein	-1.04864468933252	-6.50943365360875	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_20330	CA264_20330		hypothetical protein	-1.9354581033333	-6.1972617836746	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_20330	CA264_20330		hypothetical protein	-1.62189608984023	-5.76843922275538	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_20545	CA264_20545		epimerase	-1.71359798963804	-9.26814361985078	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_20545	CA264_20545		epimerase	-1.40523178876892	-7.10595157866989	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_20660	CA264_20660		methylmalonyl Co-A mutase-associated GTPase MeaB	-1.54109139130339	-6.67623359080962	FALSE
+stress	set3IT006	MreB Perturbing Compound A22	CA264_20755	CA264_20755		hypothetical protein	-1.24421603304407	-8.56584677079277	FALSE
+stress	set3IT046	MreB Perturbing Compound A22	CA264_20755	CA264_20755		hypothetical protein	-1.22986135190952	-7.7458845733756	FALSE
+stress	set3IT025	Nalidixic acid sodium salt	CA264_02210	CA264_02210		AI-2E family transporter	-1.23638901413538	-6.03614594134265	FALSE
+stress	set3IT025	Nalidixic acid sodium salt	CA264_03855	CA264_03855		magnesium transporter	1.86923147782942	14.3913946102668	FALSE
+stress	set2IT082	Nalidixic acid sodium salt	CA264_03990	CA264_03990		alkyl hydroperoxide reductase	1.23411689520895	5.803304878625	FALSE
+stress	set2IT082	Nalidixic acid sodium salt	CA264_03995	CA264_03995		hypothetical protein	1.29256768430154	5.53428859304406	FALSE
+stress	set3IT026	Nalidixic acid sodium salt	CA264_04000	CA264_04000		hypothetical protein	1.43077948424837	6.96479678259851	FALSE
+stress	set3IT026	Nalidixic acid sodium salt	CA264_06645	CA264_06645		hypothetical protein	2.02272041038469	7.49680387489233	FALSE
+stress	set2IT082	Nalidixic acid sodium salt	CA264_06645	CA264_06645		hypothetical protein	2.07629369733584	7.833816639613	FALSE
+stress	set3IT025	Nalidixic acid sodium salt	CA264_07405	CA264_07405		hypothetical protein	-1.176725558187	-6.01912007933282	FALSE
+stress	set3IT026	Nalidixic acid sodium salt	CA264_11700	CA264_11700		hypothetical protein	1.7227839288365	5.74568073943552	FALSE
+stress	set2IT082	Nalidixic acid sodium salt	CA264_11700	CA264_11700		hypothetical protein	1.95346171457236	6.77146672419512	FALSE
+stress	set2IT082	Nalidixic acid sodium salt	CA264_16685	CA264_16685		deoxyguanosinetriphosphate triphosphohydrolase	1.2831922771159	6.43118289689756	FALSE
+stress	set3IT026	Nalidixic acid sodium salt	CA264_16685	CA264_16685		deoxyguanosinetriphosphate triphosphohydrolase	1.45138082292325	7.16622192451922	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_00010	CA264_00010		hypothetical protein	-3.47473142377299	-9.51256500754044	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_00925	CA264_00925		hypothetical protein	-1.96862286214933	-6.40221094981381	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_02535	CA264_02535		disulfide bond formation regulator	-2.51818985398823	-9.6146508698844	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_03085	CA264_03085		polysaccharide transporter	-1.19585634747662	-7.62296014236302	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_03685	CA264_03685		CusA/CzcA family heavy metal efflux RND transporter	-1.10056029524066	-8.45065358997357	TRUE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_03845	CA264_03845		peptidase M17	-1.96692072709556	-7.76347155332559	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_03855	CA264_03855		magnesium transporter	2.08577219323088	9.17733304831463	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_03855	CA264_03855		magnesium transporter	2.19447434838147	18.8176618577199	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_03860	CA264_03860		hypothetical protein	-1.67622100734437	-9.48288785032577	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_03860	CA264_03860		hypothetical protein	1.30670841310023	8.31002060721248	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_04200	CA264_04200		cation-efflux pump	1.57504225570448	9.62186744182869	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_04420	CA264_04420		Xaa-Pro aminopeptidase	-2.41710180821429	-9.65102561710608	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_04425	CA264_04425		endonuclease	-1.46917834453444	-5.11275693588577	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_05070	CA264_05070		indole-3-glycerol phosphate synthase	-2.48365877687349	-9.52767631709686	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_06115	CA264_06115		acyl-CoA thioesterase	-1.18612615897385	-7.05163401541159	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_06165	CA264_06165		hypothetical protein	-1.60783265748893	-5.29276280770764	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_06200	CA264_06200		N-formylglutamate amidohydrolase	-1.46045755544015	-8.17214614001479	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_06275	CA264_06275		chloride channel protein	-2.76702297935881	-10.9995349696601	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_09130	CA264_09130		hypothetical protein	1.16519735811419	8.20703470601087	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_09250	CA264_09250		hemolysin	1.31825133341922	5.15017052372559	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_09555	CA264_09555		potassium transporter Kup	-1.09787368545847	-7.38818255388254	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_10210	CA264_10210		hypothetical protein	-1.9840429771095	-8.60119387660151	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_12815	CA264_12815		polysaccharide deacetylase	-1.08018570338177	-5.45392400701867	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_13010	CA264_13010		DNA-binding response regulator	-1.26971553108737	-6.57595217074639	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_14175	CA264_14175		hypothetical protein	-1.94679869348771	-5.53277649152859	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_14185	CA264_14185		noncanonical pyrimidine nucleotidase, YjjG family	-1.44626526754958	-6.70122530452714	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_14610	CA264_14610		FAD-dependent oxidoreductase	-2.05976360095095	-7.02482472208297	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_15605	CA264_15605		hypothetical protein	1.28213464456949	7.39922034907322	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_15765	CA264_15765		T9SS C-terminal target domain-containing protein	1.4783142850198	6.90954616549402	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_15770	CA264_15770		FAD-dependent oxidoreductase	1.20284964900221	6.36375885185258	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_15775	CA264_15775		type III polyketide synthase	-1.13740496495087	-5.95885655894093	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_15775	CA264_15775		type III polyketide synthase	1.48835448358065	8.60103623073926	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_15780	CA264_15780		SAM-dependent methyltransferase	1.49720018316972	8.10894335741719	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_17390	CA264_17390		hypothetical protein	2.01543501604979	7.4053805538854	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_17530	CA264_17530		hemolysin	1.83599327661302	12.0505397386371	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_18635	CA264_18635		phosphoribosylglycinamide formyltransferase	-1.54537203571659	-5.65677616773745	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_19785	CA264_19785		TonB-dependent receptor	-1.41837336755826	-8.31917703765098	FALSE
+stress	set1IT019	Nickel (II) chloride hexahydrate	CA264_19790	CA264_19790		acyl-CoA dehydrogenase	-1.22465984776783	-6.91383534051413	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_20115	CA264_20115		phosphoribosylamine--glycine ligase	1.30857784452237	9.68354189001334	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_21060	CA264_21060		hypothetical protein	-1.46179011707208	-9.62392318633308	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_21070	CA264_21070		transcriptional repressor	-1.59275649249609	-5.95178072990568	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_21075	CA264_21075		ATP-binding protein	-1.48909873722571	-7.74826232513202	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_21520	CA264_21520		hypothetical protein	1.40182775284456	6.89540659838571	FALSE
+stress	set1IT018	Nickel (II) chloride hexahydrate	CA264_21525	CA264_21525		DUF305 domain-containing protein	1.67306072961291	12.5763147117539	FALSE
+stress	set1IT028	Paraquat dichloride	CA264_07655	CA264_07655		endonuclease MutS2	1.98743762843038	7.86250513696429	FALSE
+stress	set1IT056	Paraquat dichloride	CA264_07655	CA264_07655		endonuclease MutS2	2.0853272938301	7.68841211778589	FALSE
+stress	set1IT056	Paraquat dichloride	CA264_07675	CA264_07675		MATE family efflux transporter	-1.18371837994511	-5.50990542900909	FALSE
+stress	set1IT056	Paraquat dichloride	CA264_09205	CA264_09205		hypothetical protein	1.33213182613306	5.69301832361645	FALSE
+stress	set1IT028	Paraquat dichloride	CA264_09210	CA264_09210		hypothetical protein	1.71399741333698	10.32861105347	FALSE
+stress	set1IT056	Paraquat dichloride	CA264_09210	CA264_09210		hypothetical protein	1.90900042008104	13.2377154344672	FALSE
+stress	set1IT028	Paraquat dichloride	CA264_09215	CA264_09215		ferredoxin--NADP(+) reductase	-3.59032792715505	-14.6218144463001	FALSE
+stress	set1IT056	Paraquat dichloride	CA264_09215	CA264_09215		ferredoxin--NADP(+) reductase	-2.76801134002845	-13.6565968915497	FALSE
+stress	set1IT056	Paraquat dichloride	CA264_09220	CA264_09220		ferredoxin	-3.77297809163897	-8.63589309814606	FALSE
+stress	set1IT028	Paraquat dichloride	CA264_09220	CA264_09220		ferredoxin	-3.45069041010559	-10.7684707706867	FALSE
+stress	set1IT056	Paraquat dichloride	CA264_09550	CA264_09550		hypothetical protein	-1.52293721745755	-5.14143987908862	FALSE
+stress	set1IT028	Paraquat dichloride	CA264_16965	CA264_16965		hypothetical protein	-2.51103238325963	-7.38950474859266	FALSE
+stress	set1IT056	Paraquat dichloride	CA264_16965	CA264_16965		hypothetical protein	-1.91692632188561	-7.36333910018592	FALSE
+stress	set1IT072	Sodium Chloride	CA264_00665	CA264_00665		RNA polymerase subunit sigma-24	-2.75590700045355	-11.6329929337626	FALSE
+stress	set1IT044	Sodium Chloride	CA264_00665	CA264_00665		RNA polymerase subunit sigma-24	-2.26602277657218	-10.0444758514347	FALSE
+stress	set1IT072	Sodium Chloride	CA264_00675	CA264_00675		16S rRNA (guanine(527)-N(7))-methyltransferase RsmG	-1.29434314315997	-5.13301552643263	FALSE
+stress	set1IT044	Sodium Chloride	CA264_03130	CA264_03130		alanine racemase	-2.23746699091567	-10.0291729545909	FALSE
+stress	set1IT072	Sodium Chloride	CA264_03130	CA264_03130		alanine racemase	-1.95552813081005	-9.85661467227259	FALSE
+stress	set1IT072	Sodium Chloride	CA264_03900	CA264_03900		serine/threonine protein phosphatase	-1.0696407961525	-6.18897347170389	FALSE
+stress	set1IT044	Sodium Chloride	CA264_05055	CA264_05055		anthranilate synthase component I	-1.34446574055937	-7.15376129818253	FALSE
+stress	set1IT072	Sodium Chloride	CA264_05055	CA264_05055		anthranilate synthase component I	-1.19772772001775	-6.24964453817497	FALSE
+stress	set1IT044	Sodium Chloride	CA264_05065	CA264_05065		anthranilate phosphoribosyltransferase	-1.51463568154584	-9.50322836869534	FALSE
+stress	set1IT072	Sodium Chloride	CA264_05065	CA264_05065		anthranilate phosphoribosyltransferase	-1.19044462890194	-7.27292650667017	FALSE
+stress	set1IT044	Sodium Chloride	CA264_07065	CA264_07065		hypothetical protein	-1.48779095651949	-5.55539261047185	FALSE
+stress	set1IT072	Sodium Chloride	CA264_07720	CA264_07720		gamma-glutamyl-phosphate reductase	-1.11811365843644	-7.01579675329533	FALSE
+stress	set1IT044	Sodium Chloride	CA264_07725	CA264_07725		glutamate 5-kinase	-3.44382939765949	-15.0163100499344	FALSE
+stress	set1IT072	Sodium Chloride	CA264_07725	CA264_07725		glutamate 5-kinase	-3.43025720093479	-15.1059508068296	FALSE
+stress	set1IT044	Sodium Chloride	CA264_07730	CA264_07730		pyrroline-5-carboxylate reductase	-3.43565281599142	-10.3039680969402	FALSE
+stress	set1IT072	Sodium Chloride	CA264_07730	CA264_07730		pyrroline-5-carboxylate reductase	-2.68422500434716	-7.02840559616764	FALSE
+stress	set1IT072	Sodium Chloride	CA264_09050	CA264_09050		hypothetical protein	-1.26218347100008	-5.1045842327136	FALSE
+stress	set1IT072	Sodium Chloride	CA264_09805	CA264_09805		hypothetical protein	-1.27169697478327	-5.31337357629927	FALSE
+stress	set1IT044	Sodium Chloride	CA264_09810	CA264_09810		ABC transporter ATP-binding protein	-1.27157795314681	-9.06903468071823	FALSE
+stress	set1IT072	Sodium Chloride	CA264_09810	CA264_09810		ABC transporter ATP-binding protein	-1.07025817485121	-7.47116558506887	FALSE
+stress	set1IT044	Sodium Chloride	CA264_13085	CA264_13085		methylmalonyl-CoA carboxyltransferase	-1.74719612973697	-9.59499702371489	FALSE
+stress	set1IT072	Sodium Chloride	CA264_13085	CA264_13085		methylmalonyl-CoA carboxyltransferase	-1.59958093955984	-6.92623443692232	FALSE
+stress	set1IT044	Sodium Chloride	CA264_14775	CA264_14775		hypothetical protein	-1.84016170557715	-5.35600539822531	FALSE
+stress	set1IT044	Sodium Chloride	CA264_15945	CA264_15945		NAD-dependent epimerase	-2.14530515167801	-10.0717346644825	FALSE
+stress	set1IT072	Sodium Chloride	CA264_15945	CA264_15945		NAD-dependent epimerase	-2.00839698733795	-8.44787892709997	FALSE
+stress	set1IT044	Sodium Chloride	CA264_17255	CA264_17255		carboxymuconolactone decarboxylase family protein	-1.66805425904898	-7.05298472210034	FALSE
+stress	set1IT072	Sodium Chloride	CA264_17255	CA264_17255		carboxymuconolactone decarboxylase family protein	-1.43282296589702	-5.69055994653206	FALSE
+stress	set1IT072	Sodium Chloride	CA264_17665	CA264_17665		molecular chaperone DnaJ	-1.46809095606501	-7.4215737691174	FALSE
+stress	set1IT072	Sodium Chloride	CA264_17695	CA264_17695		phosphoribosylformylglycinamidine cyclo-ligase	-1.78839529000836	-9.10660759008603	FALSE
+stress	set1IT044	Sodium Chloride	CA264_17695	CA264_17695		phosphoribosylformylglycinamidine cyclo-ligase	-1.59496497548244	-9.07111958948321	FALSE
+stress	set1IT044	Sodium Chloride	CA264_18750	CA264_18750		FmdC precursor	1.74637620574365	7.45914969503017	FALSE
+stress	set1IT072	Sodium Chloride	CA264_18750	CA264_18750		FmdC precursor	1.89377285781926	7.96723526857362	FALSE
+stress	set1IT067	Sodium Chlorite	CA264_00485	CA264_00485		peptidase M4	-2.70933009450141	-13.0657984419083	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_00485	CA264_00485		peptidase M4	-2.50849183796035	-13.1539738228713	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_00490	CA264_00490		TonB-dependent siderophore receptor	-2.2222534932527	-9.9059588264398	FALSE
+stress	set1IT067	Sodium Chlorite	CA264_00490	CA264_00490		TonB-dependent siderophore receptor	-1.99422775980785	-10.087532677054	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_00500	CA264_00500		hypothetical protein	-2.89217405390676	-12.067912926882	FALSE
+stress	set1IT067	Sodium Chlorite	CA264_00500	CA264_00500		hypothetical protein	-2.88338426833655	-13.0010758037017	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_01365	CA264_01365		two-component sensor histidine kinase	-1.54127672777304	-7.90731460028225	FALSE
+stress	set1IT067	Sodium Chlorite	CA264_01365	CA264_01365		two-component sensor histidine kinase	-1.4213577572042	-6.9418831169875	FALSE
+stress	set1IT066	Sodium Chlorite	CA264_02535	CA264_02535		disulfide bond formation regulator	-1.34291607646775	-5.97825917284411	FALSE
+stress	set1IT038	Sodium Chlorite	CA264_02535	CA264_02535		disulfide bond formation regulator	-1.33291452021841	-5.44167767215988	FALSE
+stress	set1IT067	Sodium Chlorite	CA264_06495	CA264_06495		hypothetical protein	-1.13041664704022	-5.11574082985039	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_09365	CA264_09365		4-hydroxybutyrate CoA-transferase	-1.70659612332984	-8.89886274803898	FALSE
+stress	set1IT067	Sodium Chlorite	CA264_09365	CA264_09365		4-hydroxybutyrate CoA-transferase	-1.51923301714435	-8.09916123445797	FALSE
+stress	set1IT038	Sodium Chlorite	CA264_12315	CA264_12315		fumarylacetoacetase	-2.36063600308434	-6.4928378605267	FALSE
+stress	set1IT066	Sodium Chlorite	CA264_12315	CA264_12315		fumarylacetoacetase	-1.79466203624636	-6.30651261925575	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_15885	CA264_15885		TetR family transcriptional regulator	1.4257176670273	8.26101824606379	FALSE
+stress	set1IT067	Sodium Chlorite	CA264_15885	CA264_15885		TetR family transcriptional regulator	1.54028481063711	7.55212894753751	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_18840	CA264_18840		AraC family transcriptional regulator	-1.68985794570362	-8.077382554066	FALSE
+stress	set1IT067	Sodium Chlorite	CA264_18840	CA264_18840		AraC family transcriptional regulator	-1.49712256648078	-6.43644358923174	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_19820	CA264_19820		dessication-associated protein	1.04073285489482	6.97402683608481	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_19825	CA264_19825		Tat (twin-arginine translocation) pathway signal sequence containing protein	1.10502727817354	8.33786713898576	FALSE
+stress	set1IT039	Sodium Chlorite	CA264_21470	CA264_21470		hypothetical protein	-1.41243990359708	-5.52646999357552	FALSE
+stress	set1IT067	Sodium Chlorite	CA264_21470	CA264_21470		hypothetical protein	-1.13707365612185	-5.32862962093946	FALSE
+stress	set1IT069	Sodium perchlorate monohydrate	CA264_10080	CA264_10080		chloride channel protein	-1.00339444295616	-5.05705106291315	FALSE
+stress	set1IT069	Sodium perchlorate monohydrate	CA264_17980	CA264_17980		chloride channel protein	-1.09259386531272	-7.3881992741163	FALSE
+stress	set1IT041	Sodium perchlorate monohydrate	CA264_17980	CA264_17980		chloride channel protein	-1.05372993167534	-6.69662588740413	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_02625	CA264_02625		hypothetical protein	-1.51899295158905	-9.16539140263312	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_02720	CA264_02720		peroxiredoxin	1.61882686610842	9.36067034144423	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_04370	CA264_04370		acyl transferase	-1.63845144393188	-5.68963416542534	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_05265	CA264_05265		16S rRNA (uracil(1498)-N(3))-methyltransferase	-1.52100440299016	-6.52092297074583	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_05610	CA264_05610		rRNA methyltransferase	2.01030970826823	10.0305911382479	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_06370	CA264_06370		MATE family efflux transporter	1.3572045324069	9.83130422185423	TRUE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_09635	CA264_09635		hypothetical protein	1.6129552556806	9.32153657480846	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_09805	CA264_09805		hypothetical protein	1.01854310155032	6.01578546724681	FALSE
+stress	set3IT020	Spectinomycin dihydrochloride pentahydrate	CA264_11135	CA264_11135		DUF2179 domain-containing protein	1.92816668186658	10.1286916137313	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_11135	CA264_11135		DUF2179 domain-containing protein	3.31190610885345	12.7479347006155	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_12195	CA264_12195		DoxX family protein	1.71867568933558	8.13612894498761	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_14835	CA264_14835		hypothetical protein	1.311584106125	9.75817137962638	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_15295	CA264_15295		SAM-dependent methyltransferase	-1.29832524879413	-6.00140548137915	TRUE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_16955	CA264_16955		hypothetical protein	-1.78555403561931	-7.10902198482737	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_16960	CA264_16960		T9SS C-terminal target domain-containing protein	-1.08909896239964	-6.39021434459225	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_19120	CA264_19120		B12-binding domain-containing radical SAM protein	-1.17769615659506	-7.39141856851507	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_19785	CA264_19785		TonB-dependent receptor	1.57094754325647	11.0938304740151	FALSE
+stress	set2IT076	Spectinomycin dihydrochloride pentahydrate	CA264_19790	CA264_19790		acyl-CoA dehydrogenase	1.02669039123537	6.77912751106415	FALSE
+stress	set3IT018	Tetracycline hydrochloride	CA264_13495	CA264_13495		aldehyde dehydrogenase	1.94073674207959	10.5291951986871	FALSE
+stress	set2IT075	Tetracycline hydrochloride	CA264_13495	CA264_13495		aldehyde dehydrogenase	2.04149925171099	8.7988219940883	FALSE
+stress	set2IT074	Tetracycline hydrochloride	CA264_13495	CA264_13495		aldehyde dehydrogenase	2.05441113872585	10.0728783303383	FALSE
+stress	set3IT019	Tetracycline hydrochloride	CA264_13495	CA264_13495		aldehyde dehydrogenase	2.12703420616539	10.3908056818507	FALSE
+stress	set2IT074	Tetracycline hydrochloride	CA264_13500	CA264_13500		hypothetical protein	1.20224511576408	5.59659096248258	FALSE
+stress	set2IT075	Tetracycline hydrochloride	CA264_13500	CA264_13500		hypothetical protein	1.26364752582591	6.56161232741074	FALSE
+stress	set3IT019	Tetracycline hydrochloride	CA264_13500	CA264_13500		hypothetical protein	1.26755103848751	5.93658390878951	FALSE
+stress	set3IT018	Tetracycline hydrochloride	CA264_15245	CA264_15245		hypothetical protein	-1.40584812144672	-8.31846456881497	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_00035	CA264_00035		hypothetical protein	-1.94815840055957	-6.48096593393751	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_00205	CA264_00205		histidine kinase	-1.27267501231483	-5.86063456656086	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_00225	CA264_00225		D-tyrosyl-tRNA(Tyr) deacylase	-1.25139569916796	-5.05455912079666	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_00325	CA264_00325		hypothetical protein	1.6536957362055	8.71477112683755	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_00325	CA264_00325		hypothetical protein	1.96024459062938	7.43351174670118	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_00330	CA264_00330		hypothetical protein	1.70412461976909	10.8596061031049	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_00330	CA264_00330		hypothetical protein	1.74959021954473	6.81661753017872	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_00330	CA264_00330		hypothetical protein	1.89028492903396	9.54200837733243	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_00330	CA264_00330		hypothetical protein	1.98747774904123	9.13640729968212	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_00355	CA264_00355		short-chain dehydrogenase	-1.74473423535741	-6.57246750105706	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_00355	CA264_00355		short-chain dehydrogenase	-1.32682432038106	-5.84952840136665	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_00390	CA264_00390		N-acetyltransferase	-1.00541280416087	-5.02323596115998	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_00730	CA264_00730		hypothetical protein	1.45781188950654	5.52201365970554	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_00915	CA264_00915		hypothetical protein	-2.16317451738721	-8.50625169691753	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_00915	CA264_00915		hypothetical protein	-1.80313598895895	-9.04037780626092	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_00920	CA264_00920		acetyltransferase	-2.46616992647316	-5.44985766932443	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_01150	CA264_01150		Maebl	-2.01393517941778	-6.36653721863984	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_01150	CA264_01150		Maebl	-1.55412893605992	-5.20789376599582	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_01475	CA264_01475		hypothetical protein	-1.15286816765395	-7.22264087381774	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_01505	CA264_01505		hypothetical protein	2.19022652583947	11.1000586775136	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_01505	CA264_01505		hypothetical protein	2.39048986482873	11.276831972904	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_01530	CA264_01530		hypothetical protein	-1.31122558865861	-6.64484831186236	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_01565	CA264_01565		tellurium resistance protein TerC	1.59067944672525	7.4980713321351	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_01565	CA264_01565		tellurium resistance protein TerC	1.71493302297982	7.54818539264237	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_01785	CA264_01785		hypothetical protein	1.4201136682639	6.89734522756671	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_01785	CA264_01785		hypothetical protein	1.58794638310686	7.40168312755922	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_02410	CA264_02410		adenosylmethionine--8-amino-7-oxononanoate transaminase	-1.15364793273491	-5.78542451616255	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_02430	CA264_02430		glucoamylase	1.76478318880888	8.06473010501354	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_02430	CA264_02430		glucoamylase	1.89996603249817	7.60856759051717	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_02625	CA264_02625		hypothetical protein	-1.69521649436944	-6.42672566821517	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_02625	CA264_02625		hypothetical protein	-1.31967781347162	-5.47389469499032	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_02640	CA264_02640		SWFGD domain-containing protein	-1.22165059905777	-5.69575812253631	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_02710	CA264_02710		hypothetical protein	-1.40329293458607	-8.85858623589495	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_03020	CA264_03020		hypothetical protein	1.50962668925509	7.89887416320402	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_03020	CA264_03020		hypothetical protein	1.6186195849264	8.57265837310938	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_03095	CA264_03095		hypothetical protein	-1.26961818960184	-5.17904476612383	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_03520	CA264_03520		hypothetical protein	-1.1587250043836	-5.64091815418613	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_03735	CA264_03735		hypothetical protein	1.22770731252531	7.29411301655648	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_03740	CA264_03740		TonB-dependent receptor	1.02827251709412	8.00412186360679	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_03895	CA264_03895		hypothetical protein	-2.36562126801593	-6.58768934245517	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_03895	CA264_03895		hypothetical protein	-1.72822498660193	-5.40586197281932	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_04180	CA264_04180		hypothetical protein	-1.10951105654611	-5.36261775442925	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_04180	CA264_04180		hypothetical protein	-1.03112177876146	-5.59125233230268	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_04420	CA264_04420		Xaa-Pro aminopeptidase	-1.0024673129911	-6.11481168901218	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_04535	CA264_04535		hypothetical protein	1.21995394180321	6.93757488867536	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_04535	CA264_04535		hypothetical protein	1.25817038592889	8.14334709870459	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_04705	CA264_04705		hypothetical protein	-2.37396278145999	-7.35094820350636	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_04725	CA264_04725		Co2+/Mg2+ efflux protein ApaG	1.7056341477817	8.97028826853453	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_04735	CA264_04735		hypothetical protein	1.06851903680145	5.64487505198583	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_04735	CA264_04735		hypothetical protein	1.1622652127988	6.28282597663016	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_04970	CA264_04970		tRNA (guanine(46)-N(7))-methyltransferase	-1.48734925377604	-7.33604224698557	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_05160	CA264_05160		hypothetical protein	1.2513032978725	6.78992642366175	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_05160	CA264_05160		hypothetical protein	1.47655532266173	8.8323250555907	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_05325	CA264_05325		hypothetical protein	1.35354682851242	9.32229258833728	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_05325	CA264_05325		hypothetical protein	1.46173579380986	9.12572264454233	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_05370	CA264_05370		tRNA (N(6)-L-threonylcarbamoyladenosine(37)-C(2))- methylthiotransferase MtaB	-1.80048535408208	-7.90801131576873	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_05370	CA264_05370		tRNA (N(6)-L-threonylcarbamoyladenosine(37)-C(2))- methylthiotransferase MtaB	-1.41345335019523	-6.21604877250718	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_05385	CA264_05385		hypothetical protein	3.78538898942005	19.4918572411966	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_05385	CA264_05385		hypothetical protein	4.00006916747999	23.3182386221113	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_05385	CA264_05385		hypothetical protein	7.21420082638285	18.1623638624978	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_05385	CA264_05385		hypothetical protein	7.64417526912614	19.005399043722	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_05755	CA264_05755		hypothetical protein	1.41178601714647	7.77503338799432	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_05755	CA264_05755		hypothetical protein	2.59083488611767	10.5910954474884	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_05755	CA264_05755		hypothetical protein	2.61880797066707	11.7929488363359	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_05760	CA264_05760		nitrogen fixation protein FixH	1.4340442584861	8.77487972210811	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_05760	CA264_05760		nitrogen fixation protein FixH	1.95249865649982	9.27631931905944	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_05760	CA264_05760		nitrogen fixation protein FixH	2.00156866318273	8.92850001737786	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_05850	CA264_05850		hypothetical protein	-2.17862838876109	-6.30147940151124	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_05975	CA264_05975		hypothetical protein	-1.6141014802472	-5.06145200739196	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_06090	CA264_06090		hypothetical protein	4.17372778868586	13.9152206213812	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_06090	CA264_06090		hypothetical protein	4.32356669639542	13.5543222879901	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_06090	CA264_06090		hypothetical protein	4.37000705182857	6.26401690883886	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_06090	CA264_06090		hypothetical protein	4.52484817673997	6.37953922091418	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_06495	CA264_06495		hypothetical protein	-1.26653406198521	-5.01035809448312	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_06500	CA264_06500		peptidase M48	-1.38787012332271	-5.62119498170659	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_06540	CA264_06540		hypothetical protein	-2.46368844092256	-10.7482981353421	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_06540	CA264_06540		hypothetical protein	-2.45855988984259	-9.0451985816405	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_06550	CA264_06550		hypothetical protein	-1.12453448418846	-5.23118313432844	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_06995	CA264_06995		fatty acid hydroxylase	1.18974483064048	5.45565277273245	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_06995	CA264_06995		fatty acid hydroxylase	1.43985972372801	7.10768600195473	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_07235	CA264_07235		SIGNAL peptide protein	-1.04977574325651	-5.26101316718359	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_07235	CA264_07235		SIGNAL peptide protein	-1.00021948120708	-5.24458697794668	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_07320	CA264_07320		arsenical-resistance protein	-1.78286973092859	-10.5511123743968	TRUE
+stress	set1IT059	Thallium(I) acetate	CA264_07320	CA264_07320		arsenical-resistance protein	-1.48048181399303	-8.59316423234136	TRUE
+stress	set1IT030	Thallium(I) acetate	CA264_07320	CA264_07320		arsenical-resistance protein	-1.05051834171974	-7.93621142134246	TRUE
+stress	set1IT058	Thallium(I) acetate	CA264_07325	CA264_07325		YfcE family phosphodiesterase	4.63876127771062	20.8736230798734	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_07325	CA264_07325		YfcE family phosphodiesterase	4.65812336484063	21.4520857830189	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_07325	CA264_07325		YfcE family phosphodiesterase	7.3771474082992	11.4380313137855	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_07325	CA264_07325		YfcE family phosphodiesterase	8.10914968931968	12.4509866411597	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_07330	CA264_07330		hypothetical protein	4.99936130495457	39.8361602177456	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_07330	CA264_07330		hypothetical protein	5.1339925099124	41.7711283027871	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_07330	CA264_07330		hypothetical protein	8.95234995194664	42.0760089852381	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_07330	CA264_07330		hypothetical protein	9.38212965375668	35.3802840655705	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_07335	CA264_07335		transcriptional regulator	5.22155657245058	30.4909841296771	TRUE
+stress	set1IT058	Thallium(I) acetate	CA264_07335	CA264_07335		transcriptional regulator	5.31514403234673	36.6894912399892	TRUE
+stress	set1IT031	Thallium(I) acetate	CA264_07335	CA264_07335		transcriptional regulator	9.60942575661713	30.3020587205522	TRUE
+stress	set1IT059	Thallium(I) acetate	CA264_07335	CA264_07335		transcriptional regulator	10.1753976390482	32.2470692842567	TRUE
+stress	set1IT031	Thallium(I) acetate	CA264_07345	CA264_07345		hypothetical protein	-1.12916872232109	-5.84340507726738	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_07355	CA264_07355		hypothetical protein	-1.54320250217002	-6.00861936098436	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_08125	CA264_08125		tetratricopeptide repeat protein	1.80116369049439	9.60227167096488	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_08125	CA264_08125		tetratricopeptide repeat protein	1.98451512184746	10.6005371400252	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_08670	CA264_08670		hypothetical protein	1.58830377822683	6.51525777217296	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_09160	CA264_09160		MBL fold metallo-hydrolase	-1.1710059319451	-5.74429255873028	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_09875	CA264_09875		hypothetical protein	-1.07005380076943	-5.94929186113561	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_10100	CA264_10100		nitrite reductase	1.03427093946492	6.970716285888	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_10100	CA264_10100		nitrite reductase	1.05636052309029	6.92439092114139	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_10105	CA264_10105		MFS transporter	1.13378596030122	8.66711314019481	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_10165	CA264_10165		T9SS C-terminal target domain-containing protein	-1.16700294640596	-6.23967965369614	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_10565	CA264_10565		cation transporter	-1.20940137642773	-5.84969978256002	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_10570	CA264_10570		hypothetical protein	-1.80990790983288	-6.15210943930081	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_10570	CA264_10570		hypothetical protein	-1.4915318191026	-5.09134590185364	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_10750	CA264_10750		SAM-dependent methyltransferase	1.78375250631247	7.32451860847859	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_10750	CA264_10750		SAM-dependent methyltransferase	2.20984837757705	6.95631390263961	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_10750	CA264_10750		SAM-dependent methyltransferase	2.29427107423205	6.7071523398033	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_10770	CA264_10770		N-acetyltransferase	-1.57388279173494	-5.11605256468486	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_10970	CA264_10970		ferredoxin	-1.82952757735639	-7.257311938873	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_10970	CA264_10970		ferredoxin	-1.80973022723757	-8.24965972122145	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_10985	CA264_10985		mechanosensitive ion channel protein MscS	-1.47827529358756	-5.64292056141204	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_11895	CA264_11895		T9SS C-terminal target domain-containing protein	1.32737913357282	8.46557309110119	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_11895	CA264_11895		T9SS C-terminal target domain-containing protein	1.48628310606012	10.0531250291738	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_12075	CA264_12075		PAS domain S-box protein	2.28201537264566	15.9575034723959	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_12075	CA264_12075		PAS domain S-box protein	2.34577798244114	15.9007408083577	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_12235	CA264_12235		hypothetical protein	1.01347780862244	7.3046029257972	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_12560	CA264_12560		hypothetical protein	1.32655444462461	5.53996353177494	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_12940	CA264_12940		alcohol dehydrogenase	2.14303053044081	11.4378248109322	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_12940	CA264_12940		alcohol dehydrogenase	2.22785213350243	10.6822611835651	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_13075	CA264_13075		thioesterase	1.73161825985624	5.63527382530385	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_13075	CA264_13075		thioesterase	1.81421031044687	5.02871181505083	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_13165	CA264_13165		arylesterase	1.48001162135625	5.16045554741584	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_13245	CA264_13245		DUF4835 domain-containing protein	1.32784473595329	7.54581884934252	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_13310	CA264_13310		glycosyl hydrolase	1.99522408757764	17.6514295776069	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_13310	CA264_13310		glycosyl hydrolase	2.00003226318526	17.6005408936738	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_13400	CA264_13400		tol-pal system protein YbgF	1.20765601012211	9.20058887033992	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_13550	CA264_13550		hypothetical protein	1.22455866909705	9.05630508601334	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_13645	CA264_13645		hypothetical protein	1.45613804049638	5.46387122663859	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_13645	CA264_13645		hypothetical protein	1.7628382281585	6.99441863337474	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_13745	CA264_13745		adenine deaminase	-2.23970944963773	-9.73922092968756	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_14285	CA264_14285		mannosyltransferase	-1.78636665610172	-8.34905867936298	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_14285	CA264_14285		mannosyltransferase	-1.62522021009423	-8.68501296078752	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_14315	CA264_14315		hypothetical protein	-1.67124425938353	-5.1834030219198	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_14430	CA264_14430		fructose-bisphosphate aldolase	-1.35221061607353	-7.38829123343508	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_14435	CA264_14435		hypothetical protein	-1.52412473860873	-7.09964527625977	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_14435	CA264_14435		hypothetical protein	-1.44599840928905	-6.99985401017555	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_14585	CA264_14585		YicC family protein	-2.69799520288891	-7.5554688470709	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_14585	CA264_14585		YicC family protein	-2.17431340325309	-6.37201812100583	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_14585	CA264_14585		YicC family protein	-1.56845981898888	-6.45765357766698	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_14975	CA264_14975		hypothetical protein	-1.99662562521245	-6.60593086776211	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_15360	CA264_15360		permease	-1.80261450624507	-5.33109363923974	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_15490	CA264_15490		hypothetical protein	-1.37315491224871	-5.24273311067479	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_15495	CA264_15495		peptide-methionine (S)-S-oxide reductase	-1.83705972375994	-5.49241685369948	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_15515	CA264_15515		peptidase	1.30982313910014	5.22345983127007	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_15800	CA264_15800		hypothetical protein	1.06521355960723	5.11075109533178	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_15800	CA264_15800		hypothetical protein	1.34013778026772	7.07453545038751	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_15915	CA264_15915		ribonuclease BN	-1.36288232137139	-5.81722184001603	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_16040	CA264_16040		hypothetical protein	-1.06735180809346	-5.3703597849259	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_16055	CA264_16055		hypothetical protein	1.29413088585232	6.86570996850331	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_16055	CA264_16055		hypothetical protein	1.3382217563962	6.55213610561322	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_16625	CA264_16625		SAM-dependent methyltransferase	2.27583338519532	15.4100709743816	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_16625	CA264_16625		SAM-dependent methyltransferase	2.44613381396919	14.9879319267721	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_16625	CA264_16625		SAM-dependent methyltransferase	2.69816050274887	17.9650604705461	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_16625	CA264_16625		SAM-dependent methyltransferase	2.70062069576354	18.8323220310329	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_16630	CA264_16630		DUF58 domain-containing protein	1.7510695212044	11.4854963249823	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_16630	CA264_16630		DUF58 domain-containing protein	2.14447538907708	12.6256162019041	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_16630	CA264_16630		DUF58 domain-containing protein	2.17099811593019	15.4356617446105	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_16630	CA264_16630		DUF58 domain-containing protein	2.27168474990311	17.4418397584573	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_16635	CA264_16635		AAA family ATPase	1.43661226532969	11.8531657281877	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_16635	CA264_16635		AAA family ATPase	1.4506176263607	12.7111238816496	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_16635	CA264_16635		AAA family ATPase	1.54023230624596	11.5659413109028	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_16635	CA264_16635		AAA family ATPase	1.80764953304899	13.5052641934705	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_16640	CA264_16640		twin-arginine translocation pathway signal	1.06311345681892	7.22596372798082	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_16640	CA264_16640		twin-arginine translocation pathway signal	1.07792134968726	5.69426787839159	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_16640	CA264_16640		twin-arginine translocation pathway signal	1.3903721605114	8.47049362288168	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_16640	CA264_16640		twin-arginine translocation pathway signal	1.48584461627714	7.76393629002277	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_16665	CA264_16665		hypothetical protein	-1.08795181363221	-5.01550741662631	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_16970	CA264_16970		hypothetical protein	1.042556736551	6.58886308630924	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_16970	CA264_16970		hypothetical protein	1.16570536042535	7.46145740182241	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_17090	CA264_17090		inositol monophosphatase	-2.45971104506796	-6.14276103664204	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_17115	CA264_17115		hypothetical protein	-1.67809110741672	-6.43539694460176	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_17120	CA264_17120		hypothetical protein	-1.09719309442202	-6.2129580419419	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_17220	CA264_17220		hypothetical protein	-1.56668227999862	-6.56054977995968	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_17220	CA264_17220		hypothetical protein	-1.23117038532668	-5.713685269776	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_17270	CA264_17270		hypothetical protein	-1.24090455606857	-7.02737403724435	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_17540	CA264_17540		hypothetical protein	1.06333718455792	5.90850576851969	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_17590	CA264_17590		RidA family protein	1.51297472842967	6.4218539047437	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_17660	CA264_17660		hypothetical protein	1.3379784954117	5.2894876810005	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_17660	CA264_17660		hypothetical protein	1.56413927044173	5.93457181219523	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_17810	CA264_17810		hypothetical protein	-1.51033751659603	-8.48040800631713	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_17810	CA264_17810		hypothetical protein	-1.12900580131972	-5.93627059041197	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_17975	CA264_17975		S9 family peptidase	-1.04788803538407	-6.41820033949395	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_18015	CA264_18015		kynureninase	1.09345184215486	6.61251464835301	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_18040	CA264_18040		kynurenine 3-monooxygenase	1.44970548026674	9.57947919854361	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_18040	CA264_18040		kynurenine 3-monooxygenase	1.54915465054807	10.1095998915582	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_18225	CA264_18225		hypothetical protein	1.1195381993539	6.46099431079	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_18300	CA264_18300		peptidase M28	-1.47037856734368	-7.97591521741171	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_18300	CA264_18300		peptidase M28	-1.26530709389215	-7.3662473106806	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_18320	CA264_18320		2,5-didehydrogluconate reductase	-1.28678829521116	-5.00881860359703	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_18335	CA264_18335		peptidase M16	-1.29115453694001	-5.80322767814396	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_18450	CA264_18450		aspartate ammonia-lyase	1.09218411441421	8.41739019217515	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_18450	CA264_18450		aspartate ammonia-lyase	1.20108407174768	8.5982911109522	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_18520	CA264_18520		hypothetical protein	-1.31918190552315	-6.36132481435805	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_18655	CA264_18655		transcriptional repressor	1.99996453000136	6.19901069524585	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_18655	CA264_18655		transcriptional repressor	2.01168447826885	8.1705804512896	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_19045	CA264_19045		acyl-CoA dehydrogenase	1.49705639326495	6.95798528749654	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_19045	CA264_19045		acyl-CoA dehydrogenase	1.50611538835987	6.63295068768036	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_19530	CA264_19530		hypothetical protein	-1.75051881653679	-6.53685322297583	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_19845	CA264_19845		hypothetical protein	1.98214143004547	11.8545437628122	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_19845	CA264_19845		hypothetical protein	2.06632870406361	13.6875811121791	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_19845	CA264_19845		hypothetical protein	2.12162567426382	10.0148860377787	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_19845	CA264_19845		hypothetical protein	2.15526334043901	9.35680954679622	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_19855	CA264_19855		hypothetical protein	-1.60749855411451	-5.51614682974707	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_19855	CA264_19855		hypothetical protein	-1.24106411897546	-5.54237024247812	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_20030	CA264_20030		GNAT family N-acetyltransferase	2.03798870710653	9.79938913644118	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_20030	CA264_20030		GNAT family N-acetyltransferase	2.07823630382704	8.62915215888121	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_20030	CA264_20030		GNAT family N-acetyltransferase	3.42614118357981	10.5288627793996	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_20030	CA264_20030		GNAT family N-acetyltransferase	3.49828074676617	10.3349039462601	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_20350	CA264_20350		hypothetical protein	1.0420614989008	8.03634791326524	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_20420	CA264_20420		thiazole synthase	1.19041808154016	5.64869078592003	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_20425	CA264_20425		thiamine phosphate synthase	1.28629149617458	10.1255484664507	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_20425	CA264_20425		thiamine phosphate synthase	1.31598921550798	9.67198352676772	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_20430	CA264_20430		hydroxymethylpyrimidine/phosphomethylpyrimidine kinase	1.48714680567538	9.2863917574276	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_20430	CA264_20430		hydroxymethylpyrimidine/phosphomethylpyrimidine kinase	1.49836532947725	9.43909672418814	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_20660	CA264_20660		methylmalonyl Co-A mutase-associated GTPase MeaB	1.61012610271154	8.83913813409141	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_20660	CA264_20660		methylmalonyl Co-A mutase-associated GTPase MeaB	1.67455526193974	7.43741470827107	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_20695	CA264_20695		methylmalonyl-CoA mutase	1.84631504690537	13.3387480264723	FALSE
+stress	set1IT058	Thallium(I) acetate	CA264_20695	CA264_20695		methylmalonyl-CoA mutase	1.96061562617487	13.3715506943631	FALSE
+stress	set1IT030	Thallium(I) acetate	CA264_20700	CA264_20700		hypothetical protein	1.4965656003688	9.79637277974741	FALSE
+stress	set1IT031	Thallium(I) acetate	CA264_21070	CA264_21070		transcriptional repressor	1.81941420191366	5.97969808120467	FALSE
+stress	set1IT059	Thallium(I) acetate	CA264_21070	CA264_21070		transcriptional repressor	2.13324335171096	6.911355120161	FALSE
+stress	set3IT001	Vancomycin Hydrochloride Hydrate	CA264_05010	CA264_05010		hypothetical protein	-1.81271622603667	-8.45766652333368	FALSE
+stress	set3IT042	Vancomycin Hydrochloride Hydrate	CA264_05010	CA264_05010		hypothetical protein	-1.75816471936832	-6.35544794268029	FALSE
+stress	set3IT042	Vancomycin Hydrochloride Hydrate	CA264_05180	CA264_05180		hypothetical protein	2.83364821904923	23.1122147662767	FALSE
+stress	set3IT002	Vancomycin Hydrochloride Hydrate	CA264_05180	CA264_05180		hypothetical protein	2.95734685209911	23.7339155986104	FALSE
+stress	set3IT042	Vancomycin Hydrochloride Hydrate	CA264_11805	CA264_11805		thioesterase	-1.33199842484919	-5.18914805639739	FALSE
+stress	set3IT001	Vancomycin Hydrochloride Hydrate	CA264_11805	CA264_11805		thioesterase	-1.32555355891214	-6.0014876015627	FALSE
+stress	set3IT002	Vancomycin Hydrochloride Hydrate	CA264_13645	CA264_13645		hypothetical protein	-2.45984113193339	-6.59959283530621	FALSE
+stress	set3IT042	Vancomycin Hydrochloride Hydrate	CA264_13680	CA264_13680		hypothetical protein	2.0674521717749	17.4186397267644	FALSE
+stress	set3IT002	Vancomycin Hydrochloride Hydrate	CA264_13680	CA264_13680		hypothetical protein	2.23953525372204	13.9638052896523	FALSE
+stress	set3IT002	Vancomycin Hydrochloride Hydrate	CA264_13685	CA264_13685		oxidoreductase	1.37153958673246	5.28511225066044	FALSE
+stress	set3IT042	Vancomycin Hydrochloride Hydrate	CA264_15040	CA264_15040		four helix bundle protein	1.38806282965846	6.38734012301204	FALSE
+stress	set3IT042	Vancomycin Hydrochloride Hydrate	CA264_15595	CA264_15595		hypothetical protein	2.19187433193229	16.877400892657	FALSE
+stress	set3IT002	Vancomycin Hydrochloride Hydrate	CA264_15595	CA264_15595		hypothetical protein	2.25953766668362	17.381277440847	FALSE
+stress	set3IT002	Vancomycin Hydrochloride Hydrate	CA264_21045	CA264_21045		hypothetical protein	-3.61085586862782	-5.03189029502752	FALSE
+stress	set2IT090	benzoic acid	CA264_07170	CA264_07170		MFS transporter	-2.75032753100392	-13.3694855296217	FALSE
+stress	set3IT034	benzoic acid	CA264_07170	CA264_07170		MFS transporter	-2.40898527577758	-11.9045257160429	FALSE
+stress	set3IT034	benzoic acid	CA264_07175	CA264_07175		secretion protein HlyD	-1.8730657836017	-9.94467197861102	TRUE
+stress	set2IT090	benzoic acid	CA264_07175	CA264_07175		secretion protein HlyD	-1.77757815508062	-8.85151177369268	TRUE
+stress	set3IT034	benzoic acid	CA264_07180	CA264_07180		transporter	-2.14647157980032	-10.3164696019831	FALSE
+stress	set2IT090	benzoic acid	CA264_07180	CA264_07180		transporter	-1.84883262936513	-9.60098680027697	FALSE
+stress	set3IT033	benzoic acid	CA264_20315	CA264_20315		cystathionine gamma-synthase	-1.05262316480819	-5.81402342035047	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_00185	CA264_00185		SusC/RagA family TonB-linked outer membrane protein	1.2477175077788	10.3124950179691	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_00185	CA264_00185		SusC/RagA family TonB-linked outer membrane protein	1.3925913351603	11.4552900215287	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_00190	CA264_00190		RagB/SusD family nutrient uptake outer membrane protein	1.89598111415147	14.2155083141252	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_00190	CA264_00190		RagB/SusD family nutrient uptake outer membrane protein	2.01972025670065	15.2019727360301	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_02435	CA264_02435		hypothetical protein	-1.15529204255531	-6.13423703916931	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_02745	CA264_02745		mechanosensitive ion channel protein MscS	-2.0249524144622	-9.520870161742	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_02745	CA264_02745		mechanosensitive ion channel protein MscS	-1.69554236305394	-9.34984416948365	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_03230	CA264_03230		hypothetical protein	-1.19144772542574	-5.36457479223035	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_03250	CA264_03250		metal transporter	-3.52988883832715	-13.9916814840762	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_03250	CA264_03250		metal transporter	-3.38423607003165	-12.6964393605466	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_03260	CA264_03260		MBL fold hydrolase	2.3462246540968	10.2488590861762	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_03260	CA264_03260		MBL fold hydrolase	2.44744630563947	10.4554471316904	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_03265	CA264_03265		N-acyl-D-amino acid deacylase	1.18911135243751	8.87787034754495	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_03265	CA264_03265		N-acyl-D-amino acid deacylase	1.3176994380724	10.5264651920299	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_05535	CA264_05535		hypothetical protein	2.05503557281367	14.2681968039212	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_05535	CA264_05535		hypothetical protein	2.07423426899129	15.4193316102053	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_05575	CA264_05575		hypothetical protein	1.19057782181961	8.21250565646255	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_05580	CA264_05580		hypothetical protein	-2.08219648009214	-5.87024466415542	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_06570	CA264_06570		DUF4199 domain-containing protein	-1.58170405039702	-5.2392522684256	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_06575	CA264_06575		DUF4199 domain-containing protein	-2.57113620236146	-8.7568663013794	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_06575	CA264_06575		DUF4199 domain-containing protein	-2.26513642181538	-6.14323552183847	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_06580	CA264_06580		ABC-F family ATPase	2.99615010557308	23.8339072542164	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_06580	CA264_06580		ABC-F family ATPase	3.17801924546448	24.921379187473	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_06585	CA264_06585		hypothetical protein	1.23705415212382	7.84950725758689	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_06585	CA264_06585		hypothetical protein	1.34379437492515	8.17955609165429	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_08350	CA264_08350		hypothetical protein	-1.39849292903247	-9.41573362734048	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_08350	CA264_08350		hypothetical protein	-1.30306850507335	-8.12469477454752	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_09495	CA264_09495		potassium-transporting ATPase subunit KdpA	-1.37417589902899	-6.66761174525928	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_09495	CA264_09495		potassium-transporting ATPase subunit KdpA	-1.32021376186814	-6.53462573257688	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_09505	CA264_09505		hypothetical protein	-2.70732552080371	-5.87539889299844	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_09570	CA264_09570		amino acid permease	-1.67775651804218	-5.22558895154376	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_09570	CA264_09570		amino acid permease	-1.53900658397523	-5.22813138177696	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_09830	CA264_09830		hypothetical protein	-1.04955212923581	-6.44571178352163	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_10910	CA264_10910		phytoene dehydrogenase	1.40115129551021	11.3283422098397	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_10980	CA264_10980		peptidase M23	-1.78209368383842	-5.16677427359033	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_13415	CA264_13415		alpha/beta hydrolase	-1.23609444600949	-5.2065260179901	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_14135	CA264_14135		ATP-dependent chaperone ClpB	1.00765460640453	6.82254312897005	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_14610	CA264_14610		FAD-dependent oxidoreductase	-1.92912457473224	-7.51499928593258	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_14690	CA264_14690		peptidase S41	1.26667119752319	7.71636259424742	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_14690	CA264_14690		peptidase S41	1.29281419603865	8.24872498253653	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_14855	CA264_14855		hypothetical protein	-2.13759990577659	-5.88814186963738	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_14855	CA264_14855		hypothetical protein	-1.47231258004837	-5.55715577229096	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_14945	CA264_14945		RNA polymerase subunit sigma-24	-4.08871331666796	-6.70386786092849	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_14945	CA264_14945		RNA polymerase subunit sigma-24	-3.85827370915898	-7.22211398493045	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_15910	CA264_15910		23S rRNA (adenine(2503)-C(2))-methyltransferase RlmN	-2.61532578183747	-8.95516191312199	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_15910	CA264_15910		23S rRNA (adenine(2503)-C(2))-methyltransferase RlmN	-2.36188168645059	-9.51553908980669	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_17530	CA264_17530		hemolysin	1.4032668133607	9.76978686404664	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_17530	CA264_17530		hemolysin	1.54514032813828	9.50447495329486	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_17570	CA264_17570		TIGR00266 family protein	-3.24297340307274	-6.40109670896266	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_17690	CA264_17690		hypothetical protein	-1.85313523474107	-8.37608258483342	TRUE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_17690	CA264_17690		hypothetical protein	-1.76627767465944	-7.29870770728379	TRUE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_17965	CA264_17965		hypothetical protein	-2.33813113444029	-10.5514329893925	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_17965	CA264_17965		hypothetical protein	-1.91654503996572	-7.70090392276098	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_17970	CA264_17970		hypothetical protein	-2.56532301466171	-12.6117390313963	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_17970	CA264_17970		hypothetical protein	-2.03322158385443	-9.69645275277577	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_18050	CA264_18050		hypothetical protein	-3.28158540398442	-12.0795115794353	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_18050	CA264_18050		hypothetical protein	-2.34195662109138	-8.67716920916742	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_19625	CA264_19625		DNA mismatch repair protein MutS	-1.51960698469213	-8.58207035965445	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_20600	CA264_20600		RNA pseudouridine synthase	-1.94466339373784	-7.79214605330545	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_20600	CA264_20600		RNA pseudouridine synthase	-1.86225916365936	-7.7447256289036	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_20890	CA264_20890		hypothetical protein	1.28656803880009	5.55812532059377	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_20900	CA264_20900		hypothetical protein	2.48516119781668	11.746556023865	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_20900	CA264_20900		hypothetical protein	2.51314377989038	11.0301251754152	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_20905	CA264_20905		hypothetical protein	2.81715964059842	15.6065801017683	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_20905	CA264_20905		hypothetical protein	2.90212012444653	14.0617575809343	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21255	CA264_21255		hypothetical protein	-2.99526462588727	-5.70411458592316	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21255	CA264_21255		hypothetical protein	-2.61998360833329	-5.26729334014328	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21260	CA264_21260		cation transporter	-2.35335753548987	-15.4059310812588	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21260	CA264_21260		cation transporter	-2.24183815841744	-13.7747844274448	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21270	CA264_21270		hypothetical protein	-2.14461732431128	-10.350022910635	TRUE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21270	CA264_21270		hypothetical protein	-2.00004673896536	-9.97166323480502	TRUE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21440	CA264_21440		metal transporter	-3.31854968328889	-5.86765294970825	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21450	CA264_21450		hypothetical protein	-4.37147959265845	-7.85933596205221	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21450	CA264_21450		hypothetical protein	-3.84459642082034	-8.19347760474851	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21455	CA264_21455		hypothetical protein	-3.669062839962	-5.47711412139006	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21470	CA264_21470		hypothetical protein	-2.21978648159299	-6.46932053484481	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21470	CA264_21470		hypothetical protein	-2.06570989457152	-7.88339467659146	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21480	CA264_21480		hypothetical protein	1.38877600768323	7.87323863940195	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21480	CA264_21480		hypothetical protein	1.57500434262349	9.05825384828462	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21535	CA264_21535		hypothetical protein	-2.30745962673198	-6.49111702127764	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21535	CA264_21535		hypothetical protein	-2.11951016199315	-6.48798307737038	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21555	CA264_21555		phosphoribosylpyrophosphate synthetase	-1.7003243854019	-5.3191645926851	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21600	CA264_21600		four-helix bundle copper-binding protein	2.19283305745196	12.6670284870582	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21600	CA264_21600		four-helix bundle copper-binding protein	2.80838903699131	18.9973370839748	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21605	CA264_21605		hypothetical protein	1.91111035489971	12.8433913262893	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21605	CA264_21605		hypothetical protein	2.34262759621296	16.2807123788846	FALSE
+stress	set1IT051	copper (II) chloride dihydrate	CA264_21610	CA264_21610		hypothetical protein	1.3070519438799	6.45499451173619	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21610	CA264_21610		hypothetical protein	1.54310101800813	6.11275834917681	FALSE
+stress	set1IT023	copper (II) chloride dihydrate	CA264_21620	CA264_21620		hypothetical protein	1.00596729757392	6.70381933426952	FALSE
+stress	set1IT025	sodium fluoride	CA264_06275	CA264_06275		chloride channel protein	-6.04935707794043	-10.9022304269493	TRUE
+stress	set1IT053	sodium fluoride	CA264_06275	CA264_06275		chloride channel protein	-5.69650378145523	-9.52810001571118	TRUE

@@ -1,0 +1,10 @@
+{
+  "completeness_genome_size_rho": 0.36156561094039125,
+  "completeness_genome_size_p": 7.35763424303543e-49,
+  "partial_spearman_rho": -0.08721548377308212,
+  "partial_spearman_p": 0.0006043040186885612,
+  "n_genera": 1543,
+  "n_prototroph_any": 1056,
+  "n_auxotroph": 487,
+  "n_cobalamin_kos_in_data": 10
+}

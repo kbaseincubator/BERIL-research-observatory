@@ -1,0 +1,4 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+plant	setATCH222	cv.Atlantic	HGI48_RS07295	HGI48_RS07295		addiction module antitoxin	-1.70181061945572	-5.02684457812851	FALSE
+plant	setATCH223	cv.Atlantic	HGI48_RS19935	HGI48_RS19935		carbapenem biosynthesis protein CpmH	-1.53242182689353	-5.39971126955403	FALSE
+plant	setATCH229	cv.Norland	HGI48_RS03725	HGI48_RS03725		SIS domain-containing protein	1.34116885204186	7.37140400123861	FALSE

@@ -1,0 +1,1 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved

@@ -1,0 +1,31 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1IT019	D-Cellobiose	ABIE51_RS04855	ABIE51_RS04855		ATP-binding protein	-2.23092911232003	-10.6577063053547	FALSE
+carbon source	set1IT019	D-Cellobiose	ABIE51_RS08800	ABIE51_RS08800		LacI family DNA-binding transcriptional regulator	1.01406156586419	6.0234009172557	FALSE
+carbon source	set1IT019	D-Cellobiose	ABIE51_RS10155	ABIE51_RS10155		LacI family DNA-binding transcriptional regulator	1.71493519288984	11.7365704099799	FALSE
+carbon source	set1IT019	D-Cellobiose	ABIE51_RS13700	ABIE51_RS13700		MurR/RpiR family transcriptional regulator	1.34399962805238	5.95574086852154	FALSE
+carbon source	set1IT011	D-Galactose	ABIE51_RS09530	ABIE51_RS09530		pyruvate, water dikinase regulatory protein	-1.34212795469178	-6.12676856996031	FALSE
+carbon source	set1IT059	D-Galactose	ABIE51_RS18840	ABIE51_RS18840		aminotransferase class I/II-fold pyridoxal phosphate-dependent enzyme	-1.91257813811956	-6.74391105883894	TRUE
+carbon source	set1IT011	D-Galactose	ABIE51_RS18840	ABIE51_RS18840		aminotransferase class I/II-fold pyridoxal phosphate-dependent enzyme	-1.72440655280286	-8.82943771040591	TRUE
+carbon source	set1IT064	D-Glucose-6-Phosphate sodium salt	ABIE51_RS04500	ABIE51_RS04500		DsbC family protein	-1.56778612127339	-8.45554075366429	FALSE
+carbon source	set1IT064	D-Glucose-6-Phosphate sodium salt	ABIE51_RS17620	ABIE51_RS17620		phosphatase PAP2 family protein	-2.11157405088177	-9.86972315782507	FALSE
+carbon source	set1IT016	D-Glucose-6-Phosphate sodium salt	ABIE51_RS17620	ABIE51_RS17620		phosphatase PAP2 family protein	-1.78508965618233	-10.1390757988286	FALSE
+carbon source	set1IT064	D-Glucose-6-Phosphate sodium salt	ABIE51_RS18840	ABIE51_RS18840		aminotransferase class I/II-fold pyridoxal phosphate-dependent enzyme	-2.24958235182365	-10.8814959368757	FALSE
+carbon source	set1IT016	D-Glucose-6-Phosphate sodium salt	ABIE51_RS18840	ABIE51_RS18840		aminotransferase class I/II-fold pyridoxal phosphate-dependent enzyme	-1.93971582964441	-11.1906222573391	FALSE
+carbon source	set1IT010	D-Maltose monohydrate	ABIE51_RS18975	ABIE51_RS18975		LacI family DNA-binding transcriptional regulator	-1.53685974495519	-6.37446095372945	TRUE
+carbon source	set1IT058	D-Maltose monohydrate	ABIE51_RS18975	ABIE51_RS18975		LacI family DNA-binding transcriptional regulator	-1.11901752033356	-5.01073521012354	TRUE
+carbon source	set1IT010	D-Maltose monohydrate	ABIE51_RS18985	ABIE51_RS18985		MFS transporter	-1.586441170972	-7.29070699223928	TRUE
+carbon source	set1IT076	L-Malic acid disodium salt monohydrate	ABIE51_RS11545	ABIE51_RS11545		long-chain fatty acid--CoA ligase	1.63239284878383	12.2179651990722	FALSE
+carbon source	set1IT076	L-Malic acid disodium salt monohydrate	ABIE51_RS17635	ABIE51_RS17635		O-antigen ligase	-1.56881895170789	-6.09909541457359	FALSE
+carbon source	set1IT017	Potassium acetate	ABIE51_RS00190	ABIE51_RS00190		isocitrate lyase	-1.49393630930175	-10.5137385796528	TRUE
+carbon source	set1IT017	Potassium acetate	ABIE51_RS00195	ABIE51_RS00195		malate synthase A	-1.49722197175641	-10.2170447372369	TRUE
+carbon source	set1IT017	Potassium acetate	ABIE51_RS00200	ABIE51_RS00200		LysR family transcriptional regulator	-1.455828356598	-12.8886989212322	TRUE
+carbon source	set1IT017	Potassium acetate	ABIE51_RS18570	ABIE51_RS18570		MFS transporter	-1.25750204292042	-7.66230464644235	FALSE
+carbon source	set1IT065	Potassium acetate	ABIE51_RS18570	ABIE51_RS18570		MFS transporter	-1.17110874187695	-6.81858086083644	FALSE
+carbon source	set1IT017	Potassium acetate	ABIE51_RS18840	ABIE51_RS18840		aminotransferase class I/II-fold pyridoxal phosphate-dependent enzyme	-1.66479513770975	-8.16419104347382	FALSE
+carbon source	set1IT071	Sodium pyruvate	ABIE51_RS18840	ABIE51_RS18840		aminotransferase class I/II-fold pyridoxal phosphate-dependent enzyme	-1.34430926378645	-7.14197093107567	FALSE
+carbon source	set1IT054	casamino acids	ABIE51_RS08255	ABIE51_RS08255		LysR family transcriptional regulator	-2.27946259876591	-8.3912711791903	FALSE
+carbon source	set1IT006	casamino acids	ABIE51_RS08255	ABIE51_RS08255		LysR family transcriptional regulator	-2.03169280129563	-7.36081081847869	FALSE
+carbon source	set1IT006	casamino acids	ABIE51_RS13160	ABIE51_RS13160		carboxyl transferase domain-containing protein	-1.99556176976099	-12.8743126712988	FALSE
+carbon source	set1IT054	casamino acids	ABIE51_RS13160	ABIE51_RS13160		carboxyl transferase domain-containing protein	-1.98121768268911	-12.8814660468901	FALSE
+carbon source	set1IT006	casamino acids	ABIE51_RS13200	ABIE51_RS13200		acetyl/propionyl/methylcrotonyl-CoA carboxylase subunit alpha	-1.76927391176699	-11.2104922074495	FALSE
+carbon source	set1IT054	casamino acids	ABIE51_RS13200	ABIE51_RS13200		acetyl/propionyl/methylcrotonyl-CoA carboxylase subunit alpha	-1.74332596109012	-10.5032765809081	FALSE

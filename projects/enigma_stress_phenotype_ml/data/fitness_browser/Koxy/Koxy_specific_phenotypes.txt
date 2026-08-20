@@ -1,0 +1,1163 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set11IT065	2'-Deoxycytidine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	7.75679872807791	41.7009039732428	FALSE
+carbon source	set11IT075	2'-Deoxycytidine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	7.93030490637043	35.0968548184663	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	8.36857925750342	34.5413453932074	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	8.54273826712879	31.8527618634421	FALSE
+carbon source	set11IT065	2'-Deoxycytidine	BWI76_RS02095	BWI76_RS02095		acetyl-coenzyme A synthetase	-1.83796584097869	-8.71187717866593	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS02095	BWI76_RS02095		acetyl-coenzyme A synthetase	-1.74098885291338	-7.19928997677632	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS02095	BWI76_RS02095		acetyl-coenzyme A synthetase	-1.60279158047238	-7.17641145068456	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-5.47438054917139	-8.33392303904996	FALSE
+carbon source	set11IT065	2'-Deoxycytidine	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-5.45492486845293	-7.17317899598543	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-5.312029019811	-7.59498225276323	FALSE
+carbon source	set11IT075	2'-Deoxycytidine	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-3.94996133262227	-5.91665061369554	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS04135	BWI76_RS04135		thymidine phosphorylase	-5.66449071287713	-9.90780978768967	FALSE
+carbon source	set11IT075	2'-Deoxycytidine	BWI76_RS04135	BWI76_RS04135		thymidine phosphorylase	-5.29546684410835	-7.87574156646964	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS04135	BWI76_RS04135		thymidine phosphorylase	-4.00311898657175	-6.89729949127358	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS04140	BWI76_RS04140		phosphopentomutase	-3.9939604320866	-5.24595685161624	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS07120	BWI76_RS07120		LacI family transcriptional regulator	-1.46966920416345	-5.74075434033875	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS15500	BWI76_RS15500		hypothetical protein	1.42815972813128	11.7329694140309	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS15500	BWI76_RS15500		hypothetical protein	1.43586090891539	11.711325457965	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS15555	BWI76_RS15555		hypothetical protein	1.44713541187832	8.43642383551345	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS15555	BWI76_RS15555		hypothetical protein	1.47478251305007	8.40214671361956	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS15595	BWI76_RS15595		hypothetical protein	1.51780777736344	5.87947282587622	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS15700	BWI76_RS15700		hypothetical protein	2.20562164405987	7.99342976457582	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS15725	BWI76_RS15725		hypothetical protein	1.68379073944797	5.99071426423451	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS15755	BWI76_RS15755		hypothetical protein	1.34250533341011	6.0882181874959	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS15770	BWI76_RS15770		hypothetical protein	1.41571944172374	6.96084800030737	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS15770	BWI76_RS15770		hypothetical protein	1.52258812082149	5.70223963690951	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS15815	BWI76_RS15815		hypothetical protein	1.51253641183987	8.7053887201342	FALSE
+carbon source	set11IT065	2'-Deoxycytidine	BWI76_RS19610	BWI76_RS19610		cytidine deaminase	-3.5183352576561	-6.02687724923036	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS21985	BWI76_RS21985		aldehyde dehydrogenase	-1.82689001825214	-8.88590875360453	FALSE
+carbon source	set11IT065	2'-Deoxycytidine	BWI76_RS21985	BWI76_RS21985		aldehyde dehydrogenase	-1.54405491403262	-6.30080954682836	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS21985	BWI76_RS21985		aldehyde dehydrogenase	-1.50787517750313	-5.89562445657219	FALSE
+carbon source	set11IT075	2'-Deoxycytidine	BWI76_RS21985	BWI76_RS21985		aldehyde dehydrogenase	-1.21453565602718	-5.10003674242127	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS21990	BWI76_RS21990		ATPase AAA	-1.73624504498627	-5.08538183292935	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS21990	BWI76_RS21990		ATPase AAA	-1.65329896410483	-8.37139196914242	FALSE
+carbon source	set11IT065	2'-Deoxycytidine	BWI76_RS21990	BWI76_RS21990		ATPase AAA	-1.37120980414311	-5.29161523003183	FALSE
+carbon source	set11IT075	2'-Deoxycytidine	BWI76_RS21990	BWI76_RS21990		ATPase AAA	-1.06530213008131	-6.0241529365431	FALSE
+carbon source	set11IT074	2'-Deoxycytidine	BWI76_RS24170	BWI76_RS24170		nucleoside permease	1.1042516145086	6.37911439687967	FALSE
+carbon source	set11IT075	2'-Deoxycytidine	BWI76_RS24170	BWI76_RS24170		nucleoside permease	1.10537574233948	7.43631604591431	FALSE
+carbon source	set11IT065	2'-Deoxycytidine	BWI76_RS24170	BWI76_RS24170		nucleoside permease	1.21434077839744	6.95070823753825	FALSE
+carbon source	set11IT064	2'-Deoxycytidine	BWI76_RS24170	BWI76_RS24170		nucleoside permease	1.2219578207795	8.52689642726078	FALSE
+carbon source	set11IT078	2'-Deoxyinosine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	1.39403758391016	8.0647981675228	FALSE
+carbon source	set11IT067	2'-Deoxyinosine	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-5.81475514677907	-7.94562178896286	FALSE
+carbon source	set11IT068	2'-Deoxyinosine	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-5.26186208667078	-5.57190549674051	FALSE
+carbon source	set11IT077	2'-Deoxyinosine	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-5.12243720013842	-5.88806156795645	FALSE
+carbon source	set11IT078	2'-Deoxyinosine	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-4.67627608442596	-7.4923184652618	FALSE
+carbon source	set11IT077	2'-Deoxyinosine	BWI76_RS16520	BWI76_RS16520		Bcr/CflA family multidrug efflux MFS transporter	-2.92494404743309	-7.20319917282999	FALSE
+carbon source	set11IT067	2'-Deoxyinosine	BWI76_RS24170	BWI76_RS24170		nucleoside permease	-1.94481697782034	-7.14383222287065	FALSE
+carbon source	set11IT078	2'-Deoxyinosine	BWI76_RS24170	BWI76_RS24170		nucleoside permease	-1.33614714521338	-5.43097528170282	FALSE
+carbon source	set11IT079	2-Deoxy-D-ribonic acid lithium salt	BWI76_RS23695	BWI76_RS23695		putative acyl-CoA synthase	-4.30506506678862	-8.33019491382456	FALSE
+carbon source	set11IT069	2-Deoxy-D-ribonic acid lithium salt	BWI76_RS23695	BWI76_RS23695		putative acyl-CoA synthase	-3.63156137012248	-6.60122176631244	FALSE
+carbon source	set11IT069	2-Deoxy-D-ribonic acid lithium salt	BWI76_RS23700	BWI76_RS23700		acetyl-CoA--acetoacetyl-CoA transferase subunit alpha/beta	-4.46358302296398	-8.51030136086814	FALSE
+carbon source	set11IT079	2-Deoxy-D-ribonic acid lithium salt	BWI76_RS23700	BWI76_RS23700		acetyl-CoA--acetoacetyl-CoA transferase subunit alpha/beta	-3.47716824459119	-7.76861649801083	FALSE
+carbon source	set11IT069	2-Deoxy-D-ribonic acid lithium salt	BWI76_RS23710	BWI76_RS23710		acetyl-CoA acetyltransferase	-3.78786878209984	-5.57003912434711	FALSE
+carbon source	set11IT079	2-Deoxy-D-ribonic acid lithium salt	BWI76_RS23715	BWI76_RS23715		MFS transporter	-5.41559315610877	-7.40563379647558	TRUE
+carbon source	set11IT069	2-Deoxy-D-ribonic acid lithium salt	BWI76_RS23715	BWI76_RS23715		MFS transporter	-2.56104195774274	-5.97082549408558	TRUE
+carbon source	set11IT079	2-Deoxy-D-ribonic acid lithium salt	BWI76_RS23730	BWI76_RS23730		glycerate kinase	-4.94124081148375	-6.20194886908074	FALSE
+carbon source	set11IT069	2-Deoxy-D-ribonic acid lithium salt	BWI76_RS23730	BWI76_RS23730		glycerate kinase	-4.25826654013434	-7.13318860001725	FALSE
+carbon source	set11IT061	2-Deoxyadenosine 5-monophosphate	BWI76_RS02095	BWI76_RS02095		acetyl-coenzyme A synthetase	-2.78864048386236	-7.02255132137778	FALSE
+carbon source	set11IT071	2-Deoxyadenosine 5-monophosphate	BWI76_RS02095	BWI76_RS02095		acetyl-coenzyme A synthetase	-2.76918247565787	-13.6877952639958	FALSE
+carbon source	set11IT071	2-Deoxyadenosine 5-monophosphate	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-4.80467864998846	-9.15571291252343	FALSE
+carbon source	set11IT071	2-Deoxyadenosine 5-monophosphate	BWI76_RS16520	BWI76_RS16520		Bcr/CflA family multidrug efflux MFS transporter	-2.47820285972269	-6.07753292579244	FALSE
+carbon source	set11IT071	2-Deoxyadenosine 5-monophosphate	BWI76_RS21985	BWI76_RS21985		aldehyde dehydrogenase	-1.38095242299654	-7.66480652573607	FALSE
+carbon source	set11IT071	2-Deoxyadenosine 5-monophosphate	BWI76_RS21990	BWI76_RS21990		ATPase AAA	-1.49207298919649	-7.95616996758493	FALSE
+carbon source	set11IT071	2-Deoxyadenosine 5-monophosphate	BWI76_RS23450	BWI76_RS23450		LysR family transcriptional regulator	-2.56449820204761	-10.5307411122479	FALSE
+carbon source	set11IT061	2-Deoxyadenosine 5-monophosphate	BWI76_RS25355	BWI76_RS25355		cell division protein ZapE	-1.62039099670367	-5.1159395031815	FALSE
+carbon source	set11IT071	2-Deoxyadenosine 5-monophosphate	BWI76_RS27785	BWI76_RS27785		hexose phosphate transporter	-1.15952881010306	-6.31101355102138	FALSE
+carbon source	set11IT071	2-Deoxyadenosine 5-monophosphate	BWI76_RS27790	BWI76_RS27790		MFS transporter family glucose-6-phosphate receptor UhpC	-1.04322026923295	-7.00604833363086	FALSE
+carbon source	set11IT071	2-Deoxyadenosine 5-monophosphate	BWI76_RS27795	BWI76_RS27795		two-component system sensor histidine kinase UhpB	-1.40013677567706	-7.30969382462606	FALSE
+carbon source	set11IT066	2-Deoxyadenosine monohydrate	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-3.69558785862767	-7.1782394719614	FALSE
+carbon source	set11IT076	2-Deoxyadenosine monohydrate	BWI76_RS04130	BWI76_RS04130		2-deoxyribose-5-phosphate aldolase	-3.08426899598678	-5.44682332006707	FALSE
+carbon source	set11IT066	2-Deoxyadenosine monohydrate	BWI76_RS04140	BWI76_RS04140		phosphopentomutase	-3.17770246164089	-5.57105888383033	FALSE
+carbon source	set11IT076	2-Deoxyadenosine monohydrate	BWI76_RS04140	BWI76_RS04140		phosphopentomutase	-3.11271038514163	-5.10867462905873	FALSE
+carbon source	set11IT076	2-Deoxyadenosine monohydrate	BWI76_RS16520	BWI76_RS16520		Bcr/CflA family multidrug efflux MFS transporter	-3.17244346871165	-6.47791402694516	FALSE
+carbon source	set11IT066	2-Deoxyadenosine monohydrate	BWI76_RS16520	BWI76_RS16520		Bcr/CflA family multidrug efflux MFS transporter	-2.35002138515097	-5.39961100541133	FALSE
+carbon source	set11IT076	2-Deoxyadenosine monohydrate	BWI76_RS20915	BWI76_RS20915		peroxiredoxin	1.41548067255097	5.22729732097525	FALSE
+carbon source	set11IT066	2-Deoxyadenosine monohydrate	BWI76_RS20915	BWI76_RS20915		peroxiredoxin	1.44130724345616	11.0242883335914	FALSE
+carbon source	set11IT076	2-Deoxyadenosine monohydrate	BWI76_RS24170	BWI76_RS24170		nucleoside permease	1.19038981534454	5.56583928581366	FALSE
+carbon source	set11IT066	2-Deoxyadenosine monohydrate	BWI76_RS24170	BWI76_RS24170		nucleoside permease	1.22977384893768	8.00947399762028	FALSE
+carbon source	set5IT022	Adenosine	BWI76_RS16520	BWI76_RS16520		Bcr/CflA family multidrug efflux MFS transporter	-1.37976365432205	-5.34931540076043	TRUE
+carbon source	set5IT024	Cytidine	BWI76_RS01295	BWI76_RS01295		uridine phosphorylase	-4.40858313145377	-6.79786068544866	TRUE
+carbon source	set5IT066	Cytidine	BWI76_RS01295	BWI76_RS01295		uridine phosphorylase	-3.17052179720973	-8.18400684768784	TRUE
+carbon source	set5IT024	Cytidine	BWI76_RS19610	BWI76_RS19610		cytidine deaminase	-2.80733215924939	-5.20531768818193	TRUE
+carbon source	set5IT024	Cytidine	BWI76_RS20540	BWI76_RS20540		NupC/NupG family nucleoside CNT transporter	-1.34806900239509	-5.14616992879856	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS00255	BWI76_RS00255		hypothetical protein	-1.32353559380298	-8.67468501994035	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS00255	BWI76_RS00255		hypothetical protein	-1.10695227890187	-8.0470171279467	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS00260	BWI76_RS00260		ATPase RavA	-1.07854359752999	-6.18877576430998	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS00290	BWI76_RS00290		ribokinase	1.29081673426082	6.75885016920497	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS00295	BWI76_RS00295		transcriptional regulator RbsR	1.40161992048982	6.51267275141486	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS00295	BWI76_RS00295		transcriptional regulator RbsR	1.79740014804604	10.78471501172	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS05425	BWI76_RS05425		EEP domain-containing protein	1.51648940585015	10.0638045703742	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS05425	BWI76_RS05425		EEP domain-containing protein	1.62262659617388	8.96460206246133	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS06150	BWI76_RS06150		transcriptional regulator	1.18791818524599	9.30554381420144	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS06150	BWI76_RS06150		transcriptional regulator	1.19421768387289	9.67883660240405	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS06605	BWI76_RS06605		ammonium transporter	-2.23617158564828	-6.45889219067127	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS06605	BWI76_RS06605		ammonium transporter	-1.91402799782648	-5.23962042128821	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS07435	BWI76_RS07435		LacI family transcriptional regulator	-1.89903715552441	-6.39248625321935	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS09725	BWI76_RS09725		MurR/RpiR family transcriptional regulator	1.48219694537004	7.40311618412236	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS10685	BWI76_RS10685		LysR family transcriptional regulator	-4.81724501223838	-8.4767622679359	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS10685	BWI76_RS10685		LysR family transcriptional regulator	-3.83997917459278	-7.02031733011236	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS16055	BWI76_RS16055		malonate decarboxylase subunit epsilon	1.50705339494748	5.64285833025172	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS16055	BWI76_RS16055		malonate decarboxylase subunit epsilon	1.56943008808276	6.68145606524344	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS16205	BWI76_RS16205		NAD(P) transhydrogenase subunit alpha	1.56887797253417	10.1928196768633	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS16205	BWI76_RS16205		NAD(P) transhydrogenase subunit alpha	1.57273819872122	9.02158025153755	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS16250	BWI76_RS16250		DNA-binding response regulator	-4.45583211489925	-9.25208620113497	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS16250	BWI76_RS16250		DNA-binding response regulator	-4.06750386922286	-6.5317019216065	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS17740	BWI76_RS17740		SpoVR family protein	-1.15379718409416	-5.24380205282323	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS19555	BWI76_RS19555		PTS beta-glucoside transporter subunit EIIBCA	-3.07796689354313	-6.27330157318868	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS19555	BWI76_RS19555		PTS beta-glucoside transporter subunit EIIBCA	-2.67069984853385	-5.32343567436997	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS20700	BWI76_RS20700		sulfate/thiosulfate transporter subunit	-1.53680581063034	-7.18567694245776	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS22785	BWI76_RS22785		NAD(P)H-binding protein	-1.19449793035248	-6.70929863711031	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS22785	BWI76_RS22785		NAD(P)H-binding protein	-1.05481492306943	-5.44219711756971	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS23420	BWI76_RS23420		LacI family transcriptional regulator	-2.08839899761665	-10.7008365394787	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS23420	BWI76_RS23420		LacI family transcriptional regulator	-1.98587139061261	-7.59187979426545	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS25410	BWI76_RS25410		GntR family transcriptional regulator with	-2.24937435510531	-11.7203943596061	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS25410	BWI76_RS25410		GntR family transcriptional regulator with	-1.97284229854824	-8.27425414341077	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS25475	BWI76_RS25475		TIGR02099 family protein	-4.09740425572718	-13.4303956812278	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS25475	BWI76_RS25475		TIGR02099 family protein	-3.70748811067459	-13.7493051747702	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS25975	BWI76_RS25975		phosphoribulokinase	-1.58960122820058	-5.90623368632985	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS26180	BWI76_RS26180		rhomboid family intramembrane serine protease GlpG	2.87885146537547	5.08417101529745	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS26310	BWI76_RS26310		IclR family transcriptional regulator	-1.32289128478563	-7.21504562420425	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS26310	BWI76_RS26310		IclR family transcriptional regulator	-1.23837329170743	-6.54448459959312	FALSE
+carbon source	set5IT012	D,L-Malic Acid	BWI76_RS27860	BWI76_RS27860		D-serine dehydratase	-2.2099561887161	-7.39721925715878	FALSE
+carbon source	set5IT054	D,L-Malic Acid	BWI76_RS27860	BWI76_RS27860		D-serine dehydratase	-1.93624635444296	-5.86056383713265	FALSE
+carbon source	set5IT018	D-Alanine	BWI76_RS02700	BWI76_RS02700		D-serine/D-alanine/glycine transporter	-4.3731391080103	-10.9654068859183	FALSE
+carbon source	set5IT060	D-Alanine	BWI76_RS02700	BWI76_RS02700		D-serine/D-alanine/glycine transporter	-4.36700169567765	-7.11953301463823	FALSE
+carbon source	set5IT018	D-Alanine	BWI76_RS02970	BWI76_RS02970		trehalose operon repressor	-3.37965768178145	-6.74834138223954	FALSE
+carbon source	set5IT060	D-Alanine	BWI76_RS05470	BWI76_RS05470		acyl-CoA dehydrogenase	-1.08224688285026	-6.90549403429574	FALSE
+carbon source	set5IT018	D-Alanine	BWI76_RS07120	BWI76_RS07120		LacI family transcriptional regulator	-2.35171776881886	-9.07585672964009	FALSE
+carbon source	set5IT060	D-Alanine	BWI76_RS07120	BWI76_RS07120		LacI family transcriptional regulator	-2.19011594495509	-7.14283804087638	FALSE
+carbon source	set5IT018	D-Alanine	BWI76_RS07435	BWI76_RS07435		LacI family transcriptional regulator	-2.26433122727691	-5.55339297558705	FALSE
+carbon source	set5IT018	D-Alanine	BWI76_RS13575	BWI76_RS13575		sugar binding transcriptional regulator, LacI family protein	-1.72561963326531	-5.79636781525713	FALSE
+carbon source	set5IT060	D-Alanine	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-4.33286305494418	-9.23526771636944	TRUE
+carbon source	set5IT018	D-Alanine	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-3.6328275374696	-8.17138260006948	TRUE
+carbon source	set5IT060	D-Alanine	BWI76_RS17735	BWI76_RS17735		D-amino acid dehydrogenase small subunit	-5.55850147917472	-5.41231634074323	TRUE
+carbon source	set5IT018	D-Alanine	BWI76_RS17735	BWI76_RS17735		D-amino acid dehydrogenase small subunit	-3.82456931846025	-6.84864941261483	TRUE
+carbon source	set5IT060	D-Alanine	BWI76_RS23420	BWI76_RS23420		LacI family transcriptional regulator	-2.23146960491725	-6.27595356789166	FALSE
+carbon source	set5IT018	D-Alanine	BWI76_RS23420	BWI76_RS23420		LacI family transcriptional regulator	-1.61088847304056	-8.05254938974554	FALSE
+carbon source	set5IT060	D-Alanine	BWI76_RS26310	BWI76_RS26310		IclR family transcriptional regulator	-1.86801859484206	-6.81552745786557	FALSE
+carbon source	set5IT018	D-Alanine	BWI76_RS26310	BWI76_RS26310		IclR family transcriptional regulator	-1.29266797570071	-6.98159742727305	FALSE
+carbon source	set5IT001	D-Cellobiose	BWI76_RS27750	BWI76_RS27750		PTS lactose/cellobiose family transporter subunit IIC	-1.08312702942174	-7.06612119211371	FALSE
+carbon source	set4IT083	D-Fructose	BWI76_RS19735	BWI76_RS19735		bifunctional PTS fructose transporter subunit IIA/HPr protein	-1.5313451501679	-5.6283416274993	TRUE
+carbon source	set5IT040	D-Gluconic Acid sodium salt	BWI76_RS18100	BWI76_RS18100		phosphogluconate dehydratase	-1.92743727403979	-8.17840154691846	TRUE
+carbon source	set4IT094	D-Gluconic Acid sodium salt	BWI76_RS18100	BWI76_RS18100		phosphogluconate dehydratase	-1.32833180937026	-6.96208151257283	TRUE
+carbon source	set5IT040	D-Gluconic Acid sodium salt	BWI76_RS26615	BWI76_RS26615		idonate transporter	-2.42383109304606	-6.63823345076251	TRUE
+carbon source	set4IT094	D-Gluconic Acid sodium salt	BWI76_RS26615	BWI76_RS26615		idonate transporter	-2.08875864272127	-7.92872032458434	TRUE
+carbon source	set5IT021	D-Glucosamine Hydrochloride	BWI76_RS17890	BWI76_RS17890		PTS mannose transporter subunit EIIAB	-2.83822298821675	-6.08033835266991	TRUE
+carbon source	set5IT021	D-Glucosamine Hydrochloride	BWI76_RS17900	BWI76_RS17900		PTS mannose transporter subunit IID	-2.18440123159358	-5.05948537626584	TRUE
+carbon source	set5IT021	D-Glucosamine Hydrochloride	BWI76_RS27710	BWI76_RS27710		N-acetylmuramic acid 6-phosphate etherase	-1.00681221652768	-6.07668555288861	FALSE
+carbon source	set4IT095	D-Glucose-6-Phosphate sodium salt	BWI76_RS27790	BWI76_RS27790		MFS transporter family glucose-6-phosphate receptor UhpC	-1.15234391488323	-5.72719849677237	TRUE
+carbon source	set4IT086	D-Maltose monohydrate	BWI76_RS01820	BWI76_RS01820		maltose transporter permease	-3.08170091249659	-11.2882842466335	TRUE
+carbon source	set5IT032	D-Maltose monohydrate	BWI76_RS01820	BWI76_RS01820		maltose transporter permease	-2.42687817481283	-12.6733249363004	TRUE
+carbon source	set4IT086	D-Maltose monohydrate	BWI76_RS01825	BWI76_RS01825		maltose ABC transporter permease MalF	-2.94636169591249	-11.9920808321131	TRUE
+carbon source	set5IT032	D-Maltose monohydrate	BWI76_RS01825	BWI76_RS01825		maltose ABC transporter permease MalF	-2.8088826885649	-9.80828322781813	TRUE
+carbon source	set4IT086	D-Maltose monohydrate	BWI76_RS01830	BWI76_RS01830		maltose ABC transporter substrate-binding protein MalE	-3.0347697461278	-8.74019364688214	TRUE
+carbon source	set5IT032	D-Maltose monohydrate	BWI76_RS01830	BWI76_RS01830		maltose ABC transporter substrate-binding protein MalE	-2.08492711975531	-6.9874585571108	TRUE
+carbon source	set4IT086	D-Maltose monohydrate	BWI76_RS01835	BWI76_RS01835		chemotaxis protein CheW	-3.45764119949464	-5.85463487370679	FALSE
+carbon source	set5IT032	D-Maltose monohydrate	BWI76_RS01835	BWI76_RS01835		chemotaxis protein CheW	-1.886521140934	-5.28763500719178	FALSE
+carbon source	set4IT086	D-Maltose monohydrate	BWI76_RS26160	BWI76_RS26160		4-alpha-glucanotransferase	-5.00675578658647	-12.1649862477833	TRUE
+carbon source	set5IT032	D-Maltose monohydrate	BWI76_RS26160	BWI76_RS26160		4-alpha-glucanotransferase	-4.27083557862962	-12.6680379997564	TRUE
+carbon source	set4IT086	D-Maltose monohydrate	BWI76_RS26165	BWI76_RS26165		maltodextrin phosphorylase	-4.97364748298175	-15.5594002791206	TRUE
+carbon source	set5IT032	D-Maltose monohydrate	BWI76_RS26165	BWI76_RS26165		maltodextrin phosphorylase	-4.36975393176915	-12.2715248332014	TRUE
+carbon source	set4IT086	D-Maltose monohydrate	BWI76_RS26170	BWI76_RS26170		transcriptional regulator MalT	-2.62990072654958	-12.3619559524368	TRUE
+carbon source	set5IT032	D-Maltose monohydrate	BWI76_RS26170	BWI76_RS26170		transcriptional regulator MalT	-2.48267205020659	-12.9268344654738	TRUE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS02965	BWI76_RS02965		PTS trehalose transporter subunit IIBC	-4.85549603687261	-8.69132172335875	FALSE
+carbon source	set5IT035	D-Raffinose pentahydrate	BWI76_RS02965	BWI76_RS02965		PTS trehalose transporter subunit IIBC	-4.0170188763925	-9.05414794249153	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS06205	BWI76_RS06205		recombination-associated protein RdgC	2.10167445003518	6.43603129737216	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS07845	BWI76_RS07845		LacI family transcriptional regulator	2.46159938883117	5.11209361684807	FALSE
+carbon source	set5IT035	D-Raffinose pentahydrate	BWI76_RS07845	BWI76_RS07845		LacI family transcriptional regulator	2.64439776843048	11.6670154937052	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS08610	BWI76_RS08610		galactose-1-epimerase	2.04039552665018	6.19364766743831	FALSE
+carbon source	set5IT035	D-Raffinose pentahydrate	BWI76_RS08625	BWI76_RS08625		UDP-glucose 4-epimerase GalE	7.43044643741823	25.4955478793134	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS08625	BWI76_RS08625		UDP-glucose 4-epimerase GalE	7.60313734756916	9.49363649087819	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS18985	BWI76_RS18985		LPS O-antigen ABC transporter ATP-binding protein	-1.51334575926431	-8.92081972469406	FALSE
+carbon source	set5IT035	D-Raffinose pentahydrate	BWI76_RS18985	BWI76_RS18985		LPS O-antigen ABC transporter ATP-binding protein	-1.41160730861579	-8.77076880248139	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS18990	BWI76_RS18990		ABC transporter permease	-1.7048806661637	-10.965178065366	FALSE
+carbon source	set5IT035	D-Raffinose pentahydrate	BWI76_RS18990	BWI76_RS18990		ABC transporter permease	-1.53027321626996	-9.85983544453395	FALSE
+carbon source	set5IT035	D-Raffinose pentahydrate	BWI76_RS19080	BWI76_RS19080		tyrosine autokinase	-2.07591488718463	-16.0206306361295	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS19080	BWI76_RS19080		tyrosine autokinase	-2.06746039020609	-15.0691722402168	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS19105	BWI76_RS19105		GalU regulator GalF	2.52591609951067	10.7620387302076	FALSE
+carbon source	set5IT035	D-Raffinose pentahydrate	BWI76_RS19105	BWI76_RS19105		GalU regulator GalF	2.6943340707491	12.1237214899658	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS19725	BWI76_RS19725		PTS fructose transporter subunit EIIBC	1.25401615831075	5.50349161033443	FALSE
+carbon source	set5IT035	D-Raffinose pentahydrate	BWI76_RS19735	BWI76_RS19735		bifunctional PTS fructose transporter subunit IIA/HPr protein	1.14470420855807	7.53428414021054	FALSE
+carbon source	set4IT089	D-Raffinose pentahydrate	BWI76_RS25080	BWI76_RS25080		tRNA pseudouridine(55) synthase	1.36630780484372	6.55994585219642	FALSE
+carbon source	set5IT038	D-Ribose	BWI76_RS00270	BWI76_RS00270		D-ribose pyranase	-3.30424672267063	-5.34308283532249	TRUE
+carbon source	set4IT092	D-Ribose	BWI76_RS00270	BWI76_RS00270		D-ribose pyranase	-3.28279727585549	-6.08029163991792	TRUE
+carbon source	set4IT092	D-Ribose	BWI76_RS00275	BWI76_RS00275		ribose ABC transporter ATP-binding protein RbsA	-2.49339865259501	-9.62046284678428	FALSE
+carbon source	set5IT038	D-Ribose	BWI76_RS00275	BWI76_RS00275		ribose ABC transporter ATP-binding protein RbsA	-2.2571654024267	-8.65569274264684	FALSE
+carbon source	set4IT092	D-Ribose	BWI76_RS00280	BWI76_RS00280		ribose ABC transporter permease	-2.87930903237115	-6.67592213937263	TRUE
+carbon source	set5IT038	D-Ribose	BWI76_RS00280	BWI76_RS00280		ribose ABC transporter permease	-1.85159112892509	-5.27813241108165	TRUE
+carbon source	set5IT038	D-Ribose	BWI76_RS00285	BWI76_RS00285		D-ribose ABC transporter substrate-binding protein	-3.37029805741501	-8.60670897080501	TRUE
+carbon source	set4IT092	D-Ribose	BWI76_RS00285	BWI76_RS00285		D-ribose ABC transporter substrate-binding protein	-2.42103537851364	-5.05221387135384	TRUE
+carbon source	set4IT092	D-Ribose	BWI76_RS00290	BWI76_RS00290		ribokinase	-3.46309728087757	-9.6100044678298	TRUE
+carbon source	set5IT038	D-Ribose	BWI76_RS00290	BWI76_RS00290		ribokinase	-3.07759174892848	-8.93967946096738	TRUE
+carbon source	set4IT092	D-Ribose	BWI76_RS00295	BWI76_RS00295		transcriptional regulator RbsR	1.70411656619935	9.9033794479465	TRUE
+carbon source	set5IT038	D-Ribose	BWI76_RS00295	BWI76_RS00295		transcriptional regulator RbsR	2.1811341124148	12.3761257409692	TRUE
+carbon source	set4IT092	D-Ribose	BWI76_RS03235	BWI76_RS03235		alpha-glycosidase	-1.64143818763471	-12.9159725181495	FALSE
+carbon source	set5IT038	D-Ribose	BWI76_RS23665	BWI76_RS23665		2-deoxyribose-5-phosphate aldolase	1.25678438431675	5.92206207468129	FALSE
+carbon source	set5IT025	D-Salicin	BWI76_RS19555	BWI76_RS19555		PTS beta-glucoside transporter subunit EIIBCA	-3.19056685877916	-10.0638035235605	FALSE
+carbon source	set5IT025	D-Salicin	BWI76_RS19560	BWI76_RS19560		beta-1,4-xylanase	-2.91532765402953	-6.72566400244809	FALSE
+carbon source	set5IT059	D-Serine	BWI76_RS01680	BWI76_RS01680		transcriptional regulator IclR	1.7094094568463	7.92871855573408	FALSE
+carbon source	set5IT017	D-Serine	BWI76_RS01680	BWI76_RS01680		transcriptional regulator IclR	1.79273541418632	6.88744103656321	FALSE
+carbon source	set5IT017	D-Serine	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-5.24002872301387	-10.1448709314078	TRUE
+carbon source	set5IT059	D-Serine	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-4.05031430101868	-10.8454700377247	TRUE
+carbon source	set5IT017	D-Serine	BWI76_RS27860	BWI76_RS27860		D-serine dehydratase	-3.73130041995936	-7.54640134034322	TRUE
+carbon source	set5IT059	D-Serine	BWI76_RS27860	BWI76_RS27860		D-serine dehydratase	-3.63174824418433	-10.1097873378734	TRUE
+carbon source	set5IT011	D-Sorbitol	BWI76_RS22215	BWI76_RS22215		PTS sorbitol transporter subunit IIC	-4.19298720271705	-8.44888787724731	FALSE
+carbon source	set5IT053	D-Sorbitol	BWI76_RS22215	BWI76_RS22215		PTS sorbitol transporter subunit IIC	-2.81071784318937	-5.34540595647364	FALSE
+carbon source	set5IT011	D-Sorbitol	BWI76_RS22220	BWI76_RS22220		PTS glucitol/sorbitol transporter subunit IIB	-4.61777493037974	-9.27406540178974	FALSE
+carbon source	set5IT053	D-Sorbitol	BWI76_RS22220	BWI76_RS22220		PTS glucitol/sorbitol transporter subunit IIB	-3.58253833103312	-6.25215003087627	FALSE
+carbon source	set5IT011	D-Sorbitol	BWI76_RS22225	BWI76_RS22225		PTS sorbitol transporter subunit IIA	-3.76004432353596	-7.62369707689553	FALSE
+carbon source	set5IT053	D-Sorbitol	BWI76_RS22225	BWI76_RS22225		PTS sorbitol transporter subunit IIA	-3.00750917777995	-7.1617681346319	FALSE
+carbon source	set5IT053	D-Sorbitol	BWI76_RS22230	BWI76_RS22230		sorbitol 6-phosphate dehydrogenase	-4.74524397659653	-8.7923661759517	TRUE
+carbon source	set5IT011	D-Sorbitol	BWI76_RS22230	BWI76_RS22230		sorbitol 6-phosphate dehydrogenase	-3.98616243715953	-7.00012146746063	TRUE
+carbon source	set5IT014	D-Trehalose dihydrate	BWI76_RS02965	BWI76_RS02965		PTS trehalose transporter subunit IIBC	-3.0502429836419	-6.63728318142759	TRUE
+carbon source	set5IT056	D-Trehalose dihydrate	BWI76_RS02965	BWI76_RS02965		PTS trehalose transporter subunit IIBC	-2.67890677527001	-6.79070534602983	TRUE
+carbon source	set5IT034	D-Xylose	BWI76_RS03235	BWI76_RS03235		alpha-glycosidase	-2.16350469727185	-15.0505727352395	FALSE
+carbon source	set5IT034	D-Xylose	BWI76_RS27020	BWI76_RS27020		xylulokinase	-2.41238483372944	-9.25040469575035	TRUE
+carbon source	set4IT088	D-Xylose	BWI76_RS27020	BWI76_RS27020		xylulokinase	-2.25504099089061	-6.50881968550762	TRUE
+carbon source	set5IT034	D-Xylose	BWI76_RS27025	BWI76_RS27025		xylose isomerase	-3.6768550642859	-11.3234041446241	TRUE
+carbon source	set4IT088	D-Xylose	BWI76_RS27025	BWI76_RS27025		xylose isomerase	-3.67634841785399	-14.3689129845023	TRUE
+carbon source	set4IT088	D-Xylose	BWI76_RS27045	BWI76_RS27045		XylR family transcriptional regulator	-4.80882015982689	-7.93889962183476	TRUE
+carbon source	set5IT034	D-Xylose	BWI76_RS27045	BWI76_RS27045		XylR family transcriptional regulator	-2.65691768791003	-5.83097676086276	TRUE
+carbon source	set5IT062	Gly-Glu	BWI76_RS05540	BWI76_RS05540		cytosol nonspecific dipeptidase	-4.12474118526466	-6.88858694036934	FALSE
+carbon source	set5IT062	Gly-Glu	BWI76_RS08215	BWI76_RS08215		glucosamine-6-phosphate deaminase	4.37455123075274	21.1825399075342	FALSE
+carbon source	set5IT062	Gly-Glu	BWI76_RS08970	BWI76_RS08970		glutamine ABC transporter permease GlnP	2.81923146912001	7.42198836796174	FALSE
+carbon source	set5IT062	Gly-Glu	BWI76_RS22685	BWI76_RS22685		hypothetical protein	4.30367895221133	23.7456317527258	FALSE
+carbon source	set5IT062	Gly-Glu	BWI76_RS23655	BWI76_RS23655		DeoR family transcriptional regulator	4.43849989382671	33.4042048788009	FALSE
+carbon source	set5IT062	Gly-Glu	BWI76_RS23870	BWI76_RS23870		glycine dehydrogenase (aminomethyl-transferring)	-2.13985567752839	-5.88669764865553	TRUE
+carbon source	set5IT062	Gly-Glu	BWI76_RS27815	BWI76_RS27815		acetolactate synthase catalytic subunit	-1.71743159694528	-8.94485604423427	FALSE
+carbon source	set5IT010	Glycerol	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	1.50738098467228	8.12182591689818	FALSE
+carbon source	set5IT065	Inosine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	4.77473614902392	21.4104501894571	FALSE
+carbon source	set5IT023	Inosine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	4.85998911602811	24.6269372408605	FALSE
+carbon source	set5IT065	Inosine	BWI76_RS16520	BWI76_RS16520		Bcr/CflA family multidrug efflux MFS transporter	-4.22941715755451	-5.25935643876533	TRUE
+carbon source	set5IT065	Inosine	BWI76_RS20540	BWI76_RS20540		NupC/NupG family nucleoside CNT transporter	-1.70802767617811	-5.29961887779836	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS01720	BWI76_RS01720		L-sorbose 1-phosphate reductase	-4.4999874023611	-6.64493804143152	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS01720	BWI76_RS01720		L-sorbose 1-phosphate reductase	-4.13485794710842	-6.21203583560978	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS01725	BWI76_RS01725		PTS mannose/fructose/sorbose family transporter subunit IID	-3.75029142284398	-6.83403794996591	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS01725	BWI76_RS01725		PTS mannose/fructose/sorbose family transporter subunit IID	-2.87279955560183	-5.97510993477115	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS01730	BWI76_RS01730		PTS mannose/fructose/sorbose transporter subunit IIC	-4.45015851629597	-16.9629641885659	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS01730	BWI76_RS01730		PTS mannose/fructose/sorbose transporter subunit IIC	-4.15350039043187	-13.3878852122516	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS01735	BWI76_RS01735		PTS mannose/fructose/sorbose family transporter subunit IIB	-2.50153477851883	-14.5021398956732	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS01735	BWI76_RS01735		PTS mannose/fructose/sorbose family transporter subunit IIB	-2.47224846547442	-13.1138119767007	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS01740	BWI76_RS01740		PTS enzyme IIAB, mannose-specific	-2.6701462575735	-6.08971158931972	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS01745	BWI76_RS01745		sorbitol-6-phosphate 2-dehydrogenase	-3.26274343353646	-12.8465564996001	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS01745	BWI76_RS01745		sorbitol-6-phosphate 2-dehydrogenase	-3.1103489942054	-12.1445172586554	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS01750	BWI76_RS01750		Cro/Cl family transcriptional regulator	-5.76287236565845	-15.3614651050108	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS01750	BWI76_RS01750		Cro/Cl family transcriptional regulator	-4.02421083981973	-11.9585720298824	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS04620	BWI76_RS04620		transcriptional regulator SgrR	-1.74056900807651	-7.26203715077595	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS04620	BWI76_RS04620		transcriptional regulator SgrR	-1.74021782802289	-7.48052768280484	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS07305	BWI76_RS07305		sucrose operon repressor	-1.84396141863025	-7.97993427297515	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS16205	BWI76_RS16205		NAD(P) transhydrogenase subunit alpha	-1.88641628112762	-5.89503380328996	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS16205	BWI76_RS16205		NAD(P) transhydrogenase subunit alpha	-1.68786273377006	-5.08026316859767	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-5.71816763208099	-10.2618334374184	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-5.17056973849544	-10.4570066838532	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS17900	BWI76_RS17900		PTS mannose transporter subunit IID	1.21733971635048	5.29431511382897	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS17900	BWI76_RS17900		PTS mannose transporter subunit IID	1.2552907501578	6.15491550182556	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS20510	BWI76_RS20510		glucokinase	-1.13653689632384	-5.24284785618189	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS22230	BWI76_RS22230		sorbitol 6-phosphate dehydrogenase	-1.99945299165294	-5.92187338252761	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS22230	BWI76_RS22230		sorbitol 6-phosphate dehydrogenase	-1.83564555768445	-5.85489081492968	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS27510	BWI76_RS27510		aquaporin	-5.03988277439153	-5.97974361111697	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS27510	BWI76_RS27510		aquaporin	-4.26391091138232	-6.46310363563357	FALSE
+carbon source	set4IT087	L-(-)-sorbose	BWI76_RS27515	BWI76_RS27515		glycerol kinase	-4.58144791739261	-15.1561559873805	FALSE
+carbon source	set5IT033	L-(-)-sorbose	BWI76_RS27515	BWI76_RS27515		glycerol kinase	-4.25113087430465	-13.8025302911752	FALSE
+carbon source	set5IT058	L-Alanine	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-6.46765410748932	-9.87991144416656	TRUE
+carbon source	set5IT016	L-Alanine	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-5.36320639825945	-10.8680648097456	TRUE
+carbon source	set5IT016	L-Alanine	BWI76_RS17735	BWI76_RS17735		D-amino acid dehydrogenase small subunit	-5.5899721998481	-7.6311028595927	TRUE
+carbon source	set5IT058	L-Alanine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	1.43817445355859	8.58846395544992	FALSE
+carbon source	set5IT016	L-Alanine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	1.59736485748384	9.65095254760474	FALSE
+carbon source	set4IT093	L-Fucose	BWI76_RS16205	BWI76_RS16205		NAD(P) transhydrogenase subunit alpha	-1.38201805745573	-5.95729014798707	FALSE
+carbon source	set4IT093	L-Fucose	BWI76_RS19080	BWI76_RS19080		tyrosine autokinase	-1.48310082452819	-12.12726532995	FALSE
+carbon source	set4IT093	L-Fucose	BWI76_RS22915	BWI76_RS22915		fuculose phosphate aldolase	-4.75910090014288	-16.749480922125	TRUE
+carbon source	set5IT039	L-Fucose	BWI76_RS22915	BWI76_RS22915		fuculose phosphate aldolase	-4.14482158015631	-12.4027098355683	TRUE
+carbon source	set5IT039	L-Fucose	BWI76_RS22920	BWI76_RS22920		MFS transporter	-1.68774360073348	-11.5931104042886	TRUE
+carbon source	set4IT093	L-Fucose	BWI76_RS22920	BWI76_RS22920		MFS transporter	-1.59464896031008	-10.6574318856914	TRUE
+carbon source	set4IT093	L-Fucose	BWI76_RS22930	BWI76_RS22930		L-fuculokinase	-2.07134380055938	-7.10109715014528	TRUE
+carbon source	set4IT093	L-Fucose	BWI76_RS22940	BWI76_RS22940		DNA-binding transcriptional activator FucR	-1.98800411652713	-5.70840169127321	TRUE
+carbon source	set5IT015	L-Glutamine	BWI76_RS00290	BWI76_RS00290		ribokinase	1.42714358349799	5.82444196092456	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS00295	BWI76_RS00295		transcriptional regulator RbsR	1.77411375592333	7.76418043905615	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS01680	BWI76_RS01680		transcriptional regulator IclR	-1.78059618687542	-6.06176412969247	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS02970	BWI76_RS02970		trehalose operon repressor	-3.34659760382833	-6.40907163979701	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS05470	BWI76_RS05470		acyl-CoA dehydrogenase	-1.27369580834246	-8.30804561191757	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS07120	BWI76_RS07120		LacI family transcriptional regulator	-2.15363084716309	-9.83137772695808	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS08095	BWI76_RS08095		arginine ABC transporter ATP-binding protein	-3.04891029316249	-9.24297089159548	TRUE
+carbon source	set5IT015	L-Glutamine	BWI76_RS08100	BWI76_RS08100		glutamate/aspartate transporter permease GltK	-2.55026031110285	-6.56454604163476	TRUE
+carbon source	set5IT015	L-Glutamine	BWI76_RS08105	BWI76_RS08105		glutamate/aspartate ABC transporter permease GltJ	-2.11814540020103	-5.16685741736405	TRUE
+carbon source	set5IT015	L-Glutamine	BWI76_RS08730	BWI76_RS08730		histidine utilization repressor	6.9190123071464	11.5921743172964	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS08965	BWI76_RS08965		glutamine ABC transporter ATP-binding protein	-2.10930674325228	-6.87356342154702	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS13280	BWI76_RS13280		LysR family transcriptional regulator	1.30877234914584	8.82256424192063	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS13575	BWI76_RS13575		sugar binding transcriptional regulator, LacI family protein	-2.84432058387979	-5.52267615503993	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS17050	BWI76_RS17050		FAD-binding oxidoreductase	-1.30343140955149	-5.45440029479842	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS20915	BWI76_RS20915		peroxiredoxin	-1.91661548927277	-7.02770414489563	FALSE
+carbon source	set5IT015	L-Glutamine	BWI76_RS26310	BWI76_RS26310		IclR family transcriptional regulator	-1.27601283280593	-6.69918698004337	FALSE
+carbon source	set5IT055	L-Malic acid disodium salt monohydrate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-2.3219577469073	-7.18136184737893	FALSE
+carbon source	set5IT013	L-Malic acid disodium salt monohydrate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-1.79590051267781	-6.59641547250053	FALSE
+carbon source	set5IT036	L-Rhamnose monohydrate	BWI76_RS00670	BWI76_RS00670		rhamnulose-1-phosphate aldolase	-5.39834332474262	-10.7627283064139	FALSE
+carbon source	set4IT090	L-Rhamnose monohydrate	BWI76_RS00670	BWI76_RS00670		rhamnulose-1-phosphate aldolase	-4.66856123953751	-8.62902988312667	FALSE
+carbon source	set5IT036	L-Rhamnose monohydrate	BWI76_RS00675	BWI76_RS00675		L-rhamnose isomerase	-3.08284533693701	-11.1428675894578	TRUE
+carbon source	set4IT090	L-Rhamnose monohydrate	BWI76_RS00675	BWI76_RS00675		L-rhamnose isomerase	-2.11479617541733	-9.85954239219854	TRUE
+carbon source	set4IT090	L-Rhamnose monohydrate	BWI76_RS00680	BWI76_RS00680		rhamnulokinase	-3.79946486370098	-9.08444948094924	TRUE
+carbon source	set5IT036	L-Rhamnose monohydrate	BWI76_RS00680	BWI76_RS00680		rhamnulokinase	-2.9880767026832	-7.00087126030962	TRUE
+carbon source	set4IT090	L-Rhamnose monohydrate	BWI76_RS00690	BWI76_RS00690		transcriptional activator RhaS	-2.72057260836323	-7.813171499866	FALSE
+carbon source	set5IT036	L-Rhamnose monohydrate	BWI76_RS00690	BWI76_RS00690		transcriptional activator RhaS	-2.13071711397862	-6.36699757779313	FALSE
+carbon source	set5IT036	L-Rhamnose monohydrate	BWI76_RS00695	BWI76_RS00695		AraC family transcriptional regulator	-1.93389932849768	-7.74459146015865	FALSE
+carbon source	set4IT090	L-Rhamnose monohydrate	BWI76_RS00695	BWI76_RS00695		AraC family transcriptional regulator	-1.754195722637	-7.29472670706164	FALSE
+carbon source	set4IT096	Potassium acetate	BWI76_RS01285	BWI76_RS01285		amino acid ABC transporter substrate-binding protein	-1.21481235719624	-5.29258676400452	FALSE
+carbon source	set4IT096	Potassium acetate	BWI76_RS01660	BWI76_RS01660		malate synthase A	-4.35103596562972	-10.5493798787511	TRUE
+carbon source	set5IT042	Potassium acetate	BWI76_RS01660	BWI76_RS01660		malate synthase A	-3.35753332292496	-5.67702200935679	TRUE
+carbon source	set4IT096	Potassium acetate	BWI76_RS01665	BWI76_RS01665		isocitrate lyase	-6.64963259050377	-7.90713355534281	TRUE
+carbon source	set5IT042	Potassium acetate	BWI76_RS01665	BWI76_RS01665		isocitrate lyase	-5.95921525917497	-8.16383006285911	TRUE
+carbon source	set5IT042	Potassium acetate	BWI76_RS01670	BWI76_RS01670		bifunctional isocitrate dehydrogenase kinase/phosphatase	-1.85017996478434	-6.13864388710824	TRUE
+carbon source	set4IT096	Potassium acetate	BWI76_RS01670	BWI76_RS01670		bifunctional isocitrate dehydrogenase kinase/phosphatase	-1.64075880332297	-7.20904949230529	TRUE
+carbon source	set5IT042	Potassium acetate	BWI76_RS02095	BWI76_RS02095		acetyl-coenzyme A synthetase	-2.31891020118935	-9.05524297113062	TRUE
+carbon source	set4IT096	Potassium acetate	BWI76_RS02095	BWI76_RS02095		acetyl-coenzyme A synthetase	-2.12516181759953	-9.68740174520875	TRUE
+carbon source	set5IT042	Potassium acetate	BWI76_RS03235	BWI76_RS03235		alpha-glycosidase	-2.62280143982873	-16.5288138828411	FALSE
+carbon source	set4IT096	Potassium acetate	BWI76_RS11230	BWI76_RS11230		NAD-dependent deacylase	-2.23610952077084	-5.77210667701146	TRUE
+carbon source	set4IT096	Potassium acetate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-1.53106377564492	-7.03141595781438	TRUE
+carbon source	set4IT096	Potassium acetate	BWI76_RS22845	BWI76_RS22845		flavodoxin	-1.65530394454023	-6.36048739871717	TRUE
+carbon source	set4IT096	Potassium acetate	BWI76_RS25355	BWI76_RS25355		cell division protein ZapE	-2.46737190016293	-7.20801076597444	FALSE
+carbon source	set5IT042	Potassium acetate	BWI76_RS25355	BWI76_RS25355		cell division protein ZapE	-2.12216863686399	-7.45850421158301	FALSE
+carbon source	set4IT096	Potassium acetate	BWI76_RS27815	BWI76_RS27815		acetolactate synthase catalytic subunit	-1.440426905171	-9.28331583054701	FALSE
+carbon source	set5IT047	Sodium D,L-Lactate	BWI76_RS15135	BWI76_RS15135		hypothetical protein	-1.64645414072362	-5.79392252981752	FALSE
+carbon source	set5IT047	Sodium D,L-Lactate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-4.93121254027424	-11.3613448659818	TRUE
+carbon source	set5IT005	Sodium D,L-Lactate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-4.39087263616944	-7.91442704522195	TRUE
+carbon source	set5IT005	Sodium D,L-Lactate	BWI76_RS27185	BWI76_RS27185		L-lactate permease	-3.52975796197585	-11.9411140856899	TRUE
+carbon source	set5IT047	Sodium D,L-Lactate	BWI76_RS27185	BWI76_RS27185		L-lactate permease	-3.06221910011583	-13.6248760076413	TRUE
+carbon source	set5IT005	Sodium D,L-Lactate	BWI76_RS27190	BWI76_RS27190		transcriptional regulator LldR	-3.31869860943046	-6.3514722850544	TRUE
+carbon source	set5IT047	Sodium D,L-Lactate	BWI76_RS27190	BWI76_RS27190		transcriptional regulator LldR	-2.45052841153289	-6.84602718690978	TRUE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS01680	BWI76_RS01680		transcriptional regulator IclR	-2.76061256996975	-7.68261521368761	FALSE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS01680	BWI76_RS01680		transcriptional regulator IclR	-2.05129743420139	-8.91485162764339	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS02085	BWI76_RS02085		cation acetate symporter	2.64289173874415	19.0593120720047	TRUE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS02095	BWI76_RS02095		acetyl-coenzyme A synthetase	-2.03071079724813	-8.31639796625946	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS02575	BWI76_RS02575		exoribonuclease R	-1.72535434355776	-5.90270911287401	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS02970	BWI76_RS02970		trehalose operon repressor	-1.87021204002917	-7.75520770004297	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS05470	BWI76_RS05470		acyl-CoA dehydrogenase	-1.88824432958389	-12.1373018956303	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS07120	BWI76_RS07120		LacI family transcriptional regulator	-2.13854398222327	-9.49390151227132	FALSE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS07120	BWI76_RS07120		LacI family transcriptional regulator	-1.8996793898607	-8.43268924993968	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS10795	BWI76_RS10795		trifunctional transcriptional regulator/proline dehydrogenase/L-glutamate gamma-semialdehyde dehydrogenase	-1.00110453361843	-5.21868699635914	FALSE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS13280	BWI76_RS13280		LysR family transcriptional regulator	1.33045889943967	8.27394984724266	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS13280	BWI76_RS13280		LysR family transcriptional regulator	3.92923173579913	28.9132733203512	FALSE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-2.62010661213923	-11.2627630064275	TRUE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-2.23607209609889	-8.2204197896969	TRUE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS19515	BWI76_RS19515		D-lactate dehydrogenase	-4.32911195390765	-5.90447950885011	TRUE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS19515	BWI76_RS19515		D-lactate dehydrogenase	-2.98601798051245	-5.57561329375122	TRUE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS19600	BWI76_RS19600		hypothetical protein	-2.14668734858531	-7.39559958791716	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS19605	BWI76_RS19605		CidB/LrgB family autolysis modulator	-2.79882893620815	-5.44065252830481	TRUE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS20915	BWI76_RS20915		peroxiredoxin	-1.74856937461813	-5.69931055832948	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS21985	BWI76_RS21985		aldehyde dehydrogenase	-2.23711032935001	-10.3086664592135	FALSE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS21985	BWI76_RS21985		aldehyde dehydrogenase	-1.46561233646172	-8.44270581679685	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS21990	BWI76_RS21990		ATPase AAA	-2.19019978614688	-6.64728889094672	FALSE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS21990	BWI76_RS21990		ATPase AAA	-1.37847645027395	-6.01142751765805	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS26060	BWI76_RS26060		tryptophan--tRNA ligase	-1.30100070140441	-5.81457893508701	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS27185	BWI76_RS27185		L-lactate permease	-3.51258022918031	-15.1666960408414	TRUE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS27185	BWI76_RS27185		L-lactate permease	-3.13154872018436	-12.3164365276758	TRUE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS27190	BWI76_RS27190		transcriptional regulator LldR	-1.80869162947495	-6.73567459329855	TRUE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS27710	BWI76_RS27710		N-acetylmuramic acid 6-phosphate etherase	-1.16178061530454	-6.01042740370611	FALSE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS27810	BWI76_RS27810		acetolactate synthase isozyme 1 small subunit	-1.14004557513259	-6.83607617951055	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS27810	BWI76_RS27810		acetolactate synthase isozyme 1 small subunit	-1.11599058096797	-6.94580324856043	FALSE
+carbon source	set5IT045	Sodium D-Lactate	BWI76_RS27815	BWI76_RS27815		acetolactate synthase catalytic subunit	-2.72314826332652	-12.0401802771147	FALSE
+carbon source	set5IT003	Sodium D-Lactate	BWI76_RS27815	BWI76_RS27815		acetolactate synthase catalytic subunit	-2.59009635013401	-14.7183937613636	FALSE
+carbon source	set5IT004	Sodium L-Lactate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-4.89165896629911	-12.5874721329161	TRUE
+carbon source	set5IT046	Sodium L-Lactate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-4.29171225315127	-7.78099472733311	TRUE
+carbon source	set5IT004	Sodium L-Lactate	BWI76_RS27185	BWI76_RS27185		L-lactate permease	-3.41177002952262	-11.9826821829306	TRUE
+carbon source	set5IT046	Sodium L-Lactate	BWI76_RS27185	BWI76_RS27185		L-lactate permease	-3.0776105500613	-9.00340253558685	TRUE
+carbon source	set5IT004	Sodium L-Lactate	BWI76_RS27190	BWI76_RS27190		transcriptional regulator LldR	-2.77071859630525	-6.16398461723313	FALSE
+carbon source	set5IT046	Sodium L-Lactate	BWI76_RS27195	BWI76_RS27195		alpha-hydroxy-acid oxidizing enzyme	-4.48567380373674	-6.36999535379667	FALSE
+carbon source	set5IT004	Sodium L-Lactate	BWI76_RS27195	BWI76_RS27195		alpha-hydroxy-acid oxidizing enzyme	-3.29510277590052	-6.64425922350633	FALSE
+carbon source	set5IT006	Sodium pyruvate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-4.97104342026272	-12.3915870406284	TRUE
+carbon source	set5IT048	Sodium pyruvate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-4.92119233435599	-9.82199260224871	TRUE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS00100	BWI76_RS00100		hypothetical protein	2.04306172527085	7.14175862640004	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS00100	BWI76_RS00100		hypothetical protein	2.82014299986008	7.7822862518214	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS01560	BWI76_RS01560		Rsd/AlgQ family anti-sigma factor	2.24600807634286	8.36549666442647	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS01680	BWI76_RS01680		transcriptional regulator IclR	-1.57119172084857	-5.73380026043432	FALSE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS02095	BWI76_RS02095		acetyl-coenzyme A synthetase	-1.30195499092704	-6.32836703276927	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS02970	BWI76_RS02970		trehalose operon repressor	-2.42272192686929	-9.1033231829083	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS07120	BWI76_RS07120		LacI family transcriptional regulator	-1.79965177868673	-7.44120088431123	FALSE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS07120	BWI76_RS07120		LacI family transcriptional regulator	-1.52863563987212	-8.01878128781707	FALSE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS09095	BWI76_RS09095		glutathione ABC transporter ATP-binding protein GsiA	1.64722463587911	8.93526815516799	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS09095	BWI76_RS09095		glutathione ABC transporter ATP-binding protein GsiA	2.76606731517424	13.7844356870861	FALSE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS09105	BWI76_RS09105		glutathione ABC transporter permease GsiC	1.61942157124238	10.943000813567	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS09105	BWI76_RS09105		glutathione ABC transporter permease GsiC	2.58872329517391	13.7072637606736	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS10795	BWI76_RS10795		trifunctional transcriptional regulator/proline dehydrogenase/L-glutamate gamma-semialdehyde dehydrogenase	-2.56244196275013	-8.3626993401459	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS19635	BWI76_RS19635		galactoside ABC transporter permease MglC	-1.68495402594143	-9.37780877389666	TRUE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS19635	BWI76_RS19635		galactoside ABC transporter permease MglC	-1.069162098279	-7.55094844539404	TRUE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS19640	BWI76_RS19640		galactose/methyl galactoside ABC transporter ATP-binding protein MglA	1.58085275410052	14.4018529935439	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS19645	BWI76_RS19645		galactose ABC transporter substrate-binding protein	1.38245079970196	8.16115429420683	FALSE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS19650	BWI76_RS19650		DNA-binding transcriptional regulator GalS	-2.97974350704431	-6.43632663485976	TRUE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS19650	BWI76_RS19650		DNA-binding transcriptional regulator GalS	-2.64165985432205	-5.25721671483041	TRUE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS21985	BWI76_RS21985		aldehyde dehydrogenase	-1.3673505924756	-6.93785614536677	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS23355	BWI76_RS23355		LacI family transcriptional regulator	-2.73775674043587	-5.54705404721437	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS24195	BWI76_RS24195		anion transporter	-2.31035744506464	-15.549791488875	FALSE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS24195	BWI76_RS24195		anion transporter	-2.0458463442727	-15.8048055270342	FALSE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS25355	BWI76_RS25355		cell division protein ZapE	-3.68848007251595	-6.70827223506736	TRUE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS25355	BWI76_RS25355		cell division protein ZapE	-3.333536200298	-6.06512090007648	TRUE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS25410	BWI76_RS25410		GntR family transcriptional regulator with	1.02282256508695	7.49394259344721	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS25965	BWI76_RS25965		hydrolase	1.51503148459333	9.53006589801295	FALSE
+carbon source	set5IT007	Sodium succinate dibasic hexahydrate	BWI76_RS26310	BWI76_RS26310		IclR family transcriptional regulator	-2.05537768557486	-7.02587806685671	FALSE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS26310	BWI76_RS26310		IclR family transcriptional regulator	-1.43040076872556	-6.06960877765024	FALSE
+carbon source	set5IT049	Sodium succinate dibasic hexahydrate	BWI76_RS26760	BWI76_RS26760		C4-dicarboxylate transporter DctA	-3.02622540202304	-5.08439706949268	TRUE
+carbon source	set5IT044	Trisodium citrate dihydrate	BWI76_RS04545	BWI76_RS04545		two-component response regulator for citrate	-1.52492089360493	-6.88769575044549	FALSE
+carbon source	set5IT002	Trisodium citrate dihydrate	BWI76_RS04545	BWI76_RS04545		two-component response regulator for citrate	-1.49049313953408	-6.99481485010605	FALSE
+carbon source	set5IT002	Trisodium citrate dihydrate	BWI76_RS04550	BWI76_RS04550		two-component sensor kinase	-1.52572740821746	-8.15811800940089	FALSE
+carbon source	set5IT044	Trisodium citrate dihydrate	BWI76_RS04550	BWI76_RS04550		two-component sensor kinase	-1.36990304027526	-6.74694139878256	FALSE
+carbon source	set5IT002	Trisodium citrate dihydrate	BWI76_RS04555	BWI76_RS04555		citrate/acetate antiporter	-1.65464425032914	-10.6520715067789	TRUE
+carbon source	set5IT044	Trisodium citrate dihydrate	BWI76_RS04555	BWI76_RS04555		citrate/acetate antiporter	-1.59665055144223	-10.2840360035167	TRUE
+carbon source	set5IT002	Trisodium citrate dihydrate	BWI76_RS13280	BWI76_RS13280		LysR family transcriptional regulator	1.4215037600444	6.2268855182099	FALSE
+carbon source	set5IT044	Trisodium citrate dihydrate	BWI76_RS13280	BWI76_RS13280		LysR family transcriptional regulator	1.50666449769608	9.31283641566107	FALSE
+carbon source	set5IT044	Trisodium citrate dihydrate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-1.62006275707566	-9.85503815618568	FALSE
+carbon source	set5IT002	Trisodium citrate dihydrate	BWI76_RS17065	BWI76_RS17065		phosphoenolpyruvate synthase	-1.50084996904116	-5.98628760740619	FALSE
+carbon source	set5IT044	Trisodium citrate dihydrate	BWI76_RS19600	BWI76_RS19600		hypothetical protein	-1.32649685738809	-6.19427607920375	FALSE
+carbon source	set5IT044	Trisodium citrate dihydrate	BWI76_RS25355	BWI76_RS25355		cell division protein ZapE	-2.71436756836038	-9.55050141155384	FALSE
+carbon source	set5IT002	Trisodium citrate dihydrate	BWI76_RS25355	BWI76_RS25355		cell division protein ZapE	-2.0554138542113	-6.79934692654041	FALSE
+carbon source	set5IT044	Trisodium citrate dihydrate	BWI76_RS27815	BWI76_RS27815		acetolactate synthase catalytic subunit	-1.41412682057825	-8.12938483153997	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS03235	BWI76_RS03235		alpha-glycosidase	-4.65923861028956	-26.8454824185247	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS03235	BWI76_RS03235		alpha-glycosidase	-4.47150465199333	-25.5355729935632	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS03240	BWI76_RS03240		maltodextrin ABC transporter permease	-2.82989990608297	-11.0080597674736	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS03240	BWI76_RS03240		maltodextrin ABC transporter permease	-2.6802599606261	-8.03491823479123	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS03245	BWI76_RS03245		maltodextrin ABC transporter permease	-2.65207971625781	-21.2494727497028	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS03245	BWI76_RS03245		maltodextrin ABC transporter permease	-2.62965362304758	-21.8090372385179	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS03250	BWI76_RS03250		maltose ABC transporter substrate-binding protein	-2.88337231608232	-22.5725061868192	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS03250	BWI76_RS03250		maltose ABC transporter substrate-binding protein	-2.58511049856179	-20.1670590645948	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS03255	BWI76_RS03255		hypothetical protein	-1.89771149263415	-12.4168848832841	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS03255	BWI76_RS03255		hypothetical protein	-1.69550419927825	-11.5734917577839	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS03260	BWI76_RS03260		UDP-3-O-(3-hydroxymyristoyl)glucosamine N-acyltransferase	-2.45822475306563	-14.8624432598764	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS03260	BWI76_RS03260		UDP-3-O-(3-hydroxymyristoyl)glucosamine N-acyltransferase	-2.05757037088456	-13.5646329703533	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS03265	BWI76_RS03265		hypothetical protein	-2.13711815835607	-18.3376291448082	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS03265	BWI76_RS03265		hypothetical protein	-1.88647961583952	-15.9838079969159	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS03270	BWI76_RS03270		sugar ABC transporter ATP-binding protein CymD	-2.54426547321728	-18.4776920959545	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS03270	BWI76_RS03270		sugar ABC transporter ATP-binding protein CymD	-2.53879114244571	-18.3205549794291	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS04490	BWI76_RS04490		glutathione-regulated potassium-efflux system ancillary protein KefF	-1.51092066223602	-9.58408633974965	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS04490	BWI76_RS04490		glutathione-regulated potassium-efflux system ancillary protein KefF	-1.32798129618281	-6.98914554391729	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS04495	BWI76_RS04495		glutathione-regulated potassium-efflux system protein KefC	-1.40810680714302	-7.34889776474409	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS04495	BWI76_RS04495		glutathione-regulated potassium-efflux system protein KefC	-1.1853788778708	-5.20871826187035	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12105	BWI76_RS12105		hypothetical protein	1.31471764361281	6.47567723458954	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS12110	BWI76_RS12110		hypothetical protein	1.33869936654303	7.94519957032756	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12135	BWI76_RS12135		C-5 cytosine-specific DNA methylase	1.39796743525679	8.32705271828587	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS12135	BWI76_RS12135		C-5 cytosine-specific DNA methylase	1.40989514098052	7.50002422048351	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS12180	BWI76_RS12180		membrane protein	1.66046612529583	11.030459014825	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12180	BWI76_RS12180		membrane protein	1.68652049709217	8.00441730394854	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12210	BWI76_RS12210		hypothetical protein	1.32565821683283	7.9393985990472	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS12295	BWI76_RS12295		hypothetical protein	1.73378666182649	9.28276710627559	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12350	BWI76_RS12350		kinase	1.6207123734376	9.56087456473259	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12355	BWI76_RS12355		flagellar biosynthesis protein	1.38138267071255	6.08526223430953	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS12355	BWI76_RS12355		flagellar biosynthesis protein	1.50506063960835	7.06442810359834	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12360	BWI76_RS12360		hypothetical protein	1.46651878678725	9.25794293658812	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12365	BWI76_RS12365		hypothetical protein	1.29895105257074	9.82385006663845	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS12365	BWI76_RS12365		hypothetical protein	1.33597423800915	8.49501288691454	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12370	BWI76_RS12370		hypothetical protein	1.58093902867062	10.2030579615093	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS12370	BWI76_RS12370		hypothetical protein	1.65439900987046	11.4220176061802	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12380	BWI76_RS12380		DNA polymerase V subunit UmuD	1.55324082242091	9.75714098555416	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS12395	BWI76_RS12395		zinc-binding alcohol dehydrogenase	1.4076255023287	9.14118290777266	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS12410	BWI76_RS12410		hypothetical protein	1.47584322485738	8.35180532709045	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS12410	BWI76_RS12410		hypothetical protein	1.54793143027168	8.24067273402372	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15500	BWI76_RS15500		hypothetical protein	1.87023018189511	16.2178352357009	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15500	BWI76_RS15500		hypothetical protein	2.10698631528573	18.2541342405255	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15505	BWI76_RS15505		hypothetical protein	1.90227064243561	11.3484920792538	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15505	BWI76_RS15505		hypothetical protein	1.90367102901894	13.7192044890387	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15520	BWI76_RS15520		hypothetical protein	1.96781816930082	14.7591966349816	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15520	BWI76_RS15520		hypothetical protein	2.07662744095368	15.1836703036982	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15540	BWI76_RS15540		hypothetical protein	1.67240901852288	9.59329159594605	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15540	BWI76_RS15540		hypothetical protein	2.47123450845524	14.1164132888156	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15545	BWI76_RS15545		hypothetical protein	1.74165976800462	10.3673862637831	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15545	BWI76_RS15545		hypothetical protein	2.23429757569502	13.1112583533358	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15550	BWI76_RS15550		hypothetical protein	1.89226946917552	12.1428752526849	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15550	BWI76_RS15550		hypothetical protein	2.26331758268964	15.4091853168931	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15555	BWI76_RS15555		hypothetical protein	1.96539082819683	13.7072914703344	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15555	BWI76_RS15555		hypothetical protein	2.05053405226401	10.962649953061	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15560	BWI76_RS15560		hypothetical protein	1.85051213826136	12.5674382166033	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15560	BWI76_RS15560		hypothetical protein	2.15809882821661	16.596284808257	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15595	BWI76_RS15595		hypothetical protein	2.13046057650386	11.9086041436247	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15595	BWI76_RS15595		hypothetical protein	2.20723798105548	12.5140772934651	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15675	BWI76_RS15675		hypothetical protein	2.15492567299992	12.7638949250766	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15675	BWI76_RS15675		hypothetical protein	2.16707620220772	9.33011217896306	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15700	BWI76_RS15700		hypothetical protein	2.04271861363017	12.9154707939902	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15700	BWI76_RS15700		hypothetical protein	2.34903768569046	9.73536862761671	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15725	BWI76_RS15725		hypothetical protein	1.53808456097739	8.58903120358453	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15725	BWI76_RS15725		hypothetical protein	1.7740126439817	6.22696176002313	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15755	BWI76_RS15755		hypothetical protein	2.07070230676295	14.3356291037779	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15755	BWI76_RS15755		hypothetical protein	2.28829056504497	10.020176910171	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15765	BWI76_RS15765		hypothetical protein	2.03614108467888	11.3444357189929	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15765	BWI76_RS15765		hypothetical protein	2.11752717677662	7.89951209760535	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15770	BWI76_RS15770		hypothetical protein	1.72342069652909	7.17912206026427	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15770	BWI76_RS15770		hypothetical protein	2.21195483019736	9.4467574213359	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS15815	BWI76_RS15815		hypothetical protein	1.99157210605014	15.2126201274248	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15815	BWI76_RS15815		hypothetical protein	2.3951933677924	17.1119676355672	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS15865	BWI76_RS15865		hypothetical protein	1.36890781294803	7.874716026757	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS20510	BWI76_RS20510		glucokinase	-2.68569977226933	-6.18596180334233	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS20510	BWI76_RS20510		glucokinase	-2.45733089035253	-7.2500504266798	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS26160	BWI76_RS26160		4-alpha-glucanotransferase	-3.4741617507601	-14.8595418777932	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS26160	BWI76_RS26160		4-alpha-glucanotransferase	-3.20933269165139	-13.6793006868676	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS26165	BWI76_RS26165		maltodextrin phosphorylase	-3.5757952807729	-10.9368956390713	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS26165	BWI76_RS26165		maltodextrin phosphorylase	-3.4744838537648	-12.7406282594064	FALSE
+carbon source	set4IT091	a-Cyclodextrin	BWI76_RS26170	BWI76_RS26170		transcriptional regulator MalT	-3.6969018937048	-15.1571347067272	FALSE
+carbon source	set5IT037	a-Cyclodextrin	BWI76_RS26170	BWI76_RS26170		transcriptional regulator MalT	-3.68243452200351	-16.1613298836964	FALSE
+carbon source	set5IT051	m-Inositol	BWI76_RS03070	BWI76_RS03070		methylmalonate-semialdehyde dehydrogenase (CoA acylating)	-1.67581874249765	-5.00224267140709	TRUE
+carbon source	set5IT009	m-Inositol	BWI76_RS03075	BWI76_RS03075		5-deoxy-glucuronate isomerase	-2.53024708473678	-11.5321732678128	TRUE
+carbon source	set5IT051	m-Inositol	BWI76_RS03075	BWI76_RS03075		5-deoxy-glucuronate isomerase	-2.51481875745207	-8.53146959773092	TRUE
+carbon source	set5IT051	m-Inositol	BWI76_RS03085	BWI76_RS03085		5-dehydro-2-deoxygluconokinase	-2.05718736931812	-10.7839378649244	TRUE
+carbon source	set5IT009	m-Inositol	BWI76_RS03085	BWI76_RS03085		5-dehydro-2-deoxygluconokinase	-1.95608093862855	-8.62557497908014	TRUE
+carbon source	set5IT051	m-Inositol	BWI76_RS03090	BWI76_RS03090		3D-(3,5/4)-trihydroxycyclohexane-1,2-dione hydrolase	-2.7339213167573	-13.1624533893936	TRUE
+carbon source	set5IT009	m-Inositol	BWI76_RS03090	BWI76_RS03090		3D-(3,5/4)-trihydroxycyclohexane-1,2-dione hydrolase	-1.86048721579301	-8.21056652806969	TRUE
+carbon source	set5IT051	m-Inositol	BWI76_RS03095	BWI76_RS03095		NADH-dependent dehydrogenase	-4.23215117675991	-7.14839307509993	TRUE
+carbon source	set5IT009	m-Inositol	BWI76_RS03095	BWI76_RS03095		NADH-dependent dehydrogenase	-2.91491243113824	-5.63976854304486	TRUE
+carbon source	set5IT051	m-Inositol	BWI76_RS18730	BWI76_RS18730		LysR family transcriptional regulator	-1.83123421138383	-5.50863820731932	FALSE
+nitrogen source	set6IT066	Adenosine	BWI76_RS10485	BWI76_RS10485		(hypo)xanthine hydroxylase reductase	-2.27563214012599	-5.04961424698534	FALSE
+nitrogen source	set6IT066	Adenosine	BWI76_RS10570	BWI76_RS10570		cysteine ABC transporter substrate-binding protein	-3.4667280735655	-5.34865731192938	FALSE
+nitrogen source	set6IT066	Adenosine	BWI76_RS10590	BWI76_RS10590		class V aminotransferase	-2.25006166026135	-6.80980902499601	FALSE
+nitrogen source	set6IT066	Adenosine	BWI76_RS10595	BWI76_RS10595		allantoate amidohydrolase	-2.13505652486756	-5.22211936302235	FALSE
+nitrogen source	set6IT032	Cytidine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	1.51070896897924	8.35927434585721	FALSE
+nitrogen source	set6IT032	Cytidine	BWI76_RS09580	BWI76_RS09580		surface protein	-1.78983265876336	-9.71677601181943	FALSE
+nitrogen source	set6IT070	Cytidine	BWI76_RS09580	BWI76_RS09580		surface protein	-1.71630426527708	-9.11557136021076	FALSE
+nitrogen source	set6IT032	Cytidine	BWI76_RS10345	BWI76_RS10345		MFS transporter	-1.50501294993751	-10.3003117681535	FALSE
+nitrogen source	set6IT070	Cytidine	BWI76_RS10345	BWI76_RS10345		MFS transporter	-1.37966266708444	-9.21070759574544	FALSE
+nitrogen source	set6IT032	Cytidine	BWI76_RS10775	BWI76_RS10775		pyrimidine utilization protein B	-1.5448732249273	-6.52801690538778	FALSE
+nitrogen source	set6IT070	Cytidine	BWI76_RS18460	BWI76_RS18460		DgsA anti-repressor MtfA	1.55208478278896	11.5282637419472	FALSE
+nitrogen source	set6IT032	Cytidine	BWI76_RS18460	BWI76_RS18460		DgsA anti-repressor MtfA	1.79720248691288	11.3224017323598	FALSE
+nitrogen source	set6IT070	Cytidine	BWI76_RS19610	BWI76_RS19610		cytidine deaminase	-3.38322352624452	-6.35235591122692	TRUE
+nitrogen source	set6IT072	Cytosine	BWI76_RS06605	BWI76_RS06605		ammonium transporter	-1.61028683144319	-5.05452430376969	FALSE
+nitrogen source	set6IT034	Cytosine	BWI76_RS12655	BWI76_RS12655		PTS cellobiose transporter subunit IIB	-2.14187868402182	-6.79107658209645	FALSE
+nitrogen source	set6IT072	Cytosine	BWI76_RS24465	BWI76_RS24465		adenylate cyclase	-1.47029676617604	-5.87246659038335	FALSE
+nitrogen source	set6IT059	D-Alanine	BWI76_RS02700	BWI76_RS02700		D-serine/D-alanine/glycine transporter	-1.0868381502469	-5.93904354645456	FALSE
+nitrogen source	set6IT059	D-Alanine	BWI76_RS06605	BWI76_RS06605		ammonium transporter	-2.36940843015842	-8.0315680051528	TRUE
+nitrogen source	set6IT021	D-Alanine	BWI76_RS06790	BWI76_RS06790		mechanosensitive channel MscK	2.138061555657	13.6957580950998	FALSE
+nitrogen source	set6IT059	D-Alanine	BWI76_RS17735	BWI76_RS17735		D-amino acid dehydrogenase small subunit	-4.25235298204436	-7.20242393719761	TRUE
+nitrogen source	set6IT021	D-Alanine	BWI76_RS24465	BWI76_RS24465		adenylate cyclase	-2.35983574728877	-6.82169885117139	FALSE
+nitrogen source	set6IT020	D-Serine	BWI76_RS01920	BWI76_RS01920		alanine racemase	1.95574227297919	11.0475113413909	FALSE
+nitrogen source	set6IT020	D-Serine	BWI76_RS02820	BWI76_RS02820		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	2.53349098790193	12.2778276340506	TRUE
+nitrogen source	set6IT020	D-Serine	BWI76_RS04850	BWI76_RS04850		N-acetylmuramoyl-L-alanine amidase	2.52121276543116	12.0397068828847	TRUE
+nitrogen source	set6IT020	D-Serine	BWI76_RS23495	BWI76_RS23495		hypothetical protein	1.61567683272865	10.7840274764897	FALSE
+nitrogen source	set6IT020	D-Serine	BWI76_RS23500	BWI76_RS23500		hypothetical protein	1.38327941163644	11.1904522638116	FALSE
+nitrogen source	set6IT058	D-Serine	BWI76_RS27850	BWI76_RS27850		DNA-binding transcriptional regulator DsdC	-4.25592024214536	-6.99276523645307	TRUE
+nitrogen source	set6IT058	D-Serine	BWI76_RS27860	BWI76_RS27860		D-serine dehydratase	-4.63426477085413	-11.2291749967309	TRUE
+nitrogen source	set6IT020	D-Serine	BWI76_RS27860	BWI76_RS27860		D-serine dehydratase	-2.83977349257761	-7.2352034285565	TRUE
+nitrogen source	set6IT060	Gly-DL-Asp	BWI76_RS05010	BWI76_RS05010		tRNA glutamyl-Q synthetase	1.36740714701844	6.46550250122329	FALSE
+nitrogen source	set6IT060	Gly-DL-Asp	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-1.93723165780619	-5.34010944597408	TRUE
+nitrogen source	set6IT060	Gly-DL-Asp	BWI76_RS23870	BWI76_RS23870		glycine dehydrogenase (aminomethyl-transferring)	-2.81017942708179	-9.66208856415815	FALSE
+nitrogen source	set6IT022	Gly-DL-Asp	BWI76_RS23880	BWI76_RS23880		glycine cleavage system protein T	-5.91366457172138	-5.10612687049844	FALSE
+nitrogen source	set6IT060	Gly-DL-Asp	BWI76_RS23880	BWI76_RS23880		glycine cleavage system protein T	-2.54115608600569	-6.72970819892131	FALSE
+nitrogen source	set6IT060	Gly-DL-Asp	BWI76_RS26880	BWI76_RS26880		dipeptide ABC transporter permease DppB	-1.95060088088261	-7.83774314552131	TRUE
+nitrogen source	set6IT060	Gly-DL-Asp	BWI76_RS26885	BWI76_RS26885		ABC transporter substrate-binding protein	-1.68026152723274	-9.58389185732154	TRUE
+nitrogen source	set6IT011	Glycine	BWI76_RS00890	BWI76_RS00890		vitamin B12/cobalamin outer membrane transporter	-1.36691667057526	-6.28247823548683	FALSE
+nitrogen source	set6IT011	Glycine	BWI76_RS01685	BWI76_RS01685		methionine synthase	-2.10522276724059	-7.3458501972669	FALSE
+nitrogen source	set6IT011	Glycine	BWI76_RS21445	BWI76_RS21445		hypothetical protein	1.91125219155442	5.02652902595586	TRUE
+nitrogen source	set6IT011	Glycine	BWI76_RS23870	BWI76_RS23870		glycine dehydrogenase (aminomethyl-transferring)	-5.96587132390625	-11.8743338587209	TRUE
+nitrogen source	set6IT011	Glycine	BWI76_RS23880	BWI76_RS23880		glycine cleavage system protein T	-5.23177099675902	-5.26111192821243	FALSE
+nitrogen source	set6IT069	Inosine	BWI76_RS10495	BWI76_RS10495		LysR family transcriptional regulator	-5.75569582214806	-6.87475943519302	FALSE
+nitrogen source	set6IT069	Inosine	BWI76_RS10510	BWI76_RS10510		OHCU decarboxylase	-5.17220742370478	-5.14284632857562	FALSE
+nitrogen source	set6IT069	Inosine	BWI76_RS10540	BWI76_RS10540		allantoinase	-5.91540010147169	-7.15941825144807	TRUE
+nitrogen source	set6IT069	Inosine	BWI76_RS10550	BWI76_RS10550		AtzE family amidohydrolase	-1.53754103700325	-5.08510135859541	FALSE
+nitrogen source	set6IT069	Inosine	BWI76_RS10570	BWI76_RS10570		cysteine ABC transporter substrate-binding protein	-5.23904211591193	-5.80013402683859	FALSE
+nitrogen source	set6IT069	Inosine	BWI76_RS10590	BWI76_RS10590		class V aminotransferase	-5.32398203802282	-9.41852522137722	FALSE
+nitrogen source	set6IT069	Inosine	BWI76_RS10595	BWI76_RS10595		allantoate amidohydrolase	-5.76169030782309	-8.10082712221747	TRUE
+nitrogen source	set6IT069	Inosine	BWI76_RS23270	BWI76_RS23270		phosphoenolpyruvate--protein phosphotransferase PtsP	-1.5423296132834	-9.61820986055431	FALSE
+nitrogen source	set6IT051	L-Alanine	BWI76_RS00840	BWI76_RS00840		acetylornithine deacetylase	-1.0530252653447	-5.85349075253628	FALSE
+nitrogen source	set6IT051	L-Alanine	BWI76_RS02700	BWI76_RS02700		D-serine/D-alanine/glycine transporter	1.16057871009713	8.01039706060472	FALSE
+nitrogen source	set6IT051	L-Alanine	BWI76_RS17735	BWI76_RS17735		D-amino acid dehydrogenase small subunit	-2.21636386807729	-5.10370485747521	TRUE
+nitrogen source	set6IT051	L-Alanine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	2.48115688293625	18.3689673020857	FALSE
+nitrogen source	set6IT001	L-Arginine	BWI76_RS11670	BWI76_RS11670		aspartate aminotransferase family protein	-6.76405361987408	-9.80278716410777	TRUE
+nitrogen source	set6IT039	L-Arginine	BWI76_RS11670	BWI76_RS11670		aspartate aminotransferase family protein	-5.5354434627372	-8.18319270737756	TRUE
+nitrogen source	set6IT001	L-Arginine	BWI76_RS11685	BWI76_RS11685		succinylarginine dihydrolase	-6.51061997251508	-5.86496138932745	TRUE
+nitrogen source	set6IT001	L-Arginine	BWI76_RS23270	BWI76_RS23270		phosphoenolpyruvate--protein phosphotransferase PtsP	-1.5572754072729	-5.67474173250095	FALSE
+nitrogen source	set6IT004	L-Aspartic Acid	BWI76_RS02330	BWI76_RS02330		aspartate ammonia-lyase	-2.92664573981436	-12.230226790782	FALSE
+nitrogen source	set6IT004	L-Aspartic Acid	BWI76_RS08095	BWI76_RS08095		arginine ABC transporter ATP-binding protein	-2.78418631670693	-6.92765171781789	FALSE
+nitrogen source	set6IT004	L-Aspartic Acid	BWI76_RS08100	BWI76_RS08100		glutamate/aspartate transporter permease GltK	-2.62244149083857	-5.34720177206332	FALSE
+nitrogen source	set6IT004	L-Aspartic Acid	BWI76_RS08105	BWI76_RS08105		glutamate/aspartate ABC transporter permease GltJ	-2.45844386933405	-6.05704012390935	FALSE
+nitrogen source	set6IT004	L-Aspartic Acid	BWI76_RS14460	BWI76_RS14460		MurR/RpiR family transcriptional regulator	2.79180387109637	13.8400397226581	FALSE
+nitrogen source	set6IT004	L-Aspartic Acid	BWI76_RS19175	BWI76_RS19175		dicarboxylate/amino acid:cation symporter	-1.06222231869703	-5.91972499654053	FALSE
+nitrogen source	set6IT004	L-Aspartic Acid	BWI76_RS25905	BWI76_RS25905		hypothetical protein	2.00244322717777	7.31311817719082	FALSE
+nitrogen source	set6IT023	L-Citrulline	BWI76_RS01925	BWI76_RS01925		aromatic amino acid aminotransferase	-1.7556405375887	-5.86278874881162	FALSE
+nitrogen source	set6IT023	L-Citrulline	BWI76_RS11670	BWI76_RS11670		aspartate aminotransferase family protein	-3.06502679473386	-8.90075072819753	TRUE
+nitrogen source	set6IT023	L-Citrulline	BWI76_RS11685	BWI76_RS11685		succinylarginine dihydrolase	-2.68095790645604	-7.13945526782655	FALSE
+nitrogen source	set6IT023	L-Citrulline	BWI76_RS11990	BWI76_RS11990		exoribonuclease II	1.90346719995284	12.5488577734501	FALSE
+nitrogen source	set6IT010	L-Cysteine hydrochloride monohydrate	BWI76_RS06575	BWI76_RS06575		cysteine synthase	-3.26028554568574	-7.85544170306132	FALSE
+nitrogen source	set6IT048	L-Cysteine hydrochloride monohydrate	BWI76_RS06575	BWI76_RS06575		cysteine synthase	-2.62253725810951	-9.09832892594379	FALSE
+nitrogen source	set6IT048	L-Cysteine hydrochloride monohydrate	BWI76_RS25245	BWI76_RS25245		3-deoxy-D-manno-octulosonate 8-phosphate phosphatase	1.45515117646243	5.12610226566939	FALSE
+nitrogen source	set6IT043	L-Glutamic acid monopotassium salt monohydrate	BWI76_RS02330	BWI76_RS02330		aspartate ammonia-lyase	-2.16576117821062	-9.75365622662249	FALSE
+nitrogen source	set6IT005	L-Glutamic acid monopotassium salt monohydrate	BWI76_RS02330	BWI76_RS02330		aspartate ammonia-lyase	-2.10300881223029	-8.87156383813969	FALSE
+nitrogen source	set6IT005	L-Glutamic acid monopotassium salt monohydrate	BWI76_RS08095	BWI76_RS08095		arginine ABC transporter ATP-binding protein	-2.77847686087365	-11.0876111604291	FALSE
+nitrogen source	set6IT043	L-Glutamic acid monopotassium salt monohydrate	BWI76_RS08095	BWI76_RS08095		arginine ABC transporter ATP-binding protein	-2.25022448260333	-8.75192214441822	FALSE
+nitrogen source	set6IT005	L-Glutamic acid monopotassium salt monohydrate	BWI76_RS08100	BWI76_RS08100		glutamate/aspartate transporter permease GltK	-1.95249245137921	-5.34914902079839	FALSE
+nitrogen source	set6IT043	L-Glutamic acid monopotassium salt monohydrate	BWI76_RS08105	BWI76_RS08105		glutamate/aspartate ABC transporter permease GltJ	-2.13001499777756	-6.86039033519019	TRUE
+nitrogen source	set6IT043	L-Glutamic acid monopotassium salt monohydrate	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-2.220421675469	-8.01505552268646	FALSE
+nitrogen source	set6IT005	L-Glutamic acid monopotassium salt monohydrate	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-1.8018957506659	-7.85939126570814	FALSE
+nitrogen source	set6IT043	L-Glutamic acid monopotassium salt monohydrate	BWI76_RS25355	BWI76_RS25355		cell division protein ZapE	-1.62958072100842	-5.24718552475092	FALSE
+nitrogen source	set6IT040	L-Histidine	BWI76_RS00575	BWI76_RS00575		DNA-binding protein	1.21308330557338	8.85892414704827	FALSE
+nitrogen source	set6IT040	L-Histidine	BWI76_RS00840	BWI76_RS00840		acetylornithine deacetylase	-2.70980158434712	-10.5698770231139	FALSE
+nitrogen source	set6IT002	L-Histidine	BWI76_RS00840	BWI76_RS00840		acetylornithine deacetylase	-2.58385526545543	-12.011601167211	FALSE
+nitrogen source	set6IT002	L-Histidine	BWI76_RS08725	BWI76_RS08725		formimidoylglutamase	-4.04030615267739	-7.06401090517096	FALSE
+nitrogen source	set6IT040	L-Histidine	BWI76_RS08735	BWI76_RS08735		urocanate hydratase	-4.72784889730518	-5.95532995031042	TRUE
+nitrogen source	set6IT002	L-Histidine	BWI76_RS08735	BWI76_RS08735		urocanate hydratase	-4.06308058846451	-6.55256813274441	TRUE
+nitrogen source	set6IT002	L-Histidine	BWI76_RS08740	BWI76_RS08740		histidine ammonia-lyase	-4.7677682755436	-9.77270257838364	TRUE
+nitrogen source	set6IT040	L-Histidine	BWI76_RS08740	BWI76_RS08740		histidine ammonia-lyase	-3.81696106226754	-7.2189595671395	TRUE
+nitrogen source	set6IT040	L-Histidine	BWI76_RS10290	BWI76_RS10290		transcriptional regulator	-1.4161490806965	-6.41095203111917	FALSE
+nitrogen source	set6IT040	L-Histidine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-3.66012439535668	-6.77204177685103	FALSE
+nitrogen source	set6IT002	L-Histidine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-3.15891145158146	-9.59114669400519	FALSE
+nitrogen source	set6IT002	L-Histidine	BWI76_RS20915	BWI76_RS20915		peroxiredoxin	-1.4866403028562	-7.02664129710387	FALSE
+nitrogen source	set6IT002	L-Histidine	BWI76_RS21905	BWI76_RS21905		class II aldolase	-1.80711595980367	-6.18520480605292	FALSE
+nitrogen source	set6IT002	L-Histidine	BWI76_RS21910	BWI76_RS21910		glyoxylate/hydroxypyruvate reductase A	-2.36914530811862	-6.44536272927064	FALSE
+nitrogen source	set6IT040	L-Histidine	BWI76_RS21910	BWI76_RS21910		glyoxylate/hydroxypyruvate reductase A	-2.233888044764	-6.63555629992364	FALSE
+nitrogen source	set6IT053	L-Isoleucine	BWI76_RS05980	BWI76_RS05980		ABC transporter ATP-binding protein	-1.17847899081498	-5.35722419750998	FALSE
+nitrogen source	set6IT015	L-Isoleucine	BWI76_RS05980	BWI76_RS05980		ABC transporter ATP-binding protein	-1.16869981960332	-5.57490815319585	FALSE
+nitrogen source	set6IT015	L-Isoleucine	BWI76_RS05995	BWI76_RS05995		branched-chain amino acid ABC transporter substrate-binding protein	-1.50806722033522	-6.59070075146086	FALSE
+nitrogen source	set6IT015	L-Isoleucine	BWI76_RS17345	BWI76_RS17345		nitrate/nitrite two-component system sensor histidine kinase NarX	-2.41591388791749	-6.75023495542376	FALSE
+nitrogen source	set6IT053	L-Isoleucine	BWI76_RS17735	BWI76_RS17735		D-amino acid dehydrogenase small subunit	-2.18764060998053	-5.73033449481561	FALSE
+nitrogen source	set6IT053	L-Isoleucine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-2.5017026340283	-6.81619722509414	FALSE
+nitrogen source	set6IT015	L-Isoleucine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-1.9997928154906	-5.43806201865823	FALSE
+nitrogen source	set6IT053	L-Isoleucine	BWI76_RS26830	BWI76_RS26830		endoglucanase	-1.24978692190134	-5.77211952123609	FALSE
+nitrogen source	set6IT054	L-Leucine	BWI76_RS00840	BWI76_RS00840		acetylornithine deacetylase	-2.23501753173308	-8.06913672083916	FALSE
+nitrogen source	set6IT016	L-Leucine	BWI76_RS00840	BWI76_RS00840		acetylornithine deacetylase	-2.18084679953613	-9.52724271680107	FALSE
+nitrogen source	set6IT054	L-Leucine	BWI76_RS05985	BWI76_RS05985		branched-chain amino acid ABC transporter permease	-1.47388241574128	-5.82146119246594	FALSE
+nitrogen source	set6IT016	L-Leucine	BWI76_RS17345	BWI76_RS17345		nitrate/nitrite two-component system sensor histidine kinase NarX	-2.02648996158803	-7.98370861651737	FALSE
+nitrogen source	set6IT054	L-Leucine	BWI76_RS17345	BWI76_RS17345		nitrate/nitrite two-component system sensor histidine kinase NarX	-1.96719535552092	-5.82141167186221	FALSE
+nitrogen source	set6IT016	L-Leucine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-2.47633084427824	-7.96259409284404	FALSE
+nitrogen source	set6IT054	L-Leucine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-2.4050155969584	-5.18658555847424	FALSE
+nitrogen source	set6IT016	L-Leucine	BWI76_RS23535	BWI76_RS23535		hypothetical protein	1.54902764341898	11.0985362929194	FALSE
+nitrogen source	set6IT054	L-Leucine	BWI76_RS23535	BWI76_RS23535		hypothetical protein	1.61705517648127	10.1643805709242	FALSE
+nitrogen source	set6IT016	L-Leucine	BWI76_RS23540	BWI76_RS23540		putative lysine exporter protein	1.24951255737888	7.58946847394964	FALSE
+nitrogen source	set6IT054	L-Leucine	BWI76_RS23540	BWI76_RS23540		putative lysine exporter protein	1.38730738276311	7.63644632980491	FALSE
+nitrogen source	set6IT016	L-Leucine	BWI76_RS24235	BWI76_RS24235		aminotransferase	-1.74064676913406	-6.09765698291768	TRUE
+nitrogen source	set6IT054	L-Leucine	BWI76_RS24235	BWI76_RS24235		aminotransferase	-1.5980172901751	-5.70789431180105	TRUE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS00840	BWI76_RS00840		acetylornithine deacetylase	-1.43417219173364	-7.30110152647823	FALSE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS00840	BWI76_RS00840		acetylornithine deacetylase	-1.3948155872619	-6.25776822274998	FALSE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS04275	BWI76_RS04275		molybdopterin adenylyltransferase	1.66175597154071	7.95708931844571	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS04275	BWI76_RS04275		molybdopterin adenylyltransferase	1.73212888257707	7.36113832482632	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS09580	BWI76_RS09580		surface protein	-3.50545395106323	-9.46767974670591	FALSE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS09580	BWI76_RS09580		surface protein	-3.01566985727521	-9.92872205079034	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS11480	BWI76_RS11480		hypothetical protein	2.1021107316753	11.3502119879798	FALSE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS11480	BWI76_RS11480		hypothetical protein	2.41749975124862	15.3689852730111	FALSE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS11485	BWI76_RS11485		serine protein kinase PrkA	1.95901831534375	6.33928974843634	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS11485	BWI76_RS11485		serine protein kinase PrkA	2.0790940222141	9.3006392308626	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS11670	BWI76_RS11670		aspartate aminotransferase family protein	-3.9220623390323	-8.67331980852082	TRUE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS11670	BWI76_RS11670		aspartate aminotransferase family protein	-3.39481858495258	-9.5490366965428	TRUE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS11690	BWI76_RS11690		succinylglutamate desuccinylase	-2.2934228503084	-6.23226663167451	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS11690	BWI76_RS11690		succinylglutamate desuccinylase	-2.03240250595652	-5.25914955097962	FALSE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS17740	BWI76_RS17740		SpoVR family protein	2.08792016963979	9.17447002317	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS17740	BWI76_RS17740		SpoVR family protein	2.15143872378061	11.4563363962132	FALSE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS20320	BWI76_RS20320		histidine/lysine/arginine/ornithine ABC transporter ATP-binding protein HisP	1.40341255493102	7.73041511535352	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS20320	BWI76_RS20320		histidine/lysine/arginine/ornithine ABC transporter ATP-binding protein HisP	1.43690289811022	7.77746561553825	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS20325	BWI76_RS20325		histidine/lysine/arginine/ornithine ABC transporter permease HisM	1.42804189348877	5.94089021154241	TRUE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS20325	BWI76_RS20325		histidine/lysine/arginine/ornithine ABC transporter permease HisM	1.47221142890198	8.30437709105555	TRUE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS20330	BWI76_RS20330		histidine/lysine/arginine/ornithine ABC transporter permease HisQ	1.61912984903869	6.70799395839479	TRUE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS20335	BWI76_RS20335		zinc transporter	1.3455310669888	5.43876150166084	FALSE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS20335	BWI76_RS20335		zinc transporter	1.54347239445346	6.5236148294143	FALSE
+nitrogen source	set6IT041	L-Lysine	BWI76_RS20340	BWI76_RS20340		histidine ABC transporter substrate-binding protein HisJ	1.72756305959521	5.68478458352502	TRUE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS20340	BWI76_RS20340		histidine ABC transporter substrate-binding protein HisJ	1.89695168195909	6.68099722970572	TRUE
+nitrogen source	set6IT003	L-Lysine	BWI76_RS23875	BWI76_RS23875		glycine cleavage system protein H	1.85836251408845	6.47984348201286	FALSE
+nitrogen source	set6IT055	L-Phenylalanine	BWI76_RS01925	BWI76_RS01925		aromatic amino acid aminotransferase	-2.47227621807706	-7.60201715320444	TRUE
+nitrogen source	set6IT055	L-Phenylalanine	BWI76_RS17735	BWI76_RS17735		D-amino acid dehydrogenase small subunit	-2.12227755305061	-5.00742059443994	FALSE
+nitrogen source	set6IT017	L-Phenylalanine	BWI76_RS21485	BWI76_RS21485		DUF4154 domain-containing protein	1.42709947328455	6.45065694983921	FALSE
+nitrogen source	set6IT050	L-Proline	BWI76_RS02330	BWI76_RS02330		aspartate ammonia-lyase	-2.59060699079996	-11.0179489629834	FALSE
+nitrogen source	set6IT012	L-Proline	BWI76_RS02330	BWI76_RS02330		aspartate ammonia-lyase	-2.53150188760915	-10.013720975217	FALSE
+nitrogen source	set6IT012	L-Proline	BWI76_RS02765	BWI76_RS02765		membrane protein	1.36181691865541	5.31390415588258	FALSE
+nitrogen source	set6IT050	L-Proline	BWI76_RS02765	BWI76_RS02765		membrane protein	1.45364499721422	7.42893380521043	FALSE
+nitrogen source	set6IT050	L-Proline	BWI76_RS05975	BWI76_RS05975		ABC transporter ATP-binding protein	-1.65146229874639	-5.23030809398155	FALSE
+nitrogen source	set6IT050	L-Proline	BWI76_RS05980	BWI76_RS05980		ABC transporter ATP-binding protein	-1.72219843578929	-6.14666360016683	FALSE
+nitrogen source	set6IT050	L-Proline	BWI76_RS05985	BWI76_RS05985		branched-chain amino acid ABC transporter permease	-1.71950937847843	-6.36428753368509	FALSE
+nitrogen source	set6IT012	L-Proline	BWI76_RS05990	BWI76_RS05990		branched-chain amino acid ABC transporter permease	-2.07481082175279	-6.33802880945907	FALSE
+nitrogen source	set6IT050	L-Proline	BWI76_RS05995	BWI76_RS05995		branched-chain amino acid ABC transporter substrate-binding protein	-2.03437105915023	-6.6638481098837	FALSE
+nitrogen source	set6IT012	L-Proline	BWI76_RS05995	BWI76_RS05995		branched-chain amino acid ABC transporter substrate-binding protein	-1.39918689693179	-5.44047498851436	FALSE
+nitrogen source	set6IT050	L-Proline	BWI76_RS10795	BWI76_RS10795		trifunctional transcriptional regulator/proline dehydrogenase/L-glutamate gamma-semialdehyde dehydrogenase	-3.26412224433533	-6.14579776913829	TRUE
+nitrogen source	set6IT012	L-Proline	BWI76_RS10795	BWI76_RS10795		trifunctional transcriptional regulator/proline dehydrogenase/L-glutamate gamma-semialdehyde dehydrogenase	-3.09736774117022	-7.438988362148	TRUE
+nitrogen source	set6IT012	L-Proline	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-2.57664746261919	-8.32183486746118	FALSE
+nitrogen source	set6IT012	L-Proline	BWI76_RS25355	BWI76_RS25355		cell division protein ZapE	-1.87732695958927	-8.48082379442313	FALSE
+nitrogen source	set6IT044	L-Serine	BWI76_RS20670	BWI76_RS20670		transcriptional regulator PtsJ	-3.57057434475639	-6.70197252794738	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS00330	BWI76_RS00330		molybdenum cofactor guanylyltransferase	1.48582892135077	11.0765137695528	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS00575	BWI76_RS00575		DNA-binding protein	-2.00738996649321	-8.38408192939965	FALSE
+nitrogen source	set6IT045	L-Threonine	BWI76_RS04275	BWI76_RS04275		molybdopterin adenylyltransferase	1.73621787694168	11.2147649613533	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS04275	BWI76_RS04275		molybdopterin adenylyltransferase	1.85781927104201	13.8374694134085	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS05975	BWI76_RS05975		ABC transporter ATP-binding protein	-1.85513108549544	-6.12677143211481	FALSE
+nitrogen source	set6IT045	L-Threonine	BWI76_RS05980	BWI76_RS05980		ABC transporter ATP-binding protein	-2.51727724208182	-5.72637564705666	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS05980	BWI76_RS05980		ABC transporter ATP-binding protein	-1.96994244007898	-5.51913643128311	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS05985	BWI76_RS05985		branched-chain amino acid ABC transporter permease	-3.30124725414771	-6.01256460190572	FALSE
+nitrogen source	set6IT045	L-Threonine	BWI76_RS05990	BWI76_RS05990		branched-chain amino acid ABC transporter permease	-2.21715150723772	-5.15910736967362	FALSE
+nitrogen source	set6IT045	L-Threonine	BWI76_RS05995	BWI76_RS05995		branched-chain amino acid ABC transporter substrate-binding protein	-3.5021495190222	-7.22458910039639	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS05995	BWI76_RS05995		branched-chain amino acid ABC transporter substrate-binding protein	-2.5531002023892	-7.21343313436445	FALSE
+nitrogen source	set6IT045	L-Threonine	BWI76_RS06000	BWI76_RS06000		ethanolamine ammonia-lyase small subunit	-1.50599842594843	-8.75507012129972	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS06000	BWI76_RS06000		ethanolamine ammonia-lyase small subunit	-1.19071712932195	-7.40703799050488	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS06005	BWI76_RS06005		ethanolamine ammonia lyase large subunit	-1.15548969437208	-5.13441561280469	FALSE
+nitrogen source	set6IT045	L-Threonine	BWI76_RS08815	BWI76_RS08815		cyclic pyranopterin phosphate synthase	1.71514126501538	9.4886215551916	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS08815	BWI76_RS08815		cyclic pyranopterin phosphate synthase	1.73644435986282	10.5223575660119	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS17345	BWI76_RS17345		nitrate/nitrite two-component system sensor histidine kinase NarX	-2.50606491291743	-5.90920045484485	FALSE
+nitrogen source	set6IT045	L-Threonine	BWI76_RS17385	BWI76_RS17385		nitrate regulatory protein	1.10392138497309	5.74674490091336	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS17385	BWI76_RS17385		nitrate regulatory protein	1.11920646847162	8.13673497054294	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-2.84990256164316	-8.45611334884599	FALSE
+nitrogen source	set6IT045	L-Threonine	BWI76_RS20495	BWI76_RS20495		alanine transaminase	-1.55507264099161	-7.32480039346071	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS20495	BWI76_RS20495		alanine transaminase	-1.39190985164504	-7.36312729965007	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS23870	BWI76_RS23870		glycine dehydrogenase (aminomethyl-transferring)	-1.35669766738742	-6.13850841342626	FALSE
+nitrogen source	set6IT045	L-Threonine	BWI76_RS23870	BWI76_RS23870		glycine dehydrogenase (aminomethyl-transferring)	-1.27548633092285	-5.97818238511801	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS23880	BWI76_RS23880		glycine cleavage system protein T	-1.45428195629221	-5.27911158302529	FALSE
+nitrogen source	set6IT007	L-Threonine	BWI76_RS27255	BWI76_RS27255		glycine C-acetyltransferase	-1.34448523251446	-6.32805917312014	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS01925	BWI76_RS01925		aromatic amino acid aminotransferase	-4.31248095640778	-8.89356412416867	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS01925	BWI76_RS01925		aromatic amino acid aminotransferase	-3.35070851278973	-8.53342280685283	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS03535	BWI76_RS03535		tryptophanase	-1.37538431293339	-8.30447928057839	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS03535	BWI76_RS03535		tryptophanase	-1.14101196685223	-7.92318871279252	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS05980	BWI76_RS05980		ABC transporter ATP-binding protein	-2.94984985103197	-7.12360468760403	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS05980	BWI76_RS05980		ABC transporter ATP-binding protein	-2.91799050012549	-5.42394355562707	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS05990	BWI76_RS05990		branched-chain amino acid ABC transporter permease	-2.99693085787681	-7.76307388340993	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS05995	BWI76_RS05995		branched-chain amino acid ABC transporter substrate-binding protein	-2.69946709470299	-6.12720354744997	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS05995	BWI76_RS05995		branched-chain amino acid ABC transporter substrate-binding protein	-2.26704269187825	-6.08095142111983	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS06000	BWI76_RS06000		ethanolamine ammonia-lyase small subunit	-1.77354403432029	-9.82173699871151	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS06000	BWI76_RS06000		ethanolamine ammonia-lyase small subunit	-1.59819710240894	-8.15759013464179	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS06005	BWI76_RS06005		ethanolamine ammonia lyase large subunit	-1.48222060924172	-5.00329215679636	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS06005	BWI76_RS06005		ethanolamine ammonia lyase large subunit	-1.45564289261371	-5.26820809533371	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS11480	BWI76_RS11480		hypothetical protein	1.40697522728822	8.47289552121913	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS11480	BWI76_RS11480		hypothetical protein	1.44710521813836	6.90315335790276	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS11485	BWI76_RS11485		serine protein kinase PrkA	1.32432161548394	5.15284990729315	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS11485	BWI76_RS11485		serine protein kinase PrkA	1.56738314194449	6.26012554036975	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS17345	BWI76_RS17345		nitrate/nitrite two-component system sensor histidine kinase NarX	-2.45871379649081	-8.62354009787075	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS17740	BWI76_RS17740		SpoVR family protein	1.40154715662578	8.15803803012404	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS17740	BWI76_RS17740		SpoVR family protein	1.52212144330551	11.1364405792723	FALSE
+nitrogen source	set6IT057	L-Tryptophan	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-2.6630542067139	-6.12637095412281	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS18630	BWI76_RS18630		nitrogen assimilation transcriptional regulator	-2.45685844613608	-5.45262610130917	FALSE
+nitrogen source	set6IT019	L-Tryptophan	BWI76_RS26830	BWI76_RS26830		endoglucanase	-2.42907672743506	-5.96142450798421	FALSE
+nitrogen source	set6IT014	L-Valine	BWI76_RS13005	BWI76_RS13005		thiamine pyrophosphate protein TPP-binding protein	-1.22370214962919	-7.00048408548278	FALSE
+nitrogen source	set6IT014	L-Valine	BWI76_RS17735	BWI76_RS17735		D-amino acid dehydrogenase small subunit	-2.62210890980506	-6.09994859373722	FALSE
+nitrogen source	set6IT014	L-Valine	BWI76_RS20495	BWI76_RS20495		alanine transaminase	-1.44558545512409	-9.43187887468384	FALSE
+nitrogen source	set6IT056	L-tyrosine disodium salt	BWI76_RS04315	BWI76_RS04315		Na+/H+ antiporter NhaA	-3.04113038835083	-8.52979064427421	FALSE
+nitrogen source	set6IT056	L-tyrosine disodium salt	BWI76_RS17205	BWI76_RS17205		cardiolipin synthase A	-2.57690321135251	-5.92620484344454	FALSE
+nitrogen source	set6IT056	L-tyrosine disodium salt	BWI76_RS26965	BWI76_RS26965		hypothetical protein	-2.42774270599256	-6.20599263575169	FALSE
+nitrogen source	set6IT026	N-Acetyl-D-Glucosamine	BWI76_RS08220	BWI76_RS08220		PTS N-acetyl glucosamine transporter subunit IIABC	-4.74984219649051	-6.18143713744927	FALSE
+nitrogen source	set6IT026	N-Acetyl-D-Glucosamine	BWI76_RS10345	BWI76_RS10345		MFS transporter	-1.23438670535636	-7.4597819566476	FALSE
+nitrogen source	set6IT065	Parabanic Acid	BWI76_RS24465	BWI76_RS24465		adenylate cyclase	-2.30084854750013	-8.43487890184003	FALSE
+nitrogen source	set6IT027	Parabanic Acid	BWI76_RS24465	BWI76_RS24465		adenylate cyclase	-1.78541432048995	-7.11183078576119	FALSE
+nitrogen source	set6IT065	Parabanic Acid	BWI76_RS24495	BWI76_RS24495		urease accessory protein	-2.88654222843846	-5.58500929855713	TRUE
+nitrogen source	set6IT027	Parabanic Acid	BWI76_RS24495	BWI76_RS24495		urease accessory protein	-2.75839066314653	-7.84305449840849	TRUE
+nitrogen source	set6IT027	Parabanic Acid	BWI76_RS24510	BWI76_RS24510		urease subunit alpha	-2.58560668333806	-9.40659843755299	TRUE
+nitrogen source	set6IT065	Parabanic Acid	BWI76_RS24510	BWI76_RS24510		urease subunit alpha	-2.24113721975834	-6.35656074542036	TRUE
+nitrogen source	set6IT065	Parabanic Acid	BWI76_RS24515	BWI76_RS24515		urease accessory protein UreE	-2.3167675436173	-6.67571320994881	TRUE
+nitrogen source	set6IT027	Parabanic Acid	BWI76_RS24515	BWI76_RS24515		urease accessory protein UreE	-2.18203220340248	-6.60719566763448	TRUE
+nitrogen source	set6IT065	Parabanic Acid	BWI76_RS24520	BWI76_RS24520		urease accessory protein UreF	-3.25050313537353	-7.31540105099296	FALSE
+nitrogen source	set6IT027	Parabanic Acid	BWI76_RS24520	BWI76_RS24520		urease accessory protein UreF	-2.89424303335904	-7.75633383854033	FALSE
+nitrogen source	set6IT027	Parabanic Acid	BWI76_RS24525	BWI76_RS24525		urease accessory protein UreG	-3.09122459849005	-6.19928500026956	TRUE
+nitrogen source	set6IT025	Putrescine Dihydrochloride	BWI76_RS03500	BWI76_RS03500		hypothetical protein	-1.04878278935805	-6.72502465239085	FALSE
+nitrogen source	set6IT025	Putrescine Dihydrochloride	BWI76_RS09465	BWI76_RS09465		polyamine ABC transporter ATP-binding protein	-1.81222619000986	-6.76698237324596	TRUE
+nitrogen source	set6IT063	Putrescine Dihydrochloride	BWI76_RS10690	BWI76_RS10690		gamma-glutamylputrescine oxidoreductase	-3.17091672296143	-5.9049041928766	TRUE
+nitrogen source	set6IT025	Putrescine Dihydrochloride	BWI76_RS10690	BWI76_RS10690		gamma-glutamylputrescine oxidoreductase	-3.06472842135715	-6.23916716698679	TRUE
+nitrogen source	set6IT063	Putrescine Dihydrochloride	BWI76_RS10695	BWI76_RS10695		aldehyde dehydrogenase PuuC	-3.23496916945236	-12.380243132811	TRUE
+nitrogen source	set6IT025	Putrescine Dihydrochloride	BWI76_RS10695	BWI76_RS10695		aldehyde dehydrogenase PuuC	-2.64945269052597	-8.71448792357226	TRUE
+nitrogen source	set6IT025	Putrescine Dihydrochloride	BWI76_RS10705	BWI76_RS10705		gamma-glutamyl-gamma-aminobutyrate hydrolase	-4.52810935975417	-6.40201476432586	TRUE
+nitrogen source	set6IT063	Putrescine Dihydrochloride	BWI76_RS10705	BWI76_RS10705		gamma-glutamyl-gamma-aminobutyrate hydrolase	-3.79773514292235	-6.90106549035433	TRUE
+nitrogen source	set6IT025	Putrescine Dihydrochloride	BWI76_RS10710	BWI76_RS10710		gamma-glutamylputrescine synthetase	-3.23682668401896	-12.5887728594124	TRUE
+nitrogen source	set6IT063	Putrescine Dihydrochloride	BWI76_RS10710	BWI76_RS10710		gamma-glutamylputrescine synthetase	-2.50187445505934	-6.31992103925119	TRUE
+nitrogen source	set6IT025	Putrescine Dihydrochloride	BWI76_RS10720	BWI76_RS10720		putrescine importer	-2.94141080814505	-7.04481448313517	TRUE
+nitrogen source	set6IT063	Putrescine Dihydrochloride	BWI76_RS10720	BWI76_RS10720		putrescine importer	-2.84329583566189	-7.06734179970367	TRUE
+nitrogen source	set6IT037	Sodium nitrate	BWI76_RS06605	BWI76_RS06605		ammonium transporter	-2.04915494672163	-5.385882265537	TRUE
+nitrogen source	set6IT037	Sodium nitrate	BWI76_RS08925	BWI76_RS08925		DNA-binding protein YbiB	-2.71399534567291	-5.56727202648771	FALSE
+nitrogen source	set6IT037	Sodium nitrate	BWI76_RS17365	BWI76_RS17365		nitrite reductase (NAD(P)H)	-4.26524133716792	-13.5994445752595	FALSE
+nitrogen source	set6IT075	Sodium nitrate	BWI76_RS17365	BWI76_RS17365		nitrite reductase (NAD(P)H)	-3.41911522316802	-7.57217921674425	FALSE
+nitrogen source	set6IT037	Sodium nitrate	BWI76_RS17380	BWI76_RS17380		nitrate transporter component	-4.35119903437062	-7.05852430699774	TRUE
+nitrogen source	set6IT037	Sodium nitrate	BWI76_RS17385	BWI76_RS17385		nitrate regulatory protein	-3.87460653338442	-8.84709961571235	FALSE
+nitrogen source	set6IT075	Sodium nitrate	BWI76_RS17385	BWI76_RS17385		nitrate regulatory protein	-3.22869511604637	-5.27416527171891	FALSE
+nitrogen source	set6IT037	Sodium nitrate	BWI76_RS23070	BWI76_RS23070		cobalt-precorrin-7 (C(5))-methyltransferase	-3.8197388128599	-5.9982110211385	FALSE
+nitrogen source	set6IT068	Thymidine	BWI76_RS01060	BWI76_RS01060		guanosine-5'-triphosphate,3'-diphosphate pyrophosphatase	-1.54569927114086	-6.48034597874118	FALSE
+nitrogen source	set6IT068	Thymidine	BWI76_RS04135	BWI76_RS04135		thymidine phosphorylase	1.09922029785069	7.9148516149748	FALSE
+nitrogen source	set6IT030	Thymidine	BWI76_RS04135	BWI76_RS04135		thymidine phosphorylase	1.20645758952918	6.56919435466156	FALSE
+nitrogen source	set6IT068	Thymidine	BWI76_RS08780	BWI76_RS08780		ABC transporter	1.41596320413107	6.70323242404871	FALSE
+nitrogen source	set6IT030	Thymidine	BWI76_RS08815	BWI76_RS08815		cyclic pyranopterin phosphate synthase	1.48960649953076	7.79809231818229	FALSE
+nitrogen source	set6IT068	Thymidine	BWI76_RS09175	BWI76_RS09175		DNA-binding transcriptional regulator	-1.82307555461152	-7.19089719410117	FALSE
+nitrogen source	set6IT068	Thymidine	BWI76_RS10760	BWI76_RS10760		nitroreductase family protein	-4.16067977221917	-5.48804745588726	FALSE
+nitrogen source	set6IT068	Thymidine	BWI76_RS10775	BWI76_RS10775		pyrimidine utilization protein B	-4.53663394865402	-8.45117272245	FALSE
+nitrogen source	set6IT030	Thymidine	BWI76_RS10775	BWI76_RS10775		pyrimidine utilization protein B	-4.43679357864907	-5.81889208151307	FALSE
+nitrogen source	set6IT068	Thymidine	BWI76_RS10785	BWI76_RS10785		transcriptional regulator	2.22835001826289	14.630527241176	FALSE
+nitrogen source	set6IT030	Thymidine	BWI76_RS10785	BWI76_RS10785		transcriptional regulator	2.33112189966539	16.6287955059266	FALSE
+nitrogen source	set6IT030	Thymidine	BWI76_RS17385	BWI76_RS17385		nitrate regulatory protein	1.12368527932536	7.8165298421132	FALSE
+nitrogen source	set6IT068	Thymidine	BWI76_RS17385	BWI76_RS17385		nitrate regulatory protein	1.56560702309907	8.70936001851224	FALSE
+nitrogen source	set6IT068	Thymidine	BWI76_RS26130	BWI76_RS26130		ADP compounds hydrolase NudE	-2.15315878168743	-5.52543193716538	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS00330	BWI76_RS00330		molybdenum cofactor guanylyltransferase	2.11509062762986	9.41735214250976	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS01060	BWI76_RS01060		guanosine-5'-triphosphate,3'-diphosphate pyrophosphatase	-2.3211337340561	-5.65611966323576	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS02570	BWI76_RS02570		transcriptional regulator	1.83598674302619	8.29175695479341	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS03355	BWI76_RS03355		hypothetical protein	-1.46608122713033	-5.5029198432909	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS04275	BWI76_RS04275		molybdopterin adenylyltransferase	2.19304044305888	8.0328784268611	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS08815	BWI76_RS08815		cyclic pyranopterin phosphate synthase	2.40108074764553	6.22861771151223	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS10785	BWI76_RS10785		transcriptional regulator	2.99352064154006	15.0672297079791	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS17380	BWI76_RS17380		nitrate transporter component	1.72047116233957	7.44007381692193	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS17385	BWI76_RS17385		nitrate regulatory protein	2.06033819407976	11.3225387180167	FALSE
+nitrogen source	set6IT071	Thymine	BWI76_RS23270	BWI76_RS23270		phosphoenolpyruvate--protein phosphotransferase PtsP	1.7852337451548	9.79814562223675	FALSE
+nitrogen source	set6IT076	Urea	BWI76_RS24465	BWI76_RS24465		adenylate cyclase	-1.77241975579534	-6.26324798249452	FALSE
+nitrogen source	set6IT067	Uridine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	2.05857550306474	8.59154815297049	FALSE
+nitrogen source	set6IT029	Uridine	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	4.46999847399153	17.22324935167	FALSE
+nitrogen source	set6IT029	Uridine	BWI76_RS00890	BWI76_RS00890		vitamin B12/cobalamin outer membrane transporter	1.16545387065463	8.03907075817718	FALSE
+nitrogen source	set6IT029	Uridine	BWI76_RS01295	BWI76_RS01295		uridine phosphorylase	-5.13060063619178	-10.4000465154222	FALSE
+nitrogen source	set6IT067	Uridine	BWI76_RS01295	BWI76_RS01295		uridine phosphorylase	-3.18047452593428	-5.49159666054944	FALSE
+nitrogen source	set6IT067	Uridine	BWI76_RS06060	BWI76_RS06060		DNA-binding response regulator	1.286999075521	5.24855732528279	FALSE
+nitrogen source	set6IT029	Uridine	BWI76_RS10760	BWI76_RS10760		nitroreductase family protein	-5.00391866496764	-5.08655263496989	FALSE
+nitrogen source	set6IT067	Uridine	BWI76_RS10775	BWI76_RS10775		pyrimidine utilization protein B	-6.42095982512187	-6.14628871824351	FALSE
+nitrogen source	set6IT029	Uridine	BWI76_RS10775	BWI76_RS10775		pyrimidine utilization protein B	-5.35885491970505	-7.3321148361131	FALSE
+pH	set7IT094		BWI76_RS04315	BWI76_RS04315		Na+/H+ antiporter NhaA	-3.35247932547348	-11.7989399864141	FALSE
+pH	set7IT092		BWI76_RS04315	BWI76_RS04315		Na+/H+ antiporter NhaA	-1.97660488135795	-7.97481508996588	FALSE
+pH	set7IT089		BWI76_RS04315	BWI76_RS04315		Na+/H+ antiporter NhaA	-1.37690538948815	-8.17995710477673	FALSE
+pH	set7IT083		BWI76_RS09535	BWI76_RS09535		N-acetylmuramoyl-L-alanine amidase amid	1.20689302892487	7.93738772041699	FALSE
+pH	set7IT083		BWI76_RS24315	BWI76_RS24315		cell division protein FtsP	1.48369923072493	8.67172334188118	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS01990	BWI76_RS01990		cyclic diguanylate phosphodiesterase	1.24459730146953	9.61839136080121	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS02520	BWI76_RS02520		N-acetylmuramoyl-L-alanine amidase	1.82797559500009	12.5028477456825	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS02520	BWI76_RS02520		N-acetylmuramoyl-L-alanine amidase	2.00979736517636	13.3906315997766	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS02820	BWI76_RS02820		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	-1.90687779941189	-5.3042952576966	TRUE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS02820	BWI76_RS02820		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	-1.84927116299874	-5.91772677606862	TRUE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS04185	BWI76_RS04185		murein transglycosylase	-2.49018968923688	-11.5701210266197	TRUE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS04185	BWI76_RS04185		murein transglycosylase	-2.45423148551504	-6.92344461006751	TRUE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS04850	BWI76_RS04850		N-acetylmuramoyl-L-alanine amidase	-1.71450175437187	-5.42249819222145	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS06500	BWI76_RS06500		muropeptide transporter AmpG	-4.55909568626063	-10.4917645108266	TRUE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS06500	BWI76_RS06500		muropeptide transporter AmpG	-4.28790558266475	-12.9097428742681	TRUE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS06505	BWI76_RS06505		hypothetical protein	-4.0215964263619	-5.72235575997189	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS06785	BWI76_RS06785		DNA-binding transcriptional repressor AcrR	1.59873216942191	9.45201158012122	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS07215	BWI76_RS07215		class A extended-spectrum beta-lactamase OXY-6-4	-3.20771640936855	-6.57296994498862	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS07215	BWI76_RS07215		class A extended-spectrum beta-lactamase OXY-6-4	-2.52473048164433	-9.31080993026582	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS09875	BWI76_RS09875		phosphoporin PhoE	2.17578825721622	16.920369451176	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS09875	BWI76_RS09875		phosphoporin PhoE	2.22916401592403	17.8248590387087	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS11050	BWI76_RS11050		23S rRNA pseudouridine(955/2504/2580) synthase	-2.11729005987364	-6.34044684203363	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS11050	BWI76_RS11050		23S rRNA pseudouridine(955/2504/2580) synthase	-1.83316977044787	-5.675084890115	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS11165	BWI76_RS11165		beta-N-acetylhexosaminidase	-3.17704355731757	-7.25663408599591	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS15295	BWI76_RS15295		MDR efflux pump AcrAB transcriptional activator MarA	-2.00574323885519	-5.86756051910273	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS21095	BWI76_RS21095		bifunctional tRNA (adenosine(37)-C2)-methyltransferase TrmG/ribosomal RNA large subunit methyltransferase RlmN	-1.83906940909551	-5.89665060331538	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS21095	BWI76_RS21095		bifunctional tRNA (adenosine(37)-C2)-methyltransferase TrmG/ribosomal RNA large subunit methyltransferase RlmN	-1.74438896318281	-7.75806753082796	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS22100	BWI76_RS22100		multidrug effux MFS transporter subunit EmrB	1.34051808773155	5.16802669065597	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS22100	BWI76_RS22100		multidrug effux MFS transporter subunit EmrB	1.40628983764252	7.34807586865227	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS22685	BWI76_RS22685		hypothetical protein	1.65081133741	7.85357998031097	TRUE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS22685	BWI76_RS22685		hypothetical protein	1.89211680859609	9.64775964643277	TRUE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS23215	BWI76_RS23215		N-acetylmuramoyl-L-alanine amidase	1.37719546504532	5.74746839448098	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS23235	BWI76_RS23235		pitrilysin	1.67548569417383	9.11940771104168	TRUE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS23235	BWI76_RS23235		pitrilysin	1.73263349269828	14.1714431798784	TRUE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS24165	BWI76_RS24165		lytic murein transglycosylase	1.39663692020985	9.50175364191895	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS24165	BWI76_RS24165		lytic murein transglycosylase	1.70477941591568	11.4066319908683	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS24290	BWI76_RS24290		membrane protein	1.49583667578029	6.26248743514249	TRUE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS24290	BWI76_RS24290		membrane protein	1.74035999153845	5.74580754105536	TRUE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS24315	BWI76_RS24315		cell division protein FtsP	-1.87218838893607	-5.56260709217422	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS24750	BWI76_RS24750		membrane protein	-1.7414849132214	-5.6142280283561	FALSE
+stress	set7IT026	Cephalothin sodium salt	BWI76_RS27860	BWI76_RS27860		D-serine dehydratase	-1.80349946298413	-6.11901359050313	FALSE
+stress	set7IT073	Cephalothin sodium salt	BWI76_RS27860	BWI76_RS27860		D-serine dehydratase	-1.65201251401154	-6.01761456468412	FALSE
+stress	set6IT081	Chloramphenicol	BWI76_RS06785	BWI76_RS06785		DNA-binding transcriptional repressor AcrR	2.20129999834448	8.51609169318988	FALSE
+stress	set6IT081	Chloramphenicol	BWI76_RS09875	BWI76_RS09875		phosphoporin PhoE	2.03182605439079	10.3250554520974	FALSE
+stress	set6IT081	Chloramphenicol	BWI76_RS22100	BWI76_RS22100		multidrug effux MFS transporter subunit EmrB	1.43634276657516	5.12234462750833	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS00305	BWI76_RS00305		GntR family transcriptional regulator	-1.37844957899163	-5.68251316082209	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS01120	BWI76_RS01120		O-antigen translocase	-3.62839500787618	-5.90382817707416	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS01225	BWI76_RS01225		magnesium transporter CorA	5.70844202222845	22.978843273093	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS01225	BWI76_RS01225		magnesium transporter CorA	5.88815375274836	21.5965349501345	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS01260	BWI76_RS01260		lysophospholipase L2	1.20983528333782	6.73696775714694	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS01260	BWI76_RS01260		lysophospholipase L2	1.35428847903467	7.69426867566624	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS01900	BWI76_RS01900		tRNA-dihydrouridine synthase A	-4.13625622404055	-5.46522117995224	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS04090	BWI76_RS04090		ribosomal-protein-alanine N-acetyltransferase RimI	-2.27870219037782	-5.27923500307257	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS06575	BWI76_RS06575		cysteine synthase	1.27940385766319	5.13909680915341	TRUE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS06675	BWI76_RS06675		nickel/cobalt efflux protein RcnA	-3.2720055772318	-5.77538728754039	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS09745	BWI76_RS09745		30S ribosomal protein S12 methylthiotransferase accessory protein YcaO	1.06113353661446	6.03985879095506	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS11240	BWI76_RS11240		spermidine/putrescine ABC transporter substrate-binding protein PotD	-3.38373356836846	-5.11596405597485	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS11995	BWI76_RS11995		hypothetical protein	1.18499091726467	8.95721593391833	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS11995	BWI76_RS11995		hypothetical protein	1.69595181746031	7.60632814122497	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS17075	BWI76_RS17075		3-deoxy-7-phosphoheptulonate synthase	2.61455832798346	9.21068126206197	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS17075	BWI76_RS17075		3-deoxy-7-phosphoheptulonate synthase	3.68186236227679	19.3669620108093	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS17885	BWI76_RS17885		hypothetical protein	1.99946383282888	8.53649218664188	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS17885	BWI76_RS17885		hypothetical protein	2.15864621184819	7.96131654982386	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS18975	BWI76_RS18975		UDP-galactopyranose mutase	-1.08485827128982	-8.0190030284113	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS18980	BWI76_RS18980		glycosyl transferase	-1.07005500760453	-7.0558463726797	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS18980	BWI76_RS18980		glycosyl transferase	-1.06801272363797	-7.17919843351865	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS19110	BWI76_RS19110		hypothetical protein	1.52339320884166	5.84709539667413	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS19110	BWI76_RS19110		hypothetical protein	1.91681616045429	8.49398197749627	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS19880	BWI76_RS19880		magnesium transporter	10.5649694476535	21.1466559324243	TRUE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS19880	BWI76_RS19880		magnesium transporter	10.77678134724	67.0745291069732	TRUE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS20690	BWI76_RS20690		sulfate ABC transporter ATP-binding protein	2.00954828139072	8.32334907479798	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS20690	BWI76_RS20690		sulfate ABC transporter ATP-binding protein	2.12401358732537	9.92331387004691	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS20700	BWI76_RS20700		sulfate/thiosulfate transporter subunit	1.97772561414774	9.99994730179741	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS20700	BWI76_RS20700		sulfate/thiosulfate transporter subunit	2.32771290875827	9.78736550833158	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS20705	BWI76_RS20705		thiosulfate transporter subunit	2.03767671458724	5.19318384125977	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS21005	BWI76_RS21005		sensor domain-containing phosphodiesterase	1.05873927988801	7.50490606109947	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS21005	BWI76_RS21005		sensor domain-containing phosphodiesterase	1.06971833739951	7.95443713886928	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS21540	BWI76_RS21540		membrane protein	2.80883563196845	7.91589182003093	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS21540	BWI76_RS21540		membrane protein	2.90726926300839	12.8747594016709	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS22055	BWI76_RS22055		ribonucleotide-diphosphate reductase	-1.67961281669678	-5.10481133586351	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS22055	BWI76_RS22055		ribonucleotide-diphosphate reductase	-1.62230754640315	-5.38549829987631	FALSE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS23530	BWI76_RS23530		MarR family transcriptional regulator	2.08943870817238	7.38719450466875	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS24030	BWI76_RS24030		arginine decarboxylase	1.92620706088118	9.48313357230681	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS24030	BWI76_RS24030		arginine decarboxylase	2.34271248850835	15.2121664274911	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS24910	BWI76_RS24910		rRNA (cytidine-2'-O-)-methyltransferase	1.56475340589496	5.7473307346491	FALSE
+stress	set7IT042	Cobalt chloride hexahydrate	BWI76_RS25080	BWI76_RS25080		tRNA pseudouridine(55) synthase	3.42582073358277	13.5710041826568	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS25080	BWI76_RS25080		tRNA pseudouridine(55) synthase	4.15481574785835	26.8851846606967	TRUE
+stress	set6IT091	Cobalt chloride hexahydrate	BWI76_RS26080	BWI76_RS26080		cell division protein DamX	1.89302445695009	6.58282518434957	FALSE
+stress	set7IT069	Fusidic acid sodium salt	BWI76_RS02785	BWI76_RS02785		AIG2 family protein	1.50247770497779	6.23606147374296	FALSE
+stress	set7IT022	Fusidic acid sodium salt	BWI76_RS02785	BWI76_RS02785		AIG2 family protein	2.50639372033762	15.0937265293509	FALSE
+stress	set7IT022	Fusidic acid sodium salt	BWI76_RS20495	BWI76_RS20495		alanine transaminase	1.09936247842809	8.97033912921653	FALSE
+stress	set7IT022	Fusidic acid sodium salt	BWI76_RS25365	BWI76_RS25365		serine endoprotease DegQ	-1.07870891505841	-5.91695321110195	FALSE
+stress	set7IT022	Fusidic acid sodium salt	BWI76_RS25475	BWI76_RS25475		TIGR02099 family protein	-1.71075303346969	-7.7089407440019	FALSE
+stress	set7IT069	Fusidic acid sodium salt	BWI76_RS25475	BWI76_RS25475		TIGR02099 family protein	-1.47933957096856	-8.36387138201305	FALSE
+stress	set7IT069	Fusidic acid sodium salt	BWI76_RS26770	BWI76_RS26770		cellulose biosynthesis protein BcsC	-1.64878681373378	-8.52405821947138	FALSE
+stress	set7IT022	Fusidic acid sodium salt	BWI76_RS26770	BWI76_RS26770		cellulose biosynthesis protein BcsC	-1.2986301427487	-8.02987672535226	FALSE
+stress	set7IT069	Fusidic acid sodium salt	BWI76_RS26790	BWI76_RS26790		cell division protein	-1.25977120251522	-7.27172025897635	FALSE
+stress	set7IT069	Fusidic acid sodium salt	BWI76_RS26800	BWI76_RS26800		cellulose biosynthesis protein BcsE	-1.12387516782459	-9.54726902278511	FALSE
+stress	set7IT069	Fusidic acid sodium salt	BWI76_RS27680	BWI76_RS27680		TetR family transcriptional regulator	2.11833358126664	5.88174982709655	FALSE
+stress	set7IT022	Fusidic acid sodium salt	BWI76_RS27680	BWI76_RS27680		TetR family transcriptional regulator	3.99699003190929	9.21363653408948	FALSE
+stress	set7IT074	MreB Perturbing Compound A22	BWI76_RS06105	BWI76_RS06105		microcin B17 transporter	-1.28246102907871	-6.81372258027739	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS00225	BWI76_RS00225		16S rRNA methyltransferase G	-1.85403248150196	-6.94329274507545	TRUE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS00730	BWI76_RS00730		cation-efflux pump FieF	1.61247800499508	9.30585647875183	TRUE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS00730	BWI76_RS00730		cation-efflux pump FieF	1.79079895775227	12.0985846394695	TRUE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS01120	BWI76_RS01120		O-antigen translocase	-2.10366867822553	-5.73534966737654	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS01120	BWI76_RS01120		O-antigen translocase	-1.72653571950573	-5.13335127118758	FALSE
+stress	set6IT089	Nickel (II) chloride hexahydrate	BWI76_RS01225	BWI76_RS01225		magnesium transporter CorA	2.4291734634814	18.1284777629895	TRUE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS01225	BWI76_RS01225		magnesium transporter CorA	2.60279360562612	12.0023217855875	TRUE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS01225	BWI76_RS01225		magnesium transporter CorA	2.66957726730507	13.7197615484252	TRUE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS02505	BWI76_RS02505		tRNA epoxyqueuosine(34) reductase QueG	-1.64220930951976	-7.91076759551473	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS02505	BWI76_RS02505		tRNA epoxyqueuosine(34) reductase QueG	-1.46379542810312	-6.20422898557731	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS05205	BWI76_RS05205		type I methionyl aminopeptidase	-2.45365619195719	-7.05682171374174	TRUE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS06575	BWI76_RS06575		cysteine synthase	1.71880121067732	5.91779560465609	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS06575	BWI76_RS06575		cysteine synthase	2.35344671253991	20.7832360014713	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS06675	BWI76_RS06675		nickel/cobalt efflux protein RcnA	-3.46852989693629	-8.98441486237449	TRUE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS06675	BWI76_RS06675		nickel/cobalt efflux protein RcnA	-2.85165443795308	-9.06511436630797	TRUE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS06925	BWI76_RS06925		iron ABC transporter ATP-binding protein FetA	-2.57282944183132	-9.66378647411593	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS06925	BWI76_RS06925		iron ABC transporter ATP-binding protein FetA	-1.72611606469286	-9.52500494000445	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS06930	BWI76_RS06930		iron export ABC transporter permease subunit FetB	-3.0775704481754	-7.40317328519666	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS06930	BWI76_RS06930		iron export ABC transporter permease subunit FetB	-1.88728296368114	-6.6781300643017	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS09745	BWI76_RS09745		30S ribosomal protein S12 methylthiotransferase accessory protein YcaO	1.14811675391421	6.51457435158843	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS09890	BWI76_RS09890		aminopeptidase N	-1.43136078788623	-6.60195468633637	TRUE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS09890	BWI76_RS09890		aminopeptidase N	-1.27286718837254	-5.97308482769475	TRUE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS11240	BWI76_RS11240		spermidine/putrescine ABC transporter substrate-binding protein PotD	-4.51024861635582	-6.28079358905334	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS11240	BWI76_RS11240		spermidine/putrescine ABC transporter substrate-binding protein PotD	-3.39852286002231	-5.19373315030133	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS11245	BWI76_RS11245		spermidine/putrescine ABC transporter permease PotC	-3.87273892451752	-9.83489079375658	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS11245	BWI76_RS11245		spermidine/putrescine ABC transporter permease PotC	-3.16454593944456	-7.23818437148295	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS16205	BWI76_RS16205		NAD(P) transhydrogenase subunit alpha	-1.44088764352903	-5.10457937133417	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS17075	BWI76_RS17075		3-deoxy-7-phosphoheptulonate synthase	1.41385084513784	8.75363437215944	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS17885	BWI76_RS17885		hypothetical protein	1.22008137317774	6.37198424096988	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS18420	BWI76_RS18420		DNA (cytosine-5-)-methyltransferase	-1.36782162311766	-7.29602623327709	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS18555	BWI76_RS18555		MATE family multidrug exporter	-1.77381121102446	-6.90905876139137	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS18555	BWI76_RS18555		MATE family multidrug exporter	-1.54911818229546	-6.40054575483832	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS18985	BWI76_RS18985		LPS O-antigen ABC transporter ATP-binding protein	-1.43340392926331	-9.33137760208275	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS18985	BWI76_RS18985		LPS O-antigen ABC transporter ATP-binding protein	-1.22728399683064	-7.49073871850628	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS18990	BWI76_RS18990		ABC transporter permease	-1.34818511557677	-9.31037883436785	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS19110	BWI76_RS19110		hypothetical protein	1.12250210887675	6.17115504974331	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS19110	BWI76_RS19110		hypothetical protein	1.73709445943895	6.93567647850286	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS19370	BWI76_RS19370		fructose-bisphosphate aldolase	-1.99477108030466	-7.8662139992393	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS19370	BWI76_RS19370		fructose-bisphosphate aldolase	-1.6765894525125	-5.33697792668827	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS19880	BWI76_RS19880		magnesium transporter	5.14129522246377	33.7623800290484	TRUE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS20915	BWI76_RS20915		peroxiredoxin	-1.68736580881773	-5.99005729171647	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS21010	BWI76_RS21010		membrane protein	-3.66868256231504	-5.74863982415701	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS22055	BWI76_RS22055		ribonucleotide-diphosphate reductase	-1.32384951197252	-6.77455611286116	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS22055	BWI76_RS22055		ribonucleotide-diphosphate reductase	-1.18137046326502	-6.68994140314573	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS22060	BWI76_RS22060		ribonucleotide-diphosphate reductase subunit beta	-1.21111978840588	-5.85626031427641	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS22060	BWI76_RS22060		ribonucleotide-diphosphate reductase subunit beta	-1.18217509315014	-7.2866332113757	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS25080	BWI76_RS25080		tRNA pseudouridine(55) synthase	1.8310715429557	9.469151293176	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS25080	BWI76_RS25080		tRNA pseudouridine(55) synthase	1.87807068910517	10.5460160619097	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS26475	BWI76_RS26475		bifunctional UDP-glucuronic acid oxidase/UDP-4-amino-4-deoxy-L-arabinose formyltransferase	1.08884523740732	6.37976086755546	FALSE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS26475	BWI76_RS26475		bifunctional UDP-glucuronic acid oxidase/UDP-4-amino-4-deoxy-L-arabinose formyltransferase	1.4227363514969	8.65985353655242	FALSE
+stress	set7IT041	Nickel (II) chloride hexahydrate	BWI76_RS26610	BWI76_RS26610		oligopeptidase A	-1.78001577567133	-9.71745445589254	TRUE
+stress	set6IT090	Nickel (II) chloride hexahydrate	BWI76_RS26610	BWI76_RS26610		oligopeptidase A	-1.64277311112726	-9.06078627842958	TRUE
+stress	set7IT001	Paraquat dichloride	BWI76_RS02000	BWI76_RS02000		transcriptional regulator	-1.31863243100857	-5.49948128381381	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS02570	BWI76_RS02570		transcriptional regulator	1.37810417671383	7.2902293546605	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS02575	BWI76_RS02575		exoribonuclease R	1.64195233671032	6.53725487603693	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS02785	BWI76_RS02785		AIG2 family protein	2.6646616605694	14.2102597209482	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS02785	BWI76_RS02785		AIG2 family protein	3.02001946784255	12.7834219428867	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS07695	BWI76_RS07695		TonB-dependent siderophore receptor	3.07003176376573	24.851572167688	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS07695	BWI76_RS07695		TonB-dependent siderophore receptor	3.1700117829289	26.5096725821019	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS07715	BWI76_RS07715		non-ribosomal peptide synthetase	1.08050204543633	5.72604011221734	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS07940	BWI76_RS07940		alkyl hydroperoxide reductase subunit C	1.90762567579668	9.60312909282498	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS07945	BWI76_RS07945		alkyl hydroperoxide reductase subunit F	1.23737664666326	5.32105097888571	TRUE
+stress	set7IT048	Paraquat dichloride	BWI76_RS09175	BWI76_RS09175		DNA-binding transcriptional regulator	1.99063539293641	10.9289752589021	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS09175	BWI76_RS09175		DNA-binding transcriptional regulator	2.13157981096448	8.96501245367841	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS11765	BWI76_RS11765		bifunctional transporter/kinase	1.1711901404163	8.13510873928343	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS13675	BWI76_RS13675		TetR family transcriptional regulator	10.6504152672311	53.557388997265	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS13675	BWI76_RS13675		TetR family transcriptional regulator	10.8600052781493	54.4900980185425	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS17205	BWI76_RS17205		cardiolipin synthase A	-1.74867882954543	-6.04843996596735	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS18420	BWI76_RS18420		DNA (cytosine-5-)-methyltransferase	3.2459988610677	17.9429897336528	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS18420	BWI76_RS18420		DNA (cytosine-5-)-methyltransferase	3.44917682127984	16.2189104055875	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS18980	BWI76_RS18980		glycosyl transferase	1.03297413290438	8.95046884271178	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS19420	BWI76_RS19420		Fe-S-binding ATPase	-1.35952562806043	-5.22608058105389	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS20690	BWI76_RS20690		sulfate ABC transporter ATP-binding protein	1.52032364118935	7.92763019653963	TRUE
+stress	set7IT048	Paraquat dichloride	BWI76_RS20690	BWI76_RS20690		sulfate ABC transporter ATP-binding protein	1.57302053820532	6.41405700223079	TRUE
+stress	set7IT001	Paraquat dichloride	BWI76_RS20700	BWI76_RS20700		sulfate/thiosulfate transporter subunit	2.01304169807884	10.6875862496458	TRUE
+stress	set7IT048	Paraquat dichloride	BWI76_RS20700	BWI76_RS20700		sulfate/thiosulfate transporter subunit	2.25621035676395	16.0263666142278	TRUE
+stress	set7IT048	Paraquat dichloride	BWI76_RS20705	BWI76_RS20705		thiosulfate transporter subunit	1.47495310517509	5.54505722894995	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS20705	BWI76_RS20705		thiosulfate transporter subunit	1.53079354345372	6.3762688106926	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS24910	BWI76_RS24910		rRNA (cytidine-2'-O-)-methyltransferase	3.00138944828815	11.890035509625	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS24910	BWI76_RS24910		rRNA (cytidine-2'-O-)-methyltransferase	3.21489118167899	17.8577087248787	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS25205	BWI76_RS25205		hypothetical protein	1.96577464110271	7.12140336667961	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS25855	BWI76_RS25855		bacterioferritin	1.38361645828237	7.56999141546642	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS26435	BWI76_RS26435		hypothetical protein	1.53242897760955	6.66990912247277	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS26435	BWI76_RS26435		hypothetical protein	1.62732786513707	5.31485743870522	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS26465	BWI76_RS26465		4-amino-4-deoxy-L-arabinose lipid A transferase	1.09900224068773	5.83688045601876	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS27135	BWI76_RS27135		selenocysteine-specific translation factor	1.19230290382726	7.07496980733216	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS27135	BWI76_RS27135		selenocysteine-specific translation factor	1.29730162519367	6.59283819836229	FALSE
+stress	set7IT001	Paraquat dichloride	BWI76_RS27140	BWI76_RS27140		L-selenocysteinyl-tRNA(Sec) synthase	1.11555887894856	5.17904059626003	FALSE
+stress	set7IT048	Paraquat dichloride	BWI76_RS27140	BWI76_RS27140		L-selenocysteinyl-tRNA(Sec) synthase	1.42795206449032	5.11918885140955	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS00225	BWI76_RS00225		16S rRNA methyltransferase G	-1.98131715282091	-5.90380277657923	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS00225	BWI76_RS00225		16S rRNA methyltransferase G	-1.50223629070691	-5.42822664341947	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS00330	BWI76_RS00330		molybdenum cofactor guanylyltransferase	1.58611711583517	9.30051453171622	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS00330	BWI76_RS00330		molybdenum cofactor guanylyltransferase	2.1391764186596	10.5938098077478	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS00465	BWI76_RS00465		formate dehydrogenase-N subunit alpha	1.73010454200529	8.16970259587025	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS00465	BWI76_RS00465		formate dehydrogenase-N subunit alpha	1.74701756591169	8.62362436991635	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS00470	BWI76_RS00470		sulfate ABC transporter substrate-binding protein	1.78562713993112	11.9758856360452	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS00470	BWI76_RS00470		sulfate ABC transporter substrate-binding protein	2.01401370748456	8.16610028157812	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS00475	BWI76_RS00475		sulfurtransferase FdhD	1.88073200304381	10.1048787335991	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS00475	BWI76_RS00475		sulfurtransferase FdhD	2.12269989844765	9.36882427980513	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS00575	BWI76_RS00575		DNA-binding protein	-1.95913619587433	-7.02358247091311	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS00725	BWI76_RS00725		periplasmic repressor CpxP	2.71848861682658	7.60883296605084	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS00725	BWI76_RS00725		periplasmic repressor CpxP	3.51681825666437	13.6091187534966	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS00750	BWI76_RS00750		ATP-dependent protease ATP-binding subunit HslU	-4.31062132073511	-5.17701330587758	TRUE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS01120	BWI76_RS01120		O-antigen translocase	-2.96696448251847	-7.71069756119702	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS01900	BWI76_RS01900		tRNA-dihydrouridine synthase A	2.32965646546855	13.1339255225019	TRUE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS02020	BWI76_RS02020		Na+/H+ antiporter	1.18879114464433	6.25456228120493	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS02375	BWI76_RS02375		secretion protein HlyD	-1.09721991533152	-5.10158543572596	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS02505	BWI76_RS02505		tRNA epoxyqueuosine(34) reductase QueG	-1.73018643798906	-6.07944859341368	TRUE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS02505	BWI76_RS02505		tRNA epoxyqueuosine(34) reductase QueG	-1.3082044014488	-5.45024918580525	TRUE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS04080	BWI76_RS04080		16S rRNA (guanine(1207)-N(2))-methyltransferase	2.85939750643796	16.4425220374581	TRUE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS04080	BWI76_RS04080		16S rRNA (guanine(1207)-N(2))-methyltransferase	3.60943575192768	13.6463890259184	TRUE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS04275	BWI76_RS04275		molybdopterin adenylyltransferase	2.75896159506524	10.3058649096517	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS04275	BWI76_RS04275		molybdopterin adenylyltransferase	2.85362512051253	17.3213636140573	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS04875	BWI76_RS04875		transcriptional regulator PdhR	4.95008154691773	19.1128430300411	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS04875	BWI76_RS04875		transcriptional regulator PdhR	7.75376621846581	30.675066143158	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS05355	BWI76_RS05355		methionine ABC transporter substrate-binding protein MetQ	-2.21925936964471	-5.66174855488384	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS05425	BWI76_RS05425		EEP domain-containing protein	1.41482595745057	6.44836362969561	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS05425	BWI76_RS05425		EEP domain-containing protein	1.65818661088053	6.32582105272879	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS05495	BWI76_RS05495		NADH:ubiquinone reductase (Na(+)-transporting) subunit B	1.2728276570165	6.03250806007135	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS05495	BWI76_RS05495		NADH:ubiquinone reductase (Na(+)-transporting) subunit B	1.55502592393534	7.4575938743783	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS05515	BWI76_RS05515		NADH:ubiquinone reductase (Na(+)-transporting) subunit F	1.6052532372552	5.11472947242993	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS06105	BWI76_RS06105		microcin B17 transporter	1.17934574143366	7.60369994158562	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS06105	BWI76_RS06105		microcin B17 transporter	1.45805167571899	5.69444756643377	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS06755	BWI76_RS06755		sigma factor YlaC	5.99758113892535	38.0640197323485	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS06755	BWI76_RS06755		sigma factor YlaC	8.20325413910463	57.3717297347875	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS08280	BWI76_RS08280		acyl-CoA esterase	1.48984708663166	5.86492116504251	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS08280	BWI76_RS08280		acyl-CoA esterase	2.27473726224612	7.26232564762816	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS08815	BWI76_RS08815		cyclic pyranopterin phosphate synthase	2.12660275853918	11.5120231555145	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS08815	BWI76_RS08815		cyclic pyranopterin phosphate synthase	2.59773518188201	18.0040270888007	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS09160	BWI76_RS09160		multidrug transporter MdfA	1.33337743382027	8.95489704342926	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS09430	BWI76_RS09430		hypothetical protein	1.57764593704026	7.70665764995312	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS09430	BWI76_RS09430		hypothetical protein	1.99766426014268	11.8240094439045	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS11240	BWI76_RS11240		spermidine/putrescine ABC transporter substrate-binding protein PotD	1.27495520447247	5.78857990794967	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS11240	BWI76_RS11240		spermidine/putrescine ABC transporter substrate-binding protein PotD	1.57627180942397	8.28389495382704	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS11245	BWI76_RS11245		spermidine/putrescine ABC transporter permease PotC	1.12625674573699	5.72622351477992	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS11245	BWI76_RS11245		spermidine/putrescine ABC transporter permease PotC	1.48792007672389	9.73717208151213	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS11765	BWI76_RS11765		bifunctional transporter/kinase	1.60228141510036	10.3428889066704	TRUE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS12510	BWI76_RS12510		peptide ABC transporter substrate-binding protein	1.64502119273037	9.13740110379896	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS12510	BWI76_RS12510		peptide ABC transporter substrate-binding protein	1.97920824240381	11.7369900406855	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS13675	BWI76_RS13675		TetR family transcriptional regulator	1.73788638454259	14.2034396980124	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS16510	BWI76_RS16510		transcriptional repressor PurR	2.21209474066896	8.74728531415208	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS17205	BWI76_RS17205		cardiolipin synthase A	-2.75376773988134	-5.56911122693779	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS17420	BWI76_RS17420		hypothetical protein	1.3240549616773	6.39205755700166	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS18050	BWI76_RS18050		hypothetical protein	1.30441836535277	5.90823541562036	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS19155	BWI76_RS19155		formate dehydrogenase-N subunit alpha	1.05571600060238	6.30927017837894	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS19420	BWI76_RS19420		Fe-S-binding ATPase	3.46676338638241	22.813340076485	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS19420	BWI76_RS19420		Fe-S-binding ATPase	4.04908298557568	21.8251559108132	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS20670	BWI76_RS20670		transcriptional regulator PtsJ	1.73855164462124	10.2867074902788	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS20670	BWI76_RS20670		transcriptional regulator PtsJ	1.92913915782235	10.738648411057	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS20915	BWI76_RS20915		peroxiredoxin	2.46975861624511	10.1498920517745	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS21095	BWI76_RS21095		bifunctional tRNA (adenosine(37)-C2)-methyltransferase TrmG/ribosomal RNA large subunit methyltransferase RlmN	1.81786552939285	7.61402497518017	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS21120	BWI76_RS21120		enhanced serine sensitivity protein SseB	1.95090357264321	5.08108304714636	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS21120	BWI76_RS21120		enhanced serine sensitivity protein SseB	2.53592554798902	11.1742230133991	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS21500	BWI76_RS21500		membrane protein	1.99298694226488	6.19819418586763	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS23270	BWI76_RS23270		phosphoenolpyruvate--protein phosphotransferase PtsP	3.62757473968206	23.6898229155511	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS23270	BWI76_RS23270		phosphoenolpyruvate--protein phosphotransferase PtsP	4.1037216569503	21.6289168741644	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS23420	BWI76_RS23420		LacI family transcriptional regulator	1.55813784200407	6.10082793260849	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS23905	BWI76_RS23905		Z-ring-associated protein	-2.60234510852723	-6.86775536106796	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS24070	BWI76_RS24070		16S rRNA (uracil(1498)-N(3))-methyltransferase	2.20978153172387	7.29061395582456	TRUE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS24150	BWI76_RS24150		tRNA (guanosine(46)-N7)-methyltransferase TrmB	1.63237923374513	6.1894593865022	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS24150	BWI76_RS24150		tRNA (guanosine(46)-N7)-methyltransferase TrmB	2.058448241648	8.28983570990565	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS24315	BWI76_RS24315		cell division protein FtsP	-1.92663757545511	-5.88225609063935	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS24405	BWI76_RS24405		hypothetical protein	-3.65178324118278	-6.07659728172894	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS24410	BWI76_RS24410		putative glutathione-like synthetase	-4.73531502059696	-6.15841427852924	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS24910	BWI76_RS24910		rRNA (cytidine-2'-O-)-methyltransferase	-2.36374771068661	-7.20078228358103	TRUE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS25080	BWI76_RS25080		tRNA pseudouridine(55) synthase	2.08541613684081	5.01447762594292	TRUE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS25080	BWI76_RS25080		tRNA pseudouridine(55) synthase	2.44855747391585	10.6055078882655	TRUE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS25205	BWI76_RS25205		hypothetical protein	2.0374821539859	5.8389591630101	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS25475	BWI76_RS25475		TIGR02099 family protein	-1.627965718802	-6.69428134164835	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS25680	BWI76_RS25680		16S rRNA m5C967 methyltransferase	-1.99103564273782	-5.59840926527725	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS26575	BWI76_RS26575		universal stress protein B	2.25188477684194	9.53400797517887	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS26610	BWI76_RS26610		oligopeptidase A	-3.78111583672355	-11.4413328026956	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS26610	BWI76_RS26610		oligopeptidase A	-2.00624377033388	-7.43469184549053	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS26755	BWI76_RS26755		peptidase M16	-2.68407776732044	-8.29969072838095	FALSE
+stress	set7IT010	Sisomicin sulfate salt	BWI76_RS26770	BWI76_RS26770		cellulose biosynthesis protein BcsC	1.13945181348351	6.6472827391643	FALSE
+stress	set7IT057	Sisomicin sulfate salt	BWI76_RS26770	BWI76_RS26770		cellulose biosynthesis protein BcsC	1.23023789937063	8.5977176234177	FALSE
+stress	set7IT062	Sodium Chloride	BWI76_RS02250	BWI76_RS02250		proline/betaine transporter	-4.96421795980442	-17.4994387699589	FALSE
+stress	set7IT015	Sodium Chloride	BWI76_RS02250	BWI76_RS02250		proline/betaine transporter	-4.44133861304187	-16.5675628203884	FALSE
+stress	set7IT062	Sodium Chloride	BWI76_RS04315	BWI76_RS04315		Na+/H+ antiporter NhaA	-2.91662468686707	-10.0564776062393	FALSE
+stress	set7IT015	Sodium Chloride	BWI76_RS04315	BWI76_RS04315		Na+/H+ antiporter NhaA	-2.84090550319567	-11.7696553712936	FALSE
+stress	set7IT062	Sodium Chloride	BWI76_RS22845	BWI76_RS22845		flavodoxin	-2.11340355182567	-7.91867365378597	TRUE
+stress	set7IT015	Sodium Chloride	BWI76_RS26020	BWI76_RS26020		peptidylprolyl isomerase A	1.41099156736895	5.88624729184212	FALSE
+stress	set7IT012	Sodium Chlorite	BWI76_RS07995	BWI76_RS07995		twin-arginine translocase subunit TatA	3.27568323635024	5.29414292932829	FALSE
+stress	set7IT012	Sodium Chlorite	BWI76_RS08640	BWI76_RS08640		multidrug efflux pump-associated protein, AcrZ family	11.1792343888539	62.6833118612008	FALSE
+stress	set7IT012	Sodium Chlorite	BWI76_RS09740	BWI76_RS09740		formate transporter FocA	5.0139530123115	35.3900911686819	TRUE
+stress	set7IT012	Sodium Chlorite	BWI76_RS11385	BWI76_RS11385		TonB-dependent siderophore receptor	2.76998212704009	10.1430702726457	TRUE
+stress	set7IT012	Sodium Chlorite	BWI76_RS11390	BWI76_RS11390		iron dicitrate transport regulator FecR	1.8219447029929	6.60797098004521	TRUE
+stress	set7IT012	Sodium Chlorite	BWI76_RS11395	BWI76_RS11395		RNA polymerase sigma factor FecI	2.15708038708766	10.4269147159826	FALSE
+stress	set7IT012	Sodium Chlorite	BWI76_RS19775	BWI76_RS19775		phage resistance protein	2.66796550012452	5.57802290559796	FALSE
+stress	set7IT012	Sodium Chlorite	BWI76_RS26050	BWI76_RS26050		nitrite transporter NirC	4.49185097218931	5.52322983490395	TRUE
+stress	set7IT056	Sodium nitrite	BWI76_RS17335	BWI76_RS17335		nitrate reductase subunit alpha	1.01587333037335	6.96803465348553	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS00330	BWI76_RS00330		molybdenum cofactor guanylyltransferase	6.88053061695604	48.7850557361368	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS00330	BWI76_RS00330		molybdenum cofactor guanylyltransferase	7.14670397249673	55.8788908855187	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	1.42896328263321	7.10962891037732	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS00765	BWI76_RS00765		DNA-binding transcriptional regulator CytR	1.63161862995911	5.96077762190671	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS02605	BWI76_RS02605		esterase	1.27394068189329	6.38961146003947	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS02605	BWI76_RS02605		esterase	1.67040146767857	6.84848091455794	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS03025	BWI76_RS03025		N-acetyltransferase	1.68904606028503	6.16041356862331	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS04275	BWI76_RS04275		molybdopterin adenylyltransferase	6.35434871972625	22.7905243319473	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS04275	BWI76_RS04275		molybdopterin adenylyltransferase	6.61149527465235	23.3730533329503	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS08635	BWI76_RS08635		molybdenum-dependent transcriptional regulator	3.6447586252549	20.5992323237645	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS08635	BWI76_RS08635		molybdenum-dependent transcriptional regulator	4.17447535373978	13.0561177921452	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS08815	BWI76_RS08815		cyclic pyranopterin phosphate synthase	7.19797297612423	63.0017958481417	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS08815	BWI76_RS08815		cyclic pyranopterin phosphate synthase	7.58905788179475	57.4631834910015	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS11765	BWI76_RS11765		bifunctional transporter/kinase	1.37870845457913	6.57593147315733	TRUE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS11765	BWI76_RS11765		bifunctional transporter/kinase	1.8434891949085	10.1971566917579	TRUE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS13830	BWI76_RS13830		NAD-dependent malic enzyme	1.26501435356323	5.39523167735805	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS13830	BWI76_RS13830		NAD-dependent malic enzyme	1.30913423373364	5.88979153558039	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS17320	BWI76_RS17320		respiratory nitrate reductase subunit gamma	6.13803226849461	44.8657260067503	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS17320	BWI76_RS17320		respiratory nitrate reductase subunit gamma	6.43034051511433	44.2960651163908	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS17325	BWI76_RS17325		nitrate reductase molybdenum cofactor assembly chaperone	6.45529663517285	28.7952611158538	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS17325	BWI76_RS17325		nitrate reductase molybdenum cofactor assembly chaperone	6.61234625059046	47.2641583367098	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS17330	BWI76_RS17330		nitrate reductase subunit beta	6.80646923602457	32.1036013372051	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS17330	BWI76_RS17330		nitrate reductase subunit beta	6.87270415052868	30.8038295232071	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS17335	BWI76_RS17335		nitrate reductase subunit alpha	6.71925635797252	55.8600818301898	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS17335	BWI76_RS17335		nitrate reductase subunit alpha	7.00916063855057	57.6407108606846	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS17345	BWI76_RS17345		nitrate/nitrite two-component system sensor histidine kinase NarX	5.40331906102034	6.85928193516914	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS17345	BWI76_RS17345		nitrate/nitrite two-component system sensor histidine kinase NarX	5.45641346866972	7.2617168885109	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS17350	BWI76_RS17350		DNA-binding response regulator	6.57761703770749	35.0293259896237	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS17350	BWI76_RS17350		DNA-binding response regulator	6.68148243382488	26.1162074311209	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS17465	BWI76_RS17465		C4-dicarboxylic acid transporter DauA	1.72381758826776	12.2746248198744	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS17465	BWI76_RS17465		C4-dicarboxylic acid transporter DauA	2.12919095030435	16.0038052754232	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS22210	BWI76_RS22210		murein transglycosylase B	1.22426307488986	5.47810613469319	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS22210	BWI76_RS22210		murein transglycosylase B	1.47410019055828	6.86517071646336	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS24315	BWI76_RS24315		cell division protein FtsP	-2.79332519225099	-5.58792672499761	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS24315	BWI76_RS24315		cell division protein FtsP	-2.74950049652482	-6.17683309514133	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS24915	BWI76_RS24915		penicillin-binding protein activator	1.55343394366102	8.49136240433615	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS24915	BWI76_RS24915		penicillin-binding protein activator	1.66077301349349	8.03503454301722	FALSE
+stress	set7IT013	Sodium perchlorate monohydrate	BWI76_RS26125	BWI76_RS26125		carboxypeptidase/penicillin-binding protein 1A	1.5601146730067	5.41156282305133	FALSE
+stress	set7IT060	Sodium perchlorate monohydrate	BWI76_RS26125	BWI76_RS26125		carboxypeptidase/penicillin-binding protein 1A	2.05340110014212	5.64102626956341	FALSE
+stress	set6IT093	copper (II) chloride dihydrate	BWI76_RS06905	BWI76_RS06905		Cu+ exporting ATPase	-5.96732532614447	-9.96695155826162	TRUE
+stress	set7IT044	copper (II) chloride dihydrate	BWI76_RS06905	BWI76_RS06905		Cu+ exporting ATPase	-5.10475209542076	-10.8897944621899	TRUE
+stress	set6IT092	copper (II) chloride dihydrate	BWI76_RS06905	BWI76_RS06905		Cu+ exporting ATPase	-3.87035802511049	-10.4328508988539	TRUE
+stress	set6IT093	copper (II) chloride dihydrate	BWI76_RS18365	BWI76_RS18365		cystine ABC transporter substrate-binding protein	-1.3505065325531	-8.18471504800978	FALSE
+stress	set6IT093	copper (II) chloride dihydrate	BWI76_RS23235	BWI76_RS23235		pitrilysin	-1.02608579821238	-6.04716915339243	FALSE
+supernatant	set28IT058	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05125	BWI76_RS05125		ferrichrome porin FhuA	-2.16845018498907	-8.29400692633329	FALSE
+supernatant	set28IT059	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05125	BWI76_RS05125		ferrichrome porin FhuA	-1.74715446687397	-6.36803508598604	FALSE
+supernatant	set32IT010	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05125	BWI76_RS05125		ferrichrome porin FhuA	-1.64009878824269	-7.4987922846745	FALSE
+supernatant	set32IT009	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05125	BWI76_RS05125		ferrichrome porin FhuA	-1.27569316345085	-6.21722070235658	FALSE
+supernatant	set32IT008	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05125	BWI76_RS05125		ferrichrome porin FhuA	-1.25445493123441	-7.01650146207811	FALSE
+supernatant	set28IT058	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05130	BWI76_RS05130		iron-hydroxamate transporter ATP-binding subunit	-1.83067910917991	-5.52039492470611	FALSE
+supernatant	set28IT059	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05130	BWI76_RS05130		iron-hydroxamate transporter ATP-binding subunit	-1.73461071050534	-6.07941099382763	FALSE
+supernatant	set32IT008	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05130	BWI76_RS05130		iron-hydroxamate transporter ATP-binding subunit	-1.55928118076744	-5.38114005445553	FALSE
+supernatant	set28IT059	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05140	BWI76_RS05140		Fe3+-hydroxamate ABC transporter permease FhuB	-2.59353943465261	-5.88437121568249	FALSE
+supernatant	set28IT058	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05140	BWI76_RS05140		Fe3+-hydroxamate ABC transporter permease FhuB	-2.38694472149312	-5.08932916683889	FALSE
+supernatant	set32IT010	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05140	BWI76_RS05140		Fe3+-hydroxamate ABC transporter permease FhuB	-1.81227309125028	-6.26452136172646	FALSE
+supernatant	set32IT008	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS05140	BWI76_RS05140		Fe3+-hydroxamate ABC transporter permease FhuB	-1.46852976860905	-6.30401255644446	FALSE
+supernatant	set28IT057	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS06790	BWI76_RS06790		mechanosensitive channel MscK	-1.57234433004608	-7.25210456724379	FALSE
+supernatant	set28IT059	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS06790	BWI76_RS06790		mechanosensitive channel MscK	-1.42547056682184	-8.48405938385163	FALSE
+supernatant	set28IT058	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS06790	BWI76_RS06790		mechanosensitive channel MscK	-1.26448608039548	-5.89048006685081	FALSE
+supernatant	set32IT010	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS06790	BWI76_RS06790		mechanosensitive channel MscK	-1.14467161320756	-8.00003509309039	FALSE
+supernatant	set32IT010	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS11135	BWI76_RS11135		ferric-rhodotorulic acid/ferric-coprogen receptor FhuE	-1.97757290551853	-5.91986890294994	FALSE
+supernatant	set32IT008	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS11135	BWI76_RS11135		ferric-rhodotorulic acid/ferric-coprogen receptor FhuE	-1.51740184537526	-6.94560107656846	FALSE
+supernatant	set28IT059	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16250	BWI76_RS16250		DNA-binding response regulator	-5.6874832518795	-5.77993877906053	FALSE
+supernatant	set28IT057	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16250	BWI76_RS16250		DNA-binding response regulator	-5.23774551120801	-5.01470949190681	FALSE
+supernatant	set28IT058	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16250	BWI76_RS16250		DNA-binding response regulator	-4.99685133569499	-6.91356682268201	FALSE
+supernatant	set32IT010	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16250	BWI76_RS16250		DNA-binding response regulator	-3.23301029579257	-6.23589428500751	FALSE
+supernatant	set32IT008	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16250	BWI76_RS16250		DNA-binding response regulator	-2.2390662761642	-9.64592522440689	FALSE
+supernatant	set32IT009	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16250	BWI76_RS16250		DNA-binding response regulator	-2.03335577018167	-8.71718669364966	FALSE
+supernatant	set28IT058	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16715	BWI76_RS16715		hypothetical protein	-2.03778735374797	-10.2115848634457	FALSE
+supernatant	set28IT057	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16715	BWI76_RS16715		hypothetical protein	-1.69259625916176	-6.83125807768131	FALSE
+supernatant	set28IT059	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16715	BWI76_RS16715		hypothetical protein	-1.65051607128649	-8.38933755895669	FALSE
+supernatant	set32IT008	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16715	BWI76_RS16715		hypothetical protein	-1.61488782661826	-11.2070145949915	FALSE
+supernatant	set32IT010	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS16715	BWI76_RS16715		hypothetical protein	-1.29786174090454	-7.45532719391064	FALSE
+supernatant	set28IT057	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS18020	BWI76_RS18020		virulence factor VirK	-1.03311001451867	-5.57862895278479	FALSE
+supernatant	set28IT059	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS21105	BWI76_RS21105		penicillin-binding protein 1C	1.0545391436996	8.56781270288059	FALSE
+supernatant	set28IT059	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS24470	BWI76_RS24470		hypothetical protein	-1.35119580129192	-5.24720326961154	FALSE
+supernatant	set28IT059	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS25475	BWI76_RS25475		TIGR02099 family protein	-1.89342478975814	-7.80230780736586	FALSE
+supernatant	set28IT057	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS25475	BWI76_RS25475		TIGR02099 family protein	-1.8639236588581	-6.76630255164083	FALSE
+supernatant	set28IT058	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS25475	BWI76_RS25475		TIGR02099 family protein	-1.71556593445343	-7.31193183868286	FALSE
+supernatant	set32IT010	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS25475	BWI76_RS25475		TIGR02099 family protein	-1.61005178607634	-9.418828638362	FALSE
+supernatant	set28IT057	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS26755	BWI76_RS26755		peptidase M16	-1.90062829682501	-7.0776318012637	FALSE
+supernatant	set28IT058	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS26755	BWI76_RS26755		peptidase M16	-1.34556528878048	-5.48044043198335	FALSE
+supernatant	set28IT058	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS26965	BWI76_RS26965		hypothetical protein	-1.60402861371019	-6.3236716224292	FALSE
+supernatant	set28IT057	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	BWI76_RS26965	BWI76_RS26965		hypothetical protein	-1.41073594494219	-5.03334435954393	FALSE
+supernatant	set32IT027	Supernatant; Trichoderma atroviride IMI tmk3mutant grown in Vogels_fungal_media, filtered	BWI76_RS00295	BWI76_RS00295		transcriptional regulator RbsR	1.60591095208995	8.6633998802986	FALSE
+supernatant	set32IT028	Supernatant; Trichoderma atroviride IMI tmk3mutant grown in Vogels_fungal_media, filtered	BWI76_RS11135	BWI76_RS11135		ferric-rhodotorulic acid/ferric-coprogen receptor FhuE	-1.17825811779416	-5.07922762385971	FALSE

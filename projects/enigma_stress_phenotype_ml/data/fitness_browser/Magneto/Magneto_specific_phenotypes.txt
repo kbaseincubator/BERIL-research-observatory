@@ -1,0 +1,12 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1IT053		AMB_RS19675	AMB_RS19675		DNA-binding response regulator	1.48827961506181	6.57510497707368	FALSE
+carbon source	set1IT055	Succinic Acid	AMB_RS04565	AMB_RS04565		PAS domain-containing sensor histidine kinase	-2.25114678524139	-10.8918697450348	FALSE
+carbon source	set1IT055	Succinic Acid	AMB_RS07850	AMB_RS07850		pyruvate kinase	-1.96696427455207	-9.62142168481002	FALSE
+carbon source	set1IT055	Succinic Acid	AMB_RS13555	AMB_RS13555		phosphoribulokinase	-2.04392534433235	-11.1969017746656	FALSE
+magnetic pulldown	set2IT053	Iron	AMB_RS00920	AMB_RS00920		secretion protein HlyD	-1.98062243643347	-7.08924019716553	FALSE
+magnetic pulldown	set2IT053	Iron	AMB_RS00925	AMB_RS00925		ABC transporter ATP-binding protein	-1.21821995543808	-5.87615487657645	FALSE
+magnetic pulldown	set2IT053	Iron	AMB_RS00930	AMB_RS00930		ABC transporter permease	-1.41691590481624	-6.93501703664753	FALSE
+magnetic pulldown	set1IT050	Iron	AMB_RS03920	AMB_RS03920		hypothetical protein	1.53476631796231	5.35662322421067	FALSE
+magnetic pulldown	set2IT052	Iron	AMB_RS11635	AMB_RS11635		ATP-dependent 6-phosphofructokinase	1.47755908365229	5.8456419593346	FALSE
+magnetic pulldown	set2IT053	Iron	AMB_RS15490	AMB_RS15490		ABC transporter permease	-1.41055368245431	-6.36882440546116	FALSE
+magnetic pulldown	set1IT063	Iron	AMB_RS17585	AMB_RS17585		type I secretion system ATPase	-1.14178616034423	-6.60740323357273	FALSE

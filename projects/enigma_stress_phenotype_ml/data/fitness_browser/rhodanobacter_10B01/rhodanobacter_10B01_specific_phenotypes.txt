@@ -1,0 +1,937 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set5IT067	D-Glucosamine Hydrochloride	LRK54_RS00650	LRK54_RS00650		L-threonine 3-dehydrogenase	-1.50321177531793	-12.9358583573221	FALSE
+carbon source	set5IT082	D-Glucosamine Hydrochloride	LRK54_RS00650	LRK54_RS00650		L-threonine 3-dehydrogenase	-1.46646646545223	-12.4917718600603	FALSE
+carbon source	set5IT067	D-Glucosamine Hydrochloride	LRK54_RS00660	LRK54_RS00660		glycine C-acetyltransferase	-1.48136231194319	-11.7072254249914	FALSE
+carbon source	set5IT082	D-Glucosamine Hydrochloride	LRK54_RS00660	LRK54_RS00660		glycine C-acetyltransferase	-1.39939715934882	-10.947411461828	FALSE
+carbon source	set5IT067	D-Glucosamine Hydrochloride	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-1.70676239506713	-6.85672680515397	FALSE
+carbon source	set5IT067	D-Glucosamine Hydrochloride	LRK54_RS00915	LRK54_RS00915		LysR substrate-binding domain-containing protein	-1.44898308199317	-8.8006358293613	FALSE
+carbon source	set5IT067	D-Glucosamine Hydrochloride	LRK54_RS07690	LRK54_RS07690		heparan-alpha-glucosaminide N-acetyltransferase domain-containing protein	-1.06704424297302	-5.1981503701659	TRUE
+carbon source	set5IT067	D-Glucosamine Hydrochloride	LRK54_RS07710	LRK54_RS07710		sugar MFS transporter	-1.41658200801575	-11.1914114511032	TRUE
+carbon source	set5IT082	D-Glucosamine Hydrochloride	LRK54_RS07710	LRK54_RS07710		sugar MFS transporter	-1.28741766003782	-9.86223808776595	TRUE
+carbon source	set5IT067	D-Glucosamine Hydrochloride	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.36395239785336	-18.1482850078982	FALSE
+carbon source	set5IT082	D-Glucosamine Hydrochloride	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.18779972611012	-16.7437753498956	FALSE
+carbon source	set5IT067	D-Glucosamine Hydrochloride	LRK54_RS14545	LRK54_RS14545		formate-dependent phosphoribosylglycinamide formyltransferase	1.02982465143882	6.93544629675132	FALSE
+carbon source	set5IT082	D-Glucosamine Hydrochloride	LRK54_RS14545	LRK54_RS14545		formate-dependent phosphoribosylglycinamide formyltransferase	1.1733139254987	7.87719047930266	FALSE
+carbon source	set5IT070	D-Glucose	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-2.60097666322076	-7.38026722445095	FALSE
+carbon source	set5IT055	D-Glucose	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-1.51799985187504	-6.15079384497385	FALSE
+carbon source	set8S96	D-Glucose	LRK54_RS00910	LRK54_RS00910		siroheme synthase CysG	-1.22352283664387	-6.32353933988073	FALSE
+carbon source	set8S94	D-Glucose	LRK54_RS00910	LRK54_RS00910		siroheme synthase CysG	-1.11975899174661	-5.53789681324126	FALSE
+carbon source	set5IT055	D-Glucose	LRK54_RS00910	LRK54_RS00910		siroheme synthase CysG	-1.07891557691174	-6.33364999770385	FALSE
+carbon source	set5IT070	D-Glucose	LRK54_RS00915	LRK54_RS00915		LysR substrate-binding domain-containing protein	-1.42654890854227	-8.34186142188583	FALSE
+carbon source	set8S96	D-Glucose	LRK54_RS00915	LRK54_RS00915		LysR substrate-binding domain-containing protein	-1.36098965289617	-7.11341247398312	FALSE
+carbon source	set8S96	D-Glucose	LRK54_RS00920	LRK54_RS00920		phosphoadenylyl-sulfate reductase	-1.0832202960125	-6.38758213310957	FALSE
+carbon source	set8S96	D-Glucose	LRK54_RS02375	LRK54_RS02375		glutamate 5-kinase	-1.46304809842339	-5.49994591153934	FALSE
+carbon source	set8S96	D-Glucose	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.33834752480638	-7.87415274155394	FALSE
+carbon source	set5IT070	D-Glucose	LRK54_RS05055	LRK54_RS05055		L-fucose:H+ symporter permease	-1.39387269976381	-11.6797146804328	FALSE
+carbon source	set5IT070	D-Glucose	LRK54_RS07715	LRK54_RS07715		LacI family DNA-binding transcriptional regulator	1.23662772514645	9.78914210868516	FALSE
+carbon source	set5IT055	D-Glucose	LRK54_RS07715	LRK54_RS07715		LacI family DNA-binding transcriptional regulator	1.4196185516664	12.0297320311433	FALSE
+carbon source	set8S96	D-Glucose	LRK54_RS10875	LRK54_RS10875		HAD family hydrolase	-1.66425520846212	-6.96627316330546	FALSE
+carbon source	set5IT070	D-Glucose	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.77070678106599	-19.3356840411736	FALSE
+carbon source	set5IT055	D-Glucose	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.6523230150052	-19.0279280141009	FALSE
+carbon source	set8S96	D-Glucose	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.06143815400805	-14.4195986628517	FALSE
+carbon source	set8S94	D-Glucose	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-1.19530897956066	-9.47338013991558	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-1.3698954767772	-5.18266339262406	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS00980	LRK54_RS00980		DnaJ domain-containing protein	-2.233054612752	-12.66419126723	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS00980	LRK54_RS00980		DnaJ domain-containing protein	-1.41224123247631	-9.77080764255465	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS01795	LRK54_RS01795		hypothetical protein	1.3880277647323	10.8068393015163	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS01795	LRK54_RS01795		hypothetical protein	1.67812315725646	10.5218824869656	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-1.51228578469412	-9.95076088465746	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-1.51133222695513	-9.27502995667063	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.45725036131835	-9.56684777775303	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.34170521280706	-7.72397026960492	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-3.11340931663101	-13.4479358505408	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-2.67407671064919	-11.7340744209686	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS04955	LRK54_RS04955		ATP-dependent chaperone ClpB	-2.69918539880729	-17.2747282821104	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS04955	LRK54_RS04955		ATP-dependent chaperone ClpB	-1.89583913443769	-13.6275806221012	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS05055	LRK54_RS05055		L-fucose:H+ symporter permease	-2.40183530584196	-18.3188700970313	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS05055	LRK54_RS05055		L-fucose:H+ symporter permease	-1.88681548160435	-14.3997234529969	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS08015	LRK54_RS08015		4,5-DOPA dioxygenase extradiol	1.41365761119444	6.63255865152642	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS08020	LRK54_RS08020		aldehyde dehydrogenase family protein	1.01484577109701	5.49324715752814	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS08020	LRK54_RS08020		aldehyde dehydrogenase family protein	1.81005875131568	7.43389305253647	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS09330	LRK54_RS09330		RNA pyrophosphohydrolase	1.70480390274926	10.6784949921517	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS10735	LRK54_RS10735		acid phosphatase	-1.31343500064876	-10.1233165626468	TRUE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.04220531956205	-15.6498872994474	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-1.60760038385343	-11.8710088077299	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	-2.2311008354641	-10.7009409685754	FALSE
+carbon source	set5IT065	D-Glucose-6-Phosphate sodium salt	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	-2.06145012342711	-9.86751678526791	FALSE
+carbon source	set5IT080	D-Glucose-6-Phosphate sodium salt	LRK54_RS14100	LRK54_RS14100		cytochrome b	1.58066821051494	12.1894585252116	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-2.03349226426939	-6.91697443917074	FALSE
+carbon source	set5IT056	D-Maltose monohydrate	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-1.71032135646958	-6.55621237544991	FALSE
+carbon source	set5IT056	D-Maltose monohydrate	LRK54_RS00915	LRK54_RS00915		LysR substrate-binding domain-containing protein	-1.35902554701029	-8.71746686604655	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS02115	LRK54_RS02115		homocysteine S-methyltransferase family protein	-1.47887922908747	-9.17192240683158	FALSE
+carbon source	set5IT056	D-Maltose monohydrate	LRK54_RS02115	LRK54_RS02115		homocysteine S-methyltransferase family protein	-1.06817162959322	-7.48642068937158	FALSE
+carbon source	set5IT056	D-Maltose monohydrate	LRK54_RS02120	LRK54_RS02120		methionine synthase	-1.07974493638924	-8.43829931559715	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS02120	LRK54_RS02120		methionine synthase	-1.04523842244941	-7.4114676727777	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS02375	LRK54_RS02375		glutamate 5-kinase	-1.70622427945316	-5.27625549850694	FALSE
+carbon source	set5IT056	D-Maltose monohydrate	LRK54_RS02375	LRK54_RS02375		glutamate 5-kinase	-1.58816490614674	-5.97475460719467	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-1.67742628603411	-11.1743463076632	FALSE
+carbon source	set5IT056	D-Maltose monohydrate	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-1.51505596517647	-10.8664217185552	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-2.0456186030383	-11.3124506603655	FALSE
+carbon source	set5IT056	D-Maltose monohydrate	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.48686736878495	-9.30900878342135	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-1.17027228493538	-6.90626017626548	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS05575	LRK54_RS05575		class I SAM-dependent methyltransferase	-1.479775713213	-8.8340446473539	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS11800	LRK54_RS11800		RidA family protein	-1.85912668810103	-13.3237387180933	FALSE
+carbon source	set5IT056	D-Maltose monohydrate	LRK54_RS11800	LRK54_RS11800		RidA family protein	-1.75468888458737	-13.0095421637863	FALSE
+carbon source	set5IT071	D-Maltose monohydrate	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.5767218535787	-18.6021638301766	FALSE
+carbon source	set5IT056	D-Maltose monohydrate	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.34185895647499	-18.0547794830439	FALSE
+carbon source	set5IT072	D-Raffinose pentahydrate	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-1.71040138892527	-11.3354433965394	FALSE
+carbon source	set5IT057	D-Raffinose pentahydrate	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-1.50537560254427	-10.2810560405092	FALSE
+carbon source	set5IT072	D-Raffinose pentahydrate	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-2.15949697065672	-10.971211193571	FALSE
+carbon source	set5IT057	D-Raffinose pentahydrate	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-1.8055297124603	-10.5887192810911	FALSE
+carbon source	set5IT072	D-Raffinose pentahydrate	LRK54_RS04955	LRK54_RS04955		ATP-dependent chaperone ClpB	-1.62310272767053	-12.2715879900691	FALSE
+carbon source	set5IT057	D-Raffinose pentahydrate	LRK54_RS05000	LRK54_RS05000		beta-phosphoglucomutase	-2.04403480294202	-17.533786048114	FALSE
+carbon source	set5IT072	D-Raffinose pentahydrate	LRK54_RS05000	LRK54_RS05000		beta-phosphoglucomutase	-1.79852742379306	-15.4663188239984	FALSE
+carbon source	set5IT057	D-Raffinose pentahydrate	LRK54_RS05005	LRK54_RS05005		TonB-dependent receptor	-1.20126687391655	-10.9337491650729	FALSE
+carbon source	set5IT057	D-Raffinose pentahydrate	LRK54_RS05010	LRK54_RS05010		MFS transporter	-2.00843984102403	-15.3958583508403	FALSE
+carbon source	set5IT072	D-Raffinose pentahydrate	LRK54_RS05010	LRK54_RS05010		MFS transporter	-1.57341093999921	-12.5090631268914	FALSE
+carbon source	set5IT057	D-Raffinose pentahydrate	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-1.80259336205736	-13.8433767919628	FALSE
+carbon source	set5IT072	D-Raffinose pentahydrate	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-1.76058712499986	-13.4973192695434	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-1.83775864774544	-6.67182626997467	FALSE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-1.62167923012137	-6.02392418194135	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS00915	LRK54_RS00915		LysR substrate-binding domain-containing protein	-1.56759853378767	-8.54084699947576	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS02120	LRK54_RS02120		methionine synthase	-1.02149786209342	-7.76300518018118	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.43533446466844	-9.1292362168739	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS05000	LRK54_RS05000		beta-phosphoglucomutase	-2.63287980033129	-21.9930666506946	FALSE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS05000	LRK54_RS05000		beta-phosphoglucomutase	-2.28680153746992	-18.8878022232161	FALSE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS05010	LRK54_RS05010		MFS transporter	-2.20696201982419	-16.2063423383491	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS05010	LRK54_RS05010		MFS transporter	-2.05342774464368	-15.0519328098182	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS05575	LRK54_RS05575		class I SAM-dependent methyltransferase	-1.55067549232515	-9.76037020691619	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS11800	LRK54_RS11800		RidA family protein	-1.81180172031269	-13.2866366145429	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.69622268199359	-19.2403743617839	FALSE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.41138304725127	-17.3515145812713	FALSE
+carbon source	set5IT074	D-Trehalose dihydrate	LRK54_RS12520	LRK54_RS12520		hypothetical protein	-1.16740216386874	-5.91294599208232	FALSE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS13390	LRK54_RS13390		flagellar basal body P-ring formation protein FlgA	1.08816166668578	9.2443290493968	FALSE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS13415	LRK54_RS13415		flagellar hook capping protein	1.10080976292689	7.76000027986475	FALSE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS13420	LRK54_RS13420		flagellar hook protein FlgE	1.19384733407327	10.5598358595747	FALSE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS13430	LRK54_RS13430		flagellar basal-body rod protein FlgG	1.38097773665267	8.00092382150376	FALSE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS13525	LRK54_RS13525		flagellar basal body-associated FliL family protein	1.10314403136937	7.30421622068279	TRUE
+carbon source	set5IT059	D-Trehalose dihydrate	LRK54_RS13530	LRK54_RS13530		flagellar motor switch protein FliM	1.22840478637309	7.4175540249608	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS01525	LRK54_RS01525		amino acid permease	-1.18509693488748	-9.72875138066106	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS02785	LRK54_RS02785		PqiC family protein	1.27367739405207	11.640442318091	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS02785	LRK54_RS02785		PqiC family protein	1.6357507880086	14.723538578722	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS02790	LRK54_RS02790		MlaD family protein	1.6594238802947	15.3096387187829	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS02795	LRK54_RS02795		paraquat-inducible protein A	1.28047895349069	10.5805345641336	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS02795	LRK54_RS02795		paraquat-inducible protein A	1.50545026627187	11.4480501761606	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS02800	LRK54_RS02800		paraquat-inducible protein A	1.63578373057032	14.8227949313093	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS02910	LRK54_RS02910		M20 family metallopeptidase	-1.44890206601991	-12.5626720436935	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS02910	LRK54_RS02910		M20 family metallopeptidase	-1.2963323168297	-11.5302411290589	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS03005	LRK54_RS03005		GNAT family N-acetyltransferase	-1.47402173736736	-10.9173103981893	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS03670	LRK54_RS03670		acyl-CoA thioesterase	-3.13349482547851	-7.77799312849542	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS03670	LRK54_RS03670		acyl-CoA thioesterase	-2.61562324240688	-7.67392710393501	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS07645	LRK54_RS07645		alpha/beta hydrolase	1.0055234969537	6.00309386828598	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS07715	LRK54_RS07715		LacI family DNA-binding transcriptional regulator	1.29970104410803	10.1144456634501	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS07715	LRK54_RS07715		LacI family DNA-binding transcriptional regulator	1.39345502250806	10.4735269830615	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS09820	LRK54_RS09820		cell division protein ZapE	-2.04500554843631	-14.2537420767953	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS09820	LRK54_RS09820		cell division protein ZapE	-1.93521291696599	-13.5691435059756	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS09930	LRK54_RS09930		LysR substrate-binding domain-containing protein	-1.26453350947717	-7.93600995286861	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS09930	LRK54_RS09930		LysR substrate-binding domain-containing protein	-1.09054737537169	-7.10940337110707	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS10300	LRK54_RS10300		threonine ammonia-lyase, biosynthetic	-1.11975375865003	-5.49489012489916	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS10365	LRK54_RS10365		homoserine dehydrogenase	-3.47801535952175	-7.70555143361398	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS10365	LRK54_RS10365		homoserine dehydrogenase	-2.52674792298366	-6.54421912493463	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS10685	LRK54_RS10685		aspartate/tyrosine/aromatic aminotransferase	-2.42564100866591	-15.5471414356534	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS10685	LRK54_RS10685		aspartate/tyrosine/aromatic aminotransferase	-2.12867020995517	-14.6832783745541	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS10865	LRK54_RS10865		DEAD/DEAH box helicase	-1.45084497569272	-9.98663189145385	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS11120	LRK54_RS11120		tetratricopeptide repeat-containing sulfotransferase family protein	1.33471966525294	12.5689126074385	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS11120	LRK54_RS11120		tetratricopeptide repeat-containing sulfotransferase family protein	1.38195377064674	12.8454663524982	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS11505	LRK54_RS11505		SH3 domain-containing protein	-1.07107623502482	-5.66778010919735	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS12940	LRK54_RS12940		phosphoribosylglycinamide formyltransferase	1.34583006414747	9.34582605499756	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS12940	LRK54_RS12940		phosphoribosylglycinamide formyltransferase	1.70297642332849	11.9447270228198	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	-2.42123234918274	-11.564306466581	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	-2.05673647670818	-10.1968831565104	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS15920	LRK54_RS15920		oligopeptide transporter, OPT family	1.79939216152461	16.2128673436225	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS15920	LRK54_RS15920		oligopeptide transporter, OPT family	2.19750281256015	19.7884846555124	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-3.37508145541827	-21.1484866984003	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-2.98086440539202	-20.2587739399833	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS16995	LRK54_RS16995		YdbL family protein	-1.28379936976057	-6.80530915618966	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS16995	LRK54_RS16995		YdbL family protein	-1.01981037809974	-5.35531768181286	FALSE
+carbon source	set5IT076	Gly-Glu	LRK54_RS17965	LRK54_RS17965		heat-inducible transcriptional repressor HrcA	-1.21713295720032	-7.20268722156205	FALSE
+carbon source	set5IT061	Gly-Glu	LRK54_RS17965	LRK54_RS17965		heat-inducible transcriptional repressor HrcA	-1.13988832487011	-7.1653759230752	FALSE
+carbon source	set5IT060	L-Glutamic acid monopotassium salt monohydrate	LRK54_RS02115	LRK54_RS02115		homocysteine S-methyltransferase family protein	-1.14895427701817	-7.55518466316496	FALSE
+carbon source	set5IT075	L-Glutamic acid monopotassium salt monohydrate	LRK54_RS02115	LRK54_RS02115		homocysteine S-methyltransferase family protein	-1.13108221708756	-8.15290290450626	FALSE
+carbon source	set5IT060	L-Glutamic acid monopotassium salt monohydrate	LRK54_RS02120	LRK54_RS02120		methionine synthase	-1.07129601958996	-8.07468319231049	FALSE
+carbon source	set5IT060	L-Glutamic acid monopotassium salt monohydrate	LRK54_RS09820	LRK54_RS09820		cell division protein ZapE	-1.34526689746491	-10.3932151852904	FALSE
+carbon source	set5IT060	L-Glutamic acid monopotassium salt monohydrate	LRK54_RS14545	LRK54_RS14545		formate-dependent phosphoribosylglycinamide formyltransferase	1.06334111776079	7.89015026890702	FALSE
+carbon source	set5IT075	L-Glutamic acid monopotassium salt monohydrate	LRK54_RS14545	LRK54_RS14545		formate-dependent phosphoribosylglycinamide formyltransferase	1.15532422875708	7.74245638513583	FALSE
+carbon source	set5IT060	L-Glutamic acid monopotassium salt monohydrate	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-3.71495003368766	-21.867762484537	TRUE
+carbon source	set5IT075	L-Glutamic acid monopotassium salt monohydrate	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-3.53440279220134	-22.4292682906887	TRUE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-1.6973334394227	-6.16202450955108	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS00910	LRK54_RS00910		siroheme synthase CysG	-1.06224859250613	-5.67667873428226	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS00915	LRK54_RS00915		LysR substrate-binding domain-containing protein	-1.41661384604965	-7.97753647754668	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS02115	LRK54_RS02115		homocysteine S-methyltransferase family protein	-1.42880221088276	-9.34048531187966	FALSE
+carbon source	set5IT078	N-Acetyl-D-Glucosamine	LRK54_RS02115	LRK54_RS02115		homocysteine S-methyltransferase family protein	-1.28356950753381	-8.68971426540879	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS02120	LRK54_RS02120		methionine synthase	-1.40612980616508	-10.3337402132992	FALSE
+carbon source	set5IT078	N-Acetyl-D-Glucosamine	LRK54_RS02120	LRK54_RS02120		methionine synthase	-1.20297787959077	-8.7386746280622	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS02375	LRK54_RS02375		glutamate 5-kinase	-1.94422642373921	-5.37478822277203	FALSE
+carbon source	set5IT078	N-Acetyl-D-Glucosamine	LRK54_RS02375	LRK54_RS02375		glutamate 5-kinase	-1.9396838986313	-6.72675358206734	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-1.54196427757675	-10.8805752756453	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS05575	LRK54_RS05575		class I SAM-dependent methyltransferase	-1.8851530629456	-11.0586838963661	FALSE
+carbon source	set5IT078	N-Acetyl-D-Glucosamine	LRK54_RS05575	LRK54_RS05575		class I SAM-dependent methyltransferase	-1.42336530779534	-9.10227302971867	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS10365	LRK54_RS10365		homoserine dehydrogenase	-1.50850194512233	-5.73083082876189	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS11800	LRK54_RS11800		RidA family protein	-2.19729586014006	-14.908749052073	FALSE
+carbon source	set5IT078	N-Acetyl-D-Glucosamine	LRK54_RS11800	LRK54_RS11800		RidA family protein	-1.65052950933511	-12.2464550020474	FALSE
+carbon source	set5IT063	N-Acetyl-D-Glucosamine	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-3.19271522674097	-21.1584123447548	FALSE
+carbon source	set5IT078	N-Acetyl-D-Glucosamine	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.37658239411823	-17.711786015163	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS00055	LRK54_RS00055		3-hydroxyacyl-CoA dehydrogenase/enoyl-CoA hydratase family protein	-1.01793243851892	-8.29531868930058	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-2.35173336764352	-6.97229720336904	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-1.42385762531148	-5.34705050302593	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS00910	LRK54_RS00910		siroheme synthase CysG	-1.54341296110073	-8.26771803353932	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS00910	LRK54_RS00910		siroheme synthase CysG	-1.44905692656886	-6.91137878327013	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS00915	LRK54_RS00915		LysR substrate-binding domain-containing protein	-1.32604995648147	-7.53776686312002	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS00920	LRK54_RS00920		phosphoadenylyl-sulfate reductase	-1.31368211603229	-8.76883556287592	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS00920	LRK54_RS00920		phosphoadenylyl-sulfate reductase	-1.01993172429382	-5.70907004269506	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS00925	LRK54_RS00925		assimilatory sulfite reductase (NADPH) hemoprotein subunit	-1.20448498877388	-9.4263840037672	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS00930	LRK54_RS00930		assimilatory sulfite reductase (NADPH) flavoprotein subunit	-1.24709934532992	-8.05303228864161	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS00930	LRK54_RS00930		assimilatory sulfite reductase (NADPH) flavoprotein subunit	-1.08029514017423	-6.23322088712999	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS02375	LRK54_RS02375		glutamate 5-kinase	-1.73177008419461	-5.40142762983717	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS02375	LRK54_RS02375		glutamate 5-kinase	-1.64292412980504	-6.43053295757918	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.31565329998564	-7.25314093194985	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-3.11366857005576	-12.8815324265852	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-2.54604635971196	-13.2113386042523	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS04955	LRK54_RS04955		ATP-dependent chaperone ClpB	-2.53621726859317	-16.1950627130763	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS04955	LRK54_RS04955		ATP-dependent chaperone ClpB	-1.5810916708343	-11.9544004881168	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS08015	LRK54_RS08015		4,5-DOPA dioxygenase extradiol	1.0334633343222	6.1514493337812	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS08020	LRK54_RS08020		aldehyde dehydrogenase family protein	1.23723971755338	6.19236483976427	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS08420	LRK54_RS08420		acetate--CoA ligase	-1.40828577929084	-12.7080471463404	TRUE
+carbon source	set5IT081	Potassium acetate	LRK54_RS08420	LRK54_RS08420		acetate--CoA ligase	-1.36687627683547	-12.0749803127531	TRUE
+carbon source	set5IT066	Potassium acetate	LRK54_RS08425	LRK54_RS08425		response regulator transcription factor	-1.6425097784041	-9.69099934560384	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS08430	LRK54_RS08430		hybrid sensor histidine kinase/response regulator	-1.56462279902726	-13.9674706581741	TRUE
+carbon source	set5IT066	Potassium acetate	LRK54_RS10585	LRK54_RS10585		isocitrate lyase	-4.18804800717303	-17.553866815501	TRUE
+carbon source	set5IT081	Potassium acetate	LRK54_RS10585	LRK54_RS10585		isocitrate lyase	-3.69117157726416	-16.140919590563	TRUE
+carbon source	set5IT066	Potassium acetate	LRK54_RS10590	LRK54_RS10590		malate synthase A	-3.90268344727689	-20.9872772405784	TRUE
+carbon source	set5IT081	Potassium acetate	LRK54_RS10590	LRK54_RS10590		malate synthase A	-3.44121625061131	-19.3535603691111	TRUE
+carbon source	set5IT066	Potassium acetate	LRK54_RS10595	LRK54_RS10595		LysR family transcriptional regulator	-3.67341234914082	-21.5352095526577	TRUE
+carbon source	set5IT081	Potassium acetate	LRK54_RS10595	LRK54_RS10595		LysR family transcriptional regulator	-3.32470556256062	-19.7131234494938	TRUE
+carbon source	set5IT081	Potassium acetate	LRK54_RS12660	LRK54_RS12660		translocation/assembly module TamB domain-containing protein	-1.5935905684859	-7.1886681751556	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS12665	LRK54_RS12665		autotransporter assembly complex protein TamA	-1.75470081443451	-9.57229401297855	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS12665	LRK54_RS12665		autotransporter assembly complex protein TamA	-1.64953799626298	-8.77395619134155	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS16140	LRK54_RS16140		glycine zipper 2TM domain-containing protein	-1.7852870515197	-7.08588647211289	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS16140	LRK54_RS16140		glycine zipper 2TM domain-containing protein	-1.45598107121385	-7.54176593252626	FALSE
+carbon source	set5IT081	Potassium acetate	LRK54_RS16145	LRK54_RS16145		glycine zipper 2TM domain-containing protein	-1.28323535868731	-5.42325425563917	FALSE
+carbon source	set5IT066	Potassium acetate	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-3.91030354197531	-19.9539000726677	TRUE
+carbon source	set5IT081	Potassium acetate	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-3.2877273726309	-20.0847856640282	TRUE
+carbon source	set5IT066	Potassium acetate	LRK54_RS16995	LRK54_RS16995		YdbL family protein	-1.10492264921461	-6.41806676126383	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-2.42841975057768	-7.34658036462826	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS00905	LRK54_RS00905		cysteine synthase A	-1.85626663351197	-6.3141370547092	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS00910	LRK54_RS00910		siroheme synthase CysG	-1.5985489069126	-7.41745269608645	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS00910	LRK54_RS00910		siroheme synthase CysG	-1.55091946073809	-7.72645194082567	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS00915	LRK54_RS00915		LysR substrate-binding domain-containing protein	-1.73215940612608	-9.65090787545909	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS00915	LRK54_RS00915		LysR substrate-binding domain-containing protein	-1.41999715753171	-8.0260917707706	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS00920	LRK54_RS00920		phosphoadenylyl-sulfate reductase	-1.06311507917215	-6.36047255967978	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS00925	LRK54_RS00925		assimilatory sulfite reductase (NADPH) hemoprotein subunit	-1.25317544600205	-9.8076645751251	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS00925	LRK54_RS00925		assimilatory sulfite reductase (NADPH) hemoprotein subunit	-1.08800796646126	-8.46816291540585	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS00930	LRK54_RS00930		assimilatory sulfite reductase (NADPH) flavoprotein subunit	-1.18524403647815	-7.61660172555613	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-2.69253410784861	-14.8708176640711	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-2.50263891420514	-13.9656240555192	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.55894949532671	-9.92567442061406	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.4835741424043	-9.5271466422503	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS04665	LRK54_RS04665		carbon starvation protein A	-1.49560795414717	-11.9033189178473	TRUE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS04665	LRK54_RS04665		carbon starvation protein A	-1.30551221387239	-10.6208978828223	TRUE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS04670	LRK54_RS04670		YbdD/YjiX family protein	-1.33901534199368	-7.29381097547176	TRUE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS04670	LRK54_RS04670		YbdD/YjiX family protein	-1.32463156265525	-7.84709142102134	TRUE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS08425	LRK54_RS08425		response regulator transcription factor	-2.28101820466107	-12.1562960429915	TRUE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS08425	LRK54_RS08425		response regulator transcription factor	-2.02373541093969	-12.2170561927401	TRUE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS08430	LRK54_RS08430		hybrid sensor histidine kinase/response regulator	-2.0162252655343	-17.2659496151904	TRUE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS08430	LRK54_RS08430		hybrid sensor histidine kinase/response regulator	-1.94786186125079	-17.1042487249665	TRUE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS09820	LRK54_RS09820		cell division protein ZapE	-1.46047343541074	-11.4435710194044	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS11800	LRK54_RS11800		RidA family protein	-2.28861210028836	-15.1492707665514	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS11800	LRK54_RS11800		RidA family protein	-2.01536092764516	-13.9561036673976	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.71133933895312	-19.4117017841179	FALSE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-2.67554804593396	-19.0354674633821	FALSE
+carbon source	set5IT058	Sodium pyruvate	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-4.02086762041098	-21.915232632327	TRUE
+carbon source	set5IT073	Sodium pyruvate	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-3.79597199763606	-20.7697851455152	TRUE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS00910	LRK54_RS00910		siroheme synthase CysG	-1.67054341701764	-7.54591018413509	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS00980	LRK54_RS00980		DnaJ domain-containing protein	-1.82068068870077	-8.88936926806451	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS01795	LRK54_RS01795		hypothetical protein	1.80242219735566	11.405051683005	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS01795	LRK54_RS01795		hypothetical protein	2.21107538478858	18.1681590425424	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS02120	LRK54_RS02120		methionine synthase	-1.35615006649893	-7.32315049860551	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS02375	LRK54_RS02375		glutamate 5-kinase	-2.46900987570272	-8.24775377721101	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS02785	LRK54_RS02785		PqiC family protein	-3.75347686957597	-14.6973772796621	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS02785	LRK54_RS02785		PqiC family protein	-2.96197525019432	-13.4786740377719	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS02790	LRK54_RS02790		MlaD family protein	-3.90198756024745	-15.1220529758994	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS02790	LRK54_RS02790		MlaD family protein	-2.96016245574374	-14.6305984479414	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS02795	LRK54_RS02795		paraquat-inducible protein A	-3.58625145321066	-10.3204350137082	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS02795	LRK54_RS02795		paraquat-inducible protein A	-2.89882447295479	-8.72773335461653	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS02800	LRK54_RS02800		paraquat-inducible protein A	-3.68038881888474	-14.0818786052607	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS02800	LRK54_RS02800		paraquat-inducible protein A	-2.82671555323323	-12.3818399975255	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.50039611575491	-8.38039127768844	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS03180	LRK54_RS03180		FAD-binding oxidoreductase	-1.36965647007563	-7.06470132881014	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-2.01936322263779	-8.6512327123867	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-1.51866087837347	-6.79630325309212	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS04865	LRK54_RS04865		tol-pal system protein YbgF	-1.51856198616	-8.24804137196223	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS04865	LRK54_RS04865		tol-pal system protein YbgF	-1.26229999127645	-6.76906803659573	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS04955	LRK54_RS04955		ATP-dependent chaperone ClpB	-1.88448183484543	-10.3660218402815	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS05385	LRK54_RS05385		CPBP family intramembrane metalloprotease	1.22312482773079	9.07710836896266	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS05385	LRK54_RS05385		CPBP family intramembrane metalloprotease	1.46307496771067	7.90802735667594	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS05575	LRK54_RS05575		class I SAM-dependent methyltransferase	-1.66639022691217	-8.74066742967806	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS05600	LRK54_RS05600		hypothetical protein	-1.56557808927947	-8.24563631477238	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS06500	LRK54_RS06500		lytic murein transglycosylase B	-1.35296266487997	-8.46029295760696	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS06715	LRK54_RS06715		O-antigen ligase family protein	-1.40300672050741	-9.88799668207167	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS07110	LRK54_RS07110		cytochrome c oxidase subunit 3	1.43607834808203	11.1621176749295	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS07110	LRK54_RS07110		cytochrome c oxidase subunit 3	1.72337677668808	12.011228441475	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS07245	LRK54_RS07245		transglycosylase SLT domain-containing protein	-1.26819804063413	-8.59609657374506	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS08015	LRK54_RS08015		4,5-DOPA dioxygenase extradiol	1.22292495170147	6.3489165654089	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS08020	LRK54_RS08020		aldehyde dehydrogenase family protein	1.44025136613043	6.83083523856365	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS08340	LRK54_RS08340		DUF885 family protein	1.28103398108201	11.1205741559898	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS08340	LRK54_RS08340		DUF885 family protein	1.36189765936696	12.597935535171	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS08465	LRK54_RS08465		tetratricopeptide repeat protein	2.16044354621506	19.8270454733095	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS08465	LRK54_RS08465		tetratricopeptide repeat protein	2.37856970667728	22.5417766371958	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS09415	LRK54_RS09415		FecR family protein	1.23633974057318	7.72602869404025	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS09755	LRK54_RS09755		3-oxoacyl-ACP reductase	1.24569525117015	6.4276651877975	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS09770	LRK54_RS09770		glycosyltransferase family 2 protein	1.17906562945421	5.68336405647478	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS09770	LRK54_RS09770		glycosyltransferase family 2 protein	1.3496905318134	7.13910644202069	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS09955	LRK54_RS09955		TatD family hydrolase	-1.39186637389957	-6.34821297146713	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS10175	LRK54_RS10175		autotransporter domain-containing protein	-2.83050478015412	-20.7261182474595	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS10175	LRK54_RS10175		autotransporter domain-containing protein	-2.21868179565009	-16.0347865370765	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS11800	LRK54_RS11800		RidA family protein	-1.71561957411942	-10.8291177644402	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS11825	LRK54_RS11825		hypothetical protein	-1.13541584838515	-7.41560101870469	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS12075	LRK54_RS12075		phosphoenolpyruvate carboxylase	-1.86195985072896	-13.6409370158059	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS13050	LRK54_RS13050		hypothetical protein	1.07740674016307	8.22342268404167	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS13070	LRK54_RS13070		alpha-amylase family glycosyl hydrolase	-1.36206576984979	-9.27379142708005	TRUE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS13080	LRK54_RS13080		TonB-dependent receptor	4.22423630523502	35.5807789197748	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS13080	LRK54_RS13080		TonB-dependent receptor	4.44537419720553	32.122485548354	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS14775	LRK54_RS14775		cold-shock protein	-2.41268244652049	-9.15148197529579	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS14775	LRK54_RS14775		cold-shock protein	-1.63703355425836	-6.67796846744727	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS16000	LRK54_RS16000		polyphosphate kinase 1	1.0566856611002	9.04245907422261	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS16000	LRK54_RS16000		polyphosphate kinase 1	1.2334558736281	10.2610268516149	FALSE
+carbon source	set5IT064	a-Cyclodextrin	LRK54_RS16245	LRK54_RS16245		ABC transporter ATP-binding protein	1.98305890187473	5.44440260359662	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS16245	LRK54_RS16245		ABC transporter ATP-binding protein	2.05837462246703	5.64526655279661	FALSE
+carbon source	set5IT079	a-Cyclodextrin	LRK54_RS17955	LRK54_RS17955		response regulator transcription factor	1.46044938829674	11.9486661757031	FALSE
+carbon source	set5IT077	casamino acids	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-1.76660486300551	-10.9726942534058	FALSE
+carbon source	set5IT062	casamino acids	LRK54_RS04765	LRK54_RS04765		LysR substrate-binding domain-containing protein	-1.43470938601903	-9.66844641235402	FALSE
+carbon source	set5IT077	casamino acids	LRK54_RS05285	LRK54_RS05285		APC family permease	-1.68561189105594	-13.1862716120382	FALSE
+carbon source	set5IT062	casamino acids	LRK54_RS05285	LRK54_RS05285		APC family permease	-1.64728276974512	-12.884815834834	FALSE
+carbon source	set5IT077	casamino acids	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-4.28932314118655	-20.6098368469775	FALSE
+carbon source	set5IT062	casamino acids	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-4.2061413896772	-21.569105962841	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS00125	LRK54_RS00125		hypothetical protein	-1.20625690271744	-10.0556646089807	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS00130	LRK54_RS00130		cupredoxin domain-containing protein	-1.23827990188329	-9.06671323662136	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS00495	LRK54_RS00495		ribonuclease R	2.20027276995226	16.7709262658671	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS00975	LRK54_RS00975		twitching motility response regulator PilH	2.42399276245092	16.6933164315317	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS01385	LRK54_RS01385		metalloregulator ArsR/SmtB family transcription factor	1.81553890851497	14.341585357285	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS01525	LRK54_RS01525		amino acid permease	1.1184082467751	10.3125230727683	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS01525	LRK54_RS01525		amino acid permease	1.27723450857929	11.515799623273	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS02040	LRK54_RS02040		transcription-repair coupling factor	1.70300223713813	15.4451106480615	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS02095	LRK54_RS02095		efflux RND transporter periplasmic adaptor subunit	1.56075250021441	14.4114609100043	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS02100	LRK54_RS02100		multidrug efflux RND transporter permease subunit	1.53339257329603	14.3373012344883	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS02785	LRK54_RS02785		PqiC family protein	-1.27689777239879	-8.1729879073999	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS02785	LRK54_RS02785		PqiC family protein	-1.18456041947977	-7.90267529393865	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS02790	LRK54_RS02790		MlaD family protein	-1.28658461179364	-10.2389420786919	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS02795	LRK54_RS02795		paraquat-inducible protein A	-1.36860028214693	-8.40942155483193	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS02800	LRK54_RS02800		paraquat-inducible protein A	-1.42361043269085	-10.065922619214	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS02885	LRK54_RS02885		RNA polymerase-associated protein RapA	-1.37857886450315	-9.81275983241869	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS02910	LRK54_RS02910		M20 family metallopeptidase	1.60969277745578	15.3260793398784	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS03045	LRK54_RS03045		MipA/OmpV family protein	-1.18338176239569	-7.38094690687003	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS04030	LRK54_RS04030		oligopeptide:H+ symporter	2.50396866900778	23.2512545136965	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS04090	LRK54_RS04090		response regulator transcription factor	-1.07461910729747	-7.41180262363655	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS05045	LRK54_RS05045		ATP-binding protein	-1.25618335799669	-7.71268403647332	FALSE
+stress	set1IT009	Aluminum chloride hydrate	LRK54_RS05235	LRK54_RS05235		cytochrome b	-2.97623363356348	-9.10935801601914	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS05235	LRK54_RS05235		cytochrome b	-2.46984992922251	-9.81122895661828	FALSE
+stress	set1IT025	Aluminum chloride hydrate	LRK54_RS05235	LRK54_RS05235		cytochrome b	-2.41062619874432	-12.0232678249997	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS05235	LRK54_RS05235		cytochrome b	-1.66158222771805	-5.57290215943187	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS05285	LRK54_RS05285		APC family permease	2.36763872994471	21.5612503498083	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS05285	LRK54_RS05285		APC family permease	3.68739644438265	33.2078330044677	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS05600	LRK54_RS05600		hypothetical protein	-1.37326803273199	-7.65455113678413	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS05995	LRK54_RS05995		tRNA dihydrouridine(20/20a) synthase DusA	1.53706372275657	12.1663624798737	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS06700	LRK54_RS06700		polysaccharide deacetylase family protein	1.13851269122805	8.88100055676855	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS07070	LRK54_RS07070		hypothetical protein	-1.13192261864648	-7.05985537698408	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS07230	LRK54_RS07230		endonuclease/exonuclease/phosphatase family protein	1.65154890842816	13.6214174529435	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS07230	LRK54_RS07230		endonuclease/exonuclease/phosphatase family protein	1.79505496131586	13.279000492009	FALSE
+stress	set2IT007	Aluminum chloride hydrate	LRK54_RS07285	LRK54_RS07285		sulfatase-like hydrolase/transferase	-2.45104813510049	-18.9228051131923	TRUE
+stress	set2IT055	Aluminum chloride hydrate	LRK54_RS07285	LRK54_RS07285		sulfatase-like hydrolase/transferase	-2.27307705207501	-18.1472822294963	TRUE
+stress	set2IT008	Aluminum chloride hydrate	LRK54_RS07285	LRK54_RS07285		sulfatase-like hydrolase/transferase	-1.49122963145284	-12.5416819016092	TRUE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS07835	LRK54_RS07835		TonB-dependent receptor	1.21120028410631	11.79630827944	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS08225	LRK54_RS08225		AI-2E family transporter	-1.1448094542052	-6.06368027028306	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS08425	LRK54_RS08425		response regulator transcription factor	1.53446245903883	12.4490579278198	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS08430	LRK54_RS08430		hybrid sensor histidine kinase/response regulator	1.56062367705813	14.8260115146132	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS08465	LRK54_RS08465		tetratricopeptide repeat protein	-1.32036128718872	-12.3386456973443	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS09095	LRK54_RS09095		hypothetical protein	1.01303476214445	8.22846089903553	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	7.37609441156494	58.9603633584764	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	8.59475227404471	56.7576315739407	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS09820	LRK54_RS09820		cell division protein ZapE	1.67177195230972	15.0925034312485	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS10120	LRK54_RS10120		glycosyltransferase family 39 protein	-1.7543311894073	-14.6839625250695	TRUE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS11120	LRK54_RS11120		tetratricopeptide repeat-containing sulfotransferase family protein	1.40337650715538	12.9632464945705	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS11165	LRK54_RS11165		flavohemoglobin expression-modulating QEGLA motif protein	1.31469537243591	11.6227111617514	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS11405	LRK54_RS11405		ATP-binding protein	-1.19361542703318	-7.6751842638392	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS11900	LRK54_RS11900		efflux RND transporter periplasmic adaptor subunit	1.87951724182472	13.6807277723143	FALSE
+stress	set1IT009	Aluminum chloride hydrate	LRK54_RS11900	LRK54_RS11900		efflux RND transporter periplasmic adaptor subunit	2.13079548013115	16.6205648794358	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS11900	LRK54_RS11900		efflux RND transporter periplasmic adaptor subunit	2.8315871791486	19.747026790049	FALSE
+stress	set1IT025	Aluminum chloride hydrate	LRK54_RS11905	LRK54_RS11905		efflux RND transporter permease subunit	1.02369027799935	9.96414853235219	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS11905	LRK54_RS11905		efflux RND transporter permease subunit	2.09031144726057	20.0940824080356	FALSE
+stress	set1IT009	Aluminum chloride hydrate	LRK54_RS11905	LRK54_RS11905		efflux RND transporter permease subunit	2.12606742854371	20.7478588085102	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS11905	LRK54_RS11905		efflux RND transporter permease subunit	2.82663532557762	26.8028875174192	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS12730	LRK54_RS12730		hypothetical protein	-1.30022360389766	-5.60652233250877	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	-1.29423626688756	-7.15374401026137	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS15135	LRK54_RS15135		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	1.05868677927405	5.19270998619082	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS15235	LRK54_RS15235		cupredoxin domain-containing protein	-1.09704894600722	-5.50175420845319	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS15920	LRK54_RS15920		oligopeptide transporter, OPT family	1.56652499444399	14.2984861852602	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS15920	LRK54_RS15920		oligopeptide transporter, OPT family	2.26606599881004	20.5415085220289	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS16990	LRK54_RS16990		hypothetical protein	1.97006497762704	14.233046026645	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS17165	LRK54_RS17165		glycosyltransferase	-2.3328852179094	-16.764920336471	FALSE
+stress	set1IT045	Aluminum chloride hydrate	LRK54_RS17165	LRK54_RS17165		glycosyltransferase	-1.74067171692264	-12.9788398650898	FALSE
+stress	set1IT046	Aluminum chloride hydrate	LRK54_RS17940	LRK54_RS17940		outer membrane protein assembly factor BamE	1.35806418037589	9.07475799587804	FALSE
+stress	set2IT058	Cadmium chloride hemipentahydrate	LRK54_RS02920	LRK54_RS02920		SET domain-containing protein	-1.26678560038634	-8.95425288218333	FALSE
+stress	set2IT010	Cadmium chloride hemipentahydrate	LRK54_RS02920	LRK54_RS02920		SET domain-containing protein	-1.22678088807676	-8.26824273706467	FALSE
+stress	set2IT058	Cadmium chloride hemipentahydrate	LRK54_RS17165	LRK54_RS17165		glycosyltransferase	1.05064871667627	9.26550338229682	FALSE
+stress	set2IT058	Cadmium chloride hemipentahydrate	LRK54_RS17530	LRK54_RS17530		FTR1 family protein	-2.24682941764187	-14.2209832243207	FALSE
+stress	set2IT010	Cadmium chloride hemipentahydrate	LRK54_RS17530	LRK54_RS17530		FTR1 family protein	-2.08781530424399	-13.0019942027705	FALSE
+stress	set2IT010	Cadmium chloride hemipentahydrate	LRK54_RS17535	LRK54_RS17535		cation transporter	-4.80604436299348	-7.35182833081777	FALSE
+stress	set2IT058	Cadmium chloride hemipentahydrate	LRK54_RS17535	LRK54_RS17535		cation transporter	-4.36825264901986	-9.32982282184657	FALSE
+stress	set2IT011	Cadmium chloride hemipentahydrate	LRK54_RS17535	LRK54_RS17535		cation transporter	-1.09321463745399	-6.27267321723927	FALSE
+stress	set2IT058	Cadmium chloride hemipentahydrate	LRK54_RS17545	LRK54_RS17545		cation diffusion facilitator family transporter	1.06262085150653	7.81306520597153	FALSE
+stress	set2IT010	Cadmium chloride hemipentahydrate	LRK54_RS17545	LRK54_RS17545		cation diffusion facilitator family transporter	1.30217343716322	10.1353246300394	FALSE
+stress	set2IT058	Cadmium chloride hemipentahydrate	LRK54_RS17550	LRK54_RS17550		P-II family nitrogen regulator	-2.68784189255083	-5.68972531452377	FALSE
+stress	set2IT010	Cadmium chloride hemipentahydrate	LRK54_RS17550	LRK54_RS17550		P-II family nitrogen regulator	-2.35922683744559	-5.05234384013747	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS00940	LRK54_RS00940		cupin domain-containing protein	1.21128782275521	8.75561855810738	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS00975	LRK54_RS00975		twitching motility response regulator PilH	2.20123102450908	10.6081350696819	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS02040	LRK54_RS02040		transcription-repair coupling factor	2.08652067663886	18.522309817349	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS02640	LRK54_RS02640		DEAD/DEAH box helicase	-1.83727512969493	-7.40468510340454	FALSE
+stress	set4IT037	Calcium chloride dihydrate	LRK54_RS02640	LRK54_RS02640		DEAD/DEAH box helicase	-1.45592836472252	-6.24624862892673	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS02885	LRK54_RS02885		RNA polymerase-associated protein RapA	-1.3112561159835	-9.8520270912374	FALSE
+stress	set4IT037	Calcium chloride dihydrate	LRK54_RS04250	LRK54_RS04250		PilT/PilU family type 4a pilus ATPase	1.95121789723391	13.1846241719682	FALSE
+stress	set4IT049	Calcium chloride dihydrate	LRK54_RS04250	LRK54_RS04250		PilT/PilU family type 4a pilus ATPase	2.11903951285094	14.9967024524303	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS05515	LRK54_RS05515		adenylyl-sulfate kinase	1.52000542795298	14.3605149522945	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS05520	LRK54_RS05520		sulfate adenylyltransferase subunit CysD	1.42158067099498	11.61945159784	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS05590	LRK54_RS05590		glycosyltransferase family 2 protein	-1.11113096420847	-8.82396688390489	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS05995	LRK54_RS05995		tRNA dihydrouridine(20/20a) synthase DusA	1.94827614622421	16.6840643295861	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS06835	LRK54_RS06835		DUF2782 domain-containing protein	-1.92942989914064	-15.8684624432279	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS07110	LRK54_RS07110		cytochrome c oxidase subunit 3	-1.37822008935572	-10.4675398300046	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS08465	LRK54_RS08465		tetratricopeptide repeat protein	-1.7551127758357	-16.5542803153651	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS09330	LRK54_RS09330		RNA pyrophosphohydrolase	-1.47806901114534	-8.1952347184125	FALSE
+stress	set4IT049	Calcium chloride dihydrate	LRK54_RS10090	LRK54_RS10090		glycosyltransferase family 2 protein	2.29820603227197	18.6486253835406	FALSE
+stress	set4IT037	Calcium chloride dihydrate	LRK54_RS10090	LRK54_RS10090		glycosyltransferase family 2 protein	2.35025671479261	19.2304260924285	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS11120	LRK54_RS11120		tetratricopeptide repeat-containing sulfotransferase family protein	1.91512767268493	17.2833799562731	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS14100	LRK54_RS14100		cytochrome b	-1.43501647040583	-10.0981472822766	FALSE
+stress	set4IT019	Calcium chloride dihydrate	LRK54_RS17955	LRK54_RS17955		response regulator transcription factor	1.29696822819996	11.655305345974	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS01625	LRK54_RS01625		30S ribosomal protein THX	-1.99980449000184	-6.4598914838628	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS01735	LRK54_RS01735		50S ribosomal protein L3 N(5)-glutamine methyltransferase	1.62713784846065	10.7873325647066	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS01735	LRK54_RS01735		50S ribosomal protein L3 N(5)-glutamine methyltransferase	2.01559881395749	13.6786736426881	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS01780	LRK54_RS01780		30S ribosomal protein S12 methylthiotransferase RimO	-1.29561301070474	-7.95568972091053	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS01780	LRK54_RS01780		30S ribosomal protein S12 methylthiotransferase RimO	-1.21893098137456	-7.85486027931265	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS01820	LRK54_RS01820		DeoR/GlpR family DNA-binding transcription regulator	3.12320485941327	17.8352429126559	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS01820	LRK54_RS01820		DeoR/GlpR family DNA-binding transcription regulator	3.71571003899533	24.6074463684491	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS01825	LRK54_RS01825		HAD family phosphatase	2.35373858227842	11.9791205155984	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS01825	LRK54_RS01825		HAD family phosphatase	2.57112210981595	12.5828711346711	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS02105	LRK54_RS02105		acyl-CoA dehydrogenase family protein	-1.60759522692787	-9.72594153074463	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS02105	LRK54_RS02105		acyl-CoA dehydrogenase family protein	-1.46726290587811	-8.89101599598632	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS02330	LRK54_RS02330		elongation factor P-like protein YeiP	-1.47896365454206	-10.6384261673548	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS02330	LRK54_RS02330		elongation factor P-like protein YeiP	-1.20743544475511	-9.04663444812337	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS03820	LRK54_RS03820		hypothetical protein	-1.00734236080346	-5.27904333725652	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS05220	LRK54_RS05220		MFS transporter	-2.01943824313793	-6.68266739301134	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS05220	LRK54_RS05220		MFS transporter	-1.78865135877269	-7.21054101534292	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS05585	LRK54_RS05585		DegT/DnrJ/EryC1/StrS family aminotransferase	-1.80210140741649	-14.2312020561761	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS05585	LRK54_RS05585		DegT/DnrJ/EryC1/StrS family aminotransferase	-1.27699418825215	-10.4998634865455	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS05590	LRK54_RS05590		glycosyltransferase family 2 protein	-1.81916073976898	-13.4664043101559	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS05590	LRK54_RS05590		glycosyltransferase family 2 protein	-1.1337028733603	-8.5542054101883	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS05595	LRK54_RS05595		WxcM-like domain-containing protein	-1.59176249708757	-12.5766284931692	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS06125	LRK54_RS06125		ferredoxin--NADP reductase	-1.2840374764567	-9.37053372985167	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS09955	LRK54_RS09955		TatD family hydrolase	-1.07762547675008	-6.35704335564469	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS10145	LRK54_RS10145		DNA-processing protein DprA	1.04866941731567	5.3647580079875	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS12125	LRK54_RS12125		ATP-binding cassette domain-containing protein	-2.75107011855847	-12.6559374719615	FALSE
+stress	set4IT046	Cesium chloride	LRK54_RS12125	LRK54_RS12125		ATP-binding cassette domain-containing protein	-1.9387537326904	-10.1404128284972	FALSE
+stress	set4IT016	Cesium chloride	LRK54_RS13845	LRK54_RS13845		TonB-dependent receptor	1.27566566251996	12.4750871917575	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS01385	LRK54_RS01385		metalloregulator ArsR/SmtB family transcription factor	1.14047566011828	6.93695574340781	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS02040	LRK54_RS02040		transcription-repair coupling factor	4.34580846482496	36.8263824705734	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS02095	LRK54_RS02095		efflux RND transporter periplasmic adaptor subunit	1.62374154488424	14.4200416439159	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS02100	LRK54_RS02100		multidrug efflux RND transporter permease subunit	1.65115992907186	14.7474132831725	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS02910	LRK54_RS02910		M20 family metallopeptidase	1.09782297885917	9.93565807274957	FALSE
+stress	set2IT030	Chromium(III) Chloride Hexahydrate	LRK54_RS02920	LRK54_RS02920		SET domain-containing protein	-1.03923916464669	-7.36568553332713	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS03005	LRK54_RS03005		GNAT family N-acetyltransferase	2.02872600575623	16.4508635914016	FALSE
+stress	set2IT078	Chromium(III) Chloride Hexahydrate	LRK54_RS04385	LRK54_RS04385		ATP-binding protein	1.50065991017088	12.7835834922797	FALSE
+stress	set2IT078	Chromium(III) Chloride Hexahydrate	LRK54_RS04395	LRK54_RS04395		sigma-54 dependent transcriptional regulator	1.53949833998135	12.4753257767175	FALSE
+stress	set2IT078	Chromium(III) Chloride Hexahydrate	LRK54_RS05235	LRK54_RS05235		cytochrome b	-1.28667489726831	-6.48235903296627	FALSE
+stress	set2IT078	Chromium(III) Chloride Hexahydrate	LRK54_RS05455	LRK54_RS05455		monofunctional biosynthetic peptidoglycan transglycosylase	-1.0896065171472	-8.21905291017297	FALSE
+stress	set2IT030	Chromium(III) Chloride Hexahydrate	LRK54_RS05455	LRK54_RS05455		monofunctional biosynthetic peptidoglycan transglycosylase	-1.03964751941189	-7.50591606191669	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS05515	LRK54_RS05515		adenylyl-sulfate kinase	2.54033629745985	23.3980548390397	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS05520	LRK54_RS05520		sulfate adenylyltransferase subunit CysD	2.3315764442239	18.7566293154918	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS05970	LRK54_RS05970		hypothetical protein	3.38186102698893	16.8706714052505	FALSE
+stress	set2IT078	Chromium(III) Chloride Hexahydrate	LRK54_RS06740	LRK54_RS06740		malonic semialdehyde reductase	-1.76882266807224	-9.39215236445692	FALSE
+stress	set2IT030	Chromium(III) Chloride Hexahydrate	LRK54_RS07080	LRK54_RS07080		hypothetical protein	1.0880118169208	6.47374925843414	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS07585	LRK54_RS07585		monovalent cation/H+ antiporter subunit D	-1.4808211718906	-6.38255655239324	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS08465	LRK54_RS08465		tetratricopeptide repeat protein	-1.73462853452627	-13.2104363273261	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	1.13427717861285	7.62273828591122	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS10050	LRK54_RS10050		glutaminyl-peptide cyclotransferase	1.2611093223531	9.6700662395715	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS11120	LRK54_RS11120		tetratricopeptide repeat-containing sulfotransferase family protein	2.09886382657911	18.2056750493383	FALSE
+stress	set2IT078	Chromium(III) Chloride Hexahydrate	LRK54_RS11280	LRK54_RS11280		membrane protein	-2.34937539398236	-19.7212778598514	FALSE
+stress	set2IT030	Chromium(III) Chloride Hexahydrate	LRK54_RS11280	LRK54_RS11280		membrane protein	-2.20481479855849	-18.707785187722	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS11900	LRK54_RS11900		efflux RND transporter periplasmic adaptor subunit	2.74922750820389	17.1371256329289	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS11905	LRK54_RS11905		efflux RND transporter permease subunit	2.80031035379027	25.8118598920715	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS11955	LRK54_RS11955		drug/metabolite exporter YedA	-1.02734919278882	-6.08053715813501	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS11965	LRK54_RS11965		Rieske 2Fe-2S domain-containing protein	1.64746386486766	5.28214948567636	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS12150	LRK54_RS12150		TonB-dependent receptor	2.42640273596831	10.6411492756026	FALSE
+stress	set2IT078	Chromium(III) Chloride Hexahydrate	LRK54_RS12740	LRK54_RS12740		penicillin-binding protein 1B	-3.98976609153406	-21.9254410762158	FALSE
+stress	set2IT030	Chromium(III) Chloride Hexahydrate	LRK54_RS12740	LRK54_RS12740		penicillin-binding protein 1B	-3.50316662636285	-22.2470072458077	FALSE
+stress	set2IT079	Chromium(III) Chloride Hexahydrate	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	1.63211878625735	12.7583555646943	FALSE
+stress	set2IT031	Chromium(III) Chloride Hexahydrate	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	1.64420286156999	13.4433390238987	FALSE
+stress	set2IT078	Chromium(III) Chloride Hexahydrate	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	1.7654279392895	13.1452495690844	FALSE
+stress	set2IT030	Chromium(III) Chloride Hexahydrate	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	2.03606589476329	15.5093701773317	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS14475	LRK54_RS14475		sensor histidine kinase	3.63527032498821	25.5671193240155	FALSE
+stress	set2IT030	Chromium(III) Chloride Hexahydrate	LRK54_RS14725	LRK54_RS14725		MetQ/NlpA family ABC transporter substrate-binding protein	-1.11844115531167	-6.10746770944107	FALSE
+stress	set2IT030	Chromium(III) Chloride Hexahydrate	LRK54_RS14730	LRK54_RS14730		ABC transporter permease	-1.08791693823745	-5.56429265360975	FALSE
+stress	set2IT079	Chromium(III) Chloride Hexahydrate	LRK54_RS14730	LRK54_RS14730		ABC transporter permease	-1.08127422445439	-5.50857221285013	FALSE
+stress	set2IT030	Chromium(III) Chloride Hexahydrate	LRK54_RS14735	LRK54_RS14735		methionine ABC transporter ATP-binding protein	-1.22776637876861	-6.36895443512404	FALSE
+stress	set4IT032	Chromium(III) Chloride Hexahydrate	LRK54_RS15920	LRK54_RS15920		oligopeptide transporter, OPT family	1.86745657476464	15.5892136837385	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS01625	LRK54_RS01625		30S ribosomal protein THX	2.20207739550569	11.1490999421075	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS01625	LRK54_RS01625		30S ribosomal protein THX	2.41566315978762	11.3462431395472	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS02100	LRK54_RS02100		multidrug efflux RND transporter permease subunit	1.24454908839882	11.0006251451419	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS02100	LRK54_RS02100		multidrug efflux RND transporter permease subunit	1.28611889251792	11.3718092298987	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS05575	LRK54_RS05575		class I SAM-dependent methyltransferase	1.67452820840621	11.3986304701795	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS05575	LRK54_RS05575		class I SAM-dependent methyltransferase	1.68249494914808	11.3067281911961	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS06740	LRK54_RS06740		malonic semialdehyde reductase	1.46640381074259	9.0149683121469	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS06740	LRK54_RS06740		malonic semialdehyde reductase	1.48950997223283	8.88028130850053	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	2.74596021828926	20.0584044920279	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	2.75378971957577	20.4287873147357	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS09840	LRK54_RS09840		efflux RND transporter periplasmic adaptor subunit	1.26693848680635	10.4668742712326	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS09840	LRK54_RS09840		efflux RND transporter periplasmic adaptor subunit	1.26893077680796	10.4353868905778	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS12600	LRK54_RS12600		amino acid permease	1.48628238575917	12.4447006979558	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS12600	LRK54_RS12600		amino acid permease	1.6220887996439	13.67584823671	FALSE
+stress	set2IT061	Cobalt chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-4.78577034336263	-12.7511468965093	TRUE
+stress	set2IT062	Cobalt chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-4.56275868806858	-13.7639352375854	TRUE
+stress	set2IT014	Cobalt chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-4.29847393273431	-14.501043803493	TRUE
+stress	set2IT013	Cobalt chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-4.27812921061452	-13.443241491894	TRUE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS13320	LRK54_RS13320		oxidative damage protection protein	1.51220532671993	8.27909259880864	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS13320	LRK54_RS13320		oxidative damage protection protein	1.75499652113547	9.27488034836404	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	2.79785296433787	20.7075892185954	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS13700	LRK54_RS13700		magnesium and cobalt transport protein CorA	2.85528045001295	20.1027542219259	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS14475	LRK54_RS14475		sensor histidine kinase	1.39150482319355	10.7943265818874	FALSE
+stress	set2IT061	Cobalt chloride hexahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	1.2838456583154	6.50620836482329	TRUE
+stress	set2IT013	Cobalt chloride hexahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	1.4540522935779	7.46757226704955	TRUE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	6.68685511212094	30.6703888628577	TRUE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	6.86441835847457	29.4155191947824	TRUE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS17550	LRK54_RS17550		P-II family nitrogen regulator	2.09546215511307	5.18583294029874	FALSE
+stress	set3IT072	Cobalt chloride hexahydrate	LRK54_RS17990	LRK54_RS17990		2OG-Fe(II) oxygenase	1.50445349322821	9.82238916433699	FALSE
+stress	set3IT062	Cobalt chloride hexahydrate	LRK54_RS17990	LRK54_RS17990		2OG-Fe(II) oxygenase	1.51174498282763	8.84709855130523	FALSE
+stress	set2IT077	FW104 filtrate	LRK54_RS14415	LRK54_RS14415		fluoride efflux transporter CrcB	-1.25881177604561	-7.30064858522409	FALSE
+stress	set2IT029	FW104 filtrate	LRK54_RS14415	LRK54_RS14415		fluoride efflux transporter CrcB	-1.09202211455202	-6.07740267365093	FALSE
+stress	set4IT034	Ferric chloride	LRK54_RS04250	LRK54_RS04250		PilT/PilU family type 4a pilus ATPase	-1.72015338447244	-10.5848954813594	FALSE
+stress	set4IT034	Ferric chloride	LRK54_RS06985	LRK54_RS06985		spore coat U domain-containing protein	1.61598706297893	13.4001372881403	FALSE
+stress	set4IT034	Ferric chloride	LRK54_RS06990	LRK54_RS06990		molecular chaperone	1.38424015107173	12.2496703670186	FALSE
+stress	set4IT034	Ferric chloride	LRK54_RS06995	LRK54_RS06995		fimbria/pilus outer membrane usher protein	1.40319960537286	13.1957394061699	FALSE
+stress	set4IT034	Ferric chloride	LRK54_RS07000	LRK54_RS07000		spore coat U domain-containing protein	1.28616071672269	12.1671352914287	FALSE
+stress	set4IT034	Ferric chloride	LRK54_RS17165	LRK54_RS17165		glycosyltransferase	-1.49338833015669	-12.1863378678177	FALSE
+stress	set4IT006	Gallium(III)chloride	LRK54_RS00125	LRK54_RS00125		hypothetical protein	-1.70796019277085	-14.4855735436011	FALSE
+stress	set4IT006	Gallium(III)chloride	LRK54_RS00130	LRK54_RS00130		cupredoxin domain-containing protein	-1.74956491647743	-12.8337128377909	FALSE
+stress	set4IT036	Gallium(III)chloride	LRK54_RS00130	LRK54_RS00130		cupredoxin domain-containing protein	-1.0123572278526	-7.7753889004909	FALSE
+stress	set4IT036	Gallium(III)chloride	LRK54_RS04250	LRK54_RS04250		PilT/PilU family type 4a pilus ATPase	-1.8276467758392	-10.7045839193835	FALSE
+stress	set4IT036	Gallium(III)chloride	LRK54_RS05385	LRK54_RS05385		CPBP family intramembrane metalloprotease	-1.35131042609321	-7.63122809708402	FALSE
+stress	set4IT036	Gallium(III)chloride	LRK54_RS07725	LRK54_RS07725		membrane protein	-1.52721707639308	-10.9076710492565	FALSE
+stress	set4IT036	Gallium(III)chloride	LRK54_RS09095	LRK54_RS09095		hypothetical protein	-1.37836096137463	-9.96293701210046	FALSE
+stress	set4IT036	Gallium(III)chloride	LRK54_RS11140	LRK54_RS11140		Grx4 family monothiol glutaredoxin	-1.77045380090006	-10.7725027863908	FALSE
+stress	set4IT006	Gallium(III)chloride	LRK54_RS11140	LRK54_RS11140		Grx4 family monothiol glutaredoxin	-1.36911908215875	-9.29675547891588	FALSE
+stress	set4IT006	Gallium(III)chloride	LRK54_RS15235	LRK54_RS15235		cupredoxin domain-containing protein	-1.16624630263534	-6.71041265692901	FALSE
+stress	set4IT006	Gallium(III)chloride	LRK54_RS15240	LRK54_RS15240		FTR1 family protein	-1.63956246505658	-8.60117256654333	FALSE
+stress	set4IT036	Gallium(III)chloride	LRK54_RS15240	LRK54_RS15240		FTR1 family protein	-1.41196985108987	-6.95252322719416	FALSE
+stress	set4IT036	Gallium(III)chloride	LRK54_RS15570	LRK54_RS15570		MFS transporter	-1.90522095162468	-7.77434170927505	FALSE
+stress	set4IT006	Gallium(III)chloride	LRK54_RS15570	LRK54_RS15570		MFS transporter	-1.6736825971696	-7.06993579773832	FALSE
+stress	set4IT036	Gallium(III)chloride	LRK54_RS17530	LRK54_RS17530		FTR1 family protein	1.02194818748006	9.20342429039634	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS00700	LRK54_RS00700		dicarboxylate/amino acid:cation symporter	1.33384807083464	9.82402577338223	FALSE
+stress	set4IT051	Lithium chloride	LRK54_RS02105	LRK54_RS02105		acyl-CoA dehydrogenase family protein	-1.10418475840388	-7.27573093669881	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS05220	LRK54_RS05220		MFS transporter	-2.00255842039243	-8.25205480321597	FALSE
+stress	set4IT051	Lithium chloride	LRK54_RS05385	LRK54_RS05385		CPBP family intramembrane metalloprotease	1.21613676180986	8.52934040884096	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS05385	LRK54_RS05385		CPBP family intramembrane metalloprotease	1.23878339021986	8.03704421663043	FALSE
+stress	set4IT051	Lithium chloride	LRK54_RS07105	LRK54_RS07105		twin transmembrane helix small protein	-1.57426844775061	-7.36995669639731	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS07105	LRK54_RS07105		twin transmembrane helix small protein	-1.45220019618491	-6.77211676303678	FALSE
+stress	set4IT051	Lithium chloride	LRK54_RS10190	LRK54_RS10190		tRNA uridine-5-carboxymethylaminomethyl(34) synthesis enzyme MnmG	1.18369786343796	9.95846486680701	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS10190	LRK54_RS10190		tRNA uridine-5-carboxymethylaminomethyl(34) synthesis enzyme MnmG	1.20400085489559	10.0560590435845	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS14830	LRK54_RS14830		molecular chaperone HtpG	-1.63465485173992	-12.4466290295897	FALSE
+stress	set4IT051	Lithium chloride	LRK54_RS14830	LRK54_RS14830		molecular chaperone HtpG	-1.42826893750552	-11.6040201085734	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-1.63435597866929	-13.5386027557423	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS17410	LRK54_RS17410		phosphoketolase family protein	1.24271278749392	9.18139008083246	FALSE
+stress	set4IT051	Lithium chloride	LRK54_RS17415	LRK54_RS17415		acetate/propionate family kinase	1.17459734300317	8.38150561325837	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS17415	LRK54_RS17415		acetate/propionate family kinase	1.52322336801898	9.8086408367256	FALSE
+stress	set4IT051	Lithium chloride	LRK54_RS17420	LRK54_RS17420		bifunctional enoyl-CoA hydratase/phosphate acetyltransferase	1.2097044541572	5.41716386898113	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS17420	LRK54_RS17420		bifunctional enoyl-CoA hydratase/phosphate acetyltransferase	1.56089801160718	5.87657882812566	FALSE
+stress	set4IT021	Lithium chloride	LRK54_RS17465	LRK54_RS17465		exodeoxyribonuclease I	-1.04820897305123	-6.63562909184403	FALSE
+stress	set4IT010	Magnesium sulfate	LRK54_RS01010	LRK54_RS01010		S-methyl-5-thioribose-1-phosphate isomerase	-1.47817133921792	-7.26608663369563	FALSE
+stress	set4IT010	Magnesium sulfate	LRK54_RS02925	LRK54_RS02925		GNAT family N-acetyltransferase	-1.41241156792143	-7.58462523908039	FALSE
+stress	set4IT040	Magnesium sulfate	LRK54_RS05220	LRK54_RS05220		MFS transporter	-1.55096608225152	-6.55788578513641	FALSE
+stress	set4IT040	Magnesium sulfate	LRK54_RS16870	LRK54_RS16870		phosphoenolpyruvate synthase	-1.32703676348791	-11.6008459103436	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS00940	LRK54_RS00940		cupin domain-containing protein	1.53036643445681	11.975257383088	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS00940	LRK54_RS00940		cupin domain-containing protein	1.72295064230039	13.6103490394884	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS01625	LRK54_RS01625		30S ribosomal protein THX	1.52577964296248	8.58832826454026	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS01625	LRK54_RS01625		30S ribosomal protein THX	2.23842722246576	15.2761176151927	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS02040	LRK54_RS02040		transcription-repair coupling factor	1.27654825374647	11.3473171262662	FALSE
+stress	set1IT036	Manganese (II) chloride tetrahydrate	LRK54_RS02040	LRK54_RS02040		transcription-repair coupling factor	1.76588593820244	16.4816121854262	FALSE
+stress	set1IT011	Manganese (II) chloride tetrahydrate	LRK54_RS02080	LRK54_RS02080		5'-nucleotidase	-1.06631598423132	-6.16363428765511	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS02105	LRK54_RS02105		acyl-CoA dehydrogenase family protein	1.21916685897054	10.1066485942493	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS02105	LRK54_RS02105		acyl-CoA dehydrogenase family protein	1.66275879840184	13.7317410567042	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS02110	LRK54_RS02110		metalloregulator ArsR/SmtB family transcription factor	-1.39936648542417	-6.47266396530823	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS03005	LRK54_RS03005		GNAT family N-acetyltransferase	-1.66935614727857	-11.854131446664	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS05355	LRK54_RS05355		M20/M25/M40 family metallo-hydrolase	1.04035112666923	6.95813929810389	FALSE
+stress	set1IT036	Manganese (II) chloride tetrahydrate	LRK54_RS05355	LRK54_RS05355		M20/M25/M40 family metallo-hydrolase	1.04923205264178	8.14118287000023	FALSE
+stress	set1IT035	Manganese (II) chloride tetrahydrate	LRK54_RS05355	LRK54_RS05355		M20/M25/M40 family metallo-hydrolase	1.08157138905894	8.21047036560397	FALSE
+stress	set1IT011	Manganese (II) chloride tetrahydrate	LRK54_RS05355	LRK54_RS05355		M20/M25/M40 family metallo-hydrolase	1.15854938282231	9.00105444502104	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS05455	LRK54_RS05455		monofunctional biosynthetic peptidoglycan transglycosylase	-1.8204730984853	-12.7928722544963	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS05455	LRK54_RS05455		monofunctional biosynthetic peptidoglycan transglycosylase	-1.73811858476918	-11.8156220519226	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS05575	LRK54_RS05575		class I SAM-dependent methyltransferase	1.70746185899746	12.9849629417874	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS08225	LRK54_RS08225		AI-2E family transporter	-1.205794448444	-7.39427990751233	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS09755	LRK54_RS09755		3-oxoacyl-ACP reductase	-1.22612978183478	-6.39392550185803	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS09820	LRK54_RS09820		cell division protein ZapE	1.38274584443478	12.0194872325799	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS10175	LRK54_RS10175		autotransporter domain-containing protein	1.68482951820467	15.7803783512974	FALSE
+stress	set1IT010	Manganese (II) chloride tetrahydrate	LRK54_RS10175	LRK54_RS10175		autotransporter domain-containing protein	2.11165869632846	20.4383876540616	FALSE
+stress	set1IT036	Manganese (II) chloride tetrahydrate	LRK54_RS10175	LRK54_RS10175		autotransporter domain-containing protein	2.74827854426526	26.4892624196917	FALSE
+stress	set1IT035	Manganese (II) chloride tetrahydrate	LRK54_RS10865	LRK54_RS10865		DEAD/DEAH box helicase	-1.84077893993023	-13.4616148732547	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS10865	LRK54_RS10865		DEAD/DEAH box helicase	-1.76181816365871	-11.2156430660789	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS10865	LRK54_RS10865		DEAD/DEAH box helicase	-1.67207531567075	-10.7218234890927	FALSE
+stress	set1IT011	Manganese (II) chloride tetrahydrate	LRK54_RS10865	LRK54_RS10865		DEAD/DEAH box helicase	-1.58799540555392	-11.3998871423631	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS11680	LRK54_RS11680		cell division protein ZapA	1.4315549627637	6.7338718787621	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS11695	LRK54_RS11695		aminopeptidase P N-terminal domain-containing protein	1.52610347979519	13.5743093884726	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS12740	LRK54_RS12740		penicillin-binding protein 1B	-1.88243905719391	-13.9577246995843	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS12740	LRK54_RS12740		penicillin-binding protein 1B	-1.55892984217802	-11.0712307596674	FALSE
+stress	set1IT035	Manganese (II) chloride tetrahydrate	LRK54_RS12870	LRK54_RS12870		ribosome-associated translation inhibitor RaiA	-1.28295165453366	-10.9775375318458	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS14100	LRK54_RS14100		cytochrome b	-1.25043009579264	-7.88840471504998	FALSE
+stress	set1IT036	Manganese (II) chloride tetrahydrate	LRK54_RS14475	LRK54_RS14475		sensor histidine kinase	1.46515698721486	13.4380255509984	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS15070	LRK54_RS15070		PhoH family protein	-1.12529822401558	-6.24739954797903	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS15240	LRK54_RS15240		FTR1 family protein	-1.38294526551657	-7.31085151309543	FALSE
+stress	set1IT036	Manganese (II) chloride tetrahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	1.83880186623631	8.77196374504399	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	2.23533358226556	10.6889141218803	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	3.32667930339556	15.7795493124336	FALSE
+stress	set2IT052	Manganese (II) chloride tetrahydrate	LRK54_RS17890	LRK54_RS17890		Rne/Rng family ribonuclease	-1.43759277022932	-6.75718714506078	FALSE
+stress	set2IT004	Manganese (II) chloride tetrahydrate	LRK54_RS17990	LRK54_RS17990		2OG-Fe(II) oxygenase	1.09392127903516	7.77627576622839	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS00975	LRK54_RS00975		twitching motility response regulator PilH	1.93349848243276	5.72788209436686	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS01845	LRK54_RS01845		RnfABCDGE type electron transport complex subunit B	-1.24515077607614	-5.20534971782914	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS02330	LRK54_RS02330		elongation factor P-like protein YeiP	1.05892103330804	6.74326849065597	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS02570	LRK54_RS02570		SDR family oxidoreductase	-1.9882919472662	-11.4060415057106	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS02680	LRK54_RS02680		CPBP family intramembrane metalloprotease	-1.39397510946693	-5.96201058139127	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS02885	LRK54_RS02885		RNA polymerase-associated protein RapA	1.31996298629604	9.33955039364272	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS02885	LRK54_RS02885		RNA polymerase-associated protein RapA	2.37865130340996	15.797210122889	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS03985	LRK54_RS03985		TIGR00266 family protein	2.05969865271548	7.10170295468606	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS04090	LRK54_RS04090		response regulator transcription factor	-1.17727816007943	-7.60932549985369	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS04325	LRK54_RS04325		DUF3147 family protein	-1.39760002541244	-5.97932177518564	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS04435	LRK54_RS04435		ABC transporter permease	1.11943506271248	6.16397200827744	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS04865	LRK54_RS04865		tol-pal system protein YbgF	-1.27768476593871	-6.95014755056412	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS04955	LRK54_RS04955		ATP-dependent chaperone ClpB	1.33773958950739	8.77373978782898	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS05995	LRK54_RS05995		tRNA dihydrouridine(20/20a) synthase DusA	2.73819654586602	16.258034532333	TRUE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS06310	LRK54_RS06310		M14 family metallocarboxypeptidase	-1.59093459697019	-7.59481479227069	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS06750	LRK54_RS06750		bifunctional [glutamate--ammonia ligase]-adenylyl-L-tyrosine phosphorylase/[glutamate--ammonia-ligase] adenylyltransferase	1.34688998426524	9.17992413680791	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS07105	LRK54_RS07105		twin transmembrane helix small protein	-1.39391343828097	-5.23322771523727	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS07110	LRK54_RS07110		cytochrome c oxidase subunit 3	-1.59088302039405	-9.72782100291918	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS07110	LRK54_RS07110		cytochrome c oxidase subunit 3	-1.51350703899482	-9.73571972287385	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS08240	LRK54_RS08240		DUF883 family protein	-1.59470971784696	-5.90800412536988	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS08425	LRK54_RS08425		response regulator transcription factor	1.84941748828274	10.3364667393565	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS08430	LRK54_RS08430		hybrid sensor histidine kinase/response regulator	2.05127223326667	17.7669104139292	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS08510	LRK54_RS08510		ribokinase	1.60367361572948	7.01503757350181	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS08765	LRK54_RS08765		HAD family hydrolase	1.79444612113494	9.85844757443735	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS08770	LRK54_RS08770		glucose-6-phosphate dehydrogenase	1.11556208264806	8.15934737359825	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS09645	LRK54_RS09645		Hg(II)-responsive transcriptional regulator	-1.52072723642492	-7.04637855037931	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS09840	LRK54_RS09840		efflux RND transporter periplasmic adaptor subunit	-1.4657559703474	-10.0773579329136	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS09845	LRK54_RS09845		efflux RND transporter permease subunit	-1.75675036592908	-12.9558336591792	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS09845	LRK54_RS09845		efflux RND transporter permease subunit	-1.58452636717237	-11.8139934998544	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS09930	LRK54_RS09930		LysR substrate-binding domain-containing protein	-1.3442028465496	-6.04153993195384	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS11800	LRK54_RS11800		RidA family protein	-1.46919790868232	-8.27769226634224	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-2.42971883117306	-9.29757305385026	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-2.30843674553371	-9.88402197033058	FALSE
+stress	set2IT016	Nickel (II) chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-1.78561454789686	-10.3709995411198	FALSE
+stress	set2IT064	Nickel (II) chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-1.58964744015564	-9.96398119530304	FALSE
+stress	set3IT073	Nickel (II) chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-1.23655143948419	-8.21795587426647	FALSE
+stress	set3IT063	Nickel (II) chloride hexahydrate	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-1.09723351911023	-7.71838553920123	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS12870	LRK54_RS12870		ribosome-associated translation inhibitor RaiA	-2.3120843077871	-16.331284995761	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS13750	LRK54_RS13750		tRNA (N6-isopentenyl adenosine(37)-C2)-methylthiotransferase MiaB	-1.38986053908932	-6.96245208830108	TRUE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS14330	LRK54_RS14330		8-oxo-dGTP diphosphatase	-1.19627678822207	-5.27960169211324	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS14420	LRK54_RS14420		multidrug effflux MFS transporter	-1.04195407240101	-5.54859611864445	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS15285	LRK54_RS15285		Glu/Leu/Phe/Val dehydrogenase	-1.26422835107304	-9.98304918204719	FALSE
+stress	set3IT063	Nickel (II) chloride hexahydrate	LRK54_RS15920	LRK54_RS15920		oligopeptide transporter, OPT family	-2.80600967897362	-17.95921413523	FALSE
+stress	set3IT073	Nickel (II) chloride hexahydrate	LRK54_RS15920	LRK54_RS15920		oligopeptide transporter, OPT family	-2.67650599465603	-17.2532710192805	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS15920	LRK54_RS15920		oligopeptide transporter, OPT family	-1.2504568973945	-8.16465837092542	FALSE
+stress	set1IT054	Nickel (II) chloride hexahydrate	LRK54_RS16535	LRK54_RS16535		VIT family protein	-2.20432228514565	-6.67642264198733	FALSE
+stress	set1IT052	Nickel (II) chloride hexahydrate	LRK54_RS16535	LRK54_RS16535		VIT family protein	-2.12994215272059	-8.73323616039695	FALSE
+stress	set3IT073	Nickel (II) chloride hexahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	5.07178404298986	16.4061463963772	TRUE
+stress	set3IT063	Nickel (II) chloride hexahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	5.24167603158182	19.1151136882567	TRUE
+stress	set4IT039	Potassium Chloride	LRK54_RS06160	LRK54_RS06160		FAD/NAD(P)-binding protein	-1.25963536763707	-7.80653780092566	FALSE
+stress	set4IT039	Potassium Chloride	LRK54_RS07575	LRK54_RS07575		K+/H+ antiporter subunit F	-3.71954407176746	-8.2694800401455	FALSE
+stress	set4IT009	Potassium Chloride	LRK54_RS07575	LRK54_RS07575		K+/H+ antiporter subunit F	-3.64169276194406	-6.53608170616893	FALSE
+stress	set4IT009	Potassium Chloride	LRK54_RS07580	LRK54_RS07580		Na+/H+ antiporter subunit E	-4.84702971502135	-6.63284320101296	FALSE
+stress	set4IT039	Potassium Chloride	LRK54_RS07580	LRK54_RS07580		Na+/H+ antiporter subunit E	-4.33008258810671	-8.27458414373681	FALSE
+stress	set4IT039	Potassium Chloride	LRK54_RS07585	LRK54_RS07585		monovalent cation/H+ antiporter subunit D	-4.58835215388172	-18.5424383514608	FALSE
+stress	set4IT009	Potassium Chloride	LRK54_RS07585	LRK54_RS07585		monovalent cation/H+ antiporter subunit D	-4.14399302507195	-18.4417283969053	FALSE
+stress	set4IT039	Potassium Chloride	LRK54_RS07595	LRK54_RS07595		monovalent cation/H+ antiporter subunit A	-4.29931853311267	-20.1263923974203	FALSE
+stress	set4IT009	Potassium Chloride	LRK54_RS07595	LRK54_RS07595		monovalent cation/H+ antiporter subunit A	-4.03385297900644	-19.2470933531142	FALSE
+stress	set4IT039	Potassium Chloride	LRK54_RS11680	LRK54_RS11680		cell division protein ZapA	-1.66516499336353	-6.64050385084511	FALSE
+stress	set4IT039	Potassium Chloride	LRK54_RS11695	LRK54_RS11695		aminopeptidase P N-terminal domain-containing protein	-1.68201157456449	-13.1293883303246	FALSE
+stress	set2IT033	Potassium chromate	LRK54_RS00935	LRK54_RS00935		sulfite exporter TauE/SafE family protein	14.0377215800422	106.002410443425	FALSE
+stress	set2IT081	Potassium chromate	LRK54_RS00935	LRK54_RS00935		sulfite exporter TauE/SafE family protein	14.3030164169522	107.187024197494	FALSE
+stress	set2IT081	Potassium chromate	LRK54_RS08345	LRK54_RS08345		YafY family transcriptional regulator	1.41660228222017	8.07563834928975	FALSE
+stress	set2IT033	Potassium chromate	LRK54_RS08345	LRK54_RS08345		YafY family transcriptional regulator	1.577490890988	7.35930102967597	FALSE
+stress	set2IT081	Potassium chromate	LRK54_RS16520	LRK54_RS16520		4-oxalocrotonate tautomerase family protein	1.51530289840921	5.13129458639622	FALSE
+stress	set1IT037	Selective_ion_mix_1	LRK54_RS05515	LRK54_RS05515		adenylyl-sulfate kinase	1.53943791535896	14.4624855156042	FALSE
+stress	set1IT038	Selective_ion_mix_1	LRK54_RS05515	LRK54_RS05515		adenylyl-sulfate kinase	1.81521032009073	17.1981943039134	FALSE
+stress	set1IT037	Selective_ion_mix_1	LRK54_RS05520	LRK54_RS05520		sulfate adenylyltransferase subunit CysD	1.5432319075381	12.9389750584142	FALSE
+stress	set1IT038	Selective_ion_mix_1	LRK54_RS05520	LRK54_RS05520		sulfate adenylyltransferase subunit CysD	1.85071361937637	15.7551285543224	FALSE
+stress	set1IT044	Selective_ion_mix_1	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	1.02871761838133	7.42101602669024	FALSE
+stress	set1IT039	Selective_ion_mix_1	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	1.22930689329625	9.49243194456866	FALSE
+stress	set1IT038	Selective_ion_mix_1	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	1.28202742956665	10.0355067738618	FALSE
+stress	set1IT037	Selective_ion_mix_1	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	1.43258485948086	11.0823776317481	FALSE
+stress	set1IT044	Selective_ion_mix_1	LRK54_RS17170	LRK54_RS17170		hypothetical protein	1.04689801764217	8.73012728920576	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS00560	LRK54_RS00560		hypothetical protein	-1.62493660827173	-6.15132499358266	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS00975	LRK54_RS00975		twitching motility response regulator PilH	-3.33616364386649	-7.38871485877982	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS02925	LRK54_RS02925		GNAT family N-acetyltransferase	-2.19245018697575	-10.391605195487	FALSE
+stress	set4IT011	Sodium Chloride	LRK54_RS02925	LRK54_RS02925		GNAT family N-acetyltransferase	-1.61626690891316	-8.50321213271212	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS05760	LRK54_RS05760		porin family protein	-1.82939035309235	-14.0855539586422	FALSE
+stress	set4IT011	Sodium Chloride	LRK54_RS05760	LRK54_RS05760		porin family protein	-1.43397338138341	-11.7370339650506	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS06160	LRK54_RS06160		FAD/NAD(P)-binding protein	-2.00032244448922	-10.3719130803809	FALSE
+stress	set4IT011	Sodium Chloride	LRK54_RS06160	LRK54_RS06160		FAD/NAD(P)-binding protein	-1.3514455080443	-8.17153277706987	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS10580	LRK54_RS10580		sodium:proton antiporter	-1.11835711609656	-5.97052309841942	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS11355	LRK54_RS11355		beta-agarase	-1.23088329195152	-9.03295403535306	FALSE
+stress	set4IT011	Sodium Chloride	LRK54_RS11355	LRK54_RS11355		beta-agarase	-1.00054164916779	-7.69851984473865	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS11680	LRK54_RS11680		cell division protein ZapA	-2.55434145668769	-6.52531363637843	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS11695	LRK54_RS11695		aminopeptidase P N-terminal domain-containing protein	-2.38813636000627	-16.265341798515	FALSE
+stress	set4IT011	Sodium Chloride	LRK54_RS11695	LRK54_RS11695		aminopeptidase P N-terminal domain-containing protein	-2.13781474099119	-16.0201788173006	FALSE
+stress	set4IT041	Sodium Chloride	LRK54_RS14565	LRK54_RS14565		acyl-CoA thioesterase II	-1.29224785146796	-8.4315326343548	FALSE
+stress	set2IT084	Sodium arsenate dibasic heptahydrate	LRK54_RS00495	LRK54_RS00495		ribonuclease R	-1.36636159631905	-9.00691259153983	FALSE
+stress	set2IT036	Sodium arsenate dibasic heptahydrate	LRK54_RS00495	LRK54_RS00495		ribonuclease R	-1.34921148372869	-9.12659051105225	FALSE
+stress	set2IT035	Sodium arsenate dibasic heptahydrate	LRK54_RS00495	LRK54_RS00495		ribonuclease R	-1.16998925001245	-7.83898179648026	FALSE
+stress	set2IT084	Sodium arsenate dibasic heptahydrate	LRK54_RS01385	LRK54_RS01385		metalloregulator ArsR/SmtB family transcription factor	2.11252301356941	16.6780641949558	FALSE
+stress	set2IT036	Sodium arsenate dibasic heptahydrate	LRK54_RS01385	LRK54_RS01385		metalloregulator ArsR/SmtB family transcription factor	2.15255047705162	18.7866599236222	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS01390	LRK54_RS01390		ACR3 family arsenite efflux transporter	-4.55617137418343	-14.6150846772588	FALSE
+stress	set2IT036	Sodium arsenate dibasic heptahydrate	LRK54_RS01390	LRK54_RS01390		ACR3 family arsenite efflux transporter	-4.37056004956276	-14.7710857707237	FALSE
+stress	set2IT035	Sodium arsenate dibasic heptahydrate	LRK54_RS01390	LRK54_RS01390		ACR3 family arsenite efflux transporter	-4.33904807828565	-16.4084338168001	FALSE
+stress	set2IT084	Sodium arsenate dibasic heptahydrate	LRK54_RS01390	LRK54_RS01390		ACR3 family arsenite efflux transporter	-4.16461349771572	-15.7487964449612	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS07180	LRK54_RS07180		dethiobiotin synthase	1.45905039634706	5.02923023575411	FALSE
+stress	set2IT036	Sodium arsenate dibasic heptahydrate	LRK54_RS09480	LRK54_RS09480		TIGR04282 family arsenosugar biosynthesis glycosyltransferase	-2.10386559700623	-5.61375126938916	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS09480	LRK54_RS09480		TIGR04282 family arsenosugar biosynthesis glycosyltransferase	-2.10161844075901	-6.09687634578829	FALSE
+stress	set2IT036	Sodium arsenate dibasic heptahydrate	LRK54_RS09495	LRK54_RS09495		arsenosugar biosynthesis radical SAM protein ArsS	-2.27044680579948	-9.02398348993128	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS09495	LRK54_RS09495		arsenosugar biosynthesis radical SAM protein ArsS	-1.77763183579933	-7.1538394028841	FALSE
+stress	set2IT084	Sodium arsenate dibasic heptahydrate	LRK54_RS09495	LRK54_RS09495		arsenosugar biosynthesis radical SAM protein ArsS	-1.71983395113146	-7.83180356109307	FALSE
+stress	set2IT035	Sodium arsenate dibasic heptahydrate	LRK54_RS09495	LRK54_RS09495		arsenosugar biosynthesis radical SAM protein ArsS	-1.67849244059748	-6.89343726140089	FALSE
+stress	set2IT084	Sodium arsenate dibasic heptahydrate	LRK54_RS09510	LRK54_RS09510		DoxX family protein	-1.16391745203861	-5.28696299400829	FALSE
+stress	set2IT036	Sodium arsenate dibasic heptahydrate	LRK54_RS09510	LRK54_RS09510		DoxX family protein	-1.07500749182289	-5.2371093781165	FALSE
+stress	set2IT084	Sodium arsenate dibasic heptahydrate	LRK54_RS09515	LRK54_RS09515		DNA-binding domain-containing protein	-1.62429374637323	-7.53786362763213	FALSE
+stress	set2IT036	Sodium arsenate dibasic heptahydrate	LRK54_RS09515	LRK54_RS09515		DNA-binding domain-containing protein	-1.5486112139386	-7.62470991567642	FALSE
+stress	set2IT035	Sodium arsenate dibasic heptahydrate	LRK54_RS09515	LRK54_RS09515		DNA-binding domain-containing protein	-1.13872452260482	-5.9047470684939	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS09515	LRK54_RS09515		DNA-binding domain-containing protein	-1.1341052949469	-6.12428117865049	FALSE
+stress	set2IT084	Sodium arsenate dibasic heptahydrate	LRK54_RS09520	LRK54_RS09520		DUF692 domain-containing protein	-1.11660390878927	-7.41853448128721	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS09740	LRK54_RS09740		acyltransferase	-1.59354325733313	-11.4233427262026	FALSE
+stress	set2IT035	Sodium arsenate dibasic heptahydrate	LRK54_RS09740	LRK54_RS09740		acyltransferase	-1.51443269750469	-11.0787440895637	FALSE
+stress	set2IT035	Sodium arsenate dibasic heptahydrate	LRK54_RS09755	LRK54_RS09755		3-oxoacyl-ACP reductase	-1.49783189203337	-7.16110816548113	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS09755	LRK54_RS09755		3-oxoacyl-ACP reductase	-1.26217093270691	-5.50800513054919	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS09770	LRK54_RS09770		glycosyltransferase family 2 protein	-1.57567564405065	-7.50296405106416	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS09775	LRK54_RS09775		beta-ketoacyl synthase chain length factor	-1.74024928342418	-9.35931564179043	FALSE
+stress	set2IT035	Sodium arsenate dibasic heptahydrate	LRK54_RS09775	LRK54_RS09775		beta-ketoacyl synthase chain length factor	-1.18234894200636	-7.66728904345031	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS09780	LRK54_RS09780		beta-ketoacyl-[acyl-carrier-protein] synthase family protein	-1.78568112558311	-10.3017239736682	FALSE
+stress	set2IT035	Sodium arsenate dibasic heptahydrate	LRK54_RS09780	LRK54_RS09780		beta-ketoacyl-[acyl-carrier-protein] synthase family protein	-1.43801700542787	-8.82342522745927	FALSE
+stress	set2IT083	Sodium arsenate dibasic heptahydrate	LRK54_RS10160	LRK54_RS10160		AMP-binding protein	-1.53431944111479	-11.3221074828279	FALSE
+stress	set2IT035	Sodium arsenate dibasic heptahydrate	LRK54_RS10160	LRK54_RS10160		AMP-binding protein	-1.52929965907604	-11.5815355064927	FALSE
+stress	set2IT084	Sodium arsenate dibasic heptahydrate	LRK54_RS12600	LRK54_RS12600		amino acid permease	-1.53102000668101	-11.8361191521348	FALSE
+stress	set2IT036	Sodium arsenate dibasic heptahydrate	LRK54_RS12600	LRK54_RS12600		amino acid permease	-1.49295829915793	-11.677535404185	FALSE
+stress	set2IT039	Sodium m-arsenite	LRK54_RS01385	LRK54_RS01385		metalloregulator ArsR/SmtB family transcription factor	2.27036504244666	18.9669320151823	FALSE
+stress	set2IT087	Sodium m-arsenite	LRK54_RS01385	LRK54_RS01385		metalloregulator ArsR/SmtB family transcription factor	2.32446744546359	18.2851699686993	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS01385	LRK54_RS01385		metalloregulator ArsR/SmtB family transcription factor	6.50646567872644	53.7250539251169	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS01385	LRK54_RS01385		metalloregulator ArsR/SmtB family transcription factor	6.51040293817864	53.4059402813097	FALSE
+stress	set2IT039	Sodium m-arsenite	LRK54_RS01390	LRK54_RS01390		ACR3 family arsenite efflux transporter	-4.89506391229116	-13.4278071754154	FALSE
+stress	set2IT087	Sodium m-arsenite	LRK54_RS01390	LRK54_RS01390		ACR3 family arsenite efflux transporter	-4.75461746773135	-13.0425440185266	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS01390	LRK54_RS01390		ACR3 family arsenite efflux transporter	-4.55461953189497	-11.0282251731527	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS01390	LRK54_RS01390		ACR3 family arsenite efflux transporter	-4.39005212067787	-14.0822146956195	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS01400	LRK54_RS01400		arsenical resistance protein ArsH	-4.13422143445366	-7.91832329918384	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS02035	LRK54_RS02035		GNAT family N-acetyltransferase	-2.06516504044196	-6.23980161211107	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS02035	LRK54_RS02035		GNAT family N-acetyltransferase	-1.8771976233742	-6.65911630681043	FALSE
+stress	set2IT039	Sodium m-arsenite	LRK54_RS02035	LRK54_RS02035		GNAT family N-acetyltransferase	-1.16470152420505	-5.29314712877867	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS03985	LRK54_RS03985		TIGR00266 family protein	1.57585833511029	8.66362057575107	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS03985	LRK54_RS03985		TIGR00266 family protein	1.59967878144529	9.89881710506165	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS06585	LRK54_RS06585		VOC family protein	-1.43143963074941	-10.0061206161893	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS06585	LRK54_RS06585		VOC family protein	-1.4121479754474	-9.19439500211901	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS08740	LRK54_RS08740		Bax inhibitor-1/YccA family protein	-1.44741457808142	-9.03315151207435	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS09840	LRK54_RS09840		efflux RND transporter periplasmic adaptor subunit	-1.20155415231151	-9.48443377732545	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS09845	LRK54_RS09845		efflux RND transporter permease subunit	-1.65759748830724	-13.1632736451929	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS09845	LRK54_RS09845		efflux RND transporter permease subunit	-1.47941521218512	-11.8151558181321	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS10665	LRK54_RS10665		CDP-diacylglycerol--serine O-phosphatidyltransferase	-1.6022019101989	-12.5671225806555	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS10665	LRK54_RS10665		CDP-diacylglycerol--serine O-phosphatidyltransferase	-1.51115198009268	-11.5167881458863	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS10865	LRK54_RS10865		DEAD/DEAH box helicase	-1.84619022059005	-11.8890116618526	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS10865	LRK54_RS10865		DEAD/DEAH box helicase	-1.47889113272066	-10.21375401878	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS11280	LRK54_RS11280		membrane protein	-1.46131330113317	-12.7140547555131	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS11280	LRK54_RS11280		membrane protein	-1.38967488031912	-12.3668211691774	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS12620	LRK54_RS12620		fumarate hydratase	1.41283041290985	12.1389813546224	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS12620	LRK54_RS12620		fumarate hydratase	1.46601774332296	13.0140025844139	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS13360	LRK54_RS13360		gamma-glutamyltransferase	-1.1043769965849	-8.92356152299829	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS14335	LRK54_RS14335		lipoate--protein ligase family protein	-1.51055027688651	-7.79410685825316	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS14335	LRK54_RS14335		lipoate--protein ligase family protein	-1.1518114958511	-5.78071870231197	FALSE
+stress	set2IT086	Sodium m-arsenite	LRK54_RS14340	LRK54_RS14340		biotin--protein ligase	-1.58846354228739	-9.53614609850315	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS14340	LRK54_RS14340		biotin--protein ligase	-1.54958850914346	-9.73333473825688	FALSE
+stress	set2IT038	Sodium m-arsenite	LRK54_RS15215	LRK54_RS15215		DUF2059 domain-containing protein	1.36604055750768	6.66600225271682	FALSE
+stress	set2IT093	Sodium nitrate	LRK54_RS00935	LRK54_RS00935		sulfite exporter TauE/SafE family protein	-1.56122509822726	-8.75570539326577	FALSE
+stress	set2IT045	Sodium nitrate	LRK54_RS00935	LRK54_RS00935		sulfite exporter TauE/SafE family protein	-1.48735510774148	-8.63602756970048	FALSE
+stress	set2IT045	Sodium nitrate	LRK54_RS03985	LRK54_RS03985		TIGR00266 family protein	1.48441371494578	8.50948454662288	FALSE
+stress	set2IT045	Sodium nitrate	LRK54_RS09740	LRK54_RS09740		acyltransferase	-1.25133836752666	-8.38572463677429	FALSE
+stress	set2IT093	Sodium nitrate	LRK54_RS09740	LRK54_RS09740		acyltransferase	-1.08997859267036	-8.52876161241859	FALSE
+stress	set2IT045	Sodium nitrate	LRK54_RS09760	LRK54_RS09760		3-oxoacyl-ACP reductase FabG	-1.46058869135455	-5.42287542525094	FALSE
+stress	set2IT045	Sodium nitrate	LRK54_RS09775	LRK54_RS09775		beta-ketoacyl synthase chain length factor	-1.42132797318973	-8.07625240717215	FALSE
+stress	set2IT093	Sodium nitrate	LRK54_RS09775	LRK54_RS09775		beta-ketoacyl synthase chain length factor	-1.20014593763476	-7.72680951664122	FALSE
+stress	set2IT093	Sodium nitrate	LRK54_RS09780	LRK54_RS09780		beta-ketoacyl-[acyl-carrier-protein] synthase family protein	-1.22450379766978	-7.98386975157556	FALSE
+stress	set2IT045	Sodium nitrate	LRK54_RS09780	LRK54_RS09780		beta-ketoacyl-[acyl-carrier-protein] synthase family protein	-1.10008169478699	-6.80904525963095	FALSE
+stress	set2IT045	Sodium nitrate	LRK54_RS10160	LRK54_RS10160		AMP-binding protein	-1.10160698451216	-8.28816462578913	FALSE
+stress	set2IT093	Sodium nitrate	LRK54_RS10160	LRK54_RS10160		AMP-binding protein	-1.05462399775624	-7.99550091340067	FALSE
+stress	set2IT047	Sodium nitrite	LRK54_RS02910	LRK54_RS02910		M20 family metallopeptidase	-1.05536545926161	-9.24542899127834	FALSE
+stress	set2IT095	Sodium nitrite	LRK54_RS04895	LRK54_RS04895		tol-pal system-associated acyl-CoA thioesterase	-1.69058782936852	-5.16454340667483	FALSE
+stress	set2IT095	Sodium nitrite	LRK54_RS10665	LRK54_RS10665		CDP-diacylglycerol--serine O-phosphatidyltransferase	-1.51746706409793	-11.7212784808227	FALSE
+stress	set2IT095	Sodium nitrite	LRK54_RS13360	LRK54_RS13360		gamma-glutamyltransferase	-1.21975317263518	-9.53029498228372	FALSE
+stress	set2IT047	Sodium nitrite	LRK54_RS13360	LRK54_RS13360		gamma-glutamyltransferase	-1.00023651370659	-8.20634108643647	FALSE
+stress	set4IT005	Sodium selenate	LRK54_RS01850	LRK54_RS01850		endonuclease III	-1.00585757829731	-5.88256756754498	FALSE
+stress	set4IT005	Sodium selenate	LRK54_RS11665	LRK54_RS11665		EVE domain-containing protein	-1.03483220213696	-6.20606619200681	FALSE
+stress	set4IT043	Sodium sulfate	LRK54_RS00560	LRK54_RS00560		hypothetical protein	-1.50305021179994	-5.68918824796965	FALSE
+stress	set3IT074	SpecU	LRK54_RS00560	LRK54_RS00560		hypothetical protein	-1.64778858065607	-8.63786761473673	FALSE
+stress	set3IT064	SpecU	LRK54_RS00560	LRK54_RS00560		hypothetical protein	-1.61821145223262	-8.36796230087992	FALSE
+stress	set3IT064	SpecU	LRK54_RS05055	LRK54_RS05055		L-fucose:H+ symporter permease	1.89010607748664	17.4738115251711	FALSE
+stress	set3IT074	SpecU	LRK54_RS05055	LRK54_RS05055		L-fucose:H+ symporter permease	1.98244954104542	18.2967502399202	FALSE
+stress	set3IT064	SpecU	LRK54_RS05525	LRK54_RS05525		amidase	-1.33765061871321	-11.4120726275687	FALSE
+stress	set3IT064	SpecU	LRK54_RS07285	LRK54_RS07285		sulfatase-like hydrolase/transferase	-3.83872957606651	-25.257110249571	FALSE
+stress	set3IT074	SpecU	LRK54_RS07285	LRK54_RS07285		sulfatase-like hydrolase/transferase	-3.80932969387166	-25.4342088924169	FALSE
+stress	set3IT064	SpecU	LRK54_RS07600	LRK54_RS07600		response regulator	-1.21531111493954	-6.08496121951863	FALSE
+stress	set3IT074	SpecU	LRK54_RS07600	LRK54_RS07600		response regulator	-1.09904540561371	-6.43298287229632	FALSE
+stress	set3IT064	SpecU	LRK54_RS07605	LRK54_RS07605		ATP-binding protein	-1.31485387516795	-6.88538013752915	FALSE
+stress	set3IT074	SpecU	LRK54_RS07605	LRK54_RS07605		ATP-binding protein	-1.24409078850458	-7.46523448103341	FALSE
+stress	set3IT064	SpecU	LRK54_RS07615	LRK54_RS07615		efflux RND transporter permease subunit	-1.49758569770874	-12.8013538480905	FALSE
+stress	set3IT074	SpecU	LRK54_RS07615	LRK54_RS07615		efflux RND transporter permease subunit	-1.43571687387156	-12.111941840215	FALSE
+stress	set3IT074	SpecU	LRK54_RS07620	LRK54_RS07620		efflux RND transporter periplasmic adaptor subunit	-1.88659503881803	-9.04870520478663	FALSE
+stress	set3IT064	SpecU	LRK54_RS07620	LRK54_RS07620		efflux RND transporter periplasmic adaptor subunit	-1.31061548756814	-5.95371187692325	FALSE
+stress	set3IT064	SpecU	LRK54_RS07625	LRK54_RS07625		TolC family protein	-1.76828183331515	-9.16576608629295	FALSE
+stress	set3IT074	SpecU	LRK54_RS07625	LRK54_RS07625		TolC family protein	-1.36242849013499	-7.38787486700995	FALSE
+stress	set3IT064	SpecU	LRK54_RS10120	LRK54_RS10120		glycosyltransferase family 39 protein	-4.04946997469598	-29.7059800398261	FALSE
+stress	set3IT074	SpecU	LRK54_RS10120	LRK54_RS10120		glycosyltransferase family 39 protein	-3.7657594049426	-29.3892216675984	FALSE
+stress	set3IT064	SpecU	LRK54_RS11395	LRK54_RS11395		proteobacterial dedicated sortase system response regulator	-3.68393569319991	-11.6160999097433	FALSE
+stress	set3IT074	SpecU	LRK54_RS11395	LRK54_RS11395		proteobacterial dedicated sortase system response regulator	-2.57221963722804	-9.92260378128674	FALSE
+stress	set3IT064	SpecU	LRK54_RS11405	LRK54_RS11405		ATP-binding protein	-2.96470125827994	-15.126348430852	FALSE
+stress	set3IT074	SpecU	LRK54_RS11405	LRK54_RS11405		ATP-binding protein	-2.66687420846156	-14.6400657225837	FALSE
+stress	set3IT064	SpecU	LRK54_RS12730	LRK54_RS12730		hypothetical protein	-1.5454192028155	-5.20862014670948	FALSE
+stress	set3IT064	SpecU	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-2.52892213447195	-13.9026148924732	FALSE
+stress	set3IT074	SpecU	LRK54_RS12775	LRK54_RS12775		CDF family Co(II)/Ni(II) efflux transporter DmeF	-2.32073981939276	-13.6489297402044	FALSE
+stress	set3IT064	SpecU	LRK54_RS17015	LRK54_RS17015		hypoxanthine-guanine phosphoribosyltransferase	-1.77320096813089	-12.2134125664529	FALSE
+stress	set3IT074	SpecU	LRK54_RS17015	LRK54_RS17015		hypoxanthine-guanine phosphoribosyltransferase	-1.71166238170298	-11.787123023539	FALSE
+stress	set3IT074	SpecU	LRK54_RS17990	LRK54_RS17990		2OG-Fe(II) oxygenase	1.1071872552536	8.42734525255867	FALSE
+stress	set4IT038	Strontium chloride	LRK54_RS02040	LRK54_RS02040		transcription-repair coupling factor	1.76879988286748	15.9866134196641	FALSE
+stress	set4IT038	Strontium chloride	LRK54_RS09930	LRK54_RS09930		LysR substrate-binding domain-containing protein	-1.39738629003419	-9.55261832151805	FALSE
+stress	set4IT031	Uranyl acetate	LRK54_RS04250	LRK54_RS04250		PilT/PilU family type 4a pilus ATPase	-2.28606108703301	-13.8254457853569	FALSE
+stress	set4IT031	Uranyl acetate	LRK54_RS05730	LRK54_RS05730		PilT/PilU family type 4a pilus ATPase	-1.8175024100036	-12.9907566174196	FALSE
+stress	set2IT018	Zinc chloride	LRK54_RS11140	LRK54_RS11140		Grx4 family monothiol glutaredoxin	-1.75178256175672	-11.5828108265182	FALSE
+stress	set2IT066	Zinc chloride	LRK54_RS11140	LRK54_RS11140		Grx4 family monothiol glutaredoxin	-1.45394881231404	-10.0791018261013	FALSE
+stress	set1IT058	Zinc chloride	LRK54_RS11210	LRK54_RS11210		LytTR family transcriptional regulator	2.3267335450616	5.92077395905824	FALSE
+stress	set2IT018	Zinc chloride	LRK54_RS13320	LRK54_RS13320		oxidative damage protection protein	-1.40959392136932	-6.8267820107182	FALSE
+stress	set2IT066	Zinc chloride	LRK54_RS17545	LRK54_RS17545		cation diffusion facilitator family transporter	-5.36293021313494	-7.3585857281797	FALSE
+stress	set2IT018	Zinc chloride	LRK54_RS17545	LRK54_RS17545		cation diffusion facilitator family transporter	-4.89212447235949	-9.94323941745569	FALSE
+stress	set2IT067	Zinc chloride	LRK54_RS17545	LRK54_RS17545		cation diffusion facilitator family transporter	-1.97265903078471	-9.13351228458159	FALSE
+stress	set2IT019	Zinc chloride	LRK54_RS17545	LRK54_RS17545		cation diffusion facilitator family transporter	-1.76104096438399	-9.46274617995321	FALSE
+stress	set4IT003	ammonium iron(II) sulfate hexahydrate	LRK54_RS04250	LRK54_RS04250		PilT/PilU family type 4a pilus ATPase	-1.94761182850149	-12.7796278145933	FALSE
+stress	set4IT003	ammonium iron(II) sulfate hexahydrate	LRK54_RS04740	LRK54_RS04740		RDD family protein	-1.36527286395697	-5.73805069331257	FALSE
+stress	set4IT033	ammonium iron(II) sulfate hexahydrate	LRK54_RS06985	LRK54_RS06985		spore coat U domain-containing protein	2.02225127127285	17.2812176873878	FALSE
+stress	set4IT033	ammonium iron(II) sulfate hexahydrate	LRK54_RS06990	LRK54_RS06990		molecular chaperone	1.96117365072319	17.5732824531541	FALSE
+stress	set4IT033	ammonium iron(II) sulfate hexahydrate	LRK54_RS06995	LRK54_RS06995		fimbria/pilus outer membrane usher protein	1.89245776600522	17.991283812205	FALSE
+stress	set4IT033	ammonium iron(II) sulfate hexahydrate	LRK54_RS07000	LRK54_RS07000		spore coat U domain-containing protein	1.80677932610448	17.1829151854429	FALSE
+stress	set4IT003	ammonium iron(II) sulfate hexahydrate	LRK54_RS07285	LRK54_RS07285		sulfatase-like hydrolase/transferase	-1.81093786901226	-15.5401115899146	FALSE
+stress	set4IT003	ammonium iron(II) sulfate hexahydrate	LRK54_RS11365	LRK54_RS11365		hypothetical protein	-1.08323136019209	-7.09952135208689	FALSE
+stress	set4IT033	ammonium iron(II) sulfate hexahydrate	LRK54_RS13455	LRK54_RS13455		flagellar hook-associated protein FlgL	-1.08518623900277	-6.2671831972183	FALSE
+stress	set4IT033	ammonium iron(II) sulfate hexahydrate	LRK54_RS13460	LRK54_RS13460		flagellin	-1.17784107019296	-7.31001459291522	FALSE
+stress	set4IT033	ammonium iron(II) sulfate hexahydrate	LRK54_RS13465	LRK54_RS13465		flagellar filament capping protein FliD	-1.05662867972598	-6.65824929363605	FALSE
+stress	set4IT033	ammonium iron(II) sulfate hexahydrate	LRK54_RS13575	LRK54_RS13575		P-loop NTPase	-1.097524518388	-6.47484463816744	FALSE
+stress	set4IT003	ammonium iron(II) sulfate hexahydrate	LRK54_RS14100	LRK54_RS14100		cytochrome b	-1.59202504328503	-11.1670204909699	FALSE
+stress	set4IT003	ammonium iron(II) sulfate hexahydrate	LRK54_RS16535	LRK54_RS16535		VIT family protein	-3.25710912228533	-10.9076240019955	FALSE
+stress	set4IT003	ammonium iron(II) sulfate hexahydrate	LRK54_RS17165	LRK54_RS17165		glycosyltransferase	-1.00544044185136	-8.20614539136846	FALSE
+stress	set4IT020	beryllium sulfate tetrahydrate	LRK54_RS00780	LRK54_RS00780		LysR family transcriptional regulator	1.02898451765381	6.76761644903998	FALSE
+stress	set4IT020	beryllium sulfate tetrahydrate	LRK54_RS00940	LRK54_RS00940		cupin domain-containing protein	1.24192311300163	8.9987698747564	FALSE
+stress	set4IT020	beryllium sulfate tetrahydrate	LRK54_RS08330	LRK54_RS08330		RES family NAD+ phosphorylase	-1.10680451291613	-7.55119573752832	FALSE
+stress	set4IT050	beryllium sulfate tetrahydrate	LRK54_RS15575	LRK54_RS15575		DUF3224 domain-containing protein	1.97050666242187	9.48709828246542	FALSE
+stress	set4IT020	beryllium sulfate tetrahydrate	LRK54_RS15575	LRK54_RS15575		DUF3224 domain-containing protein	2.7654854632362	10.7832861415768	FALSE
+stress	set4IT050	beryllium sulfate tetrahydrate	LRK54_RS15580	LRK54_RS15580		helix-turn-helix domain-containing protein	1.11296564718589	7.90680284239598	FALSE
+stress	set4IT020	beryllium sulfate tetrahydrate	LRK54_RS15580	LRK54_RS15580		helix-turn-helix domain-containing protein	1.61369794047436	9.49136730625041	FALSE
+stress	set4IT020	beryllium sulfate tetrahydrate	LRK54_RS16635	LRK54_RS16635		magnesium transporter	1.27615587122871	6.91408606364574	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS00560	LRK54_RS00560		hypothetical protein	-2.34911600717471	-7.16074798274153	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS00935	LRK54_RS00935		sulfite exporter TauE/SafE family protein	1.28785910329065	6.34797934743166	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS01010	LRK54_RS01010		S-methyl-5-thioribose-1-phosphate isomerase	-2.075905518228	-6.97501029058847	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS01780	LRK54_RS01780		30S ribosomal protein S12 methylthiotransferase RimO	-1.55990428423732	-6.03999698877954	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS01795	LRK54_RS01795		hypothetical protein	-2.47795702306732	-12.1170051412826	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS01845	LRK54_RS01845		RnfABCDGE type electron transport complex subunit B	-1.83060106265895	-7.11826328708751	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS02105	LRK54_RS02105		acyl-CoA dehydrogenase family protein	-2.52365695901137	-11.5162596271276	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS02320	LRK54_RS02320		RcnB family protein	3.05017308206224	19.7857321497644	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS02330	LRK54_RS02330		elongation factor P-like protein YeiP	1.0846394323946	6.04579219181653	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS02625	LRK54_RS02625		peptidylprolyl isomerase	-1.62244069353661	-5.9037025385188	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS02925	LRK54_RS02925		GNAT family N-acetyltransferase	-1.79512495683613	-5.97729322274142	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS03735	LRK54_RS03735		TlpA family protein disulfide reductase	-2.57831629845881	-9.90020760050756	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS03910	LRK54_RS03910		glycosyltransferase	-1.31361491954023	-6.82316367391795	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS05050	LRK54_RS05050		GH92 family glycosyl hydrolase	-1.14291920870627	-7.97149176148606	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS05220	LRK54_RS05220		MFS transporter	-2.62037900303328	-6.27495818981925	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS05780	LRK54_RS05780		S1/P1 nuclease	-3.01783439747401	-16.8959588970375	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS06235	LRK54_RS06235		murein L,D-transpeptidase catalytic domain family protein	1.23743103939448	6.59187721100144	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS06705	LRK54_RS06705		glycosyltransferase family 4 protein	1.17905424933248	8.12299742176375	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS06835	LRK54_RS06835		DUF2782 domain-containing protein	-2.99744352569848	-18.3520139110284	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS06965	LRK54_RS06965		alpha/beta hydrolase	-1.20474333812916	-5.85148019688909	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS07225	LRK54_RS07225		thiol:disulfide interchange protein DsbA/DsbL	-1.03733677843625	-6.90246756051588	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS07285	LRK54_RS07285		sulfatase-like hydrolase/transferase	-1.50510056495163	-11.0473019090357	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS08315	LRK54_RS08315		Lrp/AsnC family transcriptional regulator	1.55056073303607	6.69808936439039	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS08515	LRK54_RS08515		hypothetical protein	-1.15722584928254	-7.2925620544125	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS08675	LRK54_RS08675		SPFH domain-containing protein	-1.28081858854124	-5.70956445477089	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09275	LRK54_RS09275		helix-turn-helix domain-containing protein	-1.01943871117377	-5.52643619924978	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09415	LRK54_RS09415		FecR family protein	-1.58244636947578	-5.99553015677405	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09460	LRK54_RS09460		FecR family protein	-1.75023463415252	-5.11111444566618	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09740	LRK54_RS09740		acyltransferase	-3.37199129383641	-15.4559865751862	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09745	LRK54_RS09745		hypothetical protein	-3.21598712351799	-6.16050351091691	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09755	LRK54_RS09755		3-oxoacyl-ACP reductase	-2.94264695884501	-9.37261983789826	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09760	LRK54_RS09760		3-oxoacyl-ACP reductase FabG	-2.18847423701937	-5.40568213901551	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09770	LRK54_RS09770		glycosyltransferase family 2 protein	-2.99256539783652	-7.93333599146156	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09775	LRK54_RS09775		beta-ketoacyl synthase chain length factor	-3.64445947525171	-13.4097017268207	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09780	LRK54_RS09780		beta-ketoacyl-[acyl-carrier-protein] synthase family protein	-3.45924835348787	-13.0604832978465	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS09840	LRK54_RS09840		efflux RND transporter periplasmic adaptor subunit	-1.50326028456885	-8.33976827189462	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS10105	LRK54_RS10105		glycosyltransferase family 2 protein	-2.65455015354206	-10.9640995271373	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS10110	LRK54_RS10110		glycosyltransferase	-1.51679972227079	-8.26221612019922	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS10115	LRK54_RS10115		O-antigen ligase family protein	-1.68419443852414	-12.4760973262544	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS10120	LRK54_RS10120		glycosyltransferase family 39 protein	1.57871651734784	13.1520110147842	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS10160	LRK54_RS10160		AMP-binding protein	-3.50485009272928	-14.7245266950164	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS11870	LRK54_RS11870		DUF4381 domain-containing protein	1.339628966593	6.84518576735733	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS11875	LRK54_RS11875		VWA domain-containing protein	1.079735391299	5.44437511090443	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS11880	LRK54_RS11880		VWA domain-containing protein	1.48010687057724	10.2272321857735	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS11885	LRK54_RS11885		BatD family protein	1.4248660432063	9.47738153744889	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS11895	LRK54_RS11895		MarR family transcriptional regulator	-1.6337875105686	-6.29553470032781	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS12020	LRK54_RS12020		branched-chain amino acid transaminase	-1.25907469700063	-7.87232414112967	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS13750	LRK54_RS13750		tRNA (N6-isopentenyl adenosine(37)-C2)-methylthiotransferase MiaB	-1.60102808908034	-6.97246080393847	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS14605	LRK54_RS14605		hypothetical protein	1.33760030778516	7.60172767590678	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS15010	LRK54_RS15010		peptidylprolyl isomerase	1.53006282631853	7.23824071878654	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS15215	LRK54_RS15215		DUF2059 domain-containing protein	2.07746521876041	5.36206998540808	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS15335	LRK54_RS15335		GIY-YIG nuclease family protein	-1.9097898524535	-5.20159160001031	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS16325	LRK54_RS16325		AAA family ATPase	-1.12791396902709	-5.01044502864171	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS16395	LRK54_RS16395		chloride channel protein	-1.61474386856292	-9.83033909480048	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS17005	LRK54_RS17005		CYTH domain-containing protein	1.511989958762	7.84629362965058	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS17165	LRK54_RS17165		glycosyltransferase	-2.01308815211554	-14.5778489464116	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS17310	LRK54_RS17310		hypothetical protein	-1.13743515999465	-5.04727322447921	FALSE
+stress	set4IT015	bismuth(III) chloride	LRK54_RS18070	LRK54_RS18070		FAD-binding oxidoreductase	1.47925030847851	11.5739632986238	FALSE
+stress	set2IT041	copper (II) chloride dihydrate	LRK54_RS01360	LRK54_RS01360		heavy metal translocating P-type ATPase	-1.78467713383649	-13.7082873710017	FALSE
+stress	set2IT089	copper (II) chloride dihydrate	LRK54_RS01360	LRK54_RS01360		heavy metal translocating P-type ATPase	-1.60412893720386	-12.831308829243	FALSE
+stress	set2IT041	copper (II) chloride dihydrate	LRK54_RS01365	LRK54_RS01365		heavy metal-responsive transcriptional regulator	-2.50235746706498	-6.4195661063018	TRUE
+stress	set2IT089	copper (II) chloride dihydrate	LRK54_RS01365	LRK54_RS01365		heavy metal-responsive transcriptional regulator	-1.42053607367561	-5.67109418627519	TRUE
+stress	set2IT089	copper (II) chloride dihydrate	LRK54_RS01990	LRK54_RS01990		copper resistance system multicopper oxidase	-2.20713690900575	-15.8772174959606	TRUE
+stress	set2IT041	copper (II) chloride dihydrate	LRK54_RS01990	LRK54_RS01990		copper resistance system multicopper oxidase	-2.1916700719755	-14.6648771294137	TRUE
+stress	set2IT041	copper (II) chloride dihydrate	LRK54_RS17610	LRK54_RS17610		copper resistance protein B	-1.30222383478457	-6.39904197142182	FALSE
+stress	set2IT089	copper (II) chloride dihydrate	LRK54_RS17610	LRK54_RS17610		copper resistance protein B	-1.24335466162912	-5.980797586716	FALSE
+stress	set2IT089	copper (II) chloride dihydrate	LRK54_RS17615	LRK54_RS17615		copper resistance system multicopper oxidase	-1.56825851027968	-11.7517583309478	TRUE
+stress	set2IT041	copper (II) chloride dihydrate	LRK54_RS17615	LRK54_RS17615		copper resistance system multicopper oxidase	-1.48149458974916	-10.8167862811313	TRUE
+stress	set4IT047	silver chloride	LRK54_RS01625	LRK54_RS01625		30S ribosomal protein THX	-1.46159427258378	-5.07924386749651	FALSE
+stress	set4IT047	silver chloride	LRK54_RS01935	LRK54_RS01935		DUF2933 domain-containing protein	1.12352011269965	5.53897575566918	FALSE
+stress	set4IT017	silver chloride	LRK54_RS01935	LRK54_RS01935		DUF2933 domain-containing protein	1.20917953336461	5.59957640680115	FALSE
+stress	set4IT017	silver chloride	LRK54_RS01970	LRK54_RS01970		hypothetical protein	-1.0454544594822	-6.41842197565757	FALSE
+stress	set4IT017	silver chloride	LRK54_RS02625	LRK54_RS02625		peptidylprolyl isomerase	-1.16320576920082	-6.52575666083988	FALSE
+stress	set4IT047	silver chloride	LRK54_RS02680	LRK54_RS02680		CPBP family intramembrane metalloprotease	-1.55909971472202	-6.10342347864354	FALSE
+stress	set4IT047	silver chloride	LRK54_RS02920	LRK54_RS02920		SET domain-containing protein	-1.17321612944914	-7.36529251722536	FALSE
+stress	set4IT017	silver chloride	LRK54_RS03790	LRK54_RS03790		hypothetical protein	-1.1460638525515	-6.03805233532691	FALSE
+stress	set4IT047	silver chloride	LRK54_RS04130	LRK54_RS04130		3'(2'),5'-bisphosphate nucleotidase CysQ	-1.81790467950302	-7.68320020463224	FALSE
+stress	set4IT017	silver chloride	LRK54_RS04130	LRK54_RS04130		3'(2'),5'-bisphosphate nucleotidase CysQ	-1.55017474894162	-7.41663034517133	FALSE
+stress	set4IT047	silver chloride	LRK54_RS04380	LRK54_RS04380		SPFH/Band 7/PHB domain protein	-1.3788127195651	-7.61831681422592	FALSE
+stress	set4IT017	silver chloride	LRK54_RS04380	LRK54_RS04380		SPFH/Band 7/PHB domain protein	-1.21927897289034	-6.65156863945337	FALSE
+stress	set4IT017	silver chloride	LRK54_RS05760	LRK54_RS05760		porin family protein	-1.55730912770581	-11.3978698869799	FALSE
+stress	set4IT047	silver chloride	LRK54_RS05760	LRK54_RS05760		porin family protein	-1.33611626988631	-10.0224505496571	FALSE
+stress	set4IT017	silver chloride	LRK54_RS06955	LRK54_RS06955		ATP-binding cassette domain-containing protein	-1.52433914310552	-7.78236758489685	FALSE
+stress	set4IT017	silver chloride	LRK54_RS07225	LRK54_RS07225		thiol:disulfide interchange protein DsbA/DsbL	-1.23252259700041	-9.28111584788545	FALSE
+stress	set4IT047	silver chloride	LRK54_RS07225	LRK54_RS07225		thiol:disulfide interchange protein DsbA/DsbL	-1.15530825369892	-9.06561910797978	FALSE
+stress	set4IT047	silver chloride	LRK54_RS07575	LRK54_RS07575		K+/H+ antiporter subunit F	-3.76731447767451	-7.20671204062447	FALSE
+stress	set4IT017	silver chloride	LRK54_RS07575	LRK54_RS07575		K+/H+ antiporter subunit F	-3.35412265282435	-7.76582310468465	FALSE
+stress	set4IT047	silver chloride	LRK54_RS07580	LRK54_RS07580		Na+/H+ antiporter subunit E	-4.41173980183373	-6.7282732440145	FALSE
+stress	set4IT017	silver chloride	LRK54_RS07580	LRK54_RS07580		Na+/H+ antiporter subunit E	-4.07106845909597	-8.22590729073561	FALSE
+stress	set4IT017	silver chloride	LRK54_RS07585	LRK54_RS07585		monovalent cation/H+ antiporter subunit D	-3.24925756523217	-17.0953509652887	FALSE
+stress	set4IT047	silver chloride	LRK54_RS07585	LRK54_RS07585		monovalent cation/H+ antiporter subunit D	-2.81868275357659	-16.3835988671896	FALSE
+stress	set4IT047	silver chloride	LRK54_RS07595	LRK54_RS07595		monovalent cation/H+ antiporter subunit A	-3.05946042272169	-20.0493677250797	FALSE
+stress	set4IT017	silver chloride	LRK54_RS07595	LRK54_RS07595		monovalent cation/H+ antiporter subunit A	-3.05492598403821	-19.1443507539578	FALSE
+stress	set4IT047	silver chloride	LRK54_RS08875	LRK54_RS08875		DUF3892 domain-containing protein	-1.30377438973108	-5.06999183478702	FALSE
+stress	set4IT047	silver chloride	LRK54_RS08945	LRK54_RS08945		hypothetical protein	-1.06100989820137	-5.74669676644668	FALSE
+stress	set4IT044	sodium bromide	LRK54_RS00975	LRK54_RS00975		twitching motility response regulator PilH	-1.56989341631011	-5.49146509232254	FALSE
+stress	set4IT044	sodium bromide	LRK54_RS02925	LRK54_RS02925		GNAT family N-acetyltransferase	-1.84949333048174	-10.5473594195663	FALSE
+stress	set4IT044	sodium bromide	LRK54_RS05760	LRK54_RS05760		porin family protein	-1.26741185141992	-10.5209050914132	FALSE
+stress	set4IT044	sodium bromide	LRK54_RS06160	LRK54_RS06160		FAD/NAD(P)-binding protein	-1.00698532296723	-5.94307252042598	FALSE
+stress	set4IT044	sodium bromide	LRK54_RS06500	LRK54_RS06500		lytic murein transglycosylase B	-1.3586646448032	-10.8498511084224	FALSE
+stress	set4IT044	sodium bromide	LRK54_RS11355	LRK54_RS11355		beta-agarase	-1.28615666694058	-9.84532575857135	FALSE
+stress	set4IT014	sodium bromide	LRK54_RS11355	LRK54_RS11355		beta-agarase	-1.0897995525248	-8.56162773657963	FALSE
+stress	set4IT044	sodium bromide	LRK54_RS11680	LRK54_RS11680		cell division protein ZapA	-2.58155530736649	-6.32839022419108	FALSE
+stress	set4IT014	sodium bromide	LRK54_RS11680	LRK54_RS11680		cell division protein ZapA	-1.96237757329248	-7.04689324329197	FALSE
+stress	set4IT044	sodium bromide	LRK54_RS11695	LRK54_RS11695		aminopeptidase P N-terminal domain-containing protein	-2.3877219755831	-17.17434059811	FALSE
+stress	set4IT014	sodium bromide	LRK54_RS11695	LRK54_RS11695		aminopeptidase P N-terminal domain-containing protein	-2.12291670224689	-15.9776688401724	FALSE

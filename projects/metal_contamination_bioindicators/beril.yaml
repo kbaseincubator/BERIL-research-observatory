@@ -1,0 +1,64 @@
+project_id: metal_contamination_bioindicators
+status: reviewed
+title: Microbial Indicator Taxa for Soil Metal Contamination
+description: 'Tests whether genus-level 16S community composition predicts soil metal
+  contamination risk (exceedance probability for 7 metals: As/Cd/Co/Cr/Cu/Ni/Pb) after
+  controlling for soil chemistry (pH, SOC, clay fraction). Uses arkinlab.microbeatlas
+  (278K samples, global) joined to science_2025_global_soil_toxic_metals (2.05M grid
+  points, exceedance probabilities 0–1 for AT and HHET thresholds). Soil chemistry
+  covariates from soilgrids_master (pH/SOC/clay/CEC at 0–5 cm). Metal source comparison:
+  science_2025 (contamination risk) vs GeoROC (geological background) vs CSU metal
+  mobility grid (mobile fraction). Functional validation: do indicator genera carry
+  elevated metal gene density in SPIRE MAGs?
+
+  '
+created_at: '2026-07-23T00:00:00Z'
+branch: hrm-projects-v3
+engine:
+  name: claude
+authors:
+- name: Heather MacGregor
+  affiliation: Lawrence Berkeley National Laboratory
+  orcid: 0000-0003-1112-3009
+thesis_chapter: Part 1 — Global Metal Ecology
+data_sources:
+- arkinlab.microbeatlas
+- arkinlab.envdbs.science_2025_global_soil_toxic_metals
+- arkinlab.envdbs.soilgrids_master
+- arkinlab.envdbs.csu_metal_mobility_grid
+- arkinlab.microbeatlas.enriched_metadata
+- refdata.spire
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true
+  adversarial_review: true
+last_session_at: '2026-07-28T14:00:00Z'
+previous_approvals:
+- by: 0000-0003-1112-3009
+  at: '2026-07-27T22:09:08Z'
+  report_hash: sha256:52cdf911e86d75eda85133d7b9b926bf2c2259c3275d18296a9d73b02c29110b
+  review: REVIEW_8.md
+  review_hash: sha256:e70277e0328f9324410d3206e3765c280495e6176a7b3f94f76a767e865f41c5
+  archived_at: '2026-07-28T13:50:00Z'
+  notebook_hashes:
+    notebooks/NB00_data_assembly.ipynb: sha256:bece9b1a588b0ee47950a63bccad60a9fbb070d56df74ee7ef7dd90c42525535
+    notebooks/NB00_data_assembly_executed.ipynb: sha256:9f0f806a3cd24fc0c971eb5096bb19946244d88de667e1e7f8f1c885384e1781
+    notebooks/NB00_data_assembly_out.ipynb: sha256:a21145e63cfa382f59d134283eb94e3f0aec2e91da9e1b8a31468824e832a569
+    notebooks/NB01_indicator_taxa.ipynb: sha256:8c7d5e9121a5ba76fbdde1e79f179877c2777f293f992df4c2c8adbb881c9390
+    notebooks/NB01b_robustness_extended.ipynb: sha256:4ac1245589b75acc379f48733dea787f260aef46ff2f7e95a90b215692f8a554
+    notebooks/NB01c_sequencing_confounders.ipynb: sha256:8ed601c074e49fca02aec5fc1bee379a6fa1be917e574ec7e4157924b0f8bbbe
+    notebooks/NB01c_sequencing_confounders_executed.ipynb: sha256:40e4ff6feafb24f7c8c8cdeb7e6c0a4e9c740ff2d0646504aa8d55c323f690ba
+    notebooks/NB01d_genus_weighted_unifrac.ipynb: sha256:b4a4465f065022be2004b7635d49861edf33adf897d6cfea91e30af690f3a917
+    notebooks/NB01d_genus_weighted_unifrac_executed.ipynb: sha256:bf825c195340b6e6681440084321b706cf7e7d21b3a4f66135eae816d816f85e
+    notebooks/NB02_source_comparison.ipynb: sha256:863acfb938e748791040cca28f05f82f0aaa757232a53b34ce52c00375ea9b2a
+    notebooks/NB05_catboost_regression.ipynb: sha256:80645e92997d93cea50d23101bc6fc6519f18b1c6a5325279abbd33524cde86c
+    notebooks/NB05_catboost_regression_executed.ipynb: sha256:739da98abe8c7bcd41c2e55ca62fdcb3e4df73fd121dd14bacc04aa52b2292b1
+submissions:
+- status: failed
+  approved_at: '2026-07-27T22:09:08Z'
+  attempted_at: '2026-07-27T22:45:00Z'
+  error: 'Hard failure (exit 1): Insufficient permissions — all mc cp calls returned
+    403 Forbidden for every file in the project. MinIO credentials may be expired
+    or the bucket policy has changed. No files were archived.'

@@ -1,0 +1,906 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS02495	RR42_RS02495		cardiolipin synthase; exported protein	-1.71091725889239	-6.02689552317234	TRUE
+carbon source	set1IT040	4-Hydroxybenzoic Acid	RR42_RS02495	RR42_RS02495		cardiolipin synthase; exported protein	-1.41011088464341	-5.22609816207017	TRUE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS03025	RR42_RS03025		transporter	-2.81792081503074	-10.5320775119583	FALSE
+carbon source	set1IT040	4-Hydroxybenzoic Acid	RR42_RS03025	RR42_RS03025		transporter	-2.54087985796607	-8.6904617506109	FALSE
+carbon source	set1IT040	4-Hydroxybenzoic Acid	RR42_RS03030	RR42_RS03030		membrane protein	-3.51265462385522	-10.7747014538928	FALSE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS03030	RR42_RS03030		membrane protein	-3.25542231621232	-15.3119417180373	FALSE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS03040	RR42_RS03040		RND transporter	-3.342001398523	-8.36952332152302	FALSE
+carbon source	set1IT040	4-Hydroxybenzoic Acid	RR42_RS03040	RR42_RS03040		RND transporter	-2.93445063385251	-9.24382924436224	FALSE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS05985	RR42_RS05985		esterase	-1.44182624931617	-8.55922717963809	TRUE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS21940	RR42_RS21940		4-hydroxybenzoate 3-monooxygenase	-4.29718582386408	-12.8397596963725	TRUE
+carbon source	set1IT040	4-Hydroxybenzoic Acid	RR42_RS21940	RR42_RS21940		4-hydroxybenzoate 3-monooxygenase	-4.15901361673004	-10.7868912216983	TRUE
+carbon source	set1IT040	4-Hydroxybenzoic Acid	RR42_RS29055	RR42_RS29055		AraC family transcriptional regulator	-4.36033142073153	-9.763244805822	TRUE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS29055	RR42_RS29055		AraC family transcriptional regulator	-3.38324575673346	-7.14927329867469	TRUE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS32055	RR42_RS32055		3-carboxy-cis,cis-muconate cycloisomerase	-5.40474502250658	-5.23212485834753	TRUE
+carbon source	set1IT040	4-Hydroxybenzoic Acid	RR42_RS32060	RR42_RS32060		protocatechuate 3,4-dioxygenase	-4.84347551333061	-9.76265876232279	TRUE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS32060	RR42_RS32060		protocatechuate 3,4-dioxygenase	-4.30569394710105	-5.67026589336065	TRUE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS32065	RR42_RS32065		protocatechuate 3,4-dioxygenase	-4.71279903526068	-8.72127275636785	TRUE
+carbon source	set1IT040	4-Hydroxybenzoic Acid	RR42_RS32065	RR42_RS32065		protocatechuate 3,4-dioxygenase	-3.94571246119111	-6.52072117899636	TRUE
+carbon source	set1IT040	4-Hydroxybenzoic Acid	RR42_RS35920	RR42_RS35920		3-oxoadipate CoA-transferase	-2.17489190456013	-7.00215046143727	TRUE
+carbon source	set2IT069	4-Hydroxybenzoic Acid	RR42_RS35920	RR42_RS35920		3-oxoadipate CoA-transferase	-2.06564420147578	-5.40037098078048	TRUE
+carbon source	set10IT080	Azelaic acid	RR42_RS05595	RR42_RS05595		acyl-CoA dehydrogenase	-3.14407409126305	-6.59219938613923	TRUE
+carbon source	set10IT060	Azelaic acid	RR42_RS05595	RR42_RS05595		acyl-CoA dehydrogenase	-2.2176874550083	-5.2136637260228	TRUE
+carbon source	set2IT057	D-Fructose	RR42_RS03355	RR42_RS03355		N-acylmannosamine kinase	-1.90455095643946	-7.75623214469257	FALSE
+carbon source	set2IT057	D-Fructose	RR42_RS03375	RR42_RS03375		glucose-6-phosphate dehydrogenase	-3.07521125975446	-9.30328258875974	FALSE
+carbon source	set2IT060	D-Gluconic Acid sodium salt	RR42_RS06130	RR42_RS06130		gluconate kinase	-4.11326532416017	-6.99800208862263	TRUE
+carbon source	set2IT060	D-Gluconic Acid sodium salt	RR42_RS17690	RR42_RS17690		3-dehydroquinate dehydratase	-2.25291774433261	-5.20539741461097	FALSE
+carbon source	set2IT060	D-Gluconic Acid sodium salt	RR42_RS28835	RR42_RS28835		permease DsdX	-2.51036592285474	-8.37330405822941	TRUE
+carbon source	set2IT060	D-Gluconic Acid sodium salt	RR42_RS28860	RR42_RS28860		2-dehydro-3-deoxygluconokinase	-2.54478240987753	-7.67315474957016	FALSE
+carbon source	set2IT060	D-Gluconic Acid sodium salt	RR42_RS36475	RR42_RS36475		SpoVR family protein	-1.07936291584662	-5.78514928577586	FALSE
+carbon source	set2IT060	D-Gluconic Acid sodium salt	RR42_RS36485	RR42_RS36485		serine/threonine protein kinase	-1.11061023581418	-7.73871504154787	FALSE
+carbon source	set10IT076	Disodium Glutarate	RR42_RS07285	RR42_RS07285		ABC transporter substrate-binding protein	-2.48933508209351	-6.23102403517623	FALSE
+carbon source	set10IT056	Disodium Glutarate	RR42_RS07285	RR42_RS07285		ABC transporter substrate-binding protein	-1.83687920143618	-6.02496028394809	FALSE
+carbon source	set10IT056	Disodium Glutarate	RR42_RS12505	RR42_RS12505		TetR family transcriptional regulator	1.15980265946563	5.97360913409817	FALSE
+carbon source	set10IT076	Disodium Glutarate	RR42_RS12505	RR42_RS12505		TetR family transcriptional regulator	1.22221804304301	6.28108960428292	FALSE
+carbon source	set10IT056	Disodium Glutarate	RR42_RS20275	RR42_RS20275		ABC transporter permease	-1.01456997380238	-6.58136491944773	FALSE
+carbon source	set10IT076	Disodium Glutarate	RR42_RS25845	RR42_RS25845		isocitrate lyase	-1.38751575415964	-7.28929989265054	FALSE
+carbon source	set10IT056	Disodium Glutarate	RR42_RS25845	RR42_RS25845		isocitrate lyase	-1.12456108859155	-6.77277812440527	FALSE
+carbon source	set10IT076	Disodium Glutarate	RR42_RS36125	RR42_RS36125		IclR family transcriptional regulator	2.19252390699295	14.2397093298881	TRUE
+carbon source	set10IT056	Disodium Glutarate	RR42_RS36125	RR42_RS36125		IclR family transcriptional regulator	2.2093629163623	16.3374323324275	TRUE
+carbon source	set10IT082	Dodecandioic acid	RR42_RS05590	RR42_RS05590		hypothetical protein	-4.3012583564432	-6.64989907903605	FALSE
+carbon source	set10IT062	Dodecandioic acid	RR42_RS05595	RR42_RS05595		acyl-CoA dehydrogenase	-3.64320277224413	-5.51995801470002	FALSE
+carbon source	set10IT062	Dodecandioic acid	RR42_RS20650	RR42_RS20650		multidrug efflux RND transporter permease subunit	-2.01478166399779	-10.3749317790538	FALSE
+carbon source	set10IT082	Dodecandioic acid	RR42_RS20650	RR42_RS20650		multidrug efflux RND transporter permease subunit	-1.54970581494992	-7.4588474401263	FALSE
+carbon source	set10IT082	Dodecandioic acid	RR42_RS21405	RR42_RS21405		LysR family transcriptional regulator	-3.1259044619294	-8.22815700775021	TRUE
+carbon source	set10IT062	Dodecandioic acid	RR42_RS21405	RR42_RS21405		LysR family transcriptional regulator	-3.01720075676419	-10.1482729069148	TRUE
+carbon source	set10IT062	Dodecandioic acid	RR42_RS21420	RR42_RS21420		acyl-CoA dehydrogenase	-3.45268036547549	-10.9324585611539	FALSE
+carbon source	set10IT082	Dodecandioic acid	RR42_RS21420	RR42_RS21420		acyl-CoA dehydrogenase	-3.41532055529606	-7.2007222486413	FALSE
+carbon source	set10IT082	Dodecandioic acid	RR42_RS36915	RR42_RS36915		LysR family transcriptional regulator	-1.07417311675342	-5.36799022675888	FALSE
+carbon source	set2IT070	Ethanol	RR42_RS03065	RR42_RS03065		membrane protein	-1.57121945094836	-5.92435920983618	FALSE
+carbon source	set1IT041	Ethanol	RR42_RS03345	RR42_RS03345		recombinase XerD	-1.50138145084468	-5.05409560635129	FALSE
+carbon source	set1IT041	Ethanol	RR42_RS13180	RR42_RS13180		3'-5' exonuclease	-1.53029074678101	-8.42392162326772	FALSE
+carbon source	set2IT070	Ethanol	RR42_RS13180	RR42_RS13180		3'-5' exonuclease	-1.40533652063958	-7.22121915266676	FALSE
+carbon source	set10IT070	Heptanoic acid	RR42_RS03025	RR42_RS03025		transporter	-2.07391520478538	-9.26055453375031	FALSE
+carbon source	set10IT050	Heptanoic acid	RR42_RS03025	RR42_RS03025		transporter	-1.87887245096554	-7.92378207043008	FALSE
+carbon source	set10IT070	Heptanoic acid	RR42_RS03030	RR42_RS03030		membrane protein	-2.23954767690149	-7.94906759869429	FALSE
+carbon source	set10IT050	Heptanoic acid	RR42_RS03030	RR42_RS03030		membrane protein	-1.85360316650076	-8.35741799228157	FALSE
+carbon source	set10IT070	Heptanoic acid	RR42_RS03040	RR42_RS03040		RND transporter	-2.67073233729054	-7.50484917173418	FALSE
+carbon source	set10IT050	Heptanoic acid	RR42_RS03040	RR42_RS03040		RND transporter	-2.10842323067562	-8.17133783763987	FALSE
+carbon source	set10IT070	Heptanoic acid	RR42_RS15280	RR42_RS15280		long-chain fatty acid--CoA ligase	-1.91444113649127	-11.4532692393337	FALSE
+carbon source	set10IT050	Heptanoic acid	RR42_RS15280	RR42_RS15280		long-chain fatty acid--CoA ligase	-1.79780433022788	-10.9818388317217	FALSE
+carbon source	set10IT049	Hexanoic acid	RR42_RS04580	RR42_RS04580		acyl-CoA dehydrogenase	-3.71378444181831	-14.4934688116217	TRUE
+carbon source	set10IT069	Hexanoic acid	RR42_RS04580	RR42_RS04580		acyl-CoA dehydrogenase	-3.14766177870317	-12.2776903601297	TRUE
+carbon source	set10IT049	Hexanoic acid	RR42_RS15280	RR42_RS15280		long-chain fatty acid--CoA ligase	-1.26384860113928	-7.69956439209203	FALSE
+carbon source	set10IT069	Hexanoic acid	RR42_RS15280	RR42_RS15280		long-chain fatty acid--CoA ligase	-1.24502200812308	-7.75074225149212	FALSE
+carbon source	set1IT045	L-Asparagine	RR42_RS03985	RR42_RS03985		histidine kinase	-1.34076143740677	-5.86435899397281	TRUE
+carbon source	set1IT043	L-Histidine	RR42_RS07450	RR42_RS07450		ABC transporter permease	1.38774594132734	5.84856358320988	FALSE
+carbon source	set1IT043	L-Histidine	RR42_RS07455	RR42_RS07455		ABC transporter substrate-binding protein	1.63186029555421	11.7239276097675	FALSE
+carbon source	set1IT043	L-Histidine	RR42_RS11460	RR42_RS11460		pyrroloquinoline quinone biosynthesis protein PqqB	2.08110831697265	9.12040047603868	TRUE
+carbon source	set2IT072	L-Histidine	RR42_RS11460	RR42_RS11460		pyrroloquinoline quinone biosynthesis protein PqqB	3.56824732170407	14.5079084947618	TRUE
+carbon source	set1IT043	L-Histidine	RR42_RS11465	RR42_RS11465		pyrroloquinoline quinone biosynthesis protein PqqC	1.83009866720527	6.19192489909895	FALSE
+carbon source	set2IT072	L-Histidine	RR42_RS11465	RR42_RS11465		pyrroloquinoline quinone biosynthesis protein PqqC	3.49531010390965	12.9438301745866	FALSE
+carbon source	set2IT072	L-Histidine	RR42_RS14030	RR42_RS14030		DNA recombination protein RecO	-1.90640228963108	-5.68192150792462	TRUE
+carbon source	set1IT043	L-Histidine	RR42_RS14635	RR42_RS14635		proline-specific permease	2.94418385161278	20.081458308118	TRUE
+carbon source	set2IT072	L-Histidine	RR42_RS14635	RR42_RS14635		proline-specific permease	3.37644322593801	19.0509345220977	TRUE
+carbon source	set1IT043	L-Histidine	RR42_RS14640	RR42_RS14640		histidine ammonia-lyase	2.22767582495208	9.38561963392552	TRUE
+carbon source	set2IT072	L-Histidine	RR42_RS14640	RR42_RS14640		histidine ammonia-lyase	2.48598757090769	7.56590006302027	TRUE
+carbon source	set2IT072	L-Histidine	RR42_RS16895	RR42_RS16895		N-formylglutamate amidohydrolase	-2.36760831000683	-10.1475646549545	TRUE
+carbon source	set1IT043	L-Histidine	RR42_RS16895	RR42_RS16895		N-formylglutamate amidohydrolase	-2.12666531815171	-7.47617082056734	TRUE
+carbon source	set2IT072	L-Histidine	RR42_RS16905	RR42_RS16905		imidazolonepropionase	-3.09558170258488	-6.15800787552684	TRUE
+carbon source	set1IT043	L-Histidine	RR42_RS16905	RR42_RS16905		imidazolonepropionase	-1.61402488895865	-5.18772891160771	TRUE
+carbon source	set1IT043	L-Histidine	RR42_RS33495	RR42_RS33495		aromatic amino acid transporter	1.58440462631289	13.9124290651371	FALSE
+carbon source	set2IT078	L-Leucine	RR42_RS13180	RR42_RS13180		3'-5' exonuclease	-1.42552515838411	-8.3016476039063	FALSE
+carbon source	set2IT078	L-Leucine	RR42_RS34245	RR42_RS34245		indolepyruvate ferredoxin oxidoreductase	-2.71755942508323	-11.7202560948601	FALSE
+carbon source	set2IT051	L-Leucine	RR42_RS34245	RR42_RS34245		indolepyruvate ferredoxin oxidoreductase	-2.58651675128187	-11.3279145657358	FALSE
+carbon source	set2IT052	L-Phenylalanine	RR42_RS01970	RR42_RS01970		maleylacetoacetate isomerase	-4.21958602962589	-9.3521892760335	TRUE
+carbon source	set2IT052	L-Phenylalanine	RR42_RS20365	RR42_RS20365		phenylalanine-4-hydroxylase	-4.98495558383466	-10.6250384701559	TRUE
+carbon source	set2IT052	L-Phenylalanine	RR42_RS31275	RR42_RS31275		homogentisate 1,2-dioxygenase	-2.33539379483875	-7.00800844139782	TRUE
+carbon source	set2IT052	L-Phenylalanine	RR42_RS33490	RR42_RS33490		aromatic amino acid aminotransferase	-2.00320556699291	-10.1061591804142	TRUE
+carbon source	set2IT049	L-Proline	RR42_RS11460	RR42_RS11460		pyrroloquinoline quinone biosynthesis protein PqqB	-1.48163090506174	-6.20363508074445	FALSE
+carbon source	set2IT049	L-Proline	RR42_RS11465	RR42_RS11465		pyrroloquinoline quinone biosynthesis protein PqqC	-1.79758856916462	-7.67034532827951	FALSE
+carbon source	set2IT049	L-Proline	RR42_RS20125	RR42_RS20125		transcriptional regulator	-4.24214256224372	-20.331883207684	TRUE
+carbon source	set1IT044	L-Threonine	RR42_RS25930	RR42_RS25930		amino acid dehydrogenase	-4.93417119909516	-9.95173655206641	FALSE
+carbon source	set1IT044	L-Threonine	RR42_RS28295	RR42_RS28295		2-amino-3-ketobutyrate CoA ligase	-2.30710191753435	-10.3457363019	FALSE
+carbon source	set1IT044	L-Threonine	RR42_RS28300	RR42_RS28300		NAD-dependent epimerase	-2.52310392379888	-6.55000959432776	FALSE
+carbon source	set1IT044	L-Threonine	RR42_RS28305	RR42_RS28305		proline-specific permease	-1.55876758430982	-6.13964511610946	FALSE
+carbon source	set1IT044	L-Threonine	RR42_RS36130	RR42_RS36130		phytanoyl-CoA dioxygenase	-1.57313072663655	-7.38482545758449	FALSE
+carbon source	set2IT080	L-Tryptophan	RR42_RS05715	RR42_RS05715		acyl-CoA dehydrogenase	-1.58775929430223	-7.4237544818896	FALSE
+carbon source	set2IT053	L-Tryptophan	RR42_RS07450	RR42_RS07450		ABC transporter permease	1.34899249249328	6.23077828704826	FALSE
+carbon source	set2IT053	L-Tryptophan	RR42_RS13535	RR42_RS13535		2-aminobenzoate-CoA ligase	-1.24338497079557	-7.93049461447446	TRUE
+carbon source	set2IT080	L-Tryptophan	RR42_RS13535	RR42_RS13535		2-aminobenzoate-CoA ligase	-1.04703243216984	-7.4214457891517	TRUE
+carbon source	set2IT080	L-Tryptophan	RR42_RS13550	RR42_RS13550		3-hydroxyacyl-CoA dehydrogenase	-2.98074971181997	-5.35453070918241	TRUE
+carbon source	set2IT080	L-Tryptophan	RR42_RS13555	RR42_RS13555		salicylyl-CoA 5-hydroxylase	-3.34213701718563	-9.64151730225923	TRUE
+carbon source	set2IT053	L-Tryptophan	RR42_RS13555	RR42_RS13555		salicylyl-CoA 5-hydroxylase	-3.3386804154026	-12.1376322707853	TRUE
+carbon source	set2IT053	L-Tryptophan	RR42_RS15375	RR42_RS15375		AsnC family transcriptional regulator	-2.55665723095669	-5.26529926375547	TRUE
+carbon source	set2IT080	L-Tryptophan	RR42_RS15385	RR42_RS15385		kynureninase	-3.89508625716345	-10.6403136413913	TRUE
+carbon source	set2IT053	L-Tryptophan	RR42_RS15385	RR42_RS15385		kynureninase	-3.628126976859	-13.100372342087	TRUE
+carbon source	set2IT053	L-Tryptophan	RR42_RS15390	RR42_RS15390		tryptophan 2,3-dioxygenase	-3.39906869752701	-6.80596260604466	TRUE
+carbon source	set2IT080	L-Tryptophan	RR42_RS15390	RR42_RS15390		tryptophan 2,3-dioxygenase	-3.24992127993408	-6.75625438470086	TRUE
+carbon source	set10IT071	Octanoic acid	RR42_RS03025	RR42_RS03025		transporter	-2.53388954790418	-7.7540103278507	FALSE
+carbon source	set10IT051	Octanoic acid	RR42_RS03025	RR42_RS03025		transporter	-2.23389494660789	-9.88099594875898	FALSE
+carbon source	set10IT051	Octanoic acid	RR42_RS03030	RR42_RS03030		membrane protein	-2.43424661202693	-10.7240265260037	FALSE
+carbon source	set10IT071	Octanoic acid	RR42_RS03030	RR42_RS03030		membrane protein	-2.0001031782643	-7.67920023609495	FALSE
+carbon source	set10IT051	Octanoic acid	RR42_RS03040	RR42_RS03040		RND transporter	-2.45480868769773	-10.2616178883066	FALSE
+carbon source	set10IT071	Octanoic acid	RR42_RS03040	RR42_RS03040		RND transporter	-1.91841496848563	-6.99937412807401	FALSE
+carbon source	set10IT071	Octanoic acid	RR42_RS03245	RR42_RS03245		D-alanyl-D-alanine carboxypeptidase	-1.34839460515988	-6.7239097299317	FALSE
+carbon source	set10IT051	Octanoic acid	RR42_RS04580	RR42_RS04580		acyl-CoA dehydrogenase	-4.0004879110891	-14.5349458617519	FALSE
+carbon source	set10IT071	Octanoic acid	RR42_RS04580	RR42_RS04580		acyl-CoA dehydrogenase	-3.84847005531236	-13.2798849796334	FALSE
+carbon source	set10IT051	Octanoic acid	RR42_RS06015	RR42_RS06015		recombinase	-5.67536362006536	-15.1026595477864	FALSE
+carbon source	set10IT071	Octanoic acid	RR42_RS06015	RR42_RS06015		recombinase	-5.32092993140966	-14.5594433570515	FALSE
+carbon source	set10IT071	Octanoic acid	RR42_RS17305	RR42_RS17305		ion transporter	-1.38440894436088	-5.49750609075464	TRUE
+carbon source	set10IT071	Octanoic acid	RR42_RS20650	RR42_RS20650		multidrug efflux RND transporter permease subunit	-1.88379251738393	-10.0131661136907	FALSE
+carbon source	set10IT051	Octanoic acid	RR42_RS20650	RR42_RS20650		multidrug efflux RND transporter permease subunit	-1.86929094423613	-8.98648784103661	FALSE
+carbon source	set12IT059	Phenylacetic acid	RR42_RS05760	RR42_RS05760		3-hydroxyacyl-CoA dehydrogenase	-2.68431997877347	-7.42226675533836	TRUE
+carbon source	set12IT062	Phenylacetic acid	RR42_RS05760	RR42_RS05760		3-hydroxyacyl-CoA dehydrogenase	-2.64522098480163	-8.28704313038588	TRUE
+carbon source	set12IT059	Phenylacetic acid	RR42_RS05985	RR42_RS05985		esterase	-1.96611005641644	-9.59833917267597	FALSE
+carbon source	set12IT062	Phenylacetic acid	RR42_RS05985	RR42_RS05985		esterase	-1.89344011492128	-10.5100867187818	FALSE
+carbon source	set12IT059	Phenylacetic acid	RR42_RS18250	RR42_RS18250		enoyl-CoA hydratase	-1.71046382460268	-10.2362607048406	TRUE
+carbon source	set12IT062	Phenylacetic acid	RR42_RS18250	RR42_RS18250		enoyl-CoA hydratase	-1.48296414168945	-9.38440327416293	TRUE
+carbon source	set12IT059	Phenylacetic acid	RR42_RS21185	RR42_RS21185		AMP nucleosidase	-1.23172589470326	-7.68781677246878	FALSE
+carbon source	set12IT062	Phenylacetic acid	RR42_RS21185	RR42_RS21185		AMP nucleosidase	-1.22297004989131	-5.97062546176261	FALSE
+carbon source	set12IT062	Phenylacetic acid	RR42_RS21420	RR42_RS21420		acyl-CoA dehydrogenase	-1.50983268220354	-5.84007672083221	FALSE
+carbon source	set12IT059	Phenylacetic acid	RR42_RS21420	RR42_RS21420		acyl-CoA dehydrogenase	-1.18458678317172	-5.67192323815402	FALSE
+carbon source	set12IT062	Phenylacetic acid	RR42_RS23725	RR42_RS23725		phenylacetate-CoA oxygenase	-3.80008724366666	-7.64612561262556	TRUE
+carbon source	set12IT059	Phenylacetic acid	RR42_RS23735	RR42_RS23735		phenylacetic acid degradation protein	-2.89317198133162	-5.14851856998362	TRUE
+carbon source	set12IT062	Phenylacetic acid	RR42_RS23735	RR42_RS23735		phenylacetic acid degradation protein	-2.86470308995027	-5.16128073808326	TRUE
+carbon source	set12IT062	Phenylacetic acid	RR42_RS23750	RR42_RS23750		aldehyde dehydrogenase	-2.53296540496336	-8.78308771958039	TRUE
+carbon source	set12IT059	Phenylacetic acid	RR42_RS23750	RR42_RS23750		aldehyde dehydrogenase	-2.32149415568287	-7.74354156999805	TRUE
+carbon source	set12IT059	Phenylacetic acid	RR42_RS23755	RR42_RS23755		phenylacetate--CoA ligase	-1.84212264636438	-8.29384926737593	TRUE
+carbon source	set12IT062	Phenylacetic acid	RR42_RS23755	RR42_RS23755		phenylacetate--CoA ligase	-1.82293516701602	-7.08285804254662	TRUE
+carbon source	set10IT078	Pimelic acid	RR42_RS05745	RR42_RS05745		aminoglycoside phosphotransferase	1.18439754576478	9.27061472974704	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS06465	RR42_RS06465		O-acetylhomoserine aminocarboxypropyltransferase	-1.65471435580215	-7.03684018720349	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS07540	RR42_RS07540		ABC transporter permease	-1.06381799093516	-7.7234018815432	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS07545	RR42_RS07545		branched-chain amino acid ABC transporter substrate-binding protein	-1.01443559953489	-5.44970392258138	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS08660	RR42_RS08660		hypothetical protein	-1.87253481224113	-9.89019090718643	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS08660	RR42_RS08660		hypothetical protein	-1.15030899392378	-6.72252999921804	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS11130	RR42_RS11130		mannosyltransferase	-1.83888542346851	-7.62883521199405	TRUE
+carbon source	set10IT078	Pimelic acid	RR42_RS11130	RR42_RS11130		mannosyltransferase	-1.62318971405153	-7.51198788673227	TRUE
+carbon source	set10IT058	Pimelic acid	RR42_RS11135	RR42_RS11135		branched-chain amino acid ABC transporter substrate-binding protein	-1.81493369683048	-6.22537298604299	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS11135	RR42_RS11135		branched-chain amino acid ABC transporter substrate-binding protein	-1.57866245959992	-5.33647965176173	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS11140	RR42_RS11140		ABC transporter permease	-1.74515123385082	-8.91745467479032	TRUE
+carbon source	set10IT058	Pimelic acid	RR42_RS11140	RR42_RS11140		ABC transporter permease	-1.65697503881291	-6.35478331711592	TRUE
+carbon source	set10IT058	Pimelic acid	RR42_RS11145	RR42_RS11145		ABC transporter permease	-2.39449602773375	-9.08317817770947	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS11145	RR42_RS11145		ABC transporter permease	-2.1083478722225	-8.78093607596561	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS11150	RR42_RS11150		branched-chain amino acid ABC transporter substrate-binding protein	-1.75883989857169	-10.9081549588395	TRUE
+carbon source	set10IT058	Pimelic acid	RR42_RS11150	RR42_RS11150		branched-chain amino acid ABC transporter substrate-binding protein	-1.67344349921472	-8.99363781662248	TRUE
+carbon source	set10IT058	Pimelic acid	RR42_RS11155	RR42_RS11155		long-chain fatty acid--CoA ligase	-1.78024697814358	-7.47884087233303	TRUE
+carbon source	set10IT078	Pimelic acid	RR42_RS11155	RR42_RS11155		long-chain fatty acid--CoA ligase	-1.57953671975867	-7.40533820712094	TRUE
+carbon source	set10IT078	Pimelic acid	RR42_RS14840	RR42_RS14840		IclR family transcriptional regulator	1.33571959030074	5.01603385628857	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS18535	RR42_RS18535		ABC transporter substrate-binding protein	-4.03657919098393	-10.4814081584665	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS18535	RR42_RS18535		ABC transporter substrate-binding protein	-3.33421224486722	-10.1645744908982	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS18540	RR42_RS18540		long-chain fatty acid--CoA ligase	-1.75758868249364	-7.01933742553447	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS18540	RR42_RS18540		long-chain fatty acid--CoA ligase	-1.55669228577154	-5.75233719997512	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS31120	RR42_RS31120		cupin	2.23045603036592	5.15982547453254	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS31130	RR42_RS31130		hypothetical protein	1.75960512453789	6.12287015385136	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS31130	RR42_RS31130		hypothetical protein	1.90129543697441	6.75599083539136	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS31160	RR42_RS31160		IclR family transcriptional regulator	4.88790127292901	35.0147570501648	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS31160	RR42_RS31160		IclR family transcriptional regulator	5.18701247373704	34.225983175641	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS34770	RR42_RS34770		ABC transporter substrate-binding protein	-1.84596840411171	-6.44959515823693	FALSE
+carbon source	set10IT058	Pimelic acid	RR42_RS34780	RR42_RS34780		IclR family transcriptional regulator	1.59953409929793	5.37165104359426	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS34780	RR42_RS34780		IclR family transcriptional regulator	1.66970659369043	6.04778032957396	FALSE
+carbon source	set10IT078	Pimelic acid	RR42_RS34870	RR42_RS34870		hypothetical protein	-1.36296281406574	-5.44653626983991	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS00445	RR42_RS00445		membrane protein	-1.07028849496112	-6.07523944544668	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS05985	RR42_RS05985		esterase	-1.51632051794089	-7.09223185030152	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS06015	RR42_RS06015		recombinase	-2.8440420610761	-11.9346456705215	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS13370	RR42_RS13370		microcin ABC transporter ATP-binding protein	2.14178561071425	7.13780075329773	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS13375	RR42_RS13375		peptide ABC transporter permease	1.8794696750699	8.5810761093255	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS13375	RR42_RS13375		peptide ABC transporter permease	2.26643241085684	9.39441112504726	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS13380	RR42_RS13380		microcin ABC transporter permease	1.76989356735016	6.92893194371753	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS13380	RR42_RS13380		microcin ABC transporter permease	2.19449135040443	8.03055683802974	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS13385	RR42_RS13385		peptide ABC transporter substrate-binding protein	1.58736189648608	8.85398867025839	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS13385	RR42_RS13385		peptide ABC transporter substrate-binding protein	2.10535804025512	9.67507600921717	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS15395	RR42_RS15395		IclR family transcriptional regulator	-1.52596637714844	-5.11936102142382	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS18805	RR42_RS18805		peptidase	1.42212589054075	6.87245203237522	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS18805	RR42_RS18805		peptidase	1.676513491113	8.5146540114677	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS21940	RR42_RS21940		4-hydroxybenzoate 3-monooxygenase	5.8654722692398	5.07290667650645	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS26295	RR42_RS26295		GntR family transcriptional regulator	1.54056829737881	7.07960634789668	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS28940	RR42_RS28940		Bcr/CflA family drug resistance efflux transporter	1.52411347899862	9.68571294012096	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS28940	RR42_RS28940		Bcr/CflA family drug resistance efflux transporter	1.63775561344855	10.9333293995131	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS30505	RR42_RS30505		salicylate hydroxylase	3.0597084686552	5.10085382000509	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS30505	RR42_RS30505		salicylate hydroxylase	3.61514259874823	6.31818032153345	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS30515	RR42_RS30515		5-carboxymethyl-2-hydroxymuconate isomerase	4.5493302731778	7.99026134361459	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS30515	RR42_RS30515		5-carboxymethyl-2-hydroxymuconate isomerase	5.15779080144914	8.40121021122757	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS30520	RR42_RS30520		gentisate 1,2-dioxygenase	3.02355030014552	5.16545192998535	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS30520	RR42_RS30520		gentisate 1,2-dioxygenase	3.07416822248742	5.07825502673207	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS30525	RR42_RS30525		LysR family transcriptional regulator	2.09589121775315	7.08843777563705	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS30525	RR42_RS30525		LysR family transcriptional regulator	2.23346812177777	8.44627712075144	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS30955	RR42_RS30955		histidine kinase	1.59268976487308	5.18127002926193	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS30955	RR42_RS30955		histidine kinase	2.03294497798354	5.37342373754223	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS31695	RR42_RS31695		hypothetical protein	5.42892691727672	11.259410612476	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS31695	RR42_RS31695		hypothetical protein	7.04214149531203	17.1536949719878	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS32060	RR42_RS32060		protocatechuate 3,4-dioxygenase	-4.60595572768289	-5.47562674451011	TRUE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS32060	RR42_RS32060		protocatechuate 3,4-dioxygenase	-3.83096071940575	-7.31926957084835	TRUE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS32065	RR42_RS32065		protocatechuate 3,4-dioxygenase	-4.22614347142022	-7.58771980329613	TRUE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS32065	RR42_RS32065		protocatechuate 3,4-dioxygenase	-4.16008593708015	-6.93565753864787	TRUE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS32565	RR42_RS32565		MFS transporter	-1.78902733879193	-5.50864745320106	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS32970	RR42_RS32970		benzoylformate decarboxylase	5.00195928979845	7.69136609585265	TRUE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS32970	RR42_RS32970		benzoylformate decarboxylase	5.10453510307585	8.5325032000775	TRUE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS34380	RR42_RS34380		dihydrolipoamide dehydrogenase	-2.4199572220143	-7.5017262623405	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS34380	RR42_RS34380		dihydrolipoamide dehydrogenase	-1.87676729523348	-6.33413599102583	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS35455	RR42_RS35455		membrane protein	1.69949123173827	8.92395006581043	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS37040	RR42_RS37040		sulfite reductase subunit alpha	2.90183659214965	20.6505087175824	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS37040	RR42_RS37040		sulfite reductase subunit alpha	3.18698061342904	19.2731236001404	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS37050	RR42_RS37050		ABC transporter permease	2.16060161267475	11.272450567257	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS37050	RR42_RS37050		ABC transporter permease	2.40687299233705	10.3229833088376	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS37055	RR42_RS37055		hypothetical protein	3.17153018682959	5.89306619291989	FALSE
+carbon source	set10IT083	Protocatechuic Acid	RR42_RS37060	RR42_RS37060		membrane protein	2.92437299065467	16.6592455645727	FALSE
+carbon source	set10IT063	Protocatechuic Acid	RR42_RS37060	RR42_RS37060		membrane protein	3.38447137685586	16.9888254211073	FALSE
+carbon source	set1IT034	Sodium D-Lactate	RR42_RS03060	RR42_RS03060		MFS transporter	-1.32385059689433	-7.2541052699344	TRUE
+carbon source	set2IT063	Sodium D-Lactate	RR42_RS03060	RR42_RS03060		MFS transporter	-1.29907045196738	-7.58280864533057	TRUE
+carbon source	set1IT034	Sodium D-Lactate	RR42_RS17290	RR42_RS17290		LysR family transcriptional regulator	-1.88941792444685	-6.360150702109	FALSE
+carbon source	set2IT063	Sodium D-Lactate	RR42_RS17300	RR42_RS17300		glycolate oxidase	-2.20456659656972	-8.04989415261555	TRUE
+carbon source	set1IT034	Sodium D-Lactate	RR42_RS17300	RR42_RS17300		glycolate oxidase	-1.45916675043752	-5.96541133602562	TRUE
+carbon source	set10IT057	Sodium adipate	RR42_RS02080	RR42_RS02080		ribosome hibernation promoting factor	1.60198774653163	10.8798148175848	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS02080	RR42_RS02080		ribosome hibernation promoting factor	1.67329300778735	12.5670605190931	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS02330	RR42_RS02330		trehalose-6-phosphate synthase	-1.71005031563389	-7.25716613244299	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS02330	RR42_RS02330		trehalose-6-phosphate synthase	-1.70291344688117	-7.66286652376446	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS02900	RR42_RS02900		LysR family transcriptional regulator	1.19584805136223	5.33424851917051	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS05595	RR42_RS05595		acyl-CoA dehydrogenase	2.25465181735055	8.4579401420825	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS05595	RR42_RS05595		acyl-CoA dehydrogenase	2.51978978713762	13.6013896797834	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS07515	RR42_RS07515		transcriptional regulator	1.41259844841881	7.52147586661797	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS07535	RR42_RS07535		ABC transporter permease	-1.37282743797144	-6.91129149441912	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS07540	RR42_RS07540		ABC transporter permease	-1.51972543163546	-9.17860491228056	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS07540	RR42_RS07540		ABC transporter permease	-1.48295607365075	-8.93600306547659	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS07545	RR42_RS07545		branched-chain amino acid ABC transporter substrate-binding protein	-1.73013483026785	-8.19835815505222	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS07545	RR42_RS07545		branched-chain amino acid ABC transporter substrate-binding protein	-1.62482869564919	-6.82877344813276	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS11095	RR42_RS11095		3-hydroxyacyl-CoA dehydrogenase	2.77028719835967	20.0460556005738	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS11095	RR42_RS11095		3-hydroxyacyl-CoA dehydrogenase	2.83135524416877	18.294034083677	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS11130	RR42_RS11130		mannosyltransferase	-2.18896827081918	-5.88580412200239	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS11130	RR42_RS11130		mannosyltransferase	-2.02766505253053	-7.86943427141619	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS11135	RR42_RS11135		branched-chain amino acid ABC transporter substrate-binding protein	-2.04735356953309	-5.46575824498666	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS11140	RR42_RS11140		ABC transporter permease	-1.97036080756253	-5.74840533376598	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS11140	RR42_RS11140		ABC transporter permease	-1.87799289349746	-6.50830059996298	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS11145	RR42_RS11145		ABC transporter permease	-3.06218340719851	-10.2622594026343	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS11145	RR42_RS11145		ABC transporter permease	-2.60604640281912	-9.56590932380181	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS11150	RR42_RS11150		branched-chain amino acid ABC transporter substrate-binding protein	-2.17174368400773	-10.0397024867551	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS11150	RR42_RS11150		branched-chain amino acid ABC transporter substrate-binding protein	-2.00040951339301	-8.73473772725617	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS11155	RR42_RS11155		long-chain fatty acid--CoA ligase	-1.39108358818727	-5.75040810485954	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS11155	RR42_RS11155		long-chain fatty acid--CoA ligase	-1.29538468648537	-6.0463740948908	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS12660	RR42_RS12660		hypothetical protein	1.33448243080903	6.05024633776383	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS14065	RR42_RS14065		serine peptidase	1.36669852857452	8.54153712089552	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS14065	RR42_RS14065		serine peptidase	1.52635053133652	10.6340669194439	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS15155	RR42_RS15155		CoA-transferase	1.87737348590967	13.9556376887801	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS15155	RR42_RS15155		CoA-transferase	2.09724956017226	16.6892624138186	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS15585	RR42_RS15585		lytic transglycosylase	-1.32057084794067	-8.05304256014102	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS18150	RR42_RS18150		long-chain fatty acid--CoA ligase	-1.18911399394141	-5.43190616527716	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS19500	RR42_RS19500		general secretion pathway protein GspK	-1.98198448790493	-7.72054317731609	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS19520	RR42_RS19520		general secretion pathway protein GspD	-1.33650879477531	-7.94410731367079	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS19530	RR42_RS19530		general secretion pathway protein GspF	-1.54136171780554	-10.0320763529972	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS20420	RR42_RS20420		maltoporin	-1.35423402164981	-8.30215403601167	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS20420	RR42_RS20420		maltoporin	-1.23904343682095	-6.47853978941335	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS21255	RR42_RS21255		LysR family transcriptional regulator	3.53764282413833	5.11475598394787	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS21255	RR42_RS21255		LysR family transcriptional regulator	3.60054967331547	5.36651645225596	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS21260	RR42_RS21260		isovaleryl-CoA dehydrogenase	1.42481798434155	5.35185123725512	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS21260	RR42_RS21260		isovaleryl-CoA dehydrogenase	1.46768894036634	6.07035463583786	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS21405	RR42_RS21405		LysR family transcriptional regulator	-3.26418979572567	-8.63052378527817	TRUE
+carbon source	set10IT077	Sodium adipate	RR42_RS21405	RR42_RS21405		LysR family transcriptional regulator	-2.60980875765874	-9.6973773665877	TRUE
+carbon source	set10IT077	Sodium adipate	RR42_RS21420	RR42_RS21420		acyl-CoA dehydrogenase	-3.6019369181509	-9.21653005683556	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS21420	RR42_RS21420		acyl-CoA dehydrogenase	-3.02273864490101	-7.87941246957232	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS21425	RR42_RS21425		hypothetical protein	-2.06250022377746	-7.42285199077102	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS21425	RR42_RS21425		hypothetical protein	-1.66218037505646	-5.88641325352681	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS21430	RR42_RS21430		alpha-ketoglutarate permease	-1.52938616226458	-8.45895429641647	TRUE
+carbon source	set10IT077	Sodium adipate	RR42_RS21430	RR42_RS21430		alpha-ketoglutarate permease	-1.52165918238876	-9.50950922865314	TRUE
+carbon source	set10IT077	Sodium adipate	RR42_RS21530	RR42_RS21530		IclR family transcriptional regulator	-1.94496979350216	-8.51639185310835	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS24350	RR42_RS24350		malyl-CoA thiolesterase	1.5291675094406	5.21085088864413	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS24350	RR42_RS24350		malyl-CoA thiolesterase	1.54819116680206	6.04469380228513	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS27395	RR42_RS27395		GntR family transcriptional regulator	2.29047117474456	7.21248570345728	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS27395	RR42_RS27395		GntR family transcriptional regulator	2.73599343148508	12.7583331938871	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS27405	RR42_RS27405		aminotransferase	1.39623827221754	5.19934097755152	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS29230	RR42_RS29230		TetR family transcriptional regulator	1.18661922608126	7.04162850264491	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS29410	RR42_RS29410		acetyl-CoA carboxylase	1.5740645112495	7.6052585957645	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS29410	RR42_RS29410		acetyl-CoA carboxylase	1.77642291968904	8.05838836256327	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS29420	RR42_RS29420		3-methylcrotonyl-CoA carboxylase	1.16200137837729	5.41654308928308	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS29970	RR42_RS29970		IclR family transcriptional regulator	3.59551797247355	12.3465156403144	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS29970	RR42_RS29970		IclR family transcriptional regulator	4.0948539293945	14.3458017781408	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS31120	RR42_RS31120		cupin	1.35008884530294	5.06891445531055	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS31160	RR42_RS31160		IclR family transcriptional regulator	2.44876836519995	16.2258507392232	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS31160	RR42_RS31160		IclR family transcriptional regulator	2.45267530530747	12.2926907490422	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS32250	RR42_RS32250		ABC transporter	-1.42527000618786	-9.52284367117008	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS35485	RR42_RS35485		hypothetical protein	-1.17930554011738	-7.24411231247836	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS35485	RR42_RS35485		hypothetical protein	-1.10167207282971	-5.09278294007907	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS35905	RR42_RS35905		LacI family transcriptional regulator	-3.53069061239529	-9.13191041584719	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS35905	RR42_RS35905		LacI family transcriptional regulator	-2.31404515125802	-9.6572700202946	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS35920	RR42_RS35920		3-oxoadipate CoA-transferase	5.14822723109746	9.59278188865871	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS35920	RR42_RS35920		3-oxoadipate CoA-transferase	5.49751527839202	9.80117980378721	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS35945	RR42_RS35945		DNA-binding protein	1.14067678218367	6.38879448754458	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS36125	RR42_RS36125		IclR family transcriptional regulator	7.35118210558947	54.3864881124296	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS36125	RR42_RS36125		IclR family transcriptional regulator	7.66535462910054	57.4821482896034	FALSE
+carbon source	set10IT057	Sodium adipate	RR42_RS36595	RR42_RS36595		acyl-CoA dehydrogenase	1.95307937472586	7.73708667067942	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS36595	RR42_RS36595		acyl-CoA dehydrogenase	2.05439059711063	6.94088357271054	FALSE
+carbon source	set10IT077	Sodium adipate	RR42_RS37010	RR42_RS37010		cyclase	1.15268236733176	5.36923756501658	FALSE
+carbon source	set2IT056	Sodium butyrate	RR42_RS04580	RR42_RS04580		acyl-CoA dehydrogenase	-2.67886932540059	-10.3251540976168	TRUE
+carbon source	set2IT056	Sodium butyrate	RR42_RS27905	RR42_RS27905		AraC family transcriptional regulator	-1.98548966658746	-5.69818272326886	FALSE
+carbon source	set2IT068	Sodium propionate	RR42_RS01040	RR42_RS01040		cobalamin biosynthesis protein CobW	-1.17401679186862	-7.43920100650686	FALSE
+carbon source	set1IT039	Sodium propionate	RR42_RS01040	RR42_RS01040		cobalamin biosynthesis protein CobW	-1.1112663756975	-6.57047157497036	FALSE
+carbon source	set1IT039	Sodium propionate	RR42_RS10135	RR42_RS10135		biofilm PGA synthesis protein PgaC	-1.28371852932492	-7.28775612619256	FALSE
+carbon source	set2IT068	Sodium propionate	RR42_RS10135	RR42_RS10135		biofilm PGA synthesis protein PgaC	-1.12871111839384	-5.86209177663466	FALSE
+carbon source	set1IT039	Sodium propionate	RR42_RS10140	RR42_RS10140		8-amino-7-oxononanoate synthase	-1.26561766804087	-7.23221128047119	FALSE
+carbon source	set2IT068	Sodium propionate	RR42_RS10140	RR42_RS10140		8-amino-7-oxononanoate synthase	-1.21799571625616	-5.97338833341494	FALSE
+carbon source	set2IT068	Sodium propionate	RR42_RS25655	RR42_RS25655		pyruvate carboxylase	-1.84732578104482	-10.3595884759741	FALSE
+carbon source	set1IT039	Sodium propionate	RR42_RS25655	RR42_RS25655		pyruvate carboxylase	-1.82507448989379	-10.5754677356408	FALSE
+carbon source	set2IT068	Sodium propionate	RR42_RS27910	RR42_RS27910		Crp/Fnr family transcriptional regulator	1.34742479929892	5.82737938019687	FALSE
+carbon source	set1IT039	Sodium propionate	RR42_RS27910	RR42_RS27910		Crp/Fnr family transcriptional regulator	1.59807476816209	5.91665902979137	FALSE
+carbon source	set1IT037	Sodium pyruvate	RR42_RS20510	RR42_RS20510		hypothetical protein	-2.65423768932682	-8.9215730971456	TRUE
+carbon source	set2IT066	Sodium pyruvate	RR42_RS20510	RR42_RS20510		hypothetical protein	-2.47567280521175	-8.55085129827531	TRUE
+carbon source	set1IT037	Sodium pyruvate	RR42_RS20515	RR42_RS20515		carbon starvation protein A	-2.29259117324261	-15.44838041774	TRUE
+carbon source	set2IT066	Sodium pyruvate	RR42_RS20515	RR42_RS20515		carbon starvation protein A	-2.16233052996334	-14.8335436574073	TRUE
+carbon source	set1IT037	Sodium pyruvate	RR42_RS20520	RR42_RS20520		histidine kinase	-2.24769458188034	-14.0226976846053	TRUE
+carbon source	set2IT066	Sodium pyruvate	RR42_RS20520	RR42_RS20520		histidine kinase	-2.02448605799626	-12.4035392137102	TRUE
+carbon source	set2IT066	Sodium pyruvate	RR42_RS20525	RR42_RS20525		LuxR family transcriptional regulator	-1.94142413139129	-5.45941776904053	TRUE
+carbon source	set10IT055	Sodium succinate dibasic hexahydrate	RR42_RS08660	RR42_RS08660		hypothetical protein	-1.62704084811232	-8.57350276975887	FALSE
+carbon source	set10IT079	Suberic acid	RR42_RS05595	RR42_RS05595		acyl-CoA dehydrogenase	-2.85125330053437	-6.24355434181587	FALSE
+carbon source	set10IT059	Suberic acid	RR42_RS10995	RR42_RS10995		hypothetical protein	-1.32965519457097	-5.15566126430296	FALSE
+carbon source	set10IT079	Suberic acid	RR42_RS21405	RR42_RS21405		LysR family transcriptional regulator	-3.54424333911759	-9.88362001659783	FALSE
+carbon source	set10IT059	Suberic acid	RR42_RS21405	RR42_RS21405		LysR family transcriptional regulator	-3.03804285148864	-7.93168751608384	FALSE
+carbon source	set10IT079	Suberic acid	RR42_RS21420	RR42_RS21420		acyl-CoA dehydrogenase	-3.37451078088689	-10.4302966397536	FALSE
+carbon source	set10IT059	Suberic acid	RR42_RS21420	RR42_RS21420		acyl-CoA dehydrogenase	-3.22430025192639	-7.31215999580733	FALSE
+carbon source	set1IT033	Trisodium citrate dihydrate	RR42_RS20625	RR42_RS20625		histidine kinase	-1.96690156525029	-7.69347967433305	FALSE
+carbon source	set1IT033	Trisodium citrate dihydrate	RR42_RS20635	RR42_RS20635		iron ABC transporter substrate-binding protein	-1.53306994568192	-8.66039145066928	TRUE
+carbon source	set1IT033	Trisodium citrate dihydrate	RR42_RS27010	RR42_RS27010		D-3-phosphoglycerate dehydrogenase	-1.58146762035971	-7.03624572776389	FALSE
+carbon source	set1IT033	Trisodium citrate dihydrate	RR42_RS29530	RR42_RS29530		malate permease	-1.40233597983445	-6.62634102529546	TRUE
+carbon source	set10IT048	Valeric acid	RR42_RS10140	RR42_RS10140		8-amino-7-oxononanoate synthase	-1.26615567198819	-5.84391113650575	FALSE
+carbon source	set1IT031	a-Ketoglutaric acid disodium salt hydrate	RR42_RS14000	RR42_RS14000		excinuclease ABC subunit C	1.26554211440287	8.90032553179419	FALSE
+carbon source	set2IT059	a-Ketoglutaric acid disodium salt hydrate	RR42_RS14000	RR42_RS14000		excinuclease ABC subunit C	1.38989807201969	9.68220190697636	FALSE
+carbon source	set2IT059	a-Ketoglutaric acid disodium salt hydrate	RR42_RS15395	RR42_RS15395		IclR family transcriptional regulator	1.84228704219281	10.8271765689962	FALSE
+carbon source	set1IT031	a-Ketoglutaric acid disodium salt hydrate	RR42_RS15395	RR42_RS15395		IclR family transcriptional regulator	1.9854344680051	11.8609770500945	FALSE
+lb	set4IT055		RR42_RS00835	RR42_RS00835		DSBA oxidoreductase	1.1933583753165	5.05095329553915	FALSE
+lb	set4IT055		RR42_RS01220	RR42_RS01220		exodeoxyribonuclease III	-2.02604525027145	-5.23264170368473	FALSE
+lb	set4IT055		RR42_RS02765	RR42_RS02765		aminoglycoside phosphotransferase	1.56631139446465	9.82122314924548	FALSE
+lb	set4IT055		RR42_RS04430	RR42_RS04430		phosphoglycolate phosphatase	1.85405094216946	11.0529470747031	FALSE
+lb	set4IT055		RR42_RS07450	RR42_RS07450		ABC transporter permease	1.78480214418408	6.59925867689016	FALSE
+lb	set4IT055		RR42_RS07455	RR42_RS07455		ABC transporter substrate-binding protein	1.88411596609205	5.66758449987141	FALSE
+lb	set4IT055		RR42_RS07480	RR42_RS07480		ADP-ribose pyrophosphatase	-2.97666587871768	-5.16288210517409	FALSE
+lb	set4IT055		RR42_RS12575	RR42_RS12575		inorganic phosphate transporter	1.41407339390609	8.09668015610368	FALSE
+lb	set4IT055		RR42_RS13435	RR42_RS13435		polyphosphate kinase	-5.15605680286458	-9.96376190424367	FALSE
+lb	set4IT055		RR42_RS14490	RR42_RS14490		aconitate hydratase	-3.07606475487139	-9.20422169386938	FALSE
+lb	set4IT055		RR42_RS17380	RR42_RS17380		catalase	-4.47816001902746	-12.4830308022298	FALSE
+lb	set4IT055		RR42_RS19420	RR42_RS19420		hypothetical protein	-2.75184120843131	-9.27998914073029	FALSE
+lb	set4IT055		RR42_RS20055	RR42_RS20055		ATP-dependent DNA helicase Rep	1.6541199578465	12.450844566855	FALSE
+lb	set4IT055		RR42_RS22455	RR42_RS22455		2-aminoethylphosphonate aminotransferase	-1.81681463486125	-6.71053293503939	FALSE
+lb	set4IT055		RR42_RS27055	RR42_RS27055		membrane protein	-3.46742545315145	-6.5438915551754	FALSE
+lb	set4IT055		RR42_RS28960	RR42_RS28960		acyl-CoA hydrolase	2.07655330841185	8.09234644373241	FALSE
+lb	set4IT055		RR42_RS30945	RR42_RS30945		cytochrome C peroxidase	1.62158323763834	5.55842527063998	FALSE
+lb	set4IT055		RR42_RS30950	RR42_RS30950		cation transporter	1.49953128730877	8.79657255279759	FALSE
+lb	set4IT055		RR42_RS32265	RR42_RS32265		phytoene synthase	1.40230836767528	7.31174118004942	FALSE
+lb	set4IT055		RR42_RS33085	RR42_RS33085		ligand-gated channel protein	1.17349817005423	7.70130812580666	FALSE
+lb	set4IT055		RR42_RS33090	RR42_RS33090		fumarate hydratase	2.61987533280689	17.2892839066073	FALSE
+lb	set4IT055		RR42_RS33495	RR42_RS33495		aromatic amino acid transporter	1.38437374176231	9.70305739165752	FALSE
+lb	set4IT055		RR42_RS34320	RR42_RS34320		IclR family transcriptional regulator	-3.65274847438268	-5.07092175484963	FALSE
+lb	set4IT055		RR42_RS36130	RR42_RS36130		phytanoyl-CoA dioxygenase	1.82124441089751	9.09349906512467	FALSE
+nitrogen source	set3IT024	Glucuronamide	RR42_RS01750	RR42_RS01750		hypothetical protein	-1.54647508814757	-9.76512584784491	FALSE
+nitrogen source	set3IT024	Glucuronamide	RR42_RS01760	RR42_RS01760		ammonia channel protein	-2.19273535382368	-11.128831785265	TRUE
+nitrogen source	set3IT014	Glycine	RR42_RS02765	RR42_RS02765		aminoglycoside phosphotransferase	-1.82809888708645	-11.3018225918333	FALSE
+nitrogen source	set3IT014	Glycine	RR42_RS07595	RR42_RS07595		hypothetical protein	-2.5075798208113	-10.3497819636845	TRUE
+nitrogen source	set3IT014	Glycine	RR42_RS14065	RR42_RS14065		serine peptidase	-2.7653597969119	-8.5695713446058	TRUE
+nitrogen source	set3IT014	Glycine	RR42_RS18000	RR42_RS18000		cell division protein ZapD	-1.66907881512594	-8.94205996256096	FALSE
+nitrogen source	set3IT014	Glycine	RR42_RS20305	RR42_RS20305		metal ABC transporter ATPase	-2.00211008360161	-8.68086427783587	FALSE
+nitrogen source	set3IT014	Glycine	RR42_RS25930	RR42_RS25930		amino acid dehydrogenase	-3.21535469167151	-7.90233423241021	TRUE
+nitrogen source	set3IT021	L-Citrulline	RR42_RS03955	RR42_RS03955		amidinotransferase	-4.8159844340223	-7.69033360836732	FALSE
+nitrogen source	set3IT021	L-Citrulline	RR42_RS03960	RR42_RS03960		ornithine cyclodeaminase	-3.07258275890684	-8.98842029477268	FALSE
+nitrogen source	set3IT021	L-Citrulline	RR42_RS04375	RR42_RS04375		magnesium transporter	-1.66098963915838	-5.24537026290742	FALSE
+nitrogen source	set3IT021	L-Citrulline	RR42_RS20125	RR42_RS20125		transcriptional regulator	-1.94425656883641	-14.8569653404299	TRUE
+nitrogen source	set3IT013	L-Glutamine	RR42_RS03985	RR42_RS03985		histidine kinase	1.67950841853691	8.57317070648648	FALSE
+nitrogen source	set3IT013	L-Glutamine	RR42_RS03990	RR42_RS03990		C4-dicarboxylate ABC transporter	1.5209420635513	7.26418040682706	FALSE
+nitrogen source	set2IT090	L-Isoleucine	RR42_RS01750	RR42_RS01750		hypothetical protein	1.17028243387547	9.92485392033517	FALSE
+nitrogen source	set2IT090	L-Isoleucine	RR42_RS10345	RR42_RS10345		amino acid dehydrogenase	-2.75821371915864	-6.67574843508091	FALSE
+nitrogen source	set3IT016	L-Isoleucine	RR42_RS10345	RR42_RS10345		amino acid dehydrogenase	-2.0204761561836	-8.03791357857608	FALSE
+nitrogen source	set2IT090	L-Isoleucine	RR42_RS10350	RR42_RS10350		indolepyruvate ferredoxin oxidoreductase	-1.23145854345382	-5.18169081965556	FALSE
+nitrogen source	set2IT090	L-Isoleucine	RR42_RS10355	RR42_RS10355		AsnC family transcriptional regulator	-2.34419436741031	-6.20039549588593	FALSE
+nitrogen source	set3IT016	L-Isoleucine	RR42_RS25890	RR42_RS25890		branched-chain amino acid aminotransferase	-1.3241688813146	-5.69328684628993	TRUE
+nitrogen source	set2IT090	L-Isoleucine	RR42_RS25890	RR42_RS25890		branched-chain amino acid aminotransferase	-1.20568888877903	-5.47788291965338	TRUE
+nitrogen source	set2IT091	L-Leucine	RR42_RS34245	RR42_RS34245		indolepyruvate ferredoxin oxidoreductase	-3.70237701280777	-12.2059118414023	FALSE
+nitrogen source	set3IT017	L-Leucine	RR42_RS34245	RR42_RS34245		indolepyruvate ferredoxin oxidoreductase	-3.67749435152001	-11.8273044972123	FALSE
+nitrogen source	set2IT091	L-Leucine	RR42_RS34250	RR42_RS34250		LysR family transcriptional regulator	-4.1621182586787	-9.63832805339862	FALSE
+nitrogen source	set3IT017	L-Leucine	RR42_RS34250	RR42_RS34250		LysR family transcriptional regulator	-3.11009810270423	-10.8494437446406	FALSE
+nitrogen source	set2IT084	L-Lysine	RR42_RS00620	RR42_RS00620		XRE family transcriptional regulator	-1.84873222639569	-6.31994728879598	FALSE
+nitrogen source	set2IT084	L-Lysine	RR42_RS02375	RR42_RS02375		membrane protein	-2.77017012419279	-8.84971283511527	FALSE
+nitrogen source	set2IT084	L-Lysine	RR42_RS17690	RR42_RS17690		3-dehydroquinate dehydratase	-2.19788797387151	-6.05301889111123	FALSE
+nitrogen source	set2IT084	L-Lysine	RR42_RS18505	RR42_RS18505		saccharopine dehydrogenase	-3.63068122614833	-7.64460157262323	FALSE
+nitrogen source	set2IT084	L-Lysine	RR42_RS18510	RR42_RS18510		AsnC family transcriptional regulator	-4.6361456123438	-6.27957138587462	TRUE
+nitrogen source	set2IT084	L-Lysine	RR42_RS27395	RR42_RS27395		GntR family transcriptional regulator	-2.74366192580762	-5.35506262007445	FALSE
+nitrogen source	set3IT018	L-Phenylalanine	RR42_RS01970	RR42_RS01970		maleylacetoacetate isomerase	-2.93203226698761	-8.31679651369785	TRUE
+nitrogen source	set3IT018	L-Phenylalanine	RR42_RS20365	RR42_RS20365		phenylalanine-4-hydroxylase	-4.65562257588635	-10.8149739337451	TRUE
+nitrogen source	set3IT018	L-Phenylalanine	RR42_RS31275	RR42_RS31275		homogentisate 1,2-dioxygenase	-1.93878293428572	-6.12845211629261	FALSE
+nitrogen source	set3IT018	L-Phenylalanine	RR42_RS33490	RR42_RS33490		aromatic amino acid aminotransferase	-3.19623840943941	-11.4220511775644	TRUE
+nitrogen source	set3IT018	L-Phenylalanine	RR42_RS33495	RR42_RS33495		aromatic amino acid transporter	-1.66055522050584	-11.092899791083	FALSE
+nitrogen source	set3IT010	L-Serine	RR42_RS00540	RR42_RS00540		hypothetical protein	-1.36255273420258	-7.7386406123212	FALSE
+nitrogen source	set3IT010	L-Serine	RR42_RS01760	RR42_RS01760		ammonia channel protein	-1.29371299913531	-7.81599767849796	TRUE
+nitrogen source	set2IT085	L-Serine	RR42_RS01760	RR42_RS01760		ammonia channel protein	-1.19062750747618	-7.49471874176039	TRUE
+nitrogen source	set3IT010	L-Serine	RR42_RS20070	RR42_RS20070		glycine dehydrogenase	-1.62769463493173	-7.63334101671334	FALSE
+nitrogen source	set2IT085	L-Serine	RR42_RS20070	RR42_RS20070		glycine dehydrogenase	-1.26259020994508	-6.44129964693489	FALSE
+nitrogen source	set2IT085	L-Serine	RR42_RS20080	RR42_RS20080		serine dehydratase	-3.62983156044372	-11.6546935311512	TRUE
+nitrogen source	set3IT010	L-Serine	RR42_RS20080	RR42_RS20080		serine dehydratase	-3.3104747789035	-11.1664276554837	TRUE
+nitrogen source	set2IT086	L-Threonine	RR42_RS25930	RR42_RS25930		amino acid dehydrogenase	-4.0161504111774	-5.35604467671719	FALSE
+nitrogen source	set2IT086	L-Threonine	RR42_RS28295	RR42_RS28295		2-amino-3-ketobutyrate CoA ligase	-1.66626771861255	-7.44877877199617	FALSE
+nitrogen source	set2IT086	L-Threonine	RR42_RS28300	RR42_RS28300		NAD-dependent epimerase	-1.83934290667888	-6.77312636753264	FALSE
+nitrogen source	set3IT019	L-Tryptophan	RR42_RS13535	RR42_RS13535		2-aminobenzoate-CoA ligase	-1.16968401910783	-7.9855921982421	FALSE
+nitrogen source	set2IT093	L-Tryptophan	RR42_RS13550	RR42_RS13550		3-hydroxyacyl-CoA dehydrogenase	-2.14864424380197	-5.11289143138622	TRUE
+nitrogen source	set2IT093	L-Tryptophan	RR42_RS13555	RR42_RS13555		salicylyl-CoA 5-hydroxylase	-2.05218816569668	-8.5756541504979	FALSE
+nitrogen source	set3IT019	L-Tryptophan	RR42_RS13555	RR42_RS13555		salicylyl-CoA 5-hydroxylase	-2.04792532209529	-6.75319264066457	FALSE
+nitrogen source	set3IT019	L-Tryptophan	RR42_RS15375	RR42_RS15375		AsnC family transcriptional regulator	-3.61544852673627	-5.41754125734469	TRUE
+nitrogen source	set2IT093	L-Tryptophan	RR42_RS15385	RR42_RS15385		kynureninase	-4.87786195816487	-13.6464995742543	TRUE
+nitrogen source	set3IT019	L-Tryptophan	RR42_RS15385	RR42_RS15385		kynureninase	-4.27074244743436	-12.8073154701308	TRUE
+nitrogen source	set2IT093	L-Tryptophan	RR42_RS15390	RR42_RS15390		tryptophan 2,3-dioxygenase	-3.51181769480402	-7.38228013246262	TRUE
+nitrogen source	set3IT019	L-Tryptophan	RR42_RS15390	RR42_RS15390		tryptophan 2,3-dioxygenase	-3.35389448398864	-7.12497339079166	TRUE
+nitrogen source	set2IT089	L-Valine	RR42_RS01750	RR42_RS01750		hypothetical protein	1.04651328471018	8.21476788131282	FALSE
+nitrogen source	set3IT015	L-Valine	RR42_RS01750	RR42_RS01750		hypothetical protein	1.08508294763342	7.90440682372957	FALSE
+nitrogen source	set3IT015	L-Valine	RR42_RS05695	RR42_RS05695		pyridoxal-5'-phosphate-dependent protein subunit beta	-1.35142642856561	-6.12304493273722	FALSE
+nitrogen source	set3IT015	L-Valine	RR42_RS19540	RR42_RS19540		indolepyruvate ferredoxin oxidoreductase	-1.05618625377241	-7.70635870702773	TRUE
+nitrogen source	set2IT089	L-Valine	RR42_RS28545	RR42_RS28545		enoyl-CoA hydratase	-1.99088465684091	-5.94393541541606	TRUE
+nitrogen source	set2IT089	L-Valine	RR42_RS30630	RR42_RS30630		AsnC family transcriptional regulator	-1.74600104493157	-6.94732692796351	FALSE
+nitrogen source	set3IT015	L-Valine	RR42_RS30630	RR42_RS30630		AsnC family transcriptional regulator	-1.06316865855483	-5.49188600380486	FALSE
+nitrogen source	set3IT026	Sodium nitrate	RR42_RS01960	RR42_RS01960		transcriptional regulator	-3.21721081928297	-8.65370035179353	TRUE
+nitrogen source	set3IT026	Sodium nitrate	RR42_RS14170	RR42_RS14170		molybdopterin-guanine dinucleotide biosynthesis protein A	-3.91498450671093	-10.2741878558945	FALSE
+nitrogen source	set3IT026	Sodium nitrate	RR42_RS14175	RR42_RS14175		molybdenum cofactor biosynthesis protein MoaA	-3.11331293497767	-8.66906347397621	FALSE
+nitrogen source	set3IT026	Sodium nitrate	RR42_RS16945	RR42_RS16945		NAD-dependent dehydratase	-1.78475575413171	-5.23229093130161	FALSE
+nitrogen source	set3IT026	Sodium nitrate	RR42_RS17690	RR42_RS17690		3-dehydroquinate dehydratase	-1.87041426418946	-6.42165107167074	FALSE
+nitrogen source	set3IT026	Sodium nitrate	RR42_RS31780	RR42_RS31780		MFS transporter	-2.73743821640675	-14.0244419751398	TRUE
+nitrogen source	set3IT026	Sodium nitrate	RR42_RS31785	RR42_RS31785		nitrite reductase	-3.5356100544307	-12.1147718370441	TRUE
+nitrogen source	set3IT026	Sodium nitrate	RR42_RS31800	RR42_RS31800		nitrate reductase	-3.40041220644173	-12.4562395397945	TRUE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS01750	RR42_RS01750		hypothetical protein	2.05494530844702	14.7982522472492	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS01760	RR42_RS01760		ammonia channel protein	1.7566600005455	13.9494746558134	TRUE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS01940	RR42_RS01940		glycosyl transferase	-1.68543416384571	-11.5212112902156	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS01960	RR42_RS01960		transcriptional regulator	-4.36073641307816	-6.63422397243167	TRUE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS02535	RR42_RS02535		metal ABC transporter permease	-1.21434277006332	-6.05210691059625	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS02595	RR42_RS02595		glutamine amidotransferase	-1.90500378425964	-9.41516458194271	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS07655	RR42_RS07655		cystathionine beta-lyase	-1.09713557282867	-7.11466313752265	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS16945	RR42_RS16945		NAD-dependent dehydratase	-2.92311689418275	-6.70361606798156	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS17290	RR42_RS17290		LysR family transcriptional regulator	-1.2587773575031	-5.51760132590412	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS17300	RR42_RS17300		glycolate oxidase	-1.55131173785785	-6.67218218793017	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS17305	RR42_RS17305		ion transporter	-1.43986721905099	-7.30998880198141	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS31780	RR42_RS31780		MFS transporter	-3.57559279322732	-14.1350239895768	FALSE
+nitrogen source	set3IT027	Sodium nitrite	RR42_RS31785	RR42_RS31785		nitrite reductase	-3.35388690450916	-9.41937130102821	TRUE
+stress	set5IT002	Bacitracin	RR42_RS03145	RR42_RS03145		peptidase M48	-1.42858215340398	-8.40972161342805	FALSE
+stress	set6IT086	Cisplatin	RR42_RS01015	RR42_RS01015		TonB-dependent receptor	-1.68614390840932	-9.60377200097911	FALSE
+stress	set1IT007	Cisplatin	RR42_RS02145	RR42_RS02145		excinuclease ABC subunit A	-3.48153267403711	-12.6056287833594	TRUE
+stress	set6IT086	Cisplatin	RR42_RS02145	RR42_RS02145		excinuclease ABC subunit A	-3.19415153661129	-12.8457417695352	TRUE
+stress	set1IT007	Cisplatin	RR42_RS02265	RR42_RS02265		excinuclease ABC subunit A	-3.48496060462283	-12.6194211885678	FALSE
+stress	set6IT086	Cisplatin	RR42_RS02265	RR42_RS02265		excinuclease ABC subunit A	-1.90719516861929	-10.3276513314137	FALSE
+stress	set6IT086	Cisplatin	RR42_RS05910	RR42_RS05910		DNA repair protein	-3.93605762650013	-6.98088253227493	TRUE
+stress	set6IT086	Cisplatin	RR42_RS05995	RR42_RS05995		excinuclease ABC subunit B	-4.3732719670167	-13.8323754584323	TRUE
+stress	set1IT007	Cisplatin	RR42_RS05995	RR42_RS05995		excinuclease ABC subunit B	-3.69869193750971	-11.1212266636406	TRUE
+stress	set1IT007	Cisplatin	RR42_RS06090	RR42_RS06090		single-stranded DNA exonuclease	-4.26821213991577	-6.50603412224192	TRUE
+stress	set6IT086	Cisplatin	RR42_RS06090	RR42_RS06090		single-stranded DNA exonuclease	-3.28378040781792	-10.3006766289255	TRUE
+stress	set1IT007	Cisplatin	RR42_RS07580	RR42_RS07580		helicase	-2.25481538063119	-9.84816485617674	TRUE
+stress	set6IT086	Cisplatin	RR42_RS07580	RR42_RS07580		helicase	-1.34501544507728	-8.65590888024983	TRUE
+stress	set1IT007	Cisplatin	RR42_RS07845	RR42_RS07845		transcription-repair coupling factor	-2.39939617447671	-11.0660354683394	TRUE
+stress	set6IT086	Cisplatin	RR42_RS07845	RR42_RS07845		transcription-repair coupling factor	-1.29065413960178	-8.08409044786411	TRUE
+stress	set1IT007	Cisplatin	RR42_RS08250	RR42_RS08250		coat protein	1.422506017867	6.38649779084033	FALSE
+stress	set6IT086	Cisplatin	RR42_RS08250	RR42_RS08250		coat protein	1.43247167350248	6.12221826188441	FALSE
+stress	set6IT086	Cisplatin	RR42_RS14000	RR42_RS14000		excinuclease ABC subunit C	-4.31865165664397	-9.67298949254771	TRUE
+stress	set1IT007	Cisplatin	RR42_RS14000	RR42_RS14000		excinuclease ABC subunit C	-4.20934829220758	-9.38005535375513	TRUE
+stress	set6IT086	Cisplatin	RR42_RS14030	RR42_RS14030		DNA recombination protein RecO	-6.21481233413661	-7.59198089968887	TRUE
+stress	set1IT007	Cisplatin	RR42_RS19310	RR42_RS19310		ATP-dependent DNA helicase RecQ	-2.5378863789114	-10.9515273935141	TRUE
+stress	set6IT086	Cisplatin	RR42_RS19310	RR42_RS19310		ATP-dependent DNA helicase RecQ	-1.78541945924943	-9.64252321645518	TRUE
+stress	set1IT007	Cisplatin	RR42_RS20055	RR42_RS20055		ATP-dependent DNA helicase Rep	-1.22319725682558	-8.20199178355986	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS02305	RR42_RS02305		porin	2.63849904816101	16.7496710570064	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS02505	RR42_RS02505		acyl-CoA dehydrogenase	-2.09335848179183	-8.74818789002538	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS02840	RR42_RS02840		cation transporter	1.94668994529513	7.60655590191053	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS03105	RR42_RS03105		integral membrane protein	-2.36398635954573	-6.20597327222827	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS03145	RR42_RS03145		peptidase M48	-2.9515608123807	-8.11781080606058	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS03145	RR42_RS03145		peptidase M48	-1.58261569259061	-6.50693435635338	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS03160	RR42_RS03160		hypothetical protein	-1.28097245205948	-6.6036352858241	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS04415	RR42_RS04415		ABC transporter	1.54097482685658	9.25893802655226	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS06450	RR42_RS06450		membrane protein	-1.59609359305862	-5.79124444121065	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS07450	RR42_RS07450		ABC transporter permease	-1.70242479323911	-5.06916745905993	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS07455	RR42_RS07455		ABC transporter substrate-binding protein	-1.87558216115008	-8.07140533172213	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS07455	RR42_RS07455		ABC transporter substrate-binding protein	-1.50497873591604	-6.21086032809582	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS07905	RR42_RS07905		phytoene synthase	1.59381288101713	8.07663876937744	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS09045	RR42_RS09045		peptidylprolyl isomerase	1.6200545692235	9.9101612125873	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS11370	RR42_RS11370		ABC transporter ATP-binding protein	1.89332326998238	8.79704277114264	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS11930	RR42_RS11930		succinyldiaminopimelate aminotransferase	2.04028352949102	7.0348416304977	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS13055	RR42_RS13055		NAD-dependent protein deacylase	1.42896971525818	6.32143618578788	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS13735	RR42_RS13735		ADP-heptose--LPS heptosyltransferase	1.54091572341218	7.5608251551421	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS13735	RR42_RS13735		ADP-heptose--LPS heptosyltransferase	2.58750550610022	10.2213313380395	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS14155	RR42_RS14155		pseudouridine synthase	1.18398339019926	8.31254066265787	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS14155	RR42_RS14155		pseudouridine synthase	2.06288507857101	15.814309638651	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS14490	RR42_RS14490		aconitate hydratase	-1.18621472732692	-7.21932195606386	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS14800	RR42_RS14800		LysR family transcriptional regulator	-3.00825638290654	-7.93216190379424	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS14800	RR42_RS14800		LysR family transcriptional regulator	-2.99454914025719	-8.41979847786212	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS18150	RR42_RS18150		long-chain fatty acid--CoA ligase	1.60507712111768	9.20550406938633	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS18150	RR42_RS18150		long-chain fatty acid--CoA ligase	2.67608494973139	14.9388801527981	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS19475	RR42_RS19475		general secretion pathway protein	1.47849616829932	7.28711026386119	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS19475	RR42_RS19475		general secretion pathway protein	2.78716639746007	17.738071584664	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS21085	RR42_RS21085		3-isopropylmalate dehydratase	1.18790810028382	6.63064262997004	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS22900	RR42_RS22900		5-oxoprolinase	1.07166851090969	7.35040757976371	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS22925	RR42_RS22925		RND transporter	-3.96382721292032	-5.38261424710807	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS22930	RR42_RS22930		cytochrome C peroxidase	-3.85003879610074	-7.78767887599464	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS22935	RR42_RS22935		metal transporter	-5.24838280859271	-5.09288660830749	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS27010	RR42_RS27010		D-3-phosphoglycerate dehydrogenase	-1.23831558396718	-5.78882048712882	TRUE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS30710	RR42_RS30710		TetR family transcriptional regulator	1.17023559605386	5.41637627974838	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS30945	RR42_RS30945		cytochrome C peroxidase	-3.78605955221882	-5.12944535323406	TRUE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS30950	RR42_RS30950		cation transporter	-3.39193905783833	-10.7801042951082	TRUE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS30955	RR42_RS30955		histidine kinase	2.08125937475194	5.31264309379902	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS31760	RR42_RS31760		IclR family transcriptional regulator	-1.64086090973136	-8.51455139989972	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS32240	RR42_RS32240		ABC transporter	-1.26702199988945	-5.0866901145909	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS33085	RR42_RS33085		ligand-gated channel protein	-1.09136503364074	-7.18856451861008	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS36260	RR42_RS36260		membrane protein	-1.35979266065109	-6.04273886546048	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS36665	RR42_RS36665		hypothetical protein	-2.14165514985534	-5.04584957184309	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS36665	RR42_RS36665		hypothetical protein	-1.87887168554309	-6.02931790434017	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS36985	RR42_RS36985		amino acid ABC transporter substrate-binding protein	1.35826105127068	6.48393586873613	FALSE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS36990	RR42_RS36990		hemolysin III	-4.74047988173335	-11.9573541238648	TRUE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS36990	RR42_RS36990		hemolysin III	-3.90570437052796	-7.47410483547204	TRUE
+stress	set6IT084	Cobalt chloride hexahydrate	RR42_RS37270	RR42_RS37270		Fur family transcriptional regulator	-1.45750107874124	-5.29019554719183	FALSE
+stress	set1IT002	Cobalt chloride hexahydrate	RR42_RS37290	RR42_RS37290		PadR family transcriptional regulator	1.28675732321793	7.14024995037208	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS01270	RR42_RS01270		3-deoxy-D-manno-oct-2-ulosonic acid (Kdo) hydroxylase	1.13886400593503	7.45389730870921	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS04410	RR42_RS04410		cyanophycin synthetase	1.94848344256253	12.1319136935773	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS04415	RR42_RS04415		ABC transporter	2.31390150337424	16.3723050695021	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS07450	RR42_RS07450		ABC transporter permease	1.81659276690367	7.41136900935265	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS07455	RR42_RS07455		ABC transporter substrate-binding protein	1.79348033314709	10.5578671680177	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS09045	RR42_RS09045		peptidylprolyl isomerase	1.59333034906496	9.60401962090885	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS13915	RR42_RS13915		ATPase	1.3482619414468	7.6928142406722	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS20055	RR42_RS20055		ATP-dependent DNA helicase Rep	1.30431304584015	10.6014524865693	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS31760	RR42_RS31760		IclR family transcriptional regulator	1.80947173612329	11.261914097325	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS33085	RR42_RS33085		ligand-gated channel protein	1.49857150961878	10.5162160385608	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS33495	RR42_RS33495		aromatic amino acid transporter	1.57132232378241	11.9869033673709	FALSE
+stress	set1IT025	D-Cycloserine	RR42_RS36665	RR42_RS36665		hypothetical protein	1.63358882951474	8.76537677301326	FALSE
+stress	set5IT003	Dimethyl Sulfoxide	RR42_RS10885	RR42_RS10885		DNAase	-1.71513397099069	-5.82230194442701	TRUE
+stress	set5IT003	Dimethyl Sulfoxide	RR42_RS13200	RR42_RS13200		stationary phase survival protein SurE	-1.40874464608374	-7.60491408948173	FALSE
+stress	set5IT003	Dimethyl Sulfoxide	RR42_RS37475	RR42_RS37475		peptide chain release factor 3	-1.59109954525638	-7.91881825473735	TRUE
+stress	set1IT027	Doxycycline hyclate	RR42_RS00445	RR42_RS00445		membrane protein	-3.13175607516478	-12.2105837339513	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS01270	RR42_RS01270		3-deoxy-D-manno-oct-2-ulosonic acid (Kdo) hydroxylase	-2.34779767020855	-10.6410089008747	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS02035	RR42_RS02035		hypothetical protein	-2.16920862875969	-8.04184966362645	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS02430	RR42_RS02430		sodium:solute symporter	-1.27059464363484	-6.10798538915637	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS02745	RR42_RS02745		Xaa-Pro aminopeptidase	2.88962272794337	17.1195101096994	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS04410	RR42_RS04410		cyanophycin synthetase	-2.9918405486049	-7.20297448696111	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS04415	RR42_RS04415		ABC transporter	-3.151349233988	-9.79614686250244	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS04970	RR42_RS04970		aspartyl beta-hydroxylase	-3.5996405789554	-12.2066475914358	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS05020	RR42_RS05020		SAM-dependent methyltransferase	5.03595554727154	25.8705920961374	TRUE
+stress	set1IT027	Doxycycline hyclate	RR42_RS06475	RR42_RS06475		glycerol acyltransferase	1.41926507149848	9.40262520247305	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS11370	RR42_RS11370		ABC transporter ATP-binding protein	-1.26151077347002	-5.96980797621647	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS13030	RR42_RS13030		ATP-dependent helicase	-3.61602210455468	-16.7537731660504	TRUE
+stress	set1IT027	Doxycycline hyclate	RR42_RS15850	RR42_RS15850		glycerol acyltransferase	1.85674039906821	13.7652888994563	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS20385	RR42_RS20385		methyltransferase	-1.38119613964986	-7.23265318507312	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS20450	RR42_RS20450		16S rRNA methyltransferase	-4.06713080905376	-9.50536137354141	TRUE
+stress	set1IT027	Doxycycline hyclate	RR42_RS20650	RR42_RS20650		multidrug efflux RND transporter permease subunit	-4.50907579214631	-11.6297370039886	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS22430	RR42_RS22430		2OG-Fe(II) oxygenase	-1.03624174191813	-5.28161816324557	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS22435	RR42_RS22435		membrane protein	-1.75762182567724	-6.8038256101473	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS22445	RR42_RS22445		phosphoenolpyruvate phosphomutase	-1.8330018916256	-9.06410918140188	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS22450	RR42_RS22450		phosphonopyruvate decarboxylase	-1.8918126961957	-5.00003935032898	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS22455	RR42_RS22455		2-aminoethylphosphonate aminotransferase	-2.16504522616205	-11.2955017619211	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS28595	RR42_RS28595		squalene--hopene cyclase	-2.00221682164187	-12.0947247890359	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS31185	RR42_RS31185		3-oxoacyl-ACP synthase	1.95341750029782	14.6404134930265	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS32225	RR42_RS32225		NAD-dependent dehydratase	-1.8842468859713	-7.91196742962272	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS32240	RR42_RS32240		ABC transporter	-3.24698583116527	-8.24712183831329	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS32250	RR42_RS32250		ABC transporter	-4.84064756649905	-15.9921053427984	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS32265	RR42_RS32265		phytoene synthase	1.62562485587753	6.53207419845363	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS36255	RR42_RS36255		LacI family transcriptional regulator	1.01778145649628	5.7641178591805	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS36270	RR42_RS36270		patatin	-4.13347775680128	-13.7889084203009	FALSE
+stress	set1IT027	Doxycycline hyclate	RR42_RS36665	RR42_RS36665		hypothetical protein	-3.78631719522981	-9.56239540695406	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS01090	RR42_RS01090		histidine kinase	1.239823996587	7.56399236093779	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS01970	RR42_RS01970		maleylacetoacetate isomerase	1.54724541313038	7.10342619911735	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS02405	RR42_RS02405		membrane protein	1.52208490438267	6.46989478754491	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS02405	RR42_RS02405		membrane protein	1.90887659184785	9.77035035350399	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS02430	RR42_RS02430		sodium:solute symporter	-1.37725388617234	-5.82662804932123	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS03175	RR42_RS03175		DNA helicase	-2.20267066100833	-6.42891685244265	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS03175	RR42_RS03175		DNA helicase	-1.58265041185273	-5.2539606265589	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS03275	RR42_RS03275		membrane protein	2.35929208366983	9.07969917290276	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS03275	RR42_RS03275		membrane protein	2.93936232029691	14.5739747731663	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS03475	RR42_RS03475		exodeoxyribonuclease VII large subunit	-2.54637570365252	-6.42960263494687	TRUE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS04970	RR42_RS04970		aspartyl beta-hydroxylase	-1.93637338929886	-8.20236363508378	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS05910	RR42_RS05910		DNA repair protein	-3.99129525496644	-9.15753962232751	TRUE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS06475	RR42_RS06475		glycerol acyltransferase	1.34138952963034	7.94395244491981	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08005	RR42_RS08005		hypothetical protein	1.29189358234621	5.49421179116178	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08015	RR42_RS08015		hypothetical protein	1.36901854447563	6.27877992562423	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08020	RR42_RS08020		hypothetical protein	1.48785427922502	6.21461886531372	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08105	RR42_RS08105		hypothetical protein	1.53539145911111	5.60815285766408	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08120	RR42_RS08120		hypothetical protein	2.94039025140361	8.14844258746506	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08125	RR42_RS08125		hypothetical protein	1.44576193742072	10.0402825118305	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08125	RR42_RS08125		hypothetical protein	2.44221964177546	11.9774653352495	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08130	RR42_RS08130		hypothetical protein	1.5692159173752	5.92564654728678	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08130	RR42_RS08130		hypothetical protein	2.56370109938058	9.79123813999552	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08135	RR42_RS08135		hypothetical protein	1.32525475693676	6.67730328871035	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08135	RR42_RS08135		hypothetical protein	2.43346672405448	14.9062552887215	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08225	RR42_RS08225		chromosome partitioning protein ParB	1.55066301939241	7.54692466684899	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08225	RR42_RS08225		chromosome partitioning protein ParB	2.80760699046265	10.4822827003962	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08235	RR42_RS08235		terminase	1.73279434696693	5.77794138471989	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08235	RR42_RS08235		terminase	2.75964799413195	13.1700568375514	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08240	RR42_RS08240		DNA-binding protein	2.53341725708551	9.60840415407025	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08250	RR42_RS08250		coat protein	2.21256553206338	12.2782438711403	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08250	RR42_RS08250		coat protein	2.8972500046381	11.5021082624228	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08270	RR42_RS08270		hypothetical protein	1.54911361441719	7.7292044729043	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08270	RR42_RS08270		hypothetical protein	1.9638519215444	8.65105421050995	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08275	RR42_RS08275		hypothetical protein	1.50409881293738	7.11596364881359	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08275	RR42_RS08275		hypothetical protein	2.7567871946	11.9790665813747	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08280	RR42_RS08280		hypothetical protein	2.06008058275694	7.25897257631692	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08280	RR42_RS08280		hypothetical protein	2.85506341294486	9.99991744581693	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08285	RR42_RS08285		tail protein	1.30537557920064	5.92609090966147	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08285	RR42_RS08285		tail protein	2.88390051038377	13.0105628052181	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08290	RR42_RS08290		hypothetical protein	1.40058416653311	8.44403215387311	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08290	RR42_RS08290		hypothetical protein	2.64165425951067	13.5765686834115	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08295	RR42_RS08295		hypothetical protein	1.38678788421092	5.02600951395412	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08295	RR42_RS08295		hypothetical protein	2.72619404376344	10.1884442139336	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08300	RR42_RS08300		hypothetical protein	1.63493689011789	8.86176947826544	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08300	RR42_RS08300		hypothetical protein	2.69061515399686	11.0401491821619	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08310	RR42_RS08310		hypothetical protein	1.49058516757116	5.69356561730915	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08310	RR42_RS08310		hypothetical protein	2.5667906491138	9.88852310976828	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08315	RR42_RS08315		hypothetical protein	1.49100941751795	9.21155376094884	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08315	RR42_RS08315		hypothetical protein	2.53163010546223	14.0549549366967	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08320	RR42_RS08320		hypothetical protein	2.86756262562478	11.6775841705271	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08325	RR42_RS08325		hypothetical protein	2.43385066876344	11.3000704863065	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08335	RR42_RS08335		hypothetical protein	1.62934923824063	7.22725964821534	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08335	RR42_RS08335		hypothetical protein	2.64843574067724	13.3909735798534	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08340	RR42_RS08340		phage tail protein	2.42030287453267	5.85126483633171	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08345	RR42_RS08345		baseplate protein	2.54156515186987	7.52118310800776	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08355	RR42_RS08355		hypothetical protein	1.84877100009787	7.41084518730005	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08355	RR42_RS08355		hypothetical protein	2.83010088221386	12.4037769974951	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08360	RR42_RS08360		hypothetical protein	1.51235063023488	6.40559633189105	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08360	RR42_RS08360		hypothetical protein	2.45656712564763	11.6591732969685	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08370	RR42_RS08370		hypothetical protein	1.48630578606314	9.7076920354863	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08370	RR42_RS08370		hypothetical protein	2.59652274303732	17.1866792978894	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08395	RR42_RS08395		hypothetical protein	1.38945564376891	10.0067944757983	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08395	RR42_RS08395		hypothetical protein	2.39813324270241	14.6853385545078	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08400	RR42_RS08400		hypothetical protein	2.37045840211818	9.05425942380373	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08400	RR42_RS08400		hypothetical protein	3.73158449215046	10.7092839293195	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08405	RR42_RS08405		chitinase	2.82869414749652	16.0310040294209	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08410	RR42_RS08410		hypothetical protein	2.64506452202555	10.6024368879341	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08415	RR42_RS08415		hypothetical protein	1.65818750696588	10.025718432648	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08415	RR42_RS08415		hypothetical protein	2.58363539291004	9.73535612706022	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08430	RR42_RS08430		hypothetical protein	1.28867700305075	7.18733393413193	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08430	RR42_RS08430		hypothetical protein	2.22788603957097	12.7159704194238	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08435	RR42_RS08435		hypothetical protein	1.51541797639702	10.162032279119	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08435	RR42_RS08435		hypothetical protein	2.37971319332124	13.9263798160285	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS08440	RR42_RS08440		ATP synthase I	1.57577954207939	5.79752071601114	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS08440	RR42_RS08440		ATP synthase I	2.92727971722567	13.7959626033008	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS09045	RR42_RS09045		peptidylprolyl isomerase	2.22632893803197	14.5080810116348	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS09045	RR42_RS09045		peptidylprolyl isomerase	2.41096647042141	12.2351950792193	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS13180	RR42_RS13180		3'-5' exonuclease	1.94318316290339	13.8372527857647	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS13180	RR42_RS13180		3'-5' exonuclease	5.76165765521168	38.6094009314391	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS13735	RR42_RS13735		ADP-heptose--LPS heptosyltransferase	2.14165474839872	6.64987498905941	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS13735	RR42_RS13735		ADP-heptose--LPS heptosyltransferase	2.26338206239813	9.09969908288944	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS14685	RR42_RS14685		ABC transporter ATP-binding protein	2.21676961799132	8.42089944773029	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS14685	RR42_RS14685		ABC transporter ATP-binding protein	2.27935210552875	8.40864624958836	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS15850	RR42_RS15850		glycerol acyltransferase	1.41827580199374	9.68034406420159	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS15850	RR42_RS15850		glycerol acyltransferase	1.62023269115061	11.8174745444141	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS18760	RR42_RS18760		RNA helicase	1.28533561438124	8.19312145505894	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS18765	RR42_RS18765		ATP-dependent endonuclease	1.47130583471275	10.8135037837233	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS19310	RR42_RS19310		ATP-dependent DNA helicase RecQ	1.4345485189903	9.94716923058419	TRUE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS19310	RR42_RS19310		ATP-dependent DNA helicase RecQ	2.3936042090941	15.156736809769	TRUE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS19880	RR42_RS19880		hypothetical protein	4.21698635168929	9.00272655555151	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS19880	RR42_RS19880		hypothetical protein	6.01337973577516	8.64435572993675	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS20650	RR42_RS20650		multidrug efflux RND transporter permease subunit	-1.86050190637752	-8.95745343032391	TRUE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS22425	RR42_RS22425		CDP-alcohol phosphatidyltransferase	-1.89234181146582	-5.71669311359265	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS22430	RR42_RS22430		2OG-Fe(II) oxygenase	-1.30140560882263	-7.51515837058217	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS22435	RR42_RS22435		membrane protein	-2.09383630949278	-6.43870860225132	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS22445	RR42_RS22445		phosphoenolpyruvate phosphomutase	-1.17232984468371	-6.21243281927329	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS22450	RR42_RS22450		phosphonopyruvate decarboxylase	-1.34432349996566	-5.92955418950988	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS22455	RR42_RS22455		2-aminoethylphosphonate aminotransferase	-1.18552089811108	-6.84805979859729	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS28595	RR42_RS28595		squalene--hopene cyclase	-1.22036851576466	-8.22612277356156	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS31260	RR42_RS31260		acyltransferase	2.26341649279005	7.96947030807322	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS32225	RR42_RS32225		NAD-dependent dehydratase	-1.48252110695332	-5.76525771709856	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS32240	RR42_RS32240		ABC transporter	-2.64506395438902	-5.78758880207861	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS32250	RR42_RS32250		ABC transporter	-3.75967688298123	-12.9603536395833	FALSE
+stress	set5IT008	Lomefloxacin hydrochloride	RR42_RS32250	RR42_RS32250		ABC transporter	-2.35252411148772	-10.0135755440777	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS33410	RR42_RS33410		cytochrome C peroxidase	1.07844677041428	7.38552822296184	FALSE
+stress	set5IT007	Lomefloxacin hydrochloride	RR42_RS36270	RR42_RS36270		patatin	-1.39158968449769	-8.06368399178285	FALSE
+stress	set1IT024	MreB Perturbing Compound A22	RR42_RS20650	RR42_RS20650		multidrug efflux RND transporter permease subunit	-1.45661646471561	-8.96180663924065	TRUE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS00445	RR42_RS00445		membrane protein	1.46260375237484	11.1321823958172	FALSE
+stress	set4IT063	Nickel (II) chloride hexahydrate	RR42_RS00445	RR42_RS00445		membrane protein	1.74263001136559	13.4691556567795	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS00445	RR42_RS00445		membrane protein	1.88484770046271	13.064600647164	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS00455	RR42_RS00455		cell division inhibitor MinD	-2.07810913703129	-5.52077147539273	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS02305	RR42_RS02305		porin	-1.24558271832571	-6.07092052947468	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS02405	RR42_RS02405		membrane protein	-1.33477602099908	-5.0323584530556	FALSE
+stress	set6IT082	Nickel (II) chloride hexahydrate	RR42_RS02405	RR42_RS02405		membrane protein	-1.27238618430732	-5.13780667075442	FALSE
+stress	set4IT062	Nickel (II) chloride hexahydrate	RR42_RS02405	RR42_RS02405		membrane protein	-1.24144646685318	-5.65165347278813	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS02505	RR42_RS02505		acyl-CoA dehydrogenase	-1.32050699936876	-6.68993152662448	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS02745	RR42_RS02745		Xaa-Pro aminopeptidase	1.77475740474149	8.8227797137784	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS02790	RR42_RS02790		tryptophanyl-tRNA synthetase	1.929066546901	11.1259228504737	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS02790	RR42_RS02790		tryptophanyl-tRNA synthetase	2.23254688930832	10.3452285328415	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS02825	RR42_RS02825		hypothetical protein	-1.7397966445898	-6.71336912644485	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS02840	RR42_RS02840		cation transporter	1.85309164834586	7.95893542302017	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS02840	RR42_RS02840		cation transporter	2.58839233404062	15.3026697278649	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS03145	RR42_RS03145		peptidase M48	-2.08585001287208	-8.75140004724901	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS03985	RR42_RS03985		histidine kinase	1.14117538178252	5.64268046483549	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS03990	RR42_RS03990		C4-dicarboxylate ABC transporter	1.69428433802336	6.14294768424543	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS05200	RR42_RS05200		aminopeptidase N	2.05304357157354	14.1214983777312	TRUE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS05325	RR42_RS05325		adenine deaminase	1.40899694162236	8.04915777603856	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS06450	RR42_RS06450		membrane protein	-4.03570615020938	-9.73808406745623	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS07340	RR42_RS07340		oligopeptidase A	1.20858330947062	7.78693258618639	TRUE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS11370	RR42_RS11370		ABC transporter ATP-binding protein	2.10506122187413	12.8491088475706	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS11370	RR42_RS11370		ABC transporter ATP-binding protein	3.00258648438021	15.1640058559278	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS12575	RR42_RS12575		inorganic phosphate transporter	-2.11833260500355	-8.91888902509353	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS14155	RR42_RS14155		pseudouridine synthase	1.4355735712975	10.4526088158156	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS15070	RR42_RS15070		membrane protein	-1.95375049809998	-6.9017056067155	FALSE
+stress	set4IT062	Nickel (II) chloride hexahydrate	RR42_RS15070	RR42_RS15070		membrane protein	-1.8627888816903	-8.37200430620829	FALSE
+stress	set6IT082	Nickel (II) chloride hexahydrate	RR42_RS15070	RR42_RS15070		membrane protein	-1.51606647319799	-5.92510194317805	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS15850	RR42_RS15850		glycerol acyltransferase	1.04333820136189	7.78174944921562	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS16925	RR42_RS16925		histidine utilization repressor	1.45353341024163	5.31665639191283	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS17675	RR42_RS17675		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	-1.54463348805128	-8.87138095159339	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS17690	RR42_RS17690		3-dehydroquinate dehydratase	-3.12107595362037	-7.05248026840351	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS17690	RR42_RS17690		3-dehydroquinate dehydratase	-2.61058664208895	-6.41009021853197	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS18900	RR42_RS18900		membrane protein	-1.14323469499275	-5.97486082018548	FALSE
+stress	set4IT063	Nickel (II) chloride hexahydrate	RR42_RS22895	RR42_RS22895		5-oxoprolinase	2.33819232677641	6.61265614531575	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS22895	RR42_RS22895		5-oxoprolinase	3.35494984214816	7.57522775792443	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS22895	RR42_RS22895		5-oxoprolinase	4.60097274106581	9.81589256184885	FALSE
+stress	set4IT063	Nickel (II) chloride hexahydrate	RR42_RS22900	RR42_RS22900		5-oxoprolinase	2.35903542958684	8.41204068558866	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS22900	RR42_RS22900		5-oxoprolinase	3.72273776657269	10.2075516810689	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS22900	RR42_RS22900		5-oxoprolinase	4.08135258734875	10.5090155566652	FALSE
+stress	set4IT063	Nickel (II) chloride hexahydrate	RR42_RS22905	RR42_RS22905		myristoyl transferase	2.28217607712617	5.61461086347301	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS22905	RR42_RS22905		myristoyl transferase	3.57197075273607	5.99508807569406	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS22905	RR42_RS22905		myristoyl transferase	4.06958149659855	8.79954863725991	FALSE
+stress	set4IT063	Nickel (II) chloride hexahydrate	RR42_RS22910	RR42_RS22910		nitrate ABC transporter ATPase	3.15598303106265	7.85237899530396	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS22910	RR42_RS22910		nitrate ABC transporter ATPase	4.69433122582183	7.20386113729383	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS22910	RR42_RS22910		nitrate ABC transporter ATPase	5.04374738747934	8.56212897197923	FALSE
+stress	set4IT063	Nickel (II) chloride hexahydrate	RR42_RS22915	RR42_RS22915		ABC transporter permease	1.79468613474877	8.9897494454588	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS22915	RR42_RS22915		ABC transporter permease	2.6968580135655	12.020053149874	FALSE
+stress	set4IT062	Nickel (II) chloride hexahydrate	RR42_RS22925	RR42_RS22925		RND transporter	-4.25563678320529	-5.21015891306043	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS22930	RR42_RS22930		cytochrome C peroxidase	-3.86536947695099	-6.44193449850599	FALSE
+stress	set4IT062	Nickel (II) chloride hexahydrate	RR42_RS22930	RR42_RS22930		cytochrome C peroxidase	-3.56897073891335	-12.1061894848029	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS22930	RR42_RS22930		cytochrome C peroxidase	-3.34592694434675	-8.43668962821442	FALSE
+stress	set6IT082	Nickel (II) chloride hexahydrate	RR42_RS22930	RR42_RS22930		cytochrome C peroxidase	-2.98897767920828	-7.48624724313505	FALSE
+stress	set4IT063	Nickel (II) chloride hexahydrate	RR42_RS22930	RR42_RS22930		cytochrome C peroxidase	-2.53189094339919	-8.91767604368886	FALSE
+stress	set4IT062	Nickel (II) chloride hexahydrate	RR42_RS22935	RR42_RS22935		metal transporter	-5.78385026288343	-6.01748198266085	FALSE
+stress	set6IT082	Nickel (II) chloride hexahydrate	RR42_RS22935	RR42_RS22935		metal transporter	-4.36798541998985	-5.41485907689442	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS26855	RR42_RS26855		glucan biosynthesis protein G	-1.04850462643491	-5.2695440894926	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS27945	RR42_RS27945		RNA chaperone Hfq	-2.41829572919915	-5.3109773252587	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS28780	RR42_RS28780		molecular chaperone DnaK	-1.23369304710313	-5.33949109149374	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS28780	RR42_RS28780		molecular chaperone DnaK	-1.11580964857228	-5.4737661875283	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS28785	RR42_RS28785		molecular chaperone DnaK	-1.14023727032438	-6.7874833246347	FALSE
+stress	set4IT062	Nickel (II) chloride hexahydrate	RR42_RS30960	RR42_RS30960		transcriptional regulator	-2.28399077113233	-10.8697487698304	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS30960	RR42_RS30960		transcriptional regulator	-2.19863569766355	-6.09993011214284	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS30960	RR42_RS30960		transcriptional regulator	-2.06316219936766	-8.48053279333237	FALSE
+stress	set6IT082	Nickel (II) chloride hexahydrate	RR42_RS30960	RR42_RS30960		transcriptional regulator	-2.05069037258448	-9.83209814636115	FALSE
+stress	set4IT063	Nickel (II) chloride hexahydrate	RR42_RS30960	RR42_RS30960		transcriptional regulator	-2.02172451046286	-11.0271098672573	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS33385	RR42_RS33385		XpsR family transcriptional regulator	1.90889442562183	10.159833475735	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS35770	RR42_RS35770		flagellar biosynthesis protein FlhB	1.35617003056449	5.50856826833312	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS35980	RR42_RS35980		membrane protein	1.49864287499316	5.92708859301646	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS36990	RR42_RS36990		hemolysin III	-3.01596788752585	-10.8954847488221	FALSE
+stress	set6IT083	Nickel (II) chloride hexahydrate	RR42_RS37270	RR42_RS37270		Fur family transcriptional regulator	1.32149696662002	5.19557667666318	FALSE
+stress	set4IT063	Nickel (II) chloride hexahydrate	RR42_RS37270	RR42_RS37270		Fur family transcriptional regulator	1.54877135718477	7.54750934233175	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	RR42_RS37270	RR42_RS37270		Fur family transcriptional regulator	2.63205274796877	14.8818606051849	FALSE
+stress	set1IT005	Paraquat dichloride	RR42_RS03275	RR42_RS03275		membrane protein	3.810327177759	14.6572098265606	FALSE
+stress	set1IT005	Paraquat dichloride	RR42_RS04410	RR42_RS04410		cyanophycin synthetase	-1.97582326931522	-7.3808595427664	FALSE
+stress	set1IT005	Paraquat dichloride	RR42_RS04415	RR42_RS04415		ABC transporter	-2.05554445176058	-6.97490857705853	FALSE
+stress	set1IT005	Paraquat dichloride	RR42_RS14685	RR42_RS14685		ABC transporter ATP-binding protein	1.81891131303719	7.9178199327241	FALSE
+stress	set1IT005	Paraquat dichloride	RR42_RS19880	RR42_RS19880		hypothetical protein	11.4519569637919	14.0713526349544	FALSE
+stress	set1IT005	Paraquat dichloride	RR42_RS27665	RR42_RS27665		endoribonuclease L-PSP	2.12946793704422	9.55599267075999	FALSE
+stress	set1IT005	Paraquat dichloride	RR42_RS27670	RR42_RS27670		LysR family transcriptional regulator	1.66037645049351	8.85905256208823	FALSE
+stress	set1IT005	Paraquat dichloride	RR42_RS27680	RR42_RS27680		MexE family multidrug efflux RND transporter periplasmic adaptor subunit	1.80358528492228	11.1029339116446	FALSE
+stress	set1IT005	Paraquat dichloride	RR42_RS27685	RR42_RS27685		multidrug efflux RND transporter permease subunit	1.11782818959939	7.32335002829171	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS01085	RR42_RS01085		chemotaxis protein CheY	1.5130552112672	6.35897088562668	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS01270	RR42_RS01270		3-deoxy-D-manno-oct-2-ulosonic acid (Kdo) hydroxylase	-1.36451393831048	-7.96681140828696	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS02035	RR42_RS02035		hypothetical protein	-1.50623321283554	-5.81681604911564	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS04610	RR42_RS04610		hypothetical protein	1.33046919122006	7.19213851534352	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS04970	RR42_RS04970		aspartyl beta-hydroxylase	1.73668541178725	13.0018574221417	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS07570	RR42_RS07570		hypothetical protein	1.76216994371815	5.84842860634442	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS13735	RR42_RS13735		ADP-heptose--LPS heptosyltransferase	-1.52340457727346	-5.7054273003836	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS14065	RR42_RS14065		serine peptidase	-1.48231284136355	-7.20579318350805	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS14265	RR42_RS14265		histidine kinase	-2.5071729321529	-6.63876239214231	TRUE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS15585	RR42_RS15585		lytic transglycosylase	-1.41279184021074	-7.49720387574751	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS16015	RR42_RS16015		membrane protein	-2.16452327976506	-7.71388504525361	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS17675	RR42_RS17675		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	-1.31663247952887	-8.3055975446419	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS18355	RR42_RS18355		thiol:disulfide interchange protein	1.39107917196792	7.91296132936622	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS20055	RR42_RS20055		ATP-dependent DNA helicase Rep	-2.63662985135978	-14.687822188574	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS20120	RR42_RS20120		amino acid ABC transporter substrate-binding protein	1.2607040088976	8.09097261224989	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS26385	RR42_RS26385		hypothetical protein	-3.22955016138239	-5.58120680794782	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS26390	RR42_RS26390		MacB family efflux pump subunit	-4.31446880420917	-7.63575310387763	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS26410	RR42_RS26410		hypothetical protein	-5.04874738457204	-6.90271492519939	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS28595	RR42_RS28595		squalene--hopene cyclase	-1.24377178917913	-8.4302226472328	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS29625	RR42_RS29625		LysR family transcriptional regulator	-1.09819869753054	-6.73227139510502	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS29655	RR42_RS29655		amino acid ABC transporter permease	-1.04233688841788	-6.21992054827154	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS29685	RR42_RS29685		voltage-gated chloride channel protein ClcB	-1.20245481782963	-7.21734272505009	FALSE
+stress	set4IT073	Polymyxin B sulfate	RR42_RS37475	RR42_RS37475		peptide chain release factor 3	-1.4289630697439	-6.71862383010569	TRUE
+stress	set1IT013	Sisomicin sulfate salt	RR42_RS00295	RR42_RS00295		DEAD/DEAH box helicase	1.6160601595651	7.53369975156129	FALSE
+stress	set1IT013	Sisomicin sulfate salt	RR42_RS03275	RR42_RS03275		membrane protein	3.78134099016345	19.9684326525943	FALSE
+stress	set1IT013	Sisomicin sulfate salt	RR42_RS04410	RR42_RS04410		cyanophycin synthetase	-2.23994539190901	-9.34587050399344	FALSE
+stress	set1IT013	Sisomicin sulfate salt	RR42_RS04415	RR42_RS04415		ABC transporter	-2.20620164245364	-10.6788668848327	FALSE
+stress	set1IT013	Sisomicin sulfate salt	RR42_RS12835	RR42_RS12835		tRNA pseudouridine synthase B	1.85390394392607	6.83654149712157	TRUE
+stress	set1IT013	Sisomicin sulfate salt	RR42_RS14685	RR42_RS14685		ABC transporter ATP-binding protein	2.60625549266193	8.27226251226348	FALSE
+stress	set1IT013	Sisomicin sulfate salt	RR42_RS15850	RR42_RS15850		glycerol acyltransferase	1.01575719838501	6.81517958732429	FALSE
+stress	set1IT013	Sisomicin sulfate salt	RR42_RS19880	RR42_RS19880		hypothetical protein	10.2763451568955	15.0125280942742	FALSE
+stress	set1IT013	Sisomicin sulfate salt	RR42_RS20650	RR42_RS20650		multidrug efflux RND transporter permease subunit	-1.27486112727747	-6.32920257965947	TRUE
+stress	set1IT018	Sodium Chloride	RR42_RS01405	RR42_RS01405		lytic transglycosylase	-1.67601776889132	-12.6086152381297	FALSE
+stress	set4IT074	Sodium Chloride	RR42_RS01405	RR42_RS01405		lytic transglycosylase	-1.59771463129856	-10.193207558699	FALSE
+stress	set4IT074	Sodium Chloride	RR42_RS02665	RR42_RS02665		peptidase	-1.76483145678902	-11.2359946660453	FALSE
+stress	set1IT018	Sodium Chloride	RR42_RS02665	RR42_RS02665		peptidase	-1.39977120022589	-10.378696387984	FALSE
+stress	set1IT018	Sodium Chloride	RR42_RS04815	RR42_RS04815		glycine/betaine ABC transporter substrate-binding protein	-3.64022035095962	-7.26607905374475	TRUE
+stress	set4IT074	Sodium Chloride	RR42_RS04815	RR42_RS04815		glycine/betaine ABC transporter substrate-binding protein	-3.39531155877525	-6.25066763455301	TRUE
+stress	set1IT018	Sodium Chloride	RR42_RS04825	RR42_RS04825		glycine/betaine ABC transporter ATP-binding protein	-4.62946861310457	-5.85923119264214	TRUE
+stress	set4IT074	Sodium Chloride	RR42_RS04825	RR42_RS04825		glycine/betaine ABC transporter ATP-binding protein	-2.93530582014192	-6.78736027848083	TRUE
+stress	set1IT018	Sodium Chloride	RR42_RS05790	RR42_RS05790		lipoprotein	-1.97552087223814	-7.2999327304832	FALSE
+stress	set4IT074	Sodium Chloride	RR42_RS06450	RR42_RS06450		membrane protein	-1.81339168173734	-6.38593130197822	FALSE
+stress	set1IT018	Sodium Chloride	RR42_RS07410	RR42_RS07410		peptidase S11	-1.40276670355053	-6.52747913023171	FALSE
+stress	set4IT074	Sodium Chloride	RR42_RS10910	RR42_RS10910		aminodeoxychorismate lyase	-1.44797707023704	-5.64165041123204	FALSE
+stress	set1IT018	Sodium Chloride	RR42_RS13565	RR42_RS13565		lytic transglycosylase	-2.11448148853759	-13.8845571943505	FALSE
+stress	set4IT074	Sodium Chloride	RR42_RS13565	RR42_RS13565		lytic transglycosylase	-1.52102724970863	-9.99391483221808	FALSE
+stress	set4IT072	Sodium Chlorite	RR42_RS01120	RR42_RS01120		RNA polymerase sigma factor	-2.26167202435885	-8.37597924578245	FALSE
+stress	set1IT015	Sodium Chlorite	RR42_RS01120	RR42_RS01120		RNA polymerase sigma factor	-1.3811158904354	-6.20078814613454	FALSE
+stress	set4IT072	Sodium Chlorite	RR42_RS03835	RR42_RS03835		molybdate ABC transporter permease	-2.84691727004754	-6.77831636185109	TRUE
+stress	set4IT072	Sodium Chlorite	RR42_RS03840	RR42_RS03840		molybdate ABC transporter substrate-binding protein	-2.2119246031337	-6.5815093699224	FALSE
+stress	set1IT015	Sodium Chlorite	RR42_RS07455	RR42_RS07455		ABC transporter substrate-binding protein	-2.50568254517138	-9.29295221982449	FALSE
+stress	set1IT015	Sodium Chlorite	RR42_RS11165	RR42_RS11165		methionine sulfoxide reductase B	-2.36910218850896	-6.19943431033662	TRUE
+stress	set4IT072	Sodium Chlorite	RR42_RS15335	RR42_RS15335		peptide methionine sulfoxide reductase	-1.173453698042	-6.64560861086762	FALSE
+stress	set4IT072	Sodium Chlorite	RR42_RS19055	RR42_RS19055		sulfite oxidase	-1.89846134745711	-8.54509220799441	TRUE
+stress	set4IT072	Sodium Chlorite	RR42_RS19060	RR42_RS19060		sulfoxide reductase catalytic subunit YedY	-1.6797346429087	-11.1862714807417	TRUE
+stress	set1IT015	Sodium Chlorite	RR42_RS20365	RR42_RS20365		phenylalanine-4-hydroxylase	-1.64034825185045	-8.46100834969439	FALSE
+stress	set1IT015	Sodium Chlorite	RR42_RS25835	RR42_RS25835		cytochrome D ubiquinol oxidase subunit I	-1.39423747097404	-6.92393620629896	TRUE
+stress	set6IT087	Sodium nitrate	RR42_RS01015	RR42_RS01015		TonB-dependent receptor	-1.38466812935859	-8.64139606765173	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS01405	RR42_RS01405		lytic transglycosylase	-1.53271582537091	-10.9607102580638	FALSE
+stress	set6IT087	Sodium nitrate	RR42_RS01405	RR42_RS01405		lytic transglycosylase	-1.40406548686636	-10.1557964889544	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS02665	RR42_RS02665		peptidase	-1.10005596429742	-7.53570702222611	FALSE
+stress	set6IT087	Sodium nitrate	RR42_RS03885	RR42_RS03885		mammalian cell entry protein	-1.72519615747225	-8.74052099724098	FALSE
+stress	set6IT087	Sodium nitrate	RR42_RS03890	RR42_RS03890		paraquat-inducible protein A	-2.10216036430455	-5.24793788227425	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS04815	RR42_RS04815		glycine/betaine ABC transporter substrate-binding protein	-2.42592418313758	-6.84930110904124	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS04820	RR42_RS04820		choline ABC transporter permease	-2.88809685927392	-6.52123903942499	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS05790	RR42_RS05790		lipoprotein	-2.31980870492687	-6.77890084648743	FALSE
+stress	set6IT087	Sodium nitrate	RR42_RS06450	RR42_RS06450		membrane protein	-3.31782569774902	-10.892887930047	FALSE
+stress	set4IT070	Sodium nitrate	RR42_RS06450	RR42_RS06450		membrane protein	-1.99246170454875	-9.20196747495485	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS06450	RR42_RS06450		membrane protein	-1.62424766946378	-6.65485740077308	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS07410	RR42_RS07410		peptidase S11	-1.88433778364829	-8.28765798437206	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS10910	RR42_RS10910		aminodeoxychorismate lyase	-1.58910143587774	-9.32374281152364	TRUE
+stress	set4IT070	Sodium nitrate	RR42_RS10910	RR42_RS10910		aminodeoxychorismate lyase	-1.26189713454019	-6.2689827634481	TRUE
+stress	set1IT012	Sodium nitrate	RR42_RS13200	RR42_RS13200		stationary phase survival protein SurE	-1.38784186186473	-8.47052714092534	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS13565	RR42_RS13565		lytic transglycosylase	-1.54616195991216	-11.2397395314193	FALSE
+stress	set6IT087	Sodium nitrate	RR42_RS14065	RR42_RS14065		serine peptidase	-1.32059262647954	-7.84611525464123	FALSE
+stress	set1IT012	Sodium nitrate	RR42_RS19880	RR42_RS19880		hypothetical protein	1.87584194097653	5.27412958905976	FALSE
+stress	set6IT087	Sodium nitrate	RR42_RS33085	RR42_RS33085		ligand-gated channel protein	-1.38873266059199	-9.3480816835303	FALSE
+stress	set1IT006	Thallium(I) acetate	RR42_RS00295	RR42_RS00295		DEAD/DEAH box helicase	-1.90233201984494	-5.97034533507676	FALSE
+stress	set1IT006	Thallium(I) acetate	RR42_RS06220	RR42_RS06220		ferredoxin-NADP reductase	-3.4947186670138	-6.64038892127361	FALSE
+stress	set1IT006	Thallium(I) acetate	RR42_RS19740	RR42_RS19740		16S rRNA methyltransferase	-1.42745956817826	-5.10827270040878	FALSE
+stress	set1IT006	Thallium(I) acetate	RR42_RS34225	RR42_RS34225		methylmalonate-semialdehyde dehydrogenase	1.26312876516533	5.51456763463213	FALSE
+stress	set1IT006	Thallium(I) acetate	RR42_RS34240	RR42_RS34240		membrane protein	-3.69100286099609	-7.02731444169875	TRUE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS00295	RR42_RS00295		DEAD/DEAH box helicase	-1.67932915729706	-5.12632136129414	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS00460	RR42_RS00460		septum formation inhibitor	-1.32747361256106	-6.32794310898108	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS01270	RR42_RS01270		3-deoxy-D-manno-oct-2-ulosonic acid (Kdo) hydroxylase	-1.03117363325781	-7.02758809401136	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS03115	RR42_RS03115		ligase	1.43634294496949	7.73539226110861	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS03145	RR42_RS03145		peptidase M48	-1.32937915852168	-5.98513378385821	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS03245	RR42_RS03245		D-alanyl-D-alanine carboxypeptidase	1.23595739215382	8.58612650094841	TRUE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS05790	RR42_RS05790		lipoprotein	-2.66617420127053	-6.95535984211732	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS06260	RR42_RS06260		MBL fold metallo-hydrolase	-1.23302123054367	-6.79534441940166	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS06475	RR42_RS06475		glycerol acyltransferase	-1.07920959484684	-5.78963174074489	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS10910	RR42_RS10910		aminodeoxychorismate lyase	5.41206991470884	36.4440491570494	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS10910	RR42_RS10910		aminodeoxychorismate lyase	7.83192176803592	58.6733269944361	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS12990	RR42_RS12990		hypothetical protein	4.4066106241891	21.5882461166297	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS12990	RR42_RS12990		hypothetical protein	5.32002872062808	24.8095099414282	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS13360	RR42_RS13360		esterase	-1.70031969584982	-5.70216034573979	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS13360	RR42_RS13360		esterase	-1.61955190048891	-5.45060844781086	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS13565	RR42_RS13565		lytic transglycosylase	-1.69659763417961	-11.9298784250032	TRUE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS15695	RR42_RS15695		glycosyl transferase	1.32744623258459	5.2529651327709	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS15700	RR42_RS15700		UDP-galactose-lipid carrier transferase	1.48292326863499	9.06657813949303	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS17920	RR42_RS17920		lytic transglycosylase	4.58816498006999	33.9180979721812	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS17920	RR42_RS17920		lytic transglycosylase	5.34123046398587	41.6119312363208	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS18345	RR42_RS18345		peptidase M61	1.40983445775501	10.561477186074	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS18345	RR42_RS18345		peptidase M61	1.44574389675291	10.7733007029379	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS18805	RR42_RS18805		peptidase	-1.49186508066332	-6.30483598535052	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS19475	RR42_RS19475		general secretion pathway protein	6.50921125795157	35.3326631592813	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS19475	RR42_RS19475		general secretion pathway protein	7.47381945778691	43.267780371235	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS19500	RR42_RS19500		general secretion pathway protein GspK	6.5596652109312	35.8645136919568	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS19500	RR42_RS19500		general secretion pathway protein GspK	7.09039704438781	40.5202221569263	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS19520	RR42_RS19520		general secretion pathway protein GspD	6.55945654884642	57.7971156524539	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS19520	RR42_RS19520		general secretion pathway protein GspD	7.30312382561042	57.6613557492159	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS19525	RR42_RS19525		general secretion pathway protein GspE	6.05142574258288	21.8572299830152	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS19525	RR42_RS19525		general secretion pathway protein GspE	7.37520491959607	32.4554887950218	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS19530	RR42_RS19530		general secretion pathway protein GspF	6.43057628182859	48.638546604256	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS19530	RR42_RS19530		general secretion pathway protein GspF	7.06796935152595	51.3649715286089	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS22420	RR42_RS22420		penicillin-binding protein	1.92352410269745	12.8282288693032	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS30665	RR42_RS30665		TonB-dependent receptor	1.11823728714814	8.52575956628216	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS30775	RR42_RS30775		fatty acid hydroxylase	1.11486890096846	6.25742376930915	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS32240	RR42_RS32240		ABC transporter	-2.1769986548869	-7.65932804632261	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS32250	RR42_RS32250		ABC transporter	-1.64748421892931	-10.6601981936336	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS32265	RR42_RS32265		phytoene synthase	1.48542122750501	9.04476545455272	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS32265	RR42_RS32265		phytoene synthase	1.74716304142562	11.4365574259379	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS33175	RR42_RS33175		membrane protein	5.04637764264451	21.5774407954922	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS33175	RR42_RS33175		membrane protein	5.76812062000264	12.8752754139474	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS33385	RR42_RS33385		XpsR family transcriptional regulator	1.46427926288778	7.74504858326163	FALSE
+stress	set5IT005	Vancomycin Hydrochloride Hydrate	RR42_RS36255	RR42_RS36255		LacI family transcriptional regulator	1.16300481265704	6.52840309028621	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS36260	RR42_RS36260		membrane protein	-1.42526048450315	-7.13564881083462	FALSE
+stress	set1IT022	Vancomycin Hydrochloride Hydrate	RR42_RS36270	RR42_RS36270		patatin	-1.00381815998357	-6.18729564801848	FALSE
+stress	set1IT008	Zinc sulfate heptahydrate	RR42_RS04410	RR42_RS04410		cyanophycin synthetase	-1.84311260590977	-8.71619881562917	FALSE
+stress	set1IT008	Zinc sulfate heptahydrate	RR42_RS13945	RR42_RS13945		hypothetical protein	-3.25298628059592	-5.34554363014642	FALSE
+stress	set1IT008	Zinc sulfate heptahydrate	RR42_RS14800	RR42_RS14800		LysR family transcriptional regulator	-1.86626716464579	-7.27670038331707	FALSE
+stress	set1IT008	Zinc sulfate heptahydrate	RR42_RS30940	RR42_RS30940		cobalt-zinc-cadmium resistance protein	-3.07911345092141	-5.43590791774775	TRUE
+stress	set1IT008	Zinc sulfate heptahydrate	RR42_RS30950	RR42_RS30950		cation transporter	-4.10175948584977	-10.8709668527469	TRUE
+stress	set1IT008	Zinc sulfate heptahydrate	RR42_RS31275	RR42_RS31275		homogentisate 1,2-dioxygenase	2.24268477226595	11.6657164774064	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS00445	RR42_RS00445		membrane protein	5.85448169469618	42.8459851720627	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS00670	RR42_RS00670		teicoplanin resistance protein VanZ	-2.8385266695215	-6.28674161441544	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS01405	RR42_RS01405		lytic transglycosylase	-2.25083925763592	-12.4186430630691	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS02390	RR42_RS02390		ABC transporter ATP-binding protein	-2.41018436427784	-9.4541970136394	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS02765	RR42_RS02765		aminoglycoside phosphotransferase	-1.5857061749621	-8.78400813177503	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS04430	RR42_RS04430		phosphoglycolate phosphatase	-1.7671461204746	-6.84907511613859	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS07885	RR42_RS07885		chemotaxis protein CheY	-2.37441593856054	-5.62947604820871	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS09045	RR42_RS09045		peptidylprolyl isomerase	-3.60628987139933	-7.66032531296943	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS10910	RR42_RS10910		aminodeoxychorismate lyase	-1.30012609594255	-5.0648976389485	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS17675	RR42_RS17675		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	-2.63402588630613	-9.46869310399185	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS18355	RR42_RS18355		thiol:disulfide interchange protein	-2.89132172102849	-6.25428300239714	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS19520	RR42_RS19520		general secretion pathway protein GspD	-1.55456861746187	-8.97510459018348	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS19530	RR42_RS19530		general secretion pathway protein GspF	-1.46450386178945	-7.69819650335443	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS20305	RR42_RS20305		metal ABC transporter ATPase	-1.70637822713104	-6.84016682716798	TRUE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS30960	RR42_RS30960		transcriptional regulator	-1.96629576166796	-7.06978523741216	TRUE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS35370	RR42_RS35370		copper oxidase	-4.17716900398776	-6.36683031398197	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS35375	RR42_RS35375		RND transporter	-4.0579880728452	-11.9291870523011	FALSE
+stress	set1IT003	copper (II) chloride dihydrate	RR42_RS35380	RR42_RS35380		hypothetical protein	-4.47678048900305	-7.44653199395565	FALSE
+temperature	set3IT036		RR42_RS00295	RR42_RS00295		DEAD/DEAH box helicase	-1.37703374964816	-6.64757815336868	FALSE
+temperature	set3IT037		RR42_RS00295	RR42_RS00295		DEAD/DEAH box helicase	-1.25351222245673	-5.01368702234165	FALSE
+temperature	set3IT040		RR42_RS04225	RR42_RS04225		hypothetical protein	-2.04953592876207	-7.31815766369573	FALSE
+temperature	set3IT040		RR42_RS19875	RR42_RS19875		metalloprotease	-1.17425153594538	-6.07482882741591	FALSE

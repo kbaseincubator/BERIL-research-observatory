@@ -1,0 +1,250 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set9IT078	Azelaic acid	ABZR87_RS15590	ABZR87_RS15590		DUF2957 domain-containing protein	1.05832548427935	6.76499154735895	FALSE
+carbon source	set9IT064	D-Glucose	ABZR87_RS19110	ABZR87_RS19110		MurR/RpiR family transcriptional regulator	1.44301849673382	5.40343933611819	FALSE
+carbon source	set9IT082	D-Glucose	ABZR87_RS19110	ABZR87_RS19110		MurR/RpiR family transcriptional regulator	1.50004164099853	5.51730940921757	FALSE
+carbon source	set10IT031	Disodium Glutarate	ABZR87_RS16635	ABZR87_RS16635		MFS family transporter	-1.21497069001412	-8.05949278924194	TRUE
+carbon source	set9IT080	Dodecandioic acid	ABZR87_RS00965	ABZR87_RS00965		bifunctional anthranilate synthase component I family protein/class IV aminotransferase	-2.00099852846732	-11.534556495601	FALSE
+carbon source	set8IT064	Dodecandioic acid	ABZR87_RS00965	ABZR87_RS00965		bifunctional anthranilate synthase component I family protein/class IV aminotransferase	-1.86562136962793	-12.6645514687771	FALSE
+carbon source	set8IT064	Dodecandioic acid	ABZR87_RS02335	ABZR87_RS02335		ubiquinol oxidase subunit II	1.83084200537745	11.4678037023016	FALSE
+carbon source	set9IT080	Dodecandioic acid	ABZR87_RS02335	ABZR87_RS02335		ubiquinol oxidase subunit II	1.92588646293068	12.6167809896164	FALSE
+carbon source	set9IT080	Dodecandioic acid	ABZR87_RS06580	ABZR87_RS06580		hypothetical protein	-1.02741669044561	-8.21539249140459	FALSE
+carbon source	set8IT064	Dodecandioic acid	ABZR87_RS07865	ABZR87_RS07865		LysR family transcriptional regulator	1.51098262060172	9.92880084152709	FALSE
+carbon source	set9IT080	Dodecandioic acid	ABZR87_RS07865	ABZR87_RS07865		LysR family transcriptional regulator	1.62546997681105	9.79430673039988	FALSE
+carbon source	set8IT064	Dodecandioic acid	ABZR87_RS09075	ABZR87_RS09075		DUF3318 domain-containing protein	-2.0334228018475	-6.00569225307841	FALSE
+carbon source	set9IT080	Dodecandioic acid	ABZR87_RS10065	ABZR87_RS10065		hypothetical protein	-1.53014269263377	-5.57142096843332	FALSE
+carbon source	set9IT080	Dodecandioic acid	ABZR87_RS12340	ABZR87_RS12340		8-amino-7-oxononanoate synthase	-2.18612268307392	-11.2869022888403	FALSE
+carbon source	set8IT064	Dodecandioic acid	ABZR87_RS12340	ABZR87_RS12340		8-amino-7-oxononanoate synthase	-1.75197478487022	-10.7467995506898	FALSE
+carbon source	set9IT080	Dodecandioic acid	ABZR87_RS22930	ABZR87_RS22930		universal stress protein	-1.40568577201324	-5.01638486917968	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS00505	ABZR87_RS00505		LysR family transcriptional regulator	-1.9365559695599	-6.52653305779597	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS00505	ABZR87_RS00505		LysR family transcriptional regulator	-1.72406822702568	-10.1475979351374	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS00510	ABZR87_RS00510		MFS transporter	-1.03820834618289	-6.47782145669725	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS03935	ABZR87_RS03935		aminomethyl-transferring glycine dehydrogenase	1.48148726084913	10.4457511206086	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS03935	ABZR87_RS03935		aminomethyl-transferring glycine dehydrogenase	1.64956308528893	11.3453430971013	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS04970	ABZR87_RS04970		glycosyltransferase family 39 protein	1.63013517234641	13.9585907506794	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS04970	ABZR87_RS04970		glycosyltransferase family 39 protein	1.84258049909627	14.5815534834268	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS07115	ABZR87_RS07115		Na/Pi cotransporter family protein	1.40350658896298	7.66558117288636	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS07115	ABZR87_RS07115		Na/Pi cotransporter family protein	1.40739598013707	10.8272050027545	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS08775	ABZR87_RS08775		protein-L-isoaspartate O-methyltransferase	-2.35355891675282	-12.6808476884703	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS08775	ABZR87_RS08775		protein-L-isoaspartate O-methyltransferase	-2.34777433292857	-9.18934804111204	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS08855	ABZR87_RS08855		lytic transglycosylase domain-containing protein	-1.49893013925575	-8.57802598866542	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS08855	ABZR87_RS08855		lytic transglycosylase domain-containing protein	-1.42672129571441	-7.16384338019393	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS09145	ABZR87_RS09145		cyclopropane-fatty-acyl-phospholipid synthase family protein	-1.5620106239097	-10.3836473778025	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS09145	ABZR87_RS09145		cyclopropane-fatty-acyl-phospholipid synthase family protein	-1.43866918497887	-7.51634733639814	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS09870	ABZR87_RS09870		VWA domain-containing protein	-1.66820654984818	-6.96229187486074	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS09880	ABZR87_RS09880		MoxR family ATPase	-1.05428272713543	-6.32537907367667	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS09945	ABZR87_RS09945		recombinase	-1.95373137968227	-8.87794727400041	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS09945	ABZR87_RS09945		recombinase	-1.63481167308336	-7.65347281386972	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS10520	ABZR87_RS10520		3',5'-nucleoside bisphosphate phosphatase	-1.89618605612242	-8.13468199180367	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS10520	ABZR87_RS10520		3',5'-nucleoside bisphosphate phosphatase	-1.73327589990821	-8.71867728365864	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS10995	ABZR87_RS10995		NAD-dependent deacylase	-1.83733723371057	-7.91454656824717	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS10995	ABZR87_RS10995		NAD-dependent deacylase	-1.57334999576359	-9.99507530850726	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS12340	ABZR87_RS12340		8-amino-7-oxononanoate synthase	-1.51858242941938	-9.62741802982644	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS13215	ABZR87_RS13215		ATP-binding protein	-1.19647775228378	-5.43471143022168	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS18985	ABZR87_RS18985		GGDEF and EAL domain-containing protein	1.37391738762957	9.84287326698037	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS19025	ABZR87_RS19025		MdtB/MuxB family multidrug efflux RND transporter permease subunit	1.06740944075208	8.34346473896801	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS19025	ABZR87_RS19025		MdtB/MuxB family multidrug efflux RND transporter permease subunit	1.18765503033618	8.92671083248991	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS19430	ABZR87_RS19430		alpha,alpha-trehalose-phosphate synthase (UDP-forming)	-1.46938749273559	-10.0940644911928	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS19635	ABZR87_RS19635		cation:proton antiporter	2.22417479002687	18.2225001067712	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS19635	ABZR87_RS19635		cation:proton antiporter	2.28381717283995	17.7513627304911	FALSE
+carbon source	set9IT070	Heptanoic acid	ABZR87_RS19770	ABZR87_RS19770		H-NS family nucleoid-associated regulatory protein	-1.86555008177417	-6.05781856461697	FALSE
+carbon source	set9IT088	Heptanoic acid	ABZR87_RS19770	ABZR87_RS19770		H-NS family nucleoid-associated regulatory protein	-1.68105535842351	-8.74735044403423	FALSE
+carbon source	set9IT073	Lauric acid	ABZR87_RS23430	ABZR87_RS23430		LysR substrate-binding domain-containing protein	-1.10158489410902	-5.98043790857684	FALSE
+carbon source	set9IT091	Lauric acid	ABZR87_RS23430	ABZR87_RS23430		LysR substrate-binding domain-containing protein	-1.0014465768967	-5.40066447650589	FALSE
+carbon source	set9IT073	Lauric acid	ABZR87_RS23435	ABZR87_RS23435		malonate decarboxylase subunit alpha	-1.63786506162967	-9.20352386028517	FALSE
+carbon source	set9IT091	Lauric acid	ABZR87_RS23435	ABZR87_RS23435		malonate decarboxylase subunit alpha	-1.33832074287406	-8.07177741077838	FALSE
+carbon source	set9IT091	Lauric acid	ABZR87_RS23450	ABZR87_RS23450		biotin-independent malonate decarboxylase subunit beta	-2.04839179183404	-5.46513932766311	FALSE
+carbon source	set9IT073	Lauric acid	ABZR87_RS23450	ABZR87_RS23450		biotin-independent malonate decarboxylase subunit beta	-1.45511803838705	-5.54827225214739	FALSE
+carbon source	set9IT073	Lauric acid	ABZR87_RS23455	ABZR87_RS23455		biotin-independent malonate decarboxylase subunit gamma	-1.61170486423978	-6.27388571610106	FALSE
+carbon source	set9IT073	Lauric acid	ABZR87_RS23460	ABZR87_RS23460		malonate transporter subunit MadL	-1.39714560887824	-5.12305507703222	FALSE
+carbon source	set9IT073	Lauric acid	ABZR87_RS23465	ABZR87_RS23465		malonate transporter subunit MadM	-1.41673024019198	-6.05087798991318	FALSE
+carbon source	set9IT091	Lauric acid	ABZR87_RS23465	ABZR87_RS23465		malonate transporter subunit MadM	-1.28999438796357	-6.30165885333124	FALSE
+carbon source	set9IT091	Lauric acid	ABZR87_RS23475	ABZR87_RS23475		malonate decarboxylase subunit epsilon	-3.59110347815557	-9.35822539799122	FALSE
+carbon source	set9IT073	Lauric acid	ABZR87_RS23475	ABZR87_RS23475		malonate decarboxylase subunit epsilon	-3.06837870207919	-6.64584364651442	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS00010	ABZR87_RS00010		translocation/assembly module TamB domain-containing protein	1.32578946996871	6.05989634936914	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS00010	ABZR87_RS00010		translocation/assembly module TamB domain-containing protein	1.59138972654576	7.56448381061273	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS00015	ABZR87_RS00015		autotransporter assembly complex family protein	1.23099081514723	8.28215224169987	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS00015	ABZR87_RS00015		autotransporter assembly complex family protein	1.26386991899971	8.40730724580912	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS00150	ABZR87_RS00150		leucyl aminopeptidase	-1.54992308430385	-5.3305126061764	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS00505	ABZR87_RS00505		LysR family transcriptional regulator	-5.38227136036377	-8.22198762970877	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS00505	ABZR87_RS00505		LysR family transcriptional regulator	-5.36294639069811	-9.63849662010338	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS00510	ABZR87_RS00510		MFS transporter	-4.75764030115887	-16.052482109435	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS00510	ABZR87_RS00510		MFS transporter	-4.36297569534176	-16.8547917451437	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS00920	ABZR87_RS00920		AI-2E family transporter	2.389194550955	14.7826030834151	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS00920	ABZR87_RS00920		AI-2E family transporter	2.55192267409793	16.6124701024387	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS00965	ABZR87_RS00965		bifunctional anthranilate synthase component I family protein/class IV aminotransferase	-3.926381693142	-11.402056302219	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS00965	ABZR87_RS00965		bifunctional anthranilate synthase component I family protein/class IV aminotransferase	-3.24317819753773	-10.2817655816507	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS01135	ABZR87_RS01135		FAD-linked oxidase C-terminal domain-containing protein	-1.47374092223494	-5.75813461902043	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS01140	ABZR87_RS01140		ion transporter	-1.67154002220832	-6.13741496284753	TRUE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS01140	ABZR87_RS01140		ion transporter	-1.66459417525175	-5.84845412855358	TRUE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS01505	ABZR87_RS01505		16S rRNA (uracil(1498)-N(3))-methyltransferase	2.16167273199252	5.32271550172309	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS01560	ABZR87_RS01560		ribonuclease domain-containing protein	-2.17070396645143	-5.15936098463404	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS02165	ABZR87_RS02165		CYTH domain-containing protein	-3.0079926179599	-5.82041274724487	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS02165	ABZR87_RS02165		CYTH domain-containing protein	-2.20909790340272	-5.75077810218959	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS02190	ABZR87_RS02190		DsbC family protein	1.86406523081691	5.2933128850694	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS02365	ABZR87_RS02365		ClpXP protease specificity-enhancing factor	-3.60263262651022	-6.91754275442702	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS03250	ABZR87_RS03250		c-type cytochrome	-1.49936257621891	-6.51381735016203	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS03250	ABZR87_RS03250		c-type cytochrome	-1.37526249562174	-5.15851532126491	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS03280	ABZR87_RS03280		porin	1.1354082606625	6.73443163199361	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS03280	ABZR87_RS03280		porin	1.20943494270522	7.26259380183576	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS03390	ABZR87_RS03390		Lrp/AsnC family transcriptional regulator	-1.61305291617994	-5.24546185590663	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS03390	ABZR87_RS03390		Lrp/AsnC family transcriptional regulator	-1.50575246237416	-5.96372580552574	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS03765	ABZR87_RS03765		sulfur oxidation c-type cytochrome SoxA	-1.23255593618194	-5.74466385063277	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS03765	ABZR87_RS03765		sulfur oxidation c-type cytochrome SoxA	-1.05740202128327	-5.33695016539593	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS04290	ABZR87_RS04290		SET domain-containing protein-lysine N-methyltransferase	-1.60112305059677	-6.10302806874379	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS04290	ABZR87_RS04290		SET domain-containing protein-lysine N-methyltransferase	-1.48680688954741	-6.20436726621396	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS04380	ABZR87_RS04380		ABC transporter permease subunit	-1.73900752760052	-7.2433046188423	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS04380	ABZR87_RS04380		ABC transporter permease subunit	-1.73774101854296	-6.85556641264379	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS04385	ABZR87_RS04385		AAA-associated domain-containing protein	-1.60679267975683	-5.00614808908491	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS04970	ABZR87_RS04970		glycosyltransferase family 39 protein	5.64745958044665	24.5372190904108	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS04970	ABZR87_RS04970		glycosyltransferase family 39 protein	6.27475224964079	27.9608060903731	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS05105	ABZR87_RS05105		zinc metallochaperone GTPase ZigA	-2.83533799889864	-6.35414153540806	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS05505	ABZR87_RS05505		response regulator	1.13491888011479	5.44538179594386	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS05505	ABZR87_RS05505		response regulator	1.60568748183407	7.27538029464533	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS07455	ABZR87_RS07455		endonuclease/exonuclease/phosphatase family protein	-2.0160854397476	-7.79344380489906	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS07530	ABZR87_RS07530		glutamate/aspartate ABC transporter permease GltK	-2.00501832712023	-5.52211328580612	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS07725	ABZR87_RS07725		SprT family zinc-dependent metalloprotease	-1.41083737781141	-5.0843727164891	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS08775	ABZR87_RS08775		protein-L-isoaspartate O-methyltransferase	-4.03109452347918	-8.9433014297907	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS08775	ABZR87_RS08775		protein-L-isoaspartate O-methyltransferase	-2.972391083538	-6.80084347527148	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS08810	ABZR87_RS08810		tRNA-Gly	-2.70117289299772	-9.02652988606422	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS08810	ABZR87_RS08810		tRNA-Gly	-1.69135560739596	-5.21694571982095	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS09105	ABZR87_RS09105		IclR family transcriptional regulator	-1.62586415162009	-6.02739117079124	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS09145	ABZR87_RS09145		cyclopropane-fatty-acyl-phospholipid synthase family protein	-1.66734287822651	-5.22220274928605	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS09195	ABZR87_RS09195		thioredoxin	1.49701804446039	5.32965323503509	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS09195	ABZR87_RS09195		thioredoxin	1.74792342146377	6.24657085454658	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS09525	ABZR87_RS09525		histone deacetylase family protein	-2.05833499910307	-10.0511065363883	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS09525	ABZR87_RS09525		histone deacetylase family protein	-1.80967442068745	-9.77274179020374	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS09680	ABZR87_RS09680		TerC family protein	1.48370366087807	6.11408561889535	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS09680	ABZR87_RS09680		TerC family protein	1.74400515102799	6.90660499916399	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS09720	ABZR87_RS09720		Kdo hydroxylase family protein	-3.31445994146585	-7.6510929894422	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS09805	ABZR87_RS09805		MASE1 domain-containing protein	-2.17622435082104	-5.31795351513189	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS09805	ABZR87_RS09805		MASE1 domain-containing protein	-1.65000888190013	-5.13747775143193	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS09870	ABZR87_RS09870		VWA domain-containing protein	-3.18590987783135	-7.85956103331386	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS09870	ABZR87_RS09870		VWA domain-containing protein	-2.83570461738915	-5.39898410504911	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS09880	ABZR87_RS09880		MoxR family ATPase	-2.95635210188883	-9.66785780280903	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS09880	ABZR87_RS09880		MoxR family ATPase	-2.62266585000205	-10.7557394175955	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS09885	ABZR87_RS09885		cytochrome c	-2.57294909240001	-5.96018869258846	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS10430	ABZR87_RS10430		circularly permuted type 2 ATP-grasp protein	-1.49273677927851	-7.46274223010887	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS10430	ABZR87_RS10430		circularly permuted type 2 ATP-grasp protein	-1.09629177238983	-6.06925506086184	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS10570	ABZR87_RS10570		peptidylprolyl isomerase	-1.8279766792972	-5.01416443991747	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS10995	ABZR87_RS10995		NAD-dependent deacylase	-2.44212236091164	-6.99440720843508	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS10995	ABZR87_RS10995		NAD-dependent deacylase	-1.81913713545832	-5.73803108648077	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS11395	ABZR87_RS11395		peroxiredoxin	-2.55372407523401	-5.6117554019505	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS11395	ABZR87_RS11395		peroxiredoxin	-2.31398127191161	-5.29588407003039	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS11590	ABZR87_RS11590		isocitrate lyase	-2.38365988503495	-7.61695479825684	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS11590	ABZR87_RS11590		isocitrate lyase	-1.67093769399914	-5.29966823932556	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS12340	ABZR87_RS12340		8-amino-7-oxononanoate synthase	-3.02951082389334	-12.2830438597268	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS12340	ABZR87_RS12340		8-amino-7-oxononanoate synthase	-2.83561695402529	-11.2440900294498	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS12550	ABZR87_RS12550		NADP-dependent oxidoreductase	-2.04094820523257	-6.57470014188208	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS13700	ABZR87_RS13700		MerR family transcriptional regulator	1.34905379102435	5.15451060017022	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS13700	ABZR87_RS13700		MerR family transcriptional regulator	1.54867937566622	6.29227175813847	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS14255	ABZR87_RS14255		lipid A hydroxylase LpxO	-3.0737679428452	-12.9584370538643	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS14255	ABZR87_RS14255		lipid A hydroxylase LpxO	-2.27129145372948	-8.64685190096484	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS15055	ABZR87_RS15055		adenosine deaminase	-1.70404801357412	-6.8634852049093	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS15055	ABZR87_RS15055		adenosine deaminase	-1.3095978571894	-5.16492213207688	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS15190	ABZR87_RS15190		PHB depolymerase family esterase	1.21259133979237	6.20147109286699	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS17175	ABZR87_RS17175		sensor histidine kinase	-1.40299451914217	-5.8695772964554	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS17210	ABZR87_RS17210		glycogen debranching protein GlgX	-2.05725697970371	-9.62902304802726	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS17210	ABZR87_RS17210		glycogen debranching protein GlgX	-1.86741045005559	-7.32159242962819	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS17220	ABZR87_RS17220		maltose alpha-D-glucosyltransferase	1.01762946119322	5.72525485774637	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS18760	ABZR87_RS18760		hypothetical protein	1.93881388583139	10.0874728569721	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS18760	ABZR87_RS18760		hypothetical protein	2.10739192287678	10.2073957435197	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS18835	ABZR87_RS18835		cytochrome d ubiquinol oxidase subunit II	-1.93433605446786	-5.24365527837032	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS18835	ABZR87_RS18835		cytochrome d ubiquinol oxidase subunit II	-1.82558556915812	-5.2510454882331	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS18840	ABZR87_RS18840		cytochrome ubiquinol oxidase subunit I	-1.70221281382009	-5.36747733017821	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS19015	ABZR87_RS19015		efflux transporter outer membrane subunit	2.10832572883242	6.66726231826277	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS19015	ABZR87_RS19015		efflux transporter outer membrane subunit	2.14422381673561	5.17683905473665	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS19025	ABZR87_RS19025		MdtB/MuxB family multidrug efflux RND transporter permease subunit	2.0618400378555	10.2709718216427	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS19025	ABZR87_RS19025		MdtB/MuxB family multidrug efflux RND transporter permease subunit	2.36532804055763	11.0226181852606	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS19030	ABZR87_RS19030		MdtA/MuxA family multidrug efflux RND transporter periplasmic adaptor subunit	2.35152123955361	7.46934608240821	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS19030	ABZR87_RS19030		MdtA/MuxA family multidrug efflux RND transporter periplasmic adaptor subunit	2.42539074796442	8.6729025836368	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS19430	ABZR87_RS19430		alpha,alpha-trehalose-phosphate synthase (UDP-forming)	-1.96924110367526	-8.90009723202636	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS19430	ABZR87_RS19430		alpha,alpha-trehalose-phosphate synthase (UDP-forming)	-1.90540060455041	-9.29456275106515	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS19595	ABZR87_RS19595		Gfo/Idh/MocA family oxidoreductase	-1.35995438850693	-5.70812976660183	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS19595	ABZR87_RS19595		Gfo/Idh/MocA family oxidoreductase	-1.316096457426	-5.75733386714647	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS19625	ABZR87_RS19625		TonB-dependent siderophore receptor	-1.43087807177771	-7.76984059887957	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS19625	ABZR87_RS19625		TonB-dependent siderophore receptor	-1.01041666137418	-5.1102203092579	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS19635	ABZR87_RS19635		cation:proton antiporter	5.69731793463657	28.6891636223584	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS19635	ABZR87_RS19635		cation:proton antiporter	6.09253240954322	29.1393235204373	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS19770	ABZR87_RS19770		H-NS family nucleoid-associated regulatory protein	-3.6355916552017	-8.20164456772456	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS19770	ABZR87_RS19770		H-NS family nucleoid-associated regulatory protein	-3.11034429592954	-7.18214174477232	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS20095	ABZR87_RS20095		class II glutamine amidotransferase	1.43356561049663	5.56997881187407	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS21475	ABZR87_RS21475		efflux RND transporter permease subunit	1.35482387349944	5.38470544595794	FALSE
+carbon source	set9IT071	Octanoic acid	ABZR87_RS23535	ABZR87_RS23535		RNA polymerase factor sigma-54	2.49936790914259	8.38692570982278	FALSE
+carbon source	set9IT089	Octanoic acid	ABZR87_RS23535	ABZR87_RS23535		RNA polymerase factor sigma-54	2.69255884594786	9.26718780821012	FALSE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS02560	ABZR87_RS02560		tripartite tricarboxylate transporter substrate binding protein	1.16936123329848	8.85861291152706	FALSE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS02560	ABZR87_RS02560		tripartite tricarboxylate transporter substrate binding protein	1.25273610542141	9.46895302144847	FALSE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS04195	ABZR87_RS04195		branched-chain amino acid ABC transporter permease	-3.60289063569639	-15.9661259275428	FALSE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS04195	ABZR87_RS04195		branched-chain amino acid ABC transporter permease	-3.3745893850279	-14.0842217806689	FALSE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS04200	ABZR87_RS04200		branched-chain amino acid ABC transporter permease	-3.81982103007684	-8.86945159065407	FALSE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS04200	ABZR87_RS04200		branched-chain amino acid ABC transporter permease	-2.97484447678085	-7.89612393508032	FALSE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS04205	ABZR87_RS04205		ABC transporter substrate-binding protein	-1.2968353655684	-5.31195728965183	FALSE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS04205	ABZR87_RS04205		ABC transporter substrate-binding protein	-1.16507119504215	-5.49239231532509	FALSE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS04210	ABZR87_RS04210		ABC transporter ATP-binding protein	-3.73078025755112	-8.38567441804235	FALSE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS04210	ABZR87_RS04210		ABC transporter ATP-binding protein	-3.1082211109075	-10.4631807251731	FALSE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS04215	ABZR87_RS04215		ABC transporter ATP-binding protein	-4.45130820072576	-6.51619210939695	FALSE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS12600	ABZR87_RS12600		ABC transporter ATP-binding protein	-4.06953675205689	-6.43222172436194	TRUE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS12600	ABZR87_RS12600		ABC transporter ATP-binding protein	-3.54454560070909	-7.24454745159911	TRUE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS12610	ABZR87_RS12610		branched-chain amino acid ABC transporter permease	-4.09419977439834	-11.3999348826295	TRUE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS12610	ABZR87_RS12610		branched-chain amino acid ABC transporter permease	-3.05163166364449	-9.99662225554801	TRUE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS12620	ABZR87_RS12620		branched-chain amino acid ABC transporter substrate-binding protein	-3.48002922965576	-18.0037747208704	TRUE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS12620	ABZR87_RS12620		branched-chain amino acid ABC transporter substrate-binding protein	-3.16978388534684	-18.4741247145583	TRUE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS12625	ABZR87_RS12625		3-(methylthio)propionyl-CoA ligase	-2.84053417884963	-9.72913802476038	TRUE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS12625	ABZR87_RS12625		3-(methylthio)propionyl-CoA ligase	-2.51879165903706	-9.376325317842	TRUE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS17560	ABZR87_RS17560		ABC transporter substrate-binding protein	-3.8655450856302	-14.4079339177188	FALSE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS17560	ABZR87_RS17560		ABC transporter substrate-binding protein	-2.93777370040089	-13.8006481967477	FALSE
+carbon source	set9IT076	Pimelic acid	ABZR87_RS21680	ABZR87_RS21680		TetR/AcrR family transcriptional regulator	1.26401083946552	8.19419263934801	FALSE
+carbon source	set9IT094	Pimelic acid	ABZR87_RS21680	ABZR87_RS21680		TetR/AcrR family transcriptional regulator	1.40731029589513	11.3052882095814	FALSE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS00150	ABZR87_RS00150		leucyl aminopeptidase	-1.79020657816463	-8.77342028290703	FALSE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS05510	ABZR87_RS05510		glutathione S-transferase	-1.63884841768107	-5.31841875264671	FALSE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS12085	ABZR87_RS12085		protocatechuate 3,4-dioxygenase subunit beta	-4.25340084230566	-11.5530099756995	TRUE
+carbon source	set9IT081	Protocatechuic Acid	ABZR87_RS12085	ABZR87_RS12085		protocatechuate 3,4-dioxygenase subunit beta	-3.11428540996513	-8.02087895327768	TRUE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS15460	ABZR87_RS15460		benzoylformate decarboxylase	6.45813664607787	7.77857819306461	TRUE
+carbon source	set9IT081	Protocatechuic Acid	ABZR87_RS15460	ABZR87_RS15460		benzoylformate decarboxylase	7.40622489918441	8.20718707843309	TRUE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS15750	ABZR87_RS15750		ABC transporter substrate-binding protein	-2.89385539791598	-11.0353015220238	FALSE
+carbon source	set9IT081	Protocatechuic Acid	ABZR87_RS15750	ABZR87_RS15750		ABC transporter substrate-binding protein	-2.01982361698638	-7.80940743184331	FALSE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS15755	ABZR87_RS15755		ABC transporter ATP-binding protein	-2.37878023633673	-7.77099971902448	FALSE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS15765	ABZR87_RS15765		branched-chain amino acid ABC transporter permease	-2.52909068820371	-9.34184982099171	FALSE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS15770	ABZR87_RS15770		branched-chain amino acid ABC transporter permease	-2.68739085911888	-11.7289540450771	FALSE
+carbon source	set9IT081	Protocatechuic Acid	ABZR87_RS15770	ABZR87_RS15770		branched-chain amino acid ABC transporter permease	-1.27500301311018	-5.06235435782803	FALSE
+carbon source	set9IT081	Protocatechuic Acid	ABZR87_RS15780	ABZR87_RS15780		3-oxoadipate enol-lactonase	-3.67447118623995	-5.60803125424146	TRUE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS15780	ABZR87_RS15780		3-oxoadipate enol-lactonase	-3.47921434707957	-5.21100284375448	TRUE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS15785	ABZR87_RS15785		3-carboxy-cis,cis-muconate cycloisomerase	-4.24973401526585	-9.00432234179166	TRUE
+carbon source	set9IT081	Protocatechuic Acid	ABZR87_RS15785	ABZR87_RS15785		3-carboxy-cis,cis-muconate cycloisomerase	-3.30799571060951	-5.93859172840534	TRUE
+carbon source	set8IT065	Protocatechuic Acid	ABZR87_RS19820	ABZR87_RS19820		IclR family transcriptional regulator C-terminal domain-containing protein	2.39877888310254	8.7292205948651	FALSE
+carbon source	set9IT081	Protocatechuic Acid	ABZR87_RS19820	ABZR87_RS19820		IclR family transcriptional regulator C-terminal domain-containing protein	2.61590626226199	11.8321016144202	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS00965	ABZR87_RS00965		bifunctional anthranilate synthase component I family protein/class IV aminotransferase	-3.94367884744933	-13.4289496951143	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS04220	ABZR87_RS04220		choline dehydrogenase	-1.96253620364426	-6.0678756401369	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS04385	ABZR87_RS04385		AAA-associated domain-containing protein	-2.47686405182715	-7.98086827323026	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS06580	ABZR87_RS06580		hypothetical protein	-1.20285199748282	-7.05056382542183	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS07115	ABZR87_RS07115		Na/Pi cotransporter family protein	1.49006799844603	6.57641570399191	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS07390	ABZR87_RS07390		ABC transporter ATP-binding protein/permease	1.24372697146876	8.18993943342288	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS08855	ABZR87_RS08855		lytic transglycosylase domain-containing protein	-2.09498568340664	-8.81450064665457	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS09880	ABZR87_RS09880		MoxR family ATPase	-1.31846948211005	-6.20107984905641	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS10995	ABZR87_RS10995		NAD-dependent deacylase	-1.83517151082061	-5.55835391578661	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS12340	ABZR87_RS12340		8-amino-7-oxononanoate synthase	-2.47472882309528	-9.77222274944545	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS15190	ABZR87_RS15190		PHB depolymerase family esterase	1.88829059286453	10.3372117032398	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS15590	ABZR87_RS15590		DUF2957 domain-containing protein	1.66626850202374	8.86912412282914	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS19660	ABZR87_RS19660		aspartate aminotransferase family protein	-2.34720957304845	-6.3922245966656	FALSE
+carbon source	set8IT063	Sebacic acid	ABZR87_RS22425	ABZR87_RS22425		nitronate monooxygenase family protein	-1.86467258432994	-7.48658223366688	FALSE
+carbon source	set9IT083	Sodium acetate	ABZR87_RS07595	ABZR87_RS07595		anhydro-N-acetylmuramic acid kinase	1.3264871193599	8.06731245086569	FALSE
+carbon source	set9IT083	Sodium acetate	ABZR87_RS07690	ABZR87_RS07690		aminoglycoside phosphotransferase family protein	1.22145810186262	10.3455718294013	FALSE
+carbon source	set9IT083	Sodium acetate	ABZR87_RS13745	ABZR87_RS13745		bifunctional (p)ppGpp synthetase/guanosine-3',5'-bis(diphosphate) 3'-pyrophosphohydrolase	-1.44858618623633	-10.4719632322884	FALSE
+carbon source	set9IT075	Sodium adipate	ABZR87_RS16635	ABZR87_RS16635		MFS family transporter	-3.79632529165044	-16.991348820983	TRUE
+carbon source	set9IT093	Sodium adipate	ABZR87_RS16635	ABZR87_RS16635		MFS family transporter	-3.01680913510382	-17.1717865532495	TRUE
+carbon source	set9IT067	Sodium butyrate	ABZR87_RS17455	ABZR87_RS17455		AraC family transcriptional regulator	-3.46476046665177	-6.12965107354631	TRUE
+carbon source	set9IT085	Sodium butyrate	ABZR87_RS17455	ABZR87_RS17455		AraC family transcriptional regulator	-2.64036262435929	-6.13886106624707	TRUE
+carbon source	set9IT085	Sodium butyrate	ABZR87_RS17465	ABZR87_RS17465		AMP-binding protein	-2.22396532680677	-7.49370100374436	TRUE
+carbon source	set9IT067	Sodium butyrate	ABZR87_RS17465	ABZR87_RS17465		AMP-binding protein	-2.02858220765877	-5.42013508797072	TRUE
+carbon source	set9IT085	Sodium butyrate	ABZR87_RS17470	ABZR87_RS17470		CoA-acylating methylmalonate-semialdehyde dehydrogenase	-1.5758061433298	-5.66901481889277	FALSE
+carbon source	set9IT067	Sodium butyrate	ABZR87_RS17475	ABZR87_RS17475		3-hydroxyisobutyrate dehydrogenase	-3.86917646631676	-7.10482470731922	TRUE
+carbon source	set9IT085	Sodium butyrate	ABZR87_RS17475	ABZR87_RS17475		3-hydroxyisobutyrate dehydrogenase	-2.91396645001408	-9.26924725607971	TRUE
+carbon source	set9IT084	Sodium propionate	ABZR87_RS07950	ABZR87_RS07950		sodium/substrate symporter small subunit	-1.19314127474084	-6.64245134357516	FALSE
+carbon source	set9IT066	Sodium propionate	ABZR87_RS07950	ABZR87_RS07950		sodium/substrate symporter small subunit	-1.17075554533859	-5.88618761250244	FALSE
+carbon source	set9IT066	Sodium propionate	ABZR87_RS14355	ABZR87_RS14355		sodium:solute symporter family protein	-1.16635105830819	-8.55523305984193	TRUE
+carbon source	set9IT084	Sodium propionate	ABZR87_RS14355	ABZR87_RS14355		sodium:solute symporter family protein	-1.15640860683644	-7.86994754803137	TRUE
+carbon source	set9IT092	Sodium succinate dibasic hexahydrate	ABZR87_RS06625	ABZR87_RS06625		dicarboxylate/amino acid:cation symporter	-5.16180826197854	-16.8186909002509	TRUE
+carbon source	set9IT074	Sodium succinate dibasic hexahydrate	ABZR87_RS06625	ABZR87_RS06625		dicarboxylate/amino acid:cation symporter	-3.08165625864223	-15.1061980579024	TRUE
+carbon source	set9IT092	Sodium succinate dibasic hexahydrate	ABZR87_RS06630	ABZR87_RS06630		sensor histidine kinase	-1.44948870406888	-7.87208567738756	TRUE
+carbon source	set9IT092	Sodium succinate dibasic hexahydrate	ABZR87_RS06635	ABZR87_RS06635		sigma-54 dependent transcriptional regulator	-3.32170024735208	-7.01930417687197	TRUE
+carbon source	set9IT077	Suberic acid	ABZR87_RS12610	ABZR87_RS12610		branched-chain amino acid ABC transporter permease	-2.50102274997652	-9.34813687454462	FALSE
+carbon source	set9IT077	Suberic acid	ABZR87_RS12620	ABZR87_RS12620		branched-chain amino acid ABC transporter substrate-binding protein	-1.5281835745158	-9.79252203610571	FALSE

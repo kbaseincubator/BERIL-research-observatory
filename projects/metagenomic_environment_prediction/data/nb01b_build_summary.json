@@ -1,0 +1,7 @@
+{
+  "source": "mgnify_kescience",
+  "biome_filter": "Soil|Rhizosphere|Marine Sediment",
+  "n_mags_total": 8849,
+  "n_with_csu": 7973,
+  "mean_ko_per_mb_primary": 20.320216865935294
+}

@@ -1,0 +1,3 @@
+Model,Response,Predictor,n,Beta,SE,t,p_value,Lambda,Log_likelihood,AIC,Interpretation
+Model 1,Count breadth (std),Levins B (cross-biome),535,0.00273,0.00201,1.3587,0.1748,0.0121,893.2207,-1778.44,No phylogenetic signal; no association between ecological and social breadth
+Model 3,Count breadth SES,Levins B (cross-biome),62,-0.3802,0.1268,-3.0,0.0039,0.0000,NA,NA,Negative association when controlling for null expectation (SES)

@@ -1,0 +1,588 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+anaerobic	set5IT075	Sodium Fumarate dibasic	5207513	Shew_0047		molybdopterin biosynthesis protein MoeB (RefSeq)	-2.54446956196741	-6.59830062527212	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5207519	Shew_0053		formate dehydrogenase, subunit FdhD (RefSeq)	-2.00451646923133	-12.7695246544519	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5207557	Shew_0091		molybdopterin biosynthesis MoaE (RefSeq)	-2.00700696629314	-5.82071818183584	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5208297	Shew_0809		formate dehydrogenase, alpha subunit (RefSeq)	-2.2839859939782	-15.5725761658225	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5208332	Shew_0844	nrfA	cytochrome c nitrite reductase (RefSeq)	-1.52917212861314	-5.16757695065284	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5208556	Shew_1067		phospho-2-dehydro-3-deoxyheptonate aldolase (RefSeq)	-2.61430232966231	-8.24968053124313	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5209942	Shew_2390		formate acetyltransferase (RefSeq)	-2.37298855071843	-11.1233010662694	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5210001	Shew_2449		anaerobic ribonucleoside triphosphate reductase (RefSeq)	-3.76188830611647	-20.0847295658293	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5210558	Shew_2986		5-methyltetrahydropteroyltriglutamate-- homocysteine methyltransferase (RefSeq)	-5.16335905961199	-14.4087294419599	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5210559	Shew_2987		LysR family transcriptional regulator (RefSeq)	-5.31820186778612	-8.48276245781331	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5210562	Shew_2990		TonB-dependent receptor (RefSeq)	-3.84318021225633	-10.8164130055524	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5210684	Shew_3112		flavocytochrome c (RefSeq)	-3.10628997061874	-10.1177894407001	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5210685	Shew_3113		histidine kinase (RefSeq)	-2.60154914434098	-8.02342559261223	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5210686	Shew_3114		two component, sigma54 specific, Fis family transcriptional regulator (RefSeq)	-3.39158120430162	-13.4851804921382	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5210914	Shew_3340		TonB-dependent receptor (RefSeq)	-1.98728000885568	-6.03333255631432	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211118	Shew_3534		CzcA family heavy metal efflux protein (RefSeq)	-5.11412203478851	-13.65180171509	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211119	Shew_3535		RND family efflux transporter MFP subunit (RefSeq)	-4.42086222657666	-14.6342090943962	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211124	Shew_3540		NapC/NirT cytochrome c domain-containing protein (RefSeq)	-4.25096676297158	-8.19051176633099	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211183	Shew_3599		2-succinyl-6-hydroxy-2, 4-cyclohexadiene-1-carboxylic acid synthase/2-oxoglutarate decarboxylase (RefSeq)	-3.85144163011296	-13.2963493738311	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211185	Shew_3601		O-succinylbenzoate synthase (RefSeq)	-3.40242626871872	-8.34008299069032	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211186	Shew_3602		O-succinylbenzoate-CoA ligase (RefSeq)	-3.78835078114939	-17.0546375695704	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211261	Shew_3677		isochorismate synthase (RefSeq)	-3.54391229331286	-9.58029521385247	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211270	Shew_3686		molybdopterin-guanine dinucleotide biosynthesis protein A (RefSeq)	-2.68827139402877	-6.67516545616171	TRUE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211271	Shew_3687		molybdopterin-guanine dinucleotide biosynthesis protein B (RefSeq)	-1.4981100270629	-7.92024220622707	FALSE
+anaerobic	set5IT075	Sodium Fumarate dibasic	5211405	Shew_3814		naphthoate synthase (RefSeq)	-3.40450802857962	-14.3692571388818	TRUE
+carbon source	set1H48	D-Maltose monohydrate	5208746	Shew_1249		phosphoribosylaminoimidazole carboxylase, ATPase subunit (RefSeq)	-2.395571377744	-7.71386351677923	FALSE
+carbon source	set1H47	D-Maltose monohydrate	5208746	Shew_1249		phosphoribosylaminoimidazole carboxylase, ATPase subunit (RefSeq)	-2.00057321623686	-8.66535373167672	FALSE
+carbon source	set1H48	D-Maltose monohydrate	5209403	Shew_1874		major facilitator transporter (RefSeq)	-7.20986743569515	-5.41303896700056	TRUE
+carbon source	set1H47	D-Maltose monohydrate	5209403	Shew_1874		major facilitator transporter (RefSeq)	-5.57438056017197	-6.40917928603755	TRUE
+carbon source	set1H47	D-Maltose monohydrate	5210117	Shew_2561		6-phosphogluconate dehydrogenase (RefSeq)	2.12775701233876	9.78472487761896	FALSE
+carbon source	set1H48	D-Maltose monohydrate	5210117	Shew_2561		6-phosphogluconate dehydrogenase (RefSeq)	2.25461475429565	7.95813055879588	FALSE
+carbon source	set1H47	D-Maltose monohydrate	5210846	Shew_3272		aldose 1-epimerase (RefSeq)	-3.90294753998745	-5.63863315547907	TRUE
+carbon source	set1H48	D-Maltose monohydrate	5210846	Shew_3272		aldose 1-epimerase (RefSeq)	-3.63980813620399	-7.03555574537153	TRUE
+carbon source	set2IT023	Gelatin	5207824	Shew_0341		TonB-dependent receptor (RefSeq)	-1.90721919314709	-13.8675892577335	FALSE
+carbon source	set2IT011	Gelatin	5207824	Shew_0341		TonB-dependent receptor (RefSeq)	-1.80021545143024	-12.8020815111652	FALSE
+carbon source	set2IT023	Gelatin	5208211	Shew_0723		ABC transporter-related protein (RefSeq)	-1.20190457922386	-5.12346257553899	TRUE
+carbon source	set2IT023	Gelatin	5208213	Shew_0725		hypothetical protein (RefSeq)	-1.53974355878724	-6.78180142512604	TRUE
+carbon source	set2IT011	Gelatin	5208213	Shew_0725		hypothetical protein (RefSeq)	-1.47361258591351	-5.9069598188272	TRUE
+carbon source	set2IT011	Gelatin	5208443	Shew_0955		peptidase M24 (RefSeq)	-1.40632722109079	-8.99772175775279	FALSE
+carbon source	set2IT023	Gelatin	5208443	Shew_0955		peptidase M24 (RefSeq)	-1.26162368452914	-8.1444721860522	FALSE
+carbon source	set2IT011	Gelatin	5208972	Shew_1458		serine/threonine transporter SstT (RefSeq)	-1.7707075412284	-10.2689681567053	FALSE
+carbon source	set2IT023	Gelatin	5208972	Shew_1458		serine/threonine transporter SstT (RefSeq)	-1.7425214419446	-6.18170312298257	FALSE
+carbon source	set2IT023	Gelatin	5209910	Shew_2358		peptidase M24 (RefSeq)	-1.38349560278173	-6.46298064177959	FALSE
+carbon source	set2IT023	Gelatin	5209912	Shew_2360		D-amino-acid dehydrogenase (RefSeq)	-2.10920177341113	-7.12124089908078	FALSE
+carbon source	set2IT011	Gelatin	5209912	Shew_2360		D-amino-acid dehydrogenase (RefSeq)	-2.09165984300981	-6.51505667534415	FALSE
+carbon source	set2IT011	Gelatin	5209913	Shew_2361		proline racemase (RefSeq)	-2.0137788154904	-5.43306123322632	FALSE
+carbon source	set2IT023	Gelatin	5209914	Shew_2362		dihydrodipicolinate synthase (RefSeq)	-3.70287402405573	-6.35631572118258	FALSE
+carbon source	set2IT011	Gelatin	5209915	Shew_2363		proline racemase (RefSeq)	-2.24088444354148	-7.13836245299056	FALSE
+carbon source	set2IT023	Gelatin	5209915	Shew_2363		proline racemase (RefSeq)	-1.68428557892502	-6.17038154334124	FALSE
+carbon source	set2IT023	Gelatin	5209916	Shew_2364		aldehyde dehydrogenase (RefSeq)	-1.0874761241865	-5.10552157887266	TRUE
+carbon source	set2IT021	L-Glutamine	5207485	Shew_0019	fadB	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-1.1726307316416	-5.17721714954323	FALSE
+carbon source	set2IT021	L-Glutamine	5207583	Shew_0117		protoheme IX farnesyltransferase (RefSeq)	-1.35562253564725	-6.79790383186905	FALSE
+carbon source	set2IT021	L-Glutamine	5207588	Shew_0122		cytochrome c oxidase, subunit III (RefSeq)	-1.34059547129397	-5.59824879742838	FALSE
+carbon source	set2IT021	L-Glutamine	5207666	Shew_0192		TPR repeat-containing protein (RefSeq)	-1.74458879032684	-5.43143413937077	FALSE
+carbon source	set2IT021	L-Glutamine	5207710	Shew_0231		hypothetical protein (RefSeq)	1.35240074017057	6.50367427611357	FALSE
+carbon source	set2IT021	L-Glutamine	5207793	Shew_0310		TolC family type I secretion outer membrane protein (RefSeq)	-1.75319866633802	-7.23600214093715	FALSE
+carbon source	set2IT021	L-Glutamine	5207794	Shew_0311		HlyD family type I secretion membrane fusion protein (RefSeq)	-2.24605875600048	-6.71530597973775	FALSE
+carbon source	set2IT021	L-Glutamine	5207795	Shew_0312		ABC transporter-related protein (RefSeq)	-1.38315909274648	-5.28051067925171	FALSE
+carbon source	set2IT021	L-Glutamine	5207875	Shew_0391		TPR repeat-containing protein (RefSeq)	-2.39972671975463	-8.81616646565676	FALSE
+carbon source	set2IT021	L-Glutamine	5207893	Shew_0409		Nitrilase/cyanide hydratase and apolipoprotein N-acyltransferase (RefSeq)	-3.77946357090716	-6.03448612632535	TRUE
+carbon source	set2IT021	L-Glutamine	5208048	Shew_0560		hypothetical protein (RefSeq)	1.13980434233918	5.05141701124362	FALSE
+carbon source	set2IT021	L-Glutamine	5208213	Shew_0725		hypothetical protein (RefSeq)	-1.79392079138686	-5.78547219635704	FALSE
+carbon source	set2IT021	L-Glutamine	5208253	Shew_0765		acriflavin resistance protein (RefSeq)	-1.93970834878255	-11.6607708638223	FALSE
+carbon source	set2IT021	L-Glutamine	5208254	Shew_0766		RND family efflux transporter MFP subunit (RefSeq)	-1.82022932317674	-5.99513509348067	FALSE
+carbon source	set2IT021	L-Glutamine	5208556	Shew_1067		phospho-2-dehydro-3-deoxyheptonate aldolase (RefSeq)	-1.57588402925181	-6.9331875989298	FALSE
+carbon source	set2IT021	L-Glutamine	5208916	Shew_1417		undecaprenyl-phosphate alpha-N-acetylglucosaminyl 1-phosphatetransferase (RefSeq)	1.95434766773667	5.68378372478381	FALSE
+carbon source	set2IT021	L-Glutamine	5209735	Shew_2188		long-chain-fatty-acid--CoA ligase (RefSeq)	2.95593998246248	6.66839831944452	FALSE
+carbon source	set2IT021	L-Glutamine	5210032	Shew_2480		TonB-dependent receptor (RefSeq)	1.76926622480572	5.0860936733939	FALSE
+carbon source	set2IT021	L-Glutamine	5210676	Shew_3104		TetR family transcriptional regulator (RefSeq)	-1.64946124137945	-5.96267717974742	FALSE
+carbon source	set2IT021	L-Glutamine	5211332	Shew_3744		peptidase M6, immune inhibitor A (RefSeq)	1.74601244615164	7.180628327278	FALSE
+carbon source	set2IT008	L-Malic acid disodium salt monohydrate	5207520	Shew_0054		hypothetical protein (RefSeq)	-1.34604649999212	-5.27000397116986	FALSE
+carbon source	set2IT008	L-Malic acid disodium salt monohydrate	5208941	Shew_1442		two component, sigma54 specific, Fis family transcriptional regulator (RefSeq)	-6.01071555693466	-7.11818337895956	TRUE
+carbon source	set2IT008	L-Malic acid disodium salt monohydrate	5208942	Shew_1443		integral membrane sensor signal transduction histidine kinase (RefSeq)	-7.45439947669058	-7.25097187652632	TRUE
+carbon source	set2IT020	L-Malic acid disodium salt monohydrate	5208942	Shew_1443		integral membrane sensor signal transduction histidine kinase (RefSeq)	-6.90851779452632	-6.07334825876435	TRUE
+carbon source	set2IT008	L-Malic acid disodium salt monohydrate	5208945	Shew_1446		TRAP dicarboxylate transporter, DctP subunit (RefSeq)	-6.43071122486891	-6.03123195542342	TRUE
+carbon source	set2IT020	L-Malic acid disodium salt monohydrate	5209923	Shew_2371		Na+/solute symporter (RefSeq)	-2.2377226065633	-6.52999048716078	FALSE
+carbon source	set2IT008	L-Malic acid disodium salt monohydrate	5211183	Shew_3599		2-succinyl-6-hydroxy-2, 4-cyclohexadiene-1-carboxylic acid synthase/2-oxoglutarate decarboxylase (RefSeq)	-1.19239036435585	-5.32146629255367	FALSE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5208005	Shew_0521	metL	bifunctional aspartate kinase II/homoserine dehydrogenase II (RefSeq)	1.63558552878883	8.28065660320373	FALSE
+carbon source	set2IT013	N-Acetyl-D-Glucosamine	5208005	Shew_0521	metL	bifunctional aspartate kinase II/homoserine dehydrogenase II (RefSeq)	1.81986237052065	10.448999698392	FALSE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5208303	Shew_0815		glucosamine-6-phosphate isomerase (RefSeq)	-8.30226529458316	-5.7321472895131	TRUE
+carbon source	set2IT013	N-Acetyl-D-Glucosamine	5208303	Shew_0815		glucosamine-6-phosphate isomerase (RefSeq)	-8.22503578800353	-5.67882558861544	TRUE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5208455	Shew_0967		aldehyde dehydrogenase (RefSeq)	-1.97699558433548	-5.45586414338969	FALSE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5208604	Shew_1115		Beta-N-acetylhexosaminidase (RefSeq)	1.65820812673163	9.82351781769629	FALSE
+carbon source	set2IT013	N-Acetyl-D-Glucosamine	5208604	Shew_1115		Beta-N-acetylhexosaminidase (RefSeq)	1.74127577158194	10.9939666266737	FALSE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5208605	Shew_1116		ATPase, BadF/BadG/BcrA/BcrD type (RefSeq)	-6.43479217854502	-5.61300003803232	TRUE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5208606	Shew_1117		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-8.03387440436205	-5.54842992637033	TRUE
+carbon source	set2IT013	N-Acetyl-D-Glucosamine	5208606	Shew_1117		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-6.3445996210623	-10.5436506185444	TRUE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5210032	Shew_2480		TonB-dependent receptor (RefSeq)	-2.74793903921383	-11.9994655654913	FALSE
+carbon source	set2IT013	N-Acetyl-D-Glucosamine	5210032	Shew_2480		TonB-dependent receptor (RefSeq)	-2.41427413346002	-9.98265633011123	FALSE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5210117	Shew_2561		6-phosphogluconate dehydrogenase (RefSeq)	1.43792662802519	5.27647776345131	FALSE
+carbon source	set2IT013	N-Acetyl-D-Glucosamine	5210117	Shew_2561		6-phosphogluconate dehydrogenase (RefSeq)	1.56353973789686	5.71853972743557	FALSE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5210653	Shew_3081		TonB-dependent receptor (RefSeq)	-1.55634124219715	-8.75926043906072	FALSE
+carbon source	set2IT013	N-Acetyl-D-Glucosamine	5210653	Shew_3081		TonB-dependent receptor (RefSeq)	-1.44510549231901	-9.23216028429264	FALSE
+carbon source	set2IT025	N-Acetyl-D-Glucosamine	5210846	Shew_3272		aldose 1-epimerase (RefSeq)	-4.41004165369464	-10.3309099439474	FALSE
+carbon source	set2IT013	N-Acetyl-D-Glucosamine	5210846	Shew_3272		aldose 1-epimerase (RefSeq)	-4.17387711276446	-9.06257128239421	FALSE
+carbon source	set2IT013	N-Acetyl-D-Glucosamine	5211332	Shew_3744		peptidase M6, immune inhibitor A (RefSeq)	-1.15499401884766	-7.45600044592907	FALSE
+carbon source	set1H36	Potassium acetate	5207527	Shew_0061		formate dehydrogenase, gamma subunit (RefSeq)	-1.44205976492687	-5.08724817253825	FALSE
+carbon source	set1H41	Potassium acetate	5207690	Shew_0212		type IV pilus secretin PilQ (RefSeq)	1.22231763955479	5.51150840248567	FALSE
+carbon source	set1H41	Potassium acetate	5207793	Shew_0310		TolC family type I secretion outer membrane protein (RefSeq)	-1.31310507114573	-5.65707722044862	FALSE
+carbon source	set1H36	Potassium acetate	5207794	Shew_0311		HlyD family type I secretion membrane fusion protein (RefSeq)	-1.19554589216519	-5.83122839010188	FALSE
+carbon source	set1H36	Potassium acetate	5207795	Shew_0312		ABC transporter-related protein (RefSeq)	-1.52691160455743	-5.03611567507427	FALSE
+carbon source	set1H36	Potassium acetate	5207796	Shew_0313		putative outer membrane adhesin like proteiin (RefSeq)	-1.41843481429894	-5.49037451053484	FALSE
+carbon source	set1H41	Potassium acetate	5207796	Shew_0313		putative outer membrane adhesin like proteiin (RefSeq)	-1.38657425628134	-5.25653996458954	FALSE
+carbon source	set1H41	Potassium acetate	5207802	Shew_0319	cyaA	adenylate cyclase (RefSeq)	1.88340377496239	6.40689930006706	FALSE
+carbon source	set1H36	Potassium acetate	5207802	Shew_0319	cyaA	adenylate cyclase (RefSeq)	1.88745684671606	6.93722496465038	FALSE
+carbon source	set1H36	Potassium acetate	5208253	Shew_0765		acriflavin resistance protein (RefSeq)	-1.91465604504127	-9.69263373801582	FALSE
+carbon source	set1H41	Potassium acetate	5208253	Shew_0765		acriflavin resistance protein (RefSeq)	-1.523317017861	-8.30360936235951	FALSE
+carbon source	set1H36	Potassium acetate	5208254	Shew_0766		RND family efflux transporter MFP subunit (RefSeq)	-1.96050435604818	-6.67454067269775	FALSE
+carbon source	set1H41	Potassium acetate	5208594	Shew_1105		type IV pilus assembly protein PilX (RefSeq)	1.17009961369425	6.76938770127836	FALSE
+carbon source	set1H41	Potassium acetate	5208596	Shew_1107		methylation site containing protein (RefSeq)	1.57321883952402	6.06273300430578	FALSE
+carbon source	set1H36	Potassium acetate	5208688	Shew_1197		auxin efflux carrier (RefSeq)	-1.21711410522466	-5.55314612191628	FALSE
+carbon source	set1H41	Potassium acetate	5208774	Shew_1276		isocitrate lyase (RefSeq)	-6.70913065754829	-5.52093526144001	TRUE
+carbon source	set1H36	Potassium acetate	5208774	Shew_1276		isocitrate lyase (RefSeq)	-6.47693678700363	-5.52505530291832	TRUE
+carbon source	set1H36	Potassium acetate	5208891	Shew_1392		hypothetical protein (RefSeq)	1.43378674568063	5.36183170654914	FALSE
+carbon source	set1H36	Potassium acetate	5209327	Shew_1805		hypothetical protein (RefSeq)	-1.57346701446117	-5.39567607937039	FALSE
+carbon source	set1H41	Potassium acetate	5209506	Shew_1976		putative ATP-dependent protease La-relatedprotein (RefSeq)	-1.45060865033506	-5.76335064683091	FALSE
+carbon source	set1H36	Potassium acetate	5209575	Shew_2039		GCN5-related N-acetyltransferase (RefSeq)	6.11634925034107	16.9889577814925	TRUE
+carbon source	set1H41	Potassium acetate	5209575	Shew_2039		GCN5-related N-acetyltransferase (RefSeq)	6.16722758532119	20.2248479396698	TRUE
+carbon source	set1H36	Potassium acetate	5209972	Shew_2420		peptidase M16 domain-containing protein (RefSeq)	-1.27236228079756	-6.23173933709877	FALSE
+carbon source	set1H41	Potassium acetate	5210032	Shew_2480		TonB-dependent receptor (RefSeq)	1.67696170792411	6.28642734873875	FALSE
+carbon source	set1H36	Potassium acetate	5210032	Shew_2480		TonB-dependent receptor (RefSeq)	1.83165509256439	8.22066473132803	FALSE
+carbon source	set1H36	Potassium acetate	5210124	Shew_2568		AMP-dependent synthetase and ligase (RefSeq)	1.20102112752222	6.67695549763616	TRUE
+carbon source	set1H41	Potassium acetate	5210124	Shew_2568		AMP-dependent synthetase and ligase (RefSeq)	1.49975374634505	5.3746391571931	TRUE
+carbon source	set1H41	Potassium acetate	5210424	Shew_2865		TetR family transcriptional regulator (RefSeq)	1.72531127477745	6.87362515121471	FALSE
+carbon source	set1H36	Potassium acetate	5210424	Shew_2865		TetR family transcriptional regulator (RefSeq)	2.15159382131712	7.31346768405566	FALSE
+carbon source	set1H41	Potassium acetate	5210764	Shew_3192		hypothetical protein (RefSeq)	5.75450275226609	7.35793792900901	FALSE
+carbon source	set1H36	Potassium acetate	5210764	Shew_3192		hypothetical protein (RefSeq)	5.95656634532579	10.3947508749506	FALSE
+carbon source	set1H36	Potassium acetate	5211010	Shew_3436		methylation site containing protein (RefSeq)	1.29851783781509	6.07382949788921	FALSE
+carbon source	set1H41	Potassium acetate	5211010	Shew_3436		methylation site containing protein (RefSeq)	1.34134372183463	6.27679106450135	FALSE
+carbon source	set1H36	Potassium acetate	5211129	Shew_3545	rbn	ribonuclease BN (RefSeq)	-1.9199255132522	-6.60232692160942	FALSE
+carbon source	set2IT004	Sodium D,L-Lactate	5207793	Shew_0310		TolC family type I secretion outer membrane protein (RefSeq)	-1.17686149479556	-5.98670487971472	FALSE
+carbon source	set2IT016	Sodium D,L-Lactate	5208150	Shew_0662		NAD(P) transhydrogenase, beta subunit (RefSeq)	-3.30681352139246	-6.2585951699592	FALSE
+carbon source	set2IT016	Sodium D,L-Lactate	5208151	Shew_0663		oxidoreductase (RefSeq)	-2.83174051593204	-5.31982869321007	FALSE
+carbon source	set2IT016	Sodium D,L-Lactate	5208152	Shew_0664		NAD(P) transhydrogenase subunit alpha (RefSeq)	-2.69582948995007	-9.49090356145034	FALSE
+carbon source	set2IT004	Sodium D,L-Lactate	5208152	Shew_0664		NAD(P) transhydrogenase subunit alpha (RefSeq)	-1.43539491182159	-5.19326090351066	FALSE
+carbon source	set2IT016	Sodium D,L-Lactate	5209191	Shew_1669		butyryl-CoA dehydrogenase (RefSeq)	1.49789238385813	6.09663601236032	FALSE
+carbon source	set2IT016	Sodium D,L-Lactate	5210197	Shew_2640	purU	formyltetrahydrofolate deformylase (RefSeq)	-2.47229164786618	-6.09533889713905	FALSE
+carbon source	set2IT004	Sodium D,L-Lactate	5210577	Shew_3005		4Fe-4S ferredoxin iron-sulfur binding domain-containing protein (RefSeq)	-6.57735242151631	-6.39289747505093	TRUE
+carbon source	set2IT016	Sodium D,L-Lactate	5210577	Shew_3005		4Fe-4S ferredoxin iron-sulfur binding domain-containing protein (RefSeq)	-6.09431433687695	-8.27777264147656	TRUE
+carbon source	set2IT004	Sodium D,L-Lactate	5210578	Shew_3006		hypothetical protein (RefSeq)	-5.07822877982193	-7.14864412408383	FALSE
+carbon source	set2IT016	Sodium D,L-Lactate	5210579	Shew_3007		LysR family transcriptional regulator (RefSeq)	-6.55485747332439	-5.08471433017583	FALSE
+carbon source	set2IT004	Sodium D,L-Lactate	5210579	Shew_3007		LysR family transcriptional regulator (RefSeq)	-5.88918975227305	-5.70177597290392	FALSE
+carbon source	set2IT004	Sodium D,L-Lactate	5210707	Shew_3135		L-lactate permease (RefSeq)	-2.1811039254486	-5.40740168399075	FALSE
+carbon source	set2IT004	Sodium D,L-Lactate	5210708	Shew_3136		FAD linked oxidase domain-containing protein (RefSeq)	-1.78337732547638	-10.5650278884554	TRUE
+carbon source	set1H40	Sodium Fumarate dibasic	5207485	Shew_0019	fadB	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-1.42983859520256	-5.71221345973104	FALSE
+carbon source	set1H40	Sodium Fumarate dibasic	5208941	Shew_1442		two component, sigma54 specific, Fis family transcriptional regulator (RefSeq)	-4.9110585884867	-5.98461721789949	FALSE
+carbon source	set1H40	Sodium Fumarate dibasic	5208942	Shew_1443		integral membrane sensor signal transduction histidine kinase (RefSeq)	-5.87946106228346	-5.68003882018101	FALSE
+carbon source	set1H40	Sodium Fumarate dibasic	5208945	Shew_1446		TRAP dicarboxylate transporter, DctP subunit (RefSeq)	-5.01058208184049	-5.6721873203984	TRUE
+carbon source	set2IT003	Sodium L-Lactate	5208150	Shew_0662		NAD(P) transhydrogenase, beta subunit (RefSeq)	-3.01363603245827	-5.57224349530519	FALSE
+carbon source	set2IT003	Sodium L-Lactate	5208151	Shew_0663		oxidoreductase (RefSeq)	-2.41867923931225	-5.25498274337766	FALSE
+carbon source	set2IT003	Sodium L-Lactate	5208152	Shew_0664		NAD(P) transhydrogenase subunit alpha (RefSeq)	-2.54977206751804	-6.70126017135915	TRUE
+carbon source	set2IT015	Sodium L-Lactate	5208152	Shew_0664		NAD(P) transhydrogenase subunit alpha (RefSeq)	-1.60238644628863	-6.21981735639411	TRUE
+carbon source	set2IT015	Sodium L-Lactate	5209923	Shew_2371		Na+/solute symporter (RefSeq)	-4.44880783895833	-8.69836704318143	FALSE
+carbon source	set2IT003	Sodium L-Lactate	5210124	Shew_2568		AMP-dependent synthetase and ligase (RefSeq)	1.06086239911425	5.77842456651155	FALSE
+carbon source	set2IT015	Sodium L-Lactate	5210577	Shew_3005		4Fe-4S ferredoxin iron-sulfur binding domain-containing protein (RefSeq)	-6.76809235606537	-7.70986446094248	TRUE
+carbon source	set2IT003	Sodium L-Lactate	5210577	Shew_3005		4Fe-4S ferredoxin iron-sulfur binding domain-containing protein (RefSeq)	-5.81905696606667	-6.89796916155749	TRUE
+carbon source	set2IT015	Sodium L-Lactate	5210578	Shew_3006		hypothetical protein (RefSeq)	-5.8470913728149	-6.90862698425107	FALSE
+carbon source	set2IT015	Sodium L-Lactate	5210579	Shew_3007		LysR family transcriptional regulator (RefSeq)	-6.62206856501707	-5.29071752522701	FALSE
+carbon source	set2IT015	Sodium L-Lactate	5210707	Shew_3135		L-lactate permease (RefSeq)	-2.86477615769278	-5.72382599940077	FALSE
+carbon source	set2IT015	Sodium L-Lactate	5210708	Shew_3136		FAD linked oxidase domain-containing protein (RefSeq)	-1.78890729548458	-11.6980474330905	FALSE
+carbon source	set2IT017	Sodium pyruvate	5207893	Shew_0409		Nitrilase/cyanide hydratase and apolipoprotein N-acyltransferase (RefSeq)	1.44828847159116	7.19052885810491	TRUE
+carbon source	set2IT005	Sodium pyruvate	5207893	Shew_0409		Nitrilase/cyanide hydratase and apolipoprotein N-acyltransferase (RefSeq)	1.67007228541573	10.4225080735114	TRUE
+carbon source	set2IT017	Sodium pyruvate	5208150	Shew_0662		NAD(P) transhydrogenase, beta subunit (RefSeq)	-2.23732210886504	-7.13885931912412	FALSE
+carbon source	set2IT017	Sodium pyruvate	5208151	Shew_0663		oxidoreductase (RefSeq)	-2.05707543037635	-5.76333968783114	FALSE
+carbon source	set2IT005	Sodium pyruvate	5208152	Shew_0664		NAD(P) transhydrogenase subunit alpha (RefSeq)	-2.66915478733225	-6.57049538798739	FALSE
+carbon source	set2IT017	Sodium pyruvate	5208152	Shew_0664		NAD(P) transhydrogenase subunit alpha (RefSeq)	-1.97935971391818	-10.0248580463689	FALSE
+carbon source	set2IT005	Sodium pyruvate	5208257	Shew_0769		branched-chain amino acid transport system II carrier protein (RefSeq)	-1.92526973593017	-5.15646733839967	FALSE
+carbon source	set2IT017	Sodium pyruvate	5208257	Shew_0769		branched-chain amino acid transport system II carrier protein (RefSeq)	-1.42999369248122	-6.85885224988533	FALSE
+carbon source	set2IT005	Sodium pyruvate	5208408	Shew_0920		major facilitator transporter (RefSeq)	2.48187891172131	11.7072292315535	TRUE
+carbon source	set2IT017	Sodium pyruvate	5208408	Shew_0920		major facilitator transporter (RefSeq)	2.52851922952066	11.0934709605539	TRUE
+carbon source	set2IT005	Sodium pyruvate	5209506	Shew_1976		putative ATP-dependent protease La-relatedprotein (RefSeq)	-2.91537554999859	-13.6670363173213	FALSE
+carbon source	set2IT017	Sodium pyruvate	5209506	Shew_1976		putative ATP-dependent protease La-relatedprotein (RefSeq)	-2.91285657146161	-13.7257811341067	FALSE
+carbon source	set2IT005	Sodium pyruvate	5209875	Shew_2328		signal transduction histidine kinase, LytS (RefSeq)	2.55901001914296	10.3782583446551	TRUE
+carbon source	set2IT017	Sodium pyruvate	5209875	Shew_2328		signal transduction histidine kinase, LytS (RefSeq)	2.60487874029715	10.6604781247407	TRUE
+carbon source	set2IT005	Sodium pyruvate	5209876	Shew_2329		putative two-component response-regulatory protein YehT (RefSeq)	2.86203327661593	11.1276315040536	TRUE
+carbon source	set2IT017	Sodium pyruvate	5209876	Shew_2329		putative two-component response-regulatory protein YehT (RefSeq)	2.87390927038008	7.20533980940696	TRUE
+carbon source	set2IT017	Sodium pyruvate	5209877	Shew_2330		carbon starvation protein CstA (RefSeq)	2.34391606348385	12.306168342432	TRUE
+carbon source	set2IT005	Sodium pyruvate	5209877	Shew_2330		carbon starvation protein CstA (RefSeq)	2.46925760893857	14.0936751550636	TRUE
+carbon source	set2IT017	Sodium pyruvate	5209942	Shew_2390		formate acetyltransferase (RefSeq)	-1.6442980444874	-7.36925993292911	FALSE
+carbon source	set2IT005	Sodium pyruvate	5209942	Shew_2390		formate acetyltransferase (RefSeq)	-1.3096808992963	-6.26023608681348	FALSE
+carbon source	set2IT017	Sodium pyruvate	5210653	Shew_3081		TonB-dependent receptor (RefSeq)	-1.73807507342921	-11.2892814605886	FALSE
+carbon source	set2IT005	Sodium pyruvate	5210653	Shew_3081		TonB-dependent receptor (RefSeq)	-1.50060756386148	-10.1086084794386	FALSE
+carbon source	set2IT018	Sodium succinate dibasic hexahydrate	5207750	Shew_0271		phospholipase (RefSeq)	1.52081220563526	6.5764295566244	FALSE
+carbon source	set2IT006	Sodium succinate dibasic hexahydrate	5207802	Shew_0319	cyaA	adenylate cyclase (RefSeq)	1.06833730602363	6.36628927100201	FALSE
+carbon source	set2IT006	Sodium succinate dibasic hexahydrate	5208075	Shew_0587		phosphoribulokinase (RefSeq)	-1.32915760049048	-6.18695333913476	FALSE
+carbon source	set2IT018	Sodium succinate dibasic hexahydrate	5208884	Shew_1385		chemotaxis phosphatase, CheZ (RefSeq)	1.53454694160296	5.21192038104213	FALSE
+carbon source	set2IT018	Sodium succinate dibasic hexahydrate	5208941	Shew_1442		two component, sigma54 specific, Fis family transcriptional regulator (RefSeq)	-7.29349488505322	-6.0236879181692	TRUE
+carbon source	set2IT006	Sodium succinate dibasic hexahydrate	5208942	Shew_1443		integral membrane sensor signal transduction histidine kinase (RefSeq)	-6.98064605397094	-6.20835746840979	TRUE
+carbon source	set2IT018	Sodium succinate dibasic hexahydrate	5208942	Shew_1443		integral membrane sensor signal transduction histidine kinase (RefSeq)	-6.54715564286144	-8.59371911417167	TRUE
+carbon source	set2IT018	Sodium succinate dibasic hexahydrate	5208945	Shew_1446		TRAP dicarboxylate transporter, DctP subunit (RefSeq)	-6.71948528369476	-6.09150785567929	TRUE
+carbon source	set1H42	a-Ketoglutaric acid disodium salt hydrate	5208453	Shew_0965		methylmalonate-semialdehyde dehydrogenase (RefSeq)	-4.470405762324	-6.94181718076633	TRUE
+carbon source	set1H37	a-Ketoglutaric acid disodium salt hydrate	5208453	Shew_0965		methylmalonate-semialdehyde dehydrogenase (RefSeq)	-3.50690318042464	-9.29989108167124	TRUE
+carbon source	set1H37	a-Ketoglutaric acid disodium salt hydrate	5208941	Shew_1442		two component, sigma54 specific, Fis family transcriptional regulator (RefSeq)	-5.73919683747993	-6.70346057317168	TRUE
+carbon source	set1H42	a-Ketoglutaric acid disodium salt hydrate	5208941	Shew_1442		two component, sigma54 specific, Fis family transcriptional regulator (RefSeq)	-4.50633343168692	-6.5533010289131	TRUE
+carbon source	set1H42	a-Ketoglutaric acid disodium salt hydrate	5208942	Shew_1443		integral membrane sensor signal transduction histidine kinase (RefSeq)	-6.59239720264556	-8.2238378247837	TRUE
+carbon source	set1H37	a-Ketoglutaric acid disodium salt hydrate	5208942	Shew_1443		integral membrane sensor signal transduction histidine kinase (RefSeq)	-4.98169752356718	-5.23090242296262	TRUE
+carbon source	set1H37	a-Ketoglutaric acid disodium salt hydrate	5208945	Shew_1446		TRAP dicarboxylate transporter, DctP subunit (RefSeq)	-7.70185182447796	-5.04359464314823	TRUE
+carbon source	set1H42	a-Ketoglutaric acid disodium salt hydrate	5208945	Shew_1446		TRAP dicarboxylate transporter, DctP subunit (RefSeq)	-6.4717383048621	-6.90390570915819	TRUE
+carbon source	set1H42	a-Ketoglutaric acid disodium salt hydrate	5209754	Shew_2207		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.55070723030749	-7.41910157475808	FALSE
+carbon source	set1H37	a-Ketoglutaric acid disodium salt hydrate	5209754	Shew_2207		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.31341045849738	-5.73719442651886	FALSE
+carbon source	set1H42	a-Ketoglutaric acid disodium salt hydrate	5210032	Shew_2480		TonB-dependent receptor (RefSeq)	3.00351514738791	14.7494970648728	FALSE
+carbon source	set1H37	a-Ketoglutaric acid disodium salt hydrate	5210032	Shew_2480		TonB-dependent receptor (RefSeq)	3.26667000668561	16.2940924244401	FALSE
+carbon source	set1H37	a-Ketoglutaric acid disodium salt hydrate	5210653	Shew_3081		TonB-dependent receptor (RefSeq)	-1.51546887119394	-10.2569766413589	FALSE
+carbon source	set1H42	a-Ketoglutaric acid disodium salt hydrate	5211158	Shew_3574		aldehyde dehydrogenase (RefSeq)	-1.12556660446215	-6.994706731591	FALSE
+carbon source	set1H37	a-Ketoglutaric acid disodium salt hydrate	5211158	Shew_3574		aldehyde dehydrogenase (RefSeq)	-1.08417264257578	-6.0350638981188	FALSE
+motility	set5IT083	Agar	5207507	Shew_0041		diguanylate cyclase/phosphodiesterase with PAS/PAC and GAF sensor(s) (RefSeq)	-3.73334826443697	-10.9928156181289	TRUE
+motility	set5IT084	Agar	5207507	Shew_0041		diguanylate cyclase/phosphodiesterase with PAS/PAC and GAF sensor(s) (RefSeq)	-3.5929590160404	-11.1458353898049	TRUE
+motility	set5IT089	Agar	5207507	Shew_0041		diguanylate cyclase/phosphodiesterase with PAS/PAC and GAF sensor(s) (RefSeq)	-3.57862855550998	-11.0998421464697	TRUE
+motility	set5IT090	Agar	5207507	Shew_0041		diguanylate cyclase/phosphodiesterase with PAS/PAC and GAF sensor(s) (RefSeq)	-3.38964719909718	-9.21404846658756	TRUE
+motility	set5IT090	Agar	5207551	Shew_0085		methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.60198069700357	-11.0431445676418	TRUE
+motility	set5IT084	Agar	5207551	Shew_0085		methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.59144620074714	-11.4911519873784	TRUE
+motility	set5IT089	Agar	5207551	Shew_0085		methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.50888926051842	-9.32300263962102	TRUE
+motility	set5IT083	Agar	5207551	Shew_0085		methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.39821786350045	-9.68285370544045	TRUE
+motility	set5IT084	Agar	5207872	Shew_0388		MSHA biogenesis protein MshK (RefSeq)	2.2050746035728	6.57330850704243	FALSE
+motility	set5IT090	Agar	5207872	Shew_0388		MSHA biogenesis protein MshK (RefSeq)	2.25846054097519	6.25621557374916	FALSE
+motility	set5IT089	Agar	5207872	Shew_0388		MSHA biogenesis protein MshK (RefSeq)	2.37899644925392	9.38024905096866	FALSE
+motility	set5IT083	Agar	5207872	Shew_0388		MSHA biogenesis protein MshK (RefSeq)	2.4260363533284	9.54414699268152	FALSE
+motility	set5IT090	Agar	5207875	Shew_0391		TPR repeat-containing protein (RefSeq)	2.17021703393869	11.684829347384	FALSE
+motility	set5IT084	Agar	5207875	Shew_0391		TPR repeat-containing protein (RefSeq)	2.19897484027757	12.0646377814585	FALSE
+motility	set5IT089	Agar	5207875	Shew_0391		TPR repeat-containing protein (RefSeq)	2.28798344906589	15.2417607878426	FALSE
+motility	set5IT083	Agar	5207875	Shew_0391		TPR repeat-containing protein (RefSeq)	2.31809344134521	16.4438486427191	FALSE
+motility	set5IT083	Agar	5208227	Shew_0739		aromatic amino acid permease (RefSeq)	-1.53495730642873	-5.15782437471679	FALSE
+motility	set5IT089	Agar	5208837	Shew_1338		hypothetical protein (RefSeq)	6.34594454453097	20.1961188472246	FALSE
+motility	set5IT083	Agar	5208837	Shew_1338		hypothetical protein (RefSeq)	6.35936190905312	20.1910040292078	FALSE
+motility	set5IT090	Agar	5208837	Shew_1338		hypothetical protein (RefSeq)	6.38574049864748	19.6713666283014	FALSE
+motility	set5IT084	Agar	5208837	Shew_1338		hypothetical protein (RefSeq)	6.41316991940454	19.9877166145508	FALSE
+motility	set5IT083	Agar	5208842	Shew_1343		response regulator receiver modulated CheW protein (RefSeq)	-4.83378544364826	-10.7127616794144	TRUE
+motility	set5IT089	Agar	5208842	Shew_1343		response regulator receiver modulated CheW protein (RefSeq)	-4.28193471151237	-8.33629456749552	TRUE
+motility	set5IT084	Agar	5208842	Shew_1343		response regulator receiver modulated CheW protein (RefSeq)	-3.96166396244912	-6.2374678617517	TRUE
+motility	set5IT090	Agar	5208842	Shew_1343		response regulator receiver modulated CheW protein (RefSeq)	-3.55264850598721	-6.24955519298284	TRUE
+motility	set5IT083	Agar	5208843	Shew_1344		MCP methyltransferase, CheR-type (RefSeq)	-4.22295095597132	-5.35683032138304	TRUE
+motility	set5IT089	Agar	5208843	Shew_1344		MCP methyltransferase, CheR-type (RefSeq)	-3.48088711156822	-5.68493951898902	TRUE
+motility	set5IT083	Agar	5208884	Shew_1385		chemotaxis phosphatase, CheZ (RefSeq)	-5.06896393712707	-5.89944841209543	TRUE
+motility	set5IT083	Agar	5209397	Shew_1868		methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.20419740020673	-7.10421263137704	FALSE
+motility	set5IT083	Agar	5209942	Shew_2390		formate acetyltransferase (RefSeq)	-2.40569091097212	-6.01783035058735	FALSE
+motility	set5IT089	Agar	5209942	Shew_2390		formate acetyltransferase (RefSeq)	-2.25540759270059	-5.87596887172514	FALSE
+motility	set5IT089	Agar	5210365	Shew_2808		type IV pilus assembly PilZ (RefSeq)	12.1224403366043	77.7145986693123	TRUE
+motility	set5IT083	Agar	5210365	Shew_2808		type IV pilus assembly PilZ (RefSeq)	12.284845071851	79.0068280261627	TRUE
+motility	set5IT084	Agar	5210365	Shew_2808		type IV pilus assembly PilZ (RefSeq)	12.3158906150141	76.7482543172184	TRUE
+motility	set5IT090	Agar	5210365	Shew_2808		type IV pilus assembly PilZ (RefSeq)	12.3249526198067	74.5177477624361	TRUE
+motility	set5IT083	Agar	5210519	Shew_2948		ATPase (RefSeq)	-1.7152260424956	-8.52264875188929	TRUE
+motility	set5IT089	Agar	5210519	Shew_2948		ATPase (RefSeq)	-1.66657779944117	-8.83640051916747	TRUE
+motility	set5IT084	Agar	5210519	Shew_2948		ATPase (RefSeq)	-1.63880144080505	-8.00785951005589	TRUE
+motility	set5IT090	Agar	5210519	Shew_2948		ATPase (RefSeq)	-1.61706633144864	-8.14497169195059	TRUE
+motility	set5IT083	Agar	5210549	Shew_2977		diguanylate cyclase (RefSeq)	2.70222335822823	15.1222451481335	TRUE
+motility	set5IT089	Agar	5210549	Shew_2977		diguanylate cyclase (RefSeq)	2.7444281316009	16.4878891276573	TRUE
+motility	set5IT084	Agar	5210549	Shew_2977		diguanylate cyclase (RefSeq)	2.83390659055566	16.6139854553327	TRUE
+motility	set5IT090	Agar	5210549	Shew_2977		diguanylate cyclase (RefSeq)	2.88635547214279	19.1131401443144	TRUE
+motility	set5IT084	Agar	5210560	Shew_2988		putative signal transduction protein (RefSeq)	3.20662583440588	10.8935977623451	FALSE
+motility	set5IT090	Agar	5210560	Shew_2988		putative signal transduction protein (RefSeq)	3.25452635304577	13.8869403233856	FALSE
+motility	set5IT089	Agar	5210560	Shew_2988		putative signal transduction protein (RefSeq)	3.25969614654408	12.7732833246496	FALSE
+motility	set5IT083	Agar	5210560	Shew_2988		putative signal transduction protein (RefSeq)	3.29987486793856	15.1694260437725	FALSE
+motility	set5IT089	Agar	5210953	Shew_3379		hypothetical protein (RefSeq)	4.82627652167231	10.1412478386829	TRUE
+motility	set5IT083	Agar	5210953	Shew_3379		hypothetical protein (RefSeq)	4.97375705303166	12.6163024523989	TRUE
+motility	set5IT090	Agar	5210953	Shew_3379		hypothetical protein (RefSeq)	5.47152227816546	13.252006517529	TRUE
+motility	set5IT084	Agar	5210953	Shew_3379		hypothetical protein (RefSeq)	5.51018764566714	12.8824803261284	TRUE
+motility	set5IT089	Agar	5210954	Shew_3380		TatD-related deoxyribonuclease (RefSeq)	5.4321790954989	22.2994051300891	TRUE
+motility	set5IT083	Agar	5210954	Shew_3380		TatD-related deoxyribonuclease (RefSeq)	5.46315886210825	21.781894834594	TRUE
+motility	set5IT090	Agar	5210954	Shew_3380		TatD-related deoxyribonuclease (RefSeq)	5.63705377479633	37.7495807337881	TRUE
+motility	set5IT084	Agar	5210954	Shew_3380		TatD-related deoxyribonuclease (RefSeq)	5.6726422945411	38.2740439437306	TRUE
+motility	set5IT083	Agar	5210955	Shew_3381		diguanylate cyclase (RefSeq)	5.59371217203541	26.6595191781927	TRUE
+motility	set5IT089	Agar	5210955	Shew_3381		diguanylate cyclase (RefSeq)	5.61227197505822	24.6593474062778	TRUE
+motility	set5IT090	Agar	5210955	Shew_3381		diguanylate cyclase (RefSeq)	6.14316779481269	25.0037411996965	TRUE
+motility	set5IT084	Agar	5210955	Shew_3381		diguanylate cyclase (RefSeq)	6.16966399348398	24.8303978348724	TRUE
+motility	set5IT084	Agar	5211186	Shew_3602		O-succinylbenzoate-CoA ligase (RefSeq)	-1.92056974411636	-8.16640137122989	FALSE
+motility	set5IT090	Agar	5211186	Shew_3602		O-succinylbenzoate-CoA ligase (RefSeq)	-1.55593895607226	-5.64765762219368	FALSE
+motility	set5IT090	Agar	5211405	Shew_3814		naphthoate synthase (RefSeq)	-1.28505901888823	-5.73147906288801	FALSE
+stress	set4IT023	1-ethyl-3-methylimidazolium acetate	5210899	Shew_3325		major facilitator transporter (RefSeq)	-1.10394927396921	-5.39275831661704	TRUE
+stress	set4IT018	1-ethyl-3-methylimidazolium acetate	5210899	Shew_3325		major facilitator transporter (RefSeq)	-1.08890907928331	-7.2246045463853	TRUE
+stress	set4IT024	1-ethyl-3-methylimidazolium chloride	5208641	Shew_1150		transmembrane pair domain-containing protein (RefSeq)	-7.92020749681651	-5.43213544457795	FALSE
+stress	set4IT019	1-ethyl-3-methylimidazolium chloride	5209142	Shew_1620		adenosylmethionine decarboxylase (RefSeq)	1.27248632018413	5.69047809550967	FALSE
+stress	set4IT024	1-ethyl-3-methylimidazolium chloride	5209142	Shew_1620		adenosylmethionine decarboxylase (RefSeq)	1.32838106516684	5.40620724765141	FALSE
+stress	set4IT016	1-ethyl-3-methylimidazolium lysine	5207952	Shew_0468		LysR family transcriptional regulator (RefSeq)	-1.81793840155859	-6.08554965557728	FALSE
+stress	set4IT011	1-ethyl-3-methylimidazolium lysine	5208526	Shew_1037		DNA mismatch repair protein (RefSeq)	1.4246335506593	6.07914844469128	FALSE
+stress	set4IT016	1-ethyl-3-methylimidazolium lysine	5209142	Shew_1620		adenosylmethionine decarboxylase (RefSeq)	1.71930920283697	5.93352873295014	FALSE
+stress	set4IT016	1-ethyl-3-methylimidazolium lysine	5209932	Shew_2380		putative sulfate transport protein CysZ (RefSeq)	-3.8992838410277	-6.68295676685075	FALSE
+stress	set4IT011	1-ethyl-3-methylimidazolium lysine	5209932	Shew_2380		putative sulfate transport protein CysZ (RefSeq)	-3.25469757173806	-7.27017287329272	FALSE
+stress	set4IT016	1-ethyl-3-methylimidazolium lysine	5211216	Shew_3632		sulfatase (RefSeq)	-4.86010146684702	-13.1589665723425	FALSE
+stress	set4IT011	1-ethyl-3-methylimidazolium lysine	5211216	Shew_3632		sulfatase (RefSeq)	-4.48806738481219	-13.3589761276851	FALSE
+stress	set4IT030	5-Hydroxymethylfurfural	5210104	Shew_2548		potassium efflux system protein (RefSeq)	-1.59801206474013	-5.74291843550181	FALSE
+stress	set5IT052	Aluminum chloride hydrate	5211216	Shew_3632		sulfatase (RefSeq)	-3.14443163083404	-22.0392359197379	FALSE
+stress	set4IT046	Aluminum chloride hydrate	5211216	Shew_3632		sulfatase (RefSeq)	-3.08723144314921	-18.3714607079203	FALSE
+stress	set5IT054	Bacitracin	5207967	Shew_0483		hypothetical protein (RefSeq)	-1.78638272525615	-7.05502346072026	FALSE
+stress	set5IT060	Bacitracin	5208263	Shew_0775		TetR family transcriptional regulator (RefSeq)	1.76534428728871	9.36023924695875	FALSE
+stress	set5IT054	Bacitracin	5208263	Shew_0775		TetR family transcriptional regulator (RefSeq)	2.00437317173615	16.7617860386619	FALSE
+stress	set5IT054	Bacitracin	5209169	Shew_1647		acriflavin resistance protein (RefSeq)	-6.43889570043877	-8.01875540110204	FALSE
+stress	set5IT060	Bacitracin	5209169	Shew_1647		acriflavin resistance protein (RefSeq)	-6.21533377980306	-8.12623437921216	FALSE
+stress	set5IT055	Bacitracin	5209169	Shew_1647		acriflavin resistance protein (RefSeq)	-1.49510331120063	-8.89165250186006	FALSE
+stress	set5IT061	Bacitracin	5209169	Shew_1647		acriflavin resistance protein (RefSeq)	-1.40835700978104	-8.9592602797203	FALSE
+stress	set5IT060	Bacitracin	5209170	Shew_1648		acriflavin resistance protein (RefSeq)	-6.33353483155273	-12.6459883997832	FALSE
+stress	set5IT054	Bacitracin	5209170	Shew_1648		acriflavin resistance protein (RefSeq)	-6.15064350252462	-11.7288790489048	FALSE
+stress	set5IT055	Bacitracin	5209170	Shew_1648		acriflavin resistance protein (RefSeq)	-1.61336694318155	-9.97093066471373	FALSE
+stress	set5IT061	Bacitracin	5209170	Shew_1648		acriflavin resistance protein (RefSeq)	-1.57678572047932	-7.4009044871461	FALSE
+stress	set5IT060	Bacitracin	5209171	Shew_1649		RND family efflux transporter MFP subunit (RefSeq)	-4.75936470302726	-5.45703784258668	FALSE
+stress	set5IT055	Bacitracin	5209171	Shew_1649		RND family efflux transporter MFP subunit (RefSeq)	-2.11321091897344	-5.42084334804509	FALSE
+stress	set5IT061	Bacitracin	5209171	Shew_1649		RND family efflux transporter MFP subunit (RefSeq)	-1.64647025545199	-5.73263526062521	FALSE
+stress	set5IT060	Bacitracin	5209333	Shew_1811		hypothetical protein (RefSeq)	-1.42391537547498	-8.01250334654396	FALSE
+stress	set5IT054	Bacitracin	5210046	Shew_2493		protein of unknown function DUF463, YcjX family protein (RefSeq)	-1.24667063675927	-5.81226870449039	TRUE
+stress	set5IT054	Bacitracin	5210050	Shew_2497		sigma-54 dependent trancsriptional regulator (RefSeq)	-9.25331504600416	-6.39674335758006	TRUE
+stress	set5IT060	Bacitracin	5210050	Shew_2497		sigma-54 dependent trancsriptional regulator (RefSeq)	-8.41291766306974	-7.18365365693401	TRUE
+stress	set5IT055	Bacitracin	5210050	Shew_2497		sigma-54 dependent trancsriptional regulator (RefSeq)	-4.34943725510753	-12.3519994388594	TRUE
+stress	set5IT061	Bacitracin	5210050	Shew_2497		sigma-54 dependent trancsriptional regulator (RefSeq)	-3.94851861008468	-10.268869008974	TRUE
+stress	set5IT060	Bacitracin	5210316	Shew_2759		peptidase S9 prolyl oligopeptidase (RefSeq)	1.05932173563791	5.34438908676263	FALSE
+stress	set5IT054	Bacitracin	5210316	Shew_2759		peptidase S9 prolyl oligopeptidase (RefSeq)	1.11737461347433	5.41852633100442	FALSE
+stress	set5IT060	Bacitracin	5211101	Shew_3517		histidine ammonia-lyase (RefSeq)	-3.58196531975049	-5.17707029483658	FALSE
+stress	set5IT055	Bacitracin	5211101	Shew_3517		histidine ammonia-lyase (RefSeq)	-2.56677281122493	-5.69017438984777	FALSE
+stress	set5IT054	Bacitracin	5211102	Shew_3518		thioesterase superfamily protein (RefSeq)	-5.91317941579666	-5.885937627608	FALSE
+stress	set5IT060	Bacitracin	5211102	Shew_3518		thioesterase superfamily protein (RefSeq)	-5.7273739131261	-9.05709820616758	FALSE
+stress	set5IT055	Bacitracin	5211102	Shew_3518		thioesterase superfamily protein (RefSeq)	-3.28266235384047	-10.0221494066528	FALSE
+stress	set5IT061	Bacitracin	5211102	Shew_3518		thioesterase superfamily protein (RefSeq)	-2.86120219059645	-11.8374980793541	FALSE
+stress	set3IT094	Carbenicillin disodium salt	5208396	Shew_0908		OmpA/MotB domain-containing protein (RefSeq)	-1.1666230844673	-5.05083882299758	FALSE
+stress	set4IT003	Carbenicillin disodium salt	5208989	Shew_1474		peptidase M23B (RefSeq)	2.37731481998159	10.1077495016871	TRUE
+stress	set3IT094	Carbenicillin disodium salt	5208989	Shew_1474		peptidase M23B (RefSeq)	2.77528192589826	9.00696781989547	TRUE
+stress	set3IT094	Carbenicillin disodium salt	5209312	Shew_1790		integral membrane sensor signal transduction histidine kinase (RefSeq)	-3.81077556020184	-8.25472391256831	TRUE
+stress	set4IT003	Carbenicillin disodium salt	5209312	Shew_1790		integral membrane sensor signal transduction histidine kinase (RefSeq)	-3.40556678561843	-10.3236439627672	TRUE
+stress	set4IT003	Carbenicillin disodium salt	5209313	Shew_1791		two component transcriptional regulator (RefSeq)	-3.3326964401435	-8.07635318287146	FALSE
+stress	set3IT094	Carbenicillin disodium salt	5209313	Shew_1791		two component transcriptional regulator (RefSeq)	-3.18614666163579	-8.70100078415671	FALSE
+stress	set3IT094	Carbenicillin disodium salt	5209471	Shew_1941		signal peptide peptidase SppA, 67K type (RefSeq)	1.4895418792148	7.68716216419032	FALSE
+stress	set4IT003	Carbenicillin disodium salt	5209471	Shew_1941		signal peptide peptidase SppA, 67K type (RefSeq)	1.74646743578129	11.7363634388673	FALSE
+stress	set3IT094	Carbenicillin disodium salt	5209713	Shew_2166		hypothetical protein (RefSeq)	-1.37842871372102	-5.27195311496211	FALSE
+stress	set3IT094	Carbenicillin disodium salt	5210792	Shew_3220		Beta-lactamase (RefSeq)	-3.90403465398414	-6.23309141429448	TRUE
+stress	set4IT003	Carbenicillin disodium salt	5210792	Shew_3220		Beta-lactamase (RefSeq)	-3.89568398873833	-5.75849282132872	TRUE
+stress	set3IT082	Ceftazidime hydrate	5207950	Shew_0466		acriflavin resistance protein (RefSeq)	1.30761622150923	6.26320709342544	FALSE
+stress	set3IT086	Ceftazidime hydrate	5207950	Shew_0466		acriflavin resistance protein (RefSeq)	1.84708324512377	6.24645684436057	FALSE
+stress	set3IT082	Ceftazidime hydrate	5207952	Shew_0468		LysR family transcriptional regulator (RefSeq)	1.44501282611349	7.95924516224736	FALSE
+stress	set3IT086	Ceftazidime hydrate	5207952	Shew_0468		LysR family transcriptional regulator (RefSeq)	1.71340203170054	6.72159786096334	FALSE
+stress	set3IT086	Ceftazidime hydrate	5208384	Shew_0896		two component transcriptional regulator (RefSeq)	-1.44838970118452	-7.29545912026649	FALSE
+stress	set3IT086	Ceftazidime hydrate	5209471	Shew_1941		signal peptide peptidase SppA, 67K type (RefSeq)	1.49490278120143	10.1825508095171	FALSE
+stress	set3IT082	Ceftazidime hydrate	5209713	Shew_2166		hypothetical protein (RefSeq)	-1.40777439782512	-7.02665621723157	FALSE
+stress	set3IT082	Ceftazidime hydrate	5209735	Shew_2188		long-chain-fatty-acid--CoA ligase (RefSeq)	-1.6383858687495	-6.81287273261857	FALSE
+stress	set3IT086	Ceftazidime hydrate	5211080	Shew_3496		hypothetical protein (RefSeq)	1.06418147275124	7.68260018379745	FALSE
+stress	set1H9	Cephalothin sodium salt	5207561	Shew_0095		hypothetical protein (RefSeq)	-1.0110745757969	-6.82103808329066	FALSE
+stress	set1H9	Cephalothin sodium salt	5208325	Shew_0837		TPR repeat-containing protein (RefSeq)	-2.58683335783114	-6.04347057064543	FALSE
+stress	set1H3	Cephalothin sodium salt	5208325	Shew_0837		TPR repeat-containing protein (RefSeq)	-1.54151153147954	-6.46516773468194	FALSE
+stress	set1H9	Cephalothin sodium salt	5209260	Shew_1738		aminoglycoside phosphotransferase (RefSeq)	1.10656697512508	5.8744115713161	FALSE
+stress	set1H4	Cephalothin sodium salt	5209312	Shew_1790		integral membrane sensor signal transduction histidine kinase (RefSeq)	-2.20272186166347	-6.10628341829975	FALSE
+stress	set1H9	Cephalothin sodium salt	5209312	Shew_1790		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.91206413319427	-5.97268808716599	FALSE
+stress	set1H9	Cephalothin sodium salt	5209313	Shew_1791		two component transcriptional regulator (RefSeq)	-2.91341437693497	-7.99565946355346	FALSE
+stress	set1H4	Cephalothin sodium salt	5209672	Shew_2125		lytic transglycosylase, catalytic (RefSeq)	1.2907607361295	5.12368514397273	TRUE
+stress	set1H9	Cephalothin sodium salt	5209672	Shew_2125		lytic transglycosylase, catalytic (RefSeq)	1.40034684840106	5.9584062275369	TRUE
+stress	set1H9	Cephalothin sodium salt	5209795	Shew_2248		chromosome segregation and condensation protein ScpA (RefSeq)	-2.13756371386445	-5.99671352547421	FALSE
+stress	set1H8	Cephalothin sodium salt	5209795	Shew_2248		chromosome segregation and condensation protein ScpA (RefSeq)	-1.53255607481801	-5.62424548068881	FALSE
+stress	set1H9	Cephalothin sodium salt	5209931	Shew_2379		chromosome segregation protein SMC (RefSeq)	-1.30699154831134	-6.0502572464962	FALSE
+stress	set1H4	Cephalothin sodium salt	5210859	Shew_3285		hypothetical protein (RefSeq)	-1.09772622952411	-5.77013337387451	FALSE
+stress	set1H9	Cephalothin sodium salt	5211092	Shew_3508		hypothetical protein (RefSeq)	-2.50997403293304	-6.21681276826484	FALSE
+stress	set3IT088	Chloramphenicol	5208081	Shew_0593		ABC transporter-related protein (RefSeq)	-1.21728423270877	-7.86275634797985	TRUE
+stress	set3IT091	Chloramphenicol	5208081	Shew_0593		ABC transporter-related protein (RefSeq)	-1.02613602991199	-7.88958435478337	TRUE
+stress	set4IT020	Choline Lysine	5208070	Shew_0582		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.57311642148656	-5.77619928576081	FALSE
+stress	set4IT025	Choline Lysine	5208070	Shew_0582		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.56936796171625	-6.23682969267165	FALSE
+stress	set4IT020	Choline Lysine	5209932	Shew_2380		putative sulfate transport protein CysZ (RefSeq)	-1.53613113526014	-6.1836670928277	TRUE
+stress	set4IT013	Choline chloride	5207602	Shew_0136		stearoyl-CoA 9-desaturase (RefSeq)	-1.89832556231351	-9.24358293551775	TRUE
+stress	set4IT008	Choline chloride	5207602	Shew_0136		stearoyl-CoA 9-desaturase (RefSeq)	-1.72409804378466	-9.8858949107	TRUE
+stress	set4IT013	Choline chloride	5207606	Shew_0140		RNP-1-like RNA-binding protein (RefSeq)	-1.84424258144031	-9.0629551518544	FALSE
+stress	set4IT008	Choline chloride	5207606	Shew_0140		RNP-1-like RNA-binding protein (RefSeq)	-1.67968449587664	-7.09520261416187	FALSE
+stress	set4IT008	Choline chloride	5208422	Shew_0934		TPR repeat-containing protein (RefSeq)	7.54513598646856	44.0158407428151	FALSE
+stress	set4IT013	Choline chloride	5208422	Shew_0934		TPR repeat-containing protein (RefSeq)	9.19355830801529	40.0872392024382	FALSE
+stress	set4IT008	Choline chloride	5210293	Shew_2736		MarR family transcriptional regulator (RefSeq)	-1.55416750486329	-7.90013888065551	FALSE
+stress	set4IT013	Choline chloride	5210293	Shew_2736		MarR family transcriptional regulator (RefSeq)	-1.41522679484035	-6.24854217112032	FALSE
+stress	set4IT013	Choline chloride	5210899	Shew_3325		major facilitator transporter (RefSeq)	-1.62567883549394	-9.7479562603695	FALSE
+stress	set4IT008	Choline chloride	5210899	Shew_3325		major facilitator transporter (RefSeq)	-1.48803759123004	-7.0294796804366	FALSE
+stress	set4IT013	Choline chloride	5211177	Shew_3593		hypothetical protein (RefSeq)	-1.81627891935647	-8.23381347811888	FALSE
+stress	set4IT008	Choline chloride	5211177	Shew_3593		hypothetical protein (RefSeq)	-1.39865944128423	-7.63798966361538	FALSE
+stress	set2IT029	Cisplatin	5208635	Shew_1144		hypothetical protein (RefSeq)	1.28700396417431	5.19073829976593	FALSE
+stress	set2IT034	Cisplatin	5209333	Shew_1811		hypothetical protein (RefSeq)	-1.7193393110329	-5.94915011253657	TRUE
+stress	set2IT029	Cisplatin	5209333	Shew_1811		hypothetical protein (RefSeq)	-1.60060753927464	-5.16097455188527	TRUE
+stress	set2IT030	Cisplatin	5209743	Shew_2196		helicase c2 (RefSeq)	-2.53814827844407	-8.05811442350715	TRUE
+stress	set2IT035	Cisplatin	5209743	Shew_2196		helicase c2 (RefSeq)	-1.63916426387817	-5.57740556891422	TRUE
+stress	set2IT034	Cisplatin	5210034	Shew_2482		DNA polymerase II (RefSeq)	-4.47549909673849	-13.1570689400395	TRUE
+stress	set2IT029	Cisplatin	5210034	Shew_2482		DNA polymerase II (RefSeq)	-4.15805513925858	-8.86319684332437	TRUE
+stress	set2IT035	Cisplatin	5210034	Shew_2482		DNA polymerase II (RefSeq)	-1.77644204732674	-9.09747321682196	TRUE
+stress	set2IT030	Cisplatin	5210034	Shew_2482		DNA polymerase II (RefSeq)	-1.70023714259294	-7.67401868076349	TRUE
+stress	set2IT029	Cisplatin	5210035	Shew_2483	dinG	ATP-dependent DNA helicase DinG (RefSeq)	-3.19613896793142	-11.5178915509361	TRUE
+stress	set2IT034	Cisplatin	5210035	Shew_2483	dinG	ATP-dependent DNA helicase DinG (RefSeq)	-2.79418956463022	-10.0857987097049	TRUE
+stress	set2IT034	Cisplatin	5210364	Shew_2807		DNA repair protein RadA (RefSeq)	-5.39940923102357	-13.1400830555195	TRUE
+stress	set2IT029	Cisplatin	5210364	Shew_2807		DNA repair protein RadA (RefSeq)	-4.92632852455673	-10.4502180929725	TRUE
+stress	set2IT035	Cisplatin	5210364	Shew_2807		DNA repair protein RadA (RefSeq)	-3.45473958701892	-16.4428070609283	TRUE
+stress	set2IT030	Cisplatin	5210364	Shew_2807		DNA repair protein RadA (RefSeq)	-3.35113306627323	-12.4527480124789	TRUE
+stress	set2IT034	Cisplatin	5210430	Shew_2871		DNA polymerase IV (RefSeq)	-3.90853347232617	-13.8364912248409	TRUE
+stress	set2IT029	Cisplatin	5210430	Shew_2871		DNA polymerase IV (RefSeq)	-3.85283312251744	-14.0496983883015	TRUE
+stress	set2IT030	Cisplatin	5210430	Shew_2871		DNA polymerase IV (RefSeq)	-2.54034554737058	-16.560321358804	TRUE
+stress	set2IT035	Cisplatin	5210430	Shew_2871		DNA polymerase IV (RefSeq)	-2.31848765117006	-9.27943975898367	TRUE
+stress	set2IT029	Cisplatin	5210896	Shew_3322		transporter DMT superfamily protein (RefSeq)	-3.65165063076621	-18.1290870351683	FALSE
+stress	set2IT034	Cisplatin	5210896	Shew_3322		transporter DMT superfamily protein (RefSeq)	-3.538731364337	-14.5638127245265	FALSE
+stress	set2IT030	Cisplatin	5210896	Shew_3322		transporter DMT superfamily protein (RefSeq)	-1.65360315333243	-12.2293433533431	FALSE
+stress	set2IT035	Cisplatin	5210896	Shew_3322		transporter DMT superfamily protein (RefSeq)	-1.59779616052961	-9.51478921946408	FALSE
+stress	set2IT034	Cisplatin	5211058	Shew_3474		ATP-dependent DNA helicase RecQ (RefSeq)	-2.87510779639648	-7.77504080359116	TRUE
+stress	set2IT029	Cisplatin	5211058	Shew_3474		ATP-dependent DNA helicase RecQ (RefSeq)	-2.59178321461323	-7.20962389995706	TRUE
+stress	set2IT030	Cisplatin	5211058	Shew_3474		ATP-dependent DNA helicase RecQ (RefSeq)	-1.97628213082705	-6.79036487439903	TRUE
+stress	set2IT035	Cisplatin	5211058	Shew_3474		ATP-dependent DNA helicase RecQ (RefSeq)	-1.79911562596173	-7.30805521798965	TRUE
+stress	set1H29	Cobalt chloride hexahydrate	5210692	Shew_3120		phosphate-selective porin O and P (RefSeq)	-1.95727191794046	-8.73631022211579	FALSE
+stress	set1H34	Cobalt chloride hexahydrate	5210692	Shew_3120		phosphate-selective porin O and P (RefSeq)	-1.90939717179432	-9.49514986278209	FALSE
+stress	set5IT064	Dimethyl Sulfoxide	5209932	Shew_2380		putative sulfate transport protein CysZ (RefSeq)	-1.84890666413017	-7.76459664535121	FALSE
+stress	set5IT058	Dimethyl Sulfoxide	5209932	Shew_2380		putative sulfate transport protein CysZ (RefSeq)	-1.61630593063273	-10.0375238898281	FALSE
+stress	set6IT057	Furfuryl Alcohol	5208330	Shew_0842		two component LuxR family transcriptional regulator (RefSeq)	1.87701732438474	6.88588275105515	FALSE
+stress	set6IT057	Furfuryl Alcohol	5208331	Shew_0843		nitrate/nitrite sensor protein NarQ (RefSeq)	1.42036256766172	6.76300569361694	FALSE
+stress	set6IT057	Furfuryl Alcohol	5211113	Shew_3529		azoreductase (RefSeq)	1.34529651396722	7.46962926609211	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5208052	Shew_0564		DNA mismatch repair protein MutL (RefSeq)	1.62253610825987	8.06587198136742	TRUE
+stress	set5IT062	Fusidic acid sodium salt	5208052	Shew_0564		DNA mismatch repair protein MutL (RefSeq)	2.05546645576541	9.0518361846469	TRUE
+stress	set5IT056	Fusidic acid sodium salt	5208526	Shew_1037		DNA mismatch repair protein (RefSeq)	1.58724114328509	5.28823301719771	TRUE
+stress	set5IT062	Fusidic acid sodium salt	5208526	Shew_1037		DNA mismatch repair protein (RefSeq)	1.84192507504232	11.436294175692	TRUE
+stress	set5IT062	Fusidic acid sodium salt	5208563	Shew_1074		cytochrome B561 (RefSeq)	1.45701360063036	7.16533754725655	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5208563	Shew_1074		cytochrome B561 (RefSeq)	1.57824075163816	8.88580337105651	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5208705	Shew_1214		DNA mismatch repair protein (RefSeq)	1.73685956981129	8.90498841776586	TRUE
+stress	set5IT062	Fusidic acid sodium salt	5208705	Shew_1214		DNA mismatch repair protein (RefSeq)	1.75712032247444	11.8943858250148	TRUE
+stress	set5IT056	Fusidic acid sodium salt	5208968	Shew_1454		DEAD/DEAH box helicase domain-containing protein (RefSeq)	1.74003629256327	6.29378583718773	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5208968	Shew_1454		DEAD/DEAH box helicase domain-containing protein (RefSeq)	2.48165984451513	12.4824970213727	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5209296	Shew_1774		excinuclease ATPase subunit (RefSeq)	3.03514692720964	8.96661114604703	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5209296	Shew_1774		excinuclease ATPase subunit (RefSeq)	3.33951250867828	10.6555610310824	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5209471	Shew_1941		signal peptide peptidase SppA, 67K type (RefSeq)	1.3990520943445	6.26023774750153	TRUE
+stress	set5IT062	Fusidic acid sodium salt	5210445	Shew_2886		rRNA (guanine-N(2)-)-methyltransferase (RefSeq)	-1.55785152337818	-6.96272695034568	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5210995	Shew_3421		hypothetical protein (RefSeq)	1.4836299920314	7.31243537452018	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211093	Shew_3509		hypothetical protein (RefSeq)	5.76172520436656	23.7042608465373	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211093	Shew_3509		hypothetical protein (RefSeq)	5.78853654263094	7.15317133751171	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211094	Shew_3510		phospholipid/glycerol acyltransferase (RefSeq)	5.92928186554726	45.894096699897	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211094	Shew_3510		phospholipid/glycerol acyltransferase (RefSeq)	6.42956924582165	58.2907608117789	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211096	Shew_3512		acyl carrier protein (RefSeq)	6.22073920398462	33.0429711787793	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211096	Shew_3512		acyl carrier protein (RefSeq)	6.65119312749538	41.8828730226454	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211098	Shew_3514		hypothetical protein (RefSeq)	5.66585341716645	15.3498200617852	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211098	Shew_3514		hypothetical protein (RefSeq)	6.58292025105527	26.9876756389126	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211099	Shew_3515		Beta-hydroxyacyl-(acyl-carrier-protein) dehydratase, FabA/FabZ (RefSeq)	6.35338578828662	36.560446008276	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211099	Shew_3515		Beta-hydroxyacyl-(acyl-carrier-protein) dehydratase, FabA/FabZ (RefSeq)	6.73288397926009	36.3367256985589	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211100	Shew_3516		glycosyl transferase family protein (RefSeq)	6.3001738012164	26.271734550581	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211100	Shew_3516		glycosyl transferase family protein (RefSeq)	6.68924317665559	27.6934053850559	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211101	Shew_3517		histidine ammonia-lyase (RefSeq)	6.40692964446794	35.6239008911774	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211101	Shew_3517		histidine ammonia-lyase (RefSeq)	6.79576449422718	34.5338070286617	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211102	Shew_3518		thioesterase superfamily protein (RefSeq)	6.41847699169177	41.9169238977819	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211102	Shew_3518		thioesterase superfamily protein (RefSeq)	7.13581849112566	49.8243275110721	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211107	Shew_3523		3-oxoacyl-(acyl carrier protein) synthase I (RefSeq)	6.03724220789378	42.8054262174033	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211107	Shew_3523		3-oxoacyl-(acyl carrier protein) synthase I (RefSeq)	6.49727458915768	36.8234052071916	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211108	Shew_3524		Beta-hydroxyacyl-(acyl-carrier-protein) dehydratase, FabA/FabZ (RefSeq)	5.69726691395427	21.8932770482268	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211108	Shew_3524		Beta-hydroxyacyl-(acyl-carrier-protein) dehydratase, FabA/FabZ (RefSeq)	6.36016623052112	26.7253832728963	FALSE
+stress	set5IT062	Fusidic acid sodium salt	5211109	Shew_3525	fabG	3-ketoacyl-(acyl-carrier-protein) reductase (RefSeq)	5.99596670193214	34.7927932853392	TRUE
+stress	set5IT056	Fusidic acid sodium salt	5211109	Shew_3525	fabG	3-ketoacyl-(acyl-carrier-protein) reductase (RefSeq)	6.62922784474006	36.2624786416036	TRUE
+stress	set5IT062	Fusidic acid sodium salt	5211110	Shew_3526		3-oxoacyl-(acyl carrier protein) synthase II (RefSeq)	6.02660358323351	36.8673336086437	FALSE
+stress	set5IT056	Fusidic acid sodium salt	5211110	Shew_3526		3-oxoacyl-(acyl carrier protein) synthase II (RefSeq)	6.58551759250654	56.0701075621211	FALSE
+stress	set4IT021	L-Lysine	5207781	Shew_0302		phosphoesterase, PA-phosphatase related (RefSeq)	-1.50762956604049	-11.3246327935428	FALSE
+stress	set4IT026	L-Lysine	5207781	Shew_0302		phosphoesterase, PA-phosphatase related (RefSeq)	-1.24037589490923	-8.8543696030159	FALSE
+stress	set2IT027	Paraquat dichloride	5207574	Shew_0108		polysaccharide deacetylase (RefSeq)	-1.36401925123189	-5.35756015169529	FALSE
+stress	set2IT027	Paraquat dichloride	5211177	Shew_3593		hypothetical protein (RefSeq)	-2.02801484844646	-7.2797974289532	TRUE
+stress	set2IT032	Paraquat dichloride	5211177	Shew_3593		hypothetical protein (RefSeq)	-1.69877676817099	-9.90145270934588	TRUE
+stress	set6IT060	Phosphomycin disodium salt	5207602	Shew_0136		stearoyl-CoA 9-desaturase (RefSeq)	1.43029142564883	5.40120508805281	FALSE
+stress	set6IT059	Phosphomycin disodium salt	5207781	Shew_0302		phosphoesterase, PA-phosphatase related (RefSeq)	1.14862317887605	9.57159453321242	FALSE
+stress	set6IT060	Phosphomycin disodium salt	5207781	Shew_0302		phosphoesterase, PA-phosphatase related (RefSeq)	3.07247621760598	11.21429330878	FALSE
+stress	set6IT060	Phosphomycin disodium salt	5207941	Shew_0457		ATP-dependent helicase HepA (RefSeq)	1.99999226100088	9.5183997794891	FALSE
+stress	set6IT060	Phosphomycin disodium salt	5208371	Shew_0883		aminoglycoside phosphotransferase (RefSeq)	-5.33532469998223	-6.81815950614776	TRUE
+stress	set6IT059	Phosphomycin disodium salt	5208371	Shew_0883		aminoglycoside phosphotransferase (RefSeq)	-3.84571740600972	-7.91803865360312	TRUE
+stress	set6IT060	Phosphomycin disodium salt	5209312	Shew_1790		integral membrane sensor signal transduction histidine kinase (RefSeq)	-3.12983335535875	-5.61971624600393	FALSE
+stress	set6IT059	Phosphomycin disodium salt	5209312	Shew_1790		integral membrane sensor signal transduction histidine kinase (RefSeq)	-2.94518168218439	-10.274296132365	FALSE
+stress	set6IT060	Phosphomycin disodium salt	5209313	Shew_1791		two component transcriptional regulator (RefSeq)	-4.70011728394456	-5.08979019671212	FALSE
+stress	set6IT059	Phosphomycin disodium salt	5209313	Shew_1791		two component transcriptional regulator (RefSeq)	-2.26280563176045	-6.03346676159282	FALSE
+stress	set6IT060	Phosphomycin disodium salt	5210316	Shew_2759		peptidase S9 prolyl oligopeptidase (RefSeq)	-1.42792073991284	-7.59929330166378	FALSE
+stress	set6IT060	Phosphomycin disodium salt	5211404	Shew_3813		hypothetical protein (RefSeq)	1.61015625090452	10.5941233029188	FALSE
+stress	set3IT054	Polymyxin B sulfate	5207602	Shew_0136		stearoyl-CoA 9-desaturase (RefSeq)	-1.67352034392379	-6.91305332413081	FALSE
+stress	set2IT048	Polymyxin B sulfate	5207892	Shew_0408		hypothetical protein (RefSeq)	-2.2113375710974	-12.6169986674454	FALSE
+stress	set3IT054	Polymyxin B sulfate	5207892	Shew_0408		hypothetical protein (RefSeq)	-2.20063614034464	-11.879230007888	FALSE
+stress	set3IT054	Polymyxin B sulfate	5207896	Shew_0412		secretion protein HlyD family protein (RefSeq)	-2.46199283329637	-6.00434639417721	FALSE
+stress	set3IT054	Polymyxin B sulfate	5207898	Shew_0414		ABC-2 type transporter (RefSeq)	-2.38042023076694	-7.59137329676576	FALSE
+stress	set2IT048	Polymyxin B sulfate	5208383	Shew_0895		integral membrane sensor signal transduction histidine kinase (RefSeq)	1.2513112529806	8.34681907199044	FALSE
+stress	set3IT054	Polymyxin B sulfate	5208384	Shew_0896		two component transcriptional regulator (RefSeq)	1.33787906203709	6.86355027488097	TRUE
+stress	set3IT054	Polymyxin B sulfate	5208498	Shew_1009		peptidoglycan binding domain-containing protein (RefSeq)	-2.63996722837278	-10.03033832914	FALSE
+stress	set2IT048	Polymyxin B sulfate	5208498	Shew_1009		peptidoglycan binding domain-containing protein (RefSeq)	-2.30091417038777	-11.9463210047188	FALSE
+stress	set3IT054	Polymyxin B sulfate	5208723	Shew_1226		peptidase M16 domain-containing protein (RefSeq)	-1.03676928209934	-5.73601055019298	FALSE
+stress	set3IT054	Polymyxin B sulfate	5211216	Shew_3632		sulfatase (RefSeq)	1.56843376880424	8.4102476417531	FALSE
+stress	set2IT048	Polymyxin B sulfate	5211278	Shew_3694		ADP-L-glycero-D-manno-heptose-6-epimerase (RefSeq)	2.16929132315822	10.9856070965397	FALSE
+stress	set3IT054	Polymyxin B sulfate	5211278	Shew_3694		ADP-L-glycero-D-manno-heptose-6-epimerase (RefSeq)	2.22798083146095	9.99214298248346	FALSE
+stress	set2IT045	Sodium Chlorite	5207513	Shew_0047		molybdopterin biosynthesis protein MoeB (RefSeq)	-5.10783091874204	-8.82175737367617	TRUE
+stress	set3IT051	Sodium Chlorite	5207513	Shew_0047		molybdopterin biosynthesis protein MoeB (RefSeq)	-5.04448112929069	-10.9027860697438	TRUE
+stress	set2IT046	Sodium Chlorite	5207513	Shew_0047		molybdopterin biosynthesis protein MoeB (RefSeq)	-2.66371878755978	-9.96397011920896	TRUE
+stress	set3IT052	Sodium Chlorite	5207513	Shew_0047		molybdopterin biosynthesis protein MoeB (RefSeq)	-2.38272239800502	-6.59619481120692	TRUE
+stress	set3IT051	Sodium Chlorite	5207553	Shew_0087	moaA	molybdenum cofactor biosynthesis protein A (RefSeq)	-4.84984392527336	-15.9153705908991	TRUE
+stress	set2IT045	Sodium Chlorite	5207553	Shew_0087	moaA	molybdenum cofactor biosynthesis protein A (RefSeq)	-4.58712964906592	-14.2690272655958	TRUE
+stress	set2IT046	Sodium Chlorite	5207553	Shew_0087	moaA	molybdenum cofactor biosynthesis protein A (RefSeq)	-2.24213540163923	-9.09399535414036	TRUE
+stress	set3IT052	Sodium Chlorite	5207553	Shew_0087	moaA	molybdenum cofactor biosynthesis protein A (RefSeq)	-2.04083840172371	-9.18219767485874	TRUE
+stress	set2IT045	Sodium Chlorite	5207557	Shew_0091		molybdopterin biosynthesis MoaE (RefSeq)	-5.07247593001728	-6.51545246946633	TRUE
+stress	set2IT046	Sodium Chlorite	5207557	Shew_0091		molybdopterin biosynthesis MoaE (RefSeq)	-3.21698831212188	-11.5631162568984	TRUE
+stress	set3IT052	Sodium Chlorite	5207557	Shew_0091		molybdopterin biosynthesis MoaE (RefSeq)	-2.37318571791331	-9.58735072948098	TRUE
+stress	set2IT045	Sodium Chlorite	5207558	Shew_0092		molybdenum ABC transporter, periplasmic molybdate-binding protein (RefSeq)	-4.97535322785729	-6.40207951265715	FALSE
+stress	set3IT051	Sodium Chlorite	5207558	Shew_0092		molybdenum ABC transporter, periplasmic molybdate-binding protein (RefSeq)	-4.32228515909554	-6.58566460406383	FALSE
+stress	set2IT046	Sodium Chlorite	5207558	Shew_0092		molybdenum ABC transporter, periplasmic molybdate-binding protein (RefSeq)	-2.72301077540827	-7.96186251915992	FALSE
+stress	set3IT051	Sodium Chlorite	5207559	Shew_0093		molybdate ABC transporter, inner membrane subunit (RefSeq)	-4.47584571060931	-16.6973491310427	TRUE
+stress	set2IT045	Sodium Chlorite	5207559	Shew_0093		molybdate ABC transporter, inner membrane subunit (RefSeq)	-4.33246269372783	-12.6052324607681	TRUE
+stress	set2IT046	Sodium Chlorite	5207559	Shew_0093		molybdate ABC transporter, inner membrane subunit (RefSeq)	-2.21366105772482	-8.97064630457336	TRUE
+stress	set3IT052	Sodium Chlorite	5207559	Shew_0093		molybdate ABC transporter, inner membrane subunit (RefSeq)	-2.1258458441864	-11.2393726421407	TRUE
+stress	set3IT051	Sodium Chlorite	5207560	Shew_0094		ABC transporter-related protein (RefSeq)	-4.15295205226881	-13.4895237302758	FALSE
+stress	set2IT045	Sodium Chlorite	5207560	Shew_0094		ABC transporter-related protein (RefSeq)	-4.13669349757627	-15.565605336825	FALSE
+stress	set2IT046	Sodium Chlorite	5207560	Shew_0094		ABC transporter-related protein (RefSeq)	-1.99856827720048	-9.55331543546604	FALSE
+stress	set3IT052	Sodium Chlorite	5207560	Shew_0094		ABC transporter-related protein (RefSeq)	-1.73504528968015	-9.28314635843441	FALSE
+stress	set3IT052	Sodium Chlorite	5208197	Shew_0709		catalase/peroxidase HPI (RefSeq)	1.08825838332674	8.14963866192093	FALSE
+stress	set2IT045	Sodium Chlorite	5208197	Shew_0709		catalase/peroxidase HPI (RefSeq)	2.22719667412093	14.5093469697016	FALSE
+stress	set3IT051	Sodium Chlorite	5208197	Shew_0709		catalase/peroxidase HPI (RefSeq)	2.32166154336597	13.546818272587	FALSE
+stress	set2IT046	Sodium Chlorite	5209669	Shew_2122		putative sulfite oxidase subunit YedZ (RefSeq)	-4.28016218673677	-7.78492723099199	TRUE
+stress	set3IT052	Sodium Chlorite	5209669	Shew_2122		putative sulfite oxidase subunit YedZ (RefSeq)	-3.86467662825327	-6.86352967208936	TRUE
+stress	set3IT053	Sodium Chlorite	5209669	Shew_2122		putative sulfite oxidase subunit YedZ (RefSeq)	-1.60213778907873	-6.92083476600595	TRUE
+stress	set3IT051	Sodium Chlorite	5210760	Shew_3188		aromatic amino acid permease (RefSeq)	-1.38664019350124	-8.33104372229557	FALSE
+stress	set2IT045	Sodium Chlorite	5210760	Shew_3188		aromatic amino acid permease (RefSeq)	-1.32701413810477	-6.04291893094538	FALSE
+stress	set2IT045	Sodium Chlorite	5211268	Shew_3684		binding-protein-dependent transport systems inner membrane component (RefSeq)	1.5423867447471	9.93465944548491	FALSE
+stress	set2IT042	Sodium nitrite	5208005	Shew_0521	metL	bifunctional aspartate kinase II/homoserine dehydrogenase II (RefSeq)	-1.79512563933282	-8.50026511388419	FALSE
+stress	set2IT038	Sodium nitrite	5208005	Shew_0521	metL	bifunctional aspartate kinase II/homoserine dehydrogenase II (RefSeq)	-1.47007886980182	-6.42311346955852	FALSE
+stress	set2IT041	Sodium nitrite	5208504	Shew_1015		Cl- channel, voltage-gated family protein (RefSeq)	1.50827643966887	6.97167464379579	FALSE
+stress	set2IT038	Sodium nitrite	5209452	Shew_1923		peptide methionine sulfoxide reductase (RefSeq)	-3.68543555203965	-7.65743186663654	FALSE
+stress	set2IT042	Sodium nitrite	5209452	Shew_1923		peptide methionine sulfoxide reductase (RefSeq)	-2.86202676734775	-6.0490084985685	FALSE
+stress	set2IT038	Sodium nitrite	5210558	Shew_2986		5-methyltetrahydropteroyltriglutamate-- homocysteine methyltransferase (RefSeq)	-1.71312664141266	-10.6980001361874	FALSE
+stress	set2IT042	Sodium nitrite	5210558	Shew_2986		5-methyltetrahydropteroyltriglutamate-- homocysteine methyltransferase (RefSeq)	-1.64873204694571	-8.5782703754138	FALSE
+stress	set2IT037	Sodium nitrite	5210558	Shew_2986		5-methyltetrahydropteroyltriglutamate-- homocysteine methyltransferase (RefSeq)	-1.43445150185652	-7.10558911618962	FALSE
+stress	set2IT041	Sodium nitrite	5210558	Shew_2986		5-methyltetrahydropteroyltriglutamate-- homocysteine methyltransferase (RefSeq)	-1.06955477012366	-6.73309229867419	FALSE
+stress	set2IT038	Sodium nitrite	5210559	Shew_2987		LysR family transcriptional regulator (RefSeq)	-1.45533559285352	-5.91055704080795	FALSE
+stress	set2IT042	Sodium nitrite	5210559	Shew_2987		LysR family transcriptional regulator (RefSeq)	-1.3650386021465	-6.46282735245269	FALSE
+stress	set2IT038	Sodium nitrite	5211181	Shew_3597		inner membrane protein YjeH (RefSeq)	-1.47672083169524	-6.08983305318524	FALSE
+stress	set6IT062	Tetracycline hydrochloride	5208917	Shew_1418		UTP-glucose-1-phosphate uridylyltransferase GalU (RefSeq)	1.28329746270663	6.45225179750432	FALSE
+stress	set6IT062	Tetracycline hydrochloride	5210464	Shew_2905		hypothetical protein (RefSeq)	-2.77880437223127	-6.91425414360297	FALSE
+stress	set6IT062	Tetracycline hydrochloride	5211218	Shew_3634		RNA-binding S1 domain-containing protein (RefSeq)	-1.53106088342433	-8.98369711503058	TRUE
+stress	set2IT033	Thallium(I) acetate	5207485	Shew_0019	fadB	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-1.3926236486896	-7.07425885793771	FALSE
+stress	set2IT028	Thallium(I) acetate	5207485	Shew_0019	fadB	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-1.17437914215431	-5.90419322005253	FALSE
+stress	set2IT033	Thallium(I) acetate	5207952	Shew_0468		LysR family transcriptional regulator (RefSeq)	2.06510705005384	9.33047145741473	FALSE
+stress	set2IT028	Thallium(I) acetate	5207952	Shew_0468		LysR family transcriptional regulator (RefSeq)	2.09107545624254	10.4552544327091	FALSE
+stress	set2IT028	Thallium(I) acetate	5208383	Shew_0895		integral membrane sensor signal transduction histidine kinase (RefSeq)	1.21773136496165	6.39928144197675	FALSE
+stress	set2IT033	Thallium(I) acetate	5208383	Shew_0895		integral membrane sensor signal transduction histidine kinase (RefSeq)	1.24539622887105	6.1642224915788	FALSE
+stress	set2IT028	Thallium(I) acetate	5208723	Shew_1226		peptidase M16 domain-containing protein (RefSeq)	-3.98650698446228	-17.2788774305298	FALSE
+stress	set2IT033	Thallium(I) acetate	5208723	Shew_1226		peptidase M16 domain-containing protein (RefSeq)	-3.50168155333178	-15.5141403033928	FALSE
+stress	set2IT033	Thallium(I) acetate	5208972	Shew_1458		serine/threonine transporter SstT (RefSeq)	2.00971210784933	9.74313822385869	FALSE
+stress	set2IT028	Thallium(I) acetate	5208972	Shew_1458		serine/threonine transporter SstT (RefSeq)	2.10181940034754	9.96180605042864	FALSE
+stress	set2IT033	Thallium(I) acetate	5209369	Shew_1840		arsenate reductase (RefSeq)	-3.06370822068998	-5.48972132449597	FALSE
+stress	set2IT033	Thallium(I) acetate	5209982	Shew_2430		von Willebrand factor, type A (RefSeq)	-4.10466202852382	-9.08450801541484	FALSE
+stress	set2IT028	Thallium(I) acetate	5209982	Shew_2430		von Willebrand factor, type A (RefSeq)	-3.76733807999363	-11.1446142345733	FALSE
+stress	set2IT033	Thallium(I) acetate	5209983	Shew_2431		TPR repeat-containing protein (RefSeq)	-3.95557191145212	-7.95432422589383	FALSE
+stress	set2IT028	Thallium(I) acetate	5209983	Shew_2431		TPR repeat-containing protein (RefSeq)	-3.46135367347226	-6.71063989651299	FALSE
+stress	set2IT033	Thallium(I) acetate	5210316	Shew_2759		peptidase S9 prolyl oligopeptidase (RefSeq)	-1.26532207934972	-7.93226340061098	FALSE
+stress	set2IT028	Thallium(I) acetate	5210669	Shew_3097		TonB-dependent siderophore receptor (RefSeq)	4.44067920310861	28.6438441328835	FALSE
+stress	set2IT033	Thallium(I) acetate	5210669	Shew_3097		TonB-dependent siderophore receptor (RefSeq)	4.75521810765185	30.6569860096559	FALSE
+stress	set2IT033	Thallium(I) acetate	5210979	Shew_3405		EmrB/QacA family drug resistance transporter (RefSeq)	-1.05795755021531	-5.66761205263995	FALSE
+stress	set2IT028	Thallium(I) acetate	5211328	Shew_3740		TrkH family potassium uptake protein (RefSeq)	-1.25993780366944	-5.37042288115371	FALSE
+stress	set2IT033	Thallium(I) acetate	5211432	Shew_3841		TonB-dependent siderophore receptor (RefSeq)	2.94327913821234	5.43225484851608	FALSE
+stress	set2IT028	Thallium(I) acetate	5211432	Shew_3841		TonB-dependent siderophore receptor (RefSeq)	2.95268221871609	5.83670758242241	FALSE
+stress	set1H10	Vancomycin Hydrochloride Hydrate	5209312	Shew_1790		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.69311375577876	-6.14687322504938	FALSE
+stress	set1H5	Vancomycin Hydrochloride Hydrate	5209312	Shew_1790		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.31879605794343	-5.43342924570774	FALSE
+stress	set1H10	Vancomycin Hydrochloride Hydrate	5209313	Shew_1791		two component transcriptional regulator (RefSeq)	-1.67632478341964	-6.32929535525923	FALSE
+stress	set1H10	Vancomycin Hydrochloride Hydrate	5209315	Shew_1793		vault protein inter-alpha-trypsin subunit (RefSeq)	-1.21031264987058	-5.23285444082081	FALSE
+stress	set1H10	Vancomycin Hydrochloride Hydrate	5211432	Shew_3841		TonB-dependent siderophore receptor (RefSeq)	1.39060962918886	5.12682280678123	FALSE
+stress	set6IT054	Zinc sulfate heptahydrate	5210930	Shew_3356		CzcA family heavy metal efflux protein (RefSeq)	-6.62911394845058	-24.236392103199	TRUE
+stress	set6IT054	Zinc sulfate heptahydrate	5210931	Shew_3357		RND family efflux transporter MFP subunit (RefSeq)	-5.89948834377518	-5.67849128796302	TRUE
+stress	set6IT054	Zinc sulfate heptahydrate	5210932	Shew_3358		outer membrane efflux family protein, putative (RefSeq)	-5.64742421461514	-10.691704643861	TRUE
+stress	set6IT054	Zinc sulfate heptahydrate	5211335	Shew_3747		hypothetical protein (RefSeq)	-4.25015517522493	-10.3286645843353	FALSE
+stress	set1H27	copper (II) chloride dihydrate	5210830	Shew_3256		copper resistance B precursor (RefSeq)	-2.3964779684717	-5.60613763579104	TRUE
+stress	set1H32	copper (II) chloride dihydrate	5210830	Shew_3256		copper resistance B precursor (RefSeq)	-1.96605200699936	-5.846475653608	TRUE
+stress	set1H27	copper (II) chloride dihydrate	5210831	Shew_3257		CopA family copper resistance protein (RefSeq)	-3.0026703258913	-11.3945035644376	TRUE
+stress	set1H32	copper (II) chloride dihydrate	5210831	Shew_3257		CopA family copper resistance protein (RefSeq)	-2.75757815491985	-12.6831905018843	TRUE
+stress	set1H27	copper (II) chloride dihydrate	5210832	Shew_3258		two component heavy metal response transcriptional regulator (RefSeq)	-3.77659035393369	-14.4766638616557	TRUE
+stress	set1H32	copper (II) chloride dihydrate	5210832	Shew_3258		two component heavy metal response transcriptional regulator (RefSeq)	-2.95692508461949	-11.2861162093707	TRUE
+stress	set1H32	copper (II) chloride dihydrate	5210833	Shew_3259		heavy metal sensor signal transduction histidine kinase (RefSeq)	-2.51195273809328	-8.85875948941268	TRUE
+stress	set1H27	copper (II) chloride dihydrate	5210833	Shew_3259		heavy metal sensor signal transduction histidine kinase (RefSeq)	-2.41211461393546	-9.51649069997003	TRUE
+stress	set4IT028	methylglyoxal	5210009	Shew_2457		nuclease SbcCD, D subunit (RefSeq)	-1.4259716595276	-7.83295812077869	FALSE
+stress	set4IT028	methylglyoxal	5210104	Shew_2548		potassium efflux system protein (RefSeq)	-2.81931021539018	-6.29229776331988	FALSE
+stress	set4IT033	methylglyoxal	5210104	Shew_2548		potassium efflux system protein (RefSeq)	-1.99591974860504	-5.77661674675961	FALSE
+stress	set4IT033	methylglyoxal	5210430	Shew_2871		DNA polymerase IV (RefSeq)	-1.53633824022701	-6.67113857757959	FALSE
+stress	set4IT028	methylglyoxal	5210430	Shew_2871		DNA polymerase IV (RefSeq)	-1.48930021821144	-8.47871216558366	FALSE
+stress	set4IT033	methylglyoxal	5211278	Shew_3694		ADP-L-glycero-D-manno-heptose-6-epimerase (RefSeq)	-1.71809573140775	-8.9389684299889	FALSE
+stress	set4IT028	methylglyoxal	5211278	Shew_3694		ADP-L-glycero-D-manno-heptose-6-epimerase (RefSeq)	-1.60930845416552	-7.00861935901907	FALSE
+stress	set4IT042	syringaldehyde	5211113	Shew_3529		azoreductase (RefSeq)	-1.41425103209232	-8.94509817388279	FALSE
+stress	set4IT039	syringaldehyde	5211113	Shew_3529		azoreductase (RefSeq)	-1.2170779839407	-5.42156557618171	FALSE
+temperature	set5IT068		5207606	Shew_0140		RNP-1-like RNA-binding protein (RefSeq)	-1.56523099844895	-11.5575576690038	FALSE
+temperature	set5IT072		5208075	Shew_0587		phosphoribulokinase (RefSeq)	-1.43682720584264	-11.4640511668799	TRUE
+temperature	set5IT074		5208151	Shew_0663		oxidoreductase (RefSeq)	-1.58095994938047	-7.73002810383059	FALSE
+temperature	set5IT074		5208152	Shew_0664		NAD(P) transhydrogenase subunit alpha (RefSeq)	-1.64301855668208	-9.22680653452318	FALSE
+temperature	set5IT074		5208339	Shew_0851		phospho-2-dehydro-3-deoxyheptonate aldolase (RefSeq)	-2.09374750425977	-14.4767171314719	FALSE
+temperature	set5IT072		5208556	Shew_1067		phospho-2-dehydro-3-deoxyheptonate aldolase (RefSeq)	-1.73711109303909	-9.00252334206293	FALSE
+temperature	set5IT068		5209797	Shew_2250		phosphotransferase domain-containing protein (RefSeq)	-1.40074785541384	-5.23413836147994	FALSE
+temperature	set5IT072		5209923	Shew_2371		Na+/solute symporter (RefSeq)	-4.94007394444585	-13.9324442774648	TRUE
+temperature	set5IT074		5209923	Shew_2371		Na+/solute symporter (RefSeq)	-2.72001378758526	-13.531975148658	TRUE
+temperature	set5IT074		5210333	Shew_2776		cobalamin synthesis protein, P47K (RefSeq)	-1.18076887416083	-7.44716575059483	FALSE
+temperature	set5IT070		5210519	Shew_2948		ATPase (RefSeq)	-1.45972805905883	-12.506980990189	FALSE
+temperature	set5IT074		5210558	Shew_2986		5-methyltetrahydropteroyltriglutamate-- homocysteine methyltransferase (RefSeq)	-7.02651861262644	-19.1412026304791	FALSE
+temperature	set5IT072		5210558	Shew_2986		5-methyltetrahydropteroyltriglutamate-- homocysteine methyltransferase (RefSeq)	-6.69365050540149	-16.1936435187246	FALSE
+temperature	set5IT072		5210559	Shew_2987		LysR family transcriptional regulator (RefSeq)	-7.74251731501855	-8.72586137158949	FALSE
+temperature	set5IT074		5210559	Shew_2987		LysR family transcriptional regulator (RefSeq)	-7.55921730512064	-9.35191844573319	FALSE
+temperature	set5IT074		5210562	Shew_2990		TonB-dependent receptor (RefSeq)	-5.6674250341759	-11.9563512077236	FALSE
+temperature	set5IT072		5210576	Shew_3004		hypothetical protein (RefSeq)	-5.31365001811637	-7.95455753942837	FALSE
+temperature	set5IT074		5210576	Shew_3004		hypothetical protein (RefSeq)	-4.66032734684001	-8.27922660407286	FALSE
+temperature	set5IT072		5210577	Shew_3005		4Fe-4S ferredoxin iron-sulfur binding domain-containing protein (RefSeq)	-6.43563279215244	-11.8701277391836	FALSE
+temperature	set5IT074		5210577	Shew_3005		4Fe-4S ferredoxin iron-sulfur binding domain-containing protein (RefSeq)	-5.55302085891532	-14.1534450091652	FALSE
+temperature	set5IT072		5210578	Shew_3006		hypothetical protein (RefSeq)	-5.61981864784855	-12.9801522616842	FALSE
+temperature	set5IT074		5210578	Shew_3006		hypothetical protein (RefSeq)	-5.31577518559932	-11.7211502395607	FALSE
+temperature	set5IT074		5210579	Shew_3007		LysR family transcriptional regulator (RefSeq)	-6.17662817578215	-8.62070423738174	FALSE
+temperature	set5IT072		5210579	Shew_3007		LysR family transcriptional regulator (RefSeq)	-5.53936665342258	-9.34427364192784	FALSE
+temperature	set5IT074		5210707	Shew_3135		L-lactate permease (RefSeq)	-3.98152137599068	-7.44380818241522	FALSE
+temperature	set5IT072		5210707	Shew_3135		L-lactate permease (RefSeq)	-1.58377788252461	-5.86135810570387	FALSE
+temperature	set5IT074		5210708	Shew_3136		FAD linked oxidase domain-containing protein (RefSeq)	-3.126554816825	-24.2276691869204	FALSE
+temperature	set5IT072		5210708	Shew_3136		FAD linked oxidase domain-containing protein (RefSeq)	-2.07896151453668	-16.6947067011788	FALSE

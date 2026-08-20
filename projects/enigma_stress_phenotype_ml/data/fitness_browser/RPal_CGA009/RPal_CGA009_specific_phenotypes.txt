@@ -1,0 +1,1056 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1S311	4-Aminobutyric acid	TX73_006050	TX73_006050		aspartate aminotransferase family protein	-2.34014913320403	-18.1599358579261	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_006050	TX73_006050		aspartate aminotransferase family protein	-2.24679920700439	-17.5891875731015	FALSE
+carbon source	set1S312	4-Aminobutyric acid	TX73_006050	TX73_006050		aspartate aminotransferase family protein	-2.03852924311929	-15.3828324025137	FALSE
+carbon source	set1S310	4-Aminobutyric acid	TX73_006050	TX73_006050		aspartate aminotransferase family protein	-2.03166045002496	-15.2646379526078	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_012010	TX73_012010		LysR substrate-binding domain-containing protein	-3.50443896533609	-11.867425338385	FALSE
+carbon source	set1S312	4-Aminobutyric acid	TX73_012010	TX73_012010		LysR substrate-binding domain-containing protein	-3.30476622210212	-11.3594530765893	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_012010	TX73_012010		LysR substrate-binding domain-containing protein	-2.90171408434363	-9.70658961264403	FALSE
+carbon source	set1S310	4-Aminobutyric acid	TX73_012010	TX73_012010		LysR substrate-binding domain-containing protein	-2.74601572043226	-9.94784273526894	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_012015	TX73_012015		4-aminobutyrate--2-oxoglutarate transaminase	-3.51998602673447	-12.6816765859419	FALSE
+carbon source	set1S310	4-Aminobutyric acid	TX73_012015	TX73_012015		4-aminobutyrate--2-oxoglutarate transaminase	-3.41476075954131	-13.3560565932194	FALSE
+carbon source	set1S312	4-Aminobutyric acid	TX73_012015	TX73_012015		4-aminobutyrate--2-oxoglutarate transaminase	-3.17676454012055	-11.3300705361899	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_012015	TX73_012015		4-aminobutyrate--2-oxoglutarate transaminase	-2.8420778922383	-12.0083119701533	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_012020	TX73_012020		NAD-dependent succinate-semialdehyde dehydrogenase	-1.4088046463477	-7.35384114300854	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_012020	TX73_012020		NAD-dependent succinate-semialdehyde dehydrogenase	-1.28325734298779	-6.8476001323984	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_012025	TX73_012025		ArgE/DapE family deacylase	-1.13195302480961	-5.95523956165294	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_012030	TX73_012030		acetolactate synthase large subunit	-1.09188630003975	-6.31179709133796	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_012035	TX73_012035		ABC transporter substrate-binding protein	-1.47908052041916	-9.37705406547341	FALSE
+carbon source	set1S310	4-Aminobutyric acid	TX73_012035	TX73_012035		ABC transporter substrate-binding protein	-1.41444930918509	-8.72771408716741	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_012035	TX73_012035		ABC transporter substrate-binding protein	-1.17147015503114	-7.03162553690563	FALSE
+carbon source	set1S312	4-Aminobutyric acid	TX73_012035	TX73_012035		ABC transporter substrate-binding protein	-1.12014774252127	-6.96620778207415	FALSE
+carbon source	set1S310	4-Aminobutyric acid	TX73_012040	TX73_012040		ABC transporter permease	-1.13944099563981	-6.29241125278537	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_012040	TX73_012040		ABC transporter permease	-1.09257211510902	-5.78249735918536	FALSE
+carbon source	set1S312	4-Aminobutyric acid	TX73_012040	TX73_012040		ABC transporter permease	-1.00403707403621	-5.42915726612671	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_012045	TX73_012045		ABC transporter permease	-1.19695517224266	-7.38327100129251	FALSE
+carbon source	set1S312	4-Aminobutyric acid	TX73_012045	TX73_012045		ABC transporter permease	-1.15442581511856	-5.91198864193011	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_012045	TX73_012045		ABC transporter permease	-1.13018452219949	-6.71152793574883	FALSE
+carbon source	set1S310	4-Aminobutyric acid	TX73_012045	TX73_012045		ABC transporter permease	-1.1012639488568	-6.13671023091585	FALSE
+carbon source	set1S312	4-Aminobutyric acid	TX73_012050	TX73_012050		ABC transporter ATP-binding protein	-1.34703802521541	-8.1671041232552	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_012050	TX73_012050		ABC transporter ATP-binding protein	-1.23595391074707	-8.38129609559803	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_012050	TX73_012050		ABC transporter ATP-binding protein	-1.20864417593771	-7.77098219864825	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_018890	TX73_018890		glycogen debranching protein GlgX	-1.55931695737054	-10.020463502101	FALSE
+carbon source	set1S310	4-Aminobutyric acid	TX73_018890	TX73_018890		glycogen debranching protein GlgX	-1.44160299489331	-9.54941393263794	FALSE
+carbon source	set1S312	4-Aminobutyric acid	TX73_018890	TX73_018890		glycogen debranching protein GlgX	-1.41508809574617	-8.82275451203991	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_018890	TX73_018890		glycogen debranching protein GlgX	-1.37240891950513	-9.37135039547849	FALSE
+carbon source	set1S309	4-Aminobutyric acid	TX73_023060	TX73_023060		fatty-acid--CoA ligase	-1.24738748540367	-9.33349964215523	FALSE
+carbon source	set1S310	4-Aminobutyric acid	TX73_023060	TX73_023060		fatty-acid--CoA ligase	-1.21526984401777	-8.92603053697595	FALSE
+carbon source	set1S312	4-Aminobutyric acid	TX73_023060	TX73_023060		fatty-acid--CoA ligase	-1.21123069350891	-8.5070918314891	FALSE
+carbon source	set1S311	4-Aminobutyric acid	TX73_023060	TX73_023060		fatty-acid--CoA ligase	-1.14172276359172	-8.7856074569808	FALSE
+carbon source	set4S53	4-Hydroxybenzoic Acid	TX73_003425	TX73_003425		benzoate-CoA ligase family protein	-3.52682514766985	-16.4510466319776	FALSE
+carbon source	set4S75	4-Hydroxybenzoic Acid	TX73_003425	TX73_003425		benzoate-CoA ligase family protein	-3.27466090526134	-15.4798159911871	FALSE
+carbon source	set4S73	4-Hydroxybenzoic Acid	TX73_003425	TX73_003425		benzoate-CoA ligase family protein	-3.25169247499962	-15.7445353242204	FALSE
+carbon source	set4S52	4-Hydroxybenzoic Acid	TX73_003425	TX73_003425		benzoate-CoA ligase family protein	-3.2418226965473	-16.6051656241059	FALSE
+carbon source	set4S74	4-Hydroxybenzoic Acid	TX73_003425	TX73_003425		benzoate-CoA ligase family protein	-3.12422813615454	-16.6050771114105	FALSE
+carbon source	set4S54	4-Hydroxybenzoic Acid	TX73_003425	TX73_003425		benzoate-CoA ligase family protein	-3.07492107057969	-14.5246402426272	FALSE
+carbon source	set4S74	4-Hydroxybenzoic Acid	TX73_010175	TX73_010175		Mrp/NBP35 family ATP-binding protein	-1.33796527168805	-8.56931627556076	FALSE
+carbon source	set4S53	4-Hydroxybenzoic Acid	TX73_011335	TX73_011335		RlmE family RNA methyltransferase	-1.420625942706	-7.95739304032728	FALSE
+carbon source	set4S73	4-Hydroxybenzoic Acid	TX73_011335	TX73_011335		RlmE family RNA methyltransferase	-1.35202920319105	-6.61155578924714	FALSE
+carbon source	set4S54	4-Hydroxybenzoic Acid	TX73_014710	TX73_014710		5'/3'-nucleotidase SurE	-1.59855102230063	-10.0842248753108	FALSE
+carbon source	set4S53	4-Hydroxybenzoic Acid	TX73_014710	TX73_014710		5'/3'-nucleotidase SurE	-1.59049743976071	-9.92600370675375	FALSE
+carbon source	set4S52	4-Hydroxybenzoic Acid	TX73_014710	TX73_014710		5'/3'-nucleotidase SurE	-1.56624165645735	-7.90668846735297	FALSE
+carbon source	set4S74	4-Hydroxybenzoic Acid	TX73_014710	TX73_014710		5'/3'-nucleotidase SurE	-1.46696904887445	-9.81642863785009	FALSE
+carbon source	set4S73	4-Hydroxybenzoic Acid	TX73_014710	TX73_014710		5'/3'-nucleotidase SurE	-1.45886134768174	-9.30829344331013	FALSE
+carbon source	set4S75	4-Hydroxybenzoic Acid	TX73_014710	TX73_014710		5'/3'-nucleotidase SurE	-1.45594501036575	-8.22167761321677	FALSE
+carbon source	set4S74	4-Hydroxybenzoic Acid	TX73_021395	TX73_021395		helix-turn-helix transcriptional regulator	-1.31144986812363	-7.13743422498251	FALSE
+carbon source	set4S74	4-Hydroxybenzoic Acid	TX73_024880	TX73_024880		helix-turn-helix transcriptional regulator	1.53672372562657	12.6355225702327	FALSE
+carbon source	set4S52	4-Hydroxybenzoic Acid	TX73_024880	TX73_024880		helix-turn-helix transcriptional regulator	1.56979718661536	12.9570818151858	FALSE
+carbon source	set4S54	4-Hydroxybenzoic Acid	TX73_024880	TX73_024880		helix-turn-helix transcriptional regulator	1.5826022465819	12.9398934796227	FALSE
+carbon source	set4S53	4-Hydroxybenzoic Acid	TX73_024880	TX73_024880		helix-turn-helix transcriptional regulator	1.5981192796392	13.0786278905393	FALSE
+carbon source	set4S75	4-Hydroxybenzoic Acid	TX73_024880	TX73_024880		helix-turn-helix transcriptional regulator	1.60323275040323	12.7021294909089	FALSE
+carbon source	set4S73	4-Hydroxybenzoic Acid	TX73_024880	TX73_024880		helix-turn-helix transcriptional regulator	1.61345012808923	13.3442827845431	FALSE
+carbon source	set4S75	4-Hydroxybenzoic Acid	TX73_025025	TX73_025025		molecular chaperone HtpG	-1.55041239969357	-10.7332925015324	FALSE
+carbon source	set4S54	4-Hydroxybenzoic Acid	TX73_025025	TX73_025025		molecular chaperone HtpG	-1.51338122521105	-10.2082521739347	FALSE
+carbon source	set4S74	4-Hydroxybenzoic Acid	TX73_025025	TX73_025025		molecular chaperone HtpG	-1.496046000402	-10.368723388054	FALSE
+carbon source	set4S53	4-Hydroxybenzoic Acid	TX73_025025	TX73_025025		molecular chaperone HtpG	-1.45467098326558	-10.3792988449977	FALSE
+carbon source	set4S73	4-Hydroxybenzoic Acid	TX73_025025	TX73_025025		molecular chaperone HtpG	-1.42579788434065	-10.2130400141408	FALSE
+carbon source	set4S52	4-Hydroxybenzoic Acid	TX73_025025	TX73_025025		molecular chaperone HtpG	-1.40409317856042	-9.04346665570109	FALSE
+carbon source	set1S322	Citraconic acid	TX73_000825	TX73_000825		GNAT family N-acetyltransferase	-1.0570689934161	-7.99978896284737	FALSE
+carbon source	set1S322	Citraconic acid	TX73_001910	TX73_001910		hypothetical protein	1.60564242669992	12.6668509422295	FALSE
+carbon source	set1S324	Citraconic acid	TX73_001910	TX73_001910		hypothetical protein	1.63134063198938	12.1490762459195	FALSE
+carbon source	set1S323	Citraconic acid	TX73_001910	TX73_001910		hypothetical protein	1.8774275034412	13.3344416836414	FALSE
+carbon source	set1S321	Citraconic acid	TX73_001910	TX73_001910		hypothetical protein	1.98221436597698	15.4881535381733	FALSE
+carbon source	set1S324	Citraconic acid	TX73_002380	TX73_002380		serine hydrolase	-1.21258809488069	-7.51355946816455	FALSE
+carbon source	set1S322	Citraconic acid	TX73_002380	TX73_002380		serine hydrolase	-1.19060016602903	-7.58162023511885	FALSE
+carbon source	set1S321	Citraconic acid	TX73_007410	TX73_007410		GntR family transcriptional regulator	-1.15343714977096	-6.60294254653368	FALSE
+carbon source	set1S322	Citraconic acid	TX73_007410	TX73_007410		GntR family transcriptional regulator	-1.14481962654153	-6.32542387807275	FALSE
+carbon source	set1S323	Citraconic acid	TX73_007410	TX73_007410		GntR family transcriptional regulator	-1.0764455401529	-5.19959224423912	FALSE
+carbon source	set1S321	Citraconic acid	TX73_008250	TX73_008250		Grx4 family monothiol glutaredoxin	-2.36767491307683	-8.33698073782988	FALSE
+carbon source	set1S323	Citraconic acid	TX73_008250	TX73_008250		Grx4 family monothiol glutaredoxin	-1.70360800163878	-6.10270790577445	FALSE
+carbon source	set1S322	Citraconic acid	TX73_008250	TX73_008250		Grx4 family monothiol glutaredoxin	-1.40516955036224	-5.2224144463733	FALSE
+carbon source	set1S322	Citraconic acid	TX73_009410	TX73_009410		methylmalonyl Co-A mutase-associated GTPase MeaB	-1.33225623787851	-9.07809432192723	FALSE
+carbon source	set1S321	Citraconic acid	TX73_009410	TX73_009410		methylmalonyl Co-A mutase-associated GTPase MeaB	-1.23440961788945	-8.98162467350295	FALSE
+carbon source	set1S324	Citraconic acid	TX73_009410	TX73_009410		methylmalonyl Co-A mutase-associated GTPase MeaB	-1.22674872542677	-7.52220759091262	FALSE
+carbon source	set1S323	Citraconic acid	TX73_009410	TX73_009410		methylmalonyl Co-A mutase-associated GTPase MeaB	-1.19775130873025	-8.48256832140092	FALSE
+carbon source	set1S323	Citraconic acid	TX73_015205	TX73_015205		methylmalonyl-CoA epimerase	-2.50104406880438	-10.3997445002125	FALSE
+carbon source	set1S321	Citraconic acid	TX73_015205	TX73_015205		methylmalonyl-CoA epimerase	-2.28339156085812	-9.2063937413651	FALSE
+carbon source	set1S324	Citraconic acid	TX73_015205	TX73_015205		methylmalonyl-CoA epimerase	-2.11273302945565	-8.19408422612953	FALSE
+carbon source	set1S322	Citraconic acid	TX73_015205	TX73_015205		methylmalonyl-CoA epimerase	-2.07012131414025	-6.51070947806602	FALSE
+carbon source	set1S321	Citraconic acid	TX73_016525	TX73_016525		indolepyruvate ferredoxin oxidoreductase family protein	-5.43923891458843	-23.8625514341802	FALSE
+carbon source	set1S324	Citraconic acid	TX73_016525	TX73_016525		indolepyruvate ferredoxin oxidoreductase family protein	-5.12406919899106	-22.6585499616561	FALSE
+carbon source	set1S322	Citraconic acid	TX73_016525	TX73_016525		indolepyruvate ferredoxin oxidoreductase family protein	-4.76677465023713	-24.8905425865471	FALSE
+carbon source	set1S323	Citraconic acid	TX73_016525	TX73_016525		indolepyruvate ferredoxin oxidoreductase family protein	-4.57931604604709	-26.7063499648235	FALSE
+carbon source	set1S321	Citraconic acid	TX73_019260	TX73_019260		IclR family transcriptional regulator	-1.50323304078899	-6.74920349614857	FALSE
+carbon source	set1S322	Citraconic acid	TX73_019260	TX73_019260		IclR family transcriptional regulator	-1.40408732490949	-5.04075266538273	FALSE
+carbon source	set1S323	Citraconic acid	TX73_019260	TX73_019260		IclR family transcriptional regulator	-1.21874280947193	-5.9277227847883	FALSE
+carbon source	set1S324	Citraconic acid	TX73_021570	TX73_021570		helix-turn-helix domain-containing protein	-2.06911113991498	-12.5091022055101	FALSE
+carbon source	set1S323	Citraconic acid	TX73_021570	TX73_021570		helix-turn-helix domain-containing protein	-1.96741614957339	-11.5559376025154	FALSE
+carbon source	set1S321	Citraconic acid	TX73_021570	TX73_021570		helix-turn-helix domain-containing protein	-1.95122202493472	-12.548752205231	FALSE
+carbon source	set1S322	Citraconic acid	TX73_021570	TX73_021570		helix-turn-helix domain-containing protein	-1.85268222220303	-10.7771997245596	FALSE
+carbon source	set1S324	Citraconic acid	TX73_021725	TX73_021725		DUF1244 domain-containing protein	1.36969397990045	5.13260159740986	FALSE
+carbon source	set1S322	Citraconic acid	TX73_022645	TX73_022645		MarR family transcriptional regulator	1.46924811160976	12.7080169581886	FALSE
+carbon source	set1S324	Citraconic acid	TX73_022645	TX73_022645		MarR family transcriptional regulator	1.6095285106828	14.2855481353416	FALSE
+carbon source	set1S321	Citraconic acid	TX73_022645	TX73_022645		MarR family transcriptional regulator	1.89718561596911	16.6956129218937	FALSE
+carbon source	set1S323	Citraconic acid	TX73_022645	TX73_022645		MarR family transcriptional regulator	1.90655724007938	15.4295834854993	FALSE
+carbon source	set1S321	Citraconic acid	TX73_024130	TX73_024130		IclR family transcriptional regulator	-1.59378526995165	-10.3450586156107	FALSE
+carbon source	set1S324	Citraconic acid	TX73_024130	TX73_024130		IclR family transcriptional regulator	-1.54043172873188	-8.66484885770959	FALSE
+carbon source	set1S322	Citraconic acid	TX73_024130	TX73_024130		IclR family transcriptional regulator	-1.41799312962652	-8.83110171823426	FALSE
+carbon source	set1S323	Citraconic acid	TX73_024130	TX73_024130		IclR family transcriptional regulator	-1.23349398989983	-8.4676449563683	FALSE
+carbon source	set1S331	L-Leucine	TX73_003045	TX73_003045		TetR/AcrR family transcriptional regulator	1.35429208914232	6.95632979209905	FALSE
+carbon source	set1S331	L-Leucine	TX73_004185	TX73_004185		TIGR02186 family protein	-1.86102708184738	-7.1192133096924	FALSE
+carbon source	set1S331	L-Leucine	TX73_004190	TX73_004190		sulfite exporter TauE/SafE family protein	-1.97745740597581	-10.9852528746298	FALSE
+carbon source	set1S331	L-Leucine	TX73_004635	TX73_004635		LysE family translocator	-1.24573631240471	-8.700598741489	FALSE
+carbon source	set1S331	L-Leucine	TX73_008250	TX73_008250		Grx4 family monothiol glutaredoxin	-2.00466140500622	-6.65148714544736	FALSE
+carbon source	set1S331	L-Leucine	TX73_008290	TX73_008290		isovaleryl-CoA dehydrogenase	-4.79890603203504	-17.2028216836595	TRUE
+carbon source	set1S331	L-Leucine	TX73_013115	TX73_013115		carboxyl transferase domain-containing protein	-4.17583648526428	-10.7590416628003	TRUE
+carbon source	set1S331	L-Leucine	TX73_013120	TX73_013120		acetyl-CoA carboxylase biotin carboxylase subunit	-3.65179407240209	-9.68621206869452	TRUE
+carbon source	set1S331	L-Leucine	TX73_016525	TX73_016525		indolepyruvate ferredoxin oxidoreductase family protein	-4.85670785869243	-23.32180189525	TRUE
+carbon source	set1S331	L-Leucine	TX73_019260	TX73_019260		IclR family transcriptional regulator	-1.55505704641872	-5.42086919584214	FALSE
+carbon source	set1S331	L-Leucine	TX73_019710	TX73_019710		branched-chain amino acid ABC transporter permease	-2.07381869593639	-10.9411077115909	TRUE
+carbon source	set1S331	L-Leucine	TX73_019715	TX73_019715		high-affinity branched-chain amino acid ABC transporter permease LivM	-1.91965492917563	-9.90911357702111	FALSE
+carbon source	set1S331	L-Leucine	TX73_019720	TX73_019720		ABC transporter ATP-binding protein	-2.27570536413033	-7.74686332919365	TRUE
+carbon source	set1S331	L-Leucine	TX73_019725	TX73_019725		ABC transporter ATP-binding protein	-2.11716796701414	-7.93161524371108	TRUE
+carbon source	set1S331	L-Leucine	TX73_019730	TX73_019730		branched-chain amino acid ABC transporter substrate-binding protein	-1.94580659563372	-9.34153899895877	TRUE
+carbon source	set1S331	L-Leucine	TX73_021540	TX73_021540		3-oxoacid CoA-transferase subunit B	-1.23004764408553	-6.45255873041492	TRUE
+carbon source	set4S76	Potassium acetate	TX73_023925	TX73_023925		nitrogenase stabilizing/protective protein NifW	-1.22519382239148	-5.00079344072869	FALSE
+carbon source	set4S76	Potassium acetate	TX73_023945	TX73_023945		iron-sulfur cluster assembly accessory protein	-1.59705194415387	-5.70048379800653	FALSE
+carbon source	set4S77	Potassium acetate	TX73_023945	TX73_023945		iron-sulfur cluster assembly accessory protein	-1.58000429319304	-6.08231648966465	FALSE
+carbon source	set4S77	Potassium acetate	TX73_023950	TX73_023950		nitrogen fixation protein NifQ	-1.91273640423852	-6.33378743490666	FALSE
+carbon source	set4S57	Potassium acetate	TX73_023950	TX73_023950		nitrogen fixation protein NifQ	-1.82084379508638	-6.98403943877858	FALSE
+carbon source	set4S76	Potassium acetate	TX73_023950	TX73_023950		nitrogen fixation protein NifQ	-1.27060274569499	-5.36633836560805	FALSE
+carbon source	set1S344	Sebacic acid	TX73_019245	TX73_019245		acetyl-CoA C-acyltransferase	-1.21252086668326	-5.8958234513568	FALSE
+carbon source	set1S342	Sebacic acid	TX73_019245	TX73_019245		acetyl-CoA C-acyltransferase	-1.00092506156147	-5.74638197437759	FALSE
+carbon source	set1S344	Sebacic acid	TX73_019255	TX73_019255		3-hydroxyacyl-CoA dehydrogenase NAD-binding domain-containing protein	-1.40310938194175	-9.37688463509915	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_000410	TX73_000410		PAS-domain containing protein	1.47338007386846	5.39801148372613	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_000895	TX73_000895		glycosyltransferase family 1 protein	-1.52541095751103	-8.23936746088658	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_001575	TX73_001575		Tim44/TimA family putative adaptor protein	-1.47023996037511	-5.78721061269595	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_001830	TX73_001830		glycosyltransferase family 39 protein	-1.40832154641959	-11.1826220765748	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_002530	TX73_002530		M48 family metalloprotease	-1.33617015972278	-8.3050499421413	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_002565	TX73_002565		PAS domain S-box protein	1.47586271049791	12.6313535754197	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_003395	TX73_003395		MarR family transcriptional regulator	1.61407435980232	8.25685550072828	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_003425	TX73_003425		benzoate-CoA ligase family protein	-4.0050029748499	-18.1361122291833	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_003425	TX73_003425		benzoate-CoA ligase family protein	-3.95630750918325	-12.762123138839	FALSE
+carbon source	set2S423	Sodium 4-Hydroxybenzoate	TX73_003425	TX73_003425		benzoate-CoA ligase family protein	-3.57750245194018	-16.9172193019734	FALSE
+carbon source	set2S423	Sodium 4-Hydroxybenzoate	TX73_003465	TX73_003465		bifunctional 4-hydroxybenzoate--CoA/benzoate--CoA ligase	-1.12923785816947	-6.89868045585147	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_005185	TX73_005185		helix-turn-helix domain-containing protein	1.88074727940356	12.8020971206759	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_005190	TX73_005190		cytochrome P450	1.56136749227149	10.1718527951455	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_005490	TX73_005490		folate-binding protein YgfZ	4.30776073540673	37.5527155623242	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_008770	TX73_008770		TetR family transcriptional regulator	-1.85425501805578	-6.42680663004467	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_009225	TX73_009225		MarR family transcriptional regulator	2.02371480882036	10.3529316663742	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_009995	TX73_009995		cation-efflux pump	-3.1261056375372	-9.42873945424798	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_009995	TX73_009995		cation-efflux pump	-2.07625399442885	-12.7597199281113	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_010175	TX73_010175		Mrp/NBP35 family ATP-binding protein	-1.8880139778421	-7.2991032603316	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_010175	TX73_010175		Mrp/NBP35 family ATP-binding protein	-1.38743187538537	-8.93023070786559	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_012725	TX73_012725		anhydro-N-acetylmuramic acid kinase	-1.79597985521663	-8.28771219635947	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_012770	TX73_012770		iron-sulfur cluster assembly accessory protein	4.23221377638666	29.7245848645433	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_014770	TX73_014770		beta-N-acetylhexosaminidase	-2.30689725204796	-9.92166759929994	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_014790	TX73_014790		iron-sulfur cluster insertion protein ErpA	4.20494717299759	31.8370910672225	FALSE
+carbon source	set2S423	Sodium 4-Hydroxybenzoate	TX73_016170	TX73_016170		NUDIX hydrolase	1.18860406116709	10.1550156419483	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_019585	TX73_019585		glycosyltransferase family 39 protein	-1.1202248491054	-5.36288546681944	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_019590	TX73_019590		glycosyltransferase family 2 protein	-1.33570471941945	-5.43028995466538	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_019590	TX73_019590		glycosyltransferase family 2 protein	-1.25679839885904	-7.67538695114003	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_020230	TX73_020230		flagellar basal body L-ring protein FlgH	1.34588280006802	7.65405477070549	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_020440	TX73_020440		hypothetical protein	-1.90443633348072	-11.7405484509768	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_020630	TX73_020630		lysylphosphatidylglycerol synthase transmembrane domain-containing protein	-2.03441155984418	-6.81233217238378	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_020630	TX73_020630		lysylphosphatidylglycerol synthase transmembrane domain-containing protein	-1.74777869597593	-8.1561888843788	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_022105	TX73_022105		long-chain fatty acid--CoA ligase	-1.98083719281883	-8.27914063849304	FALSE
+carbon source	set2S423	Sodium 4-Hydroxybenzoate	TX73_022105	TX73_022105		long-chain fatty acid--CoA ligase	-1.72156643112115	-11.2060961117165	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_022105	TX73_022105		long-chain fatty acid--CoA ligase	-1.64170234371231	-12.4239572771775	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_022895	TX73_022895		ATP-binding protein	-1.62623301595324	-8.09059658860357	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_024400	TX73_024400		4-oxalomesaconate tautomerase	-1.54993103683627	-6.1366601242158	FALSE
+carbon source	set2S421	Sodium 4-Hydroxybenzoate	TX73_024420	TX73_024420		amidohydrolase family protein	-1.76860386748945	-5.66011574859639	FALSE
+carbon source	set2S423	Sodium 4-Hydroxybenzoate	TX73_025025	TX73_025025		molecular chaperone HtpG	-1.55301591086142	-10.2512662258056	FALSE
+carbon source	set2S422	Sodium 4-Hydroxybenzoate	TX73_025025	TX73_025025		molecular chaperone HtpG	-1.54570174516967	-11.2274377150555	FALSE
+carbon source	set2S448	Sodium Formate	TX73_002020	TX73_002020		potassium/proton antiporter	1.5973357321401	14.4842498575238	FALSE
+carbon source	set2S446	Sodium Formate	TX73_002020	TX73_002020		potassium/proton antiporter	1.80065105743835	16.175813569705	FALSE
+carbon source	set2S447	Sodium Formate	TX73_002020	TX73_002020		potassium/proton antiporter	1.83509252366375	16.9737848119715	FALSE
+carbon source	set2S448	Sodium Formate	TX73_002230	TX73_002230		catalase/peroxidase HPI	1.08976560593001	10.5765625190697	FALSE
+carbon source	set2S447	Sodium Formate	TX73_002230	TX73_002230		catalase/peroxidase HPI	1.2116105721835	11.7555863419138	FALSE
+carbon source	set2S448	Sodium Formate	TX73_002530	TX73_002530		M48 family metalloprotease	-1.37905904082342	-11.4680244221277	FALSE
+carbon source	set2S447	Sodium Formate	TX73_002530	TX73_002530		M48 family metalloprotease	-1.30505775813021	-10.668207483705	FALSE
+carbon source	set2S448	Sodium Formate	TX73_003780	TX73_003780		LysR family transcriptional regulator	-2.84523140080672	-14.7936588112563	TRUE
+carbon source	set2S447	Sodium Formate	TX73_003780	TX73_003780		LysR family transcriptional regulator	-2.82083034238475	-15.288037350604	TRUE
+carbon source	set2S446	Sodium Formate	TX73_003780	TX73_003780		LysR family transcriptional regulator	-2.79104987578246	-13.9812977015354	TRUE
+carbon source	set2S447	Sodium Formate	TX73_003785	TX73_003785		formate dehydrogenase subunit gamma	-3.14852893063318	-10.0762175873655	FALSE
+carbon source	set2S448	Sodium Formate	TX73_003785	TX73_003785		formate dehydrogenase subunit gamma	-3.13468831281282	-9.53873169626776	FALSE
+carbon source	set2S446	Sodium Formate	TX73_003785	TX73_003785		formate dehydrogenase subunit gamma	-2.58893383043092	-7.30316353144114	FALSE
+carbon source	set2S448	Sodium Formate	TX73_003790	TX73_003790		NADH-quinone oxidoreductase subunit NuoF	-3.0017816752307	-15.3262261812417	FALSE
+carbon source	set2S447	Sodium Formate	TX73_003790	TX73_003790		NADH-quinone oxidoreductase subunit NuoF	-2.69463123162768	-15.4480203650001	FALSE
+carbon source	set2S446	Sodium Formate	TX73_003790	TX73_003790		NADH-quinone oxidoreductase subunit NuoF	-2.53127054476936	-12.9333311565145	FALSE
+carbon source	set2S448	Sodium Formate	TX73_003795	TX73_003795		formate dehydrogenase subunit alpha	-3.04256298890061	-16.0886648356371	TRUE
+carbon source	set2S447	Sodium Formate	TX73_003795	TX73_003795		formate dehydrogenase subunit alpha	-2.84366907567332	-17.3234953935368	TRUE
+carbon source	set2S446	Sodium Formate	TX73_003795	TX73_003795		formate dehydrogenase subunit alpha	-2.50378109341873	-12.6451177532511	TRUE
+carbon source	set2S448	Sodium Formate	TX73_003800	TX73_003800		formate dehydrogenase accessory sulfurtransferase FdhD	-3.00497277655942	-11.899732797902	FALSE
+carbon source	set2S447	Sodium Formate	TX73_003800	TX73_003800		formate dehydrogenase accessory sulfurtransferase FdhD	-2.96020379445982	-9.55262005297875	FALSE
+carbon source	set2S446	Sodium Formate	TX73_003800	TX73_003800		formate dehydrogenase accessory sulfurtransferase FdhD	-2.2608373125888	-7.38515558320022	FALSE
+carbon source	set2S446	Sodium Formate	TX73_003805	TX73_003805		formate dehydrogenase subunit delta	-2.14657516351961	-5.24936621004955	FALSE
+carbon source	set2S446	Sodium Formate	TX73_005845	TX73_005845		NAD(P)-binding protein	1.55243469001151	13.9684338764891	FALSE
+carbon source	set2S448	Sodium Formate	TX73_005845	TX73_005845		NAD(P)-binding protein	1.68172166661818	15.4745615400932	FALSE
+carbon source	set2S447	Sodium Formate	TX73_005845	TX73_005845		NAD(P)-binding protein	1.74077284023442	16.2354294685096	FALSE
+carbon source	set2S446	Sodium Formate	TX73_012115	TX73_012115		GntR family transcriptional regulator	1.51657564575779	9.75072970954095	FALSE
+carbon source	set2S448	Sodium Formate	TX73_012115	TX73_012115		GntR family transcriptional regulator	1.61117176887485	9.35008064913608	FALSE
+carbon source	set2S447	Sodium Formate	TX73_012115	TX73_012115		GntR family transcriptional regulator	1.67122735037209	11.4504664209333	FALSE
+carbon source	set2S446	Sodium Formate	TX73_012670	TX73_012670		Rne/Rng family ribonuclease	2.3589169556776	11.6129803897354	FALSE
+carbon source	set2S447	Sodium Formate	TX73_012670	TX73_012670		Rne/Rng family ribonuclease	2.57268343715171	10.870293033539	FALSE
+carbon source	set2S448	Sodium Formate	TX73_012670	TX73_012670		Rne/Rng family ribonuclease	2.58849762874888	12.1365887986288	FALSE
+carbon source	set2S447	Sodium Formate	TX73_013040	TX73_013040		cold-shock protein	2.43001812494957	21.6802170385557	FALSE
+carbon source	set2S446	Sodium Formate	TX73_013040	TX73_013040		cold-shock protein	2.51297077331969	22.27276343759	FALSE
+carbon source	set2S448	Sodium Formate	TX73_013040	TX73_013040		cold-shock protein	2.51688491405762	22.4792347901738	FALSE
+carbon source	set2S446	Sodium Formate	TX73_015780	TX73_015780		CDP-alcohol phosphatidyltransferase family protein	1.83627829613188	14.8059740271434	FALSE
+carbon source	set2S448	Sodium Formate	TX73_015780	TX73_015780		CDP-alcohol phosphatidyltransferase family protein	1.93338075757683	16.7962940694175	FALSE
+carbon source	set2S447	Sodium Formate	TX73_015780	TX73_015780		CDP-alcohol phosphatidyltransferase family protein	1.93543148336972	15.7095178719192	FALSE
+carbon source	set2S448	Sodium Formate	TX73_016235	TX73_016235		HIT family protein	-4.39388378195578	-6.7995546572683	FALSE
+carbon source	set2S447	Sodium Formate	TX73_016235	TX73_016235		HIT family protein	-3.93563049540487	-9.66387260585767	FALSE
+carbon source	set2S446	Sodium Formate	TX73_016235	TX73_016235		HIT family protein	-3.30227742547529	-7.2550997815245	FALSE
+carbon source	set2S448	Sodium Formate	TX73_017030	TX73_017030		ABC transporter ATP-binding protein	1.10968965645598	7.23421915400854	FALSE
+carbon source	set2S446	Sodium Formate	TX73_017045	TX73_017045		substrate-binding protein	1.18352099540302	9.5634158044232	FALSE
+carbon source	set2S447	Sodium Formate	TX73_017045	TX73_017045		substrate-binding protein	1.2859255361969	11.0304150486694	FALSE
+carbon source	set2S448	Sodium Formate	TX73_017045	TX73_017045		substrate-binding protein	1.34349285271817	11.6996573029798	FALSE
+carbon source	set2S448	Sodium Formate	TX73_017715	TX73_017715		gamma carbonic anhydrase family protein	1.91551423954504	17.6556400991384	FALSE
+carbon source	set2S446	Sodium Formate	TX73_017715	TX73_017715		gamma carbonic anhydrase family protein	1.99524083183776	17.3304997147813	FALSE
+carbon source	set2S447	Sodium Formate	TX73_017715	TX73_017715		gamma carbonic anhydrase family protein	2.03403583595792	18.8625855965254	FALSE
+carbon source	set2S447	Sodium Formate	TX73_018935	TX73_018935		molybdenum cofactor guanylyltransferase MobA	-3.150221929408	-9.64906700346315	FALSE
+carbon source	set2S448	Sodium Formate	TX73_018935	TX73_018935		molybdenum cofactor guanylyltransferase MobA	-2.63230091542032	-9.76129458109538	FALSE
+carbon source	set2S446	Sodium Formate	TX73_018935	TX73_018935		molybdenum cofactor guanylyltransferase MobA	-2.38868497302671	-8.94798036563199	FALSE
+carbon source	set2S447	Sodium Formate	TX73_024885	TX73_024885		sn-glycerol-3-phosphate ABC transporter substrate-binding protein UgpB	-1.5160059469624	-8.94551362009463	FALSE
+carbon source	set2S448	Sodium Formate	TX73_024885	TX73_024885		sn-glycerol-3-phosphate ABC transporter substrate-binding protein UgpB	-1.40209567381132	-8.88059995145898	FALSE
+carbon source	set2S446	Sodium Formate	TX73_024885	TX73_024885		sn-glycerol-3-phosphate ABC transporter substrate-binding protein UgpB	-1.29878062520277	-6.97003329051656	FALSE
+carbon source	set2S446	Sodium Formate	TX73_024890	TX73_024890		HAMP domain-containing sensor histidine kinase	-1.09597771594625	-8.22772735052824	FALSE
+carbon source	set1S327	Sodium Fumarate dibasic	TX73_002280	TX73_002280		ribosome maturation factor RimP	1.47186086338233	5.50762882937905	FALSE
+carbon source	set1S325	Sodium Fumarate dibasic	TX73_009465	TX73_009465		DUF4332 domain-containing protein	-1.06184001735404	-5.84950279699966	FALSE
+carbon source	set3S523	Sodium acetate trihydrate	TX73_002820	TX73_002820		CidA/LrgA family protein	-3.81392064378649	-7.30742946931604	FALSE
+carbon source	set3S522	Sodium acetate trihydrate	TX73_002820	TX73_002820		CidA/LrgA family protein	-3.63966135021875	-7.75326479039038	FALSE
+carbon source	set3S521	Sodium acetate trihydrate	TX73_002820	TX73_002820		CidA/LrgA family protein	-3.47553434091484	-7.74353860017786	FALSE
+carbon source	set3S521	Sodium acetate trihydrate	TX73_002825	TX73_002825		LrgB family protein	-3.58901823655936	-9.54734712447227	FALSE
+carbon source	set3S522	Sodium acetate trihydrate	TX73_002825	TX73_002825		LrgB family protein	-3.39603334957241	-9.73278088772361	FALSE
+carbon source	set3S523	Sodium acetate trihydrate	TX73_002825	TX73_002825		LrgB family protein	-3.23678302221626	-8.62333214957913	FALSE
+carbon source	set3S521	Sodium acetate trihydrate	TX73_006995	TX73_006995		ABC transporter substrate-binding protein	-1.24751907587693	-5.01535282034195	FALSE
+carbon source	set3S523	Sodium acetate trihydrate	TX73_013030	TX73_013030		VOC family protein	1.92269972445768	13.6366621786699	FALSE
+carbon source	set3S522	Sodium acetate trihydrate	TX73_013030	TX73_013030		VOC family protein	1.95830608598183	14.1230948575337	FALSE
+carbon source	set3S521	Sodium acetate trihydrate	TX73_013030	TX73_013030		VOC family protein	1.97074135075499	14.3643564531746	FALSE
+carbon source	set3S522	Sodium acetate trihydrate	TX73_018240	TX73_018240		DNA repair protein RecN	-1.31065967282346	-7.07531685961297	FALSE
+carbon source	set3S521	Sodium acetate trihydrate	TX73_018240	TX73_018240		DNA repair protein RecN	-1.11531453087676	-5.91984029235205	FALSE
+carbon source	set3S523	Sodium acetate trihydrate	TX73_018240	TX73_018240		DNA repair protein RecN	-1.10756856127675	-5.93436324770261	FALSE
+carbon source	set3S522	Sodium acetate trihydrate	TX73_022385	TX73_022385		alpha-hydroxy acid oxidase	9.88128645527135	92.3092543959828	FALSE
+carbon source	set3S523	Sodium acetate trihydrate	TX73_022385	TX73_022385		alpha-hydroxy acid oxidase	9.92593192051826	92.7967095439347	FALSE
+carbon source	set3S521	Sodium acetate trihydrate	TX73_022385	TX73_022385		alpha-hydroxy acid oxidase	10.0944078529804	94.4854777991247	FALSE
+carbon source	set3S522	Sodium acetate trihydrate	TX73_022510	TX73_022510		excinuclease ABC subunit UvrB	1.46845236053954	8.65371066774234	FALSE
+carbon source	set2S468	Sodium bicarbonate	TX73_004450	TX73_004450		MgtC/SapB family protein	-1.32772981245861	-6.41764482339485	FALSE
+carbon source	set2S466	Sodium bicarbonate	TX73_004450	TX73_004450		MgtC/SapB family protein	-1.28619178620037	-8.05182311072641	FALSE
+carbon source	set2S467	Sodium bicarbonate	TX73_004450	TX73_004450		MgtC/SapB family protein	-1.26006789303676	-9.12944642580144	FALSE
+carbon source	set2S465	Sodium bicarbonate	TX73_004450	TX73_004450		MgtC/SapB family protein	-1.23174819044939	-7.97923602238815	FALSE
+carbon source	set2S467	Sodium bicarbonate	TX73_005255	TX73_005255		DsbA family protein	-1.62489534852581	-9.43383082167054	FALSE
+carbon source	set2S466	Sodium bicarbonate	TX73_005255	TX73_005255		DsbA family protein	-1.51079929200943	-7.28202670666676	FALSE
+carbon source	set2S468	Sodium bicarbonate	TX73_010095	TX73_010095		TetR/AcrR family transcriptional regulator	-1.86840201597333	-5.09501886065414	FALSE
+carbon source	set2S466	Sodium bicarbonate	TX73_010280	TX73_010280		DUF2865 domain-containing protein	-1.21121965530806	-8.04088969781555	FALSE
+carbon source	set2S467	Sodium bicarbonate	TX73_010280	TX73_010280		DUF2865 domain-containing protein	-1.04367434009181	-7.2249791159084	FALSE
+carbon source	set2S466	Sodium bicarbonate	TX73_010325	TX73_010325		c-type cytochrome	-1.72602165582568	-13.3886786852324	FALSE
+carbon source	set2S465	Sodium bicarbonate	TX73_010325	TX73_010325		c-type cytochrome	-1.60593205712066	-10.0226560383894	FALSE
+carbon source	set2S468	Sodium bicarbonate	TX73_010325	TX73_010325		c-type cytochrome	-1.57722191167312	-10.2263656130565	FALSE
+carbon source	set2S467	Sodium bicarbonate	TX73_010325	TX73_010325		c-type cytochrome	-1.37897914342325	-10.8442466500757	FALSE
+carbon source	set2S468	Sodium bicarbonate	TX73_012670	TX73_012670		Rne/Rng family ribonuclease	-2.37275400419356	-8.07763747027735	FALSE
+carbon source	set2S467	Sodium bicarbonate	TX73_014775	TX73_014775		SPOR domain-containing protein	-1.22778454008283	-7.00536406410753	FALSE
+carbon source	set2S466	Sodium bicarbonate	TX73_014775	TX73_014775		SPOR domain-containing protein	-1.21638440568002	-7.60173853957505	FALSE
+carbon source	set2S462	Sodium bicarbonate	TX73_018065	TX73_018065		Do family serine endopeptidase	1.38670581129613	12.223025636952	FALSE
+carbon source	set2S468	Sodium bicarbonate	TX73_020000	TX73_020000		hypothetical protein	1.19997858461029	7.3153012401126	FALSE
+carbon source	set2S468	Sodium bicarbonate	TX73_022670	TX73_022670		pitrilysin family protein	-1.0234442012707	-6.8587291886165	FALSE
+carbon source	set2S468	Sodium bicarbonate	TX73_022675	TX73_022675		pitrilysin family protein	-1.00424057365438	-5.48069307108215	FALSE
+carbon source	set2S467	Sodium bicarbonate	TX73_022865	TX73_022865		DeoR/GlpR family DNA-binding transcription regulator	-1.42166813191869	-9.21166386437965	FALSE
+carbon source	set2S466	Sodium bicarbonate	TX73_022865	TX73_022865		DeoR/GlpR family DNA-binding transcription regulator	-1.41043362564958	-9.31479794751035	FALSE
+carbon source	set2S468	Sodium bicarbonate	TX73_022865	TX73_022865		DeoR/GlpR family DNA-binding transcription regulator	-1.32751626257399	-6.27249211017067	FALSE
+carbon source	set2S466	Sodium bicarbonate	TX73_023215	TX73_023215		thioredoxin family protein	-3.22997885272303	-8.81886861625689	FALSE
+carbon source	set2S465	Sodium bicarbonate	TX73_023215	TX73_023215		thioredoxin family protein	-2.88426470500355	-6.16591953720595	FALSE
+carbon source	set2S467	Sodium bicarbonate	TX73_023215	TX73_023215		thioredoxin family protein	-2.79568787285553	-8.85524382931921	FALSE
+carbon source	set2S468	Sodium bicarbonate	TX73_023215	TX73_023215		thioredoxin family protein	-2.52043388439492	-5.9763261684843	FALSE
+carbon source	set2S465	Sodium bicarbonate	TX73_025005	TX73_025005		lipocalin-like domain-containing protein	-1.02431368640377	-5.99240890136267	FALSE
+carbon source	set2S469	Sodium butyrate	TX73_001430	TX73_001430		P-II family nitrogen regulator	1.32018007240099	8.47329748570936	FALSE
+carbon source	set2S472	Sodium butyrate	TX73_001435	TX73_001435		ammonium transporter	1.14589437115066	10.5747058549636	FALSE
+carbon source	set2S476	Sodium butyrate	TX73_001435	TX73_001435		ammonium transporter	1.19588298905351	10.7980122634633	FALSE
+carbon source	set2S473	Sodium butyrate	TX73_001435	TX73_001435		ammonium transporter	1.23804522596976	11.4172399866076	FALSE
+carbon source	set2S470	Sodium butyrate	TX73_001435	TX73_001435		ammonium transporter	1.25359465180702	11.9140408620149	FALSE
+carbon source	set2S469	Sodium butyrate	TX73_001435	TX73_001435		ammonium transporter	1.39924060726337	13.3556560920479	FALSE
+carbon source	set2S469	Sodium butyrate	TX73_002280	TX73_002280		ribosome maturation factor RimP	1.54257463136904	9.02046905608897	FALSE
+carbon source	set2S472	Sodium butyrate	TX73_002280	TX73_002280		ribosome maturation factor RimP	1.55800577496868	8.81242780253486	FALSE
+carbon source	set2S469	Sodium butyrate	TX73_007680	TX73_007680		hypothetical protein	1.32322727604264	6.51007038815315	FALSE
+carbon source	set2S472	Sodium butyrate	TX73_007680	TX73_007680		hypothetical protein	1.39486335714252	5.41952450174699	FALSE
+carbon source	set2S472	Sodium butyrate	TX73_012295	TX73_012295		TonB-dependent receptor	1.03369885801697	8.11902079607116	FALSE
+carbon source	set2S469	Sodium butyrate	TX73_012305	TX73_012305		ATP-binding cassette domain-containing protein	1.05694968793765	7.41031687957477	FALSE
+carbon source	set2S470	Sodium butyrate	TX73_012310	TX73_012310		iron chelate uptake ABC transporter family permease subunit	1.01190129096659	7.37171979935455	FALSE
+carbon source	set2S469	Sodium butyrate	TX73_012315	TX73_012315		iron chelate uptake ABC transporter family permease subunit	1.03073264417355	8.78475091224772	FALSE
+carbon source	set2S469	Sodium butyrate	TX73_012320	TX73_012320		siderophore ABC transporter substrate-binding protein	1.03695722889277	6.71159782815083	FALSE
+carbon source	set2S472	Sodium butyrate	TX73_012320	TX73_012320		siderophore ABC transporter substrate-binding protein	1.09762920523296	6.89230174695091	FALSE
+carbon source	set2S470	Sodium butyrate	TX73_012335	TX73_012335		AMP-binding protein	1.01618860022793	6.35644961317444	FALSE
+carbon source	set2S471	Sodium butyrate	TX73_022365	TX73_022365		outer membrane beta-barrel protein	1.02890070319816	8.38222929699769	FALSE
+carbon source	set2S441	Sodium succinate dibasic hexahydrate	TX73_015760	TX73_015760		bestrophin family protein	-2.03181889643019	-10.6256804435474	FALSE
+carbon source	set2S442	Sodium succinate dibasic hexahydrate	TX73_015760	TX73_015760		bestrophin family protein	-1.77778214855712	-11.3067716714313	FALSE
+carbon source	set2S440	Sodium succinate dibasic hexahydrate	TX73_015760	TX73_015760		bestrophin family protein	-1.75270833552517	-9.54363279785688	FALSE
+carbon source	set2S441	Sodium succinate dibasic hexahydrate	TX73_016235	TX73_016235		HIT family protein	-5.68601744230768	-8.48275666961352	FALSE
+carbon source	set2S440	Sodium succinate dibasic hexahydrate	TX73_016235	TX73_016235		HIT family protein	-4.95357585406766	-9.03316661343223	FALSE
+carbon source	set2S442	Sodium succinate dibasic hexahydrate	TX73_016235	TX73_016235		HIT family protein	-3.79943222407144	-8.80723928706537	FALSE
+carbon source	set2S424	aspen wood chips that have been decomposed by a fungus	TX73_009850	TX73_009850		glycoside hydrolase/phage tail family protein	-1.17132801921261	-9.18405358785949	FALSE
+carbon source	set2S426	aspen wood chips that have been decomposed by a fungus	TX73_009850	TX73_009850		glycoside hydrolase/phage tail family protein	-1.1508597548556	-8.57574637276982	FALSE
+carbon source	set2S425	aspen wood chips that have been decomposed by a fungus	TX73_009850	TX73_009850		glycoside hydrolase/phage tail family protein	-1.1025625726127	-8.85887784602435	FALSE
+carbon source	set2S426	aspen wood chips that have been decomposed by a fungus	TX73_014670	TX73_014670		ATP-binding protein	-1.22420632610041	-8.85734336058075	FALSE
+carbon source	set2S424	aspen wood chips that have been decomposed by a fungus	TX73_014670	TX73_014670		ATP-binding protein	-1.21900298185846	-9.87230504589185	FALSE
+carbon source	set2S425	aspen wood chips that have been decomposed by a fungus	TX73_014670	TX73_014670		ATP-binding protein	-1.18663357768515	-9.50204010082353	FALSE
+carbon source	set4S67	benzoic acid	TX73_003375	TX73_003375		cyclohexanecarboxylate-CoA ligase	1.35103123259313	9.05812243504482	FALSE
+carbon source	set4S48	benzoic acid	TX73_003375	TX73_003375		cyclohexanecarboxylate-CoA ligase	1.35299099003442	8.21773888391751	FALSE
+carbon source	set4S69	benzoic acid	TX73_003375	TX73_003375		cyclohexanecarboxylate-CoA ligase	1.47143907222306	10.5748559046885	FALSE
+carbon source	set4S46	benzoic acid	TX73_003375	TX73_003375		cyclohexanecarboxylate-CoA ligase	1.47891342528209	10.4827653507795	FALSE
+carbon source	set4S68	benzoic acid	TX73_003375	TX73_003375		cyclohexanecarboxylate-CoA ligase	1.63605600964795	11.2412687714212	FALSE
+carbon source	set4S47	benzoic acid	TX73_003375	TX73_003375		cyclohexanecarboxylate-CoA ligase	1.66302133294907	10.3005792073888	FALSE
+carbon source	set4S67	benzoic acid	TX73_003380	TX73_003380		cyclohexanecarboxyl-CoA dehydrogenase	1.28201272733377	8.52630138465127	FALSE
+carbon source	set4S48	benzoic acid	TX73_003380	TX73_003380		cyclohexanecarboxyl-CoA dehydrogenase	1.3407107043642	9.43338340627185	FALSE
+carbon source	set4S69	benzoic acid	TX73_003380	TX73_003380		cyclohexanecarboxyl-CoA dehydrogenase	1.36886990525372	9.16493347000723	FALSE
+carbon source	set4S47	benzoic acid	TX73_003380	TX73_003380		cyclohexanecarboxyl-CoA dehydrogenase	1.37192469673928	9.63708487798931	FALSE
+carbon source	set4S46	benzoic acid	TX73_003380	TX73_003380		cyclohexanecarboxyl-CoA dehydrogenase	1.42123376965221	9.58375988231055	FALSE
+carbon source	set4S68	benzoic acid	TX73_003380	TX73_003380		cyclohexanecarboxyl-CoA dehydrogenase	1.51782696151043	10.0717066275516	FALSE
+carbon source	set4S50	p-Coumaric acid	TX73_001910	TX73_001910		hypothetical protein	-1.49705149116983	-7.32110344434104	FALSE
+carbon source	set4S71	p-Coumaric acid	TX73_002380	TX73_002380		serine hydrolase	2.26315856220229	18.2785911504047	FALSE
+carbon source	set4S50	p-Coumaric acid	TX73_002380	TX73_002380		serine hydrolase	2.28004447837851	17.8884447284431	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_002380	TX73_002380		serine hydrolase	2.44463567557932	21.0033750925602	FALSE
+carbon source	set4S49	p-Coumaric acid	TX73_002380	TX73_002380		serine hydrolase	2.462171647905	20.6884064254095	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_002380	TX73_002380		serine hydrolase	2.48626491924185	20.8815168661288	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_002380	TX73_002380		serine hydrolase	2.54855594214803	20.3771433229521	FALSE
+carbon source	set4S50	p-Coumaric acid	TX73_002965	TX73_002965		ActS/PrrB/RegB family redox-sensitive histidine kinase	1.781999222393	10.3894017521662	FALSE
+carbon source	set4S71	p-Coumaric acid	TX73_002965	TX73_002965		ActS/PrrB/RegB family redox-sensitive histidine kinase	1.80042031012103	10.314248317229	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_002965	TX73_002965		ActS/PrrB/RegB family redox-sensitive histidine kinase	2.06301279037286	11.2638936510552	FALSE
+carbon source	set4S49	p-Coumaric acid	TX73_002965	TX73_002965		ActS/PrrB/RegB family redox-sensitive histidine kinase	2.12062409521286	11.5500649603209	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_002965	TX73_002965		ActS/PrrB/RegB family redox-sensitive histidine kinase	2.14070072488662	11.4859664488254	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_002965	TX73_002965		ActS/PrrB/RegB family redox-sensitive histidine kinase	2.20353416631955	12.0207965213712	FALSE
+carbon source	set4S50	p-Coumaric acid	TX73_003465	TX73_003465		bifunctional 4-hydroxybenzoate--CoA/benzoate--CoA ligase	-1.372291993041	-7.60681814448005	FALSE
+carbon source	set4S71	p-Coumaric acid	TX73_003465	TX73_003465		bifunctional 4-hydroxybenzoate--CoA/benzoate--CoA ligase	-1.20003551152274	-6.84371320660174	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_003465	TX73_003465		bifunctional 4-hydroxybenzoate--CoA/benzoate--CoA ligase	-1.17630052048169	-6.88921425425806	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_003465	TX73_003465		bifunctional 4-hydroxybenzoate--CoA/benzoate--CoA ligase	-1.00164312640509	-6.55506690882207	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_005175	TX73_005175		protocatechuate 4,5-dioxygenase subunit alpha	1.07362850272861	5.83232115323908	FALSE
+carbon source	set4S49	p-Coumaric acid	TX73_005175	TX73_005175		protocatechuate 4,5-dioxygenase subunit alpha	1.08803622534447	6.88578265421094	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_005180	TX73_005180		class III extradiol dioxygenase family protein	1.0964422739994	7.82041583959294	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_005180	TX73_005180		class III extradiol dioxygenase family protein	1.10394323746799	7.98204625945355	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_005185	TX73_005185		helix-turn-helix domain-containing protein	1.19960480913804	8.38414471491015	TRUE
+carbon source	set4S49	p-Coumaric acid	TX73_005185	TX73_005185		helix-turn-helix domain-containing protein	1.3259567772277	9.69979270882789	TRUE
+carbon source	set4S50	p-Coumaric acid	TX73_005190	TX73_005190		cytochrome P450	1.07395563580566	7.83543356875087	FALSE
+carbon source	set4S49	p-Coumaric acid	TX73_005190	TX73_005190		cytochrome P450	1.09711905737685	7.4966916781266	FALSE
+carbon source	set4S71	p-Coumaric acid	TX73_005190	TX73_005190		cytochrome P450	1.11612886189902	7.89621202929345	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_005190	TX73_005190		cytochrome P450	1.18117533071744	9.59273756076612	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_005190	TX73_005190		cytochrome P450	1.26707344514278	9.38014274104233	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_005190	TX73_005190		cytochrome P450	1.27807045476833	9.31682622058742	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_008775	TX73_008775		SDR family NAD(P)-dependent oxidoreductase	-2.37042763705316	-11.9111615636663	FALSE
+carbon source	set4S71	p-Coumaric acid	TX73_008775	TX73_008775		SDR family NAD(P)-dependent oxidoreductase	-2.1496954738844	-12.2917044401972	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_008775	TX73_008775		SDR family NAD(P)-dependent oxidoreductase	-2.11890963217581	-9.60576777198464	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_008775	TX73_008775		SDR family NAD(P)-dependent oxidoreductase	-1.94797145496253	-10.2357950587877	FALSE
+carbon source	set4S49	p-Coumaric acid	TX73_008775	TX73_008775		SDR family NAD(P)-dependent oxidoreductase	-1.90273274840834	-9.57306680299027	FALSE
+carbon source	set4S50	p-Coumaric acid	TX73_008775	TX73_008775		SDR family NAD(P)-dependent oxidoreductase	-1.89969835622714	-8.99459479454399	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_009185	TX73_009185		crotonase/enoyl-CoA hydratase family protein	1.0005449980502	5.41128791281075	FALSE
+carbon source	set4S50	p-Coumaric acid	TX73_009190	TX73_009190		feruloyl-CoA synthase	1.26396103334448	10.0357259652434	TRUE
+carbon source	set4S71	p-Coumaric acid	TX73_009190	TX73_009190		feruloyl-CoA synthase	1.31053983914055	9.42140973491914	TRUE
+carbon source	set4S72	p-Coumaric acid	TX73_009190	TX73_009190		feruloyl-CoA synthase	1.85297631744415	14.3614595729122	TRUE
+carbon source	set4S51	p-Coumaric acid	TX73_009190	TX73_009190		feruloyl-CoA synthase	1.86177772578429	14.3968469061624	TRUE
+carbon source	set4S49	p-Coumaric acid	TX73_009190	TX73_009190		feruloyl-CoA synthase	1.90225603344139	15.4615873475494	TRUE
+carbon source	set4S70	p-Coumaric acid	TX73_009190	TX73_009190		feruloyl-CoA synthase	1.90539326683949	14.2631535706892	TRUE
+carbon source	set4S50	p-Coumaric acid	TX73_009195	TX73_009195		thioesterase family protein	1.19167135884936	5.08749512465239	FALSE
+carbon source	set4S71	p-Coumaric acid	TX73_009195	TX73_009195		thioesterase family protein	1.23554627786847	5.67854930508113	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_009195	TX73_009195		thioesterase family protein	1.29903111852468	5.57471125421109	FALSE
+carbon source	set4S49	p-Coumaric acid	TX73_009195	TX73_009195		thioesterase family protein	1.30216994441466	5.50664319259018	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_009195	TX73_009195		thioesterase family protein	1.34333286233261	5.39557245463591	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_009195	TX73_009195		thioesterase family protein	1.62422545189073	6.14074147627516	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_010075	TX73_010075		TetR/AcrR family transcriptional regulator	1.17671920353561	6.52073616468935	FALSE
+carbon source	set4S49	p-Coumaric acid	TX73_010075	TX73_010075		TetR/AcrR family transcriptional regulator	1.25702440096416	7.05130475050392	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_010075	TX73_010075		TetR/AcrR family transcriptional regulator	1.36170316695605	7.01242494249129	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_010075	TX73_010075		TetR/AcrR family transcriptional regulator	1.54151761668074	7.08100378043619	FALSE
+carbon source	set4S49	p-Coumaric acid	TX73_019255	TX73_019255		3-hydroxyacyl-CoA dehydrogenase NAD-binding domain-containing protein	1.39243033536425	11.1489529844391	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_019255	TX73_019255		3-hydroxyacyl-CoA dehydrogenase NAD-binding domain-containing protein	1.41140806366213	11.4105052002266	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_019255	TX73_019255		3-hydroxyacyl-CoA dehydrogenase NAD-binding domain-containing protein	1.42449888231302	11.6604782217565	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_019255	TX73_019255		3-hydroxyacyl-CoA dehydrogenase NAD-binding domain-containing protein	1.47677224533155	11.6715862614336	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_020665	TX73_020665		HAD family hydrolase	-1.7136087867864	-5.49823579293883	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_021510	TX73_021510		hypothetical protein	-1.80315431883349	-6.94581757425	FALSE
+carbon source	set4S50	p-Coumaric acid	TX73_021510	TX73_021510		hypothetical protein	-1.33107684909544	-5.90864390010647	FALSE
+carbon source	set4S50	p-Coumaric acid	TX73_021760	TX73_021760		4-hydroxyphenyl-beta-ketoacyl-CoA hydrolase	-3.54506664979563	-12.40247208329	FALSE
+carbon source	set4S70	p-Coumaric acid	TX73_021760	TX73_021760		4-hydroxyphenyl-beta-ketoacyl-CoA hydrolase	-3.48457847914299	-13.0508348127028	FALSE
+carbon source	set4S49	p-Coumaric acid	TX73_021760	TX73_021760		4-hydroxyphenyl-beta-ketoacyl-CoA hydrolase	-3.38452025736983	-10.6074254257937	FALSE
+carbon source	set4S51	p-Coumaric acid	TX73_021760	TX73_021760		4-hydroxyphenyl-beta-ketoacyl-CoA hydrolase	-3.15651615315042	-12.0357348294843	FALSE
+carbon source	set4S72	p-Coumaric acid	TX73_021760	TX73_021760		4-hydroxyphenyl-beta-ketoacyl-CoA hydrolase	-3.13388090756877	-12.8413700903386	FALSE
+carbon source	set4S71	p-Coumaric acid	TX73_021760	TX73_021760		4-hydroxyphenyl-beta-ketoacyl-CoA hydrolase	-2.94063688563691	-9.97814654669074	FALSE
+carbon source dark aerobic	set2S460	Sodium butyrate	TX73_005490	TX73_005490		folate-binding protein YgfZ	-1.28018684996902	-5.62679833302081	FALSE
+carbon source dark aerobic	set2S460	Sodium butyrate	TX73_008710	TX73_008710		superoxide dismutase	-1.65295382754383	-5.33355606705841	FALSE
+carbon source dark aerobic	set2S458	Sodium butyrate	TX73_008710	TX73_008710		superoxide dismutase	-1.63524053018987	-6.23277405290891	FALSE
+carbon source dark aerobic	set2S458	Sodium butyrate	TX73_014790	TX73_014790		iron-sulfur cluster insertion protein ErpA	-1.0678995983836	-5.88906896615525	FALSE
+carbon source dark aerobic	set2S460	Sodium butyrate	TX73_020985	TX73_020985		aldolase/citrate lyase family protein	-1.6723533325802	-6.07314318149735	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_000160	TX73_000160		DUF1674 domain-containing protein	-1.01395661137859	-5.63760885946732	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_000410	TX73_000410		PAS-domain containing protein	1.67327774535316	5.93320708623424	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_000885	TX73_000885		divergent polysaccharide deacetylase family protein	2.891294455181	27.6122576289569	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_000885	TX73_000885		divergent polysaccharide deacetylase family protein	3.07278053590078	29.7673587427023	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_001410	TX73_001410		ubiquinone biosynthesis hydroxylase	-3.08621079168352	-14.3146760249911	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_001410	TX73_001410		ubiquinone biosynthesis hydroxylase	-2.81228140980431	-12.2650259357414	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_001410	TX73_001410		ubiquinone biosynthesis hydroxylase	-1.02649382252038	-7.29665428837126	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_001575	TX73_001575		Tim44/TimA family putative adaptor protein	-2.17221952159615	-11.4124355932596	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_001575	TX73_001575		Tim44/TimA family putative adaptor protein	-1.42606760260101	-7.84080095632071	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_002680	TX73_002680		Fur family transcriptional regulator	-1.28956919345241	-7.3404622361226	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_002680	TX73_002680		Fur family transcriptional regulator	-1.23738427852652	-7.39656407680346	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_003155	TX73_003155		hydroxyacylglutathione hydrolase	-1.77303538103751	-8.5788954072444	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_003155	TX73_003155		hydroxyacylglutathione hydrolase	-1.71534994364086	-6.26370741308068	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_003680	TX73_003680		5,6-dimethylbenzimidazole synthase	1.0527589482158	9.08333318127881	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_003780	TX73_003780		LysR family transcriptional regulator	-4.74370752936933	-18.2702663535211	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_003780	TX73_003780		LysR family transcriptional regulator	-3.48191359458255	-15.7616048569612	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_003785	TX73_003785		formate dehydrogenase subunit gamma	-4.84377683568374	-10.6667725750911	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_003785	TX73_003785		formate dehydrogenase subunit gamma	-3.83049384685459	-9.37500292524911	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_003790	TX73_003790		NADH-quinone oxidoreductase subunit NuoF	-4.41205789610723	-19.9786433278901	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_003790	TX73_003790		NADH-quinone oxidoreductase subunit NuoF	-4.11145953857606	-16.5308504543046	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_003795	TX73_003795		formate dehydrogenase subunit alpha	-4.58160405125713	-20.1412211181537	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_003795	TX73_003795		formate dehydrogenase subunit alpha	-4.25970805776281	-17.91696331917	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_003800	TX73_003800		formate dehydrogenase accessory sulfurtransferase FdhD	-4.69236375732996	-12.8643139230782	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_003800	TX73_003800		formate dehydrogenase accessory sulfurtransferase FdhD	-3.79896897615903	-11.3449114197046	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_003805	TX73_003805		formate dehydrogenase subunit delta	-3.92619432321928	-5.41911230717745	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_004195	TX73_004195		hypothetical protein	2.54354404137681	17.3337180715208	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_004195	TX73_004195		hypothetical protein	2.76482546187595	17.8229880884054	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_004285	TX73_004285		cytochrome c oxidase subunit II	-3.39270879689151	-15.7374388938252	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_004285	TX73_004285		cytochrome c oxidase subunit II	-2.88207544943571	-11.0382505622978	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_004285	TX73_004285		cytochrome c oxidase subunit II	-1.03658298676827	-5.21832992476862	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_004285	TX73_004285		cytochrome c oxidase subunit II	-1.01400021221753	-7.06999278680819	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_004290	TX73_004290		cytochrome c oxidase subunit I	-3.71448948989391	-14.5384319951192	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_004290	TX73_004290		cytochrome c oxidase subunit I	-2.89778286636726	-10.5605678563462	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_004295	TX73_004295		heme o synthase	-3.39027051985026	-10.6283167670883	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_004295	TX73_004295		heme o synthase	-2.89931809271421	-9.16906468709693	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_004295	TX73_004295		heme o synthase	-1.03209515849694	-5.623476561194	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_004300	TX73_004300		CoxF protein	-3.84064424776256	-6.86252627482337	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_004305	TX73_004305		cytochrome c oxidase assembly protein	-2.91266399877073	-7.01975448740133	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_004305	TX73_004305		cytochrome c oxidase assembly protein	-2.90127492703516	-5.4579794530841	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_004310	TX73_004310		cytochrome c oxidase subunit 3	-4.36054177732645	-15.2606529930124	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_004310	TX73_004310		cytochrome c oxidase subunit 3	-3.35796739589857	-11.7018024109986	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_004310	TX73_004310		cytochrome c oxidase subunit 3	-1.0856708503376	-7.18758611684171	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_004320	TX73_004320		SURF1 family protein	-3.65351424583244	-12.4065975661729	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_004320	TX73_004320		SURF1 family protein	-2.82476359091191	-8.66462147607859	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_004320	TX73_004320		SURF1 family protein	-1.24444548286592	-5.77662121100576	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_004320	TX73_004320		SURF1 family protein	-1.11822374317274	-6.47055636516416	FALSE
+carbon source dark aerobic	set2S454	Sodium succinate dibasic hexahydrate	TX73_004320	TX73_004320		SURF1 family protein	-1.02739316514264	-5.39732830512386	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_004845	TX73_004845		fructose-bisphosphate aldolase class I	1.12014344819623	9.41272883706045	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_004845	TX73_004845		fructose-bisphosphate aldolase class I	1.27082107364532	11.4898383382991	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_005490	TX73_005490		folate-binding protein YgfZ	-4.1647499897122	-14.9149751828947	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_005490	TX73_005490		folate-binding protein YgfZ	-3.84054937908098	-13.8298802169691	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_005515	TX73_005515		NUDIX hydrolase	-1.72118866873674	-8.20014622685449	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_005515	TX73_005515		NUDIX hydrolase	-1.05299333625302	-5.09237008725364	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_005845	TX73_005845		NAD(P)-binding protein	2.54677452421718	23.6930802836517	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_005845	TX73_005845		NAD(P)-binding protein	2.59179296786231	24.3347045555208	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_006510	TX73_006510		sigma-54 dependent transcriptional regulator	2.78620516984934	23.9110804591326	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_006510	TX73_006510		sigma-54 dependent transcriptional regulator	3.05770724653258	27.5223066927289	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_006690	TX73_006690		flagellar hook capping FlgD N-terminal domain-containing protein	1.5400280935939	10.6434428756119	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_006690	TX73_006690		flagellar hook capping FlgD N-terminal domain-containing protein	1.70381437295542	13.0389949370247	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_006695	TX73_006695		flagellar hook-length control protein FliK	3.11352861319233	29.6606134254123	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_006695	TX73_006695		flagellar hook-length control protein FliK	3.27227552720847	31.4532016854217	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_007780	TX73_007780		oxygen-dependent coproporphyrinogen oxidase	-4.26086867958061	-11.7866826324066	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_007780	TX73_007780		oxygen-dependent coproporphyrinogen oxidase	-3.99371493686202	-9.99586753407107	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_007780	TX73_007780		oxygen-dependent coproporphyrinogen oxidase	-1.74997316535574	-9.68300252109541	FALSE
+carbon source dark aerobic	set2S456	Sodium succinate dibasic hexahydrate	TX73_007780	TX73_007780		oxygen-dependent coproporphyrinogen oxidase	-1.7154133611421	-9.23208300684292	FALSE
+carbon source dark aerobic	set2S454	Sodium succinate dibasic hexahydrate	TX73_007780	TX73_007780		oxygen-dependent coproporphyrinogen oxidase	-1.62582786594796	-7.9204193870727	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_007780	TX73_007780		oxygen-dependent coproporphyrinogen oxidase	-1.6222765946806	-8.43075486412488	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_007780	TX73_007780		oxygen-dependent coproporphyrinogen oxidase	-1.60478733159811	-6.48515360850889	FALSE
+carbon source dark aerobic	set2S455	Sodium succinate dibasic hexahydrate	TX73_007780	TX73_007780		oxygen-dependent coproporphyrinogen oxidase	-1.54010354608646	-8.06177776480642	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_008135	TX73_008135		YcjX family protein	1.81058835469681	11.3694079321109	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_008135	TX73_008135		YcjX family protein	1.82535593449291	10.0499037641731	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_008250	TX73_008250		Grx4 family monothiol glutaredoxin	-6.13941089661559	-7.30986819925728	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_008250	TX73_008250		Grx4 family monothiol glutaredoxin	-5.61002565822606	-7.69182059605297	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_008580	TX73_008580		hypothetical protein	1.43217538574452	6.15405977206379	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_008710	TX73_008710		superoxide dismutase	-3.26691114672314	-7.00930717996498	FALSE
+carbon source dark aerobic	set2S456	Sodium succinate dibasic hexahydrate	TX73_008710	TX73_008710		superoxide dismutase	-2.88300667593274	-7.20834756850785	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_008710	TX73_008710		superoxide dismutase	-2.1480060421709	-5.37077096902326	FALSE
+carbon source dark aerobic	set2S454	Sodium succinate dibasic hexahydrate	TX73_008710	TX73_008710		superoxide dismutase	-2.08214318380351	-6.28671344146594	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_008710	TX73_008710		superoxide dismutase	-1.8124009477459	-6.02105735194092	FALSE
+carbon source dark aerobic	set2S455	Sodium succinate dibasic hexahydrate	TX73_008710	TX73_008710		superoxide dismutase	-1.79373042802842	-6.73784843962291	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_009305	TX73_009305		hypothetical protein	-1.84028359233748	-6.66650226587299	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_009995	TX73_009995		cation-efflux pump	-1.35289675435561	-8.21033364522342	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_010175	TX73_010175		Mrp/NBP35 family ATP-binding protein	-4.72931143192726	-15.5270103991268	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_010175	TX73_010175		Mrp/NBP35 family ATP-binding protein	-4.54810491389017	-15.8621135702997	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_010335	TX73_010335		ABC transporter ATP-binding protein/permease	-1.37220688531915	-10.7683893830609	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_010335	TX73_010335		ABC transporter ATP-binding protein/permease	-1.3058717436559	-9.77803216776246	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_010355	TX73_010355		MotA/TolQ/ExbB proton channel family protein	3.19659936897957	26.9055599099059	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_010355	TX73_010355		MotA/TolQ/ExbB proton channel family protein	3.27708510722743	28.2062550570308	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_010360	TX73_010360		flagellar motor protein MotB	1.03963841003046	8.69505077762784	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_010360	TX73_010360		flagellar motor protein MotB	1.0851897008081	8.78408162678784	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_011325	TX73_011325		Ppx/GppA phosphatase family protein	-1.87980574135021	-11.7560423091409	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_011325	TX73_011325		Ppx/GppA phosphatase family protein	-1.62619608282034	-9.5994282858988	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_011770	TX73_011770		ABC transporter ATP-binding protein	-1.76872134690887	-9.54739340481748	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_011770	TX73_011770		ABC transporter ATP-binding protein	-1.40284586878443	-7.57439884713344	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_011770	TX73_011770		ABC transporter ATP-binding protein	-1.38079504323855	-7.53718555779122	FALSE
+carbon source dark aerobic	set2S454	Sodium succinate dibasic hexahydrate	TX73_011770	TX73_011770		ABC transporter ATP-binding protein	-1.26683401642522	-6.50702549181651	FALSE
+carbon source dark aerobic	set2S456	Sodium succinate dibasic hexahydrate	TX73_011770	TX73_011770		ABC transporter ATP-binding protein	-1.20686182869404	-6.76292926771192	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_011770	TX73_011770		ABC transporter ATP-binding protein	-1.17008940331931	-5.05248020958877	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_011770	TX73_011770		ABC transporter ATP-binding protein	-1.14497989008431	-7.43267087844421	FALSE
+carbon source dark aerobic	set2S455	Sodium succinate dibasic hexahydrate	TX73_011770	TX73_011770		ABC transporter ATP-binding protein	-1.14397221595756	-6.54874024206338	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_011775	TX73_011775		ABC transporter ATP-binding protein	-1.51881060304482	-7.23226179532343	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_011775	TX73_011775		ABC transporter ATP-binding protein	-1.4924470884911	-8.62814483845539	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_011775	TX73_011775		ABC transporter ATP-binding protein	-1.4616546083064	-7.87796415626828	FALSE
+carbon source dark aerobic	set2S454	Sodium succinate dibasic hexahydrate	TX73_011775	TX73_011775		ABC transporter ATP-binding protein	-1.43507022960945	-6.78844343497766	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_011775	TX73_011775		ABC transporter ATP-binding protein	-1.28892241746254	-5.49517898294254	FALSE
+carbon source dark aerobic	set2S455	Sodium succinate dibasic hexahydrate	TX73_011775	TX73_011775		ABC transporter ATP-binding protein	-1.20942467366706	-6.40055357292241	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_011775	TX73_011775		ABC transporter ATP-binding protein	-1.17140214289231	-6.09914065143415	FALSE
+carbon source dark aerobic	set2S456	Sodium succinate dibasic hexahydrate	TX73_011775	TX73_011775		ABC transporter ATP-binding protein	-1.11012223040278	-6.24343075860522	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_011780	TX73_011780		branched-chain amino acid ABC transporter permease	-2.06162277214807	-6.682306569037	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_011780	TX73_011780		branched-chain amino acid ABC transporter permease	-1.8243796620643	-6.71767878464193	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_011780	TX73_011780		branched-chain amino acid ABC transporter permease	-1.78316077371643	-8.44034870619566	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_011780	TX73_011780		branched-chain amino acid ABC transporter permease	-1.43771425209464	-6.55478321834883	FALSE
+carbon source dark aerobic	set2S454	Sodium succinate dibasic hexahydrate	TX73_011780	TX73_011780		branched-chain amino acid ABC transporter permease	-1.27534539285116	-5.19222519124327	FALSE
+carbon source dark aerobic	set2S456	Sodium succinate dibasic hexahydrate	TX73_011780	TX73_011780		branched-chain amino acid ABC transporter permease	-1.21712207736019	-5.35947442567531	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_011780	TX73_011780		branched-chain amino acid ABC transporter permease	-1.15143662367822	-5.68619888081779	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_011785	TX73_011785		branched-chain amino acid ABC transporter permease	-1.70296489757137	-9.41938197339523	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_011785	TX73_011785		branched-chain amino acid ABC transporter permease	-1.54404904451441	-10.0531652830155	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_011785	TX73_011785		branched-chain amino acid ABC transporter permease	-1.34046082791222	-7.89366223873983	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_011785	TX73_011785		branched-chain amino acid ABC transporter permease	-1.33544228736683	-5.95166218241263	FALSE
+carbon source dark aerobic	set2S454	Sodium succinate dibasic hexahydrate	TX73_011785	TX73_011785		branched-chain amino acid ABC transporter permease	-1.32076547525459	-7.63580557231889	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_011785	TX73_011785		branched-chain amino acid ABC transporter permease	-1.27919202467369	-7.66790022333872	FALSE
+carbon source dark aerobic	set2S456	Sodium succinate dibasic hexahydrate	TX73_011785	TX73_011785		branched-chain amino acid ABC transporter permease	-1.27697582937967	-8.14466264161888	FALSE
+carbon source dark aerobic	set2S455	Sodium succinate dibasic hexahydrate	TX73_011785	TX73_011785		branched-chain amino acid ABC transporter permease	-1.12636715383336	-6.78243001004002	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_012655	TX73_012655		biotin transporter BioY	3.64930127336485	7.41630424045547	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_012655	TX73_012655		biotin transporter BioY	3.69240471464843	7.59329312806824	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_012660	TX73_012660		dicarboxylate/amino acid:cation symporter	-2.69313824859277	-13.2538681357225	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_012660	TX73_012660		dicarboxylate/amino acid:cation symporter	-2.67835840481806	-11.0217695834262	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_012735	TX73_012735		cysteine desulfurase family protein	-1.95082921838334	-11.9363644562794	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_012735	TX73_012735		cysteine desulfurase family protein	-1.7214650456574	-9.97626520042985	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_012770	TX73_012770		iron-sulfur cluster assembly accessory protein	-5.18368663698946	-9.32423762250188	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_012770	TX73_012770		iron-sulfur cluster assembly accessory protein	-4.0391835952053	-7.441957055002	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_013040	TX73_013040		cold-shock protein	1.59268452771401	14.1516617174678	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_013040	TX73_013040		cold-shock protein	1.63130136531864	14.0038139441388	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_013300	TX73_013300		efflux transporter outer membrane subunit	1.04897615776971	8.75561047152632	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_013305	TX73_013305		efflux RND transporter periplasmic adaptor subunit	1.11531764627885	9.71613393941553	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_013310	TX73_013310		efflux RND transporter permease subunit	1.20236061765269	10.8670629200161	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_013315	TX73_013315		efflux RND transporter permease subunit	1.13403733695544	10.2327391927218	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_013365	TX73_013365		DUF2497 domain-containing protein	1.15618053693706	9.5315615744435	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_013365	TX73_013365		DUF2497 domain-containing protein	1.33288008497794	11.2503143734833	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_013840	TX73_013840		AEC family transporter	-1.40406161097775	-7.58339204664861	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_013840	TX73_013840		AEC family transporter	-1.24486023252993	-5.86298359102524	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_013845	TX73_013845		UbiH/UbiF family hydroxylase	-3.77252148495803	-13.0268691013457	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_013845	TX73_013845		UbiH/UbiF family hydroxylase	-3.71966659346014	-13.519210831295	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_013845	TX73_013845		UbiH/UbiF family hydroxylase	-1.20066901287043	-6.77865049586871	FALSE
+carbon source dark aerobic	set2S456	Sodium succinate dibasic hexahydrate	TX73_013845	TX73_013845		UbiH/UbiF family hydroxylase	-1.19756918712056	-6.73613358606838	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_013845	TX73_013845		UbiH/UbiF family hydroxylase	-1.13826286952577	-5.14844962086752	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_014290	TX73_014290		COX15/CtaA family protein	-4.6281258275108	-13.0834031069106	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_014290	TX73_014290		COX15/CtaA family protein	-3.61693598675764	-12.0035789724999	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_014290	TX73_014290		COX15/CtaA family protein	-1.11029752930807	-5.6981414984796	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_014290	TX73_014290		COX15/CtaA family protein	-1.07969795050865	-6.83419520223775	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_014395	TX73_014395		MBL fold metallo-hydrolase	-2.54510605747997	-8.02239550678475	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_014395	TX73_014395		MBL fold metallo-hydrolase	-2.19238644919021	-7.78381220201985	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_014770	TX73_014770		beta-N-acetylhexosaminidase	-1.70119322418146	-10.9556963611259	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_014770	TX73_014770		beta-N-acetylhexosaminidase	-1.50443614181061	-10.0719982640345	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_014790	TX73_014790		iron-sulfur cluster insertion protein ErpA	-4.46686496083042	-9.58844481899362	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_014790	TX73_014790		iron-sulfur cluster insertion protein ErpA	-3.94558262806677	-8.10683145910324	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_015200	TX73_015200		DUF1467 family protein	-2.99616845394681	-7.80838883745968	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_015200	TX73_015200		DUF1467 family protein	-2.85179766234657	-7.37884462356187	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_015275	TX73_015275		FkbM family methyltransferase	-2.04167028876309	-7.66076824156922	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_015275	TX73_015275		FkbM family methyltransferase	-1.92639796560705	-6.72627101610174	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_015730	TX73_015730		dihydrofolate reductase	-1.00498008662925	-7.14847040012101	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_015760	TX73_015760		bestrophin family protein	3.30470533675848	29.4617279846502	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_015760	TX73_015760		bestrophin family protein	3.40415832617206	31.5270217060604	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_015780	TX73_015780		CDP-alcohol phosphatidyltransferase family protein	1.48856232131148	11.8612871892314	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_015860	TX73_015860		16S rRNA (adenine(1518)-N(6)/adenine(1519)-N(6))- dimethyltransferase RsmA	-1.94197617968617	-6.57396114751593	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_015860	TX73_015860		16S rRNA (adenine(1518)-N(6)/adenine(1519)-N(6))- dimethyltransferase RsmA	-1.50039407766579	-6.95512104679454	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_016165	TX73_016165		DUF983 domain-containing protein	-2.68503093117515	-8.48297903247681	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_016165	TX73_016165		DUF983 domain-containing protein	-2.12461105563355	-6.58957875645231	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_016235	TX73_016235		HIT family protein	-5.02639109379686	-10.2099072574526	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_016235	TX73_016235		HIT family protein	-4.48777840865549	-8.0137547759573	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_016320	TX73_016320		hypothetical protein	1.52958712953326	8.2198946420262	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_016320	TX73_016320		hypothetical protein	1.84217858645842	8.96618300197011	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_016370	TX73_016370		DUF2384 domain-containing protein	-1.46803203165262	-6.34286927464716	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_017520	TX73_017520		transglycosylase SLT domain-containing protein	2.55050813905862	20.4256309574474	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_017520	TX73_017520		transglycosylase SLT domain-containing protein	2.63698409180037	21.0172343151621	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_017690	TX73_017690		transglutaminase-like cysteine peptidase	2.69542244436303	19.7716657790567	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_017690	TX73_017690		transglutaminase-like cysteine peptidase	2.80333180555542	20.8174128945157	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_017715	TX73_017715		gamma carbonic anhydrase family protein	-1.91661751261542	-10.3521233282412	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_017715	TX73_017715		gamma carbonic anhydrase family protein	-1.86281682203045	-12.0972541979834	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_017755	TX73_017755		FAD-dependent monooxygenase	-3.9953997666508	-22.4763757365971	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_017755	TX73_017755		FAD-dependent monooxygenase	-3.41297587151955	-18.5818591501069	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_017755	TX73_017755		FAD-dependent monooxygenase	-1.94480109174399	-11.7655971452414	FALSE
+carbon source dark aerobic	set2S454	Sodium succinate dibasic hexahydrate	TX73_017755	TX73_017755		FAD-dependent monooxygenase	-1.53928079768852	-11.7771569977206	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_017755	TX73_017755		FAD-dependent monooxygenase	-1.44192360667317	-10.9940302680029	FALSE
+carbon source dark aerobic	set2S456	Sodium succinate dibasic hexahydrate	TX73_017755	TX73_017755		FAD-dependent monooxygenase	-1.44116015853122	-12.2753287670174	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_017990	TX73_017990		energy transducer TonB	-1.74073234600215	-8.64876957722361	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_017990	TX73_017990		energy transducer TonB	-1.62834287496017	-8.08124842587685	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_017995	TX73_017995		TonB system transport protein ExbD	-1.81589559719769	-6.97347520651904	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018000	TX73_018000		tonB-system energizer ExbB	-2.09382580671112	-9.41100892614648	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_018000	TX73_018000		tonB-system energizer ExbB	-1.47031579959101	-6.65698292381811	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018005	TX73_018005		Fe2+-dependent dioxygenase	-1.61641802865584	-8.06961691700517	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_018005	TX73_018005		Fe2+-dependent dioxygenase	-1.55509126744491	-6.69745024992055	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018010	TX73_018010		TonB-dependent receptor	-1.57339354727742	-11.0415333619926	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_018010	TX73_018010		TonB-dependent receptor	-1.23131583187005	-8.71022630614118	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018015	TX73_018015		hypothetical protein	-2.4873071373912	-5.12711805361159	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018070	TX73_018070		DUF2065 domain-containing protein	-1.76502711184231	-5.83681947545496	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_018070	TX73_018070		DUF2065 domain-containing protein	-1.48725390319866	-5.02313055713952	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018175	TX73_018175		ABC transporter ATP-binding protein	-1.19241224770505	-7.10476069828186	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018180	TX73_018180		ABC transporter permease	-1.47465209037795	-6.47799620017705	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_018180	TX73_018180		ABC transporter permease	-1.23228900649356	-6.20381927173439	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018370	TX73_018370		TetR/AcrR family transcriptional regulator	-1.01060344940695	-5.51652763385625	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018405	TX73_018405		SDR family oxidoreductase	-1.34551321620165	-5.27223427672824	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018660	TX73_018660		(2Fe-2S)-binding protein	-1.66141003281541	-9.51219735799009	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_018660	TX73_018660		(2Fe-2S)-binding protein	-1.51572641756299	-7.15737025738342	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018725	TX73_018725		3-mercaptopyruvate sulfurtransferase	-1.10844796677148	-7.94830673075773	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_018770	TX73_018770		hypothetical protein	1.26983639067639	7.89167435897124	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018770	TX73_018770		hypothetical protein	1.31846430518067	8.64562712614996	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_018935	TX73_018935		molybdenum cofactor guanylyltransferase MobA	-4.15478459475385	-10.5984108678725	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_018935	TX73_018935		molybdenum cofactor guanylyltransferase MobA	-3.95693007218155	-9.66097385948887	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_019055	TX73_019055		Flp pilus assembly protein CpaB	2.07846239260197	7.87271717718507	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_019055	TX73_019055		Flp pilus assembly protein CpaB	2.12162282513719	9.63604269945877	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_019100	TX73_019100		C40 family peptidase	-1.26995809322403	-6.542270265544	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_019135	TX73_019135		cytochrome c family protein	-2.61327243764142	-12.7112796922122	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_019135	TX73_019135		cytochrome c family protein	-2.28958881680698	-11.8999244815093	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_019330	TX73_019330		aminobacteriohopanetriol synthase HpnO	1.55572765619391	10.726717987973	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_019535	TX73_019535		DUF6489 family protein	-1.02279632418636	-5.39906415203975	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020010	TX73_020010		hypothetical protein	-1.23127922156334	-6.3488124376685	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020135	TX73_020135		flagellar biosynthesis protein FlhB	2.42788836149347	17.0218627635276	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020135	TX73_020135		flagellar biosynthesis protein FlhB	2.57264659697392	17.0428523095699	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020140	TX73_020140		flagellar biosynthetic protein FliR	2.75038020240218	24.6600620897386	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020140	TX73_020140		flagellar biosynthetic protein FliR	2.91801164165617	27.1229510787682	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020145	TX73_020145		flagellar biosynthesis protein FliQ	2.61932005858168	22.7843572794366	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020145	TX73_020145		flagellar biosynthesis protein FliQ	2.84942699754859	26.7764127092197	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020150	TX73_020150		flagellar hook-basal body complex protein FliE	2.86586701458633	25.6473531612298	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020150	TX73_020150		flagellar hook-basal body complex protein FliE	2.99690840103625	26.0696469559648	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020160	TX73_020160		flagellar basal body rod protein FlgB	2.94142693670974	23.361440957942	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020160	TX73_020160		flagellar basal body rod protein FlgB	3.07806041383808	25.7935423812842	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020165	TX73_020165		flagellar biosynthetic protein FliO	1.75022902880047	9.53662405059781	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020165	TX73_020165		flagellar biosynthetic protein FliO	1.76954023381578	9.56088751166006	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020175	TX73_020175		tetratricopeptide repeat protein	3.08062069301332	29.381728875343	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020175	TX73_020175		tetratricopeptide repeat protein	3.20689444809439	30.5305153331935	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020195	TX73_020195		flagellar protein FlbB	3.13514014292948	28.6337010572195	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020195	TX73_020195		flagellar protein FlbB	3.19109801581371	29.249786950583	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020200	TX73_020200		DUF6468 domain-containing protein	2.46721583025851	13.110828806578	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020200	TX73_020200		DUF6468 domain-containing protein	2.65043412270196	13.030174676295	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020210	TX73_020210		flagellar basal body-associated protein FliL	2.99751651529707	20.7746128157646	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020210	TX73_020210		flagellar basal body-associated protein FliL	3.22139989169239	22.0886128073597	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020215	TX73_020215		flagellar basal-body rod protein FlgF	3.73811511215805	35.4939266669031	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020215	TX73_020215		flagellar basal-body rod protein FlgF	3.92417870862388	38.1968483141251	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020225	TX73_020225		flagellar basal body P-ring formation chaperone FlgA	3.24376022665537	28.9689004775906	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020225	TX73_020225		flagellar basal body P-ring formation chaperone FlgA	3.33663880326409	30.7411769268334	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020230	TX73_020230		flagellar basal body L-ring protein FlgH	2.53119087224182	16.5823661254468	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020230	TX73_020230		flagellar basal body L-ring protein FlgH	2.63057957301802	19.1255253833419	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020260	TX73_020260		flagellar assembly protein FliX	3.3181754686736	28.7902520136451	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020260	TX73_020260		flagellar assembly protein FliX	3.38537448386382	28.7480709160813	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020265	TX73_020265		flagellar basal body P-ring protein FlgI	3.48183946125147	33.1291056181809	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020265	TX73_020265		flagellar basal body P-ring protein FlgI	3.57846415443295	34.3482691377693	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020270	TX73_020270		flagellar assembly peptidoglycan hydrolase FlgJ	3.5715903988228	21.8236149334862	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020270	TX73_020270		flagellar assembly peptidoglycan hydrolase FlgJ	3.64231066158964	22.4377664652508	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020275	TX73_020275		hypothetical protein	1.8508073277796	13.0803295538598	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020275	TX73_020275		hypothetical protein	1.88743332404594	12.637149664623	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020285	TX73_020285		flagellar biosynthesis regulator FlaF	3.07719903862617	26.1823657750782	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020285	TX73_020285		flagellar biosynthesis regulator FlaF	3.29731297968051	30.7670665436484	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020370	TX73_020370		flagellar biosynthesis protein FlgL	2.43705671372188	21.2045355376843	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020370	TX73_020370		flagellar biosynthesis protein FlgL	2.47903708664296	22.2537470043457	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020375	TX73_020375		flagellar hook-associated protein FlgK	1.53281153226971	13.6783974886267	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020375	TX73_020375		flagellar hook-associated protein FlgK	1.57014420127475	13.0250050843926	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020380	TX73_020380		flagellar hook-basal body complex protein	3.20823595448384	27.5234464138237	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020380	TX73_020380		flagellar hook-basal body complex protein	3.37096443803353	29.9707299495886	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_020485	TX73_020485		NAD(P)/FAD-dependent oxidoreductase	-4.94613011784229	-13.1893522467251	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_020485	TX73_020485		NAD(P)/FAD-dependent oxidoreductase	-3.38162933008207	-11.1762148231221	FALSE
+carbon source dark aerobic	set2S456	Sodium succinate dibasic hexahydrate	TX73_020485	TX73_020485		NAD(P)/FAD-dependent oxidoreductase	-1.58866247649649	-8.94945140998591	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_020485	TX73_020485		NAD(P)/FAD-dependent oxidoreductase	-1.55948548565296	-5.62105447626278	FALSE
+carbon source dark aerobic	set2S453	Sodium succinate dibasic hexahydrate	TX73_020485	TX73_020485		NAD(P)/FAD-dependent oxidoreductase	-1.40832913335332	-6.692386378297	FALSE
+carbon source dark aerobic	set2S454	Sodium succinate dibasic hexahydrate	TX73_020485	TX73_020485		NAD(P)/FAD-dependent oxidoreductase	-1.29984832189314	-6.08077379379254	FALSE
+carbon source dark aerobic	set2S455	Sodium succinate dibasic hexahydrate	TX73_020485	TX73_020485		NAD(P)/FAD-dependent oxidoreductase	-1.29099015456126	-7.54378696165308	FALSE
+carbon source dark aerobic	set2S452	Sodium succinate dibasic hexahydrate	TX73_020485	TX73_020485		NAD(P)/FAD-dependent oxidoreductase	-1.17655741489293	-6.34304653024225	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_022865	TX73_022865		DeoR/GlpR family DNA-binding transcription regulator	-1.23579723378643	-6.78807275950127	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_022865	TX73_022865		DeoR/GlpR family DNA-binding transcription regulator	-1.15840098117146	-7.37436904368236	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_024400	TX73_024400		4-oxalomesaconate tautomerase	-1.28612299506042	-7.7915926327371	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_024400	TX73_024400		4-oxalomesaconate tautomerase	-1.12715970451258	-6.20309280685377	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_024405	TX73_024405		amidohydrolase family protein	-1.39837971697168	-6.01664502928146	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_024410	TX73_024410		4-carboxy-4-hydroxy-2-oxoadipate aldolase/oxaloacetate decarboxylase	-1.30757204253876	-5.52258275902644	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_024450	TX73_024450		DedA family protein	-2.08494320398141	-7.63643903982127	FALSE
+carbon source dark aerobic	set2S457	Sodium succinate dibasic hexahydrate	TX73_024450	TX73_024450		DedA family protein	-1.63592093648671	-5.39560770072077	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_024510	TX73_024510		TOBE domain-containing protein	-1.40421410377412	-7.26329562185431	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_024510	TX73_024510		TOBE domain-containing protein	-1.18778285510757	-6.49499535405508	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_024615	TX73_024615		zinc-ribbon domain-containing protein	1.79006734855889	14.333223441869	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_024615	TX73_024615		zinc-ribbon domain-containing protein	2.0345165818627	17.4816260397511	FALSE
+carbon source dark aerobic	set2S451	Sodium succinate dibasic hexahydrate	TX73_025010	TX73_025010		MAPEG family protein	2.10719694486912	12.9154282405665	FALSE
+carbon source dark aerobic	set2S450	Sodium succinate dibasic hexahydrate	TX73_025010	TX73_025010		MAPEG family protein	2.27743434189282	11.229027350146	FALSE
+coculture	set3S512	Sodium Chloride	TX73_020640	TX73_020640		nucleoside-diphosphate sugar epimerase/dehydratase	-1.70427595662461	-8.89051752141167	FALSE
+coculture	set3S513	Sodium Chloride	TX73_020640	TX73_020640		nucleoside-diphosphate sugar epimerase/dehydratase	-1.44785010616765	-8.53187461048707	FALSE
+coculture	set3S513	Sodium Chloride	TX73_021015	TX73_021015		class I SAM-dependent methyltransferase	-1.22428897229235	-8.1424861920337	FALSE
+coculture	set3S512	Sodium Chloride	TX73_021045	TX73_021045		hypothetical protein	-1.3965333720775	-8.87495382774943	FALSE
+coculture	set3S513	Sodium Chloride	TX73_021045	TX73_021045		hypothetical protein	-1.18058217372248	-8.15515426135198	FALSE
+coculture	set3S512	Sodium Chloride	TX73_023800	TX73_023800		UDP-glucose 4-epimerase GalE	-2.00937238501423	-8.27579890681211	FALSE
+coculture	set3S513	Sodium Chloride	TX73_023800	TX73_023800		UDP-glucose 4-epimerase GalE	-1.63758961572504	-7.2207310687008	FALSE
+monoculture	set3S516	OAcsForEtOH	TX73_002820	TX73_002820		CidA/LrgA family protein	-2.77672898656267	-9.14041388104316	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_002820	TX73_002820		CidA/LrgA family protein	-2.76770110829085	-8.88162422260573	FALSE
+monoculture	set3S517	OAcsForEtOH	TX73_002820	TX73_002820		CidA/LrgA family protein	-2.34733056339397	-9.25931180432488	FALSE
+monoculture	set3S516	OAcsForEtOH	TX73_002825	TX73_002825		LrgB family protein	-3.26041057586139	-11.2943237008952	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_002825	TX73_002825		LrgB family protein	-2.75690935884789	-9.91503945103385	FALSE
+monoculture	set3S517	OAcsForEtOH	TX73_002825	TX73_002825		LrgB family protein	-2.70498403835637	-11.78516773602	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_004535	TX73_004535		outer membrane beta-barrel protein	1.18314089039825	11.0977969174707	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_009695	TX73_009695		hypothetical protein	1.03737931686307	9.45420275765015	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_014250	TX73_014250		undecaprenyl-phosphate glucose phosphotransferase	1.26202170780444	11.5692236924024	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_014255	TX73_014255		glycosyltransferase	1.11621381380882	10.4651497181437	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_014260	TX73_014260		exopolysaccharide transport family protein	1.13131964734092	10.1849431903614	FALSE
+monoculture	set3S517	OAcsForEtOH	TX73_020475	TX73_020475		GDP-mannose 4,6-dehydratase	-1.19387913972142	-5.62445391573311	FALSE
+monoculture	set3S517	OAcsForEtOH	TX73_020640	TX73_020640		nucleoside-diphosphate sugar epimerase/dehydratase	-1.63738405566226	-9.4287787802524	FALSE
+monoculture	set3S516	OAcsForEtOH	TX73_020640	TX73_020640		nucleoside-diphosphate sugar epimerase/dehydratase	-1.53937530113946	-9.28344049082521	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_020640	TX73_020640		nucleoside-diphosphate sugar epimerase/dehydratase	-1.53517365854097	-9.21998455555504	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_020985	TX73_020985		aldolase/citrate lyase family protein	-1.68167917804227	-8.64237105843903	FALSE
+monoculture	set3S517	OAcsForEtOH	TX73_020985	TX73_020985		aldolase/citrate lyase family protein	-1.6353813622436	-7.72918376995407	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_021015	TX73_021015		class I SAM-dependent methyltransferase	-1.31035774115503	-7.97883142866416	FALSE
+monoculture	set3S517	OAcsForEtOH	TX73_021020	TX73_021020		glycosyltransferase family 2 protein	-1.45274436107177	-8.55893360315866	FALSE
+monoculture	set3S517	OAcsForEtOH	TX73_021045	TX73_021045		hypothetical protein	-1.17844193370054	-8.52047104808096	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_021045	TX73_021045		hypothetical protein	-1.09483707670838	-7.83705104299449	FALSE
+monoculture	set3S516	OAcsForEtOH	TX73_021045	TX73_021045		hypothetical protein	-1.05176401864435	-7.4476802518719	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_022365	TX73_022365		outer membrane beta-barrel protein	1.15390239673121	10.0662375328508	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_023795	TX73_023795		O-antigen ligase domain-containing protein	1.13774715335949	10.5514912857721	FALSE
+monoculture	set3S517	OAcsForEtOH	TX73_023800	TX73_023800		UDP-glucose 4-epimerase GalE	-2.13188498287004	-10.0934088358364	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_023800	TX73_023800		UDP-glucose 4-epimerase GalE	-1.98932234373301	-8.48412026577614	FALSE
+monoculture	set3S516	OAcsForEtOH	TX73_023800	TX73_023800		UDP-glucose 4-epimerase GalE	-1.69273312389408	-8.49547519802653	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_023815	TX73_023815		exopolysaccharide transport family protein	1.11054210382276	10.4798201722988	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_023820	TX73_023820		glycosyltransferase family 4 protein	1.15606867384063	10.8175418227567	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_023825	TX73_023825		hypothetical protein	1.14320081705645	10.7757094280069	FALSE
+monoculture	set3S515	OAcsForEtOH	TX73_025115	TX73_025115		polysaccharide export protein	1.21392654718425	10.8599324253453	FALSE
+stress	set2S430	Sodium Benzoate	TX73_003395	TX73_003395		MarR family transcriptional regulator	-2.00351354164494	-5.82101556143604	FALSE
+stress	set2S430	Sodium Benzoate	TX73_007805	TX73_007805		phytoene desaturase family protein	-1.2481920345038	-9.5384641518759	FALSE
+stress	set2S430	Sodium Benzoate	TX73_007975	TX73_007975		magnesium-protoporphyrin IX monomethyl ester (oxidative) cyclase	-1.21067591050463	-5.08777558839302	FALSE
+stress	set2S430	Sodium Benzoate	TX73_022600	TX73_022600		peptidoglycan editing factor PgeF	-1.45832578417764	-10.1361818147284	FALSE
+stress	set2S431	Sodium Benzoate	TX73_023170	TX73_023170		YeeE/YedE family protein	-2.06886026965097	-9.2479620454299	FALSE
+stress	set2S430	Sodium Benzoate	TX73_023170	TX73_023170		YeeE/YedE family protein	-1.76826415811612	-8.05958773746672	FALSE
+stress	set2S432	Sodium Benzoate	TX73_023170	TX73_023170		YeeE/YedE family protein	-1.70630637572053	-8.79859198766457	FALSE
+stress	set2S430	Sodium Benzoate	TX73_023480	TX73_023480		HAD family hydrolase	-1.11173622422186	-9.36585625563071	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_001365	TX73_001365		RuBisCO large subunit C-terminal-like domain-containing protein	-1.94142275283107	-7.84626782048924	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_001365	TX73_001365		RuBisCO large subunit C-terminal-like domain-containing protein	-1.53486683221251	-6.25435209755552	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_001525	TX73_001525		16S rRNA (guanine(527)-N(7))-methyltransferase RsmG	-1.39097723915181	-7.8664913122748	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_001530	TX73_001530		tRNA uridine-5-carboxymethylaminomethyl(34) synthesis enzyme MnmG	-2.31355673401262	-17.7143133810501	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_001530	TX73_001530		tRNA uridine-5-carboxymethylaminomethyl(34) synthesis enzyme MnmG	-2.26803975323104	-17.6430907834145	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_001530	TX73_001530		tRNA uridine-5-carboxymethylaminomethyl(34) synthesis enzyme MnmG	-2.25764722692946	-17.1974984034159	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_001715	TX73_001715		heat-inducible transcriptional repressor HrcA	-1.99183169523977	-12.0582934469116	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_001715	TX73_001715		heat-inducible transcriptional repressor HrcA	-1.90102908458064	-12.9939560532915	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_001715	TX73_001715		heat-inducible transcriptional repressor HrcA	-1.63269267681451	-9.88625877813029	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_001800	TX73_001800		bifunctional isocitrate dehydrogenase kinase/phosphatase	-1.14032087566265	-7.11609913943446	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_001905	TX73_001905		RluA family pseudouridine synthase	-2.3218150216486	-15.7661115579546	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_001905	TX73_001905		RluA family pseudouridine synthase	-2.22908283916468	-14.0403054549241	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_001905	TX73_001905		RluA family pseudouridine synthase	-2.02764347400931	-14.0940036507469	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_002255	TX73_002255		tRNA pseudouridine(55) synthase TruB	-1.71085163218376	-9.87625637495401	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_002255	TX73_002255		tRNA pseudouridine(55) synthase TruB	-1.52177293291267	-9.73603313119095	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_002255	TX73_002255		tRNA pseudouridine(55) synthase TruB	-1.50167964837124	-10.6311652159979	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_002820	TX73_002820		CidA/LrgA family protein	-4.98345209788581	-6.82872631000185	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_002820	TX73_002820		CidA/LrgA family protein	-4.42073945048837	-7.37683806937305	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_002820	TX73_002820		CidA/LrgA family protein	-4.09506959313239	-8.29879374605258	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_002825	TX73_002825		LrgB family protein	-3.9471115874274	-10.8089916104579	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_002825	TX73_002825		LrgB family protein	-3.74746841757217	-11.123057903586	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_002825	TX73_002825		LrgB family protein	-3.69278123455663	-9.8344456585391	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_002885	TX73_002885		cysteine synthase A	-2.11476150257098	-9.06138605158202	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_002885	TX73_002885		cysteine synthase A	-1.73240951025321	-7.53213147182983	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_002885	TX73_002885		cysteine synthase A	-1.65645475984105	-6.74102353492383	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_003740	TX73_003740		iron ABC transporter permease	-1.27123174893219	-6.91641631495742	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_004150	TX73_004150		outer membrane beta-barrel protein	1.10951399752023	5.66106049746996	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_005475	TX73_005475		HD family hydrolase	-1.64523947793436	-8.00346648888799	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_005475	TX73_005475		HD family hydrolase	-1.44410412812279	-7.00703771443707	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_006090	TX73_006090		CoA pyrophosphatase	-1.41472848389244	-5.42540860146949	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_010185	TX73_010185		TRAP transporter large permease subunit	1.18977631318619	5.34914881212779	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_010185	TX73_010185		TRAP transporter large permease subunit	1.23551581994781	6.51347829946832	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_011820	TX73_011820		peptide chain release factor 3	-1.44205865848518	-5.75635327874712	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_013030	TX73_013030		VOC family protein	2.00727792623178	12.960543802003	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_013030	TX73_013030		VOC family protein	2.11331569169844	14.5622029718355	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_013030	TX73_013030		VOC family protein	2.1705983632752	13.0907582119033	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_013235	TX73_013235		cystathionine beta-lyase	-1.56276758348624	-10.1837189352748	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_013235	TX73_013235		cystathionine beta-lyase	-1.4931820235691	-11.5662726671986	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_013235	TX73_013235		cystathionine beta-lyase	-1.2002381412533	-8.17796869954533	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_013400	TX73_013400		CinA family protein	-1.62360603760382	-5.48677681425116	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_013480	TX73_013480		tRNA preQ1(34) S-adenosylmethionine ribosyltransferase-isomerase QueA	-1.26224134148265	-5.46429072127451	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_013480	TX73_013480		tRNA preQ1(34) S-adenosylmethionine ribosyltransferase-isomerase QueA	-1.04955689296873	-5.46856010332902	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_013790	TX73_013790		DUF502 domain-containing protein	-1.53090353990559	-5.92932305075253	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_014710	TX73_014710		5'/3'-nucleotidase SurE	-2.25800589877852	-11.2010444872092	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_014710	TX73_014710		5'/3'-nucleotidase SurE	-2.16629060630886	-11.6116944346165	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_014710	TX73_014710		5'/3'-nucleotidase SurE	-1.84960567567001	-10.3026294072576	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_014770	TX73_014770		beta-N-acetylhexosaminidase	-1.69773021907474	-10.5253129677082	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_014770	TX73_014770		beta-N-acetylhexosaminidase	-1.66559640839371	-10.7294770939614	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_017715	TX73_017715		gamma carbonic anhydrase family protein	-1.6977183282362	-10.3735929954338	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_017715	TX73_017715		gamma carbonic anhydrase family protein	-1.4558889504487	-9.48505038015655	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_017715	TX73_017715		gamma carbonic anhydrase family protein	-1.40268781460912	-9.39084275695625	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_018065	TX73_018065		Do family serine endopeptidase	-1.9375044805634	-11.1678602642036	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_018065	TX73_018065		Do family serine endopeptidase	-1.78585415221427	-11.3674820114168	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_018065	TX73_018065		Do family serine endopeptidase	-1.64824305378643	-9.78210571989065	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_018240	TX73_018240		DNA repair protein RecN	-1.19130026546897	-5.52548552432396	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_018240	TX73_018240		DNA repair protein RecN	-1.04487416851158	-5.22908169415276	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_019310	TX73_019310		carbohydrate porin	-1.07062913073956	-6.41368552192906	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_022510	TX73_022510		excinuclease ABC subunit UvrB	1.54871231585312	8.59650961835896	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_022875	TX73_022875		TetR/AcrR family transcriptional regulator	-1.39408914528307	-6.17997885579258	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_023085	TX73_023085		RNA polymerase sigma factor	1.48107341184226	5.81112579056202	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_023170	TX73_023170		YeeE/YedE family protein	-2.40493927257054	-8.55268729600952	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_023170	TX73_023170		YeeE/YedE family protein	-2.39521873090168	-8.87385393554372	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_023170	TX73_023170		YeeE/YedE family protein	-2.1604045886552	-8.45204381316234	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_023485	TX73_023485		hypothetical protein	1.40380159567591	5.07807299783688	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_023530	TX73_023530		low molecular weight phosphatase family protein	-1.38214146605853	-5.6387916678348	FALSE
+stress	set3S520	Sodium L-Lactate	TX73_023530	TX73_023530		low molecular weight phosphatase family protein	-1.36871832950723	-7.10649857628752	FALSE
+stress	set3S519	Sodium L-Lactate	TX73_023530	TX73_023530		low molecular weight phosphatase family protein	-1.21919181218669	-6.05002430200554	FALSE
+stress	set3S518	Sodium L-Lactate	TX73_024845	TX73_024845		phosphate ABC transporter substrate-binding protein PstS	1.42515365179936	5.08650098418228	FALSE
+stress	set3S496	Sodium butyrate	TX73_000280	TX73_000280		Hsp20 family protein	1.43457682575777	10.8240186367452	FALSE
+stress	set3S498	Sodium butyrate	TX73_001040	TX73_001040		DUF1223 domain-containing protein	1.06893466753723	9.75983141140719	FALSE
+stress	set3S499	Sodium butyrate	TX73_001040	TX73_001040		DUF1223 domain-containing protein	1.18753029274017	10.3929349829216	FALSE
+stress	set3S497	Sodium butyrate	TX73_001040	TX73_001040		DUF1223 domain-containing protein	1.20657538171403	10.8156177597868	FALSE
+stress	set3S496	Sodium butyrate	TX73_001040	TX73_001040		DUF1223 domain-containing protein	1.27554860712834	11.378717987058	FALSE
+stress	set3S496	Sodium butyrate	TX73_002565	TX73_002565		PAS domain S-box protein	-1.41750008520015	-11.8018193663037	FALSE
+stress	set3S496	Sodium butyrate	TX73_003600	TX73_003600		phosphonate metabolism transcriptional regulator PhnF	-2.28136685910915	-8.12328723590617	FALSE
+stress	set3S499	Sodium butyrate	TX73_003600	TX73_003600		phosphonate metabolism transcriptional regulator PhnF	-1.88986569195903	-7.07896347506788	FALSE
+stress	set3S498	Sodium butyrate	TX73_003600	TX73_003600		phosphonate metabolism transcriptional regulator PhnF	-1.66102171789724	-7.34253969376797	FALSE
+stress	set3S497	Sodium butyrate	TX73_003600	TX73_003600		phosphonate metabolism transcriptional regulator PhnF	-1.63531260249312	-7.46081482966985	FALSE
+stress	set3S497	Sodium butyrate	TX73_003685	TX73_003685		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-2.76658582161192	-14.8010375171474	FALSE
+stress	set3S498	Sodium butyrate	TX73_003685	TX73_003685		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-2.71742631367292	-16.3680086645624	FALSE
+stress	set3S496	Sodium butyrate	TX73_003685	TX73_003685		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-2.51646945211338	-14.3833017475909	FALSE
+stress	set3S499	Sodium butyrate	TX73_003685	TX73_003685		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-2.15864628055541	-14.1779780053962	FALSE
+stress	set3S509	Sodium butyrate	TX73_003685	TX73_003685		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-2.03992218514854	-12.4002389014221	FALSE
+stress	set3S508	Sodium butyrate	TX73_003685	TX73_003685		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-1.89734231168999	-12.4782472974451	FALSE
+stress	set3S510	Sodium butyrate	TX73_003685	TX73_003685		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-1.8167178788789	-11.8197872259345	FALSE
+stress	set3S511	Sodium butyrate	TX73_003685	TX73_003685		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-1.66925611073508	-11.8190244918645	FALSE
+stress	set3S498	Sodium butyrate	TX73_004710	TX73_004710		YqgE/AlgH family protein	-1.40588651385466	-8.93691765188415	FALSE
+stress	set3S497	Sodium butyrate	TX73_005110	TX73_005110		histidine phosphatase family protein	-3.50038261226827	-11.0151692553412	FALSE
+stress	set3S498	Sodium butyrate	TX73_005110	TX73_005110		histidine phosphatase family protein	-3.40773048771963	-11.258371363858	FALSE
+stress	set3S499	Sodium butyrate	TX73_005110	TX73_005110		histidine phosphatase family protein	-3.07232611688801	-9.48892249677405	FALSE
+stress	set3S496	Sodium butyrate	TX73_005110	TX73_005110		histidine phosphatase family protein	-2.82885648568168	-10.4535816997007	FALSE
+stress	set3S510	Sodium butyrate	TX73_005110	TX73_005110		histidine phosphatase family protein	-2.14752038773897	-8.79357194741659	FALSE
+stress	set3S509	Sodium butyrate	TX73_005110	TX73_005110		histidine phosphatase family protein	-1.96667944729965	-8.64544646956854	FALSE
+stress	set3S508	Sodium butyrate	TX73_005110	TX73_005110		histidine phosphatase family protein	-1.67723832685244	-8.33339091262746	FALSE
+stress	set3S511	Sodium butyrate	TX73_005110	TX73_005110		histidine phosphatase family protein	-1.22998007572855	-6.81888999920905	FALSE
+stress	set3S497	Sodium butyrate	TX73_007615	TX73_007615		response regulator	-1.08678291574283	-7.18172277948316	FALSE
+stress	set3S490	Sodium butyrate	TX73_008335	TX73_008335		hypothetical protein	-1.37491099533822	-5.64300269929476	FALSE
+stress	set3S509	Sodium butyrate	TX73_008370	TX73_008370		response regulator	-1.09907389420696	-6.55026342932872	FALSE
+stress	set3S498	Sodium butyrate	TX73_008465	TX73_008465		alpha/beta hydrolase	-1.43486464710147	-6.9026842294081	FALSE
+stress	set3S496	Sodium butyrate	TX73_008530	TX73_008530		hemerythrin domain-containing protein	-1.10236232704667	-5.15433993084938	FALSE
+stress	set3S511	Sodium butyrate	TX73_008580	TX73_008580		hypothetical protein	1.26541473808799	6.18156903067221	FALSE
+stress	set3S497	Sodium butyrate	TX73_010745	TX73_010745		cobalamin biosynthesis protein	-4.93300609200502	-7.47441411839822	FALSE
+stress	set3S496	Sodium butyrate	TX73_010745	TX73_010745		cobalamin biosynthesis protein	-3.78248843181311	-7.23089977052905	FALSE
+stress	set3S498	Sodium butyrate	TX73_010745	TX73_010745		cobalamin biosynthesis protein	-2.98929111799078	-7.88984593556491	FALSE
+stress	set3S499	Sodium butyrate	TX73_010745	TX73_010745		cobalamin biosynthesis protein	-2.26278166827548	-6.88316774178564	FALSE
+stress	set3S497	Sodium butyrate	TX73_010775	TX73_010775		hypothetical protein	-4.06160958509914	-9.04435779148378	FALSE
+stress	set3S496	Sodium butyrate	TX73_010775	TX73_010775		hypothetical protein	-3.17563270634232	-7.30614821352371	FALSE
+stress	set3S498	Sodium butyrate	TX73_010775	TX73_010775		hypothetical protein	-3.14949109620729	-8.07756923809102	FALSE
+stress	set3S499	Sodium butyrate	TX73_010775	TX73_010775		hypothetical protein	-2.5816286945982	-7.02752893221397	FALSE
+stress	set3S510	Sodium butyrate	TX73_010775	TX73_010775		hypothetical protein	-1.67450253790741	-6.59676491356648	FALSE
+stress	set3S509	Sodium butyrate	TX73_010775	TX73_010775		hypothetical protein	-1.47573658376846	-6.48867846441036	FALSE
+stress	set3S508	Sodium butyrate	TX73_010775	TX73_010775		hypothetical protein	-1.39779271820328	-5.38230563478416	FALSE
+stress	set3S497	Sodium butyrate	TX73_014280	TX73_014280		hypothetical protein	-1.80627835886433	-8.55550227472819	FALSE
+stress	set3S496	Sodium butyrate	TX73_014280	TX73_014280		hypothetical protein	-1.4754580848804	-7.98952607821261	FALSE
+stress	set3S498	Sodium butyrate	TX73_014280	TX73_014280		hypothetical protein	-1.2194945528225	-7.17207298039022	FALSE
+stress	set3S499	Sodium butyrate	TX73_014280	TX73_014280		hypothetical protein	-1.07113093333597	-5.8241696229447	FALSE
+stress	set3S510	Sodium butyrate	TX73_014700	TX73_014700		response regulator	-1.38554265994111	-7.7998373367826	FALSE
+stress	set3S490	Sodium butyrate	TX73_015515	TX73_015515		LysR family transcriptional regulator	-1.145872888407	-5.82773631690298	FALSE
+stress	set3S496	Sodium butyrate	TX73_015515	TX73_015515		LysR family transcriptional regulator	-1.11488966103872	-6.77966683788355	FALSE
+stress	set3S497	Sodium butyrate	TX73_015515	TX73_015515		LysR family transcriptional regulator	-1.10347520009601	-5.484248121861	FALSE
+stress	set3S499	Sodium butyrate	TX73_015515	TX73_015515		LysR family transcriptional regulator	-1.01995797888952	-5.72405193236818	FALSE
+stress	set3S488	Sodium butyrate	TX73_015520	TX73_015520		proton-conducting transporter membrane subunit	-1.60036286184874	-8.57066896557984	FALSE
+stress	set3S496	Sodium butyrate	TX73_015520	TX73_015520		proton-conducting transporter membrane subunit	-1.46677227704452	-8.75520798852077	FALSE
+stress	set3S490	Sodium butyrate	TX73_015520	TX73_015520		proton-conducting transporter membrane subunit	-1.3060422772249	-6.38486235035929	FALSE
+stress	set3S489	Sodium butyrate	TX73_015520	TX73_015520		proton-conducting transporter membrane subunit	-1.18008177378622	-6.10738559185314	FALSE
+stress	set3S498	Sodium butyrate	TX73_015520	TX73_015520		proton-conducting transporter membrane subunit	-1.1783132531463	-8.04489346233765	FALSE
+stress	set3S497	Sodium butyrate	TX73_015520	TX73_015520		proton-conducting transporter membrane subunit	-1.15600262075882	-7.85264174891869	FALSE
+stress	set3S499	Sodium butyrate	TX73_015520	TX73_015520		proton-conducting transporter membrane subunit	-1.00207369279898	-5.6718959324752	FALSE
+stress	set3S496	Sodium butyrate	TX73_015525	TX73_015525		DUF2309 domain-containing protein	-1.50257062693565	-9.52559699874248	FALSE
+stress	set3S488	Sodium butyrate	TX73_015525	TX73_015525		DUF2309 domain-containing protein	-1.32102118328398	-8.01303184837615	FALSE
+stress	set3S498	Sodium butyrate	TX73_015525	TX73_015525		DUF2309 domain-containing protein	-1.26976706847939	-9.28669777792153	FALSE
+stress	set3S497	Sodium butyrate	TX73_015525	TX73_015525		DUF2309 domain-containing protein	-1.18917326075486	-8.44888731597241	FALSE
+stress	set3S490	Sodium butyrate	TX73_015525	TX73_015525		DUF2309 domain-containing protein	-1.18336697368673	-7.49640144001402	FALSE
+stress	set3S491	Sodium butyrate	TX73_015525	TX73_015525		DUF2309 domain-containing protein	-1.07590156706824	-6.81060114449489	FALSE
+stress	set3S499	Sodium butyrate	TX73_016320	TX73_016320		hypothetical protein	1.57229444340374	8.82194785481422	FALSE
+stress	set3S497	Sodium butyrate	TX73_016320	TX73_016320		hypothetical protein	1.5811842019619	9.05848958280019	FALSE
+stress	set3S498	Sodium butyrate	TX73_016320	TX73_016320		hypothetical protein	1.5917792242688	8.78716701851604	FALSE
+stress	set3S496	Sodium butyrate	TX73_016320	TX73_016320		hypothetical protein	1.95984754796236	10.1267785738318	FALSE
+stress	set3S499	Sodium butyrate	TX73_018175	TX73_018175		ABC transporter ATP-binding protein	-1.27098413670639	-7.7270769851705	FALSE
+stress	set3S499	Sodium butyrate	TX73_018180	TX73_018180		ABC transporter permease	-1.25192494134487	-5.90411373874162	FALSE
+stress	set3S497	Sodium butyrate	TX73_018180	TX73_018180		ABC transporter permease	-1.15120424694122	-6.79992343114715	FALSE
+stress	set3S496	Sodium butyrate	TX73_018180	TX73_018180		ABC transporter permease	-1.01662256326722	-5.95552207857356	FALSE
+stress	set3S498	Sodium butyrate	TX73_019285	TX73_019285		ABC transporter substrate-binding protein	-1.74372796270694	-9.15040014117947	FALSE
+stress	set3S499	Sodium butyrate	TX73_019285	TX73_019285		ABC transporter substrate-binding protein	-1.62967295738842	-8.22190437462136	FALSE
+stress	set3S496	Sodium butyrate	TX73_019285	TX73_019285		ABC transporter substrate-binding protein	-1.47714575476164	-6.93221608872116	FALSE
+stress	set3S496	Sodium butyrate	TX73_020235	TX73_020235		efflux RND transporter permease subunit	1.0595262978168	8.96389458538239	FALSE
+stress	set3S499	Sodium butyrate	TX73_020235	TX73_020235		efflux RND transporter permease subunit	1.08488295005481	9.41084293191019	FALSE
+stress	set3S496	Sodium butyrate	TX73_020240	TX73_020240		efflux RND transporter periplasmic adaptor subunit	1.09434262984353	8.47095229289471	FALSE
+stress	set3S497	Sodium butyrate	TX73_020815	TX73_020815		hypothetical protein	-3.80838797862891	-20.9741104839772	FALSE
+stress	set3S496	Sodium butyrate	TX73_020815	TX73_020815		hypothetical protein	-3.52095904553761	-19.7434537020616	FALSE
+stress	set3S498	Sodium butyrate	TX73_020815	TX73_020815		hypothetical protein	-3.45444397977049	-19.2994619647645	FALSE
+stress	set3S499	Sodium butyrate	TX73_020815	TX73_020815		hypothetical protein	-2.76648128080195	-17.2983590957556	FALSE
+stress	set3S508	Sodium butyrate	TX73_020815	TX73_020815		hypothetical protein	-2.44154006106626	-16.3254349974963	FALSE
+stress	set3S510	Sodium butyrate	TX73_020815	TX73_020815		hypothetical protein	-2.37443790681721	-16.0424041677778	FALSE
+stress	set3S511	Sodium butyrate	TX73_020815	TX73_020815		hypothetical protein	-2.37316635668745	-15.409896103946	FALSE
+stress	set3S509	Sodium butyrate	TX73_020815	TX73_020815		hypothetical protein	-2.32917107162629	-14.8725790382598	FALSE
+stress	set3S510	Sodium butyrate	TX73_021630	TX73_021630		DUF465 domain-containing protein	1.46083562740906	9.7343795197467	FALSE
+stress	set3S511	Sodium butyrate	TX73_021630	TX73_021630		DUF465 domain-containing protein	1.57208342018756	9.15951245414576	FALSE
+stress	set3S497	Sodium butyrate	TX73_022680	TX73_022680		hypothetical protein	1.52902424155064	9.10294686165613	FALSE
+stress	set3S499	Sodium butyrate	TX73_022875	TX73_022875		TetR/AcrR family transcriptional regulator	-1.44007067113586	-8.33124103637165	FALSE
+stress	set3S496	Sodium butyrate	TX73_022875	TX73_022875		TetR/AcrR family transcriptional regulator	-1.43127404788685	-8.05254581258361	FALSE
+stress	set3S497	Sodium butyrate	TX73_022875	TX73_022875		TetR/AcrR family transcriptional regulator	-1.24731948770837	-7.91144911930549	FALSE
+stress	set3S490	Sodium butyrate	TX73_025050	TX73_025050		S-methyl-5-thioribose-1-phosphate isomerase	1.18053757613412	9.90747122104539	FALSE
+stress	set3S489	Sodium butyrate	TX73_025050	TX73_025050		S-methyl-5-thioribose-1-phosphate isomerase	1.19950933622923	9.76630027153888	FALSE
+stress	set3S491	Sodium butyrate	TX73_025050	TX73_025050		S-methyl-5-thioribose-1-phosphate isomerase	1.34086607377357	11.083856665796	FALSE
+stress	set3S488	Sodium butyrate	TX73_025050	TX73_025050		S-methyl-5-thioribose-1-phosphate isomerase	1.55141860719426	14.0085832281733	FALSE
+stress	set3S489	Sodium butyrate	TX73_025055	TX73_025055		S-methyl-5'-thioadenosine phosphorylase	1.39189616561957	11.2699537720723	FALSE
+stress	set3S490	Sodium butyrate	TX73_025055	TX73_025055		S-methyl-5'-thioadenosine phosphorylase	1.47232570039694	12.290684324387	FALSE
+stress	set3S491	Sodium butyrate	TX73_025055	TX73_025055		S-methyl-5'-thioadenosine phosphorylase	1.48650708847423	12.5216022146153	FALSE
+stress	set3S488	Sodium butyrate	TX73_025055	TX73_025055		S-methyl-5'-thioadenosine phosphorylase	1.90050509025624	14.0686913625096	FALSE
+sulfur source	set1S364	L-Malic acid disodium salt	TX73_000580	TX73_000580		nuclear transport factor 2 family protein	-1.32573985018635	-5.01517926658934	FALSE
+sulfur source	set1S365	L-Malic acid disodium salt	TX73_000585	TX73_000585		FAD-binding oxidoreductase	-1.13940981258281	-6.52176452743672	FALSE
+sulfur source	set1S363	L-Malic acid disodium salt	TX73_000585	TX73_000585		FAD-binding oxidoreductase	-1.0837464325692	-7.347078289211	FALSE
+sulfur source	set1S364	L-Malic acid disodium salt	TX73_000585	TX73_000585		FAD-binding oxidoreductase	-1.07155277130957	-6.87870527664881	FALSE
+sulfur source	set1S355	L-Malic acid disodium salt	TX73_006195	TX73_006195		aldehyde dehydrogenase	-1.06280623190631	-6.7603979176674	FALSE
+sulfur source	set1S373	L-Malic acid disodium salt	TX73_012200	TX73_012200		methionine ABC transporter ATP-binding protein	-1.0538452925658	-5.38577528179272	FALSE
+sulfur source	set1S364	L-Malic acid disodium salt	TX73_013505	TX73_013505		aliphatic sulfonate ABC transporter substrate-binding protein	-1.39570133640758	-5.63910958530648	FALSE
+sulfur source	set1S366	L-Malic acid disodium salt	TX73_013505	TX73_013505		aliphatic sulfonate ABC transporter substrate-binding protein	-1.35659648704772	-5.35722907061019	FALSE
+sulfur source	set1S366	L-Malic acid disodium salt	TX73_013515	TX73_013515		ATP-binding cassette domain-containing protein	-1.55794987941603	-6.44038639560253	FALSE
+sulfur source	set1S363	L-Malic acid disodium salt	TX73_013515	TX73_013515		ATP-binding cassette domain-containing protein	-1.38953722112299	-7.48879802115744	FALSE
+sulfur source	set1S365	L-Malic acid disodium salt	TX73_013515	TX73_013515		ATP-binding cassette domain-containing protein	-1.37676432016079	-7.66587730537223	FALSE
+sulfur source	set1S364	L-Malic acid disodium salt	TX73_013515	TX73_013515		ATP-binding cassette domain-containing protein	-1.24406798623155	-6.89445803509688	FALSE
+sulfur source	set1S366	L-Malic acid disodium salt	TX73_013520	TX73_013520		aliphatic sulfonate ABC transporter permease SsuC	-1.67921005665937	-5.93955565311874	FALSE
+sulfur source	set1S363	L-Malic acid disodium salt	TX73_013520	TX73_013520		aliphatic sulfonate ABC transporter permease SsuC	-1.46335396027948	-7.25506358111181	FALSE
+sulfur source	set1S365	L-Malic acid disodium salt	TX73_013520	TX73_013520		aliphatic sulfonate ABC transporter permease SsuC	-1.37972424940034	-5.25067582126846	FALSE
+sulfur source	set1S363	L-Malic acid disodium salt	TX73_013525	TX73_013525		FMNH2-dependent alkanesulfonate monooxygenase	-1.41855770145979	-8.06509130681354	FALSE
+sulfur source	set1S365	L-Malic acid disodium salt	TX73_013525	TX73_013525		FMNH2-dependent alkanesulfonate monooxygenase	-1.38170668255875	-6.97482307079445	FALSE
+sulfur source	set1S364	L-Malic acid disodium salt	TX73_013525	TX73_013525		FMNH2-dependent alkanesulfonate monooxygenase	-1.291237835948	-7.09323082116111	FALSE
+sulfur source	set1S366	L-Malic acid disodium salt	TX73_013535	TX73_013535		radical SAM protein	-1.50516326571841	-5.30219111026215	FALSE
+sulfur source	set1S365	L-Malic acid disodium salt	TX73_013535	TX73_013535		radical SAM protein	-1.21862678730538	-5.50180563527959	FALSE
+sulfur source	set1S370	L-Malic acid disodium salt	TX73_013535	TX73_013535		radical SAM protein	-1.07802768545446	-5.40167282770014	FALSE
+sulfur source	set1S364	L-Malic acid disodium salt	TX73_013540	TX73_013540		nitrogenase iron protein NifH	-1.86758774573244	-5.46698689355247	FALSE
+sulfur source	set1S363	L-Malic acid disodium salt	TX73_013540	TX73_013540		nitrogenase iron protein NifH	-1.47474589627675	-7.24638215588953	FALSE
+sulfur source	set1S367	L-Malic acid disodium salt	TX73_013540	TX73_013540		nitrogenase iron protein NifH	-1.22591217481432	-5.68326182680499	FALSE
+sulfur source	set1S370	L-Malic acid disodium salt	TX73_013540	TX73_013540		nitrogenase iron protein NifH	-1.19642468089049	-6.13291857661909	FALSE
+sulfur source	set1S365	L-Malic acid disodium salt	TX73_013545	TX73_013545		nitrogenase component 1	-1.5576036884355	-8.93946111934541	FALSE
+sulfur source	set1S364	L-Malic acid disodium salt	TX73_013545	TX73_013545		nitrogenase component 1	-1.52706916093406	-10.9721670439569	FALSE
+sulfur source	set1S363	L-Malic acid disodium salt	TX73_013545	TX73_013545		nitrogenase component 1	-1.45292711710797	-10.3998568791397	FALSE
+sulfur source	set1S369	L-Malic acid disodium salt	TX73_013545	TX73_013545		nitrogenase component 1	-1.40364347049227	-5.85741254342582	FALSE
+sulfur source	set1S366	L-Malic acid disodium salt	TX73_013545	TX73_013545		nitrogenase component 1	-1.39082369780971	-7.84642165614513	FALSE
+sulfur source	set1S367	L-Malic acid disodium salt	TX73_013545	TX73_013545		nitrogenase component 1	-1.34620408041122	-8.84084420545204	FALSE
+sulfur source	set1S370	L-Malic acid disodium salt	TX73_013545	TX73_013545		nitrogenase component 1	-1.12568830386546	-8.40515672703928	FALSE
+sulfur source	set1S363	L-Malic acid disodium salt	TX73_013550	TX73_013550		nitrogenase component 1	-1.64303347170207	-9.55845755265822	FALSE
+sulfur source	set1S366	L-Malic acid disodium salt	TX73_013550	TX73_013550		nitrogenase component 1	-1.58338747769071	-8.14856560114903	FALSE
+sulfur source	set1S364	L-Malic acid disodium salt	TX73_013550	TX73_013550		nitrogenase component 1	-1.52800964722454	-9.4275594594028	FALSE
+sulfur source	set1S369	L-Malic acid disodium salt	TX73_013550	TX73_013550		nitrogenase component 1	-1.39131065643464	-5.17381936406138	FALSE
+sulfur source	set1S365	L-Malic acid disodium salt	TX73_013550	TX73_013550		nitrogenase component 1	-1.32034797469362	-8.87066617522559	FALSE
+sulfur source	set1S367	L-Malic acid disodium salt	TX73_013550	TX73_013550		nitrogenase component 1	-1.07475679790028	-6.25378015444147	FALSE
+sulfur source	set1S370	L-Malic acid disodium salt	TX73_013550	TX73_013550		nitrogenase component 1	-1.05094884521162	-7.48064632126919	FALSE
+sulfur source	set1S361	L-Malic acid disodium salt	TX73_013640	TX73_013640		radical SAM protein	-1.26075444943002	-5.45091052196162	FALSE
+sulfur source	set1S360	L-Malic acid disodium salt	TX73_013650	TX73_013650		nitrogenase component 1	-1.23987912936433	-8.42787013716586	FALSE
+sulfur source	set1S361	L-Malic acid disodium salt	TX73_013650	TX73_013650		nitrogenase component 1	-1.092188001399	-8.08550145823865	FALSE
+sulfur source	set2S407	Sodium acetate trihydrate	TX73_005720	TX73_005720		TetR/AcrR family transcriptional regulator	-1.27765294411948	-5.46116039301212	FALSE
+sulfur source	set2S403	Sodium acetate trihydrate	TX73_007050	TX73_007050		nitrogenase iron-molybdenum cofactor biosynthesis protein NifE	-1.00784353608882	-6.33310295879791	FALSE
+sulfur source	set2S403	Sodium acetate trihydrate	TX73_007055	TX73_007055		sigma-54-dependent Fis family transcriptional regulator	-1.58035906064788	-8.65657614143601	FALSE
+sulfur source	set2S405	Sodium acetate trihydrate	TX73_007055	TX73_007055		sigma-54-dependent Fis family transcriptional regulator	-1.47042405025927	-7.91301869720918	FALSE
+sulfur source	set2S404	Sodium acetate trihydrate	TX73_007055	TX73_007055		sigma-54-dependent Fis family transcriptional regulator	-1.11845172184333	-6.31606156870541	FALSE
+sulfur source	set2S405	Sodium acetate trihydrate	TX73_007075	TX73_007075		nitrogenase vanadium-iron protein, alpha chain	-1.3642902835109	-5.80226199683919	FALSE
+sulfur source	set2S405	Sodium acetate trihydrate	TX73_007085	TX73_007085		V-containing nitrogenase subunit beta	-1.61202291125432	-8.04001976253553	FALSE
+sulfur source	set2S404	Sodium acetate trihydrate	TX73_007085	TX73_007085		V-containing nitrogenase subunit beta	-1.03087999105604	-5.50499387937811	FALSE
+sulfur source	set2S408	Sodium acetate trihydrate	TX73_007085	TX73_007085		V-containing nitrogenase subunit beta	-1.00025593715592	-5.73628726112649	FALSE
+sulfur source	set2S403	Sodium acetate trihydrate	TX73_007105	TX73_007105		phosphonate ABC transporter, permease protein PhnE	-1.07906716195448	-6.28051903499896	FALSE
+sulfur source	set2S405	Sodium acetate trihydrate	TX73_007115	TX73_007115		phosphonate ABC transporter ATP-binding protein	-1.48960176461796	-5.05571812431699	FALSE
+sulfur source	set2S405	Sodium acetate trihydrate	TX73_007120	TX73_007120		DUF364 domain-containing protein	-1.46945180573351	-8.63534873111945	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_007315	TX73_007315		serine acetyltransferase	-1.4937522588886	-7.70594288389732	FALSE
+sulfur source	set2S404	Sodium acetate trihydrate	TX73_011815	TX73_011815		quaternary ammonium compound efflux SMR transporter SugE	-1.78077491291607	-9.59061995272049	FALSE
+sulfur source	set2S403	Sodium acetate trihydrate	TX73_011815	TX73_011815		quaternary ammonium compound efflux SMR transporter SugE	-1.48916001400994	-8.5600243367879	FALSE
+sulfur source	set2S406	Sodium acetate trihydrate	TX73_011815	TX73_011815		quaternary ammonium compound efflux SMR transporter SugE	-1.43058215130252	-7.77683239125159	FALSE
+sulfur source	set2S408	Sodium acetate trihydrate	TX73_011815	TX73_011815		quaternary ammonium compound efflux SMR transporter SugE	-1.24048328064766	-5.41415124709651	FALSE
+sulfur source	set2S407	Sodium acetate trihydrate	TX73_011815	TX73_011815		quaternary ammonium compound efflux SMR transporter SugE	-1.12585500248411	-5.26674073579412	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_012125	TX73_012125		hypothetical protein	-1.01167451456514	-5.14060920629961	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013510	TX73_013510		flavin reductase family protein	2.14469568802383	9.98626318586819	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013515	TX73_013515		ATP-binding cassette domain-containing protein	1.99791626579163	13.3093114649299	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013520	TX73_013520		aliphatic sulfonate ABC transporter permease SsuC	1.84762213049797	10.8114229065811	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013525	TX73_013525		FMNH2-dependent alkanesulfonate monooxygenase	1.94776519600491	14.0300665865794	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013530	TX73_013530		sulfonate ABC transporter substrate-binding protein	1.74191424800527	9.2909056824031	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013640	TX73_013640		radical SAM protein	-3.43199703613878	-7.28938242086293	FALSE
+sulfur source	set1S384	Sodium acetate trihydrate	TX73_013640	TX73_013640		radical SAM protein	-1.94232389645557	-6.44098287552954	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013645	TX73_013645		nitrogenase iron protein NifH	-2.53846494799876	-6.36586775208057	FALSE
+sulfur source	set1S384	Sodium acetate trihydrate	TX73_013645	TX73_013645		nitrogenase iron protein NifH	-1.63054595532225	-5.17424874290103	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013650	TX73_013650		nitrogenase component 1	-2.31822215014582	-9.78314579046336	FALSE
+sulfur source	set2S386	Sodium acetate trihydrate	TX73_013650	TX73_013650		nitrogenase component 1	-1.68156563297418	-10.7579310315476	FALSE
+sulfur source	set1S384	Sodium acetate trihydrate	TX73_013650	TX73_013650		nitrogenase component 1	-1.56169307299481	-10.4712772601867	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013655	TX73_013655		nitrogenase component 1	-2.50920068248774	-6.46699699189375	FALSE
+sulfur source	set1S384	Sodium acetate trihydrate	TX73_013655	TX73_013655		nitrogenase component 1	-1.82290313790331	-5.67314451866379	FALSE
+sulfur source	set1S384	Sodium acetate trihydrate	TX73_013840	TX73_013840		AEC family transporter	-1.52293287865968	-9.09054573693198	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_013840	TX73_013840		AEC family transporter	-1.33543872624082	-7.01344683869123	FALSE
+sulfur source	set2S386	Sodium acetate trihydrate	TX73_013840	TX73_013840		AEC family transporter	-1.18155331130461	-7.68010768444604	FALSE
+sulfur source	set2S385	Sodium acetate trihydrate	TX73_019055	TX73_019055		Flp pilus assembly protein CpaB	1.49759842697914	7.56809691042869	FALSE
+sulfur source	set2S414	Sodium pyruvate	TX73_001435	TX73_001435		ammonium transporter	-1.08798874074763	-8.77497630879494	FALSE
+sulfur source	set2S413	Sodium pyruvate	TX73_002885	TX73_002885		cysteine synthase A	-1.55337745495747	-5.62634213963632	FALSE
+sulfur source	set2S414	Sodium pyruvate	TX73_002885	TX73_002885		cysteine synthase A	-1.48287012241345	-6.47755665593014	FALSE
+sulfur source	set2S413	Sodium pyruvate	TX73_008605	TX73_008605		response regulator	-1.60459273104565	-5.26740249387077	FALSE
+sulfur source	set2S413	Sodium pyruvate	TX73_009995	TX73_009995		cation-efflux pump	-1.61667817113594	-7.02839425203444	FALSE
+sulfur source	set2S413	Sodium pyruvate	TX73_010180	TX73_010180		TRAP transporter substrate-binding protein	4.02015972141363	5.88933117264944	FALSE
+sulfur source	set2S414	Sodium pyruvate	TX73_010180	TX73_010180		TRAP transporter substrate-binding protein	4.62483901096774	5.14134300603324	FALSE
+sulfur source	set2S414	Sodium pyruvate	TX73_010185	TX73_010185		TRAP transporter large permease subunit	7.01225244356556	11.6326204021758	FALSE
+sulfur source	set2S413	Sodium pyruvate	TX73_010185	TX73_010185		TRAP transporter large permease subunit	7.05267507914857	8.84921981534384	FALSE
+sulfur source	set2S414	Sodium pyruvate	TX73_010190	TX73_010190		TRAP transporter small permease subunit	7.20647837458175	5.32688262486761	FALSE
+sulfur source	set2S413	Sodium pyruvate	TX73_010190	TX73_010190		TRAP transporter small permease subunit	9.00722852980172	5.02035198323674	FALSE
+sulfur source	set2S413	Sodium pyruvate	TX73_021705	TX73_021705		sigma-54 dependent transcriptional regulator	1.68747487644337	5.91622624308422	FALSE
+sulfur source	set2S414	Sodium pyruvate	TX73_021705	TX73_021705		sigma-54 dependent transcriptional regulator	1.72510475290932	5.234701382513	FALSE
+sulfur source	set2S413	Sodium pyruvate	TX73_023050	TX73_023050		L,D-transpeptidase	1.71303458776879	5.79011719522339	FALSE
+sulfur source	set2S410	Sodium succinate dibasic hexahydrate	TX73_001985	TX73_001985		glycogen synthase GlgA	-1.61961264945884	-12.2011420997896	FALSE
+sulfur source	set2S409	Sodium succinate dibasic hexahydrate	TX73_001985	TX73_001985		glycogen synthase GlgA	-1.48756905298169	-9.7710308079425	FALSE
+sulfur source	set2S411	Sodium succinate dibasic hexahydrate	TX73_009235	TX73_009235		DUF3124 domain-containing protein	1.28291478228373	6.85495251240699	FALSE
+sulfur source	set2S409	Sodium succinate dibasic hexahydrate	TX73_012440	TX73_012440		ADP-ribosyl-[dinitrogen reductase] hydrolase	-1.64989721639474	-7.77031830061689	FALSE
+sulfur source	set2S411	Sodium succinate dibasic hexahydrate	TX73_012440	TX73_012440		ADP-ribosyl-[dinitrogen reductase] hydrolase	-1.47547780865049	-7.61363239734	FALSE
+sulfur source	set2S410	Sodium succinate dibasic hexahydrate	TX73_012440	TX73_012440		ADP-ribosyl-[dinitrogen reductase] hydrolase	-1.44100008218736	-8.38182544633859	FALSE
+sulfur source	set2S411	Sodium succinate dibasic hexahydrate	TX73_023925	TX73_023925		nitrogenase stabilizing/protective protein NifW	-1.67458776229593	-6.5635400684456	FALSE
+sulfur source	set2S410	Sodium succinate dibasic hexahydrate	TX73_023925	TX73_023925		nitrogenase stabilizing/protective protein NifW	-1.21803237179582	-5.63525340038828	FALSE
+sulfur source	set2S410	Sodium succinate dibasic hexahydrate	TX73_023935	TX73_023935		cysteine desulfurase NifS	-1.10800679860664	-6.19691158639669	FALSE
+sulfur source	set2S410	Sodium succinate dibasic hexahydrate	TX73_023950	TX73_023950		nitrogen fixation protein NifQ	-2.21302935242242	-7.81251996488244	FALSE
+sulfur source	set2S411	Sodium succinate dibasic hexahydrate	TX73_023950	TX73_023950		nitrogen fixation protein NifQ	-1.20323251286473	-6.2384212830454	FALSE
+sulfur source	set2S409	Sodium succinate dibasic hexahydrate	TX73_023965	TX73_023965		NifX-associated nitrogen fixation protein	-1.42302999470171	-6.75903558341708	FALSE
+sulfur source	set2S410	Sodium succinate dibasic hexahydrate	TX73_023970	TX73_023970		nitrogen fixation protein NifX	-1.40864958521893	-5.10458677944107	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_005720	TX73_005720		TetR/AcrR family transcriptional regulator	-1.14529768105819	-6.67488503445451	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_007295	TX73_007295		FixH family protein	-1.14993375375569	-5.56858381081075	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_007315	TX73_007315		serine acetyltransferase	-1.43738339923066	-8.56043737866776	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_012175	TX73_012175		NifB/NifX family molybdenum-iron cluster-binding protein	-2.62240067533438	-5.49581811110626	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_013510	TX73_013510		flavin reductase family protein	1.46597140711668	6.69683488173004	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013510	TX73_013510		flavin reductase family protein	1.51824331067282	9.1918109089752	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013510	TX73_013510		flavin reductase family protein	2.16171703316185	13.0381195802967	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_013515	TX73_013515		ATP-binding cassette domain-containing protein	1.32981470324091	10.9995067610456	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013515	TX73_013515		ATP-binding cassette domain-containing protein	1.37841273248313	10.4695196512861	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013515	TX73_013515		ATP-binding cassette domain-containing protein	2.0601424257086	15.7157143883864	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013520	TX73_013520		aliphatic sulfonate ABC transporter permease SsuC	1.25301186605917	7.23905178662429	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013520	TX73_013520		aliphatic sulfonate ABC transporter permease SsuC	1.87270979778923	12.2122134747131	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_013525	TX73_013525		FMNH2-dependent alkanesulfonate monooxygenase	1.29658714631147	10.1415421529183	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013525	TX73_013525		FMNH2-dependent alkanesulfonate monooxygenase	1.32930931048016	10.5734846327429	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013525	TX73_013525		FMNH2-dependent alkanesulfonate monooxygenase	2.01044381486911	16.7852777751381	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013530	TX73_013530		sulfonate ABC transporter substrate-binding protein	1.20248961011415	7.35895281937366	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_013530	TX73_013530		sulfonate ABC transporter substrate-binding protein	1.27798034379045	7.17459206096814	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013530	TX73_013530		sulfonate ABC transporter substrate-binding protein	2.04979391056019	9.99010751048261	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013640	TX73_013640		radical SAM protein	-2.57482566842101	-7.37582694837912	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013640	TX73_013640		radical SAM protein	-2.04457297526026	-5.6712883810505	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_013640	TX73_013640		radical SAM protein	-1.93296569002983	-7.62400360680556	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013645	TX73_013645		nitrogenase iron protein NifH	-1.95696831938556	-5.19857535628393	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_013645	TX73_013645		nitrogenase iron protein NifH	-1.89612738989475	-5.54916413267553	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013645	TX73_013645		nitrogenase iron protein NifH	-1.84389297220055	-5.80018238635926	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_013650	TX73_013650		nitrogenase component 1	-2.43188120916158	-11.7846583960236	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013650	TX73_013650		nitrogenase component 1	-2.3472546114698	-11.9139628645969	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013650	TX73_013650		nitrogenase component 1	-2.12387364035035	-12.3876875641804	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_013655	TX73_013655		nitrogenase component 1	-2.44538615355231	-7.55465368930937	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013655	TX73_013655		nitrogenase component 1	-2.16786777697794	-5.59672543000651	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013655	TX73_013655		nitrogenase component 1	-2.07791754281556	-5.28436592355175	FALSE
+sulfur source control	set1S380	Sodium acetate trihydrate	TX73_013840	TX73_013840		AEC family transporter	-1.51765923005032	-7.71202614379654	FALSE
+sulfur source control	set1S381	Sodium acetate trihydrate	TX73_013840	TX73_013840		AEC family transporter	-1.47337252540483	-8.27037601511037	FALSE
+sulfur source control	set1S382	Sodium acetate trihydrate	TX73_013840	TX73_013840		AEC family transporter	-1.45005913875222	-9.14787354811693	FALSE
+survival	set1S304		TX73_000230	TX73_000230		complex I NDUFA9 subunit family protein	-3.91603585685979	-23.3977459380312	FALSE
+survival	set1S305		TX73_000230	TX73_000230		complex I NDUFA9 subunit family protein	-3.3630533302359	-24.0090900611732	FALSE
+survival	set1S306		TX73_000230	TX73_000230		complex I NDUFA9 subunit family protein	-3.26056429746081	-23.5998088126545	FALSE
+survival	set1S303		TX73_000230	TX73_000230		complex I NDUFA9 subunit family protein	-3.05342530196564	-21.6184789056159	FALSE
+survival	set1S296		TX73_001105	TX73_001105		OmpA family protein	-1.22396088000098	-10.4730045258234	FALSE
+survival	set1S296		TX73_001110	TX73_001110		hypothetical protein	-1.07687916849909	-5.35734539255105	FALSE
+survival	set1S296		TX73_001115	TX73_001115		pyridoxamine 5'-phosphate oxidase family protein	-1.16616022372416	-7.82929159861366	FALSE
+survival	set1S304		TX73_002295	TX73_002295		tRNA (guanine(46)-N(7))-methyltransferase TrmB	-2.02703762057636	-9.12761646363744	FALSE
+survival	set1S305		TX73_002295	TX73_002295		tRNA (guanine(46)-N(7))-methyltransferase TrmB	-1.96333535464743	-10.8045724336017	FALSE
+survival	set1S306		TX73_002295	TX73_002295		tRNA (guanine(46)-N(7))-methyltransferase TrmB	-1.897612965368	-9.89912405383813	FALSE
+survival	set1S303		TX73_002295	TX73_002295		tRNA (guanine(46)-N(7))-methyltransferase TrmB	-1.65001274181365	-9.0075035980005	FALSE
+survival	set1S304		TX73_006235	TX73_006235		ABC transporter ATP-binding protein	-1.24761554149808	-6.9389429384229	FALSE
+survival	set1S305		TX73_006235	TX73_006235		ABC transporter ATP-binding protein	-1.15139325463439	-7.5203876891195	FALSE
+survival	set1S303		TX73_006235	TX73_006235		ABC transporter ATP-binding protein	-1.11127765361258	-6.71056784587024	FALSE
+survival	set1S302		TX73_006235	TX73_006235		ABC transporter ATP-binding protein	-1.07832073546406	-6.2772475527112	FALSE
+survival	set1S306		TX73_006240	TX73_006240		ABC transporter permease	-1.32580446594618	-5.77944577519875	FALSE
+survival	set1S302		TX73_006240	TX73_006240		ABC transporter permease	-1.30006089931314	-6.75862313095139	FALSE
+survival	set1S305		TX73_006240	TX73_006240		ABC transporter permease	-1.21233293059777	-5.94538337100259	FALSE
+survival	set1S304		TX73_013110	TX73_013110		ETC complex I subunit	-3.75159397284219	-9.59593454018318	FALSE
+survival	set1S305		TX73_013110	TX73_013110		ETC complex I subunit	-3.17750687487101	-8.28443376246768	FALSE
+survival	set1S306		TX73_013110	TX73_013110		ETC complex I subunit	-2.91171221643256	-10.2480033627724	FALSE
+survival	set1S303		TX73_013110	TX73_013110		ETC complex I subunit	-2.8389932535771	-6.58465414894687	FALSE
+survival	set1S302		TX73_013110	TX73_013110		ETC complex I subunit	-1.42715817959519	-5.80771288861338	FALSE
+survival	set1S300		TX73_013110	TX73_013110		ETC complex I subunit	-1.33908378907105	-5.91677467267466	FALSE
+survival	set1S305		TX73_014785	TX73_014785		deoxyguanosinetriphosphate triphosphohydrolase	-1.31318419453004	-10.2916963157759	FALSE
+survival	set1S303		TX73_014785	TX73_014785		deoxyguanosinetriphosphate triphosphohydrolase	-1.29241546502819	-9.69782604523511	FALSE
+survival	set1S304		TX73_014785	TX73_014785		deoxyguanosinetriphosphate triphosphohydrolase	-1.03382937623497	-8.00802100527852	FALSE
+survival	set1S306		TX73_014785	TX73_014785		deoxyguanosinetriphosphate triphosphohydrolase	-1.00076976324821	-7.77624687896505	FALSE
+survival	set1S304		TX73_015360	TX73_015360		trigger factor	-1.23829358539159	-8.68761344114502	FALSE
+survival	set1S304		TX73_016370	TX73_016370		DUF2384 domain-containing protein	-1.37930131094252	-6.62335554252787	FALSE
+survival	set1S303		TX73_019710	TX73_019710		branched-chain amino acid ABC transporter permease	-1.28327422545389	-8.480356065615	FALSE
+survival	set1S305		TX73_019710	TX73_019710		branched-chain amino acid ABC transporter permease	-1.22044829807549	-8.20424579530192	FALSE
+survival	set1S305		TX73_019715	TX73_019715		high-affinity branched-chain amino acid ABC transporter permease LivM	-1.36920927999753	-9.05554983769869	FALSE

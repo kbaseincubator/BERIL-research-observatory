@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure S13 – EMP Niche Breadth PGLS</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6; --ns:#c3c2b7; --acc2:#eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5; --ns:#52514e; --acc2:#c98500;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; max-width:680px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; line-height:1.5; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+.stat-block { border:1px solid var(--gl); border-radius:6px; padding:10px 14px; }
+.stat-label { font-size:10px; color:var(--tm); margin-bottom:3px; }
+.stat-value { font-size:14px; font-weight:600; color:var(--tp); font-variant-numeric:tabular-nums; }
+.stat-desc { font-size:10px; color:var(--ts); margin-top:2px; }
+.note { margin-top:14px; font-size:11px; color:var(--ts); border-left:3px solid var(--gl); padding-left:10px; line-height:1.5; }
+</style>
+</head>
+<body>
+<h2>Figure S13. EMP-derived niche breadth PGLS: the metal-gene association is directionally consistent but not significant.</h2>
+<div class="sub">PGLS of per-Mb primary KO density vs Earth Microbiome Project (EMP) Levins' niche breadth (EMPO Level 2 environment categories, n = 539 genera with ≥5 EMP samples). The association is in the expected direction (β = −0.019) but does not reach significance (p = 0.099), likely reflecting the coarser EMPO environment resolution and lower sample size compared to the primary MicrobeAtlas analysis (n = 1,574 genera, &gt;400,000 samples).</div>
+
+<div class="stat-grid">
+  <div class="stat-block">
+    <div class="stat-label">EMP PGLS β</div>
+    <div class="stat-value">−0.019</div>
+    <div class="stat-desc">SE = 0.0115; 95% CI [−0.042, +0.004]</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-label">p-value</div>
+    <div class="stat-value" style="color:var(--ns)">0.099</div>
+    <div class="stat-desc">Not significant (PGLS); Pagel's λ = 0.055</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-label">n genera (EMP)</div>
+    <div class="stat-value">539</div>
+    <div class="stat-desc">≥5 EMP samples; EMPO Level 2 niche</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-label">Primary P1 β (MicrobeAtlas)</div>
+    <div class="stat-value" style="color:var(--sig)">−0.021</div>
+    <div class="stat-desc">n = 1,574; FDR q = 6.4×10⁻⁸; λ = 0.757</div>
+  </div>
+</div>
+
+<svg id="chart"></svg>
+
+<div class="note">
+  <strong>Context:</strong> The EMP result (β = −0.019, p = 0.099) is directionally consistent with the primary MicrobeAtlas association (β = −0.021, FDR q = 6.4×10⁻⁸). The lower power likely reflects the EMP's coarser environment taxonomy (EMPO Level 2: 7 categories vs MicrobeAtlas's &gt;400,000 individual samples). Pagel's λ = 0.055 (near zero) indicates minimal residual phylogenetic signal after controlling for the predictor, suggesting different evolutionary dynamics in the EMP-represented subset. This result is treated as uninformative rather than contradictory.
+</div>
+
+<script>
+// Forest plot comparing EMP vs P1
+const DATA = [
+  {label:'EMP (EMPO L2, n=539)',       beta:-0.01901, se:0.01150, p:0.099, lambda:0.055, sig:false, isEMP:true},
+  {label:'Primary P1 (MicrobeAtlas, n=1,574)', beta:-0.02070, se:0.003700, p:2.1e-8, lambda:0.757, sig:true, isEMP:false},
+];
+
+const fmtB = b => (b >= 0 ? '+' : '') + b.toFixed(4);
+const fmtP = p => p < 1e-9 ? p.toExponential(2) : p < 0.001 ? p.toExponential(2) : p.toFixed(4);
+
+function render() {
+  const W = 540, rowH = 44;
+  const M = {top:30, right:100, bottom:48, left:240};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+  const xMin = -0.056, xMax = 0.020;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [-0.04, -0.02, 0, 0.02];
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${t === 0 ? 'var(--bl)' : 'var(--gl)'}" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+  });
+
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const col = d.sig ? 'var(--sig)' : 'var(--ns)';
+    const xb = xS(d.beta);
+    const xlo = xS(d.beta - 1.96 * d.se);
+    const xhi = xS(Math.min(0.018, d.beta + 1.96 * d.se));
+    const x0 = xS(0);
+
+    s += `<line x1="${xlo}" y1="${y}" x2="${xhi}" y2="${y}"
+      stroke="${col}" stroke-width="2" opacity="0.6"/>`;
+    s += `<line x1="${xlo}" y1="${y-5}" x2="${xlo}" y2="${y+5}"
+      stroke="${col}" stroke-width="2" opacity="0.7"/>`;
+    if (d.beta + 1.96*d.se < 0.018) {
+      s += `<line x1="${xhi}" y1="${y-5}" x2="${xhi}" y2="${y+5}"
+        stroke="${col}" stroke-width="2" opacity="0.7"/>`;
+    } else {
+      // Arrow indicating CI extends beyond axis
+      s += `<text x="${xhi + 4}" y="${y+4}" font-size="11" fill="${col}" opacity="0.7">→</text>`;
+    }
+    s += `<line x1="${x0}" y1="${y}" x2="${xb}" y2="${y}"
+      stroke="${col}" stroke-width="2" opacity="0.7"/>`;
+    s += `<circle cx="${xb}" cy="${y}" r="5.5"
+      fill="${col}" stroke="var(--sf)" stroke-width="2"/>`;
+
+    s += `<text x="${M.left - 8}" y="${y - 4}" text-anchor="end"
+      font-size="11" font-weight="${d.sig ? '600' : '400'}" fill="${d.sig ? 'var(--tp)' : 'var(--tm)'}">${d.label}</text>`;
+    s += `<text x="${M.left - 8}" y="${y + 10}" text-anchor="end"
+      font-size="9" fill="var(--tm)">λ = ${d.lambda.toFixed(3)}</text>`;
+
+    s += `<text x="${W - M.right + 6}" y="${y}" text-anchor="start"
+      font-size="10" fill="${col}" font-variant-numeric="tabular-nums">${fmtB(d.beta)}</text>`;
+    s += `<text x="${W - M.right + 6}" y="${y + 12}" text-anchor="start"
+      font-size="9" fill="${d.sig ? col : 'var(--tm)'}">p = ${fmtP(d.p)}</text>`;
+  });
+
+  s += `<line x1="${M.left}" y1="${M.top + DATA.length * rowH}"
+    x2="${W - M.right}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t === 0 ? '0' : t.toFixed(2)}</text>`;
+  });
+
+  s += `<text x="${xS(-0.01)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">PGLS β (metal-gene density → niche breadth)</text>`;
+
+  svg.innerHTML = s;
+}
+
+render();
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+</script>
+</body>
+</html>

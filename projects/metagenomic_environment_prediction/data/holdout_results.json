@@ -1,0 +1,10 @@
+{
+  "rmse_holdout": 0.027156755012173166,
+  "r2_holdout": -0.391694263022732,
+  "n_holdout": 43,
+  "n_train": 15325,
+  "cv_rmse_m1": 0.05268165655409716,
+  "holdout_cv_ratio": 0.5154878716519997,
+  "h4_supported": true,
+  "holdout_region": "Australia"
+}

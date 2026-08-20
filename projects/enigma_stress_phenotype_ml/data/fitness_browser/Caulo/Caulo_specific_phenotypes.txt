@@ -1,0 +1,632 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1IT050	Beta-Lactose	CCNA_00857	CCNA_00857		glucose/fructose transport protein	-1.26075595373536	-6.43853943990752	FALSE
+carbon source	set1IT033	Beta-Lactose	CCNA_01699	CCNA_01699		LacI-family transcriptional regulator	1.96954156141817	9.0873680253113	FALSE
+carbon source	set1IT050	Beta-Lactose	CCNA_01699	CCNA_01699		LacI-family transcriptional regulator	2.15359339353293	10.2732871528648	FALSE
+carbon source	set1IT016	Beta-Lactose	CCNA_01699	CCNA_01699		LacI-family transcriptional regulator	2.17818657333227	9.86201047319124	FALSE
+carbon source	set1IT050	Beta-Lactose	CCNA_01704	CCNA_01704		cytochrome c	-3.2978871133952	-5.02643431291369	FALSE
+carbon source	set1IT033	Beta-Lactose	CCNA_01706	CCNA_01706		BetA-family choline dehydrogenase	-2.26429465802581	-9.65131291218035	FALSE
+carbon source	set1IT050	Beta-Lactose	CCNA_01706	CCNA_01706		BetA-family choline dehydrogenase	-2.12993801639745	-9.52265642108633	FALSE
+carbon source	set1IT016	Beta-Lactose	CCNA_01706	CCNA_01706		BetA-family choline dehydrogenase	-1.65191813968237	-8.3772782837798	FALSE
+carbon source	set1IT050	Beta-Lactose	CCNA_02358	CCNA_02358		FMN reductase	-1.50078711709198	-5.11831994199497	FALSE
+carbon source	set1IT016	Beta-Lactose	CCNA_02669	CCNA_02669		hypothetical protein	-1.22279802989553	-5.67889438725493	FALSE
+carbon source	set1IT024	D-Cellobiose	CCNA_00839	CCNA_00839		glucan 1,4-beta-glucosidase	-1.22379391936459	-9.01086713098409	TRUE
+carbon source	set1IT020	D-Maltose monohydrate	CCNA_02130	CCNA_02130		pyruvate kinase	-1.42618965023983	-9.44072147072113	FALSE
+carbon source	set1IT051	D-Mannose	CCNA_01646	CCNA_01646		dethiobiotin synthetase	1.12612207634508	5.7291515688829	FALSE
+carbon source	set1IT034	D-Mannose	CCNA_02548	CCNA_02548		hypothetical protein	-1.66196295929334	-5.2040866519435	FALSE
+carbon source	set1IT034	D-Mannose	CCNA_02549	CCNA_02549		glucokinase	-3.46455378978388	-10.2263047709902	TRUE
+carbon source	set1IT017	D-Mannose	CCNA_02549	CCNA_02549		glucokinase	-2.95936147709678	-9.82305209750338	TRUE
+carbon source	set1IT051	D-Mannose	CCNA_02549	CCNA_02549		glucokinase	-2.41112797160129	-11.9260630954609	TRUE
+carbon source	set1IT005	D-Raffinose pentahydrate	CCNA_01191	CCNA_01191		transporter, major facilitator superfamily	-2.45889286727455	-9.46357639937	FALSE
+carbon source	set1IT022	D-Raffinose pentahydrate	CCNA_01191	CCNA_01191		transporter, major facilitator superfamily	-1.50328477410325	-6.20302873623305	FALSE
+carbon source	set1IT005	D-Raffinose pentahydrate	CCNA_01194	CCNA_01194		TonB-dependent receptor	-2.06846611641238	-13.3813533295706	FALSE
+carbon source	set1IT022	D-Raffinose pentahydrate	CCNA_01194	CCNA_01194		TonB-dependent receptor	-1.61042155196453	-10.637230485042	FALSE
+carbon source	set1IT022	D-Raffinose pentahydrate	CCNA_01698	CCNA_01698		endo-1,3-1,4-beta glucanase-related protein	-2.28773336179191	-5.87501389689446	TRUE
+carbon source	set1IT005	D-Raffinose pentahydrate	CCNA_01698	CCNA_01698		endo-1,3-1,4-beta glucanase-related protein	-2.20630657379087	-5.48223071904085	TRUE
+carbon source	set1IT005	D-Raffinose pentahydrate	CCNA_01699	CCNA_01699		LacI-family transcriptional regulator	1.28395486672703	5.4917185315122	FALSE
+carbon source	set1IT022	D-Raffinose pentahydrate	CCNA_01699	CCNA_01699		LacI-family transcriptional regulator	1.32866880904864	6.64373814272996	FALSE
+carbon source	set1IT005	D-Raffinose pentahydrate	CCNA_01706	CCNA_01706		BetA-family choline dehydrogenase	-2.26824621187834	-10.5717483239366	FALSE
+carbon source	set1IT022	D-Raffinose pentahydrate	CCNA_01706	CCNA_01706		BetA-family choline dehydrogenase	-1.77024124850883	-9.23121620553643	FALSE
+carbon source	set1IT049	D-Salicin	CCNA_00864	CCNA_00864		xylose dehydrogenase xylB	-1.91037801492723	-9.63165701118926	FALSE
+carbon source	set1IT015	D-Salicin	CCNA_00864	CCNA_00864		xylose dehydrogenase xylB	-1.46696446750208	-8.47834202486218	FALSE
+carbon source	set1IT032	D-Salicin	CCNA_00864	CCNA_00864		xylose dehydrogenase xylB	-1.21947137075334	-6.34691001014628	FALSE
+carbon source	set1IT049	D-Salicin	CCNA_01019	CCNA_01019		beta-glucosidase	-1.36546803491507	-9.48198377107555	FALSE
+carbon source	set1IT015	D-Salicin	CCNA_01019	CCNA_01019		beta-glucosidase	-1.17238347372234	-8.44076826788772	FALSE
+carbon source	set1IT049	D-Salicin	CCNA_01706	CCNA_01706		BetA-family choline dehydrogenase	-2.10511671344752	-10.8722496520706	FALSE
+carbon source	set1IT015	D-Salicin	CCNA_01706	CCNA_01706		BetA-family choline dehydrogenase	-1.31857332785812	-7.34485499992722	FALSE
+carbon source	set1IT038	D-Xylose	CCNA_00857	CCNA_00857		glucose/fructose transport protein	-2.22116189382929	-11.0955854368543	TRUE
+carbon source	set1IT004	D-Xylose	CCNA_00857	CCNA_00857		glucose/fructose transport protein	-2.21255187319897	-11.45127586887	TRUE
+carbon source	set1IT004	D-Xylose	CCNA_00862	CCNA_00862		xylonate dehydratase xylD	-3.64525557107153	-15.0704128878444	FALSE
+carbon source	set1IT038	D-Xylose	CCNA_00862	CCNA_00862		xylonate dehydratase xylD	-3.15679995094073	-15.8868703295975	FALSE
+carbon source	set1IT021	D-Xylose	CCNA_00862	CCNA_00862		xylonate dehydratase xylD	-2.53126253696239	-13.5733364271995	FALSE
+carbon source	set1IT004	D-Xylose	CCNA_00863	CCNA_00863		xylonolactonase xylC	-4.17635762138743	-10.4516978665501	TRUE
+carbon source	set1IT038	D-Xylose	CCNA_00863	CCNA_00863		xylonolactonase xylC	-4.05290904781745	-12.2137095503147	TRUE
+carbon source	set1IT021	D-Xylose	CCNA_00863	CCNA_00863		xylonolactonase xylC	-2.91603064995211	-11.7332924865452	TRUE
+carbon source	set1IT004	D-Xylose	CCNA_00864	CCNA_00864		xylose dehydrogenase xylB	-3.99676174568672	-9.99829610444949	TRUE
+carbon source	set1IT038	D-Xylose	CCNA_00864	CCNA_00864		xylose dehydrogenase xylB	-3.77605254927984	-11.6126349687647	TRUE
+carbon source	set1IT021	D-Xylose	CCNA_00864	CCNA_00864		xylose dehydrogenase xylB	-2.30964877158422	-10.2882592274067	TRUE
+carbon source	set1IT004	D-Xylose	CCNA_00865	CCNA_00865		alpha-ketoglutaric semialdehyde dehydrogenase xylA	-4.24712150851151	-8.62571501882926	FALSE
+carbon source	set1IT038	D-Xylose	CCNA_00865	CCNA_00865		alpha-ketoglutaric semialdehyde dehydrogenase xylA	-4.20244825027301	-9.38782800526509	FALSE
+carbon source	set1IT021	D-Xylose	CCNA_00865	CCNA_00865		alpha-ketoglutaric semialdehyde dehydrogenase xylA	-2.95329483838713	-10.6974858290579	FALSE
+carbon source	set1IT038	D-Xylose	CCNA_02669	CCNA_02669		hypothetical protein	-3.15905178429875	-10.6294517568653	FALSE
+carbon source	set1IT004	D-Xylose	CCNA_02669	CCNA_02669		hypothetical protein	-3.03545232684526	-10.3765677696627	FALSE
+carbon source	set1IT021	D-Xylose	CCNA_02669	CCNA_02669		hypothetical protein	-2.4831128312193	-9.769121368719	FALSE
+carbon source	set1IT038	D-Xylose	CCNA_02881	CCNA_02881		oxoglutarate semialdehyde dehydrogenase	-3.15496130957385	-14.5036834438611	TRUE
+carbon source	set1IT004	D-Xylose	CCNA_02881	CCNA_02881		oxoglutarate semialdehyde dehydrogenase	-2.99982954687159	-12.7811239594875	TRUE
+carbon source	set1IT021	D-Xylose	CCNA_02881	CCNA_02881		oxoglutarate semialdehyde dehydrogenase	-2.06067155580976	-9.76713600013159	TRUE
+carbon source	set1IT030	L-Alanine	CCNA_00002	CCNA_00002		septum formation protein Maf	-1.21139250549212	-5.90917642543311	FALSE
+carbon source	set1IT047	L-Alanine	CCNA_00002	CCNA_00002		septum formation protein Maf	-1.07989638627869	-5.55281200312651	FALSE
+carbon source	set1IT013	L-Alanine	CCNA_00395	CCNA_00395		feruloyl-CoA synthetase	1.27533663022889	8.50934168711956	FALSE
+carbon source	set1IT047	L-Alanine	CCNA_00395	CCNA_00395		feruloyl-CoA synthetase	1.35146688972364	9.19057792047679	FALSE
+carbon source	set1IT013	L-Alanine	CCNA_01216	CCNA_01216		phosphohydrolase, Icc family	1.53632708555781	6.28463727703579	FALSE
+carbon source	set1IT013	L-Alanine	CCNA_03047	CCNA_03047		4-amino-4-deoxychorismate lyase	-2.46572274133066	-13.2170523429485	FALSE
+carbon source	set1IT047	L-Alanine	CCNA_03047	CCNA_03047		4-amino-4-deoxychorismate lyase	-1.83709599019082	-8.55467317491874	FALSE
+carbon source	set1IT030	L-Alanine	CCNA_03047	CCNA_03047		4-amino-4-deoxychorismate lyase	-1.82420678286701	-8.99437247834038	FALSE
+carbon source	set1IT013	L-Alanine	CCNA_03048	CCNA_03048		para-aminobenzoate synthetase component I	-2.51907133610626	-14.7930636006176	FALSE
+carbon source	set1IT047	L-Alanine	CCNA_03048	CCNA_03048		para-aminobenzoate synthetase component I	-2.09583833484224	-12.8163619037314	FALSE
+carbon source	set1IT030	L-Alanine	CCNA_03048	CCNA_03048		para-aminobenzoate synthetase component I	-1.83348773195894	-11.0312421170765	FALSE
+carbon source	set1IT047	L-Alanine	CCNA_03202	CCNA_03202		lipid A 3-O-deacylase PagL	1.48732428269482	9.88825681855017	FALSE
+carbon source	set1IT013	L-Alanine	CCNA_03599	CCNA_03599		aspartate-semialdehyde dehydrogenase	-1.56065536396467	-7.14460837472457	FALSE
+carbon source	set1IT047	L-Alanine	CCNA_03599	CCNA_03599		aspartate-semialdehyde dehydrogenase	-1.23356997241604	-6.5398830429048	FALSE
+carbon source	set1IT030	L-Alanine	CCNA_03599	CCNA_03599		aspartate-semialdehyde dehydrogenase	-1.12840566236104	-5.67276293918027	FALSE
+carbon source	set1IT013	L-Alanine	CCNA_03665	CCNA_03665		DctA-YdbH superfamily protein	-1.19774015698469	-8.19275223292041	FALSE
+carbon source	set1IT010	L-Glutamic acid monopotassium salt monohydrate	CCNA_00510	CCNA_00510		carboxymethylenebutenolidase	-1.70192288277139	-7.19236309287375	FALSE
+carbon source	set1IT027	L-Glutamic acid monopotassium salt monohydrate	CCNA_01506	CCNA_01506		cystine transport ATP-binding protein	1.52990091198249	9.4599639197264	FALSE
+carbon source	set1IT010	L-Glutamic acid monopotassium salt monohydrate	CCNA_01506	CCNA_01506		cystine transport ATP-binding protein	1.59973808481256	9.95649260626481	FALSE
+carbon source	set1IT027	L-Glutamic acid monopotassium salt monohydrate	CCNA_01507	CCNA_01507		cystine transport system permease protein	1.36538593187169	7.15189367426408	FALSE
+carbon source	set1IT010	L-Glutamic acid monopotassium salt monohydrate	CCNA_01507	CCNA_01507		cystine transport system permease protein	1.60870857309485	9.75783528554092	FALSE
+carbon source	set1IT010	L-Glutamic acid monopotassium salt monohydrate	CCNA_01508	CCNA_01508		cystine-binding protein	1.43272798010475	8.79294437580968	FALSE
+carbon source	set1IT010	L-Glutamic acid monopotassium salt monohydrate	CCNA_02569	CCNA_02569		glutathione S-transferase	-1.88320311054126	-7.84004902077485	FALSE
+carbon source	set1IT048	N-Acetyl-D-Glucosamine	CCNA_00454	CCNA_00454		GntR-family transcriptional regulator	-1.6883037251654	-7.33247985157174	TRUE
+carbon source	set1IT014	N-Acetyl-D-Glucosamine	CCNA_00454	CCNA_00454		GntR-family transcriptional regulator	-1.3241605768736	-6.89107270158548	TRUE
+carbon source	set1IT031	N-Acetyl-D-Glucosamine	CCNA_00454	CCNA_00454		GntR-family transcriptional regulator	-1.23297943874883	-6.65313413479649	TRUE
+carbon source	set1IT048	N-Acetyl-D-Glucosamine	CCNA_00455	CCNA_00455		N-acetyl-glucosamine/N-acetyl-chitin oligosaccharide outer membrane transporter nagA	-3.94063833543431	-17.0235386785995	FALSE
+carbon source	set1IT014	N-Acetyl-D-Glucosamine	CCNA_00455	CCNA_00455		N-acetyl-glucosamine/N-acetyl-chitin oligosaccharide outer membrane transporter nagA	-3.07815422987751	-21.0946054057389	FALSE
+carbon source	set1IT031	N-Acetyl-D-Glucosamine	CCNA_00455	CCNA_00455		N-acetyl-glucosamine/N-acetyl-chitin oligosaccharide outer membrane transporter nagA	-2.34542740690582	-17.3028900204892	FALSE
+carbon source	set1IT048	N-Acetyl-D-Glucosamine	CCNA_00456	CCNA_00456		beta-N-acetylhexosaminidase	-3.92495185612174	-12.8247175934708	FALSE
+carbon source	set1IT014	N-Acetyl-D-Glucosamine	CCNA_00456	CCNA_00456		beta-N-acetylhexosaminidase	-3.08958408532899	-17.2469983209719	FALSE
+carbon source	set1IT031	N-Acetyl-D-Glucosamine	CCNA_00456	CCNA_00456		beta-N-acetylhexosaminidase	-2.33965540741245	-15.4500752495816	FALSE
+carbon source	set1IT048	N-Acetyl-D-Glucosamine	CCNA_01648	CCNA_01648		adenosylmethionine-8-amino-7-oxononanoate	-1.54669592475999	-6.61087550898689	FALSE
+carbon source	set1IT014	N-Acetyl-D-Glucosamine	CCNA_01648	CCNA_01648		adenosylmethionine-8-amino-7-oxononanoate	-1.34454811412654	-6.89839981640683	FALSE
+carbon source	set1IT048	N-Acetyl-D-Glucosamine	CCNA_02569	CCNA_02569		glutathione S-transferase	-1.49669587345348	-6.72314501649595	FALSE
+carbon source	set1IT048	N-Acetyl-D-Glucosamine	CCNA_03696	CCNA_03696		acetyl-coenzyme A synthetase	-2.2998737790323	-16.1796816911888	FALSE
+carbon source	set1IT014	N-Acetyl-D-Glucosamine	CCNA_03696	CCNA_03696		acetyl-coenzyme A synthetase	-1.83176951275663	-13.2517346116831	FALSE
+carbon source	set1IT031	N-Acetyl-D-Glucosamine	CCNA_03696	CCNA_03696		acetyl-coenzyme A synthetase	-1.49435752522229	-11.6475102526191	FALSE
+carbon source	set1IT048	N-Acetyl-D-Glucosamine	CCNA_03880	CCNA_03880		ligand-binding SRPBCC domain protein	-2.12473011323522	-5.42966260132839	FALSE
+carbon source	set1IT006	a-Cyclodextrin	CCNA_00038	CCNA_00038		hypothetical protein	-1.32704093708393	-5.22249456103038	FALSE
+carbon source	set1IT006	a-Cyclodextrin	CCNA_00202	CCNA_00202		DesA-family fatty acid desaturase	1.30255338259148	6.16869463085311	FALSE
+carbon source	set1IT040	a-Cyclodextrin	CCNA_00202	CCNA_00202		DesA-family fatty acid desaturase	1.34200372324345	6.63387447023696	FALSE
+carbon source	set1IT023	a-Cyclodextrin	CCNA_00202	CCNA_00202		DesA-family fatty acid desaturase	1.50005583077486	8.10938299860728	FALSE
+carbon source	set1IT006	a-Cyclodextrin	CCNA_00287	CCNA_00287		photosensory histidine protein kinase LovK	-1.56000849975351	-7.51735099997153	FALSE
+carbon source	set1IT006	a-Cyclodextrin	CCNA_01225	CCNA_01225		glycerophosphotransferase-related protein	1.0406419290714	5.22488453495215	FALSE
+carbon source	set1IT006	a-Cyclodextrin	CCNA_02369	CCNA_02369		alpha-amylase	-3.67755311241294	-9.51320030861984	TRUE
+carbon source	set1IT023	a-Cyclodextrin	CCNA_02369	CCNA_02369		alpha-amylase	-3.59728695182142	-8.38328676346217	TRUE
+carbon source	set1IT040	a-Cyclodextrin	CCNA_02369	CCNA_02369		alpha-amylase	-3.19935556586354	-8.76898622755315	TRUE
+carbon source	set1IT006	a-Cyclodextrin	CCNA_02403	CCNA_02403		ABC transporter permease protein	-1.53885104363484	-7.87723985755681	FALSE
+carbon source	set1IT040	a-Cyclodextrin	CCNA_02403	CCNA_02403		ABC transporter permease protein	-1.29865563375273	-6.00371635876173	FALSE
+carbon source	set1IT023	a-Cyclodextrin	CCNA_03005	CCNA_03005		hypothetical protein	-1.62933575090185	-6.6573093539124	FALSE
+carbon source	set1IT006	a-Cyclodextrin	CCNA_03047	CCNA_03047		4-amino-4-deoxychorismate lyase	-1.23372905564831	-5.15653600054563	FALSE
+carbon source	set1IT040	a-Cyclodextrin	CCNA_03047	CCNA_03047		4-amino-4-deoxychorismate lyase	-1.22584261098588	-6.27912857016703	FALSE
+carbon source	set1IT006	a-Cyclodextrin	CCNA_03048	CCNA_03048		para-aminobenzoate synthetase component I	-1.46986426682079	-9.4775107865512	FALSE
+carbon source	set1IT023	a-Cyclodextrin	CCNA_03048	CCNA_03048		para-aminobenzoate synthetase component I	-1.45327681683797	-9.07096316885601	FALSE
+carbon source	set1IT040	a-Cyclodextrin	CCNA_03048	CCNA_03048		para-aminobenzoate synthetase component I	-1.44522216440443	-9.10697359770686	FALSE
+carbon source	set1IT006	a-Cyclodextrin	CCNA_03369	CCNA_03369		hypothetical protein	1.34792660431052	6.23238323754185	FALSE
+carbon source	set1IT026	m-Inositol	CCNA_00902	CCNA_00902		inositol ABC transporter, periplasmic inositol-binding protein IbpA	-2.34904746921197	-11.8740511654508	FALSE
+carbon source	set1IT009	m-Inositol	CCNA_00902	CCNA_00902		inositol ABC transporter, periplasmic inositol-binding protein IbpA	-2.34002644642675	-11.0274494224538	FALSE
+carbon source	set1IT043	m-Inositol	CCNA_00902	CCNA_00902		inositol ABC transporter, periplasmic inositol-binding protein IbpA	-1.28331171818432	-6.06327316996253	FALSE
+carbon source	set1IT009	m-Inositol	CCNA_00903	CCNA_00903		inositol transport ATP-binding protein IatA	-2.40311692066962	-10.2089331315971	TRUE
+carbon source	set1IT026	m-Inositol	CCNA_00903	CCNA_00903		inositol transport ATP-binding protein IatA	-2.37889155746461	-11.5174476295858	TRUE
+carbon source	set1IT043	m-Inositol	CCNA_00903	CCNA_00903		inositol transport ATP-binding protein IatA	-1.81016054214901	-8.27264582387865	TRUE
+carbon source	set1IT009	m-Inositol	CCNA_00904	CCNA_00904		inositol ABC transport system, permease protein IatP	-2.422115121012	-9.62731516371027	TRUE
+carbon source	set1IT026	m-Inositol	CCNA_00904	CCNA_00904		inositol ABC transport system, permease protein IatP	-2.1461921500503	-10.2266894667147	TRUE
+carbon source	set1IT043	m-Inositol	CCNA_00904	CCNA_00904		inositol ABC transport system, permease protein IatP	-1.49363022656719	-6.44276451175304	TRUE
+carbon source	set1IT026	m-Inositol	CCNA_01360	CCNA_01360		malonate-semialdehyde dehydrogenase IolA	-2.63812112017372	-9.68151659949676	TRUE
+carbon source	set1IT009	m-Inositol	CCNA_01360	CCNA_01360		malonate-semialdehyde dehydrogenase IolA	-2.16500489224255	-7.95251567397232	TRUE
+carbon source	set1IT043	m-Inositol	CCNA_01360	CCNA_01360		malonate-semialdehyde dehydrogenase IolA	-1.98401980396447	-8.49017276805675	TRUE
+carbon source	set1IT043	m-Inositol	CCNA_01646	CCNA_01646		dethiobiotin synthetase	1.63084634468911	7.76990263936584	FALSE
+carbon source	set1IT026	m-Inositol	CCNA_03242	CCNA_03242		succinic semialdehyde dehydrogenase	-1.5160092535681	-8.71504954981225	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_00014	CCNA_00014		molybdenum cofactor biosynthesis protein C	-2.05274488736056	-6.79572735096281	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_00014	CCNA_00014		molybdenum cofactor biosynthesis protein C	-1.7829775864757	-6.97841516397208	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_00018	CCNA_00018		molybdenum cofactor biosynthesis protein A	-2.44946757267188	-8.77668223569233	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_00018	CCNA_00018		molybdenum cofactor biosynthesis protein A	-2.0158747290026	-8.92223002105057	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_00204	CCNA_00204		glutathione-regulated potassium-efflux system protein kefB	-1.23485845722025	-8.52713978967431	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_00204	CCNA_00204		glutathione-regulated potassium-efflux system protein kefB	-1.03704521327266	-7.64307024038931	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_00331	CCNA_00331		molybdate-binding protein	-2.15755238648457	-10.5876667114683	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_00331	CCNA_00331		molybdate-binding protein	-1.51778842985274	-8.74637409941634	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_00510	CCNA_00510		carboxymethylenebutenolidase	-2.59163125317111	-6.4827431233038	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_00510	CCNA_00510		carboxymethylenebutenolidase	-1.87243475651765	-6.47000999170427	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_01099	CCNA_01099		tetracycline resistance protein	1.27916362664835	8.01621931433552	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_01099	CCNA_01099		tetracycline resistance protein	1.3763280393457	7.93273537951642	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_01108	CCNA_01108		nucleoside-diphosphate-sugar epimerase	-1.8982227793383	-9.84340658818172	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_01491	CCNA_01491		cystathionine beta-lyase	-1.80928414952057	-6.64515699036353	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_01491	CCNA_01491		cystathionine beta-lyase	-1.2811697423112	-6.20009216329264	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_01506	CCNA_01506		cystine transport ATP-binding protein	2.46250872708106	13.5235188387289	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_01506	CCNA_01506		cystine transport ATP-binding protein	2.62373863026115	15.6862222130422	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_01507	CCNA_01507		cystine transport system permease protein	2.50427598724516	15.0286072826757	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_01507	CCNA_01507		cystine transport system permease protein	2.67447844299313	14.5230105552337	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_01508	CCNA_01508		cystine-binding protein	2.50780333717826	15.297552916448	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_01508	CCNA_01508		cystine-binding protein	2.67593064315317	15.0728923804555	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_02222	CCNA_02222		5-methyltetrahydrofolate--homocysteine methyltransferase homocysteine-binding subunit	-1.54046391610301	-6.05852691635624	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_02569	CCNA_02569		glutathione S-transferase	-1.6409007366014	-5.08801697821479	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_02688	CCNA_02688		PuuE-related allantoinase	-1.3522752530459	-5.98066977399361	TRUE
+nitrogen source	set1IT076	Adenosine	CCNA_02691	CCNA_02691		TetR-family transcriptional regulator	1.86247849903983	9.73123470651051	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_02691	CCNA_02691		TetR-family transcriptional regulator	1.87321430685894	12.5648246107412	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_02700	CCNA_02700		xanthine dehydrogenase accessory protein XdhC	-2.06557888729084	-8.734505354589	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_02700	CCNA_02700		xanthine dehydrogenase accessory protein XdhC	-1.78540112137373	-8.81059872813271	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_02701	CCNA_02701		xanthine dehydrogenase large subunit	-2.04682443165429	-9.306361101659	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_02701	CCNA_02701		xanthine dehydrogenase large subunit	-1.76771439596411	-9.20471001144654	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_02702	CCNA_02702		xanthine dehydrogenase small subunit	-2.16828005400448	-7.8795527045588	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_02702	CCNA_02702		xanthine dehydrogenase small subunit	-1.47301695992632	-7.25357497256438	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_02983	CCNA_02983		polyprenyl-phosphate beta-D-glucosyltransferase	1.4419913852398	8.56795012815955	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_02983	CCNA_02983		polyprenyl-phosphate beta-D-glucosyltransferase	1.4468638274259	9.21112561080753	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_02985	CCNA_02985		methyltransferase	1.51738396051457	7.58326733982374	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_02985	CCNA_02985		methyltransferase	1.52896817290446	9.15965959839562	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_03047	CCNA_03047		4-amino-4-deoxychorismate lyase	-1.20326644505996	-5.69493079213982	FALSE
+nitrogen source	set1IT076	Adenosine	CCNA_03284	CCNA_03284		adenosine deaminase	-2.41882125966941	-13.2864405471081	FALSE
+nitrogen source	set2IT007	Adenosine	CCNA_03284	CCNA_03284		adenosine deaminase	-2.18974494706283	-13.2034253761255	FALSE
+nitrogen source	set2IT009	Cytidine	CCNA_02691	CCNA_02691		TetR-family transcriptional regulator	5.00110923576449	22.6542617501646	FALSE
+nitrogen source	set1IT078	Cytidine	CCNA_02691	CCNA_02691		TetR-family transcriptional regulator	5.09043412608882	22.4268391937989	FALSE
+nitrogen source	set1IT078	Cytidine	CCNA_02700	CCNA_02700		xanthine dehydrogenase accessory protein XdhC	1.38455425082187	10.1096246173629	FALSE
+nitrogen source	set2IT006	D-Glucosamine Hydrochloride	CCNA_00454	CCNA_00454		GntR-family transcriptional regulator	1.59449626577388	7.21785332805305	FALSE
+nitrogen source	set1IT075	D-Glucosamine Hydrochloride	CCNA_00454	CCNA_00454		GntR-family transcriptional regulator	1.60841983449162	7.61090142333054	FALSE
+nitrogen source	set1IT075	D-Glucosamine Hydrochloride	CCNA_00455	CCNA_00455		N-acetyl-glucosamine/N-acetyl-chitin oligosaccharide outer membrane transporter nagA	-2.47396432695826	-17.5675892489604	FALSE
+nitrogen source	set2IT006	D-Glucosamine Hydrochloride	CCNA_00455	CCNA_00455		N-acetyl-glucosamine/N-acetyl-chitin oligosaccharide outer membrane transporter nagA	-2.36674076618359	-16.8869430227561	FALSE
+nitrogen source	set2IT006	D-Glucosamine Hydrochloride	CCNA_00456	CCNA_00456		beta-N-acetylhexosaminidase	-2.58566074560277	-14.6264568375576	FALSE
+nitrogen source	set1IT075	D-Glucosamine Hydrochloride	CCNA_00456	CCNA_00456		beta-N-acetylhexosaminidase	-2.08130607764636	-12.6201587592126	FALSE
+nitrogen source	set1IT075	D-Glucosamine Hydrochloride	CCNA_00574	CCNA_00574		alpha-N-acetylglucosaminidase	-1.55757999257832	-7.89394732354327	FALSE
+nitrogen source	set2IT006	D-Glucosamine Hydrochloride	CCNA_02741	CCNA_02741		hypothetical protein	-1.68836102255515	-6.17558875600757	FALSE
+nitrogen source	set1IT079	Glucuronamide	CCNA_02741	CCNA_02741		hypothetical protein	-2.20291170145716	-7.61716932459886	FALSE
+nitrogen source	set2IT008	Inosine	CCNA_00014	CCNA_00014		molybdenum cofactor biosynthesis protein C	-2.72201292682594	-12.0317818367004	FALSE
+nitrogen source	set1IT077	Inosine	CCNA_00014	CCNA_00014		molybdenum cofactor biosynthesis protein C	-2.44288358857207	-9.92402681416033	FALSE
+nitrogen source	set2IT008	Inosine	CCNA_00018	CCNA_00018		molybdenum cofactor biosynthesis protein A	-2.60124006821971	-12.6370248495974	FALSE
+nitrogen source	set1IT077	Inosine	CCNA_00018	CCNA_00018		molybdenum cofactor biosynthesis protein A	-2.34632300661068	-10.8465914958773	FALSE
+nitrogen source	set1IT077	Inosine	CCNA_00331	CCNA_00331		molybdate-binding protein	-2.69910460219956	-15.1468769035681	FALSE
+nitrogen source	set2IT008	Inosine	CCNA_00331	CCNA_00331		molybdate-binding protein	-1.87193597357114	-10.1412933098842	FALSE
+nitrogen source	set1IT077	Inosine	CCNA_02686	CCNA_02686		N-carbamoyl-L-amino acid hydrolase	-1.94381860724793	-9.88305821087401	TRUE
+nitrogen source	set2IT008	Inosine	CCNA_02686	CCNA_02686		N-carbamoyl-L-amino acid hydrolase	-1.81284137651484	-8.52358595651782	TRUE
+nitrogen source	set2IT008	Inosine	CCNA_02688	CCNA_02688		PuuE-related allantoinase	-2.2326481258643	-9.62600218203412	TRUE
+nitrogen source	set1IT077	Inosine	CCNA_02688	CCNA_02688		PuuE-related allantoinase	-2.04410712819946	-9.46732868296167	TRUE
+nitrogen source	set1IT077	Inosine	CCNA_02690	CCNA_02690		cytochrome c domain membrane protein	-2.17498159484087	-11.5087707248095	TRUE
+nitrogen source	set2IT008	Inosine	CCNA_02690	CCNA_02690		cytochrome c domain membrane protein	-1.93796096236636	-9.23535252857367	TRUE
+nitrogen source	set2IT008	Inosine	CCNA_02700	CCNA_02700		xanthine dehydrogenase accessory protein XdhC	-1.9987097553089	-10.2193541450345	FALSE
+nitrogen source	set1IT077	Inosine	CCNA_02700	CCNA_02700		xanthine dehydrogenase accessory protein XdhC	-1.95700571977451	-10.6651295111686	FALSE
+nitrogen source	set2IT008	Inosine	CCNA_02701	CCNA_02701		xanthine dehydrogenase large subunit	-1.81012031233211	-10.2981586281994	TRUE
+nitrogen source	set1IT077	Inosine	CCNA_02701	CCNA_02701		xanthine dehydrogenase large subunit	-1.76940207933942	-11.1188532613885	TRUE
+nitrogen source	set1IT077	Inosine	CCNA_02702	CCNA_02702		xanthine dehydrogenase small subunit	-1.68917592379105	-10.0491340628699	TRUE
+nitrogen source	set2IT008	Inosine	CCNA_02702	CCNA_02702		xanthine dehydrogenase small subunit	-1.62463506548472	-9.11488749028881	TRUE
+nitrogen source	set1IT077	Inosine	CCNA_02703	CCNA_02703		5-hydroxyisourate hydrolase	-2.57292771753186	-6.36925516327696	FALSE
+nitrogen source	set1IT064	L-Alanine	CCNA_00002	CCNA_00002		septum formation protein Maf	-3.1456009396291	-13.958350836456	FALSE
+nitrogen source	set1IT091	L-Alanine	CCNA_00002	CCNA_00002		septum formation protein Maf	-2.24647419561624	-11.0959107263913	FALSE
+nitrogen source	set1IT091	L-Alanine	CCNA_02996	CCNA_02996		patatin family phospholipase domain protein	-1.20771837438663	-5.58972069595966	FALSE
+nitrogen source	set1IT064	L-Alanine	CCNA_03047	CCNA_03047		4-amino-4-deoxychorismate lyase	-3.0657177068576	-13.7704316755418	FALSE
+nitrogen source	set1IT091	L-Alanine	CCNA_03047	CCNA_03047		4-amino-4-deoxychorismate lyase	-2.86527130398779	-11.9195101144115	FALSE
+nitrogen source	set1IT064	L-Alanine	CCNA_03048	CCNA_03048		para-aminobenzoate synthetase component I	-3.05563725233377	-15.6749069716699	FALSE
+nitrogen source	set1IT091	L-Alanine	CCNA_03048	CCNA_03048		para-aminobenzoate synthetase component I	-2.42910654561478	-11.6056595406866	FALSE
+nitrogen source	set1IT064	L-Alanine	CCNA_03599	CCNA_03599		aspartate-semialdehyde dehydrogenase	-1.16212104802147	-5.96741334179608	FALSE
+nitrogen source	set1IT064	L-Alanine	CCNA_03665	CCNA_03665		DctA-YdbH superfamily protein	-1.21799293042644	-8.19631694781835	FALSE
+nitrogen source	set1IT056	L-Arginine	CCNA_00510	CCNA_00510		carboxymethylenebutenolidase	-2.06062695158777	-8.64334273988217	FALSE
+nitrogen source	set1IT083	L-Arginine	CCNA_00510	CCNA_00510		carboxymethylenebutenolidase	-1.37213894365858	-5.61409790186771	FALSE
+nitrogen source	set1IT056	L-Arginine	CCNA_01015	CCNA_01015		multicopper oxidase PcoA	-2.95299813318078	-17.388048114158	FALSE
+nitrogen source	set1IT083	L-Arginine	CCNA_01015	CCNA_01015		multicopper oxidase PcoA	-2.29731104234846	-13.3696336360934	FALSE
+nitrogen source	set1IT056	L-Arginine	CCNA_01016	CCNA_01016		copper resistance protein B	-2.64625766296732	-12.5428791152885	FALSE
+nitrogen source	set1IT083	L-Arginine	CCNA_01016	CCNA_01016		copper resistance protein B	-1.87047695184149	-8.73648984680022	FALSE
+nitrogen source	set1IT056	L-Arginine	CCNA_01108	CCNA_01108		nucleoside-diphosphate-sugar epimerase	-1.92532263928091	-11.0436079907749	FALSE
+nitrogen source	set1IT083	L-Arginine	CCNA_01108	CCNA_01108		nucleoside-diphosphate-sugar epimerase	-1.74742308351485	-9.21532807814833	FALSE
+nitrogen source	set1IT056	L-Arginine	CCNA_01364	CCNA_01364		NIFR3-like protein	-1.26792261963787	-7.45289504814056	FALSE
+nitrogen source	set1IT056	L-Arginine	CCNA_01367	CCNA_01367		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	1.84995184587939	11.3692655947155	FALSE
+nitrogen source	set1IT083	L-Arginine	CCNA_02985	CCNA_02985		methyltransferase	-1.22200066252569	-6.02206326015078	FALSE
+nitrogen source	set1IT061	L-Asparagine	CCNA_00096	CCNA_00096		L-asparaginase	-3.2802578758804	-12.2132299209196	FALSE
+nitrogen source	set1IT088	L-Asparagine	CCNA_00096	CCNA_00096		L-asparaginase	-2.80366986920751	-11.5109952359938	FALSE
+nitrogen source	set1IT061	L-Asparagine	CCNA_00205	CCNA_00205		NAD(P)H-quinone reductase	-1.2591102323712	-5.73132369476482	FALSE
+nitrogen source	set1IT061	L-Asparagine	CCNA_00254	CCNA_00254		RarD family membrane permease	-2.58252802518901	-10.6188911016471	FALSE
+nitrogen source	set1IT088	L-Asparagine	CCNA_00254	CCNA_00254		RarD family membrane permease	-2.27051475641279	-12.2891993866134	FALSE
+nitrogen source	set1IT061	L-Asparagine	CCNA_00510	CCNA_00510		carboxymethylenebutenolidase	-1.78691923513059	-7.05422436380763	FALSE
+nitrogen source	set1IT088	L-Asparagine	CCNA_00510	CCNA_00510		carboxymethylenebutenolidase	-1.77504970365723	-7.82591147383863	FALSE
+nitrogen source	set1IT088	L-Asparagine	CCNA_01491	CCNA_01491		cystathionine beta-lyase	-2.30848470929373	-10.7241308934567	FALSE
+nitrogen source	set1IT061	L-Asparagine	CCNA_01491	CCNA_01491		cystathionine beta-lyase	-1.99584442308766	-9.1264329632733	FALSE
+nitrogen source	set1IT086	L-Glutamic acid monopotassium salt monohydrate	CCNA_00204	CCNA_00204		glutathione-regulated potassium-efflux system protein kefB	-1.16594498931257	-9.09024440422523	TRUE
+nitrogen source	set1IT059	L-Glutamic acid monopotassium salt monohydrate	CCNA_00204	CCNA_00204		glutathione-regulated potassium-efflux system protein kefB	-1.13352141238335	-8.74542663603376	TRUE
+nitrogen source	set1IT086	L-Glutamic acid monopotassium salt monohydrate	CCNA_00510	CCNA_00510		carboxymethylenebutenolidase	-1.80762394830498	-6.95958643391517	FALSE
+nitrogen source	set1IT059	L-Glutamic acid monopotassium salt monohydrate	CCNA_00510	CCNA_00510		carboxymethylenebutenolidase	-1.7448321308831	-8.16171292420694	FALSE
+nitrogen source	set1IT059	L-Glutamic acid monopotassium salt monohydrate	CCNA_01070	CCNA_01070		hypothetical protein	-1.53068608003607	-7.11829824410255	FALSE
+nitrogen source	set1IT086	L-Glutamic acid monopotassium salt monohydrate	CCNA_01070	CCNA_01070		hypothetical protein	-1.29631146311093	-6.65497441932804	FALSE
+nitrogen source	set1IT059	L-Glutamic acid monopotassium salt monohydrate	CCNA_01108	CCNA_01108		nucleoside-diphosphate-sugar epimerase	-2.03776703885308	-11.9129801104653	FALSE
+nitrogen source	set1IT086	L-Glutamic acid monopotassium salt monohydrate	CCNA_01108	CCNA_01108		nucleoside-diphosphate-sugar epimerase	-1.99281007364849	-11.1481286004648	FALSE
+nitrogen source	set1IT059	L-Glutamic acid monopotassium salt monohydrate	CCNA_01507	CCNA_01507		cystine transport system permease protein	1.35711360205161	7.66925185251013	FALSE
+nitrogen source	set1IT059	L-Glutamic acid monopotassium salt monohydrate	CCNA_01508	CCNA_01508		cystine-binding protein	1.3357823236605	7.19930971769667	FALSE
+nitrogen source	set1IT059	L-Glutamic acid monopotassium salt monohydrate	CCNA_02569	CCNA_02569		glutathione S-transferase	-2.02146985388082	-8.95236018049101	FALSE
+nitrogen source	set1IT086	L-Glutamic acid monopotassium salt monohydrate	CCNA_02569	CCNA_02569		glutathione S-transferase	-1.80750363888882	-8.15115109420519	FALSE
+nitrogen source	set1IT069	L-Phenylalanine	CCNA_03369	CCNA_03369		hypothetical protein	1.36136879433499	6.68020163906311	FALSE
+nitrogen source	set2IT001	L-Tryptophan	CCNA_00002	CCNA_00002		septum formation protein Maf	-1.03553861619551	-7.21539874069836	FALSE
+nitrogen source	set1IT070	L-Tryptophan	CCNA_00256	CCNA_00256		pyridoxine kinase	1.56758070750314	9.88190970532225	FALSE
+nitrogen source	set1IT070	L-Tryptophan	CCNA_01143	CCNA_01143		endoribonuclease L-PSP	-3.69463038763688	-7.47190602522607	FALSE
+nitrogen source	set2IT001	L-Tryptophan	CCNA_01143	CCNA_01143		endoribonuclease L-PSP	-3.13610414044841	-7.81389206528477	FALSE
+nitrogen source	set1IT070	L-Tryptophan	CCNA_01144	CCNA_01144		cytochrome c oxidase polypeptide II	-3.85145369122843	-8.196654501402	FALSE
+nitrogen source	set2IT001	L-Tryptophan	CCNA_01144	CCNA_01144		cytochrome c oxidase polypeptide II	-3.31275145201184	-8.73233341956198	FALSE
+nitrogen source	set1IT070	L-Tryptophan	CCNA_01145	CCNA_01145		monoamine oxidase	-2.87205421930237	-15.5295307500153	FALSE
+nitrogen source	set2IT001	L-Tryptophan	CCNA_01145	CCNA_01145		monoamine oxidase	-2.85258971411551	-15.5973409017335	FALSE
+nitrogen source	set1IT070	L-Tryptophan	CCNA_02883	CCNA_02883		flavin containing amine oxidoreductase	-3.04795511491168	-14.4087955665715	FALSE
+nitrogen source	set2IT001	L-Tryptophan	CCNA_02883	CCNA_02883		flavin containing amine oxidoreductase	-2.9240898506103	-13.2206616891405	FALSE
+nitrogen source	set2IT001	L-Tryptophan	CCNA_02979	CCNA_02979		cysteine desulfhydrase/selenocysteine lyase	-2.67507229514079	-14.2030932255918	FALSE
+nitrogen source	set1IT070	L-Tryptophan	CCNA_02979	CCNA_02979		cysteine desulfhydrase/selenocysteine lyase	-2.35258567505737	-12.0965286938299	FALSE
+nitrogen source	set1IT070	L-Tryptophan	CCNA_02981	CCNA_02981		AsnC-family transcriptional regulator	-2.93800663651941	-8.41928403973439	FALSE
+nitrogen source	set2IT001	L-Tryptophan	CCNA_02981	CCNA_02981		AsnC-family transcriptional regulator	-2.87300037534267	-8.56073932850845	FALSE
+nitrogen source	set2IT001	L-Tryptophan	CCNA_03402	CCNA_03402		NAD(P)H quinone oxidoreductase, PIG3 family	-1.22496601126082	-8.49861167751398	FALSE
+nitrogen source	set1IT070	L-Tryptophan	CCNA_03402	CCNA_03402		NAD(P)H quinone oxidoreductase, PIG3 family	-1.14500540829212	-7.78979521322424	FALSE
+nitrogen source	set2IT001	L-Tryptophan	CCNA_03831	CCNA_03831		major facilitator superfamily transporter	-1.16960977648257	-5.99167375729239	FALSE
+nitrogen source	set1IT070	L-Tryptophan	CCNA_03831	CCNA_03831		major facilitator superfamily transporter	-1.06116511873054	-5.02116728033961	FALSE
+nitrogen source	set2IT005	N-Acetyl-D-Glucosamine	CCNA_00454	CCNA_00454		GntR-family transcriptional regulator	2.55105976417579	14.9848285210724	FALSE
+nitrogen source	set1IT074	N-Acetyl-D-Glucosamine	CCNA_00454	CCNA_00454		GntR-family transcriptional regulator	2.62930808318168	15.5100146275446	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_00256	CCNA_00256		pyridoxine kinase	2.12319469137316	13.1163330475524	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_00256	CCNA_00256		pyridoxine kinase	2.15215573055225	12.7931031717894	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_00390	CCNA_00390		ADP-heptose--LPS heptosyltransferase	-1.8124848247339	-9.59408647701637	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_00544	CCNA_00544		acetyl-CoA acetyltransferase	-1.35010986848335	-7.31865299756905	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_00644	CCNA_00644		hypothetical protein	-1.74724690997059	-8.60272354788204	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_00644	CCNA_00644		hypothetical protein	-1.74199691033784	-7.5828773509603	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_00645	CCNA_00645		nitrate binding protein nrtA	-2.22052440049042	-8.66382878915855	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_00645	CCNA_00645		nitrate binding protein nrtA	-1.86301708752092	-8.84202198932585	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_00647	CCNA_00647		nitrate transport ATP-binding protein nrtD	-2.89888099316021	-9.25431021665635	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_00647	CCNA_00647		nitrate transport ATP-binding protein nrtD	-2.57823678847645	-8.62899420747442	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_01215	CCNA_01215		histidine triad (HIT) hydrolase	1.34234133602955	5.90195886483695	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_01216	CCNA_01216		phosphohydrolase, Icc family	2.31067675166468	11.0434034638343	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_01216	CCNA_01216		phosphohydrolase, Icc family	2.40213652549822	10.3525538496365	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_01377	CCNA_01377		hypothetical protein	-2.71343013176373	-5.15861800485322	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_01418	CCNA_01418		ROS/MUCR transcriptional regulator	1.1856192816846	5.21746972469328	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_01435	CCNA_01435		hypothetical protein	1.46385670740108	6.89518616970321	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_01948	CCNA_01948		peptidoglycan-specific endopeptidase, M23 family	-1.32738849567044	-5.28734049703823	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_02158	CCNA_02158		GT2 family glycosyltransferase	1.61088896725562	10.5568868023575	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_02158	CCNA_02158		GT2 family glycosyltransferase	2.1130778381282	13.8878113259553	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_02403	CCNA_02403		ABC transporter permease protein	1.30832383794607	7.72002865735947	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_02403	CCNA_02403		ABC transporter permease protein	1.40392665920188	8.10135518698394	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_02404	CCNA_02404		ABC transporter ATP-binding protein	1.50303869003624	7.43531925774324	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_02404	CCNA_02404		ABC transporter ATP-binding protein	1.66161395846304	8.32825266105309	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_02405	CCNA_02405		ABC membrane transporter, periplasmic component	1.90140248806271	12.4260889072789	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_02405	CCNA_02405		ABC membrane transporter, periplasmic component	2.0745188307192	12.3093397951425	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_02406	CCNA_02406		membrane lipoprotein	1.70240182686767	8.95678584314749	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_02406	CCNA_02406		membrane lipoprotein	1.85435017678305	9.68603674468241	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_02946	CCNA_02946		spsF-related cytidylyltransferase	1.41374470253308	7.21504445794397	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_02946	CCNA_02946		spsF-related cytidylyltransferase	1.70760195571636	8.36974202789029	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_02951	CCNA_02951		WbqC-like family protein	1.37905078955694	6.8144590124604	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_02971	CCNA_02971		membrane permease	1.10277092195123	6.23580016373536	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_02971	CCNA_02971		membrane permease	1.11687475788688	6.12864956568819	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_03241	CCNA_03241		glutamate-1-semialdehyde 2,1-aminomutase	-2.85427520973548	-9.55456016797288	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_03241	CCNA_03241		glutamate-1-semialdehyde 2,1-aminomutase	-2.637701619628	-8.77917100780989	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_03242	CCNA_03242		succinic semialdehyde dehydrogenase	-3.80240009406383	-14.3674104271359	TRUE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_03242	CCNA_03242		succinic semialdehyde dehydrogenase	-3.20325865723867	-14.3980944955233	TRUE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_03321	CCNA_03321		VanZ superfamily protein	2.13576652369592	10.8638919777292	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_03321	CCNA_03321		VanZ superfamily protein	2.20651541587997	9.00442565366888	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_03405	CCNA_03405		rpsU-divergently transcribed protein	1.48171847453166	5.74334583017962	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_03484	CCNA_03484		NfeD-related membrane protease regulator	-2.71122749516694	-9.71886967068312	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_03484	CCNA_03484		NfeD-related membrane protease regulator	-2.58897597043797	-7.73006804660874	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_03502	CCNA_03502		YceI/cytochrome b561 periplasmic protein	-1.37060094984487	-8.41921964703831	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_03502	CCNA_03502		YceI/cytochrome b561 periplasmic protein	-1.07658286266808	-6.58340375997311	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_03671	CCNA_03671		metallophosphatase related protein	-1.70320333051519	-8.39853558133569	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_03671	CCNA_03671		metallophosphatase related protein	-1.47321654574781	-7.59263049064035	FALSE
+nitrogen source	set1IT073	Putrescine Dihydrochloride	CCNA_03697	CCNA_03697		ligand-binding SRPBCC domain protein	-1.79803995089318	-9.01142940510232	FALSE
+nitrogen source	set2IT004	Putrescine Dihydrochloride	CCNA_03697	CCNA_03697		ligand-binding SRPBCC domain protein	-1.69290427556157	-9.61666826927824	FALSE
+nitrogen source	set2IT012	Sodium nitrate	CCNA_00014	CCNA_00014		molybdenum cofactor biosynthesis protein C	-4.29740491795749	-9.1610953098978	TRUE
+nitrogen source	set1IT081	Sodium nitrate	CCNA_00014	CCNA_00014		molybdenum cofactor biosynthesis protein C	-2.57103283785931	-10.1522822489962	TRUE
+nitrogen source	set2IT012	Sodium nitrate	CCNA_00018	CCNA_00018		molybdenum cofactor biosynthesis protein A	-4.48813636894096	-11.2230400490985	TRUE
+nitrogen source	set1IT081	Sodium nitrate	CCNA_00018	CCNA_00018		molybdenum cofactor biosynthesis protein A	-2.58577926226171	-10.592451612464	TRUE
+nitrogen source	set2IT012	Sodium nitrate	CCNA_00331	CCNA_00331		molybdate-binding protein	-4.2887366607214	-13.2107522373503	TRUE
+nitrogen source	set1IT081	Sodium nitrate	CCNA_00331	CCNA_00331		molybdate-binding protein	-2.73631320051528	-13.9564217293407	TRUE
+nitrogen source	set2IT012	Sodium nitrate	CCNA_00650	CCNA_00650		MFS superfamily nitrate/nitrite transporter NarK	-3.95584382056337	-7.12426550671812	TRUE
+nitrogen source	set1IT081	Sodium nitrate	CCNA_00650	CCNA_00650		MFS superfamily nitrate/nitrite transporter NarK	-2.66591147656865	-12.987056405585	TRUE
+nitrogen source	set2IT012	Sodium nitrate	CCNA_00651	CCNA_00651		nitrite reductase (NAD(P)H) catalytic subunit	-3.60362590174701	-8.71849692745654	TRUE
+nitrogen source	set1IT081	Sodium nitrate	CCNA_00651	CCNA_00651		nitrite reductase (NAD(P)H) catalytic subunit	-2.87883535326794	-14.7278364401842	TRUE
+nitrogen source	set2IT012	Sodium nitrate	CCNA_00652	CCNA_00652		nitrite reductase (NAD(P)H) small subunit	-4.19548131583435	-5.73691821507708	FALSE
+nitrogen source	set1IT081	Sodium nitrate	CCNA_00652	CCNA_00652		nitrite reductase (NAD(P)H) small subunit	-2.75672918115258	-6.42460419422174	FALSE
+nitrogen source	set2IT012	Sodium nitrate	CCNA_00653	CCNA_00653		assimilatory nitrate reductase catalytic subunit	-3.5101126677557	-11.6632646437881	TRUE
+nitrogen source	set1IT081	Sodium nitrate	CCNA_00653	CCNA_00653		assimilatory nitrate reductase catalytic subunit	-2.9743068247769	-17.6489835500224	TRUE
+nitrogen source	set2IT012	Sodium nitrate	CCNA_03160	CCNA_03160		molybdopterin-guanine dinucleotide biosynthesis protein A	-4.61342136550186	-6.31025984874316	FALSE
+nitrogen source	set1IT081	Sodium nitrate	CCNA_03160	CCNA_03160		molybdopterin-guanine dinucleotide biosynthesis protein A	-2.71458922292674	-6.62540663357519	FALSE
+stress	set3IT044	Benzethonium chloride	CCNA_02095	CCNA_02095		NAD/NADH-dependent eicosanoid dehydrogenase	-1.3926418718322	-5.68362780691211	FALSE
+stress	set4IT018	Benzethonium chloride	CCNA_03299	CCNA_03299		outer membrane protein oprM	-2.86848797160037	-11.6756366282679	FALSE
+stress	set3IT044	Benzethonium chloride	CCNA_03299	CCNA_03299		outer membrane protein oprM	-2.13734928508489	-11.397454248454	FALSE
+stress	set4IT018	Benzethonium chloride	CCNA_03300	CCNA_03300		RND family efflux transporter, MFP subunit	-3.86496836784479	-7.85333958875153	FALSE
+stress	set3IT044	Benzethonium chloride	CCNA_03300	CCNA_03300		RND family efflux transporter, MFP subunit	-2.56285125148991	-12.7339796164287	FALSE
+stress	set4IT018	Benzethonium chloride	CCNA_03301	CCNA_03301		cation/multidrug efflux pump AcrB	-3.38016938654461	-13.2336462071321	FALSE
+stress	set3IT044	Benzethonium chloride	CCNA_03301	CCNA_03301		cation/multidrug efflux pump AcrB	-2.11189237610698	-14.5108301775341	FALSE
+stress	set4IT018	Benzethonium chloride	CCNA_03844	CCNA_03844		ATP-dependent endopeptidase hsl ATP-binding subunit HslU	1.28889086981803	8.16016847276622	FALSE
+stress	set8IT012	CHIR-090	CCNA_03321	CCNA_03321		VanZ superfamily protein	-1.74078154172894	-7.08131872519891	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_00328	CCNA_00328		monofunctional biosynthetic peptidoglycan transglycosylase MtgA	-2.82220406966651	-8.85862202445098	FALSE
+stress	set3IT072	Carbenicillin disodium salt	CCNA_00328	CCNA_00328		monofunctional biosynthetic peptidoglycan transglycosylase MtgA	-2.55036283546105	-8.86462238865266	FALSE
+stress	set3IT007	Carbenicillin disodium salt	CCNA_00328	CCNA_00328		monofunctional biosynthetic peptidoglycan transglycosylase MtgA	-1.44226004871972	-7.43401361155305	FALSE
+stress	set3IT072	Carbenicillin disodium salt	CCNA_00579	CCNA_00579		endonuclease	1.40198416250909	9.68534288293756	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_00579	CCNA_00579		endonuclease	1.4953340951269	10.2540276230097	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_01261	CCNA_01261		periplasmic multidrug efflux lipoprotein precursor	-1.91174792974636	-8.94350833481717	FALSE
+stress	set3IT072	Carbenicillin disodium salt	CCNA_01261	CCNA_01261		periplasmic multidrug efflux lipoprotein precursor	-1.88746240828214	-8.66715264791815	FALSE
+stress	set3IT007	Carbenicillin disodium salt	CCNA_01261	CCNA_01261		periplasmic multidrug efflux lipoprotein precursor	-1.45805502463742	-7.81884047370751	FALSE
+stress	set3IT071	Carbenicillin disodium salt	CCNA_01261	CCNA_01261		periplasmic multidrug efflux lipoprotein precursor	-1.2953989407275	-6.63219246902351	FALSE
+stress	set3IT072	Carbenicillin disodium salt	CCNA_01262	CCNA_01262		cation/multidrug efflux pump, AcrB family	-1.73498547569816	-12.0740433970485	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_01262	CCNA_01262		cation/multidrug efflux pump, AcrB family	-1.72720404788825	-12.6082142076364	FALSE
+stress	set3IT072	Carbenicillin disodium salt	CCNA_01951	CCNA_01951		multimodular transpeptidase-transglycosylase PbpY	1.40147522909103	9.16058445189821	TRUE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_01951	CCNA_01951		multimodular transpeptidase-transglycosylase PbpY	1.40870462244239	9.292700785187	TRUE
+stress	set3IT072	Carbenicillin disodium salt	CCNA_02222	CCNA_02222		5-methyltetrahydrofolate--homocysteine methyltransferase homocysteine-binding subunit	1.85765935241215	10.2522032599339	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_02222	CCNA_02222		5-methyltetrahydrofolate--homocysteine methyltransferase homocysteine-binding subunit	1.87957735031104	9.95189276056865	FALSE
+stress	set3IT071	Carbenicillin disodium salt	CCNA_02223	CCNA_02223		beta-lactamase, type II	-3.42755682635011	-10.9732328964319	FALSE
+stress	set3IT007	Carbenicillin disodium salt	CCNA_02223	CCNA_02223		beta-lactamase, type II	-3.19548006878818	-11.1175547848444	FALSE
+stress	set3IT072	Carbenicillin disodium salt	CCNA_02223	CCNA_02223		beta-lactamase, type II	-3.11042893495112	-8.52008835014978	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_02223	CCNA_02223		beta-lactamase, type II	-2.9333601205385	-8.84620434954974	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_02288	CCNA_02288		tRNA synthetase class I, catalytic domain protein	-1.60256269121983	-5.88559614484721	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_02492	CCNA_02492		protocatechuate 3,4-dioxygenase alpha chain	-1.53038473993651	-5.74834070811703	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_02906	CCNA_02906		acyltransferase family protein	1.7683388145806	12.686932953314	FALSE
+stress	set3IT072	Carbenicillin disodium salt	CCNA_02906	CCNA_02906		acyltransferase family protein	1.78149684683957	11.9546751126471	FALSE
+stress	set3IT008	Carbenicillin disodium salt	CCNA_03753	CCNA_03753		iron-sulfur cluster-binding protein	-1.52236901693419	-7.78649284664062	TRUE
+stress	set3IT072	Carbenicillin disodium salt	CCNA_03753	CCNA_03753		iron-sulfur cluster-binding protein	-1.41504475271814	-7.2725349220482	TRUE
+stress	set3IT002	Chloramphenicol	CCNA_01246	CCNA_01246		methyltransferase	1.2647686980676	6.37577440941824	FALSE
+stress	set3IT002	Chloramphenicol	CCNA_01769	CCNA_01769		ABC transporter ATP-binding protein	-1.43526671653917	-5.27430268530037	TRUE
+stress	set3IT002	Chloramphenicol	CCNA_02129	CCNA_02129		acyl-CoA dehydrogenase, short-chain specific	-1.45161902772979	-6.70186972124512	FALSE
+stress	set4IT002	Cisplatin	CCNA_00158	CCNA_00158		DNA replication and repair protein recF	-5.10042540586459	-11.3996327010995	TRUE
+stress	set3IT028	Cisplatin	CCNA_00158	CCNA_00158		DNA replication and repair protein recF	-5.07501022715942	-18.2310842588117	TRUE
+stress	set4IT001	Cisplatin	CCNA_00158	CCNA_00158		DNA replication and repair protein recF	-4.9600496809869	-11.0858879491586	TRUE
+stress	set3IT027	Cisplatin	CCNA_00158	CCNA_00158		DNA replication and repair protein recF	-4.774623390592	-17.3890275618938	TRUE
+stress	set3IT028	Cisplatin	CCNA_00270	CCNA_00270		Recombination protein recR	-5.52192609404943	-10.6073197655655	TRUE
+stress	set4IT001	Cisplatin	CCNA_00270	CCNA_00270		Recombination protein recR	-5.28685670120872	-6.29160356393035	TRUE
+stress	set4IT002	Cisplatin	CCNA_00270	CCNA_00270		Recombination protein recR	-5.27960135659578	-8.06451038945344	TRUE
+stress	set3IT027	Cisplatin	CCNA_00270	CCNA_00270		Recombination protein recR	-4.19545392239533	-12.0923543764305	TRUE
+stress	set4IT002	Cisplatin	CCNA_00349	CCNA_00349		integrase/recombinase, XerC-CodV family	-3.68211779738894	-5.61434024259695	FALSE
+stress	set3IT028	Cisplatin	CCNA_00349	CCNA_00349		integrase/recombinase, XerC-CodV family	-3.63875041020482	-8.46195611881627	FALSE
+stress	set4IT001	Cisplatin	CCNA_00349	CCNA_00349		integrase/recombinase, XerC-CodV family	-2.66519113910908	-8.55260259815628	FALSE
+stress	set3IT027	Cisplatin	CCNA_00349	CCNA_00349		integrase/recombinase, XerC-CodV family	-1.81304100710193	-7.99411841272691	FALSE
+stress	set3IT028	Cisplatin	CCNA_01635	CCNA_01635		DNA repair protein recO	-4.65181851016444	-6.38041430615252	TRUE
+stress	set3IT027	Cisplatin	CCNA_01635	CCNA_01635		DNA repair protein recO	-4.15833135907541	-7.48610421530995	TRUE
+stress	set4IT002	Cisplatin	CCNA_01635	CCNA_01635		DNA repair protein recO	-3.95968119736047	-5.41990643723719	TRUE
+stress	set4IT002	Cisplatin	CCNA_02062	CCNA_02062		DNA repair protein recN	-4.33041880196948	-9.65136767282719	FALSE
+stress	set3IT028	Cisplatin	CCNA_02062	CCNA_02062		DNA repair protein recN	-4.11228816680099	-12.6665302580429	FALSE
+stress	set4IT001	Cisplatin	CCNA_02062	CCNA_02062		DNA repair protein recN	-3.76858066649342	-11.3004500300194	FALSE
+stress	set3IT027	Cisplatin	CCNA_02062	CCNA_02062		DNA repair protein recN	-2.51152748588568	-11.5678996226632	FALSE
+stress	set3IT027	Cisplatin	CCNA_02121	CCNA_02121		ATP-dependent helicase	-4.37532837340459	-11.9975371857659	TRUE
+stress	set3IT028	Cisplatin	CCNA_02121	CCNA_02121		ATP-dependent helicase	-4.23270873039421	-12.7809986813181	TRUE
+stress	set4IT001	Cisplatin	CCNA_02121	CCNA_02121		ATP-dependent helicase	-4.04081065956286	-7.26937368558036	TRUE
+stress	set4IT002	Cisplatin	CCNA_02673	CCNA_02673		excinuclease ABC subunit A	-3.85764842147853	-12.1123440070445	TRUE
+stress	set3IT028	Cisplatin	CCNA_02673	CCNA_02673		excinuclease ABC subunit A	-3.80275566253037	-16.6832077093186	TRUE
+stress	set4IT001	Cisplatin	CCNA_02673	CCNA_02673		excinuclease ABC subunit A	-3.72185258971917	-12.5443182181506	TRUE
+stress	set3IT027	Cisplatin	CCNA_02673	CCNA_02673		excinuclease ABC subunit A	-3.30246141757486	-15.9536867171214	TRUE
+stress	set3IT028	Cisplatin	CCNA_02975	CCNA_02975		excinuclease ABC subunit C	-4.82522840191689	-15.1936472655552	TRUE
+stress	set3IT027	Cisplatin	CCNA_02975	CCNA_02975		excinuclease ABC subunit C	-4.80671605488849	-13.881015510377	TRUE
+stress	set4IT002	Cisplatin	CCNA_02975	CCNA_02975		excinuclease ABC subunit C	-4.25956887592871	-11.0046899555301	TRUE
+stress	set4IT001	Cisplatin	CCNA_02975	CCNA_02975		excinuclease ABC subunit C	-3.97567413209181	-11.9774812433469	TRUE
+stress	set3IT028	Cisplatin	CCNA_03076	CCNA_03076		excinuclease ABC subunit B	-4.14248403101414	-18.6113749650421	TRUE
+stress	set4IT002	Cisplatin	CCNA_03076	CCNA_03076		excinuclease ABC subunit B	-3.95381626611362	-13.3408383605791	TRUE
+stress	set4IT001	Cisplatin	CCNA_03076	CCNA_03076		excinuclease ABC subunit B	-3.84440329984055	-12.5389382147013	TRUE
+stress	set3IT027	Cisplatin	CCNA_03076	CCNA_03076		excinuclease ABC subunit B	-3.800802857695	-18.1525781584702	TRUE
+stress	set3IT028	Cisplatin	CCNA_03101	CCNA_03101		site-specific tyrosine recombinase XerD	-3.64646603382752	-7.77208696984982	TRUE
+stress	set4IT001	Cisplatin	CCNA_03101	CCNA_03101		site-specific tyrosine recombinase XerD	-2.38705575606095	-6.07151978174048	TRUE
+stress	set3IT027	Cisplatin	CCNA_03101	CCNA_03101		site-specific tyrosine recombinase XerD	-1.93506176197037	-6.45168218388365	TRUE
+stress	set3IT028	Cisplatin	CCNA_03317	CCNA_03317		DNA polymerase III alpha subunit DnaE2	-4.35438017803056	-14.9680763122683	TRUE
+stress	set3IT027	Cisplatin	CCNA_03317	CCNA_03317		DNA polymerase III alpha subunit DnaE2	-3.94209502517261	-15.4541401943517	TRUE
+stress	set4IT001	Cisplatin	CCNA_03317	CCNA_03317		DNA polymerase III alpha subunit DnaE2	-3.8249438590122	-6.88963124681629	TRUE
+stress	set4IT002	Cisplatin	CCNA_03317	CCNA_03317		DNA polymerase III alpha subunit DnaE2	-3.74384587133549	-11.2885044516749	TRUE
+stress	set3IT028	Cisplatin	CCNA_03318	CCNA_03318		DNA polymerase Y-family protein ImuB	-4.97320703357259	-8.31306798717039	TRUE
+stress	set4IT002	Cisplatin	CCNA_03318	CCNA_03318		DNA polymerase Y-family protein ImuB	-4.37262287487981	-5.2016682715462	TRUE
+stress	set3IT027	Cisplatin	CCNA_03318	CCNA_03318		DNA polymerase Y-family protein ImuB	-4.07551608915364	-9.85271938875896	TRUE
+stress	set3IT028	Cisplatin	CCNA_03319	CCNA_03319		conserved hypothetical protein ImuA	-4.77603508637953	-7.30465427706326	FALSE
+stress	set3IT027	Cisplatin	CCNA_03319	CCNA_03319		conserved hypothetical protein ImuA	-3.55781487455878	-9.18673739390874	FALSE
+stress	set4IT002	Cisplatin	CCNA_03578	CCNA_03578		ATP-dependent DNA helicase recQ	-2.39429344502377	-13.3926843273763	TRUE
+stress	set3IT028	Cisplatin	CCNA_03578	CCNA_03578		ATP-dependent DNA helicase recQ	-2.26980681110971	-11.6213059176102	TRUE
+stress	set4IT001	Cisplatin	CCNA_03578	CCNA_03578		ATP-dependent DNA helicase recQ	-1.77952548159388	-10.7941424849473	TRUE
+stress	set3IT027	Cisplatin	CCNA_03578	CCNA_03578		ATP-dependent DNA helicase recQ	-1.23246803264468	-7.1775543227419	TRUE
+stress	set3IT028	Cisplatin	CCNA_03580	CCNA_03580		SOS-induced DUF1052 family protein	-5.36087188561587	-7.34864225477695	TRUE
+stress	set4IT002	Cisplatin	CCNA_03580	CCNA_03580		SOS-induced DUF1052 family protein	-4.67437705421519	-6.38924628575844	TRUE
+stress	set4IT001	Cisplatin	CCNA_03580	CCNA_03580		SOS-induced DUF1052 family protein	-4.66637739878915	-5.54309889703482	TRUE
+stress	set3IT027	Cisplatin	CCNA_03580	CCNA_03580		SOS-induced DUF1052 family protein	-4.18877596765295	-8.495635409141	TRUE
+stress	set3IT028	Cisplatin	CCNA_03725	CCNA_03725		ATP-dependent DNA ligase	-1.86253975674427	-10.910577373685	TRUE
+stress	set4IT002	Cisplatin	CCNA_03725	CCNA_03725		ATP-dependent DNA ligase	-1.35138552081731	-8.33434939968522	TRUE
+stress	set4IT002	Cisplatin	CCNA_03759	CCNA_03759		mRNA 3'-end processing factor	-1.67116024682509	-8.53001496511745	TRUE
+stress	set3IT028	Cisplatin	CCNA_03759	CCNA_03759		mRNA 3'-end processing factor	-1.54114693881566	-6.5025086066588	TRUE
+stress	set3IT018	Cobalt chloride hexahydrate	CCNA_00029	CCNA_00029		lysine exporter protein	1.37150556347538	5.96060685596827	FALSE
+stress	set3IT082	Cobalt chloride hexahydrate	CCNA_00029	CCNA_00029		lysine exporter protein	1.60519484231479	7.34031963324125	FALSE
+stress	set3IT018	Cobalt chloride hexahydrate	CCNA_01367	CCNA_01367		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-1.50628213518671	-7.57941167819323	FALSE
+stress	set3IT082	Cobalt chloride hexahydrate	CCNA_01916	CCNA_01916		ribonuclease BN	1.4528984281624	7.56495514381452	FALSE
+stress	set3IT018	Cobalt chloride hexahydrate	CCNA_02237	CCNA_02237		Xaa-pro dipeptidyl-peptidase	1.92752397265626	15.4557369842312	FALSE
+stress	set3IT082	Cobalt chloride hexahydrate	CCNA_02237	CCNA_02237		Xaa-pro dipeptidyl-peptidase	2.11879937905987	16.5651978079589	FALSE
+stress	set3IT082	Cobalt chloride hexahydrate	CCNA_03112	CCNA_03112		magnesium and cobalt efflux protein corB	1.66252599369219	13.2026519168208	TRUE
+stress	set3IT018	Cobalt chloride hexahydrate	CCNA_03112	CCNA_03112		magnesium and cobalt efflux protein corB	1.92363536425513	14.9249422288433	TRUE
+stress	set3IT018	Cobalt chloride hexahydrate	CCNA_03202	CCNA_03202		lipid A 3-O-deacylase PagL	2.00306714021751	15.8684048011907	FALSE
+stress	set3IT082	Cobalt chloride hexahydrate	CCNA_03202	CCNA_03202		lipid A 3-O-deacylase PagL	2.06967572718614	15.698797053084	FALSE
+stress	set4IT030	Dimethyl Sulfoxide	CCNA_00224	CCNA_00224		TonB-dependent receptor protein	1.62007447178833	12.0824324067237	FALSE
+stress	set4IT031	Dimethyl Sulfoxide	CCNA_00402	CCNA_00402		hypothetical protein	-1.4640709532202	-5.42594347662307	FALSE
+stress	set3IT057	Dimethyl Sulfoxide	CCNA_03826	CCNA_03826		hypothetical protein	-1.61824614166915	-5.19229742105952	FALSE
+stress	set4IT037	Doxycycline hyclate	CCNA_00101	CCNA_00101		16S rRNA m5C methyltransferase RsmB	1.39751607204085	10.1487511291956	FALSE
+stress	set3IT063	Doxycycline hyclate	CCNA_00101	CCNA_00101		16S rRNA m5C methyltransferase RsmB	1.76330073210377	11.7146679623427	FALSE
+stress	set3IT063	Doxycycline hyclate	CCNA_00108	CCNA_00108		lon endopeptidase-related protein	1.23308908585492	7.69685149159538	FALSE
+stress	set3IT063	Doxycycline hyclate	CCNA_03299	CCNA_03299		outer membrane protein oprM	-1.66527710472747	-7.67297415300003	FALSE
+stress	set4IT037	Doxycycline hyclate	CCNA_03299	CCNA_03299		outer membrane protein oprM	-1.46695894774652	-7.82900786162393	FALSE
+stress	set3IT063	Doxycycline hyclate	CCNA_03300	CCNA_03300		RND family efflux transporter, MFP subunit	-2.64509196281158	-11.2188686789805	FALSE
+stress	set4IT037	Doxycycline hyclate	CCNA_03300	CCNA_03300		RND family efflux transporter, MFP subunit	-2.33193065022978	-13.015688382049	FALSE
+stress	set3IT063	Doxycycline hyclate	CCNA_03301	CCNA_03301		cation/multidrug efflux pump AcrB	-2.59681001950467	-14.3400902789558	FALSE
+stress	set4IT037	Doxycycline hyclate	CCNA_03301	CCNA_03301		cation/multidrug efflux pump AcrB	-2.32621182757504	-15.7401829297779	FALSE
+stress	set3IT063	Doxycycline hyclate	CCNA_03889	CCNA_03889		hypothetical protein	-1.26192415898406	-5.27310174389468	FALSE
+stress	set3IT011	Nalidixic acid sodium salt	CCNA_00204	CCNA_00204		glutathione-regulated potassium-efflux system protein kefB	-1.35022703554174	-6.83148916430887	FALSE
+stress	set3IT075	Nalidixic acid sodium salt	CCNA_00205	CCNA_00205		NAD(P)H-quinone reductase	-1.7565881861138	-5.49507394603632	FALSE
+stress	set3IT011	Nalidixic acid sodium salt	CCNA_00849	CCNA_00849		outer membrane efflux protein	-3.06451719966422	-14.2624815325259	FALSE
+stress	set3IT075	Nalidixic acid sodium salt	CCNA_00849	CCNA_00849		outer membrane efflux protein	-2.97497566164407	-15.4733173138453	FALSE
+stress	set3IT011	Nalidixic acid sodium salt	CCNA_00968	CCNA_00968		gluconate kinase	2.34881763407677	15.5854628678466	FALSE
+stress	set3IT075	Nalidixic acid sodium salt	CCNA_00968	CCNA_00968		gluconate kinase	2.54301965177623	17.5632917756145	FALSE
+stress	set3IT075	Nalidixic acid sodium salt	CCNA_01050	CCNA_01050		ABC transporter ATP-binding protein	-1.54051803121201	-7.93411653766927	FALSE
+stress	set3IT011	Nalidixic acid sodium salt	CCNA_01050	CCNA_01050		ABC transporter ATP-binding protein	-1.18786385411676	-5.53735478230201	FALSE
+stress	set3IT074	Nalidixic acid sodium salt	CCNA_01287	CCNA_01287		epoxide hydrolase	-1.56025394777373	-6.71891089865035	FALSE
+stress	set3IT075	Nalidixic acid sodium salt	CCNA_01846	CCNA_01846		two-component sensor histidine kinase	1.22460382244116	6.27829345441062	FALSE
+stress	set3IT011	Nalidixic acid sodium salt	CCNA_01846	CCNA_01846		two-component sensor histidine kinase	1.38384351588527	6.69021145262244	FALSE
+stress	set3IT011	Nalidixic acid sodium salt	CCNA_02691	CCNA_02691		TetR-family transcriptional regulator	2.43591304265823	13.2990996935288	FALSE
+stress	set3IT075	Nalidixic acid sodium salt	CCNA_02691	CCNA_02691		TetR-family transcriptional regulator	2.57687060310078	13.0984504434955	FALSE
+stress	set3IT011	Nalidixic acid sodium salt	CCNA_02860	CCNA_02860		DnaJ-class molecular chaperone	-1.57719252878226	-6.1716569633164	FALSE
+stress	set3IT075	Nalidixic acid sodium salt	CCNA_03284	CCNA_03284		adenosine deaminase	-1.16223725589965	-5.93682359089647	FALSE
+stress	set3IT011	Nalidixic acid sodium salt	CCNA_03553	CCNA_03553		diadenosine tetraphosphate (Ap4A) hydrolase	1.49029555888315	5.63151911259874	FALSE
+stress	set3IT075	Nalidixic acid sodium salt	CCNA_03553	CCNA_03553		diadenosine tetraphosphate (Ap4A) hydrolase	2.04183103805127	8.34351255605523	FALSE
+stress	set3IT080	Nickel (II) chloride hexahydrate	CCNA_00224	CCNA_00224		TonB-dependent receptor protein	1.20091708217719	9.02989532168087	FALSE
+stress	set3IT016	Nickel (II) chloride hexahydrate	CCNA_00224	CCNA_00224		TonB-dependent receptor protein	1.33050471751717	10.6764883683485	FALSE
+stress	set3IT079	Nickel (II) chloride hexahydrate	CCNA_01491	CCNA_01491		cystathionine beta-lyase	1.43974163904386	10.8575933045437	TRUE
+stress	set3IT015	Nickel (II) chloride hexahydrate	CCNA_01491	CCNA_01491		cystathionine beta-lyase	1.48787927962209	10.8906395845426	TRUE
+stress	set3IT079	Nickel (II) chloride hexahydrate	CCNA_02237	CCNA_02237		Xaa-pro dipeptidyl-peptidase	1.11568454362426	8.89794716126579	FALSE
+stress	set3IT015	Nickel (II) chloride hexahydrate	CCNA_02237	CCNA_02237		Xaa-pro dipeptidyl-peptidase	1.22361842370342	9.62007887408422	FALSE
+stress	set3IT079	Nickel (II) chloride hexahydrate	CCNA_03112	CCNA_03112		magnesium and cobalt efflux protein corB	1.63451761334815	13.705394309987	TRUE
+stress	set3IT015	Nickel (II) chloride hexahydrate	CCNA_03112	CCNA_03112		magnesium and cobalt efflux protein corB	1.65502994808533	13.7569520742047	TRUE
+stress	set3IT015	Nickel (II) chloride hexahydrate	CCNA_03500	CCNA_03500		FAD/FMN-containing dehydrogenase	1.45145949188734	10.7151149312324	FALSE
+stress	set3IT079	Nickel (II) chloride hexahydrate	CCNA_03500	CCNA_03500		FAD/FMN-containing dehydrogenase	1.51640531227118	11.3170445508517	FALSE
+stress	set3IT087	Paraquat dichloride	CCNA_00385	CCNA_00385		multidrug resistance protein	-1.15778956486126	-7.02113401442313	FALSE
+stress	set3IT023	Paraquat dichloride	CCNA_00385	CCNA_00385		multidrug resistance protein	-1.10673556072479	-6.33573414199894	FALSE
+stress	set3IT024	Paraquat dichloride	CCNA_00407	CCNA_00407		acetyltransferase	-1.87272256207159	-6.40057834049207	FALSE
+stress	set3IT024	Paraquat dichloride	CCNA_00565	CCNA_00565		gamma-glutamyltranspeptidase	1.08593643926931	8.28225851721191	FALSE
+stress	set3IT088	Paraquat dichloride	CCNA_00565	CCNA_00565		gamma-glutamyltranspeptidase	1.22602742861074	9.62862930055647	FALSE
+stress	set3IT024	Paraquat dichloride	CCNA_01506	CCNA_01506		cystine transport ATP-binding protein	1.87868120394462	7.55216573949156	FALSE
+stress	set3IT088	Paraquat dichloride	CCNA_01506	CCNA_01506		cystine transport ATP-binding protein	2.34296909602777	12.1825837467711	FALSE
+stress	set3IT024	Paraquat dichloride	CCNA_01507	CCNA_01507		cystine transport system permease protein	1.72658061609534	7.11431521519522	FALSE
+stress	set3IT088	Paraquat dichloride	CCNA_01507	CCNA_01507		cystine transport system permease protein	1.96695331589851	7.12379639465084	FALSE
+stress	set3IT024	Paraquat dichloride	CCNA_01508	CCNA_01508		cystine-binding protein	1.68578602187194	7.82925195959297	FALSE
+stress	set3IT088	Paraquat dichloride	CCNA_01508	CCNA_01508		cystine-binding protein	2.24254506733895	9.66951855467541	FALSE
+stress	set3IT024	Paraquat dichloride	CCNA_02355	CCNA_02355		endonuclease III	-1.27726167273212	-5.00989654980574	FALSE
+stress	set3IT088	Paraquat dichloride	CCNA_03223	CCNA_03223		TetR-family transcriptional regulator	1.67106807264252	9.59714977700113	FALSE
+stress	set3IT024	Paraquat dichloride	CCNA_03492	CCNA_03492		M50-like Site-2 protease	-1.39123275742847	-5.52744003450034	FALSE
+stress	set4IT026	Phosphomycin disodium salt	CCNA_00224	CCNA_00224		TonB-dependent receptor protein	1.63741893034726	13.0307765656426	FALSE
+stress	set4IT026	Phosphomycin disodium salt	CCNA_00454	CCNA_00454		GntR-family transcriptional regulator	1.18969493256674	6.14661848041947	FALSE
+stress	set3IT052	Phosphomycin disodium salt	CCNA_00857	CCNA_00857		glucose/fructose transport protein	1.45820235941445	7.11048882146172	FALSE
+stress	set4IT026	Phosphomycin disodium salt	CCNA_00857	CCNA_00857		glucose/fructose transport protein	1.5170345492995	7.60822495530889	FALSE
+stress	set4IT026	Phosphomycin disodium salt	CCNA_01216	CCNA_01216		phosphohydrolase, Icc family	1.74025731739789	8.24061414233818	FALSE
+stress	set4IT026	Phosphomycin disodium salt	CCNA_02118	CCNA_02118		ATP-dependent helicase, dinG family	1.14272406546548	6.41061337319705	FALSE
+stress	set4IT026	Phosphomycin disodium salt	CCNA_02396	CCNA_02396		GST / metaxin-like protein	1.50112288693658	5.30504069448121	FALSE
+stress	set3IT052	Phosphomycin disodium salt	CCNA_03013	CCNA_03013		alkyl hydroperoxide reductase subunit F	1.61216003213153	9.10941672055768	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_00202	CCNA_00202		DesA-family fatty acid desaturase	1.38562012971987	7.06656008417396	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_00202	CCNA_00202		DesA-family fatty acid desaturase	1.65610463333801	8.61274129382048	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_00450	CCNA_00450		cheE protein	1.50818035766883	5.68873123662547	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_00835	CCNA_00835		flagellin FljN	1.22710609975665	6.45872026818858	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_01113	CCNA_01113		rhodanese-related sulfurtransferase	1.46317632364772	7.61423520017304	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_01139	CCNA_01139		conserved hypothetical cytosolic protein	1.44248816675914	10.3010464046912	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_01215	CCNA_01215		histidine triad (HIT) hydrolase	1.43265057550236	5.95156353013564	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_01216	CCNA_01216		phosphohydrolase, Icc family	2.16862234612575	10.301289295526	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_01216	CCNA_01216		phosphohydrolase, Icc family	2.25567128624684	9.39030067080514	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_01225	CCNA_01225		glycerophosphotransferase-related protein	1.41242682192411	5.98864315292754	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_01225	CCNA_01225		glycerophosphotransferase-related protein	1.67351098225556	7.94208511901663	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_01492	CCNA_01492		3-mercaptopyruvate sulfurtransferase	1.40234296142444	6.29855169893188	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_02044	CCNA_02044		phosphoglycerate mutase	1.8214763856529	6.1216370935359	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_02172	CCNA_02172		ABC-type transporter, permease component	-2.89613078055046	-8.9138118887228	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_02172	CCNA_02172		ABC-type transporter, permease component	-2.09412159567767	-9.99068840312148	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_02207	CCNA_02207		hypothetical protein	1.33070994292693	9.90821116790037	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_02889	CCNA_02889		peptidyl-prolyl cis-trans isomerase	1.53478500242273	7.58622915466789	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_03033	CCNA_03033		Flp pilus assembly protein TadD	1.58455370950035	7.42925929986399	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_03247	CCNA_03247		methyl-accepting chemotaxis protein	1.53749766170279	11.0241130963472	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_03478	CCNA_03478		AraC-family transcription regulator FtrA	1.46338454175011	9.35572892842235	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_03616	CCNA_03616		PiuB-related membrane protein	1.41576405625228	9.93434819326563	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_03665	CCNA_03665		DctA-YdbH superfamily protein	-2.61702945896678	-11.6554744560999	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_03665	CCNA_03665		DctA-YdbH superfamily protein	-1.81366771095285	-12.6028778199142	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_03667	CCNA_03667		hypothetical protein	-2.52439488481478	-6.64820472565208	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_03667	CCNA_03667		hypothetical protein	-2.32779559818108	-5.17568231918159	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_03691	CCNA_03691		bifunctional regulator KidO	1.64872132672417	9.45293431564322	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_03691	CCNA_03691		bifunctional regulator KidO	1.77619464444868	11.353990082001	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_03727	CCNA_03727		small-conductance mechanosensitive channel mcsS	-1.68461408332677	-6.46618316455282	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_03815	CCNA_03815		GumN superfamily protein	1.36058947410402	9.50492162584594	FALSE
+stress	set3IT040	Polymyxin B sulfate	CCNA_03815	CCNA_03815		GumN superfamily protein	1.39450639063905	9.62958234847663	FALSE
+stress	set4IT014	Polymyxin B sulfate	CCNA_03830	CCNA_03830		multidrug resistance protein A, efflux pump	1.45802408711728	8.52355814771447	FALSE
+stress	set3IT035	Sisomicin sulfate salt	CCNA_02884	CCNA_02884		TetR-family transcriptional regulator	-1.53329064678117	-5.6636801180056	FALSE
+stress	set3IT042	Sodium Chloride	CCNA_00176	CCNA_00176		type II secretion pathway protein H	-1.56140383426122	-5.01569587336571	FALSE
+stress	set3IT042	Sodium Chloride	CCNA_00741	CCNA_00741		3-hydroxybutyryl-CoA dehydratase	1.50668573926303	6.94107052511589	FALSE
+stress	set4IT011	Sodium Chlorite	CCNA_00014	CCNA_00014		molybdenum cofactor biosynthesis protein C	-1.57288259629687	-7.24264490858581	TRUE
+stress	set4IT011	Sodium Chlorite	CCNA_00018	CCNA_00018		molybdenum cofactor biosynthesis protein A	-1.60860236620551	-9.30640964788737	TRUE
+stress	set4IT011	Sodium Chlorite	CCNA_02834	CCNA_02834		molybdopterin dependent oxidoreductase	-1.09740093053468	-5.72275565099385	TRUE
+stress	set4IT011	Sodium Chlorite	CCNA_03362	CCNA_03362		ECF-family RNA polymerase sigma factor	-2.21279828424818	-8.02010034335825	FALSE
+stress	set3IT037	Sodium Chlorite	CCNA_03362	CCNA_03362		ECF-family RNA polymerase sigma factor	-1.87474418305917	-8.01215363132467	FALSE
+stress	set4IT011	Sodium Chlorite	CCNA_03682	CCNA_03682		fumarylpyruvate hydrolase	-1.50350286018978	-6.17257262414548	FALSE
+stress	set3IT037	Sodium Chlorite	CCNA_03682	CCNA_03682		fumarylpyruvate hydrolase	-1.36947139998319	-6.99067590060604	FALSE
+stress	set4IT011	Sodium Chlorite	CCNA_03684	CCNA_03684		carbonic anhydrase	-3.56739123227025	-9.17289628883464	FALSE
+stress	set3IT037	Sodium Chlorite	CCNA_03684	CCNA_03684		carbonic anhydrase	-3.525650619067	-12.0741902500484	FALSE
+stress	set3IT034	Sodium nitrate	CCNA_00479	CCNA_00479		Helix-turn-helix DNA-binding protein	-1.38772698623829	-5.57263144429651	FALSE
+stress	set3IT034	Sodium nitrate	CCNA_00873	CCNA_00873		amidophosphoribosyltransferase family protein	-1.56933763815816	-6.79137488059486	FALSE
+stress	set3IT034	Sodium nitrate	CCNA_03147	CCNA_03147		hypothetical protein	-1.55930930639365	-5.86591357403656	FALSE
+stress	set4IT008	Sodium nitrate	CCNA_03684	CCNA_03684		carbonic anhydrase	-1.64089878503994	-7.24198809540886	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00039	CCNA_00039		hypothetical protein	1.25753486527894	6.70760972165735	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00094	CCNA_00094		WecG/TagA-family glycosyltransferase HfsJ	1.31049600446814	7.44466556770658	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00200	CCNA_00200		2OG-Fe(II) oxygenase superfamily protein	1.40407493221873	6.69611833578387	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00359	CCNA_00359		SH3 domain-containing cell surface protein	1.37930556768576	6.77180199634206	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00450	CCNA_00450		cheE protein	1.50536648820046	6.24286794305968	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00674	CCNA_00674		NAD(FAD)-utilizing dehydrogenase	1.45574971758262	6.84090883901024	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00732	CCNA_00732		GumN superfamily protein	1.25211283294519	7.78858726139849	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00777	CCNA_00777		PAS family GGDEF/EAL protein	1.18145272825353	6.04076158976228	FALSE
+stress	set4IT007	Sodium nitrite	CCNA_00835	CCNA_00835		flagellin FljN	1.25649767388969	6.85530344616906	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00835	CCNA_00835		flagellin FljN	1.31768296120063	6.96329488421836	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_00925	CCNA_00925		hypothetical protein	1.34735808127623	5.19138477620062	FALSE
+stress	set3IT032	Sodium nitrite	CCNA_01032	CCNA_01032		RNA polymerase ECF-type sigma factor	-1.14920688936301	-5.60430785272123	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_01087	CCNA_01087		hypothetical protein	1.3282220711204	6.73459942251393	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_01113	CCNA_01113		rhodanese-related sulfurtransferase	1.71264730523427	7.99865551292493	FALSE
+stress	set4IT007	Sodium nitrite	CCNA_02044	CCNA_02044		phosphoglycerate mutase	1.88772496321076	5.89905100888955	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_02044	CCNA_02044		phosphoglycerate mutase	1.89262693409234	5.14161041464673	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_02062	CCNA_02062		DNA repair protein recN	1.64270584630666	9.35493316762716	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_02145	CCNA_02145		flagellar L-ring protein flgH	1.44588132035835	5.67001914036522	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_02357	CCNA_02357		methylmalonic acid semialdehyde dehydrogenase	1.41132724574668	6.95969387552451	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_02512	CCNA_02512		polysaccharide autokinase-related protein hfsB	1.48684232946716	6.48523020357566	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_02513	CCNA_02513		holdfast synthesis protein HfsA	1.48612466152437	6.86612073098652	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_02540	CCNA_02540		N-acyl-L-amino acid amidohydrolase	1.52080148175563	7.80994176854452	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_02913	CCNA_02913		hypothetical protein	1.61630050555619	6.15361207606631	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03023	CCNA_03023		TonB-dependent receptor	1.4584583504111	10.9674715800114	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03042	CCNA_03042		pilus assembly prepilin peptidase CpaA	1.2277927121334	6.92946308658141	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03127	CCNA_03127		aminoacyl-histidine dipeptidase	1.20200787520725	6.77311094906248	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03223	CCNA_03223		TetR-family transcriptional regulator	1.5957616687327	7.79346388997871	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03247	CCNA_03247		methyl-accepting chemotaxis protein	1.50595642523071	11.1287575827235	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03395	CCNA_03395		two-component receiver domain protein	1.37610742206999	7.64741269820852	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03473	CCNA_03473		death on curing toxin protein doc	1.50252114310887	5.74923788367231	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03478	CCNA_03478		AraC-family transcription regulator FtrA	1.50051778670829	8.97023057655436	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03616	CCNA_03616		PiuB-related membrane protein	1.47926589647091	10.0636808222577	FALSE
+stress	set4IT006	Sodium nitrite	CCNA_03624	CCNA_03624		sodium bicarbonate cotransporter	-2.10844515440908	-7.7997047387905	FALSE
+stress	set3IT032	Sodium nitrite	CCNA_03624	CCNA_03624		sodium bicarbonate cotransporter	-2.08248018644636	-7.74375763160272	FALSE
+stress	set3IT031	Sodium nitrite	CCNA_03624	CCNA_03624		sodium bicarbonate cotransporter	-1.70434861218338	-6.91468529435263	FALSE
+stress	set4IT005	Sodium nitrite	CCNA_03624	CCNA_03624		sodium bicarbonate cotransporter	-1.20659263616408	-6.08621169127025	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03667	CCNA_03667		hypothetical protein	1.54082713069255	5.89223211759521	FALSE
+stress	set4IT007	Sodium nitrite	CCNA_03691	CCNA_03691		bifunctional regulator KidO	1.90046519144435	12.3858801284081	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03691	CCNA_03691		bifunctional regulator KidO	2.19618672671559	12.8512192517144	FALSE
+stress	set4IT007	Sodium nitrite	CCNA_03700	CCNA_03700		large-conductance mechanosensitive channel	1.62925466205145	5.22092380723667	FALSE
+stress	set4IT007	Sodium nitrite	CCNA_03815	CCNA_03815		GumN superfamily protein	1.35476938668749	9.43596515636333	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03815	CCNA_03815		GumN superfamily protein	1.48728336432384	10.1688235844217	FALSE
+stress	set4IT007	Sodium nitrite	CCNA_03830	CCNA_03830		multidrug resistance protein A, efflux pump	1.51022116289465	8.73901868453025	FALSE
+stress	set3IT033	Sodium nitrite	CCNA_03892	CCNA_03892		HD family metal-dependent phosphohydrolase	1.25240182602318	5.45137774658457	FALSE
+stress	set3IT070	Spectinomycin dihydrochloride pentahydrate	CCNA_00012	CCNA_00012		DNA mismatch repair protein MutS	1.68929937399878	9.11936934453699	FALSE
+stress	set3IT070	Spectinomycin dihydrochloride pentahydrate	CCNA_00731	CCNA_00731		DNA mismatch repair protein mutL	2.31645165397608	10.28781708496	FALSE
+stress	set3IT069	Spectinomycin dihydrochloride pentahydrate	CCNA_03533	CCNA_03533		multidrug resistance ABC transporter, ATP-binding and permease components	-3.4658111641969	-15.9037895355223	TRUE
+stress	set3IT005	Spectinomycin dihydrochloride pentahydrate	CCNA_03533	CCNA_03533		multidrug resistance ABC transporter, ATP-binding and permease components	-3.33721324579097	-15.7295235807592	TRUE
+stress	set3IT006	Spectinomycin dihydrochloride pentahydrate	CCNA_03533	CCNA_03533		multidrug resistance ABC transporter, ATP-binding and permease components	-2.30711484631222	-11.2116862192766	TRUE
+stress	set3IT070	Spectinomycin dihydrochloride pentahydrate	CCNA_03533	CCNA_03533		multidrug resistance ABC transporter, ATP-binding and permease components	-1.69201794197744	-6.70444912462739	TRUE
+stress	set3IT004	Tetracycline hydrochloride	CCNA_01099	CCNA_01099		tetracycline resistance protein	-1.4643711350468	-7.17883523682463	FALSE
+stress	set3IT068	Tetracycline hydrochloride	CCNA_01099	CCNA_01099		tetracycline resistance protein	-1.43849144065195	-7.18598833452329	FALSE
+stress	set3IT068	Tetracycline hydrochloride	CCNA_01232	CCNA_01232		hypothetical protein	-1.41136686408184	-5.39849891035752	FALSE
+stress	set3IT003	Tetracycline hydrochloride	CCNA_02471	CCNA_02471		cobalt-zinc-cadmium resistance protein czcC	-1.24038533646944	-5.05709915260713	FALSE
+stress	set3IT003	Tetracycline hydrochloride	CCNA_02786	CCNA_02786		guanylate cyclase	-1.57873195050618	-6.20486866846813	FALSE
+stress	set3IT003	Tetracycline hydrochloride	CCNA_02888	CCNA_02888		nitrilotriacetate monooxygenase	-1.5950451983756	-6.33905994557353	FALSE
+stress	set3IT003	Tetracycline hydrochloride	CCNA_02948	CCNA_02948		hypothetical protein	-1.70232673157919	-5.05776037060299	FALSE
+stress	set3IT004	Tetracycline hydrochloride	CCNA_03301	CCNA_03301		cation/multidrug efflux pump AcrB	-1.29632748734821	-9.6096714954734	FALSE
+stress	set3IT026	Thallium(I) acetate	CCNA_00224	CCNA_00224		TonB-dependent receptor protein	1.22997903216958	9.42983217161749	FALSE
+stress	set3IT089	Thallium(I) acetate	CCNA_02055	CCNA_02055		conserved hypothetical protein, YnfA/UPF0060 family	-1.89620213267665	-5.88727594776308	TRUE
+stress	set3IT059	Vancomycin Hydrochloride Hydrate	CCNA_00224	CCNA_00224		TonB-dependent receptor protein	5.4324071710613	35.6063998950222	FALSE
+stress	set4IT033	Vancomycin Hydrochloride Hydrate	CCNA_00224	CCNA_00224		TonB-dependent receptor protein	6.35124232727822	43.609437171749	FALSE
+stress	set3IT059	Vancomycin Hydrochloride Hydrate	CCNA_01087	CCNA_01087		hypothetical protein	-1.28427422128134	-6.51033536772719	FALSE
+stress	set3IT059	Vancomycin Hydrochloride Hydrate	CCNA_01443	CCNA_01443		hypothetical protein	2.13169961982409	7.85159305687767	FALSE
+stress	set4IT033	Vancomycin Hydrochloride Hydrate	CCNA_01721	CCNA_01721		RNA polymerase ECF sigma factor	1.51887320442297	5.04441616329497	FALSE
+stress	set3IT059	Vancomycin Hydrochloride Hydrate	CCNA_01721	CCNA_01721		RNA polymerase ECF sigma factor	1.56209670740869	5.21749380348338	FALSE
+stress	set4IT025	benzoic acid	CCNA_00849	CCNA_00849		outer membrane efflux protein	1.30331936163264	10.1006220489601	FALSE
+stress	set3IT051	benzoic acid	CCNA_01034	CCNA_01034		TonB-dependent outer membrane receptor	-1.0447520900815	-7.7987908315103	FALSE
+stress	set3IT051	benzoic acid	CCNA_01191	CCNA_01191		transporter, major facilitator superfamily	-1.29950719701284	-5.8778622200918	FALSE
+stress	set4IT025	benzoic acid	CCNA_02196	CCNA_02196		hypothetical protein	1.29601256925075	6.72365614491436	FALSE
+stress	set4IT025	benzoic acid	CCNA_03194	CCNA_03194		conserved inner membrane protein	1.19456544505285	5.09919524649841	FALSE
+stress	set4IT025	benzoic acid	CCNA_03830	CCNA_03830		multidrug resistance protein A, efflux pump	1.5662333992569	11.36692221111	TRUE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_01014	CCNA_01014		cysteinyl-tRNA(Pro) deacylase	2.24206619094298	8.49215118241368	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_01014	CCNA_01014		cysteinyl-tRNA(Pro) deacylase	2.38345179623023	8.97554538445758	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_01015	CCNA_01015		multicopper oxidase PcoA	-2.78998452563045	-10.2935406770996	TRUE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_01015	CCNA_01015		multicopper oxidase PcoA	-2.75652892085559	-11.3681156112095	TRUE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_01016	CCNA_01016		copper resistance protein B	-2.75999045134629	-10.3047651915876	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_01016	CCNA_01016		copper resistance protein B	-2.53754584443391	-11.0227607489582	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_01161	CCNA_01161		proton/sodium-glutamate symport protein	-1.44311447608186	-7.26184155500417	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_01161	CCNA_01161		proton/sodium-glutamate symport protein	-1.33765863422878	-6.79678087375407	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_01367	CCNA_01367		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-2.36580074614933	-8.97458341893556	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_01367	CCNA_01367		nicotinate-nucleotide--dimethylbenzimidazole phosphoribosyltransferase	-1.67045543726422	-6.11618254582622	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_02237	CCNA_02237		Xaa-pro dipeptidyl-peptidase	1.51283300575821	10.3583454164065	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_02237	CCNA_02237		Xaa-pro dipeptidyl-peptidase	1.64630441113829	11.4679837614331	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_02716	CCNA_02716		ABC transporter substrate-binding protein	1.57208014595718	7.78099434395906	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_02716	CCNA_02716		ABC transporter substrate-binding protein	1.80781613671777	9.34559476751238	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_02717	CCNA_02717		maltose/maltodextrin transport ATP-binding protein malK	1.80432402234628	10.2338011795355	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_02717	CCNA_02717		maltose/maltodextrin transport ATP-binding protein malK	1.88457929397743	10.7110511456744	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_02718	CCNA_02718		taurine transport system permease protein tauC	2.10426292974827	11.9482589330135	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_02718	CCNA_02718		taurine transport system permease protein tauC	2.12425100950049	10.6275958140395	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_03159	CCNA_03159		sulfite reductase (NADPH) flavoprotein alpha-component	-2.58783289305815	-13.8888365335773	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_03159	CCNA_03159		sulfite reductase (NADPH) flavoprotein alpha-component	-2.53711389135914	-14.0495116954377	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_03362	CCNA_03362		ECF-family RNA polymerase sigma factor	-2.59862466293882	-7.98671680992075	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_03362	CCNA_03362		ECF-family RNA polymerase sigma factor	-1.82005112426186	-5.35832226637062	FALSE
+stress	set3IT019	copper (II) chloride dihydrate	CCNA_03500	CCNA_03500		FAD/FMN-containing dehydrogenase	1.11831714213521	7.49239884060801	FALSE
+stress	set3IT083	copper (II) chloride dihydrate	CCNA_03500	CCNA_03500		FAD/FMN-containing dehydrogenase	1.2804519591385	7.91189446137953	FALSE
+stress	set3IT085	sodium fluoride	CCNA_03926	CCNA_03926		hypothetical protein	-1.22724997807729	-5.38960647223448	FALSE

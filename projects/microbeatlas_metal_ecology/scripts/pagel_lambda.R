@@ -206,8 +206,8 @@ if (!file.exists(trait_file)) stop(sprintf('trait file not found: %s', trait_fil
 traits <- read.csv(trait_file, stringsAsFactors = FALSE)
 cat(sprintf('\nGenus trait table: %d genera\n', nrow(traits)))
 cat(sprintf('  Nitrifier genera: %d\n', sum(traits$is_nitrifier == 1, na.rm = TRUE)))
-has_amr <- 'mean_n_metal_amr_clusters' %in% colnames(traits)
-cat(sprintf('  Metal AMR columns present: %s\n', if (has_amr) 'YES' else 'NO (run cell 5b in NB04)'))
+has_amr <- 'mean_n_metal_clusters' %in% colnames(traits)
+cat(sprintf('  Metal gene columns present: %s\n', if (has_amr) 'YES' else 'NO (run cell 5b in NB04)'))
 
 bac_tree_file <- file.path(data_dir, 'gtdb_bac_genus_pruned.tree')
 arc_tree_file <- file.path(data_dir, 'gtdb_arc_genus_pruned.tree')
@@ -242,14 +242,14 @@ results[[6]] <- run_lambda_binary(
 # 7–9. Metal AMR traits (continuous) — bacteria only; skip if columns missing
 if (has_amr) {
     results[[7]] <- run_lambda_continuous(
-        bac_tree_file, traits, 'mean_n_metal_amr_clusters', 'Bacteria', min_otus = 3)
+        bac_tree_file, traits, 'mean_n_metal_clusters', 'Bacteria', min_otus = 3)
     results[[8]] <- run_lambda_continuous(
         bac_tree_file, traits, 'mean_metal_core_fraction', 'Bacteria', min_otus = 3)
     results[[9]] <- run_lambda_continuous(
         bac_tree_file, traits, 'mean_n_metal_types', 'Bacteria', min_otus = 3)
-    # Archaea: typically fewer AMR hits but worth checking
+    # Archaea: typically fewer metal gene hits but worth checking
     results[[10]] <- run_lambda_continuous(
-        arc_tree_file, traits, 'mean_n_metal_amr_clusters', 'Archaea', min_otus = 1)
+        arc_tree_file, traits, 'mean_n_metal_clusters', 'Archaea', min_otus = 1)
 } else {
     cat('\nSKIPPING metal AMR analyses — columns not found in trait table\n')
 }

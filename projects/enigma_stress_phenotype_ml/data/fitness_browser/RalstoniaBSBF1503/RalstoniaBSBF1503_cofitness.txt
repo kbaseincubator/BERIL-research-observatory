@@ -1,0 +1,1 @@
+orgId	locusId	sysName	name	desc	hitId	hitSysName	hitName	hitDesc	rank	cofit	conserved

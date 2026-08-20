@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 5 – Metal-Specific PGLS (with 95% CI)</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.tt {
+  position:fixed; background:var(--sf); border:1px solid var(--gl);
+  padding:8px 10px; border-radius:4px; font-size:11px; color:var(--tp);
+  pointer-events:none; display:none; max-width:260px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12); z-index:100; line-height:1.6;
+}
+.tbl-btn { margin-top:12px; font-size:11px; color:var(--sig); cursor:pointer; text-decoration:underline; background:none; border:none; padding:0; }
+table { display:none; margin-top:10px; font-size:11px; border-collapse:collapse; }
+th,td { text-align:left; padding:3px 8px; border-bottom:1px solid var(--gl); color:var(--ts); white-space:nowrap; }
+th { color:var(--tm); font-weight:500; }
+td:nth-child(n+2) { font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<h2>Figure 5. Metal-specific PGLS results: effect sizes are uniform across nine chemically diverse metals.</h2>
+<div class="sub">Per-metal PGLS β and 95% CI (±1.96 SE) for 9 metals with ≥34 primary KOs. BH-FDR across 9 metals; all significant. P1 reference (β = −0.021, all 140 KOs) shown as dashed line. n = 1,073 genera except S (n = 1,070) and Mn (n = 1,040).</div>
+<svg id="chart"></svg>
+<div class="tt" id="tt"></div>
+<button class="tbl-btn" onclick="toggleTable()">Show data table</button>
+<table id="dtbl">
+  <thead><tr><th>Metal</th><th>n KOs</th><th>β</th><th>p (BH-FDR)</th></tr></thead>
+  <tbody id="dtbody"></tbody>
+</table>
+
+<script>
+const DATA = [
+  {metal:"Mn", n:34,  beta:-0.017005, se:0.004771, pFDR:3.81e-4},
+  {metal:"Cu", n:71,  beta:-0.018651, se:0.004666, pFDR:7.70e-5},
+  {metal:"S",  n:74,  beta:-0.020796, se:0.005028, pFDR:4.91e-5},
+  {metal:"Co", n:101, beta:-0.021711, se:0.004560, pFDR:3.93e-6},
+  {metal:"Zn", n:67,  beta:-0.023005, se:0.004553, pFDR:1.15e-6},
+  {metal:"Al", n:34,  beta:-0.023413, se:0.005142, pFDR:8.82e-6},
+  {metal:"Ni", n:84,  beta:-0.024874, se:0.004569, pFDR:1.94e-7},
+  {metal:"Fe", n:98,  beta:-0.025154, se:0.004487, pFDR:1.18e-7},
+  {metal:"Tl", n:45,  beta:-0.027153, se:0.004429, pFDR:1.10e-8},
+];
+
+const fmtB = b => (b >= 0 ? '+' : '') + b.toFixed(3);
+const fmtP = p => p < 1e-9 ? p.toExponential(1) : p < 0.001 ? p.toExponential(1) : p.toFixed(4);
+const p1_beta = -0.021;
+
+function render() {
+  const W = 460, rowH = 30;
+  const M = {top:34, right:100, bottom:52, left:70};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+  const xMin = -0.033, xMax = -0.010;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [-0.030, -0.025, -0.020, -0.015];
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  // Gridlines
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="var(--gl)" stroke-width="1"/>`;
+  });
+
+  // P1 reference line
+  const p1X = xS(p1_beta);
+  s += `<line x1="${p1X}" y1="${M.top}" x2="${p1X}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--sig)" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.45"/>`;
+  s += `<text x="${p1X}" y="${M.top - 8}" text-anchor="middle"
+    font-size="9" fill="var(--sig)" opacity="0.7">P1 all-metal β = −0.021</text>`;
+
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const xb = xS(d.beta);
+    const xlo = xS(d.beta - 1.96 * d.se);
+    const xhi = xS(d.beta + 1.96 * d.se);
+
+    s += `<rect class="row-hit" x="${M.left}" y="${M.top + i * rowH + 2}"
+      width="${pw}" height="${rowH - 4}"
+      fill="none" rx="3" data-i="${i}" style="cursor:default"/>`;
+
+    // CI bar
+    s += `<line x1="${xlo}" y1="${y}" x2="${xhi}" y2="${y}"
+      stroke="var(--sig)" stroke-width="1.5" opacity="0.5"/>`;
+    [[xlo],[xhi]].forEach(([x]) => {
+      s += `<line x1="${x}" y1="${y-4}" x2="${x}" y2="${y+4}"
+        stroke="var(--sig)" stroke-width="1.5" opacity="0.6"/>`;
+    });
+    // Lollipop stem from right edge to dot
+    s += `<line x1="${xS(xMax - 0.002)}" y1="${y}" x2="${xb}" y2="${y}"
+      stroke="var(--sig)" stroke-width="1.5" opacity="0.3"/>`;
+    // Dot
+    s += `<circle cx="${xb}" cy="${y}" r="5"
+      fill="var(--sig)" stroke="var(--sf)" stroke-width="2"/>`;
+
+    // Metal label left
+    s += `<text x="${M.left - 8}" y="${y + 4}" text-anchor="end"
+      font-size="13" font-weight="700" fill="var(--tp)">${d.metal}</text>`;
+
+    // β label right
+    s += `<text x="${W - M.right + 6}" y="${y + 4}" text-anchor="start"
+      font-size="10" fill="var(--ts)" font-variant-numeric="tabular-nums">${fmtB(d.beta)}</text>`;
+
+    // n KOs small label
+    s += `<text x="${M.left - 8}" y="${y + 16}" text-anchor="end"
+      font-size="9" fill="var(--tm)">n=${d.n}</text>`;
+  });
+
+  // X-axis
+  s += `<line x1="${M.left}" y1="${M.top + DATA.length * rowH}"
+    x2="${W - M.right}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t.toFixed(3)}</text>`;
+  });
+
+  s += `<text x="${xS(-0.021)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">PGLS β (per-Mb KO density → niche breadth)</text>`;
+
+  // All sig annotation
+  s += `<text x="${W - M.right}" y="${M.top - 8}" text-anchor="end"
+    font-size="9" fill="var(--tm)">all q &lt; 0.05</text>`;
+
+  svg.innerHTML = s;
+
+  svg.querySelectorAll('.row-hit').forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      const d = DATA[+this.dataset.i];
+      const lo = (d.beta - 1.96*d.se).toFixed(4), hi = (d.beta + 1.96*d.se).toFixed(4);
+      document.getElementById('tt').innerHTML =
+        `<strong>${d.metal}</strong><br>` +
+        `<span>n KOs = ${d.n}</span><br>` +
+        `<span>β = ${fmtB(d.beta)} (SE = ${d.se.toFixed(5)})</span><br>` +
+        `<span>95% CI [${lo}, ${hi}]</span><br>` +
+        `<span>p (BH-FDR) = ${fmtP(d.pFDR)}</span>`;
+      document.getElementById('tt').style.display = 'block';
+    });
+    el.addEventListener('mousemove', positionTT);
+    el.addEventListener('mouseleave', () => { document.getElementById('tt').style.display = 'none'; });
+  });
+}
+
+function positionTT(e) {
+  const tt = document.getElementById('tt');
+  let x = e.clientX + 14, y = e.clientY - tt.offsetHeight / 2;
+  if (x + tt.offsetWidth > window.innerWidth - 12) x = e.clientX - 14 - tt.offsetWidth;
+  tt.style.left = x + 'px'; tt.style.top = Math.max(8, y) + 'px';
+}
+
+function toggleTable() {
+  const tbl = document.getElementById('dtbl');
+  const btn = document.querySelector('.tbl-btn');
+  if (tbl.style.display === 'table') {
+    tbl.style.display = 'none'; btn.textContent = 'Show data table';
+  } else {
+    tbl.style.display = 'table'; btn.textContent = 'Hide data table';
+    document.getElementById('dtbody').innerHTML = DATA.map(d =>
+      `<tr><td>${d.metal}</td><td>${d.n}</td><td>${fmtB(d.beta)}</td><td>${fmtP(d.pFDR)}</td></tr>`
+    ).join('');
+  }
+}
+
+render();
+</script>
+</body>
+</html>

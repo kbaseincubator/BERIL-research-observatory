@@ -1,0 +1,137 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+stress	set1IT012	Acriflavine	Psyr_0284	Psyr_0284		Electron transport protein SCO1/SenC	-2.0292186644984	-6.20913425132097	FALSE
+stress	set1IT012	Acriflavine	Psyr_1833	Psyr_1833		amino acid ABC transporter substrate-binding protein, PAAT family	-1.40994011697035	-8.15188535905062	FALSE
+stress	set1IT012	Acriflavine	Psyr_2282	Psyr_2282		Hydrophobe/amphiphile efflux-1 HAE1	-2.30979162047521	-11.1480285602452	TRUE
+stress	set1IT012	Acriflavine	Psyr_2283	Psyr_2283		Secretion protein HlyD	-2.28977098054032	-7.68564031628721	TRUE
+stress	set1IT012	Acriflavine	Psyr_2427	Psyr_2427		gamma-glutamylputrescine oxidase	1.14953995433021	9.04822480434828	FALSE
+stress	set1IT012	Acriflavine	Psyr_4061	Psyr_4061		imelysin, Metallo peptidase, MEROPS family M75	-1.19146427108285	-6.26813604453417	FALSE
+stress	set1IT012	Acriflavine	Psyr_4422	Psyr_4422		Protein of unknown function DUF461	-1.48999560519198	-5.8155802183704	FALSE
+stress	set1IT016	Berberine	Psyr_2282	Psyr_2282		Hydrophobe/amphiphile efflux-1 HAE1	-1.93804736539412	-10.6731984863998	TRUE
+stress	set1IT016	Berberine	Psyr_2283	Psyr_2283		Secretion protein HlyD	-1.89410268780826	-7.67944480258864	TRUE
+stress	set1IT016	Berberine	Psyr_4061	Psyr_4061		imelysin, Metallo peptidase, MEROPS family M75	-1.30549774178924	-6.89568137983201	FALSE
+stress	set1IT016	Berberine	Psyr_5043	Psyr_5043		Thioesterase superfamily	-1.95231594250351	-8.07347771887555	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0045	Psyr_0045		oligopeptidase A, Metallo peptidase, MEROPS family M03A	1.29976086598276	5.58474429412162	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0066	Psyr_0066		bifunctional spore maturation protein, fused SpmA/SpmB	-2.46671613046259	-6.93922621299192	TRUE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0168	Psyr_0168		Phosphoenolpyruvate carboxykinase (ATP)	1.33883443735537	8.26762816872083	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0265	Psyr_0265		N-acetylmuramoyl-L-alanine amidase, family 2	-2.69785516024775	-9.70075808599804	TRUE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0291	Psyr_0291		DedA	1.49677185083657	7.07416074786273	TRUE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0402	Psyr_0402		Peptidoglycan glycosyltransferase	-1.41923137656857	-9.44102725792546	TRUE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0630	Psyr_0630		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	-3.02642427201871	-6.67718636512707	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0726	Psyr_0726		ribosomal large subunit pseudouridine synthase D	1.90209891982447	8.0523326443282	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0832	Psyr_0832		Two-component sensor kinase CbrA	1.6973624764967	8.8420019206316	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0842	Psyr_0842		Peptidoglycan glycosyltransferase	-2.0692093458473	-12.4899901547774	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0843	Psyr_0843		TPR repeat protein	-2.16048313211939	-5.88753029305955	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0880	Psyr_0880		MltA:3D	-1.05147495242055	-5.22468381368456	TRUE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_0996	Psyr_0996		Alpha/beta hydrolase fold protein	-1.65799929412397	-5.43589592293233	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_1023	Psyr_1023		conserved hypothetical protein	-1.56616764584706	-5.67178552530858	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_1550	Psyr_1550		Beta-lactamase-like protein	1.12556227807767	5.13430915166829	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_1867	Psyr_1867		conserved hypothetical protein	1.17431084266931	5.01328653446931	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_2111	Psyr_2111		Peptidase S13, D-Ala-D-Ala carboxypeptidase C	-2.64305745299538	-6.10131932607115	TRUE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_3289	Psyr_3289		3-ketoacyl-CoA thiolase	1.42162857320535	5.61629624329125	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_3295	Psyr_3295		SLT	-2.25405244635516	-8.19048832604012	TRUE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_3364	Psyr_3364		Beta-lactamase	-2.69013256930971	-12.0498677558977	TRUE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_3649	Psyr_3649		Amidohydrolase	1.44549815208382	6.64764851890139	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_3768	Psyr_3768		General substrate transporter:Major facilitator superfamily	1.19841031626303	7.52574230309536	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_4113	Psyr_4113		LppC putative lipoprotein	-2.21739317987293	-8.35840498927303	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_4122	Psyr_4122		AFG1-like ATPase	2.5057697629669	10.6577816424756	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_4381	Psyr_4381		arginine decarboxylase	-1.18130663112153	-6.73077104956249	FALSE
+stress	set1IT018	Carbenicillin disodium salt	Psyr_4878	Psyr_4878		outer membrane porin	1.23520360583515	8.77087389730936	FALSE
+stress	set1IT022	Erythromycin	Psyr_0284	Psyr_0284		Electron transport protein SCO1/SenC	-1.85237800306591	-5.77105560395698	FALSE
+stress	set1IT022	Erythromycin	Psyr_0402	Psyr_0402		Peptidoglycan glycosyltransferase	-1.73452100507901	-11.7993879220716	FALSE
+stress	set1IT022	Erythromycin	Psyr_0525	Psyr_0525		Lipopolysaccharide kinase	-2.53903416215398	-6.35097925005213	FALSE
+stress	set1IT022	Erythromycin	Psyr_0583	Psyr_0583		membrane protein, putative	-1.25776025592652	-5.61816567447297	FALSE
+stress	set1IT022	Erythromycin	Psyr_0626	Psyr_0626		DedA	1.5220408714794	10.5112223948419	FALSE
+stress	set1IT022	Erythromycin	Psyr_0630	Psyr_0630		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	-1.78729282466159	-5.43569128329227	FALSE
+stress	set1IT022	Erythromycin	Psyr_0937	Psyr_0937		mannose-6-phosphate isomerase, type 2 / mannose-1-phosphate guanylyltransferase (GDP)	1.71795019657346	13.1107192739757	FALSE
+stress	set1IT022	Erythromycin	Psyr_1584	Psyr_1584		Aspartyl/Asparaginyl beta-hydroxylase	-1.36466768500149	-6.35255134241519	FALSE
+stress	set1IT022	Erythromycin	Psyr_1599	Psyr_1599		C-terminal processing peptidase-1, Serine peptidase, MEROPS family S41A	-1.8291155462427	-11.2213997255566	FALSE
+stress	set1IT022	Erythromycin	Psyr_3521	Psyr_3521		transcriptional regulator, LysR family	-1.79991506056373	-6.29258527779831	FALSE
+stress	set1IT022	Erythromycin	Psyr_3522	Psyr_3522		L-serine ammonia-lyase	-2.19785813782712	-8.84783005756517	FALSE
+stress	set1IT022	Erythromycin	Psyr_3616	Psyr_3616		Heat shock protein, Metallo peptidase, MEROPS family M48B	-1.42238243313927	-5.33681935296108	FALSE
+stress	set1IT022	Erythromycin	Psyr_3658	Psyr_3658		Rhodanese-like protein	-1.19140422851624	-5.19189868384464	FALSE
+stress	set1IT022	Erythromycin	Psyr_3831	Psyr_3831		ATP-dependent helicase HrpA	-3.35794264315264	-14.9498095972498	TRUE
+stress	set1IT022	Erythromycin	Psyr_4061	Psyr_4061		imelysin, Metallo peptidase, MEROPS family M75	-1.33392423112486	-6.21525823877428	FALSE
+stress	set1IT022	Erythromycin	Psyr_4063	Psyr_4063		Protein of unknown function DUF1111	-1.58131228241938	-5.70510133257657	FALSE
+stress	set1IT022	Erythromycin	Psyr_4067	Psyr_4067		Lipopolysaccharide kinase	-2.33170465085534	-8.84581515694418	FALSE
+stress	set1IT022	Erythromycin	Psyr_4113	Psyr_4113		LppC putative lipoprotein	-1.90857366999867	-9.32808752986219	FALSE
+stress	set1IT022	Erythromycin	Psyr_4178	Psyr_4178		tRNA pseudouridine synthase B	-2.57845155390852	-9.60566374317291	FALSE
+stress	set1IT022	Erythromycin	Psyr_4208	Psyr_4208		heme catalase/peroxidase	-1.03097830676017	-5.62722106311112	FALSE
+stress	set1IT022	Erythromycin	Psyr_4297	Psyr_4297		Helicase, C-terminal:DEAD/DEAH box helicase, N-terminal	-2.07484748375114	-6.69757224830751	FALSE
+stress	set1IT022	Erythromycin	Psyr_4381	Psyr_4381		arginine decarboxylase	-1.60264511413702	-10.404293536824	FALSE
+stress	set1IT022	Erythromycin	Psyr_4843	Psyr_4843		NUDIX hydrolase	-1.63275989740856	-6.96250439966486	FALSE
+stress	set1IT022	Erythromycin	Psyr_4932	Psyr_4932		agmatine deiminase	-1.70869718841583	-7.45825137237958	FALSE
+stress	set3IT020	Mitomycin C	Psyr_0533	Psyr_0533		conserved hypothetical protein	1.93357251694036	5.31584524088044	FALSE
+stress	set3IT020	Mitomycin C	Psyr_0626	Psyr_0626		DedA	2.51389267030667	10.1787220553575	FALSE
+stress	set3IT020	Mitomycin C	Psyr_0726	Psyr_0726		ribosomal large subunit pseudouridine synthase D	2.74525166407054	6.92424373411634	TRUE
+stress	set3IT020	Mitomycin C	Psyr_1974	Psyr_1974		Excinuclease ABC subunit B	-1.45523561654663	-5.29031318938117	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2760	Psyr_2760		hypothetical protein	3.01562073673048	7.5765939013191	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2761	Psyr_2761		DNA-directed DNA polymerase	2.95892928215921	13.7491268002087	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2762	Psyr_2762		Peptidase S24, S26A and S26B	2.56248475644627	8.33641743276397	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2763	Psyr_2763		Protein of unknown function DUF159	2.98371959947792	10.5220126914875	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2764	Psyr_2764		conserved hypothetical protein	2.76927436487648	11.2970626643064	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2767	Psyr_2767		Glycoside hydrolase, family 19	2.98816766657402	6.24197772117644	FALSE
+stress	set3IT020	Mitomycin C	Psyr_2770	Psyr_2770		tail fiber domain protein	2.04608500441964	6.64870653973924	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2771	Psyr_2771		conserved domain protein	1.73379690367722	5.49673738119369	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2772	Psyr_2772		Fibronectin, type III	2.5581179195512	15.8118611589586	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2773	Psyr_2773		hypothetical protein	2.84248616914359	8.51059670468115	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2775	Psyr_2775		hypothetical protein	2.76341084862479	11.9648012668899	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2776	Psyr_2776		hypothetical protein	2.71563597539343	7.85809564535179	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2777	Psyr_2777		NLP/P60	2.87738098697494	8.47396575829331	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2778	Psyr_2778		Phage minor tail protein L	3.30661848527883	5.85397880525599	FALSE
+stress	set3IT020	Mitomycin C	Psyr_2779	Psyr_2779		Phage minor tail	2.52872051637313	5.21795980603321	FALSE
+stress	set3IT020	Mitomycin C	Psyr_2780	Psyr_2780		Phage tail tape measure protein lambda	2.45113430078721	13.6466202256062	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2782	Psyr_2782		hypothetical protein	3.21915619263588	9.4331108429883	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2783	Psyr_2783		conserved hypothetical protein	2.98361779006194	7.06826034182825	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2784	Psyr_2784		phage-related conserved hypothetical protein	3.18291876995312	6.37394522743879	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2785	Psyr_2785		conserved hypothetical protein	2.6959430602066	6.16299028447976	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2786	Psyr_2786		phage-related conserved hypothetical protein	2.16694221414046	5.53160055893035	FALSE
+stress	set3IT020	Mitomycin C	Psyr_2788	Psyr_2788		hypothetical protein	3.39639410947073	7.25736196922874	FALSE
+stress	set3IT020	Mitomycin C	Psyr_2789	Psyr_2789		conserved hypothetical protein	2.71576853940243	7.21092743665043	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2792	Psyr_2792		Phage putative head morphogenesis protein, SPP1 gp7	2.12565846578135	6.2227621349468	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2793	Psyr_2793		hypothetical protein	2.37362944250795	9.74367650438529	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2794	Psyr_2794		Protein of unknown function DUF264	2.26133218419112	9.73537543661391	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2797	Psyr_2797		hypothetical protein	2.50308794063189	5.45642390013339	FALSE
+stress	set3IT020	Mitomycin C	Psyr_2798	Psyr_2798		hypothetical protein	2.40490197691599	7.9653481935995	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2799	Psyr_2799		hypothetical protein	2.42459734584042	7.02332068516897	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2801	Psyr_2801		hypothetical protein	1.94530006679262	6.57876059676118	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2805	Psyr_2805		hypothetical protein	4.857531397904	18.0360471167481	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2813	Psyr_2813		conserved hypothetical protein	2.61389550615719	8.70108341759831	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2815	Psyr_2815		conserved hypothetical protein	2.44328536937096	12.2487118800973	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2816	Psyr_2816		hypothetical protein	2.65442226349035	7.94634955303604	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2817	Psyr_2817		hypothetical protein	2.33880607544354	7.76037569244404	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2818	Psyr_2818		hypothetical protein	1.70223361402074	6.39226335917288	FALSE
+stress	set3IT020	Mitomycin C	Psyr_2821	Psyr_2821		conserved hypothetical protein	2.07511053214982	6.30965564646879	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2825	Psyr_2825		DNA methylase N-4/N-6	2.51695793101843	9.28935411667856	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2828	Psyr_2828		C-5 cytosine-specific DNA methylase	2.42514597657875	10.7853462963556	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2830	Psyr_2830		conserved hypothetical protein	3.37445659288309	7.42542789364396	FALSE
+stress	set3IT020	Mitomycin C	Psyr_2834	Psyr_2834		hypothetical protein	1.74947180138003	6.14458955597226	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2835	Psyr_2835		hypothetical protein	1.64695798283601	7.43524887671044	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2841	Psyr_2841		hypothetical protein	1.80472258586136	7.45152666630386	FALSE
+stress	set3IT020	Mitomycin C	Psyr_2843	Psyr_2843		C-5 cytosine-specific DNA methylase	1.83125676328978	6.37425226604425	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2846	Psyr_2846		Phage integrase:Phage integrase, N-terminal SAM-like protein	1.31262062881596	5.21006911463174	TRUE
+stress	set3IT020	Mitomycin C	Psyr_2896	Psyr_2896		Excinuclease ABC subunit C	-1.43569301103804	-6.08576452537091	FALSE
+stress	set3IT020	Mitomycin C	Psyr_3003	Psyr_3003		[Acyl-carrier protein] phosphodiesterase	4.62492852292175	10.0930404760448	TRUE
+stress	set3IT020	Mitomycin C	Psyr_3842	Psyr_3842		SNF2-related:Helicase, C-terminal:Type III restriction enzyme, res subunit	1.34027566417238	5.15933531756481	FALSE
+stress	set3IT020	Mitomycin C	Psyr_4197	Psyr_4197		DNA replication and repair protein RecN	-3.47154513944724	-11.5796824787905	TRUE
+stress	set3IT020	Mitomycin C	Psyr_4520	Psyr_4520		Excinuclease ABC subunit A	-1.41749328794875	-9.26985948405387	TRUE
+stress	set1IT030	Nalidixic acid sodium salt	Psyr_0185	Psyr_0185		tyrosine recombinase XerC subunit	-1.52260198300262	-5.55892919092258	FALSE
+stress	set1IT030	Nalidixic acid sodium salt	Psyr_0318	Psyr_0318		cell division protein ZapA	1.35517138310176	5.75830870118542	FALSE
+stress	set1IT030	Nalidixic acid sodium salt	Psyr_0626	Psyr_0626		DedA	1.59113447450281	11.8589036573974	TRUE
+stress	set1IT030	Nalidixic acid sodium salt	Psyr_3970	Psyr_3970		Uracil-DNA glycosylase	-1.21003652999674	-5.7907669380446	TRUE
+stress	set4IT032	Nitrofurantoin	Psyr_0003	Psyr_0003		DNA replication and repair protein RecF	-2.33561655952666	-12.9347723392313	TRUE
+stress	set1IT034	Nitrofurantoin	Psyr_0003	Psyr_0003		DNA replication and repair protein RecF	-1.9199556681795	-10.819904647923	TRUE
+stress	set4IT032	Nitrofurantoin	Psyr_1974	Psyr_1974		Excinuclease ABC subunit B	-3.71261807664478	-11.9246732412531	TRUE
+stress	set1IT034	Nitrofurantoin	Psyr_1974	Psyr_1974		Excinuclease ABC subunit B	-2.36796682876053	-9.76619648350319	TRUE
+stress	set4IT032	Nitrofurantoin	Psyr_2896	Psyr_2896		Excinuclease ABC subunit C	-3.18541971101287	-14.380586212206	TRUE
+stress	set1IT034	Nitrofurantoin	Psyr_2896	Psyr_2896		Excinuclease ABC subunit C	-2.21311019364945	-10.2105333778746	TRUE
+stress	set4IT032	Nitrofurantoin	Psyr_3396	Psyr_3396		DNA replication and repair protein RecR	-3.58453891183301	-6.70481194979425	TRUE
+stress	set1IT034	Nitrofurantoin	Psyr_3396	Psyr_3396		DNA replication and repair protein RecR	-2.4894745529199	-5.32591947040439	TRUE
+stress	set4IT032	Nitrofurantoin	Psyr_3949	Psyr_3949		DNA replication and repair protein RecO	-3.16836000540044	-10.4105675682664	TRUE
+stress	set1IT034	Nitrofurantoin	Psyr_3949	Psyr_3949		DNA replication and repair protein RecO	-1.54567624493976	-5.70483552481948	TRUE
+stress	set4IT032	Nitrofurantoin	Psyr_4231	Psyr_4231		ATP-binding region, ATPase-like:Histidine kinase A, N-terminal	-1.26408360896943	-8.72249040883067	TRUE
+stress	set4IT032	Nitrofurantoin	Psyr_4281	Psyr_4281		cytochrome bd quinol oxidase subunit 2 apoprotein	-1.17760000127575	-7.47018745983027	TRUE
+stress	set4IT032	Nitrofurantoin	Psyr_4282	Psyr_4282		cytochrome bd quinol oxidase subunit 1 apoprotein	-1.21636702306148	-5.09765857341073	FALSE
+stress	set4IT032	Nitrofurantoin	Psyr_4520	Psyr_4520		Excinuclease ABC subunit A	-3.22696271280767	-18.9026765302398	TRUE
+stress	set1IT034	Nitrofurantoin	Psyr_4520	Psyr_4520		Excinuclease ABC subunit A	-2.2689700282685	-14.8941892710512	TRUE
+stress	set1IT038	Phloretin	Psyr_3695	Psyr_3695		RelA/SpoT protein	-2.69295253324835	-11.0683020493708	FALSE
+stress	set4IT018	Rifampicin	Psyr_0941	Psyr_0941		Conserved hypothetical protein 92	-1.48124594608891	-7.56206658877494	TRUE

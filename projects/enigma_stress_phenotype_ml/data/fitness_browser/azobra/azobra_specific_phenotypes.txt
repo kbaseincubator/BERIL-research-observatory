@@ -1,0 +1,365 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1IT067	D-Fructose	AZOBR_RS04265	AZOBR_RS04265		2-isopropylmalate synthase	-2.00348099931144	-10.6907303764161	FALSE
+carbon source	set1IT070	D-Fructose	AZOBR_RS04265	AZOBR_RS04265		2-isopropylmalate synthase	-1.9359914233013	-11.1056518779003	FALSE
+carbon source	set1IT067	D-Fructose	AZOBR_RS32325	AZOBR_RS32325		PTS fructose transporter subunit IIA	-2.46021505080907	-12.0557232262154	TRUE
+carbon source	set1IT070	D-Fructose	AZOBR_RS32325	AZOBR_RS32325		PTS fructose transporter subunit IIA	-2.39792972388468	-7.91418509336228	TRUE
+carbon source	set1IT070	D-Fructose	AZOBR_RS32335	AZOBR_RS32335		PTS fructose transporter subunit IIBC	-2.34861998550732	-11.0083637447932	TRUE
+carbon source	set1IT067	D-Fructose	AZOBR_RS32335	AZOBR_RS32335		PTS fructose transporter subunit IIBC	-2.21473771166259	-10.0392363133239	TRUE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS00885	AZOBR_RS00885		regulator	1.53637564435408	7.2273949918501	FALSE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS09480	AZOBR_RS09480		4-alpha-glucanotransferase	1.17024393670574	8.71127732525065	FALSE
+carbon source	set2IT001	D-Gluconic Acid sodium salt	AZOBR_RS09480	AZOBR_RS09480		4-alpha-glucanotransferase	1.31133809768263	7.66802021229496	FALSE
+carbon source	set2IT001	D-Gluconic Acid sodium salt	AZOBR_RS09670	AZOBR_RS09670		hypothetical protein	1.50435371515861	5.85613919194334	FALSE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS10005	AZOBR_RS10005		MucR family transcriptional regulator	-2.09566781884325	-7.54027750199231	FALSE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS10760	AZOBR_RS10760		chemotaxis protein	-1.47932185377591	-7.9420771105787	FALSE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS12825	AZOBR_RS12825		cytochrome B561	1.54847730446248	11.2032477192831	FALSE
+carbon source	set2IT001	D-Gluconic Acid sodium salt	AZOBR_RS12825	AZOBR_RS12825		cytochrome B561	1.60934062395447	9.25162412991163	FALSE
+carbon source	set2IT001	D-Gluconic Acid sodium salt	AZOBR_RS15915	AZOBR_RS15915		ABC transporter substrate-binding protein	-2.70028369245379	-5.42056397707094	TRUE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS15915	AZOBR_RS15915		ABC transporter substrate-binding protein	-2.38288567535388	-8.31139993522113	TRUE
+carbon source	set2IT001	D-Gluconic Acid sodium salt	AZOBR_RS15920	AZOBR_RS15920		dehydroascorbate transporter	-2.90472367691437	-7.00342404620563	TRUE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS15920	AZOBR_RS15920		dehydroascorbate transporter	-2.47123414513999	-10.8135016855867	TRUE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS15925	AZOBR_RS15925		C4-dicarboxylate ABC transporter permease	-2.57030973877571	-5.52536601286302	FALSE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS18690	AZOBR_RS18690		quinolinate synthetase	1.46858804797183	7.74607311435669	FALSE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS20450	AZOBR_RS20450		hydroxyacylglutathione hydrolase	1.13712109216194	8.81256350650497	FALSE
+carbon source	set2IT001	D-Gluconic Acid sodium salt	AZOBR_RS20450	AZOBR_RS20450		hydroxyacylglutathione hydrolase	1.15929054221798	6.5983628616622	FALSE
+carbon source	set2IT001	D-Gluconic Acid sodium salt	AZOBR_RS23485	AZOBR_RS23485		peptidase M3	1.00525101742446	6.7730835045776	FALSE
+carbon source	set3IT049	D-Gluconic Acid sodium salt	AZOBR_RS26460	AZOBR_RS26460		hypothetical protein	-1.28479434240427	-5.46361733944848	FALSE
+carbon source	set2IT007	Ethanol	AZOBR_RS07530	AZOBR_RS07530		pyrroloquinoline quinone biosynthesis protein PqqE	-1.92957635178993	-8.3497277809314	TRUE
+carbon source	set3IT055	Ethanol	AZOBR_RS07530	AZOBR_RS07530		pyrroloquinoline quinone biosynthesis protein PqqE	-1.50405367214314	-5.84380993847699	TRUE
+carbon source	set3IT055	Ethanol	AZOBR_RS07540	AZOBR_RS07540		pyrroloquinoline quinone biosynthesis protein PqqC	-1.67068998675849	-8.85635701376966	TRUE
+carbon source	set2IT007	Ethanol	AZOBR_RS07540	AZOBR_RS07540		pyrroloquinoline quinone biosynthesis protein PqqC	-1.66516481435982	-9.52161414997988	TRUE
+carbon source	set3IT055	Ethanol	AZOBR_RS10600	AZOBR_RS10600		peptidase C69	-1.80712519184985	-7.18011491582958	FALSE
+carbon source	set2IT007	Ethanol	AZOBR_RS10600	AZOBR_RS10600		peptidase C69	-1.50799298086501	-5.27550242631701	FALSE
+carbon source	set3IT055	Ethanol	AZOBR_RS11930	AZOBR_RS11930		modulator protein	-1.74009029865386	-9.88297604239963	FALSE
+carbon source	set2IT007	Ethanol	AZOBR_RS11930	AZOBR_RS11930		modulator protein	-1.60232093809137	-8.95602224035814	FALSE
+carbon source	set3IT055	Ethanol	AZOBR_RS12815	AZOBR_RS12815		cytochrome C	-1.15472397552997	-6.75800358628249	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS00885	AZOBR_RS00885		regulator	1.95195719906343	8.91557263681063	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS00885	AZOBR_RS00885		regulator	2.14450057326914	12.2445955140661	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS03325	AZOBR_RS03325		hypothetical protein	1.19229349331987	9.09516031947298	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS03325	AZOBR_RS03325		hypothetical protein	1.47092474644098	12.1800399533082	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS03340	AZOBR_RS03340		membrane protein	1.62353033708896	10.5963971149496	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS03340	AZOBR_RS03340		membrane protein	1.99392416794922	14.4277156943139	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS03360	AZOBR_RS03360		glycosyl transferase family 1	1.11139040949154	8.454624566329	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS03360	AZOBR_RS03360		glycosyl transferase family 1	1.29141288817376	8.42444142091523	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS03390	AZOBR_RS03390		protein tyrosine kinase	1.21210847962615	8.57394377687639	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS03390	AZOBR_RS03390		protein tyrosine kinase	1.52604639293289	11.6163100722741	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS10275	AZOBR_RS10275		hypothetical protein	1.75906989619988	11.1554435233359	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS10275	AZOBR_RS10275		hypothetical protein	2.39196585889637	14.5768013341895	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS10570	AZOBR_RS10570		cytochrome B562	1.02461603269166	7.91161503265605	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS11690	AZOBR_RS11690		hypothetical protein	1.15545006094817	6.40927404485101	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS12505	AZOBR_RS12505		hypothetical protein	1.22345475187872	10.4343159392012	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS12505	AZOBR_RS12505		hypothetical protein	1.46405851926311	10.8108906960723	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS17210	AZOBR_RS17210		epimerase	-1.9414718420523	-5.1217484508642	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS18690	AZOBR_RS18690		quinolinate synthetase	2.12177097870156	12.5588792918585	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS19355	AZOBR_RS19355		glycosyl transferase family 1	-1.62913072117718	-5.70189773084884	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS19360	AZOBR_RS19360		glycosyltransferase family 1	2.41243048852723	7.97942427251587	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS19360	AZOBR_RS19360		glycosyltransferase family 1	2.92328587824566	7.93103972810262	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS19390	AZOBR_RS19390		methyltransferase	-1.7420306933987	-8.41661019794209	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS19390	AZOBR_RS19390		methyltransferase	-1.22830530313219	-6.80330620434998	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS19395	AZOBR_RS19395		glycosyl hydrolase	-1.70191468876541	-10.0547896758358	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS19395	AZOBR_RS19395		glycosyl hydrolase	-1.1531045915762	-5.87942671233944	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS21875	AZOBR_RS21875		histidine kinase	1.08206551494756	8.61627260998568	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS23660	AZOBR_RS23660		hypothetical protein	-1.54153928328587	-6.47082669784369	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS23675	AZOBR_RS23675		hypothetical protein	-1.90385166590788	-8.98395952852242	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS24040	AZOBR_RS24040		FAD-dependent oxidoreductase	1.00861578786426	6.93591840568127	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS26780	AZOBR_RS26780		hypothetical protein	1.440677567389	9.78394780098662	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS26780	AZOBR_RS26780		hypothetical protein	1.76488283310721	11.3534640733055	FALSE
+carbon source	set3IT056	Glycerol	AZOBR_RS29395	AZOBR_RS29395		transcriptional regulator TrmB	2.19495631066748	12.3295736614956	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS29395	AZOBR_RS29395		transcriptional regulator TrmB	2.23459862382129	16.3504809088572	FALSE
+carbon source	set2IT008	Glycerol	AZOBR_RS32735	AZOBR_RS32735		hypothetical protein	1.03880466046037	6.01106378219957	FALSE
+carbon source	set3IT058	L-Glutamine	AZOBR_RS14140	AZOBR_RS14140		membrane protein	1.10672576642864	8.43972746848533	FALSE
+carbon source	set3IT058	L-Glutamine	AZOBR_RS14145	AZOBR_RS14145		glycosyl transferase family protein	1.08475365583065	8.11861007911077	FALSE
+carbon source	set3IT058	L-Glutamine	AZOBR_RS14690	AZOBR_RS14690		C4-dicarboxylate ABC transporter substrate-binding protein	-1.81791475930499	-5.0261622324207	FALSE
+carbon source	set2IT010	L-Glutamine	AZOBR_RS14700	AZOBR_RS14700		C4-dicarboxylate ABC transporter permease	-1.19714066586163	-6.11221706552465	FALSE
+carbon source	set2IT010	L-Glutamine	AZOBR_RS16430	AZOBR_RS16430		MarR family transcriptional regulator	1.55513832907188	6.60857549043345	FALSE
+carbon source	set3IT058	L-Glutamine	AZOBR_RS16430	AZOBR_RS16430		MarR family transcriptional regulator	2.4079726678897	10.3172243610849	FALSE
+carbon source	set3IT061	L-Leucine	AZOBR_RS01140	AZOBR_RS01140		NADP-dependent malic enzyme	-1.1447546017462	-5.68379798155179	FALSE
+carbon source	set3IT061	L-Leucine	AZOBR_RS06555	AZOBR_RS06555		GntR family transcriptional regulator	-1.86488555049466	-8.26921347143627	FALSE
+carbon source	set3IT061	L-Leucine	AZOBR_RS11930	AZOBR_RS11930		modulator protein	-1.51241700995719	-9.18764779212225	FALSE
+carbon source	set3IT061	L-Leucine	AZOBR_RS14110	AZOBR_RS14110		pyridoxamine kinase	-2.59990125320711	-12.99486733719	FALSE
+carbon source	set3IT061	L-Leucine	AZOBR_RS16660	AZOBR_RS16660		ABC transporter permease	-1.50928306527971	-6.42364744270328	FALSE
+carbon source	set3IT061	L-Leucine	AZOBR_RS19395	AZOBR_RS19395		glycosyl hydrolase	-1.03697356137612	-5.71433838692899	FALSE
+carbon source	set3IT061	L-Leucine	AZOBR_RS30515	AZOBR_RS30515		phosphoenolpyruvate carboxykinase	2.02701456093082	18.4888118810942	FALSE
+carbon source	set2IT009	L-Malic acid disodium salt monohydrate	AZOBR_RS21135	AZOBR_RS21135		histidine kinase	-2.0675113776666	-10.6275161706432	TRUE
+carbon source	set3IT057	L-Malic acid disodium salt monohydrate	AZOBR_RS21135	AZOBR_RS21135		histidine kinase	-1.9646924351281	-10.9304622117646	TRUE
+carbon source	set3IT059	L-Proline	AZOBR_RS08260	AZOBR_RS08260		ABC transporter	-1.42155364095753	-9.58013270047241	TRUE
+carbon source	set2IT011	L-Proline	AZOBR_RS08260	AZOBR_RS08260		ABC transporter	-1.40395699814299	-10.76699244662	TRUE
+carbon source	set2IT011	L-Proline	AZOBR_RS08655	AZOBR_RS08655		amino acid ABC transporter substrate-binding protein	-2.47345292307416	-10.8246885057639	FALSE
+carbon source	set3IT059	L-Proline	AZOBR_RS08655	AZOBR_RS08655		amino acid ABC transporter substrate-binding protein	-2.27528785669555	-10.5392465420986	FALSE
+carbon source	set2IT011	L-Proline	AZOBR_RS08665	AZOBR_RS08665		amino acid ABC transporter permease	-1.74626133506678	-5.87313877102531	FALSE
+carbon source	set3IT059	L-Proline	AZOBR_RS08665	AZOBR_RS08665		amino acid ABC transporter permease	-1.54655733962673	-5.58321097470472	FALSE
+carbon source	set3IT059	L-Proline	AZOBR_RS22355	AZOBR_RS22355		acetyl-CoA synthetase	-1.432237280272	-5.02674871122145	FALSE
+carbon source	set3IT059	L-Proline	AZOBR_RS23685	AZOBR_RS23685		AsnC family transcriptional regulator	-4.01342864226009	-5.7406084021103	TRUE
+carbon source	set2IT011	L-Proline	AZOBR_RS23685	AZOBR_RS23685		AsnC family transcriptional regulator	-3.90772760321232	-6.960698086073	TRUE
+carbon source	set3IT059	L-Proline	AZOBR_RS23695	AZOBR_RS23695		transcriptional regulator	-4.51588582556333	-10.749045269978	TRUE
+carbon source	set2IT011	L-Proline	AZOBR_RS23695	AZOBR_RS23695		transcriptional regulator	-4.30854226575811	-12.328629750186	TRUE
+carbon source	set3IT051	Sodium L-Lactate	AZOBR_RS25110	AZOBR_RS25110		(Fe-S)-binding protein	-5.15405636919323	-13.3860944199186	TRUE
+carbon source	set2IT003	Sodium L-Lactate	AZOBR_RS25110	AZOBR_RS25110		(Fe-S)-binding protein	-4.63926448618514	-11.5379163476174	TRUE
+carbon source	set3IT051	Sodium L-Lactate	AZOBR_RS25115	AZOBR_RS25115		Fe-S oxidoreductase	-4.97155651063996	-5.62736004658213	TRUE
+carbon source	set2IT003	Sodium L-Lactate	AZOBR_RS25115	AZOBR_RS25115		Fe-S oxidoreductase	-4.57379571635787	-6.03516583207388	TRUE
+carbon source	set2IT014	Sodium butyrate	AZOBR_RS05755	AZOBR_RS05755		acyl-CoA dehydrogenase	-3.26224389946074	-5.49149071704757	TRUE
+carbon source	set3IT062	Sodium butyrate	AZOBR_RS05755	AZOBR_RS05755		acyl-CoA dehydrogenase	-3.11334275912263	-5.60690682061792	TRUE
+carbon source	set3IT053	Sodium pyruvate	AZOBR_RS02935	AZOBR_RS02935		membrane protein	-3.84876274204677	-10.6485546391747	TRUE
+carbon source	set2IT005	Sodium pyruvate	AZOBR_RS02935	AZOBR_RS02935		membrane protein	-3.02427825026248	-8.79197695020435	TRUE
+carbon source	set3IT053	Sodium pyruvate	AZOBR_RS02940	AZOBR_RS02940		actetate permease	-3.70428377154355	-15.3502564264931	TRUE
+carbon source	set2IT005	Sodium pyruvate	AZOBR_RS02940	AZOBR_RS02940		actetate permease	-3.37045014123846	-15.7569160360157	TRUE
+carbon source	set2IT005	Sodium pyruvate	AZOBR_RS14200	AZOBR_RS14200		chemotaxis protein CheY	-3.19412686080478	-8.1692461676392	FALSE
+carbon source	set3IT053	Sodium pyruvate	AZOBR_RS14200	AZOBR_RS14200		chemotaxis protein CheY	-2.72767695197374	-5.37193711521961	FALSE
+carbon source	set2IT005	Sodium pyruvate	AZOBR_RS14205	AZOBR_RS14205		exonuclease	-2.99742651164532	-14.2069795257963	FALSE
+carbon source	set3IT053	Sodium pyruvate	AZOBR_RS14205	AZOBR_RS14205		exonuclease	-2.96341683818722	-14.6984257215976	FALSE
+carbon source	set2IT006	Sodium succinate dibasic hexahydrate	AZOBR_RS21135	AZOBR_RS21135		histidine kinase	-3.40358929890294	-8.42207039790349	TRUE
+carbon source	set3IT054	Sodium succinate dibasic hexahydrate	AZOBR_RS21135	AZOBR_RS21135		histidine kinase	-3.08633185843821	-7.49210346578605	TRUE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS04255	AZOBR_RS04255		hypothetical protein	-1.68262343333894	-10.7652603837522	FALSE
+carbon source	set1IT069	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS04255	AZOBR_RS04255		hypothetical protein	-1.58513666984667	-10.9481373164533	FALSE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS07605	AZOBR_RS07605		regulator	-1.91657200495659	-5.40546088166181	FALSE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS10570	AZOBR_RS10570		cytochrome B562	1.08442097589934	8.74489991551884	FALSE
+carbon source	set1IT069	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS10760	AZOBR_RS10760		chemotaxis protein	-1.86467496402205	-8.85732605501252	FALSE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS10760	AZOBR_RS10760		chemotaxis protein	-1.54623729676593	-6.53128465373556	FALSE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS10765	AZOBR_RS10765		histidine kinase	-1.4174949456437	-5.91381902889021	FALSE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS22375	AZOBR_RS22375		malonyl-CoA synthase	-2.52390121102635	-7.89901503458967	TRUE
+carbon source	set1IT069	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS22375	AZOBR_RS22375		malonyl-CoA synthase	-2.16526433739063	-7.15125735787405	TRUE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS25765	AZOBR_RS25765		hypothetical protein	1.03691323776526	6.9163740785673	FALSE
+carbon source	set1IT069	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS25765	AZOBR_RS25765		hypothetical protein	1.10880039937064	5.71896782874685	FALSE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS26780	AZOBR_RS26780		hypothetical protein	1.48854956347566	9.98896775911241	FALSE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS30850	AZOBR_RS30850		hypothetical protein	-1.93137638437974	-11.5351307152713	FALSE
+carbon source	set1IT069	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS30850	AZOBR_RS30850		hypothetical protein	-1.77011229797152	-11.0230890556895	FALSE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS30860	AZOBR_RS30860		sensor histidine kinase	-2.69655354907592	-12.3121776445179	FALSE
+carbon source	set1IT069	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS30860	AZOBR_RS30860		sensor histidine kinase	-2.32212298370685	-12.1022521448426	FALSE
+carbon source	set1IT072	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS33805	AZOBR_RS33805		hypothetical protein	-2.59652128292477	-8.94525019858359	FALSE
+carbon source	set1IT069	a-Ketoglutaric acid disodium salt hydrate	AZOBR_RS33805	AZOBR_RS33805		hypothetical protein	-1.82982770530256	-8.48385761259281	FALSE
+lb	set4IT009		AZOBR_RS02935	AZOBR_RS02935		membrane protein	1.62780147008226	5.45474136473064	FALSE
+lb	set4IT009		AZOBR_RS02940	AZOBR_RS02940		actetate permease	1.69764159400546	12.310306247657	FALSE
+lb	set4IT014		AZOBR_RS03015	AZOBR_RS03015		heat shock protein Hsp20	1.88141832653425	5.96339459075124	FALSE
+lb	set4IT014		AZOBR_RS25885	AZOBR_RS25885		ABC transporter permease	-1.56445847082906	-5.16059178869476	FALSE
+lb	set4IT014		AZOBR_RS32800	AZOBR_RS32800		hypothetical protein	-1.51168181369307	-5.57246233125426	FALSE
+motility	set4IT018	Agar	AZOBR_RS00880	AZOBR_RS00880		regulator	1.60455363220371	6.38253593088406	FALSE
+motility	set4IT018	Agar	AZOBR_RS01490	AZOBR_RS01490		MucR family transcriptional regulator	2.32891207313871	12.2785556475432	TRUE
+motility	set4IT018	Agar	AZOBR_RS02560	AZOBR_RS02560		diguanylate kinase	1.32341155545292	5.32983409043405	FALSE
+motility	set4IT018	Agar	AZOBR_RS04025	AZOBR_RS04025		RNA pyrophosphohydrolase	2.70338199575639	10.1267536055581	FALSE
+motility	set4IT022	Agar	AZOBR_RS05365	AZOBR_RS05365		methyl-accepting chemotaxis protein	-1.19865103245629	-6.3302415225707	FALSE
+motility	set4IT018	Agar	AZOBR_RS07265	AZOBR_RS07265		hypothetical protein	-2.44830475362237	-6.15506377384544	FALSE
+motility	set4IT021	Agar	AZOBR_RS08405	AZOBR_RS08405		aminodeoxychorismate lyase	1.691550689617	6.19118923382516	FALSE
+motility	set4IT018	Agar	AZOBR_RS08405	AZOBR_RS08405		aminodeoxychorismate lyase	2.0971798492946	5.69243019896856	FALSE
+motility	set4IT022	Agar	AZOBR_RS09605	AZOBR_RS09605		C4-dicarboxylate ABC transporter	1.75063363017224	8.66773662805882	FALSE
+motility	set4IT021	Agar	AZOBR_RS09605	AZOBR_RS09605		C4-dicarboxylate ABC transporter	1.85555961875768	7.42528061299065	FALSE
+motility	set4IT018	Agar	AZOBR_RS10245	AZOBR_RS10245		diguanylate cyclase	1.35846105875062	5.63231296833552	FALSE
+motility	set4IT021	Agar	AZOBR_RS10250	AZOBR_RS10250		chemotaxis protein	1.44263022391426	5.48931467008904	FALSE
+motility	set4IT018	Agar	AZOBR_RS10250	AZOBR_RS10250		chemotaxis protein	2.11711596370057	5.12403344873359	FALSE
+motility	set4IT018	Agar	AZOBR_RS11175	AZOBR_RS11175		flagellar motor protein MotB	-1.8938259434906	-5.07161496115257	FALSE
+motility	set4IT018	Agar	AZOBR_RS14540	AZOBR_RS14540		hypothetical protein	2.35397831330074	6.80756894606196	FALSE
+motility	set4IT022	Agar	AZOBR_RS15405	AZOBR_RS15405		phytoene synthase	1.1981022933323	6.11814435990253	FALSE
+motility	set4IT021	Agar	AZOBR_RS16180	AZOBR_RS16180		diguanylate cyclase	2.67110470789156	7.83457953237929	FALSE
+motility	set4IT018	Agar	AZOBR_RS16225	AZOBR_RS16225		hypothetical protein	1.86754405157378	6.38300501678688	FALSE
+motility	set4IT018	Agar	AZOBR_RS19565	AZOBR_RS19565		hypothetical protein	-1.68654528713323	-5.36078381216994	FALSE
+motility	set4IT021	Agar	AZOBR_RS19995	AZOBR_RS19995		Diguanylate cyclase/phosphodiesterase with PAS/PAC domain	1.59968030867984	5.44909113379451	FALSE
+motility	set4IT022	Agar	AZOBR_RS19995	AZOBR_RS19995		Diguanylate cyclase/phosphodiesterase with PAS/PAC domain	2.42367611409056	8.17328292189484	FALSE
+motility	set4IT023	Agar	AZOBR_RS19995	AZOBR_RS19995		Diguanylate cyclase/phosphodiesterase with PAS/PAC domain	3.11627961448495	9.77232846774233	FALSE
+motility	set4IT021	Agar	AZOBR_RS20130	AZOBR_RS20130		GGDEF domain-containing protein (fragment)	2.87318029522723	11.0891770298595	FALSE
+motility	set4IT018	Agar	AZOBR_RS20130	AZOBR_RS20130		GGDEF domain-containing protein (fragment)	3.38149003014932	6.35228371282333	FALSE
+motility	set4IT018	Agar	AZOBR_RS21835	AZOBR_RS21835		diguanylate cyclase	-2.65442890941632	-6.44326022813957	FALSE
+motility	set4IT021	Agar	AZOBR_RS25615	AZOBR_RS25615		chemotaxis protein	1.8661726920008	5.46362812076185	FALSE
+motility	set4IT018	Agar	AZOBR_RS29890	AZOBR_RS29890		flagellar protein	-4.24524903480128	-9.12934801284995	FALSE
+motility	set4IT018	Agar	AZOBR_RS29900	AZOBR_RS29900		flagellar basal body rod protein FlgG	-1.54142608279853	-6.06920460836356	FALSE
+motility	set4IT018	Agar	AZOBR_RS29925	AZOBR_RS29925		ATP synthase	-2.47224140346489	-5.9199568577448	FALSE
+motility	set4IT018	Agar	AZOBR_RS29955	AZOBR_RS29955		flagellar biosynthesis protein FlhA	-2.73315591290519	-7.56644037806121	TRUE
+motility	set4IT018	Agar	AZOBR_RS29960	AZOBR_RS29960		flagellar biosynthesis protein	-3.17886570003711	-7.49012952374636	FALSE
+motility	set4IT018	Agar	AZOBR_RS30070	AZOBR_RS30070		flagellar hook protein	-3.10083745657964	-7.7514290359435	FALSE
+motility	set4IT018	Agar	AZOBR_RS30080	AZOBR_RS30080		flagellar hook protein	-2.8641104155608	-7.24763777171089	FALSE
+motility	set4IT018	Agar	AZOBR_RS30530	AZOBR_RS30530		peptidase M23	2.27038728242863	12.0007650486056	FALSE
+motility	set4IT018	Agar	AZOBR_RS32040	AZOBR_RS32040		flagellar motor switch protein FliN	-2.6002582656057	-6.89470757831871	FALSE
+motility	set4IT018	Agar	AZOBR_RS32060	AZOBR_RS32060		flagellar motor switch protein FliM	-2.88899287217059	-7.39049349431464	FALSE
+motility	set4IT018	Agar	AZOBR_RS32120	AZOBR_RS32120		hypothetical protein	-2.15604746636125	-6.58550482257312	FALSE
+motility	set4IT018	Agar	AZOBR_RS32150	AZOBR_RS32150		hypothetical protein	-2.72097540420954	-6.62920515908868	FALSE
+motility	set4IT018	Agar	AZOBR_RS32160	AZOBR_RS32160		chemotaxis protein	-3.3005447508432	-5.82343099942036	TRUE
+motility	set4IT022	Agar	AZOBR_RS32800	AZOBR_RS32800		hypothetical protein	-1.58383438490249	-5.98244974289386	FALSE
+motility	set4IT018	Agar	AZOBR_RS33570	AZOBR_RS33570		hypothetical protein	-2.46199280439194	-7.95946190240685	FALSE
+motility	set4IT018	Agar	AZOBR_RS33600	AZOBR_RS33600		NAD-dependent epimerase	-2.68561656546248	-11.2315316137377	FALSE
+motility	set4IT018	Agar	AZOBR_RS33620	AZOBR_RS33620		hypothetical protein	-2.31047098435524	-9.4757985777602	FALSE
+nitrogen source	set3IT079	Cytosine	AZOBR_RS06955	AZOBR_RS06955		sugar ABC transporter permease	-2.32863073889098	-7.45693764312574	TRUE
+nitrogen source	set2IT031	Cytosine	AZOBR_RS06955	AZOBR_RS06955		sugar ABC transporter permease	-2.00839639728394	-5.89945171520132	TRUE
+nitrogen source	set3IT079	Cytosine	AZOBR_RS06960	AZOBR_RS06960		ABC transporter permease	-2.23628964534698	-6.07923371340266	TRUE
+nitrogen source	set2IT031	Cytosine	AZOBR_RS06960	AZOBR_RS06960		ABC transporter permease	-1.99805023165143	-5.72760385841844	TRUE
+nitrogen source	set3IT079	Cytosine	AZOBR_RS06965	AZOBR_RS06965		ABC transporter substrate-binding protein	-2.4968038445455	-11.1544136586379	TRUE
+nitrogen source	set2IT031	Cytosine	AZOBR_RS06965	AZOBR_RS06965		ABC transporter substrate-binding protein	-2.26970874597277	-10.4230495934427	TRUE
+nitrogen source	set2IT031	Cytosine	AZOBR_RS19335	AZOBR_RS19335		asparagine synthase	1.03005121409664	7.5954733084609	FALSE
+nitrogen source	set3IT079	Cytosine	AZOBR_RS29710	AZOBR_RS29710		amidase	1.43450346597204	5.71079988365247	FALSE
+nitrogen source	set3IT079	Cytosine	AZOBR_RS30860	AZOBR_RS30860		sensor histidine kinase	-1.60951264914835	-9.10378316268343	FALSE
+nitrogen source	set3IT079	Cytosine	AZOBR_RS31875	AZOBR_RS31875		ABC transporter substrate-binding protein	-3.90571049100721	-9.78889051429353	FALSE
+nitrogen source	set2IT031	Cytosine	AZOBR_RS31875	AZOBR_RS31875		ABC transporter substrate-binding protein	-2.74223594370155	-7.96272030243504	FALSE
+nitrogen source	set2IT031	Cytosine	AZOBR_RS31885	AZOBR_RS31885		ABC transporter permease	-2.43213938058529	-5.31151579786374	FALSE
+nitrogen source	set3IT079	Cytosine	AZOBR_RS31895	AZOBR_RS31895		cytosine deaminase	-6.14398711937191	-11.7866059287511	TRUE
+nitrogen source	set2IT031	Cytosine	AZOBR_RS31895	AZOBR_RS31895		cytosine deaminase	-4.52675142654012	-9.3300646501376	TRUE
+nitrogen source	set2IT027	D-Alanine	AZOBR_RS02860	AZOBR_RS02860		peptidylprolyl isomerase	-1.49101353243375	-6.65522779100898	FALSE
+nitrogen source	set3IT075	D-Alanine	AZOBR_RS02860	AZOBR_RS02860		peptidylprolyl isomerase	-1.15242025888383	-5.45255428274233	FALSE
+nitrogen source	set2IT027	D-Alanine	AZOBR_RS08020	AZOBR_RS08020		D-amino acid dehydrogenase small subunit	-5.35892384450382	-13.3298542661945	TRUE
+nitrogen source	set3IT075	D-Alanine	AZOBR_RS08020	AZOBR_RS08020		D-amino acid dehydrogenase small subunit	-4.64535437811982	-10.6040989565303	TRUE
+nitrogen source	set2IT027	D-Alanine	AZOBR_RS08405	AZOBR_RS08405		aminodeoxychorismate lyase	-3.42426823765557	-9.49214437993199	FALSE
+nitrogen source	set3IT075	D-Alanine	AZOBR_RS08405	AZOBR_RS08405		aminodeoxychorismate lyase	-3.40311279271691	-7.81892168130803	FALSE
+nitrogen source	set3IT075	D-Alanine	AZOBR_RS08655	AZOBR_RS08655		amino acid ABC transporter substrate-binding protein	-3.26044457619901	-13.4698547367271	FALSE
+nitrogen source	set2IT027	D-Alanine	AZOBR_RS08655	AZOBR_RS08655		amino acid ABC transporter substrate-binding protein	-2.81530386810923	-11.4561447203216	FALSE
+nitrogen source	set3IT075	D-Alanine	AZOBR_RS08665	AZOBR_RS08665		amino acid ABC transporter permease	-2.36589519823505	-6.40473721176175	TRUE
+nitrogen source	set2IT027	D-Alanine	AZOBR_RS08665	AZOBR_RS08665		amino acid ABC transporter permease	-2.07226587935893	-5.54918856259781	TRUE
+nitrogen source	set3IT075	D-Alanine	AZOBR_RS16170	AZOBR_RS16170		peptidase S41	-2.54611124460261	-6.49686285576919	FALSE
+nitrogen source	set2IT027	D-Alanine	AZOBR_RS16170	AZOBR_RS16170		peptidase S41	-2.44893389632485	-9.20059898339929	FALSE
+nitrogen source	set2IT027	D-Alanine	AZOBR_RS19395	AZOBR_RS19395		glycosyl hydrolase	-1.38579889512583	-8.31094806573129	FALSE
+nitrogen source	set3IT075	D-Alanine	AZOBR_RS21915	AZOBR_RS21915		LysR family transcriptional regulator	-2.99681352802206	-9.42706528746567	FALSE
+nitrogen source	set2IT027	D-Alanine	AZOBR_RS21915	AZOBR_RS21915		LysR family transcriptional regulator	-2.44145745174085	-11.4343647936517	FALSE
+nitrogen source	set3IT069	L-Asparagine	AZOBR_RS00830	AZOBR_RS00830		L-asparaginase	-4.92622520599899	-7.17840295612705	FALSE
+nitrogen source	set2IT021	L-Asparagine	AZOBR_RS00830	AZOBR_RS00830		L-asparaginase	-4.07733103050055	-6.39679214430373	FALSE
+nitrogen source	set3IT069	L-Asparagine	AZOBR_RS08655	AZOBR_RS08655		amino acid ABC transporter substrate-binding protein	-1.45332116192879	-6.87904028902972	FALSE
+nitrogen source	set3IT065	L-Aspartic Acid	AZOBR_RS08655	AZOBR_RS08655		amino acid ABC transporter substrate-binding protein	-4.3968959166172	-11.0079040446441	FALSE
+nitrogen source	set2IT017	L-Aspartic Acid	AZOBR_RS08655	AZOBR_RS08655		amino acid ABC transporter substrate-binding protein	-3.26016177590173	-14.6230964071641	FALSE
+nitrogen source	set3IT065	L-Aspartic Acid	AZOBR_RS08665	AZOBR_RS08665		amino acid ABC transporter permease	-2.45671200912984	-5.84562497737138	FALSE
+nitrogen source	set2IT017	L-Aspartic Acid	AZOBR_RS29395	AZOBR_RS29395		transcriptional regulator TrmB	-4.23221648768626	-10.7878511640331	FALSE
+nitrogen source	set3IT065	L-Aspartic Acid	AZOBR_RS29395	AZOBR_RS29395		transcriptional regulator TrmB	-3.80668461620381	-7.50005132366278	FALSE
+nitrogen source	set3IT076	L-Citrulline	AZOBR_RS08090	AZOBR_RS08090		urease accessory protein UreG	-1.84826405397805	-7.83583821558945	FALSE
+nitrogen source	set2IT028	L-Citrulline	AZOBR_RS19590	AZOBR_RS19590		ornithine-oxoacid aminotransferase	-1.95403545232539	-7.84647488942868	FALSE
+nitrogen source	set2IT028	L-Citrulline	AZOBR_RS23695	AZOBR_RS23695		transcriptional regulator	-1.38622506083655	-8.29866680308173	TRUE
+nitrogen source	set3IT063	L-Histidine	AZOBR_RS28655	AZOBR_RS28655		hypothetical protein	1.05183879190328	6.38767041715324	FALSE
+nitrogen source	set3IT063	L-Histidine	AZOBR_RS28705	AZOBR_RS28705		putative bacteriophage protein	1.12520600136176	6.68713370856552	FALSE
+nitrogen source	set3IT063	L-Histidine	AZOBR_RS28775	AZOBR_RS28775		putative bacteriophage protein	1.34161212237505	5.1493504257121	FALSE
+nitrogen source	set3IT063	L-Histidine	AZOBR_RS28790	AZOBR_RS28790		hypothetical protein	1.06699905184594	6.27781217307879	FALSE
+nitrogen source	set3IT063	L-Histidine	AZOBR_RS28820	AZOBR_RS28820		hypothetical protein	1.28037050427389	6.54412644681487	FALSE
+nitrogen source	set3IT072	L-Isoleucine	AZOBR_RS02325	AZOBR_RS02325		ABC transporter substrate-binding protein	-1.29847727241329	-5.1669287894073	FALSE
+nitrogen source	set3IT072	L-Isoleucine	AZOBR_RS04255	AZOBR_RS04255		hypothetical protein	-1.49016218664795	-5.75315339821483	FALSE
+nitrogen source	set3IT072	L-Isoleucine	AZOBR_RS06470	AZOBR_RS06470		hypothetical protein	1.59374671165951	7.04665470268959	FALSE
+nitrogen source	set3IT072	L-Isoleucine	AZOBR_RS09890	AZOBR_RS09890		hypothetical protein	1.97896453268338	5.53363607052363	FALSE
+nitrogen source	set3IT072	L-Isoleucine	AZOBR_RS25755	AZOBR_RS25755		histidine kinase	2.12897225567226	8.78553828746415	FALSE
+nitrogen source	set3IT072	L-Isoleucine	AZOBR_RS25765	AZOBR_RS25765		hypothetical protein	2.15767442746525	8.68175450508604	FALSE
+nitrogen source	set3IT072	L-Isoleucine	AZOBR_RS26780	AZOBR_RS26780		hypothetical protein	1.51924447769828	6.58479009871365	FALSE
+nitrogen source	set3IT072	L-Isoleucine	AZOBR_RS32180	AZOBR_RS32180		hypothetical protein	-2.1418188742464	-5.67572219282683	FALSE
+nitrogen source	set2IT025	L-Leucine	AZOBR_RS06555	AZOBR_RS06555		GntR family transcriptional regulator	-2.29072967387776	-7.65685381003393	TRUE
+nitrogen source	set2IT025	L-Leucine	AZOBR_RS22380	AZOBR_RS22380		transcriptional regulator	1.34131664866559	7.00400181853025	FALSE
+nitrogen source	set3IT073	L-Leucine	AZOBR_RS32180	AZOBR_RS32180		hypothetical protein	-2.54973224239727	-8.1750247704104	TRUE
+nitrogen source	set2IT025	L-Leucine	AZOBR_RS32180	AZOBR_RS32180		hypothetical protein	-2.33475047723035	-9.82959732141521	TRUE
+nitrogen source	set3IT064	L-Lysine	AZOBR_RS04265	AZOBR_RS04265		2-isopropylmalate synthase	-1.81104556544794	-10.0422948154843	FALSE
+nitrogen source	set2IT016	L-Lysine	AZOBR_RS04265	AZOBR_RS04265		2-isopropylmalate synthase	-1.57306096959865	-8.92023679049687	FALSE
+nitrogen source	set2IT016	L-Lysine	AZOBR_RS17360	AZOBR_RS17360		electron transfer flavoprotein	-1.60386666310693	-8.15895411352824	FALSE
+nitrogen source	set3IT064	L-Lysine	AZOBR_RS17360	AZOBR_RS17360		electron transfer flavoprotein	-1.40805567029725	-5.41896104225483	FALSE
+nitrogen source	set3IT064	L-Lysine	AZOBR_RS19635	AZOBR_RS19635		succinate-semialdehyde dehydrogenase	-1.58722864675745	-7.80369771768734	FALSE
+nitrogen source	set2IT016	L-Lysine	AZOBR_RS32620	AZOBR_RS32620		aldehyde dehydrogenase	-2.7074302823675	-11.0919801125183	TRUE
+nitrogen source	set3IT064	L-Lysine	AZOBR_RS32620	AZOBR_RS32620		aldehyde dehydrogenase	-2.5899254022777	-7.142040996965	TRUE
+nitrogen source	set3IT064	L-Lysine	AZOBR_RS32630	AZOBR_RS32630		LysR family transcriptional regulator	-2.7360399669503	-8.32186871394797	TRUE
+nitrogen source	set2IT019	L-Serine	AZOBR_RS08075	AZOBR_RS08075		glutamate racemase	-1.75160504627335	-5.61206090400453	FALSE
+nitrogen source	set3IT067	L-Serine	AZOBR_RS08075	AZOBR_RS08075		glutamate racemase	-1.65942307640262	-6.28278023063226	FALSE
+nitrogen source	set2IT020	L-Threonine	AZOBR_RS06285	AZOBR_RS06285		epoxyqueuosine reductase	-1.24942871692819	-7.71299297038409	FALSE
+nitrogen source	set2IT020	L-Threonine	AZOBR_RS12680	AZOBR_RS12680		MFS transporter	-1.10590603713367	-6.30243434783331	FALSE
+nitrogen source	set2IT020	L-Threonine	AZOBR_RS14110	AZOBR_RS14110		pyridoxamine kinase	-3.0070922818348	-11.3911147753844	FALSE
+nitrogen source	set3IT068	L-Threonine	AZOBR_RS14110	AZOBR_RS14110		pyridoxamine kinase	-2.45658023768597	-6.03070999427442	FALSE
+nitrogen source	set3IT068	L-Threonine	AZOBR_RS14605	AZOBR_RS14605		ABC transporter substrate-binding protein	-1.26285107695105	-5.07448751499468	FALSE
+nitrogen source	set3IT068	L-Threonine	AZOBR_RS20015	AZOBR_RS20015		C4-dicarboxylate ABC transporter	-1.13086714492771	-6.25934770458935	FALSE
+nitrogen source	set2IT030	Parabanic Acid	AZOBR_RS08070	AZOBR_RS08070		urease subunit alpha	-3.34113976837232	-5.38091579246177	TRUE
+nitrogen source	set3IT078	Parabanic Acid	AZOBR_RS08090	AZOBR_RS08090		urease accessory protein UreG	-4.84604134890016	-8.70805139861158	TRUE
+nitrogen source	set2IT030	Parabanic Acid	AZOBR_RS08090	AZOBR_RS08090		urease accessory protein UreG	-4.2700036489776	-8.69524770123762	TRUE
+nitrogen source	set3IT078	Parabanic Acid	AZOBR_RS08905	AZOBR_RS08905		RNA polymerase sigma 70	-1.52601154309196	-5.56885646049828	FALSE
+nitrogen source	set2IT030	Parabanic Acid	AZOBR_RS11705	AZOBR_RS11705		urea ABC transporter ATP-binding protein	-1.63295334887355	-6.14907396082235	TRUE
+nitrogen source	set3IT078	Parabanic Acid	AZOBR_RS11710	AZOBR_RS11710		urea ABC transporter ATP-binding protein	-1.42525643389927	-6.01502575949947	FALSE
+nitrogen source	set3IT078	Parabanic Acid	AZOBR_RS11715	AZOBR_RS11715		amino acid ABC transporter permease	-1.4587750524791	-9.53775618269774	FALSE
+nitrogen source	set2IT030	Parabanic Acid	AZOBR_RS11715	AZOBR_RS11715		amino acid ABC transporter permease	-1.26686507391598	-8.54227363752053	FALSE
+nitrogen source	set2IT030	Parabanic Acid	AZOBR_RS11725	AZOBR_RS11725		branched-chain amino acid ABC transporter substrate-binding protein	-1.15137807102807	-7.34690715689941	FALSE
+nitrogen source	set3IT078	Parabanic Acid	AZOBR_RS11725	AZOBR_RS11725		branched-chain amino acid ABC transporter substrate-binding protein	-1.1096188257661	-7.78924994520641	FALSE
+nitrogen source	set3IT078	Parabanic Acid	AZOBR_RS21065	AZOBR_RS21065		amidohydrolase	1.12544278419885	7.6730946678058	FALSE
+nitrogen source	set2IT030	Parabanic Acid	AZOBR_RS21065	AZOBR_RS21065		amidohydrolase	1.31943452474817	9.57616856518164	FALSE
+nitrogen source	set3IT078	Parabanic Acid	AZOBR_RS30860	AZOBR_RS30860		sensor histidine kinase	-1.44893419237785	-9.00837102776756	FALSE
+nitrogen source	set2IT030	Parabanic Acid	AZOBR_RS30860	AZOBR_RS30860		sensor histidine kinase	-1.3153935169723	-9.02088885261266	FALSE
+nitrogen source	set3IT078	Parabanic Acid	AZOBR_RS30970	AZOBR_RS30970		glycine oxidase	-1.8407093819393	-6.99739549510914	FALSE
+nitrogen source	set3IT078	Parabanic Acid	AZOBR_RS33805	AZOBR_RS33805		hypothetical protein	-1.63705929162265	-9.07250201060445	FALSE
+nitrogen source	set2IT030	Parabanic Acid	AZOBR_RS33805	AZOBR_RS33805		hypothetical protein	-1.40990968610796	-6.32618484664401	FALSE
+nitrogen source	set3IT082	Sodium nitrate	AZOBR_RS18550	AZOBR_RS18550		ABC transporter ATPase	-2.69808876647446	-6.19713124829336	TRUE
+nitrogen source	set2IT034	Sodium nitrate	AZOBR_RS18550	AZOBR_RS18550		ABC transporter ATPase	-2.22375072316939	-5.86195212702478	TRUE
+nitrogen source	set3IT082	Sodium nitrate	AZOBR_RS18555	AZOBR_RS18555		nitrate ABC transporter permease	-3.38752757153573	-9.39996918629635	TRUE
+nitrogen source	set2IT034	Sodium nitrate	AZOBR_RS18555	AZOBR_RS18555		nitrate ABC transporter permease	-2.74720850715213	-6.55409680251041	TRUE
+nitrogen source	set2IT034	Sodium nitrate	AZOBR_RS18560	AZOBR_RS18560		nitrate ABC transporter substrate-binding protein	-3.05826007688591	-10.0571561359534	TRUE
+nitrogen source	set3IT082	Sodium nitrate	AZOBR_RS18560	AZOBR_RS18560		nitrate ABC transporter substrate-binding protein	-3.04181532910891	-10.8972985678176	TRUE
+nitrogen source	set3IT082	Sodium nitrate	AZOBR_RS18565	AZOBR_RS18565		nitrite reductase	-4.41589250182657	-9.58177754311923	TRUE
+nitrogen source	set2IT034	Sodium nitrate	AZOBR_RS18565	AZOBR_RS18565		nitrite reductase	-3.33849601894098	-8.51032911192657	TRUE
+nitrogen source	set3IT082	Sodium nitrate	AZOBR_RS18570	AZOBR_RS18570		nitrite reductase	-4.92504809487308	-5.42351680678281	FALSE
+nitrogen source	set3IT082	Sodium nitrate	AZOBR_RS30970	AZOBR_RS30970		glycine oxidase	-2.0206563658902	-9.7621344653067	FALSE
+nitrogen source	set2IT034	Sodium nitrate	AZOBR_RS30970	AZOBR_RS30970		glycine oxidase	-1.42871081240663	-6.44976072426779	FALSE
+nitrogen source	set3IT083	Urea	AZOBR_RS08090	AZOBR_RS08090		urease accessory protein UreG	-6.20038279624784	-7.35769902933821	TRUE
+nitrogen source	set2IT035	Urea	AZOBR_RS08090	AZOBR_RS08090		urease accessory protein UreG	-5.55474099953254	-8.44098323274769	TRUE
+stress	set1IT059	Bacitracin	AZOBR_RS01705	AZOBR_RS01705		murein transglycosylase	-1.94284797570148	-7.26981437092818	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS03800	AZOBR_RS03800		microcin ABC transporter ATP-binding protein	-2.31152117314352	-5.86105004697998	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS03810	AZOBR_RS03810		prevent-host-death protein	-1.63228832637756	-7.0379915672362	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS03820	AZOBR_RS03820		microcin C ABC transporter permease YejB	-1.69008793577748	-9.29347067462757	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS03825	AZOBR_RS03825		hypothetical protein	-1.07692871355792	-5.54626533471964	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS05055	AZOBR_RS05055		zinc protease	-1.16649104022416	-6.99901999831227	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS05060	AZOBR_RS05060		zinc protease	-1.14742405788841	-6.4646902511928	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS06870	AZOBR_RS06870		cytochrome B561	-3.22367303960324	-6.34705105733379	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS08405	AZOBR_RS08405		aminodeoxychorismate lyase	-2.13220752146881	-7.27880232145772	TRUE
+stress	set1IT059	Bacitracin	AZOBR_RS12825	AZOBR_RS12825		cytochrome B561	-3.41633311240717	-12.0790148197919	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS12870	AZOBR_RS12870		cell division protein FtsK	-2.5303026198822	-13.2369567052015	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS14655	AZOBR_RS14655		nodulation protein NolG	-2.58268431518129	-12.8930631607784	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS15405	AZOBR_RS15405		phytoene synthase	-2.34401228894813	-10.2772401325929	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS20320	AZOBR_RS20320		carboxyl-terminal protease	-2.19679192544464	-6.30346152765498	FALSE
+stress	set1IT059	Bacitracin	AZOBR_RS22180	AZOBR_RS22180		hypothetical protein	1.04703819742975	7.77519317405666	FALSE
+stress	set1IT055	Benzethonium chloride	AZOBR_RS01915	AZOBR_RS01915		beta-lactamase	1.94696868567108	10.4719001583083	FALSE
+stress	set1IT055	Benzethonium chloride	AZOBR_RS09470	AZOBR_RS09470		glycogen debranching protein	-1.38845113600948	-5.94317600773068	FALSE
+stress	set1IT055	Benzethonium chloride	AZOBR_RS23885	AZOBR_RS23885		multidrug ABC transporter ATP-binding protein	2.70372532227823	10.5834152902715	FALSE
+stress	set1IT055	Benzethonium chloride	AZOBR_RS23890	AZOBR_RS23890		sugar ABC transporter permease	2.72709897423102	17.701222343166	FALSE
+stress	set1IT055	Benzethonium chloride	AZOBR_RS31315	AZOBR_RS31315		RND transporter	-4.36352057098007	-7.22596545631404	TRUE
+stress	set1IT055	Benzethonium chloride	AZOBR_RS31320	AZOBR_RS31320		acriflavine resistance protein B	-4.67829324327275	-17.3423041947215	TRUE
+stress	set1IT055	Benzethonium chloride	AZOBR_RS33560	AZOBR_RS33560		glycosyl transferase	-2.73934623247543	-6.38599866421045	FALSE
+stress	set4IT001	Cobalt chloride hexahydrate	AZOBR_RS00925	AZOBR_RS00925		guanylate cyclase	-1.03691089667977	-5.41957052758185	FALSE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS01800	AZOBR_RS01800		ferredoxin	1.71874497414916	8.70370065365161	FALSE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS03055	AZOBR_RS03055		molybdopterin biosynthesis protein	1.3614514285104	8.05301974149207	FALSE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS03060	AZOBR_RS03060		molybdopterin biosynthesis protein MoeA	1.4805411453135	8.48793733745464	FALSE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS05250	AZOBR_RS05250		formate dehydrogenase	1.22436750103817	9.38127969020897	FALSE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS08950	AZOBR_RS08950		molybdopterin biosynthesis protein MoeA	1.1636650873139	7.81026310068432	FALSE
+stress	set4IT001	Cobalt chloride hexahydrate	AZOBR_RS13585	AZOBR_RS13585		hypothetical protein	-1.56433874946926	-6.11375851780055	FALSE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS13670	AZOBR_RS13670		hypothetical protein	-1.61922376626734	-5.82969718067554	FALSE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS17255	AZOBR_RS17255		Fur family transcriptional regulator	-2.88044481483501	-5.30005037515262	FALSE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS26670	AZOBR_RS26670		zinc transporter ZitB	-3.08398156878065	-7.97355361911428	TRUE
+stress	set4IT001	Cobalt chloride hexahydrate	AZOBR_RS26670	AZOBR_RS26670		zinc transporter ZitB	-2.00039456559081	-5.1481171990569	TRUE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS29130	AZOBR_RS29130		multidrug ABC transporter ATPase	-1.55980977223871	-6.91506815851463	FALSE
+stress	set4IT002	Cobalt chloride hexahydrate	AZOBR_RS30085	AZOBR_RS30085		DNA-binding protein	1.36529012552531	5.97279082991058	FALSE
+stress	set1IT062	D-Cycloserine	AZOBR_RS01800	AZOBR_RS01800		ferredoxin	2.39743106839055	9.92057564658663	FALSE
+stress	set1IT062	D-Cycloserine	AZOBR_RS02985	AZOBR_RS02985		aconitate hydratase	1.13386789053538	7.19156566278167	FALSE
+stress	set1IT062	D-Cycloserine	AZOBR_RS03060	AZOBR_RS03060		molybdopterin biosynthesis protein MoeA	1.4039062364058	6.15815886868461	FALSE
+stress	set1IT062	D-Cycloserine	AZOBR_RS05240	AZOBR_RS05240		molecular chaperone TorD	1.63899475098073	6.15193924414668	FALSE
+stress	set1IT062	D-Cycloserine	AZOBR_RS05250	AZOBR_RS05250		formate dehydrogenase	1.2390140528608	7.96916059787499	FALSE
+stress	set1IT062	D-Cycloserine	AZOBR_RS08075	AZOBR_RS08075		glutamate racemase	-5.05926273094261	-8.51460151027492	FALSE
+stress	set1IT062	D-Cycloserine	AZOBR_RS15370	AZOBR_RS15370		excinuclease ABC subunit A	-1.81656727066427	-7.6171540543082	TRUE
+stress	set1IT062	D-Cycloserine	AZOBR_RS16420	AZOBR_RS16420		excinuclease ABC subunit B	-1.62725045825105	-6.85520791958995	TRUE
+stress	set1IT062	D-Cycloserine	AZOBR_RS21360	AZOBR_RS21360		molybdenum ABC transporter permease	-2.3834913266494	-7.40944906069973	TRUE
+stress	set1IT062	D-Cycloserine	AZOBR_RS23890	AZOBR_RS23890		sugar ABC transporter permease	1.31818806962775	6.07267665072127	FALSE
+stress	set1IT062	D-Cycloserine	AZOBR_RS27565	AZOBR_RS27565		GntR family transcriptional regulator	-1.8111974931549	-6.8784065867492	TRUE
+stress	set1IT049	Nickel (II) chloride hexahydrate	AZOBR_RS03800	AZOBR_RS03800		microcin ABC transporter ATP-binding protein	1.87544328520931	14.0594906688206	TRUE
+stress	set1IT049	Nickel (II) chloride hexahydrate	AZOBR_RS03820	AZOBR_RS03820		microcin C ABC transporter permease YejB	2.00485885431303	13.3661990492839	TRUE
+stress	set1IT049	Nickel (II) chloride hexahydrate	AZOBR_RS03825	AZOBR_RS03825		hypothetical protein	1.92470192032506	11.9889462093717	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS00130	AZOBR_RS00130		hypothetical protein	2.04850385475637	6.69633327321544	TRUE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS01245	AZOBR_RS01245		spermidine/putrescine ABC transporter substrate-binding protein	2.30217429002753	11.330754879529	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS01650	AZOBR_RS01650		ATP-dependent protease	-1.32356995800866	-5.2067718552647	TRUE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS03820	AZOBR_RS03820		microcin C ABC transporter permease YejB	1.52600920239885	7.89848406037531	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS06255	AZOBR_RS06255		acyl-CoA synthetase	-1.30649302004842	-7.13233390449057	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS06870	AZOBR_RS06870		cytochrome B561	-2.54019129172257	-6.31818105465893	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS08840	AZOBR_RS08840		ABC transporter ATP-binding protein	1.48739860129506	5.52575452282659	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS08845	AZOBR_RS08845		ABC transporter substrate-binding protein	1.69225926325622	5.64074497483586	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS15510	AZOBR_RS15510		peptidase M48	-2.2043859733787	-5.85227575732011	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS17360	AZOBR_RS17360		electron transfer flavoprotein	-1.75514623250096	-6.35846921465477	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS18255	AZOBR_RS18255		putative ATP-binding protein syrD	-1.38717900081847	-5.83057409044912	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS20225	AZOBR_RS20225		3-hydroxyacyl-CoA dehydrogenase	-2.45048728846212	-6.57298973336755	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS22200	AZOBR_RS22200		AsnC family transcriptional regulator	2.46530590520139	7.87491062251584	FALSE
+stress	set4IT004	Paraquat dichloride	AZOBR_RS33900	AZOBR_RS33900		ADP-L-glycero-D-manno-heptose-6-epimerase	-1.85229525219536	-5.38891657810018	FALSE
+stress	set4IT006	Sisomicin sulfate salt	AZOBR_RS01800	AZOBR_RS01800		ferredoxin	1.51815241289195	6.08854949290307	FALSE
+stress	set4IT006	Sisomicin sulfate salt	AZOBR_RS03060	AZOBR_RS03060		molybdopterin biosynthesis protein MoeA	1.60655140210353	6.2554463145009	FALSE
+stress	set4IT006	Sisomicin sulfate salt	AZOBR_RS20890	AZOBR_RS20890		aminoglycoside N(6')-acetyltransferase	-2.93740340481502	-5.48506592543052	TRUE
+stress	set4IT010	Sodium Chlorite	AZOBR_RS03925	AZOBR_RS03925		histidine kinase	-2.08930131953162	-6.4041581483929	FALSE
+stress	set4IT010	Sodium Chlorite	AZOBR_RS15670	AZOBR_RS15670		molybdopterin biosynthesis protein MoeA	-1.13950035251076	-5.00408349603744	FALSE
+stress	set4IT010	Sodium Chlorite	AZOBR_RS21360	AZOBR_RS21360		molybdenum ABC transporter permease	-2.02090517083261	-8.33754000285446	TRUE
+stress	set4IT010	Sodium Chlorite	AZOBR_RS29835	AZOBR_RS29835		sulfite oxidase	-5.27090105200214	-11.4540665519139	TRUE
+stress	set4IT010	Sodium Chlorite	AZOBR_RS29840	AZOBR_RS29840		sulfoxide reductase catalytic subunit YedY	-4.55802568739996	-10.2426634519251	TRUE
+stress	set1IT054	Sodium nitrate	AZOBR_RS12870	AZOBR_RS12870		cell division protein FtsK	-1.50350186568049	-8.11395665562873	FALSE
+stress	set1IT051	Thallium(I) acetate	AZOBR_RS01650	AZOBR_RS01650		ATP-dependent protease	1.22144493996133	9.0587026398942	FALSE
+stress	set1IT051	Thallium(I) acetate	AZOBR_RS21915	AZOBR_RS21915		LysR family transcriptional regulator	-1.71667814355781	-9.48773910727426	FALSE
+stress	set1IT051	Thallium(I) acetate	AZOBR_RS27575	AZOBR_RS27575		arsenic resistance protein	-4.28270469844703	-5.15185502242743	TRUE
+stress	set1IT061	Vancomycin Hydrochloride Hydrate	AZOBR_RS02530	AZOBR_RS02530		carboxypeptidase	-1.2503331982382	-6.94377703795251	FALSE
+stress	set1IT061	Vancomycin Hydrochloride Hydrate	AZOBR_RS06870	AZOBR_RS06870		cytochrome B561	-2.21141744565607	-6.35052786819424	FALSE
+stress	set1IT061	Vancomycin Hydrochloride Hydrate	AZOBR_RS12870	AZOBR_RS12870		cell division protein FtsK	-2.11961618143241	-12.5222770806142	FALSE
+stress	set1IT061	Vancomycin Hydrochloride Hydrate	AZOBR_RS20320	AZOBR_RS20320		carboxyl-terminal protease	-2.02154083494327	-6.7522501733088	FALSE
+stress	set1IT061	Vancomycin Hydrochloride Hydrate	AZOBR_RS21845	AZOBR_RS21845		hypothetical protein	2.06105500491403	8.61158443513	FALSE
+stress	set1IT061	Vancomycin Hydrochloride Hydrate	AZOBR_RS22180	AZOBR_RS22180		hypothetical protein	1.85290730205923	15.1633270120491	FALSE
+stress	set1IT058	benzoic acid	AZOBR_RS28680	AZOBR_RS28680		muraminidase	1.05700116031411	5.92250939578411	FALSE
+stress	set1IT050	copper (II) chloride dihydrate	AZOBR_RS05220	AZOBR_RS05220		formate dehydrogenase	-1.61434565959872	-6.42140324208523	FALSE
+stress	set1IT050	copper (II) chloride dihydrate	AZOBR_RS05250	AZOBR_RS05250		formate dehydrogenase	-1.08387343937262	-5.73667807939157	FALSE
+stress	set1IT050	copper (II) chloride dihydrate	AZOBR_RS05265	AZOBR_RS05265		formate dehydrogenase	-1.89014217751437	-5.60560206761957	FALSE
+stress	set1IT050	copper (II) chloride dihydrate	AZOBR_RS20320	AZOBR_RS20320		carboxyl-terminal protease	-1.94624667415168	-6.16661173122183	FALSE

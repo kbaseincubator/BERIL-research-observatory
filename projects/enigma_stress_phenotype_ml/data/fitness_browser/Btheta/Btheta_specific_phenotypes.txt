@@ -1,0 +1,1244 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+bhis	set2IT017		353635	BT4109		putative pectinesterase precursor (NCBI ptt file)	-1.5243490788761	-5.00012965457245	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	349795	BT0267		two-component system sensor histidine kinase/response regulator, hybrid ('one component system') (NCBI ptt file)	-1.13670532709115	-6.81590241454403	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	349796	BT0268		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.99688883563259	-7.39999579563708	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	349796	BT0268		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.87409349231268	-6.94494541522708	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	349800	BT0272		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.20023399716158	-9.80465305440181	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	349800	BT0272		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.08407695149246	-9.07710520965465	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	349803	BT0275		hypothetical protein (NCBI ptt file)	-2.33346212269883	-6.17757478270997	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	349803	BT0275		hypothetical protein (NCBI ptt file)	-2.30636758973031	-6.10584509745499	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	349804	BT0276		hypothetical protein (NCBI ptt file)	-1.82372151048998	-5.64103095456997	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	349804	BT0276		hypothetical protein (NCBI ptt file)	-1.79598557615509	-5.22622811534996	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	349806	BT0278		conserved hypothetical protein (NCBI ptt file)	-2.50295153841162	-9.85636687092682	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	349806	BT0278		conserved hypothetical protein (NCBI ptt file)	-2.40095608588644	-11.2496894403469	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	349816	BT0288		conserved hypothetical protein (NCBI ptt file)	-3.03092937297408	-5.4449817041318	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	349816	BT0288		conserved hypothetical protein (NCBI ptt file)	-2.59282665710144	-5.25139220670956	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	351265	BT1737		conserved hypothetical protein, putative secreted protein (NCBI ptt file)	-1.47454824428986	-6.30073027548389	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	352343	BT2816		TPR-domain containing protein (NCBI ptt file)	-1.53624804809451	-11.0089576053459	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	352343	BT2816		TPR-domain containing protein (NCBI ptt file)	-1.41247003037665	-9.99125513388809	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	352344	BT2817		putative TonB-dependent receptor (NCBI ptt file)	-1.73738829143973	-9.01472601801873	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	352344	BT2817		putative TonB-dependent receptor (NCBI ptt file)	-1.66380089085137	-8.13130136277914	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	352571	BT3044		hypothetical protein (NCBI ptt file)	-1.11444585645214	-6.03731207866609	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	352649	BT3122		transcriptional regulator (NCBI ptt file)	-1.46415678506013	-6.24276807131853	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.91325364376881	-8.38334359568962	FALSE
+carbon source	set3IT007	(+)-Arabinogalactan	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.65776702560523	-6.82817756047324	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	353187	BT3661		alpha-glucosidase (NCBI ptt file)	-1.35709024440979	-5.42557672385675	TRUE
+carbon source	set3IT007	(+)-Arabinogalactan	353821	BT4295		putative chitobiase (NCBI ptt file)	-1.05267682172086	-5.22603434546581	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	353823	BT4297		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.38513594849602	-6.31604324228166	FALSE
+carbon source	set3IT023	(+)-Arabinogalactan	354162	BT4636		RNA polymerase ECF-type sigma factor (NCBI ptt file)	-1.48308582734167	-5.12222392090356	FALSE
+carbon source	set11IT059	1,4-B-D-Galactobiose	350646	BT1118		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.14910673052725	-5.88439438560193	FALSE
+carbon source	set11IT074	1,4-B-D-Galactobiose	350646	BT1118		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.14055850783065	-5.70033142380663	FALSE
+carbon source	set11IT074	1,4-B-D-Galactobiose	354195	BT4669		hypothetical protein (NCBI ptt file)	-1.58649550931154	-5.2678820627352	FALSE
+carbon source	set11IT054	6-O-Acetyl-D-glucose	353144	BT3618		conserved hypothetical protein (NCBI ptt file)	-1.28456224126095	-5.18863894117491	FALSE
+carbon source	set16IT042	Agro_defined_trehalose	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-2.43298876382519	-7.24981834480069	FALSE
+carbon source	set16IT042	Agro_defined_trehalose	351688	BT2160		putative regulatory protein (NCBI ptt file)	-2.51311785856123	-12.6299345154583	FALSE
+carbon source	set3IT047	Amylose from potato	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.41652768443167	-5.74185382675563	FALSE
+carbon source	set3IT057	Amylose from potato	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.39451934050491	-5.49216551628341	FALSE
+carbon source	set1IT078	Beta-Lactose	351958	BT2430		hexokinase type III (NCBI ptt file)	-1.71990600881917	-5.75726562969341	FALSE
+carbon source	set1IT078	Beta-Lactose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.30376193713237	-9.1662337364502	FALSE
+carbon source	set1IT078	Beta-Lactose	352867	BT3340		beta-galactosidase (NCBI ptt file)	-1.12355301038244	-6.56593807562022	FALSE
+carbon source	set3IT024	Chondroitin sulfate A sodium salt from bovine trachea	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.26669187083031	-5.93764253087478	FALSE
+carbon source	set3IT024	Chondroitin sulfate A sodium salt from bovine trachea	352760	BT3233		hypothetical protein (NCBI ptt file)	-1.80651981802818	-11.5206212840363	FALSE
+carbon source	set3IT008	Chondroitin sulfate A sodium salt from bovine trachea	352760	BT3233		hypothetical protein (NCBI ptt file)	-1.38335360451427	-9.40601473048137	FALSE
+carbon source	set3IT024	Chondroitin sulfate A sodium salt from bovine trachea	352857	BT3330		hypothetical protein (NCBI ptt file)	-1.30454368893387	-5.18473543875984	FALSE
+carbon source	set3IT024	Chondroitin sulfate A sodium salt from bovine trachea	352858	BT3331		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.36263815219336	-10.4796850747997	FALSE
+carbon source	set3IT008	Chondroitin sulfate A sodium salt from bovine trachea	352858	BT3331		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.13186097282631	-10.5592101654159	FALSE
+carbon source	set3IT008	Chondroitin sulfate A sodium salt from bovine trachea	352859	BT3332		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.11379256508571	-14.1597656699535	FALSE
+carbon source	set3IT024	Chondroitin sulfate A sodium salt from bovine trachea	352859	BT3332		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.77892297669771	-11.6153623253047	FALSE
+carbon source	set3IT024	Chondroitin sulfate A sodium salt from bovine trachea	352861	BT3334		two-component system sensor histidine kinase/response regulator, hybrid ('one-component system') (NCBI ptt file)	-2.3293625788941	-14.86802179949	FALSE
+carbon source	set3IT008	Chondroitin sulfate A sodium salt from bovine trachea	352861	BT3334		two-component system sensor histidine kinase/response regulator, hybrid ('one-component system') (NCBI ptt file)	-2.10459349241585	-13.4427927523193	FALSE
+carbon source	set3IT024	Chondroitin sulfate A sodium salt from bovine trachea	352876	BT3349		putative sulfatase yidJ (NCBI ptt file)	-2.39107225418247	-7.43195234026356	FALSE
+carbon source	set3IT008	Chondroitin sulfate A sodium salt from bovine trachea	352876	BT3349		putative sulfatase yidJ (NCBI ptt file)	-2.0790688257865	-6.94548702643535	FALSE
+carbon source	set1IT074	D-Arabinose	350801	BT1273		L-fucose isomerase (NCBI ptt file)	-4.73579358060827	-7.23398243645436	FALSE
+carbon source	set2IT004	D-Arabinose	350801	BT1273		L-fucose isomerase (NCBI ptt file)	-4.43705729005265	-6.05985848440162	FALSE
+carbon source	set1IT074	D-Arabinose	350802	BT1274		L-fuculose-1-phosphate aldolase (NCBI ptt file)	-3.99663006675267	-5.82486187462984	FALSE
+carbon source	set2IT004	D-Arabinose	350802	BT1274		L-fuculose-1-phosphate aldolase (NCBI ptt file)	-3.53055991561482	-6.26482823018115	FALSE
+carbon source	set1IT074	D-Arabinose	350803	BT1275		L-fuculose kinase (NCBI ptt file)	-4.03403874641439	-10.0747441893828	FALSE
+carbon source	set2IT004	D-Arabinose	350803	BT1275		L-fuculose kinase (NCBI ptt file)	-3.60440791435667	-6.86665413626079	FALSE
+carbon source	set1IT074	D-Arabinose	350805	BT1277		L-fucose permease (NCBI ptt file)	-3.74838337610031	-9.66276071377794	FALSE
+carbon source	set2IT004	D-Arabinose	350805	BT1277		L-fucose permease (NCBI ptt file)	-3.69796578427249	-8.84091569002117	FALSE
+carbon source	set1IT074	D-Arabinose	350862	BT1334		PhoH-like protein (NCBI ptt file)	-1.62148873838548	-5.50275191620116	FALSE
+carbon source	set2IT004	D-Arabinose	351497	BT1969		NADP-dependent malate dehydrogenase (NCBI ptt file)	1.42232014808755	8.46525539825168	FALSE
+carbon source	set1IT074	D-Arabinose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.65486946522929	-8.20107874909768	FALSE
+carbon source	set2IT004	D-Arabinose	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	1.42556205084803	8.03478143643125	FALSE
+carbon source	set1IT079	D-Fructose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.78558508964425	-6.79130282064798	FALSE
+carbon source	set1IT092	D-Galactose	350307	BT0779		hypothetical protein (NCBI ptt file)	1.43425301625343	5.32464736182482	FALSE
+carbon source	set1IT092	D-Galactose	351958	BT2430		hexokinase type III (NCBI ptt file)	-1.7622516947707	-7.56744699244546	FALSE
+carbon source	set1IT092	D-Galactose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.84667879305907	-6.23338555490482	FALSE
+carbon source	set1IT088	D-Galacturonic Acid monohydrate	350646	BT1118		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.29135496103752	-7.10593692709066	FALSE
+carbon source	set1IT096	D-Galacturonic Acid monohydrate	350646	BT1118		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.90646445031054	-6.55744852546211	FALSE
+carbon source	set1IT088	D-Galacturonic Acid monohydrate	350647	BT1119		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.48044491251752	-11.2238594186828	FALSE
+carbon source	set1IT096	D-Galacturonic Acid monohydrate	350647	BT1119		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.21958811724085	-9.61379908646534	FALSE
+carbon source	set1IT088	D-Galacturonic Acid monohydrate	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.03763227705794	-6.95282143953335	FALSE
+carbon source	set1IT096	D-Galacturonic Acid monohydrate	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.9199214656328	-5.72760917689635	FALSE
+carbon source	set1IT088	D-Galacturonic Acid monohydrate	352915	BT3388		conserved hypothetical protein (NCBI ptt file)	-1.32144702101159	-5.68595648256818	FALSE
+carbon source	set1IT088	D-Galacturonic Acid monohydrate	353337	BT3811		putative endothelin-converting enzyme (NCBI ptt file)	-1.79635490289436	-6.12817067771225	FALSE
+carbon source	set1IT088	D-Galacturonic Acid monohydrate	353631	BT4105		hexuronate transporter (NCBI ptt file)	-4.45048842293452	-13.4326371912188	TRUE
+carbon source	set1IT096	D-Galacturonic Acid monohydrate	353631	BT4105		hexuronate transporter (NCBI ptt file)	-4.26262747847457	-15.2822176099961	TRUE
+carbon source	set1IT088	D-Galacturonic Acid monohydrate	353632	BT4106		4-deoxy-L-threo-5-hexosulose-uronate ketol-isomerase (NCBI ptt file)	-1.62702526219561	-7.1666664589903	FALSE
+carbon source	set1IT096	D-Galacturonic Acid monohydrate	353632	BT4106		4-deoxy-L-threo-5-hexosulose-uronate ketol-isomerase (NCBI ptt file)	-1.56759986662214	-6.59782308869874	FALSE
+carbon source	set1IT088	D-Galacturonic Acid monohydrate	353633	BT4107		putative phosphotransferase enzyme II, C component (NCBI ptt file)	-1.82479683685352	-8.0728955739338	FALSE
+carbon source	set1IT096	D-Galacturonic Acid monohydrate	353633	BT4107		putative phosphotransferase enzyme II, C component (NCBI ptt file)	-1.65217188609551	-7.45242438886636	FALSE
+carbon source	set1IT095	D-Glucosamine Hydrochloride	351958	BT2430		hexokinase type III (NCBI ptt file)	-3.81330197363359	-8.61655670024507	FALSE
+carbon source	set1IT095	D-Glucosamine Hydrochloride	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.30009294667769	-7.58184869006817	FALSE
+carbon source	set1IT083	D-Glucose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.53445777418356	-9.53721576270146	FALSE
+carbon source	set1IT073	D-Glucose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.24768606298669	-7.65020463614327	FALSE
+carbon source	set1IT072	D-Glucose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.0139680111977	-8.73201051956396	FALSE
+carbon source	set1IT071	D-Glucose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.48554739825181	-5.6778257460591	FALSE
+carbon source	set16IT044	D-Glucose	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	-1.45450119155404	-5.79906229964758	FALSE
+carbon source	set11IT062	D-Leucrose	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-1.65069979708681	-5.98546833704197	FALSE
+carbon source	set11IT077	D-Leucrose	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-1.42982670284906	-5.73565454042231	FALSE
+carbon source	set11IT062	D-Leucrose	351688	BT2160		putative regulatory protein (NCBI ptt file)	-2.00476439177453	-12.000608097313	FALSE
+carbon source	set11IT077	D-Leucrose	351688	BT2160		putative regulatory protein (NCBI ptt file)	-1.54747160997501	-9.39532155946102	FALSE
+carbon source	set1IT080	D-Maltose monohydrate	351958	BT2430		hexokinase type III (NCBI ptt file)	-1.47154216466355	-5.06553552433088	FALSE
+carbon source	set1IT080	D-Maltose monohydrate	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.07586346678279	-5.9007096823529	FALSE
+carbon source	set1IT084	D-Mannose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.94972515390192	-5.90611245001891	FALSE
+carbon source	set1IT075	D-Raffinose pentahydrate	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-2.45794445776861	-7.716912101456	FALSE
+carbon source	set2IT005	D-Raffinose pentahydrate	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-1.47274196877771	-6.50505170033748	FALSE
+carbon source	set1IT075	D-Raffinose pentahydrate	351688	BT2160		putative regulatory protein (NCBI ptt file)	-2.51401477345814	-10.5264977275889	FALSE
+carbon source	set2IT005	D-Raffinose pentahydrate	351688	BT2160		putative regulatory protein (NCBI ptt file)	-1.46745920900397	-8.85992512862614	FALSE
+carbon source	set1IT075	D-Raffinose pentahydrate	351958	BT2430		hexokinase type III (NCBI ptt file)	-1.55521112357841	-5.05896979573319	FALSE
+carbon source	set1IT075	D-Raffinose pentahydrate	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.52964562235252	-5.00363878464287	FALSE
+carbon source	set2IT020	D-Ribose	349704	BT0176		conserved hypothetical protein (NCBI ptt file)	-1.84011691442828	-7.32797677400561	FALSE
+carbon source	set2IT020	D-Ribose	351414	BT1886		conserved hypothetical protein (NCBI ptt file)	-1.52507352917482	-5.3544991018884	FALSE
+carbon source	set2IT020	D-Ribose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.28909831580583	-5.34177808978531	FALSE
+carbon source	set2IT020	D-Ribose	352329	BT2802		hypothetical protein (NCBI ptt file)	-4.33006483327915	-15.8942389450781	FALSE
+carbon source	set2IT020	D-Ribose	352330	BT2803		ribokinase (NCBI ptt file)	-5.07996403103337	-9.14455915739003	TRUE
+carbon source	set2IT020	D-Ribose	352331	BT2804		ribokinase (NCBI ptt file)	-4.3836503542113	-6.6958163686127	TRUE
+carbon source	set2IT020	D-Ribose	352336	BT2809		putative integral membrane protein (NCBI ptt file)	-4.75475464837626	-7.93474912463286	FALSE
+carbon source	set1IT077	D-Trehalose dihydrate	350193	BT0665		hypothetical protein (NCBI ptt file)	-2.0420994880994	-5.42131150692573	FALSE
+carbon source	set16IT041	D-Trehalose dihydrate	350813	BT1285		endo-beta-N-acetylglucosaminidase (NCBI ptt file)	1.13814144760999	5.69929205217715	FALSE
+carbon source	set1IT077	D-Trehalose dihydrate	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-3.31026092231012	-10.962081347987	FALSE
+carbon source	set16IT047	D-Trehalose dihydrate	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-2.13251065231262	-6.61250127908317	FALSE
+carbon source	set2IT006	D-Trehalose dihydrate	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-1.92526878765728	-8.42178544288034	FALSE
+carbon source	set1IT077	D-Trehalose dihydrate	351688	BT2160		putative regulatory protein (NCBI ptt file)	-3.34062759031166	-13.9400000424388	FALSE
+carbon source	set16IT047	D-Trehalose dihydrate	351688	BT2160		putative regulatory protein (NCBI ptt file)	-2.76079298290408	-13.2818025923071	FALSE
+carbon source	set2IT006	D-Trehalose dihydrate	351688	BT2160		putative regulatory protein (NCBI ptt file)	-2.31944333621473	-12.8522699174491	FALSE
+carbon source	set16IT041	D-Trehalose dihydrate	351688	BT2160		putative regulatory protein (NCBI ptt file)	-1.77082914834354	-7.14353844096726	FALSE
+carbon source	set1IT077	D-Trehalose dihydrate	351958	BT2430		hexokinase type III (NCBI ptt file)	-2.27074870365147	-6.76700419374167	FALSE
+carbon source	set1IT077	D-Trehalose dihydrate	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.34821495604381	-7.53116615276752	FALSE
+carbon source	set1IT086	D-Xylose	350320	BT0792		xylulose kinase (xylulokinase) (NCBI ptt file)	-5.15203111837704	-6.12415897491412	FALSE
+carbon source	set2IT014	D-Xylose	350320	BT0792		xylulose kinase (xylulokinase) (NCBI ptt file)	-4.27894830032649	-5.04712452957189	FALSE
+carbon source	set1IT086	D-Xylose	350322	BT0794		D-xylose-proton symporter (D-xylose transporter) (NCBI ptt file)	-4.47731533947316	-8.57918894579782	TRUE
+carbon source	set2IT014	D-Xylose	350322	BT0794		D-xylose-proton symporter (D-xylose transporter) (NCBI ptt file)	-3.79435594086955	-8.36524509183785	TRUE
+carbon source	set1IT086	D-Xylose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.11159753438488	-7.32182123769506	FALSE
+carbon source	set11IT065	Fructooligosaccharides (FOS)	351290	BT1762		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	1.94370924453364	8.41940919622053	FALSE
+carbon source	set11IT080	Fructooligosaccharides (FOS)	351290	BT1762		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	2.1197149795046	9.77161857082534	FALSE
+carbon source	set11IT080	Fructooligosaccharides (FOS)	353012	BT3485		hypothetical protein (NCBI ptt file)	-1.33700920604357	-5.35037339481334	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	2209865	p5482_25		hypothetical protein (NCBI)	1.38148623955171	5.02450748061408	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	351124	BT1596		putative sulfatase yidJ (NCBI ptt file)	-3.17722300868364	-8.59258445243412	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	351124	BT1596		putative sulfatase yidJ (NCBI ptt file)	-2.5649864059429	-9.55202583665886	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	352343	BT2816		TPR-domain containing protein (NCBI ptt file)	-1.54628193269195	-10.6690663441797	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	352343	BT2816		TPR-domain containing protein (NCBI ptt file)	-1.39922097590907	-9.45896794739587	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	352344	BT2817		putative TonB-dependent receptor (NCBI ptt file)	-1.71322207979365	-9.82974564757177	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	352344	BT2817		putative TonB-dependent receptor (NCBI ptt file)	-1.50790025191158	-8.5821576704539	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	352357	BT2830		DNA-binding protein HU-beta (NCBI ptt file)	2.04733448666399	5.38117230732297	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	352357	BT2830		DNA-binding protein HU-beta (NCBI ptt file)	2.2168318099432	5.42907679951327	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	352735	BT3208		hypothetical protein (NCBI ptt file)	-1.66847498209223	-7.28248810190507	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	352735	BT3208		hypothetical protein (NCBI ptt file)	-1.32272197063898	-6.60164417458594	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	352758	BT3231		4-deoxy-L-threo-5-hexosulose-uronate ketol-isomerase (NCBI ptt file)	-2.30514735738477	-6.59370844535725	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	352758	BT3231		4-deoxy-L-threo-5-hexosulose-uronate ketol-isomerase (NCBI ptt file)	-2.00741807293465	-5.91389082109066	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	352760	BT3233		hypothetical protein (NCBI ptt file)	-2.31449503137397	-12.062261956341	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	352760	BT3233		hypothetical protein (NCBI ptt file)	-1.98293162831199	-11.3091812220023	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	353503	BT3977		conserved hypothetical protein (NCBI ptt file)	-1.03128562609809	-7.18135428366449	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	354178	BT4652		conserved hypothetical protein (NCBI ptt file)	-2.82541965063077	-13.786120318951	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	354178	BT4652		conserved hypothetical protein (NCBI ptt file)	-2.71576272052741	-13.8261373213386	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	354181	BT4655		conserved hypothetical protein (NCBI ptt file)	-2.93058997227567	-6.98414857433331	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	354181	BT4655		conserved hypothetical protein (NCBI ptt file)	-2.74156628067485	-8.0153520074542	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	354182	BT4656		N-acetylglucosamine-6-sulfatase precursor (NCBI ptt file)	-1.78003235098592	-5.84869311818207	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	354182	BT4656		N-acetylglucosamine-6-sulfatase precursor (NCBI ptt file)	-1.68618758069685	-5.26944042149688	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	354183	BT4657		heparinase III protein (NCBI ptt file)	-2.90042877557455	-8.74948397426538	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	354183	BT4657		heparinase III protein (NCBI ptt file)	-2.87906219387726	-9.01441193479976	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	354185	BT4659		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-3.29341278655003	-11.9750006425384	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	354185	BT4659		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.96610092455749	-11.2756495452766	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	354186	BT4660		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.99528765354603	-14.4487115773079	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	354186	BT4660		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.9697882099209	-14.4828495965133	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	354187	BT4661		hypothetical protein (NCBI ptt file)	-2.63781259467025	-11.9456497401925	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	354187	BT4661		hypothetical protein (NCBI ptt file)	-2.60273319596872	-12.0138544028585	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	354188	BT4662		heparinase III protein, heparitin sulfate lyase (NCBI ptt file)	-1.9985416626524	-8.60246049176781	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	354188	BT4662		heparinase III protein, heparitin sulfate lyase (NCBI ptt file)	-1.83648739235421	-7.86438653640569	FALSE
+carbon source	set4IT039	Heparin sodium salt from porcine intestinal mucosa	354189	BT4663		two-component system sensor histidine kinase/response (NCBI ptt file)	-2.99485270074007	-16.7912014996893	FALSE
+carbon source	set4IT038	Heparin sodium salt from porcine intestinal mucosa	354189	BT4663		two-component system sensor histidine kinase/response (NCBI ptt file)	-2.4409130232018	-15.5616438320723	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	349781	BT0253		hypothetical protein (NCBI ptt file)	1.26583260522047	5.01758096592908	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349907	BT0379		UDP-glucose 6-dehydrogenase (NCBI ptt file)	1.9998659064255	5.58355647767767	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349908	BT0380		nucleotide sugar epimerase (NCBI ptt file)	1.92073941780256	5.48378113220445	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	349912	BT0384		hypothetical protein (NCBI ptt file)	1.22287696582008	5.73871353761259	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349912	BT0384		hypothetical protein (NCBI ptt file)	1.81854801560073	7.32749932951519	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349913	BT0385		conserved hypothetical protein (NCBI ptt file)	1.99082813340589	8.07274063174913	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	349913	BT0385		conserved hypothetical protein (NCBI ptt file)	2.04509871635295	7.56200752839464	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	349914	BT0386		putative F420H2-dehydrogenase (NCBI ptt file)	1.55015656682185	7.73579107043619	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349914	BT0386		putative F420H2-dehydrogenase (NCBI ptt file)	1.79786781070495	7.9767115934533	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	349915	BT0387		NADH dehydrogenase subunit 2 (NCBI ptt file)	1.25616558390438	5.65189753127276	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349915	BT0387		NADH dehydrogenase subunit 2 (NCBI ptt file)	1.73952885492842	6.94335209080646	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349916	BT0388		galactoside O-acetyltransferase (NCBI ptt file)	1.69543256931645	5.24829361749024	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349918	BT0390		putative O-antigen export protein (NCBI ptt file)	2.21685129199334	7.78888011897096	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	349919	BT0391		putative protein involved in capsular polysaccharide biosynthesis (NCBI ptt file)	2.18445691235541	8.81542851810266	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349919	BT0391		putative protein involved in capsular polysaccharide biosynthesis (NCBI ptt file)	2.61600506593335	9.54359703035145	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	349920	BT0392		lipopolysaccharide biosynthesis RfbU-related protein (NCBI ptt file)	2.05311550505001	7.19573027840122	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349920	BT0392		lipopolysaccharide biosynthesis RfbU-related protein (NCBI ptt file)	2.2295618196803	8.36523826191418	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	349922	BT0394		capsular polysaccharide biosynthesis glycosyltransferase (NCBI ptt file)	1.86381721443276	6.20803483166334	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349922	BT0394		capsular polysaccharide biosynthesis glycosyltransferase (NCBI ptt file)	2.44661525857565	7.79746669482012	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	349924	BT0396		putative UDP-GlcNAc:undecaprenylphosphate GlcNAc-1-phosphate transferase (NCBI ptt file)	1.74427585387475	5.71133387377189	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349924	BT0396		putative UDP-GlcNAc:undecaprenylphosphate GlcNAc-1-phosphate transferase (NCBI ptt file)	1.89244511700784	9.46290598150747	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	349927	BT0399		tyrosine-protein kinase ptk involved in exopolysaccharide biosynthesis (NCBI ptt file)	1.63608686278389	5.82009795459561	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350126	BT0598		putative nucleoside-diphosphate sugar epimerases/dehydrase (NCBI ptt file)	2.27866593209942	7.77756283064847	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350126	BT0598		putative nucleoside-diphosphate sugar epimerases/dehydrase (NCBI ptt file)	2.70528444264026	8.46486653932465	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350127	BT0599		UDP-glucose 6-dehydrogenase (NCBI ptt file)	1.5897238339041	5.89863681323563	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350127	BT0599		UDP-glucose 6-dehydrogenase (NCBI ptt file)	2.02559321244203	7.43027617868932	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350128	BT0600		nucleotide sugar epimerase (NCBI ptt file)	1.79237978457934	6.14581288036565	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350128	BT0600		nucleotide sugar epimerase (NCBI ptt file)	1.89853943032816	7.52927312804062	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350130	BT0602		UDP-N-acetyl-D-mannosaminuronic acid dehydrogenase (NCBI ptt file)	1.82546340469793	5.91205447236131	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350132	BT0604		putative coenzyme F420-reducing hydrogenase (NCBI ptt file)	1.70157537582384	5.01172883634056	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350132	BT0604		putative coenzyme F420-reducing hydrogenase (NCBI ptt file)	2.38061199731516	8.19531229852519	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350133	BT0605		putative polysaccharide export protein (NCBI ptt file)	1.7032184773743	5.48275193542085	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350133	BT0605		putative polysaccharide export protein (NCBI ptt file)	2.3950344369659	7.58241634856812	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350134	BT0606		hypothetical protein (NCBI ptt file)	2.22644026872652	8.07921054185882	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350134	BT0606		hypothetical protein (NCBI ptt file)	2.73595085858289	12.2505714075402	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350135	BT0607		serine O-acetyltransferase (NCBI ptt file)	1.62535395093089	5.67935596243054	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350135	BT0607		serine O-acetyltransferase (NCBI ptt file)	1.62934362967987	5.37653798179023	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350136	BT0608		glycosyltransferase (NCBI ptt file)	2.7360321440899	10.6932413612327	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350136	BT0608		glycosyltransferase (NCBI ptt file)	3.12548180676166	9.58578071262099	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350137	BT0609		glycosyltransferase (NCBI ptt file)	2.41904428457399	6.50743677002374	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350137	BT0609		glycosyltransferase (NCBI ptt file)	2.87528150946104	9.99340603823393	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350138	BT0610		lipopolysaccharide biosynthesis protein, putative glycosyltransferase (NCBI ptt file)	2.32102271951145	11.1572810801764	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350138	BT0610		lipopolysaccharide biosynthesis protein, putative glycosyltransferase (NCBI ptt file)	2.32575346530328	10.6755369665052	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350140	BT0612		putative aminotransferase (NCBI ptt file)	1.76021982669772	6.67933431036789	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350140	BT0612		putative aminotransferase (NCBI ptt file)	2.26964230267453	6.88483656753959	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350141	BT0613		putative membrane protein involved in polysaccharide export (NCBI ptt file)	1.95891322594648	5.88616906365275	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	350142	BT0614		putative tyrosine-protein kinase in cps region (NCBI ptt file)	1.67009282742713	5.78756831678396	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	350142	BT0614		putative tyrosine-protein kinase in cps region (NCBI ptt file)	2.1036194136209	8.19569196388241	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	351173	BT1645		putative glycosyltransferase (NCBI ptt file)	1.4513194289815	6.4408046981697	FALSE
+carbon source	set3IT030	Hyaluronic acid sodium salt from Streptococcus equi	352054	BT2526		hypothetical protein (NCBI ptt file)	2.16745158968814	7.5071027612253	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	352054	BT2526		hypothetical protein (NCBI ptt file)	3.1836767716495	10.9304631343722	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	352054	BT2526		hypothetical protein (NCBI ptt file)	3.63634507965641	13.7396464396601	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	352855	BT3328		hypothetical protein (NCBI ptt file)	-1.4825469191861	-6.48097868566816	FALSE
+carbon source	set3IT030	Hyaluronic acid sodium salt from Streptococcus equi	352855	BT3328		hypothetical protein (NCBI ptt file)	-1.44498640689074	-7.25733208683315	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	352855	BT3328		hypothetical protein (NCBI ptt file)	-1.40232769245972	-5.37552571107426	FALSE
+carbon source	set3IT014	Hyaluronic acid sodium salt from Streptococcus equi	352855	BT3328		hypothetical protein (NCBI ptt file)	-1.10559706948005	-5.56876365964874	FALSE
+carbon source	set3IT030	Hyaluronic acid sodium salt from Streptococcus equi	352856	BT3329		hypothetical protein (NCBI ptt file)	-1.92197200669971	-10.6622800082933	FALSE
+carbon source	set3IT014	Hyaluronic acid sodium salt from Streptococcus equi	352856	BT3329		hypothetical protein (NCBI ptt file)	-1.67470861921419	-7.45740587452952	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	352856	BT3329		hypothetical protein (NCBI ptt file)	-1.37609746524574	-5.38064185439734	FALSE
+carbon source	set3IT014	Hyaluronic acid sodium salt from Streptococcus equi	352857	BT3330		hypothetical protein (NCBI ptt file)	-2.76913686330326	-6.89379026294098	FALSE
+carbon source	set3IT030	Hyaluronic acid sodium salt from Streptococcus equi	352857	BT3330		hypothetical protein (NCBI ptt file)	-2.70502747786716	-6.50752045987436	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	352857	BT3330		hypothetical protein (NCBI ptt file)	-2.13266986578427	-5.3093001467877	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	352857	BT3330		hypothetical protein (NCBI ptt file)	-1.72082501588578	-5.1466608393098	FALSE
+carbon source	set3IT014	Hyaluronic acid sodium salt from Streptococcus equi	352858	BT3331		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-3.74742746471837	-8.37569056250004	FALSE
+carbon source	set3IT030	Hyaluronic acid sodium salt from Streptococcus equi	352858	BT3331		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-3.42246980025451	-9.37047023915399	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	352858	BT3331		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-3.0215083877386	-7.30523669994629	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	352858	BT3331		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.71684168243874	-8.36151549389712	FALSE
+carbon source	set3IT014	Hyaluronic acid sodium salt from Streptococcus equi	352859	BT3332		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-4.03998879899847	-15.1035651684311	FALSE
+carbon source	set3IT030	Hyaluronic acid sodium salt from Streptococcus equi	352859	BT3332		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-3.94912465780517	-14.1881610059317	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	352859	BT3332		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-3.10095889645626	-12.2864137710608	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	352859	BT3332		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.77861273573178	-13.9547826347598	FALSE
+carbon source	set3IT014	Hyaluronic acid sodium salt from Streptococcus equi	352861	BT3334		two-component system sensor histidine kinase/response regulator, hybrid ('one-component system') (NCBI ptt file)	-3.82538354180179	-13.5446592531097	FALSE
+carbon source	set3IT030	Hyaluronic acid sodium salt from Streptococcus equi	352861	BT3334		two-component system sensor histidine kinase/response regulator, hybrid ('one-component system') (NCBI ptt file)	-3.58000353517619	-13.2088088674309	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	352861	BT3334		two-component system sensor histidine kinase/response regulator, hybrid ('one-component system') (NCBI ptt file)	-2.92674203787242	-11.954083629981	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	352861	BT3334		two-component system sensor histidine kinase/response regulator, hybrid ('one-component system') (NCBI ptt file)	-2.84878026825559	-11.8606411178546	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	353014	BT3487		arylsulfatase (aryl-sulfate sulphohydrolase) (NCBI ptt file)	-1.43529695583867	-5.14734734253931	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	353496	BT3970		hypothetical protein (NCBI ptt file)	1.96883395848082	5.49306726251382	FALSE
+carbon source	set3IT050	Hyaluronic acid sodium salt from Streptococcus equi	353936	BT4410		hypothetical protein (NCBI ptt file)	-1.72189101526573	-6.12700443705624	FALSE
+carbon source	set3IT040	Hyaluronic acid sodium salt from Streptococcus equi	353936	BT4410		hypothetical protein (NCBI ptt file)	-1.69055768517179	-6.01551105518056	FALSE
+carbon source	set3IT030	Hyaluronic acid sodium salt from Streptococcus equi	353936	BT4410		hypothetical protein (NCBI ptt file)	-1.64791555867038	-6.42540934761947	FALSE
+carbon source	set3IT014	Hyaluronic acid sodium salt from Streptococcus equi	353936	BT4410		hypothetical protein (NCBI ptt file)	-1.60210606747153	-7.26493243630763	FALSE
+carbon source	set3IT030	Hyaluronic acid sodium salt from Streptococcus equi	353937	BT4411		hypothetical protein (NCBI ptt file)	-2.61806960921963	-5.2892271468621	FALSE
+carbon source	set3IT014	Hyaluronic acid sodium salt from Streptococcus equi	353937	BT4411		hypothetical protein (NCBI ptt file)	-2.55440677066839	-5.42288779340684	FALSE
+carbon source	set1IT091	L-Arabinose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.77512246814231	-6.54850840132595	FALSE
+carbon source	set1IT076	L-Fucose	350801	BT1273		L-fucose isomerase (NCBI ptt file)	-4.74224350088396	-8.52222417176252	TRUE
+carbon source	set1IT094	L-Fucose	350801	BT1273		L-fucose isomerase (NCBI ptt file)	-3.69090135330509	-6.90838011459697	TRUE
+carbon source	set1IT076	L-Fucose	350802	BT1274		L-fuculose-1-phosphate aldolase (NCBI ptt file)	-3.56178541667308	-6.37771409291695	FALSE
+carbon source	set1IT094	L-Fucose	350802	BT1274		L-fuculose-1-phosphate aldolase (NCBI ptt file)	-3.19663193356268	-5.62654925480162	FALSE
+carbon source	set1IT094	L-Fucose	350803	BT1275		L-fuculose kinase (NCBI ptt file)	-3.2242938929937	-9.00502914201787	FALSE
+carbon source	set1IT076	L-Fucose	350803	BT1275		L-fuculose kinase (NCBI ptt file)	-3.02272257794983	-9.67484266054633	FALSE
+carbon source	set1IT094	L-Fucose	350805	BT1277		L-fucose permease (NCBI ptt file)	-4.2305046372649	-10.4062414225498	TRUE
+carbon source	set1IT076	L-Fucose	350805	BT1277		L-fucose permease (NCBI ptt file)	-3.23503028761005	-9.66348316657959	TRUE
+carbon source	set1IT076	L-Fucose	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.78177242336972	-5.92674200202462	FALSE
+carbon source	set1IT094	L-Fucose	353294	BT3768		transcriptional regulator (NCBI ptt file)	-1.89046483744298	-6.16468431123812	TRUE
+carbon source	set2IT010	L-Rhamnose monohydrate	350301	BT0773		alpha-amylase 3 (NCBI ptt file)	-1.88764233970472	-6.63828626743761	FALSE
+carbon source	set1IT081	L-Rhamnose monohydrate	350756	BT1228		fructose-1,6-bisphosphatase (NCBI ptt file)	-1.55299036749072	-7.54456557874865	FALSE
+carbon source	set2IT010	L-Rhamnose monohydrate	350756	BT1228		fructose-1,6-bisphosphatase (NCBI ptt file)	-1.33199201479287	-6.21513614378974	FALSE
+carbon source	set2IT010	L-Rhamnose monohydrate	351546	BT2018		conserved hypothetical protein (NCBI ptt file)	1.36555140303796	5.6774049253332	FALSE
+carbon source	set2IT010	L-Rhamnose monohydrate	352735	BT3208		hypothetical protein (NCBI ptt file)	-1.4274988569717	-5.33423165862076	FALSE
+carbon source	set1IT081	L-Rhamnose monohydrate	352790	BT3263		putative deoxyribose-phosphate aldolase (NCBI ptt file)	-1.82048102307052	-5.49997982637354	FALSE
+carbon source	set1IT081	L-Rhamnose monohydrate	353289	BT3763		rhamnulose kinase/L-fuculose kinase (NCBI ptt file)	-5.67715037968253	-6.76120078741009	TRUE
+carbon source	set1IT081	L-Rhamnose monohydrate	353290	BT3764		L-rhamnose isomerase (NCBI ptt file)	-5.09850995009313	-9.7831665944356	TRUE
+carbon source	set2IT010	L-Rhamnose monohydrate	353290	BT3764		L-rhamnose isomerase (NCBI ptt file)	-4.95607160652956	-5.8911931864095	TRUE
+carbon source	set1IT081	L-Rhamnose monohydrate	353291	BT3765		L-rhamnose/H+ symporter (NCBI ptt file)	-4.95809509334292	-5.89704140592182	FALSE
+carbon source	set2IT010	L-Rhamnose monohydrate	353292	BT3766		rhamnulose-1-phosphate aldolase (NCBI ptt file)	-4.38394041252546	-6.65781313978066	FALSE
+carbon source	set2IT010	L-Rhamnose monohydrate	353293	BT3767		lactaldehyde reductase (NCBI ptt file)	-1.67822724224321	-7.91642515242743	FALSE
+carbon source	set1IT081	L-Rhamnose monohydrate	353293	BT3767		lactaldehyde reductase (NCBI ptt file)	-1.47426812216682	-6.50007465919394	FALSE
+carbon source	set1IT081	L-Rhamnose monohydrate	353294	BT3768		transcriptional regulator (NCBI ptt file)	-5.47094693453467	-8.36469519886176	FALSE
+carbon source	set16IT039	Lactulose	350580	BT1052		putative anti-sigma factor (NCBI ptt file)	1.59501332437116	5.48781207450727	FALSE
+carbon source	set16IT039	Lactulose	351963	BT2435		MarR family transcriptional regulator (NCBI ptt file)	1.72087870887074	6.03435409725484	FALSE
+carbon source	set16IT039	Lactulose	352357	BT2830		DNA-binding protein HU-beta (NCBI ptt file)	-1.98829083321515	-5.83284879878452	FALSE
+carbon source	set16IT045	Lactulose	352867	BT3340		beta-galactosidase (NCBI ptt file)	-2.48325599415485	-12.7811619315617	FALSE
+carbon source	set16IT039	Lactulose	352867	BT3340		beta-galactosidase (NCBI ptt file)	-2.48246005557619	-12.6567945517488	FALSE
+carbon source	set11IT073	Laminaribiose	353094	BT3567		periplasmic beta-glucosidase precursor (NCBI ptt file)	-2.20188099885573	-11.2951804060845	FALSE
+carbon source	set11IT058	Laminaribiose	353094	BT3567		periplasmic beta-glucosidase precursor (NCBI ptt file)	-1.52119031479332	-7.9217597725903	FALSE
+carbon source	set11IT058	Laminaribiose	353095	BT3568		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.27251279167313	-5.88527006412294	FALSE
+carbon source	set11IT073	Laminaribiose	353095	BT3568		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.23047038890866	-6.23428266024643	FALSE
+carbon source	set11IT058	Laminaribiose	353096	BT3569		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.81737863176762	-11.919083700785	FALSE
+carbon source	set11IT073	Laminaribiose	353096	BT3569		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.7212028075992	-12.0102809424564	FALSE
+carbon source	set16IT046	Maltitol	350357	BT0829		UDP-glucose 6-dehydrogenase (NCBI ptt file)	-1.77414864786788	-5.75899886544643	FALSE
+carbon source	set16IT040	Maltitol	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-2.87573684441331	-5.49701348091848	FALSE
+carbon source	set16IT040	Maltitol	351688	BT2160		putative regulatory protein (NCBI ptt file)	-3.15123915918825	-10.461314207424	FALSE
+carbon source	set16IT046	Maltitol	351688	BT2160		putative regulatory protein (NCBI ptt file)	-2.79332995995439	-11.4912456498996	FALSE
+carbon source	set16IT046	Maltitol	351769	BT2241		DNA-damage-inducible protein F (NCBI ptt file)	-1.45812010245938	-6.54460516790232	FALSE
+carbon source	set3IT012	Mannan from Saccharomyces cerevisiae	349687	BT0159		conserved hypothetical protein (NCBI ptt file)	1.24626330161688	5.38079970320946	FALSE
+carbon source	set3IT012	Mannan from Saccharomyces cerevisiae	351255	BT1727		putative transmembrane sensor (NCBI ptt file)	1.27315518027487	6.08378610972532	FALSE
+carbon source	set3IT028	Mannan from Saccharomyces cerevisiae	352112	BT2584		hypothetical protein (NCBI ptt file)	-1.44580686561636	-5.61542989491861	FALSE
+carbon source	set3IT012	Mannan from Saccharomyces cerevisiae	352157	BT2629		putative alpha-1,2-mannosidase (NCBI ptt file)	-1.03811105961174	-5.4470674022255	FALSE
+carbon source	set3IT012	Mannan from Saccharomyces cerevisiae	353310	BT3784		putative alpha-1,2-mannosidase (NCBI ptt file)	-1.43930544737397	-5.15649201363955	FALSE
+carbon source	set3IT028	Mannan from Saccharomyces cerevisiae	353313	BT3787		conserved hypothetical protein (NCBI ptt file)	-3.66207533207029	-10.2895669074171	FALSE
+carbon source	set3IT012	Mannan from Saccharomyces cerevisiae	353313	BT3787		conserved hypothetical protein (NCBI ptt file)	-3.51860823971133	-10.1328798061615	FALSE
+carbon source	set3IT012	Mannan from Saccharomyces cerevisiae	353314	BT3788		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-3.79013073627817	-13.6074694223766	FALSE
+carbon source	set3IT028	Mannan from Saccharomyces cerevisiae	353314	BT3788		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-3.65855652062067	-14.9364722864991	FALSE
+carbon source	set3IT028	Mannan from Saccharomyces cerevisiae	353315	BT3789		hypothetical protein (NCBI ptt file)	-4.21408308377364	-12.45128823571	FALSE
+carbon source	set3IT012	Mannan from Saccharomyces cerevisiae	353315	BT3789		hypothetical protein (NCBI ptt file)	-3.71314712628612	-14.2087172117949	FALSE
+carbon source	set3IT012	Mannan from Saccharomyces cerevisiae	353316	BT3790		hypothetical protein (NCBI ptt file)	-3.59908346151141	-10.3723188207982	FALSE
+carbon source	set3IT028	Mannan from Saccharomyces cerevisiae	353316	BT3790		hypothetical protein (NCBI ptt file)	-3.4676650955876	-11.303629386029	FALSE
+carbon source	set3IT028	Mannan from Saccharomyces cerevisiae	354122	BT4596		hypothetical protein (NCBI ptt file)	-1.56376046990749	-5.37403858723757	FALSE
+carbon source	set1IT089	N-Acetyl-D-Glucosamine	351958	BT2430		hexokinase type III (NCBI ptt file)	-1.62518869928566	-5.24359011709846	FALSE
+carbon source	set1IT089	N-Acetyl-D-Glucosamine	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-1.90415481555966	-6.64847460247056	FALSE
+carbon source	set3IT044	Pectin	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.57182708698449	-6.38662471868297	FALSE
+carbon source	set3IT018	Pectin	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.47967911806874	-5.99932075084861	FALSE
+carbon source	set3IT034	Pectin	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.37498716384777	-5.5910217338379	FALSE
+carbon source	set3IT034	Pectin	353631	BT4105		hexuronate transporter (NCBI ptt file)	-1.21655323545702	-6.37424911421354	FALSE
+carbon source	set3IT018	Pectin	353631	BT4105		hexuronate transporter (NCBI ptt file)	-1.19182390649638	-6.80236095159181	FALSE
+carbon source	set3IT044	Pectin	353639	BT4113		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.05905406226336	-6.50863709485322	FALSE
+carbon source	set3IT045	Red Arabinan from sugar-beet	352616	BT3089		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.04441907119235	-6.46994499801567	FALSE
+carbon source	set11IT061	Rhamnogalacturonan - from potato	353631	BT4105		hexuronate transporter (NCBI ptt file)	-2.83043516888608	-9.78137612653131	FALSE
+carbon source	set11IT076	Rhamnogalacturonan - from potato	353631	BT4105		hexuronate transporter (NCBI ptt file)	-2.5396779821708	-8.77658172741652	FALSE
+carbon source	set11IT076	Rhamnogalacturonan - from potato	353637	BT4111		two-component system sensor histidine kinase/response regulator, hybrid ('one-component system') (NCBI ptt file)	-1.33186653558608	-9.71022093905101	FALSE
+carbon source	set11IT061	Rhamnogalacturonan - from potato	353637	BT4111		two-component system sensor histidine kinase/response regulator, hybrid ('one-component system') (NCBI ptt file)	-1.10324129667651	-8.11991483350674	FALSE
+carbon source	set11IT061	Rhamnogalacturonan - from potato	353639	BT4113		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.16238381306049	-7.01314188203309	FALSE
+carbon source	set11IT061	Rhamnogalacturonan - from potato	353640	BT4114		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.39683021793424	-9.59123427008217	FALSE
+carbon source	set11IT076	Rhamnogalacturonan - from potato	353640	BT4114		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.26544787826095	-8.40464668186622	FALSE
+carbon source	set11IT061	Rhamnogalacturonan - from potato	353695	BT4169		hypothetical protein (NCBI ptt file)	-1.10221357900297	-6.42710207701389	FALSE
+carbon source	set11IT078	Stachyose - 70%	351599	BT2071		isocitrate dehydrogenase [NADP] (NCBI ptt file)	-1.5821800745061	-5.6005897378766	FALSE
+carbon source	set3IT056	Starch	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.37554835712385	-5.75885700024704	FALSE
+carbon source	set4IT044	Starch	353224	BT3698	SusG	alpha-amylase, susG (NCBI ptt file)	-3.09971955842093	-15.4106426795691	FALSE
+carbon source	set4IT045	Starch	353224	BT3698	SusG	alpha-amylase, susG (NCBI ptt file)	-2.55549921385541	-13.4754045623474	FALSE
+carbon source	set3IT056	Starch	353224	BT3698	SusG	alpha-amylase, susG (NCBI ptt file)	-1.2847856272481	-7.58816405058907	FALSE
+carbon source	set16IT049	Supernatant; Agrobacterium rhizogenes K599 grown in Agro_defined_trehalose (~7.5 mM 3-keto-trehalose)	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	-1.74261783899584	-6.57006426863112	FALSE
+carbon source	set1IT087	a-Cyclodextrin	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	-2.23347741535979	-8.73888861313779	FALSE
+carbon source	set1IT087	a-Cyclodextrin	353230	BT3704	SusA	alpha-amylase (neopullulanase) SusA (NCBI ptt file)	-5.09106503737152	-9.16685217657885	FALSE
+carbon source	set2IT015	a-Cyclodextrin	353230	BT3704	SusA	alpha-amylase (neopullulanase) SusA (NCBI ptt file)	-4.48303373531467	-5.33220500619138	FALSE
+carbon source	set4IT042	amylopectin from maize	351980	BT2452		hypothetical protein (NCBI ptt file)	-1.46467069884172	-5.97728928799126	FALSE
+carbon source	set3IT039	amylopectin from maize	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.34208843262884	-5.45098191884402	FALSE
+carbon source	set3IT049	amylopectin from maize	353224	BT3698	SusG	alpha-amylase, susG (NCBI ptt file)	-3.10650550287616	-16.6548294940332	FALSE
+carbon source	set4IT042	amylopectin from maize	353224	BT3698	SusG	alpha-amylase, susG (NCBI ptt file)	-2.80161587464887	-14.745351515713	FALSE
+carbon source	set3IT039	amylopectin from maize	353224	BT3698	SusG	alpha-amylase, susG (NCBI ptt file)	-2.67788654868913	-14.8820638488804	FALSE
+carbon source	set4IT043	amylopectin from maize	353224	BT3698	SusG	alpha-amylase, susG (NCBI ptt file)	-2.22484505109486	-11.555857546536	FALSE
+carbon source	set3IT049	amylopectin from maize	353225	BT3699	SusF	outer membrane protein SusF (NCBI ptt file)	-2.54880198868501	-10.2232017748614	FALSE
+carbon source	set3IT039	amylopectin from maize	353225	BT3699	SusF	outer membrane protein SusF (NCBI ptt file)	-2.50957031416367	-10.0429410957567	FALSE
+carbon source	set4IT042	amylopectin from maize	353225	BT3699	SusF	outer membrane protein SusF (NCBI ptt file)	-1.92506632784224	-8.21273823327648	FALSE
+carbon source	set4IT043	amylopectin from maize	353225	BT3699	SusF	outer membrane protein SusF (NCBI ptt file)	-1.71504692029983	-6.61826091003231	FALSE
+carbon source	set3IT009	dextran, Mw ~200,000	352614	BT3087		cycloisomaltooligosaccharide glucanotransferase (NCBI ptt file)	-1.80772787461437	-9.55715762654252	FALSE
+carbon source	set3IT025	dextran, Mw ~200,000	352614	BT3087		cycloisomaltooligosaccharide glucanotransferase (NCBI ptt file)	-1.78475802615923	-8.66054833783214	FALSE
+carbon source	set3IT025	dextran, Mw ~200,000	352615	BT3088		hypothetical protein (NCBI ptt file)	-1.55350584157957	-6.31931431595491	FALSE
+carbon source	set3IT009	dextran, Mw ~200,000	352615	BT3088		hypothetical protein (NCBI ptt file)	-1.2767199979232	-6.3505035515662	FALSE
+carbon source	set3IT025	dextran, Mw ~200,000	352616	BT3089		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.54830904300626	-13.2356223656837	FALSE
+carbon source	set3IT009	dextran, Mw ~200,000	352616	BT3089		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.29122201678605	-11.6810123748024	FALSE
+carbon source	set3IT009	dextran, Mw ~200,000	352617	BT3090		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.72465069999807	-13.7894916439767	FALSE
+carbon source	set3IT025	dextran, Mw ~200,000	352617	BT3090		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.59780346882578	-14.8645926747273	FALSE
+carbon source	set3IT009	dextran, Mw ~200,000	352618	BT3091		putative regulatory protein (NCBI ptt file)	-2.71409670271893	-14.0935606104137	FALSE
+carbon source	set3IT025	dextran, Mw ~200,000	352618	BT3091		putative regulatory protein (NCBI ptt file)	-2.67791606557796	-13.9356417999928	FALSE
+carbon source	set11IT066	palatinose hydrate	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-2.62736966272305	-5.01009246552176	FALSE
+carbon source	set11IT081	palatinose hydrate	351687	BT2159		putative oxidoreductase (NCBI ptt file)	-2.36886410070604	-5.66354702939603	FALSE
+carbon source	set11IT081	palatinose hydrate	351688	BT2160		putative regulatory protein (NCBI ptt file)	-2.85528793731673	-10.3622749168091	FALSE
+carbon source	set11IT066	palatinose hydrate	351688	BT2160		putative regulatory protein (NCBI ptt file)	-2.80496093851974	-12.3368943397791	FALSE
+carbon source	set3IT043	polygalacturonic acid	352709	BT3182		rubrerythrin (NCBI ptt file)	-1.26597033158076	-5.59376687107547	FALSE
+carbon source	set3IT017	polygalacturonic acid	353224	BT3698	SusG	alpha-amylase, susG (NCBI ptt file)	-1.02527581099368	-6.59321480165242	FALSE
+carbon source	set3IT017	polygalacturonic acid	353631	BT4105		hexuronate transporter (NCBI ptt file)	-2.85225038981415	-9.89929625239857	TRUE
+carbon source	set3IT017	polygalacturonic acid	353637	BT4111		two-component system sensor histidine kinase/response regulator, hybrid ('one-component system') (NCBI ptt file)	-2.52557422265764	-14.2369522973361	FALSE
+carbon source	set3IT017	polygalacturonic acid	353639	BT4113		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.25068454202656	-10.3188221103852	FALSE
+carbon source	set3IT043	polygalacturonic acid	353639	BT4113		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.10195576754662	-5.51208167395165	FALSE
+carbon source	set3IT017	polygalacturonic acid	353640	BT4114		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-2.26393190684862	-11.3643130756742	TRUE
+carbon source	set3IT017	polygalacturonic acid	353641	BT4115		conserved hypothetical protein (NCBI ptt file)	-1.58646726263571	-7.17445287542377	FALSE
+mouse	set15IT055		350738	BT1210		cytochrome D ubiquinol oxidase subunit I (NCBI ptt file)	-1.50492957400364	-5.3606346533615	FALSE
+mouse	set15IT066		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-3.59653668175284	-12.1058012917574	FALSE
+mouse	set15IT030		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-3.46705346947292	-11.0807723229754	FALSE
+mouse	set15IT054		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-3.32162525322656	-10.6459820122631	FALSE
+mouse	set15IT091		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-3.03210599846195	-11.4079594463613	FALSE
+mouse	set15IT067		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-3.02886314630275	-11.7944110518184	FALSE
+mouse	set15IT042		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.98757628254405	-11.2404213742731	FALSE
+mouse	set15IT007		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.93501765453139	-11.0426754190759	FALSE
+mouse	set15IT055		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.85990348411773	-11.1364811253973	FALSE
+mouse	set15IT031		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.80636896438424	-10.8073941212756	FALSE
+mouse	set15IT043		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.80620156901145	-9.86223759847995	FALSE
+mouse	set15IT090		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.79015619046478	-11.0977552333968	FALSE
+mouse	set15IT006		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.76172161598031	-10.3616315311979	FALSE
+mouse	set15IT019		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.69954858211384	-10.2776225121542	FALSE
+mouse	set15IT018		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.6812811816697	-11.0876520183478	FALSE
+mouse	set15IT068		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.56271889487664	-7.87937569618863	FALSE
+mouse	set15IT079		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.41166331603081	-9.97272640272398	FALSE
+mouse	set15IT092		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.40298069562547	-7.81976563993111	FALSE
+mouse	set15IT056		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.39420236009424	-5.57208284557123	FALSE
+mouse	set15IT078		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.32704979633337	-9.64094143775458	FALSE
+mouse	set15IT008		352027	BT2499		peptide methionine sulfoxide reductase msrA/msrB (NCBI ptt file)	-2.08282057535527	-6.89582816343182	FALSE
+mouse	set15IT056		353496	BT3970		hypothetical protein (NCBI ptt file)	1.70516786842226	6.98855575488361	FALSE
+mouse	set15IT056		353699	BT4173		putative rhamnogalacturonan acetylesterase (NCBI ptt file)	-1.75775105772667	-6.3719833454023	FALSE
+nitrogen source	set33S415	Ammonium chloride	350747	BT1219		conserved hypothetical protein (NCBI ptt file)	1.11280580414467	6.1971157608733	FALSE
+nitrogen source	set33S415	Ammonium chloride	352607	BT3080		cysteine synthase A (NCBI ptt file)	-1.89222014899714	-11.4509946085906	FALSE
+nitrogen source	set33S416	Ammonium chloride	352607	BT3080		cysteine synthase A (NCBI ptt file)	-1.86922420674879	-11.5602105525755	FALSE
+nitrogen source	set5IT009	Ammonium chloride	352781	BT3254		dipeptidyl peptidase IV (NCBI ptt file)	-1.36797958211911	-5.53138445147542	FALSE
+nitrogen source	set33S411	Ammonium chloride	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	1.48476585535101	9.6500431350685	FALSE
+nitrogen source	set5IT021	Cytidine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-2.53206210562278	-7.61395362117212	FALSE
+nitrogen source	set5IT021	Cytidine	352318	BT2791		uracil phosphoribosyltransferase (NCBI ptt file)	2.94054728898353	15.018646456372	FALSE
+nitrogen source	set5IT019	D-Glucosamine Hydrochloride	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-2.89197920030669	-9.55886470412486	FALSE
+nitrogen source	set5IT007	D-Glucosamine Hydrochloride	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-2.03289844488738	-9.80165592653856	FALSE
+nitrogen source	set5IT019	D-Glucosamine Hydrochloride	354182	BT4656		N-acetylglucosamine-6-sulfatase precursor (NCBI ptt file)	2.1708699362617	5.26541081254172	FALSE
+nitrogen source	set5IT015	D-Serine	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.25731094195166	-5.47446763058935	FALSE
+nitrogen source	set5IT015	D-Serine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.12437055134513	-5.60495824074007	FALSE
+nitrogen source	set5IT015	D-Serine	352654	BT3127		conserved hypothetical protein (NCBI ptt file)	2.17345889502496	10.1303589081483	FALSE
+nitrogen source	set5IT015	D-Serine	354245	BT4719		hypothetical protein (NCBI ptt file)	-1.99501189391524	-5.01820699866905	FALSE
+nitrogen source	set5IT016	Gly-DL-Asp	350108	BT0580		putative H+/peptide symporter (NCBI ptt file)	-1.6760851900993	-7.03930350370578	FALSE
+nitrogen source	set5IT005	Gly-DL-Asp	350108	BT0580		putative H+/peptide symporter (NCBI ptt file)	-1.51935493242416	-7.20810034404357	FALSE
+nitrogen source	set32S141	L-Asparagine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-3.26869113907424	-8.2984297769428	FALSE
+nitrogen source	set32S135	L-Asparagine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-3.23067103547713	-13.5829235811047	FALSE
+nitrogen source	set32S136	L-Asparagine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-3.18870970983187	-12.0433306208925	FALSE
+nitrogen source	set32S142	L-Asparagine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-2.77692529204784	-9.92530711601013	FALSE
+nitrogen source	set32S142	L-Asparagine	353289	BT3763		rhamnulose kinase/L-fuculose kinase (NCBI ptt file)	-1.28083429238428	-5.33104799985719	FALSE
+nitrogen source	set32S142	L-Asparagine	353568	BT4042		putative Mg2+ transporter MgtE (NCBI ptt file)	-1.36824738231974	-6.44506972635245	FALSE
+nitrogen source	set32S141	L-Asparagine	353568	BT4042		putative Mg2+ transporter MgtE (NCBI ptt file)	-1.32349811089845	-6.25972697515627	FALSE
+nitrogen source	set32S142	L-Asparagine	354042	BT4516		conserved hypothetical protein (NCBI ptt file)	1.30418150714769	5.92987792857678	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	2209852	p5482_12		TraI-like protein (NCBI)	1.66450493304413	5.95361850422174	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	2209855	p5482_15		TraM-like protein (NCBI)	1.13192214660252	5.01151164056755	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	350119	BT0591		hypothetical protein (NCBI ptt file)	1.85016741614559	9.24236577675943	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	350265	BT0737		formate--tetrahydrofolate ligase (NCBI ptt file)	1.97680422184658	6.63216516281925	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	351366	BT1838		putative alanyl dipeptidyl peptidase (NCBI ptt file)	1.14736798531202	6.11141760088955	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	351939	BT2411		hypothetical protein (NCBI ptt file)	2.35310774551822	8.23467253970085	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	352178	BT2650		conserved hypothetical protein (NCBI ptt file)	-1.27385101808009	-5.25477576949005	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	352224	BT2697		DNA mismatch repair protein mutS (NCBI ptt file)	1.04080677474511	6.06985225121758	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	352283	BT2756		anaerobic C4-dicarboxylate transporter dcuB (NCBI ptt file)	-3.31048191652115	-7.3922972632272	TRUE
+nitrogen source	set5IT010	L-Aspartic Acid	352344	BT2817		putative TonB-dependent receptor (NCBI ptt file)	-1.22148805412446	-6.05735553860083	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	352360	BT2833		hypothetical protein (NCBI ptt file)	-2.36627713069797	-7.25965652290811	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	352463	BT2936		putative glycosyltransferase (NCBI ptt file)	2.86221536726442	5.7171372152652	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	352923	BT3396		RNA polymerase ECF-type sigma factor (NCBI ptt file)	1.86353002286115	5.68343294157441	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	353281	BT3755		acetyl-coenzyme A synthetase (NCBI ptt file)	-1.54039451992042	-6.08785477767684	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	353734	BT4208		phosphohydrolase (NCBI ptt file)	1.2988889100618	5.38293197889535	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	354263	BT4737		pyruvate formate-lyase activating enzyme (NCBI ptt file)	3.4812859577243	9.62218696491554	FALSE
+nitrogen source	set5IT010	L-Aspartic Acid	354264	BT4738		formate acetyltransferase (NCBI ptt file)	3.54638212294968	20.1152409665692	FALSE
+nitrogen source	set32S132	L-Glutamine	349711	BT0183		transglycosylase (NCBI ptt file)	1.33690059683951	6.67774481684352	FALSE
+nitrogen source	set32S143	L-Glutamine	349711	BT0183		transglycosylase (NCBI ptt file)	1.81110764052982	6.98958906332932	FALSE
+nitrogen source	set32S144	L-Glutamine	349711	BT0183		transglycosylase (NCBI ptt file)	1.90154558277778	7.70711333325101	FALSE
+nitrogen source	set32S143	L-Glutamine	350565	BT1037		conserved hypothetical protein (NCBI ptt file)	-1.29508007364636	-5.88994010601954	FALSE
+nitrogen source	set32S144	L-Glutamine	351496	BT1968		transcriptional regulator (NCBI ptt file)	1.41372953011992	6.10398350392375	FALSE
+nitrogen source	set32S144	L-Glutamine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-2.21380484643559	-6.30348285600617	FALSE
+nitrogen source	set32S132	L-Glutamine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.93373461263752	-7.89110109715575	FALSE
+nitrogen source	set32S131	L-Glutamine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.45310184808837	-6.47820039003804	FALSE
+nitrogen source	set32S137	L-Glutamine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.35307398264159	-5.61433922752549	FALSE
+nitrogen source	set32S123	L-Glutamine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.16247035679222	-6.33984497780252	FALSE
+nitrogen source	set32S144	L-Glutamine	352360	BT2833		hypothetical protein (NCBI ptt file)	-1.59577637458208	-5.09045833815783	FALSE
+nitrogen source	set32S132	L-Glutamine	352360	BT2833		hypothetical protein (NCBI ptt file)	-1.29694172014848	-5.67551672089231	FALSE
+nitrogen source	set32S143	L-Glutamine	352367	BT2840		O-methyltransferase (NCBI ptt file)	1.68488026301847	6.33407256746858	FALSE
+nitrogen source	set32S143	L-Glutamine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-3.33420090220975	-10.3721254996768	FALSE
+nitrogen source	set32S144	L-Glutamine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-2.82583000046179	-7.60330183121745	FALSE
+nitrogen source	set32S132	L-Glutamine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-2.65669823208774	-9.90518149237253	FALSE
+nitrogen source	set32S137	L-Glutamine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-2.49364284461882	-10.484187286504	FALSE
+nitrogen source	set32S131	L-Glutamine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-2.31899129465035	-11.1376203223614	FALSE
+nitrogen source	set32S143	L-Glutamine	352879	BT3352		haloacid dehalogenase-like hydrolase (NCBI ptt file)	-1.72410028236473	-5.00034438481667	FALSE
+nitrogen source	set32S143	L-Glutamine	353531	BT4005		hypothetical protein (NCBI ptt file)	-1.56809076152564	-6.64839200049405	FALSE
+nitrogen source	set32S132	L-Glutamine	353568	BT4042		putative Mg2+ transporter MgtE (NCBI ptt file)	-1.28891735452804	-6.34194964565998	FALSE
+nitrogen source	set32S131	L-Glutamine	353654	BT4128		conserved hypothetical protein (NCBI ptt file)	-1.17455622734906	-5.44476909172717	FALSE
+nitrogen source	set32S131	L-Glutamine	354042	BT4516		conserved hypothetical protein (NCBI ptt file)	1.04119489704035	5.86045628718829	FALSE
+nitrogen source	set32S144	L-Glutamine	354042	BT4516		conserved hypothetical protein (NCBI ptt file)	1.105405586713	5.39965031853424	FALSE
+nitrogen source	set32S143	L-Glutamine	354042	BT4516		conserved hypothetical protein (NCBI ptt file)	1.20995926568877	5.53612455902877	FALSE
+nitrogen source	set32S143	L-Glutamine	354157	BT4631		putative arylsulfatase precursor (NCBI ptt file)	-1.0739098356108	-5.36561993597969	FALSE
+nitrogen source	set5IT014	L-Leucine	351270	BT1742		carbon starvation protein A (NCBI ptt file)	1.33876049526061	7.44632777413283	FALSE
+nitrogen source	set5IT014	L-Leucine	352360	BT2833		hypothetical protein (NCBI ptt file)	-1.83679520332137	-7.90505376972623	FALSE
+nitrogen source	set32S134	L-Serine	349787	BT0259		putative amidohydrolase (NCBI ptt file)	1.32968054648218	5.7651283959489	FALSE
+nitrogen source	set32S134	L-Serine	349991	BT0463		glucose-1-phosphate thymidylyltransferase (NCBI ptt file)	1.60933462813422	5.20483244114212	FALSE
+nitrogen source	set32S127	L-Serine	350517	BT0989		two-component system sensor histidine kinase (NCBI ptt file)	1.49555509301418	5.73361976004821	FALSE
+nitrogen source	set32S127	L-Serine	350848	BT1320		putative transcriptional regulator, phosphate uptake regulation (NCBI ptt file)	1.93398631392058	5.08692687398394	FALSE
+nitrogen source	set32S127	L-Serine	351143	BT1615		aminoacyl-histidine dipeptidase (NCBI ptt file)	1.16166381748733	5.88809464034983	FALSE
+nitrogen source	set32S134	L-Serine	351143	BT1615		aminoacyl-histidine dipeptidase (NCBI ptt file)	1.45948248154487	7.40474467641864	FALSE
+nitrogen source	set32S128	L-Serine	351658	BT2130		uracil-DNA glycosylase (NCBI ptt file)	-1.90234788953797	-5.65032681381877	FALSE
+nitrogen source	set32S133	L-Serine	351658	BT2130		uracil-DNA glycosylase (NCBI ptt file)	-1.55686090274311	-5.39150683336153	FALSE
+nitrogen source	set32S127	L-Serine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.37169768450203	-6.0945844183739	FALSE
+nitrogen source	set32S126	L-Serine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.30498097920952	-6.733758483759	FALSE
+nitrogen source	set32S125	L-Serine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.2890660873909	-7.05692284267711	FALSE
+nitrogen source	set32S128	L-Serine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.2595794626566	-5.4533217059035	FALSE
+nitrogen source	set32S134	L-Serine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.20073905601004	-6.06886377594923	FALSE
+nitrogen source	set32S133	L-Serine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-1.1157663985106	-5.95203703956674	FALSE
+nitrogen source	set32S134	L-Serine	351678	BT2150		methylglyoxal synthase (NCBI ptt file)	-2.12656223530047	-5.94904925686402	FALSE
+nitrogen source	set32S133	L-Serine	351678	BT2150		methylglyoxal synthase (NCBI ptt file)	-1.75216908882372	-5.56503790724752	FALSE
+nitrogen source	set32S126	L-Serine	351678	BT2150		methylglyoxal synthase (NCBI ptt file)	-1.74816979795837	-6.03122767556307	FALSE
+nitrogen source	set32S128	L-Serine	351682	BT2154		putative long-chain-fatty-acid--CoA ligase (NCBI ptt file)	-1.23300396366998	-7.23914258728565	FALSE
+nitrogen source	set32S127	L-Serine	351682	BT2154		putative long-chain-fatty-acid--CoA ligase (NCBI ptt file)	-1.1852629531757	-6.23793302883856	FALSE
+nitrogen source	set32S133	L-Serine	351682	BT2154		putative long-chain-fatty-acid--CoA ligase (NCBI ptt file)	-1.18476382550309	-6.90067533611645	FALSE
+nitrogen source	set32S127	L-Serine	352080	BT2552		putative butyrate kinase (NCBI ptt file)	1.50670149029534	5.75957469416921	FALSE
+nitrogen source	set32S134	L-Serine	352310	BT2783		transcriptional regulator (NCBI ptt file)	-1.2167165956825	-6.47732579201191	FALSE
+nitrogen source	set32S133	L-Serine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-3.38299213152901	-12.1164043874149	FALSE
+nitrogen source	set32S134	L-Serine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-3.36680335060711	-12.715966512056	FALSE
+nitrogen source	set32S127	L-Serine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-3.07317949563673	-12.0964963810798	FALSE
+nitrogen source	set32S128	L-Serine	352607	BT3080		cysteine synthase A (NCBI ptt file)	-2.88503210592882	-9.91292956607364	FALSE
+nitrogen source	set32S133	L-Serine	352883	BT3356		6-phosphofructokinase (NCBI ptt file)	1.33405378576351	8.40686331900529	FALSE
+nitrogen source	set32S128	L-Serine	352883	BT3356		6-phosphofructokinase (NCBI ptt file)	1.43558030112668	7.4578872307691	FALSE
+nitrogen source	set32S127	L-Serine	352883	BT3356		6-phosphofructokinase (NCBI ptt file)	1.43802603059668	6.58064759434668	FALSE
+nitrogen source	set32S134	L-Serine	352883	BT3356		6-phosphofructokinase (NCBI ptt file)	1.47599919382099	9.37912196435825	FALSE
+nitrogen source	set32S127	L-Serine	353386	BT3860		conserved hypothetical protein (NCBI ptt file)	1.53668970764184	6.56967266999661	FALSE
+nitrogen source	set32S128	L-Serine	353654	BT4128		conserved hypothetical protein (NCBI ptt file)	-1.59342420857898	-6.03950750784413	FALSE
+nitrogen source	set32S133	L-Serine	353654	BT4128		conserved hypothetical protein (NCBI ptt file)	-1.18996708973586	-5.90281819434885	FALSE
+nitrogen source	set32S128	L-Serine	354204	BT4678		L-serine dehydratase (NCBI ptt file)	-1.37701713656198	-5.26172229363567	TRUE
+nitrogen source	set5IT013	L-Valine	351270	BT1742		carbon starvation protein A (NCBI ptt file)	1.46578563497638	9.31472620756196	FALSE
+nitrogen source	set5IT013	L-Valine	351939	BT2411		hypothetical protein (NCBI ptt file)	1.6413247151856	9.52235020142457	FALSE
+nitrogen source	set5IT013	L-Valine	352360	BT2833		hypothetical protein (NCBI ptt file)	-1.50743251324183	-7.16537246241352	FALSE
+nitrogen source	set5IT013	L-Valine	352923	BT3396		RNA polymerase ECF-type sigma factor (NCBI ptt file)	1.91356015855276	7.18509479050986	FALSE
+nitrogen source	set5IT013	L-Valine	352924	BT3397		hypothetical protein (NCBI ptt file)	1.64015870734555	6.56448216453304	FALSE
+nitrogen source	set5IT013	L-Valine	353768	BT4242		putative transporter (NCBI ptt file)	1.28380482394686	5.32365258207242	FALSE
+nitrogen source	set5IT020	Thymidine	351668	BT2140		putative sodium-dependent transporter (NCBI ptt file)	-2.80910862837666	-8.44703720568246	FALSE
+nitrogen source	set5IT020	Thymidine	352790	BT3263		putative deoxyribose-phosphate aldolase (NCBI ptt file)	-2.51068003061684	-7.99428748112317	FALSE
+nitrogen source	set5IT020	Thymidine	353281	BT3755		acetyl-coenzyme A synthetase (NCBI ptt file)	-1.35362565625637	-6.39402933504253	FALSE
+stress	set8IT049	5-fluorouracil	349681	BT0153		hypothetical protein (NCBI ptt file)	1.73403851909569	5.1120439118394	FALSE
+stress	set8IT061	5-fluorouracil	350490	BT0962		aldo/keto reductase (NCBI ptt file)	1.6027455898085	5.2660621213199	FALSE
+stress	set9IT061	5-fluorouracil	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.70420073717473	-5.58615695311707	FALSE
+stress	set8IT049	5-fluorouracil	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.69011133458329	-6.01005047467031	FALSE
+stress	set8IT061	5-fluorouracil	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.46441734300464	-5.38614235893441	FALSE
+stress	set9IT061	5-fluorouracil	351070	BT1542		putative pyridine nucleotide-disulfide oxidoreductase (NCBI ptt file)	-1.93958363849799	-6.66170541099918	FALSE
+stress	set8IT061	5-fluorouracil	351070	BT1542		putative pyridine nucleotide-disulfide oxidoreductase (NCBI ptt file)	-1.80402528644288	-5.89071336496103	FALSE
+stress	set8IT049	5-fluorouracil	351413	BT1885		putative ATP-dependent RNA helicase (NCBI ptt file)	1.67187862981689	5.30821793421244	FALSE
+stress	set8IT061	5-fluorouracil	351413	BT1885		putative ATP-dependent RNA helicase (NCBI ptt file)	1.83600157968185	5.57524697694325	FALSE
+stress	set8IT049	5-fluorouracil	351799	BT2271		haloacid dehalogenase-like hydrolase (NCBI ptt file)	-3.18448473114758	-6.39289264156361	FALSE
+stress	set8IT049	5-fluorouracil	351803	BT2275		thymidine kinase (NCBI ptt file)	8.52611103119554	12.4670465086207	FALSE
+stress	set8IT061	5-fluorouracil	351803	BT2275		thymidine kinase (NCBI ptt file)	8.74952040551084	11.7993791294997	FALSE
+stress	set9IT061	5-fluorouracil	351803	BT2275		thymidine kinase (NCBI ptt file)	9.87717456160254	25.9165018497853	FALSE
+stress	set8IT061	5-fluorouracil	351951	BT2423		K+-transporting ATPase C chain (NCBI ptt file)	-1.36476827986691	-5.19678910932551	FALSE
+stress	set8IT061	5-fluorouracil	352513	BT2986		integrase (NCBI ptt file)	-1.0811938736583	-5.38373961780842	FALSE
+stress	set9IT061	5-fluorouracil	352987	BT3460		dGTP triphosphohydrolase (NCBI ptt file)	-1.79256239032174	-5.20319637531467	FALSE
+stress	set8IT061	5-fluorouracil	353857	BT4331		conserved hypothetical protein (NCBI ptt file)	-2.23940215895599	-8.95766776796877	FALSE
+stress	set8IT049	5-fluorouracil	353857	BT4331		conserved hypothetical protein (NCBI ptt file)	-2.22026754572603	-9.5187902370867	FALSE
+stress	set9IT061	5-fluorouracil	353857	BT4331		conserved hypothetical protein (NCBI ptt file)	-2.15106690501907	-9.08317451550981	FALSE
+stress	set9IT061	5-fluorouracil	353869	BT4343		conserved hypothetical protein (NCBI ptt file)	1.61537687514615	5.11685034384679	FALSE
+stress	set9IT061	5-fluorouracil	354080	BT4554		purine nucleoside phosphorylase II (NCBI ptt file)	2.32617262886131	11.4432931965467	FALSE
+stress	set8IT049	5-fluorouracil	354080	BT4554		purine nucleoside phosphorylase II (NCBI ptt file)	3.03412523664003	15.0598399916261	FALSE
+stress	set8IT061	5-fluorouracil	354080	BT4554		purine nucleoside phosphorylase II (NCBI ptt file)	3.66102860546294	18.9577782965795	FALSE
+stress	set10IT085	8-hydroxy-nitroquinoline	349711	BT0183		transglycosylase (NCBI ptt file)	1.79289507609173	10.4295618604589	FALSE
+stress	set10IT085	8-hydroxy-nitroquinoline	350747	BT1219		conserved hypothetical protein (NCBI ptt file)	1.30386630741988	6.7244660508624	FALSE
+stress	set10IT085	8-hydroxy-nitroquinoline	351077	BT1549		putative secreted peptidase (NCBI ptt file)	1.31296879932306	7.11115449394544	FALSE
+stress	set9IT073	8-hydroxy-nitroquinoline	351502	BT1974		metallopeptidase family M24, putative Xaa-Pro dipeptidase (NCBI ptt file)	-1.46103651456538	-5.87153815003684	FALSE
+stress	set8IT095	8-hydroxy-nitroquinoline	351769	BT2241		DNA-damage-inducible protein F (NCBI ptt file)	-1.25722660648409	-7.1599466750693	FALSE
+stress	set8IT095	8-hydroxy-nitroquinoline	352007	BT2479		iron-regulated protein A precursor (NCBI ptt file)	-1.05961709032495	-6.32067005874323	FALSE
+stress	set10IT085	8-hydroxy-nitroquinoline	352009	BT2481		hypothetical protein (NCBI ptt file)	1.25745923933669	5.43303345904449	FALSE
+stress	set8IT095	8-hydroxy-nitroquinoline	352009	BT2481		hypothetical protein (NCBI ptt file)	1.3514054340453	5.10041170402698	FALSE
+stress	set10IT085	8-hydroxy-nitroquinoline	354264	BT4738		formate acetyltransferase (NCBI ptt file)	-1.48889434144278	-6.1274614568547	FALSE
+stress	set11IT008	Anhydrotetracycline hydrochloride	351428	BT1900		BexA, putative cation effux pump (NCBI ptt file)	1.43299266777102	5.1731452062785	FALSE
+stress	set10IT091	Anhydrotetracycline hydrochloride	351678	BT2150		methylglyoxal synthase (NCBI ptt file)	-1.40213956461433	-5.18385870931409	FALSE
+stress	set10IT091	Anhydrotetracycline hydrochloride	351832	BT2304		hypothetical protein (NCBI ptt file)	-2.52863185078776	-6.46764554951723	FALSE
+stress	set8IT020	Anhydrotetracycline hydrochloride	352528	BT3001		ATP-dependent DNA helicase (NCBI ptt file)	-1.99864835123652	-11.8329896277214	FALSE
+stress	set11IT008	Anhydrotetracycline hydrochloride	352924	BT3397		hypothetical protein (NCBI ptt file)	-1.82980820884816	-6.56968979343989	FALSE
+stress	set11IT008	Anhydrotetracycline hydrochloride	353531	BT4005		hypothetical protein (NCBI ptt file)	-1.26455519177552	-5.99662487203776	FALSE
+stress	set4IT011	Benzethonium chloride	349704	BT0176		conserved hypothetical protein (NCBI ptt file)	-2.39154308591482	-8.51072208311204	FALSE
+stress	set3IT092	Benzethonium chloride	349704	BT0176		conserved hypothetical protein (NCBI ptt file)	-2.27427734651455	-9.26627757072768	FALSE
+stress	set3IT092	Benzethonium chloride	350461	BT0933		hypothetical protein (NCBI ptt file)	-1.80933332704488	-5.62502734247536	FALSE
+stress	set3IT092	Benzethonium chloride	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.71019017675619	-6.37600012908856	FALSE
+stress	set4IT011	Benzethonium chloride	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.52231405069996	-5.67154110827865	FALSE
+stress	set6IT058	Benzethonium chloride	351127	BT1599		BexA, membrane protein (NCBI ptt file)	-1.88606075970702	-5.44762782980617	FALSE
+stress	set6IT061	Benzethonium chloride	351127	BT1599		BexA, membrane protein (NCBI ptt file)	-1.5790984546987	-5.48315857371431	FALSE
+stress	set6IT061	Benzethonium chloride	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	-1.73011538234809	-6.27797260316483	FALSE
+stress	set6IT058	Benzethonium chloride	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	-1.50927588874992	-5.60352523857987	FALSE
+stress	set6IT058	Benzethonium chloride	352080	BT2552		putative butyrate kinase (NCBI ptt file)	-1.78172541273898	-5.36492781335634	FALSE
+stress	set6IT061	Benzethonium chloride	352080	BT2552		putative butyrate kinase (NCBI ptt file)	-1.74244819275373	-5.53949912530307	FALSE
+stress	set3IT092	Benzethonium chloride	352259	BT2732		hypothetical protein (NCBI ptt file)	-4.29569643434081	-13.1552809644769	FALSE
+stress	set4IT011	Benzethonium chloride	352259	BT2732		hypothetical protein (NCBI ptt file)	-3.87198092493827	-6.73041875796336	FALSE
+stress	set3IT092	Benzethonium chloride	352502	BT2975		putative nicotinate mononucleotide:5,6-dimethylbenzimidazole phosphoribosyltransferase (NCBI ptt file)	-1.61964335432605	-5.68234438323401	FALSE
+stress	set4IT011	Benzethonium chloride	352502	BT2975		putative nicotinate mononucleotide:5,6-dimethylbenzimidazole phosphoribosyltransferase (NCBI ptt file)	-1.47416855553594	-5.05984934781361	FALSE
+stress	set3IT092	Benzethonium chloride	352692	BT3165		tRNA/rRNA methyltransferase (NCBI ptt file)	1.49054020696205	5.662184886177	FALSE
+stress	set4IT011	Benzethonium chloride	352692	BT3165		tRNA/rRNA methyltransferase (NCBI ptt file)	1.6160058521254	5.57633938731776	FALSE
+stress	set3IT092	Benzethonium chloride	353857	BT4331		conserved hypothetical protein (NCBI ptt file)	-2.12122165303335	-10.5136821097552	FALSE
+stress	set4IT011	Benzethonium chloride	353857	BT4331		conserved hypothetical protein (NCBI ptt file)	-2.11712541845921	-10.6516169673082	FALSE
+stress	set3IT092	Benzethonium chloride	354230	BT4704		O-succinylbenzoic acid--CoA ligase (NCBI ptt file)	-1.48843739351614	-5.06165118693071	FALSE
+stress	set12IT001	Bile salts	349785	BT0257		xanthan lyase (NCBI ptt file)	-2.02715368778747	-6.70344616301081	FALSE
+stress	set5IT057	Bile salts	349785	BT0257		xanthan lyase (NCBI ptt file)	-1.60541550991042	-5.27650711256008	FALSE
+stress	set12IT002	Bile salts	349785	BT0257		xanthan lyase (NCBI ptt file)	-1.01260004467899	-5.29951006657755	FALSE
+stress	set12IT002	Bile salts	349911	BT0383		putative UDP-N-acetylglucosamine 2-epimerase (NCBI ptt file)	1.57102428029855	5.31823500037035	FALSE
+stress	set12IT001	Bile salts	350219	BT0691		hypothetical protein (NCBI ptt file)	-2.27480906348507	-5.46973991286355	FALSE
+stress	set12IT002	Bile salts	350219	BT0691		hypothetical protein (NCBI ptt file)	-2.04926823961572	-5.33217364968135	FALSE
+stress	set5IT054	Bile salts	350219	BT0691		hypothetical protein (NCBI ptt file)	-1.77786928468	-5.27899267386647	FALSE
+stress	set12IT002	Bile salts	350301	BT0773		alpha-amylase 3 (NCBI ptt file)	1.43409467034472	5.53746159139431	FALSE
+stress	set12IT001	Bile salts	350763	BT1235		AraC-type transcription regulator (NCBI ptt file)	1.79228411794967	6.99621250151375	FALSE
+stress	set5IT057	Bile salts	350814	BT1286		putative two-component system response regulator (NCBI ptt file)	1.86391230097618	8.88948874945773	FALSE
+stress	set12IT004	Bile salts	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.36882114557245	-6.38688478798541	FALSE
+stress	set5IT054	Bile salts	351055	BT1527		hypothetical protein (NCBI ptt file)	1.2862927729225	6.129923761422	FALSE
+stress	set5IT057	Bile salts	351055	BT1527		hypothetical protein (NCBI ptt file)	1.75222061417777	9.04047480043966	FALSE
+stress	set5IT057	Bile salts	351059	BT1531		two-component system sensor histidine kinase (NCBI ptt file)	1.19649346630416	8.07950195854326	FALSE
+stress	set5IT057	Bile salts	351272	BT1744		conserved hypothetical protein (NCBI ptt file)	-1.16220449662595	-5.59862016609929	FALSE
+stress	set12IT001	Bile salts	351646	BT2118		transporter, AcrB/D/F family (NCBI ptt file)	1.30233772747045	6.62195809322445	FALSE
+stress	set12IT002	Bile salts	351646	BT2118		transporter, AcrB/D/F family (NCBI ptt file)	1.77434086232504	7.04265943972445	FALSE
+stress	set12IT001	Bile salts	351647	BT2119		transmembrane protein precursor, possibly involved in transport (NCBI ptt file)	1.75319744662664	5.76532333084977	FALSE
+stress	set5IT057	Bile salts	352048	BT2520		conserved hypothetical protein (NCBI ptt file)	1.59414297548239	5.34828834930958	FALSE
+stress	set12IT002	Bile salts	352319	BT2792		AraC/XylS family transcriptional regulator (NCBI ptt file)	-3.05546056174902	-14.5529711167322	FALSE
+stress	set5IT057	Bile salts	352319	BT2792		AraC/XylS family transcriptional regulator (NCBI ptt file)	-3.04371197495127	-8.33297475439228	FALSE
+stress	set12IT001	Bile salts	352319	BT2792		AraC/XylS family transcriptional regulator (NCBI ptt file)	-2.84738139923097	-11.9512366100224	FALSE
+stress	set5IT054	Bile salts	352319	BT2792		AraC/XylS family transcriptional regulator (NCBI ptt file)	-2.6700447683138	-11.4536092619372	FALSE
+stress	set12IT001	Bile salts	352320	BT2793		putative MFS transporter (NCBI ptt file)	-2.83295659708288	-14.9917739262453	FALSE
+stress	set5IT057	Bile salts	352320	BT2793		putative MFS transporter (NCBI ptt file)	-2.67112299722453	-12.8632595824773	FALSE
+stress	set12IT002	Bile salts	352320	BT2793		putative MFS transporter (NCBI ptt file)	-2.34472943566793	-13.5356737188952	FALSE
+stress	set5IT054	Bile salts	352320	BT2793		putative MFS transporter (NCBI ptt file)	-2.081080366167	-12.5758160581342	FALSE
+stress	set5IT057	Bile salts	352321	BT2794		putative multidrug resistance protein (NCBI ptt file)	-3.28191928238975	-11.0622579636402	FALSE
+stress	set12IT002	Bile salts	352321	BT2794		putative multidrug resistance protein (NCBI ptt file)	-2.76802988996983	-13.6336346135942	FALSE
+stress	set5IT054	Bile salts	352321	BT2794		putative multidrug resistance protein (NCBI ptt file)	-2.65658522675356	-12.5845549864968	FALSE
+stress	set12IT001	Bile salts	352321	BT2794		putative multidrug resistance protein (NCBI ptt file)	-2.49497254219614	-9.53700687862052	FALSE
+stress	set12IT002	Bile salts	352322	BT2795		outer membrane efflux protein precursor (NCBI ptt file)	-3.27869680483634	-12.9615065809104	FALSE
+stress	set12IT001	Bile salts	352322	BT2795		outer membrane efflux protein precursor (NCBI ptt file)	-3.24440073588148	-11.4708679933271	FALSE
+stress	set5IT057	Bile salts	352322	BT2795		outer membrane efflux protein precursor (NCBI ptt file)	-3.23075870895248	-9.93552896242807	FALSE
+stress	set5IT054	Bile salts	352322	BT2795		outer membrane efflux protein precursor (NCBI ptt file)	-2.80922084539145	-11.6213379062745	FALSE
+stress	set12IT009	Bile salts	352322	BT2795		outer membrane efflux protein precursor (NCBI ptt file)	-1.06447360836703	-6.75725410234989	FALSE
+stress	set12IT001	Bile salts	352915	BT3388		conserved hypothetical protein (NCBI ptt file)	1.58499061973136	6.06271144734291	FALSE
+stress	set12IT001	Bile salts	353372	BT3846		peptidyl-prolyl cis-trans isomerase (NCBI ptt file)	-1.4550976578876	-5.89228380051779	FALSE
+stress	set5IT057	Bile salts	353372	BT3846		peptidyl-prolyl cis-trans isomerase (NCBI ptt file)	-1.34010956269733	-5.27295016820756	FALSE
+stress	set12IT001	Bile salts	353788	BT4262		peptidyl-dipeptidase (NCBI ptt file)	1.50017957177587	6.81016318773644	FALSE
+stress	set5IT054	Bile salts	353788	BT4262		peptidyl-dipeptidase (NCBI ptt file)	1.83907018899521	8.79807478926693	FALSE
+stress	set5IT057	Bile salts	353788	BT4262		peptidyl-dipeptidase (NCBI ptt file)	2.44009498033555	10.3248322969761	FALSE
+stress	set5IT054	Bile salts	354243	BT4717		integral membrane protein, putative permease (NCBI ptt file)	1.02745427073162	5.11605147448883	FALSE
+stress	set10IT014	Cefoxitin sodium salt	349711	BT0183		transglycosylase (NCBI ptt file)	1.4118911275413	7.84252421431836	FALSE
+stress	set8IT024	Cefoxitin sodium salt	349711	BT0183		transglycosylase (NCBI ptt file)	1.53752497425982	9.58320576129315	FALSE
+stress	set8IT024	Cefoxitin sodium salt	349785	BT0257		xanthan lyase (NCBI ptt file)	-1.91319535009759	-6.5672025664654	FALSE
+stress	set10IT014	Cefoxitin sodium salt	349785	BT0257		xanthan lyase (NCBI ptt file)	-1.41942797423041	-6.07877765368682	FALSE
+stress	set9IT026	Cefoxitin sodium salt	350172	BT0644		pyruvate phosphate dikinase (NCBI ptt file)	1.50010128411652	5.0999690345033	FALSE
+stress	set9IT026	Cefoxitin sodium salt	350756	BT1228		fructose-1,6-bisphosphatase (NCBI ptt file)	1.19173929816328	5.07930461323697	FALSE
+stress	set9IT026	Cefoxitin sodium salt	353085	BT3558		putative endonuclease (NCBI ptt file)	1.09005848935432	6.96891199762535	FALSE
+stress	set9IT026	Cefoxitin sodium salt	353522	BT3996		putative peptidase (NCBI ptt file)	-1.55855392929062	-5.11098945164292	FALSE
+stress	set9IT038	Cefoxitin sodium salt	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	1.16232145632054	5.65515361903834	FALSE
+stress	set4IT009	Ceftazidime hydrate	351102	BT1574		putative outer membrane protein precursor (NCBI ptt file)	-1.61593231651266	-6.40037726591937	FALSE
+stress	set4IT009	Ceftazidime hydrate	351270	BT1742		carbon starvation protein A (NCBI ptt file)	7.90386349601203	22.9781359812718	FALSE
+stress	set10IT050	Ceftriaxone disodium salt hemi(heptahydrate)	349785	BT0257		xanthan lyase (NCBI ptt file)	-2.31082076036117	-6.94881946985159	FALSE
+stress	set8IT060	Ceftriaxone disodium salt hemi(heptahydrate)	349785	BT0257		xanthan lyase (NCBI ptt file)	-2.06976946472591	-7.00658991240261	FALSE
+stress	set8IT048	Ceftriaxone disodium salt hemi(heptahydrate)	349785	BT0257		xanthan lyase (NCBI ptt file)	-1.97848807950092	-6.69758388839489	FALSE
+stress	set10IT038	Ceftriaxone disodium salt hemi(heptahydrate)	349785	BT0257		xanthan lyase (NCBI ptt file)	-1.44154533401144	-6.40399548148161	FALSE
+stress	set8IT048	Ceftriaxone disodium salt hemi(heptahydrate)	350360	BT0832		putative phosphoserine phosphatase (NCBI ptt file)	1.54655473478606	6.6882224195201	FALSE
+stress	set8IT048	Ceftriaxone disodium salt hemi(heptahydrate)	351682	BT2154		putative long-chain-fatty-acid--CoA ligase (NCBI ptt file)	-1.38631903270613	-8.74553153970443	FALSE
+stress	set4IT021	Cephalothin sodium salt	349682	BT0154		putative periplasmic protease (NCBI ptt file)	-1.60070818200156	-6.52364367057789	FALSE
+stress	set10IT074	Cephalothin sodium salt	349711	BT0183		transglycosylase (NCBI ptt file)	2.08421576370395	11.375440609477	FALSE
+stress	set8IT084	Cephalothin sodium salt	349711	BT0183		transglycosylase (NCBI ptt file)	2.11986196533598	11.9451569593592	FALSE
+stress	set9IT086	Cephalothin sodium salt	349711	BT0183		transglycosylase (NCBI ptt file)	2.41827751090454	11.725198845249	FALSE
+stress	set8IT074	Cephalothin sodium salt	349711	BT0183		transglycosylase (NCBI ptt file)	3.60737023172623	12.1221879931472	FALSE
+stress	set9IT086	Cephalothin sodium salt	350662	BT1134		hypothetical protein (NCBI ptt file)	-1.73145358753451	-5.09932464779481	FALSE
+stress	set4IT021	Cephalothin sodium salt	351316	BT1788		hypothetical protein (NCBI ptt file)	-1.74560496278876	-5.61754824496539	FALSE
+stress	set9IT086	Cephalothin sodium salt	352191	BT2663		tetratricopeptide repeat family protein (NCBI ptt file)	1.51707072539629	7.20037892110353	FALSE
+stress	set9IT086	Cephalothin sodium salt	352451	BT2924		acetyl-CoA synthetase (NCBI ptt file)	1.05781135258759	8.7996472716194	FALSE
+stress	set8IT084	Cephalothin sodium salt	352862	BT3335		hypothetical protein (NCBI ptt file)	1.2319812137034	5.51983205501322	FALSE
+stress	set8IT084	Cephalothin sodium salt	353337	BT3811		putative endothelin-converting enzyme (NCBI ptt file)	-2.24955463188034	-5.91997572074878	FALSE
+stress	set10IT074	Cephalothin sodium salt	353337	BT3811		putative endothelin-converting enzyme (NCBI ptt file)	-1.64107420178048	-5.15448646209979	FALSE
+stress	set8IT074	Cephalothin sodium salt	353373	BT3847		conserved hypothetical protein (NCBI ptt file)	3.27382396197733	6.74565654938855	FALSE
+stress	set10IT074	Cephalothin sodium salt	353451	BT3925		nucleoside diphosphate kinase (NCBI ptt file)	1.94777454740169	6.72049035886926	FALSE
+stress	set4IT021	Cephalothin sodium salt	353522	BT3996		putative peptidase (NCBI ptt file)	-2.03708366274919	-6.28827255208571	FALSE
+stress	set9IT086	Cephalothin sodium salt	353522	BT3996		putative peptidase (NCBI ptt file)	-1.37070593614801	-6.28516107911779	FALSE
+stress	set4IT006	Cephalothin sodium salt	353909	BT4383		putative sugar kinase (NCBI ptt file)	-1.98338062012418	-5.31188881013411	FALSE
+stress	set4IT006	Cephalothin sodium salt	354033	BT4507		beta-lactamase precursor (NCBI ptt file)	-4.57664144469131	-5.42586015867146	FALSE
+stress	set12IT030	Chenodeoxycholic acid	349682	BT0154		putative periplasmic protease (NCBI ptt file)	1.30662001128365	5.21288986317512	FALSE
+stress	set12IT030	Chenodeoxycholic acid	349785	BT0257		xanthan lyase (NCBI ptt file)	-3.22538456509148	-11.6660747735444	FALSE
+stress	set12IT022	Chenodeoxycholic acid	349785	BT0257		xanthan lyase (NCBI ptt file)	-1.07414434897596	-6.06949060774597	FALSE
+stress	set12IT030	Chenodeoxycholic acid	350219	BT0691		hypothetical protein (NCBI ptt file)	-2.96065456509245	-6.67886645999915	FALSE
+stress	set12IT030	Chenodeoxycholic acid	350848	BT1320		putative transcriptional regulator, phosphate uptake regulation (NCBI ptt file)	1.49579082724159	5.19714538726798	FALSE
+stress	set11IT037	Chenodeoxycholic acid	350987	BT1459		putative two-component system sensor histidine kinase, no kinase domain (NCBI ptt file)	-2.2082123947006	-5.03843282660037	FALSE
+stress	set12IT030	Chenodeoxycholic acid	351265	BT1737		conserved hypothetical protein, putative secreted protein (NCBI ptt file)	-1.43424287728912	-5.26783972710334	FALSE
+stress	set12IT031	Chenodeoxycholic acid	351599	BT2071		isocitrate dehydrogenase [NADP] (NCBI ptt file)	-1.6044028927351	-5.4846951028411	FALSE
+stress	set12IT030	Chenodeoxycholic acid	352319	BT2792		AraC/XylS family transcriptional regulator (NCBI ptt file)	-1.44476220790872	-6.79504857478227	FALSE
+stress	set12IT030	Chenodeoxycholic acid	352320	BT2793		putative MFS transporter (NCBI ptt file)	-1.36585873627849	-7.34135397336005	FALSE
+stress	set12IT030	Chenodeoxycholic acid	352360	BT2833		hypothetical protein (NCBI ptt file)	-2.39266832443563	-8.43751683423755	FALSE
+stress	set12IT022	Chenodeoxycholic acid	352360	BT2833		hypothetical protein (NCBI ptt file)	-2.0697271362482	-8.91094943842488	FALSE
+stress	set12IT022	Chenodeoxycholic acid	352463	BT2936		putative glycosyltransferase (NCBI ptt file)	1.89836856199865	6.50846416050585	FALSE
+stress	set12IT030	Chenodeoxycholic acid	352463	BT2936		putative glycosyltransferase (NCBI ptt file)	2.11590706085512	5.70784234972014	FALSE
+stress	set11IT037	Chenodeoxycholic acid	353013	BT3486		N-acetylgalactosamine-6-sulfatase precursor (NCBI ptt file)	-1.79515539935261	-5.70386779572215	FALSE
+stress	set12IT032	Chenodeoxycholic acid	353085	BT3558		putative endonuclease (NCBI ptt file)	1.02936770220794	7.80969099137752	FALSE
+stress	set12IT030	Chenodeoxycholic acid	353085	BT3558		putative endonuclease (NCBI ptt file)	1.33109320331951	7.39962895699549	FALSE
+stress	set12IT022	Chenodeoxycholic acid	353085	BT3558		putative endonuclease (NCBI ptt file)	1.54979154525376	10.0985382191519	FALSE
+stress	set12IT031	Chenodeoxycholic acid	353085	BT3558		putative endonuclease (NCBI ptt file)	1.55064168241978	11.1175704412836	FALSE
+stress	set12IT030	Chenodeoxycholic acid	353373	BT3847		conserved hypothetical protein (NCBI ptt file)	1.81940941804513	6.72134121565719	FALSE
+stress	set11IT041	Chenodeoxycholic acid	353384	BT3858		conserved hypothetical protein (NCBI ptt file)	-1.05899635551492	-6.24871663851033	FALSE
+stress	set12IT030	Chenodeoxycholic acid	353451	BT3925		nucleoside diphosphate kinase (NCBI ptt file)	1.52843200699162	5.16072038956992	FALSE
+stress	set12IT030	Chenodeoxycholic acid	353652	BT4126		flavoprotein (NCBI ptt file)	1.41436700012257	7.03343838651427	FALSE
+stress	set11IT037	Chenodeoxycholic acid	353869	BT4343		conserved hypothetical protein (NCBI ptt file)	-1.63348897371681	-5.07737074023043	FALSE
+stress	set6IT031	Chlorhexidine diacetate salt hydrate	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	-1.85950653874649	-6.6665609027547	FALSE
+stress	set6IT026	Chlorhexidine diacetate salt hydrate	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	-1.70027143048014	-5.86267904088323	FALSE
+stress	set6IT026	Chlorhexidine diacetate salt hydrate	352080	BT2552		putative butyrate kinase (NCBI ptt file)	-1.76737745986289	-5.10719019914548	FALSE
+stress	set6IT026	Chlorhexidine diacetate salt hydrate	352768	BT3241		hypothetical protein (NCBI ptt file)	-1.01476544297672	-6.90365074395302	FALSE
+stress	set6IT026	Chlorhexidine diacetate salt hydrate	352769	BT3242		hypothetical protein (NCBI ptt file)	-1.03970680784625	-5.89063084398667	FALSE
+stress	set6IT026	Chlorhexidine diacetate salt hydrate	352771	BT3244		hypothetical protein (NCBI ptt file)	-1.30582883336507	-6.7980394183111	FALSE
+stress	set6IT026	Chlorhexidine diacetate salt hydrate	353578	BT4052		putative ABC transporter ATP-binding protein (NCBI ptt file)	-1.57992799922829	-8.57294551028679	FALSE
+stress	set6IT031	Chlorhexidine diacetate salt hydrate	353578	BT4052		putative ABC transporter ATP-binding protein (NCBI ptt file)	-1.28925065416242	-7.35026992496866	FALSE
+stress	set7IT021	Chlorpromazine hydrochloride	349682	BT0154		putative periplasmic protease (NCBI ptt file)	1.92965446519253	8.46803419418277	FALSE
+stress	set10IT015	Chlorpromazine hydrochloride	349704	BT0176		conserved hypothetical protein (NCBI ptt file)	-1.43066578047116	-6.7872087337974	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	349831	BT0303		putative patatin-like phospholipase (NCBI ptt file)	-1.78543588461203	-6.07353519437651	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	349831	BT0303		putative patatin-like phospholipase (NCBI ptt file)	-1.46014001941169	-5.5689083850446	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	350108	BT0580		putative H+/peptide symporter (NCBI ptt file)	2.40072008267033	14.2200213942477	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	350108	BT0580		putative H+/peptide symporter (NCBI ptt file)	2.54736464349669	13.2822721332268	FALSE
+stress	set9IT027	Chlorpromazine hydrochloride	350319	BT0791		conserved hypothetical protein (NCBI ptt file)	-1.64970519474991	-5.37404221546708	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	350425	BT0897		chaperone protein htpG (heat shock protein htpG) (NCBI ptt file)	-1.51294506200237	-5.71625599411464	FALSE
+stress	set9IT027	Chlorpromazine hydrochloride	351005	BT1477		conserved hypothetical protein (NCBI ptt file)	-1.62142941912785	-5.04324891186667	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.63584001523912	-6.62010025226834	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	351055	BT1527		hypothetical protein (NCBI ptt file)	-1.63894372958375	-5.48664182772184	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	351065	BT1537		putative NADH dehydrogenase (NCBI ptt file)	-2.44307563309981	-5.45970862604209	FALSE
+stress	set9IT039	Chlorpromazine hydrochloride	351065	BT1537		putative NADH dehydrogenase (NCBI ptt file)	-1.92386292610086	-5.378531944364	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	351070	BT1542		putative pyridine nucleotide-disulfide oxidoreductase (NCBI ptt file)	-1.55815324241779	-5.518592611636	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	351413	BT1885		putative ATP-dependent RNA helicase (NCBI ptt file)	1.7654874337295	6.27142779900492	FALSE
+stress	set10IT015	Chlorpromazine hydrochloride	351413	BT1885		putative ATP-dependent RNA helicase (NCBI ptt file)	2.28469694326201	5.16055283645387	FALSE
+stress	set7IT021	Chlorpromazine hydrochloride	351439	BT1911		7-alpha-hydroxysteroid dehydrogenase (NCBI ptt file)	1.02236557867332	5.44590009844276	FALSE
+stress	set7IT021	Chlorpromazine hydrochloride	351497	BT1969		NADP-dependent malate dehydrogenase (NCBI ptt file)	1.54538303965912	8.53952101998082	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	351756	BT2228		hypothetical protein (NCBI ptt file)	-2.22267461287128	-5.57472979502806	FALSE
+stress	set10IT015	Chlorpromazine hydrochloride	351980	BT2452		hypothetical protein (NCBI ptt file)	-1.63189797834406	-5.45005711675088	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	352048	BT2520		conserved hypothetical protein (NCBI ptt file)	-2.45205791069001	-5.00543763306812	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	1.50430962950877	6.59508448104448	FALSE
+stress	set9IT039	Chlorpromazine hydrochloride	352070	BT2542		putative haloacid dehalogenase-like hydrolase (NCBI ptt file)	1.81766449138399	6.80725580387777	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	352070	BT2542		putative haloacid dehalogenase-like hydrolase (NCBI ptt file)	3.5417531756369	7.41443294827293	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	352070	BT2542		putative haloacid dehalogenase-like hydrolase (NCBI ptt file)	3.92960205368849	7.97974862141282	FALSE
+stress	set9IT027	Chlorpromazine hydrochloride	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	-1.40379911763228	-6.0889482830309	FALSE
+stress	set9IT039	Chlorpromazine hydrochloride	352080	BT2552		putative butyrate kinase (NCBI ptt file)	-2.05772741319911	-5.44947309902048	FALSE
+stress	set9IT027	Chlorpromazine hydrochloride	352080	BT2552		putative butyrate kinase (NCBI ptt file)	-1.9433836187864	-5.99171011346414	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	352259	BT2732		hypothetical protein (NCBI ptt file)	-1.92901066790065	-8.82411892184899	FALSE
+stress	set7IT017	Chlorpromazine hydrochloride	352360	BT2833		hypothetical protein (NCBI ptt file)	-1.48013408755814	-7.47850486626808	FALSE
+stress	set7IT021	Chlorpromazine hydrochloride	352360	BT2833		hypothetical protein (NCBI ptt file)	-1.11396584747061	-6.44822134492159	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	352463	BT2936		putative glycosyltransferase (NCBI ptt file)	-2.0887814572201	-8.57123887491483	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	352664	BT3137		conserved hypothetical protein (NCBI ptt file)	-1.25630218717396	-5.03557934821763	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	352692	BT3165		tRNA/rRNA methyltransferase (NCBI ptt file)	2.31924586239791	7.76125648793069	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	352692	BT3165		tRNA/rRNA methyltransferase (NCBI ptt file)	2.87051348031998	9.80490355271438	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	352758	BT3231		4-deoxy-L-threo-5-hexosulose-uronate ketol-isomerase (NCBI ptt file)	-1.5292251974989	-7.04308577170228	FALSE
+stress	set7IT021	Chlorpromazine hydrochloride	352781	BT3254		dipeptidyl peptidase IV (NCBI ptt file)	-1.48509384852502	-6.95476359385739	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	352844	BT3317		conserved hypothetical protein (NCBI ptt file)	2.86208820758191	5.43260994835502	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	352845	BT3318		signal peptidase I (NCBI ptt file)	2.06755570436935	5.58469718087023	FALSE
+stress	set10IT015	Chlorpromazine hydrochloride	353103	BT3576		putative ribokinase (NCBI ptt file)	1.51226274753668	7.4648757392267	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	353335	BT3809		ABC transporter ATP-binding protein (NCBI ptt file)	1.54203946848369	6.51291536074513	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	353335	BT3809		ABC transporter ATP-binding protein (NCBI ptt file)	1.67436078870712	6.6744293450706	FALSE
+stress	set10IT015	Chlorpromazine hydrochloride	353337	BT3811		putative endothelin-converting enzyme (NCBI ptt file)	-2.59145880940847	-6.10789742610889	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	353715	BT4189		conserved hypothetical protein (NCBI ptt file)	-1.35561267328715	-5.28514821568613	FALSE
+stress	set9IT027	Chlorpromazine hydrochloride	353739	BT4213		conserved hypothetical protein (NCBI ptt file)	-1.77878594844091	-5.05819197923798	FALSE
+stress	set8IT039	Chlorpromazine hydrochloride	354013	BT4487		putative membrane-bound lytic murein transglycosylase (NCBI ptt file)	-1.9961941509108	-6.90987382949282	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	354013	BT4487		putative membrane-bound lytic murein transglycosylase (NCBI ptt file)	-1.53002732778264	-5.07308240080722	FALSE
+stress	set10IT015	Chlorpromazine hydrochloride	354135	BT4609		conserved hypothetical protein (NCBI ptt file)	1.50686973486281	5.47331713624837	FALSE
+stress	set8IT027	Chlorpromazine hydrochloride	354234	BT4708		hypothetical protein (NCBI ptt file)	-1.14490616420515	-5.13620604998515	FALSE
+stress	set9IT059	Ciprofloxacin Hydrochloride	351563	BT2035		putative ABC transporter ATP-binding protein (NCBI ptt file)	2.58089326266233	11.457952491335	FALSE
+stress	set8IT063	Ciprofloxacin Hydrochloride	351934	BT2406		putative DNA repair protein (NCBI ptt file)	-1.9352979632909	-8.63689228651324	FALSE
+stress	set9IT059	Ciprofloxacin Hydrochloride	351934	BT2406		putative DNA repair protein (NCBI ptt file)	-1.43484361019452	-7.06291410976462	FALSE
+stress	set9IT059	Ciprofloxacin Hydrochloride	351935	BT2407		NAD-utilizing dehydrogenases (NCBI ptt file)	1.46477524540345	6.09395316855602	FALSE
+stress	set8IT063	Ciprofloxacin Hydrochloride	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	1.46707538519595	7.13905869153708	FALSE
+stress	set8IT063	Ciprofloxacin Hydrochloride	352451	BT2924		acetyl-CoA synthetase (NCBI ptt file)	2.5016888923914	20.2776796956099	FALSE
+stress	set9IT059	Ciprofloxacin Hydrochloride	353508	BT3982		ATP-dependent exoDNAse (exonuclease V), alpha subunit - helicase superfamily I member (NCBI ptt file)	-1.02634337455015	-5.56597477217944	FALSE
+stress	set9IT059	Ciprofloxacin Hydrochloride	353568	BT4042		putative Mg2+ transporter MgtE (NCBI ptt file)	1.35453529564123	6.93764619362206	FALSE
+stress	set9IT059	Ciprofloxacin Hydrochloride	353630	BT4104		DNA helicase (NCBI ptt file)	-1.13459985490579	-7.40383905308964	FALSE
+stress	set8IT063	Ciprofloxacin Hydrochloride	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	1.32749644513616	7.93850889097086	FALSE
+stress	set12IT026	Deoxycholic acid	349785	BT0257		xanthan lyase (NCBI ptt file)	-1.03122441688176	-5.50103844535584	FALSE
+stress	set12IT026	Deoxycholic acid	350094	BT0566		alanyl-tRNA synthetase (NCBI ptt file)	1.13715139528575	5.20532156828356	FALSE
+stress	set12IT026	Deoxycholic acid	350127	BT0599		UDP-glucose 6-dehydrogenase (NCBI ptt file)	-1.99460104181621	-5.2176789820286	FALSE
+stress	set12IT035	Deoxycholic acid	350136	BT0608		glycosyltransferase (NCBI ptt file)	-1.51936679382768	-5.55261525298083	FALSE
+stress	set12IT033	Deoxycholic acid	350219	BT0691		hypothetical protein (NCBI ptt file)	-1.91373661777537	-5.64953557163614	FALSE
+stress	set12IT024	Deoxycholic acid	350219	BT0691		hypothetical protein (NCBI ptt file)	-1.80925347283984	-6.48224822574367	FALSE
+stress	set12IT033	Deoxycholic acid	350763	BT1235		AraC-type transcription regulator (NCBI ptt file)	1.28565510366392	6.69701125188069	FALSE
+stress	set12IT026	Deoxycholic acid	351599	BT2071		isocitrate dehydrogenase [NADP] (NCBI ptt file)	-2.07124046928379	-6.99612107951478	FALSE
+stress	set12IT024	Deoxycholic acid	352319	BT2792		AraC/XylS family transcriptional regulator (NCBI ptt file)	-2.6183487621671	-12.7746357455396	FALSE
+stress	set12IT033	Deoxycholic acid	352319	BT2792		AraC/XylS family transcriptional regulator (NCBI ptt file)	-2.47158918739106	-12.7901279903666	FALSE
+stress	set11IT042	Deoxycholic acid	352319	BT2792		AraC/XylS family transcriptional regulator (NCBI ptt file)	-1.12951746960982	-6.53214155360276	FALSE
+stress	set12IT024	Deoxycholic acid	352320	BT2793		putative MFS transporter (NCBI ptt file)	-2.62177367936404	-16.634594763575	FALSE
+stress	set12IT033	Deoxycholic acid	352320	BT2793		putative MFS transporter (NCBI ptt file)	-2.44839695102023	-15.5283103284208	FALSE
+stress	set12IT033	Deoxycholic acid	352321	BT2794		putative multidrug resistance protein (NCBI ptt file)	-2.64279521685503	-13.489952122507	FALSE
+stress	set12IT024	Deoxycholic acid	352321	BT2794		putative multidrug resistance protein (NCBI ptt file)	-2.46522643708546	-11.4473837303009	FALSE
+stress	set12IT024	Deoxycholic acid	352322	BT2795		outer membrane efflux protein precursor (NCBI ptt file)	-2.54444421687141	-12.5933784281694	FALSE
+stress	set12IT033	Deoxycholic acid	352322	BT2795		outer membrane efflux protein precursor (NCBI ptt file)	-2.21650949376791	-12.0445273538975	FALSE
+stress	set12IT026	Deoxycholic acid	352360	BT2833		hypothetical protein (NCBI ptt file)	-2.15866663763414	-9.19394618955524	FALSE
+stress	set12IT035	Deoxycholic acid	352360	BT2833		hypothetical protein (NCBI ptt file)	-1.59726645289833	-7.85326610746219	FALSE
+stress	set12IT035	Deoxycholic acid	352463	BT2936		putative glycosyltransferase (NCBI ptt file)	1.6113629440923	5.5026266310969	FALSE
+stress	set12IT026	Deoxycholic acid	352463	BT2936		putative glycosyltransferase (NCBI ptt file)	3.28412027608572	6.27131109961042	FALSE
+stress	set12IT026	Deoxycholic acid	353085	BT3558		putative endonuclease (NCBI ptt file)	1.17183805276166	6.85804278539486	FALSE
+stress	set12IT025	Deoxycholic acid	353085	BT3558		putative endonuclease (NCBI ptt file)	1.4232499510939	10.8641558360715	FALSE
+stress	set12IT035	Deoxycholic acid	353085	BT3558		putative endonuclease (NCBI ptt file)	1.4495250854445	10.6472416278769	FALSE
+stress	set12IT034	Deoxycholic acid	353085	BT3558		putative endonuclease (NCBI ptt file)	1.51496210237697	11.7313657914959	FALSE
+stress	set12IT026	Deoxycholic acid	353373	BT3847		conserved hypothetical protein (NCBI ptt file)	1.76700160496691	6.06035562354098	FALSE
+stress	set12IT026	Deoxycholic acid	353573	BT4047		conserved hypothetical protein (NCBI ptt file)	-1.01428040913071	-6.63106036031686	FALSE
+stress	set11IT042	Deoxycholic acid	353724	BT4198		conserved hypothetical protein (NCBI ptt file)	1.61467409433277	5.69849022474142	FALSE
+stress	set12IT026	Deoxycholic acid	354111	BT4585		putative Na+/H+ anitporter (NCBI ptt file)	-1.03202160733602	-5.17697250997019	FALSE
+stress	set4IT001	Dimethyl Sulfoxide	350123	BT0595		integrase (NCBI ptt file)	1.198962499333	5.29964647619797	FALSE
+stress	set4IT002	Dimethyl Sulfoxide	350123	BT0595		integrase (NCBI ptt file)	1.31100440524889	5.43659916388314	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	350294	BT0766		conserved hypothetical protein (NCBI ptt file)	1.73154977148804	6.43600328512779	FALSE
+stress	set4IT001	Dimethyl Sulfoxide	350573	BT1045		hypothetical protein (NCBI ptt file)	-1.18439171633779	-5.14518463561505	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	350621	BT1093		conserved hypothetical protein, putative TonB-dependent outer membrane receptor protein (NCBI ptt file)	-2.01288224867933	-5.02140132679931	FALSE
+stress	set4IT016	Dimethyl Sulfoxide	350859	BT1331		hypothetical protein (NCBI ptt file)	-1.49511613654725	-5.1109924465599	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	351024	BT1496		hemolysin-related protein, containing CBS domain (NCBI ptt file)	-3.37263192555479	-5.57610094410188	FALSE
+stress	set4IT002	Dimethyl Sulfoxide	351024	BT1496		hemolysin-related protein, containing CBS domain (NCBI ptt file)	-3.07419110526784	-5.5597294695016	FALSE
+stress	set4IT001	Dimethyl Sulfoxide	351024	BT1496		hemolysin-related protein, containing CBS domain (NCBI ptt file)	-2.55456346068622	-5.10543137198232	FALSE
+stress	set4IT001	Dimethyl Sulfoxide	351077	BT1549		putative secreted peptidase (NCBI ptt file)	1.25042565986252	5.54103086369159	FALSE
+stress	set4IT002	Dimethyl Sulfoxide	351077	BT1549		putative secreted peptidase (NCBI ptt file)	1.60144082782721	6.31734020221142	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	351077	BT1549		putative secreted peptidase (NCBI ptt file)	2.03419193838087	8.551908177428	FALSE
+stress	set4IT016	Dimethyl Sulfoxide	351191	BT1663		pullulanase precursor (NCBI ptt file)	-1.50590705725977	-6.73024656159451	FALSE
+stress	set4IT002	Dimethyl Sulfoxide	351191	BT1663		pullulanase precursor (NCBI ptt file)	-1.35009588192985	-6.29937942454106	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	351265	BT1737		conserved hypothetical protein, putative secreted protein (NCBI ptt file)	-1.91133244703449	-7.67566190912931	FALSE
+stress	set4IT016	Dimethyl Sulfoxide	351265	BT1737		conserved hypothetical protein, putative secreted protein (NCBI ptt file)	-1.46272410553722	-5.08193112391851	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	351669	BT2141		putative N-acetylmuramoyl-L-alanine amidase amiA (NCBI ptt file)	-1.96635429410335	-5.53146229189333	FALSE
+stress	set4IT001	Dimethyl Sulfoxide	351669	BT2141		putative N-acetylmuramoyl-L-alanine amidase amiA (NCBI ptt file)	-1.776324496983	-5.06965307732284	FALSE
+stress	set4IT002	Dimethyl Sulfoxide	352991	BT3464		putative peptidase (NCBI ptt file)	-1.67897958921872	-5.09995048931828	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	352991	BT3464		putative peptidase (NCBI ptt file)	-1.49434156023112	-5.91716367317832	FALSE
+stress	set4IT002	Dimethyl Sulfoxide	353630	BT4104		DNA helicase (NCBI ptt file)	-1.23855545614425	-7.21502413034296	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	353630	BT4104		DNA helicase (NCBI ptt file)	-1.18490213657268	-7.55039987851896	FALSE
+stress	set4IT002	Dimethyl Sulfoxide	353787	BT4261		hypothetical protein (NCBI ptt file)	-2.94021163525845	-5.89581160204724	FALSE
+stress	set4IT001	Dimethyl Sulfoxide	353787	BT4261		hypothetical protein (NCBI ptt file)	-2.59369307705803	-5.24654661231829	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	353787	BT4261		hypothetical protein (NCBI ptt file)	-2.13248677787854	-5.14960358116228	FALSE
+stress	set4IT002	Dimethyl Sulfoxide	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	1.6208938041362	6.52896970207116	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	1.69216772988514	6.31092199842625	FALSE
+stress	set4IT002	Dimethyl Sulfoxide	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	1.20706447825687	5.19534763211354	FALSE
+stress	set4IT017	Dimethyl Sulfoxide	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	1.55085108569849	5.87477416195525	FALSE
+stress	set8IT013	Dimetridazole	349704	BT0176		conserved hypothetical protein (NCBI ptt file)	1.18199887586081	8.8496581717945	FALSE
+stress	set9IT008	Dimetridazole	349704	BT0176		conserved hypothetical protein (NCBI ptt file)	1.38323260573595	10.0831251485371	FALSE
+stress	set6IT035	Dimetridazole	349780	BT0252		transcription-repair coupling factor (NCBI ptt file)	-1.60793340468607	-5.9222810329926	FALSE
+stress	set6IT046	Dimetridazole	350201	BT0673		NADP(H) oxidoreductase (NCBI ptt file)	1.3062064940206	5.32702079224336	FALSE
+stress	set6IT035	Dimetridazole	350678	BT1150		conserved hypothetical protein (NCBI ptt file)	1.42809351200843	5.02814191150201	FALSE
+stress	set6IT042	Dimetridazole	350678	BT1150		conserved hypothetical protein (NCBI ptt file)	1.54082578899493	6.48421612523367	FALSE
+stress	set6IT046	Dimetridazole	350678	BT1150		conserved hypothetical protein (NCBI ptt file)	1.58812646636421	6.75574053597279	FALSE
+stress	set6IT042	Dimetridazole	350910	BT1382		conserved hypothetical protein (NCBI ptt file)	1.37141471852485	5.55344239366951	FALSE
+stress	set6IT042	Dimetridazole	351711	BT2183		conserved hypothetical protein (NCBI ptt file)	-3.39297726458257	-5.18442562191291	FALSE
+stress	set6IT035	Dimetridazole	351711	BT2183		conserved hypothetical protein (NCBI ptt file)	-3.00127873733592	-9.72243629042128	FALSE
+stress	set6IT046	Dimetridazole	351711	BT2183		conserved hypothetical protein (NCBI ptt file)	-2.77174919514372	-8.81979326566213	FALSE
+stress	set9IT008	Dimetridazole	351711	BT2183		conserved hypothetical protein (NCBI ptt file)	-2.23610921831252	-8.05687362148908	FALSE
+stress	set6IT054	Dimetridazole	351711	BT2183		conserved hypothetical protein (NCBI ptt file)	-2.20860097691039	-10.27986378983	FALSE
+stress	set8IT008	Dimetridazole	351711	BT2183		conserved hypothetical protein (NCBI ptt file)	-1.95684626332249	-7.37210559047724	FALSE
+stress	set8IT013	Dimetridazole	351711	BT2183		conserved hypothetical protein (NCBI ptt file)	-1.90218862602791	-7.08802499795085	FALSE
+stress	set10IT001	Dimetridazole	351711	BT2183		conserved hypothetical protein (NCBI ptt file)	-1.84905525826632	-7.44035517926484	FALSE
+stress	set8IT011	Dimetridazole	351711	BT2183		conserved hypothetical protein (NCBI ptt file)	-1.47729955239513	-6.70166320139385	FALSE
+stress	set6IT046	Dimetridazole	351712	BT2184		RNA polymerase ECF-type sigma factor (NCBI ptt file)	1.623142090519	5.22714118224923	FALSE
+stress	set6IT042	Dimetridazole	351712	BT2184		RNA polymerase ECF-type sigma factor (NCBI ptt file)	2.08478992777793	5.0397444908864	FALSE
+stress	set6IT035	Dimetridazole	351712	BT2184		RNA polymerase ECF-type sigma factor (NCBI ptt file)	2.20007392664096	7.92843067666458	FALSE
+stress	set6IT054	Dimetridazole	351928	BT2400		DNA-3-methyladenine glycosylase I (NCBI ptt file)	-1.96027949400961	-5.23144871794948	FALSE
+stress	set6IT035	Dimetridazole	351934	BT2406		putative DNA repair protein (NCBI ptt file)	-1.5244850024948	-10.592032868445	FALSE
+stress	set8IT013	Dimetridazole	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	-1.38265864450107	-5.65866059547562	FALSE
+stress	set9IT008	Dimetridazole	353508	BT3982		ATP-dependent exoDNAse (exonuclease V), alpha subunit - helicase superfamily I member (NCBI ptt file)	-1.19698539376871	-6.31281711039597	FALSE
+stress	set8IT013	Dimetridazole	353630	BT4104		DNA helicase (NCBI ptt file)	-1.80592584399097	-12.0859129512723	FALSE
+stress	set6IT035	Dimetridazole	353630	BT4104		DNA helicase (NCBI ptt file)	-1.55323647007944	-11.8972270926315	FALSE
+stress	set9IT008	Dimetridazole	353630	BT4104		DNA helicase (NCBI ptt file)	-1.44038877715363	-10.3359064158313	FALSE
+stress	set6IT042	Dimetridazole	353630	BT4104		DNA helicase (NCBI ptt file)	-1.35770251368211	-8.51540055639066	FALSE
+stress	set8IT008	Dimetridazole	353630	BT4104		DNA helicase (NCBI ptt file)	-1.32496712253957	-10.2526205744972	FALSE
+stress	set6IT046	Dimetridazole	353630	BT4104		DNA helicase (NCBI ptt file)	-1.1747368416974	-8.98851900455258	FALSE
+stress	set6IT054	Dimetridazole	353630	BT4104		DNA helicase (NCBI ptt file)	-1.08457695068463	-7.9715015279414	FALSE
+stress	set6IT042	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-3.29627621078868	-5.33216500553813	FALSE
+stress	set6IT035	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-2.84165796919547	-8.20101796573712	FALSE
+stress	set6IT046	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-2.70736265589493	-7.2209906811817	FALSE
+stress	set9IT008	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-2.53120857697144	-7.38070780783261	FALSE
+stress	set10IT001	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-2.52175850022981	-8.72344565402923	FALSE
+stress	set8IT013	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-2.45012270678586	-7.8601023111069	FALSE
+stress	set8IT008	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-2.42152893748523	-8.02728639228807	FALSE
+stress	set6IT054	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-2.17119491513847	-7.16745281501665	FALSE
+stress	set8IT011	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-1.78902600381532	-6.41518731125854	FALSE
+stress	set10IT013	Dimetridazole	353935	BT4409		DNA damage-inducible protein (NCBI ptt file)	-1.2078728224516	-5.20518476294215	FALSE
+stress	set8IT011	Dimetridazole	354229	BT4703		chloromuconate cycloisomerase (NCBI ptt file)	1.9103794886512	7.18394631805462	FALSE
+stress	set8IT008	Dimetridazole	354229	BT4703		chloromuconate cycloisomerase (NCBI ptt file)	2.22396246393816	8.19720319152192	FALSE
+stress	set9IT008	Dimetridazole	354229	BT4703		chloromuconate cycloisomerase (NCBI ptt file)	2.26476324054274	7.59682482771008	FALSE
+stress	set10IT001	Dimetridazole	354229	BT4703		chloromuconate cycloisomerase (NCBI ptt file)	2.50156593652659	9.32230692294542	FALSE
+stress	set8IT013	Dimetridazole	354229	BT4703		chloromuconate cycloisomerase (NCBI ptt file)	2.62708264579665	8.57673814093309	FALSE
+stress	set6IT046	Dimetridazole	354229	BT4703		chloromuconate cycloisomerase (NCBI ptt file)	2.72360080682296	11.3345173317097	FALSE
+stress	set6IT035	Dimetridazole	354229	BT4703		chloromuconate cycloisomerase (NCBI ptt file)	2.74085437151283	14.4698180021782	FALSE
+stress	set6IT042	Dimetridazole	354229	BT4703		chloromuconate cycloisomerase (NCBI ptt file)	4.45759363779103	16.6777803084489	FALSE
+stress	set6IT046	Dimetridazole	354281	BT4755		putative two-component system sensor histidine kinase, putative heat shock protein (NCBI ptt file)	1.16141612313517	6.75229682118351	FALSE
+stress	set6IT042	Dimetridazole	354281	BT4755		putative two-component system sensor histidine kinase, putative heat shock protein (NCBI ptt file)	1.90121041357316	8.86875056237354	FALSE
+stress	set6IT042	Dimetridazole	354282	BT4756		hypothetical protein (NCBI ptt file)	1.67667829180182	5.78177614979216	FALSE
+stress	set6IT046	Dimetridazole	354283	BT4757		hypothetical protein (NCBI ptt file)	1.0558201155846	6.74853592823477	FALSE
+stress	set6IT035	Dimetridazole	354283	BT4757		hypothetical protein (NCBI ptt file)	1.25361227535481	7.69238191119242	FALSE
+stress	set6IT042	Dimetridazole	354283	BT4757		hypothetical protein (NCBI ptt file)	2.06099857620567	9.705131215491	FALSE
+stress	set9IT044	Doxycycline hyclate	349540	BT0012		conserved hypothetical protein (NCBI ptt file)	-1.19734003978121	-5.49541543507311	FALSE
+stress	set9IT044	Doxycycline hyclate	349711	BT0183		transglycosylase (NCBI ptt file)	1.56333917675289	6.93271489067605	FALSE
+stress	set9IT044	Doxycycline hyclate	350249	BT0721		DNA repair and recombination protein, putative helicase (NCBI ptt file)	-1.5084210326727	-5.37060968507216	FALSE
+stress	set11IT011	Doxycycline hyclate	351011	BT1483		two-component system sensor histidine kinase (NCBI ptt file)	-1.9830074676501	-5.60411489706797	FALSE
+stress	set10IT044	Doxycycline hyclate	351198	BT1670		putative transmembrane transport protein (NCBI ptt file)	-1.05524904672261	-6.12618550993901	FALSE
+stress	set8IT068	Doxycycline hyclate	351342	BT1814		conserved hypothetical protein (NCBI ptt file)	1.00332535072275	6.58032882133065	FALSE
+stress	set10IT056	Doxycycline hyclate	351413	BT1885		putative ATP-dependent RNA helicase (NCBI ptt file)	1.45545667028626	5.47948934574587	FALSE
+stress	set11IT011	Doxycycline hyclate	351428	BT1900		BexA, putative cation effux pump (NCBI ptt file)	1.17082038884856	5.2842431359029	FALSE
+stress	set8IT056	Doxycycline hyclate	351428	BT1900		BexA, putative cation effux pump (NCBI ptt file)	2.44188037040876	7.04105392217896	FALSE
+stress	set9IT044	Doxycycline hyclate	351495	BT1967		multidrug efflux protein (NCBI ptt file)	-1.17516379170912	-5.35789555159378	FALSE
+stress	set11IT011	Doxycycline hyclate	351578	BT2050		conserved hypothetical protein (NCBI ptt file)	-1.76518164995535	-6.37483636902066	FALSE
+stress	set10IT032	Doxycycline hyclate	351578	BT2050		conserved hypothetical protein (NCBI ptt file)	-1.29920691673149	-5.32739756247207	FALSE
+stress	set8IT056	Doxycycline hyclate	351669	BT2141		putative N-acetylmuramoyl-L-alanine amidase amiA (NCBI ptt file)	3.14065961725571	6.47714875886981	FALSE
+stress	set9IT044	Doxycycline hyclate	351672	BT2144		putative oxidoreductase (NCBI ptt file)	-1.68698990797764	-6.87597049810421	FALSE
+stress	set9IT044	Doxycycline hyclate	351678	BT2150		methylglyoxal synthase (NCBI ptt file)	-2.30716535931855	-6.43768135720796	FALSE
+stress	set9IT044	Doxycycline hyclate	351682	BT2154		putative long-chain-fatty-acid--CoA ligase (NCBI ptt file)	-2.37151758843309	-10.4360783182512	FALSE
+stress	set11IT011	Doxycycline hyclate	351832	BT2304		hypothetical protein (NCBI ptt file)	-3.16190034748857	-5.059079287908	FALSE
+stress	set9IT056	Doxycycline hyclate	351832	BT2304		hypothetical protein (NCBI ptt file)	-2.21566768140153	-5.67692894191411	FALSE
+stress	set10IT044	Doxycycline hyclate	351832	BT2304		hypothetical protein (NCBI ptt file)	-1.91356637573603	-5.58537541736997	FALSE
+stress	set8IT056	Doxycycline hyclate	351833	BT2305		putative mobilization protein (NCBI ptt file)	1.7231597205635	7.24527689073894	FALSE
+stress	set8IT056	Doxycycline hyclate	351953	BT2425		K+-transporting ATPase A chain (NCBI ptt file)	1.25553664834454	5.14110222488568	FALSE
+stress	set9IT044	Doxycycline hyclate	351962	BT2434		pyridine nucleotide-disulphide oxidoreductase (NCBI ptt file)	-1.16514369419128	-5.09602986365275	FALSE
+stress	set9IT044	Doxycycline hyclate	352022	BT2494		ABC transporter, ATP-binding protein (NCBI ptt file)	-1.37439384812506	-5.42124884388964	FALSE
+stress	set9IT044	Doxycycline hyclate	352073	BT2545		hypothetical protein (NCBI ptt file)	1.22946962171713	6.04969248554266	FALSE
+stress	set8IT056	Doxycycline hyclate	352073	BT2545		hypothetical protein (NCBI ptt file)	2.63363136330747	10.8109546362183	FALSE
+stress	set9IT044	Doxycycline hyclate	352259	BT2732		hypothetical protein (NCBI ptt file)	-1.45954232769296	-5.13124898110196	FALSE
+stress	set11IT011	Doxycycline hyclate	352280	BT2753		hypothetical protein (NCBI ptt file)	1.06761987633667	5.47585420568333	FALSE
+stress	set10IT032	Doxycycline hyclate	352280	BT2753		hypothetical protein (NCBI ptt file)	1.08245663762763	5.91188938773201	FALSE
+stress	set11IT011	Doxycycline hyclate	352367	BT2840		O-methyltransferase (NCBI ptt file)	2.02097459619064	10.1780322021284	FALSE
+stress	set9IT044	Doxycycline hyclate	352377	BT2850		putative two-component system sensor histidine kinase (NCBI ptt file)	-1.27747188135707	-7.3100206236575	FALSE
+stress	set9IT044	Doxycycline hyclate	352528	BT3001		ATP-dependent DNA helicase (NCBI ptt file)	-2.04813631307856	-10.9592414778412	FALSE
+stress	set8IT056	Doxycycline hyclate	352530	BT3003		hypothetical protein (NCBI ptt file)	1.56832594858097	8.74148222124897	FALSE
+stress	set9IT044	Doxycycline hyclate	352678	BT3151		hypothetical protein (NCBI ptt file)	-1.64833302693247	-5.74322991626649	FALSE
+stress	set8IT056	Doxycycline hyclate	352679	BT3152		ATP-dependent DNA helicase (NCBI ptt file)	4.79961356107141	24.6767663620633	FALSE
+stress	set8IT056	Doxycycline hyclate	352680	BT3153		hypothetical protein (NCBI ptt file)	4.99468923976007	25.4023425591477	FALSE
+stress	set8IT056	Doxycycline hyclate	353330	BT3804		putative transport protein, multidrug efflux protein (NCBI ptt file)	1.63138163351212	5.16333887760374	FALSE
+stress	set11IT011	Doxycycline hyclate	353445	BT3919		putative biopolymer transport protein (NCBI ptt file)	-3.67850579250167	-5.50393751276953	FALSE
+stress	set9IT044	Doxycycline hyclate	353534	BT4008		conserved hypothetical protein (NCBI ptt file)	-2.76177849389456	-7.56708320259393	FALSE
+stress	set11IT011	Doxycycline hyclate	353568	BT4042		putative Mg2+ transporter MgtE (NCBI ptt file)	-1.73444282974146	-9.7716283633891	FALSE
+stress	set10IT032	Doxycycline hyclate	353568	BT4042		putative Mg2+ transporter MgtE (NCBI ptt file)	-1.24133890457156	-7.34746660409505	FALSE
+stress	set9IT044	Doxycycline hyclate	353630	BT4104		DNA helicase (NCBI ptt file)	-1.98774866073421	-11.349557231272	FALSE
+stress	set11IT011	Doxycycline hyclate	353734	BT4208		phosphohydrolase (NCBI ptt file)	-1.41893257462208	-5.33788343420264	FALSE
+stress	set9IT044	Doxycycline hyclate	354042	BT4516		conserved hypothetical protein (NCBI ptt file)	-1.31244091276771	-6.83923278523869	FALSE
+stress	set10IT028	Econazole nitrate salt	349711	BT0183		transglycosylase (NCBI ptt file)	1.71084167944251	7.74945394371216	FALSE
+stress	set9IT036	Econazole nitrate salt	350229	BT0701		hypothetical protein (NCBI ptt file)	1.76416493165534	6.95017347800719	FALSE
+stress	set10IT028	Econazole nitrate salt	350229	BT0701		hypothetical protein (NCBI ptt file)	1.85821129762905	8.43360949649345	FALSE
+stress	set9IT036	Econazole nitrate salt	351102	BT1574		putative outer membrane protein precursor (NCBI ptt file)	1.4035070671489	5.72637317280431	FALSE
+stress	set10IT028	Econazole nitrate salt	351102	BT1574		putative outer membrane protein precursor (NCBI ptt file)	1.69532907414779	8.12764724955132	FALSE
+stress	set10IT028	Econazole nitrate salt	351112	BT1584		hypothetical protein (NCBI ptt file)	-1.54542945451855	-5.27578961104144	FALSE
+stress	set10IT028	Econazole nitrate salt	351501	BT1973		NAD-specific glutamate dehydrogenase (NCBI ptt file)	1.37437849505058	7.28232902730259	FALSE
+stress	set10IT028	Econazole nitrate salt	351699	BT2171		putative anti-sigma factor (NCBI ptt file)	1.69703000505638	5.63337174965493	FALSE
+stress	set8IT064	Econazole nitrate salt	352451	BT2924		acetyl-CoA synthetase (NCBI ptt file)	2.08649266092449	16.303830581371	FALSE
+stress	set10IT028	Econazole nitrate salt	352463	BT2936		putative glycosyltransferase (NCBI ptt file)	-1.50153186812096	-6.2745867528215	FALSE
+stress	set9IT036	Econazole nitrate salt	352598	BT3071		conserved hypothetical protein (NCBI ptt file)	1.11776368317779	5.08227863503972	FALSE
+stress	set10IT028	Econazole nitrate salt	352598	BT3071		conserved hypothetical protein (NCBI ptt file)	1.25289034737617	5.3244521004435	FALSE
+stress	set9IT036	Econazole nitrate salt	352732	BT3205		hypothetical protein (NCBI ptt file)	-1.44853000280856	-5.3304774436696	FALSE
+stress	set9IT036	Econazole nitrate salt	353105	BT3578		hypothetical protein (NCBI ptt file)	-1.56770932278325	-5.09739525352737	FALSE
+stress	set9IT036	Econazole nitrate salt	353167	BT3641		conserved hypothetical protein (NCBI ptt file)	1.49810623192958	5.6572366379312	FALSE
+stress	set10IT028	Econazole nitrate salt	353393	BT3867		hypothetical protein (NCBI ptt file)	1.29334084700003	5.70561440587877	FALSE
+stress	set7IT019	Econazole nitrate salt	353568	BT4042		putative Mg2+ transporter MgtE (NCBI ptt file)	-1.48235114382968	-9.23954740479613	FALSE
+stress	set12IT029	Ethanol	352360	BT2833		hypothetical protein (NCBI ptt file)	-1.2447567819122	-6.5357838818477	FALSE
+stress	set10IT052	Furaltadone hydrochloride	350360	BT0832		putative phosphoserine phosphatase (NCBI ptt file)	-1.4666906108631	-6.00205956236422	FALSE
+stress	set10IT052	Furaltadone hydrochloride	350861	BT1333		putative dihydropyrimidine dehydrogenase [NADP+] precursor (NCBI ptt file)	-1.29354999138508	-5.04823119136639	FALSE
+stress	set9IT060	Furaltadone hydrochloride	353167	BT3641		conserved hypothetical protein (NCBI ptt file)	1.65679741313683	7.06173613167514	FALSE
+stress	set10IT052	Furaltadone hydrochloride	354135	BT4609		conserved hypothetical protein (NCBI ptt file)	1.40180732889355	5.97331890718973	FALSE
+stress	set3IT095	Fusidic acid sodium salt	349704	BT0176		conserved hypothetical protein (NCBI ptt file)	-1.46112241859758	-8.63871788256981	FALSE
+stress	set4IT014	Fusidic acid sodium salt	349704	BT0176		conserved hypothetical protein (NCBI ptt file)	-1.29208705122603	-7.59325432602247	FALSE
+stress	set4IT014	Fusidic acid sodium salt	349831	BT0303		putative patatin-like phospholipase (NCBI ptt file)	-2.58325439976678	-6.16257452659304	FALSE
+stress	set4IT014	Fusidic acid sodium salt	350425	BT0897		chaperone protein htpG (heat shock protein htpG) (NCBI ptt file)	-1.66539483778624	-6.18269270745992	FALSE
+stress	set3IT095	Fusidic acid sodium salt	350425	BT0897		chaperone protein htpG (heat shock protein htpG) (NCBI ptt file)	-1.65661447738459	-5.73058955066406	FALSE
+stress	set3IT095	Fusidic acid sodium salt	351024	BT1496		hemolysin-related protein, containing CBS domain (NCBI ptt file)	-1.86268318256311	-5.01511788530173	FALSE
+stress	set3IT095	Fusidic acid sodium salt	351428	BT1900		BexA, putative cation effux pump (NCBI ptt file)	2.54573714663322	8.16420927072976	FALSE
+stress	set4IT014	Fusidic acid sodium salt	351428	BT1900		BexA, putative cation effux pump (NCBI ptt file)	3.19332995160071	8.26727008056881	FALSE
+stress	set4IT014	Fusidic acid sodium salt	351495	BT1967		multidrug efflux protein (NCBI ptt file)	-1.44421070914959	-5.35784831662952	FALSE
+stress	set4IT013	Fusidic acid sodium salt	351659	BT2131		hypothetical protein (NCBI ptt file)	-1.74357477622107	-5.90035005465128	FALSE
+stress	set3IT094	Fusidic acid sodium salt	351669	BT2141		putative N-acetylmuramoyl-L-alanine amidase amiA (NCBI ptt file)	-2.33927451213349	-5.56607413673387	FALSE
+stress	set4IT014	Fusidic acid sodium salt	351947	BT2419		putative GMP synthase [glutamine-hydrolyzing] (NCBI ptt file)	1.12448031834117	5.15309496343965	FALSE
+stress	set4IT014	Fusidic acid sodium salt	351953	BT2425		K+-transporting ATPase A chain (NCBI ptt file)	1.62789268615486	7.07208483489757	FALSE
+stress	set4IT014	Fusidic acid sodium salt	352217	BT2690		histidine ammonia-lyase (NCBI ptt file)	-2.08428236552013	-6.83404965465851	FALSE
+stress	set4IT014	Fusidic acid sodium salt	352219	BT2692		imidazolonepropionase (NCBI ptt file)	-1.89121999571396	-6.3397074858367	FALSE
+stress	set4IT014	Fusidic acid sodium salt	352259	BT2732		hypothetical protein (NCBI ptt file)	-3.46548036962693	-7.03429445474238	FALSE
+stress	set3IT095	Fusidic acid sodium salt	352259	BT2732		hypothetical protein (NCBI ptt file)	-3.10664983658332	-12.4062648727293	FALSE
+stress	set3IT095	Fusidic acid sodium salt	352502	BT2975		putative nicotinate mononucleotide:5,6-dimethylbenzimidazole phosphoribosyltransferase (NCBI ptt file)	-1.51845921814791	-5.01173488315834	FALSE
+stress	set3IT095	Fusidic acid sodium salt	352777	BT3250		conserved hypothetical protein (NCBI ptt file)	1.63052879363971	8.21949292451857	FALSE
+stress	set4IT014	Fusidic acid sodium salt	352777	BT3250		conserved hypothetical protein (NCBI ptt file)	1.79092914626208	8.43087983058246	FALSE
+stress	set3IT095	Fusidic acid sodium salt	352781	BT3254		dipeptidyl peptidase IV (NCBI ptt file)	1.32103465208425	6.01697869440659	FALSE
+stress	set4IT014	Fusidic acid sodium salt	352781	BT3254		dipeptidyl peptidase IV (NCBI ptt file)	1.51846532342383	7.64182484815326	FALSE
+stress	set4IT014	Fusidic acid sodium salt	352863	BT3336		UDP-N-acetylglucosamine acetyltransferase (NCBI ptt file)	-1.93509160185902	-5.46576249440305	FALSE
+stress	set4IT014	Fusidic acid sodium salt	353164	BT3638		Na+/H+ anti-porter (NCBI ptt file)	-1.02226050036472	-5.13921972637372	FALSE
+stress	set4IT014	Fusidic acid sodium salt	353715	BT4189		conserved hypothetical protein (NCBI ptt file)	-1.90394668234738	-6.96749026077657	FALSE
+stress	set4IT013	Fusidic acid sodium salt	353734	BT4208		phosphohydrolase (NCBI ptt file)	1.48894858198138	5.0486152188237	FALSE
+stress	set3IT094	Fusidic acid sodium salt	353734	BT4208		phosphohydrolase (NCBI ptt file)	1.77041481272831	5.90724146479016	FALSE
+stress	set3IT095	Fusidic acid sodium salt	353734	BT4208		phosphohydrolase (NCBI ptt file)	4.24576709676733	10.9526267495792	FALSE
+stress	set4IT014	Fusidic acid sodium salt	353734	BT4208		phosphohydrolase (NCBI ptt file)	5.70657456470166	11.1373299996209	FALSE
+stress	set4IT014	Fusidic acid sodium salt	353999	BT4473		putative purine permease (NCBI ptt file)	1.19183182808868	5.85753766785443	FALSE
+stress	set3IT095	Fusidic acid sodium salt	354067	BT4541		putative Type I restriction modification DNA specificity protein (NCBI ptt file)	-1.55475768413534	-6.21527154787263	FALSE
+stress	set12IT018	Indolicidin	350900	BT1372		hypothetical protein (NCBI ptt file)	-1.59491599901515	-6.0131845500413	FALSE
+stress	set12IT018	Indolicidin	351598	BT_2070		methylcitrate synthase (RefSeq)	-1.70390194727993	-8.02100135445917	FALSE
+stress	set11IT087	Indolicidin	351598	BT_2070		methylcitrate synthase (RefSeq)	-1.22496317886924	-5.11651650820919	FALSE
+stress	set12IT018	Indolicidin	351599	BT2071		isocitrate dehydrogenase [NADP] (NCBI ptt file)	-2.16067735303953	-7.07773278352704	FALSE
+stress	set11IT087	Indolicidin	352463	BT2936		putative glycosyltransferase (NCBI ptt file)	1.8146336097611	6.30185297526702	FALSE
+stress	set12IT018	Indolicidin	352463	BT2936		putative glycosyltransferase (NCBI ptt file)	1.88385709765348	5.83608790598166	FALSE
+stress	set8IT017	Irgasan	350298	BT0770		conserved hypothetical protein (NCBI ptt file)	1.59333057303281	5.39621483270024	FALSE
+stress	set7IT010	Irgasan	350425	BT0897		chaperone protein htpG (heat shock protein htpG) (NCBI ptt file)	1.58326103264879	9.24720251434803	FALSE
+stress	set7IT003	Irgasan	350425	BT0897		chaperone protein htpG (heat shock protein htpG) (NCBI ptt file)	1.59546225862289	9.80964279502641	FALSE
+stress	set9IT029	Irgasan	351525	BT1997		hypothetical protein (NCBI ptt file)	1.18973358757158	5.02631707843075	FALSE
+stress	set7IT011	Irgasan	352105	BT2577		conserved hypothetical protein (NCBI ptt file)	1.09396087139088	10.179710648595	FALSE
+stress	set9IT029	Irgasan	352105	BT2577		conserved hypothetical protein (NCBI ptt file)	1.4381023076544	12.495991132105	FALSE
+stress	set10IT088	Irgasan	352105	BT2577		conserved hypothetical protein (NCBI ptt file)	1.45578445607286	13.0346361826602	FALSE
+stress	set7IT010	Irgasan	352105	BT2577		conserved hypothetical protein (NCBI ptt file)	1.65219045830219	15.4236640290384	FALSE
+stress	set7IT003	Irgasan	352105	BT2577		conserved hypothetical protein (NCBI ptt file)	1.91339814397411	17.8224197753834	FALSE
+stress	set9IT029	Irgasan	352106	BT2578		conserved hypothetical protein (NCBI ptt file)	1.04498526355199	6.77061539842243	FALSE
+stress	set7IT011	Irgasan	352106	BT2578		conserved hypothetical protein (NCBI ptt file)	1.27510366778287	9.91307145676133	FALSE
+stress	set10IT088	Irgasan	352106	BT2578		conserved hypothetical protein (NCBI ptt file)	1.32607842038712	9.35930886017235	FALSE
+stress	set7IT010	Irgasan	352106	BT2578		conserved hypothetical protein (NCBI ptt file)	1.7196419514616	13.4619387436632	FALSE
+stress	set7IT003	Irgasan	352106	BT2578		conserved hypothetical protein (NCBI ptt file)	1.92340664737887	15.2641746425317	FALSE
+stress	set9IT029	Irgasan	352129	BT2601		conserved protein found in conjugate transposon (NCBI ptt file)	1.25441340839971	5.3315954275583	FALSE
+stress	set4IT008	Lomefloxacin hydrochloride	349773	BT0245		ATP-dependent exonuclease sbcC (NCBI ptt file)	-1.05707392096999	-5.07839321570929	FALSE
+stress	set4IT023	Lomefloxacin hydrochloride	350116	BT0588		BexA, multidrug efflux pump (NCBI ptt file)	-3.14560602919666	-5.59021003541343	FALSE
+stress	set4IT008	Lomefloxacin hydrochloride	350116	BT0588		BexA, multidrug efflux pump (NCBI ptt file)	-2.4054477881922	-5.6792133855728	FALSE
+stress	set4IT008	Lomefloxacin hydrochloride	350859	BT1331		hypothetical protein (NCBI ptt file)	-3.43064335751659	-6.12680360780705	FALSE
+stress	set4IT023	Lomefloxacin hydrochloride	350859	BT1331		hypothetical protein (NCBI ptt file)	-2.98658432859751	-5.03319822207078	FALSE
+stress	set4IT008	Lomefloxacin hydrochloride	351934	BT2406		putative DNA repair protein (NCBI ptt file)	-2.08141607038001	-7.30639103175394	TRUE
+stress	set4IT023	Lomefloxacin hydrochloride	351934	BT2406		putative DNA repair protein (NCBI ptt file)	-1.95603268192247	-7.63291270105647	TRUE
+stress	set4IT023	Lomefloxacin hydrochloride	353508	BT3982		ATP-dependent exoDNAse (exonuclease V), alpha subunit - helicase superfamily I member (NCBI ptt file)	-1.69263299034426	-9.46164291862499	TRUE
+stress	set4IT008	Lomefloxacin hydrochloride	353508	BT3982		ATP-dependent exoDNAse (exonuclease V), alpha subunit - helicase superfamily I member (NCBI ptt file)	-1.62428395759703	-8.89401468560637	TRUE
+stress	set4IT008	Lomefloxacin hydrochloride	353630	BT4104		DNA helicase (NCBI ptt file)	-1.20140095364984	-7.79173267084832	FALSE
+stress	set4IT023	Lomefloxacin hydrochloride	353630	BT4104		DNA helicase (NCBI ptt file)	-1.11527529632889	-7.54569497610358	FALSE
+stress	set4IT023	Lomefloxacin hydrochloride	354101	BT4575		hypothetical protein (NCBI ptt file)	2.58428013354398	6.05389410849372	FALSE
+stress	set4IT008	Lomefloxacin hydrochloride	354101	BT4575		hypothetical protein (NCBI ptt file)	2.61791866167412	6.38842613771529	FALSE
+stress	set6IT006	Nitrofurantoin	352756	BT3229		TatD-related DNase (NCBI ptt file)	-1.77732743833338	-10.3754880988124	FALSE
+stress	set6IT001	Nitrofurantoin	352756	BT3229		TatD-related DNase (NCBI ptt file)	-1.21091400928236	-5.57930940107877	FALSE
+stress	set9IT080	Oxytetracycline hydrochloride	351342	BT1814		conserved hypothetical protein (NCBI ptt file)	1.21028472385744	6.92022533597883	FALSE
+stress	set8IT092	Oxytetracycline hydrochloride	351881	BT2353		hypothetical protein (NCBI ptt file)	1.07592889053463	8.36184709081883	FALSE
+stress	set8IT092	Oxytetracycline hydrochloride	351882	BT2354		conserved hypothetical protein (NCBI ptt file)	1.11221447155117	8.58545267893215	FALSE
+stress	set8IT092	Oxytetracycline hydrochloride	352528	BT3001		ATP-dependent DNA helicase (NCBI ptt file)	-2.56560356868049	-14.2270114385324	FALSE
+stress	set8IT092	Oxytetracycline hydrochloride	352777	BT3250		conserved hypothetical protein (NCBI ptt file)	-1.31635711865296	-5.88274174538823	FALSE
+stress	set8IT092	Oxytetracycline hydrochloride	353734	BT4208		phosphohydrolase (NCBI ptt file)	-1.86792547810663	-5.35841612744436	FALSE
+stress	set11IT014	Oxytetracycline hydrochloride	354146	BT4620		hypothetical protein (NCBI ptt file)	-1.13660633069356	-5.42377371406879	FALSE
+stress	set3IT064	Paraquat dichloride	349734	BT0206		putative outer membrane protein, probably involved in nutrient binding (NCBI ptt file)	-1.18182891747232	-5.31422702061784	FALSE
+stress	set3IT064	Paraquat dichloride	350116	BT0588		BexA, multidrug efflux pump (NCBI ptt file)	-3.56441274016198	-9.57139146153679	FALSE
+stress	set3IT079	Paraquat dichloride	350116	BT0588		BexA, multidrug efflux pump (NCBI ptt file)	-2.87183534859574	-7.46228748777843	FALSE
+stress	set3IT064	Paraquat dichloride	350307	BT0779		hypothetical protein (NCBI ptt file)	-2.84590822103221	-5.25596683325846	FALSE
+stress	set3IT079	Paraquat dichloride	350307	BT0779		hypothetical protein (NCBI ptt file)	-2.1985134558035	-5.59220164999726	FALSE
+stress	set3IT064	Paraquat dichloride	351947	BT2419		putative GMP synthase [glutamine-hydrolyzing] (NCBI ptt file)	1.59634871848889	7.50841494740151	FALSE
+stress	set3IT079	Paraquat dichloride	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	1.36449834017093	5.79312717490245	FALSE
+stress	set3IT064	Paraquat dichloride	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	1.80530652385719	7.30107436412005	FALSE
+stress	set3IT079	Paraquat dichloride	352259	BT2732		hypothetical protein (NCBI ptt file)	-2.37700365255434	-6.48230900287399	FALSE
+stress	set3IT079	Paraquat dichloride	352451	BT2924		acetyl-CoA synthetase (NCBI ptt file)	1.15796561407191	8.70517762316441	FALSE
+stress	set3IT079	Paraquat dichloride	352692	BT3165		tRNA/rRNA methyltransferase (NCBI ptt file)	1.44456757440056	5.05553557344736	FALSE
+stress	set3IT064	Paraquat dichloride	352692	BT3165		tRNA/rRNA methyltransferase (NCBI ptt file)	2.28588462193273	10.4990065188384	FALSE
+stress	set3IT064	Paraquat dichloride	352713	BT3186		dihydrolipoamide dehydrogenase (NCBI ptt file)	-1.55471762526648	-5.51854082330886	FALSE
+stress	set3IT079	Paraquat dichloride	352713	BT3186		dihydrolipoamide dehydrogenase (NCBI ptt file)	-1.20219587965494	-5.74235031234403	FALSE
+stress	set3IT064	Paraquat dichloride	352735	BT3208		hypothetical protein (NCBI ptt file)	-1.53371033948106	-6.14302498970993	FALSE
+stress	set3IT064	Paraquat dichloride	352844	BT3317		conserved hypothetical protein (NCBI ptt file)	2.53943238205984	5.96080732319842	FALSE
+stress	set3IT064	Paraquat dichloride	352845	BT3318		signal peptidase I (NCBI ptt file)	1.84987738423787	5.31075982985121	FALSE
+stress	set3IT064	Paraquat dichloride	354264	BT4738		formate acetyltransferase (NCBI ptt file)	-1.41287790048605	-5.41296376704327	FALSE
+stress	set8IT045	Rifampicin	351696	BT2168		coproporphyrinogen III oxidase (NCBI ptt file)	1.66830128265553	6.17777094367812	FALSE
+stress	set9IT033	Rifampicin	351696	BT2168		coproporphyrinogen III oxidase (NCBI ptt file)	1.79394471327896	5.33711076014482	FALSE
+stress	set8IT045	Rifampicin	351767	BT2239		carboxyl-terminal protease (NCBI ptt file)	-1.10475945789025	-7.15679474527223	FALSE
+stress	set9IT033	Rifampicin	352880	BT3353		Snf2 family helicase (NCBI ptt file)	-1.22622240691228	-6.17085577637267	FALSE
+stress	set9IT033	Rifampicin	353104	BT3577		conserved hypothetical protein (NCBI ptt file)	-1.15941360214913	-6.36197710069882	FALSE
+stress	set9IT033	Rifampicin	353936	BT4410		hypothetical protein (NCBI ptt file)	1.38449251256256	6.83505040994318	FALSE
+stress	set3IT072	Sodium Chloride	351198	BT1670		putative transmembrane transport protein (NCBI ptt file)	1.13929953782762	5.11090231269207	FALSE
+stress	set3IT072	Sodium Chloride	351278	BT1750		glycine betaine/L-proline transport system permease (NCBI ptt file)	-3.68624018586264	-5.0335031088756	TRUE
+stress	set3IT072	Sodium Chloride	352343	BT2816		TPR-domain containing protein (NCBI ptt file)	-1.18037612587251	-8.47930214768725	FALSE
+stress	set3IT072	Sodium Chloride	352344	BT2817		putative TonB-dependent receptor (NCBI ptt file)	-1.21935158135554	-6.57767999169769	FALSE
+stress	set3IT072	Sodium Chloride	354281	BT4755		putative two-component system sensor histidine kinase, putative heat shock protein (NCBI ptt file)	4.638156710179	13.897128248341	FALSE
+stress	set3IT072	Sodium Chloride	354282	BT4756		hypothetical protein (NCBI ptt file)	4.45766281221065	8.52031394352854	FALSE
+stress	set3IT072	Sodium Chloride	354283	BT4757		hypothetical protein (NCBI ptt file)	4.48344102743928	13.7839146000147	FALSE
+stress	set3IT086	Sodium perchlorate monohydrate	351005	BT1477		conserved hypothetical protein (NCBI ptt file)	-1.9913987205322	-6.37889950660395	FALSE
+stress	set3IT071	Sodium perchlorate monohydrate	351005	BT1477		conserved hypothetical protein (NCBI ptt file)	-1.83791960553245	-6.50496349360844	FALSE
+stress	set3IT071	Sodium perchlorate monohydrate	351502	BT1974		metallopeptidase family M24, putative Xaa-Pro dipeptidase (NCBI ptt file)	-1.63046019910912	-7.66995313126481	FALSE
+stress	set3IT086	Sodium perchlorate monohydrate	351502	BT1974		metallopeptidase family M24, putative Xaa-Pro dipeptidase (NCBI ptt file)	-1.55623221326065	-6.01188107631748	FALSE
+stress	set3IT085	Sodium perchlorate monohydrate	351502	BT1974		metallopeptidase family M24, putative Xaa-Pro dipeptidase (NCBI ptt file)	-1.44006432152178	-7.49898782116558	FALSE
+stress	set3IT071	Sodium perchlorate monohydrate	353138	BT3612		putative FKBP-type peptidyl-prolyl cis-trans isomerase fkpA (NCBI ptt file)	-1.29010339921567	-6.48951957475905	FALSE
+stress	set10IT024	Spiramycin	351798	BT2270		integral membrane protein (MarC family) (NCBI ptt file)	1.32603473518132	5.18573863249915	FALSE
+stress	set10IT048	Sulfamethizole	351564	BT2036		conserved hypothetical protein (NCBI ptt file)	-3.18795781827146	-6.01902099234082	FALSE
+stress	set10IT030	Sulfamethizole	351564	BT2036		conserved hypothetical protein (NCBI ptt file)	-2.78824419717606	-6.33360736171141	FALSE
+stress	set8IT042	Sulfamethizole	351649	BT2121		putative Na+-driven multidrug efflux pump (NCBI ptt file)	-1.52695396543481	-5.54133966204356	FALSE
+stress	set10IT048	Sulfamethizole	351980	BT2452		hypothetical protein (NCBI ptt file)	-1.36575835462609	-5.61174217814278	FALSE
+stress	set8IT042	Sulfamethizole	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	1.2224447635891	5.07452855744066	FALSE
+stress	set9IT042	Sulfamethizole	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	1.84991223154336	6.37061601180002	FALSE
+stress	set9IT042	Sulfamethizole	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	3.09854292693369	16.0117883660505	FALSE
+stress	set9IT042	Sulfamethizole	354058	BT4532		hypothetical protein (NCBI ptt file)	2.7064251229892	9.30981635325311	FALSE
+stress	set8IT042	Sulfamethizole	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	1.57241295706022	9.07921063811954	FALSE
+stress	set9IT042	Sulfamethizole	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	2.86016638531826	16.5275677542094	FALSE
+stress	set9IT054	Sulfamonomethoxine	350211	BT0683		alpha-glucosidase (NCBI ptt file)	-1.49797975325345	-6.24046397103952	FALSE
+stress	set8IT066	Sulfamonomethoxine	350265	BT0737		formate--tetrahydrofolate ligase (NCBI ptt file)	1.83394605457953	9.40082706924088	FALSE
+stress	set8IT054	Sulfamonomethoxine	350265	BT0737		formate--tetrahydrofolate ligase (NCBI ptt file)	1.93278670233557	9.77564291493919	FALSE
+stress	set9IT066	Sulfamonomethoxine	350265	BT0737		formate--tetrahydrofolate ligase (NCBI ptt file)	1.95061461969868	9.630030666919	FALSE
+stress	set10IT054	Sulfamonomethoxine	351564	BT2036		conserved hypothetical protein (NCBI ptt file)	-2.87119836167233	-6.52204103888731	FALSE
+stress	set10IT060	Sulfamonomethoxine	351564	BT2036		conserved hypothetical protein (NCBI ptt file)	-1.63654996446352	-5.03034640203743	FALSE
+stress	set9IT066	Sulfamonomethoxine	352324	BT2797		adenosylhomocysteinase (NCBI ptt file)	1.65665365026547	5.52597328315255	FALSE
+stress	set9IT054	Sulfamonomethoxine	352324	BT2797		adenosylhomocysteinase (NCBI ptt file)	1.94663477737494	5.45229981198711	FALSE
+stress	set8IT054	Sulfamonomethoxine	352324	BT2797		adenosylhomocysteinase (NCBI ptt file)	2.56847605607672	7.88122286830648	FALSE
+stress	set8IT054	Sulfamonomethoxine	352794	BT3267		adenine phosphoribosyltransferase (NCBI ptt file)	1.43913428706159	5.93884065812409	FALSE
+stress	set9IT066	Sulfamonomethoxine	353630	BT4104		DNA helicase (NCBI ptt file)	-1.04368236099408	-6.24838733138819	FALSE
+stress	set9IT054	Sulfamonomethoxine	353869	BT4343		conserved hypothetical protein (NCBI ptt file)	1.48209498736214	6.10410250385849	FALSE
+stress	set9IT066	Sulfamonomethoxine	353999	BT4473		putative purine permease (NCBI ptt file)	1.11027391175756	6.5191177919729	FALSE
+stress	set9IT066	Sulfamonomethoxine	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	1.76048325779564	6.33638931435805	FALSE
+stress	set8IT066	Sulfamonomethoxine	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	2.09809981509755	7.01523584115842	FALSE
+stress	set9IT054	Sulfamonomethoxine	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	2.82900591178099	9.50220062145186	FALSE
+stress	set8IT054	Sulfamonomethoxine	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	2.99292600585986	8.41709556143179	FALSE
+stress	set9IT066	Sulfamonomethoxine	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	2.84957590416654	13.932024865179	FALSE
+stress	set8IT066	Sulfamonomethoxine	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	2.90591720438449	13.2883899998303	FALSE
+stress	set8IT054	Sulfamonomethoxine	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	3.87033643664937	15.5858676643153	FALSE
+stress	set9IT054	Sulfamonomethoxine	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	4.13487964036981	19.7274853840939	FALSE
+stress	set8IT066	Sulfamonomethoxine	354058	BT4532		hypothetical protein (NCBI ptt file)	2.34548624167761	6.87469884386636	FALSE
+stress	set9IT066	Sulfamonomethoxine	354058	BT4532		hypothetical protein (NCBI ptt file)	2.71316613483601	8.68067439006547	FALSE
+stress	set8IT054	Sulfamonomethoxine	354058	BT4532		hypothetical protein (NCBI ptt file)	3.84634724261323	14.3550262911534	FALSE
+stress	set9IT054	Sulfamonomethoxine	354058	BT4532		hypothetical protein (NCBI ptt file)	4.13791502663359	15.1507502673194	FALSE
+stress	set9IT066	Sulfamonomethoxine	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	2.45693590375762	11.8832861258177	FALSE
+stress	set8IT066	Sulfamonomethoxine	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	2.9875009013409	17.6405102667728	FALSE
+stress	set9IT054	Sulfamonomethoxine	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	3.81526519118742	18.6329406707826	FALSE
+stress	set8IT054	Sulfamonomethoxine	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	3.86461450554376	19.7999078924543	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	350265	BT0737		formate--tetrahydrofolate ligase (NCBI ptt file)	2.09998631915394	9.92031700245949	FALSE
+stress	set10IT084	Sulfaquinoxaline sodium salt	350666	BT1138		transposase (NCBI ptt file)	1.75163021545766	5.72417019505793	FALSE
+stress	set10IT078	Sulfaquinoxaline sodium salt	351564	BT2036		conserved hypothetical protein (NCBI ptt file)	-2.64251669030069	-5.59362650115894	FALSE
+stress	set7IT037	Sulfaquinoxaline sodium salt	351564	BT2036		conserved hypothetical protein (NCBI ptt file)	-2.39370449029345	-6.91973774090803	FALSE
+stress	set10IT072	Sulfaquinoxaline sodium salt	351564	BT2036		conserved hypothetical protein (NCBI ptt file)	-2.12825400347415	-6.39229543026203	FALSE
+stress	set7IT029	Sulfaquinoxaline sodium salt	351564	BT2036		conserved hypothetical protein (NCBI ptt file)	-1.98638601680449	-5.86498641254913	FALSE
+stress	set7IT030	Sulfaquinoxaline sodium salt	351564	BT2036		conserved hypothetical protein (NCBI ptt file)	-1.48609282632759	-5.36206322847367	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	352324	BT2797		adenosylhomocysteinase (NCBI ptt file)	1.82810532811973	6.99031135794771	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	353999	BT4473		putative purine permease (NCBI ptt file)	1.21567995750998	7.81405860093396	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	1.80218930698168	6.23469180792279	FALSE
+stress	set8IT090	Sulfaquinoxaline sodium salt	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	1.85396831193904	7.14502139493111	FALSE
+stress	set8IT090	Sulfaquinoxaline sodium salt	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	2.31922205722856	11.2881515440816	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	2.89787499107866	13.911792120695	FALSE
+stress	set6IT032	Sulfaquinoxaline sodium salt	354058	BT4532		hypothetical protein (NCBI ptt file)	1.54914914451553	6.42202654221185	FALSE
+stress	set8IT090	Sulfaquinoxaline sodium salt	354058	BT4532		hypothetical protein (NCBI ptt file)	2.25599177960791	9.61738227633964	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	354058	BT4532		hypothetical protein (NCBI ptt file)	2.63845506165601	10.6926868422639	FALSE
+stress	set6IT032	Sulfaquinoxaline sodium salt	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	1.25183551441153	6.91751935870365	FALSE
+stress	set8IT090	Sulfaquinoxaline sodium salt	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	2.43169656600143	14.7613274704218	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	2.5721859267333	11.916171126879	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	354080	BT4554		purine nucleoside phosphorylase II (NCBI ptt file)	-1.64872291996737	-5.27906741761793	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	354204	BT4678		L-serine dehydratase (NCBI ptt file)	1.22018695936009	5.37409724297798	FALSE
+stress	set9IT090	Sulfaquinoxaline sodium salt	354264	BT4738		formate acetyltransferase (NCBI ptt file)	1.36010393516777	7.93014322117666	FALSE
+stress	set5IT047	Thallium(I) acetate	350033	BT0505		conserved hypothetical protein (NCBI ptt file)	1.63174178546353	5.12808321321011	FALSE
+stress	set5IT047	Thallium(I) acetate	352004	BT2476		hypothetical protein (NCBI ptt file)	-1.06343458905558	-5.52034632656733	FALSE
+stress	set5IT046	Thallium(I) acetate	354111	BT4585		putative Na+/H+ anitporter (NCBI ptt file)	1.05256940745772	7.09179171220362	FALSE
+stress	set10IT007	Thioridazine hydrochloride	349580	BT0052		hypothetical protein (NCBI ptt file)	-1.16445867438551	-5.10547118553558	FALSE
+stress	set6IT003	Thioridazine hydrochloride	349831	BT0303		putative patatin-like phospholipase (NCBI ptt file)	-1.51681535218783	-5.54389968891783	FALSE
+stress	set9IT019	Thioridazine hydrochloride	350108	BT0580		putative H+/peptide symporter (NCBI ptt file)	2.21876005073719	13.3478880826221	FALSE
+stress	set6IT003	Thioridazine hydrochloride	350425	BT0897		chaperone protein htpG (heat shock protein htpG) (NCBI ptt file)	-1.63854952099638	-6.75596869770158	FALSE
+stress	set6IT003	Thioridazine hydrochloride	350619	BT1091		cation-transporting ATPase pacS (NCBI ptt file)	-1.52086511287996	-5.30140494794536	FALSE
+stress	set9IT019	Thioridazine hydrochloride	351005	BT1477		conserved hypothetical protein (NCBI ptt file)	-1.47418640060605	-5.00728410452367	FALSE
+stress	set8IT007	Thioridazine hydrochloride	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.40321138749592	-5.26845663531647	FALSE
+stress	set7IT012	Thioridazine hydrochloride	351065	BT1537		putative NADH dehydrogenase (NCBI ptt file)	-2.41688111011223	-5.0938592144104	FALSE
+stress	set7IT013	Thioridazine hydrochloride	351065	BT1537		putative NADH dehydrogenase (NCBI ptt file)	-1.76067308868059	-5.65209942909214	FALSE
+stress	set8IT007	Thioridazine hydrochloride	351070	BT1542		putative pyridine nucleotide-disulfide oxidoreductase (NCBI ptt file)	-1.70672421401978	-6.39518889015503	FALSE
+stress	set6IT003	Thioridazine hydrochloride	351407	BT1879		protease IV (NCBI ptt file)	-1.42011648072587	-6.35497195247807	FALSE
+stress	set6IT003	Thioridazine hydrochloride	351413	BT1885		putative ATP-dependent RNA helicase (NCBI ptt file)	2.07860097231696	5.21276629898779	FALSE
+stress	set9IT019	Thioridazine hydrochloride	351678	BT2150		methylglyoxal synthase (NCBI ptt file)	-1.39591399951283	-5.37142380322733	FALSE
+stress	set9IT019	Thioridazine hydrochloride	351721	BT2193		hypothetical protein (NCBI ptt file)	1.03687918010788	5.15596435525273	FALSE
+stress	set10IT007	Thioridazine hydrochloride	351814	BT2286		hypothetical protein (NCBI ptt file)	1.68158264656871	5.23611213384543	FALSE
+stress	set6IT003	Thioridazine hydrochloride	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	-2.0325656591573	-6.53089419081185	FALSE
+stress	set6IT003	Thioridazine hydrochloride	352080	BT2552		putative butyrate kinase (NCBI ptt file)	-2.98565844563468	-6.86522969581809	FALSE
+stress	set6IT003	Thioridazine hydrochloride	352259	BT2732		hypothetical protein (NCBI ptt file)	-1.62564606840948	-5.12165349472552	FALSE
+stress	set10IT007	Thioridazine hydrochloride	352259	BT2732		hypothetical protein (NCBI ptt file)	-1.55082138902662	-5.23613449232249	FALSE
+stress	set8IT007	Thioridazine hydrochloride	352692	BT3165		tRNA/rRNA methyltransferase (NCBI ptt file)	2.73068433959036	7.53739016158192	FALSE
+stress	set8IT007	Thioridazine hydrochloride	352844	BT3317		conserved hypothetical protein (NCBI ptt file)	3.94999372032004	8.90435051898006	FALSE
+stress	set8IT007	Thioridazine hydrochloride	352845	BT3318		signal peptidase I (NCBI ptt file)	2.65214660219181	5.1552023704609	FALSE
+stress	set10IT007	Thioridazine hydrochloride	353103	BT3576		putative ribokinase (NCBI ptt file)	1.10931341771467	6.59742230675005	FALSE
+stress	set9IT019	Thioridazine hydrochloride	353568	BT4042		putative Mg2+ transporter MgtE (NCBI ptt file)	1.48975285077578	6.9189764355356	FALSE
+stress	set6IT003	Thioridazine hydrochloride	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	1.56105368663574	5.95630693375397	FALSE
+stress	set10IT019	Trimethoprim	349924	BT0396		putative UDP-GlcNAc:undecaprenylphosphate GlcNAc-1-phosphate transferase (NCBI ptt file)	-1.59474856886126	-5.62550399012957	FALSE
+stress	set9IT043	Trimethoprim	350265	BT0737		formate--tetrahydrofolate ligase (NCBI ptt file)	-3.60621129506434	-5.4314548974583	FALSE
+stress	set8IT031	Trimethoprim	350265	BT0737		formate--tetrahydrofolate ligase (NCBI ptt file)	-2.2932145570473	-5.19543648859149	FALSE
+stress	set8IT031	Trimethoprim	350713	BT1185		OmpA-related protein (NCBI ptt file)	-1.25865962562385	-8.36644418393909	FALSE
+stress	set10IT019	Trimethoprim	350713	BT1185		OmpA-related protein (NCBI ptt file)	-1.24574036202251	-8.46138162006051	FALSE
+stress	set8IT031	Trimethoprim	351008	BT1480		hypothetical protein (NCBI ptt file)	-1.68563667752469	-6.23777618270575	FALSE
+stress	set9IT043	Trimethoprim	351070	BT1542		putative pyridine nucleotide-disulfide oxidoreductase (NCBI ptt file)	-1.85297927634066	-6.38092092989498	FALSE
+stress	set8IT031	Trimethoprim	351070	BT1542		putative pyridine nucleotide-disulfide oxidoreductase (NCBI ptt file)	-1.81051756841836	-6.05530234686604	FALSE
+stress	set8IT043	Trimethoprim	351070	BT1542		putative pyridine nucleotide-disulfide oxidoreductase (NCBI ptt file)	-1.64652383606104	-6.32156245155619	FALSE
+stress	set8IT031	Trimethoprim	351407	BT1879		protease IV (NCBI ptt file)	1.53051103957184	5.48604652209895	FALSE
+stress	set10IT019	Trimethoprim	351501	BT1973		NAD-specific glutamate dehydrogenase (NCBI ptt file)	1.4456533683157	5.68308261609369	FALSE
+stress	set10IT019	Trimethoprim	351938	BT2410		putative acetyltransferase (NCBI ptt file)	1.42380721542428	5.04243759495718	FALSE
+stress	set10IT031	Trimethoprim	351962	BT2434		pyridine nucleotide-disulphide oxidoreductase (NCBI ptt file)	-1.10251983064444	-5.51636117058341	FALSE
+stress	set10IT031	Trimethoprim	351963	BT2435		MarR family transcriptional regulator (NCBI ptt file)	-3.27047000705431	-6.2868221355445	FALSE
+stress	set10IT019	Trimethoprim	351980	BT2452		hypothetical protein (NCBI ptt file)	-1.57357399778203	-6.94881416210166	FALSE
+stress	set10IT031	Trimethoprim	351980	BT2452		hypothetical protein (NCBI ptt file)	-1.45383800758541	-7.45150914702355	FALSE
+stress	set8IT031	Trimethoprim	352259	BT2732		hypothetical protein (NCBI ptt file)	-2.58123642851975	-9.22784742200722	FALSE
+stress	set8IT031	Trimethoprim	352283	BT2756		anaerobic C4-dicarboxylate transporter dcuB (NCBI ptt file)	1.84181558364263	7.75974561922064	FALSE
+stress	set10IT031	Trimethoprim	353568	BT4042		putative Mg2+ transporter MgtE (NCBI ptt file)	-1.33393916520059	-7.44439091326048	FALSE
+stress	set8IT043	Trimethoprim	353630	BT4104		DNA helicase (NCBI ptt file)	-1.3429408297218	-7.21216383832669	FALSE
+stress	set8IT031	Trimethoprim	353630	BT4104		DNA helicase (NCBI ptt file)	-1.29162640606553	-6.74462580817865	FALSE
+stress	set9IT043	Trimethoprim	353630	BT4104		DNA helicase (NCBI ptt file)	-1.19340773783618	-6.11516572160956	FALSE
+stress	set10IT019	Trimethoprim	353654	BT4128		conserved hypothetical protein (NCBI ptt file)	-1.26949181819255	-6.12540792697054	FALSE
+stress	set8IT031	Trimethoprim	353841	BT4315		HPr(Ser) phosphatase (NCBI ptt file)	-1.8742688252263	-7.25686795104528	FALSE
+stress	set8IT031	Trimethoprim	353857	BT4331		conserved hypothetical protein (NCBI ptt file)	-1.97052875840807	-7.5053148575026	FALSE
+stress	set9IT043	Trimethoprim	353857	BT4331		conserved hypothetical protein (NCBI ptt file)	-1.56749557744668	-7.12258999669765	FALSE
+stress	set8IT043	Trimethoprim	353857	BT4331		conserved hypothetical protein (NCBI ptt file)	-1.2333770267312	-5.33079965854256	FALSE
+stress	set8IT031	Trimethoprim	353869	BT4343		conserved hypothetical protein (NCBI ptt file)	1.89583998929646	5.39344528469735	FALSE
+stress	set9IT043	Trimethoprim	353869	BT4343		conserved hypothetical protein (NCBI ptt file)	2.08860908329091	5.78413847699642	FALSE
+stress	set10IT031	Trimethoprim	353999	BT4473		putative purine permease (NCBI ptt file)	-1.86217686396354	-7.09639374545995	FALSE
+stress	set10IT019	Trimethoprim	353999	BT4473		putative purine permease (NCBI ptt file)	-1.75090845335306	-5.83818078709703	FALSE
+stress	set8IT031	Trimethoprim	353999	BT4473		putative purine permease (NCBI ptt file)	-1.60907521546122	-6.22987232118281	FALSE
+stress	set8IT043	Trimethoprim	353999	BT4473		putative purine permease (NCBI ptt file)	-1.35595872888563	-5.51914378522886	FALSE
+stress	set9IT043	Trimethoprim	353999	BT4473		putative purine permease (NCBI ptt file)	-1.1839111297488	-5.11249891587881	FALSE
+stress	set10IT031	Trimethoprim	354013	BT4487		putative membrane-bound lytic murein transglycosylase (NCBI ptt file)	-1.68921339821441	-5.19387270268768	FALSE
+stress	set10IT031	Trimethoprim	354028	BT4502		conserved hypothetical protein (NCBI ptt file)	-1.30447475743878	-5.01182581605996	FALSE
+stress	set9IT043	Trimethoprim	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	2.18322617948017	6.40580318780423	FALSE
+stress	set8IT043	Trimethoprim	354056	BT4530		ATP-dependent DNA helicase recG (NCBI ptt file)	2.37299126866836	8.1157321040734	FALSE
+stress	set8IT031	Trimethoprim	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	1.65529693504406	5.86912610213786	FALSE
+stress	set8IT043	Trimethoprim	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	2.64044134802687	11.2841029556552	FALSE
+stress	set9IT043	Trimethoprim	354057	BT4531		conserved hypothetical protein (NCBI ptt file)	2.96236925354752	10.9740364670771	FALSE
+stress	set8IT043	Trimethoprim	354058	BT4532		hypothetical protein (NCBI ptt file)	2.72320737486208	9.31299367879286	FALSE
+stress	set9IT043	Trimethoprim	354058	BT4532		hypothetical protein (NCBI ptt file)	3.04648073671859	5.82572843124972	FALSE
+stress	set8IT031	Trimethoprim	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	1.61183716036675	6.45741199500124	FALSE
+stress	set8IT043	Trimethoprim	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	2.84363510078773	15.8127184380153	FALSE
+stress	set9IT043	Trimethoprim	354059	BT4533		conserved hypothetical protein (NCBI ptt file)	2.99365826047996	11.7711000370792	FALSE
+stress	set8IT043	Trimethoprim	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	1.8120091448411	6.96922305544235	FALSE
+stress	set11IT003	Trimethoprim	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	2.48904539964077	12.1870306988968	FALSE
+stress	set9IT043	Trimethoprim	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	2.6031478745902	11.8973475849073	FALSE
+stress	set10IT031	Trimethoprim	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	3.97673859933448	20.7654722941785	FALSE
+stress	set10IT019	Trimethoprim	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	4.01247119082625	19.4743993576459	FALSE
+stress	set8IT031	Trimethoprim	354108	BT4582		amidophosphoribosyltransferase precursor (NCBI ptt file)	4.21931371053173	14.4652005887836	FALSE
+stress	set8IT031	Trimethoprim	354204	BT4678		L-serine dehydratase (NCBI ptt file)	-2.99850570850113	-7.22726843916948	FALSE
+stress	set9IT043	Trimethoprim	354204	BT4678		L-serine dehydratase (NCBI ptt file)	-2.27973425513341	-7.5727862198983	FALSE
+stress	set8IT043	Trimethoprim	354204	BT4678		L-serine dehydratase (NCBI ptt file)	-1.74779429411921	-5.47215956340922	FALSE
+stress	set8IT031	Trimethoprim	354230	BT4704		O-succinylbenzoic acid--CoA ligase (NCBI ptt file)	-1.94691612667706	-5.32465424222861	FALSE
+stress	set11IT003	Trimethoprim	354263	BT4737		pyruvate formate-lyase activating enzyme (NCBI ptt file)	1.42471881420144	5.06464621486653	FALSE
+stress	set9IT043	Trimethoprim	354264	BT4738		formate acetyltransferase (NCBI ptt file)	-2.11004748615549	-7.51478788122317	FALSE
+stress	set8IT031	Trimethoprim	354264	BT4738		formate acetyltransferase (NCBI ptt file)	-1.92190711850577	-8.13074169944257	FALSE
+stress	set8IT043	Trimethoprim	354264	BT4738		formate acetyltransferase (NCBI ptt file)	-1.78751909385477	-6.07402878146182	FALSE
+stress	set10IT019	Trimethoprim	354264	BT4738		formate acetyltransferase (NCBI ptt file)	1.52818816498274	7.50755417966432	FALSE
+stress	set11IT003	Trimethoprim	354264	BT4738		formate acetyltransferase (NCBI ptt file)	1.62322177269005	9.29553564912631	FALSE
+stress	set4IT019	Vancomycin Hydrochloride Hydrate	351449	BT1921		hypothetical protein (NCBI ptt file)	1.72387900534142	5.7620274177606	FALSE
+stress	set4IT004	Vancomycin Hydrochloride Hydrate	351450	BT1922		putative N-acetylmuramoyl-L-alanine amidase (NCBI ptt file)	1.44236109926773	5.12879939124324	FALSE
+stress	set4IT019	Vancomycin Hydrochloride Hydrate	352191	BT2663		tetratricopeptide repeat family protein (NCBI ptt file)	1.77610049969508	7.33472678012896	FALSE
+stress	set4IT004	Vancomycin Hydrochloride Hydrate	352191	BT2663		tetratricopeptide repeat family protein (NCBI ptt file)	2.24268139373027	7.46813783033316	FALSE
+stress	set4IT019	Vancomycin Hydrochloride Hydrate	352714	BT3187		penicillin-binding protein, D-alanyl-D-alanine carboxypeptidase (NCBI ptt file)	1.29776121528491	9.48239238001885	FALSE
+stress	set4IT004	Vancomycin Hydrochloride Hydrate	352714	BT3187		penicillin-binding protein, D-alanyl-D-alanine carboxypeptidase (NCBI ptt file)	1.5207388988716	10.5626977667409	FALSE
+stress	set4IT019	Vancomycin Hydrochloride Hydrate	353281	BT3755		acetyl-coenzyme A synthetase (NCBI ptt file)	-1.69532476897958	-7.83631629142775	FALSE
+stress	set4IT004	Vancomycin Hydrochloride Hydrate	353281	BT3755		acetyl-coenzyme A synthetase (NCBI ptt file)	-1.63023459071651	-6.86802457488057	FALSE
+stress	set4IT004	Vancomycin Hydrochloride Hydrate	353372	BT3846		peptidyl-prolyl cis-trans isomerase (NCBI ptt file)	1.16774693122947	6.79592679333293	FALSE
+stress	set8IT067	Vancomycin Hydrochloride from Streptomyces orientalis	349943	BT0415		sulfate adenylyltransferase subunit 1/adenylylsulfate kinase (NCBI ptt file)	1.45509989604774	6.09008120567045	FALSE
+stress	set8IT067	Vancomycin Hydrochloride from Streptomyces orientalis	351078	BT1550		conserved hypothetical protein (NCBI ptt file)	1.5430032950143	6.6511868484238	FALSE
+stress	set8IT067	Vancomycin Hydrochloride from Streptomyces orientalis	351450	BT1922		putative N-acetylmuramoyl-L-alanine amidase (NCBI ptt file)	1.38716886073483	6.69843401236267	FALSE
+stress	set8IT067	Vancomycin Hydrochloride from Streptomyces orientalis	351939	BT2411		hypothetical protein (NCBI ptt file)	2.07879456998117	9.92609553400801	FALSE
+stress	set8IT067	Vancomycin Hydrochloride from Streptomyces orientalis	351940	BT2412		putative collagenase (NCBI ptt file)	1.66633441997316	7.98468042239093	FALSE
+stress	set8IT067	Vancomycin Hydrochloride from Streptomyces orientalis	352191	BT2663		tetratricopeptide repeat family protein (NCBI ptt file)	2.46438291244568	7.82900752143506	FALSE
+stress	set11IT004	Vancomycin Hydrochloride from Streptomyces orientalis	352360	BT2833		hypothetical protein (NCBI ptt file)	-1.42420941162297	-8.05630676265435	FALSE
+stress	set8IT067	Vancomycin Hydrochloride from Streptomyces orientalis	352360	BT2833		hypothetical protein (NCBI ptt file)	1.19647244679265	6.02182484146974	FALSE
+stress	set8IT067	Vancomycin Hydrochloride from Streptomyces orientalis	352714	BT3187		penicillin-binding protein, D-alanyl-D-alanine carboxypeptidase (NCBI ptt file)	1.78365410756626	11.9137683015866	FALSE
+stress	set8IT067	Vancomycin Hydrochloride from Streptomyces orientalis	353881	BT4355		RNA polymerase ECF-type sigma factor (NCBI ptt file)	1.13547943984268	5.9037265183863	FALSE
+stress	set11IT005	Vancomycin Hydrochloride from Streptomyces orientalis	354030	BT4504		conserved hypothetical protein (NCBI ptt file)	1.30478693426185	5.43935432002821	FALSE
+stress	set11IT007	Zinc Pyrithione	350360	BT0832		putative phosphoserine phosphatase (NCBI ptt file)	2.06718841316781	12.1876985296512	FALSE
+stress	set10IT079	Zinc Pyrithione	350360	BT0832		putative phosphoserine phosphatase (NCBI ptt file)	2.50198610551423	14.9302936689144	FALSE
+stress	set9IT079	Zinc Pyrithione	351143	BT1615		aminoacyl-histidine dipeptidase (NCBI ptt file)	1.8854085855362	9.33634152791636	FALSE
+stress	set6IT033	Zinc Pyrithione	351143	BT1615		aminoacyl-histidine dipeptidase (NCBI ptt file)	2.10874483643779	12.7672345477615	FALSE
+stress	set6IT028	Zinc Pyrithione	351143	BT1615		aminoacyl-histidine dipeptidase (NCBI ptt file)	2.4647734786475	13.9053727325265	FALSE
+stress	set6IT033	Zinc Pyrithione	351441	BT1913		nicotinate phosphoribosyltransferase (NCBI ptt file)	1.14681316985798	5.8569838772163	FALSE
+stress	set6IT028	Zinc Pyrithione	351441	BT1913		nicotinate phosphoribosyltransferase (NCBI ptt file)	1.48725469098243	7.11358242534439	FALSE
+stress	set11IT007	Zinc Pyrithione	351962	BT2434		pyridine nucleotide-disulphide oxidoreductase (NCBI ptt file)	-1.68158377069138	-8.63913446360721	FALSE
+stress	set9IT079	Zinc Pyrithione	352039	BT2511		putative transcription regulator (NCBI ptt file)	-2.84574072038876	-6.7362741243208	FALSE
+stress	set11IT007	Zinc Pyrithione	352039	BT2511		putative transcription regulator (NCBI ptt file)	-1.88215494437162	-5.65954691858014	FALSE
+stress	set9IT079	Zinc Pyrithione	352040	BT2512		cation-transporting ATPase, P-type, putative zinc-transporting ATPase (NCBI ptt file)	-2.23291808715879	-12.1061473872938	FALSE
+stress	set11IT007	Zinc Pyrithione	352040	BT2512		cation-transporting ATPase, P-type, putative zinc-transporting ATPase (NCBI ptt file)	-2.15458702642564	-12.0584233502393	FALSE
+stress	set10IT079	Zinc Pyrithione	352040	BT2512		cation-transporting ATPase, P-type, putative zinc-transporting ATPase (NCBI ptt file)	-1.07192851257065	-7.40817881053472	FALSE
+stress	set11IT006	Zinc Pyrithione	352079	BT2551		phosphate butyryltransferase (NCBI ptt file)	-1.42490572192908	-6.05619292062601	FALSE
+stress	set6IT028	Zinc Pyrithione	352191	BT2663		tetratricopeptide repeat family protein (NCBI ptt file)	1.60173086351871	6.62561124419255	FALSE
+stress	set10IT067	Zinc Pyrithione	352208	BT2681		alginate O-acetylation protein (NCBI ptt file)	-1.52152947348287	-8.04662500829866	FALSE
+stress	set11IT006	Zinc Pyrithione	352208	BT2681		alginate O-acetylation protein (NCBI ptt file)	-1.34516961511144	-6.06556894067203	FALSE
+stress	set10IT067	Zinc Pyrithione	352210	BT2683		putative periplasmic protein (NCBI ptt file)	-1.23082689427432	-5.76302732050912	FALSE
+stress	set6IT028	Zinc Pyrithione	352283	BT2756		anaerobic C4-dicarboxylate transporter dcuB (NCBI ptt file)	1.36660341384109	5.93612692177021	FALSE
+stress	set9IT079	Zinc Pyrithione	353085	BT3558		putative endonuclease (NCBI ptt file)	1.42068050015957	9.24305049460786	FALSE
+stress	set9IT079	Zinc Pyrithione	353086	BT3559		conserved hypothetical protein (NCBI ptt file)	1.09661213870186	5.07538038404897	FALSE
+stress	set10IT067	Zinc Pyrithione	353086	BT3559		conserved hypothetical protein (NCBI ptt file)	1.10372535687794	6.20864826037255	FALSE
+stress	set6IT028	Zinc Pyrithione	353086	BT3559		conserved hypothetical protein (NCBI ptt file)	1.15193051351133	6.12816033394685	FALSE
+stress	set6IT033	Zinc Pyrithione	353086	BT3559		conserved hypothetical protein (NCBI ptt file)	1.22315664363194	7.36447102627046	FALSE
+stress	set11IT006	Zinc Pyrithione	353086	BT3559		conserved hypothetical protein (NCBI ptt file)	1.65035682699792	9.2691123521083	FALSE
+stress	set6IT033	Zinc Pyrithione	353571	BT4045		aminoacyl-histidine dipeptidase (NCBI ptt file)	1.18487762832907	6.9442654448272	FALSE
+stress	set6IT028	Zinc Pyrithione	353571	BT4045		aminoacyl-histidine dipeptidase (NCBI ptt file)	1.21515021313269	7.11572351630215	FALSE
+stress	set9IT079	Zinc Pyrithione	353910	BT4384		hypothetical protein (NCBI ptt file)	1.41224773755954	5.53332692989918	FALSE
+stress	set9IT079	Zinc Pyrithione	353934	BT4408		hypothetical protein (NCBI ptt file)	1.26659692670626	5.17329400640915	FALSE
+stress	set11IT007	Zinc Pyrithione	354148	BT4622		mobilization protein BmgA (NCBI ptt file)	-1.23144289072495	-5.02303569951837	FALSE
+stress	set6IT028	Zinc Pyrithione	354204	BT4678		L-serine dehydratase (NCBI ptt file)	-1.65087342915407	-5.87972546385368	FALSE
+stress	set6IT033	Zinc Pyrithione	354204	BT4678		L-serine dehydratase (NCBI ptt file)	-1.2301698376787	-5.26452727508602	FALSE
+stress	set7IT032	Zinc Pyrithione	354204	BT4678		L-serine dehydratase (NCBI ptt file)	1.22678854715562	7.11017017188917	FALSE
+stress	set7IT031	Zinc Pyrithione	354204	BT4678		L-serine dehydratase (NCBI ptt file)	1.28901320805546	7.39899696301316	FALSE
+stress	set7IT039	Zinc Pyrithione	354204	BT4678		L-serine dehydratase (NCBI ptt file)	1.55334062235989	11.1003043200711	FALSE
+stress	set10IT079	Zinc Pyrithione	354204	BT4678		L-serine dehydratase (NCBI ptt file)	2.60945845311594	11.9024255256724	FALSE
+stress	set11IT007	Zinc Pyrithione	354204	BT4678		L-serine dehydratase (NCBI ptt file)	2.82877122219108	15.2231411319719	FALSE
+stress	set5IT044	copper (II) chloride dihydrate	352781	BT3254		dipeptidyl peptidase IV (NCBI ptt file)	-1.26879168637467	-5.03226670448336	FALSE
+stress	set3IT078	sodium fluoride	349943	BT0415		sulfate adenylyltransferase subunit 1/adenylylsulfate kinase (NCBI ptt file)	2.05375167098671	7.63496730221884	FALSE
+stress	set3IT078	sodium fluoride	351005	BT1477		conserved hypothetical protein (NCBI ptt file)	-1.55304368813094	-5.29163237962193	FALSE
+stress	set3IT078	sodium fluoride	351428	BT1900		BexA, putative cation effux pump (NCBI ptt file)	1.28616640521385	5.3661620571537	FALSE
+stress	set3IT078	sodium fluoride	351953	BT2425		K+-transporting ATPase A chain (NCBI ptt file)	4.37057164971691	8.56942341772543	FALSE
+stress	set3IT078	sodium fluoride	352777	BT3250		conserved hypothetical protein (NCBI ptt file)	1.49232917758375	7.10306841247529	FALSE
+survival	set5IT061		2209865	p5482_25		hypothetical protein (NCBI)	1.31419776741259	6.22125935634933	FALSE
+survival	set5IT062		2209865	p5482_25		hypothetical protein (NCBI)	1.36988560808157	5.55563282548892	FALSE
+survival	set5IT062		350034	BT0506		beta-hexosaminidase precursor (NCBI ptt file)	1.2698305213366	5.65831939961296	FALSE
+survival	set5IT061		350862	BT1334		PhoH-like protein (NCBI ptt file)	2.01181233239496	6.86719901681991	FALSE
+survival	set5IT062		350862	BT1334		PhoH-like protein (NCBI ptt file)	2.71676752602951	11.7516477495422	FALSE
+survival	set5IT061		351005	BT1477		conserved hypothetical protein (NCBI ptt file)	1.38748078704886	5.77484314956666	FALSE
+survival	set5IT062		351005	BT1477		conserved hypothetical protein (NCBI ptt file)	1.8818773275533	7.77187373668738	FALSE
+survival	set5IT062		351756	BT2228		hypothetical protein (NCBI ptt file)	1.3275202807922	5.27688399623857	FALSE
+survival	set5IT061		351799	BT2271		haloacid dehalogenase-like hydrolase (NCBI ptt file)	1.38490431001972	5.52532237575549	FALSE
+survival	set5IT062		351799	BT2271		haloacid dehalogenase-like hydrolase (NCBI ptt file)	1.6503683632359	10.4796433224315	FALSE
+survival	set5IT062		352055	BT2527		uridine kinase (uridine monophosphokinase) (NCBI ptt file)	1.42777772014998	6.71890431304069	FALSE
+survival	set5IT062		352070	BT2542		putative haloacid dehalogenase-like hydrolase (NCBI ptt file)	3.29117025216855	10.9845580942316	FALSE
+survival	set5IT061		352070	BT2542		putative haloacid dehalogenase-like hydrolase (NCBI ptt file)	3.30532700442008	9.86236257510245	FALSE
+survival	set5IT061		352208	BT2681		alginate O-acetylation protein (NCBI ptt file)	-1.46453853820323	-5.7638804836885	FALSE
+survival	set5IT061		352283	BT2756		anaerobic C4-dicarboxylate transporter dcuB (NCBI ptt file)	-1.41926011793905	-6.57720568217387	FALSE
+survival	set5IT062		352283	BT2756		anaerobic C4-dicarboxylate transporter dcuB (NCBI ptt file)	-1.3492722860505	-6.69219626622574	FALSE
+survival	set5IT062		352338	BT2811		alkyl hydroperoxide reductase subunit F (NCBI ptt file)	-2.21410440128524	-10.5881035833373	FALSE
+survival	set5IT061		352338	BT2811		alkyl hydroperoxide reductase subunit F (NCBI ptt file)	-1.24761437256412	-5.91407418943689	FALSE
+survival	set5IT062		352709	BT3182		rubrerythrin (NCBI ptt file)	-1.54253684207469	-7.57554961497799	FALSE
+survival	set5IT062		352804	BT3277		RNA polymerase ECF-type sigma factor (NCBI ptt file)	-1.45429421779356	-6.15960731125309	FALSE
+survival	set5IT062		353384	BT3858		conserved hypothetical protein (NCBI ptt file)	-1.07670823730593	-5.0740755365065	FALSE

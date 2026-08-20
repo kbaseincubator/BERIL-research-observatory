@@ -1,0 +1,730 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_1652			transcriptional regulator, LysR family	-1.40213075615555	-7.04331557835493	FALSE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_1673			Formate dehydrogenase chain D (EC 1.2.1.2)	-1.41987748710403	-5.96155114468874	FALSE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_1820			NAD(P) transhydrogenase subunit beta (EC 1.6.1.2)	-1.01854302636802	-7.21821444708819	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2418			HTH-type transcriptional regulator BetI	1.63126863517486	8.16627211629074	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2420			L-proline glycine betaine ABC transport system permease protein ProV (TC 3.A.1.12.1)	-2.82330471853541	-7.96743888184822	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2422			L-proline glycine betaine binding ABC transporter protein ProX (TC 3.A.1.12.1)	-2.55162840490247	-5.07959698271292	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2423			L-serine dehydratase (EC 4.3.1.17)	-1.06802016230337	-6.00651935860147	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2425			Transcriptional regulator containing an amidase domain and an AraC-type DNA-binding HTH domain	-3.06666148601621	-5.35166793497271	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2428			FIG143042: Thioesterase-like protein	-3.45987997043939	-8.18284618440163	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2430			FIG004891: hypothetical protein in carnitine cluster	-3.40295472867158	-5.50159912526086	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2438			FIG00953113: hypothetical protein	-2.84950855562845	-6.6529485822118	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2439			DgcA Dimethylglycine demethylase subunit A	-2.45278555198779	-7.54174571319015	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2440			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-2.96733928708743	-5.8855511820603	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2447			GbcA Glycine betaine demethylase subunit A	-2.0232438912106	-5.3122981702154	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2448			GbcB Glycine betaine demethylase subunit B	-2.0798384412072	-6.25515422406356	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2454			Serine hydroxymethyltransferase (EC 2.1.2.1)	-2.51859750204034	-6.07115909630902	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2455			Sarcosine oxidase beta subunit (EC 1.5.3.1)	-2.60033244023217	-5.78034716927528	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2457			Sarcosine oxidase alpha subunit (EC 1.5.3.1)	-2.49619670400173	-8.04685582717835	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2503			Coenzyme PQQ synthesis protein F	-1.60652425147035	-9.28167193933519	FALSE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_2730			FIG00958173: hypothetical protein	1.12077287201936	6.76243094436561	FALSE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_3430			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-2.22996195011286	-13.3063797693891	TRUE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_3725			Sensory box histidine kinase/response regulator	-1.99099140928594	-5.92481296061829	FALSE
+carbon source	set4IT078	Carnitine Hydrochloride	Pf1N1B4_4052			Isocitrate dehydrogenase [NADP] (EC 1.1.1.42)	-1.72234581409762	-6.8402073588838	FALSE
+carbon source	set4IT083	Cytidine	Pf1N1B4_1655			FIG00553872: hypothetical protein	1.12330970509799	8.38840152133785	FALSE
+carbon source	set4IT083	Cytidine	Pf1N1B4_3430			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.32030154974474	-8.71928994098586	FALSE
+carbon source	set4IT076	D-Alanine	Pf1N1B4_2143			Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system	-4.08148150916046	-8.2571602160839	TRUE
+carbon source	set4IT076	D-Alanine	Pf1N1B4_801			D-serine/D-alanine/glycine transporter	-2.68987840208712	-6.9088341389766	TRUE
+carbon source	set1IT022	D-Fructose	Pf1N1B4_1144			PTS system, fructose-specific IIB component (EC 2.7.1.69) / PTS system, fructose-specific IIC component (EC 2.7.1.69)	-2.60559595269197	-8.94875592179909	TRUE
+carbon source	set1IT006	D-Fructose	Pf1N1B4_1144			PTS system, fructose-specific IIB component (EC 2.7.1.69) / PTS system, fructose-specific IIC component (EC 2.7.1.69)	-2.58436001533959	-9.0037700377406	TRUE
+carbon source	set1IT006	D-Fructose	Pf1N1B4_1146			Phosphoenolpyruvate-protein phosphotransferase of PTS system (EC 2.7.3.9)	-3.33878470349339	-7.08269898112964	TRUE
+carbon source	set1IT022	D-Fructose	Pf1N1B4_1146			Phosphoenolpyruvate-protein phosphotransferase of PTS system (EC 2.7.3.9)	-2.84788433323627	-7.90735166620907	TRUE
+carbon source	set1IT025	D-Galactose	Pf1N1B4_2540			Spermidine Putrescine ABC transporter permease component PotB (TC 3.A.1.11.1)	-1.8635461032878	-11.3176264503114	FALSE
+carbon source	set1IT009	D-Galactose	Pf1N1B4_2540			Spermidine Putrescine ABC transporter permease component PotB (TC 3.A.1.11.1)	-1.70523035410997	-10.0298764526481	FALSE
+carbon source	set1IT009	D-Galactose	Pf1N1B4_2541			Spermidine Putrescine ABC transporter permease component potC (TC_3.A.1.11.1)	-1.89501481603331	-6.87535629310589	FALSE
+carbon source	set1IT025	D-Galactose	Pf1N1B4_2541			Spermidine Putrescine ABC transporter permease component potC (TC_3.A.1.11.1)	-1.78091015812038	-6.59179251872638	FALSE
+carbon source	set1IT025	D-Galactose	Pf1N1B4_397			Hexuronate transporter	-1.58992169934985	-6.79486543347661	TRUE
+carbon source	set1IT009	D-Galactose	Pf1N1B4_397			Hexuronate transporter	-1.50898677939249	-5.28256708104781	TRUE
+carbon source	set1IT009	D-Galactose	Pf1N1B4_398			Galactonate dehydratase (EC 4.2.1.6)	-2.38596415984493	-5.40982765894261	TRUE
+carbon source	set1IT025	D-Galactose	Pf1N1B4_398			Galactonate dehydratase (EC 4.2.1.6)	-2.35141841272471	-5.88168909658786	TRUE
+carbon source	set1IT025	D-Galactose	Pf1N1B4_410			L-arabinose transport ATP-binding protein AraG (TC 3.A.1.2.2)	-2.34412470544309	-9.32049582243502	TRUE
+carbon source	set1IT009	D-Galactose	Pf1N1B4_410			L-arabinose transport ATP-binding protein AraG (TC 3.A.1.2.2)	-2.33023908649217	-9.0889741396106	TRUE
+carbon source	set1IT025	D-Galactose	Pf1N1B4_411			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-2.34197281119917	-7.15966724896336	TRUE
+carbon source	set1IT009	D-Galactose	Pf1N1B4_411			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-2.19796481308167	-7.07341287208775	TRUE
+carbon source	set1IT025	D-Galactose	Pf1N1B4_413			L-arabinolactonase (EC 3.1.1.15)	-2.99197342801814	-12.4023580974325	TRUE
+carbon source	set1IT009	D-Galactose	Pf1N1B4_413			L-arabinolactonase (EC 3.1.1.15)	-2.81680676070598	-11.5480614695519	TRUE
+carbon source	set4IT062	D-Galacturonic Acid monohydrate	Pf1N1B4_1108			D-galactarate permease	-1.74804818695179	-9.19402731655627	TRUE
+carbon source	set4IT062	D-Galacturonic Acid monohydrate	Pf1N1B4_1109			2-ketoglutaric semialdehyde dehydrogenase (EC 1.2.1.26)	-2.00560083335218	-6.65612044874754	TRUE
+carbon source	set4IT062	D-Galacturonic Acid monohydrate	Pf1N1B4_1110			5-dehydro-4-deoxyglucarate dehydratase (EC 4.2.1.41)	-2.29125650408806	-5.68867459914129	TRUE
+carbon source	set4IT062	D-Galacturonic Acid monohydrate	Pf1N1B4_4511			UDP-glucose 4-epimerase (EC 5.1.3.2)	-2.63564251435045	-5.34117973414099	TRUE
+carbon source	set4IT062	D-Galacturonic Acid monohydrate	Pf1N1B4_5129			Hexuronate transporter	-1.76065972257002	-6.09708006317789	TRUE
+carbon source	set4IT084	D-Mannose	Pf1N1B4_1684			Oxidoreductase, aldo/keto reductase family	-1.4354571561618	-6.83209310349286	FALSE
+carbon source	set4IT084	D-Mannose	Pf1N1B4_4372			Galactitol utilization operon repressor	3.86226188986076	7.60615689071017	TRUE
+carbon source	set4IT084	D-Mannose	Pf1N1B4_4846			Multiple polyol-specific dehydrogenase (EC 1.1.1.-)	-2.95339981773507	-6.02241723175702	TRUE
+carbon source	set4IT084	D-Mannose	Pf1N1B4_4850			Various polyols ABC transporter, periplasmic substrate-binding protein	-1.62692155569853	-5.25479643296135	TRUE
+carbon source	set4IT084	D-Mannose	Pf1N1B4_597			N-acylglucosamine 2-epimerase (EC 5.1.3.8)	-2.41404284316663	-7.51364527857646	TRUE
+carbon source	set1IT026	D-Ribose	Pf1N1B4_3311			Tricarboxylate transport membrane protein TctA	4.11605919154625	26.1456247135901	FALSE
+carbon source	set1IT026	D-Ribose	Pf1N1B4_3312			Tricarboxylate transport protein TctB	4.48487750736885	24.4440111146366	FALSE
+carbon source	set1IT026	D-Ribose	Pf1N1B4_3314			Tricarboxylate porin OpdH	2.62774919547812	12.3729484355387	FALSE
+carbon source	set1IT026	D-Ribose	Pf1N1B4_6031			Ribokinase (EC 2.7.1.15)	-4.22209979830844	-5.70116349423437	TRUE
+carbon source	set1IT010	D-Ribose	Pf1N1B4_6031			Ribokinase (EC 2.7.1.15)	-3.0604027176568	-5.18253253305916	TRUE
+carbon source	set1IT010	D-Ribose	Pf1N1B4_6034			Ribose ABC transport system, ATP-binding protein RbsA (TC 3.A.1.2.1)	-3.03776806391453	-5.72182600666434	TRUE
+carbon source	set1IT026	D-Ribose	Pf1N1B4_6034			Ribose ABC transport system, ATP-binding protein RbsA (TC 3.A.1.2.1)	-2.56506009515585	-6.58403616954904	TRUE
+carbon source	set4IT066	D-Trehalose dihydrate	Pf1N1B4_3322			L-aspartate oxidase (EC 1.4.3.16)	-1.73692749562976	-8.40251151606147	FALSE
+carbon source	set4IT066	D-Trehalose dihydrate	Pf1N1B4_527			Cytosine/purine/uracil/thiamine/allantoin permease family protein	1.04982690849377	6.26009404644447	FALSE
+carbon source	set4IT066	D-Trehalose dihydrate	Pf1N1B4_833			PTS system, glucose-specific IIA component / Phosphotransferase system, phosphocarrier protein HPr / Phosphoenolpyruvate-protein phosphotransferase of PTS system (EC 2.7.3.9)	-3.2590791194547	-7.41161837891452	TRUE
+carbon source	set4IT066	D-Trehalose dihydrate	Pf1N1B4_834			Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)	-2.21078268675528	-11.1063726872301	TRUE
+carbon source	set4IT066	D-Trehalose dihydrate	Pf1N1B4_836			PTS system, trehalose-specific IIB component (EC 2.7.1.69) / PTS system, trehalose-specific IIC component (EC 2.7.1.69)	-2.04517423923116	-7.93724636669798	TRUE
+carbon source	set4IT063	Glycerol	Pf1N1B4_1186			L-lactate permease	-2.12946370812157	-10.2553695855165	TRUE
+carbon source	set4IT063	Glycerol	Pf1N1B4_1187			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-2.50036280421571	-8.41998653646772	TRUE
+carbon source	set4IT063	Glycerol	Pf1N1B4_1188			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-2.35847370780568	-9.99715190921447	TRUE
+carbon source	set4IT063	Glycerol	Pf1N1B4_1189			Predicted L-lactate dehydrogenase, hypothetical protein subunit YkgG	-2.2945959289941	-5.00967825246983	TRUE
+carbon source	set4IT063	Glycerol	Pf1N1B4_1190			Predicted D-lactate dehydrogenase, Fe-S protein, FAD/FMN-containing	-2.51092268309283	-10.1610872889617	TRUE
+carbon source	set4IT063	Glycerol	Pf1N1B4_2683			LrgA-associated membrane protein LrgB	-2.03888318890974	-5.63274779265237	TRUE
+carbon source	set4IT063	Glycerol	Pf1N1B4_3766			Uricase (urate oxidase) (EC 1.7.3.3)	-1.66803030112747	-6.38355325533636	FALSE
+carbon source	set4IT072	L-Alanine	Pf1N1B4_2143			Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system	-3.31925648963338	-10.3144370577072	TRUE
+carbon source	set4IT072	L-Alanine	Pf1N1B4_801			D-serine/D-alanine/glycine transporter	-2.53421743235292	-6.33045735673184	TRUE
+carbon source	set1IT024	L-Arabinose	Pf1N1B4_2540			Spermidine Putrescine ABC transporter permease component PotB (TC 3.A.1.11.1)	-2.58559029783854	-12.8226594095697	FALSE
+carbon source	set1IT008	L-Arabinose	Pf1N1B4_2540			Spermidine Putrescine ABC transporter permease component PotB (TC 3.A.1.11.1)	-2.24280696185169	-11.342922239256	FALSE
+carbon source	set1IT024	L-Arabinose	Pf1N1B4_2541			Spermidine Putrescine ABC transporter permease component potC (TC_3.A.1.11.1)	-2.44731054454104	-7.68259734151703	FALSE
+carbon source	set1IT008	L-Arabinose	Pf1N1B4_2541			Spermidine Putrescine ABC transporter permease component potC (TC_3.A.1.11.1)	-2.24978975217233	-6.80320172727439	FALSE
+carbon source	set1IT008	L-Arabinose	Pf1N1B4_396			D-galactonate regulator, IclR family	1.35936810765819	5.45969800987095	TRUE
+carbon source	set1IT024	L-Arabinose	Pf1N1B4_396			D-galactonate regulator, IclR family	1.74291569576773	8.92381224528001	TRUE
+carbon source	set1IT008	L-Arabinose	Pf1N1B4_410			L-arabinose transport ATP-binding protein AraG (TC 3.A.1.2.2)	-2.78590026615278	-8.11814410582229	TRUE
+carbon source	set1IT024	L-Arabinose	Pf1N1B4_410			L-arabinose transport ATP-binding protein AraG (TC 3.A.1.2.2)	-2.69345179194738	-8.79679649216312	TRUE
+carbon source	set1IT008	L-Arabinose	Pf1N1B4_411			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-2.32023619509063	-6.53522806995109	TRUE
+carbon source	set1IT024	L-Arabinose	Pf1N1B4_411			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-2.22042540418071	-7.14569475451332	TRUE
+carbon source	set1IT008	L-Arabinose	Pf1N1B4_413			L-arabinolactonase (EC 3.1.1.15)	-3.08637070820932	-10.9748324893843	TRUE
+carbon source	set1IT024	L-Arabinose	Pf1N1B4_413			L-arabinolactonase (EC 3.1.1.15)	-2.44141049155717	-10.6269076206725	TRUE
+carbon source	set1IT024	L-Arabinose	Pf1N1B4_4273			Predicted transcriptional regulator of the myo-inositol catabolic operon	1.48704792103797	6.96127934395155	FALSE
+carbon source	set1IT024	L-Arabinose	Pf1N1B4_4622			Nitrate/nitrite transporter	-3.00911353563293	-7.11746994329789	TRUE
+carbon source	set1IT008	L-Arabinose	Pf1N1B4_4622			Nitrate/nitrite transporter	-2.93215025872055	-6.69022696888967	TRUE
+carbon source	set1IT024	L-Arabinose	Pf1N1B4_4623			SUGAR TRANSPORTER	-3.99256567734166	-5.4092248625936	TRUE
+carbon source	set4IT067	L-Arginine	Pf1N1B4_1296			Biosynthetic arginine decarboxylase (EC 4.1.1.19)	-2.95039366955608	-10.4601740327396	FALSE
+carbon source	set4IT067	L-Arginine	Pf1N1B4_2348			Uracil phosphoribosyltransferase (EC 2.4.2.9) / Pyrimidine operon regulatory protein PyrR	-1.53729075039545	-5.90456014752302	FALSE
+carbon source	set4IT067	L-Arginine	Pf1N1B4_3431			Arginine/ornithine ABC transporter, periplasmic arginine/ornithine binding protein	-3.04520507308952	-7.61708310964116	TRUE
+carbon source	set4IT067	L-Arginine	Pf1N1B4_3432			Arginine/ornithine ABC transporter, permease protein AotQ	-2.89200463231934	-7.84243268038499	TRUE
+carbon source	set4IT067	L-Arginine	Pf1N1B4_3433			Arginine/ornithine ABC transporter, permease protein AotM	-2.65122703613802	-7.41316655004582	TRUE
+carbon source	set4IT067	L-Arginine	Pf1N1B4_3440			Succinylornithine transaminase (EC 2.6.1.81)	-2.97656418810575	-8.50464114335964	TRUE
+carbon source	set4IT067	L-Arginine	Pf1N1B4_3876			Cytochrome c oxidase subunit CcoP (EC 1.9.3.1)	-1.81198888494897	-7.55494879642595	FALSE
+carbon source	set4IT067	L-Arginine	Pf1N1B4_4643			NAD-specific glutamate dehydrogenase (EC 1.4.1.2), large form	-2.79695525633423	-7.25354151029118	TRUE
+carbon source	set4IT070	L-Asparagine	Pf1N1B4_2023			L-asparaginase (EC 3.5.1.1)	-1.73441444233408	-6.21563445781562	TRUE
+carbon source	set4IT070	L-Asparagine	Pf1N1B4_2024			sodium/alanine transporter	-1.69798019682771	-6.84557666956671	TRUE
+carbon source	set4IT070	L-Asparagine	Pf1N1B4_771			Glutamate Aspartate periplasmic binding protein precursor GltI (TC 3.A.1.3.4)	-2.15339166133889	-5.75618225931145	TRUE
+carbon source	set4IT070	L-Asparagine	Pf1N1B4_772			Glutamate Aspartate transport system permease protein GltJ (TC 3.A.1.3.4)	-2.22049469297244	-5.15762099673957	TRUE
+carbon source	set4IT070	L-Asparagine	Pf1N1B4_775			Signal transduction histidine kinase regulating C4-dicarboxylate transport system (EC 2.7.13.3)	-1.61866582390882	-6.95698097425034	TRUE
+carbon source	set4IT077	L-Citrulline	Pf1N1B4_3430			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.50923432351873	-10.2341435046422	TRUE
+carbon source	set4IT077	L-Citrulline	Pf1N1B4_3431			Arginine/ornithine ABC transporter, periplasmic arginine/ornithine binding protein	-2.5434287450673	-7.99821290549162	FALSE
+carbon source	set4IT077	L-Citrulline	Pf1N1B4_3432			Arginine/ornithine ABC transporter, permease protein AotQ	-2.25058344337425	-8.28880900417427	FALSE
+carbon source	set4IT077	L-Citrulline	Pf1N1B4_3433			Arginine/ornithine ABC transporter, permease protein AotM	-2.29146040943995	-9.01482415105858	FALSE
+carbon source	set4IT077	L-Citrulline	Pf1N1B4_3437			Arginine pathway regulatory protein ArgR, repressor of arg regulon	-2.97363731663025	-5.7913450056635	FALSE
+carbon source	set4IT077	L-Citrulline	Pf1N1B4_3440			Succinylornithine transaminase (EC 2.6.1.81)	-3.25340208504259	-8.88568760129471	FALSE
+carbon source	set4IT077	L-Citrulline	Pf1N1B4_3876			Cytochrome c oxidase subunit CcoP (EC 1.9.3.1)	-1.40735421219442	-6.88170067592888	FALSE
+carbon source	set4IT077	L-Citrulline	Pf1N1B4_4643			NAD-specific glutamate dehydrogenase (EC 1.4.1.2), large form	-2.33808496142552	-9.46061238208163	FALSE
+carbon source	set4IT069	L-Glutamic acid monopotassium salt monohydrate	Pf1N1B4_1375			Mannose-6-phosphate isomerase (EC 5.3.1.8)	-1.44264408002048	-7.47382243790413	FALSE
+carbon source	set4IT069	L-Glutamic acid monopotassium salt monohydrate	Pf1N1B4_2348			Uracil phosphoribosyltransferase (EC 2.4.2.9) / Pyrimidine operon regulatory protein PyrR	-1.96968804614737	-6.05576094840348	FALSE
+carbon source	set4IT069	L-Glutamic acid monopotassium salt monohydrate	Pf1N1B4_3707			Cobyrinic acid A,C-diamide synthase	-1.82261733117764	-6.71837594418648	FALSE
+carbon source	set4IT069	L-Glutamic acid monopotassium salt monohydrate	Pf1N1B4_775			Signal transduction histidine kinase regulating C4-dicarboxylate transport system (EC 2.7.13.3)	-1.56728921550581	-6.69863922614638	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1578			N-formylglutamate deformylase (EC 3.5.1.68)	-2.84073887723001	-7.34266307818883	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1580			Histidine transport protein (permease)	-2.93672137240984	-8.83827789681017	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1582			Histidine ammonia-lyase (EC 4.3.1.3)	-1.33086544116646	-5.91379323727109	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1585			Histidine ABC transporter, histidine-binding protein (TC 3.A.1)	-2.69698609359337	-9.03260365943607	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1586			Purine-cytosine permease	-1.88754268685578	-11.5262784387127	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1587			Urocanate hydratase (EC 4.2.1.49)	-3.07834259393914	-11.2908702460536	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1588			hypothetical protein	-3.23068825192073	-7.2622409842718	FALSE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1591			Formiminoglutamic iminohydrolase (EC 3.5.3.13)	-2.7208852547407	-9.03163482364598	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1673			Formate dehydrogenase chain D (EC 1.2.1.2)	-1.22851659867489	-5.43968395617939	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1674			Putative formate dehydrogenase oxidoreductase protein	-1.04375463739566	-6.57703929711677	TRUE
+carbon source	set4IT068	L-Histidine	Pf1N1B4_1832			Glycine cleavage system transcriptional activator	-1.75493993124144	-6.30538918953697	TRUE
+carbon source	set4IT074	L-Isoleucine	Pf1N1B4_1379			Branched-chain amino acid transport ATP-binding protein LivG (TC 3.A.1.4.1)	-1.35148201642659	-6.05156330924172	TRUE
+carbon source	set4IT074	L-Isoleucine	Pf1N1B4_1380			Branched-chain amino acid transport system permease protein LivM (TC 3.A.1.4.1)	-1.20070540567354	-6.85945778981674	TRUE
+carbon source	set4IT074	L-Isoleucine	Pf1N1B4_1381			High-affinity branched-chain amino acid transport system permease protein LivH (TC 3.A.1.4.1)	-1.51556571319056	-7.78828008015495	TRUE
+carbon source	set4IT074	L-Isoleucine	Pf1N1B4_1382			Branched-chain amino acid ABC transporter, amino acid-binding protein (TC 3.A.1.4.1)	-1.35002766461332	-7.82041361033791	TRUE
+carbon source	set4IT074	L-Isoleucine	Pf1N1B4_1489			Transcriptional repressor of PutA and PutP / Proline dehydrogenase (EC 1.5.99.8) (Proline oxidase) / Delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	1.14513590786061	7.71293563494651	TRUE
+carbon source	set4IT074	L-Isoleucine	Pf1N1B4_3820			2-methylcitrate synthase (EC 2.3.3.5)	-3.08528264472791	-7.49619578232475	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_1378			Branched-chain amino acid transport ATP-binding protein LivF (TC 3.A.1.4.1)	-2.03799765606054	-5.24719480795508	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_1379			Branched-chain amino acid transport ATP-binding protein LivG (TC 3.A.1.4.1)	-1.74588407843036	-7.44301834875388	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_1380			Branched-chain amino acid transport system permease protein LivM (TC 3.A.1.4.1)	-1.48343436775103	-8.54582455386248	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_1381			High-affinity branched-chain amino acid transport system permease protein LivH (TC 3.A.1.4.1)	-1.66543079009818	-8.9086427029083	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_1382			Branched-chain amino acid ABC transporter, amino acid-binding protein (TC 3.A.1.4.1)	-1.32237347784852	-8.02256985175125	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_1489			Transcriptional repressor of PutA and PutP / Proline dehydrogenase (EC 1.5.99.8) (Proline oxidase) / Delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	1.08291545479239	7.68515553373077	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_2740			Acyl-CoA thioesterase II (EC 3.1.2.-)	-2.02949422118882	-8.05509489447821	FALSE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_2896			L-Proline/Glycine betaine transporter ProP	-1.45295674587445	-5.61299779561809	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_3051			Phosphoenolpyruvate carboxylase (EC 4.1.1.31)	-1.65260023969105	-7.55525445150563	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_3216			Branched-chain amino acid transport system permease protein LivM (TC 3.A.1.4.1)	-1.40789414841164	-6.6562032990226	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_3218			High-affinity leucine-specific transport system, periplasmic binding protein LivK (TC 3.A.1.4.1)	-1.64710622131499	-5.13833789166102	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_3430			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.88965635807925	-11.4429808925631	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_386			Transcriptional regulator, GntR family domain / Aspartate aminotransferase (EC 2.6.1.1)	1.20740777402612	8.43136028076843	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_3984			Methylcrotonyl-CoA carboxylase biotin-containing subunit (EC 6.4.1.4)	-2.34713026795452	-5.08349831588687	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_4643			NAD-specific glutamate dehydrogenase (EC 1.4.1.2), large form	-1.9378141975239	-8.57053315159594	TRUE
+carbon source	set4IT075	L-Leucine	Pf1N1B4_978			Predicted ATPase related to phosphate starvation-inducible protein PhoH	-1.71254675062453	-6.983030457366	FALSE
+carbon source	set4IT073	L-Valine	Pf1N1B4_1183			Sodium-dependent transporter family protein	1.25446126166526	10.2081437071701	FALSE
+carbon source	set4IT073	L-Valine	Pf1N1B4_1229			Methylmalonate-semialdehyde dehydrogenase (EC 1.2.1.27)	-2.66408815818389	-8.30599521597128	TRUE
+carbon source	set4IT073	L-Valine	Pf1N1B4_2024			sodium/alanine transporter	1.01089635847217	6.57020038719065	TRUE
+carbon source	set4IT073	L-Valine	Pf1N1B4_2550			Lipoate-protein ligase A	-3.5766695134767	-5.76971295723154	TRUE
+carbon source	set4IT073	L-Valine	Pf1N1B4_3820			2-methylcitrate synthase (EC 2.3.3.5)	-3.20632975871595	-8.47410890591505	TRUE
+carbon source	set4IT073	L-Valine	Pf1N1B4_3888			Aconitate hydratase (EC 4.2.1.3)	-1.67571530424404	-9.50144549695669	FALSE
+carbon source	set4IT073	L-Valine	Pf1N1B4_3984			Methylcrotonyl-CoA carboxylase biotin-containing subunit (EC 6.4.1.4)	-1.71308388099014	-5.0721940511554	FALSE
+carbon source	set4IT073	L-Valine	Pf1N1B4_4643			NAD-specific glutamate dehydrogenase (EC 1.4.1.2), large form	-1.32796064034004	-7.29299526184494	FALSE
+carbon source	set4IT073	L-Valine	Pf1N1B4_4790			3-hydroxyisobutyryl-CoA hydrolase (EC 3.1.2.4)	-3.37722448352551	-6.01699896426201	TRUE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_1000			Inner membrane component of tripartite multidrug resistance system	1.81920921334749	14.038769333657	TRUE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_1000			Inner membrane component of tripartite multidrug resistance system	1.83171374280722	14.6850780960079	TRUE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_1001			Outer membrane component of tripartite multidrug resistance system	1.78630360791894	13.4804912165035	TRUE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_1001			Outer membrane component of tripartite multidrug resistance system	1.86211245883224	14.7504101795261	TRUE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_1002			LysR family transcriptional regulator QseA	1.30716933546364	9.52189468112099	TRUE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_1002			LysR family transcriptional regulator QseA	1.30793445316323	9.14136257996244	TRUE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_1821			Acetyl-CoA hydrolase (EC 3.1.2.1)	-1.24752423183932	-8.97513518594789	TRUE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_1821			Acetyl-CoA hydrolase (EC 3.1.2.1)	-1.19565493591777	-8.63130517717776	TRUE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_1849			Carbonic anhydrase (EC 4.2.1.1)	-2.2079173629091	-5.19820711138023	TRUE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_2554			Bis(5'-nucleosyl)-tetraphosphatase (asymmetrical) (EC 3.6.1.17)	-2.45664848477156	-6.74233107305887	TRUE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_2554			Bis(5'-nucleosyl)-tetraphosphatase (asymmetrical) (EC 3.6.1.17)	-2.39240874293661	-6.40401958558403	TRUE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_3430			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-2.37259062924799	-13.5340159177459	TRUE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_3430			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-2.25513556471429	-13.5889147306729	TRUE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_3725			Sensory box histidine kinase/response regulator	-2.51391423468469	-5.91946318430976	FALSE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_3725			Sensory box histidine kinase/response regulator	-2.2284203025026	-6.18155770519319	FALSE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_3726			Sensory box histidine kinase/response regulator	-3.11889472623565	-5.88050657464011	FALSE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_3726			Sensory box histidine kinase/response regulator	-2.54929699745206	-5.32413989311477	FALSE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_998			Membrane fusion component of tripartite multidrug resistance system	1.90514793400966	9.92896909760518	TRUE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_998			Membrane fusion component of tripartite multidrug resistance system	2.13758064566268	11.1167220955819	TRUE
+carbon source	set1IT029	Potassium acetate	Pf1N1B4_999			Na+-dependent transporters of the SNF family	1.42109279984052	5.017232631354	TRUE
+carbon source	set1IT013	Potassium acetate	Pf1N1B4_999			Na+-dependent transporters of the SNF family	1.4878955549759	7.35565897291484	TRUE
+carbon source	set4IT080	Putrescine Dihydrochloride	Pf1N1B4_1733			5-aminovalerate aminotransferase (EC 2.6.1.48) / Gamma-aminobutyrate:alpha-ketoglutarate aminotransferase (EC 2.6.1.19)	-2.26946193061911	-8.09503261127513	TRUE
+carbon source	set4IT080	Putrescine Dihydrochloride	Pf1N1B4_1734			Succinate-semialdehyde dehydrogenase [NAD(P)+] (EC 1.2.1.16)	-2.28823528411838	-5.89774221299878	TRUE
+carbon source	set4IT080	Putrescine Dihydrochloride	Pf1N1B4_2143			Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system	-1.47396809901763	-9.29133601161624	TRUE
+carbon source	set4IT080	Putrescine Dihydrochloride	Pf1N1B4_2254			Gamma-glutamyl-putrescine synthetase (EC 6.3.1.11)	-2.38015498908623	-7.54832295697063	TRUE
+carbon source	set4IT080	Putrescine Dihydrochloride	Pf1N1B4_2348			Uracil phosphoribosyltransferase (EC 2.4.2.9) / Pyrimidine operon regulatory protein PyrR	-1.43642642979471	-5.59551354642146	FALSE
+carbon source	set4IT080	Putrescine Dihydrochloride	Pf1N1B4_3322			L-aspartate oxidase (EC 1.4.3.16)	-1.82239412407219	-8.78218515873167	FALSE
+carbon source	set4IT080	Putrescine Dihydrochloride	Pf1N1B4_4351			Putrescine transport system permease protein PotH (TC 3.A.1.11.2)	-1.89363930823004	-5.89170948556674	TRUE
+carbon source	set1IT018	Sodium D,L-Lactate	Pf1N1B4_1186			L-lactate permease	-2.54955378829104	-9.81849866463986	TRUE
+carbon source	set1IT034	Sodium D,L-Lactate	Pf1N1B4_1186			L-lactate permease	-2.40286941242911	-10.0698797276744	TRUE
+carbon source	set1IT034	Sodium D,L-Lactate	Pf1N1B4_1187			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-2.61750599674411	-7.20818279376517	TRUE
+carbon source	set1IT018	Sodium D,L-Lactate	Pf1N1B4_1187			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-2.31999853829674	-6.96852361103005	TRUE
+carbon source	set1IT018	Sodium D,L-Lactate	Pf1N1B4_1188			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-3.01053522249481	-10.969933761403	TRUE
+carbon source	set1IT034	Sodium D,L-Lactate	Pf1N1B4_1188			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-2.78087579926151	-10.9686587773696	TRUE
+carbon source	set1IT034	Sodium D,L-Lactate	Pf1N1B4_1189			Predicted L-lactate dehydrogenase, hypothetical protein subunit YkgG	-3.22916630298092	-5.73136556338996	TRUE
+carbon source	set1IT018	Sodium D,L-Lactate	Pf1N1B4_1189			Predicted L-lactate dehydrogenase, hypothetical protein subunit YkgG	-2.85278663935531	-5.69003845453312	TRUE
+carbon source	set1IT034	Sodium D,L-Lactate	Pf1N1B4_1190			Predicted D-lactate dehydrogenase, Fe-S protein, FAD/FMN-containing	-1.45893922254803	-7.85277808276118	TRUE
+carbon source	set1IT018	Sodium D,L-Lactate	Pf1N1B4_1190			Predicted D-lactate dehydrogenase, Fe-S protein, FAD/FMN-containing	-1.26726882631695	-6.80137065785515	TRUE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_1186			L-lactate permease	-2.9039583755136	-9.84593999766257	TRUE
+carbon source	set1IT016	Sodium D-Lactate	Pf1N1B4_1186			L-lactate permease	-2.82087960314013	-10.3787719154114	TRUE
+carbon source	set1IT016	Sodium D-Lactate	Pf1N1B4_1187			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-2.55313149095766	-6.85629629226944	TRUE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_1187			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-2.24306284123247	-6.60454776377475	TRUE
+carbon source	set1IT016	Sodium D-Lactate	Pf1N1B4_1188			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-3.17005470496569	-10.6063668569539	TRUE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_1188			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-3.13051535223818	-10.4740761177255	TRUE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_1189			Predicted L-lactate dehydrogenase, hypothetical protein subunit YkgG	-3.33678294673902	-5.50802338412739	TRUE
+carbon source	set1IT016	Sodium D-Lactate	Pf1N1B4_1190			Predicted D-lactate dehydrogenase, Fe-S protein, FAD/FMN-containing	-3.04737632895569	-10.1622470357362	TRUE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_1190			Predicted D-lactate dehydrogenase, Fe-S protein, FAD/FMN-containing	-2.98920590516822	-10.1244552066681	TRUE
+carbon source	set1IT016	Sodium D-Lactate	Pf1N1B4_2683			LrgA-associated membrane protein LrgB	-3.08541200350125	-6.17712820384612	TRUE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_2683			LrgA-associated membrane protein LrgB	-2.42959453839085	-5.75332739142003	TRUE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_3311			Tricarboxylate transport membrane protein TctA	2.32580810075493	15.3932712349207	FALSE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_3312			Tricarboxylate transport protein TctB	2.57554750837242	11.9346136669607	FALSE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_3314			Tricarboxylate porin OpdH	1.11103721117159	5.97121599453503	FALSE
+carbon source	set1IT016	Sodium D-Lactate	Pf1N1B4_3876			Cytochrome c oxidase subunit CcoP (EC 1.9.3.1)	-1.84697309553084	-7.45427295339186	FALSE
+carbon source	set1IT032	Sodium D-Lactate	Pf1N1B4_3876			Cytochrome c oxidase subunit CcoP (EC 1.9.3.1)	-1.80555521733044	-7.63324870630616	FALSE
+carbon source	set1IT014	Sodium Fumarate dibasic	Pf1N1B4_1666			C4-dicarboxylate transport transcriptional regulatory protein	-1.90223947886637	-5.32562572489606	TRUE
+carbon source	set1IT030	Sodium Fumarate dibasic	Pf1N1B4_3311			Tricarboxylate transport membrane protein TctA	3.8740056187761	24.828161704731	FALSE
+carbon source	set1IT030	Sodium Fumarate dibasic	Pf1N1B4_3312			Tricarboxylate transport protein TctB	4.25606083183614	18.9315656510509	FALSE
+carbon source	set1IT030	Sodium Fumarate dibasic	Pf1N1B4_3314			Tricarboxylate porin OpdH	2.46395946204225	13.0778219444012	FALSE
+carbon source	set1IT014	Sodium Fumarate dibasic	Pf1N1B4_3487			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-2.06461271560129	-7.42405162510186	TRUE
+carbon source	set1IT030	Sodium Fumarate dibasic	Pf1N1B4_3487			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-2.05635092509607	-7.21795707149938	TRUE
+carbon source	set1IT017	Sodium L-Lactate	Pf1N1B4_1186			L-lactate permease	-2.70972577803815	-9.18738975243215	TRUE
+carbon source	set1IT033	Sodium L-Lactate	Pf1N1B4_1186			L-lactate permease	-2.48938611885624	-9.04623883712182	TRUE
+carbon source	set1IT033	Sodium L-Lactate	Pf1N1B4_1187			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-2.13447585643637	-6.01852370843446	TRUE
+carbon source	set1IT017	Sodium L-Lactate	Pf1N1B4_1187			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-2.12466931765012	-6.73611483184438	TRUE
+carbon source	set1IT017	Sodium L-Lactate	Pf1N1B4_1188			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-3.54120336074461	-8.82788283117418	TRUE
+carbon source	set1IT033	Sodium L-Lactate	Pf1N1B4_1188			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-2.81061715558793	-9.83781279721377	TRUE
+carbon source	set1IT033	Sodium L-Lactate	Pf1N1B4_1189			Predicted L-lactate dehydrogenase, hypothetical protein subunit YkgG	-2.86798386925675	-5.09031200079172	TRUE
+carbon source	set1IT017	Sodium L-Lactate	Pf1N1B4_1189			Predicted L-lactate dehydrogenase, hypothetical protein subunit YkgG	-2.59368868482902	-5.42901907696443	TRUE
+carbon source	set4IT086	Sodium butyrate	Pf1N1B4_1000			Inner membrane component of tripartite multidrug resistance system	1.43288523946282	10.2765925679203	FALSE
+carbon source	set4IT086	Sodium butyrate	Pf1N1B4_1001			Outer membrane component of tripartite multidrug resistance system	1.19404943710605	7.74366393054188	FALSE
+carbon source	set4IT086	Sodium butyrate	Pf1N1B4_1002			LysR family transcriptional regulator QseA	1.5891731807648	9.66489497152472	TRUE
+carbon source	set4IT086	Sodium butyrate	Pf1N1B4_2496			Acyl-CoA dehydrogenase (EC 1.3.8.7)	-2.81969784127718	-13.0034962147298	TRUE
+carbon source	set4IT086	Sodium butyrate	Pf1N1B4_998			Membrane fusion component of tripartite multidrug resistance system	1.89206137109709	7.52782351878387	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_1142			Uncharacterized iron-regulated membrane protein; Iron-uptake factor PiuB	-1.7317771845813	-7.8904821390539	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_1296			Biosynthetic arginine decarboxylase (EC 4.1.1.19)	-1.65667488711315	-9.52004360958009	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_1418			Epoxyqueuosine (oQ) reductase QueG	-1.35235144530843	-8.18105551577391	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_1445			lipoprotein, putative	-1.34498128342682	-7.23122755464542	TRUE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_1536			DamX, an inner membrane protein involved in bile resistance	-1.24775294389648	-7.26775573466607	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_2035			Phosphate transport system permease protein PstC (TC 3.A.1.7.1)	-2.25925185300212	-5.94575616423507	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_2111			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-1.28856533373865	-7.77121731330574	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_2206			FIG139438: lipoprotein B	1.39106389774624	6.29993364124788	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_2255			Gamma-glutamyl-GABA hydrolase (EC 3.5.1.94)	-1.31641676617955	-6.91440222129567	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_2273			hypothetical protein	-1.6296011829796	-5.70383454827817	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_2496			Acyl-CoA dehydrogenase (EC 1.3.8.7)	-3.17250502592077	-13.3332422553954	TRUE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_2617			Membrane protein with DUF350 domain	-1.17323281882636	-5.29678642272361	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_2681			MaoC-like domain protein	1.56423466515252	6.16669145147396	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_293			hypothetical protein	-1.59204248649179	-5.6322937746309	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3113			Protein-L-isoaspartate O-methyltransferase (EC 2.1.1.77)	-2.26609439723582	-11.5958354881719	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3147			Putative NADPH-quinone reductase (modulator of drug activity B)	-2.59517561620168	-8.58788848679625	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3166			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-2.43921784834035	-11.7766012274605	TRUE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3322			L-aspartate oxidase (EC 1.4.3.16)	-2.25999017832794	-9.48768546352276	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3329			Putative permease PerM (= YfgO)	-1.67473281502102	-6.20450675714719	TRUE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3389			3-oxoacyl-[acyl-carrier-protein] synthase, KASIII (EC 2.3.1.180)	-2.32225242283625	-7.0779622871077	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3589			N-acetylneuraminate synthase (EC 2.5.1.56)	-1.07627750606233	-5.39612706972172	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3696			FIG00955360: hypothetical protein	-3.02344309026974	-12.5399340804623	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3824			FIG137360: hypothetical protein	-1.48474497440336	-8.36425018966343	TRUE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3827			Esterase/lipase/thioesterase family protein	-1.41989129466786	-5.43779275062627	TRUE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_3829			Magnesium and cobalt transport protein CorA	-1.94282288288319	-10.8177620969935	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_389			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-2.10545641574002	-5.62398967872167	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_4643			NAD-specific glutamate dehydrogenase (EC 1.4.1.2), large form	-2.44095771039826	-7.11454459916175	TRUE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_4750			Fe(2+)/alpha-ketoglutarate-dependent dioxygenase LpxO	-1.76094543769323	-5.71492906059999	TRUE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_5661			5-methyltetrahydrofolate--homocysteine methyltransferase (EC 2.1.1.13)	-1.88276103005036	-5.76894186039971	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_573			Long-chain-fatty-acid--CoA ligase (EC 6.2.1.3)	-1.48142435774886	-7.61744193663207	FALSE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_579			Membrane fusion component of tripartite multidrug resistance system	-1.51840802933357	-5.27772457361392	TRUE
+carbon source	set4IT085	Sodium octanoate	Pf1N1B4_723			two-component system sensor protein	-2.70569732880203	-11.7991696648253	FALSE
+carbon source	set1IT019	Sodium pyruvate	Pf1N1B4_3673			Acetate permease ActP (cation/acetate symporter)	-1.59943489931796	-8.54171746444557	TRUE
+carbon source	set1IT035	Sodium pyruvate	Pf1N1B4_3673			Acetate permease ActP (cation/acetate symporter)	-1.10991239838921	-6.8342243094865	TRUE
+carbon source	set1IT035	Sodium pyruvate	Pf1N1B4_3725			Sensory box histidine kinase/response regulator	-1.77477766372696	-5.68848376311237	FALSE
+carbon source	set11IT047	Sucrose	Pf1N1B4_1142			Uncharacterized iron-regulated membrane protein; Iron-uptake factor PiuB	-2.1295294016411	-5.96971551661091	FALSE
+carbon source	set11IT052	Sucrose	Pf1N1B4_1142			Uncharacterized iron-regulated membrane protein; Iron-uptake factor PiuB	-1.44710111398928	-5.19997626308677	FALSE
+carbon source	set11IT032	Sucrose	Pf1N1B4_1212			Predicted flavin reductase RutF in novel pyrimidine catabolism pathway	1.77354760241783	5.74064842444055	FALSE
+carbon source	set11IT051	Sucrose	Pf1N1B4_1217			RND multidrug efflux transporter; Acriflavin resistance protein	-1.53165106812417	-8.16715884742969	FALSE
+carbon source	set11IT052	Sucrose	Pf1N1B4_1217			RND multidrug efflux transporter; Acriflavin resistance protein	-1.17057303887747	-6.11450993476078	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_1217			RND multidrug efflux transporter; Acriflavin resistance protein	-1.02610098267872	-5.4785318814753	FALSE
+carbon source	set11IT051	Sucrose	Pf1N1B4_1218			Probable Co/Zn/Cd efflux system membrane fusion protein	-1.20364971731746	-5.37216854105181	FALSE
+carbon source	set11IT047	Sucrose	Pf1N1B4_1218			Probable Co/Zn/Cd efflux system membrane fusion protein	-1.03633223913547	-5.39629248305438	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_1226			FIG01201438: hypothetical protein	-2.48890214809883	-5.91750583740247	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_1844			Oligopeptidase A (EC 3.4.24.70)	-1.58960826941355	-7.66412604097467	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_1868			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	1.30241609895666	6.14334335478799	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_1868			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	1.31502407043512	6.32439263700143	FALSE
+carbon source	set11IT034	Sucrose	Pf1N1B4_2031			Aldose 1-epimerase	-1.42028961735577	-5.72093791876268	TRUE
+carbon source	set11IT052	Sucrose	Pf1N1B4_2042			Phosphate regulon metal ion transporter containing CBS domains	-2.90626997424531	-8.33786865330637	FALSE
+carbon source	set11IT052	Sucrose	Pf1N1B4_2170			Putative FMN hydrolase (EC 3.1.3.-); 5-Amino-6-(5'-phosphoribitylamino)uracil phosphatase	-1.84596420589653	-5.05790809682509	FALSE
+carbon source	set11IT051	Sucrose	Pf1N1B4_2273			hypothetical protein	-2.85807030174454	-7.1267968473581	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_2273			hypothetical protein	-2.37332041207017	-5.59167733818661	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_2410			FIG00956403: hypothetical protein	-2.4342170039189	-5.51468933943338	FALSE
+carbon source	set11IT047	Sucrose	Pf1N1B4_2521			FIG004684: SpoVR-like protein	-1.88477433906614	-10.2834736982566	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_2521			FIG004684: SpoVR-like protein	-1.57470369024614	-8.12595028768169	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_2521			FIG004684: SpoVR-like protein	-1.4779419278228	-8.45689719579975	FALSE
+carbon source	set11IT051	Sucrose	Pf1N1B4_2521			FIG004684: SpoVR-like protein	-1.05325796441856	-5.72999956136301	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_2522			FIG002076: hypothetical protein	-2.24879729991889	-7.51178188348786	FALSE
+carbon source	set11IT047	Sucrose	Pf1N1B4_2522			FIG002076: hypothetical protein	-1.49749631379564	-6.17029665434034	FALSE
+carbon source	set11IT047	Sucrose	Pf1N1B4_2523			Serine protein kinase (prkA protein), P-loop containing	-1.54849539135725	-8.2867184453362	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_2523			Serine protein kinase (prkA protein), P-loop containing	-1.51712375112929	-8.00025774055642	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_2523			Serine protein kinase (prkA protein), P-loop containing	-1.47210314712413	-8.09734668898382	FALSE
+carbon source	set11IT051	Sucrose	Pf1N1B4_2523			Serine protein kinase (prkA protein), P-loop containing	-1.26947049782693	-6.60234442622897	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_2544			Phosphoglycolate phosphatase (EC 3.1.3.18)	1.26156850259717	6.58971821049202	FALSE
+carbon source	set11IT051	Sucrose	Pf1N1B4_26			Excinuclease ABC subunit B	-1.74348635060206	-5.0510660791791	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_2714			FOG: TPR repeat, SEL1 subfamily	1.49549668122845	5.41821662644555	FALSE
+carbon source	set11IT052	Sucrose	Pf1N1B4_2719			Sensor histidine kinase	-1.47579967373546	-8.10119239414913	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_3073			probable glucosyl transferase	-2.59562566704764	-7.32198216656477	FALSE
+carbon source	set11IT052	Sucrose	Pf1N1B4_3195			hydrolase, putative	-2.09329769254945	-6.42715540154692	FALSE
+carbon source	set11IT052	Sucrose	Pf1N1B4_3229			Glutamate synthase [NADPH] large chain (EC 1.4.1.13)	1.5117204250391	7.38545876585697	FALSE
+carbon source	set11IT051	Sucrose	Pf1N1B4_335			Glycosyltransferase	-2.84641712220661	-13.9207930277122	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_335			Glycosyltransferase	-2.6554405286335	-12.3479377327596	FALSE
+carbon source	set11IT052	Sucrose	Pf1N1B4_335			Glycosyltransferase	-2.57161300263739	-10.6557399186558	FALSE
+carbon source	set11IT047	Sucrose	Pf1N1B4_335			Glycosyltransferase	-2.28371415338115	-8.10119696610035	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_335			Glycosyltransferase	-2.24961431777084	-9.2636959635881	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_3363			Siderophore synthetase superfamily, group A @ Siderophore synthetase large component, acetyltransferase	-2.90610149024174	-6.91341204895824	FALSE
+carbon source	set11IT052	Sucrose	Pf1N1B4_3363			Siderophore synthetase superfamily, group A @ Siderophore synthetase large component, acetyltransferase	-2.75984837970895	-6.83385690298567	FALSE
+carbon source	set11IT047	Sucrose	Pf1N1B4_3363			Siderophore synthetase superfamily, group A @ Siderophore synthetase large component, acetyltransferase	-2.54433986527981	-6.10423581523495	FALSE
+carbon source	set11IT051	Sucrose	Pf1N1B4_3363			Siderophore synthetase superfamily, group A @ Siderophore synthetase large component, acetyltransferase	-2.06026264183165	-6.2911987027407	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_3387			Isocitrate dehydrogenase phosphatase (EC 2.7.11.5)/kinase (EC 3.1.3.-)	-1.94070310172184	-7.76560914135189	FALSE
+carbon source	set11IT047	Sucrose	Pf1N1B4_3387			Isocitrate dehydrogenase phosphatase (EC 2.7.11.5)/kinase (EC 3.1.3.-)	-1.60207619911419	-7.39676559368848	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_3387			Isocitrate dehydrogenase phosphatase (EC 2.7.11.5)/kinase (EC 3.1.3.-)	-1.47317082325027	-5.88801915023576	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_3826			Phosphoenolpyruvate synthase (EC 2.7.9.2)	-2.58358754862295	-8.29987766980393	FALSE
+carbon source	set11IT051	Sucrose	Pf1N1B4_3826			Phosphoenolpyruvate synthase (EC 2.7.9.2)	-2.24016229449008	-8.12943374280072	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_3826			Phosphoenolpyruvate synthase (EC 2.7.9.2)	-2.12746446872821	-8.22178647437701	FALSE
+carbon source	set11IT047	Sucrose	Pf1N1B4_3826			Phosphoenolpyruvate synthase (EC 2.7.9.2)	-2.06407740187519	-6.41162223194837	FALSE
+carbon source	set11IT048	Sucrose	Pf1N1B4_4614			Membrane alanine aminopeptidase N (EC 3.4.11.2)	-2.05530741118544	-5.03626407349591	FALSE
+carbon source	set11IT034	Sucrose	Pf1N1B4_4848			Various polyols ABC transporter, permease component 2	-1.7988632264878	-5.12662275017567	FALSE
+carbon source	set11IT049	Sucrose	Pf1N1B4_5111			Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)	-4.04166083453735	-8.24284712402427	TRUE
+carbon source	set11IT047	Sucrose	Pf1N1B4_5111			Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)	-3.70512762712155	-6.2718783770012	TRUE
+carbon source	set11IT034	Sucrose	Pf1N1B4_5111			Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)	-3.28157074419585	-5.65128655567361	TRUE
+carbon source	set11IT052	Sucrose	Pf1N1B4_5111			Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)	-3.18842616096161	-5.56270572299124	TRUE
+carbon source	set11IT047	Sucrose	Pf1N1B4_5116			Sucrose-6-phosphate hydrolase (EC 3.2.1.B3)	-4.41763246391985	-9.11860649206337	TRUE
+carbon source	set11IT033	Sucrose	Pf1N1B4_5116			Sucrose-6-phosphate hydrolase (EC 3.2.1.B3)	-4.32671119267648	-8.46182601316556	TRUE
+carbon source	set11IT051	Sucrose	Pf1N1B4_5116			Sucrose-6-phosphate hydrolase (EC 3.2.1.B3)	-3.60057839292642	-6.28263826985477	TRUE
+carbon source	set11IT031	Sucrose	Pf1N1B4_5116			Sucrose-6-phosphate hydrolase (EC 3.2.1.B3)	-3.50536931247956	-7.26758847784157	TRUE
+carbon source	set11IT052	Sucrose	Pf1N1B4_5116			Sucrose-6-phosphate hydrolase (EC 3.2.1.B3)	-3.4608313364212	-5.86855721308971	TRUE
+carbon source	set11IT034	Sucrose	Pf1N1B4_5116			Sucrose-6-phosphate hydrolase (EC 3.2.1.B3)	-3.31761687753843	-5.45607432068485	TRUE
+carbon source	set11IT032	Sucrose	Pf1N1B4_5116			Sucrose-6-phosphate hydrolase (EC 3.2.1.B3)	-3.16601784986721	-5.76587808778421	TRUE
+carbon source	set4IT064	Tween 20	Pf1N1B4_2496			Acyl-CoA dehydrogenase (EC 1.3.8.7)	-2.30241869015007	-12.6068286894867	TRUE
+carbon source	set4IT064	Tween 20	Pf1N1B4_2960			FIG002188: hypothetical protein	-2.74389731751405	-12.7596023525027	TRUE
+carbon source	set4IT064	Tween 20	Pf1N1B4_2961			Transcriptional regulator, LuxR family	-1.53923562722202	-6.68942078818658	TRUE
+carbon source	set4IT064	Tween 20	Pf1N1B4_3387			Isocitrate dehydrogenase phosphatase (EC 2.7.11.5)/kinase (EC 3.1.3.-)	-1.69368446881844	-8.01740169057649	TRUE
+carbon source	set4IT064	Tween 20	Pf1N1B4_3479			Sensor histidine kinase	-1.57942373279285	-5.54400175877649	TRUE
+carbon source	set4IT064	Tween 20	Pf1N1B4_3826			Phosphoenolpyruvate synthase (EC 2.7.9.2)	-1.6415664900771	-6.93650385985877	FALSE
+carbon source	set4IT064	Tween 20	Pf1N1B4_4616			FIG005548: transport protein	-2.02013109479448	-5.71721772739723	TRUE
+carbon source	set4IT064	Tween 20	Pf1N1B4_978			Predicted ATPase related to phosphate starvation-inducible protein PhoH	-1.40397307983809	-6.22487348444625	FALSE
+carbon source	set4IT082	Uridine	Pf1N1B4_1239			Omega-amino acid--pyruvate aminotransferase (EC 2.6.1.18)	-1.57632922693134	-6.07413085386306	TRUE
+carbon source	set4IT082	Uridine	Pf1N1B4_1240			LysR family transcriptional regulator PA0133	-1.26754834895994	-6.69579960395609	TRUE
+carbon source	set4IT082	Uridine	Pf1N1B4_3430			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.25771390311832	-8.75756753523359	FALSE
+carbon source	set4IT082	Uridine	Pf1N1B4_4501			Quino(hemo)protein alcohol dehydrogenase, PQQ-dependent (EC 1.1.99.8)	-1.20457503179392	-5.32028774502523	FALSE
+carbon source	set1IT011	a-Ketoglutaric acid disodium salt hydrate	Pf1N1B4_684			C4-dicarboxylate transport sensor protein	-2.9356623371116	-6.93649668104725	TRUE
+carbon source	set1IT027	a-Ketoglutaric acid disodium salt hydrate	Pf1N1B4_684			C4-dicarboxylate transport sensor protein	-2.73167425038147	-6.73999820180599	TRUE
+carbon source	set1IT027	a-Ketoglutaric acid disodium salt hydrate	Pf1N1B4_686			Dicarboxylate MFS transporter	-2.91900711664664	-8.48984166749167	TRUE
+carbon source	set1IT011	a-Ketoglutaric acid disodium salt hydrate	Pf1N1B4_686			Dicarboxylate MFS transporter	-2.6627775136326	-9.21353581298578	TRUE
+carbon source	set4IT061	m-Inositol	Pf1N1B4_4279			Epi-inositol hydrolase (EC 3.7.1.-)	-2.32519210357743	-6.23339646084745	TRUE
+carbon source	set4IT061	m-Inositol	Pf1N1B4_4286			Inositol transport system ATP-binding protein	-2.36514401306256	-5.58453691273281	TRUE
+nitrogen source	set5IT005	Adenine hydrochloride hydrate	Pf1N1B4_5381			hypothetical protein	1.60913701889802	7.23313190519209	FALSE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2420			L-proline glycine betaine ABC transport system permease protein ProV (TC 3.A.1.12.1)	-2.01441466794302	-6.59593614384849	TRUE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2428			FIG143042: Thioesterase-like protein	-3.41076304120955	-8.06668138089057	TRUE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2429			Carnitine 3-dehydrogenase (EC 1.1.1.108) @ 3-hydroxybutyryl-CoA dehydrogenase (EC 1.1.1.157) @ 3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35)	-2.0956945206871	-5.13754555352202	TRUE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2438			FIG00953113: hypothetical protein	-2.26104284981141	-6.06516266907501	TRUE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2439			DgcA Dimethylglycine demethylase subunit A	-2.39590305423395	-7.72722527274048	TRUE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2440			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-2.84000628759838	-5.33765163313541	TRUE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2448			GbcB Glycine betaine demethylase subunit B	-1.92851668399949	-5.6672446021511	TRUE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2454			Serine hydroxymethyltransferase (EC 2.1.2.1)	-2.23645089684671	-5.85583453624388	TRUE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2455			Sarcosine oxidase beta subunit (EC 1.5.3.1)	-2.83148001842958	-6.10676390335823	TRUE
+nitrogen source	set4IT095	Carnitine Hydrochloride	Pf1N1B4_2457			Sarcosine oxidase alpha subunit (EC 1.5.3.1)	-2.08609157099928	-8.4171820792964	TRUE
+nitrogen source	set5IT007	Cytidine	Pf1N1B4_1241			Transcriptional regulator RutR of pyrimidine catabolism (TetR family)	1.25320235263641	5.6201426554934	FALSE
+nitrogen source	set5IT007	Cytidine	Pf1N1B4_1431			Thiosulfate sulfurtransferase, rhodanese (EC 2.8.1.1)	1.18301910555555	7.84845458943037	FALSE
+nitrogen source	set5IT007	Cytidine	Pf1N1B4_1693			Cystine ABC transporter, periplasmic cystine-binding protein FliY	1.16287671400002	5.54231472879313	FALSE
+nitrogen source	set5IT007	Cytidine	Pf1N1B4_2262			Putrescine transport system permease protein PotH (TC 3.A.1.11.2)	-1.05649188813969	-5.35300079239421	FALSE
+nitrogen source	set5IT007	Cytidine	Pf1N1B4_3203			Cysteine synthase (EC 2.5.1.47)	1.11910647070311	5.26582642343655	FALSE
+nitrogen source	set5IT009	Cytosine	Pf1N1B4_1239			Omega-amino acid--pyruvate aminotransferase (EC 2.6.1.18)	-1.32428194010856	-5.9521622019057	TRUE
+nitrogen source	set5IT009	Cytosine	Pf1N1B4_1250			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-1.13098592325394	-5.45993965389587	TRUE
+nitrogen source	set4IT091	D-Alanine	Pf1N1B4_211			Cytochrome c-type biogenesis protein CcmG/DsbE, thiol:disulfide oxidoreductase	1.23533154375678	9.1337747151444	FALSE
+nitrogen source	set4IT091	D-Alanine	Pf1N1B4_2143			Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system	-3.76148478515867	-13.1002313092066	TRUE
+nitrogen source	set4IT091	D-Alanine	Pf1N1B4_801			D-serine/D-alanine/glycine transporter	-1.53236622403023	-6.87873284687835	TRUE
+nitrogen source	set3IT034	D-Glucosamine Hydrochloride	Pf1N1B4_1313			tRNA dihydrouridine synthase B (EC 1.-.-.-)	1.34373723326021	6.95799830276387	FALSE
+nitrogen source	set3IT034	D-Glucosamine Hydrochloride	Pf1N1B4_1555			Polyhydroxyalkanoic acid synthase	1.51927581367771	9.41957516226206	FALSE
+nitrogen source	set3IT034	D-Glucosamine Hydrochloride	Pf1N1B4_2986			sensor histidine kinase	1.06822232101363	5.15200975202832	FALSE
+nitrogen source	set5IT044	L-Arginine	Pf1N1B4_3440			Succinylornithine transaminase (EC 2.6.1.81)	-3.30318232375545	-10.4948147799914	TRUE
+nitrogen source	set4IT094	L-Citrulline	Pf1N1B4_3322			L-aspartate oxidase (EC 1.4.3.16)	-2.44893025270525	-9.67889078113332	FALSE
+nitrogen source	set4IT094	L-Citrulline	Pf1N1B4_3432			Arginine/ornithine ABC transporter, permease protein AotQ	-1.32122063279881	-5.35635459453905	FALSE
+nitrogen source	set4IT094	L-Citrulline	Pf1N1B4_3433			Arginine/ornithine ABC transporter, permease protein AotM	-1.20046165219403	-5.70236744590783	FALSE
+nitrogen source	set4IT094	L-Citrulline	Pf1N1B4_3437			Arginine pathway regulatory protein ArgR, repressor of arg regulon	-2.38965402040678	-5.77645629756976	FALSE
+nitrogen source	set4IT094	L-Citrulline	Pf1N1B4_3440			Succinylornithine transaminase (EC 2.6.1.81)	-2.97234657652282	-9.47168147624893	TRUE
+nitrogen source	set5IT047	L-Glutamic acid monopotassium salt monohydrate	Pf1N1B4_5658			Cobalt-precorrin-4 C11-methyltransferase (EC 2.1.1.133)	-1.62197313661663	-5.66796425873927	FALSE
+nitrogen source	set5IT045	L-Histidine	Pf1N1B4_1578			N-formylglutamate deformylase (EC 3.5.1.68)	-3.22488751508592	-10.2145505396476	TRUE
+nitrogen source	set5IT045	L-Histidine	Pf1N1B4_1579			Imidazolonepropionase (EC 3.5.2.7)	-3.00547465986408	-5.40174500289368	TRUE
+nitrogen source	set5IT045	L-Histidine	Pf1N1B4_1580			Histidine transport protein (permease)	-1.05203830446796	-7.05426975139135	TRUE
+nitrogen source	set5IT045	L-Histidine	Pf1N1B4_1587			Urocanate hydratase (EC 4.2.1.49)	-1.76391862029379	-12.0699309945319	TRUE
+nitrogen source	set5IT045	L-Histidine	Pf1N1B4_1588			hypothetical protein	-1.39081421017307	-5.9809114926218	FALSE
+nitrogen source	set5IT045	L-Histidine	Pf1N1B4_1591			Formiminoglutamic iminohydrolase (EC 3.5.3.13)	-3.05897894277156	-12.3985355908595	TRUE
+nitrogen source	set4IT089	L-Leucine	Pf1N1B4_1380			Branched-chain amino acid transport system permease protein LivM (TC 3.A.1.4.1)	-1.09152112708521	-6.58647676151951	TRUE
+nitrogen source	set4IT089	L-Leucine	Pf1N1B4_1381			High-affinity branched-chain amino acid transport system permease protein LivH (TC 3.A.1.4.1)	-1.10180264614403	-6.32025395916161	TRUE
+nitrogen source	set4IT089	L-Leucine	Pf1N1B4_1489			Transcriptional repressor of PutA and PutP / Proline dehydrogenase (EC 1.5.99.8) (Proline oxidase) / Delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	1.75846113518135	11.6721904838853	TRUE
+nitrogen source	set4IT089	L-Leucine	Pf1N1B4_386			Transcriptional regulator, GntR family domain / Aspartate aminotransferase (EC 2.6.1.1)	1.26100218593776	8.73299621267148	FALSE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_1733			5-aminovalerate aminotransferase (EC 2.6.1.48) / Gamma-aminobutyrate:alpha-ketoglutarate aminotransferase (EC 2.6.1.19)	-1.23162873149622	-7.2054326809416	TRUE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_2259			Putrescine ABC transporter putrescine-binding protein PotF (TC 3.A.1.11.2)	-1.49070757597453	-7.28293625024841	TRUE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_2261			Putrescine transport ATP-binding protein PotG (TC 3.A.1.11.2)	-1.58080002590741	-7.97589961497691	TRUE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_2262			Putrescine transport system permease protein PotH (TC 3.A.1.11.2)	-1.57944351443788	-9.79493750523737	TRUE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_2504			5-aminopentanamidase (EC 3.5.1.30)	-2.46594258479076	-8.86434981287881	TRUE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_2505			Lysine 2-monooxygenase (EC 1.13.12.2)	-3.68908841100426	-11.0740752030011	TRUE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_2506			Transcriptional regulator, AsnC family	-2.59228349536102	-5.54688144484089	TRUE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_3177			Histidine ABC transporter, permease protein HisM (TC 3.A.1.3.1)	-1.42843789249791	-8.8331935167257	TRUE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_3178			Histidine ABC transporter, permease protein HisQ (TC 3.A.1.3.1)	-1.78189371363676	-6.09251262020467	TRUE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_3431			Arginine/ornithine ABC transporter, periplasmic arginine/ornithine binding protein	1.58425091518509	6.04522004633487	FALSE
+nitrogen source	set5IT046	L-Lysine	Pf1N1B4_924			Arginine/ornithine ABC transporter, periplasmic arginine/ornithine binding protein	1.21664265732672	8.65626677411142	TRUE
+nitrogen source	set4IT090	L-Methionine	Pf1N1B4_1431			Thiosulfate sulfurtransferase, rhodanese (EC 2.8.1.1)	1.36498655725075	10.1125816390578	FALSE
+nitrogen source	set4IT090	L-Methionine	Pf1N1B4_1489			Transcriptional repressor of PutA and PutP / Proline dehydrogenase (EC 1.5.99.8) (Proline oxidase) / Delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	2.11633134144876	13.1746979085105	TRUE
+nitrogen source	set4IT090	L-Methionine	Pf1N1B4_1693			Cystine ABC transporter, periplasmic cystine-binding protein FliY	1.35405521839237	7.69564847197985	FALSE
+nitrogen source	set4IT090	L-Methionine	Pf1N1B4_1694			Cystine ABC transporter, permease protein	1.00463095200971	7.29523275770256	FALSE
+nitrogen source	set4IT090	L-Methionine	Pf1N1B4_1974			L-lysine permease	3.66243905693061	11.9051996135147	FALSE
+nitrogen source	set4IT090	L-Methionine	Pf1N1B4_2501			Pyrroloquinoline-quinone synthase (EC 1.3.3.11)	-1.50791479513106	-6.93093987279644	FALSE
+nitrogen source	set4IT090	L-Methionine	Pf1N1B4_4483			Transcriptional regulator, ArsR family	1.4175741473079	6.39762486081523	FALSE
+nitrogen source	set5IT048	L-Serine	Pf1N1B4_1012			Glycine cleavage system transcriptional activator	-2.30579112610444	-5.53380212460665	TRUE
+nitrogen source	set5IT048	L-Serine	Pf1N1B4_1013			L-serine dehydratase (EC 4.3.1.17)	-3.11537178239271	-12.3913781023306	TRUE
+nitrogen source	set5IT048	L-Serine	Pf1N1B4_1014			Serine transporter	-2.47693849440203	-6.23614153856223	FALSE
+nitrogen source	set5IT048	L-Serine	Pf1N1B4_1733			5-aminovalerate aminotransferase (EC 2.6.1.48) / Gamma-aminobutyrate:alpha-ketoglutarate aminotransferase (EC 2.6.1.19)	-2.79207274903111	-11.3456914383911	FALSE
+nitrogen source	set5IT048	L-Serine	Pf1N1B4_1734			Succinate-semialdehyde dehydrogenase [NAD(P)+] (EC 1.2.1.16)	-2.20726685978675	-8.17339577182585	FALSE
+nitrogen source	set5IT048	L-Serine	Pf1N1B4_2439			DgcA Dimethylglycine demethylase subunit A	1.08280378890523	7.52370479173804	TRUE
+nitrogen source	set5IT048	L-Serine	Pf1N1B4_386			Transcriptional regulator, GntR family domain / Aspartate aminotransferase (EC 2.6.1.1)	-1.18467195084217	-8.3243705780199	TRUE
+nitrogen source	set4IT087	L-Valine	Pf1N1B4_3686			Branched-chain amino acid transport system carrier protein	1.58737753555025	9.02502251517875	TRUE
+nitrogen source	set4IT096	Putrescine Dihydrochloride	Pf1N1B4_1733			5-aminovalerate aminotransferase (EC 2.6.1.48) / Gamma-aminobutyrate:alpha-ketoglutarate aminotransferase (EC 2.6.1.19)	-1.30440091205996	-6.03631919783815	TRUE
+nitrogen source	set4IT096	Putrescine Dihydrochloride	Pf1N1B4_2254			Gamma-glutamyl-putrescine synthetase (EC 6.3.1.11)	-2.50038776504687	-6.96378051567506	TRUE
+nitrogen source	set5IT011	Sodium nitrate	Pf1N1B4_3835			Assimilatory nitrate reductase large subunit (EC:1.7.99.4)	-2.12901044040942	-12.7024151302243	TRUE
+nitrogen source	set5IT011	Sodium nitrate	Pf1N1B4_3837			Nitrite reductase [NAD(P)H] large subunit (EC 1.7.1.4)	-1.96691808956679	-9.64896884652444	TRUE
+nitrogen source	set5IT011	Sodium nitrate	Pf1N1B4_5042			Nitrite reductase [NAD(P)H] large subunit (EC 1.7.1.4)	-1.68529546879497	-6.68699491057809	TRUE
+nitrogen source	set5IT006	Uridine	Pf1N1B4_1240			LysR family transcriptional regulator PA0133	-1.59358955371714	-5.21433880639867	TRUE
+nitrogen source	set5IT006	Uridine	Pf1N1B4_5381			hypothetical protein	1.22687917462471	5.38510759782391	FALSE
+pH	set5IT028		Pf1N1B4_1114			ABC transporter, ATP-binding protein	-2.20646500972858	-5.52456750067477	FALSE
+pH	set5IT027		Pf1N1B4_1144			PTS system, fructose-specific IIB component (EC 2.7.1.69) / PTS system, fructose-specific IIC component (EC 2.7.1.69)	-1.44576806641112	-6.19570434581635	TRUE
+pH	set5IT028		Pf1N1B4_1144			PTS system, fructose-specific IIB component (EC 2.7.1.69) / PTS system, fructose-specific IIC component (EC 2.7.1.69)	-1.30940499552806	-6.30857983211099	TRUE
+pH	set5IT028		Pf1N1B4_1183			Sodium-dependent transporter family protein	1.21386222053993	9.04353151086883	FALSE
+pH	set5IT028		Pf1N1B4_1306			Cytochrome c-type biogenesis protein DsbD, protein-disulfide reductase (EC 1.8.1.8)	1.21063168432437	10.615517058333	FALSE
+pH	set5IT027		Pf1N1B4_1306			Cytochrome c-type biogenesis protein DsbD, protein-disulfide reductase (EC 1.8.1.8)	1.23361028387036	10.6092166076287	FALSE
+pH	set5IT028		Pf1N1B4_1337			Outer membrane receptor proteins, mostly Fe transport	1.90629938224765	12.8394201538589	TRUE
+pH	set5IT027		Pf1N1B4_1337			Outer membrane receptor proteins, mostly Fe transport	1.91203654883404	11.9317531242413	TRUE
+pH	set5IT028		Pf1N1B4_1447			Hydroxymethylpyrimidine phosphate synthase ThiC (EC 4.1.99.17)	-2.40009803792186	-11.7521824192934	TRUE
+pH	set5IT027		Pf1N1B4_1447			Hydroxymethylpyrimidine phosphate synthase ThiC (EC 4.1.99.17)	-2.12348469622225	-9.99175762959088	TRUE
+pH	set5IT028		Pf1N1B4_1586			Purine-cytosine permease	-1.57021744085976	-6.59291620329901	FALSE
+pH	set5IT028		Pf1N1B4_1733			5-aminovalerate aminotransferase (EC 2.6.1.48) / Gamma-aminobutyrate:alpha-ketoglutarate aminotransferase (EC 2.6.1.19)	-2.07552406002674	-9.33280460279591	FALSE
+pH	set5IT027		Pf1N1B4_1733			5-aminovalerate aminotransferase (EC 2.6.1.48) / Gamma-aminobutyrate:alpha-ketoglutarate aminotransferase (EC 2.6.1.19)	-1.32300899081263	-5.86564607251636	FALSE
+pH	set5IT028		Pf1N1B4_1887			probable exported protein YPO0432	1.3891750619954	5.26376500910686	FALSE
+pH	set5IT028		Pf1N1B4_2143			Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system	-1.87313335754774	-7.97863210127559	FALSE
+pH	set5IT027		Pf1N1B4_2143			Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system	-1.53273125855583	-6.12675127264775	FALSE
+pH	set5IT028		Pf1N1B4_2331			Thiazole biosynthesis protein ThiG	-2.35999880791509	-5.31841555921066	TRUE
+pH	set5IT028		Pf1N1B4_2504			5-aminopentanamidase (EC 3.5.1.30)	-1.0071030691969	-5.10258264212856	FALSE
+pH	set5IT027		Pf1N1B4_2637			dTDP-4-dehydrorhamnose reductase (EC 1.1.1.133)	1.88747837784071	9.46203415208478	FALSE
+pH	set5IT028		Pf1N1B4_2637			dTDP-4-dehydrorhamnose reductase (EC 1.1.1.133)	1.9071159503126	8.08939818618978	FALSE
+pH	set5IT028		Pf1N1B4_2687			DNA-3-methyladenine glycosylase II (EC 3.2.2.21)	-1.24334095669587	-5.91137563089018	FALSE
+pH	set5IT027		Pf1N1B4_2714			FOG: TPR repeat, SEL1 subfamily	1.41503557356634	5.8957442146824	FALSE
+pH	set5IT027		Pf1N1B4_2718			Hydroxymethylpyrimidine phosphate kinase ThiD (EC 2.7.4.7)	-2.90622043236626	-8.09742244287754	TRUE
+pH	set5IT028		Pf1N1B4_2718			Hydroxymethylpyrimidine phosphate kinase ThiD (EC 2.7.4.7)	-2.25558617754692	-5.01777012862771	TRUE
+pH	set5IT027		Pf1N1B4_2934			Uracil phosphoribosyltransferase (EC 2.4.2.9)	1.30764825692866	9.32768667745184	TRUE
+pH	set5IT028		Pf1N1B4_2934			Uracil phosphoribosyltransferase (EC 2.4.2.9)	1.36750876936467	9.81808299489108	TRUE
+pH	set5IT028		Pf1N1B4_2947			Restriction endonuclease	1.78703959939454	7.49120692851614	FALSE
+pH	set5IT027		Pf1N1B4_2957			Medium-chain-fatty-acid--CoA ligase (EC 6.2.1.-)	-1.29050907414632	-5.81994793001848	FALSE
+pH	set5IT028		Pf1N1B4_2957			Medium-chain-fatty-acid--CoA ligase (EC 6.2.1.-)	-1.27403206469812	-6.26109145807435	FALSE
+pH	set5IT027		Pf1N1B4_3229			Glutamate synthase [NADPH] large chain (EC 1.4.1.13)	1.57336720705656	7.67105182799914	FALSE
+pH	set5IT028		Pf1N1B4_3229			Glutamate synthase [NADPH] large chain (EC 1.4.1.13)	1.87279741313357	10.0504074247484	FALSE
+pH	set5IT025		Pf1N1B4_3322			L-aspartate oxidase (EC 1.4.3.16)	-1.54708482922382	-8.01440338905378	FALSE
+pH	set5IT027		Pf1N1B4_335			Glycosyltransferase	-1.80582233995142	-9.05613675278003	FALSE
+pH	set5IT028		Pf1N1B4_335			Glycosyltransferase	-1.56087462491455	-7.07756524925033	FALSE
+pH	set5IT028		Pf1N1B4_3431			Arginine/ornithine ABC transporter, periplasmic arginine/ornithine binding protein	1.09721025734538	6.53453055749687	FALSE
+pH	set5IT027		Pf1N1B4_3431			Arginine/ornithine ABC transporter, periplasmic arginine/ornithine binding protein	1.14625998837827	6.54500235503337	FALSE
+pH	set5IT028		Pf1N1B4_3432			Arginine/ornithine ABC transporter, permease protein AotQ	1.33394115712499	7.40903401408163	FALSE
+pH	set5IT027		Pf1N1B4_3433			Arginine/ornithine ABC transporter, permease protein AotM	1.28541673754666	8.63112654005585	FALSE
+pH	set5IT028		Pf1N1B4_3433			Arginine/ornithine ABC transporter, permease protein AotM	1.32739423080764	8.11691833023313	FALSE
+pH	set5IT028		Pf1N1B4_3437			Arginine pathway regulatory protein ArgR, repressor of arg regulon	1.38168490582167	6.0784046318644	FALSE
+pH	set5IT027		Pf1N1B4_3437			Arginine pathway regulatory protein ArgR, repressor of arg regulon	1.56520906108569	8.50064554233952	FALSE
+pH	set5IT028		Pf1N1B4_3440			Succinylornithine transaminase (EC 2.6.1.81)	1.5078992403784	9.95987868286565	FALSE
+pH	set5IT027		Pf1N1B4_3440			Succinylornithine transaminase (EC 2.6.1.81)	1.692913334255	11.2089053404219	FALSE
+pH	set5IT028		Pf1N1B4_3482			outer membrane protein H1	1.13942264341081	7.1512774342229	FALSE
+pH	set5IT027		Pf1N1B4_3482			outer membrane protein H1	1.28338320846257	8.63797567822871	FALSE
+pH	set5IT027		Pf1N1B4_3496			Cytochrome c-type biogenesis protein ResA	1.06316510998367	6.46223427958477	FALSE
+pH	set5IT028		Pf1N1B4_3496			Cytochrome c-type biogenesis protein ResA	1.29950429824951	8.17714053867423	FALSE
+pH	set5IT028		Pf1N1B4_366			FIG00954136: hypothetical protein	1.40501124834207	9.12141530256977	FALSE
+pH	set5IT027		Pf1N1B4_3696			FIG00955360: hypothetical protein	-3.66845745092342	-15.5475493777087	FALSE
+pH	set5IT028		Pf1N1B4_3696			FIG00955360: hypothetical protein	-3.47769085325812	-14.2195745390079	FALSE
+pH	set5IT028		Pf1N1B4_3996			Histone acetyltransferase HPA2 and related acetyltransferases	-1.81027689014975	-6.03392619309512	FALSE
+pH	set5IT027		Pf1N1B4_4858			Chemotaxis regulator - transmits chemoreceptor signals to flagelllar motor components CheY	1.64340797743141	6.39920818673387	FALSE
+pH	set5IT028		Pf1N1B4_5045			Cytochrome oxidase biogenesis protein Sco1/SenC/PrrC, putative copper metallochaperone	1.32345804303734	5.13305635845331	FALSE
+pH	set5IT027		Pf1N1B4_5636			Histidine kinase/response regulator hybrid protein	1.2243956726891	6.84586919893896	FALSE
+pH	set5IT028		Pf1N1B4_5636			Histidine kinase/response regulator hybrid protein	1.33971006039039	8.65944605290847	FALSE
+pH	set5IT027		Pf1N1B4_5822			Na(+) H(+) antiporter subunit A / Na(+) H(+) antiporter subunit B	-3.15948456256178	-7.22272735767627	TRUE
+pH	set5IT027		Pf1N1B4_5824			Na(+) H(+) antiporter subunit D	-3.40837067866676	-5.81004480849241	TRUE
+pH	set5IT027		Pf1N1B4_596			Glucose ABC transport system, periplasmic sugar-binding protein	-4.02335293606614	-5.49425922260503	TRUE
+pH	set5IT028		Pf1N1B4_596			Glucose ABC transport system, periplasmic sugar-binding protein	-3.27367724055378	-6.58487066724132	TRUE
+pH	set5IT022		Pf1N1B4_596			Glucose ABC transport system, periplasmic sugar-binding protein	-2.59480634156712	-6.97665479923364	TRUE
+pH	set5IT027		Pf1N1B4_621			Glycine dehydrogenase [decarboxylating] (glycine cleavage system P protein) (EC 1.4.4.2)	-2.48874915795765	-9.61937491465441	TRUE
+pH	set5IT028		Pf1N1B4_621			Glycine dehydrogenase [decarboxylating] (glycine cleavage system P protein) (EC 1.4.4.2)	-1.8926536018929	-6.88078678325451	TRUE
+pH	set5IT027		Pf1N1B4_630			TPR repeat containing exported protein; Putative periplasmic protein contains a protein prenylyltransferase domain	-4.5089609108312	-6.16747402121936	FALSE
+pH	set5IT028		Pf1N1B4_630			TPR repeat containing exported protein; Putative periplasmic protein contains a protein prenylyltransferase domain	-3.66840189769781	-7.24801966482826	FALSE
+pH	set5IT028		Pf1N1B4_654			Mutator mutT protein (7,8-dihydro-8-oxoguanine-triphosphatase) (EC 3.6.1.-) / Thiamin-phosphate pyrophosphorylase-like protein	-1.78681846101537	-7.06778891422015	FALSE
+stress	set3IT026	1-ethyl-3-methylimidazolium chloride	Pf1N1B4_2223			FIG006231: RNA-binding protein	-2.411194093294	-8.56750664801121	FALSE
+stress	set3IT026	1-ethyl-3-methylimidazolium chloride	Pf1N1B4_2611			Excinuclease ABC subunit A	-1.46867209083466	-9.7618445158751	FALSE
+stress	set3IT024	5-Hydroxymethylfurfural	Pf1N1B4_1871			Zinc uptake regulation protein ZUR	-1.4068665571426	-5.89050444376756	FALSE
+stress	set3IT024	5-Hydroxymethylfurfural	Pf1N1B4_3264			Methyltransferase (EC 2.1.1.-)	2.98436104500608	9.46865955814564	FALSE
+stress	set4IT049	Aluminum chloride hydrate	Pf1N1B4_1846			Protein tyrosine/serine phosphatase	-2.06110251561787	-7.86132599242946	TRUE
+stress	set4IT049	Aluminum chloride hydrate	Pf1N1B4_366			FIG00954136: hypothetical protein	-1.28076945876864	-6.31223647914481	FALSE
+stress	set4IT049	Aluminum chloride hydrate	Pf1N1B4_3696			FIG00955360: hypothetical protein	-2.81577917331427	-13.8056842368686	FALSE
+stress	set4IT049	Aluminum chloride hydrate	Pf1N1B4_382			Phosphoglycerol transferase and related proteins, alkaline phosphatase superfamily	-1.16493040234052	-5.20388101541864	TRUE
+stress	set4IT049	Aluminum chloride hydrate	Pf1N1B4_723			two-component system sensor protein	-2.72415845510148	-12.1805416325811	TRUE
+stress	set3IT008	Bacitracin	Pf1N1B4_4666			Acriflavin resistance plasma membrane protein	-1.83455910568182	-5.70769804110587	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_1142			Uncharacterized iron-regulated membrane protein; Iron-uptake factor PiuB	-2.12217702142211	-8.54999715842676	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_2719			Sensor histidine kinase	1.33517169381983	10.1343628430102	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_3147			Putative NADPH-quinone reductase (modulator of drug activity B)	-1.92535237741678	-6.99077150204384	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_3166			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-2.27057949434856	-11.1455881116755	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_3361			Outer membrane receptor proteins, likely involved in siderophore uptake @ TonB-dependent siderophore receptor	-1.43945751185482	-8.1548927356337	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_3667			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.58225774236236	-7.19069468594115	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_3668			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.58113482887455	-8.35956707862017	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_388			OmpA family protein	-2.05464717304017	-5.05150806358323	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_389			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-2.32926744373767	-6.35756526593491	FALSE
+stress	set3IT004	Benzethonium chloride	Pf1N1B4_4882			Transcriptional regulator MexT	-2.49716632181184	-6.19734594616545	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_1417			NAD(P)HX epimerase / NAD(P)HX dehydratase	-1.75170788406405	-9.08454294525427	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_1418			Epoxyqueuosine (oQ) reductase QueG	-1.64160096871047	-9.19924625175984	TRUE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_1509			Putative histidine ammonia-lyase protein	-1.04466852759202	-5.64430676510931	TRUE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_1868			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-1.77356422238991	-7.7413206274161	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_2111			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-1.13072815484639	-7.68227109140347	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_2131			hypothetical protein	1.7198111043377	5.87150102582332	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_2206			FIG139438: lipoprotein B	-1.26103187815568	-5.37804372068463	TRUE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_2391			Membrane-bound lytic murein transglycosylase A precursor (EC 3.2.1.-)	-1.21847109098282	-7.48683584373725	TRUE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_2436			FIG00953563: hypothetical protein	1.55989245018644	8.45381241765105	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_2611			Excinuclease ABC subunit A	-1.81185597454686	-11.8102021889737	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_2635			hypothetical protein	1.87217275535983	5.2371620105931	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_3166			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	2.76770833581336	19.0455077362877	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_3197			OmpA family protein	-2.00695090356141	-6.36876414752814	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_3415			Transcriptional regulator, TetR family	2.47556403070185	6.79352256109202	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_3846			D-alanyl-D-alanine carboxypeptidase (EC 3.4.16.4)	-2.14151905327471	-7.94069420840404	TRUE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_388			OmpA family protein	2.34103457814001	11.9775022638708	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_389			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	2.2752901130176	13.6385234350516	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_3898			Soluble lytic murein transglycosylase precursor (EC 3.2.1.-)	-3.04688541584079	-8.99138972573845	TRUE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_447			FIG004453: protein YceG like	-1.81691397711292	-14.7111813602446	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_668			Exodeoxyribonuclease I (EC 3.1.11.1)	-1.24863746059928	-5.04640399614384	FALSE
+stress	set3IT035	Carbenicillin disodium salt	Pf1N1B4_73			Beta-lactamase (EC 3.5.2.6)	-1.90850332237613	-8.31664450444729	TRUE
+stress	set3IT027	Choline Lysine	Pf1N1B4_2637			dTDP-4-dehydrorhamnose reductase (EC 1.1.1.133)	1.51198011062071	8.47340600067498	FALSE
+stress	set3IT027	Choline Lysine	Pf1N1B4_2701			Membrane-bound lytic murein transglycosylase B precursor (EC 3.2.1.-)	1.49061371835656	14.1593732927424	TRUE
+stress	set3IT027	Choline Lysine	Pf1N1B4_4858			Chemotaxis regulator - transmits chemoreceptor signals to flagelllar motor components CheY	1.50820484056239	6.38248116616359	FALSE
+stress	set3IT029	Choline chloride	Pf1N1B4_1417			NAD(P)HX epimerase / NAD(P)HX dehydratase	1.42030973942072	10.0173453399579	FALSE
+stress	set3IT029	Choline chloride	Pf1N1B4_1418			Epoxyqueuosine (oQ) reductase QueG	1.16554107922066	9.2980905185734	FALSE
+stress	set3IT029	Choline chloride	Pf1N1B4_2416			Choline dehydrogenase (EC 1.1.99.1)	-1.64938538801509	-6.47609961083095	TRUE
+stress	set3IT029	Choline chloride	Pf1N1B4_26			Excinuclease ABC subunit B	-1.78483485992744	-6.89865530867229	FALSE
+stress	set3IT029	Choline chloride	Pf1N1B4_2611			Excinuclease ABC subunit A	-1.5589960418376	-10.1918017941547	FALSE
+stress	set3IT029	Choline chloride	Pf1N1B4_2694			Membrane-bound lytic murein transglycosylase B precursor (EC 3.2.1.-)	1.50731692695831	11.4677638134303	FALSE
+stress	set3IT029	Choline chloride	Pf1N1B4_447			FIG004453: protein YceG like	1.25808655147627	11.5297266522578	FALSE
+stress	set2IT043	Cisplatin	Pf1N1B4_1927			DNA recombination and repair protein RecF	-2.55617991774603	-9.08336482268565	TRUE
+stress	set2IT039	Cisplatin	Pf1N1B4_1927			DNA recombination and repair protein RecF	-2.53916181120463	-8.3168810479799	TRUE
+stress	set2IT039	Cisplatin	Pf1N1B4_26			Excinuclease ABC subunit B	-2.9276360869683	-8.02585864244344	TRUE
+stress	set2IT043	Cisplatin	Pf1N1B4_26			Excinuclease ABC subunit B	-2.71511122406679	-7.89987598013624	TRUE
+stress	set2IT043	Cisplatin	Pf1N1B4_2611			Excinuclease ABC subunit A	-2.53111256298681	-13.050812133161	TRUE
+stress	set2IT039	Cisplatin	Pf1N1B4_2611			Excinuclease ABC subunit A	-2.40367653294893	-12.5369419767415	TRUE
+stress	set2IT039	Cisplatin	Pf1N1B4_2694			Membrane-bound lytic murein transglycosylase B precursor (EC 3.2.1.-)	1.48453141757647	9.65196040599732	FALSE
+stress	set2IT039	Cisplatin	Pf1N1B4_2887			Chromosome segregation ATPases	-1.11505514012261	-5.39231365252682	FALSE
+stress	set2IT039	Cisplatin	Pf1N1B4_293			hypothetical protein	1.42462587430234	7.97756904453543	FALSE
+stress	set2IT039	Cisplatin	Pf1N1B4_3224			RNA polymerase associated protein RapA (EC 3.6.1.-)	1.48860721092713	6.40905201349223	FALSE
+stress	set2IT039	Cisplatin	Pf1N1B4_3752			Aspartyl aminopeptidase	-1.44429972084123	-9.27120093471812	TRUE
+stress	set2IT039	Cisplatin	Pf1N1B4_3916			Transcription-repair coupling factor	-2.28327087081536	-11.4049514633328	TRUE
+stress	set2IT043	Cisplatin	Pf1N1B4_3916			Transcription-repair coupling factor	-1.67924049892278	-9.97405152193259	TRUE
+stress	set2IT043	Cisplatin	Pf1N1B4_4934			Hypothetical protein, restriction endonuclease-like VRR-NUC domain	-2.22283355988674	-7.35532080108116	TRUE
+stress	set2IT039	Cisplatin	Pf1N1B4_4934			Hypothetical protein, restriction endonuclease-like VRR-NUC domain	-1.95977084601936	-6.6799120384902	TRUE
+stress	set2IT043	Cisplatin	Pf1N1B4_4935			DinG family ATP-dependent helicase CPE1197	-1.7509922352412	-6.89161953823439	TRUE
+stress	set2IT039	Cisplatin	Pf1N1B4_4935			DinG family ATP-dependent helicase CPE1197	-1.73231219457985	-5.50130904540181	TRUE
+stress	set2IT043	Cisplatin	Pf1N1B4_5450			Error-prone, lesion bypass DNA polymerase V (UmuC)	-1.73289195172335	-8.90035361474367	TRUE
+stress	set2IT039	Cisplatin	Pf1N1B4_5450			Error-prone, lesion bypass DNA polymerase V (UmuC)	-1.63914398211634	-8.55162136235672	TRUE
+stress	set2IT043	Cisplatin	Pf1N1B4_5500			hypothetical protein	1.02447807980249	5.12811057197979	FALSE
+stress	set2IT039	Cisplatin	Pf1N1B4_5500			hypothetical protein	1.15233835040898	5.52160256399912	FALSE
+stress	set2IT043	Cisplatin	Pf1N1B4_6039			Endonuclease I precursor (EC 3.1.21.1)	-1.34507462474396	-5.34974534737893	TRUE
+stress	set2IT039	Cisplatin	Pf1N1B4_6039			Endonuclease I precursor (EC 3.1.21.1)	-1.34260749481619	-5.13485537481119	TRUE
+stress	set1IT038	Cobalt chloride hexahydrate	Pf1N1B4_1013			L-serine dehydratase (EC 4.3.1.17)	2.19882710025614	12.1356646539877	TRUE
+stress	set1IT038	Cobalt chloride hexahydrate	Pf1N1B4_2386			cytosolic long-chain acyl-CoA thioester hydrolase family protein	-2.15301059660126	-5.91218603027447	FALSE
+stress	set1IT038	Cobalt chloride hexahydrate	Pf1N1B4_3454			Mg/Co/Ni transporter MgtE / CBS domain	8.59825409657068	26.2558503233046	TRUE
+stress	set4IT056	D-Cycloserine	Pf1N1B4_2721			AMP nucleosidase (EC 3.2.2.4)	-2.10769245680868	-8.81442348515909	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_1096			Septum formation protein Maf	1.48049916455247	6.42078005281179	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_1142			Uncharacterized iron-regulated membrane protein; Iron-uptake factor PiuB	-2.09666067987309	-8.42132100273598	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_1181			UPF0125 protein yfjF	1.73070099626454	7.19364435093945	TRUE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_1296			Biosynthetic arginine decarboxylase (EC 4.1.1.19)	-1.74652297164284	-9.131112090069	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_149			Pyoverdine sidechain non-ribosomal peptide synthetase PvdD	1.2158195361663	5.06866082709606	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_1509			Putative histidine ammonia-lyase protein	-1.12054136392506	-5.2979161482515	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_1669			ADP compounds hydrolase NudE (EC 3.6.1.-)	1.22143993829749	5.81388785212626	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_2206			FIG139438: lipoprotein B	2.4535616679403	11.3334693653348	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_3147			Putative NADPH-quinone reductase (modulator of drug activity B)	-1.85508781016759	-7.49476593781451	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_3166			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-3.2379272989558	-11.00557546427	TRUE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_3264			Methyltransferase (EC 2.1.1.-)	5.95462684818391	13.8559382651905	TRUE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_3415			Transcriptional regulator, TetR family	2.37860594596671	6.05676807785978	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_3566			Phenylalanine-4-hydroxylase (EC 1.14.16.1)	-1.91632653248372	-6.66659416410923	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_366			FIG00954136: hypothetical protein	1.43963553312057	9.7414597304067	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_3667			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-3.31118882678214	-7.90679734249515	TRUE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_3668			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.77141475168554	-7.26886800256576	TRUE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_3846			D-alanyl-D-alanine carboxypeptidase (EC 3.4.16.4)	1.01964629559814	5.46095036504807	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_388			OmpA family protein	-2.98815591278354	-5.65575047175037	TRUE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_389			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-3.31993793587678	-5.03440321950837	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_3916			Transcription-repair coupling factor	2.12896314065378	12.84993197487	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_5355			hypothetical protein	1.39977259361984	6.02353620996412	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_546			FMN-dependent NADH-azoreductase	1.19528802606508	6.39436537920661	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_573			Long-chain-fatty-acid--CoA ligase (EC 6.2.1.3)	1.66936129069978	11.7581157706201	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_5948			UTP--glucose-1-phosphate uridylyltransferase (EC 2.7.7.9)	2.09167593761734	10.3984872730331	FALSE
+stress	set3IT011	Doxycycline hyclate	Pf1N1B4_723			two-component system sensor protein	-2.01348155832513	-8.68840423064487	TRUE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_1013			L-serine dehydratase (EC 4.3.1.17)	-1.46596399525055	-6.82726130189547	FALSE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_1013			L-serine dehydratase (EC 4.3.1.17)	-1.07156009143193	-5.83990163519101	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_1096			Septum formation protein Maf	1.55716352449641	5.68334082570967	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_1863			Cytochrome oxidase biogenesis protein Sco1/SenC/PrrC, putative copper metallochaperone	1.07118687739167	7.14708706489057	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_2050			Rubredoxin-NAD(+) reductase (EC 1.18.1.1)	1.14989316829865	6.5155507247408	FALSE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_2206			FIG139438: lipoprotein B	1.7339512171656	8.05538526712703	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_2206			FIG139438: lipoprotein B	1.77689935291964	8.73399143446124	FALSE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_2223			FIG006231: RNA-binding protein	-1.82146208042139	-7.71282378924309	FALSE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_2719			Sensor histidine kinase	1.30028871310565	9.69862187924712	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_2721			AMP nucleosidase (EC 3.2.2.4)	-1.86325319007856	-8.42999920262264	FALSE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_2755			Xanthine/uracil/thiamine/ascorbate permease family protein	1.14119417373135	5.01693249178921	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_3117			DNA mismatch repair protein MutS	1.21602254641792	7.38369273396526	TRUE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_3166			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-1.73784532747299	-8.99928685039068	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_3170			Peptide chain release factor RF-3	-1.21024308520922	-5.83012274291183	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_3361			Outer membrane receptor proteins, likely involved in siderophore uptake @ TonB-dependent siderophore receptor	1.34799358892357	9.10407944342488	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_3388			ATP-dependent RNA helicase HrpA (EC 3.6.4.13)	-2.40788431746544	-9.8844294141126	TRUE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_3388			ATP-dependent RNA helicase HrpA (EC 3.6.4.13)	-1.99076710710956	-8.94310375414008	TRUE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_3667			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-3.04394285659872	-8.04952599951285	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_3667			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-3.03722402397835	-8.03175844591152	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_3668			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.70758984536738	-5.8890280870579	FALSE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_3668			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.46285751860281	-7.46336031392796	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_3684			Succinyl-CoA ligase [ADP-forming] beta chain (EC 6.2.1.5)	2.41266260374974	10.2956691162516	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_3826			Phosphoenolpyruvate synthase (EC 2.7.9.2)	-1.67231584372335	-7.3807883304841	FALSE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_388			OmpA family protein	-1.94747250183969	-5.65416976093752	FALSE
+stress	set4IT050	Fusidic acid sodium salt	Pf1N1B4_3942			Murein-DD-endopeptidase (EC 3.4.99.-)	1.60572232861011	5.21944832621652	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_431			hypothetical protein	1.60073853790983	6.6785132956463	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_4772			RND efflux system, inner membrane transporter CmeB	2.066606701473	7.56268439985396	TRUE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_4882			Transcriptional regulator MexT	-3.10509378679309	-6.99345319377765	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_573			Long-chain-fatty-acid--CoA ligase (EC 6.2.1.3)	1.61350525496758	9.21558348841488	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_5938			Glucose-1-phosphate thymidylyltransferase (EC 2.7.7.24)	1.46488275164188	5.87659775357512	FALSE
+stress	set4IT051	Fusidic acid sodium salt	Pf1N1B4_813			hypothetical protein	-1.41368259496398	-5.59686123566539	FALSE
+stress	set3IT038	Gentamicin sulfate salt	Pf1N1B4_1661			Agmatine deiminase (EC 3.5.3.12)	-2.09226472415614	-5.65259786109332	FALSE
+stress	set3IT036	Nalidixic acid sodium salt	Pf1N1B4_2035			Phosphate transport system permease protein PstC (TC 3.A.1.7.1)	-1.81113137491097	-5.4860182898757	FALSE
+stress	set3IT036	Nalidixic acid sodium salt	Pf1N1B4_3166			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-1.90705237339039	-9.14429218904672	TRUE
+stress	set3IT036	Nalidixic acid sodium salt	Pf1N1B4_3363			Siderophore synthetase superfamily, group A @ Siderophore synthetase large component, acetyltransferase	-1.24596803864212	-5.08748344921679	FALSE
+stress	set3IT036	Nalidixic acid sodium salt	Pf1N1B4_3667			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.36969757039181	-8.37024178599741	FALSE
+stress	set3IT036	Nalidixic acid sodium salt	Pf1N1B4_3668			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.28684283106657	-7.93038457031163	FALSE
+stress	set3IT036	Nalidixic acid sodium salt	Pf1N1B4_388			OmpA family protein	-1.71240037955416	-5.90537937806805	FALSE
+stress	set3IT036	Nalidixic acid sodium salt	Pf1N1B4_389			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-1.72957525540957	-5.70304254303983	FALSE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_1296			Biosynthetic arginine decarboxylase (EC 4.1.1.19)	-2.18543329075854	-9.22750203135852	TRUE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_1689			High-affinity choline uptake protein BetT	3.38762936068119	20.640877557916	TRUE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_1733			5-aminovalerate aminotransferase (EC 2.6.1.48) / Gamma-aminobutyrate:alpha-ketoglutarate aminotransferase (EC 2.6.1.19)	2.5087732955083	15.5608858239529	TRUE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_1734			Succinate-semialdehyde dehydrogenase [NAD(P)+] (EC 1.2.1.16)	2.39585144991033	14.2291059509764	TRUE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_2130			FIG00953403: hypothetical protein	5.27551586033137	9.07385447009381	TRUE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_2131			hypothetical protein	7.31296529228993	11.1940791941761	FALSE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_2132			Aldehyde dehydrogenase (EC 1.2.1.3)	5.80521078916136	11.1308883876927	TRUE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_2133			Major facilitator family transporter	-2.84480749863217	-5.74540688325139	TRUE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_2194			Glutathione-regulated potassium-efflux system ATP-binding protein	1.191087258885	6.04137807405411	TRUE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_2218			2-polyprenylphenol hydroxylase and related flavodoxin oxidoreductases / CDP-6-deoxy-delta-3,4-glucoseen reductase-like	-1.49493139490162	-5.36419573834984	FALSE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_2419			High-affinity choline uptake protein BetT	5.7168230677783	35.1651381354074	TRUE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_3454			Mg/Co/Ni transporter MgtE / CBS domain	1.71333753202216	9.63332786993652	FALSE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_4054			ATP-dependent Clp protease adaptor protein ClpS	2.37587218451814	10.0178117936761	FALSE
+stress	set1IT041	Paraquat dichloride	Pf1N1B4_5708			Transcriptional regulator, TetR family	1.9494222756584	6.94859819231608	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_1142			Uncharacterized iron-regulated membrane protein; Iron-uptake factor PiuB	-1.65794101418296	-6.71186582772139	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_1445			lipoprotein, putative	-1.29320802609203	-6.45069737591431	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_1509			Putative histidine ammonia-lyase protein	-1.10692979572539	-5.34031237138907	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_3147			Putative NADPH-quinone reductase (modulator of drug activity B)	-2.69264753553552	-8.92769924203152	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_3166			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-2.23993923021585	-10.7553648573229	TRUE
+stress	set3IT018	Rifampicin	Pf1N1B4_3345			Ribonuclease D (EC 3.1.26.3)	-1.20202213736772	-5.90198911724504	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_3667			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-1.93625311950298	-6.47947480441116	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_3668			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.20441367024979	-8.657145527057	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_3696			FIG00955360: hypothetical protein	-1.73216386558536	-9.35306009383129	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_388			OmpA family protein	-1.9895012275806	-5.67427000462603	TRUE
+stress	set3IT018	Rifampicin	Pf1N1B4_389			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-2.13290306027351	-6.31299437722843	FALSE
+stress	set3IT018	Rifampicin	Pf1N1B4_4643			NAD-specific glutamate dehydrogenase (EC 1.4.1.2), large form	-1.27555316857985	-6.41372768676993	FALSE
+stress	set3IT047	Sodium Chloride	Pf1N1B4_2416			Choline dehydrogenase (EC 1.1.99.1)	-2.23899012666726	-7.25043215599719	TRUE
+stress	set3IT046	Sodium Chloride	Pf1N1B4_2416			Choline dehydrogenase (EC 1.1.99.1)	-1.45436092613513	-5.81217072734826	TRUE
+stress	set3IT003	Sodium Chlorite	Pf1N1B4_1628			MFS permease	1.57342235146549	11.5802766394272	TRUE
+stress	set3IT003	Sodium Chlorite	Pf1N1B4_1863			Cytochrome oxidase biogenesis protein Sco1/SenC/PrrC, putative copper metallochaperone	-2.0836378743217	-9.67784110264994	FALSE
+stress	set3IT003	Sodium Chlorite	Pf1N1B4_2233			Ferric iron ABC transporter, permease protein	-1.82944960425072	-6.62226555753914	TRUE
+stress	set3IT003	Sodium Chlorite	Pf1N1B4_3566			Phenylalanine-4-hydroxylase (EC 1.14.16.1)	-2.35789867963942	-8.29215170850027	TRUE
+stress	set3IT003	Sodium Chlorite	Pf1N1B4_3567			Phenylalanine hydroxylase transcriptional activator PhhR	-1.68271334299083	-8.50652833821391	FALSE
+stress	set3IT003	Sodium Chlorite	Pf1N1B4_828			Multicopper oxidase	-2.2907217497258	-6.07455781135721	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_211			Cytochrome c-type biogenesis protein CcmG/DsbE, thiol:disulfide oxidoreductase	1.28105564963002	9.96298893856618	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_2354			twitching motility protein PilH	1.24214631780667	6.59373654397749	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_2544			Phosphoglycolate phosphatase (EC 3.1.3.18)	1.25646436607935	8.82740391227677	TRUE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_293			hypothetical protein	1.40642549201103	7.31918401044632	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_295			Arylesterase precursor (EC 3.1.1.2)	1.27461427958832	8.94313395768397	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_3229			Glutamate synthase [NADPH] large chain (EC 1.4.1.13)	1.58929565930927	8.33271827348703	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_3345			Ribonuclease D (EC 3.1.26.3)	1.38669826696148	9.94265581563497	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_3482			outer membrane protein H1	1.34393055531164	9.20844989293478	TRUE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_3827			Esterase/lipase/thioesterase family protein	1.31041839888363	7.03162108826782	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_3829			Magnesium and cobalt transport protein CorA	1.57057543492151	12.4111184134902	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_3834			Uroporphyrinogen-III methyltransferase (EC 2.1.1.107)	1.47903734329227	10.273957208592	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_4863			Outer membrane protein OprN	1.60514001043189	6.62596357404441	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_646			Diadenosine tetraphosphate (Ap4A) hydrolase and other HIT family hydrolases	1.29281758071739	9.2608121552391	FALSE
+stress	set3IT041	Sodium nitrate	Pf1N1B4_723			two-component system sensor protein	1.60139712132324	12.3442105271999	FALSE
+stress	set3IT001	Sodium nitrite	Pf1N1B4_1002			LysR family transcriptional regulator QseA	-1.33337774521679	-5.9798878607796	FALSE
+stress	set3IT040	Sodium nitrite	Pf1N1B4_2386			cytosolic long-chain acyl-CoA thioester hydrolase family protein	-2.44926245340571	-6.13614674484877	FALSE
+stress	set3IT017	Spectinomycin dihydrochloride pentahydrate	Pf1N1B4_1296			Biosynthetic arginine decarboxylase (EC 4.1.1.19)	-1.89122180590178	-10.4900087235825	TRUE
+stress	set3IT017	Spectinomycin dihydrochloride pentahydrate	Pf1N1B4_1375			Mannose-6-phosphate isomerase (EC 5.3.1.8)	-1.73960211461644	-8.18651997006994	TRUE
+stress	set3IT017	Spectinomycin dihydrochloride pentahydrate	Pf1N1B4_1417			NAD(P)HX epimerase / NAD(P)HX dehydratase	1.34726662972929	9.71332760097298	FALSE
+stress	set3IT017	Spectinomycin dihydrochloride pentahydrate	Pf1N1B4_1418			Epoxyqueuosine (oQ) reductase QueG	1.03928168145437	7.96735690712303	FALSE
+stress	set3IT017	Spectinomycin dihydrochloride pentahydrate	Pf1N1B4_3482			outer membrane protein H1	-1.17375080297182	-6.14632481684557	FALSE
+stress	set3IT017	Spectinomycin dihydrochloride pentahydrate	Pf1N1B4_3876			Cytochrome c oxidase subunit CcoP (EC 1.9.3.1)	1.72824846726127	10.2988715714658	FALSE
+stress	set3IT017	Spectinomycin dihydrochloride pentahydrate	Pf1N1B4_4772			RND efflux system, inner membrane transporter CmeB	-3.12347409117918	-5.17767103128354	TRUE
+stress	set3IT016	Spectinomycin dihydrochloride pentahydrate	Pf1N1B4_4772			RND efflux system, inner membrane transporter CmeB	-3.11423734460341	-6.44244458113876	TRUE
+stress	set3IT017	Spectinomycin dihydrochloride pentahydrate	Pf1N1B4_5010			Alkyl hydroperoxide reductase protein F (EC 1.6.4.-)	-1.50240917790048	-5.39204832587644	FALSE
+stress	set3IT015	Tetracycline hydrochloride	Pf1N1B4_3264			Methyltransferase (EC 2.1.1.-)	3.0897425225213	10.5795333966937	TRUE
+stress	set2IT038	Thallium(I) acetate	Pf1N1B4_2386			cytosolic long-chain acyl-CoA thioester hydrolase family protein	-2.56734194258415	-5.89100470210914	FALSE
+stress	set2IT042	Thallium(I) acetate	Pf1N1B4_2386			cytosolic long-chain acyl-CoA thioester hydrolase family protein	-1.94641934908201	-5.42063764941412	FALSE
+stress	set2IT042	Thallium(I) acetate	Pf1N1B4_2416			Choline dehydrogenase (EC 1.1.99.1)	-2.33610916669622	-7.81374944079912	TRUE
+stress	set2IT038	Thallium(I) acetate	Pf1N1B4_2416			Choline dehydrogenase (EC 1.1.99.1)	-2.32848567444019	-8.25962452904416	TRUE
+stress	set2IT042	Thallium(I) acetate	Pf1N1B4_2418			HTH-type transcriptional regulator BetI	-2.10180068813054	-5.69238503467764	TRUE
+stress	set2IT038	Thallium(I) acetate	Pf1N1B4_2418			HTH-type transcriptional regulator BetI	-1.50819128537481	-5.01121922371606	TRUE
+stress	set2IT038	Thallium(I) acetate	Pf1N1B4_2419			High-affinity choline uptake protein BetT	1.15416175509771	6.2885881139201	TRUE
+stress	set2IT042	Thallium(I) acetate	Pf1N1B4_2419			High-affinity choline uptake protein BetT	1.1961498208635	6.44089835055382	TRUE
+stress	set2IT042	Thallium(I) acetate	Pf1N1B4_2764			Ferredoxin--NADP(+) reductase (EC 1.18.1.2)	-2.68644267801508	-5.93473707527008	TRUE
+stress	set2IT042	Thallium(I) acetate	Pf1N1B4_3566			Phenylalanine-4-hydroxylase (EC 1.14.16.1)	-1.97980795262953	-8.28355534282541	FALSE
+stress	set2IT038	Thallium(I) acetate	Pf1N1B4_3566			Phenylalanine-4-hydroxylase (EC 1.14.16.1)	-1.46605200488826	-5.97157128941639	FALSE
+stress	set1IT045	copper (II) chloride dihydrate	Pf1N1B4_1844			Oligopeptidase A (EC 3.4.24.70)	-1.65583293235417	-9.6232714808931	TRUE
+stress	set1IT045	copper (II) chloride dihydrate	Pf1N1B4_211			Cytochrome c-type biogenesis protein CcmG/DsbE, thiol:disulfide oxidoreductase	-1.21703358916373	-8.30438881139076	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	Pf1N1B4_2291			Lead, cadmium, zinc and mercury transporting ATPase (EC 3.6.3.3) (EC 3.6.3.5); Copper-translocating P-type ATPase (EC 3.6.3.4)	-3.21175684371038	-9.61234216542449	FALSE
+stress	set1IT045	copper (II) chloride dihydrate	Pf1N1B4_2291			Lead, cadmium, zinc and mercury transporting ATPase (EC 3.6.3.3) (EC 3.6.3.5); Copper-translocating P-type ATPase (EC 3.6.3.4)	-2.64245925901063	-9.48760101818296	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	Pf1N1B4_3454			Mg/Co/Ni transporter MgtE / CBS domain	1.56558967189126	9.009723028475	FALSE
+stress	set1IT045	copper (II) chloride dihydrate	Pf1N1B4_44			Multicopper oxidase	-1.17494498100846	-6.83821931227389	TRUE
+stress	set1IT039	copper (II) chloride dihydrate	Pf1N1B4_44			Multicopper oxidase	-1.09456610048747	-6.46633781176501	TRUE
+stress	set1IT039	copper (II) chloride dihydrate	Pf1N1B4_4728			Na+/H+ antiporter NhaB	-1.70027266170943	-5.22744949717161	FALSE
+stress	set3IT023	methylglyoxal	Pf1N1B4_2611			Excinuclease ABC subunit A	-1.74011855354116	-11.0770011883833	TRUE
+stress	set3IT023	methylglyoxal	Pf1N1B4_2721			AMP nucleosidase (EC 3.2.2.4)	-2.67509019372135	-9.71523366945726	TRUE
+stress	set3IT022	methylglyoxal	Pf1N1B4_2721			AMP nucleosidase (EC 3.2.2.4)	-2.04572192869881	-10.4406714643617	TRUE
+stress	set3IT023	methylglyoxal	Pf1N1B4_3667			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.13449621955484	-6.4456173409033	TRUE
+stress	set3IT022	methylglyoxal	Pf1N1B4_3667			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-1.45349343736224	-5.82987882005474	TRUE
+stress	set3IT023	methylglyoxal	Pf1N1B4_3668			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-1.8991067332067	-7.1575233662325	TRUE
+stress	set3IT023	methylglyoxal	Pf1N1B4_367			Fumarate hydratase class II (EC 4.2.1.2)	1.19282981123354	5.1893154172284	FALSE
+stress	set3IT023	methylglyoxal	Pf1N1B4_3824			FIG137360: hypothetical protein	1.69242979688306	11.7263555609323	FALSE
+stress	set3IT023	methylglyoxal	Pf1N1B4_4062			FIG065221: Holliday junction DNA helicase	-1.84900309485341	-5.68885978239661	TRUE
+stress	set1IT040	sodium fluoride	Pf1N1B4_2665			Transcriptional regulator	-1.28196021786612	-8.2059227248976	TRUE
+stress	set1IT046	sodium fluoride	Pf1N1B4_2665			Transcriptional regulator	-1.18586737019487	-7.72909779243936	TRUE
+stress	set1IT046	sodium fluoride	Pf1N1B4_3900			Universal stress protein family COG0589	1.40468874488105	6.23902594118016	FALSE
+stress	set1IT040	sodium fluoride	Pf1N1B4_3900			Universal stress protein family COG0589	1.48513084369381	5.62462597296086	FALSE
+stress	set1IT040	sodium fluoride	Pf1N1B4_4062			FIG065221: Holliday junction DNA helicase	-1.97314737012775	-5.35566064500953	TRUE
+survival	set5IT033		Pf1N1B4_3883			Cytochrome c oxidase subunit CcoO (EC 1.9.3.1)	-1.26324083734992	-6.31109178360362	FALSE
+temperature	set5IT014		Pf1N1B4_1091			FIG138315: Putative alpha helix protein	-1.4493332820744	-5.07932259423969	FALSE
+temperature	set5IT013		Pf1N1B4_1091			FIG138315: Putative alpha helix protein	-1.42507039566317	-5.84541194689599	FALSE
+temperature	set5IT014		Pf1N1B4_1426			hypothetical protein	-1.69660624700393	-5.06939580969713	FALSE
+temperature	set5IT020		Pf1N1B4_3108			S-(hydroxymethyl)glutathione dehydrogenase (EC 1.1.1.284)	-1.21871202943901	-5.13455750266762	FALSE
+temperature	set5IT019		Pf1N1B4_808			hypothetical protein	-2.25809819537242	-5.53353619419769	FALSE

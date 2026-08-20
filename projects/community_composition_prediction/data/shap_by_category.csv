@@ -1,0 +1,37 @@
+target,category,mean_abs_shap
+log_Ni_ppm,Env_soil/climate,1.1124344
+log_Ni_ppm,Env_mobility,0.7807875
+log_Cu_ppm,Env_mobility,0.6347467
+log_Pb_ppm,Env_soil/climate,0.6301032
+log_Cu_ppm,Env_soil/climate,0.53919905
+log_Zn_ppm,Env_mobility,0.4293289
+log_Pb_ppm,Env_mobility,0.4119732
+log_Zn_ppm,Env_soil/climate,0.3647334
+log_Ni_ppm,CLR (taxonomy),0.25898808
+log_Cu_ppm,CLR (taxonomy),0.12893027
+log_Pb_ppm,CLR (taxonomy),0.110115714
+log_Zn_ppm,CLR (taxonomy),0.08567394
+log_Ni_ppm,GW_metal_clusters,0.018084925
+log_Zn_ppm,GW_metal_clusters,0.01507526
+log_Pb_ppm,GW_metal_clusters,0.01242499
+log_Ni_ppm,GW_PCA,0.011919521
+log_Ni_ppm,GW_defense_clusters,0.008753915
+log_Cu_ppm,GW_metal_clusters,0.008010932
+log_Pb_ppm,GW_PCA,0.0058094147
+log_Pb_ppm,GW_homeostasis_clusters,0.0044868933
+log_Ni_ppm,GW_homeostasis_clusters,0.0043017147
+log_Zn_ppm,GW_PCA,0.004048242
+log_Cu_ppm,GW_PCA,0.0038736945
+log_Cu_ppm,GW_homeostasis_clusters,0.003299781
+log_Cu_ppm,GW_defense_clusters,0.0032642093
+log_Zn_ppm,GW_homeostasis_clusters,0.0030825567
+log_Pb_ppm,GW_defense_clusters,0.0025431532
+log_Zn_ppm,GW_defense_clusters,0.0024268194
+log_Ni_ppm,GW_metal_core_fraction,0.0023803713
+log_Cu_ppm,GW_metal_core_fraction,0.0019880286
+log_Zn_ppm,GW_metal_core_fraction,0.0016363992
+log_Pb_ppm,GW_metal_core_fraction,0.0015862541
+log_Ni_ppm,GW_metabolism_clusters,0.0
+log_Cu_ppm,GW_metabolism_clusters,0.0
+log_Pb_ppm,GW_metabolism_clusters,0.0
+log_Zn_ppm,GW_metabolism_clusters,0.0

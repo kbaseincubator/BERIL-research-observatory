@@ -1,0 +1,1215 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set6IT027	D-Alanine	GFF2992	HP15_2936		periplasmic sensor signal transduction histidine kinase	-1.1429535626091	-5.04887524163982	FALSE
+carbon source	set6IT009	D-Trehalose dihydrate	GFF1281	HP15_1251		sodium: solute symporter family protein	-1.52975515808502	-7.0878789621868	FALSE
+carbon source	set6IT022	D-Trehalose dihydrate	GFF1281	HP15_1251		sodium: solute symporter family protein	-1.42921737813539	-5.58915676172254	FALSE
+carbon source	set6IT022	D-Trehalose dihydrate	GFF3193	HP15_3135		iron-containing alcohol dehydrogenase	-1.28761341069455	-6.33544085521147	FALSE
+carbon source	set6IT022	D-Trehalose dihydrate	GFF3491	HP15_3433		aconitate hydratase 1	-1.24331743492828	-7.60739289651761	FALSE
+carbon source	set6IT009	D-Trehalose dihydrate	GFF3491	HP15_3433		aconitate hydratase 1	-1.24108113006201	-6.96124439634222	FALSE
+carbon source	set6IT005	Ethanol	GFF1092	HP15_1070		TRAP-type uncharacterized transport system, fused permease component	-1.62286800421648	-8.33707038777723	FALSE
+carbon source	set6IT018	Ethanol	GFF1092	HP15_1070		TRAP-type uncharacterized transport system, fused permease component	-1.47266565516841	-9.87442429796463	FALSE
+carbon source	set6IT005	Ethanol	GFF2278	HP15_2228		ribonuclease activity regulator protein RraA	-2.19661059646692	-5.70990008842565	FALSE
+carbon source	set6IT018	Ethanol	GFF2278	HP15_2228		ribonuclease activity regulator protein RraA	-2.05147329332951	-6.22086504599268	FALSE
+carbon source	set6IT018	Ethanol	GFF2281	HP15_2231		pitrilysin metallopeptidase 1	-2.36804409982049	-17.7976420467037	FALSE
+carbon source	set6IT005	Ethanol	GFF2281	HP15_2231		pitrilysin metallopeptidase 1	-2.34853755544434	-14.5372583909163	FALSE
+carbon source	set6IT018	Ethanol	GFF2970	HP15_2914		protein containing Methyltransferase type 11 domain	-1.85274294453936	-5.1162264285283	FALSE
+carbon source	set6IT005	Ethanol	GFF3192	HP15_3134		two-component system sensor protein	-2.5392978489285	-15.0369386255996	TRUE
+carbon source	set6IT018	Ethanol	GFF3192	HP15_3134		two-component system sensor protein	-2.41297226027604	-18.5118781388003	TRUE
+carbon source	set6IT018	Ethanol	GFF3193	HP15_3135		iron-containing alcohol dehydrogenase	-2.62326023261554	-13.9883801975214	TRUE
+carbon source	set6IT005	Ethanol	GFF3193	HP15_3135		iron-containing alcohol dehydrogenase	-2.14956558373622	-8.58055262598157	TRUE
+carbon source	set6IT018	Ethanol	GFF3195	HP15_3137		pyrroloquinoline quinone biosynthesis protein PqqE	-2.12985826995454	-12.3965181781927	TRUE
+carbon source	set6IT005	Ethanol	GFF3195	HP15_3137		pyrroloquinoline quinone biosynthesis protein PqqE	-1.81142296337276	-8.50775834843452	TRUE
+carbon source	set6IT005	Ethanol	GFF3196	HP15_3138		coenzyme PQQ synthesis D	-2.71423125473852	-5.62673147865071	TRUE
+carbon source	set6IT018	Ethanol	GFF3196	HP15_3138		coenzyme PQQ synthesis D	-2.42214310459274	-6.72389384326544	TRUE
+carbon source	set6IT018	Ethanol	GFF3197	HP15_3139		pyrroloquinoline quinone biosynthesis protein PqqC	-1.88581285067757	-7.79415211982928	TRUE
+carbon source	set6IT005	Ethanol	GFF3198	HP15_3140		pyrroloquinoline quinone biosynthesis protein PqqB	-2.12334469345403	-8.04431492879353	TRUE
+carbon source	set6IT018	Ethanol	GFF3198	HP15_3140		pyrroloquinoline quinone biosynthesis protein PqqB	-1.9084535635581	-9.43461724173029	TRUE
+carbon source	set6IT005	Ethanol	GFF3202	HP15_3144		NAD-dependent aldehyde dehydrogenase	-2.64452831800588	-10.3341384086861	TRUE
+carbon source	set6IT018	Ethanol	GFF3202	HP15_3144		NAD-dependent aldehyde dehydrogenase	-2.53400705003277	-14.4734049792523	TRUE
+carbon source	set6IT005	Ethanol	GFF3220	HP15_3162		cytochrome c550	-2.02716154259477	-6.96726456525875	TRUE
+carbon source	set6IT018	Ethanol	GFF3220	HP15_3162		cytochrome c550	-1.97421859008856	-7.09017927974408	TRUE
+carbon source	set6IT018	Ethanol	GFF3222	HP15_3164		quinoprotein alcohol dehydrogenase	-2.18895048634274	-15.1746031795878	TRUE
+carbon source	set6IT005	Ethanol	GFF3222	HP15_3164		quinoprotein alcohol dehydrogenase	-2.06955842276566	-11.5596513419147	TRUE
+carbon source	set6IT005	Ethanol	GFF3223	HP15_3165		pentapeptide repeat family protein	-2.02604395052733	-11.034382070122	TRUE
+carbon source	set6IT018	Ethanol	GFF3223	HP15_3165		pentapeptide repeat family protein	-1.74442402458007	-8.59519480707548	TRUE
+carbon source	set6IT005	Ethanol	GFF3225	HP15_3167		integral membrane sensor signal transduction histidine kinase	-2.07121552512116	-8.98233493359601	TRUE
+carbon source	set6IT018	Ethanol	GFF3225	HP15_3167		integral membrane sensor signal transduction histidine kinase	-1.99227718882173	-10.7365946051196	TRUE
+carbon source	set6IT005	Ethanol	GFF3241	HP15_3183		two component transcriptional regulator, LuxR family	-2.89146870694582	-11.5438309331761	TRUE
+carbon source	set6IT018	Ethanol	GFF3241	HP15_3183		two component transcriptional regulator, LuxR family	-2.52685879559616	-12.9596918960405	TRUE
+carbon source	set6IT018	Ethanol	GFF3442	HP15_3384		HIT (histidine triad) family protein	-2.12166712388857	-6.99724530731197	FALSE
+carbon source	set6IT018	Ethanol	GFF3491	HP15_3433		aconitate hydratase 1	-1.95332490390219	-14.2850670047731	FALSE
+carbon source	set6IT005	Ethanol	GFF3491	HP15_3433		aconitate hydratase 1	-1.54768391723625	-8.41016979057885	FALSE
+carbon source	set6IT005	Ethanol	GFF3507	HP15_3449		conserved hypothetical protein, membrane	-1.44452643056663	-9.45468256746767	FALSE
+carbon source	set6IT005	Ethanol	GFF3726	HP15_3668		sodium/proton antiporter	-1.30554429957567	-7.65080913837368	FALSE
+carbon source	set6IT018	Ethanol	GFF3726	HP15_3668		sodium/proton antiporter	-1.12738482302079	-6.99033248508172	FALSE
+carbon source	set6IT005	Ethanol	GFF3812	HP15_3753		conserved hypothetical protein	-1.73305399533209	-5.64380050336305	FALSE
+carbon source	set6IT018	Ethanol	GFF3812	HP15_3753		conserved hypothetical protein	-1.59074893642221	-5.79217154370632	FALSE
+carbon source	set6IT018	Ethanol	GFF3890	HP15_3830		FAD-dependent pyridine nucleotide-disulfide oxidoreductase	-1.83022227034792	-8.64762050378105	FALSE
+carbon source	set6IT005	Ethanol	GFF3890	HP15_3830		FAD-dependent pyridine nucleotide-disulfide oxidoreductase	-1.56450456559838	-5.70429598951286	FALSE
+carbon source	set6IT005	Ethanol	GFF3903	HP15_3843		iron(III) ABC transporter, periplasmic iron-compound-binding protein	-1.05373187445392	-5.89318046547009	FALSE
+carbon source	set6IT018	Ethanol	GFF659	HP15_641		homocysteine synthase	1.64019654425197	10.1031065920747	FALSE
+carbon source	set6IT005	Ethanol	GFF659	HP15_641		homocysteine synthase	1.6570964647101	9.38848010767756	FALSE
+carbon source	set6IT018	Ethanol	GFF816	HP15_795		phosphoenolpyruvate carboxylase	-2.61296635592104	-15.7814447175539	FALSE
+carbon source	set6IT005	Ethanol	GFF816	HP15_795		phosphoenolpyruvate carboxylase	-2.20795437573009	-12.7565284943518	FALSE
+carbon source	set6IT006	Glycerol	GFF2221	HP15_2175		glyceraldehyde-3-phosphate dehydrogenase, type I	-1.64460232353853	-6.55989369439509	TRUE
+carbon source	set6IT019	Glycerol	GFF2221	HP15_2175		glyceraldehyde-3-phosphate dehydrogenase, type I	-1.21488373890789	-5.34289915794741	TRUE
+carbon source	set6IT026	L-Phenylalanine	GFF2748	HP15_2692		phenylacetate degradation probable enoyl-CoA hydratase paaB	-4.66466884276542	-6.35754529297964	TRUE
+carbon source	set6IT013	L-Phenylalanine	GFF2748	HP15_2692		phenylacetate degradation probable enoyl-CoA hydratase paaB	-4.36041581542161	-7.2183995565414	TRUE
+carbon source	set6IT013	L-Phenylalanine	GFF2749	HP15_2693		3-hydroxybutyryl-CoA dehydrogenase	-3.66477139736244	-12.5764750599063	FALSE
+carbon source	set6IT026	L-Phenylalanine	GFF2749	HP15_2693		3-hydroxybutyryl-CoA dehydrogenase	-3.61931219354396	-12.7041414372728	FALSE
+carbon source	set6IT013	L-Phenylalanine	GFF2750	HP15_2694		phenylacetic acid degradation protein PaaD	-3.37619899063528	-7.90807299468641	FALSE
+carbon source	set6IT026	L-Phenylalanine	GFF2750	HP15_2694		phenylacetic acid degradation protein PaaD	-3.35141576270899	-8.78097618503875	FALSE
+carbon source	set6IT013	L-Phenylalanine	GFF2751	HP15_2695		acetyl-CoA acetyltransferase	-4.86053655600902	-9.61226778815564	TRUE
+carbon source	set6IT026	L-Phenylalanine	GFF2751	HP15_2695		acetyl-CoA acetyltransferase	-4.75588544798111	-10.5460213128948	TRUE
+carbon source	set6IT013	L-Phenylalanine	GFF3114	HP15_3057		leucine/isoleucine/valine transporter permease subunit	-1.99713648424052	-7.76283421399454	FALSE
+carbon source	set6IT026	L-Phenylalanine	GFF3114	HP15_3057		leucine/isoleucine/valine transporter permease subunit	-1.96916695436916	-7.15428627098893	FALSE
+carbon source	set6IT026	L-Phenylalanine	GFF879	HP15_858		aspartate aminotransferase	-3.88426831187963	-12.9309886810925	TRUE
+carbon source	set6IT013	L-Phenylalanine	GFF879	HP15_858		aspartate aminotransferase	-3.88111698752477	-11.7159110414299	TRUE
+carbon source	set6IT013	L-Phenylalanine	GFF880	HP15_859		pyruvate ferredoxin/flavodoxin oxidoreductase	-4.9332325930351	-14.766686141661	TRUE
+carbon source	set6IT026	L-Phenylalanine	GFF880	HP15_859		pyruvate ferredoxin/flavodoxin oxidoreductase	-4.88475361307659	-14.9259224724152	TRUE
+carbon source	set6IT026	L-Phenylalanine	GFF881	HP15_860		transcriptional regulator, AsnC family protein	-5.83789230372373	-13.5757515744737	TRUE
+carbon source	set6IT013	L-Phenylalanine	GFF881	HP15_860		transcriptional regulator, AsnC family protein	-5.33025350008382	-12.0069299108761	TRUE
+carbon source	set1H15	L-Proline	GFF2744	HP15_2688		trifunctional transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-2.24249038126605	-12.7800409248965	TRUE
+carbon source	set6IT012	L-Proline	GFF2744	HP15_2688		trifunctional transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-2.17736323200591	-15.0634859492641	TRUE
+carbon source	set1H15	L-Proline	GFF2746	HP15_2690		transcriptional regulator, AsnC family	-2.41818312379284	-7.82559512754457	TRUE
+carbon source	set6IT012	L-Proline	GFF2746	HP15_2690		transcriptional regulator, AsnC family	-2.19148874493855	-8.26564742415878	TRUE
+carbon source	set5H6	Potassium acetate	GFF3491	HP15_3433		aconitate hydratase 1	-1.09122551371051	-7.83708874163788	FALSE
+carbon source	set1H4	Potassium acetate	GFF3730	HP15_3672		conserved hypothetical protein, secreted	-1.44655551831062	-5.90854520806219	FALSE
+carbon source	set1H9	Sodium D,L-Lactate	GFF3729	HP15_3671		sensory box/GGDEF family protein	-1.15741407066072	-5.04442618457577	FALSE
+carbon source	set1H9	Sodium D,L-Lactate	GFF3730	HP15_3672		conserved hypothetical protein, secreted	-1.91034143295875	-5.95245802135015	FALSE
+carbon source	set1H7	Sodium D-Lactate	GFF3080	HP15_3023		glycolate oxidase FAD binding subunit	-1.75907369012956	-5.93439160445751	TRUE
+carbon source	set1H7	Sodium D-Lactate	GFF3081	HP15_3024		FAD linked oxidase domain protein	-1.93700586731531	-10.3860953222386	TRUE
+carbon source	set1H7	Sodium D-Lactate	GFF3085	HP15_3028		TRAP dicarboxylate family transporter, DctP subunit	-1.40913792913957	-8.56093106822642	FALSE
+carbon source	set1H7	Sodium D-Lactate	GFF4151	HP15_4091		oxidoreductase, FAD/iron-sulfur cluster-binding domain protein	-1.60279869960758	-10.549379180403	TRUE
+carbon source	set1H5	Sodium Fumarate dibasic	GFF3730	HP15_3672		conserved hypothetical protein, secreted	-1.66362896354748	-5.24497340023587	FALSE
+carbon source	set1H10	Sodium pyruvate	GFF1281	HP15_1251		sodium: solute symporter family protein	-1.94036564922545	-6.9817602133568	TRUE
+carbon source	set1H10	Sodium pyruvate	GFF1283	HP15_1253		DNA polymerase III, epsilon subunit	-1.56218063892357	-5.14819875741045	TRUE
+carbon source	set6IT003	Sodium pyruvate	GFF3367	HP15_3309		S-adenosylmethionine decarboxylase proenzyme	1.74404802534309	9.43011331514819	FALSE
+carbon source	set6IT016	Sodium pyruvate	GFF3367	HP15_3309		S-adenosylmethionine decarboxylase proenzyme	1.89076590905851	11.0796318620722	FALSE
+carbon source	set1H10	Sodium pyruvate	GFF3730	HP15_3672		conserved hypothetical protein, secreted	-1.48179523033715	-7.410270637758	FALSE
+carbon source	set1H11	Sodium succinate dibasic hexahydrate	GFF3730	HP15_3672		conserved hypothetical protein, secreted	-1.9710736467332	-7.09255463282389	FALSE
+carbon source	set5H8	Trisodium citrate dihydrate	GFF2101	HP15_2055		2-isopropylmalate synthase	-1.56106469744186	-8.80289729162772	FALSE
+carbon source	set5H14	Trisodium citrate dihydrate	GFF2101	HP15_2055		2-isopropylmalate synthase	-1.33175721017617	-6.96411623106551	FALSE
+carbon source	set5H32	Trisodium citrate dihydrate	GFF2101	HP15_2055		2-isopropylmalate synthase	-1.1963013548974	-6.33652997963831	FALSE
+carbon source	set1H6	Trisodium citrate dihydrate	GFF3730	HP15_3672		conserved hypothetical protein, secreted	-1.37589175319795	-7.02268633233888	FALSE
+carbon source	set6IT020	Tween 20	GFF1550	HP15_1512		multifunctional fatty acid oxidation complex subunit alpha	-1.74799514026062	-10.9570258833293	TRUE
+carbon source	set6IT007	Tween 20	GFF1550	HP15_1512		multifunctional fatty acid oxidation complex subunit alpha	-1.56865057964991	-7.62607123729205	TRUE
+carbon source	set6IT020	Tween 20	GFF1551	HP15_1513		acetyl-CoA acetyltransferase	-1.21941675451502	-7.88775670750926	TRUE
+carbon source	set6IT007	Tween 20	GFF1551	HP15_1513		acetyl-CoA acetyltransferase	-1.16707187128331	-6.0439559040997	TRUE
+carbon source	set6IT020	Tween 20	GFF2101	HP15_2055		2-isopropylmalate synthase	-1.28515180202322	-6.50838992716461	FALSE
+carbon source	set6IT007	Tween 20	GFF2101	HP15_2055		2-isopropylmalate synthase	-1.23292375115563	-5.97309611800445	FALSE
+carbon source	set6IT020	Tween 20	GFF2534	HP15_2478		acyl-CoA dehydrogenase family protein	-2.21529683107978	-10.9822735714994	TRUE
+carbon source	set6IT007	Tween 20	GFF2534	HP15_2478		acyl-CoA dehydrogenase family protein	-2.0723162894506	-7.740798020244	TRUE
+carbon source	set6IT020	Tween 20	GFF2535	HP15_2479		acyl-CoA dehydrogenase family protein	-1.29070201229096	-7.95518911824837	TRUE
+carbon source	set6IT007	Tween 20	GFF2535	HP15_2479		acyl-CoA dehydrogenase family protein	-1.06959676050826	-5.40863089805894	TRUE
+carbon source	set5H11	a-Ketoglutaric acid disodium salt hydrate	GFF2290	HP15_2238		permease	-1.97364142853594	-5.88146398448298	FALSE
+carbon source	set5H35	a-Ketoglutaric acid disodium salt hydrate	GFF2290	HP15_2238		permease	-1.90049177472138	-5.90446714070893	FALSE
+carbon source	set5H11	a-Ketoglutaric acid disodium salt hydrate	GFF3079	HP15_3022		protein of unknown function cysteine-rich region domain protein	-1.47396599762535	-6.02002513984832	FALSE
+carbon source	set5H35	a-Ketoglutaric acid disodium salt hydrate	GFF3080	HP15_3023		glycolate oxidase FAD binding subunit	-2.28813617187042	-5.85678466695185	FALSE
+carbon source	set5H11	a-Ketoglutaric acid disodium salt hydrate	GFF3081	HP15_3024		FAD linked oxidase domain protein	-1.63898723464032	-8.18930355660961	FALSE
+carbon source	set5H35	a-Ketoglutaric acid disodium salt hydrate	GFF3081	HP15_3024		FAD linked oxidase domain protein	-1.50136861576084	-8.73417311635478	FALSE
+carbon source	set6IT015	casamino acids	GFF1675	HP15_1634		branched-chain alpha-keto acid dehydrogenase complex E1 alpha subunit	-1.11105826249784	-5.15199178489658	FALSE
+carbon source	set6IT015	casamino acids	GFF2679	HP15_2623		leucine dehydrogenase	-1.10851913620836	-6.69907319295517	FALSE
+nitrogen source	set8IT038	D-Glucosamine Hydrochloride	GFF1427	HP15_1392		membrane protein containing DUF599	-1.01334850757416	-5.21496465585387	FALSE
+nitrogen source	set1H32	D-Glucosamine Hydrochloride	GFF2290	HP15_2238		permease	-2.09575059473489	-6.64517768449668	FALSE
+nitrogen source	set8IT038	D-Glucosamine Hydrochloride	GFF275	HP15_274		ammonium/methylammonium permease	-1.26709490746496	-7.0759756373049	TRUE
+nitrogen source	set8IT038	D-Glucosamine Hydrochloride	GFF437	HP15_425		two-component response regulator NtrC	-2.08705845807411	-9.09251968323141	FALSE
+nitrogen source	set8IT038	D-Glucosamine Hydrochloride	GFF438	HP15_426		signal transduction histidine kinase, nitrogen specific, NtrB	-2.35547698654365	-11.756770845345	FALSE
+nitrogen source	set8IT038	D-Glucosamine Hydrochloride	GFF890	HP15_869		lysine exporter protein (LYSE/YGGA)	-1.0613349240213	-5.45037428148116	FALSE
+nitrogen source	set1H23	L-Alanine	GFF3648	HP15_3590		transglutaminase, N-terminal domain protein	-2.32465243886753	-6.07997315166647	FALSE
+nitrogen source	set1H36	L-Arginine	GFF2290	HP15_2238		permease	-2.17228766806404	-6.83643542363604	FALSE
+nitrogen source	set8IT040	L-Arginine	GFF3088	HP15_3031		extracellular solute-binding protein, family 3	-1.17926409093638	-6.13281530773784	FALSE
+nitrogen source	set8IT040	L-Arginine	GFF3097	HP15_3040		arginine N-succinyltransferase subunit beta	-2.33778162115565	-11.9101193023724	TRUE
+nitrogen source	set8IT029	L-Arginine	GFF3097	HP15_3040		arginine N-succinyltransferase subunit beta	-2.29777587026202	-11.0151228815471	TRUE
+nitrogen source	set8IT040	L-Arginine	GFF3098	HP15_3041		arginine N-succinyltransferase, alpha chain	-1.38757418193055	-6.43968676668223	FALSE
+nitrogen source	set8IT029	L-Arginine	GFF3098	HP15_3041		arginine N-succinyltransferase, alpha chain	-1.27277835539896	-6.4850444642159	FALSE
+nitrogen source	set1H29	L-Citrulline	GFF1313	HP15_1283		RNA polymerase, sigma 70 subunit, RpoD family	8.50257827246281	17.3663907144961	FALSE
+nitrogen source	set1H29	L-Citrulline	GFF2243	HP15_2193		amino-acid ABC transporter ATP-binding protein-like protein	5.91661862126922	13.9008188036375	FALSE
+nitrogen source	set1H29	L-Citrulline	GFF2244	HP15_2194		amino acid ABC transporter, permease protein	7.01921926469956	19.2014091261065	TRUE
+nitrogen source	set1H29	L-Citrulline	GFF2245	HP15_2195		amino acid ABC transporter, permease protein	7.35400429691817	11.6787442095094	TRUE
+nitrogen source	set1H29	L-Citrulline	GFF2246	HP15_2196		glutamate/glutamine/aspartate/asparagine ABC transporter, periplasmic substrate-binding protein	6.95074266264243	15.7787734490457	TRUE
+nitrogen source	set1H29	L-Citrulline	GFF2290	HP15_2238		permease	-2.32937417095741	-6.04700897894425	FALSE
+nitrogen source	set1H18	L-Glutamic acid monopotassium salt monohydrate	GFF1092	HP15_1070		TRAP-type uncharacterized transport system, fused permease component	-1.37719343613764	-6.56750444241076	TRUE
+nitrogen source	set1H20	L-Glutamine	GFF1313	HP15_1283		RNA polymerase, sigma 70 subunit, RpoD family	-1.6165731541498	-7.8871558895363	FALSE
+nitrogen source	set1H39	L-Glutamine	GFF201	HP15_200		peptide ABC transporter, periplasmic peptide-binding protein	1.02014225417434	5.2295332395576	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF201	HP15_200		peptide ABC transporter, periplasmic peptide-binding protein	1.04586192954296	5.16246769417159	FALSE
+nitrogen source	set1H39	L-Glutamine	GFF204	HP15_203		oligopeptide/dipeptide ABC transporter, ATPase subunit	1.49391347091734	7.0038199458192	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF204	HP15_203		oligopeptide/dipeptide ABC transporter, ATPase subunit	1.5736986570207	7.36538039192572	FALSE
+nitrogen source	set1H39	L-Glutamine	GFF205	HP15_204		oligopeptide/dipeptide ABC transporter, ATPase subunit	1.30496088977357	6.16689682310671	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF205	HP15_204		oligopeptide/dipeptide ABC transporter, ATPase subunit	1.34041699850525	5.71130365582758	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF2243	HP15_2193		amino-acid ABC transporter ATP-binding protein-like protein	-1.48683035678632	-5.47862158151408	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF2246	HP15_2196		glutamate/glutamine/aspartate/asparagine ABC transporter, periplasmic substrate-binding protein	-1.19138727833169	-6.16642774706288	TRUE
+nitrogen source	set1H39	L-Glutamine	GFF2679	HP15_2623		leucine dehydrogenase	1.44153566468877	6.91182967025498	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF2679	HP15_2623		leucine dehydrogenase	1.52821864414283	7.2960898633404	FALSE
+nitrogen source	set1H39	L-Glutamine	GFF2680	HP15_2624		sodium-dependent transporter family protein	2.06981468250383	8.08563485154728	TRUE
+nitrogen source	set1H20	L-Glutamine	GFF2680	HP15_2624		sodium-dependent transporter family protein	2.19196529041513	7.60003941416003	TRUE
+nitrogen source	set1H20	L-Glutamine	GFF3079	HP15_3022		protein of unknown function cysteine-rich region domain protein	-1.8052842457125	-7.99283455928821	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF3080	HP15_3023		glycolate oxidase FAD binding subunit	-1.51591380081607	-6.21915336308765	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF3081	HP15_3024		FAD linked oxidase domain protein	-1.56841470380095	-10.3053420961682	FALSE
+nitrogen source	set1H39	L-Glutamine	GFF3086	HP15_3029		GntR domain protein	1.55718518649147	6.40997654407349	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF3086	HP15_3029		GntR domain protein	1.59490566718254	5.93187966750009	FALSE
+nitrogen source	set1H39	L-Glutamine	GFF3367	HP15_3309		S-adenosylmethionine decarboxylase proenzyme	1.40508875162283	5.74812799163322	FALSE
+nitrogen source	set1H39	L-Glutamine	GFF3963	HP15_3903		methionine import ATP-binding protein MetN 2	2.10977366535721	6.02516579355545	FALSE
+nitrogen source	set1H20	L-Glutamine	GFF3963	HP15_3903		methionine import ATP-binding protein MetN 2	2.31195823105516	6.30443261767439	FALSE
+nitrogen source	set1H39	L-Glutamine	GFF3964	HP15_3904		binding-protein-dependent transport systems inner membrane component	1.77307149263056	5.66951192775947	FALSE
+nitrogen source	set1H24	L-Isoleucine	GFF1038	HP15_1017		acetolactate synthase, large subunit, biosynthetic type	-1.01079007512611	-6.43336564265258	FALSE
+nitrogen source	set1H24	L-Isoleucine	GFF1672	HP15_1631		dihydrolipoamide acetyltransferase	-1.41659626211564	-7.18588491179019	FALSE
+nitrogen source	set1H46	L-Phenylalanine	GFF2748	HP15_2692		phenylacetate degradation probable enoyl-CoA hydratase paaB	-3.43751891993618	-7.57506054349328	TRUE
+nitrogen source	set1H27	L-Phenylalanine	GFF2748	HP15_2692		phenylacetate degradation probable enoyl-CoA hydratase paaB	-3.10683525580165	-5.97571117941372	TRUE
+nitrogen source	set8IT046	L-Phenylalanine	GFF2748	HP15_2692		phenylacetate degradation probable enoyl-CoA hydratase paaB	-2.07507179339282	-6.37675282124781	TRUE
+nitrogen source	set8IT035	L-Phenylalanine	GFF2748	HP15_2692		phenylacetate degradation probable enoyl-CoA hydratase paaB	-1.79403599355799	-5.99013502828188	TRUE
+nitrogen source	set8IT046	L-Phenylalanine	GFF2750	HP15_2694		phenylacetic acid degradation protein PaaD	-1.60604881139807	-8.75376158909812	FALSE
+nitrogen source	set1H27	L-Phenylalanine	GFF2750	HP15_2694		phenylacetic acid degradation protein PaaD	-1.5430662892316	-5.16025790870517	FALSE
+nitrogen source	set8IT035	L-Phenylalanine	GFF2750	HP15_2694		phenylacetic acid degradation protein PaaD	-1.48662519223003	-6.72743400966209	FALSE
+nitrogen source	set1H46	L-Phenylalanine	GFF2751	HP15_2695		acetyl-CoA acetyltransferase	-3.31653547663141	-8.37999871256912	FALSE
+nitrogen source	set1H27	L-Phenylalanine	GFF2751	HP15_2695		acetyl-CoA acetyltransferase	-2.95482094360828	-9.55133050532661	FALSE
+nitrogen source	set8IT035	L-Phenylalanine	GFF2751	HP15_2695		acetyl-CoA acetyltransferase	-2.32229168234156	-10.839429422905	FALSE
+nitrogen source	set8IT046	L-Phenylalanine	GFF2751	HP15_2695		acetyl-CoA acetyltransferase	-2.01848162847244	-6.36341315535132	FALSE
+nitrogen source	set1H46	L-Phenylalanine	GFF3114	HP15_3057		leucine/isoleucine/valine transporter permease subunit	-3.11126397917014	-9.86002089298213	TRUE
+nitrogen source	set1H27	L-Phenylalanine	GFF3114	HP15_3057		leucine/isoleucine/valine transporter permease subunit	-2.58267556341272	-9.55847448911933	TRUE
+nitrogen source	set1H46	L-Phenylalanine	GFF880	HP15_859		pyruvate ferredoxin/flavodoxin oxidoreductase	-2.80628951163735	-13.3126349740172	TRUE
+nitrogen source	set1H27	L-Phenylalanine	GFF880	HP15_859		pyruvate ferredoxin/flavodoxin oxidoreductase	-2.55429264898977	-11.9176960015448	TRUE
+nitrogen source	set8IT035	L-Phenylalanine	GFF880	HP15_859		pyruvate ferredoxin/flavodoxin oxidoreductase	-1.5909342844191	-11.8540509013716	TRUE
+nitrogen source	set8IT046	L-Phenylalanine	GFF880	HP15_859		pyruvate ferredoxin/flavodoxin oxidoreductase	-1.50513379116041	-10.8892218842638	TRUE
+nitrogen source	set1H27	L-Phenylalanine	GFF881	HP15_860		transcriptional regulator, AsnC family protein	-2.53332039113525	-9.24004887844215	TRUE
+nitrogen source	set1H46	L-Phenylalanine	GFF881	HP15_860		transcriptional regulator, AsnC family protein	-2.42256511395269	-7.13354908539804	TRUE
+nitrogen source	set8IT035	L-Phenylalanine	GFF881	HP15_860		transcriptional regulator, AsnC family protein	-1.66626911379018	-9.87044328866085	TRUE
+nitrogen source	set8IT046	L-Phenylalanine	GFF881	HP15_860		transcriptional regulator, AsnC family protein	-1.57382549255028	-7.79723486408698	TRUE
+nitrogen source	set1H41	L-Proline	GFF2744	HP15_2688		trifunctional transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-4.22644081905453	-22.0490888240294	TRUE
+nitrogen source	set1H22	L-Proline	GFF2744	HP15_2688		trifunctional transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-3.78030818876507	-21.9145994211307	TRUE
+nitrogen source	set8IT045	L-Proline	GFF2744	HP15_2688		trifunctional transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-1.42089745760614	-10.9233447672293	TRUE
+nitrogen source	set8IT034	L-Proline	GFF2744	HP15_2688		trifunctional transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-1.1924212329088	-9.35789022242769	TRUE
+nitrogen source	set1H41	L-Proline	GFF2746	HP15_2690		transcriptional regulator, AsnC family	-4.32370268072417	-7.2724805883778	TRUE
+nitrogen source	set1H22	L-Proline	GFF2746	HP15_2690		transcriptional regulator, AsnC family	-3.30786107249941	-5.15979280805263	TRUE
+nitrogen source	set8IT045	L-Proline	GFF2746	HP15_2690		transcriptional regulator, AsnC family	-1.49283297173695	-5.56250215999838	TRUE
+nitrogen source	set1H35	Urea	GFF2290	HP15_2238		permease	-2.49823806912401	-6.79213916426219	FALSE
+nitrogen source	set2H6	Urea	GFF2290	HP15_2238		permease	-2.21779726868991	-5.90799918556825	FALSE
+nitrogen source	set1H30	casamino acids	GFF3621	HP15_3563		transcriptional regulator, LysR family protein	-1.05139167872565	-5.31349823738551	FALSE
+nitrogen source	set1H30	casamino acids	GFF3622	HP15_3564		drug resistance transporter, Bcr/CflA subfamily	-1.00824362311878	-5.20532595551232	FALSE
+nutrient	set9IT066		GFF1671	HP15_1630		serine/threonine protein kinase	-2.51747487952574	-9.22470515377254	FALSE
+nutrient	set9IT065		GFF1671	HP15_1630		serine/threonine protein kinase	-1.89704876851952	-6.35867551179225	FALSE
+nutrient	set9IT063	L-Arginine	GFF2466	HP15_2410		type IV pilus biogenesis protein PilC	1.72688231839125	5.0453355181463	FALSE
+nutrient	set9IT063	L-Arginine	GFF436	HP15_424		MshQ-like protein	1.1944899076177	5.98559676964373	FALSE
+nutrient	set9IT061	L-Histidine	GFF1671	HP15_1630		serine/threonine protein kinase	-1.68166686222325	-5.14729011923797	FALSE
+nutrient	set9IT062	L-Histidine	GFF1671	HP15_1630		serine/threonine protein kinase	-1.67379565171432	-5.65623334917856	FALSE
+nutrient	set9IT061	L-Histidine	GFF4014	HP15_3954		substrate-binding periplasmic (PBP) ABC transporter protein	-1.2514800330776	-5.25793418184002	FALSE
+nutrient	set9IT061	L-Histidine	GFF4016	HP15_3956		iron compound ABC transporter, ATP-binding protein	-1.22486115925566	-7.37839845058928	FALSE
+nutrient	set9IT061	L-Histidine	GFF889	HP15_868		transcriptional regulator, LysR family	-1.63934016122234	-5.60838989168446	FALSE
+nutrient	set9IT062	L-Histidine	GFF889	HP15_868		transcriptional regulator, LysR family	-1.39952327454182	-5.58316822050839	FALSE
+nutrient	set9IT061	L-Histidine	GFF890	HP15_869		lysine exporter protein (LYSE/YGGA)	-1.30482074242153	-6.23422905728609	FALSE
+pH	set3H38		GFF2643	HP15_2587		monovalent cation/H+ antiporter subunit A	1.25060266073329	6.99863054686698	FALSE
+pH	set3H46		GFF2646	HP15_2590		monovalent cation/H+ antiporter subunit D	1.07219370993598	6.18723720820859	FALSE
+pH	set3H38		GFF2646	HP15_2590		monovalent cation/H+ antiporter subunit D	1.19578677400236	5.64530275036429	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF1261	HP15_1236		conserved hypothetical protein	1.17881548757453	7.21020870616998	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF1571	HP15_1533		chromosome segregation protein SMC	-2.26935514973537	-5.75849560105614	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	2.24624922808953	8.95063614850695	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF2359	HP15_2307		xanthine/uracil permease	-1.91661308018045	-5.37875981618105	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF2616	HP15_2560		TRAP dicarboxylate transporter- DctP subunit	1.70140558427081	8.263640657635	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF3111	HP15_3054		TPR repeat containing protein	9.185555910898	54.7932663574043	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF3259	HP15_3201		ubiquinone biosynthesis hydroxylase, UbiH/UbiF/VisC/COQ6 family	2.58340227125069	12.0008190218162	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF3726	HP15_3668		sodium/proton antiporter	1.89166525059807	9.12331267056304	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF3879	HP15_3820		major facilitator superfamily MFS_1	-3.45688754108933	-10.3059657620146	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF4000	HP15_3940		transcriptional regulator, IclR family protein	1.43633083137423	5.5478771836252	FALSE
+stress	set4H26	1-ethyl-3-methylimidazolium acetate	GFF615	HP15_598		phosphoesterase, PA-phosphatase	1.86665851352238	6.02505366167408	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF2073	HP15_2029		permease perM	-1.82852488114842	-8.23345799720878	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF2271	HP15_2221		pseudouridine synthase, RluA family	-1.35379502968648	-6.6921573658963	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF2616	HP15_2560		TRAP dicarboxylate transporter- DctP subunit	1.72764290845852	12.2535533270475	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF263	HP15_262		strictosidine synthase family protein	-2.6999573514502	-9.78721444772066	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF3111	HP15_3054		TPR repeat containing protein	5.33070066390498	29.6653927226683	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF3259	HP15_3201		ubiquinone biosynthesis hydroxylase, UbiH/UbiF/VisC/COQ6 family	1.83852124710535	11.4095571263368	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF3367	HP15_3309		S-adenosylmethionine decarboxylase proenzyme	-2.29216146997313	-10.0592168935294	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF3571	HP15_3513		response regulator receiver domain protein (CheY)	1.02197844029458	7.44038219793468	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF3682	HP15_3624		transporter, BCCT family protein	1.05498360119344	6.27966436315398	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF3726	HP15_3668		sodium/proton antiporter	1.28603771686486	7.54378802669623	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF4122	HP15_4062		spermidine/putrescine ABC transporter, ATP-binding protein	-1.71871676459904	-7.14149423316392	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF4123	HP15_4063		spermidine/putrescine ABC transporter, permease protein PotB	-2.15930211510703	-8.28744524475945	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF4124	HP15_4064		spermidine/putrescine ABC transporter membrane protein	-2.30210775679606	-9.09498334415665	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF4125	HP15_4065		spermidine/putrescine ABC transporter periplasmic substrate-binding protein	-1.38468742470282	-6.19138113404961	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF615	HP15_598		phosphoesterase, PA-phosphatase	1.24309679312602	7.92965591571791	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF731	HP15_710		tetratricopeptide TPR_2 repeat protein	1.55353578651329	5.11479925209279	FALSE
+stress	set4H28	1-ethyl-3-methylimidazolium chloride	GFF740	HP15_719		alpha-L-glutamate ligase, RimK family	-2.14308463218861	-5.55609010617188	FALSE
+stress	set4H17	1-ethyl-3-methylimidazolium lysine	GFF2119	HP15_2073		peptidyl-arginine deiminase family protein	-1.46437984104613	-5.48284559958502	FALSE
+stress	set4H9	1-ethyl-3-methylimidazolium lysine	GFF2346	HP15_2294		chromosome partitioning protein ParA	1.39564553386174	9.77518780796731	FALSE
+stress	set4H9	1-ethyl-3-methylimidazolium lysine	GFF2350	HP15_2298		chemotaxis histidine kinase	1.84503478359401	13.5481794214855	FALSE
+stress	set4H9	1-ethyl-3-methylimidazolium lysine	GFF2356	HP15_2304		flagellar biosynthesis regulator FlhF	1.20208216453676	7.09159030380328	FALSE
+stress	set4H9	1-ethyl-3-methylimidazolium lysine	GFF252	HP15_251		diguanylate cyclase	1.00901280557216	7.85526593888921	FALSE
+stress	set4H9	1-ethyl-3-methylimidazolium lysine	GFF255	HP15_254		conserved hypothetical protein	1.3411461976806	8.78705200317985	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF1245	HP15_1220		acetyltransferase, GNAT family	1.00047857643801	7.8780238644532	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF1422	HP15_1387		ABC-type amino acid transport/signal transduction system, periplasmic domain protein	-1.24408993638997	-5.33938901205466	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF1842	HP15_1799		sterol-binding domain protein	1.75677659680064	11.492431918076	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF1842	HP15_1799		sterol-binding domain protein	2.00334308828188	14.7647084639755	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	-2.74434521992391	-8.57102531536512	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	-2.3886334963325	-8.518449956529	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF2093	HP15_2047		UDP-glucose 6-dehydrogenase	-1.6899393053432	-7.48013278779685	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF2093	HP15_2047		UDP-glucose 6-dehydrogenase	-1.57647533171812	-8.16560786439595	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF2094	HP15_2048		UDP-glucose 4-epimerase	-3.02351741705917	-8.40647824280924	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF2094	HP15_2048		UDP-glucose 4-epimerase	-2.69428433218665	-8.03814851779206	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF239	HP15_238		protein of unknown function, HemX	1.64827522567436	10.0843081998689	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF239	HP15_238		protein of unknown function, HemX	1.69103165496356	7.6322286169281	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF2475	HP15_2419		bax protein	1.45899037464441	6.0082573935827	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF2501	HP15_2445		protein yhbJ	-3.46808538916851	-5.43594818791533	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF2501	HP15_2445		protein yhbJ	-3.0019787480028	-6.08260243012317	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF2506	HP15_2450		conserved hypothetical protein	-3.16598510407796	-15.4203642520553	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF2506	HP15_2450		conserved hypothetical protein	-2.74129424155203	-13.0503007130898	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF2976	HP15_2920		amino acid ABC transporter, ATP-binding protein	-1.06605093317213	-6.0550240615305	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF3070	HP15_3014		AsmA family protein	-2.24178656538669	-11.5631264590457	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF3070	HP15_3014		AsmA family protein	-2.17061497514094	-10.1764584412933	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF3247	HP15_3189		conserved hypothetical protein	-2.5036353950961	-9.07650816295573	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF3247	HP15_3189		conserved hypothetical protein	-1.65116479727006	-5.998159269799	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF3259	HP15_3201		ubiquinone biosynthesis hydroxylase, UbiH/UbiF/VisC/COQ6 family	-2.6991386634978	-11.9948341574044	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF3259	HP15_3201		ubiquinone biosynthesis hydroxylase, UbiH/UbiF/VisC/COQ6 family	-2.49684439514301	-10.4897653175588	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF3287	HP15_3229		abhydrolase domain-containing protein 6	-2.2665370096258	-7.6708664726026	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF3287	HP15_3229		abhydrolase domain-containing protein 6	-2.03602365368045	-5.1979806445027	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF3383	HP15_3325		DSBA oxidoreductase	-1.52009099959661	-5.15507853097276	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF3645	HP15_3587		membrane-associated metal-dependent hydrolase	-4.36716214971735	-21.1601143475385	TRUE
+stress	set7IT058	Aluminum chloride hydrate	GFF3645	HP15_3587		membrane-associated metal-dependent hydrolase	-4.32689344992539	-18.1493171107626	TRUE
+stress	set7IT080	Aluminum chloride hydrate	GFF3678	HP15_3620		conserved hypothetical protein	-1.55656385826854	-7.24116698516954	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF3678	HP15_3620		conserved hypothetical protein	-1.41413650146215	-8.84357396530623	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF4024	HP15_3964		glycosyl transferase, family 39	-4.47721052470967	-14.8236438901563	TRUE
+stress	set7IT080	Aluminum chloride hydrate	GFF4024	HP15_3964		glycosyl transferase, family 39	-4.08641873391633	-18.2123017749225	TRUE
+stress	set7IT058	Aluminum chloride hydrate	GFF4025	HP15_3965		membrane protein containing SNARE associated Golgi protein domain	-5.98231571067749	-6.22465325990642	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF4025	HP15_3965		membrane protein containing SNARE associated Golgi protein domain	-4.15356926754002	-11.6644706224902	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF4026	HP15_3966		glycosyl transferase, group 2 family protein	-5.08074728077834	-9.20057132956801	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF4026	HP15_3966		glycosyl transferase, group 2 family protein	-4.32883668100193	-10.8294600593168	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF4028	HP15_3968		two component transcriptional regulator, winged helix family	-5.51386871651506	-14.6065308229273	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF4028	HP15_3968		two component transcriptional regulator, winged helix family	-4.39038756414109	-15.4420027281295	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF4029	HP15_3969		glycosyl transferase, family 39	-4.51025319373209	-17.9621977341364	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF4029	HP15_3969		glycosyl transferase, family 39	-4.31399209960442	-18.4799418757062	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF4030	HP15_3970		glycosyl transferase, group 2 family protein	-4.64006143563263	-16.1516976054151	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF4030	HP15_3970		glycosyl transferase, group 2 family protein	-4.15588512847224	-14.4279306518258	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF4032	HP15_3972		conserved hypothetical protein	2.95733498514394	8.59161254102424	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF4033	HP15_3973		long-chain-fatty-acid-CoA ligase	1.73238780524832	7.33029294455969	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF4033	HP15_3973		long-chain-fatty-acid-CoA ligase	2.30527388256166	10.0676933963386	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF4034	HP15_3974		short chain dehydrogenase	2.17584210113381	15.3421517008534	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF4034	HP15_3974		short chain dehydrogenase	2.73165145188722	23.7184826056772	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF4035	HP15_3975		conserved hypothetical protein, secreted	1.47372342441791	8.35448584527306	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF4035	HP15_3975		conserved hypothetical protein, secreted	1.74418714398244	12.2212087565424	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF458	HP15_446		glycosyltransferase	-2.15151347795176	-12.8725961732119	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF458	HP15_446		glycosyltransferase	-1.43072466083096	-8.6362640009555	FALSE
+stress	set7IT058	Aluminum chloride hydrate	GFF731	HP15_710		tetratricopeptide TPR_2 repeat protein	-3.40763143936302	-8.35181137608341	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF731	HP15_710		tetratricopeptide TPR_2 repeat protein	-2.38791155430591	-6.82953811814836	FALSE
+stress	set7IT080	Aluminum chloride hydrate	GFF759	HP15_738		phosphoesterase, PA-phosphatase	1.68423774412605	5.64965263516754	FALSE
+stress	set2H37	Bacitracin	GFF1039	HP15_1018		efflux transporter, RND family, MFP subunit	-3.32718702073335	-12.6141364268369	FALSE
+stress	set2H37	Bacitracin	GFF1040	HP15_1019		multidrug resistance protein	-3.3644123291738	-14.3919762258435	FALSE
+stress	set2H37	Bacitracin	GFF1236	HP15_1211		protease III precursor	-3.04913472761125	-7.33805504567636	FALSE
+stress	set2H37	Bacitracin	GFF1842	HP15_1799		sterol-binding domain protein	2.0703517194463	7.81354505508807	FALSE
+stress	set7IT083	Bacitracin	GFF1842	HP15_1799		sterol-binding domain protein	3.30715777390884	24.9199091017248	FALSE
+stress	set7IT061	Bacitracin	GFF1842	HP15_1799		sterol-binding domain protein	4.16195539450539	32.9904314616425	FALSE
+stress	set7IT062	Bacitracin	GFF2143	HP15_2097		protease HtpX-like protein	-1.38081209145759	-5.77995878869244	FALSE
+stress	set2H37	Bacitracin	GFF238	HP15_237		HemY domain protein	-2.52536270914571	-8.93293991819218	TRUE
+stress	set2H37	Bacitracin	GFF239	HP15_238		protein of unknown function, HemX	-2.16690739492009	-7.78421740081159	FALSE
+stress	set7IT083	Bacitracin	GFF2441	HP15_2385		UDP-glucose 6-dehydrogenase	1.14759485105449	7.24603822268724	FALSE
+stress	set7IT061	Bacitracin	GFF2441	HP15_2385		UDP-glucose 6-dehydrogenase	1.3117285295247	7.11450587633383	FALSE
+stress	set2H37	Bacitracin	GFF2475	HP15_2419		bax protein	-1.31107677084619	-5.45646704335122	FALSE
+stress	set2H37	Bacitracin	GFF2506	HP15_2450		conserved hypothetical protein	-3.37944291517005	-17.080581701521	FALSE
+stress	set7IT062	Bacitracin	GFF2506	HP15_2450		conserved hypothetical protein	-1.57523120820732	-10.5636333768736	FALSE
+stress	set7IT084	Bacitracin	GFF2611	HP15_2555		OmpA/MotB domain protein	-1.1452221401366	-7.08924211806465	TRUE
+stress	set2H37	Bacitracin	GFF3063	HP15_3007		carboxyl-terminal protease family protein	-1.56235606517425	-7.15935086280395	FALSE
+stress	set7IT083	Bacitracin	GFF3458	HP15_3400		transcriptional regulator, ArsR family protein	1.19522487461634	8.28795662642149	FALSE
+stress	set2H37	Bacitracin	GFF3458	HP15_3400		transcriptional regulator, ArsR family protein	2.3981582855451	10.5231911957678	FALSE
+stress	set7IT061	Bacitracin	GFF3458	HP15_3400		transcriptional regulator, ArsR family protein	2.44918207080701	14.0642775562275	FALSE
+stress	set2H37	Bacitracin	GFF3504	HP15_3446		protein containing a von Willebrand factor type A (vWA) domain	-1.68006117007881	-10.3952228333521	TRUE
+stress	set2H37	Bacitracin	GFF3505	HP15_3447		two component transcriptional regulator, winged helix family	-2.66277834637326	-5.73493090265013	FALSE
+stress	set2H37	Bacitracin	GFF3506	HP15_3448		integral membrane sensor signal transduction histidine kinase	-2.37587753181584	-13.0239324918971	FALSE
+stress	set2H37	Bacitracin	GFF4063	HP15_4003		transporter, AcrB/AcrD/AcrF family protein	-1.18240701762323	-7.44275554034867	TRUE
+stress	set2H37	Bacitracin	GFF419	HP15_407		transporter, major facilitator family	-1.37736619200375	-6.56809461265062	FALSE
+stress	set2H37	Bacitracin	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	-1.58696037984051	-8.95418417426653	FALSE
+stress	set7IT061	Bacitracin	GFF445	HP15_433		adenylate cyclase	1.23702170610559	10.7519184238402	FALSE
+stress	set2H37	Bacitracin	GFF536	HP15_524		signal transduction histidine kinase, nitrogen specific, NtrB	-1.51369188211258	-8.1675445122258	FALSE
+stress	set2H37	Bacitracin	GFF590	HP15_573		hypothetical protein	1.79831338394309	5.02385700239805	FALSE
+stress	set2H37	Bacitracin	GFF591	HP15_574		peptidase M23B	1.59123553115235	5.14953105467031	FALSE
+stress	set7IT083	Bacitracin	GFF591	HP15_574		peptidase M23B	1.77428576493894	13.0102946067293	FALSE
+stress	set7IT061	Bacitracin	GFF591	HP15_574		peptidase M23B	2.39570027560052	15.6115250237362	FALSE
+stress	set7IT062	Bacitracin	GFF610	HP15_593		protein belonging to uncharacterized protein family UPF0118	-1.03387370877741	-6.15382077835422	FALSE
+stress	set2H37	Bacitracin	GFF731	HP15_710		tetratricopeptide TPR_2 repeat protein	-2.85789930474786	-10.5560014909858	FALSE
+stress	set3H29	Benzalkonium Chloride	GFF1039	HP15_1018		efflux transporter, RND family, MFP subunit	-2.40695190638959	-5.6925297636592	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF1039	HP15_1018		efflux transporter, RND family, MFP subunit	-2.04850298880389	-7.60532000807957	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF1039	HP15_1018		efflux transporter, RND family, MFP subunit	-1.84797129648626	-8.62179944583978	FALSE
+stress	set3H29	Benzalkonium Chloride	GFF1040	HP15_1019		multidrug resistance protein	-2.17883483836256	-6.40394993792656	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF1040	HP15_1019		multidrug resistance protein	-2.16745828977024	-10.599106037566	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF1040	HP15_1019		multidrug resistance protein	-1.87415153524862	-10.7154297427322	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF1060	HP15_1039		acyl-CoA synthetase	-1.53062354989294	-10.0416518521055	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF1060	HP15_1039		acyl-CoA synthetase	-1.08261077708893	-6.16218764615431	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2094	HP15_2048		UDP-glucose 4-epimerase	-1.49607447502274	-6.77042953888535	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF2094	HP15_2048		UDP-glucose 4-epimerase	-1.48127108288325	-7.13548677454118	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF2215	HP15_2169		conserved hypothetical protein, secreted	1.27074779594356	6.84331162480055	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2215	HP15_2169		conserved hypothetical protein, secreted	1.7228689365386	10.1357004070303	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2281	HP15_2231		pitrilysin metallopeptidase 1	-1.69693533358845	-11.8322644218127	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2309	HP15_2257		transcription-repair-coupling factor	-1.41293078461725	-10.6915788527457	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2441	HP15_2385		UDP-glucose 6-dehydrogenase	-1.65993652917059	-8.42203947435006	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF2441	HP15_2385		UDP-glucose 6-dehydrogenase	-1.58234340347463	-9.41112301521249	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2490	HP15_2434		mammalian cell entry related domain protein	-3.41260943343668	-6.10855093516208	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF2490	HP15_2434		mammalian cell entry related domain protein	-2.28088807612696	-5.13652972500643	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	-4.42095568266861	-9.27355967230809	FALSE
+stress	set3H29	Benzalkonium Chloride	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	-4.12629866993705	-7.93321894250967	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	-3.31331137384925	-7.9478467428722	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2627	HP15_2571		twin-arginine translocation pathway signal	1.03077223177728	8.06978840857257	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2679	HP15_2623		leucine dehydrogenase	-1.28990894232885	-6.82536546821393	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF2679	HP15_2623		leucine dehydrogenase	-1.15697179077928	-7.8174195638043	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF2680	HP15_2624		sodium-dependent transporter family protein	-1.54026011600191	-7.68480976954319	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF2680	HP15_2624		sodium-dependent transporter family protein	-1.26905173411679	-6.56813157737314	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF3094	HP15_3037		transcriptional regulator, TetR family protein	-5.71293468249888	-9.03381993274042	FALSE
+stress	set3H29	Benzalkonium Chloride	GFF3094	HP15_3037		transcriptional regulator, TetR family protein	-4.78914310030388	-5.52595544805886	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF3094	HP15_3037		transcriptional regulator, TetR family protein	-3.88142334833705	-10.8659471159976	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF3192	HP15_3134		two-component system sensor protein	-1.50935359738125	-10.5001787819011	TRUE
+stress	set7IT079	Benzalkonium Chloride	GFF3193	HP15_3135		iron-containing alcohol dehydrogenase	-1.27483191070742	-7.05666871911145	TRUE
+stress	set7IT079	Benzalkonium Chloride	GFF3194	HP15_3136		prolyl oligopeptidase family protein	-1.139196178858	-8.41001916709939	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF3195	HP15_3137		pyrroloquinoline quinone biosynthesis protein PqqE	-1.1359017270123	-5.76422724221059	TRUE
+stress	set7IT079	Benzalkonium Chloride	GFF3198	HP15_3140		pyrroloquinoline quinone biosynthesis protein PqqB	-1.0252264673307	-5.28044512067497	TRUE
+stress	set7IT079	Benzalkonium Chloride	GFF3202	HP15_3144		NAD-dependent aldehyde dehydrogenase	-1.7329340328595	-9.90951683933778	TRUE
+stress	set7IT079	Benzalkonium Chloride	GFF3220	HP15_3162		cytochrome c550	-1.45613432510047	-5.83439736902627	TRUE
+stress	set7IT079	Benzalkonium Chloride	GFF3241	HP15_3183		two component transcriptional regulator, LuxR family	-1.6487199935212	-9.30448098547122	TRUE
+stress	set7IT057	Benzalkonium Chloride	GFF3780	HP15_3722		hypothetical protein	-1.79049363583027	-8.71240121447432	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF3780	HP15_3722		hypothetical protein	-1.72297243334666	-10.2087623044303	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF3804	HP15_3745		protein containing LysM domain	-7.66207398779989	-14.7324317627301	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF3804	HP15_3745		protein containing LysM domain	-6.30807525614325	-19.4743826901014	FALSE
+stress	set3H29	Benzalkonium Chloride	GFF3804	HP15_3745		protein containing LysM domain	-1.57014202766861	-8.22396392579883	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF3880	HP15_3821		transcriptional regulator, MarR family	1.52769451815794	5.95718390832147	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF4024	HP15_3964		glycosyl transferase, family 39	-1.89062015381858	-12.5653315204978	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF4024	HP15_3964		glycosyl transferase, family 39	-1.48148905491494	-8.8921042451877	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF4025	HP15_3965		membrane protein containing SNARE associated Golgi protein domain	-1.23165476246654	-5.06212962471806	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF4027	HP15_3967		integral membrane sensor signal transduction histidine kinase	-3.29582159778907	-15.8963407073087	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF4027	HP15_3967		integral membrane sensor signal transduction histidine kinase	-2.86505759694821	-14.7617697221399	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF4028	HP15_3968		two component transcriptional regulator, winged helix family	-3.54865172243577	-12.5692766388183	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF4028	HP15_3968		two component transcriptional regulator, winged helix family	-2.97089051233278	-11.8764985064357	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF4032	HP15_3972		conserved hypothetical protein	-4.37825263992361	-5.87244415734146	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF4033	HP15_3973		long-chain-fatty-acid-CoA ligase	-2.99185907545073	-13.832934248332	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF4033	HP15_3973		long-chain-fatty-acid-CoA ligase	-2.92522035656418	-13.6266963729509	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF4034	HP15_3974		short chain dehydrogenase	-3.57437048914849	-13.7055155523285	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF4034	HP15_3974		short chain dehydrogenase	-3.19960249571039	-12.0364402670698	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF4035	HP15_3975		conserved hypothetical protein, secreted	-1.05648750344661	-6.00942085772127	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF458	HP15_446		glycosyltransferase	-1.21376104944611	-8.15889475276243	FALSE
+stress	set7IT079	Benzalkonium Chloride	GFF512	HP15_500		conserved hypothetical protein	-9.21971939865844	-6.37312675988633	FALSE
+stress	set7IT057	Benzalkonium Chloride	GFF512	HP15_500		conserved hypothetical protein	-9.09522503555287	-6.28707008910755	FALSE
+stress	set6IT047	Benzethonium chloride	GFF1039	HP15_1018		efflux transporter, RND family, MFP subunit	-5.71027844546701	-7.78788760064346	FALSE
+stress	set6IT037	Benzethonium chloride	GFF1039	HP15_1018		efflux transporter, RND family, MFP subunit	-4.36506176952716	-10.3641721029562	FALSE
+stress	set2H32	Benzethonium chloride	GFF1040	HP15_1019		multidrug resistance protein	-6.01860049815446	-11.4609012425504	FALSE
+stress	set6IT037	Benzethonium chloride	GFF1040	HP15_1019		multidrug resistance protein	-4.38659183808032	-12.7630664796281	FALSE
+stress	set6IT047	Benzethonium chloride	GFF1040	HP15_1019		multidrug resistance protein	-4.32110790779026	-13.3802892259689	FALSE
+stress	set2H32	Benzethonium chloride	GFF1060	HP15_1039		acyl-CoA synthetase	-1.06992841048537	-5.07312634827776	FALSE
+stress	set2H32	Benzethonium chloride	GFF1212	HP15_1188		Sua5/YciO/YrdC/YwlC family protein	1.15757272299325	6.71864543464638	FALSE
+stress	set2H32	Benzethonium chloride	GFF1362	HP15_1329		DEAD/DEAH box helicase domain protein	1.03422828144092	5.20402409961668	FALSE
+stress	set2H32	Benzethonium chloride	GFF17	HP15_17		FAD-dependent oxidoreductase	1.06644214079538	7.55091434447371	FALSE
+stress	set2H32	Benzethonium chloride	GFF1850	HP15_1807		peptide ABC transporter, periplasmic peptide-binding protein	-1.57252252251216	-6.77130279528425	TRUE
+stress	set2H32	Benzethonium chloride	GFF1852	HP15_1809		peptide ABC transporter, permease protein	-1.95760063813684	-7.66960593060488	FALSE
+stress	set2H32	Benzethonium chloride	GFF1853	HP15_1810		peptide ABC transporter, ATP-binding protein	-1.41711292273043	-7.61000707907059	FALSE
+stress	set6IT037	Benzethonium chloride	GFF2073	HP15_2029		permease perM	-1.22898695861511	-5.97440983010895	FALSE
+stress	set6IT047	Benzethonium chloride	GFF2093	HP15_2047		UDP-glucose 6-dehydrogenase	-1.89346274662855	-9.44422456912356	FALSE
+stress	set6IT037	Benzethonium chloride	GFF2093	HP15_2047		UDP-glucose 6-dehydrogenase	-1.88051874500087	-8.20482834101915	FALSE
+stress	set2H32	Benzethonium chloride	GFF2093	HP15_2047		UDP-glucose 6-dehydrogenase	-1.71341971367668	-7.12380882311176	FALSE
+stress	set2H32	Benzethonium chloride	GFF2094	HP15_2048		UDP-glucose 4-epimerase	-3.2290827144094	-9.84746324496171	FALSE
+stress	set6IT037	Benzethonium chloride	GFF2094	HP15_2048		UDP-glucose 4-epimerase	-2.44436415576455	-8.28452786695125	FALSE
+stress	set6IT047	Benzethonium chloride	GFF2094	HP15_2048		UDP-glucose 4-epimerase	-2.14540039547225	-7.19185207226327	FALSE
+stress	set2H32	Benzethonium chloride	GFF2119	HP15_2073		peptidyl-arginine deiminase family protein	2.01211540774567	6.33596551281637	FALSE
+stress	set2H32	Benzethonium chloride	GFF2309	HP15_2257		transcription-repair-coupling factor	-1.95178824012163	-12.3956421818069	TRUE
+stress	set6IT047	Benzethonium chloride	GFF2309	HP15_2257		transcription-repair-coupling factor	-1.68126043680314	-11.0849506688755	TRUE
+stress	set6IT037	Benzethonium chloride	GFF2309	HP15_2257		transcription-repair-coupling factor	-1.46652474555867	-9.80805137616463	TRUE
+stress	set2H32	Benzethonium chloride	GFF2359	HP15_2307		xanthine/uracil permease	-1.36675066594342	-5.98631881749266	FALSE
+stress	set2H32	Benzethonium chloride	GFF2441	HP15_2385		UDP-glucose 6-dehydrogenase	-2.78615769547699	-10.8611956551969	FALSE
+stress	set6IT047	Benzethonium chloride	GFF2441	HP15_2385		UDP-glucose 6-dehydrogenase	-1.76136490690351	-7.6431088606655	FALSE
+stress	set6IT037	Benzethonium chloride	GFF2441	HP15_2385		UDP-glucose 6-dehydrogenase	-1.72187194992995	-7.70144036897949	FALSE
+stress	set6IT047	Benzethonium chloride	GFF2475	HP15_2419		bax protein	-2.84609185248778	-8.91275232056396	FALSE
+stress	set2H32	Benzethonium chloride	GFF2475	HP15_2419		bax protein	-2.63187575153048	-5.17569408231212	FALSE
+stress	set6IT037	Benzethonium chloride	GFF2475	HP15_2419		bax protein	-2.25948568474178	-6.53163323290837	FALSE
+stress	set2H32	Benzethonium chloride	GFF2490	HP15_2434		mammalian cell entry related domain protein	-6.67104367559347	-6.68231225590191	FALSE
+stress	set6IT037	Benzethonium chloride	GFF2490	HP15_2434		mammalian cell entry related domain protein	-4.0728208179873	-7.00438367835634	FALSE
+stress	set6IT047	Benzethonium chloride	GFF2490	HP15_2434		mammalian cell entry related domain protein	-3.99733927228155	-8.04034141398765	FALSE
+stress	set2H32	Benzethonium chloride	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	-6.48449582400451	-6.31615653788414	FALSE
+stress	set6IT037	Benzethonium chloride	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	-4.74789586329032	-9.01425281825184	FALSE
+stress	set6IT047	Benzethonium chloride	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	-4.48548161939332	-10.2715083233956	FALSE
+stress	set6IT037	Benzethonium chloride	GFF2506	HP15_2450		conserved hypothetical protein	1.37895163336492	9.3978778457174	FALSE
+stress	set6IT047	Benzethonium chloride	GFF2506	HP15_2450		conserved hypothetical protein	1.72569579178778	11.1715739382549	FALSE
+stress	set2H32	Benzethonium chloride	GFF2506	HP15_2450		conserved hypothetical protein	1.89203884678186	12.802149807861	FALSE
+stress	set2H32	Benzethonium chloride	GFF2520	HP15_2464		nucleoid-associated protein NdpA	1.15658065732576	5.07084748282134	FALSE
+stress	set2H32	Benzethonium chloride	GFF2534	HP15_2478		acyl-CoA dehydrogenase family protein	1.99876530244798	9.49199435198479	FALSE
+stress	set2H32	Benzethonium chloride	GFF257	HP15_256		serine protease	-1.45562673123878	-7.07459813724556	FALSE
+stress	set2H32	Benzethonium chloride	GFF3094	HP15_3037		transcriptional regulator, TetR family protein	-6.04134289320464	-8.57526734111702	FALSE
+stress	set6IT047	Benzethonium chloride	GFF3094	HP15_3037		transcriptional regulator, TetR family protein	-4.52753462838493	-9.04275815775447	FALSE
+stress	set6IT037	Benzethonium chloride	GFF3094	HP15_3037		transcriptional regulator, TetR family protein	-3.33853124331434	-8.93640164854489	FALSE
+stress	set2H32	Benzethonium chloride	GFF3478	HP15_3420		hydrolase, TatD family	1.03133085229935	5.59079930733391	FALSE
+stress	set2H32	Benzethonium chloride	GFF3502	HP15_3444		1-acyl-sn-glycerol-3-phosphate acyltransferase	1.84247123333988	10.4698617575029	FALSE
+stress	set2H32	Benzethonium chloride	GFF3574	HP15_3516		methyl-accepting chemotaxis sensory transducer	1.50044166190162	7.46388653717935	FALSE
+stress	set2H32	Benzethonium chloride	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	1.98088503075342	6.61962430708803	TRUE
+stress	set2H32	Benzethonium chloride	GFF3804	HP15_3745		protein containing LysM domain	-7.60434450901644	-10.4358647082356	FALSE
+stress	set6IT037	Benzethonium chloride	GFF3804	HP15_3745		protein containing LysM domain	-5.04578345805356	-18.0027681481814	FALSE
+stress	set6IT047	Benzethonium chloride	GFF3804	HP15_3745		protein containing LysM domain	-4.83578342019502	-20.1372880894163	FALSE
+stress	set2H32	Benzethonium chloride	GFF3973	HP15_3913		multidrug resistance protein NorM	-3.52676461234975	-12.220603154247	FALSE
+stress	set6IT047	Benzethonium chloride	GFF3973	HP15_3913		multidrug resistance protein NorM	-2.64029058955772	-9.98766102956083	FALSE
+stress	set6IT037	Benzethonium chloride	GFF3973	HP15_3913		multidrug resistance protein NorM	-2.5468512267895	-9.6238879871961	FALSE
+stress	set2H32	Benzethonium chloride	GFF4027	HP15_3967		integral membrane sensor signal transduction histidine kinase	-1.02804047468894	-6.05456603472643	FALSE
+stress	set6IT047	Benzethonium chloride	GFF4063	HP15_4003		transporter, AcrB/AcrD/AcrF family protein	-1.05176730147372	-6.61516095118998	FALSE
+stress	set2H32	Benzethonium chloride	GFF4264	HP15_p42g24		peptidase S26C, conjugative transfer signal peptidase TraF	1.80803088994214	10.9425276207123	FALSE
+stress	set6IT037	Benzethonium chloride	GFF4274	HP15_p42g34		DNA-binding protein	-1.23339570950973	-6.36860118155681	FALSE
+stress	set6IT047	Benzethonium chloride	GFF4274	HP15_p42g34		DNA-binding protein	-1.20357855260797	-5.82637002340918	FALSE
+stress	set2H32	Benzethonium chloride	GFF4274	HP15_p42g34		DNA-binding protein	-1.1757723682291	-6.58279960025262	FALSE
+stress	set2H32	Benzethonium chloride	GFF4278	HP15_p42g38		conserved hypothetical protein, secreted	1.05206328914321	6.61923305316059	FALSE
+stress	set2H32	Benzethonium chloride	GFF4287	HP15_p42g47		conjugal transfer protein TrbG/VirB9/CagX	1.12951082110382	5.49244167430552	FALSE
+stress	set2H32	Benzethonium chloride	GFF4288	HP15_p42g48		conjugal transfer, TrbF	1.01681445105935	5.37288665891603	FALSE
+stress	set2H32	Benzethonium chloride	GFF4289	HP15_p42g49		type IV secretion/conjugal transfer ATPase, VirB4 family	1.29917289343201	9.962485255667	FALSE
+stress	set2H32	Benzethonium chloride	GFF4292	HP15_p42g52		type II secretion system protein E	1.42269122542298	9.3642221210711	FALSE
+stress	set2H32	Benzethonium chloride	GFF458	HP15_446		glycosyltransferase	-1.59747313958394	-7.95884913025361	FALSE
+stress	set6IT047	Benzethonium chloride	GFF458	HP15_446		glycosyltransferase	-1.29540950456887	-6.38948734805599	FALSE
+stress	set2H32	Benzethonium chloride	GFF481	HP15_469		Ig domain protein, group 1 domain protein	1.11090159515877	6.66693477300622	FALSE
+stress	set6IT047	Benzethonium chloride	GFF490	HP15_478		type 4 fimbrial biogenesis protein PilQ	1.03604250908952	5.8743019018	FALSE
+stress	set2H32	Benzethonium chloride	GFF490	HP15_478		type 4 fimbrial biogenesis protein PilQ	1.4147039478553	9.32947046446528	FALSE
+stress	set2H32	Benzethonium chloride	GFF512	HP15_500		conserved hypothetical protein	-7.34299184808537	-7.07023137894182	FALSE
+stress	set6IT037	Benzethonium chloride	GFF512	HP15_500		conserved hypothetical protein	-4.71521410640823	-7.67618124635426	FALSE
+stress	set6IT047	Benzethonium chloride	GFF512	HP15_500		conserved hypothetical protein	-4.0002217162285	-8.52508654784093	FALSE
+stress	set2H32	Benzethonium chloride	GFF535	HP15_523		two component, sigma54 specific, transcriptional regulator, Fis family	-1.8173095771587	-10.002022162414	FALSE
+stress	set6IT047	Benzethonium chloride	GFF535	HP15_523		two component, sigma54 specific, transcriptional regulator, Fis family	-1.52211803092409	-9.60344662446969	FALSE
+stress	set2H32	Benzethonium chloride	GFF536	HP15_524		signal transduction histidine kinase, nitrogen specific, NtrB	-1.77410399710907	-6.81030915538416	FALSE
+stress	set6IT047	Benzethonium chloride	GFF536	HP15_524		signal transduction histidine kinase, nitrogen specific, NtrB	-1.76245309199181	-7.99301989568805	FALSE
+stress	set6IT037	Benzethonium chloride	GFF536	HP15_524		signal transduction histidine kinase, nitrogen specific, NtrB	-1.57875587447488	-7.4711344555279	FALSE
+stress	set2H32	Benzethonium chloride	GFF656	HP15_638		integral membrane protein	-1.06903326973234	-5.94101950802582	FALSE
+stress	set2H32	Benzethonium chloride	GFF762	HP15_741		DNA polymerase IV-like protein	1.26397531018548	6.23893937915599	FALSE
+stress	set3H5	Ceftazidime hydrate	GFF3063	HP15_3007		carboxyl-terminal protease family protein	-1.23810753593971	-5.12022367138392	FALSE
+stress	set7IT071	Ceftazidime hydrate	GFF591	HP15_574		peptidase M23B	1.29776329205808	8.21354108064862	FALSE
+stress	set3H5	Ceftazidime hydrate	GFF731	HP15_710		tetratricopeptide TPR_2 repeat protein	-1.45254647550972	-5.5864224070166	FALSE
+stress	set7IT090	Cephalothin sodium salt	GFF590	HP15_573		hypothetical protein	1.56794835055084	7.12740024117661	FALSE
+stress	set7IT090	Cephalothin sodium salt	GFF591	HP15_574		peptidase M23B	1.99991860142387	12.1613931528102	FALSE
+stress	set7IT068	Cephalothin sodium salt	GFF591	HP15_574		peptidase M23B	2.29918070801802	18.8853283345013	FALSE
+stress	set3H9	Chloramphenicol	GFF3673	HP15_3615		ribosomal RNA large subunit methyltransferase J	1.32267299163599	5.51584081142952	FALSE
+stress	set4H5	Cholin acetate	GFF1058	HP15_1037		two-component response regulator	1.63729292977408	5.20413277742989	FALSE
+stress	set4H13	Cholin acetate	GFF1058	HP15_1037		two-component response regulator	1.7439361384855	9.27170569834769	FALSE
+stress	set4H13	Cholin acetate	GFF1153	HP15_1130		transporter, BCCT family protein	2.32745807284056	18.2164295086316	FALSE
+stress	set4H5	Cholin acetate	GFF1153	HP15_1130		transporter, BCCT family protein	2.5285649358251	17.6928632728377	FALSE
+stress	set4H13	Cholin acetate	GFF1285	HP15_1255		protein containing Smr protein/MutS2 C-terminal domain	-1.85453489617261	-7.56393352781344	FALSE
+stress	set4H6	Cholin acetate	GFF1285	HP15_1255		protein containing Smr protein/MutS2 C-terminal domain	-1.22870878008452	-5.01395342838168	FALSE
+stress	set4H14	Cholin acetate	GFF1285	HP15_1255		protein containing Smr protein/MutS2 C-terminal domain	-1.05202587496139	-5.15249039980876	FALSE
+stress	set4H14	Cholin acetate	GFF1325	HP15_1295		protein containing DUF416	1.49564316507578	6.59722195138207	FALSE
+stress	set4H13	Cholin acetate	GFF1325	HP15_1295		protein containing DUF416	1.96284817719454	10.0745074655573	FALSE
+stress	set4H5	Cholin acetate	GFF1325	HP15_1295		protein containing DUF416	2.08862540592914	8.63431438962446	FALSE
+stress	set4H13	Cholin acetate	GFF1662	HP15_1621		transcriptional regulator, LysR family protein	-2.33437103033802	-10.8899224775446	FALSE
+stress	set4H6	Cholin acetate	GFF1662	HP15_1621		transcriptional regulator, LysR family protein	-2.09660301429435	-10.9776589605625	FALSE
+stress	set4H5	Cholin acetate	GFF1662	HP15_1621		transcriptional regulator, LysR family protein	-1.96289980052573	-8.14104940745506	FALSE
+stress	set4H14	Cholin acetate	GFF1662	HP15_1621		transcriptional regulator, LysR family protein	-1.89396670307199	-7.43676845833727	FALSE
+stress	set4H13	Cholin acetate	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	1.52087446522851	8.49169898518769	FALSE
+stress	set4H5	Cholin acetate	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	2.29913111014737	10.8954374016671	FALSE
+stress	set4H5	Cholin acetate	GFF2094	HP15_2048		UDP-glucose 4-epimerase	1.75688630975676	5.15343741933996	FALSE
+stress	set4H13	Cholin acetate	GFF225	HP15_224		conserved hypothetical protein, secreted	-1.85984757441755	-8.08212569813335	FALSE
+stress	set4H5	Cholin acetate	GFF225	HP15_224		conserved hypothetical protein, secreted	-1.47997612438417	-7.35065601409364	FALSE
+stress	set4H6	Cholin acetate	GFF2604	HP15_2548		xanthine/uracil permease family protein	-1.76850733108655	-7.31633208663509	FALSE
+stress	set4H14	Cholin acetate	GFF2604	HP15_2548		xanthine/uracil permease family protein	-1.58875223895175	-6.34310809485281	FALSE
+stress	set4H5	Cholin acetate	GFF2604	HP15_2548		xanthine/uracil permease family protein	-1.38425143829253	-5.19839360292887	FALSE
+stress	set4H5	Cholin acetate	GFF263	HP15_262		strictosidine synthase family protein	-1.97912067755224	-5.64507634346734	FALSE
+stress	set4H13	Cholin acetate	GFF263	HP15_262		strictosidine synthase family protein	-1.93798780123086	-5.00685240427655	FALSE
+stress	set4H13	Cholin acetate	GFF287	HP15_286		protein of unknown function YGGT	-1.40259850402836	-6.47485121734632	FALSE
+stress	set4H13	Cholin acetate	GFF3111	HP15_3054		TPR repeat containing protein	2.97340037349139	16.1760003689651	FALSE
+stress	set4H5	Cholin acetate	GFF3111	HP15_3054		TPR repeat containing protein	3.47493673322283	22.1720023810638	FALSE
+stress	set4H13	Cholin acetate	GFF3259	HP15_3201		ubiquinone biosynthesis hydroxylase, UbiH/UbiF/VisC/COQ6 family	1.16780173006468	6.08666923078444	FALSE
+stress	set4H5	Cholin acetate	GFF3259	HP15_3201		ubiquinone biosynthesis hydroxylase, UbiH/UbiF/VisC/COQ6 family	1.29652140002979	7.5173640219155	FALSE
+stress	set4H13	Cholin acetate	GFF3396	HP15_3338		transcriptional regulator, TetR family	-1.78789647875051	-7.24747325893345	FALSE
+stress	set4H5	Cholin acetate	GFF3661	HP15_3603		transcriptional regulator, HxlR family	1.62768342100717	10.8401357033233	FALSE
+stress	set4H13	Cholin acetate	GFF3683	HP15_3625		choline dehydrogenase	-1.62087746662946	-9.74329554492362	TRUE
+stress	set4H5	Cholin acetate	GFF3683	HP15_3625		choline dehydrogenase	-1.46257602696001	-6.74280188747643	TRUE
+stress	set4H14	Cholin acetate	GFF3683	HP15_3625		choline dehydrogenase	-1.0411637987151	-7.02914309400721	TRUE
+stress	set4H6	Cholin acetate	GFF3683	HP15_3625		choline dehydrogenase	-1.00248139764956	-6.89168900991348	TRUE
+stress	set4H13	Cholin acetate	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	-2.26275326674649	-7.89371600162494	FALSE
+stress	set4H6	Cholin acetate	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	-1.97098504171907	-7.34154958596811	FALSE
+stress	set4H14	Cholin acetate	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	-1.94961315222066	-6.93215531036941	FALSE
+stress	set4H5	Cholin acetate	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	-1.89499039935188	-7.01318763182836	FALSE
+stress	set8IT014	Cholin acetate	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	-1.5317231579947	-6.60942241487627	FALSE
+stress	set8IT027	Cholin acetate	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	-1.41057148323589	-5.4920359477463	FALSE
+stress	set4H14	Cholin acetate	GFF3879	HP15_3820		major facilitator superfamily MFS_1	1.01543805066511	7.70902762530563	FALSE
+stress	set4H13	Cholin acetate	GFF3879	HP15_3820		major facilitator superfamily MFS_1	2.10641052199781	17.709100550633	FALSE
+stress	set4H5	Cholin acetate	GFF3879	HP15_3820		major facilitator superfamily MFS_1	2.67210800852411	18.0614686281207	FALSE
+stress	set4H5	Cholin acetate	GFF3963	HP15_3903		methionine import ATP-binding protein MetN 2	-2.03873864466108	-5.20608637842859	FALSE
+stress	set4H13	Cholin acetate	GFF3963	HP15_3903		methionine import ATP-binding protein MetN 2	-1.55108357313681	-5.82852420492304	FALSE
+stress	set4H13	Cholin acetate	GFF3967	HP15_3907		sodium/alanine symporter family protein	1.81461999247141	15.7446920754663	FALSE
+stress	set4H5	Cholin acetate	GFF3967	HP15_3907		sodium/alanine symporter family protein	2.31490813554765	16.0766748013041	FALSE
+stress	set4H5	Cholin acetate	GFF4122	HP15_4062		spermidine/putrescine ABC transporter, ATP-binding protein	-1.60474425446	-5.98973638688002	FALSE
+stress	set4H13	Cholin acetate	GFF4122	HP15_4062		spermidine/putrescine ABC transporter, ATP-binding protein	-1.20651481901445	-5.97561947371546	FALSE
+stress	set4H13	Cholin acetate	GFF4123	HP15_4063		spermidine/putrescine ABC transporter, permease protein PotB	-1.68880740274318	-8.83517339011755	FALSE
+stress	set4H5	Cholin acetate	GFF4123	HP15_4063		spermidine/putrescine ABC transporter, permease protein PotB	-1.49148164057078	-6.1320905844309	FALSE
+stress	set4H13	Cholin acetate	GFF4124	HP15_4064		spermidine/putrescine ABC transporter membrane protein	-1.75532795707447	-7.68147290287008	FALSE
+stress	set4H5	Cholin acetate	GFF4124	HP15_4064		spermidine/putrescine ABC transporter membrane protein	-1.36381763166787	-5.68427836301867	FALSE
+stress	set4H13	Cholin acetate	GFF4125	HP15_4065		spermidine/putrescine ABC transporter periplasmic substrate-binding protein	-1.2578269884633	-5.6941314643988	FALSE
+stress	set4H5	Cholin acetate	GFF4125	HP15_4065		spermidine/putrescine ABC transporter periplasmic substrate-binding protein	-1.2556962064178	-5.56289713989458	FALSE
+stress	set4H5	Cholin acetate	GFF458	HP15_446		glycosyltransferase	1.21799935340372	7.93365019633647	FALSE
+stress	set4H5	Cholin acetate	GFF615	HP15_598		phosphoesterase, PA-phosphatase	1.22902567119653	7.67954805750144	FALSE
+stress	set4H13	Cholin acetate	GFF812	HP15_791		(p)ppGpp synthetase I (GTP pyrophosphokinase), SpoT/RelA	1.96104575830829	14.6448948744752	FALSE
+stress	set4H5	Cholin acetate	GFF812	HP15_791		(p)ppGpp synthetase I (GTP pyrophosphokinase), SpoT/RelA	2.22875664871281	14.7276181227213	FALSE
+stress	set4H23	Choline Lysine	GFF2345	HP15_2293		protein containing CheW-like domain	1.20853073010412	6.14726243033302	FALSE
+stress	set4H23	Choline Lysine	GFF2346	HP15_2294		chromosome partitioning protein ParA	1.60060675105372	11.1947260529259	FALSE
+stress	set4H23	Choline Lysine	GFF2350	HP15_2298		chemotaxis histidine kinase	1.86275621195357	13.7864113937932	FALSE
+stress	set4H23	Choline Lysine	GFF252	HP15_251		diguanylate cyclase	1.02921689628618	7.40917224379411	FALSE
+stress	set4H29	Choline Lysine	GFF3683	HP15_3625		choline dehydrogenase	-1.35021092196521	-8.58176765832668	TRUE
+stress	set4H23	Choline Lysine	GFF3683	HP15_3625		choline dehydrogenase	-1.12277430360612	-7.32789641268874	TRUE
+stress	set4H23	Choline Lysine	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	-1.84003599166982	-8.52351930925252	TRUE
+stress	set4H29	Choline Lysine	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	-1.67684241847535	-8.00411763523026	TRUE
+stress	set8IT026	Choline chloride	GFF1245	HP15_1220		acetyltransferase, GNAT family	-1.20451411528504	-6.79620425024561	FALSE
+stress	set8IT013	Choline chloride	GFF1261	HP15_1236		conserved hypothetical protein	1.4993610541953	9.75873791898746	FALSE
+stress	set8IT026	Choline chloride	GFF1261	HP15_1236		conserved hypothetical protein	1.5906903092247	10.3638904967029	FALSE
+stress	set8IT026	Choline chloride	GFF1362	HP15_1329		DEAD/DEAH box helicase domain protein	-1.11169665726044	-5.22786923107779	FALSE
+stress	set8IT026	Choline chloride	GFF2256	HP15_2206		AraC-type DNA-binding domain-containing protein	-1.04186450346981	-5.50376304554174	FALSE
+stress	set8IT013	Choline chloride	GFF2441	HP15_2385		UDP-glucose 6-dehydrogenase	-1.17296800612596	-5.61912567789496	FALSE
+stress	set8IT026	Choline chloride	GFF2441	HP15_2385		UDP-glucose 6-dehydrogenase	-1.0597792839679	-5.24827913474462	FALSE
+stress	set8IT013	Choline chloride	GFF2464	HP15_2408		methylation site containing protein	-2.41333363949376	-6.12733968221021	FALSE
+stress	set8IT026	Choline chloride	GFF2464	HP15_2408		methylation site containing protein	-2.25985699343662	-5.03551184126479	FALSE
+stress	set8IT013	Choline chloride	GFF2786	HP15_2730		mechanosensitive ion channel family protein	3.0361799944714	19.5720310793651	FALSE
+stress	set8IT026	Choline chloride	GFF2786	HP15_2730		mechanosensitive ion channel family protein	3.52608325281808	18.4823043954872	FALSE
+stress	set8IT013	Choline chloride	GFF2787	HP15_2731		choline/carnitine/betaine transporter	2.14754934517263	10.0928870989951	FALSE
+stress	set8IT026	Choline chloride	GFF2787	HP15_2731		choline/carnitine/betaine transporter	2.5304579948982	12.2122861937113	FALSE
+stress	set8IT026	Choline chloride	GFF287	HP15_286		protein of unknown function YGGT	-1.72065255169661	-7.70053012152646	FALSE
+stress	set8IT013	Choline chloride	GFF287	HP15_286		protein of unknown function YGGT	-1.66405335089976	-6.29997347969693	FALSE
+stress	set8IT013	Choline chloride	GFF301	HP15_300		ribonuclease PH	1.48511256364935	6.29280023576622	FALSE
+stress	set8IT026	Choline chloride	GFF301	HP15_300		ribonuclease PH	1.51219878255443	6.45995444742239	FALSE
+stress	set8IT013	Choline chloride	GFF3038	HP15_2982		protein containing Helix-turn-helix, AraC domain	-3.35462610565418	-5.02316368562106	FALSE
+stress	set8IT026	Choline chloride	GFF3038	HP15_2982		protein containing Helix-turn-helix, AraC domain	-3.03438369074784	-6.48656220199397	FALSE
+stress	set8IT026	Choline chloride	GFF3502	HP15_3444		1-acyl-sn-glycerol-3-phosphate acyltransferase	-1.71293444450414	-6.56396662673011	FALSE
+stress	set8IT013	Choline chloride	GFF3629	HP15_3571		carbohydrate-binding family V/XII	-2.21218532475646	-7.22347665673683	FALSE
+stress	set8IT026	Choline chloride	GFF3629	HP15_3571		carbohydrate-binding family V/XII	-1.56078794542418	-6.79720506571191	FALSE
+stress	set8IT013	Choline chloride	GFF3678	HP15_3620		conserved hypothetical protein	-4.02003910847661	-13.8714918723049	FALSE
+stress	set8IT026	Choline chloride	GFF3678	HP15_3620		conserved hypothetical protein	-3.66536216680798	-14.0971866655907	FALSE
+stress	set8IT013	Choline chloride	GFF3682	HP15_3624		transporter, BCCT family protein	2.89244225678984	21.3181342627144	FALSE
+stress	set8IT026	Choline chloride	GFF3682	HP15_3624		transporter, BCCT family protein	3.1977401530197	23.1042748772858	FALSE
+stress	set8IT013	Choline chloride	GFF3780	HP15_3722		hypothetical protein	-2.03362166182507	-10.1134065873409	FALSE
+stress	set8IT026	Choline chloride	GFF3780	HP15_3722		hypothetical protein	-1.49648966667051	-6.52593401754122	FALSE
+stress	set8IT026	Choline chloride	GFF3804	HP15_3745		protein containing LysM domain	-1.32950441796227	-7.16140438776092	FALSE
+stress	set8IT013	Choline chloride	GFF3804	HP15_3745		protein containing LysM domain	-1.22760747718414	-6.04688727709586	FALSE
+stress	set8IT013	Choline chloride	GFF3891	HP15_3831		transcriptional regulator, TetR family protein	-2.07860485945581	-5.7900331289732	FALSE
+stress	set8IT026	Choline chloride	GFF3891	HP15_3831		transcriptional regulator, TetR family protein	-1.95066827478999	-5.23285796473958	FALSE
+stress	set8IT013	Choline chloride	GFF3916	HP15_3856		aspartokinase	-1.12928683103715	-6.8493766787952	FALSE
+stress	set8IT026	Choline chloride	GFF3916	HP15_3856		aspartokinase	-1.08306603537988	-6.51298043564125	FALSE
+stress	set8IT013	Choline chloride	GFF535	HP15_523		two component, sigma54 specific, transcriptional regulator, Fis family	-3.90589888366057	-20.6565257957054	FALSE
+stress	set8IT026	Choline chloride	GFF535	HP15_523		two component, sigma54 specific, transcriptional regulator, Fis family	-3.34832374296429	-20.5381742085792	FALSE
+stress	set8IT013	Choline chloride	GFF536	HP15_524		signal transduction histidine kinase, nitrogen specific, NtrB	-3.9158792481435	-15.6590716735206	FALSE
+stress	set8IT026	Choline chloride	GFF536	HP15_524		signal transduction histidine kinase, nitrogen specific, NtrB	-3.80812737461449	-19.8805562772547	FALSE
+stress	set8IT013	Choline chloride	GFF571	HP15_554		tetrapyrrole methylase family protein	-1.36099057995691	-5.85427432952795	FALSE
+stress	set8IT026	Choline chloride	GFF653	HP15_635		3-oxoacyl-(acyl carrier protein) synthase I	-3.3680000151846	-11.1384857230855	FALSE
+stress	set8IT013	Choline chloride	GFF653	HP15_635		3-oxoacyl-(acyl carrier protein) synthase I	-3.22230537273604	-8.89691099548175	FALSE
+stress	set8IT013	Choline chloride	GFF765	HP15_744		phospholipid/glycerol acyltransferase	-1.76701062450393	-9.08044864272451	FALSE
+stress	set8IT026	Choline chloride	GFF765	HP15_744		phospholipid/glycerol acyltransferase	-1.10268164677878	-6.06976708975906	FALSE
+stress	set8IT013	Choline chloride	GFF766	HP15_745		conserved hypothetical protein	-1.83427921816809	-6.15302640464683	FALSE
+stress	set8IT026	Choline chloride	GFF766	HP15_745		conserved hypothetical protein	-1.43171307088046	-5.65748956037284	FALSE
+stress	set6IT032	Cisplatin	GFF1067	HP15_1047		DNA mismatch repair protein MutS	1.45977662278083	10.1048128684617	FALSE
+stress	set2H21	Cisplatin	GFF1067	HP15_1047		DNA mismatch repair protein MutS	1.50206177996385	9.87077739129909	FALSE
+stress	set6IT042	Cisplatin	GFF1067	HP15_1047		DNA mismatch repair protein MutS	1.74814164519257	11.9146147293325	FALSE
+stress	set6IT032	Cisplatin	GFF1261	HP15_1236		conserved hypothetical protein	1.27943826646076	8.54976509351677	FALSE
+stress	set6IT042	Cisplatin	GFF1261	HP15_1236		conserved hypothetical protein	1.51128784224886	9.4048262487677	FALSE
+stress	set6IT032	Cisplatin	GFF1344	HP15_1314		DNA polymerase III chi subunit, HolC	-3.69326631778778	-5.47172271416526	FALSE
+stress	set6IT042	Cisplatin	GFF1344	HP15_1314		DNA polymerase III chi subunit, HolC	-3.31219179804905	-5.32971251815497	FALSE
+stress	set2H21	Cisplatin	GFF1366	HP15_1333		error-prone DNA polymerase	-5.74281716022768	-11.6677832326318	TRUE
+stress	set6IT032	Cisplatin	GFF1366	HP15_1333		error-prone DNA polymerase	-3.96887851208318	-15.4594074292277	TRUE
+stress	set6IT042	Cisplatin	GFF1366	HP15_1333		error-prone DNA polymerase	-3.72019805235733	-13.8634893396032	TRUE
+stress	set2H21	Cisplatin	GFF1367	HP15_1334		conserved hypothetical protein	-5.71220512848335	-10.9470651110943	FALSE
+stress	set6IT032	Cisplatin	GFF1367	HP15_1334		conserved hypothetical protein	-4.34275277923931	-11.7095152630375	FALSE
+stress	set6IT042	Cisplatin	GFF1367	HP15_1334		conserved hypothetical protein	-3.91997027202246	-11.3547284032298	FALSE
+stress	set2H21	Cisplatin	GFF1368	HP15_1335		uncharacterized conserved protein UCP037290	-6.66944531387035	-9.13771493247906	FALSE
+stress	set6IT032	Cisplatin	GFF1368	HP15_1335		uncharacterized conserved protein UCP037290	-5.16418475808425	-9.71788527375219	FALSE
+stress	set6IT042	Cisplatin	GFF1368	HP15_1335		uncharacterized conserved protein UCP037290	-4.5089134695475	-7.54161772312026	FALSE
+stress	set2H21	Cisplatin	GFF1406	HP15_1372		excinuclease ABC subunit B	-5.62188423799452	-14.5284324155992	TRUE
+stress	set6IT032	Cisplatin	GFF1406	HP15_1372		excinuclease ABC subunit B	-4.45896114927369	-17.946914974672	TRUE
+stress	set6IT042	Cisplatin	GFF1406	HP15_1372		excinuclease ABC subunit B	-4.11535000166642	-16.8945286600726	TRUE
+stress	set6IT032	Cisplatin	GFF1605	HP15_1566		conserved hypothetical protein	-2.72668790665483	-8.03883995650074	FALSE
+stress	set6IT042	Cisplatin	GFF1605	HP15_1566		conserved hypothetical protein	-2.25610307735718	-5.15637349092597	FALSE
+stress	set2H21	Cisplatin	GFF1605	HP15_1566		conserved hypothetical protein	-1.49847243461675	-5.63204336993264	FALSE
+stress	set2H21	Cisplatin	GFF1607	HP15_1568		excinuclease ABC subunit C	-5.71393089029092	-5.46360023643193	TRUE
+stress	set6IT042	Cisplatin	GFF1607	HP15_1568		excinuclease ABC subunit C	-3.61979222943491	-5.40119533105328	TRUE
+stress	set2H21	Cisplatin	GFF1759	HP15_1718		ATP-dependent DNA helicase RecQ	1.08737494720041	6.140196314724	TRUE
+stress	set6IT042	Cisplatin	GFF1899	HP15_1856		helicase c2	-2.57077372640527	-13.339381018621	TRUE
+stress	set6IT032	Cisplatin	GFF1899	HP15_1856		helicase c2	-2.40708266415874	-12.490986460176	TRUE
+stress	set2H21	Cisplatin	GFF1899	HP15_1856		helicase c2	-2.00730421135949	-10.4320361107024	TRUE
+stress	set6IT042	Cisplatin	GFF2007	HP15_1963		conserved hypothetical protein	1.15042846875048	5.13816423919331	FALSE
+stress	set6IT042	Cisplatin	GFF2014	HP15_1970		hypothetical protein	1.43125852558631	8.65494268764936	FALSE
+stress	set2H21	Cisplatin	GFF2015	HP15_1971		hypothetical protein	1.26193935985956	5.78624398377717	FALSE
+stress	set6IT042	Cisplatin	GFF2016	HP15_1972		fibronectin, type III domain protein-like protein	1.22885503647696	6.81651371474872	FALSE
+stress	set6IT042	Cisplatin	GFF202	HP15_201		peptide transport system permease ABC transporter protein	1.2925318193754	6.18200693476561	FALSE
+stress	set6IT032	Cisplatin	GFF2020	HP15_1976		hypothetical protein	1.14887392580205	6.02341465788301	FALSE
+stress	set6IT042	Cisplatin	GFF2027	HP15_1983		hypothetical protein	1.16713412126523	6.8689456726087	FALSE
+stress	set6IT032	Cisplatin	GFF2029	HP15_1985		protein containing phage antirepressor protein domain	1.93532181808796	6.7962383003493	FALSE
+stress	set6IT042	Cisplatin	GFF2029	HP15_1985		protein containing phage antirepressor protein domain	2.2862017027477	6.37145445176922	FALSE
+stress	set6IT032	Cisplatin	GFF2032	HP15_1988		hypothetical protein	1.17827422430458	5.45411443581563	FALSE
+stress	set2H21	Cisplatin	GFF2034	HP15_1990		hypothetical protein	1.30185153902357	7.15329366800209	FALSE
+stress	set6IT032	Cisplatin	GFF2034	HP15_1990		hypothetical protein	1.50031973444246	7.49150066973421	FALSE
+stress	set6IT042	Cisplatin	GFF2034	HP15_1990		hypothetical protein	1.88212743690253	11.7094718363548	FALSE
+stress	set2H21	Cisplatin	GFF2036	HP15_1992		conserved hypothetical protein	1.0888755624702	5.44711933189513	FALSE
+stress	set6IT032	Cisplatin	GFF205	HP15_204		oligopeptide/dipeptide ABC transporter, ATPase subunit	1.05625433892051	6.73721422039015	FALSE
+stress	set6IT042	Cisplatin	GFF205	HP15_204		oligopeptide/dipeptide ABC transporter, ATPase subunit	1.07787181942758	6.20975777568499	FALSE
+stress	set6IT042	Cisplatin	GFF206	HP15_205		protein containing bacterial regulatory protein, LysR domain	1.24655558027347	6.57124648019546	FALSE
+stress	set2H21	Cisplatin	GFF217	HP15_216		transcriptional accessory protein	-1.83926961137125	-6.88271861120642	TRUE
+stress	set6IT042	Cisplatin	GFF217	HP15_216		transcriptional accessory protein	-1.5477231122438	-5.09129857043979	TRUE
+stress	set6IT032	Cisplatin	GFF217	HP15_216		transcriptional accessory protein	-1.41808311455799	-5.05729181342536	TRUE
+stress	set2H21	Cisplatin	GFF2309	HP15_2257		transcription-repair-coupling factor	-6.10695689092028	-15.8006068325429	TRUE
+stress	set6IT032	Cisplatin	GFF2309	HP15_2257		transcription-repair-coupling factor	-4.62325065222592	-19.7382988736587	TRUE
+stress	set6IT042	Cisplatin	GFF2309	HP15_2257		transcription-repair-coupling factor	-4.49644760521151	-17.0785674292297	TRUE
+stress	set2H21	Cisplatin	GFF2387	HP15_2335		SOS cell division inhibitor	-4.01135105435318	-14.0474273237708	FALSE
+stress	set6IT032	Cisplatin	GFF2387	HP15_2335		SOS cell division inhibitor	-3.19498148460951	-12.7350993259566	FALSE
+stress	set6IT042	Cisplatin	GFF2387	HP15_2335		SOS cell division inhibitor	-3.02373759939893	-12.9143269850077	FALSE
+stress	set2H21	Cisplatin	GFF2615	HP15_2559		membrane protein containing DUF6, transmembrane	1.21258123780321	9.17588876428059	FALSE
+stress	set6IT032	Cisplatin	GFF2615	HP15_2559		membrane protein containing DUF6, transmembrane	1.52684612489523	9.58465987402001	FALSE
+stress	set6IT042	Cisplatin	GFF2615	HP15_2559		membrane protein containing DUF6, transmembrane	1.56300585720448	10.0307131655444	FALSE
+stress	set6IT032	Cisplatin	GFF2789	HP15_2733		protein containing sulphatase-modifying factor domain	-2.03586538140991	-7.86090465273773	FALSE
+stress	set6IT042	Cisplatin	GFF2789	HP15_2733		protein containing sulphatase-modifying factor domain	-1.91165479294036	-6.92256332438333	FALSE
+stress	set2H21	Cisplatin	GFF2789	HP15_2733		protein containing sulphatase-modifying factor domain	-1.75471081771103	-6.84367861615091	FALSE
+stress	set6IT042	Cisplatin	GFF2888	HP15_2832		type III restriction protein res subunit	-1.1620457181643	-7.1653031442021	TRUE
+stress	set6IT032	Cisplatin	GFF2888	HP15_2832		type III restriction protein res subunit	-1.02389597783355	-6.54839093108055	TRUE
+stress	set2H21	Cisplatin	GFF3080	HP15_3023		glycolate oxidase FAD binding subunit	-1.56398018433632	-7.28381243519038	FALSE
+stress	set6IT032	Cisplatin	GFF3094	HP15_3037		transcriptional regulator, TetR family protein	1.20257672265317	5.35799262155483	FALSE
+stress	set2H21	Cisplatin	GFF310	HP15_309		DNA helicase, ATP-dependent, RecG	-5.6074353788588	-17.9609795444438	TRUE
+stress	set6IT042	Cisplatin	GFF310	HP15_309		DNA helicase, ATP-dependent, RecG	-4.80058179778461	-14.6922879274124	TRUE
+stress	set6IT032	Cisplatin	GFF310	HP15_309		DNA helicase, ATP-dependent, RecG	-4.66600074504325	-16.106544731286	TRUE
+stress	set2H21	Cisplatin	GFF3114	HP15_3057		leucine/isoleucine/valine transporter permease subunit	1.55312966789351	10.3606641128961	FALSE
+stress	set6IT032	Cisplatin	GFF3114	HP15_3057		leucine/isoleucine/valine transporter permease subunit	1.97148781712466	14.2495918366748	FALSE
+stress	set6IT042	Cisplatin	GFF3114	HP15_3057		leucine/isoleucine/valine transporter permease subunit	2.25370525645393	15.632116104639	FALSE
+stress	set6IT042	Cisplatin	GFF3116	HP15_3059		high-affinity branched-chain amino acid ABC transporter, ATP-binding protein	2.05574892884448	5.05255568248033	FALSE
+stress	set6IT032	Cisplatin	GFF3116	HP15_3059		high-affinity branched-chain amino acid ABC transporter, ATP-binding protein	2.16807262783598	5.04024057767773	FALSE
+stress	set2H21	Cisplatin	GFF3142	HP15_3084		DNA repair protein RecN	-5.56884676865705	-17.8333666390437	TRUE
+stress	set6IT032	Cisplatin	GFF3142	HP15_3084		DNA repair protein RecN	-4.34786708537548	-17.376746014096	TRUE
+stress	set6IT042	Cisplatin	GFF3142	HP15_3084		DNA repair protein RecN	-3.76329818780505	-15.7309055821254	TRUE
+stress	set6IT042	Cisplatin	GFF3595	HP15_3537		protein containing RNA polymerase sigma-70 domain	-1.28559573721836	-7.92025901582716	FALSE
+stress	set2H21	Cisplatin	GFF3610	HP15_3552		exoribonuclease R	-3.01785904083177	-16.597581737996	FALSE
+stress	set6IT042	Cisplatin	GFF3610	HP15_3552		exoribonuclease R	-2.22939552728068	-11.6361376966389	FALSE
+stress	set6IT032	Cisplatin	GFF3610	HP15_3552		exoribonuclease R	-2.06873514333718	-12.6356742917048	FALSE
+stress	set6IT042	Cisplatin	GFF3630	HP15_3572		aminotransferase, classes I and II	-2.27366426643484	-12.4006094904123	FALSE
+stress	set6IT032	Cisplatin	GFF3630	HP15_3572		aminotransferase, classes I and II	-2.1897310190781	-13.1414567403548	FALSE
+stress	set2H21	Cisplatin	GFF3630	HP15_3572		aminotransferase, classes I and II	-1.66582255958524	-8.89074159887848	FALSE
+stress	set2H21	Cisplatin	GFF3778	HP15_3720		protein containing VRR-NUC domain	-1.35543947460678	-8.71268839116853	TRUE
+stress	set6IT042	Cisplatin	GFF3820	HP15_3761		transport protein	-1.28107652061922	-8.1398346870352	TRUE
+stress	set6IT042	Cisplatin	GFF3954	HP15_3894		conserved hypothetical protein	1.19576405541261	7.01127037600786	FALSE
+stress	set2H21	Cisplatin	GFF418	HP15_406		excinuclease ABC, ATPase subunit (A)	-5.82998806614259	-23.336762519669	TRUE
+stress	set6IT032	Cisplatin	GFF418	HP15_406		excinuclease ABC, ATPase subunit (A)	-4.20962624037397	-21.9490164161301	TRUE
+stress	set6IT042	Cisplatin	GFF418	HP15_406		excinuclease ABC, ATPase subunit (A)	-4.04706100108397	-19.4090350605394	TRUE
+stress	set6IT032	Cisplatin	GFF4270	HP15_p42g30		YacC protein	-1.24393691046143	-7.69666569785028	FALSE
+stress	set2H21	Cisplatin	GFF4270	HP15_p42g30		YacC protein	-1.11506945116033	-6.72236087091344	FALSE
+stress	set6IT042	Cisplatin	GFF4270	HP15_p42g30		YacC protein	-1.11347021784608	-5.89106812996599	FALSE
+stress	set2H21	Cisplatin	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	2.35553062376506	15.2592441526151	FALSE
+stress	set6IT032	Cisplatin	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	3.11758666721786	15.7479068158173	FALSE
+stress	set6IT042	Cisplatin	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	3.49232445436249	17.7183423263336	FALSE
+stress	set2H21	Cisplatin	GFF499	HP15_487		DNA repair protein RadA	-5.41650037935367	-7.40417819761174	TRUE
+stress	set6IT042	Cisplatin	GFF499	HP15_487		DNA repair protein RadA	-4.32058041364496	-7.12026729608284	TRUE
+stress	set6IT032	Cisplatin	GFF499	HP15_487		DNA repair protein RadA	-4.13929946387647	-8.64139902808196	TRUE
+stress	set2H21	Cisplatin	GFF500	HP15_488		ABC transporter ATP-binding protein-like protein	-2.21770668178761	-5.77393487432542	FALSE
+stress	set6IT042	Cisplatin	GFF500	HP15_488		ABC transporter ATP-binding protein-like protein	-2.09090920983418	-6.04723674292229	FALSE
+stress	set6IT042	Cisplatin	GFF571	HP15_554		tetrapyrrole methylase family protein	-1.38533546915979	-6.53415346008284	FALSE
+stress	set2H21	Cisplatin	GFF666	HP15_648		phage late control D	1.21190284364691	8.47257389501076	FALSE
+stress	set6IT032	Cisplatin	GFF666	HP15_648		phage late control D	1.29418253467128	8.91260148142349	FALSE
+stress	set6IT042	Cisplatin	GFF666	HP15_648		phage late control D	1.47194024613103	8.69724904249817	FALSE
+stress	set6IT042	Cisplatin	GFF668	HP15_650		phage P2 GpU	1.34539335929027	5.1924691150332	FALSE
+stress	set6IT032	Cisplatin	GFF668	HP15_650		phage P2 GpU	1.47716987595835	7.02365084673127	FALSE
+stress	set6IT042	Cisplatin	GFF669	HP15_651		protein putative phage tail tape measure protein-like protein	1.49061692193075	10.2628539813435	FALSE
+stress	set6IT032	Cisplatin	GFF669	HP15_651		protein putative phage tail tape measure protein-like protein	1.52153311149345	10.5088381654074	FALSE
+stress	set2H21	Cisplatin	GFF671	HP15_653		phage major tail tube protein	1.19800705002603	5.73260615871523	FALSE
+stress	set6IT032	Cisplatin	GFF671	HP15_653		phage major tail tube protein	1.37367799011974	5.62505331790818	FALSE
+stress	set6IT042	Cisplatin	GFF671	HP15_653		phage major tail tube protein	1.5520994096063	5.42232363262573	FALSE
+stress	set2H21	Cisplatin	GFF672	HP15_654		major tail sheath protein	1.20355070649362	8.31062001970025	FALSE
+stress	set6IT032	Cisplatin	GFF672	HP15_654		major tail sheath protein	1.62170246246706	10.6422612158564	FALSE
+stress	set6IT042	Cisplatin	GFF672	HP15_654		major tail sheath protein	1.75341294541793	10.7382852582956	FALSE
+stress	set2H21	Cisplatin	GFF673	HP15_655		phage tail collar domain protein-like protein	1.66098733764972	8.12005657661649	FALSE
+stress	set6IT042	Cisplatin	GFF673	HP15_655		phage tail collar domain protein-like protein	1.88991940723552	5.53578189071734	FALSE
+stress	set2H21	Cisplatin	GFF675	HP15_657		phage tail fiber protein	1.27109793244636	8.23577520050566	FALSE
+stress	set6IT042	Cisplatin	GFF675	HP15_657		phage tail fiber protein	1.83445762429752	12.1125375220235	FALSE
+stress	set6IT032	Cisplatin	GFF675	HP15_657		phage tail fiber protein	1.85856446911676	11.7863865253548	FALSE
+stress	set6IT032	Cisplatin	GFF676	HP15_658		secreted protein-putative xanthan lyase	1.55755342573396	13.1168029208707	FALSE
+stress	set6IT042	Cisplatin	GFF676	HP15_658		secreted protein-putative xanthan lyase	1.57945030082464	13.0077201198265	FALSE
+stress	set2H21	Cisplatin	GFF677	HP15_659		hypothetical protein	1.36953104847678	7.11992929870077	FALSE
+stress	set6IT032	Cisplatin	GFF677	HP15_659		hypothetical protein	1.68597142257409	7.82821601978046	FALSE
+stress	set6IT042	Cisplatin	GFF677	HP15_659		hypothetical protein	1.94871128989835	10.5559079655666	FALSE
+stress	set2H21	Cisplatin	GFF679	HP15_661		hypothetical protein	1.31869088559659	6.21969748608269	FALSE
+stress	set6IT042	Cisplatin	GFF679	HP15_661		hypothetical protein	1.56096420187612	6.26395865043892	FALSE
+stress	set6IT032	Cisplatin	GFF679	HP15_661		hypothetical protein	1.66457009657102	9.00469815346515	FALSE
+stress	set2H21	Cisplatin	GFF680	HP15_662		phage tail protein I	1.20999880823154	5.80303915530797	FALSE
+stress	set6IT032	Cisplatin	GFF680	HP15_662		phage tail protein I	1.72358855628842	6.6821020199281	FALSE
+stress	set6IT042	Cisplatin	GFF680	HP15_662		phage tail protein I	1.94559007916131	7.24496804825677	FALSE
+stress	set2H21	Cisplatin	GFF681	HP15_663		phage baseplate assembly protein	1.25844623381133	7.89979468008329	FALSE
+stress	set6IT032	Cisplatin	GFF681	HP15_663		phage baseplate assembly protein	1.93168508608101	13.0519515481634	FALSE
+stress	set6IT042	Cisplatin	GFF681	HP15_663		phage baseplate assembly protein	1.93280892997799	12.4004933776388	FALSE
+stress	set6IT032	Cisplatin	GFF682	HP15_664		GPW/gp25	1.70028656534291	6.09752005719703	FALSE
+stress	set2H21	Cisplatin	GFF683	HP15_665		phage-related baseplate assembly protein V	1.20351331542335	8.57078192436516	FALSE
+stress	set6IT042	Cisplatin	GFF683	HP15_665		phage-related baseplate assembly protein V	1.67985936144651	10.1503320912894	FALSE
+stress	set6IT032	Cisplatin	GFF683	HP15_665		phage-related baseplate assembly protein V	1.70436703369853	10.6530893418039	FALSE
+stress	set2H21	Cisplatin	GFF684	HP15_666		conserved hypothetical protein	1.31110573501306	6.82479964776986	FALSE
+stress	set6IT042	Cisplatin	GFF684	HP15_666		conserved hypothetical protein	1.81239363983949	9.23412629967979	FALSE
+stress	set6IT032	Cisplatin	GFF684	HP15_666		conserved hypothetical protein	2.05840469754642	9.94202671913713	FALSE
+stress	set2H21	Cisplatin	GFF685	HP15_667		prophage LambdaW5, minor tail protein Z-like protein	1.06943642284666	5.93431826392855	FALSE
+stress	set6IT042	Cisplatin	GFF685	HP15_667		prophage LambdaW5, minor tail protein Z-like protein	1.70250086125104	8.10153405184041	FALSE
+stress	set6IT032	Cisplatin	GFF685	HP15_667		prophage LambdaW5, minor tail protein Z-like protein	1.78339647091654	8.30491535806759	FALSE
+stress	set6IT042	Cisplatin	GFF686	HP15_668		conserved hypothetical protein	1.65189399658367	5.24103573504368	FALSE
+stress	set6IT042	Cisplatin	GFF687	HP15_669		protein containing Rho termination factor, N-terminal domain	1.57575694137115	5.94900234254229	FALSE
+stress	set6IT032	Cisplatin	GFF687	HP15_669		protein containing Rho termination factor, N-terminal domain	1.6815196169503	8.0409185281283	FALSE
+stress	set2H21	Cisplatin	GFF688	HP15_670		peptidase U35, phage prohead	1.34136515168318	10.3351730475837	FALSE
+stress	set6IT032	Cisplatin	GFF688	HP15_670		peptidase U35, phage prohead	1.73859931648864	13.0260620445052	FALSE
+stress	set6IT042	Cisplatin	GFF688	HP15_670		peptidase U35, phage prohead	1.74277555959133	13.2499182681513	FALSE
+stress	set2H21	Cisplatin	GFF689	HP15_671		phage portal protein, lambda family	1.15321112618042	7.69740735580812	FALSE
+stress	set6IT032	Cisplatin	GFF689	HP15_671		phage portal protein, lambda family	1.61356328957217	9.39254820646703	FALSE
+stress	set6IT042	Cisplatin	GFF689	HP15_671		phage portal protein, lambda family	1.6887790512964	10.093771310066	FALSE
+stress	set2H21	Cisplatin	GFF690	HP15_672		conserved hypothetical protein	1.32012163816348	5.33097265943224	FALSE
+stress	set6IT042	Cisplatin	GFF690	HP15_672		conserved hypothetical protein	1.74138020451901	9.0596602233606	FALSE
+stress	set6IT032	Cisplatin	GFF690	HP15_672		conserved hypothetical protein	1.75687329407416	9.76521338046349	FALSE
+stress	set2H21	Cisplatin	GFF691	HP15_673		phage terminase GpA	1.09761153284297	6.80110623603548	FALSE
+stress	set6IT042	Cisplatin	GFF691	HP15_673		phage terminase GpA	1.73290675984843	9.70587132886094	FALSE
+stress	set6IT032	Cisplatin	GFF691	HP15_673		phage terminase GpA	1.79783996645982	10.8223470435079	FALSE
+stress	set6IT042	Cisplatin	GFF692	HP15_674		phage-related packaging protein	1.83027227451648	6.2645609585073	FALSE
+stress	set6IT032	Cisplatin	GFF692	HP15_674		phage-related packaging protein	2.13831011373444	8.69013975606253	FALSE
+stress	set2H21	Cisplatin	GFF693	HP15_675		conserved hypothetical protein	4.76704172630718	23.7884124638104	FALSE
+stress	set6IT032	Cisplatin	GFF693	HP15_675		conserved hypothetical protein	4.92794374079413	20.8058362434136	FALSE
+stress	set6IT042	Cisplatin	GFF693	HP15_675		conserved hypothetical protein	5.21937471796051	17.636243637965	FALSE
+stress	set2H21	Cisplatin	GFF694	HP15_676		N-acetylmuramoyl-L-alanine amidase	2.7257655794783	8.17615392039747	FALSE
+stress	set6IT032	Cisplatin	GFF694	HP15_676		N-acetylmuramoyl-L-alanine amidase	3.5529485463404	16.3524544666453	FALSE
+stress	set6IT042	Cisplatin	GFF694	HP15_676		N-acetylmuramoyl-L-alanine amidase	3.56489911093414	16.4776545305784	FALSE
+stress	set2H21	Cisplatin	GFF696	HP15_678		conserved hypothetical protein	2.75789408640113	7.55556453318233	FALSE
+stress	set6IT032	Cisplatin	GFF696	HP15_678		conserved hypothetical protein	3.2000833942917	10.8071900735416	FALSE
+stress	set6IT042	Cisplatin	GFF696	HP15_678		conserved hypothetical protein	3.29368310877134	8.81328604614631	FALSE
+stress	set6IT042	Cisplatin	GFF705	HP15_686		conserved hypothetical protein	1.65301447562208	9.21017294410727	FALSE
+stress	set6IT032	Cisplatin	GFF705	HP15_686		conserved hypothetical protein	1.68011769478221	8.2627002996919	FALSE
+stress	set2H21	Cisplatin	GFF706	HP15_687		protein containing domain of unknown function DUF1994	1.1635246171534	7.27660760898238	FALSE
+stress	set6IT032	Cisplatin	GFF706	HP15_687		protein containing domain of unknown function DUF1994	1.41242942112949	8.14062839137457	FALSE
+stress	set6IT042	Cisplatin	GFF706	HP15_687		protein containing domain of unknown function DUF1994	1.50004883919485	7.91392073661477	FALSE
+stress	set6IT042	Cisplatin	GFF718	HP15_699		conserved hypothetical protein	1.36948888649612	7.36022016247431	FALSE
+stress	set2H21	Cisplatin	GFF787	HP15_766		bacterial RecJ exonuclease	-4.47069669326368	-8.42713861088355	TRUE
+stress	set6IT042	Cisplatin	GFF787	HP15_766		bacterial RecJ exonuclease	-3.22628605644576	-6.61385079981653	TRUE
+stress	set6IT032	Cisplatin	GFF787	HP15_766		bacterial RecJ exonuclease	-3.17616189216164	-7.07474068519961	TRUE
+stress	set6IT032	Cisplatin	GFF930	HP15_909		enoyl-CoA hydratase/isomerase family protein	1.09041243474436	5.1714454729583	FALSE
+stress	set2H13	Cobalt chloride hexahydrate	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-1.91934942442551	-7.75111743770513	FALSE
+stress	set5H18	Cobalt chloride hexahydrate	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-1.74224867782183	-8.08250552592835	FALSE
+stress	set5H42	Cobalt chloride hexahydrate	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-1.65040810396765	-8.56249980065432	FALSE
+stress	set5H22	Cobalt chloride hexahydrate	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-1.63442446846243	-7.67701880352424	FALSE
+stress	set5H46	Cobalt chloride hexahydrate	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-1.62919601912768	-8.40108448587793	FALSE
+stress	set2H13	Cobalt chloride hexahydrate	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-2.11480063274128	-7.73705804479046	FALSE
+stress	set5H22	Cobalt chloride hexahydrate	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-1.92796931576969	-7.44862413011452	FALSE
+stress	set5H46	Cobalt chloride hexahydrate	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-1.70331873062677	-7.392710217622	FALSE
+stress	set5H42	Cobalt chloride hexahydrate	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-1.65448545444585	-5.47555335504135	FALSE
+stress	set2H12	Cobalt chloride hexahydrate	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-1.6434366394281	-7.53178654099534	FALSE
+stress	set5H18	Cobalt chloride hexahydrate	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-1.58757091106537	-6.25762996208383	FALSE
+stress	set2H13	Cobalt chloride hexahydrate	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-1.70303260078359	-6.44497905675925	FALSE
+stress	set5H46	Cobalt chloride hexahydrate	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-1.61517611910714	-6.32612317492421	FALSE
+stress	set5H22	Cobalt chloride hexahydrate	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-1.60396491064589	-5.92310302254732	FALSE
+stress	set5H18	Cobalt chloride hexahydrate	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-1.56423721651719	-6.69113023867073	FALSE
+stress	set5H42	Cobalt chloride hexahydrate	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-1.41269838532639	-6.87548000436111	FALSE
+stress	set2H12	Cobalt chloride hexahydrate	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-1.23917327163461	-6.32976510001668	FALSE
+stress	set5H42	Cobalt chloride hexahydrate	GFF1791	HP15_1749		transport ATP-binding protein CydC	-1.9436568248658	-10.2770970182716	FALSE
+stress	set2H13	Cobalt chloride hexahydrate	GFF1791	HP15_1749		transport ATP-binding protein CydC	-1.78162941637471	-9.42743178458004	FALSE
+stress	set5H18	Cobalt chloride hexahydrate	GFF1791	HP15_1749		transport ATP-binding protein CydC	-1.71729849913936	-9.63030312017459	FALSE
+stress	set5H46	Cobalt chloride hexahydrate	GFF1791	HP15_1749		transport ATP-binding protein CydC	-1.55925061019604	-8.35806964723638	FALSE
+stress	set5H22	Cobalt chloride hexahydrate	GFF1791	HP15_1749		transport ATP-binding protein CydC	-1.52622079056227	-10.2760984813552	FALSE
+stress	set2H12	Cobalt chloride hexahydrate	GFF1791	HP15_1749		transport ATP-binding protein CydC	-1.19560337352855	-7.5308090111642	FALSE
+stress	set2H13	Cobalt chloride hexahydrate	GFF3674	HP15_3616		tRNA/rRNA methyltransferase (SpoU)	1.18774031969538	8.07600948060339	FALSE
+stress	set2H48	D-Cycloserine	GFF1153	HP15_1130		transporter, BCCT family protein	-1.63889856260257	-7.63550015494654	FALSE
+stress	set3H3	D-Cycloserine	GFF1153	HP15_1130		transporter, BCCT family protein	-1.49938388578868	-7.95988181262147	FALSE
+stress	set3H3	D-Cycloserine	GFF1185	HP15_1162		aminotransferase, class I and II	-3.78452951385956	-7.11620328700276	TRUE
+stress	set2H48	D-Cycloserine	GFF1185	HP15_1162		aminotransferase, class I and II	-3.72548281507306	-9.16643155698232	TRUE
+stress	set2H48	D-Cycloserine	GFF1315	HP15_1285		endonuclease III	-2.450814896802	-6.93803797248629	TRUE
+stress	set3H3	D-Cycloserine	GFF1315	HP15_1285		endonuclease III	-1.76601361040816	-7.43342320899414	TRUE
+stress	set3H3	D-Cycloserine	GFF1406	HP15_1372		excinuclease ABC subunit B	-1.45118255122894	-6.59777158756691	TRUE
+stress	set2H48	D-Cycloserine	GFF1406	HP15_1372		excinuclease ABC subunit B	-1.36628327836387	-7.93791015909382	TRUE
+stress	set2H48	D-Cycloserine	GFF1545	HP15_1507		MOSC domain protein beta barrel domain protein	-2.22390425765209	-7.30688037107823	TRUE
+stress	set2H48	D-Cycloserine	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-5.99626228295402	-11.8605987920878	FALSE
+stress	set3H3	D-Cycloserine	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-5.65840204438181	-7.72934830795173	FALSE
+stress	set2H48	D-Cycloserine	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-5.73457677286342	-8.89264527741709	FALSE
+stress	set3H3	D-Cycloserine	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-3.92153843451254	-7.39306137356844	FALSE
+stress	set2H48	D-Cycloserine	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-5.22205456269521	-11.1036117089916	FALSE
+stress	set3H3	D-Cycloserine	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-4.81048742555214	-6.56832660327299	FALSE
+stress	set2H48	D-Cycloserine	GFF1791	HP15_1749		transport ATP-binding protein CydC	-5.37853084198526	-16.522168485691	FALSE
+stress	set3H3	D-Cycloserine	GFF1791	HP15_1749		transport ATP-binding protein CydC	-4.12817702055911	-8.77569702187295	FALSE
+stress	set3H3	D-Cycloserine	GFF1807	HP15_1765		HD superfamily phosphohydrolase	-1.09387438464751	-5.26703633299135	FALSE
+stress	set2H48	D-Cycloserine	GFF234	HP15_233		molybdenum cofactor biosynthesis protein B-like protein	-1.72349437560586	-5.79827997685826	FALSE
+stress	set3H3	D-Cycloserine	GFF234	HP15_233		molybdenum cofactor biosynthesis protein B-like protein	-1.58956029812841	-6.79481141850393	FALSE
+stress	set2H48	D-Cycloserine	GFF2501	HP15_2445		protein yhbJ	-2.24260844717949	-5.85738442976553	FALSE
+stress	set2H48	D-Cycloserine	GFF3362	HP15_3304		molybdenum ABC transporter, periplasmic binding protein	-1.59715940160088	-7.89938622938246	FALSE
+stress	set3H3	D-Cycloserine	GFF3362	HP15_3304		molybdenum ABC transporter, periplasmic binding protein	-1.47436597589808	-8.94320353025293	FALSE
+stress	set2H48	D-Cycloserine	GFF3363	HP15_3305		molybdate ABC transporter, inner membrane subunit	-1.16139737915527	-5.33155565256974	TRUE
+stress	set3H3	D-Cycloserine	GFF3364	HP15_3306		molybdenum ABC transporter, ATP-binding protein	-1.24453387718249	-6.62774892021156	FALSE
+stress	set2H48	D-Cycloserine	GFF3677	HP15_3619		FAD-dependent pyridine nucleotide-disulfide oxidoreductase	-1.14339233546098	-6.94894249074042	TRUE
+stress	set3H3	D-Cycloserine	GFF3890	HP15_3830		FAD-dependent pyridine nucleotide-disulfide oxidoreductase	1.32689279081161	8.58950604926161	FALSE
+stress	set2H48	D-Cycloserine	GFF3890	HP15_3830		FAD-dependent pyridine nucleotide-disulfide oxidoreductase	1.73319472520103	12.3359284839677	FALSE
+stress	set2H48	D-Cycloserine	GFF3901	HP15_3841		iron(III) ABC transporter permease protein	1.76911582284633	14.0832741828573	FALSE
+stress	set3H3	D-Cycloserine	GFF3903	HP15_3843		iron(III) ABC transporter, periplasmic iron-compound-binding protein	1.18282338985264	6.57897982700465	FALSE
+stress	set2H48	D-Cycloserine	GFF3903	HP15_3843		iron(III) ABC transporter, periplasmic iron-compound-binding protein	1.37611285316573	8.72191336924706	FALSE
+stress	set2H48	D-Cycloserine	GFF418	HP15_406		excinuclease ABC, ATPase subunit (A)	-1.11029340380261	-7.51356018762387	TRUE
+stress	set3H3	D-Cycloserine	GFF418	HP15_406		excinuclease ABC, ATPase subunit (A)	-1.00241523997685	-6.51014829065132	TRUE
+stress	set3H3	D-Cycloserine	GFF500	HP15_488		ABC transporter ATP-binding protein-like protein	-1.22758818303	-6.84343785593473	FALSE
+stress	set3H20	Furfuryl Alcohol	GFF217	HP15_216		transcriptional accessory protein	1.02546377689047	6.95411948744858	FALSE
+stress	set3H20	Furfuryl Alcohol	GFF3624	HP15_3566		MATE efflux family protein	-1.49273631120993	-9.87800581698244	FALSE
+stress	set3H20	Furfuryl Alcohol	GFF418	HP15_406		excinuclease ABC, ATPase subunit (A)	-1.02662889339148	-8.01295775360928	FALSE
+stress	set3H20	Furfuryl Alcohol	GFF761	HP15_740		oxidoreductase Tas, aldo/keto reductase family protein	-1.03510584097532	-5.05554870685983	FALSE
+stress	set2H38	Fusidic acid sodium salt	GFF2345	HP15_2293		protein containing CheW-like domain	-1.22629640713259	-5.11109268914474	FALSE
+stress	set2H38	Fusidic acid sodium salt	GFF252	HP15_251		diguanylate cyclase	-1.21660860207212	-8.35261893278309	FALSE
+stress	set2H38	Fusidic acid sodium salt	GFF687	HP15_669		protein containing Rho termination factor, N-terminal domain	-1.21368634338841	-5.15446689870984	FALSE
+stress	set7IT069	MreB Perturbing Compound A22	GFF2073	HP15_2029		permease perM	1.23294273915674	8.49837894024595	FALSE
+stress	set2H47	MreB Perturbing Compound A22	GFF2073	HP15_2029		permease perM	2.33955485700413	14.8051384812971	FALSE
+stress	set2H47	MreB Perturbing Compound A22	GFF2469	HP15_2413		conserved hypothetical protein, secreted	1.07485466046746	6.30614464717425	FALSE
+stress	set2H47	MreB Perturbing Compound A22	GFF3275	HP15_3217		uncharacterized conserved protein UCP029693	1.37797115354964	8.60073257203731	FALSE
+stress	set2H47	MreB Perturbing Compound A22	GFF3963	HP15_3903		methionine import ATP-binding protein MetN 2	2.14237658614522	14.763765208474	FALSE
+stress	set2H47	MreB Perturbing Compound A22	GFF3964	HP15_3904		binding-protein-dependent transport systems inner membrane component	1.80620733047626	9.13604118399261	FALSE
+stress	set2H47	MreB Perturbing Compound A22	GFF3965	HP15_3905		lipoprotein, YaeC family	2.05444880705593	11.65064256332	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF1899	HP15_1856		helicase c2	2.17562965411434	11.4854616221158	TRUE
+stress	set3H13	Nalidixic acid sodium salt	GFF1991	HP15_1947		hypothetical protein	2.74978969534601	11.754482576012	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF1993	HP15_1949		hypothetical protein	2.77126290222209	18.4788037421481	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF1994	HP15_1950		hypothetical protein	2.74019256401546	10.4051133623812	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF1995	HP15_1951		hypothetical protein	2.91026756891642	5.10663873902136	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF1996	HP15_1952		hypothetical protein	2.21131931015129	6.79449007684906	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF1997	HP15_1953		hypothetical protein	2.48674503912005	9.94634434481863	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF1998	HP15_1954		phage tail tape measure protein, family	2.46895986385532	14.6022920171448	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF1999	HP15_1955		conserved hypothetical protein, secreted	2.02291972862991	5.5334297976452	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2000	HP15_1956		hypothetical protein	3.14804598362415	10.7791566233348	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2001	HP15_1957		hypothetical protein	2.55711434683311	13.1427593140826	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2002	HP15_1958		hypothetical protein	2.38440258399701	9.27394117025427	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2003	HP15_1959		conserved hypothetical protein	2.54267665442027	9.41600808581144	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2005	HP15_1961		hypothetical protein	2.4691986611232	6.81919332007635	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2006	HP15_1962		capsid protein of prophage	2.76650130724766	10.0977296297288	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2008	HP15_1964		capsid protein of prophage	2.29980637267976	10.6391207858224	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2009	HP15_1965		phage portal protein, lambda family	2.34633921428804	11.4005637631442	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2011	HP15_1967		phage terminase large subunit (GpA)	2.84889802559363	13.9778210481003	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2012	HP15_1968		phage DNA packaging protein, Nu1 subunit of terminase	3.96980526864798	7.44930710996318	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2014	HP15_1970		hypothetical protein	2.76326092720417	14.757861596979	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2015	HP15_1971		hypothetical protein	2.63455089231883	8.76234942918403	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2016	HP15_1972		fibronectin, type III domain protein-like protein	2.41350316815723	10.8560150841193	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2020	HP15_1976		hypothetical protein	3.77823849801969	10.2562129460062	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2021	HP15_1977		hypothetical protein	2.5853376715329	6.03346726642304	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2022	HP15_1978		phage antitermination Q type 1 family-like protein	2.60713907922468	7.51483422244339	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF2027	HP15_1983		hypothetical protein	2.42196381083084	9.23228080095044	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF3150	HP15_3092		conserved hypothetical protein	1.08024284561149	6.02255772130805	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF3167	HP15_3109		hypothetical protein	1.32642642387494	5.94303678585589	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF3168	HP15_3110		HNH endonuclease	1.49989063940859	6.45258937945296	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF3169	HP15_3111		hypothetical protein	1.44299964671236	6.64580576825576	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF3779	HP15_3721		Rad3-related DNA helicase	1.85916586854341	13.8380638240117	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF666	HP15_648		phage late control D	3.50469913839611	19.7725936194439	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF668	HP15_650		phage P2 GpU	3.30183766330047	13.7978990692415	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF669	HP15_651		protein putative phage tail tape measure protein-like protein	3.62793206084611	16.8153889576532	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF671	HP15_653		phage major tail tube protein	3.44075835349457	18.2807050150703	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF672	HP15_654		major tail sheath protein	3.75249381106705	19.6478173527647	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF673	HP15_655		phage tail collar domain protein-like protein	4.12980852419925	8.52390784299376	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF675	HP15_657		phage tail fiber protein	4.20041834191336	21.8382508600193	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF676	HP15_658		secreted protein-putative xanthan lyase	4.30439956340194	28.609527114427	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF677	HP15_659		hypothetical protein	4.19749815760342	16.6808821953647	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF679	HP15_661		hypothetical protein	3.54316241260404	14.0315025119462	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF680	HP15_662		phage tail protein I	3.82411699093498	8.51392087406578	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF681	HP15_663		phage baseplate assembly protein	3.75906063218366	20.8379047056858	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF682	HP15_664		GPW/gp25	5.08085736980353	14.2055669236392	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF683	HP15_665		phage-related baseplate assembly protein V	3.63784660329627	16.5542133667571	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF684	HP15_666		conserved hypothetical protein	3.87714726423567	14.1494640137947	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF685	HP15_667		prophage LambdaW5, minor tail protein Z-like protein	3.83127349601569	14.9895530999706	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF686	HP15_668		conserved hypothetical protein	3.72288697415411	7.2381492616861	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF687	HP15_669		protein containing Rho termination factor, N-terminal domain	3.53127956029202	11.2094250728878	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF688	HP15_670		peptidase U35, phage prohead	3.47161575666918	19.6671804971822	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF689	HP15_671		phage portal protein, lambda family	3.72369756858511	19.6034053882017	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF690	HP15_672		conserved hypothetical protein	3.76504928804935	15.6252960464867	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF691	HP15_673		phage terminase GpA	3.72786116979472	22.4506699063699	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF692	HP15_674		phage-related packaging protein	3.84712157852162	13.701380022667	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF693	HP15_675		conserved hypothetical protein	4.82164043529659	17.21022889644	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF694	HP15_676		N-acetylmuramoyl-L-alanine amidase	4.38369737387944	19.2235783444276	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF696	HP15_678		conserved hypothetical protein	5.06675795761284	18.1116474447916	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF697	HP15_679		conserved hypothetical protein	4.6412752400552	8.45061060606716	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF705	HP15_686		conserved hypothetical protein	3.9454098771853	11.7514953027121	FALSE
+stress	set3H13	Nalidixic acid sodium salt	GFF706	HP15_687		protein containing domain of unknown function DUF1994	3.62814025891818	21.0274438561292	FALSE
+stress	set2H11	Nickel (II) chloride hexahydrate	GFF1409	HP15_1375		cation diffusion facilitator family transporter	1.0187679766923	5.71580762533051	FALSE
+stress	set2H11	Nickel (II) chloride hexahydrate	GFF1850	HP15_1807		peptide ABC transporter, periplasmic peptide-binding protein	1.46932638343293	6.14081959192349	FALSE
+stress	set5H17	Nickel (II) chloride hexahydrate	GFF1851	HP15_1808		peptide ABC transporter, permease protein	1.33024351930323	8.73144645808904	TRUE
+stress	set2H11	Nickel (II) chloride hexahydrate	GFF1851	HP15_1808		peptide ABC transporter, permease protein	1.67671913028175	6.00860485867268	TRUE
+stress	set2H11	Nickel (II) chloride hexahydrate	GFF1852	HP15_1809		peptide ABC transporter, permease protein	1.32337934608193	8.1668066413538	FALSE
+stress	set2H11	Nickel (II) chloride hexahydrate	GFF1853	HP15_1810		peptide ABC transporter, ATP-binding protein	1.397557188332	9.85040657595651	TRUE
+stress	set5H21	Nickel (II) chloride hexahydrate	GFF3455	HP15_3397		conserved hypothetical protein, secreted	1.28192570985828	5.26538871535592	FALSE
+stress	set2H11	Nickel (II) chloride hexahydrate	GFF3820	HP15_3761		transport protein	-1.27856883456906	-9.18234033122073	TRUE
+stress	set6IT030	Paraquat dichloride	GFF1212	HP15_1188		Sua5/YciO/YrdC/YwlC family protein	-1.16663630844123	-5.66876449829527	TRUE
+stress	set2H18	Paraquat dichloride	GFF1378	HP15_1345		sulphate ABC transporter, permease protein CysT	-1.88426894996835	-5.47870759126947	TRUE
+stress	set6IT030	Paraquat dichloride	GFF1378	HP15_1345		sulphate ABC transporter, permease protein CysT	-1.1262287571757	-5.89107136173634	TRUE
+stress	set2H18	Paraquat dichloride	GFF1380	HP15_1347		sulfate/thiosulfate transporter subunit	-1.6196464755443	-6.43484626179003	TRUE
+stress	set6IT030	Paraquat dichloride	GFF1380	HP15_1347		sulfate/thiosulfate transporter subunit	-1.10254480693961	-6.68743074178513	TRUE
+stress	set2H18	Paraquat dichloride	GFF1430	HP15_1395		heat shock protein 90	1.67981016061121	6.47062272538673	FALSE
+stress	set2H18	Paraquat dichloride	GFF1655	HP15_1614		conserved hypothetical protein	2.35142952422801	8.18452070450585	FALSE
+stress	set2H18	Paraquat dichloride	GFF2139	HP15_2093		signal transduction histidine kinase	1.52100034523181	8.09916004914745	FALSE
+stress	set2H17	Paraquat dichloride	GFF255	HP15_254		conserved hypothetical protein	-1.51484415553393	-5.95585868844043	FALSE
+stress	set2H18	Paraquat dichloride	GFF301	HP15_300		ribonuclease PH	1.6371806337189	5.82058008464357	FALSE
+stress	set2H18	Paraquat dichloride	GFF3677	HP15_3619		FAD-dependent pyridine nucleotide-disulfide oxidoreductase	1.1311882877341	6.80150606085449	TRUE
+stress	set2H17	Paraquat dichloride	GFF3682	HP15_3624		transporter, BCCT family protein	2.34422995999242	17.3344827994384	TRUE
+stress	set6IT040	Paraquat dichloride	GFF3682	HP15_3624		transporter, BCCT family protein	3.07503113760866	18.6576824281838	TRUE
+stress	set6IT030	Paraquat dichloride	GFF3682	HP15_3624		transporter, BCCT family protein	3.67493386327073	24.1827559191411	TRUE
+stress	set2H18	Paraquat dichloride	GFF3682	HP15_3624		transporter, BCCT family protein	12.8606780416205	86.7547280059004	TRUE
+stress	set2H17	Paraquat dichloride	GFF3683	HP15_3625		choline dehydrogenase	1.48898498917552	7.44378510358153	TRUE
+stress	set6IT040	Paraquat dichloride	GFF3683	HP15_3625		choline dehydrogenase	1.81444825822131	7.71394526830385	TRUE
+stress	set6IT030	Paraquat dichloride	GFF3683	HP15_3625		choline dehydrogenase	2.24386356491562	8.93264832010665	TRUE
+stress	set2H18	Paraquat dichloride	GFF3683	HP15_3625		choline dehydrogenase	8.11134732475964	9.6821704481392	TRUE
+stress	set2H18	Paraquat dichloride	GFF3684	HP15_3626		betaine aldehyde dehydrogenase	8.15833918597846	8.04194226257217	TRUE
+stress	set2H18	Paraquat dichloride	GFF3685	HP15_3627		transcriptional regulator, TetR family	7.42592270273804	5.50093816571128	FALSE
+stress	set2H17	Paraquat dichloride	GFF3891	HP15_3831		transcriptional regulator, TetR family protein	-1.78267342784498	-5.16125006585482	FALSE
+stress	set6IT040	Paraquat dichloride	GFF3891	HP15_3831		transcriptional regulator, TetR family protein	-1.55878046500073	-6.34440362318028	FALSE
+stress	set6IT030	Paraquat dichloride	GFF3891	HP15_3831		transcriptional regulator, TetR family protein	-1.38021347075554	-5.05416277417809	FALSE
+stress	set6IT030	Paraquat dichloride	GFF3901	HP15_3841		iron(III) ABC transporter permease protein	-1.68022938744012	-10.3258956106603	FALSE
+stress	set2H18	Paraquat dichloride	GFF3901	HP15_3841		iron(III) ABC transporter permease protein	-1.51662173126835	-5.34132521538104	FALSE
+stress	set2H17	Paraquat dichloride	GFF3901	HP15_3841		iron(III) ABC transporter permease protein	-1.47866731022117	-8.35201650261957	FALSE
+stress	set2H18	Paraquat dichloride	GFF4184	HP15_4124		protein containing 4Fe-4S ferredoxin, iron-sulfur binding, subgroup domains	2.30472056564905	10.8975227512348	FALSE
+stress	set2H18	Paraquat dichloride	GFF4185	HP15_4125		Mrp/NBP35 family protein	3.04582580815507	17.698601079334	FALSE
+stress	set6IT030	Paraquat dichloride	GFF4186	HP15_4126		conserved hypothetical protein	1.00502725070878	5.71925191012017	FALSE
+stress	set2H18	Paraquat dichloride	GFF4186	HP15_4126		conserved hypothetical protein	2.9896797341045	14.1287260668236	FALSE
+stress	set2H18	Paraquat dichloride	GFF419	HP15_407		transporter, major facilitator family	2.3490078661453	11.7953674873525	FALSE
+stress	set2H18	Paraquat dichloride	GFF731	HP15_710		tetratricopeptide TPR_2 repeat protein	1.99736137359159	5.90516924708419	FALSE
+stress	set2H35	Phosphomycin disodium salt	GFF3070	HP15_3014		AsmA family protein	-1.1077988104679	-6.38306927171392	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF1550	HP15_1512		multifunctional fatty acid oxidation complex subunit alpha	-1.48980466296096	-7.74463595456594	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF1550	HP15_1512		multifunctional fatty acid oxidation complex subunit alpha	-1.3387458974109	-7.64756144048006	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	3.30747123232296	23.02230605505	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	3.60059829087041	29.3313807004224	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF211	HP15_210		phospholipase A(1)	2.86206852923119	20.378906423406	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF211	HP15_210		phospholipase A(1)	3.14120128549426	25.0740880548293	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF212	HP15_211		conserved hypothetical protein, membrane	2.20724989772063	5.13448636876113	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	-1.67220471814695	-6.59935335489951	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	-1.45651679145082	-6.58471536160222	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF256	HP15_255		conserved hypothetical protein	1.44333552464958	6.46273596615545	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF256	HP15_255		conserved hypothetical protein	1.53915304465911	7.99278050002806	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF257	HP15_256		serine protease	2.05190836950602	15.6737217029857	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF257	HP15_256		serine protease	2.10243354228778	16.4504812466015	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF2671	HP15_2615		two component transcriptional regulator, winged helix family	1.19324441409314	8.90644330637597	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF2671	HP15_2615		two component transcriptional regulator, winged helix family	1.27307290861375	7.75937615794996	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF3049	HP15_2993		conjugative transfer protein	1.28475313501694	10.5705992387537	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF3070	HP15_3014		AsmA family protein	-1.93315201998629	-11.9792775066127	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF3070	HP15_3014		AsmA family protein	-1.78915520961209	-10.418652265549	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF340	HP15_338		penicillin-binding protein 1B	-1.28272414987569	-7.30514920208055	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF3804	HP15_3745		protein containing LysM domain	-1.20017981370332	-7.79371167073267	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF3804	HP15_3745		protein containing LysM domain	-1.07930360801172	-6.92147931408944	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF4028	HP15_3968		two component transcriptional regulator, winged helix family	-1.19528682783331	-5.72798325076563	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	-2.26234099369228	-8.99365447119078	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	-1.60299771109117	-7.29818075561522	FALSE
+stress	set7IT078	Polymyxin B sulfate	GFF512	HP15_500		conserved hypothetical protein	-1.58024782569797	-6.34166683650338	FALSE
+stress	set7IT056	Polymyxin B sulfate	GFF766	HP15_745		conserved hypothetical protein	-1.23567494185529	-5.14977634030302	FALSE
+stress	set7IT055	Sisomicin sulfate salt	GFF1298	HP15_1268		thioredoxin	1.79410427766799	6.70210014658286	FALSE
+stress	set7IT055	Sisomicin sulfate salt	GFF1498	HP15_1463		NADPH-dependent 7-cyano-7-deazaguanine reductase	-1.31218483801805	-5.96426481670846	FALSE
+stress	set7IT055	Sisomicin sulfate salt	GFF1827	HP15_1784		protein belonging to uncharacterized protein family UPF0005	-3.7065780906082	-8.09612168786942	TRUE
+stress	set7IT077	Sisomicin sulfate salt	GFF1827	HP15_1784		protein belonging to uncharacterized protein family UPF0005	-3.25913187544322	-8.32401456514172	TRUE
+stress	set7IT054	Sisomicin sulfate salt	GFF1827	HP15_1784		protein belonging to uncharacterized protein family UPF0005	-2.79212764332294	-10.1728335320688	TRUE
+stress	set7IT076	Sisomicin sulfate salt	GFF1827	HP15_1784		protein belonging to uncharacterized protein family UPF0005	-2.60952916833364	-8.92690112126538	TRUE
+stress	set7IT055	Sisomicin sulfate salt	GFF2318	HP15_2266		rRNA (guanine-N(2)-)-methyltransferase	1.48477149609279	6.99070712253474	TRUE
+stress	set7IT055	Sisomicin sulfate salt	GFF2534	HP15_2478		acyl-CoA dehydrogenase family protein	1.89395312721983	10.8459511202199	FALSE
+stress	set7IT055	Sisomicin sulfate salt	GFF287	HP15_286		protein of unknown function YGGT	-2.78511110030994	-10.1341568248551	FALSE
+stress	set7IT077	Sisomicin sulfate salt	GFF287	HP15_286		protein of unknown function YGGT	-2.14437328680213	-10.8223225664833	FALSE
+stress	set7IT054	Sisomicin sulfate salt	GFF287	HP15_286		protein of unknown function YGGT	-1.59276829151956	-8.01258936192762	FALSE
+stress	set7IT077	Sisomicin sulfate salt	GFF301	HP15_300		ribonuclease PH	1.84397724182757	9.82026932186737	FALSE
+stress	set7IT055	Sisomicin sulfate salt	GFF301	HP15_300		ribonuclease PH	3.20468840140985	13.5639223451581	FALSE
+stress	set7IT077	Sisomicin sulfate salt	GFF3033	HP15_2977		ion transport protein	-1.19993333396493	-5.73468692519755	FALSE
+stress	set7IT055	Sisomicin sulfate salt	GFF3874	HP15_3815		organic radical activating enzyme	-1.51474355703659	-5.48003361861671	FALSE
+stress	set7IT055	Sisomicin sulfate salt	GFF571	HP15_554		tetrapyrrole methylase family protein	-1.61819982441865	-8.435058769967	TRUE
+stress	set7IT077	Sisomicin sulfate salt	GFF571	HP15_554		tetrapyrrole methylase family protein	-1.38589120606684	-8.49857243866499	TRUE
+stress	set7IT055	Sisomicin sulfate salt	GFF878	HP15_857		sodium-dependent transporter family protein	1.41586864515522	6.48913994477913	FALSE
+stress	set2H25	Sodium Chlorite	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-3.79021865523392	-11.355388385897	TRUE
+stress	set2H26	Sodium Chlorite	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-3.32152749032026	-10.3810088502568	TRUE
+stress	set6IT044	Sodium Chlorite	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-2.65870724355436	-12.6184605091421	TRUE
+stress	set2H26	Sodium Chlorite	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-3.90723497522595	-8.44019446737905	TRUE
+stress	set2H25	Sodium Chlorite	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-3.59830315189545	-8.17862793119796	TRUE
+stress	set6IT044	Sodium Chlorite	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-2.5581149986327	-9.29038140681483	TRUE
+stress	set2H26	Sodium Chlorite	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-3.92552883093918	-12.6006794182205	FALSE
+stress	set2H25	Sodium Chlorite	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-3.54677644335151	-12.5266466266526	FALSE
+stress	set6IT044	Sodium Chlorite	GFF1790	HP15_1748		cysteine/glutathione ABC transporter membrane/ATP-binding component	-2.40529923238232	-10.5470201007434	FALSE
+stress	set2H26	Sodium Chlorite	GFF1791	HP15_1749		transport ATP-binding protein CydC	-3.84868494833904	-17.7267876947254	FALSE
+stress	set2H25	Sodium Chlorite	GFF1791	HP15_1749		transport ATP-binding protein CydC	-3.54591407762403	-17.2550177895795	FALSE
+stress	set6IT044	Sodium Chlorite	GFF1791	HP15_1749		transport ATP-binding protein CydC	-2.13941669023981	-10.2288740214016	FALSE
+stress	set4H15	Sodium acetate	GFF1662	HP15_1621		transcriptional regulator, LysR family protein	-2.62485544955414	-10.6953259951362	FALSE
+stress	set4H16	Sodium acetate	GFF1662	HP15_1621		transcriptional regulator, LysR family protein	-2.11391032563265	-8.0186203286794	FALSE
+stress	set4H7	Sodium acetate	GFF1662	HP15_1621		transcriptional regulator, LysR family protein	-2.11099221976101	-9.50636591654179	FALSE
+stress	set4H8	Sodium acetate	GFF1662	HP15_1621		transcriptional regulator, LysR family protein	-1.75529711946368	-8.99749504263247	FALSE
+stress	set2H24	Sodium nitrite	GFF1476	HP15_1441		conserved hypothetical protein	1.76753014473567	7.80863972906463	FALSE
+stress	set2H24	Sodium nitrite	GFF1788	HP15_1746		cytochrome d ubiquinol oxidase subunit I	-1.18684407203623	-6.33422203465197	FALSE
+stress	set2H24	Sodium nitrite	GFF1789	HP15_1747		cytochrome d ubiquinol oxidase, subunit II	-1.40377794829416	-5.49210273587003	FALSE
+stress	set2H24	Sodium nitrite	GFF1791	HP15_1749		transport ATP-binding protein CydC	-1.18312886361298	-6.63562653987728	FALSE
+stress	set2H23	Sodium nitrite	GFF1995	HP15_1951		hypothetical protein	1.40069237625697	5.62195356586726	FALSE
+stress	set2H23	Sodium nitrite	GFF1996	HP15_1952		hypothetical protein	1.39304340244821	6.59278552514956	FALSE
+stress	set2H23	Sodium nitrite	GFF1997	HP15_1953		hypothetical protein	1.25798246772885	5.03331571905078	FALSE
+stress	set2H23	Sodium nitrite	GFF1998	HP15_1954		phage tail tape measure protein, family	1.11805858700587	7.81817043282009	FALSE
+stress	set2H23	Sodium nitrite	GFF2002	HP15_1958		hypothetical protein	1.09814662852066	6.47952963302646	FALSE
+stress	set2H23	Sodium nitrite	GFF2008	HP15_1964		capsid protein of prophage	1.19592880379243	7.27380413220709	FALSE
+stress	set2H23	Sodium nitrite	GFF2014	HP15_1970		hypothetical protein	1.39363759839045	6.91151006350384	FALSE
+stress	set2H23	Sodium nitrite	GFF2015	HP15_1971		hypothetical protein	1.04875917739027	6.36533899518509	FALSE
+stress	set2H23	Sodium nitrite	GFF2016	HP15_1972		fibronectin, type III domain protein-like protein	1.2291664812674	7.99149592320321	FALSE
+stress	set2H23	Sodium nitrite	GFF2020	HP15_1976		hypothetical protein	1.32191568890381	6.228806431388	FALSE
+stress	set2H23	Sodium nitrite	GFF2021	HP15_1977		hypothetical protein	1.06300181415375	5.17324256241049	FALSE
+stress	set2H23	Sodium nitrite	GFF2027	HP15_1983		hypothetical protein	1.25542060281826	5.4538004107982	FALSE
+stress	set2H24	Sodium nitrite	GFF3903	HP15_3843		iron(III) ABC transporter, periplasmic iron-compound-binding protein	1.21395336903191	7.76334009477336	FALSE
+stress	set6IT033	Sodium nitrite	GFF705	HP15_686		conserved hypothetical protein	1.10685820822107	5.80956780780074	FALSE
+stress	set2H28	Sodium perchlorate monohydrate	GFF1051	HP15_1030		sulfate permease family protein	1.51791244143221	7.64693068725912	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF1377	HP15_1344		thiosulfate transporter subunit	-1.91984647079508	-8.0625034783504	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF1378	HP15_1345		sulphate ABC transporter, permease protein CysT	-1.71295242901147	-7.46047038764269	FALSE
+stress	set6IT035	Sodium perchlorate monohydrate	GFF1378	HP15_1345		sulphate ABC transporter, permease protein CysT	-1.32256262963195	-8.83944469059934	FALSE
+stress	set6IT045	Sodium perchlorate monohydrate	GFF1378	HP15_1345		sulphate ABC transporter, permease protein CysT	-1.17519785171986	-6.71246455682707	FALSE
+stress	set2H28	Sodium perchlorate monohydrate	GFF1378	HP15_1345		sulphate ABC transporter, permease protein CysT	-1.03613769426551	-5.67732603044894	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF1379	HP15_1346		sulfate ABC transporter, inner membrane subunit CysW	-2.17512783005499	-8.67044085598128	FALSE
+stress	set6IT045	Sodium perchlorate monohydrate	GFF1379	HP15_1346		sulfate ABC transporter, inner membrane subunit CysW	-1.6287349394172	-8.17346464373018	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF1380	HP15_1347		sulfate/thiosulfate transporter subunit	-1.36692001362291	-7.5649543288205	FALSE
+stress	set6IT045	Sodium perchlorate monohydrate	GFF1380	HP15_1347		sulfate/thiosulfate transporter subunit	-1.35373288911719	-8.16492632358898	FALSE
+stress	set6IT035	Sodium perchlorate monohydrate	GFF1380	HP15_1347		sulfate/thiosulfate transporter subunit	-1.25100675274942	-7.04064340179973	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF1520	HP15_1484		RNA methyltransferase, TrmH family, group 1	-2.14129930166917	-5.03625922307434	FALSE
+stress	set2H28	Sodium perchlorate monohydrate	GFF1847	HP15_1804		generic methyl-transferase	1.32944638461869	6.32071342385221	FALSE
+stress	set2H28	Sodium perchlorate monohydrate	GFF2073	HP15_2029		permease perM	1.39643137138488	7.01655852298378	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF2678	HP15_2622		AzlC family protein	2.80289301375378	18.1835184150003	FALSE
+stress	set6IT035	Sodium perchlorate monohydrate	GFF2678	HP15_2622		AzlC family protein	2.98012963741594	14.8725906512008	FALSE
+stress	set6IT045	Sodium perchlorate monohydrate	GFF2678	HP15_2622		AzlC family protein	3.09563775834907	15.9444978789515	FALSE
+stress	set2H28	Sodium perchlorate monohydrate	GFF2678	HP15_2622		AzlC family protein	8.85154960397481	54.1405849121468	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF3307	HP15_3249		TRAP-type mannitol/chloroaromatic compound transport system, large permease component	1.361266210673	6.86745367214252	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF3366	HP15_3308		OsmC family protein	-1.57965836136274	-5.30156709057962	FALSE
+stress	set6IT035	Sodium perchlorate monohydrate	GFF4035	HP15_3975		conserved hypothetical protein, secreted	-1.40586457017514	-6.25210688407881	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF4035	HP15_3975		conserved hypothetical protein, secreted	-1.23773550058282	-5.32335254242344	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF4036	HP15_3976		protein containing diguanylate cyclase, predicted domains	-1.58188994850699	-6.87837154663343	FALSE
+stress	set6IT045	Sodium perchlorate monohydrate	GFF4036	HP15_3976		protein containing diguanylate cyclase, predicted domains	-1.31341988540923	-5.90584839334289	FALSE
+stress	set6IT035	Sodium perchlorate monohydrate	GFF4036	HP15_3976		protein containing diguanylate cyclase, predicted domains	-1.25083594672457	-5.79628649562248	FALSE
+stress	set2H28	Sodium perchlorate monohydrate	GFF4037	HP15_3977		metallo-beta-lactamase family protein	4.12609363584469	5.25190530262303	FALSE
+stress	set2H27	Sodium perchlorate monohydrate	GFF4038	HP15_3978		sulfate permease	2.61387350506584	15.8258972621443	FALSE
+stress	set6IT035	Sodium perchlorate monohydrate	GFF4038	HP15_3978		sulfate permease	2.85317809250418	19.1013149776107	FALSE
+stress	set6IT045	Sodium perchlorate monohydrate	GFF4038	HP15_3978		sulfate permease	2.98058305940559	20.3821706700643	FALSE
+stress	set2H28	Sodium perchlorate monohydrate	GFF4038	HP15_3978		sulfate permease	8.3035856325299	53.1421448759902	FALSE
+stress	set2H28	Sodium perchlorate monohydrate	GFF812	HP15_791		(p)ppGpp synthetase I (GTP pyrophosphokinase), SpoT/RelA	2.3706716000734	16.2743038864187	FALSE
+stress	set7IT096	Tetracycline hydrochloride	GFF512	HP15_500		conserved hypothetical protein	-1.71991576738018	-8.76968175875221	FALSE
+stress	set7IT074	Tetracycline hydrochloride	GFF512	HP15_500		conserved hypothetical protein	-1.37948690340601	-7.60190186425527	FALSE
+stress	set2H20	Thallium(I) acetate	GFF1323	HP15_1293		iron sulfur binding protein	-5.01995489990491	-10.9446487434785	FALSE
+stress	set2H19	Thallium(I) acetate	GFF1323	HP15_1293		iron sulfur binding protein	-4.58915767021669	-12.9440111734449	FALSE
+stress	set6IT031	Thallium(I) acetate	GFF1323	HP15_1293		iron sulfur binding protein	-3.74908925015335	-12.1264915856484	FALSE
+stress	set6IT041	Thallium(I) acetate	GFF1323	HP15_1293		iron sulfur binding protein	-3.28504879229945	-10.7819589117907	FALSE
+stress	set2H20	Thallium(I) acetate	GFF1377	HP15_1344		thiosulfate transporter subunit	-2.56257526979852	-9.56215209261029	FALSE
+stress	set6IT031	Thallium(I) acetate	GFF1377	HP15_1344		thiosulfate transporter subunit	-2.40232699749232	-8.91035964844754	FALSE
+stress	set6IT041	Thallium(I) acetate	GFF1377	HP15_1344		thiosulfate transporter subunit	-2.37689623474554	-9.13792783764761	FALSE
+stress	set6IT041	Thallium(I) acetate	GFF1378	HP15_1345		sulphate ABC transporter, permease protein CysT	-3.16306352440214	-13.2729024335572	FALSE
+stress	set6IT031	Thallium(I) acetate	GFF1378	HP15_1345		sulphate ABC transporter, permease protein CysT	-3.01235322858771	-14.7641129139021	FALSE
+stress	set2H20	Thallium(I) acetate	GFF1378	HP15_1345		sulphate ABC transporter, permease protein CysT	-2.61662486769926	-8.86178406182847	FALSE
+stress	set6IT031	Thallium(I) acetate	GFF1379	HP15_1346		sulfate ABC transporter, inner membrane subunit CysW	-3.38838380121062	-14.3801070215194	FALSE
+stress	set2H20	Thallium(I) acetate	GFF1379	HP15_1346		sulfate ABC transporter, inner membrane subunit CysW	-2.99170823136208	-12.1620173999549	FALSE
+stress	set6IT041	Thallium(I) acetate	GFF1379	HP15_1346		sulfate ABC transporter, inner membrane subunit CysW	-2.80593305658963	-11.9869833460962	FALSE
+stress	set6IT031	Thallium(I) acetate	GFF1380	HP15_1347		sulfate/thiosulfate transporter subunit	-2.98958206360201	-15.1631177204195	FALSE
+stress	set2H20	Thallium(I) acetate	GFF1380	HP15_1347		sulfate/thiosulfate transporter subunit	-2.73107829949153	-11.6930950444587	FALSE
+stress	set6IT041	Thallium(I) acetate	GFF1380	HP15_1347		sulfate/thiosulfate transporter subunit	-2.55151093188063	-12.1527752920033	FALSE
+stress	set2H20	Thallium(I) acetate	GFF1498	HP15_1463		NADPH-dependent 7-cyano-7-deazaguanine reductase	-1.88401536965765	-5.39036702408864	FALSE
+stress	set6IT041	Thallium(I) acetate	GFF1637	HP15_1596		D-amino acid dehydrogenase 2 small subunit	-1.54769536008541	-6.73002658749564	FALSE
+stress	set6IT031	Thallium(I) acetate	GFF1637	HP15_1596		D-amino acid dehydrogenase 2 small subunit	-1.43212123936968	-7.32793338263758	FALSE
+stress	set2H20	Thallium(I) acetate	GFF2271	HP15_2221		pseudouridine synthase, RluA family	-1.36729983434081	-6.14471467632598	FALSE
+stress	set2H20	Thallium(I) acetate	GFF2318	HP15_2266		rRNA (guanine-N(2)-)-methyltransferase	-1.25260446214438	-5.55174010226053	FALSE
+stress	set2H19	Thallium(I) acetate	GFF3458	HP15_3400		transcriptional regulator, ArsR family protein	1.57083587380867	8.88950577806144	FALSE
+stress	set6IT031	Thallium(I) acetate	GFF3458	HP15_3400		transcriptional regulator, ArsR family protein	2.69105935679998	12.9535393155875	FALSE
+stress	set6IT041	Thallium(I) acetate	GFF3458	HP15_3400		transcriptional regulator, ArsR family protein	3.17274351674324	14.6853949755383	FALSE
+stress	set2H20	Thallium(I) acetate	GFF3458	HP15_3400		transcriptional regulator, ArsR family protein	3.57295967155072	14.2746368379386	FALSE
+stress	set6IT041	Thallium(I) acetate	GFF3874	HP15_3815		organic radical activating enzyme	-2.39804145237137	-6.00761061276516	FALSE
+stress	set6IT031	Thallium(I) acetate	GFF3874	HP15_3815		organic radical activating enzyme	-2.01594936625448	-6.00607891794808	FALSE
+stress	set6IT041	Thallium(I) acetate	GFF419	HP15_407		transporter, major facilitator family	-1.82481937158986	-8.33644170858737	FALSE
+stress	set2H20	Thallium(I) acetate	GFF419	HP15_407		transporter, major facilitator family	-1.54996461250018	-7.02446566439212	FALSE
+stress	set2H45	Vancomycin Hydrochloride Hydrate	GFF1842	HP15_1799		sterol-binding domain protein	1.6776235183275	12.2576147216824	FALSE
+stress	set7IT089	Vancomycin Hydrochloride Hydrate	GFF1842	HP15_1799		sterol-binding domain protein	1.92725496937678	14.432406230331	FALSE
+stress	set2H44	Vancomycin Hydrochloride Hydrate	GFF1842	HP15_1799		sterol-binding domain protein	2.10231156103108	14.7475357250749	FALSE
+stress	set7IT067	Vancomycin Hydrochloride Hydrate	GFF1842	HP15_1799		sterol-binding domain protein	2.32805100329759	18.2929273925215	FALSE
+stress	set2H44	Vancomycin Hydrochloride Hydrate	GFF238	HP15_237		HemY domain protein	-1.59606437981937	-8.90498534689603	FALSE
+stress	set2H44	Vancomycin Hydrochloride Hydrate	GFF239	HP15_238		protein of unknown function, HemX	-2.00379653773135	-8.45143702875897	FALSE
+stress	set2H44	Vancomycin Hydrochloride Hydrate	GFF3499	HP15_3441		OmpA/MotB domain protein	1.56062168280605	6.39450854547028	FALSE
+stress	set2H44	Vancomycin Hydrochloride Hydrate	GFF3502	HP15_3444		1-acyl-sn-glycerol-3-phosphate acyltransferase	1.55017725416448	7.23582258603586	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF104	HP15_104		integral membrane sensor signal transduction histidine kinase	-1.34530681619226	-5.2597184712319	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF1087	HP15_1065		aminopeptidase N	1.11303255085341	7.47689648805686	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF109	HP15_109		cation efflux family protein	-1.21515133001265	-7.5326667351251	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF110	HP15_110		heavy metal efflux pump, CzcA family	-1.81538925908212	-13.0917278528157	TRUE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF110	HP15_110		heavy metal efflux pump, CzcA family	-1.19388058277951	-9.02111789673395	TRUE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF113	HP15_113		outer membrane protein, probably efflux family	-3.07909505969701	-19.104126298349	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF113	HP15_113		outer membrane protein, probably efflux family	-2.85182910969918	-17.4290823270879	FALSE
+stress	set3H28	Zinc sulfate heptahydrate	GFF113	HP15_113		outer membrane protein, probably efflux family	-2.58417998065404	-13.7641088209862	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF114	HP15_114		efflux transporter, RND family, MFP subunit	-3.04875697228095	-16.2155390090063	TRUE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF114	HP15_114		efflux transporter, RND family, MFP subunit	-2.98576446410899	-15.9862111182362	TRUE
+stress	set3H28	Zinc sulfate heptahydrate	GFF114	HP15_114		efflux transporter, RND family, MFP subunit	-2.5568931456399	-9.99814709979269	TRUE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF115	HP15_115		heavy metal efflux pump, CzcA family	-3.2893911074115	-20.9007054401214	TRUE
+stress	set3H28	Zinc sulfate heptahydrate	GFF115	HP15_115		heavy metal efflux pump, CzcA family	-3.06403508584888	-14.6287431368729	TRUE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF115	HP15_115		heavy metal efflux pump, CzcA family	-2.94073820391996	-19.0080730991148	TRUE
+stress	set3H28	Zinc sulfate heptahydrate	GFF116	HP15_116		two-component sensor	-2.26959507980067	-10.7447758352485	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF116	HP15_116		two-component sensor	-1.74816210837417	-8.89984645892516	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF116	HP15_116		two-component sensor	-1.58431695688927	-8.48900701528213	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF120	HP15_120		DNA-binding heavy metal response regulator	-3.09258331789889	-8.16411737352542	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF120	HP15_120		DNA-binding heavy metal response regulator	-3.02845187572286	-7.48160824185756	FALSE
+stress	set3H28	Zinc sulfate heptahydrate	GFF120	HP15_120		DNA-binding heavy metal response regulator	-2.22506398048478	-5.88748499516969	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF1245	HP15_1220		acetyltransferase, GNAT family	1.23474126327568	8.5492978971424	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF1245	HP15_1220		acetyltransferase, GNAT family	1.99283656084244	11.2609239521435	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	-2.29294264675375	-6.20389823805449	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	-1.55241291154933	-5.67510148020955	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF201	HP15_200		peptide ABC transporter, periplasmic peptide-binding protein	1.25550398176234	6.08413407139793	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF2094	HP15_2048		UDP-glucose 4-epimerase	-1.85952544913112	-5.23038330872931	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF2221	HP15_2175		glyceraldehyde-3-phosphate dehydrogenase, type I	1.32635021751527	6.42531291640288	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF225	HP15_224		conserved hypothetical protein, secreted	-2.58513700863374	-7.19206122841169	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF225	HP15_224		conserved hypothetical protein, secreted	-1.51368537452991	-6.32447042874685	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF2464	HP15_2408		methylation site containing protein	2.42107099861306	6.5889101691782	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	2.0792117490337	11.7185607100658	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF2492	HP15_2436		toluene tolerance ABC efflux transporter, ATP-binding protein	3.20006939749406	13.6487656269286	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF287	HP15_286		protein of unknown function YGGT	-2.03825566060059	-6.40281810019804	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF3087	HP15_3030		histidine/lysine/arginine/ornithine transporter subunit	1.49655135757389	5.44774300316202	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF3088	HP15_3031		extracellular solute-binding protein, family 3	1.89771163241212	6.97670500823308	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF3089	HP15_3032		amino acid ABC transporter, inner membrane subunit	1.22110905837591	8.72699394201541	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF3089	HP15_3032		amino acid ABC transporter, inner membrane subunit	1.71715912066461	9.05293760994706	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF3090	HP15_3033		amino acid ABC transporter, inner membrane subunit	1.48238722618948	5.80264027178775	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF3383	HP15_3325		DSBA oxidoreductase	-2.5677642343406	-6.68988859341763	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF3383	HP15_3325		DSBA oxidoreductase	-2.12530696492451	-5.93557429376299	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF341	HP15_339		conserved hypothetical protein, secreted	1.52639635408405	5.09096360670692	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF3610	HP15_3552		exoribonuclease R	-2.62856158877196	-12.3873220808087	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF3610	HP15_3552		exoribonuclease R	-1.50313121971049	-9.38267560168174	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF3780	HP15_3722		hypothetical protein	-1.61549696136655	-5.70100341080093	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF3780	HP15_3722		hypothetical protein	-1.22251599498379	-6.51764073284825	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF3847	HP15_3788		HSR1-like GTP-binding protein	-1.10227297167901	-5.26367272044566	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF4021	HP15_3961		two-component transcriptional regulator, winged helix family	1.48438425631795	7.4132794963891	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF4021	HP15_3961		two-component transcriptional regulator, winged helix family	2.27084963418282	8.21685203838123	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF4027	HP15_3967		integral membrane sensor signal transduction histidine kinase	1.39722111080469	6.55184168784808	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF4069	HP15_4009		flagellar motor protein MotB	-1.43901865115254	-5.02720617293298	FALSE
+stress	set3H28	Zinc sulfate heptahydrate	GFF419	HP15_407		transporter, major facilitator family	-1.68565869086626	-5.29207885638907	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF425	HP15_413		pilus (MSHA type) biogenesis protein MshL	1.23916267471883	5.08543393854577	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF427	HP15_415		TPR repeat protein	1.07006364371638	5.07404707282454	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF458	HP15_446		glycosyltransferase	-1.41117896567158	-8.68173093405614	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF591	HP15_574		peptidase M23B	-2.72885901427078	-6.96373007821455	FALSE
+stress	set7IT075	Zinc sulfate heptahydrate	GFF591	HP15_574		peptidase M23B	-2.65490827293589	-7.20546274705206	FALSE
+stress	set7IT053	Zinc sulfate heptahydrate	GFF96	HP15_96		lipoprotein signal peptidase	-2.50286476581175	-8.32241907372214	FALSE
+stress	set2H14	copper (II) chloride dihydrate	GFF182	HP15_182		copper resistance B precursor	-1.5818443329344	-9.35564435932468	FALSE
+stress	set5H24	copper (II) chloride dihydrate	GFF182	HP15_182		copper resistance B precursor	-1.02972894211127	-6.23879430142735	FALSE
+stress	set5H48	copper (II) chloride dihydrate	GFF183	HP15_183		copper-resistance protein, CopA family	-2.73537223127599	-17.8242222988951	TRUE
+stress	set5H24	copper (II) chloride dihydrate	GFF183	HP15_183		copper-resistance protein, CopA family	-2.72961038367189	-18.1332129856502	TRUE
+stress	set5H44	copper (II) chloride dihydrate	GFF183	HP15_183		copper-resistance protein, CopA family	-2.71781784129113	-17.5213545081085	TRUE
+stress	set5H20	copper (II) chloride dihydrate	GFF183	HP15_183		copper-resistance protein, CopA family	-2.71073830364696	-18.6679946274446	TRUE
+stress	set2H14	copper (II) chloride dihydrate	GFF183	HP15_183		copper-resistance protein, CopA family	-2.52496708435965	-16.737901812502	TRUE
+stress	set2H14	copper (II) chloride dihydrate	GFF3604	HP15_3546		copper-translocating P-type ATPase	-2.02613660191556	-14.0525881412721	TRUE
+stress	set5H20	copper (II) chloride dihydrate	GFF3604	HP15_3546		copper-translocating P-type ATPase	-1.13483369154502	-9.15967418130617	TRUE
+stress	set5H44	copper (II) chloride dihydrate	GFF3604	HP15_3546		copper-translocating P-type ATPase	-1.12483563118225	-8.86381860716166	TRUE
+stress	set5H24	copper (II) chloride dihydrate	GFF3604	HP15_3546		copper-translocating P-type ATPase	-1.03312748628087	-8.80614439607061	TRUE
+stress	set5H48	copper (II) chloride dihydrate	GFF3604	HP15_3546		copper-translocating P-type ATPase	-1.00096055049681	-8.02387311435754	TRUE
+stress	set5H44	copper (II) chloride dihydrate	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	-1.66272920490857	-10.3354871117804	FALSE
+stress	set5H48	copper (II) chloride dihydrate	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	-1.61098779405064	-8.28016007214206	FALSE
+stress	set5H20	copper (II) chloride dihydrate	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	-1.47794502624479	-7.92002789732338	FALSE
+stress	set5H24	copper (II) chloride dihydrate	GFF4273	HP15_p42g33		protein containing resolvase N-terminal domain	-1.33272509531296	-7.94208277811444	FALSE
+stress	set3H14	methylglyoxal	GFF1051	HP15_1030		sulfate permease family protein	-3.37094905431179	-11.9517719261694	TRUE
+stress	set3H14	methylglyoxal	GFF1406	HP15_1372		excinuclease ABC subunit B	-2.24825954863026	-11.6217791197352	TRUE
+stress	set8IT005	methylglyoxal	GFF1406	HP15_1372		excinuclease ABC subunit B	-1.0628673371429	-7.88528766969633	TRUE
+stress	set3H14	methylglyoxal	GFF1430	HP15_1395		heat shock protein 90	1.70052602535552	6.31062886596481	FALSE
+stress	set3H14	methylglyoxal	GFF1653	HP15_1612		protein containing FAD-dependent pyridine nucleotide-disulfide oxidoreductase / Pyridine nucleotide-disulfide oxidoreductase, dimerization	2.7580653452142	10.8325770472569	FALSE
+stress	set3H14	methylglyoxal	GFF1706	HP15_1665		transcriptional regulator, LysR family	-1.78720077605934	-8.90276314030096	FALSE
+stress	set3H14	methylglyoxal	GFF1759	HP15_1718		ATP-dependent DNA helicase RecQ	1.60231898487177	7.4749868741748	TRUE
+stress	set8IT005	methylglyoxal	GFF1848	HP15_1805		hydroxyacylglutathione hydrolase	-4.71399720009769	-7.12467073056603	TRUE
+stress	set3H14	methylglyoxal	GFF1860	HP15_1817		recombination factor protein RarA	-4.45221525569317	-6.06522889440315	TRUE
+stress	set8IT005	methylglyoxal	GFF1860	HP15_1817		recombination factor protein RarA	-4.17511071396332	-9.12017123914619	TRUE
+stress	set3H14	methylglyoxal	GFF1899	HP15_1856		helicase c2	-2.93230252210328	-10.5580602556335	TRUE
+stress	set8IT005	methylglyoxal	GFF1899	HP15_1856		helicase c2	-1.621340322496	-11.0181650799052	TRUE
+stress	set8IT005	methylglyoxal	GFF2946	HP15_2890		lactoylglutathione lyase	-6.07620863683175	-9.23456384841426	TRUE
+stress	set3H14	methylglyoxal	GFF2946	HP15_2890		lactoylglutathione lyase	-5.26357461475161	-6.24955396136384	TRUE
+stress	set3H14	methylglyoxal	GFF2949	HP15_2893		transcriptional regulator, GntR family	-2.35652173827544	-8.40963654569953	FALSE
+stress	set3H14	methylglyoxal	GFF310	HP15_309		DNA helicase, ATP-dependent, RecG	-1.77083528061677	-8.80665968688277	TRUE
+stress	set8IT005	methylglyoxal	GFF3142	HP15_3084		DNA repair protein RecN	-2.11469498597752	-13.9259174608831	TRUE
+stress	set3H14	methylglyoxal	GFF3142	HP15_3084		DNA repair protein RecN	-1.98546765681212	-8.48763253058982	TRUE
+stress	set3H14	methylglyoxal	GFF3502	HP15_3444		1-acyl-sn-glycerol-3-phosphate acyltransferase	2.40830393786217	10.6047638019174	FALSE
+stress	set3H14	methylglyoxal	GFF3624	HP15_3566		MATE efflux family protein	1.40640374290056	9.16520416523423	FALSE
+stress	set3H14	methylglyoxal	GFF3677	HP15_3619		FAD-dependent pyridine nucleotide-disulfide oxidoreductase	2.73179515456103	14.9127874246446	TRUE
+stress	set3H14	methylglyoxal	GFF3818	HP15_3759		oligopeptidase A-like protein	1.3298973957013	8.32458419263754	FALSE
+stress	set3H14	methylglyoxal	GFF3899	HP15_3839		YbhB and YbcL	1.68938699845852	9.60790606125134	FALSE
+stress	set3H14	methylglyoxal	GFF3963	HP15_3903		methionine import ATP-binding protein MetN 2	1.73270523394229	6.62678212996358	FALSE
+stress	set3H14	methylglyoxal	GFF3969	HP15_3909		carboxylesterase	-2.17390055991398	-10.4448085919464	TRUE
+stress	set8IT005	methylglyoxal	GFF3969	HP15_3909		carboxylesterase	-1.11849022036913	-7.32070789468447	TRUE
+stress	set3H14	methylglyoxal	GFF418	HP15_406		excinuclease ABC, ATPase subunit (A)	-2.76260525985683	-15.8052405088303	TRUE
+stress	set8IT005	methylglyoxal	GFF418	HP15_406		excinuclease ABC, ATPase subunit (A)	-1.05587991650989	-8.77107347313445	TRUE
+stress	set3H14	methylglyoxal	GFF4185	HP15_4125		Mrp/NBP35 family protein	1.61693929222093	7.71858580994073	FALSE
+stress	set3H14	methylglyoxal	GFF4186	HP15_4126		conserved hypothetical protein	1.43836255432982	7.77158841761299	FALSE
+stress	set3H14	methylglyoxal	GFF419	HP15_407		transporter, major facilitator family	2.84537320509665	16.7274767618969	FALSE
+stress	set3H14	methylglyoxal	GFF4242	HP15_p42g2		single strand DNA binding protein	1.2172717736383	5.07281438722814	FALSE
+stress	set3H14	methylglyoxal	GFF536	HP15_524		signal transduction histidine kinase, nitrogen specific, NtrB	-1.71473958544507	-8.39116885142056	FALSE
+stress	set3H14	methylglyoxal	GFF653	HP15_635		3-oxoacyl-(acyl carrier protein) synthase I	1.45937710182915	5.31511087076863	FALSE
+stress	set3H14	methylglyoxal	GFF675	HP15_657		phage tail fiber protein	1.26165558839547	6.23978861581138	FALSE
+stress	set3H14	methylglyoxal	GFF676	HP15_658		secreted protein-putative xanthan lyase	1.52791803612385	10.5738879294747	FALSE
+stress	set3H14	methylglyoxal	GFF688	HP15_670		peptidase U35, phage prohead	1.00380579177433	6.36761601584722	FALSE
+stress	set8IT005	methylglyoxal	GFF696	HP15_678		conserved hypothetical protein	1.39859628406705	9.05280993241958	FALSE
+stress	set3H14	methylglyoxal	GFF696	HP15_678		conserved hypothetical protein	1.68378181344925	7.30382345564334	FALSE
+stress	set3H14	methylglyoxal	GFF787	HP15_766		bacterial RecJ exonuclease	2.43117825877239	16.7257613253273	TRUE
+temperature	setAH7		GFF1087	HP15_1065		aminopeptidase N	-1.81928663045068	-10.8474197836756	TRUE
+temperature	setAH6		GFF1087	HP15_1065		aminopeptidase N	-1.28276985569239	-8.06448726998035	TRUE
+temperature	setAH7		GFF1416	HP15_1382		M18-family aminopeptidase 2	-2.01436831775783	-5.19564034177409	FALSE
+temperature	setAH7		GFF1850	HP15_1807		peptide ABC transporter, periplasmic peptide-binding protein	2.48381311932971	8.12055072511455	FALSE
+temperature	setAH7		GFF1851	HP15_1808		peptide ABC transporter, permease protein	2.53531991533021	8.13793418400424	FALSE
+temperature	setAH7		GFF1852	HP15_1809		peptide ABC transporter, permease protein	2.33454091755289	8.42566279667454	FALSE
+temperature	setAH7		GFF1853	HP15_1810		peptide ABC transporter, ATP-binding protein	2.29751167451932	10.9359869015026	FALSE
+temperature	setAH7		GFF225	HP15_224		conserved hypothetical protein, secreted	1.87943358701539	8.94840296520322	FALSE
+temperature	setAH7		GFF2961	HP15_2905		lipoprotein-like protein	1.54424935713917	8.16836020311988	FALSE
+temperature	setAH7		GFF3818	HP15_3759		oligopeptidase A-like protein	2.08092405991216	11.5227587485283	FALSE
+temperature	setAH4		GFF3890	HP15_3830		FAD-dependent pyridine nucleotide-disulfide oxidoreductase	-1.23479474163876	-7.93074514372433	FALSE
+vitamin	set9IT094		GFF1644	HP15_1603		general secretion pathway protein F	1.67733674878089	7.88487454938951	FALSE
+vitamin	set9IT094		GFF1650	HP15_1609		general secretion pathway protein L	1.52141119857541	6.10516913153216	FALSE
+vitamin	set9IT094		GFF1921	HP15_1878		von Willebrand factor, type A	1.3778872031166	7.61921119492882	FALSE
+vitamin	set9IT094		GFF2411	HP15_2355		type II and III secretion system protein	1.64494310212582	11.4381121451552	FALSE
+vitamin	set9IT094		GFF2501	HP15_2445		protein yhbJ	1.51356567542579	5.72142492964344	FALSE
+vitamin	set9IT094		GFF3604	HP15_3546		copper-translocating P-type ATPase	-1.08502831138639	-6.69901167773612	FALSE
+vitamin	set9IT094		GFF4258	HP15_p42g18		traM-like protein	-1.90254727158027	-7.02853163564251	FALSE
+vitamin	set9IT094		GFF812	HP15_791		(p)ppGpp synthetase I (GTP pyrophosphokinase), SpoT/RelA	-1.74578015630875	-10.7286178956721	FALSE

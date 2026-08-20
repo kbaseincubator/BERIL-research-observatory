@@ -1,0 +1,3 @@
+Comparison,n,rho,p_value
+Social niche (count) vs Cross-biome B_std,550,0.09536285676288853,0.025321129195879855
+Social niche (Shannon) vs Cross-biome B_std,550,-0.00873052815238037,0.8381291489127457

@@ -1,0 +1,9 @@
+pair,var1,var2,n,rho,p_value,sig
+Temperature vs Cross-biome Levins B,median_temp_range_C,mean_levins_B_std,1223,0.2452509660750663,3.2831947481916903e-18,*
+pH vs Cross-biome Levins B,median_soil_ph,mean_levins_B_std,1222,0.09645507828551368,0.0007349035404433787,*
+Cu niche vs Cross-biome Levins B,Cu_sd,mean_levins_B_std,18,0.2281879498721825,0.36244564829297793,
+Zn niche vs Cross-biome Levins B,Zn_sd,mean_levins_B_std,18,0.0939597440650163,0.7107560488872696,
+Temperature vs Soil pH,median_temp_range_C,median_soil_ph,1222,0.1393287362961507,1.0113724908549018e-06,*
+Temperature vs Cu niche,median_temp_range_C,Cu_sd,17,0.28732706683658843,0.26346904367829777,
+Cu vs Zn niche breadth,Cu_sd,Zn_sd,18,0.7231404958677687,0.000695935961594546,*
+Cross-biome vs Social Levins B,mean_levins_B_std,count_breadth_std,535,0.08072717244034104,0.06205482916910507,

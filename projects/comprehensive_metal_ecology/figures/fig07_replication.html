@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure 7 – AusMicrobiome + NGSA Replication</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+  --gl:#e1e0d9; --bl:#c3c2b7;
+  --sig:#2a78d6; --ns:#c3c2b7; --acc:#e34948; --acc2:#eda100;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781;
+    --gl:#2c2c2a; --bl:#383835;
+    --sig:#3987e5; --ns:#52514e; --acc:#e66767; --acc2:#c98500;
+  }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; }
+svg { display:block; overflow:visible; }
+svg text { font-family:inherit; }
+.legend { display:flex; gap:18px; margin-bottom:12px; font-size:11px; color:var(--ts); align-items:center; flex-wrap:wrap; }
+.leg-item { display:flex; align-items:center; gap:5px; }
+.leg-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.tt {
+  position:fixed; background:var(--sf); border:1px solid var(--gl);
+  padding:8px 10px; border-radius:4px; font-size:11px; color:var(--tp);
+  pointer-events:none; display:none; max-width:280px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12); z-index:100; line-height:1.6;
+}
+.tbl-btn { margin-top:12px; font-size:11px; color:var(--sig); cursor:pointer; text-decoration:underline; background:none; border:none; padding:0; }
+table { display:none; margin-top:10px; font-size:11px; border-collapse:collapse; }
+th,td { text-align:left; padding:3px 8px; border-bottom:1px solid var(--gl); color:var(--ts); white-space:nowrap; }
+th { color:var(--tm); font-weight:500; }
+td:nth-child(n+2) { font-variant-numeric:tabular-nums; }
+.note { margin-top:14px; font-size:11px; color:var(--ts); border-left:3px solid var(--gl); padding-left:10px; line-height:1.5; }
+</style>
+</head>
+<body>
+<h2>Figure 7. AusMicrobiome + NGSA replication: soil Cu and Zn concentrations are negatively associated with niche breadth.</h2>
+<div class="sub">P4 geochemical PGLS β and 95% CI (±1.96 SE) for NGSA ICP-MS soil metal concentration → niche breadth (n = 482 genera). BH-FDR across 5 metals. P5 genomic reference (KO density predictor, same 482 genera; β = −0.052; within-dataset sensitivity check — not independent replication) shown as dashed line.</div>
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:var(--sig)"></div>Significant (q &lt; 0.05) — independent replication</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--ns)"></div>Not significant</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--acc)"></div>Opposite direction (Co)</div>
+</div>
+<svg id="chart"></svg>
+<div class="tt" id="tt"></div>
+<button class="tbl-btn" onclick="toggleTable()">Show data table</button>
+<table id="dtbl">
+  <thead><tr><th>Metal</th><th>β</th><th>p (raw)</th><th>q (BH-FDR)</th><th>λ</th><th>Significant</th></tr></thead>
+  <tbody id="dtbody"></tbody>
+</table>
+<div class="note"><strong>P5 note:</strong> The dashed reference line (β = −0.052, p = 2.2×10⁻¹⁵) is the AusMicrobiome genomic density analysis — it uses the same KO/Mb predictor as P1, restricted to the same 482 genera. It is a <em>within-dataset sensitivity check</em>, not an independent geochemical replication. The larger β vs P1 (−0.021) is fully explained by the Proteobacteria-enriched phylogenetic composition of the 482-genus Australian subset.</div>
+
+<script>
+const DATA = [
+  {metal:"Cu", beta:-0.010604, se:0.004384, p:0.01595, q:0.04092, lambda:0.3186, sig:true,  wrongDir:false},
+  {metal:"Zn", beta:-0.010638, se:0.004416, p:0.01637, q:0.04092, lambda:0.3182, sig:true,  wrongDir:false},
+  {metal:"Pb", beta:-0.009291, se:0.004370, p:0.03400, q:0.05667, lambda:0.3264, sig:false, wrongDir:false},
+  {metal:"Ni", beta:-0.008721, se:0.004420, p:0.04905, q:0.06131, lambda:0.3541, sig:false, wrongDir:false},
+  {metal:"Co", beta: 0.001258, se:0.004416, p:0.77585, q:null,    lambda:0.3532, sig:false, wrongDir:true},
+];
+const P5_BETA = -0.052;
+
+const fmtB = b => (b >= 0 ? '+' : '') + b.toFixed(3);
+const fmtQ = q => q === null ? '—' : q.toFixed(3);
+const fmtP = p => p.toFixed(3);
+
+function render() {
+  const W = 520, rowH = 34;
+  const M = {top:44, right:120, bottom:54, left:70};
+  const H = M.top + DATA.length * rowH + M.bottom;
+  const pw = W - M.left - M.right;
+  // Range includes P5 reference at -0.052
+  const xMin = -0.062, xMax = 0.014;
+  const xS = v => M.left + (v - xMin) / (xMax - xMin) * pw;
+  const yS = i => M.top + i * rowH + rowH / 2;
+  const ticks = [-0.05, -0.04, -0.03, -0.02, -0.01, 0, 0.01];
+
+  const svg = document.getElementById('chart');
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  let s = '';
+
+  // Gridlines
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top}" x2="${x}" y2="${M.top + DATA.length * rowH}"
+      stroke="${t === 0 ? 'var(--bl)' : 'var(--gl)'}" stroke-width="${t === 0 ? 1.5 : 1}"/>`;
+  });
+
+  // P5 reference line
+  const p5X = xS(P5_BETA);
+  s += `<line x1="${p5X}" y1="${M.top - 6}" x2="${p5X}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--acc2)" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>`;
+  s += `<text x="${p5X}" y="${M.top - 22}" text-anchor="middle"
+    font-size="9" fill="var(--acc2)" font-weight="600">P5 genomic β = −0.052</text>`;
+  s += `<text x="${p5X}" y="${M.top - 11}" text-anchor="middle"
+    font-size="9" fill="var(--acc2)" opacity="0.8">(within-dataset only)</text>`;
+
+  // BH-FDR q=0.05 threshold
+  // q=0.05 corresponds to p=0.016 (observed) for rank 2/5 → threshold is at observed q=0.05
+  // Mark the two significant metals visually instead
+  DATA.forEach((d, i) => {
+    const y = yS(i);
+    const x0 = xS(0);
+    const xb = xS(d.beta);
+    const xlo = xS(d.beta - 1.96 * d.se);
+    const xhi = xS(d.beta + 1.96 * d.se);
+    const col = d.wrongDir ? 'var(--acc)' : d.sig ? 'var(--sig)' : 'var(--ns)';
+    const rowBg = d.sig ? 'rgba(42,120,214,0.04)' : 'none';
+
+    s += `<rect class="row-hit" x="${M.left}" y="${M.top + i * rowH + 2}"
+      width="${pw}" height="${rowH - 4}"
+      fill="${rowBg}" rx="3" data-i="${i}" style="cursor:default"/>`;
+
+    // CI bar
+    s += `<line x1="${xlo}" y1="${y}" x2="${xhi}" y2="${y}"
+      stroke="${col}" stroke-width="1.5" opacity="0.5"/>`;
+    [[xlo],[xhi]].forEach(([x]) => {
+      s += `<line x1="${x}" y1="${y-4}" x2="${x}" y2="${y+4}"
+        stroke="${col}" stroke-width="1.5" opacity="0.6"/>`;
+    });
+    // Lollipop stem
+    s += `<line x1="${x0}" y1="${y}" x2="${xb}" y2="${y}"
+      stroke="${col}" stroke-width="${d.sig ? 2 : 1.5}" opacity="${d.sig ? 0.8 : 0.5}"/>`;
+    // Dot
+    s += `<circle cx="${xb}" cy="${y}" r="${d.sig ? 5 : 4}"
+      fill="${col}" stroke="var(--sf)" stroke-width="2"/>`;
+
+    // Significance badge
+    if (d.sig) {
+      s += `<text x="${xb}" y="${y - 8}" text-anchor="middle"
+        font-size="9" font-weight="700" fill="${col}">★</text>`;
+    }
+
+    // Metal label left
+    s += `<text x="${M.left - 8}" y="${y + 4}" text-anchor="end"
+      font-size="13" font-weight="700" fill="${d.wrongDir ? 'var(--acc)' : d.sig ? 'var(--tp)' : 'var(--tm)'}">${d.metal}</text>`;
+
+    // β + q right
+    s += `<text x="${W - M.right + 6}" y="${y}" text-anchor="start"
+      font-size="10" fill="${col}" font-variant-numeric="tabular-nums">${fmtB(d.beta)}</text>`;
+    const qStr = d.sig ? `q = ${fmtQ(d.q)} ✓` : d.wrongDir ? 'NS (rev.)' : `q = ${fmtQ(d.q)}`;
+    s += `<text x="${W - M.right + 6}" y="${y + 12}" text-anchor="start"
+      font-size="9" fill="${d.sig ? col : 'var(--tm)'}">${qStr}</text>`;
+  });
+
+  // X-axis
+  s += `<line x1="${M.left}" y1="${M.top + DATA.length * rowH}"
+    x2="${W - M.right}" y2="${M.top + DATA.length * rowH}"
+    stroke="var(--bl)" stroke-width="1"/>`;
+  ticks.forEach(t => {
+    const x = xS(t);
+    s += `<line x1="${x}" y1="${M.top + DATA.length * rowH}"
+      x2="${x}" y2="${M.top + DATA.length * rowH + 5}"
+      stroke="var(--bl)" stroke-width="1"/>`;
+    s += `<text x="${x}" y="${M.top + DATA.length * rowH + 17}"
+      text-anchor="middle" font-size="10" fill="var(--tm)"
+      font-variant-numeric="tabular-nums">${t === 0 ? '0' : t.toFixed(2)}</text>`;
+  });
+
+  s += `<text x="${xS(-0.025)}" y="${H - 4}" text-anchor="middle"
+    font-size="10" fill="var(--ts)">PGLS β (soil metal concentration → niche breadth)</text>`;
+
+  svg.innerHTML = s;
+
+  svg.querySelectorAll('.row-hit').forEach(el => {
+    el.addEventListener('mouseenter', function(e) {
+      const d = DATA[+this.dataset.i];
+      const lo = (d.beta - 1.96*d.se).toFixed(4), hi = (d.beta + 1.96*d.se).toFixed(4);
+      document.getElementById('tt').innerHTML =
+        `<strong>P4: ${d.metal}</strong><br>` +
+        `<span>β = ${fmtB(d.beta)} (SE = ${d.se.toFixed(5)})</span><br>` +
+        `<span>95% CI [${lo}, ${hi}]</span><br>` +
+        `<span>p = ${fmtP(d.p)}, q (BH-FDR) = ${fmtQ(d.q)}</span><br>` +
+        `<span>Pagel's λ = ${d.lambda.toFixed(4)}</span><br>` +
+        `<span>${d.sig ? '★ Significant — independent geochemical replication' : d.wrongDir ? 'Null; near-zero, opposite direction' : 'Directionally consistent, non-significant after FDR'}</span>`;
+      document.getElementById('tt').style.display = 'block';
+    });
+    el.addEventListener('mousemove', positionTT);
+    el.addEventListener('mouseleave', () => { document.getElementById('tt').style.display = 'none'; });
+  });
+}
+
+function positionTT(e) {
+  const tt = document.getElementById('tt');
+  let x = e.clientX + 14, y = e.clientY - tt.offsetHeight / 2;
+  if (x + tt.offsetWidth > window.innerWidth - 12) x = e.clientX - 14 - tt.offsetWidth;
+  tt.style.left = x + 'px'; tt.style.top = Math.max(8, y) + 'px';
+}
+
+function toggleTable() {
+  const tbl = document.getElementById('dtbl');
+  const btn = document.querySelector('.tbl-btn');
+  if (tbl.style.display === 'table') {
+    tbl.style.display = 'none'; btn.textContent = 'Show data table';
+  } else {
+    tbl.style.display = 'table'; btn.textContent = 'Hide data table';
+    document.getElementById('dtbody').innerHTML = DATA.map(d =>
+      `<tr><td>${d.metal}</td><td>${fmtB(d.beta)}</td><td>${fmtP(d.p)}</td>
+       <td>${fmtQ(d.q)}</td><td>${d.lambda.toFixed(3)}</td>
+       <td>${d.sig ? 'Yes ★' : d.wrongDir ? 'No (rev.)' : 'No'}</td></tr>`
+    ).join('');
+  }
+}
+
+render();
+</script>
+</body>
+</html>

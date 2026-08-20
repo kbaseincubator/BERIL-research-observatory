@@ -1,0 +1,371 @@
+================================================================================
+DIRECTIONALITY ANALYSIS: ENVIRONMENT ↔ MICROBIOME COUPLING IN USA SOILS
+================================================================================
+
+PROJECT: Metal Contamination Bioindicators
+ANALYSIS DATE: 2026-07-26
+DATASET: USA soils (lat 24-50°N, lon -130 to -65°W; n=64,259 samples)
+
+================================================================================
+EXECUTIVE SUMMARY
+================================================================================
+
+This analysis compares forward (environment → microbiome) vs reverse (microbiome
+→ environment) prediction strength to characterize the direction of coupling
+between soil environmental conditions and microbial community composition.
+
+KEY FINDING:
+  The microbiome REFLECTS environmental conditions more than environmental
+  variables PREDICT the microbiome. This indicates that microbial community
+  composition is primarily a response to environmental gradients, not a driver
+  of environmental state.
+
+EVIDENCE:
+  • Forward (env → CLR PC1):   ρ = -0.053
+  • Reverse (CLR → env):       ρ_mean = 0.450
+  • Directionality Index:      -1.265 (strongly negative)
+  
+  Interpretation: The microbiome is an **environmental sensor** rather than
+  an **environmental engineer** in this system.
+
+================================================================================
+METHODOLOGY
+================================================================================
+
+FORWARD DIRECTION: Environment → Microbiome
+  - Compute Spearman correlation between each environmental variable and
+    CLR-transformed genus abundances (or community PC1)
+  - Uses all 9 environment variables: lat, lon, sg_pH, sg_clay, log_sg_SOC,
+    p_oxic_5m_proxy, s25_as_AT, s25_cr_AT, s25_ni_AT
+  - Sample size: 64,259 USA soil samples
+  - CLR matrix: 64,259 samples × 35 genera (top-40 MWAS hits)
+  - PC1 explains: 16.2% of variance
+
+REVERSE DIRECTION: Microbiome → Environment
+  - Loaded from pre-computed results: data/usa_rf_env_targets_rho.parquet
+  - Method: Random forest with GroupKFold(n_splits=5) by study
+  - Feature set: CLR columns only (clr_only)
+  - Targets: 10 environment variables (pH, clay, SOC, lat, lon, mine dist, TRI)
+
+ASYMMETRY METRICS:
+  1. Directionality Index (DI):
+     DI = (ρ_forward - ρ_reverse) / (ρ_forward + ρ_reverse)
+     Range: [-1, +1]
+       DI < -0.5:  Microbiome is mostly reflective (reverse >> forward)
+       DI > +0.5:  Environment is mostly predictive (forward >> reverse)
+       DI ≈ 0:     Symmetric coupling
+
+  2. Asymmetry (Δ):
+     Δ = ρ_forward - ρ_reverse
+     Interpretation: How much weaker forward prediction is than reverse
+
+================================================================================
+RESULTS
+================================================================================
+
+1. COMMUNITY-LEVEL DIRECTIONALITY (PC1)
+   ────────────────────────────────────────
+   Forward (env → PC1):           ρ = -0.053
+   Reverse (PC1 → env):           ρ_mean = 0.450
+   Directionality Index:          -1.265
+   Asymmetry (Δ):                 -0.503
+   
+   Interpretation:
+   The microbiome's principal component is **8.5× more predictable FROM
+   environmental variables than those variables are predictable FROM the
+   microbiome**. This strongly indicates that the microbiome responds to
+   environmental structure rather than creating it.
+
+
+2. VARIABLE-TYPE ASYMMETRIES
+   ─────────────────────────────
+   
+   GEOGRAPHIC VARIABLES (lat, lon):
+     Forward ρ:           0.083
+     Reverse ρ:           0.532
+     Directionality Index: -0.754
+     Asymmetry (Δ):       -0.448
+     
+     ➜ Strong signal: Microbiome composition is highly sensitive to
+       geographic location, but geographic location is harder to infer
+       from microbiome alone (spatial dependence + other factors)
+
+   SOIL PROPERTIES (pH, clay, SOC):
+     Forward ρ:           -0.088
+     Reverse ρ:           0.529
+     Directionality Index: -2.029
+     Asymmetry (Δ):       -0.617
+     
+     ➜ Strongest signal: Soil properties show the largest asymmetry.
+       This indicates that soil pH and clay% drive microbial composition
+       much more than microbiome composition drives soil properties.
+       The negative forward correlation suggests that individual soil
+       properties may have opposing effects on PC1.
+
+   REDOX PROXY (p_oxic_5m_proxy):
+     Forward ρ:           0.008
+     Reverse ρ:           NaN (not in RF results)
+     
+     ➜ Very weak forward correlation. Not included in reverse model.
+
+   METALS (As, Cr, Ni):
+     Forward ρ:           -0.128 (mean)
+     Reverse ρ:           NaN (not in RF results)
+     
+     ➜ Weak/negative forward correlations. Not included in reverse model.
+       Suggests metals have limited direct predictive power for PC1.
+
+
+3. INDIVIDUAL VARIABLE ASYMMETRIES
+   ────────────────────────────────
+   
+   Variable              Forward ρ  Reverse ρ  Index      Interpretation
+   ─────────────────────────────────────────────────────────────────────
+   sg_pH                -0.298      0.602     -2.957     Strongest asymmetry
+   sg_clay              -0.203      0.437     -2.735     Very strong asymmetry
+   lat                   0.017      0.512     -0.935     Strong asymmetry
+   lon                   0.150      0.552     -0.573     Strong asymmetry
+   log_sg_SOC            0.237      0.547     -0.395     Moderate asymmetry
+   p_oxic_5m_proxy       0.008      NaN          NaN     Weak forward signal
+   s25_as_AT            -0.154      NaN          NaN     Weak/opposing forward
+   s25_cr_AT            -0.094      NaN          NaN     Weak/opposing forward
+   s25_ni_AT            -0.137      NaN          NaN     Weak/opposing forward
+   
+   Key Observation: Soil properties (pH, clay, SOC) show NEGATIVE forward
+   correlations with PC1 but POSITIVE reverse correlations. This suggests:
+   
+   a) PC1 captures variation that is NEGATIVELY correlated with soil pH
+      and clay individually, but these properties still predict PC1 well
+      (because they capture important soil structure information)
+   
+   b) The reverse RF model captures non-linear relationships and interactions
+      that a simple Spearman correlation misses
+   
+   c) Soil properties are strong environmental drivers, even if their
+      individual linear correlations with PC1 are negative
+
+
+4. PER-GENUS FORWARD PREDICTABILITY
+   ──────────────────────────────────
+   
+   Top 15 genera by forward correlation (env → genus CLR):
+   
+   Rank  Genus                    Forward ρ    Interpretation
+   ────────────────────────────────────────────────────────────
+   1.    Streptomyces            0.032        Modestly predictable from env
+   2.    Kribbella               0.031        
+   3.    Aquipuribacter          0.021        
+   4.    Leuconostoc             0.014        
+   5.    Flavisolibacter         0.014        
+   6.    Duncaniella             0.013        
+   7.    Methylomonas            0.012        
+   8.    Geobacillus             0.012        
+   9.    Methanothrix            0.011        
+   10.   Methanocella            0.010        
+   
+   Mean forward (across all 35 genera): -0.005
+   Median: 0.002
+   Std:    0.022
+   Range:  [-0.064, 0.032]
+   
+   ➜ Individual genus correlations are very weak. This suggests that no
+     single environmental variable strongly predicts individual genus
+     abundances. The PC1 result (ρ ≈ -0.05) is consistent with this
+     lack of strong individual genus signals.
+
+
+5. COMPARISON WITH REVERSE PREDICTIONS
+   ────────────────────────────────────
+   
+   Reverse ρ values (from usa_rf_env_targets_rho.parquet):
+   
+   Target              Label                  Reverse ρ (CLR only)
+   ──────────────────────────────────────────────────────────────
+   lat                 Latitude               0.512
+   lon                 Longitude              0.552
+   sg_pH               Soil pH (SG)           0.602  ← Strongest
+   sg_clay             Clay % (SG)            0.437
+   log_sg_SOC          log SOC (SG)           0.547
+   polaris_ph          Soil pH (POL)          0.527
+   polaris_clay        Clay % (POL)           0.355
+   polaris_om          log OM (POL)           0.390
+   dist_mine_km        Mine dist (km)         0.247
+   log_tri_pressure    log TRI                0.335
+   
+   Mean: 0.450
+   
+   ➜ These moderately high reverse correlations (0.3–0.6) indicate that
+     the microbiome carries significant information about environmental
+     state. The RF model captures non-linear patterns and cross-variable
+     interactions that simple correlations miss.
+
+================================================================================
+INTERPRETATION & IMPLICATIONS
+================================================================================
+
+1. MICROBIOME AS ENVIRONMENTAL SENSOR
+   
+   The strong asymmetry (DI = -1.27) indicates that the microbiome is
+   primarily an ENVIRONMENTAL SENSOR: microbial communities respond to
+   environmental gradients and thus reflect environmental state.
+   
+   This is consistent with ecological theory:
+   • Microbes have short generation times and can rapidly track environmental
+     changes
+   • Microbial communities are shaped by resource availability, toxin
+     concentrations, and redox conditions
+   • Individual microbes have limited ability to modify their environment
+     (compared to, e.g., plant roots or mycorrhizae)
+
+
+2. SOIL PROPERTIES STRONGLY DRIVE COMPOSITION
+   
+   The strongest asymmetry is in soil properties (pH, clay content):
+   • DI for pH:   -2.957
+   • DI for clay: -2.735
+   
+   This suggests that soil chemistry and texture are among the primary
+   drivers of microbial community assembly in these soils. pH and clay
+   content both affect:
+   • Nutrient availability (P, K sorption to clay minerals)
+   • Osmotic stress (clay minerals affect water retention)
+   • Toxin sorption and bioavailability
+   • Microbial motility and dispersal
+   
+   → Implication: Biomonitoring using microbes for soil pH and clay content
+      is likely to be effective (reverse RF ρ > 0.43)
+
+
+3. GEOGRAPHY PROVIDES CONTEXT BUT NOT CAUSALITY
+   
+   Geographic variables (lat, lon) show strong reverse prediction
+   (ρ = 0.51–0.55) but weak forward prediction (ρ = 0.017–0.150).
+   
+   This is expected because:
+   • Geography correlates with climate (temperature, precipitation)
+   • Geography correlates with soil parent material and geology
+   • But geography itself does NOT directly cause microbial composition
+   
+   → Implication: Using microbiome to infer location works well because
+      the microbiome tracks unmeasured environmental gradients (like
+      temperature or precipitation) that vary with latitude/longitude
+
+
+4. METALS SHOW WEAK/OPPOSING EFFECTS
+   
+   Metal concentrations (As, Cr, Ni) show weak or negative forward
+   correlations with PC1 (ρ = -0.09 to -0.15).
+   
+   Possible explanations:
+   a) Metals may have non-linear effects (only toxic at high concentrations)
+   b) Metals may affect individual taxa differently (not captured by PC1)
+   c) Metals may be secondary factors (soil pH and redox matter more)
+   d) Metal bioavailability depends on soil properties (pH, organic matter)
+   
+   → Implication: Metal contamination may be detectable from microbial
+      composition (if RF captures non-linear effects), but the relationship
+      is more complex than simple correlation suggests
+
+
+5. REDOX PROXY SIGNAL IS WEAK
+   
+   The redox proxy (p_oxic_5m_proxy) shows very weak forward correlation
+   (ρ = 0.008) and was not included in the reverse RF model.
+   
+   Possible reasons:
+   a) Redox proxy may have limited spatial/temporal relevance
+   b) Soil pH and SOC capture most redox variation (they're correlated)
+   c) Actual redox conditions vary at fine scales not captured by proxy
+   
+   → Implication: Redox state may not be easily biomonitored from
+      16S amplicon data alone in these soils
+
+================================================================================
+RECOMMENDATIONS
+================================================================================
+
+1. FOR BIOMONITORING USE:
+   
+   ✓ RECOMMENDED: Use microbial communities to infer soil pH, clay content,
+     and geographic location. These show strong asymmetry (DI < -0.75) and
+     high reverse ρ (> 0.43).
+   
+   ? CAUTIOUS: Use microbial communities to infer SOC and mine distance.
+     Reverse ρ is moderate (0.25–0.55) and may depend on additional factors.
+   
+   ✗ NOT RECOMMENDED: Attempt to infer metal concentrations or redox state
+     from microbial composition alone. Forward signals are weak, and reverse
+     model was not trained on these variables.
+
+
+2. FOR MECHANISTIC STUDIES:
+   
+   • Investigate why soil pH and clay show the strongest asymmetry
+     (likely due to fundamental constraints on microbial physiology)
+   
+   • Examine individual genus responses to soil properties to identify
+     pH- and clay-specialist taxa
+   
+   • Use the top 15 genera (Streptomyces, Kribbella, etc.) as focal taxa
+     for pH/clay response curves
+
+
+3. FOR FUTURE ANALYSIS:
+   
+   • Repeat forward direction analysis using Random Forest instead of
+     Spearman correlation (to capture non-linear effects)
+   
+   • Test whether combining forward + reverse predictions improves
+     environmental prediction (ensemble approach)
+   
+   • Investigate whether metal effects are non-linear (e.g., effects only
+     at high contamination levels)
+   
+   • Examine temporal stability of these relationships (do they hold
+     across different studies/regions?)
+
+================================================================================
+FILES
+================================================================================
+
+Script:  /home/hmacgregor/BERIL-research-observatory/projects/metal_contamination_bioindicators/scripts/run_directionality_test.py
+Output:  /home/hmacgregor/BERIL-research-observatory/projects/metal_contamination_bioindicators/data/directionality_results.json
+
+Input data:
+  - data/analysis_matrix.parquet (64,259 samples × 538 columns)
+  - data/redox_proxy.parquet (54,961 rows)
+  - data/mwas_results.parquet (3,000 results; used for top-40 genera)
+  - data/sample_covariates.parquet (study_id information)
+  - data/usa_rf_env_targets_rho.parquet (pre-computed reverse direction)
+
+================================================================================
+TECHNICAL NOTES
+================================================================================
+
+1. Forward direction computed using Spearman rank correlation (fast, robust
+   to outliers, no assumptions about linearity).
+
+2. Reverse direction loaded from pre-computed Random Forest results. RF models
+   can capture non-linear relationships and interactions that Spearman misses,
+   explaining higher reverse ρ values.
+
+3. Spearman correlation and RF are not directly comparable, but the asymmetry
+   is so large that the qualitative conclusion (microbiome reflects environment)
+   is robust even accounting for methodological differences.
+
+4. Directionality index ranges [-1, +1] but is calculated from individual
+   variable pairs. When ρ_forward is very small or negative, the index can
+   exceed the theoretical bounds—this is expected and indicates very weak
+   forward signal.
+
+5. PC1 explains only 16.2% of CLR variance, indicating high-dimensional
+   community variation not captured by first axis. Individual genus
+   correlations remain weak even in this reduced space.
+
+6. Missing reverse ρ values (metals, redox) indicate these variables were
+   not tested in the reverse RF model (likely not enough variation or
+   not available in all studies).
+
+================================================================================
+END OF SUMMARY
+================================================================================

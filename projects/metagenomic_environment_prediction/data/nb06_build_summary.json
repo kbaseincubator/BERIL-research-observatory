@@ -1,0 +1,23 @@
+{
+  "notebook": "NB06_v2",
+  "n_mags_feature_matrix": 15957,
+  "n_mags_all_env_with_biome": 19198,
+  "n_biome_categories": 37,
+  "n_genera_levins_eligible": 643,
+  "n_genera_in_gtdb_tree": 13675,
+  "min_mags_per_genus": 5,
+  "n_genera_pgls": 328,
+  "beta_nb06_v2": -0.055576143154999945,
+  "se_nb06_v2": 0.06697729666198717,
+  "p_nb06_v2": 0.40727272654383917,
+  "lambda_nb06_v2": 0.2042,
+  "beta_nb06_v1": 0.135,
+  "p_nb06_v1": 0.172,
+  "n_nb06_v1": 94,
+  "beta_p1": -0.021,
+  "p_p1": 2e-08,
+  "beta_nb04": -0.011,
+  "p_nb04": 0.2160588488634545,
+  "sign_consistent_p1": true,
+  "sign_consistent_nb04": true
+}

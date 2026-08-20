@@ -1,0 +1,576 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1IT034	Beta-Lactose	SM_b20002	SM_b20002		sugar ABC transporter ATP-binding protein	-3.24410181594859	-12.0768595557268	FALSE
+carbon source	set1IT034	Beta-Lactose	SM_b21650	SM_b21650		LacI family transcriptional regulator	2.78462267338671	21.4298277186821	FALSE
+carbon source	set1IT034	Beta-Lactose	SM_b21652	SM_b21652		lactose ABC transporter substrate-binding protein	-3.48850642106487	-7.38519960282827	FALSE
+carbon source	set1IT034	Beta-Lactose	SM_b21653	SM_b21653		lactose ABC transporter permease	-3.33539512745048	-9.11992694506368	FALSE
+carbon source	set1IT034	Beta-Lactose	SM_b21654	SM_b21654		lactose ABC transporter permease	-3.2456795331089	-8.59412603348111	FALSE
+carbon source	set1IT034	Beta-Lactose	SM_b21655	SM_b21655		beta-galactosidase	-6.34879186912414	-18.3301061622244	FALSE
+carbon source	set1IT034	Beta-Lactose	SMc00881	SMc00881		2-dehydro-3-deoxygalactonokinase	-2.63826592065619	-12.0758306495333	FALSE
+carbon source	set1IT034	Beta-Lactose	SMc03798	SMc03798		aldose 1-epimerase	2.01491448737111	13.1616844832854	FALSE
+carbon source	set1IT036	D-(-)-tagatose	SM_b21373	SM_b21373		sugar kinase	-5.2018270476005	-5.06502053665513	FALSE
+carbon source	set1IT036	D-(-)-tagatose	SM_b21375	SM_b21375		sugar uptake ABC transporter permease	-2.73138068856989	-6.31498021473641	FALSE
+carbon source	set1IT036	D-(-)-tagatose	SM_b21376	SM_b21376		sugar uptake ABC transporter ATP-binding protein	-3.06598815098893	-7.76606339205944	FALSE
+carbon source	set1IT036	D-(-)-tagatose	SM_b21377	SM_b21377		sugar uptake ABC transporter substrate-binding protein precursor	-4.03202884000528	-6.75650425822243	FALSE
+carbon source	set1IT005	D-Arabinose	SM_b21101	SM_b21101		hypothetical protein	-2.3049435059097	-7.37792558117191	FALSE
+carbon source	set1IT005	D-Arabinose	SM_b21112	SM_b21112		bifunctional 2-hydroxyhepta-2,4-diene-1, 7-dioatesomerase/5-carboxymethyl-2-oxo-hex-3-ene-1, 7-dioatedecarboxylase	-4.3347638827472	-9.64367737926528	TRUE
+carbon source	set1IT005	D-Arabinose	SMa0247	SMa0247		hypothetical protein	-4.99300916895814	-7.65411965342665	FALSE
+carbon source	set1IT005	D-Arabinose	SMa2303	SMa2303		ROK family transcriptional regulator	1.8295206787628	14.7092805891959	FALSE
+carbon source	set1IT005	D-Arabinose	SMc02059	SMc02059		hypothetical protein	-1.26683946379599	-5.77711356689754	TRUE
+carbon source	set1IT005	D-Arabinose	SMc02170	SMc02170		ABC transporter permease	1.03363717230804	7.42948092925716	FALSE
+carbon source	set1IT005	D-Arabinose	SMc02775	SMc02775		L-fucose dehydrogenase (D-threo aldose 1-dehydrogenase) protein	-2.89966404777217	-10.4574837629141	FALSE
+carbon source	set1IT005	D-Arabinose	SMc02776	SMc02776		altronate hydrolase	-4.23411483125075	-7.23670108328232	TRUE
+carbon source	set1IT005	D-Arabinose	SMc02777	SMc02777		transcriptional regulator	2.38270447726382	15.5455318624862	FALSE
+carbon source	set1IT005	D-Arabinose	SMc02979	SMc02979		hypothetical protein	-1.58291601231513	-6.90338791315408	FALSE
+carbon source	set1IT005	D-Arabinose	SMc03164	SMc03164		xylulose kinase	-2.53336658421357	-11.9244252827051	FALSE
+carbon source	set1IT013	D-Cellobiose	SMc03162	SMc03162		hypothetical protein	-1.62299235243932	-8.20710701583982	FALSE
+carbon source	set1IT013	D-Cellobiose	SMc04253	SMc04253		oxidoreductase	-1.63206864311551	-10.6310090081053	FALSE
+carbon source	set1IT013	D-Cellobiose	SMc04256	SMc04256		ABC transporter ATP-binding protein	-3.49908815394636	-14.2698417578425	TRUE
+carbon source	set1IT013	D-Cellobiose	SMc04257	SMc04257		ABC transporter permease	-3.41034986812507	-13.6817468169386	TRUE
+carbon source	set1IT013	D-Cellobiose	SMc04258	SMc04258		ABC transporter permease	-3.10942481865945	-12.037836427306	TRUE
+carbon source	set1IT013	D-Cellobiose	SMc04259	SMc04259		periplasmic binding ABC transporter signal peptide protein	-3.72413931726432	-5.15985333408422	TRUE
+carbon source	set1IT002	D-Fructose	SMc02045	SMc02045		oxidoreductase	-1.00121257845767	-5.03080069921473	FALSE
+carbon source	set1IT002	D-Fructose	SMc02170	SMc02170		ABC transporter permease	-2.1632409087034	-8.41058907338149	TRUE
+carbon source	set1IT008	D-Galactose	SMc00881	SMc00881		2-dehydro-3-deoxygalactonokinase	-4.81156799762911	-12.7183131654485	TRUE
+carbon source	set1IT031	D-Glucosamine Hydrochloride	SM_b21140	SM_b21140		transcriptional regulator	1.23118313568728	7.86086855726336	FALSE
+carbon source	set1IT031	D-Glucosamine Hydrochloride	SMc00079	SMc00079		hypothetical protein	-1.45966684559028	-5.98706843678846	TRUE
+carbon source	set1IT031	D-Glucosamine Hydrochloride	SMc02690	SMc02690		hypothetical protein	-3.02065634038677	-6.93903551822842	FALSE
+carbon source	set1IT031	D-Glucosamine Hydrochloride	SMc03923	SMc03923		glucose-1-phosphate adenylyltransferase	1.36188766522286	9.18929856084095	FALSE
+carbon source	set1IT031	D-Glucosamine Hydrochloride	SMc04460	SMc04460		glycogen phosphorylase	1.32073165436595	10.0424950119017	FALSE
+carbon source	set1IT006	D-Maltose monohydrate	SM_b20330	SM_b20330		trehalosemaltose utilization protein, function	2.37633974582669	15.0432792362922	FALSE
+carbon source	set1IT035	D-Mannose	SMc02979	SMc02979		hypothetical protein	-2.29027898245762	-7.02967981825631	FALSE
+carbon source	set1IT035	D-Mannose	SMc03109	SMc03109		hypothetical protein	-5.39187634208039	-12.5537435616871	TRUE
+carbon source	set1IT009	D-Raffinose pentahydrate	SM_b20330	SM_b20330		trehalosemaltose utilization protein, function	-1.96035752317127	-5.50066420575547	FALSE
+carbon source	set1IT009	D-Raffinose pentahydrate	SM_b21643	SM_b21643		alpha-galactosidase (melibiase) protein	-6.51210922035641	-15.1818977112939	FALSE
+carbon source	set1IT009	D-Raffinose pentahydrate	SM_b21644	SM_b21644		ABC transporter ATP-binding protein	-3.35506224209804	-13.2024390079636	FALSE
+carbon source	set1IT009	D-Raffinose pentahydrate	SM_b21645	SM_b21645		ABC transporter permease	-3.682908686782	-10.8131528229042	FALSE
+carbon source	set1IT009	D-Raffinose pentahydrate	SM_b21646	SM_b21646		ABC transporter permease	-3.52738379895413	-14.1368940552688	FALSE
+carbon source	set1IT009	D-Raffinose pentahydrate	SM_b21647	SM_b21647		alpha-galactoside ABC transporter substrate-binding protein precursor	-3.41932846947823	-16.64300744673	FALSE
+carbon source	set1IT009	D-Raffinose pentahydrate	SM_b21648	SM_b21648		alpha-galactosidase (melibiase) protein	-3.4250275146969	-10.2382685392007	FALSE
+carbon source	set1IT009	D-Raffinose pentahydrate	SM_b21649	SM_b21649		AraC family transcriptional regulator	-3.16936123115788	-13.8981277487263	FALSE
+carbon source	set1IT011	D-Ribose	SMc01103	SMc01103		ribokinase	-3.74011237826724	-7.14584581186533	TRUE
+carbon source	set1IT033	D-Salicin	SM_b21650	SM_b21650		LacI family transcriptional regulator	1.51655608933645	11.2513895338495	FALSE
+carbon source	set1IT033	D-Salicin	SMc03162	SMc03162		hypothetical protein	-2.14666841390825	-7.41893285937307	FALSE
+carbon source	set1IT033	D-Salicin	SMc04253	SMc04253		oxidoreductase	-4.22340716769194	-16.653304193433	FALSE
+carbon source	set1IT033	D-Salicin	SMc04255	SMc04255		beta-mannosidase	-3.06177404982423	-12.7619475603006	FALSE
+carbon source	set1IT033	D-Salicin	SMc04256	SMc04256		ABC transporter ATP-binding protein	-3.94962562831391	-12.9992486323887	FALSE
+carbon source	set1IT033	D-Salicin	SMc04257	SMc04257		ABC transporter permease	-3.55976658626422	-13.9896819182485	FALSE
+carbon source	set1IT033	D-Salicin	SMc04258	SMc04258		ABC transporter permease	-3.8867597453731	-10.7069231407484	FALSE
+carbon source	set1IT033	D-Salicin	SMc04259	SMc04259		periplasmic binding ABC transporter signal peptide protein	-4.18775789895467	-6.90530327213424	FALSE
+carbon source	set1IT021	D-Sorbitol	SMc01496	SMc01496		sorbitol-binding periplasmic protein	-1.99831589109113	-8.89043156993729	TRUE
+carbon source	set1IT021	D-Sorbitol	SMc01497	SMc01497		sorbitol/mannitol transport inner membrane transmembrane protein	-1.87362104213777	-6.1227363327421	TRUE
+carbon source	set1IT021	D-Sorbitol	SMc01498	SMc01498		sorbitol/mannitol transport inner membrane protein	-1.90771543942094	-8.71609380707282	TRUE
+carbon source	set1IT021	D-Sorbitol	SMc01499	SMc01499		ATP-binding transport ABC transporter protein	-2.08909617798814	-10.1719578940808	TRUE
+carbon source	set1IT021	D-Sorbitol	SMc01503	SMc01503		sugar kinase	-1.21686219179651	-8.38388241468994	FALSE
+carbon source	set1IT023	D-Trehalose dihydrate	SM_b20325	SM_b20325		trehalosemaltose-binding protein	-2.94094642591092	-11.4344108802134	FALSE
+carbon source	set1IT023	D-Trehalose dihydrate	SM_b20326	SM_b20326		trehalosemaltose transporter permease	-2.62614170476824	-7.18229062872901	TRUE
+carbon source	set1IT023	D-Trehalose dihydrate	SM_b20327	SM_b20327		trehalosemaltose transporter permease	-3.57648003180749	-9.89012630889492	FALSE
+carbon source	set1IT023	D-Trehalose dihydrate	SM_b20328	SM_b20328		trehalosemaltose transporter ATP-binding protein	-3.38395336990679	-14.6689759397346	FALSE
+carbon source	set1IT023	D-Trehalose dihydrate	SM_b20330	SM_b20330		trehalosemaltose utilization protein, function	-4.95353287595263	-6.69793524244626	FALSE
+carbon source	set1IT007	D-Xylose	SMc03163	SMc03163		xylose isomerase	-3.50378118345548	-12.1454301365323	TRUE
+carbon source	set1IT007	D-Xylose	SMc03164	SMc03164		xylulose kinase	-3.91909140464177	-13.6001791161168	TRUE
+carbon source	set1IT007	D-Xylose	SMc03165	SMc03165		transcriptional regulator	-3.46351773823138	-7.31812634314855	TRUE
+carbon source	set1IT020	Glycerol	SM_b21009	SM_b21009		glycerol kinase	-2.50229839096857	-14.6590333221001	TRUE
+carbon source	set1IT020	Glycerol	SMc01023	SMc01023		triosephosphate isomerase	-3.1880898920282	-5.9799900135553	FALSE
+carbon source	set1IT020	Glycerol	SMc02079	SMc02079		hypothetical protein	1.08776803664433	9.3014142799335	FALSE
+carbon source	set1IT004	L-Arabinose	SM_b20890	SM_b20890		dihydroxy-acid dehydratase	-5.45218028136025	-12.0121761996928	TRUE
+carbon source	set1IT004	L-Arabinose	SM_b20891	SM_b20891		dehydrogenase	-3.72419972315917	-6.1737576410457	FALSE
+carbon source	set1IT004	L-Arabinose	SM_b20892	SM_b20892		hypothetical protein	-5.00472259605642	-12.39895955701	TRUE
+carbon source	set1IT004	L-Arabinose	SM_b20893	SM_b20893		sugar uptake ABC transporter permease	-2.61389991104165	-9.24602777774114	TRUE
+carbon source	set1IT004	L-Arabinose	SM_b20894	SM_b20894		sugar uptake ABC transporter ATP-binding protein	-3.03310884462264	-5.28279351611552	FALSE
+carbon source	set1IT004	L-Arabinose	SM_b20895	SM_b20895		sugar uptake ABC transporter substrate-binding protein precursor	-4.21712603502659	-9.85737772848255	TRUE
+carbon source	set1IT004	L-Arabinose	SMa1138	SMa1138		hypothetical protein	-1.21903291409866	-5.30990286619014	FALSE
+carbon source	set1IT004	L-Arabinose	SMc00762	SMc00762		glutamine synthetase	-1.55583304023556	-7.86794496259635	FALSE
+carbon source	set1IT004	L-Arabinose	SMc00830	SMc00830		hypothetical protein	-1.2708967898902	-7.70022658387921	FALSE
+carbon source	set1IT004	L-Arabinose	SMc00883	SMc00883		hypothetical protein	-1.09450707269014	-5.80283193504262	FALSE
+carbon source	set1IT012	L-Fucose	SM_b20483	SM_b20483		catabolite repressor protein	-1.49343491719334	-8.22632268154392	FALSE
+carbon source	set1IT012	L-Fucose	SM_b20850	SM_b20850		L-lactate dehydrogenase	-2.10565613722784	-12.430119413051	TRUE
+carbon source	set1IT012	L-Fucose	SM_b21101	SM_b21101		hypothetical protein	-1.15959523667587	-7.57702435651765	FALSE
+carbon source	set1IT012	L-Fucose	SM_b21103	SM_b21103		sugar ABC transporter substrate-binding protein	-3.59210193067305	-14.5573739563104	FALSE
+carbon source	set1IT012	L-Fucose	SM_b21104	SM_b21104		sugar ABC transporter permease	-3.42027626701799	-10.8526663674544	FALSE
+carbon source	set1IT012	L-Fucose	SM_b21105	SM_b21105		sugar ABC transporter permease	-3.32561225407445	-9.15625533527508	FALSE
+carbon source	set1IT012	L-Fucose	SM_b21106	SM_b21106		sugar ABC transporter ATP-binding protein	-2.98923033456798	-11.09263229271	FALSE
+carbon source	set1IT012	L-Fucose	SM_b21107	SM_b21107		mandelate racemase or evolutionary related enzyme of the mandelate racemase muconate lactonizing enzyme family protein	-3.47679866247392	-10.2884918495603	FALSE
+carbon source	set1IT012	L-Fucose	SM_b21108	SM_b21108		hypothetical protein	-4.30186679180395	-7.71483174708578	FALSE
+carbon source	set1IT012	L-Fucose	SM_b21109	SM_b21109		oxidoreductase	-3.88118346573719	-8.86308906905115	FALSE
+carbon source	set1IT012	L-Fucose	SM_b21110	SM_b21110		MaoC-like (monoamine oxidase-like) protein, NodN	-4.1885816948392	-5.07356533114385	FALSE
+carbon source	set1IT012	L-Fucose	SM_b21111	SM_b21111		oxidoreductase, RED superfamily protein	-4.93003761341788	-7.5789756365533	TRUE
+carbon source	set1IT012	L-Fucose	SM_b21112	SM_b21112		bifunctional 2-hydroxyhepta-2,4-diene-1, 7-dioatesomerase/5-carboxymethyl-2-oxo-hex-3-ene-1, 7-dioatedecarboxylase	-6.00207995960469	-7.91825639461001	TRUE
+carbon source	set1IT012	L-Fucose	SMa0078	SMa0078		LacI family transcriptional regulator	-1.35692824572602	-7.45793937297449	FALSE
+carbon source	set1IT012	L-Fucose	SMc00820	SMc00820		transcriptional regulator	-1.35395443563779	-5.57996495259914	FALSE
+carbon source	set1IT012	L-Fucose	SMc02776	SMc02776		altronate hydrolase	-2.82415655086163	-10.5160576782026	TRUE
+carbon source	set1IT026	L-Glutamine	SMc00486	SMc00486		glutaminase	-5.48327107987329	-14.4027836536441	TRUE
+carbon source	set1IT026	L-Glutamine	SMc01126	SMc01126		malic enzyme	-2.00299356719441	-12.8880289010018	TRUE
+carbon source	set1IT026	L-Glutamine	SMc01592	SMc01592		transcriptional regulator	-3.29072063771397	-10.2155276496258	FALSE
+carbon source	set1IT026	L-Glutamine	SMc01946	SMc01946		leucine-specific binding protein	-1.24518540337034	-6.31748945831499	FALSE
+carbon source	set1IT026	L-Glutamine	SMc01948	SMc01948		high-affinity branched-chain amino acid ABC transporter ATP-binding protein	-2.60143535994229	-5.78989741065229	FALSE
+carbon source	set1IT026	L-Glutamine	SMc01949	SMc01949		high-affinity branched-chain amino acid ABC transporter ATP-binding protein	-2.35853664220591	-7.59772217790769	TRUE
+carbon source	set1IT026	L-Glutamine	SMc01950	SMc01950		high-affinity branched-chain amino acid ABC transporter permease	-2.81685964461992	-13.7709441088681	FALSE
+carbon source	set1IT026	L-Glutamine	SMc01951	SMc01951		high-affinity branched-chain amino acid ABC transporter permease	-2.9599362944272	-9.86405372663677	FALSE
+carbon source	set1IT026	L-Glutamine	SMc02118	SMc02118		general L-amino acid-binding periplasmic ABC transporter protein	-2.85788328784995	-10.9812578730456	FALSE
+carbon source	set1IT026	L-Glutamine	SMc02119	SMc02119		general L-amino acid transport permease ABC transporter protein	-2.92641233565353	-13.3499384509976	FALSE
+carbon source	set1IT026	L-Glutamine	SMc02120	SMc02120		general L-amino acid transport permease ABC transporter protein	-2.77929328061706	-10.0443599209906	FALSE
+carbon source	set1IT026	L-Glutamine	SMc02368	SMc02368		bifunctional glutamine-synthetase adenylyltransferase/deadenyltransferase	-1.22455542229334	-8.25618771895218	FALSE
+carbon source	set1IT026	L-Glutamine	SMc02620	SMc02620		hypothetical protein	-1.35166403027769	-7.38076403752845	FALSE
+carbon source	set1IT026	L-Glutamine	SMc04093	SMc04093		acetyl-CoA synthetase	-2.09850042576754	-14.6431163009059	FALSE
+carbon source	set1IT026	L-Glutamine	SMc04262	SMc04262		6-phosphogluconate dehydrogenase	-1.31577119003221	-5.4495353820309	FALSE
+carbon source	set1IT026	L-Glutamine	SMc04263	SMc04263		amino acid carrier transmembrane protein	-1.84378795506979	-12.4836197623685	TRUE
+carbon source	set1IT024	L-Histidine	SM_b20048	SM_b20048		transcriptional regulator	-6.11287017755874	-17.2051965118266	FALSE
+carbon source	set1IT024	L-Histidine	SM_b20501	SM_b20501		transcriptional regulator	-1.25439781648057	-7.03189284578613	FALSE
+carbon source	set1IT024	L-Histidine	SM_b21163	SM_b21163		urocanate hydratase	-5.42847693043502	-13.5867346803604	TRUE
+carbon source	set1IT024	L-Histidine	SM_b21164	SM_b21164		formiminoglutamase	-4.43679256073782	-7.72929056081925	TRUE
+carbon source	set1IT024	L-Histidine	SM_b21165	SM_b21165		histidine ammonia-lyase	-4.85885260050831	-7.36630383240287	TRUE
+carbon source	set1IT024	L-Histidine	SM_b21166	SM_b21166		imidazolonepropionase	-6.28156903128447	-8.60674340401111	TRUE
+carbon source	set1IT024	L-Histidine	SMa0078	SMa0078		LacI family transcriptional regulator	-1.37615980970808	-7.67401611149162	FALSE
+carbon source	set1IT024	L-Histidine	SMa1654	SMa1654		GntR family transcriptional regulator	-1.607786209422	-5.317832703655	FALSE
+carbon source	set1IT024	L-Histidine	SMc00670	SMc00670		histidine transport ATP-binding ABC transporter protein	-1.08257976450118	-5.00513600932841	TRUE
+carbon source	set1IT024	L-Histidine	SMc00672	SMc00672		histidine-binding periplasmic signal peptide protein	-1.13887768820579	-7.74114344244764	TRUE
+carbon source	set1IT024	L-Histidine	SMc00673	SMc00673		N-formimino-L-glutamate deiminase	-6.49099072042053	-15.7181738806975	TRUE
+carbon source	set1IT024	L-Histidine	SMc01126	SMc01126		malic enzyme	-1.40611677547314	-8.98860569372831	FALSE
+carbon source	set1IT024	L-Histidine	SMc01418	SMc01418		signal peptide protein	1.40235627999121	9.40374023994753	FALSE
+carbon source	set1IT024	L-Histidine	SMc01592	SMc01592		transcriptional regulator	-2.37894080312933	-11.8526548838204	FALSE
+carbon source	set1IT024	L-Histidine	SMc01946	SMc01946		leucine-specific binding protein	-1.68746622289886	-9.66548327354233	FALSE
+carbon source	set1IT024	L-Histidine	SMc01948	SMc01948		high-affinity branched-chain amino acid ABC transporter ATP-binding protein	-2.62759660214134	-7.19254341092079	FALSE
+carbon source	set1IT024	L-Histidine	SMc01949	SMc01949		high-affinity branched-chain amino acid ABC transporter ATP-binding protein	-2.04097813729391	-5.35633224143038	FALSE
+carbon source	set1IT024	L-Histidine	SMc01950	SMc01950		high-affinity branched-chain amino acid ABC transporter permease	-2.24474341200099	-13.4130365086534	FALSE
+carbon source	set1IT024	L-Histidine	SMc01951	SMc01951		high-affinity branched-chain amino acid ABC transporter permease	-2.55693854163544	-8.33927930016508	FALSE
+carbon source	set1IT024	L-Histidine	SMc02118	SMc02118		general L-amino acid-binding periplasmic ABC transporter protein	-2.63532987569596	-10.3093554463525	TRUE
+carbon source	set1IT024	L-Histidine	SMc02119	SMc02119		general L-amino acid transport permease ABC transporter protein	-2.36973969875871	-12.7647369049584	TRUE
+carbon source	set1IT024	L-Histidine	SMc02120	SMc02120		general L-amino acid transport permease ABC transporter protein	-2.53084061917841	-8.05583844063124	TRUE
+carbon source	set1IT024	L-Histidine	SMc02689	SMc02689		aldehyde dehydrogenase	-1.29226462833829	-8.44512027095162	FALSE
+carbon source	set1IT024	L-Histidine	SMc04093	SMc04093		acetyl-CoA synthetase	-2.15144041392619	-13.8922484627888	FALSE
+carbon source	set1IT028	L-Leucine	SM_b20757	SM_b20757		methylmalonyl-CoA mutase	-4.66480388285132	-6.98383774667601	FALSE
+carbon source	set1IT028	L-Leucine	SM_b21120	SM_b21120		hypothetical protein	-3.06784520331643	-5.51475269549261	FALSE
+carbon source	set1IT028	L-Leucine	SM_b21121	SM_b21121		isovaleryl-CoA dehydrogenase	-3.79221492737989	-15.5038156175854	TRUE
+carbon source	set1IT028	L-Leucine	SM_b21122	SM_b21122		methylcrotonoyl-CoA carboxylase non-biotinylated subunit protein	-4.70448936037457	-13.9903126274528	TRUE
+carbon source	set1IT028	L-Leucine	SM_b21124	SM_b21124		methylcrotonoyl-CoA carboxylase biotinylated subunit	-5.13322153258912	-11.4638841545689	TRUE
+carbon source	set1IT028	L-Leucine	SM_b21125	SM_b21125		hydroxymethylglutaryl-CoA lyase	-6.75260134253511	-9.25441974212954	FALSE
+carbon source	set1IT028	L-Leucine	SMc00087	SMc00087		hydrolase	-1.56039808050112	-8.77492628292376	FALSE
+carbon source	set1IT028	L-Leucine	SMc00768	SMc00768		isocitrate lyase	-6.99314974337366	-11.6893961659411	FALSE
+carbon source	set1IT028	L-Leucine	SMc00769	SMc00769		hypothetical protein	-5.49592057965059	-14.6422818243039	FALSE
+carbon source	set1IT028	L-Leucine	SMc00774	SMc00774		acetoacetyl-CoA synthetase	-2.96151618285742	-14.3031131004606	FALSE
+carbon source	set1IT028	L-Leucine	SMc02181	SMc02181		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-1.61489037341387	-11.6538015433084	TRUE
+carbon source	set1IT028	L-Leucine	SMc03201	SMc03201		2-oxoisovalerate dehydrogenase subunit alpha	-4.03746469137511	-13.7111636791907	TRUE
+carbon source	set1IT028	L-Leucine	SMc03202	SMc03202		2-oxoisovalerate dehydrogenase subunit beta	-3.57684383284383	-17.1682164270905	TRUE
+carbon source	set1IT028	L-Leucine	SMc03203	SMc03203		branched-chain alpha-keto acid dehydrogenase E2 subunit	-3.81123493164057	-5.96290729147628	TRUE
+carbon source	set1IT028	L-Leucine	SMc03204	SMc03204		dihydrolipoamide dehydrogenase	-2.86052274616208	-6.86821116909114	TRUE
+carbon source	set1IT025	L-Lysine	SM_b20198	SM_b20198		ribulose bisophosphate carboxylase	-1.71689944508441	-6.95810079613596	FALSE
+carbon source	set1IT025	L-Lysine	SMc00138	SMc00138		amino acid ABC transporter permease	-1.71052346646738	-11.5850438453715	TRUE
+carbon source	set1IT025	L-Lysine	SMc00139	SMc00139		amino acid ABC transporter permease	-1.51237323519751	-7.37650642359711	TRUE
+carbon source	set1IT025	L-Lysine	SMc00140	SMc00140		amino-acid binding periplasmic protein	-1.38889985214366	-7.67483565818957	FALSE
+carbon source	set1IT025	L-Lysine	SMc00768	SMc00768		isocitrate lyase	-5.96935410421963	-13.3405339931974	FALSE
+carbon source	set1IT025	L-Lysine	SMc00769	SMc00769		hypothetical protein	-5.40135925158207	-13.5575030023611	FALSE
+carbon source	set1IT025	L-Lysine	SMc03131	SMc03131		amino acid-binding periplasmic ABC transporter protein	-1.26278676643571	-8.21176163844027	FALSE
+carbon source	set1IT025	L-Lysine	SMc03133	SMc03133		amino-acid transport system permease ABC transporter protein	-1.45409840009431	-9.26483508668797	FALSE
+carbon source	set1IT025	L-Lysine	SMc03879	SMc03879		acetyl-CoA acetyltransferase	-4.98658320234886	-9.55440524015281	TRUE
+carbon source	set1IT025	L-Lysine	SMc04386	SMc04386		aspartate aminotransferase B protein	-3.94299346140654	-6.07941744357415	FALSE
+carbon source	set1IT022	L-Malic acid disodium salt monohydrate	SM_b20611	SM_b20611		C4-dicarboxylate transporter DctA	-3.78398182936929	-13.4828930233548	TRUE
+carbon source	set1IT022	L-Malic acid disodium salt monohydrate	SM_b20612	SM_b20612		C4-dicarboxylate transport sensor protein	-4.20069307940553	-12.9774338964812	FALSE
+carbon source	set1IT027	L-Proline	SM_b20196	SM_b20196		CbbX protein	-4.85848903744767	-14.2734190024914	FALSE
+carbon source	set1IT027	L-Proline	SM_b20197	SM_b20197		ribulose-1,5-bisphosphate carboxylase small subunit protein	-5.5211895208181	-6.18368252605505	FALSE
+carbon source	set1IT027	L-Proline	SM_b20198	SM_b20198		ribulose bisophosphate carboxylase	-6.6025830960378	-17.0914424077141	FALSE
+carbon source	set1IT027	L-Proline	SM_b20199	SM_b20199		fructose-1,6-bisphosphate aldolase	-3.70520386894965	-7.08147579360414	FALSE
+carbon source	set1IT027	L-Proline	SM_b20200	SM_b20200		transketolase	-5.09226339653987	-12.5585328439047	FALSE
+carbon source	set1IT027	L-Proline	SMc00151	SMc00151		phosphoglycolate phosphatase	-2.15691824752007	-6.29569817083041	FALSE
+carbon source	set1IT027	L-Proline	SMc00681	SMc00681		leucine-responsive regulatory protein	-6.26696064708872	-8.58709799402627	TRUE
+carbon source	set1IT027	L-Proline	SMc01126	SMc01126		malic enzyme	-2.20745411388571	-14.2070246395825	FALSE
+carbon source	set1IT027	L-Proline	SMc01174	SMc01174		cysteine synthase A	-1.4112658497237	-8.67229496046647	FALSE
+carbon source	set1IT027	L-Proline	SMc01592	SMc01592		transcriptional regulator	-4.18527395239916	-9.91758809569987	FALSE
+carbon source	set1IT027	L-Proline	SMc01948	SMc01948		high-affinity branched-chain amino acid ABC transporter ATP-binding protein	-2.49420233517972	-7.08423755486792	TRUE
+carbon source	set1IT027	L-Proline	SMc01949	SMc01949		high-affinity branched-chain amino acid ABC transporter ATP-binding protein	-2.60929162541027	-8.00320832489363	TRUE
+carbon source	set1IT027	L-Proline	SMc01950	SMc01950		high-affinity branched-chain amino acid ABC transporter permease	-2.98326938917922	-16.0541543186664	FALSE
+carbon source	set1IT027	L-Proline	SMc01951	SMc01951		high-affinity branched-chain amino acid ABC transporter permease	-2.46803142058844	-9.04012570705274	TRUE
+carbon source	set1IT027	L-Proline	SMc02181	SMc02181		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-5.65838234275515	-17.527278362938	TRUE
+carbon source	set1IT027	L-Proline	SMc02379	SMc02379		permease	-1.16870581692774	-6.52950150669447	FALSE
+carbon source	set1IT027	L-Proline	SMc04093	SMc04093		acetyl-CoA synthetase	-1.45107038082646	-11.142546730016	FALSE
+carbon source	set1IT027	L-Proline	SMc04262	SMc04262		6-phosphogluconate dehydrogenase	-1.29292154621983	-6.61868860764356	FALSE
+carbon source	set1IT010	L-Rhamnose monohydrate	SM_b20850	SM_b20850		L-lactate dehydrogenase	-1.66270723924193	-6.77210426057512	FALSE
+carbon source	set1IT010	L-Rhamnose monohydrate	SMc02321	SMc02321		sugar isomerase	-3.6743176809434	-11.140467830368	TRUE
+carbon source	set1IT010	L-Rhamnose monohydrate	SMc02322	SMc02322		short chain dehydrogenase	-4.56487402099148	-13.382936736553	TRUE
+carbon source	set1IT010	L-Rhamnose monohydrate	SMc02323	SMc02323		transcriptional regulator	-2.66356716760568	-6.10835269102356	TRUE
+carbon source	set1IT010	L-Rhamnose monohydrate	SMc02324	SMc02324		periplasmic binding ABC transporter protein	-3.08000625759075	-13.8781844337409	TRUE
+carbon source	set1IT010	L-Rhamnose monohydrate	SMc02325	SMc02325		ABC transporter ATP-binding protein	-2.84636159342908	-9.91269793444754	TRUE
+carbon source	set1IT010	L-Rhamnose monohydrate	SMc03000	SMc03000		ABC transporter permease	-3.25408447964849	-10.1184051961887	TRUE
+carbon source	set1IT010	L-Rhamnose monohydrate	SMc03001	SMc03001		ABC transporter permease	-3.91942158469782	-7.62384079778349	TRUE
+carbon source	set1IT010	L-Rhamnose monohydrate	SMc03002	SMc03002		hypothetical protein	-3.07152807107438	-5.94075960837101	TRUE
+carbon source	set1IT010	L-Rhamnose monohydrate	SMc03003	SMc03003		hypothetical protein	-4.29230050490244	-14.2610816367496	TRUE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SM_b20901	SM_b20901		transcriptional regulator	1.43349209796404	9.15328750821197	FALSE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc00490	SMc00490		transcriptional regulator	-1.49338043448749	-8.39859999481098	FALSE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc02677	SMc02677		pyrroline-5-carboxylate reductase	-1.73203554586732	-5.47022920879821	FALSE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc02869	SMc02869		ABC transporter ATP-binding protein	-3.54668147246354	-9.91924503479114	TRUE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc02870	SMc02870		oxidoreductase	-2.94884110704545	-5.94149369648814	TRUE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc02871	SMc02871		ABC transporter permease	-3.88005772388574	-5.54750277703936	TRUE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc02872	SMc02872		ABC transporter permease	-3.48108032084957	-9.42138698568629	TRUE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc02873	SMc02873		periplasmic binding (signal peptide) ABC transporter protein	-3.89920598160365	-11.2229872518975	TRUE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc02874	SMc02874		N-acetylmuramic acid 6-phosphate etherase	-4.51221444841783	-8.09750203756977	TRUE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc02875	SMc02875		hypothetical protein	-5.22342742140702	-12.1370440944096	FALSE
+carbon source	set1IT030	N-Acetyl-D-Glucosamine	SMc03887	SMc03887		amino acid efflux protein	-2.04065195564698	-7.98357278582965	FALSE
+carbon source	set1IT015	Sodium D,L-Lactate	SM_b20850	SM_b20850		L-lactate dehydrogenase	-1.21876887402056	-6.43857840727902	TRUE
+carbon source	set1IT015	Sodium D,L-Lactate	SMc00832	SMc00832		glycolate oxidase subunit protein	-2.77138337413989	-15.264356896269	TRUE
+carbon source	set1IT015	Sodium D,L-Lactate	SMc00833	SMc00833		glycolate oxidase subunit protein	-2.39625635834039	-11.7990411739632	TRUE
+carbon source	set1IT015	Sodium D,L-Lactate	SMc00926	SMc00926		glycolate oxidase iron-sulfur subunit protein	-2.74442257165209	-14.1096473660244	TRUE
+carbon source	set1IT015	Sodium D,L-Lactate	SMc01592	SMc01592		transcriptional regulator	-2.23659771351993	-6.60366768622849	FALSE
+carbon source	set1IT015	Sodium D,L-Lactate	SMc04248	SMc04248		hypothetical protein	1.21646873028103	9.11483962382169	FALSE
+carbon source	set1IT015	Sodium D,L-Lactate	SMc04249	SMc04249		hypothetical protein	1.15144629005242	9.49893914452028	FALSE
+carbon source	set1IT015	Sodium D,L-Lactate	SMc04251	SMc04251		mannitol-binding periplasmic signal peptide protein	1.08525841970804	9.13785670619707	FALSE
+carbon source	set1IT014	Sodium L-Lactate	SM_b20850	SM_b20850		L-lactate dehydrogenase	-4.83968203662049	-10.0052517825178	TRUE
+carbon source	set1IT014	Sodium L-Lactate	SMc00356	SMc00356		lysyl-tRNA synthetase	-1.703143992521	-7.59834587121553	FALSE
+carbon source	set1IT014	Sodium L-Lactate	SMc01712	SMc01712		L-lactate dehydrogenase (cytochrome) protein	-1.40605039120605	-8.61060761683087	FALSE
+carbon source	set1IT016	Sodium pyruvate	SMc00356	SMc00356		lysyl-tRNA synthetase	-1.44701145125483	-6.03476338170378	FALSE
+carbon source	set1IT016	Sodium pyruvate	SMc02249	SMc02249		sensory transduction histidine kinase transmembrane protein	-2.42072690204303	-16.8525494056692	TRUE
+carbon source	set1IT017	Sodium succinate dibasic hexahydrate	SM_b20611	SM_b20611		C4-dicarboxylate transporter DctA	-3.84508562194005	-15.1432015009381	TRUE
+carbon source	set1IT017	Sodium succinate dibasic hexahydrate	SM_b20612	SM_b20612		C4-dicarboxylate transport sensor protein	-3.72500428549576	-13.107904678767	FALSE
+carbon source	set1IT032	Uridine	SM_b20483	SM_b20483		catabolite repressor protein	1.38604951184728	10.3855972943113	FALSE
+carbon source	set1IT032	Uridine	SM_b21346	SM_b21346		LacI family transcriptional regulator	1.17715590588854	6.98903023611465	FALSE
+carbon source	set1IT032	Uridine	SMc00781	SMc00781		malonic semialdehyde oxidative decarboxylase	-2.41251308659673	-7.26569868036388	TRUE
+carbon source	set1IT032	Uridine	SMc01103	SMc01103		ribokinase	-5.26899001605344	-5.9694719471269	FALSE
+carbon source	set1IT032	Uridine	SMc01105	SMc01105		nucleoside hydrolase	-1.84321167741278	-7.16447939102092	TRUE
+carbon source	set1IT032	Uridine	SMc02170	SMc02170		ABC transporter permease	-1.623809941658	-6.72106786707399	FALSE
+carbon source	set1IT032	Uridine	SMc02171	SMc02171		periplasmic binding ABC transporter protein	-2.13252605361599	-6.15611669748371	FALSE
+carbon source	set1IT032	Uridine	SMc02777	SMc02777		transcriptional regulator	1.69723536880931	9.75798016970784	FALSE
+carbon source	set1IT032	Uridine	SMc02884	SMc02884		lipoprotein	-1.14602948581093	-6.11758223691804	FALSE
+carbon source	set1IT032	Uridine	SMc04126	SMc04126		ABC transporter permease	-1.15064935159557	-7.51927060714079	FALSE
+carbon source	set1IT032	Uridine	SMc04127	SMc04127		ABC transporter ATP-binding protein	-1.31471154204715	-6.6118807745286	FALSE
+carbon source	set1IT019	m-Inositol	SM_b20712	SM_b20712		rhizopine uptake ABC transporter substrate-binding protein precursor	-2.78538465770061	-8.98446755046249	TRUE
+carbon source	set1IT019	m-Inositol	SM_b20713	SM_b20713		sugar uptake ABC transporter ATP-binding protein	-3.30211254725002	-10.6196156038213	TRUE
+carbon source	set1IT019	m-Inositol	SM_b20714	SM_b20714		sugar uptake ABC transporter permease	-2.67369970955466	-9.87879443435035	TRUE
+carbon source	set1IT019	m-Inositol	SM_b20899	SM_b20899		myo-inositol dehydrogenase	-3.98819992700983	-11.6839937446562	TRUE
+carbon source	set1IT019	m-Inositol	SMc00432	SMc00432		myo-inositol catabolism protein	-4.25230231799982	-12.6738283816441	TRUE
+carbon source	set1IT019	m-Inositol	SMc00433	SMc00433		myo-inositol catabolism protein	-3.72957095617645	-13.7584817185706	TRUE
+carbon source	set1IT019	m-Inositol	SMc00780	SMc00780		transcriptional regulator	-3.54134594688631	-12.1936742460413	FALSE
+carbon source	set1IT019	m-Inositol	SMc00781	SMc00781		malonic semialdehyde oxidative decarboxylase	-4.59816556696429	-6.90453198930719	TRUE
+carbon source	set1IT019	m-Inositol	SMc01165	SMc01165		sugar kinase	-3.56196895951487	-20.489772120177	TRUE
+carbon source	set1IT019	m-Inositol	SMc01166	SMc01166		malonic semialdehyde oxidative decarboxylase	-3.2528999444052	-8.3485425778686	TRUE
+lb	set2IT059		SM_b20146	SM_b20146		pyridoxal phosphate biosynthetic protein	1.61244424145795	5.59040078722117	FALSE
+lb	set2IT060		SM_b20146	SM_b20146		pyridoxal phosphate biosynthetic protein	1.74779398802628	5.11069154406015	FALSE
+lb	set2IT049		SM_b20146	SM_b20146		pyridoxal phosphate biosynthetic protein	2.5878800704666	6.04884769459064	FALSE
+lb	set2IT059		SMc00064	SMc00064		hypothetical protein	1.20805464869695	5.04222054998535	FALSE
+lb	set2IT060		SMc00171	SMc00171		hypothetical protein	1.1787156645807	7.75227529074354	FALSE
+lb	set2IT060		SMc00325	SMc00325		hypothetical protein	1.49275690030971	8.25683447976052	FALSE
+lb	set2IT059		SMc00325	SMc00325		hypothetical protein	1.59196553313288	9.66006522037746	FALSE
+lb	set2IT060		SMc00710	SMc00710		histidinol-phosphate aminotransferase	2.44354870468047	6.22538082116165	FALSE
+lb	set2IT059		SMc00710	SMc00710		histidinol-phosphate aminotransferase	2.54313553420446	6.29598460114245	FALSE
+lb	set2IT049		SMc00710	SMc00710		histidinol-phosphate aminotransferase	3.65931725121896	6.79176490010848	FALSE
+lb	set2IT059		SMc00904	SMc00904		hypothetical protein	1.46690300870433	6.27498162826913	FALSE
+lb	set2IT060		SMc00904	SMc00904		hypothetical protein	1.48978707344876	5.0159643272584	FALSE
+lb	set2IT060		SMc01006	SMc01006		hypothetical protein	1.3706805200035	5.95114239000719	FALSE
+lb	set2IT049		SMc01193	SMc01193		hypothetical protein	1.38004698195186	8.7634412056244	FALSE
+lb	set2IT060		SMc01193	SMc01193		hypothetical protein	1.5622250517865	10.1729693821125	FALSE
+lb	set2IT059		SMc01193	SMc01193		hypothetical protein	1.62487642115003	10.0580730525856	FALSE
+lb	set2IT059		SMc01885	SMc01885		aminopeptidase P protein	1.46086332264014	9.92280131053385	FALSE
+lb	set2IT060		SMc01885	SMc01885		aminopeptidase P protein	1.64734188898631	11.3251286261521	FALSE
+lb	set2IT060		SMc02490	SMc02490		hypothetical protein	1.74956646971307	8.15308090391367	FALSE
+lb	set2IT059		SMc03932	SMc03932		sarcosine oxidase subunit delta	1.84480665288167	8.45885510160597	FALSE
+lb	set2IT060		SMc03932	SMc03932		sarcosine oxidase subunit delta	1.97599149549225	5.28722846184587	FALSE
+lb	set2IT049		SMc03932	SMc03932		sarcosine oxidase subunit delta	2.06743400598659	6.48237573048816	FALSE
+lb	set2IT060		SMc03961	SMc03961		sulfolipid (UDP-sulfoquinovose) biosynthesis protein	1.62302079302949	9.01485270882652	FALSE
+lb	set2IT060		SMc04081	SMc04081		glycosyl transferase (sulfolipid biosynthesis) protein	1.76450623763079	12.1471740409587	FALSE
+nitrogen source	set3IT029	Cytosine	SMc04339	SMc04339		hypothetical protein	1.14743879096326	6.70094839195304	FALSE
+nitrogen source	set3IT025	D-Glucosamine Hydrochloride	SM_b21216	SM_b21216		sugar ABC transporter ATP-binding protein	-3.29818629759865	-7.58640919075955	FALSE
+nitrogen source	set3IT025	D-Glucosamine Hydrochloride	SM_b21217	SM_b21217		sugar kinase	-3.05076298622749	-7.09861021897977	FALSE
+nitrogen source	set3IT025	D-Glucosamine Hydrochloride	SM_b21219	SM_b21219		sugar ABC transporter permease	-3.51662874956632	-12.4257050374922	FALSE
+nitrogen source	set3IT025	D-Glucosamine Hydrochloride	SM_b21220	SM_b21220		sugar ABC transporter permease	-2.6399770223914	-5.97179681414686	FALSE
+nitrogen source	set3IT025	D-Glucosamine Hydrochloride	SM_b21221	SM_b21221		sugar uptake ABC transporter substrate-binding protein precursor	-2.59374560417909	-10.5857310826276	FALSE
+nitrogen source	set3IT025	D-Glucosamine Hydrochloride	SM_b21222	SM_b21222		transcriptional regulator	2.68546722383986	16.9394396625015	FALSE
+nitrogen source	set3IT025	D-Glucosamine Hydrochloride	SM_b21464	SM_b21464		GntR family transcriptional regulator	1.87941451842242	7.63126095778116	FALSE
+nitrogen source	set3IT022	Gelatin	SM_b20259	SM_b20259		dihydrodipicolinate synthase	-1.39220857046926	-7.04471935665329	FALSE
+nitrogen source	set3IT022	Gelatin	SM_b20966	SM_b20966		beta-galactosidase	-2.17060684037084	-10.047683442306	FALSE
+nitrogen source	set3IT022	Gelatin	SMc01851	SMc01851		amino acid efflux protein	-1.32516059123363	-5.53601754995861	FALSE
+nitrogen source	set3IT019	Gly-DL-Asp	SMc00786	SMc00786		periplasmic dipeptide-binding protein	-2.3394256428216	-10.4320289542701	TRUE
+nitrogen source	set3IT019	Gly-DL-Asp	SMc00790	SMc00790		peptide ABC transporter ATP-binding protein	-2.53535623533723	-10.6465214498644	FALSE
+nitrogen source	set3IT001	L-Arginine	SMc00171	SMc00171		hypothetical protein	1.7934616645436	8.4543360942325	FALSE
+nitrogen source	set3IT001	L-Arginine	SMc01848	SMc01848		hypothetical protein	2.1899413186535	8.97684292200215	FALSE
+nitrogen source	set3IT001	L-Arginine	SMc02490	SMc02490		hypothetical protein	2.00636816650926	9.61617962666987	FALSE
+nitrogen source	set3IT001	L-Arginine	SMc03961	SMc03961		sulfolipid (UDP-sulfoquinovose) biosynthesis protein	2.02493379055056	12.7596533263258	FALSE
+nitrogen source	set3IT001	L-Arginine	SMc03963	SMc03963		sulfolipid biosynthesis protein	1.44591584107873	5.99502431003126	FALSE
+nitrogen source	set3IT001	L-Arginine	SMc04081	SMc04081		glycosyl transferase (sulfolipid biosynthesis) protein	2.09577434974045	9.36127199201934	FALSE
+nitrogen source	set3IT002	L-Histidine	SM_b20048	SM_b20048		transcriptional regulator	-2.51904197998347	-5.63155060622743	FALSE
+nitrogen source	set3IT002	L-Histidine	SM_b21163	SM_b21163		urocanate hydratase	-1.95428853112392	-5.9967472687079	TRUE
+nitrogen source	set3IT002	L-Histidine	SMc00673	SMc00673		N-formimino-L-glutamate deiminase	-2.90102835824647	-9.63388247603026	TRUE
+nitrogen source	set3IT014	L-Leucine	SM_b21114	SM_b21114		nitrate transport protein	-1.6548986428374	-5.35862138311058	FALSE
+nitrogen source	set3IT014	L-Leucine	SMc01948	SMc01948		high-affinity branched-chain amino acid ABC transporter ATP-binding protein	-3.5471842485252	-5.81314412041946	TRUE
+nitrogen source	set3IT014	L-Leucine	SMc01950	SMc01950		high-affinity branched-chain amino acid ABC transporter permease	-2.01595224952278	-7.57511507014214	FALSE
+nitrogen source	set3IT014	L-Leucine	SMc02240	SMc02240		hypothetical protein	-2.95839667799713	-5.79073542702991	TRUE
+nitrogen source	set3IT005	L-Serine	SMc01256	SMc01256		L-serine dehydratase	-1.89851258239948	-9.90276587701067	TRUE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SM_b21155	SM_b21155		hypothetical protein	1.02898633050264	5.31738639081617	FALSE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SM_b21158	SM_b21158		transcriptional regulator	1.25226846306639	6.55132137892545	FALSE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SMa0078	SMa0078		LacI family transcriptional regulator	-1.34663672560687	-5.30585920196917	FALSE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SMc02869	SMc02869		ABC transporter ATP-binding protein	-4.69060194646023	-10.6914059541837	FALSE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SMc02870	SMc02870		oxidoreductase	-3.31770137606931	-9.4563030667856	FALSE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SMc02871	SMc02871		ABC transporter permease	-5.23115054936113	-8.21240906040895	FALSE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SMc02872	SMc02872		ABC transporter permease	-4.25107998694302	-11.1385479654523	FALSE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SMc02873	SMc02873		periplasmic binding (signal peptide) ABC transporter protein	-4.06486614825297	-9.36267531075798	FALSE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SMc02874	SMc02874		N-acetylmuramic acid 6-phosphate etherase	-3.92532257465478	-7.41248522956513	FALSE
+nitrogen source	set3IT024	N-Acetyl-D-Glucosamine	SMc02875	SMc02875		hypothetical protein	-3.44077771892196	-7.16058142727299	FALSE
+nitrogen source	set3IT032	Sodium nitrate	SM_b20983	SM_b20983		hypothetical protein	-3.69196231837802	-6.77015049570926	FALSE
+nitrogen source	set3IT032	Sodium nitrate	SM_b20984	SM_b20984		nitrite reductase [NAD(P)H], large subunit protein	-5.16092343672504	-18.3235758176409	TRUE
+nitrogen source	set3IT032	Sodium nitrate	SM_b20986	SM_b20986		nitrate reductase, large subunit protein	-1.40612729880151	-8.32823544525579	TRUE
+nitrogen source	set3IT032	Sodium nitrate	SMa0246	SMa0246		GntR family transcriptional regulator	1.04838306266477	5.12661240917453	FALSE
+nitrogen source	set3IT032	Sodium nitrate	SMc03883	SMc03883		monofunctional biosynthetic peptidoglycan transglycosylase	1.36276744622986	5.03091692685299	FALSE
+nitrogen source	set3IT027	Uridine	SMc00775	SMc00775		iron(III) permease	-1.51841062190631	-8.18427081240965	FALSE
+nitrogen source	set3IT027	Uridine	SMc00781	SMc00781		malonic semialdehyde oxidative decarboxylase	-2.92861872101589	-7.87406206594224	TRUE
+nitrogen source	set3IT027	Uridine	SMc00784	SMc00784		iron binding protein	-1.73915446819913	-7.84995246852545	FALSE
+nitrogen source	set3IT027	Uridine	SMc01174	SMc01174		cysteine synthase A	-1.93680152044082	-8.60677472958487	FALSE
+nitrogen source	set3IT027	Uridine	SMc01814	SMc01814		oxidoreductase	-5.60880525992711	-13.1099467598932	TRUE
+nitrogen source	set3IT027	Uridine	SMc01815	SMc01815		dihydropyrimidine dehydrogenase	-4.78029838246635	-14.2283698371216	TRUE
+nitrogen source	set3IT027	Uridine	SMc01820	SMc01820		allantoate amidohydrolase	-4.59637650403808	-10.0743421583078	TRUE
+nitrogen source	set3IT027	Uridine	SMc01821	SMc01821		phenylhydantoinase	-4.79906592133112	-12.777744650501	TRUE
+nitrogen source	set3IT027	Uridine	SMc02068	SMc02068		ABC transporter ATP-binding protein	-1.73310410657572	-5.84436898425986	FALSE
+nutrient	set5IT064	L-Histidine	SM_b20048	SM_b20048		transcriptional regulator	-1.96099365927674	-9.20969381093128	FALSE
+nutrient	set5IT063	L-Histidine	SM_b20048	SM_b20048		transcriptional regulator	-1.88789044071845	-8.17667298888701	FALSE
+nutrient	set5IT063	L-Histidine	SM_b21163	SM_b21163		urocanate hydratase	-1.62719162285634	-9.10674708271621	FALSE
+nutrient	set5IT064	L-Histidine	SM_b21163	SM_b21163		urocanate hydratase	-1.23287520736491	-5.86722066665084	FALSE
+nutrient	set5IT064	L-Histidine	SM_b21164	SM_b21164		formiminoglutamase	-1.46207364249805	-7.0490337294655	FALSE
+nutrient	set5IT064	L-Histidine	SMc00673	SMc00673		N-formimino-L-glutamate deiminase	-2.38089859462423	-12.7795612237043	FALSE
+nutrient	set5IT063	L-Histidine	SMc00673	SMc00673		N-formimino-L-glutamate deiminase	-2.26869163564794	-11.7640716523607	FALSE
+pH	set2IT062		SM_b20043	SM_b20043		hypothetical protein	1.49859502727027	8.75496707897689	FALSE
+pH	set2IT062		SM_b21002	SM_b21002		methionine aminopeptidase	1.46817387095616	6.45936919254003	FALSE
+pH	set2IT061		SM_b21002	SM_b21002		methionine aminopeptidase	1.52879104315013	7.0084995216553	FALSE
+pH	set2IT066		SM_b21183	SM_b21183		molecular chaperone HtpG	1.04355310800292	7.25848510099887	FALSE
+pH	set2IT061		SM_b21487	SM_b21487		cytochrome o ubiquinol oxidase subunit II	1.46001799651214	8.79568596072957	FALSE
+pH	set2IT062		SM_b21487	SM_b21487		cytochrome o ubiquinol oxidase subunit II	1.47064913184579	8.59594175549404	FALSE
+pH	set2IT065		SM_b21487	SM_b21487		cytochrome o ubiquinol oxidase subunit II	1.76224688057751	10.3609843451029	FALSE
+pH	set2IT066		SM_b21487	SM_b21487		cytochrome o ubiquinol oxidase subunit II	1.80972003749271	10.0097737342776	FALSE
+pH	set2IT061		SM_b21488	SM_b21488		cytochrome o ubiquinol oxidase subunit I	1.29106080069758	8.37278515507482	FALSE
+pH	set2IT062		SM_b21488	SM_b21488		cytochrome o ubiquinol oxidase subunit I	1.34512885408738	8.94829531158817	FALSE
+pH	set2IT065		SM_b21494	SM_b21494		ornithine cyclodeaminase	1.35614311679448	10.0914453227444	FALSE
+pH	set2IT066		SM_b21494	SM_b21494		ornithine cyclodeaminase	1.48980134337534	13.2691323377381	FALSE
+pH	set2IT066		SMc00060	SMc00060		hypothetical protein	-2.10575084837164	-7.37687834651558	FALSE
+pH	set2IT065		SMc00325	SMc00325		hypothetical protein	1.63052157674038	12.433819096727	FALSE
+pH	set2IT066		SMc00325	SMc00325		hypothetical protein	1.8649947515144	10.5491985406492	FALSE
+pH	set2IT061		SMc00786	SMc00786		periplasmic dipeptide-binding protein	1.33000967392258	9.89595195706863	FALSE
+pH	set2IT062		SMc00786	SMc00786		periplasmic dipeptide-binding protein	1.44212407158272	10.4970043750469	FALSE
+pH	set2IT066		SMc00787	SMc00787		peptide ABC transporter permease	1.31324556793353	6.68608851548427	FALSE
+pH	set2IT061		SMc00787	SMc00787		peptide ABC transporter permease	1.32823713014616	6.86977235954108	FALSE
+pH	set2IT062		SMc00787	SMc00787		peptide ABC transporter permease	1.43742365516671	6.99262755645735	FALSE
+pH	set2IT061		SMc00789	SMc00789		peptide ABC transporter ATP-binding protein	1.46557180961171	5.55686040486722	FALSE
+pH	set2IT066		SMc00852	SMc00852		transmembrane signal peptide protein	1.01263706796467	7.85743194443764	FALSE
+pH	set2IT065		SMc00852	SMc00852		transmembrane signal peptide protein	1.09879986714488	8.52777277140719	FALSE
+pH	set2IT065		SMc00904	SMc00904		hypothetical protein	1.48664013310635	5.93277924141191	FALSE
+pH	set2IT065		SMc00948	SMc00948		glutamine synthetase	-1.72100353708092	-8.19033952729612	FALSE
+pH	set2IT066		SMc00948	SMc00948		glutamine synthetase	-1.53350290886045	-6.94165686876628	FALSE
+pH	set2IT065		SMc00973	SMc00973		hypothetical protein	1.48748587043822	6.69181262160079	FALSE
+pH	set2IT066		SMc01019	SMc01019		hypothetical protein	-1.48282472166398	-6.86521437698923	FALSE
+pH	set2IT065		SMc01019	SMc01019		hypothetical protein	-1.42598698880449	-8.60580219880565	FALSE
+pH	set2IT065		SMc01107	SMc01107		hypothetical protein	1.47369308938787	9.07293042782569	FALSE
+pH	set2IT065		SMc01108	SMc01108		tRNA (guanine-N(7)-)-methyltransferase	1.35950317223421	5.66305241254143	FALSE
+pH	set2IT065		SMc01193	SMc01193		hypothetical protein	1.64677861940382	11.4825256349602	FALSE
+pH	set2IT066		SMc01193	SMc01193		hypothetical protein	1.87133351393617	15.2717514410467	FALSE
+pH	set2IT065		SMc01457	SMc01457		transport transmembrane protein	-1.78099185422484	-7.30057130872408	FALSE
+pH	set2IT066		SMc01457	SMc01457		transport transmembrane protein	-1.39897146856634	-6.98932268501375	FALSE
+pH	set2IT065		SMc01716	SMc01716		sensor histidine kinase transmembrane protein	-2.19739014787451	-7.50936646395217	FALSE
+pH	set2IT066		SMc01716	SMc01716		sensor histidine kinase transmembrane protein	-2.1230580001566	-7.33891031237046	FALSE
+pH	set2IT066		SMc01969	SMc01969		hypothetical protein	-1.67020714468023	-5.93161353647506	FALSE
+pH	set2IT065		SMc01969	SMc01969		hypothetical protein	-1.53075799548059	-5.61462866010493	FALSE
+pH	set2IT066		SMc01972	SMc01972		oxidoreductase	1.13592321675873	8.52323885951553	FALSE
+pH	set2IT065		SMc01972	SMc01972		oxidoreductase	1.23602038732314	9.44022456544981	FALSE
+pH	set2IT062		SMc02085	SMc02085		biopolymer transport transmembrane protein	-1.16093576453617	-6.23354124752248	FALSE
+pH	set2IT065		SMc02270	SMc02270		capsular polysaccharide biosynthesis\export transmembrane protein	2.41489656185893	20.8356724405701	FALSE
+pH	set2IT066		SMc02270	SMc02270		capsular polysaccharide biosynthesis\export transmembrane protein	2.44723603499696	21.7043793515287	FALSE
+pH	set2IT065		SMc02271	SMc02271		ribitol type dehydrogenase	2.215989140405	14.6679024721894	FALSE
+pH	set2IT066		SMc02271	SMc02271		ribitol type dehydrogenase	2.24192192618609	11.113699474096	FALSE
+pH	set2IT066		SMc02368	SMc02368		bifunctional glutamine-synthetase adenylyltransferase/deadenyltransferase	-1.20546010008977	-7.73110089830425	FALSE
+pH	set2IT066		SMc02575	SMc02575		ATP-dependent protease peptidase subunit	1.53402810496809	7.88606981505982	FALSE
+pH	set2IT065		SMc02575	SMc02575		ATP-dependent protease peptidase subunit	1.57458818826379	8.06495328538093	FALSE
+pH	set2IT066		SMc02577	SMc02577		ATP-dependent protease ATP-binding subunit HslU	1.55765059933162	10.1508081549692	FALSE
+pH	set2IT065		SMc02577	SMc02577		ATP-dependent protease ATP-binding subunit HslU	1.7463551810762	9.55507673159028	FALSE
+pH	set2IT066		SMc02634	SMc02634		hypothetical protein	-1.80828573284013	-10.5209838261996	FALSE
+pH	set2IT065		SMc02634	SMc02634		hypothetical protein	-1.58113351167438	-9.60239041253325	FALSE
+pH	set2IT065		SMc02636	SMc02636		hypothetical protein	-2.80402845944893	-5.20878301206099	FALSE
+pH	set2IT062		SMc02636	SMc02636		hypothetical protein	3.74851202726453	13.5054921674609	FALSE
+pH	set2IT061		SMc02636	SMc02636		hypothetical protein	4.04056653942048	17.3108100699896	FALSE
+pH	set2IT062		SMc02639	SMc02639		transcriptional regulator	2.16774389111999	6.25921800783433	FALSE
+pH	set2IT066		SMc02684	SMc02684		hydrolase/peptidase	1.68673823088742	12.0409210086341	FALSE
+pH	set2IT065		SMc02684	SMc02684		hydrolase/peptidase	1.7545630085268	11.8959315291329	FALSE
+pH	set2IT065		SMc03961	SMc03961		sulfolipid (UDP-sulfoquinovose) biosynthesis protein	1.4195406609919	8.20378310439767	FALSE
+pH	set2IT066		SMc03963	SMc03963		sulfolipid biosynthesis protein	1.3405509245767	6.67685739301811	FALSE
+pH	set2IT062		SMc03969	SMc03969		hypothetical protein	2.9281291519743	17.616989298659	FALSE
+pH	set2IT061		SMc03969	SMc03969		hypothetical protein	3.16401285117057	21.4117447580519	FALSE
+pH	set2IT061		SMc04043	SMc04043		hypothetical protein	1.71016922507427	9.22552767686127	FALSE
+pH	set2IT062		SMc04043	SMc04043		hypothetical protein	1.88871386165454	6.81021475290264	FALSE
+pH	set2IT065		SMc04081	SMc04081		glycosyl transferase (sulfolipid biosynthesis) protein	1.41996088566938	11.2887230902354	FALSE
+pH	set2IT066		SMc04081	SMc04081		glycosyl transferase (sulfolipid biosynthesis) protein	1.5195788112544	9.41173262233888	FALSE
+pH	set2IT066		SMc04091	SMc04091		heat shock protein HtpX	-1.19910927805843	-5.38337699152773	FALSE
+pH	set2IT066		SMc04209	SMc04209		hypothetical protein	-1.92198324601358	-8.75186462010295	FALSE
+pH	set2IT065		SMc04209	SMc04209		hypothetical protein	-1.4326415204708	-5.43200718799435	FALSE
+pH	set2IT065		SMc04212	SMc04212		sensor histidine kinase transmembrane protein	-1.64704339159033	-7.16830956037704	FALSE
+pH	set2IT066		SMc04339	SMc04339		hypothetical protein	-1.41132286571641	-7.74252701342722	FALSE
+pH	set2IT065		SMc04339	SMc04339		hypothetical protein	-1.30313566318172	-7.93561194992256	FALSE
+pH	set2IT065		SMc04340	SMc04340		oxidoreductase	-1.49428105091535	-9.01097470358084	FALSE
+pH	set2IT066		SMc04340	SMc04340		oxidoreductase	-1.46956049934552	-7.50369957886242	FALSE
+pH	set2IT066		SMc04381	SMc04381		hypothetical protein	1.36291090014407	7.54572620595499	FALSE
+stress	set4IT053	Aluminum chloride hydrate	SM_b20043	SM_b20043		hypothetical protein	-2.14760923091831	-7.74978610847571	FALSE
+stress	set4IT053	Aluminum chloride hydrate	SM_b21487	SM_b21487		cytochrome o ubiquinol oxidase subunit II	1.60160813159098	9.36535969305438	FALSE
+stress	set4IT053	Aluminum chloride hydrate	SM_b21488	SM_b21488		cytochrome o ubiquinol oxidase subunit I	1.10849996787388	6.93062841895628	FALSE
+stress	set4IT053	Aluminum chloride hydrate	SMc02577	SMc02577		ATP-dependent protease ATP-binding subunit HslU	1.39627871346276	6.44668552014717	FALSE
+stress	set4IT053	Aluminum chloride hydrate	SMc04209	SMc04209		hypothetical protein	-1.64460905855183	-6.20329604391385	FALSE
+stress	set3IT043	Cisplatin	SMc00228	SMc00228		ATP-dependent DNA helicase RecG	-2.36946953915111	-8.99468215991069	TRUE
+stress	set3IT042	Cisplatin	SMc00228	SMc00228		ATP-dependent DNA helicase RecG	-1.87134466126165	-7.84749779772519	TRUE
+stress	set3IT042	Cisplatin	SMc01457	SMc01457		transport transmembrane protein	-1.29500396868062	-5.95693023148278	FALSE
+stress	set3IT042	Cisplatin	SMc02236	SMc02236		hypothetical protein	-3.33147798142662	-6.76830865928737	FALSE
+stress	set3IT043	Cisplatin	SMc02237	SMc02237		ATP-dependent helicase	-3.90808250521106	-16.2575936101175	TRUE
+stress	set3IT042	Cisplatin	SMc02237	SMc02237		ATP-dependent helicase	-3.32986627977493	-13.8735046746234	TRUE
+stress	set3IT043	Cisplatin	SMc02635	SMc02635		DNA repair protein RecO	-4.36242534625979	-8.98087966516702	TRUE
+stress	set3IT042	Cisplatin	SMc02635	SMc02635		DNA repair protein RecO	-3.85240905696084	-7.58270708128305	TRUE
+stress	set3IT043	Cisplatin	SMc02854	SMc02854		signal peptide protein	1.2783501505589	6.98314554358133	FALSE
+stress	set3IT043	Cisplatin	SMc03788	SMc03788		DNA polymerase III subunit alpha	-2.650028730929	-12.5929368485134	TRUE
+stress	set3IT042	Cisplatin	SMc03788	SMc03788		DNA polymerase III subunit alpha	-2.19449042702241	-12.0048560727373	TRUE
+stress	set3IT043	Cisplatin	SMc03789	SMc03789		hypothetical protein	-3.08781889573314	-5.80855038994407	TRUE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc00171	SMc00171		hypothetical protein	1.87617512069183	11.6067322740001	FALSE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc01848	SMc01848		hypothetical protein	2.10649238193201	12.6887959353576	FALSE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc02270	SMc02270		capsular polysaccharide biosynthesis\export transmembrane protein	1.94154977053244	17.4728363254759	FALSE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc02271	SMc02271		ribitol type dehydrogenase	1.64841008760636	11.0200686817146	FALSE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc02490	SMc02490		hypothetical protein	1.7675227463509	9.44442750109041	FALSE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc03961	SMc03961		sulfolipid (UDP-sulfoquinovose) biosynthesis protein	1.94319599752683	13.6309787280607	FALSE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc03963	SMc03963		sulfolipid biosynthesis protein	1.48808792716286	10.4133068696709	FALSE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc04081	SMc04081		glycosyl transferase (sulfolipid biosynthesis) protein	2.35024281427057	17.6103468618034	FALSE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc04128	SMc04128		heavy metal transporting ATPase	1.08966822923754	7.41475799129299	TRUE
+stress	set1IT039	Cobalt chloride hexahydrate	SMc04167	SMc04167		histidine-rich transporter transmembrane protein	1.58590462234522	12.0905071559513	TRUE
+stress	set2IT057	D-Cycloserine	SM_b20039	SM_b20039		transcriptional regulator	-2.24463325707561	-8.54600221314261	TRUE
+stress	set2IT057	D-Cycloserine	SM_b20146	SM_b20146		pyridoxal phosphate biosynthetic protein	2.59360540614825	5.71077809085059	FALSE
+stress	set2IT057	D-Cycloserine	SMc00325	SMc00325		hypothetical protein	1.63734939251754	8.66897719007645	FALSE
+stress	set2IT057	D-Cycloserine	SMc00359	SMc00359		hypothetical protein	-1.34466594146918	-6.17614174697376	FALSE
+stress	set2IT057	D-Cycloserine	SMc00483	SMc00483		glutamate racemase	-4.30850491321927	-7.42743048356391	FALSE
+stress	set2IT057	D-Cycloserine	SMc00710	SMc00710		histidinol-phosphate aminotransferase	2.55720079585058	6.24036702719984	FALSE
+stress	set2IT057	D-Cycloserine	SMc00904	SMc00904		hypothetical protein	1.50628156853303	5.37389528147499	FALSE
+stress	set2IT057	D-Cycloserine	SMc01131	SMc01131		hypothetical protein	1.70304760726588	5.32599046481302	FALSE
+stress	set2IT057	D-Cycloserine	SMc01193	SMc01193		hypothetical protein	1.40598142032686	10.376742577386	FALSE
+stress	set2IT057	D-Cycloserine	SMc01256	SMc01256		L-serine dehydratase	1.74559691482064	11.6181318809319	FALSE
+stress	set2IT057	D-Cycloserine	SMc01885	SMc01885		aminopeptidase P protein	1.49814691445722	8.71887275968756	FALSE
+stress	set2IT057	D-Cycloserine	SMc02136	SMc02136		Hsp33-like chaperonin	1.33403817982456	5.8769019245078	FALSE
+stress	set2IT057	D-Cycloserine	SMc02181	SMc02181		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	1.24919909159076	8.42386251197204	FALSE
+stress	set2IT057	D-Cycloserine	SMc03932	SMc03932		sarcosine oxidase subunit delta	2.28150119134496	8.92332921406236	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SM_b20676	SM_b20676		hypothetical protein	-1.56213593515467	-6.97647974866742	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SM_b20998	SM_b20998		hypothetical protein	-1.23008795505953	-5.10250652906797	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SM_b21009	SM_b21009		glycerol kinase	1.06423945144069	9.21875353994571	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SM_b21416	SM_b21416		glucose-1-phosphate cytidylyltransferase	-1.09419848334949	-5.55964896245313	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SM_b21418	SM_b21418		NDP-hexose 3-C-methyltransferase	-1.34341877303519	-8.86333607076204	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SM_b21425	SM_b21425		hypothetical protein	-1.11043117873768	-6.52008551532274	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SM_b21426	SM_b21426		sugar nucleotide oxidoreductaseepimerase	-1.14439896950554	-7.497231426823	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SMc00255	SMc00255		hypothetical protein	-2.04055827997895	-9.86616716072544	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SMc00537	SMc00537		transporter	-1.48492060984156	-8.3736175376495	TRUE
+stress	set2IT054	Fusidic acid sodium salt	SMc00826	SMc00826		16S ribosomal RNA methyltransferase RsmE	1.41111664898271	6.72130132106665	TRUE
+stress	set2IT054	Fusidic acid sodium salt	SMc01365	SMc01365		exoribonuclease II protein	-1.25531090682867	-9.1352185725508	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SMc01457	SMc01457		transport transmembrane protein	-1.38619382273528	-7.11920809261888	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SMc01458	SMc01458		transporter	-1.31549119657449	-7.1341022808019	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SMc02785	SMc02785		lytic murein transglycosylase A protein	-1.19926726226615	-5.21644960231162	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SMc03923	SMc03923		glucose-1-phosphate adenylyltransferase	-1.30024162897933	-8.45687176707543	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SMc04043	SMc04043		hypothetical protein	-2.03650415659669	-9.38101662820686	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SMc04209	SMc04209		hypothetical protein	-3.29841461341999	-9.13197000629265	FALSE
+stress	set2IT054	Fusidic acid sodium salt	SMc04340	SMc04340		oxidoreductase	-1.22649235106529	-7.92810217821306	FALSE
+stress	set2IT056	MreB Perturbing Compound A22	SMc01001	SMc01001		hypothetical protein	-3.89378907204733	-14.167315380772	FALSE
+stress	set2IT056	MreB Perturbing Compound A22	SMc01969	SMc01969		hypothetical protein	-1.4983960063336	-6.45237688917404	FALSE
+stress	set2IT056	MreB Perturbing Compound A22	SMc02076	SMc02076		cardiolipin synthetase transmembrane protein	-1.54685217121881	-10.0920639105792	FALSE
+stress	set2IT056	MreB Perturbing Compound A22	SMc02270	SMc02270		capsular polysaccharide biosynthesis\export transmembrane protein	1.38504536426907	12.2426967893188	FALSE
+stress	set2IT056	MreB Perturbing Compound A22	SMc02271	SMc02271		ribitol type dehydrogenase	1.38656953630158	10.3379388485092	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SM_b20048	SM_b20048		transcriptional regulator	-1.94847403267504	-5.89258798579149	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SM_b20146	SM_b20146		pyridoxal phosphate biosynthetic protein	1.76579538980785	5.64542578303533	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SM_b20333	SM_b20333		transporter protein	1.37038455625213	9.8085328650603	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SM_b20346	SM_b20346		efflux protein	1.06546610258773	6.80466434377849	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SM_b20847	SM_b20847		LysR family transcriptional regulator	2.37159420561007	12.2192613513172	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SM_b21128	SM_b21128		hypothetical protein	-1.3951414517391	-5.22565830462883	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SM_b21631	SM_b21631		carboxynorspermidine decarboxylase	1.13676646100175	6.46244934973447	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SM_b21676	SM_b21676		hypothetical protein	2.32741748848293	6.76356010117237	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMa1641	SMa1641		NreB protein	-6.55298189331434	-8.98936739195577	TRUE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00093	SMc00093		choline dehydrogenase	1.73554502548612	11.6803562064803	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00094	SMc00094		betaine aldehyde dehydrogenase	1.27915214024209	6.80705769954278	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00240	SMc00240		hypothetical protein	2.38446486857334	16.6843530153991	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00339	SMc00339		adenylate cyclase	1.66239914738248	8.15775766706486	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00585	SMc00585		leucyl aminopeptidase	-2.99970064569857	-6.96598792271911	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00618	SMc00618		polyphosphate kinase	1.87648067980388	12.4600228696349	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00737	SMc00737		hypothetical protein	1.81921544028934	10.028013138229	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00770	SMc00770		putrescine-binding periplasmic protein	1.16064586970911	5.14734624122808	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00771	SMc00771		putrescine ABC transporter ATP-binding protein	1.10131300765731	5.50617161978398	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00820	SMc00820		transcriptional regulator	1.88639653113982	8.44659574224733	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00857	SMc00857		protease	-2.25814958868554	-6.74771099359883	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00878	SMc00878		transcriptional regulator	1.29947269422879	6.77298174003173	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00933	SMc00933		hypothetical protein	2.1971969744402	9.09279817970146	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00948	SMc00948		glutamine synthetase	-1.52808965107547	-7.75248059076122	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc00960	SMc00960		hypothetical protein	-1.17585562128798	-5.26493200739424	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc01112	SMc01112		hypothetical protein	2.04216271821911	5.52809462618544	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc01202	SMc01202		lipoprotein	1.85210135924851	9.1245754714762	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc01261	SMc01261		transporter transmembrane protein	2.58007414226164	6.37754992302201	TRUE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc01272	SMc01272		hypothetical protein	1.20718637762051	5.16973385087156	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc01273	SMc01273		S-formylglutathione hydrolase	2.39923472064537	15.9947744507828	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc01457	SMc01457		transport transmembrane protein	-1.49272257731714	-6.27228639263555	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc01764	SMc01764		arginyl-tRNA-protein transferase	-1.40951094681344	-5.79336286697857	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc01885	SMc01885		aminopeptidase P protein	-3.27583951625752	-7.69364581782521	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc02175	SMc02175		transcriptional regulator	1.65459250360574	6.72687989161346	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc02370	SMc02370		aminopeptidase N	-1.90675014449957	-13.0181162888884	TRUE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc02846	SMc02846		sugar kinase	1.55917488277303	7.99839424698542	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc03016	SMc03016		transcriptional regulator	1.42897965469227	5.01319130673143	FALSE
+stress	set1IT038	Nickel (II) chloride hexahydrate	SMc04012	SMc04012		oligoendopeptidase F protein	-1.0559331155873	-6.33002680044314	FALSE
+stress	set1IT037	Nickel (II) chloride hexahydrate	SMc04128	SMc04128		heavy metal transporting ATPase	1.07998963728535	6.72292941630065	TRUE
+stress	set1IT042	Paraquat dichloride	SM_b20146	SM_b20146		pyridoxal phosphate biosynthetic protein	2.03416716938889	5.44384997996748	FALSE
+stress	set1IT043	Paraquat dichloride	SMc00026	SMc00026		hypothetical protein	1.85726552452639	11.0295925478493	FALSE
+stress	set1IT042	Paraquat dichloride	SMc00710	SMc00710		histidinol-phosphate aminotransferase	1.63209627950332	5.60841071941956	FALSE
+stress	set1IT043	Paraquat dichloride	SMc00710	SMc00710		histidinol-phosphate aminotransferase	2.45950381131137	6.76669323103626	FALSE
+stress	set1IT043	Paraquat dichloride	SMc01193	SMc01193		hypothetical protein	1.43125810218147	6.28012256686059	FALSE
+stress	set3IT039	Paraquat dichloride	SMc01217	SMc01217		transport transmembrane protein	-4.59209414211657	-12.1228016510287	FALSE
+stress	set3IT038	Paraquat dichloride	SMc01217	SMc01217		transport transmembrane protein	-3.9789388434051	-8.15523740922653	FALSE
+stress	set1IT042	Paraquat dichloride	SMc01217	SMc01217		transport transmembrane protein	-2.11701016312071	-10.3113792769568	FALSE
+stress	set1IT043	Paraquat dichloride	SMc01846	SMc01846		hydrolase glycosidase	1.26817279802481	7.64414470596755	FALSE
+stress	set1IT042	Paraquat dichloride	SMc03932	SMc03932		sarcosine oxidase subunit delta	1.58294458750862	9.63725021115584	FALSE
+stress	set1IT043	Paraquat dichloride	SMc03932	SMc03932		sarcosine oxidase subunit delta	1.70590350361763	6.05597355556714	FALSE
+stress	set4IT050	Polymyxin B sulfate	SM_b20450	SM_b20450		regulatory protein	-1.75555730900543	-7.73072904339909	FALSE
+stress	set4IT050	Polymyxin B sulfate	SM_b21416	SM_b21416		glucose-1-phosphate cytidylyltransferase	-2.09499230167604	-5.53545578878114	FALSE
+stress	set4IT050	Polymyxin B sulfate	SM_b21417	SM_b21417		CDP-glucose 4,6-dehydratase	-2.53308416633705	-5.94536413258415	FALSE
+stress	set4IT050	Polymyxin B sulfate	SM_b21418	SM_b21418		NDP-hexose 3-C-methyltransferase	-2.09301898815563	-6.04177222712534	FALSE
+stress	set4IT050	Polymyxin B sulfate	SM_b21426	SM_b21426		sugar nucleotide oxidoreductaseepimerase	-2.1444577089864	-6.38815525889082	FALSE
+stress	set4IT050	Polymyxin B sulfate	SMc00026	SMc00026		hypothetical protein	1.4965909393311	5.72586068418943	FALSE
+stress	set4IT050	Polymyxin B sulfate	SMc00948	SMc00948		glutamine synthetase	-1.4221057018872	-5.34649640088658	FALSE
+stress	set4IT050	Polymyxin B sulfate	SMc01846	SMc01846		hydrolase glycosidase	1.25149705282305	6.15875793415237	FALSE
+stress	set4IT050	Polymyxin B sulfate	SMc02181	SMc02181		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	1.22649839146958	7.05615688243729	FALSE
+stress	set4IT050	Polymyxin B sulfate	SMc02577	SMc02577		ATP-dependent protease ATP-binding subunit HslU	1.82773939803514	5.4195044690724	FALSE
+stress	set4IT050	Polymyxin B sulfate	SMc04209	SMc04209		hypothetical protein	-5.13959669273999	-11.313456482568	FALSE
+stress	set3IT046	Sisomicin sulfate salt	SM_b20676	SM_b20676		hypothetical protein	-2.711553455784	-7.37947653702674	FALSE
+stress	set3IT046	Sisomicin sulfate salt	SM_b21183	SM_b21183		molecular chaperone HtpG	1.21909485697237	7.82087372998536	FALSE
+stress	set3IT046	Sisomicin sulfate salt	SMc00406	SMc00406		4Fe-4S ferredoxin	-1.14193249631726	-6.15398514219661	TRUE
+stress	set3IT046	Sisomicin sulfate salt	SMc00416	SMc00416		hypothetical protein	-3.05303337029551	-7.26389650936298	TRUE
+stress	set3IT046	Sisomicin sulfate salt	SMc00735	SMc00735		glutamyl-Q tRNA(Asp) synthetase	-1.24146944503413	-5.84646012037667	FALSE
+stress	set3IT046	Sisomicin sulfate salt	SMc00897	SMc00897		PMBA protein	-1.42061013498404	-5.61821841557218	FALSE
+stress	set3IT046	Sisomicin sulfate salt	SMc01106	SMc01106		small heat shock protein	-1.36096779252639	-5.09436337996476	FALSE
+stress	set3IT046	Sisomicin sulfate salt	SMc01457	SMc01457		transport transmembrane protein	-1.44999799746686	-5.61765818297354	FALSE
+stress	set3IT046	Sisomicin sulfate salt	SMc01458	SMc01458		transporter	-1.5118069618808	-5.2801791807664	FALSE
+stress	set3IT046	Sisomicin sulfate salt	SMc02575	SMc02575		ATP-dependent protease peptidase subunit	-5.0819308665412	-14.9162659829888	TRUE
+stress	set3IT046	Sisomicin sulfate salt	SMc02577	SMc02577		ATP-dependent protease ATP-binding subunit HslU	1.43879060988647	7.09891343736966	TRUE
+stress	set2IT052	Sodium Chloride	SMc01019	SMc01019		hypothetical protein	-1.85677545556126	-7.84606642097423	FALSE
+stress	set2IT052	Sodium Chloride	SMc04381	SMc04381		hypothetical protein	1.33672602788206	9.20281982566477	FALSE
+stress	set4IT049	Sodium Chlorite	SMc00144	SMc00144		molybdenum cofactor biosynthesis protein A	-1.98916207145076	-7.14078784037871	TRUE
+stress	set4IT049	Sodium Chlorite	SMc00237	SMc00237		molybdenum cofactor biosynthesis protein MoaC	-2.06654263105532	-5.45301708499354	TRUE
+stress	set4IT049	Sodium Chlorite	SMc00238	SMc00238		molybdopterin biosynthesis protein	-1.69580378412321	-6.85456898043846	FALSE
+stress	set4IT049	Sodium Chlorite	SMc01281	SMc01281		sulfite oxidase subunit YedY	-1.85467285178186	-5.54170432131006	TRUE
+stress	set4IT049	Sodium Chlorite	SMc01282	SMc01282		sulfite oxidase subunit YedZ	-1.81036187583232	-8.79930115452864	TRUE
+stress	set4IT049	Sodium Chlorite	SMc01457	SMc01457		transport transmembrane protein	-2.32147855120831	-7.89603327865418	FALSE
+stress	set4IT049	Sodium Chlorite	SMc01458	SMc01458		transporter	-1.67246669508539	-5.48212883315743	FALSE
+stress	set4IT049	Sodium Chlorite	SMc01716	SMc01716		sensor histidine kinase transmembrane protein	-3.37865173514098	-5.28499878107954	TRUE
+stress	set4IT049	Sodium Chlorite	SMc02854	SMc02854		signal peptide protein	1.2512979032422	6.49505395751684	FALSE
+stress	set4IT049	Sodium Chlorite	SMc03015	SMc03015		transcriptional regulator	1.13433520879692	6.2557316815773	FALSE
+stress	set4IT049	Sodium Chlorite	SMc03197	SMc03197		molybdate ABC transporter permease	-2.32314981619186	-7.25095825685366	TRUE
+stress	set2IT050	Sodium nitrite	SMc02070	SMc02070		hypothetical protein	-1.25991526790584	-7.18659886672777	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SM_b20146	SM_b20146		pyridoxal phosphate biosynthetic protein	2.8440285292002	6.45106975426252	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SM_b21430	SM_b21430		iron ABC transporter permease	1.09443756829014	6.57731941579617	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SM_b21431	SM_b21431		hypothetical protein	1.19869048159437	5.36199993119822	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SMc00325	SMc00325		hypothetical protein	2.12556399295236	12.5131151650239	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SMc00710	SMc00710		histidinol-phosphate aminotransferase	3.50696713189474	6.83733308661746	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SMc00786	SMc00786		periplasmic dipeptide-binding protein	1.39281759756589	10.5993971429913	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SMc00787	SMc00787		peptide ABC transporter permease	1.45233396656123	5.28231299013375	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SMc00790	SMc00790		peptide ABC transporter ATP-binding protein	1.21476160742644	8.32774102385956	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SMc01193	SMc01193		hypothetical protein	1.56699813464937	8.83092197199923	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SMc01885	SMc01885		aminopeptidase P protein	1.56314584243578	8.41918406959254	FALSE
+stress	set2IT051	Sodium perchlorate monohydrate	SMc03932	SMc03932		sarcosine oxidase subunit delta	2.16993792676795	7.84658928185578	FALSE
+stress	set3IT041	Thallium(I) acetate	SMc01584	SMc01584		hypothetical protein	-1.88735696519546	-5.20357729631979	FALSE
+stress	set1IT040	copper (II) chloride dihydrate	SM_b20015	SM_b20015		sugar ABC transporter permease	-1.06313231911202	-5.23328376577991	FALSE
+stress	set1IT040	copper (II) chloride dihydrate	SM_b20017	SM_b20017		sugar ABC transporter ATP-binding protein	-1.22292722885647	-5.13954485173707	FALSE
+stress	set3IT037	copper (II) chloride dihydrate	SM_b20346	SM_b20346		efflux protein	-1.51905581192641	-5.05444731290799	FALSE
+stress	set1IT040	copper (II) chloride dihydrate	SM_b21487	SM_b21487		cytochrome o ubiquinol oxidase subunit II	-1.33935917110255	-7.12811984181789	TRUE
+stress	set1IT040	copper (II) chloride dihydrate	SM_b21488	SM_b21488		cytochrome o ubiquinol oxidase subunit I	-1.96175592232157	-11.872480513915	TRUE
+stress	set3IT037	copper (II) chloride dihydrate	SM_b21488	SM_b21488		cytochrome o ubiquinol oxidase subunit I	-1.37138745784438	-5.05172775210794	TRUE
+stress	set1IT040	copper (II) chloride dihydrate	SM_b21516	SM_b21516		hypothetical protein	1.1062828092415	7.6533961791947	FALSE
+stress	set3IT037	copper (II) chloride dihydrate	SM_b21516	SM_b21516		hypothetical protein	2.04293476745677	7.41785309487198	FALSE
+stress	set3IT037	copper (II) chloride dihydrate	SMa2412	SMa2412		RhrA transcriptional activator	-1.0425563420355	-5.06626639723548	FALSE
+stress	set1IT040	copper (II) chloride dihydrate	SMc01204	SMc01204		transmembrane oxidoreductase	-1.48069032342231	-5.93276902272443	FALSE
+stress	set3IT037	copper (II) chloride dihydrate	SMc01575	SMc01575		hypothetical protein	-1.3433497059223	-5.6080394952462	FALSE
+stress	set3IT037	copper (II) chloride dihydrate	SMc01716	SMc01716		sensor histidine kinase transmembrane protein	1.85672865707491	9.6522808393587	FALSE
+stress	set1IT041	sodium fluoride	SMc01273	SMc01273		S-formylglutathione hydrolase	-2.31231274272527	-6.82850376343286	FALSE
+stress	set1IT041	sodium fluoride	SMc01274	SMc01274		camphor resistance protein CrcB	-5.7376791981748	-12.1388400104283	TRUE
+stress	set1IT041	sodium fluoride	SMc04128	SMc04128		heavy metal transporting ATPase	-1.09261011066667	-5.35380797919743	FALSE

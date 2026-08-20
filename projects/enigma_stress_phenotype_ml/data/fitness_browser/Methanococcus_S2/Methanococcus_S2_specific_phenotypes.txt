@@ -1,0 +1,392 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+formate no stress control	set15S706		MMP_RS06535	MMP_RS06535		2-oxoacid:acceptor oxidoreductase family protein	-2.33932788167031	-9.07765447786262	FALSE
+formate no stress control	set15S707		MMP_RS06535	MMP_RS06535		2-oxoacid:acceptor oxidoreductase family protein	-2.15204182286738	-8.77475928717877	FALSE
+formate no stress control	set15S705		MMP_RS06535	MMP_RS06535		2-oxoacid:acceptor oxidoreductase family protein	-1.6358339575634	-7.14374616093115	FALSE
+formate no stress control	set15S707		MMP_RS06545	MMP_RS06545		ferredoxin family protein	-1.95674768723813	-5.47867566215194	FALSE
+formate no stress control	set15S706		MMP_RS06545	MMP_RS06545		ferredoxin family protein	-1.72544774673508	-7.34671733771636	FALSE
+formate no stress control	set15S705		MMP_RS06545	MMP_RS06545		ferredoxin family protein	-1.60871036490434	-6.79606431129629	FALSE
+iron	set7IT033	Iron (II) chloride tetrahydrate	MMP_RS06300	MMP_RS06300		ABC transporter substrate-binding protein	1.22223104402179	5.34162757844861	FALSE
+mixed community	set1IT069	1,3-Propanediol	MMP_RS02225	MMP_RS02225		carbohydrate kinase family protein	-1.63692262276341	-9.54419247331825	FALSE
+mixed community	set1IT067	1,3-Propanediol	MMP_RS03210	MMP_RS03210		tRNA guanosine(15) transglycosylase TgtA	-1.49411568647342	-11.8180358251111	FALSE
+mixed community	set1IT068	1,3-Propanediol	MMP_RS03410	MMP_RS03410		hypothetical protein	-1.34668656966039	-8.62359122626568	FALSE
+mixed community	set1IT069	1,3-Propanediol	MMP_RS03410	MMP_RS03410		hypothetical protein	-1.33179275837573	-9.68716270558136	FALSE
+mixed community	set1IT067	1,3-Propanediol	MMP_RS03410	MMP_RS03410		hypothetical protein	-1.2275466017533	-7.21893450723616	FALSE
+mixed community	set1IT068	1,3-Propanediol	MMP_RS03685	MMP_RS03685		Mrp/NBP35 family ATP-binding protein	-2.20358033864345	-13.5258191224035	FALSE
+mixed community	set1IT069	1,3-Propanediol	MMP_RS03685	MMP_RS03685		Mrp/NBP35 family ATP-binding protein	-1.9348629824432	-13.2578974268266	FALSE
+mixed community	set1IT067	1,3-Propanediol	MMP_RS03685	MMP_RS03685		Mrp/NBP35 family ATP-binding protein	-1.86326233449863	-11.2666238715505	FALSE
+mixed community	set1IT067	1,3-Propanediol	MMP_RS03755	MMP_RS03755		MarR family transcriptional regulator	-1.44502752479733	-11.5819499579553	FALSE
+mixed community	set1IT069	1,3-Propanediol	MMP_RS07795	MMP_RS07795		site-2 protease family protein	-1.04566628517829	-6.50859387385394	FALSE
+mixed community	set1IT068	1,3-Propanediol	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-3.11936889902852	-8.06303751626634	FALSE
+mixed community	set1IT069	1,3-Propanediol	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-3.04569721581807	-11.2820203727325	FALSE
+mixed community	set1IT067	1,3-Propanediol	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-2.91906081505757	-7.74019118311151	FALSE
+mixed community	set1IT065	1,3-Propanediol	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-1.52207230711197	-7.05682975415029	FALSE
+mixed community	set1IT059	Ethanol	MMP_RS00235	MMP_RS00235		HDIG domain-containing protein	-1.17938042927522	-6.63009042743491	FALSE
+mixed community	set1IT060	Ethanol	MMP_RS02225	MMP_RS02225		carbohydrate kinase family protein	-1.56987788034065	-6.47268233083319	FALSE
+mixed community	set1IT059	Ethanol	MMP_RS02225	MMP_RS02225		carbohydrate kinase family protein	-1.49593472185212	-6.65983051725374	FALSE
+mixed community	set1IT058	Ethanol	MMP_RS02645	MMP_RS02645		ArsR family transcriptional regulator	-3.22363041869047	-13.3373940843501	FALSE
+mixed community	set1IT058	Ethanol	MMP_RS02650	MMP_RS02650		flavodoxin family protein	-2.47467889145147	-11.944725687734	FALSE
+mixed community	set1IT060	Ethanol	MMP_RS02775	MMP_RS02775		hypothetical protein	-1.18733586351157	-8.44935723428209	FALSE
+mixed community	set1IT060	Ethanol	MMP_RS02785	MMP_RS02785		MarR family transcriptional regulator	-1.43991642359291	-7.86695477487514	FALSE
+mixed community	set1IT057	Ethanol	MMP_RS02785	MMP_RS02785		MarR family transcriptional regulator	-1.23839055074955	-6.60182174103515	FALSE
+mixed community	set1IT058	Ethanol	MMP_RS03410	MMP_RS03410		hypothetical protein	-2.47040676502986	-12.1482753826459	FALSE
+mixed community	set1IT059	Ethanol	MMP_RS03410	MMP_RS03410		hypothetical protein	-2.34100576072508	-12.3594004884969	FALSE
+mixed community	set1IT060	Ethanol	MMP_RS03410	MMP_RS03410		hypothetical protein	-2.17343856370383	-11.2898233276729	FALSE
+mixed community	set1IT055	Ethanol	MMP_RS03410	MMP_RS03410		hypothetical protein	-1.29373767618601	-5.96875593628853	FALSE
+mixed community	set1IT058	Ethanol	MMP_RS03685	MMP_RS03685		Mrp/NBP35 family ATP-binding protein	-4.65539121045606	-14.0345111150614	FALSE
+mixed community	set1IT060	Ethanol	MMP_RS05110	MMP_RS05110		16S ribosomal RNA methyltransferase A	-1.83317002896629	-10.4432265581216	FALSE
+mixed community	set1IT058	Ethanol	MMP_RS05110	MMP_RS05110		16S ribosomal RNA methyltransferase A	-1.70944002749255	-7.66885548324498	FALSE
+mixed community	set1IT059	Ethanol	MMP_RS05110	MMP_RS05110		16S ribosomal RNA methyltransferase A	-1.511254467552	-5.12270252441548	FALSE
+mixed community	set1IT060	Ethanol	MMP_RS05125	MMP_RS05125		D-aminoacyl-tRNA deacylase	-1.74341319339	-11.5089005696507	FALSE
+mixed community	set1IT059	Ethanol	MMP_RS05125	MMP_RS05125		D-aminoacyl-tRNA deacylase	-1.72260252498595	-12.0819400078849	FALSE
+mixed community	set1IT058	Ethanol	MMP_RS05125	MMP_RS05125		D-aminoacyl-tRNA deacylase	-1.51489348093599	-9.99204807338659	FALSE
+mixed community	set1IT055	Ethanol	MMP_RS05125	MMP_RS05125		D-aminoacyl-tRNA deacylase	-1.07022324690754	-5.36353747220754	FALSE
+mixed community	set1IT058	Ethanol	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-7.95325616139457	-6.95559384398703	FALSE
+mixed community	set1IT059	Ethanol	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-2.19912749135252	-7.53715099769694	FALSE
+mixed community	set1IT060	Ethanol	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-1.61093892218967	-6.04712412864255	FALSE
+mixed community	set1IT058	Ethanol	MMP_RS08575	MMP_RS08575		hypothetical protein	-1.25286976779165	-9.79239263884993	FALSE
+mixed community	set1IT058	Ethanol	MMP_RS08945	MMP_RS08945		hypothetical protein	-4.31891073525117	-15.9175959962391	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS00560	MMP_RS00560		cation:proton antiporter	1.3569912048156	5.28539527307692	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS00560	MMP_RS00560		cation:proton antiporter	1.81883206415025	7.90934433485418	FALSE
+mixed community	set1IT077	Ethanolamine	MMP_RS00565	MMP_RS00565		CBS domain-containing protein	1.4986163463512	5.24112595440888	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS00565	MMP_RS00565		CBS domain-containing protein	1.6823616699142	6.35776006067425	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS00565	MMP_RS00565		CBS domain-containing protein	2.25260042264931	5.33226592153664	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS00975	MMP_RS00975		HD domain-containing protein	1.26894245119519	7.30424938834661	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS02085	MMP_RS02085		inosine/xanthosine triphosphatase	-2.87102923443634	-5.33876222243786	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS02550	MMP_RS02550		helix-turn-helix transcriptional regulator	2.54366109272997	9.00495299450296	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS02550	MMP_RS02550		helix-turn-helix transcriptional regulator	3.67227980942944	13.1650752770865	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS02715	MMP_RS02715		molybdopterin molybdotransferase MoeA	-1.21408761871018	-5.29898634769961	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS03150	MMP_RS03150		phosphoglycerate mutase	1.44783958829954	6.83765393884585	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS03210	MMP_RS03210		tRNA guanosine(15) transglycosylase TgtA	-1.80010756075169	-5.85817501762354	FALSE
+mixed community	set1IT077	Ethanolamine	MMP_RS03685	MMP_RS03685		Mrp/NBP35 family ATP-binding protein	-1.94869131722448	-5.45736914790207	FALSE
+mixed community	set1IT077	Ethanolamine	MMP_RS04165	MMP_RS04165		TetR/AcrR family transcriptional regulator	1.6818061544106	5.81685534289046	FALSE
+mixed community	set1IT075	Ethanolamine	MMP_RS04165	MMP_RS04165		TetR/AcrR family transcriptional regulator	1.68489122822605	6.81420633560413	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS04165	MMP_RS04165		TetR/AcrR family transcriptional regulator	3.16687062655709	12.4515410077968	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS04210	MMP_RS04210		aldo/keto reductase	-1.81123265465934	-5.77677713782607	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS04210	MMP_RS04210		aldo/keto reductase	-1.41550186780927	-5.83595449365538	FALSE
+mixed community	set1IT075	Ethanolamine	MMP_RS04210	MMP_RS04210		aldo/keto reductase	-1.20253318703324	-7.02420167686012	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS04715	MMP_RS04715		CBS domain-containing protein	-1.55687581318375	-5.69967613619402	FALSE
+mixed community	set1IT077	Ethanolamine	MMP_RS04895	MMP_RS04895		AI-2E family transporter	-2.12247284510659	-10.6600108695676	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS04895	MMP_RS04895		AI-2E family transporter	-1.82620539112303	-7.85076402723148	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS04895	MMP_RS04895		AI-2E family transporter	-1.58361150801624	-8.5635686191115	FALSE
+mixed community	set1IT075	Ethanolamine	MMP_RS04895	MMP_RS04895		AI-2E family transporter	-1.0803682777676	-7.73620094296873	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS05145	MMP_RS05145		hypothetical protein	-1.40434552559925	-5.17939966995872	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS05625	MMP_RS05625		glycosyltransferase	-1.02546676748188	-5.10234423453809	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS07795	MMP_RS07795		site-2 protease family protein	-4.53065869430369	-7.41351651748219	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS07795	MMP_RS07795		site-2 protease family protein	-4.43661241195165	-5.59373116124427	FALSE
+mixed community	set1IT077	Ethanolamine	MMP_RS07795	MMP_RS07795		site-2 protease family protein	-3.74452946933582	-6.06198434995631	FALSE
+mixed community	set1IT075	Ethanolamine	MMP_RS07795	MMP_RS07795		site-2 protease family protein	-2.29508742423611	-8.57972610895014	FALSE
+mixed community	set1IT073	Ethanolamine	MMP_RS07795	MMP_RS07795		site-2 protease family protein	-1.89750592426285	-7.69884658293095	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS08285	MMP_RS08285		serine/threonine protein kinase	1.24274182707678	5.85558877195344	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS08575	MMP_RS08575		hypothetical protein	-2.86278987941059	-7.49081093280918	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS08575	MMP_RS08575		hypothetical protein	-1.97348615734574	-9.71365580568372	FALSE
+mixed community	set1IT077	Ethanolamine	MMP_RS08575	MMP_RS08575		hypothetical protein	-1.5948463303827	-6.79005228245314	FALSE
+mixed community	set1IT075	Ethanolamine	MMP_RS08850	MMP_RS08850		hypothetical protein	1.52199029643735	12.8746412853446	FALSE
+mixed community	set1IT077	Ethanolamine	MMP_RS08850	MMP_RS08850		hypothetical protein	2.2768112070866	17.8169952578361	FALSE
+mixed community	set1IT076	Ethanolamine	MMP_RS08850	MMP_RS08850		hypothetical protein	2.44692205112089	18.3431108731601	FALSE
+mixed community	set1IT078	Ethanolamine	MMP_RS08850	MMP_RS08850		hypothetical protein	3.1782943158469	22.4512300610373	FALSE
+nitrogen source	set7IT008	Adenosine	MMP_RS02225	MMP_RS02225		carbohydrate kinase family protein	13.2560706427032	89.1837815464741	FALSE
+nitrogen source	set7IT009	Adenosine	MMP_RS02225	MMP_RS02225		carbohydrate kinase family protein	13.3467142020027	98.5056696071521	FALSE
+nitrogen source	set7IT007	Adenosine	MMP_RS02225	MMP_RS02225		carbohydrate kinase family protein	13.9980264094209	44.5466439940593	FALSE
+nitrogen source	set7IT079	Adenosine	MMP_RS02225	MMP_RS02225		carbohydrate kinase family protein	14.0139623460207	72.6613600360322	FALSE
+nitrogen source	set7IT079	Adenosine	MMP_RS03610	MMP_RS03610		NCS2 family permease	2.40117725615851	9.05979102079019	FALSE
+nitrogen source	set7IT008	Adenosine	MMP_RS03610	MMP_RS03610		NCS2 family permease	2.44031720465884	9.97099749617274	FALSE
+nitrogen source	set7IT009	Adenosine	MMP_RS03610	MMP_RS03610		NCS2 family permease	3.00064079312932	10.8739095361794	FALSE
+nitrogen source	set7IT007	Adenosine	MMP_RS03610	MMP_RS03610		NCS2 family permease	3.68750238496438	13.0785790141423	FALSE
+nitrogen source	set7IT079	Adenosine	MMP_RS04425	MMP_RS04425		APC family permease	1.59802375510598	11.2659476548925	FALSE
+nitrogen source	set7IT079	Adenosine	MMP_RS08160	MMP_RS08160		EamA family transporter	4.67111707439385	15.5967868332699	TRUE
+nitrogen source	set6IT093	D-Alanine	MMP_RS00375	MMP_RS00375		ammonium transporter	-1.77968974435609	-7.72306237627808	FALSE
+nitrogen source	set6IT094	D-Alanine	MMP_RS00375	MMP_RS00375		ammonium transporter	-1.65049106903753	-7.58592839878139	FALSE
+nitrogen source	set6IT093	D-Alanine	MMP_RS01375	MMP_RS01375		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	-2.14297059264157	-13.0974001077893	FALSE
+nitrogen source	set6IT094	D-Alanine	MMP_RS01375	MMP_RS01375		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	-2.10409448731965	-12.6968141402781	FALSE
+nitrogen source	set6IT095	D-Alanine	MMP_RS01375	MMP_RS01375		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	-1.83858442678645	-11.4122093347379	FALSE
+nitrogen source	set6IT095	D-Alanine	MMP_RS07770	MMP_RS07770		alanine racemase	-3.38118385040181	-12.9894527149107	FALSE
+nitrogen source	set6IT093	D-Alanine	MMP_RS07770	MMP_RS07770		alanine racemase	-3.36162873698893	-13.5532586784463	FALSE
+nitrogen source	set6IT094	D-Alanine	MMP_RS07770	MMP_RS07770		alanine racemase	-3.28349002564827	-12.1868380743765	FALSE
+nitrogen source	set7IT082	D-Glucosamine Hydrochloride	MMP_RS00375	MMP_RS00375		ammonium transporter	-2.74898378660423	-12.8191219165296	FALSE
+nitrogen source	set7IT084	D-Glucosamine Hydrochloride	MMP_RS00375	MMP_RS00375		ammonium transporter	-2.74696424287707	-13.2748213883548	FALSE
+nitrogen source	set7IT083	D-Glucosamine Hydrochloride	MMP_RS00375	MMP_RS00375		ammonium transporter	-2.2574288488115	-11.2595121911212	FALSE
+nitrogen source	set7IT070	Gly-DL-Asp	MMP_RS00055	MMP_RS00055		DUF2254 domain-containing protein	1.04617224026991	7.26099272228386	FALSE
+nitrogen source	set7IT071	Gly-DL-Asp	MMP_RS00375	MMP_RS00375		ammonium transporter	1.44169041693135	7.39222407561091	FALSE
+nitrogen source	set7IT071	Gly-DL-Asp	MMP_RS01135	MMP_RS01135		molybdate ABC transporter substrate-binding protein	1.85809495484178	12.5214317640347	FALSE
+nitrogen source	set7IT070	Gly-DL-Asp	MMP_RS01135	MMP_RS01135		molybdate ABC transporter substrate-binding protein	1.97108492653297	13.1380819585683	FALSE
+nitrogen source	set7IT072	Gly-DL-Asp	MMP_RS01145	MMP_RS01145		ABC transporter ATP-binding protein	1.46010197820968	6.9746190781477	FALSE
+nitrogen source	set7IT071	Gly-DL-Asp	MMP_RS01145	MMP_RS01145		ABC transporter ATP-binding protein	1.99456270839126	8.61887562622014	FALSE
+nitrogen source	set7IT070	Gly-DL-Asp	MMP_RS01145	MMP_RS01145		ABC transporter ATP-binding protein	2.24589901509628	13.5620011443568	FALSE
+nitrogen source	set7IT074	Gly-Glu	MMP_RS00375	MMP_RS00375		ammonium transporter	2.11719061566879	13.5351755755551	FALSE
+nitrogen source	set7IT065	Glycine	MMP_RS00375	MMP_RS00375		ammonium transporter	2.33380611523664	9.72287219707749	FALSE
+nitrogen source	set7IT065	Glycine	MMP_RS01135	MMP_RS01135		molybdate ABC transporter substrate-binding protein	2.02264812563931	13.2770378640416	FALSE
+nitrogen source	set7IT065	Glycine	MMP_RS01145	MMP_RS01145		ABC transporter ATP-binding protein	1.97864574339176	7.76771619651039	FALSE
+nitrogen source	set7IT065	Glycine	MMP_RS08665	MMP_RS08665		hypothetical protein	1.37803540880373	7.50653225716372	FALSE
+nitrogen source	set6IT089	L-Alanine	MMP_RS00375	MMP_RS00375		ammonium transporter	-2.10074396174554	-5.65974133300048	FALSE
+nitrogen source	set6IT088	L-Alanine	MMP_RS00375	MMP_RS00375		ammonium transporter	-1.87210587955303	-5.43443211818186	FALSE
+nitrogen source	set6IT088	L-Alanine	MMP_RS01375	MMP_RS01375		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	-2.82763470669275	-16.8030135742231	FALSE
+nitrogen source	set6IT087	L-Alanine	MMP_RS01375	MMP_RS01375		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	-2.69715063162314	-16.1791309927637	FALSE
+nitrogen source	set6IT089	L-Alanine	MMP_RS01375	MMP_RS01375		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	-2.59495985353167	-16.4550006104729	FALSE
+nitrogen source	set7IT092	L-Carnitine hydrochloride	MMP_RS01145	MMP_RS01145		ABC transporter ATP-binding protein	1.45962449859075	7.55983828745404	FALSE
+nitrogen source	set7IT091	L-Carnitine hydrochloride	MMP_RS01145	MMP_RS01145		ABC transporter ATP-binding protein	1.62523685634067	9.45397188449883	FALSE
+nitrogen source	set6IT090	L-Glutamine	MMP_RS00375	MMP_RS00375		ammonium transporter	-1.42065531330243	-7.31351368279815	FALSE
+nitrogen source	set7IT089	L-Histidine	MMP_RS01190	MMP_RS01190		cadmium-translocating P-type ATPase	-2.62558064732374	-9.70755941945544	FALSE
+nitrogen source	set7IT088	L-Histidine	MMP_RS01190	MMP_RS01190		cadmium-translocating P-type ATPase	-2.62167307539392	-12.5253818878226	FALSE
+nitrogen source	set7IT090	L-Histidine	MMP_RS01190	MMP_RS01190		cadmium-translocating P-type ATPase	-1.57196155198391	-7.32318568119114	FALSE
+nitrogen source	set7IT087	L-Methionine	MMP_RS01375	MMP_RS01375		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	-2.02387541705561	-11.5716571464321	FALSE
+nitrogen source	set7IT085	L-Methionine	MMP_RS01375	MMP_RS01375		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	-1.77806224337224	-9.18514344503563	FALSE
+nitrogen source	set7IT086	L-Methionine	MMP_RS01375	MMP_RS01375		bifunctional ADP-dependent NAD(P)H-hydrate dehydratase/NAD(P)H-hydrate epimerase	-1.72323591702705	-10.6933468976557	FALSE
+nitrogen source	set7IT096	L-Ornithine	MMP_RS03560	MMP_RS03560		Na+/H+ antiporter NhaC family protein	-1.69093933214134	-11.572528753986	FALSE
+nitrogen source	set7IT094	L-Ornithine	MMP_RS03560	MMP_RS03560		Na+/H+ antiporter NhaC family protein	-1.51411952809994	-10.8534492017155	FALSE
+nitrogen source	set7IT095	L-Ornithine	MMP_RS03560	MMP_RS03560		Na+/H+ antiporter NhaC family protein	-1.25000183999054	-8.96110279782212	FALSE
+nitrogen source	set6IT069	casamino acids	MMP_RS00980	MMP_RS00980		hypothetical protein	1.12554519718563	5.19969042096158	FALSE
+nitrogen source	set7IT015	casamino acids	MMP_RS00980	MMP_RS00980		hypothetical protein	1.25271285367478	5.17696144174628	FALSE
+nitrogen source	set7IT015	casamino acids	MMP_RS04945	MMP_RS04945		hypothetical protein	2.21975601179571	8.3041888943578	FALSE
+nitrogen source	set7IT013	casamino acids	MMP_RS06300	MMP_RS06300		ABC transporter substrate-binding protein	1.70938129778932	5.60566670429193	FALSE
+nitrogen source	set6IT071	casamino acids	MMP_RS06300	MMP_RS06300		ABC transporter substrate-binding protein	1.82235740086205	5.36974557892505	FALSE
+nitrogen source	set7IT015	casamino acids	MMP_RS06300	MMP_RS06300		ABC transporter substrate-binding protein	1.92729227238793	6.13904960911674	FALSE
+nitrogen source	set6IT069	casamino acids	MMP_RS06300	MMP_RS06300		ABC transporter substrate-binding protein	2.06051724247264	5.46341040288335	FALSE
+nitrogen source	set7IT013	casamino acids	MMP_RS08850	MMP_RS08850		hypothetical protein	1.4318981573004	9.3217236260639	FALSE
+nitrogen source	set6IT070	casamino acids	MMP_RS08850	MMP_RS08850		hypothetical protein	1.44857636115022	9.40018835779803	FALSE
+nitrogen source	set6IT071	casamino acids	MMP_RS08850	MMP_RS08850		hypothetical protein	1.49309860847276	10.4587456086774	FALSE
+nitrogen source	set6IT069	casamino acids	MMP_RS08850	MMP_RS08850		hypothetical protein	1.6279483154616	9.73411880688755	FALSE
+nitrogen source	set7IT015	casamino acids	MMP_RS08850	MMP_RS08850		hypothetical protein	1.63019490680613	9.76550511390428	FALSE
+nutrient t1	set6IT023		MMP_RS03770	MMP_RS03770		hydroxylamine reductase	-1.4675379702557	-6.62741778586724	FALSE
+nutrient t1	set6IT022		MMP_RS03770	MMP_RS03770		hydroxylamine reductase	-1.36016627395236	-7.40045550336687	FALSE
+nutrient t1	set8IT008	L-Asparagine	MMP_RS00235	MMP_RS00235		HDIG domain-containing protein	-1.53198911002527	-8.20161743293177	FALSE
+nutrient t1	set8IT007	L-Asparagine	MMP_RS00235	MMP_RS00235		HDIG domain-containing protein	-1.44589362039536	-7.96294340988611	FALSE
+nutrient t1	set8IT009	L-Asparagine	MMP_RS00235	MMP_RS00235		HDIG domain-containing protein	-1.42923166016338	-7.23984957927995	FALSE
+nutrient t1	set8IT009	L-Asparagine	MMP_RS01155	MMP_RS01155		XRE family transcriptional regulator	1.46975121046866	10.469947785073	FALSE
+nutrient t1	set8IT008	L-Asparagine	MMP_RS01155	MMP_RS01155		XRE family transcriptional regulator	1.5027476111312	11.0765876278962	FALSE
+nutrient t1	set8IT007	L-Asparagine	MMP_RS01155	MMP_RS01155		XRE family transcriptional regulator	2.09656828457305	14.8675890423491	FALSE
+nutrient t1	set8IT003	L-Histidine	MMP_RS01190	MMP_RS01190		cadmium-translocating P-type ATPase	-2.2334902351798	-13.1157016586406	FALSE
+nutrient t1	set8IT001	L-Histidine	MMP_RS01190	MMP_RS01190		cadmium-translocating P-type ATPase	-1.70197079810282	-7.60436328749033	FALSE
+nutrient t1	set8IT002	L-Histidine	MMP_RS01190	MMP_RS01190		cadmium-translocating P-type ATPase	-1.58259361009975	-7.20622164132296	FALSE
+nutrient t1	set8IT004	L-Threonine	MMP_RS03755	MMP_RS03755		MarR family transcriptional regulator	-1.75190811369637	-9.78552411817245	FALSE
+nutrient t1	set8IT006	L-Threonine	MMP_RS03755	MMP_RS03755		MarR family transcriptional regulator	-1.42129405024844	-6.15652406744617	FALSE
+nutrient t1	set8IT005	L-Threonine	MMP_RS03755	MMP_RS03755		MarR family transcriptional regulator	-1.31735115967766	-6.24864075654949	FALSE
+nutrient t1	set8IT006	L-Threonine	MMP_RS05435	MMP_RS05435		5'/3'-nucleotidase SurE	2.21596125574932	7.28623819856685	FALSE
+nutrient t1	set8IT005	L-Threonine	MMP_RS05435	MMP_RS05435		5'/3'-nucleotidase SurE	2.47884932169031	6.50611499053483	FALSE
+nutrient t1	set8IT004	L-Threonine	MMP_RS05435	MMP_RS05435		5'/3'-nucleotidase SurE	2.60897882836946	6.46841852380893	FALSE
+nutrient t1	set8IT006	L-Threonine	MMP_RS07335	MMP_RS07335		tRNA (cytidine(56)-2'-O)-methyltransferase	-2.83890755932711	-6.68409791283869	FALSE
+nutrient t1	set8IT004	L-Threonine	MMP_RS07335	MMP_RS07335		tRNA (cytidine(56)-2'-O)-methyltransferase	-2.56675957753573	-6.71177008078953	FALSE
+nutrient t1	set8IT005	L-Threonine	MMP_RS07335	MMP_RS07335		tRNA (cytidine(56)-2'-O)-methyltransferase	-2.19510172951258	-5.29837156862947	FALSE
+nutrient t1	set8IT004	L-Threonine	MMP_RS07410	MMP_RS07410		4-demethylwyosine synthase TYW1	1.74072171071281	7.13497120822878	FALSE
+nutrient t1	set3IT031	Sodium acetate	MMP_RS02085	MMP_RS02085		inosine/xanthosine triphosphatase	-1.56092711755249	-8.72160342288668	FALSE
+nutrient t1	set3IT031	Sodium acetate	MMP_RS02550	MMP_RS02550		helix-turn-helix transcriptional regulator	2.49876224877699	9.35205649431066	FALSE
+nutrient t1	set3IT040	Sodium acetate	MMP_RS03210	MMP_RS03210		tRNA guanosine(15) transglycosylase TgtA	-1.53748958451142	-11.039055984356	FALSE
+nutrient t1	set3IT040	Sodium acetate	MMP_RS03470	MMP_RS03470		phosphoadenosine phosphosulfate reductase family protein	-2.16669514446468	-11.9215344480243	FALSE
+nutrient t1	set4IT004	Sodium acetate	MMP_RS07680	MMP_RS07680		DUF366 family protein	1.42175399427169	5.61668871755616	FALSE
+nutrient t1	set3IT031	Sodium acetate	MMP_RS07795	MMP_RS07795		site-2 protease family protein	-2.16092616887119	-14.4609252530288	FALSE
+nutrient t2	set4IT096		MMP_RS04425	MMP_RS04425		APC family permease	-1.56846733092232	-12.2073451285266	FALSE
+nutrient t2	set4IT095		MMP_RS04425	MMP_RS04425		APC family permease	-1.22124730741095	-9.9644328501699	FALSE
+nutrient t2	set4IT094		MMP_RS04425	MMP_RS04425		APC family permease	-1.16657240053049	-9.54906957666206	FALSE
+nutrient t2	set4IT047		MMP_RS06070	MMP_RS06070		iron ABC transporter substrate-binding protein	1.14717475469294	5.72852228211004	FALSE
+nutrient t2	set4IT095		MMP_RS07880	MMP_RS07880		AAA family ATPase	-1.39776952613223	-6.12734765289848	FALSE
+nutrient t2	set4IT046		MMP_RS08655	MMP_RS08655		phosphoadenosine phosphosulfate reductase family protein	-1.0004938194856	-5.3453887410303	FALSE
+nutrient t2	set4IT047		MMP_RS08665	MMP_RS08665		hypothetical protein	1.29361152371161	8.89929041074431	FALSE
+nutrient t2	set5IT046		MMP_RS08665	MMP_RS08665		hypothetical protein	1.31460886254781	9.33243728949643	FALSE
+nutrient t2	set4IT091	Mc_vitamins	MMP_RS04425	MMP_RS04425		APC family permease	-1.15435474155884	-10.1037525494926	FALSE
+nutrient t2	set4IT092	Mc_vitamins	MMP_RS04425	MMP_RS04425		APC family permease	-1.02123069871326	-8.72718674167257	FALSE
+nutrient t2	set4IT043	Mc_vitamins	MMP_RS06070	MMP_RS06070		iron ABC transporter substrate-binding protein	1.09785718863832	5.63212906683593	FALSE
+nutrient t2	set4IT044	Mc_vitamins	MMP_RS08655	MMP_RS08655		phosphoadenosine phosphosulfate reductase family protein	-1.10720871629815	-6.34612675432367	FALSE
+nutrient t2	set4IT043	Mc_vitamins	MMP_RS08655	MMP_RS08655		phosphoadenosine phosphosulfate reductase family protein	-1.0092201306961	-5.78915473824481	FALSE
+nutrient t2	set4IT017	Sodium acetate	MMP_RS00085	MMP_RS00085		DNA cytosine methyltransferase	1.37150812031013	6.36075289073293	FALSE
+nutrient t2	set2IT051	Sodium acetate	MMP_RS01190	MMP_RS01190		cadmium-translocating P-type ATPase	-1.89678491195396	-10.0543054688457	FALSE
+nutrient t2	set2IT039	Sodium acetate	MMP_RS02085	MMP_RS02085		inosine/xanthosine triphosphatase	-2.04309925203713	-10.9062021451775	FALSE
+nutrient t2	set2IT039	Sodium acetate	MMP_RS02550	MMP_RS02550		helix-turn-helix transcriptional regulator	2.82419779330676	9.14076115119124	FALSE
+nutrient t2	set2IT045	Sodium acetate	MMP_RS02960	MMP_RS02960		class I SAM-dependent methyltransferase family protein	1.29728571788422	7.7522917512606	FALSE
+nutrient t2	set2IT045	Sodium acetate	MMP_RS02995	MMP_RS02995		acyl-CoA thioesterase	-1.33015208920639	-8.3594677309934	FALSE
+nutrient t2	set3IT048	Sodium acetate	MMP_RS03105	MMP_RS03105		radical SAM protein	-1.31480949663575	-5.68317193173771	FALSE
+nutrient t2	set3IT071	Sodium acetate	MMP_RS03210	MMP_RS03210		tRNA guanosine(15) transglycosylase TgtA	-2.41804503244687	-13.3443470462763	FALSE
+nutrient t2	set3IT071	Sodium acetate	MMP_RS03470	MMP_RS03470		phosphoadenosine phosphosulfate reductase family protein	-2.31900162814904	-9.92484238748514	FALSE
+nutrient t2	set3IT083	Sodium acetate	MMP_RS04210	MMP_RS04210		aldo/keto reductase	-1.12517117231419	-5.7809953938978	FALSE
+nutrient t2	set3IT083	Sodium acetate	MMP_RS04715	MMP_RS04715		CBS domain-containing protein	-1.44480807041933	-5.19965927901416	TRUE
+nutrient t2	set2IT039	Sodium acetate	MMP_RS04895	MMP_RS04895		AI-2E family transporter	-1.08124329216176	-9.5260938967691	FALSE
+nutrient t2	set3IT071	Sodium acetate	MMP_RS05700	MMP_RS05700		TfuA-related McrA-glycine thioamidation protein	-1.93802694919024	-9.76449586368313	FALSE
+nutrient t2	set3IT036	Sodium acetate	MMP_RS05785	MMP_RS05785		ATP-binding protein	1.41164080498626	6.03764726856119	FALSE
+nutrient t2	set3IT071	Sodium acetate	MMP_RS07180	MMP_RS07180		DEAD/DEAH box helicase	-1.50329259059487	-5.47365468059754	FALSE
+nutrient t2	set2IT051	Sodium acetate	MMP_RS07410	MMP_RS07410		4-demethylwyosine synthase TYW1	-2.22897394480277	-13.1503575282785	FALSE
+nutrient t2	set2IT050	Sodium acetate	MMP_RS07410	MMP_RS07410		4-demethylwyosine synthase TYW1	-1.91862643969004	-12.8347135918166	FALSE
+nutrient t2	set2IT049	Sodium acetate	MMP_RS07410	MMP_RS07410		4-demethylwyosine synthase TYW1	-1.63401214338263	-10.2550534448614	FALSE
+nutrient t2	set2IT045	Sodium acetate	MMP_RS07550	MMP_RS07550		L-serine ammonia-lyase  iron-sulfur-dependent  subunit alpha	-1.12929325373668	-7.74970625677341	FALSE
+nutrient t2	set2IT039	Sodium acetate	MMP_RS07795	MMP_RS07795		site-2 protease family protein	-2.75927718059998	-15.2461470913814	FALSE
+nutrient t2	set4IT042	casamino acids	MMP_RS02410	MMP_RS02410		ABC transporter substrate-binding protein	1.74066108257562	5.26100165812469	FALSE
+nutrient t2	set4IT037	casamino acids	MMP_RS08850	MMP_RS08850		hypothetical protein	1.47379486926371	7.30140942925942	FALSE
+rich t1	set3IT014		MMP_RS03130	MMP_RS03130		hypothetical protein	-1.31019283727152	-6.02016688420095	FALSE
+rich t2	set3IT022		MMP_RS01415	MMP_RS01415		DUF2067 domain-containing protein	-2.18501893300501	-5.18025829908003	TRUE
+rich t2	set3IT033		MMP_RS02085	MMP_RS02085		inosine/xanthosine triphosphatase	-1.27201582821456	-6.28493926489282	FALSE
+rich t2	set3IT033		MMP_RS02400	MMP_RS02400		site-2 protease family protein	-1.21676475721997	-5.99187274699902	TRUE
+rich t2	set3IT033		MMP_RS03130	MMP_RS03130		hypothetical protein	-1.69569047818595	-5.66372592449291	FALSE
+rich t2	set3IT022		MMP_RS03270	MMP_RS03270		ADP-ribosylglycohydrolase family protein	-2.40275674903021	-11.7308803604491	TRUE
+rich t2	set3IT033		MMP_RS03395	MMP_RS03395		hypothetical protein	-1.7245541247883	-5.45152259156858	FALSE
+rich t2	set3IT033		MMP_RS03495	MMP_RS03495		Na/Pi cotransporter family protein	-1.74926018279919	-5.40121192090454	FALSE
+rich t2	set3IT033		MMP_RS04895	MMP_RS04895		AI-2E family transporter	-1.20633848148644	-9.66146056623623	TRUE
+rich t2	set3IT033		MMP_RS05255	MMP_RS05255		CBS domain-containing protein	-2.44785454458122	-17.9931458806041	TRUE
+rich t2	set3IT094		MMP_RS05700	MMP_RS05700		TfuA-related McrA-glycine thioamidation protein	-2.00065665227883	-13.0162542457163	FALSE
+rich t2	set3IT082		MMP_RS05700	MMP_RS05700		TfuA-related McrA-glycine thioamidation protein	-1.95340013896178	-9.12366749967749	FALSE
+rich t2	set3IT033		MMP_RS05700	MMP_RS05700		TfuA-related McrA-glycine thioamidation protein	-1.81445496869336	-9.74336314694047	FALSE
+rich t2	set3IT011		MMP_RS05700	MMP_RS05700		TfuA-related McrA-glycine thioamidation protein	-1.78743696131098	-9.3159017093934	FALSE
+rich t2	set3IT022		MMP_RS06675	MMP_RS06675		ADP-specific phosphofructokinase	-1.47544746093684	-9.67274913684172	FALSE
+rich t2	set3IT033		MMP_RS07795	MMP_RS07795		site-2 protease family protein	-2.68773773959077	-10.5794903170746	FALSE
+rich t2	set4IT013		MMP_RS08130	MMP_RS08130		IGHMBP2 family helicase	1.33767031798555	5.50194926029916	FALSE
+stress	set9IT037		MMP_RS04835	MMP_RS04835		chemotaxis protein CheC	-1.88599786724269	-9.07412119802102	FALSE
+stress	set9IT038		MMP_RS04835	MMP_RS04835		chemotaxis protein CheC	-1.63742982561948	-6.72174145104767	FALSE
+stress	set9IT039		MMP_RS04835	MMP_RS04835		chemotaxis protein CheC	-1.56178053980334	-8.04934098857471	FALSE
+stress	set9IT035		MMP_RS04835	MMP_RS04835		chemotaxis protein CheC	-1.22503937154053	-7.05560043011629	FALSE
+stress	set9IT038		MMP_RS05785	MMP_RS05785		ATP-binding protein	-1.52723561666714	-10.9916414788136	FALSE
+stress	set9IT039		MMP_RS05785	MMP_RS05785		ATP-binding protein	-1.47615753013481	-10.9205571115287	FALSE
+stress	set9IT037		MMP_RS05785	MMP_RS05785		ATP-binding protein	-1.38409757387042	-9.6502165259793	FALSE
+stress	set9IT042		MMP_RS05960	MMP_RS05960		CoB--CoM heterodisulfide reductase subunit B	-1.69944748566473	-6.39502170541073	FALSE
+stress	set9IT040		MMP_RS05960	MMP_RS05960		CoB--CoM heterodisulfide reductase subunit B	-1.59795589982392	-7.16760627953713	FALSE
+stress	set9IT041		MMP_RS05960	MMP_RS05960		CoB--CoM heterodisulfide reductase subunit B	-1.5003677711394	-6.19763391394698	FALSE
+stress	set9IT040		MMP_RS05970	MMP_RS05970		class II SORL domain-containing protein	-1.73810537670499	-5.32279068574656	FALSE
+stress	set9IT042		MMP_RS05980	MMP_RS05980		ferritin	-1.50889641628315	-8.41856513137453	FALSE
+stress	set9IT037		MMP_RS05980	MMP_RS05980		ferritin	-1.40416304537839	-6.60323553213157	FALSE
+stress	set9IT041		MMP_RS05980	MMP_RS05980		ferritin	-1.39938231021982	-6.42721656270764	FALSE
+stress	set9IT038		MMP_RS05980	MMP_RS05980		ferritin	-1.33525614590503	-6.9556943601718	FALSE
+stress	set9IT040		MMP_RS05980	MMP_RS05980		ferritin	-1.3303036774459	-7.53176535800146	FALSE
+stress	set9IT038		MMP_RS07560	MMP_RS07560		prefoldin subunit alpha	-1.60095053484301	-5.17734194750044	FALSE
+stress	set9IT039		MMP_RS08610	MMP_RS08610		flagellar protein F	-1.71798416222206	-8.96465028217102	FALSE
+stress	set9IT038		MMP_RS08610	MMP_RS08610		flagellar protein F	-1.68608116158714	-11.3809479490481	FALSE
+stress	set9IT037		MMP_RS08610	MMP_RS08610		flagellar protein F	-1.54986944221999	-9.99313565760406	FALSE
+stress	set9IT034		MMP_RS08610	MMP_RS08610		flagellar protein F	-1.49996554996909	-9.78699097621125	FALSE
+stress	set9IT038		MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-2.08388273004443	-7.31177798576228	FALSE
+stress	set9IT039		MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-1.78175765855174	-6.54370117075099	FALSE
+stress	set9IT037		MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-1.57647106915244	-6.39851464564251	FALSE
+stress	set9IT032		MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-1.54631173220537	-7.27507082468443	FALSE
+stress	set9IT034		MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-1.49999002393911	-6.81482994362161	FALSE
+stress	set9IT041		MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-1.48036262657706	-5.17496561652713	FALSE
+stress	set9IT038		MMP_RS08625	MMP_RS08625		type II/IV secretion system ATPase subunit	-1.82597121535376	-12.1743489833516	FALSE
+stress	set9IT037		MMP_RS08625	MMP_RS08625		type II/IV secretion system ATPase subunit	-1.56764479531429	-9.56941721721195	FALSE
+stress	set9IT039		MMP_RS08625	MMP_RS08625		type II/IV secretion system ATPase subunit	-1.47112688806137	-9.33128337551488	FALSE
+stress	set9IT034		MMP_RS08625	MMP_RS08625		type II/IV secretion system ATPase subunit	-1.38640690939914	-9.68781268653779	FALSE
+stress	set9IT032		MMP_RS08625	MMP_RS08625		type II/IV secretion system ATPase subunit	-1.32598999600429	-8.01752907944038	FALSE
+stress	set9IT038		MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-2.03778283574885	-8.32293374900158	FALSE
+stress	set9IT039		MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.87644514001873	-8.09159081693728	FALSE
+stress	set9IT037		MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.63977122969363	-7.23276701267824	FALSE
+stress	set9IT034		MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.63605109688618	-7.05433324449177	FALSE
+stress	set9IT035		MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.5190233730967	-7.92273560641634	FALSE
+stress	set9IT032		MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.38757904333121	-7.6689571377619	FALSE
+stress	set9IT042		MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.33463160607352	-5.95484101077283	FALSE
+stress	set9IT041		MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.29270473174467	-6.56071538955531	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS00150	MMP_RS00150		AAA family ATPase	-1.81863909920738	-6.89257013511279	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS00150	MMP_RS00150		AAA family ATPase	-1.74133988563055	-5.03951005783213	FALSE
+stress	set15S704	Sodium hypophosphite	MMP_RS00235	MMP_RS00235		HDIG domain-containing protein	-2.61210991252032	-10.6331203779781	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS00235	MMP_RS00235		HDIG domain-containing protein	-2.56371325715405	-13.8475062066814	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS00235	MMP_RS00235		HDIG domain-containing protein	-2.53069971110449	-9.77894969572926	FALSE
+stress	set15S708	Sodium hypophosphite	MMP_RS00235	MMP_RS00235		HDIG domain-containing protein	-1.24951926418571	-7.59652873312727	FALSE
+stress	set15S709	Sodium hypophosphite	MMP_RS00235	MMP_RS00235		HDIG domain-containing protein	-1.22974596215415	-8.80384069442181	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS00530	MMP_RS00530		tRNA pseudouridine(54/55) synthase Pus10	1.29702812529912	6.42995733342909	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS00530	MMP_RS00530		tRNA pseudouridine(54/55) synthase Pus10	1.85123164617161	7.00131944389189	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS00530	MMP_RS00530		tRNA pseudouridine(54/55) synthase Pus10	1.94399110532454	8.79294985610269	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS00660	MMP_RS00660		alkaline phosphatase family protein	1.40384115084784	9.92178829572178	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS00660	MMP_RS00660		alkaline phosphatase family protein	1.54973005099128	9.92039401752421	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS01155	MMP_RS01155		XRE family transcriptional regulator	1.51618087782905	5.36711351134789	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS01155	MMP_RS01155		XRE family transcriptional regulator	1.72795344594091	6.11243442618219	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS01430	MMP_RS01430		mechanosensitive ion channel family protein	2.03607087900984	9.66448680384419	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS01430	MMP_RS01430		mechanosensitive ion channel family protein	2.29046125337342	9.32460630659141	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS01435	MMP_RS01435		DMT family transporter	2.0416306104855	8.25464076369896	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS01435	MMP_RS01435		DMT family transporter	2.20848735125853	10.1240275905553	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS01450	MMP_RS01450		tRNA pseudouridine(38-40) synthase TruA	-1.01108258548107	-5.97539405077834	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS01785	MMP_RS01785		hypothetical protein	1.19037753626688	6.57113949079155	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS02085	MMP_RS02085		inosine/xanthosine triphosphatase	-2.14136609720636	-8.26759929886882	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS02085	MMP_RS02085		inosine/xanthosine triphosphatase	-1.59909886889404	-7.53374938654392	FALSE
+stress	set15S704	Sodium hypophosphite	MMP_RS02085	MMP_RS02085		inosine/xanthosine triphosphatase	-1.09986480484476	-7.11269678376573	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS02225	MMP_RS02225		carbohydrate kinase family protein	-1.74848892035414	-6.62468084825095	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS02440	MMP_RS02440		hypothetical protein	1.33526963457328	5.82537638391123	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS02445	MMP_RS02445		putative DNA binding domain-containing protein	2.20345272890252	16.363941877582	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS02445	MMP_RS02445		putative DNA binding domain-containing protein	2.33568498607603	13.8350992255686	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS02450	MMP_RS02450		hypothetical protein	2.09969122171947	5.69052915158537	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS02460	MMP_RS02460		hypothetical protein	1.39319925825552	11.3712600404536	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS02460	MMP_RS02460		hypothetical protein	1.87473622999248	14.7163360500405	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS02465	MMP_RS02465		hypothetical protein	1.62447240662512	6.1325289579773	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS02515	MMP_RS02515		hypothetical protein	1.40172922225143	7.74106390476639	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS02515	MMP_RS02515		hypothetical protein	1.58744863764602	8.2946422363352	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS02520	MMP_RS02520		hypothetical protein	1.11802405049795	6.17551127712811	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS02520	MMP_RS02520		hypothetical protein	1.90949387878221	9.83507088385568	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS02525	MMP_RS02525		DUF2254 domain-containing protein	1.32808658939451	8.81363500958546	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS02525	MMP_RS02525		DUF2254 domain-containing protein	1.95160627146205	14.0805240850297	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS02530	MMP_RS02530		type II toxin-antitoxin system mRNA interferase toxin  RelE/StbE family	1.52212844539131	6.06177957432256	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS02550	MMP_RS02550		helix-turn-helix transcriptional regulator	1.21012012085695	5.2519822926597	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS02960	MMP_RS02960		class I SAM-dependent methyltransferase family protein	2.2472495559262	11.3449259711058	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS02960	MMP_RS02960		class I SAM-dependent methyltransferase family protein	2.36685583100726	14.0257312705468	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS03115	MMP_RS03115		hypothetical protein	1.04278917294275	5.8358526143798	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS03115	MMP_RS03115		hypothetical protein	1.16343257240903	5.84225457475929	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS03150	MMP_RS03150		phosphoglycerate mutase	1.41065366638664	8.25212885336193	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS03280	MMP_RS03280		pyridoxamine 5'-phosphate oxidase family protein	1.56316168143126	5.82870403950807	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS03280	MMP_RS03280		pyridoxamine 5'-phosphate oxidase family protein	1.68849001608173	8.45158758259291	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS03410	MMP_RS03410		hypothetical protein	-1.37135045698629	-5.98051534216583	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS03410	MMP_RS03410		hypothetical protein	-1.10552198644096	-5.80375183284809	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS03495	MMP_RS03495		Na/Pi cotransporter family protein	1.69957889429468	5.88042585622753	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS03560	MMP_RS03560		Na+/H+ antiporter NhaC family protein	1.5285107496804	12.1359068310635	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS03560	MMP_RS03560		Na+/H+ antiporter NhaC family protein	1.62178339901735	12.8506754301394	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS03685	MMP_RS03685		Mrp/NBP35 family ATP-binding protein	-2.72137938301152	-10.9641027449617	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS03685	MMP_RS03685		Mrp/NBP35 family ATP-binding protein	-2.58081066155905	-9.50629520122802	FALSE
+stress	set15S704	Sodium hypophosphite	MMP_RS03685	MMP_RS03685		Mrp/NBP35 family ATP-binding protein	-2.4355475430912	-14.8518696389907	FALSE
+stress	set15S708	Sodium hypophosphite	MMP_RS03685	MMP_RS03685		Mrp/NBP35 family ATP-binding protein	-1.32614568065292	-9.73750881859212	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS03755	MMP_RS03755		MarR family transcriptional regulator	-2.26900694732936	-13.2622465679746	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS03755	MMP_RS03755		MarR family transcriptional regulator	-2.24528256688052	-11.889859637339	FALSE
+stress	set15S704	Sodium hypophosphite	MMP_RS03755	MMP_RS03755		MarR family transcriptional regulator	-1.54839204287559	-10.548168325806	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS03790	MMP_RS03790		hypothetical protein	1.3926614540753	6.07193233800256	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS03790	MMP_RS03790		hypothetical protein	1.46049637419569	6.96392141706461	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS04670	MMP_RS04670		selenouridine synthase SelU-like subunit	-1.23228630264421	-6.09611398719946	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS04670	MMP_RS04670		selenouridine synthase SelU-like subunit	-1.04182283136897	-5.38226265451368	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS04675	MMP_RS04675		selenouridine synthase SelU-like subunit	-1.09279005299792	-5.72344498333945	FALSE
+stress	set15S701	Sodium hypophosphite	MMP_RS04895	MMP_RS04895		AI-2E family transporter	-1.37464497767342	-8.24390568530886	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS05110	MMP_RS05110		16S ribosomal RNA methyltransferase A	-2.2608162433723	-6.77547528261323	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS05110	MMP_RS05110		16S ribosomal RNA methyltransferase A	-1.86674684027555	-5.71652318355131	FALSE
+stress	set15S704	Sodium hypophosphite	MMP_RS05110	MMP_RS05110		16S ribosomal RNA methyltransferase A	-1.77388354006402	-7.96748737048205	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS06275	MMP_RS06275		ATP-dependent DNA helicase	-1.60867851932891	-5.7659461351642	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS06440	MMP_RS06440		CBS domain-containing protein	1.2407875536409	7.10142679762644	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS06920	MMP_RS06920		AAA family ATPase	-1.96696031300748	-6.13330987616817	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS06920	MMP_RS06920		AAA family ATPase	-1.41052103792641	-6.48280004604509	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS07410	MMP_RS07410		4-demethylwyosine synthase TYW1	3.81910548157844	24.7787346592933	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS07410	MMP_RS07410		4-demethylwyosine synthase TYW1	3.83313137556101	31.5592724930605	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS07650	MMP_RS07650		TldD/PmbA family protein	2.81856234616202	20.6136586109937	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS07650	MMP_RS07650		TldD/PmbA family protein	3.02184553427209	21.4872653693226	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS07835	MMP_RS07835		TldD/PmbA family protein	3.18926214684359	14.0570843285201	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS07835	MMP_RS07835		TldD/PmbA family protein	3.38973749863451	11.8571403189825	FALSE
+stress	set15S713	Sodium hypophosphite	MMP_RS07880	MMP_RS07880		AAA family ATPase	-1.61076840949271	-5.49970162412866	FALSE
+stress	set15S714	Sodium hypophosphite	MMP_RS07880	MMP_RS07880		AAA family ATPase	-1.46566045767336	-7.03918383601469	FALSE
+stress	set15S704	Sodium hypophosphite	MMP_RS07880	MMP_RS07880		AAA family ATPase	1.87521340634448	13.2229343982476	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS07880	MMP_RS07880		AAA family ATPase	3.74859752422424	29.1550438637554	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS07880	MMP_RS07880		AAA family ATPase	3.96695889142312	23.1381596657608	FALSE
+stress	set15S704	Sodium hypophosphite	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-2.64216587807369	-7.23996080881861	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-2.4974647542804	-6.92171851109457	FALSE
+stress	set15S709	Sodium hypophosphite	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-2.09592463320057	-6.79204774337031	FALSE
+stress	set15S708	Sodium hypophosphite	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-1.93765373360063	-5.51607581828608	FALSE
+stress	set15S710	Sodium hypophosphite	MMP_RS08075	MMP_RS08075		DUF749 domain-containing protein	-1.76905004786583	-6.75858270906445	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS08485	MMP_RS08485		tungstate ABC transporter substrate-binding protein WtpA	-2.08337379471644	-8.23888973488675	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS08485	MMP_RS08485		tungstate ABC transporter substrate-binding protein WtpA	-1.6472508943509	-6.99797625057913	FALSE
+stress	set15S703	Sodium hypophosphite	MMP_RS08700	MMP_RS08700		hypothetical protein	1.31754337189148	5.4853011560163	FALSE
+stress	set15S702	Sodium hypophosphite	MMP_RS08700	MMP_RS08700		hypothetical protein	1.7543183639749	9.27360910443276	FALSE
+stress	set9IT014	Sodium sulfide nonahydrate	MMP_RS04835	MMP_RS04835		chemotaxis protein CheC	-1.37878901387021	-6.89847274938049	FALSE
+stress	set9IT015	Sodium sulfide nonahydrate	MMP_RS04835	MMP_RS04835		chemotaxis protein CheC	-1.2851622213573	-5.66157535509601	FALSE
+stress	set9IT015	Sodium sulfide nonahydrate	MMP_RS07560	MMP_RS07560		prefoldin subunit alpha	-1.41552845394293	-5.66026977893615	FALSE
+stress	set9IT015	Sodium sulfide nonahydrate	MMP_RS08610	MMP_RS08610		flagellar protein F	-1.40987980787774	-8.17047642358252	FALSE
+stress	set9IT018	Sodium sulfide nonahydrate	MMP_RS08610	MMP_RS08610		flagellar protein F	-1.31320387421635	-9.304739666466	FALSE
+stress	set9IT017	Sodium sulfide nonahydrate	MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-1.48536978795775	-5.81923397734414	FALSE
+stress	set9IT018	Sodium sulfide nonahydrate	MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-1.41589603166758	-6.41017836157832	FALSE
+stress	set9IT014	Sodium sulfide nonahydrate	MMP_RS08625	MMP_RS08625		type II/IV secretion system ATPase subunit	-1.4804366163278	-8.80436041208174	FALSE
+stress	set9IT018	Sodium sulfide nonahydrate	MMP_RS08625	MMP_RS08625		type II/IV secretion system ATPase subunit	-1.40649701855326	-8.46977486701798	FALSE
+stress	set9IT015	Sodium sulfide nonahydrate	MMP_RS08625	MMP_RS08625		type II/IV secretion system ATPase subunit	-1.39382406838033	-9.04444399135885	FALSE
+stress	set9IT015	Sodium sulfide nonahydrate	MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.46966435648077	-7.55685138237178	FALSE
+stress	set9IT018	Sodium sulfide nonahydrate	MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.34994096737519	-8.26729377460595	FALSE
+stress	set9IT017	Sodium sulfide nonahydrate	MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.27516173279556	-7.1861321438006	FALSE
+stress	set9IT007	Sodium thiosulfate	MMP_RS06165	MMP_RS06165		ABC transporter permease	3.51001408835269	18.2760703538332	FALSE
+stress	set9IT009	Sodium thiosulfate	MMP_RS06165	MMP_RS06165		ABC transporter permease	4.92652467945449	29.9762918156703	FALSE
+stress	set9IT008	Sodium thiosulfate	MMP_RS06165	MMP_RS06165		ABC transporter permease	6.71074199533467	44.6574095574627	FALSE
+stress	set9IT007	Sodium thiosulfate	MMP_RS06170	MMP_RS06170		ABC transporter ATP-binding protein	3.22980048963811	22.1896041643607	FALSE
+stress	set9IT009	Sodium thiosulfate	MMP_RS06170	MMP_RS06170		ABC transporter ATP-binding protein	4.60083196253125	26.4660781702206	FALSE
+stress	set9IT008	Sodium thiosulfate	MMP_RS06170	MMP_RS06170		ABC transporter ATP-binding protein	6.29070429294826	32.1553103535148	FALSE
+stress	set9IT007	Sodium thiosulfate	MMP_RS06480	MMP_RS06480		ABC transporter substrate-binding protein	3.71538308201632	18.5815916939851	FALSE
+stress	set9IT009	Sodium thiosulfate	MMP_RS06480	MMP_RS06480		ABC transporter substrate-binding protein	5.38464315063585	22.5380026772685	FALSE
+stress	set9IT008	Sodium thiosulfate	MMP_RS06480	MMP_RS06480		ABC transporter substrate-binding protein	6.91903107329455	33.7697632310723	FALSE
+stress	set9IT026	ammonium sulfide solution	MMP_RS08610	MMP_RS08610		flagellar protein F	-1.32859976299011	-8.89476911681537	FALSE
+stress	set9IT027	ammonium sulfide solution	MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-1.35200667467939	-5.57805392183281	FALSE
+stress	set9IT029	ammonium sulfide solution	MMP_RS08625	MMP_RS08625		type II/IV secretion system ATPase subunit	-1.32078119775358	-8.98543725344929	FALSE
+stress	set9IT026	ammonium sulfide solution	MMP_RS08630	MMP_RS08630		archaellar assembly protein FlaJ	-1.35250985354415	-6.52268716198491	FALSE
+stress	set9IT048	potassium (poly)sulfide	MMP_RS08610	MMP_RS08610		flagellar protein F	-1.28282728510183	-8.75333389494581	FALSE
+stress	set9IT048	potassium (poly)sulfide	MMP_RS08620	MMP_RS08620		flagellar accessory protein FlaH	-1.56415634360171	-5.53446808495938	FALSE
+stress	set9IT006	sodium sulfite	MMP_RS06165	MMP_RS06165		ABC transporter permease	3.24532806805684	17.3420115689796	FALSE
+stress	set9IT005	sodium sulfite	MMP_RS06165	MMP_RS06165		ABC transporter permease	4.56464042833926	32.5362848477551	FALSE
+stress	set9IT006	sodium sulfite	MMP_RS06170	MMP_RS06170		ABC transporter ATP-binding protein	2.77877532270385	8.01306139007204	FALSE
+stress	set9IT005	sodium sulfite	MMP_RS06170	MMP_RS06170		ABC transporter ATP-binding protein	4.08172082727414	14.3134845933894	FALSE
+stress	set9IT006	sodium sulfite	MMP_RS06480	MMP_RS06480		ABC transporter substrate-binding protein	3.5935335534884	22.0906540631992	FALSE
+stress	set9IT005	sodium sulfite	MMP_RS06480	MMP_RS06480		ABC transporter substrate-binding protein	4.67549152359811	27.7670416925896	FALSE

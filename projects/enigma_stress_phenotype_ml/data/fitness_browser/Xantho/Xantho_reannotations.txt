@@ -1,0 +1,2 @@
+organism	orgId	locusId	sysName	gene	reannotation	comment	original_desc	aaseq
+Xanthomonas campestris pv. campestris strain 8004	Xantho	Xcc-8004.1058.1	Xcc-8004.1058.1		acetolactate synthase, regulatory subunit (EC 2.2.1.6)	# Cofit with the adjacently encoded catalytic subunit (Xcc-8004.1059.1). Most regulatory subunits have two ACT-like domains, but this has just one ACT domain, as with E. coli ilvM (PMID:19653643)	Acetolactate synthase small subunit (EC 2.2.1.6), Xanthomonadales type	MRYRLDLVLKPAEGALVRVIGMTERRGFRPCAIQGAAAPDDAGRWHLQLDVDSTRPPETLRLQLEKVYDCESVAITALDSVEAAA

@@ -1,0 +1,1409 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+anaerobic	set5H30	Sodium Fumarate dibasic	6935818	Sama_0036		protoporphyrinogen oxidase (RefSeq)	1.89247744526407	14.96731450949	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6935867	Sama_0082		GGDEF domain-containing protein (RefSeq)	-1.16340966212632	-10.2807870858928	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6935902	Sama_0117		formamidopyrimidine-DNA glycosylase (RefSeq)	1.68301928349683	6.3288068383999	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6935906	Sama_0121		molybdopterin-guanine dinucleotide biosynthesis protein (RefSeq)	-1.90316223063533	-5.88057492925484	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6935910	Sama_0125		response regulator receiver protein (RefSeq)	1.69694444157111	6.65032070480122	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6935915	Sama_0130		menaquinone-specific isochorismate synthase, putative (RefSeq)	-2.44420569882881	-15.8631905592963	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6935922	Sama_0137		molybdopterin biosynthesis protein MoeB (RefSeq)	-1.4949062804736	-7.61035720347833	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936058	Sama_0255		acetylornithine deacetylase (RefSeq)	2.02051195744709	15.8212444065299	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936325	Sama_0514		excinuclease ABC, A subunit (RefSeq)	-1.44083712420483	-10.7604006336537	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936347	Sama_0536		galactokinase (RefSeq)	1.87100551055181	14.0623443737513	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936423	Sama_0611		fumarate reductase flavoprotein subunit precursor (RefSeq)	-3.11976738455344	-20.3870885582061	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936458	Sama_0646		response regulator receiver protein (RefSeq)	-1.72957658235813	-8.30558794027975	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936459	Sama_0647		nitrate/nitrite sensor protein NarQ (RefSeq)	-1.46368915156467	-9.23063417748797	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936460	Sama_0648	nrfA	cytochrome c552 (RefSeq)	-3.03556293011896	-15.3253182494116	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936496	Sama_0684		aminopeptidase P, putative (RefSeq)	2.86152595138421	22.081330827657	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936581	Sama_0769		UDP-N-acetylmuramate (RefSeq)	1.58009840810103	6.46552903519765	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936717	Sama_0904		peptidyl-prolyl cis-trans isomerase SlyD (RefSeq)	1.72127566345546	8.30052701703714	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936723	Sama_0910		hypothetical protein (RefSeq)	-2.62898817938717	-11.3654834103039	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936878	Sama_1052		oxaloacetate decarboxylase (RefSeq)	-1.73196714458754	-11.0319335759627	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936879	Sama_1053		oxaloacetate decarboxylase (RefSeq)	-1.39868369644729	-7.80908616112162	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6936960	Sama_1134	purU	formyltetrahydrofolate deformylase (RefSeq)	-1.26766803698002	-6.36583651746856	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937082	Sama_1252		TonB-dependent receptor (RefSeq)	-1.29996153828041	-10.2327074522822	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937105	Sama_1275		anaerobic ribonucleoside triphosphate reductase (RefSeq)	-3.17950003892468	-18.1882379725451	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937106	Sama_1276	nrdG	anaerobic ribonucleotide reductase-activating protein (RefSeq)	-3.36540814653887	-7.42173620627638	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937132	Sama_1302		TraR/DksA family transcriptional regulator (RefSeq)	-3.2799726663034	-5.40669010618414	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937139	Sama_1309		adenine phosphoribosyltransferase (RefSeq)	5.76161784240063	27.2107682005699	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937328	Sama_1498		formate C-acetyltransferase (RefSeq)	-1.75619775869462	-8.23872534080422	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937329	Sama_1499		hypothetical protein (RefSeq)	-2.34785152216026	-13.4601466905214	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937542	Sama_1698		hypothetical protein (RefSeq)	1.33932126475945	7.02998241776338	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937696	Sama_1838		TonB-dependent receptor, putative (RefSeq)	-2.01050684144018	-10.4604511966018	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937785	Sama_1926		disulfide bond formation protein B (RefSeq)	-2.38322307608015	-8.05716949666353	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6937858	Sama_1999		ribosomal protein S6 modification protein, putative (RefSeq)	1.76366049096358	8.61161191248796	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6938298	Sama_2417		TPR domain-containing protein (RefSeq)	-1.26220764636581	-10.4754936195534	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6938300	Sama_2419		hypothetical protein (RefSeq)	-1.03816368733264	-5.32328771416686	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6938398	Sama_2517		xanthine/uracil permease family protein (RefSeq)	3.59169998933264	23.1381305458792	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6938483	Sama_2596		ribosomal-protein-alanine acetyltransferase (RefSeq)	-1.92773719536585	-7.51346665521085	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6938637	Sama_2740		branched-chain amino acid transport system II carrier protein BrnQ (RefSeq)	-1.18018901608662	-7.32397757058965	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6938722	Sama_2825		hypothetical protein (RefSeq)	-2.40129731329133	-10.6559324053643	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6938723	Sama_2826		hypothetical protein (RefSeq)	-3.40442543458202	-7.84157080897517	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6938899	Sama_3002		phosphoribulokinase (RefSeq)	-1.56506312592069	-9.10553955035709	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6938927	Sama_3030		YjeF protein (RefSeq)	-2.15588538692556	-15.1655175379555	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939121	Sama_3219	frdB	fumarate reductase iron-sulfur subunit (RefSeq)	-1.166425053471	-6.21873994214918	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939124	Sama_3222		fumarate reductase cytochrome b-556 subunit (RefSeq)	-1.70262330868901	-6.07265346630798	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939148	Sama_3246		HAD-superfamily hydrolase, subfamily IA, variant 1 family protein (RefSeq)	-1.46717108276902	-7.90796348203717	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939159	Sama_3257		HemY protein (RefSeq)	-1.61850117816301	-8.62851527469136	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939256	Sama_3350		hypothetical protein (RefSeq)	1.28806780880783	5.53738656881282	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939337	Sama_3430		cation efflux family protein (RefSeq)	-1.90653566782821	-10.1136287188237	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939355	Sama_3448		drug resistance transporter, Bcr/CflA family protein (RefSeq)	-1.49958663384024	-9.56460693976069	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939367	Sama_3460		2-succinyl-5-enolpyruvyl-6-hydroxy-3- cyclohexene-1-carboxylate synthase (RefSeq)	-2.83837519378301	-18.6902584372357	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939368	Sama_3461		alpha/beta fold family hydrolase (RefSeq)	-2.03501131752441	-9.36262923733209	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939369	Sama_3462		O-succinylbenzoate synthase (RefSeq)	-2.94238856840049	-15.7271687111824	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939370	Sama_3463		O-succinylbenzoic acid--CoA ligase (RefSeq)	-2.58788883068265	-14.0808832684169	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939378	Sama_3471		tetraheme cytochrome c (RefSeq)	-3.03786811106008	-11.851145620697	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939379	Sama_3472		hypothetical protein (RefSeq)	-4.30907323682694	-8.72323646475813	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939380	Sama_3473		hypothetical protein (RefSeq)	-3.49052860608119	-5.77447819587027	FALSE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939381	Sama_3474		heavy metal efflux system protein, putative (RefSeq)	-2.80802862221874	-19.0303795379685	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939382	Sama_3475		CzcA family heavy metal efflux protein (RefSeq)	-2.86887731973322	-23.31966827825	TRUE
+anaerobic	set5H30	Sodium Fumarate dibasic	6939547	Sama_3635		naphthoate synthase (RefSeq)	-2.65434686554018	-14.0860294826951	TRUE
+carbon source	set1H23	Adenosine	6937631	Sama_1783		putative DNA-binding transcriptional regulator (RefSeq)	-1.64881580667755	-5.35195634952173	FALSE
+carbon source	set2H35	Adenosine	6937632	Sama_1784		inner membrane transport protein YdhC (RefSeq)	-1.66092180720622	-6.91259363819737	TRUE
+carbon source	set1H23	Adenosine	6939426	Sama_3518		carbohydrate kinase (RefSeq)	-3.48604237610043	-16.0567439130407	TRUE
+carbon source	set2H35	Adenosine	6939426	Sama_3518		carbohydrate kinase (RefSeq)	-3.23466777997755	-16.4581510038596	TRUE
+carbon source	set1H27	Cytidine	6936223	Sama_0412		uridine phosphorylase (RefSeq)	-5.22168940900989	-8.71651180679832	TRUE
+carbon source	set2H39	Cytidine	6936223	Sama_0412		uridine phosphorylase (RefSeq)	-4.944863359493	-11.0259904573903	TRUE
+carbon source	set1H27	Cytidine	6937833	Sama_1974		cytidine deaminase (RefSeq)	-4.29443130615117	-5.06722016397551	TRUE
+carbon source	set2H39	Cytidine	6937833	Sama_1974		cytidine deaminase (RefSeq)	-4.12654868920457	-5.57597429085751	TRUE
+carbon source	set2H39	Cytidine	6937906	Sama_2047		uridine kinase (RefSeq)	1.94830710276207	13.6040383313178	FALSE
+carbon source	set1H27	Cytidine	6937906	Sama_2047		uridine kinase (RefSeq)	2.0799327171746	15.0352299642791	FALSE
+carbon source	set2H20	D-Cellobiose	6937231	Sama_1401		sugar (glycoside-Pentoside-hexuronide) transporter (RefSeq)	-4.29722542006173	-10.7290981919218	FALSE
+carbon source	set1H8	D-Cellobiose	6937231	Sama_1401		sugar (glycoside-Pentoside-hexuronide) transporter (RefSeq)	-4.2630635489947	-10.9900451331687	FALSE
+carbon source	set1H8	D-Cellobiose	6937232	Sama_1402		Beta-glucosidase (RefSeq)	-3.89675616438292	-11.4194148591469	TRUE
+carbon source	set2H20	D-Cellobiose	6937232	Sama_1402		Beta-glucosidase (RefSeq)	-3.61602418722607	-11.8900664399423	TRUE
+carbon source	set1H8	D-Cellobiose	6937234	Sama_1404		beta-glucosidase (RefSeq)	-1.52990341770325	-9.02635017800769	TRUE
+carbon source	set2H20	D-Cellobiose	6937234	Sama_1404		beta-glucosidase (RefSeq)	-1.47140910848845	-8.62632933357842	TRUE
+carbon source	set2H20	D-Cellobiose	6937235	Sama_1405		fructokinase (RefSeq)	-3.16585099882677	-10.6384993421113	FALSE
+carbon source	set1H8	D-Cellobiose	6937235	Sama_1405		fructokinase (RefSeq)	-2.40667004580161	-10.3674289006618	FALSE
+carbon source	set1H31	D-Glucose	6936097	Sama_0294		LacI family transcription regulator (RefSeq)	6.42274910039917	55.9178555189556	FALSE
+carbon source	set1H3	D-Glucose	6936097	Sama_0294		LacI family transcription regulator (RefSeq)	6.42800038145364	55.0048626399288	FALSE
+carbon source	set2H43	D-Glucose	6936097	Sama_0294		LacI family transcription regulator (RefSeq)	6.46487929555619	57.2960078148216	FALSE
+carbon source	set2H15	D-Glucose	6936097	Sama_0294		LacI family transcription regulator (RefSeq)	6.47174052111462	57.4474458800819	FALSE
+carbon source	set2H15	D-Glucose	6936105	Sama_0302		glycoside hydrolase family protein (RefSeq)	1.90717852073847	15.3638512285525	FALSE
+carbon source	set2H43	D-Glucose	6936105	Sama_0302		glycoside hydrolase family protein (RefSeq)	1.97069460757222	15.8859400436041	FALSE
+carbon source	set1H31	D-Glucose	6936105	Sama_0302		glycoside hydrolase family protein (RefSeq)	2.01539189523835	15.7021010808761	FALSE
+carbon source	set1H3	D-Glucose	6936105	Sama_0302		glycoside hydrolase family protein (RefSeq)	2.04206645338306	16.104614810213	FALSE
+carbon source	set2H43	D-Glucose	6936346	Sama_0535		aldose 1-epimerase (RefSeq)	1.57546310215615	10.674609149448	FALSE
+carbon source	set2H15	D-Glucose	6936346	Sama_0535		aldose 1-epimerase (RefSeq)	1.76978707484782	12.7564440391399	FALSE
+carbon source	set1H31	D-Glucose	6936346	Sama_0535		aldose 1-epimerase (RefSeq)	1.78813467821753	13.3828874982537	FALSE
+carbon source	set1H3	D-Glucose	6936346	Sama_0535		aldose 1-epimerase (RefSeq)	1.88324627940414	13.3875868436085	FALSE
+carbon source	set1H31	D-Glucose	6936377	Sama_0565		LacI family transcription regulator (RefSeq)	4.69241575851215	40.9081036790574	FALSE
+carbon source	set1H3	D-Glucose	6936377	Sama_0565		LacI family transcription regulator (RefSeq)	4.69976154294641	40.8168184293358	FALSE
+carbon source	set2H15	D-Glucose	6936377	Sama_0565		LacI family transcription regulator (RefSeq)	4.76322622947391	41.4777250272307	FALSE
+carbon source	set2H43	D-Glucose	6936377	Sama_0565		LacI family transcription regulator (RefSeq)	4.81113130807671	42.134729113149	FALSE
+carbon source	set2H43	D-Glucose	6936760	Sama_0947		hypothetical protein (RefSeq)	1.6735120905595	8.03213846848196	FALSE
+carbon source	set2H15	D-Glucose	6936760	Sama_0947		hypothetical protein (RefSeq)	1.76996609451655	8.5117768319016	FALSE
+carbon source	set1H31	D-Glucose	6936760	Sama_0947		hypothetical protein (RefSeq)	2.01542726615948	6.00654227509922	FALSE
+carbon source	set1H3	D-Glucose	6936760	Sama_0947		hypothetical protein (RefSeq)	2.05940086870789	6.10961736352273	FALSE
+carbon source	set1H31	D-Glucose	6937022	Sama_1196		phosphosugar isomerase (RefSeq)	2.3041007507482	8.64010992679769	FALSE
+carbon source	set1H3	D-Glucose	6937022	Sama_1196		phosphosugar isomerase (RefSeq)	2.33467413152906	8.93368691153242	FALSE
+carbon source	set2H43	D-Glucose	6937022	Sama_1196		phosphosugar isomerase (RefSeq)	2.38076753172231	8.83397402751713	FALSE
+carbon source	set2H15	D-Glucose	6937022	Sama_1196		phosphosugar isomerase (RefSeq)	2.3822171232955	8.7010782380433	FALSE
+carbon source	set1H3	D-Glucose	6937023	Sama_1197		putative ROK-family protein (RefSeq)	2.17422603091693	11.434217881057	FALSE
+carbon source	set1H31	D-Glucose	6937023	Sama_1197		putative ROK-family protein (RefSeq)	2.25749567306562	11.9473689079838	FALSE
+carbon source	set2H15	D-Glucose	6937023	Sama_1197		putative ROK-family protein (RefSeq)	2.25895321421379	12.2670042919238	FALSE
+carbon source	set2H43	D-Glucose	6937023	Sama_1197		putative ROK-family protein (RefSeq)	2.30365056958209	12.8736555551036	FALSE
+carbon source	set1H31	D-Glucose	6937024	Sama_1198		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	5.22630968735493	11.0067944658466	FALSE
+carbon source	set1H3	D-Glucose	6937024	Sama_1198		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	5.44889583024043	11.7031336043124	FALSE
+carbon source	set2H15	D-Glucose	6937024	Sama_1198		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	5.4586228456588	11.4153981058028	FALSE
+carbon source	set2H43	D-Glucose	6937024	Sama_1198		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	5.48082619049334	11.7339117089613	FALSE
+carbon source	set2H15	D-Glucose	6937232	Sama_1402		Beta-glucosidase (RefSeq)	9.43362680450132	36.7425948812199	FALSE
+carbon source	set1H31	D-Glucose	6937232	Sama_1402		Beta-glucosidase (RefSeq)	9.5311457620283	36.9412916046427	FALSE
+carbon source	set1H3	D-Glucose	6937232	Sama_1402		Beta-glucosidase (RefSeq)	9.56137107169751	37.4942996063728	FALSE
+carbon source	set2H43	D-Glucose	6937232	Sama_1402		Beta-glucosidase (RefSeq)	9.56934196833103	37.0240754055391	FALSE
+carbon source	set2H15	D-Glucose	6937499	Sama_1655		LacI family transcription regulator (RefSeq)	1.02188717374997	6.08342744839057	FALSE
+carbon source	set1H31	D-Glucose	6937499	Sama_1655		LacI family transcription regulator (RefSeq)	1.10117610008807	6.6912797229905	FALSE
+carbon source	set2H43	D-Glucose	6937499	Sama_1655		LacI family transcription regulator (RefSeq)	1.18634102352833	7.19886752071707	FALSE
+carbon source	set2H43	D-Glucose	6937501	Sama_1657		major facilitator transporter (RefSeq)	1.11211789689886	7.65151371799278	FALSE
+carbon source	set1H4	D-Maltose monohydrate	6936272	Sama_0461		MSHA pilin protein MshA (RefSeq)	1.62644501688251	8.64457409701435	FALSE
+carbon source	set1H4	D-Maltose monohydrate	6936346	Sama_0535		aldose 1-epimerase (RefSeq)	-1.72640056128888	-10.4184706660074	TRUE
+carbon source	set2H16	D-Maltose monohydrate	6936346	Sama_0535		aldose 1-epimerase (RefSeq)	-1.70195401971229	-10.7715759260775	TRUE
+carbon source	set2H16	D-Maltose monohydrate	6937499	Sama_1655		LacI family transcription regulator (RefSeq)	-4.26427149285586	-10.5364315268829	TRUE
+carbon source	set1H4	D-Maltose monohydrate	6937499	Sama_1655		LacI family transcription regulator (RefSeq)	-3.38423514559612	-10.9738735936561	TRUE
+carbon source	set2H16	D-Maltose monohydrate	6937501	Sama_1657		major facilitator transporter (RefSeq)	-3.89785497909299	-15.6426153124832	TRUE
+carbon source	set1H4	D-Maltose monohydrate	6937501	Sama_1657		major facilitator transporter (RefSeq)	-3.63215191447548	-16.3264871336033	TRUE
+carbon source	set2H16	D-Maltose monohydrate	6938110	Sama_2231		fructokinase (RefSeq)	-3.95795991956608	-10.3739970404089	FALSE
+carbon source	set1H4	D-Maltose monohydrate	6938110	Sama_2231		fructokinase (RefSeq)	-3.04122911206459	-10.8482115400792	FALSE
+carbon source	set1H4	D-Maltose monohydrate	6938899	Sama_3002		phosphoribulokinase (RefSeq)	-1.8865261007115	-10.7452461959225	FALSE
+carbon source	set2H16	D-Maltose monohydrate	6938899	Sama_3002		phosphoribulokinase (RefSeq)	-1.61787263184915	-11.0191263559551	FALSE
+carbon source	set1H4	D-Maltose monohydrate	6938967	Sama_3065		putative salt-induced outer membrane protein (RefSeq)	-1.09117047662094	-7.33276174334585	FALSE
+carbon source	set1H4	D-Maltose monohydrate	6939166	Sama_3264		putative diguanylate phosphodiesterase (RefSeq)	1.58307211536636	14.2659176303782	FALSE
+carbon source	set2H40	D-Mannose	6936372	Sama_0560		hypothetical protein (RefSeq)	-3.67525693807594	-17.1601013521765	FALSE
+carbon source	set1H28	D-Mannose	6936372	Sama_0560		hypothetical protein (RefSeq)	-3.48778135900852	-17.6032615054083	FALSE
+carbon source	set2H40	D-Mannose	6936373	Sama_0561		carbohydrate kinase (RefSeq)	-4.496252429045	-10.4235084475999	FALSE
+carbon source	set1H28	D-Mannose	6936373	Sama_0561		carbohydrate kinase (RefSeq)	-4.38233242295775	-10.5379561431718	FALSE
+carbon source	set2H40	D-Mannose	6936374	Sama_0562		glucose/galactose transporter (RefSeq)	-4.67282616966921	-14.0651948759515	FALSE
+carbon source	set1H28	D-Mannose	6936374	Sama_0562		glucose/galactose transporter (RefSeq)	-4.42381521852773	-14.6360764421853	FALSE
+carbon source	set2H40	D-Mannose	6936375	Sama_0563		alpha-1,2-mannosidase family protein (RefSeq)	-4.815210918166	-20.0262153205973	FALSE
+carbon source	set1H28	D-Mannose	6936375	Sama_0563		alpha-1,2-mannosidase family protein (RefSeq)	-4.63469863670264	-20.9259580939401	FALSE
+carbon source	set2H40	D-Mannose	6936376	Sama_0564		alpha-1,2-mannosidase family protein (RefSeq)	-4.4192520351053	-26.2637917286889	FALSE
+carbon source	set1H28	D-Mannose	6936376	Sama_0564		alpha-1,2-mannosidase family protein (RefSeq)	-4.41145613901866	-25.3869127762058	FALSE
+carbon source	set1H19	Gelatin	6937359	Sama_1529		fatty aldehyde dehydrogenase (RefSeq)	-1.38092867899727	-8.08301459134583	TRUE
+carbon source	set2H31	Gelatin	6937359	Sama_1529		fatty aldehyde dehydrogenase (RefSeq)	-1.31103591460481	-7.88368950732363	TRUE
+carbon source	set2H31	Gelatin	6938573	Sama_2676		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase (RefSeq)	-1.18409419699288	-9.55320273874631	TRUE
+carbon source	set1H18	Gly-Glu	6935821	Sama_0039		potassium uptake protein TrkH (RefSeq)	-4.44778423364145	-22.7438228207563	FALSE
+carbon source	set2H30	Gly-Glu	6935821	Sama_0039		potassium uptake protein TrkH (RefSeq)	-4.34166862724709	-22.0927388825638	FALSE
+carbon source	set1H18	Gly-Glu	6936925	Sama_1099		hypothetical protein (RefSeq)	-2.12911109732107	-10.7140570666433	FALSE
+carbon source	set2H30	Gly-Glu	6936925	Sama_1099		hypothetical protein (RefSeq)	-1.87712377127521	-9.76959670873497	FALSE
+carbon source	set1H18	Gly-Glu	6937785	Sama_1926		disulfide bond formation protein B (RefSeq)	-2.40884399116056	-10.0223219379859	FALSE
+carbon source	set2H30	Gly-Glu	6937785	Sama_1926		disulfide bond formation protein B (RefSeq)	-2.35274774626264	-7.94800325937686	FALSE
+carbon source	set1H18	Gly-Glu	6937894	Sama_2035		ATP-dependent protease La (RefSeq)	-1.9531969614471	-11.6596905168041	FALSE
+carbon source	set2H30	Gly-Glu	6937926	Sama_2067		leucine dehydrogenase (RefSeq)	1.21287448807743	9.53411328223523	FALSE
+carbon source	set1H18	Gly-Glu	6937926	Sama_2067		leucine dehydrogenase (RefSeq)	1.22685068068386	9.04098284930133	FALSE
+carbon source	set1H18	Gly-Glu	6938496	Sama_2603		clpB protein (RefSeq)	-1.29118200214087	-9.17285262306692	FALSE
+carbon source	set2H30	Gly-Glu	6938496	Sama_2603		clpB protein (RefSeq)	-1.2884658912011	-8.95292657886282	FALSE
+carbon source	set1H18	Gly-Glu	6938938	Sama_3036		transporter, putative (RefSeq)	-2.40800114786947	-17.9490305458589	TRUE
+carbon source	set2H30	Gly-Glu	6938938	Sama_3036		transporter, putative (RefSeq)	-1.91381188466493	-14.5537408041046	TRUE
+carbon source	set1H18	Gly-Glu	6939042	Sama_3140		ABC 3 transport family protein (RefSeq)	-1.78664031307519	-10.2561233064493	FALSE
+carbon source	set2H30	Gly-Glu	6939042	Sama_3140		ABC 3 transport family protein (RefSeq)	-1.71664549779033	-9.77151291091672	FALSE
+carbon source	set1H18	Gly-Glu	6939043	Sama_3141		adhesion protein, putative (RefSeq)	-1.78043097625398	-11.7484952037045	FALSE
+carbon source	set2H30	Gly-Glu	6939043	Sama_3141		adhesion protein, putative (RefSeq)	-1.51013551315953	-9.97265881544472	FALSE
+carbon source	set1H18	Gly-Glu	6939044	Sama_3142		hypothetical protein (RefSeq)	-1.71497491265956	-11.5366240804868	FALSE
+carbon source	set2H30	Gly-Glu	6939044	Sama_3142		hypothetical protein (RefSeq)	-1.51524899488699	-9.68325414997244	FALSE
+carbon source	set2H30	Gly-Glu	6939045	Sama_3143		hypothetical protein (RefSeq)	-1.07858232311358	-5.46710309133867	FALSE
+carbon source	set2H38	Inosine	6937632	Sama_1784		inner membrane transport protein YdhC (RefSeq)	-1.44209666897632	-5.32770139562414	TRUE
+carbon source	set1H16	L-Glutamic acid monopotassium salt monohydrate	6936271	Sama_0460		MSHA pilin protein MshB (RefSeq)	3.20726268130092	26.4973129185211	FALSE
+carbon source	set2H28	L-Glutamic acid monopotassium salt monohydrate	6936271	Sama_0460		MSHA pilin protein MshB (RefSeq)	3.20814369975362	23.4374457599516	FALSE
+carbon source	set1H16	L-Glutamic acid monopotassium salt monohydrate	6936710	Sama_0897		hypothetical protein (RefSeq)	1.65519129662624	7.60437100750114	FALSE
+carbon source	set2H28	L-Glutamic acid monopotassium salt monohydrate	6936710	Sama_0897		hypothetical protein (RefSeq)	2.32340919212166	12.2789878948895	FALSE
+carbon source	set1H16	L-Glutamic acid monopotassium salt monohydrate	6936921	Sama_1095		hypothetical protein (RefSeq)	1.04939422030463	7.43191773235919	FALSE
+carbon source	set2H28	L-Glutamic acid monopotassium salt monohydrate	6936921	Sama_1095		hypothetical protein (RefSeq)	1.33004421190412	6.80259190044853	FALSE
+carbon source	set1H16	L-Glutamic acid monopotassium salt monohydrate	6937149	Sama_1319		sodium:dicarboxylate symporter (RefSeq)	-2.5241935212201	-7.67499520374753	FALSE
+carbon source	set2H28	L-Glutamic acid monopotassium salt monohydrate	6937149	Sama_1319		sodium:dicarboxylate symporter (RefSeq)	-2.47676758074108	-6.52821701706818	FALSE
+carbon source	set1H16	L-Glutamic acid monopotassium salt monohydrate	6938924	Sama_3027	mutL	DNA mismatch repair protein (RefSeq)	1.11967805976808	5.73594049531445	FALSE
+carbon source	set2H28	L-Glutamic acid monopotassium salt monohydrate	6938938	Sama_3036		transporter, putative (RefSeq)	-1.07664319527218	-8.49158645807941	FALSE
+carbon source	set1H16	L-Glutamic acid monopotassium salt monohydrate	6939166	Sama_3264		putative diguanylate phosphodiesterase (RefSeq)	1.45555242886808	12.7039022145315	FALSE
+carbon source	set2H28	L-Glutamic acid monopotassium salt monohydrate	6939166	Sama_3264		putative diguanylate phosphodiesterase (RefSeq)	1.77962116199107	15.6908881347137	FALSE
+carbon source	set2H28	L-Glutamic acid monopotassium salt monohydrate	6939348	Sama_3441		hypothetical protein (RefSeq)	1.19247016183617	8.99161862713425	FALSE
+carbon source	set1H16	L-Glutamic acid monopotassium salt monohydrate	6939348	Sama_3441		hypothetical protein (RefSeq)	1.37673780353288	8.04293916729674	FALSE
+carbon source	set2H28	L-Glutamic acid monopotassium salt monohydrate	6939504	Sama_3596		pseudouridine synthase, Rsu (RefSeq)	1.35002058937778	12.4408245949667	FALSE
+carbon source	set1H16	L-Glutamic acid monopotassium salt monohydrate	6939504	Sama_3596		pseudouridine synthase, Rsu (RefSeq)	1.39365194750169	12.9573944007101	FALSE
+carbon source	set1H17	L-Glutamine	6936271	Sama_0460		MSHA pilin protein MshB (RefSeq)	1.75456116149708	12.066766132866	FALSE
+carbon source	set2H29	L-Glutamine	6936271	Sama_0460		MSHA pilin protein MshB (RefSeq)	2.02275927132839	14.8636676828419	FALSE
+carbon source	set2H29	L-Glutamine	6936380	Sama_0568		hypothetical protein (RefSeq)	-1.60605150692128	-10.2105571913267	FALSE
+carbon source	set1H17	L-Glutamine	6936380	Sama_0568		hypothetical protein (RefSeq)	-1.57747601940556	-9.77906907878677	FALSE
+carbon source	set1H17	L-Glutamine	6937149	Sama_1319		sodium:dicarboxylate symporter (RefSeq)	-2.01351276216478	-8.08895248802334	FALSE
+carbon source	set2H29	L-Glutamine	6937149	Sama_1319		sodium:dicarboxylate symporter (RefSeq)	-1.86620886863795	-8.09671279444164	FALSE
+carbon source	set1H17	L-Glutamine	6937402	Sama_1566		gamma-glutamyltransferase (RefSeq)	-1.95827962681766	-8.51346508488715	FALSE
+carbon source	set2H29	L-Glutamine	6937402	Sama_1566		gamma-glutamyltransferase (RefSeq)	-1.40191448968432	-7.00884648727917	FALSE
+carbon source	set1H17	L-Glutamine	6937894	Sama_2035		ATP-dependent protease La (RefSeq)	-1.35739642551826	-7.41695048053559	FALSE
+carbon source	set2H29	L-Glutamine	6938368	Sama_2487		glutaminase (RefSeq)	-3.10154943054281	-7.70612836240856	TRUE
+carbon source	set1H17	L-Glutamine	6938368	Sama_2487		glutaminase (RefSeq)	-3.06566879440992	-6.81165143995141	TRUE
+carbon source	set2H29	L-Glutamine	6938369	Sama_2488		hypothetical protein (RefSeq)	-3.40566781961363	-5.14575256150369	TRUE
+carbon source	set2H29	L-Glutamine	6938443	Sama_2562		hypothetical protein (RefSeq)	1.51203572609537	10.5151471926141	FALSE
+carbon source	set1H17	L-Glutamine	6938443	Sama_2562		hypothetical protein (RefSeq)	1.65823391000481	10.7947807374641	FALSE
+carbon source	set2H29	L-Glutamine	6938637	Sama_2740		branched-chain amino acid transport system II carrier protein BrnQ (RefSeq)	-1.91324698417403	-11.7630307260484	FALSE
+carbon source	set1H17	L-Glutamine	6938637	Sama_2740		branched-chain amino acid transport system II carrier protein BrnQ (RefSeq)	-1.73503882880257	-11.1631296249609	FALSE
+carbon source	set1H17	L-Glutamine	6939166	Sama_3264		putative diguanylate phosphodiesterase (RefSeq)	1.38252477090582	12.3942656776179	FALSE
+carbon source	set2H29	L-Glutamine	6939166	Sama_3264		putative diguanylate phosphodiesterase (RefSeq)	1.42194225258218	12.6839451148514	FALSE
+carbon source	set2H29	L-Glutamine	6939504	Sama_3596		pseudouridine synthase, Rsu (RefSeq)	1.10491226626941	10.2000246092411	FALSE
+carbon source	set1H30	L-Serine	6936271	Sama_0460		MSHA pilin protein MshB (RefSeq)	2.53522574034074	19.0665068494946	TRUE
+carbon source	set2H42	L-Serine	6936271	Sama_0460		MSHA pilin protein MshB (RefSeq)	2.90777470469342	21.5923398285545	TRUE
+carbon source	set2H42	L-Serine	6936558	Sama_0746		DMT family permease (RefSeq)	1.11646112555781	5.47587271824333	FALSE
+carbon source	set2H42	L-Serine	6936710	Sama_0897		hypothetical protein (RefSeq)	1.4280435092203	6.29972820580083	FALSE
+carbon source	set2H42	L-Serine	6936921	Sama_1095		hypothetical protein (RefSeq)	1.81190567424925	12.4562608655842	FALSE
+carbon source	set1H30	L-Serine	6936921	Sama_1095		hypothetical protein (RefSeq)	2.16121220745092	13.5084082427483	FALSE
+carbon source	set1H30	L-Serine	6937082	Sama_1252		TonB-dependent receptor (RefSeq)	1.27647640647014	11.1787294044389	FALSE
+carbon source	set2H42	L-Serine	6937082	Sama_1252		TonB-dependent receptor (RefSeq)	1.62793645441186	14.4124890525106	FALSE
+carbon source	set2H42	L-Serine	6938067	Sama_2200		serine/threonine transporter SstT (RefSeq)	-1.53113282728852	-6.35688854755486	FALSE
+carbon source	set1H30	L-Serine	6938067	Sama_2200		serine/threonine transporter SstT (RefSeq)	-1.3537855913904	-5.75319767360338	FALSE
+carbon source	set2H42	L-Serine	6938637	Sama_2740		branched-chain amino acid transport system II carrier protein BrnQ (RefSeq)	-1.31016940784308	-7.85765980300627	FALSE
+carbon source	set1H30	L-Serine	6938637	Sama_2740		branched-chain amino acid transport system II carrier protein BrnQ (RefSeq)	-1.21471275208516	-7.60372986572052	FALSE
+carbon source	set1H30	L-Serine	6939166	Sama_3264		putative diguanylate phosphodiesterase (RefSeq)	1.44927155087094	12.818299729014	FALSE
+carbon source	set2H42	L-Serine	6939166	Sama_3264		putative diguanylate phosphodiesterase (RefSeq)	1.52545782284092	13.2507541708531	FALSE
+carbon source	set1H30	L-Serine	6939348	Sama_3441		hypothetical protein (RefSeq)	1.99165892960419	13.2749081995832	FALSE
+carbon source	set2H42	L-Serine	6939348	Sama_3441		hypothetical protein (RefSeq)	2.00955708620371	13.8524612751749	FALSE
+carbon source	set1H36	N-Acetyl-D-Glucosamine	6936757	Sama_0944		hypothetical protein (RefSeq)	-4.13980685613037	-10.2795637636393	TRUE
+carbon source	set1H22	N-Acetyl-D-Glucosamine	6936757	Sama_0944		hypothetical protein (RefSeq)	-3.58445754449131	-11.7181392800979	TRUE
+carbon source	set2H48	N-Acetyl-D-Glucosamine	6936757	Sama_0944		hypothetical protein (RefSeq)	-3.44955109828653	-11.7809777861339	TRUE
+carbon source	set2H34	N-Acetyl-D-Glucosamine	6936757	Sama_0944		hypothetical protein (RefSeq)	-3.01490240798611	-11.4994420908616	TRUE
+carbon source	set2H48	N-Acetyl-D-Glucosamine	6936758	Sama_0945		glutamine--fructose-6-phosphate transaminase (isomerizing) (RefSeq)	-4.79711879309536	-12.357178705009	TRUE
+carbon source	set2H34	N-Acetyl-D-Glucosamine	6936758	Sama_0945		glutamine--fructose-6-phosphate transaminase (isomerizing) (RefSeq)	-4.51300272601667	-13.5422443521756	TRUE
+carbon source	set1H22	N-Acetyl-D-Glucosamine	6936758	Sama_0945		glutamine--fructose-6-phosphate transaminase (isomerizing) (RefSeq)	-4.26390689695661	-13.5775976120147	TRUE
+carbon source	set1H36	N-Acetyl-D-Glucosamine	6936758	Sama_0945		glutamine--fructose-6-phosphate transaminase (isomerizing) (RefSeq)	-4.17811247686182	-14.2280722682026	TRUE
+carbon source	set1H36	N-Acetyl-D-Glucosamine	6936759	Sama_0946		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-5.2904310025305	-5.15329317720147	TRUE
+carbon source	set2H48	N-Acetyl-D-Glucosamine	6936759	Sama_0946		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-4.97886398529205	-7.59679508942034	TRUE
+carbon source	set1H22	N-Acetyl-D-Glucosamine	6936759	Sama_0946		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-4.96481637415666	-8.2730636844504	TRUE
+carbon source	set2H34	N-Acetyl-D-Glucosamine	6936759	Sama_0946		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-4.71551868149055	-9.01786321512648	TRUE
+carbon source	set1H6	Potassium acetate	6936492	Sama_0680		XRE family transcriptional regulator (RefSeq)	-1.00873638950582	-8.29751421309134	FALSE
+carbon source	set1H6	Potassium acetate	6937194	Sama_1364		acyl-coenzyme A synthetase/AMP-(fatty) acid ligase (RefSeq)	1.39204926701716	11.9536953460817	TRUE
+carbon source	set2H18	Potassium acetate	6937194	Sama_1364		acyl-coenzyme A synthetase/AMP-(fatty) acid ligase (RefSeq)	1.48467868228415	12.6516570478591	TRUE
+carbon source	set1H6	Potassium acetate	6937606	Sama_1760		acetyltransferase (RefSeq)	6.80186682777116	54.3580354365123	TRUE
+carbon source	set2H18	Potassium acetate	6937606	Sama_1760		acetyltransferase (RefSeq)	7.15487475817338	56.9532246033429	TRUE
+carbon source	set2H18	Potassium acetate	6937747	Sama_1888		ribonuclease activity regulator protein RraA (RefSeq)	-1.1850144280568	-6.76872698377102	FALSE
+carbon source	set1H6	Potassium acetate	6938260	Sama_2380		isocitrate lyase (RefSeq)	-4.5035875979122	-15.3913437193491	TRUE
+carbon source	set2H18	Potassium acetate	6938260	Sama_2380		isocitrate lyase (RefSeq)	-4.19196910082689	-18.5020640250595	TRUE
+carbon source	set2H18	Potassium acetate	6939183	Sama_3277		Serine--pyruvate transaminase (RefSeq)	-1.6095436898225	-9.75446806921851	FALSE
+carbon source	set1H6	Potassium acetate	6939183	Sama_3277		Serine--pyruvate transaminase (RefSeq)	-1.44630761099115	-9.87195103301281	FALSE
+carbon source	set2H18	Potassium acetate	6939268	Sama_3361		phosphoglycolate phosphatase (RefSeq)	-1.35543976219884	-9.88763274213898	FALSE
+carbon source	set1H6	Potassium acetate	6939268	Sama_3361		phosphoglycolate phosphatase (RefSeq)	-1.29855763936829	-9.52939239104583	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6936189	Sama_0378		sensory box protein (RefSeq)	-1.13738545316491	-9.90430170640421	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6936189	Sama_0378		sensory box protein (RefSeq)	-1.13054249383481	-10.1326586950215	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6936606	Sama_0794		hypothetical protein (RefSeq)	-2.1909348045015	-12.0130958726991	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6936606	Sama_0794		hypothetical protein (RefSeq)	-2.070372420144	-10.9230789091726	FALSE
+carbon source	set1H21	Putrescine Dihydrochloride	6936606	Sama_0794		hypothetical protein (RefSeq)	-2.06698947985494	-11.6727872280938	FALSE
+carbon source	set1H35	Putrescine Dihydrochloride	6936606	Sama_0794		hypothetical protein (RefSeq)	-1.94625578173512	-10.726369984464	FALSE
+carbon source	set1H35	Putrescine Dihydrochloride	6936862	Sama_1044		RNA polymerase sigma-38 factor (RefSeq)	-1.01102663596207	-6.7260072615344	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6937043	Sama_1217		hypothetical protein (RefSeq)	1.58425028705354	11.3160326269071	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6937043	Sama_1217		hypothetical protein (RefSeq)	1.65859306399245	12.1006578670382	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6937156	Sama_1326		beta-hexosaminidase (RefSeq)	-1.38328503242519	-6.55411439837801	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6937205	Sama_1375		Acetyl-CoA C-acetyltransferase (RefSeq)	-1.5887668500871	-5.79277875276772	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6937207	Sama_1377		butyryl-CoA dehydrogenase (RefSeq)	-1.48139672019448	-6.26576023407041	FALSE
+carbon source	set1H21	Putrescine Dihydrochloride	6937497	Sama_1653		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-1.16818882886053	-5.96958423338655	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6937530	Sama_1686		MutT/nudix family protein (RefSeq)	-2.79584710456637	-9.45226135396052	FALSE
+carbon source	set1H21	Putrescine Dihydrochloride	6937530	Sama_1686		MutT/nudix family protein (RefSeq)	-2.65235893604835	-9.42080248501809	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6937530	Sama_1686		MutT/nudix family protein (RefSeq)	-2.38366243704256	-8.82713155338412	FALSE
+carbon source	set1H35	Putrescine Dihydrochloride	6937530	Sama_1686		MutT/nudix family protein (RefSeq)	-1.89572131580216	-7.09514565566625	FALSE
+carbon source	set1H21	Putrescine Dihydrochloride	6937562	Sama_1717		putative lipoprotein (RefSeq)	-1.53381309105629	-10.0587106953184	FALSE
+carbon source	set1H35	Putrescine Dihydrochloride	6937562	Sama_1717		putative lipoprotein (RefSeq)	-1.51248376439567	-9.71806444282718	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6937562	Sama_1717		putative lipoprotein (RefSeq)	-1.11336640278186	-7.6967265518318	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6937702	Sama_1844		extracellular solute-binding protein (RefSeq)	1.0861355715803	9.31552828424268	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6937702	Sama_1844		extracellular solute-binding protein (RefSeq)	1.12583256254903	9.64575757153371	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6937785	Sama_1926		disulfide bond formation protein B (RefSeq)	1.66072162793426	10.267445107898	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6937785	Sama_1926		disulfide bond formation protein B (RefSeq)	1.77614115528109	10.0002599303348	FALSE
+carbon source	set1H21	Putrescine Dihydrochloride	6938156	Sama_2277		putative CheA signal transduction histidine kinase (RefSeq)	-1.75570922340621	-9.55586192866486	FALSE
+carbon source	set1H35	Putrescine Dihydrochloride	6938156	Sama_2277		putative CheA signal transduction histidine kinase (RefSeq)	-1.67402427972677	-9.00065035796326	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6938156	Sama_2277		putative CheA signal transduction histidine kinase (RefSeq)	-1.60065586575992	-8.73838267758068	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6938156	Sama_2277		putative CheA signal transduction histidine kinase (RefSeq)	-1.47552349725786	-7.26455173770961	FALSE
+carbon source	set1H35	Putrescine Dihydrochloride	6938198	Sama_2319		protein-glutamate O-methyltransferase (RefSeq)	-2.37576226081478	-10.053366070973	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6938198	Sama_2319		protein-glutamate O-methyltransferase (RefSeq)	-1.86741423941047	-7.2873547490507	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6938198	Sama_2319		protein-glutamate O-methyltransferase (RefSeq)	-1.83479762407828	-7.80844654211767	FALSE
+carbon source	set1H21	Putrescine Dihydrochloride	6938198	Sama_2319		protein-glutamate O-methyltransferase (RefSeq)	-1.67963819440669	-8.70827302002022	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6938422	Sama_2541		S-ribosylhomocysteinase (RefSeq)	-1.24841613498553	-5.24868360505828	FALSE
+carbon source	set1H35	Putrescine Dihydrochloride	6938422	Sama_2541		S-ribosylhomocysteinase (RefSeq)	-1.02902706911133	-5.00142991131379	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6938533	Sama_2636		4-aminobutyrate aminotransferase (RefSeq)	-2.85130375863806	-11.4285061532753	TRUE
+carbon source	set1H21	Putrescine Dihydrochloride	6938533	Sama_2636		4-aminobutyrate aminotransferase (RefSeq)	-2.63545215904119	-11.564707261901	TRUE
+carbon source	set2H47	Putrescine Dihydrochloride	6938533	Sama_2636		4-aminobutyrate aminotransferase (RefSeq)	-2.56401082758167	-11.5589422597639	TRUE
+carbon source	set1H35	Putrescine Dihydrochloride	6938533	Sama_2636		4-aminobutyrate aminotransferase (RefSeq)	-2.45189618993174	-10.7592397668289	TRUE
+carbon source	set2H33	Putrescine Dihydrochloride	6938535	Sama_2638		putative oxidoreductase (RefSeq)	-3.68808354477069	-12.6025187548336	TRUE
+carbon source	set1H21	Putrescine Dihydrochloride	6938535	Sama_2638		putative oxidoreductase (RefSeq)	-3.55937458398366	-14.7042666642121	TRUE
+carbon source	set2H47	Putrescine Dihydrochloride	6938535	Sama_2638		putative oxidoreductase (RefSeq)	-3.50525624837267	-15.1144368076582	TRUE
+carbon source	set1H35	Putrescine Dihydrochloride	6938535	Sama_2638		putative oxidoreductase (RefSeq)	-3.38692077360871	-14.1190575708538	TRUE
+carbon source	set2H33	Putrescine Dihydrochloride	6938536	Sama_2639		binding-protein-dependent transport systems inner membrane component (RefSeq)	-4.38765682141036	-6.68490985315662	TRUE
+carbon source	set2H47	Putrescine Dihydrochloride	6938536	Sama_2639		binding-protein-dependent transport systems inner membrane component (RefSeq)	-4.14791173627974	-8.36660422900066	TRUE
+carbon source	set1H35	Putrescine Dihydrochloride	6938536	Sama_2639		binding-protein-dependent transport systems inner membrane component (RefSeq)	-3.97602728555984	-7.58645351470622	TRUE
+carbon source	set1H21	Putrescine Dihydrochloride	6938536	Sama_2639		binding-protein-dependent transport systems inner membrane component (RefSeq)	-3.83262537656121	-8.84040716849807	TRUE
+carbon source	set2H47	Putrescine Dihydrochloride	6938540	Sama_2643		putative aminotransferase (RefSeq)	-3.62743969775484	-16.1267110721603	TRUE
+carbon source	set1H35	Putrescine Dihydrochloride	6938540	Sama_2643		putative aminotransferase (RefSeq)	-3.57109221732024	-14.7522695061291	TRUE
+carbon source	set1H21	Putrescine Dihydrochloride	6938540	Sama_2643		putative aminotransferase (RefSeq)	-3.39959819104882	-16.3345133258882	TRUE
+carbon source	set2H33	Putrescine Dihydrochloride	6938540	Sama_2643		putative aminotransferase (RefSeq)	-3.21230749518384	-15.3410473924853	TRUE
+carbon source	set1H21	Putrescine Dihydrochloride	6938542	Sama_2645		glutamine amidotransferase (RefSeq)	-3.48946951025108	-10.5897320397349	TRUE
+carbon source	set1H35	Putrescine Dihydrochloride	6938542	Sama_2645		glutamine amidotransferase (RefSeq)	-3.45192209104152	-9.34641301445902	TRUE
+carbon source	set2H33	Putrescine Dihydrochloride	6938542	Sama_2645		glutamine amidotransferase (RefSeq)	-2.84917990035673	-9.03376140021113	TRUE
+carbon source	set2H47	Putrescine Dihydrochloride	6938542	Sama_2645		glutamine amidotransferase (RefSeq)	-2.82044659945296	-9.08475768186279	TRUE
+carbon source	set1H35	Putrescine Dihydrochloride	6938545	Sama_2648		aldehyde dehydrogenase (RefSeq)	-3.8720859484377	-13.6487390744283	TRUE
+carbon source	set1H21	Putrescine Dihydrochloride	6938545	Sama_2648		aldehyde dehydrogenase (RefSeq)	-3.82898123395937	-15.393796330154	TRUE
+carbon source	set2H33	Putrescine Dihydrochloride	6938545	Sama_2648		aldehyde dehydrogenase (RefSeq)	-3.78355890148318	-15.8004394766713	TRUE
+carbon source	set2H47	Putrescine Dihydrochloride	6938545	Sama_2648		aldehyde dehydrogenase (RefSeq)	-3.52046497814037	-17.6032236522768	TRUE
+carbon source	set2H47	Putrescine Dihydrochloride	6939201	Sama_3295		methylcitrate synthase (RefSeq)	-1.21609420199142	-7.28315043104432	FALSE
+carbon source	set2H33	Putrescine Dihydrochloride	6939201	Sama_3295		methylcitrate synthase (RefSeq)	-1.21400499942988	-6.85699245852112	FALSE
+carbon source	set2H47	Putrescine Dihydrochloride	6939368	Sama_3461		alpha/beta fold family hydrolase (RefSeq)	-1.05037349042553	-7.22178772701647	FALSE
+carbon source	set1H21	Putrescine Dihydrochloride	6939484	Sama_3576		ATP-binding transport protein NatA (RefSeq)	-1.00674473228813	-6.94022953285037	FALSE
+carbon source	set1H32	Sodium D,L-Lactate	6935804	Sama_0022		Urea carboxylase (RefSeq)	1.55025605540005	12.6547091734288	FALSE
+carbon source	set1H10	Sodium D,L-Lactate	6935804	Sama_0022		Urea carboxylase (RefSeq)	1.57152314307739	12.8081162430785	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6935804	Sama_0022		Urea carboxylase (RefSeq)	1.69488444340735	14.060021603273	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6935804	Sama_0022		Urea carboxylase (RefSeq)	1.78817771644358	14.7312639052175	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6935805	Sama_0023		hypothetical protein (RefSeq)	1.71591034760839	14.3042268554513	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6935805	Sama_0023		hypothetical protein (RefSeq)	1.72193679685391	13.9621261853889	FALSE
+carbon source	set1H32	Sodium D,L-Lactate	6935805	Sama_0023		hypothetical protein (RefSeq)	1.72857054413668	13.9711584103281	FALSE
+carbon source	set1H10	Sodium D,L-Lactate	6935805	Sama_0023		hypothetical protein (RefSeq)	1.78275991779124	14.3426825841746	FALSE
+carbon source	set1H10	Sodium D,L-Lactate	6935868	Sama_0083		alpha/beta hydrolase fold (RefSeq)	-1.74754940796726	-12.0717916932768	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6935868	Sama_0083		alpha/beta hydrolase fold (RefSeq)	-1.68146711947286	-11.8050923827964	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6935868	Sama_0083		alpha/beta hydrolase fold (RefSeq)	-1.55826872775092	-11.4085674146791	FALSE
+carbon source	set1H32	Sodium D,L-Lactate	6935868	Sama_0083		alpha/beta hydrolase fold (RefSeq)	-1.50866998652122	-11.2174209140777	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6935899	Sama_0114		hypothetical protein (RefSeq)	1.13453971386139	10.3941261331899	FALSE
+carbon source	set1H32	Sodium D,L-Lactate	6935899	Sama_0114		hypothetical protein (RefSeq)	1.15151910126711	10.6810719923862	FALSE
+carbon source	set1H10	Sodium D,L-Lactate	6935899	Sama_0114		hypothetical protein (RefSeq)	1.17661718430839	10.8856240362396	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6936476	Sama_0664		glutathione S-transferase family protein (RefSeq)	-1.32770205824501	-8.7943198803076	FALSE
+carbon source	set1H32	Sodium D,L-Lactate	6936476	Sama_0664		glutathione S-transferase family protein (RefSeq)	-1.32125963180728	-8.60852011836058	FALSE
+carbon source	set1H10	Sodium D,L-Lactate	6936476	Sama_0664		glutathione S-transferase family protein (RefSeq)	-1.2368112797405	-8.17316262572376	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6936476	Sama_0664		glutathione S-transferase family protein (RefSeq)	-1.1510011013296	-7.87020411183278	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6936911	Sama_1085		hypothetical protein (RefSeq)	1.44203847663908	7.13527658769734	FALSE
+carbon source	set1H32	Sodium D,L-Lactate	6937112	Sama_1282		signal transduction histidine kinase, LytS (RefSeq)	2.17006465012933	16.1045113324765	FALSE
+carbon source	set1H10	Sodium D,L-Lactate	6937112	Sama_1282		signal transduction histidine kinase, LytS (RefSeq)	2.23610348031662	16.2768789555432	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6937112	Sama_1282		signal transduction histidine kinase, LytS (RefSeq)	2.33349472033773	16.5568664326242	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6937112	Sama_1282		signal transduction histidine kinase, LytS (RefSeq)	2.38092482724389	17.1068914807806	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6937979	Sama_2112		ion transport protein (RefSeq)	1.1314066588363	6.1825397292839	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6938251	Sama_2371		hypothetical protein (RefSeq)	1.06451956194303	8.20782069085106	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6938748	Sama_2851		transporter, putative (RefSeq)	1.34948050568993	11.7216395237428	FALSE
+carbon source	set1H32	Sodium D,L-Lactate	6938748	Sama_2851		transporter, putative (RefSeq)	1.37171229877975	12.2439444604849	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6938748	Sama_2851		transporter, putative (RefSeq)	1.38695520762912	12.0725438825196	FALSE
+carbon source	set1H10	Sodium D,L-Lactate	6938748	Sama_2851		transporter, putative (RefSeq)	1.40514733107094	12.4340313745053	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6938827	Sama_2930		hypothetical protein (RefSeq)	1.05611953113558	6.62017464409764	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6939098	Sama_3196		acetyl-CoA carboxylase, biotin carboxylase (RefSeq)	-1.10409796608208	-8.73473137517309	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6939098	Sama_3196		acetyl-CoA carboxylase, biotin carboxylase (RefSeq)	-1.01059649131093	-7.81012537222463	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6939409	Sama_3501		DNA-damage-inducible protein F (RefSeq)	-1.47359800235993	-12.5313622975633	FALSE
+carbon source	set1H10	Sodium D,L-Lactate	6939409	Sama_3501		DNA-damage-inducible protein F (RefSeq)	-1.35909572641149	-11.3675774528053	FALSE
+carbon source	set1H32	Sodium D,L-Lactate	6939409	Sama_3501		DNA-damage-inducible protein F (RefSeq)	-1.3551988486574	-11.5348470701207	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6939409	Sama_3501		DNA-damage-inducible protein F (RefSeq)	-1.33503997065342	-11.2429246481846	FALSE
+carbon source	set2H22	Sodium D,L-Lactate	6939532	Sama_3624		protease, putative (RefSeq)	1.1327384199133	10.9004084734678	FALSE
+carbon source	set2H44	Sodium D,L-Lactate	6939532	Sama_3624		protease, putative (RefSeq)	1.14368133140867	10.9907317958585	FALSE
+carbon source	set1H9	Sodium L-Lactate	6935785	Sama_0003		carboxylesterase (RefSeq)	-1.14470373386349	-5.52769953682182	FALSE
+carbon source	set1H9	Sodium L-Lactate	6936130	Sama_0327	radC	DNA repair protein RadC (RefSeq)	1.32029526128279	8.45739990741145	FALSE
+carbon source	set2H21	Sodium L-Lactate	6936261	Sama_0450		biogenesis protein MshI (RefSeq)	1.22779664543958	7.2906634192903	FALSE
+carbon source	set2H21	Sodium L-Lactate	6936262	Sama_0451		hypothetical protein (RefSeq)	1.20828503777981	5.68254719734434	FALSE
+carbon source	set1H9	Sodium L-Lactate	6936263	Sama_0452		MSHA biogenesis protein MshJ (RefSeq)	1.19766288219977	6.7435578397097	FALSE
+carbon source	set2H21	Sodium L-Lactate	6936265	Sama_0454		MSHA biogenesis protein MshL (RefSeq)	1.26024118135723	9.93634536729519	FALSE
+carbon source	set2H21	Sodium L-Lactate	6936268	Sama_0457		MSHA biogenesis protein MshE (RefSeq)	1.31082146455128	10.3591233215288	FALSE
+carbon source	set2H21	Sodium L-Lactate	6936275	Sama_0464		MSHA biogenesis protein MshO precursor (RefSeq)	1.12967901998448	7.24772108748671	FALSE
+carbon source	set2H21	Sodium L-Lactate	6936344	Sama_0533		alcohol dehydrogenase, zinc-containing (RefSeq)	1.7866469135993	14.3669033677905	FALSE
+carbon source	set1H9	Sodium L-Lactate	6936344	Sama_0533		alcohol dehydrogenase, zinc-containing (RefSeq)	1.83789403970453	14.7658230463866	FALSE
+carbon source	set1H9	Sodium L-Lactate	6936559	Sama_0747		signal transduction histidine kinase-like protein (RefSeq)	1.10973453481148	9.59375551077992	FALSE
+carbon source	set1H9	Sodium L-Lactate	6936560	Sama_0748		response regulator receiver protein (RefSeq)	1.05824608415656	5.94068437679644	FALSE
+carbon source	set1H9	Sodium L-Lactate	6936717	Sama_0904		peptidyl-prolyl cis-trans isomerase SlyD (RefSeq)	1.26817007281001	6.18004290973034	FALSE
+carbon source	set1H9	Sodium L-Lactate	6936850	Sama_1032	rumA	23S rRNA 5-methyluridine methyltransferase (RefSeq)	1.21663035357872	7.89190522803651	FALSE
+carbon source	set2H21	Sodium L-Lactate	6936878	Sama_1052		oxaloacetate decarboxylase (RefSeq)	-1.85722596020403	-11.2073459244724	FALSE
+carbon source	set1H9	Sodium L-Lactate	6936878	Sama_1052		oxaloacetate decarboxylase (RefSeq)	-1.64059513467601	-10.1589773677717	FALSE
+carbon source	set1H9	Sodium L-Lactate	6936879	Sama_1053		oxaloacetate decarboxylase (RefSeq)	-2.24534949625894	-11.9467073011262	FALSE
+carbon source	set2H21	Sodium L-Lactate	6936879	Sama_1053		oxaloacetate decarboxylase (RefSeq)	-1.72413316890832	-9.80293334572627	FALSE
+carbon source	set1H9	Sodium L-Lactate	6937530	Sama_1686		MutT/nudix family protein (RefSeq)	-1.82103713723397	-6.35640709629928	FALSE
+carbon source	set2H21	Sodium L-Lactate	6937530	Sama_1686		MutT/nudix family protein (RefSeq)	-1.57180774783998	-6.35529235100564	FALSE
+carbon source	set1H9	Sodium L-Lactate	6937982	Sama_2115		hypothetical protein (RefSeq)	1.0874572476799	5.56040386307851	FALSE
+carbon source	set1H9	Sodium L-Lactate	6938483	Sama_2596		ribosomal-protein-alanine acetyltransferase (RefSeq)	-1.59368150140563	-5.21118345819005	FALSE
+carbon source	set1H9	Sodium L-Lactate	6938729	Sama_2832		hypothetical protein (RefSeq)	1.34307653206879	5.49569771965789	FALSE
+carbon source	set2H21	Sodium L-Lactate	6938853	Sama_2956		putative ABC transport system permease protein (RefSeq)	1.08794185541641	9.16344306065585	TRUE
+carbon source	set1H9	Sodium L-Lactate	6938853	Sama_2956		putative ABC transport system permease protein (RefSeq)	1.13849922113923	9.49252877718685	TRUE
+carbon source	set1H9	Sodium L-Lactate	6938854	Sama_2957		hypothetical protein (RefSeq)	1.1311713950035	6.42417907059161	TRUE
+carbon source	set1H9	Sodium L-Lactate	6939160	Sama_3258		putative outer membrane adhesin like protein (RefSeq)	1.40349880757299	13.164760967195	FALSE
+carbon source	set2H21	Sodium L-Lactate	6939160	Sama_3258		putative outer membrane adhesin like protein (RefSeq)	1.60024625759627	15.0522217470972	FALSE
+carbon source	set1H9	Sodium L-Lactate	6939161	Sama_3259		toxin secretion ATP-binding protein (RefSeq)	1.46105810950779	12.6452124453911	FALSE
+carbon source	set2H21	Sodium L-Lactate	6939161	Sama_3259		toxin secretion ATP-binding protein (RefSeq)	1.60867781240213	14.4012635476737	FALSE
+carbon source	set2H21	Sodium L-Lactate	6939162	Sama_3260		HlyD family secretion protein (RefSeq)	1.31504890760226	10.8907535812355	FALSE
+carbon source	set1H9	Sodium L-Lactate	6939163	Sama_3261		type I secretion outer membrane protein, TolC (RefSeq)	1.49033141135815	12.0648471487821	FALSE
+carbon source	set2H21	Sodium L-Lactate	6939163	Sama_3261		type I secretion outer membrane protein, TolC (RefSeq)	1.55369203792687	12.9489260434732	FALSE
+carbon source	set2H21	Sodium L-Lactate	6939531	Sama_3623		putative chorismate--pyruvate lyase (RefSeq)	2.0246836929802	12.3449653986138	FALSE
+carbon source	set1H9	Sodium L-Lactate	6939531	Sama_3623		putative chorismate--pyruvate lyase (RefSeq)	2.12809518183089	11.9227091604798	FALSE
+carbon source	set2H23	Sodium pyruvate	6935881	Sama_0096		glpE protein (RefSeq)	-1.66417749186596	-8.31440645905029	FALSE
+carbon source	set1H11	Sodium pyruvate	6936272	Sama_0461		MSHA pilin protein MshA (RefSeq)	1.38118964482547	8.20237476809265	FALSE
+carbon source	set2H23	Sodium pyruvate	6937208	Sama_1378		enoyl-CoA hydratase (RefSeq)	-1.61243985620858	-5.01840799184608	FALSE
+carbon source	set1H11	Sodium pyruvate	6937634	Sama_1786		copper-translocating P-type ATPase (RefSeq)	-1.0319178910676	-7.57093488880315	FALSE
+carbon source	set1H11	Sodium pyruvate	6939166	Sama_3264		putative diguanylate phosphodiesterase (RefSeq)	1.77882512113488	16.4267305872693	FALSE
+carbon source	set1H25	Thymidine	6937539	Sama_1695		deoxyguanosinetriphosphate triphosphohydrolase-like protein (RefSeq)	-3.90553819397484	-11.3023590766946	FALSE
+carbon source	set2H37	Thymidine	6937539	Sama_1695		deoxyguanosinetriphosphate triphosphohydrolase-like protein (RefSeq)	-3.7971112904403	-8.4043866467266	FALSE
+carbon source	set1H25	Thymidine	6937966	Sama_2099		UMP phosphatase (RefSeq)	-2.97021342917253	-7.55259352406227	FALSE
+carbon source	set2H37	Thymidine	6937966	Sama_2099		UMP phosphatase (RefSeq)	-2.90582691142553	-7.11220634524111	FALSE
+carbon source	set1H25	Thymidine	6939341	Sama_3434		sigma-54 dependent transcriptional regulator (RefSeq)	-1.9255227351309	-13.5781360850271	TRUE
+carbon source	set2H37	Thymidine	6939341	Sama_3434		sigma-54 dependent transcriptional regulator (RefSeq)	-1.70891956901637	-11.0766787126616	TRUE
+carbon source	set2H37	Thymidine	6939342	Sama_3435		aldehyde dehydrogenase (RefSeq)	-2.03903500729101	-13.4319945584046	TRUE
+carbon source	set1H25	Thymidine	6939342	Sama_3435		aldehyde dehydrogenase (RefSeq)	-1.81705788133232	-13.2017723112065	TRUE
+carbon source	set1H25	Thymidine	6939426	Sama_3518		carbohydrate kinase (RefSeq)	-1.43369001087946	-9.92263134960768	FALSE
+carbon source	set2H37	Thymidine	6939426	Sama_3518		carbohydrate kinase (RefSeq)	-1.23440411631392	-7.37923408271275	FALSE
+carbon source	set2H45	Tween 20	6935813	Sama_0031	fadA	3-ketoacyl-CoA thiolase (RefSeq)	-4.84563684563101	-20.5121305305106	TRUE
+carbon source	set1H33	Tween 20	6935813	Sama_0031	fadA	3-ketoacyl-CoA thiolase (RefSeq)	-4.78559110749039	-20.26255206049	TRUE
+carbon source	set2H26	Tween 20	6935813	Sama_0031	fadA	3-ketoacyl-CoA thiolase (RefSeq)	-4.72329311467674	-22.7565440857039	TRUE
+carbon source	set1H14	Tween 20	6935813	Sama_0031	fadA	3-ketoacyl-CoA thiolase (RefSeq)	-4.44802095090519	-19.3190859756846	TRUE
+carbon source	set2H45	Tween 20	6935814	Sama_0032	fadB	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-5.46937748388327	-16.1636539490322	TRUE
+carbon source	set1H33	Tween 20	6935814	Sama_0032	fadB	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-5.22621061726902	-18.7650448465433	TRUE
+carbon source	set2H26	Tween 20	6935814	Sama_0032	fadB	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-5.0876873671034	-22.4757498333307	TRUE
+carbon source	set1H14	Tween 20	6935814	Sama_0032	fadB	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-5.05269519120465	-16.508162618248	TRUE
+carbon source	set2H26	Tween 20	6935950	Sama_0165		phosphoenolpyruvate carboxykinase (RefSeq)	-1.19838901389982	-8.65854570167357	TRUE
+carbon source	set2H26	Tween 20	6936288	Sama_0477		outer membrane efflux protein (RefSeq)	-3.7899865834797	-22.5687943295999	FALSE
+carbon source	set1H14	Tween 20	6936288	Sama_0477		outer membrane efflux protein (RefSeq)	-3.70635433068173	-19.5088462423914	FALSE
+carbon source	set1H33	Tween 20	6936288	Sama_0477		outer membrane efflux protein (RefSeq)	-3.58895037496402	-21.3712865364489	FALSE
+carbon source	set2H45	Tween 20	6936288	Sama_0477		outer membrane efflux protein (RefSeq)	-3.5546799119551	-22.363488821527	FALSE
+carbon source	set2H26	Tween 20	6936289	Sama_0478		HlyD family secretion protein (RefSeq)	-3.52016881315754	-18.8311934242151	FALSE
+carbon source	set1H33	Tween 20	6936289	Sama_0478		HlyD family secretion protein (RefSeq)	-3.47484513053234	-16.6814654594208	FALSE
+carbon source	set2H45	Tween 20	6936289	Sama_0478		HlyD family secretion protein (RefSeq)	-3.32744397998053	-17.3228497847308	FALSE
+carbon source	set1H14	Tween 20	6936289	Sama_0478		HlyD family secretion protein (RefSeq)	-2.99585397831157	-15.0013894320091	FALSE
+carbon source	set1H33	Tween 20	6936290	Sama_0479		hypothetical protein (RefSeq)	-3.62513632836484	-19.5737097595759	FALSE
+carbon source	set1H14	Tween 20	6936290	Sama_0479		hypothetical protein (RefSeq)	-3.62384244888014	-17.97413355429	FALSE
+carbon source	set2H45	Tween 20	6936290	Sama_0479		hypothetical protein (RefSeq)	-3.32668958461036	-18.9628698669	FALSE
+carbon source	set2H26	Tween 20	6936290	Sama_0479		hypothetical protein (RefSeq)	-3.2452828765269	-18.2929450955314	FALSE
+carbon source	set2H26	Tween 20	6936492	Sama_0680		XRE family transcriptional regulator (RefSeq)	-2.38822491148365	-17.3650720970103	TRUE
+carbon source	set1H14	Tween 20	6936492	Sama_0680		XRE family transcriptional regulator (RefSeq)	-2.27859697271664	-15.7640880288419	TRUE
+carbon source	set2H45	Tween 20	6936492	Sama_0680		XRE family transcriptional regulator (RefSeq)	-2.19433198660731	-15.4977578323362	TRUE
+carbon source	set1H33	Tween 20	6936492	Sama_0680		XRE family transcriptional regulator (RefSeq)	-2.16184092574539	-15.5442134644915	TRUE
+carbon source	set2H26	Tween 20	6936493	Sama_0681		malate synthase (RefSeq)	-2.76596339862867	-11.1183915430373	TRUE
+carbon source	set2H45	Tween 20	6936493	Sama_0681		malate synthase (RefSeq)	-2.50320414367968	-9.87475186630483	TRUE
+carbon source	set1H33	Tween 20	6936493	Sama_0681		malate synthase (RefSeq)	-2.3422457752391	-9.63722303221878	TRUE
+carbon source	set1H14	Tween 20	6936493	Sama_0681		malate synthase (RefSeq)	-2.29414205735671	-8.47813190145494	TRUE
+carbon source	set2H26	Tween 20	6936845	Sama_1027		transporter, putative (RefSeq)	-1.2750923109947	-10.1057444602362	TRUE
+carbon source	set2H45	Tween 20	6936845	Sama_1027		transporter, putative (RefSeq)	-1.26028383524833	-9.35166459723867	TRUE
+carbon source	set1H33	Tween 20	6936845	Sama_1027		transporter, putative (RefSeq)	-1.15326265265913	-8.51376495382138	TRUE
+carbon source	set2H45	Tween 20	6937588	Sama_1743		acyl-CoA dehydrogenase family protein (RefSeq)	-1.33778593315515	-8.24964527890523	TRUE
+carbon source	set2H26	Tween 20	6937588	Sama_1743		acyl-CoA dehydrogenase family protein (RefSeq)	-1.23590660090536	-8.649025100867	TRUE
+carbon source	set1H33	Tween 20	6937588	Sama_1743		acyl-CoA dehydrogenase family protein (RefSeq)	-1.18004689417105	-7.94194940776481	TRUE
+carbon source	set1H14	Tween 20	6937588	Sama_1743		acyl-CoA dehydrogenase family protein (RefSeq)	-1.03312940549076	-6.91698939706858	TRUE
+carbon source	set1H33	Tween 20	6938260	Sama_2380		isocitrate lyase (RefSeq)	-4.61728544364914	-15.0170140084794	TRUE
+carbon source	set2H26	Tween 20	6938260	Sama_2380		isocitrate lyase (RefSeq)	-4.50685871549087	-17.14212319186	TRUE
+carbon source	set1H14	Tween 20	6938260	Sama_2380		isocitrate lyase (RefSeq)	-4.32230735912867	-14.5398819597392	TRUE
+carbon source	set2H45	Tween 20	6938260	Sama_2380		isocitrate lyase (RefSeq)	-4.24071752919861	-17.9861011241331	TRUE
+carbon source	set1H33	Tween 20	6938937	Sama_3035		membrane protein (RefSeq)	-1.42670877760719	-8.29798020866379	FALSE
+carbon source	set2H45	Tween 20	6938937	Sama_3035		membrane protein (RefSeq)	-1.35803354914593	-7.32689547803369	FALSE
+carbon source	set2H26	Tween 20	6938937	Sama_3035		membrane protein (RefSeq)	-1.33076359164934	-8.33102958893673	FALSE
+carbon source	set1H14	Tween 20	6938937	Sama_3035		membrane protein (RefSeq)	-1.07382304718329	-6.17981018901364	FALSE
+carbon source	set1H33	Tween 20	6939183	Sama_3277		Serine--pyruvate transaminase (RefSeq)	-2.82044100518869	-13.6270611372829	TRUE
+carbon source	set1H14	Tween 20	6939183	Sama_3277		Serine--pyruvate transaminase (RefSeq)	-2.57805311663062	-13.529793670688	TRUE
+carbon source	set2H45	Tween 20	6939183	Sama_3277		Serine--pyruvate transaminase (RefSeq)	-2.55727437666012	-13.1325474255976	TRUE
+carbon source	set2H26	Tween 20	6939183	Sama_3277		Serine--pyruvate transaminase (RefSeq)	-2.53863668695381	-12.9260521976508	TRUE
+carbon source	set1H14	Tween 20	6939268	Sama_3361		phosphoglycolate phosphatase (RefSeq)	-4.33036923349759	-14.3319767276347	FALSE
+carbon source	set2H45	Tween 20	6939268	Sama_3361		phosphoglycolate phosphatase (RefSeq)	-3.88281720692146	-18.2344182344086	FALSE
+carbon source	set2H26	Tween 20	6939268	Sama_3361		phosphoglycolate phosphatase (RefSeq)	-3.6658870397825	-17.3709915747567	FALSE
+carbon source	set1H33	Tween 20	6939268	Sama_3361		phosphoglycolate phosphatase (RefSeq)	-3.34653938386765	-16.063157656403	FALSE
+carbon source	set2H26	Tween 20	6939284	Sama_3377		hypothetical protein (RefSeq)	1.25946717662927	9.55512147242606	FALSE
+carbon source	set1H14	Tween 20	6939284	Sama_3377		hypothetical protein (RefSeq)	1.31178251088629	9.55821203020749	FALSE
+carbon source	set2H45	Tween 20	6939284	Sama_3377		hypothetical protein (RefSeq)	1.34812026774729	10.0396320748646	FALSE
+carbon source	set1H33	Tween 20	6939284	Sama_3377		hypothetical protein (RefSeq)	1.37099427363099	10.2768999039488	FALSE
+carbon source	set1H14	Tween 20	6939288	Sama_3381		hypothetical protein (RefSeq)	1.25416368288222	7.53714845124628	FALSE
+carbon source	set2H45	Tween 20	6939288	Sama_3381		hypothetical protein (RefSeq)	1.30184218691863	8.64335684127238	FALSE
+carbon source	set1H33	Tween 20	6939288	Sama_3381		hypothetical protein (RefSeq)	1.33706542612008	7.87052013647642	FALSE
+carbon source	set2H26	Tween 20	6939288	Sama_3381		hypothetical protein (RefSeq)	1.38294761489223	8.69259877439621	FALSE
+carbon source	set2H26	Tween 20	6939289	Sama_3382		hypothetical protein (RefSeq)	1.3671835815685	10.8580829960506	FALSE
+carbon source	set1H33	Tween 20	6939289	Sama_3382		hypothetical protein (RefSeq)	1.3999426763226	10.9356006035459	FALSE
+carbon source	set1H14	Tween 20	6939289	Sama_3382		hypothetical protein (RefSeq)	1.4605246571391	11.7077057434379	FALSE
+carbon source	set2H45	Tween 20	6939289	Sama_3382		hypothetical protein (RefSeq)	1.4634339542364	11.2248576864797	FALSE
+carbon source	set2H45	Tween 20	6939290	Sama_3383		thioester dehydrase family protein (RefSeq)	1.07477697999607	6.69313261881089	FALSE
+carbon source	set2H26	Tween 20	6939290	Sama_3383		thioester dehydrase family protein (RefSeq)	1.15028042864049	6.83580014026491	FALSE
+carbon source	set2H45	Tween 20	6939291	Sama_3384		glycosyl transferase, group 2 family protein (RefSeq)	1.03128747231505	8.463862337906	FALSE
+carbon source	set1H14	Tween 20	6939292	Sama_3385		histidine ammonia-lyase (RefSeq)	1.06272309510576	8.68186845315733	FALSE
+carbon source	set2H26	Tween 20	6939298	Sama_3391		3-oxoacyl-(acyl carrier protein) synthase I (RefSeq)	1.22869354828748	10.1191812664713	TRUE
+carbon source	set2H45	Tween 20	6939298	Sama_3391		3-oxoacyl-(acyl carrier protein) synthase I (RefSeq)	1.27467937475158	10.3477504407643	TRUE
+carbon source	set1H14	Tween 20	6939298	Sama_3391		3-oxoacyl-(acyl carrier protein) synthase I (RefSeq)	1.27621107676918	10.4520326717869	TRUE
+carbon source	set1H33	Tween 20	6939298	Sama_3391		3-oxoacyl-(acyl carrier protein) synthase I (RefSeq)	1.43093446276634	11.6171610442876	TRUE
+carbon source	set2H26	Tween 20	6939336	Sama_3429		outer membrane protein, putative (RefSeq)	1.10742891473461	8.48957478631706	FALSE
+carbon source	set2H45	Tween 20	6939336	Sama_3429		outer membrane protein, putative (RefSeq)	1.14137363347987	8.72320432241595	FALSE
+carbon source	set1H14	Tween 20	6939336	Sama_3429		outer membrane protein, putative (RefSeq)	1.16477556839534	9.18977343776412	FALSE
+carbon source	set1H33	Tween 20	6939336	Sama_3429		outer membrane protein, putative (RefSeq)	1.20239816576264	9.5277321381399	FALSE
+carbon source	set1H24	Uridine	6936223	Sama_0412		uridine phosphorylase (RefSeq)	-4.94794774299552	-10.0325061321775	TRUE
+carbon source	set2H36	Uridine	6936223	Sama_0412		uridine phosphorylase (RefSeq)	-4.94058577623428	-10.0188499292953	TRUE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6935950	Sama_0165		phosphoenolpyruvate carboxykinase (RefSeq)	-1.79996603946978	-9.74047018974562	FALSE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6935950	Sama_0165		phosphoenolpyruvate carboxykinase (RefSeq)	-1.1748214640591	-5.58586984709394	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6936055	Sama_0252		competence/damage-inducible protein CinA (RefSeq)	-1.42765848058936	-9.35991797194721	FALSE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6936342	Sama_0531		YbaK/EbsC protein (RefSeq)	-2.03536138625634	-7.79647493684157	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6936342	Sama_0531		YbaK/EbsC protein (RefSeq)	-1.37214510203243	-7.03415535855443	FALSE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6936355	Sama_0544		outer membrane porin, putative (RefSeq)	1.87447891009437	15.6269394212127	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6936355	Sama_0544		outer membrane porin, putative (RefSeq)	2.68681582326915	23.3173877649168	FALSE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6936699	Sama_0886		hypothetical protein (RefSeq)	1.44668390699414	11.0201943399485	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6936699	Sama_0886		hypothetical protein (RefSeq)	1.71690044167574	12.9456083256717	FALSE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6936915	Sama_1089		TetR family transcriptional regulator (RefSeq)	4.70561866722561	10.7951780723191	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6936915	Sama_1089		TetR family transcriptional regulator (RefSeq)	6.37453807276931	19.8558146084302	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6936946	Sama_1120	queF	7-cyano-7-deazaguanine reductase (RefSeq)	-1.05242999926858	-5.08877060552742	FALSE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6937112	Sama_1282		signal transduction histidine kinase, LytS (RefSeq)	3.37133762602258	19.5390175969012	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6937112	Sama_1282		signal transduction histidine kinase, LytS (RefSeq)	4.51481869775995	25.5204985235452	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6937961	Sama_2094		alkyl hydroperoxide reductase/thiol specific antioxidant/Mal allergen (RefSeq)	-1.50391003699416	-5.39700706505712	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6937979	Sama_2112		ion transport protein (RefSeq)	1.02239795414091	5.16276810557649	FALSE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6937979	Sama_2112		ion transport protein (RefSeq)	1.03281466438222	6.0663788225437	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6938088	Sama_2209		C4-dicarboxylate-binding periplasmic protein (RefSeq)	-3.73617374459994	-15.4850296614927	TRUE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6938088	Sama_2209		C4-dicarboxylate-binding periplasmic protein (RefSeq)	-3.35652905416458	-13.5656533916676	TRUE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6938089	Sama_2210		C4-dicarboxylate transporter, putative (RefSeq)	-3.14001568532054	-6.83405622007971	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6938090	Sama_2211		C4-dicarboxylate transport protein (RefSeq)	-3.85580601191879	-13.8878468396952	TRUE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6938090	Sama_2211		C4-dicarboxylate transport protein (RefSeq)	-3.73289877401363	-14.2763904074526	TRUE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6938091	Sama_2212		putative two-component sensor histidine kinase protein (RefSeq)	-3.69333697480634	-18.2464831403045	TRUE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6938091	Sama_2212		putative two-component sensor histidine kinase protein (RefSeq)	-3.38272228716312	-17.0586761004701	TRUE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6938092	Sama_2213		response regulator receiver protein (RefSeq)	-4.1542327292726	-9.97138281399051	TRUE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6938092	Sama_2213		response regulator receiver protein (RefSeq)	-3.73010143118732	-12.0055995145853	TRUE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6938536	Sama_2639		binding-protein-dependent transport systems inner membrane component (RefSeq)	-2.49223248219224	-7.37549961815826	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6938536	Sama_2639		binding-protein-dependent transport systems inner membrane component (RefSeq)	-1.9738271626969	-8.3234261535979	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6938546	Sama_2649		beta alanine--pyruvate transaminase (RefSeq)	-2.41083820657036	-11.6614707711256	FALSE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6938546	Sama_2649		beta alanine--pyruvate transaminase (RefSeq)	-1.93452356394124	-7.18506987284005	FALSE
+carbon source	set1H5	a-Ketoglutaric acid disodium salt hydrate	6938547	Sama_2650		methylmalonate-semialdehyde dehydrogenase (RefSeq)	-1.66806980818217	-9.85530954443314	TRUE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6938547	Sama_2650		methylmalonate-semialdehyde dehydrogenase (RefSeq)	-1.40343617402083	-6.64914836453142	TRUE
+carbon source	set2H17	a-Ketoglutaric acid disodium salt hydrate	6939201	Sama_3295		methylcitrate synthase (RefSeq)	-1.30788648354163	-6.78609034639396	FALSE
+motility	set7IT050	Agar	6935881	Sama_0096		glpE protein (RefSeq)	-1.5254907071461	-5.9133809219802	FALSE
+motility	set7IT053	Agar	6935921	Sama_0136		putative metal dependent phosphohydrolase (RefSeq)	-1.81193506687095	-10.5323207892504	FALSE
+motility	set7IT052	Agar	6935921	Sama_0136		putative metal dependent phosphohydrolase (RefSeq)	-1.77329833842478	-9.30464406844494	FALSE
+motility	set7IT051	Agar	6935921	Sama_0136		putative metal dependent phosphohydrolase (RefSeq)	-1.70872343050408	-8.18843777754877	FALSE
+motility	set7IT050	Agar	6935921	Sama_0136		putative metal dependent phosphohydrolase (RefSeq)	-1.61295870298832	-8.34433099817016	FALSE
+motility	set5H40	Agar	6935921	Sama_0136		putative metal dependent phosphohydrolase (RefSeq)	-1.47621931444384	-8.28556036464559	FALSE
+motility	set5H41	Agar	6935921	Sama_0136		putative metal dependent phosphohydrolase (RefSeq)	-1.33584197044339	-6.60110453705756	FALSE
+motility	set5H41	Agar	6935927	Sama_0142		sensory box protein (RefSeq)	-1.16925251629192	-9.18838282513513	TRUE
+motility	set5H40	Agar	6935927	Sama_0142		sensory box protein (RefSeq)	-1.00574059179051	-7.70394272818193	TRUE
+motility	set7IT051	Agar	6936073	Sama_0270		prolipoprotein diacylglyceryl transferase (RefSeq)	-2.63164894579435	-5.53830124714015	FALSE
+motility	set7IT050	Agar	6936073	Sama_0270		prolipoprotein diacylglyceryl transferase (RefSeq)	-2.53713321623654	-6.22113075635506	FALSE
+motility	set7IT052	Agar	6936073	Sama_0270		prolipoprotein diacylglyceryl transferase (RefSeq)	-2.47746474759846	-5.87616038782912	FALSE
+motility	set7IT053	Agar	6936073	Sama_0270		prolipoprotein diacylglyceryl transferase (RefSeq)	-2.31048517208076	-6.32870223194544	FALSE
+motility	set5H40	Agar	6936073	Sama_0270		prolipoprotein diacylglyceryl transferase (RefSeq)	-2.01538803136755	-6.32872167738758	FALSE
+motility	set5H41	Agar	6936073	Sama_0270		prolipoprotein diacylglyceryl transferase (RefSeq)	-1.57521913089026	-6.0958290711573	FALSE
+motility	set5H41	Agar	6936128	Sama_0325	dut	deoxyuridine 5'-triphosphate nucleotidohydrolase (RefSeq)	-1.4648865237792	-6.49233179124033	TRUE
+motility	set7IT053	Agar	6936128	Sama_0325	dut	deoxyuridine 5'-triphosphate nucleotidohydrolase (RefSeq)	-1.40048712661493	-5.01578820314546	TRUE
+motility	set7IT052	Agar	6936164	Sama_0361		peptidase M23B (RefSeq)	-1.29010662552981	-6.77977742562673	FALSE
+motility	set7IT053	Agar	6936181	Sama_0370		prepilin-type cleavage/methylation (RefSeq)	-1.46204797640382	-7.1179773834961	FALSE
+motility	set7IT052	Agar	6936199	Sama_0388		putative diguanylate phosphodiesterase (RefSeq)	-4.18740791518568	-14.3509745039174	TRUE
+motility	set7IT050	Agar	6936199	Sama_0388		putative diguanylate phosphodiesterase (RefSeq)	-4.16325211268859	-15.3172552377655	TRUE
+motility	set7IT053	Agar	6936199	Sama_0388		putative diguanylate phosphodiesterase (RefSeq)	-4.0197279118695	-15.867978011857	TRUE
+motility	set7IT051	Agar	6936199	Sama_0388		putative diguanylate phosphodiesterase (RefSeq)	-3.87532889940926	-18.3967380056232	TRUE
+motility	set5H40	Agar	6936199	Sama_0388		putative diguanylate phosphodiesterase (RefSeq)	-1.97828045987904	-10.1150061797271	TRUE
+motility	set5H41	Agar	6936199	Sama_0388		putative diguanylate phosphodiesterase (RefSeq)	-1.63381478976953	-10.0356415158727	TRUE
+motility	set7IT051	Agar	6936301	Sama_0490		Zn-dependent protease with chaperone function (RefSeq)	1.05513366210283	7.84876171599499	FALSE
+motility	set7IT052	Agar	6936341	Sama_0530		response regulator receiver protein (RefSeq)	1.05866781239943	6.8455469139695	FALSE
+motility	set7IT051	Agar	6936341	Sama_0530		response regulator receiver protein (RefSeq)	1.213679103708	7.44760801309479	FALSE
+motility	set7IT053	Agar	6936341	Sama_0530		response regulator receiver protein (RefSeq)	1.23055709352426	8.92089045836959	FALSE
+motility	set7IT050	Agar	6936359	Sama_0548		hypothetical protein (RefSeq)	-1.13829961886265	-6.21382388854003	FALSE
+motility	set7IT052	Agar	6936359	Sama_0548		hypothetical protein (RefSeq)	-1.11624625550314	-5.19238910397385	FALSE
+motility	set7IT051	Agar	6936381	Sama_0569		rRNA (guanine-N(2)-)-methyltransferase (RefSeq)	-1.75969503327053	-7.23808899885416	FALSE
+motility	set7IT050	Agar	6936381	Sama_0569		rRNA (guanine-N(2)-)-methyltransferase (RefSeq)	-1.46025338756171	-8.12126910650223	FALSE
+motility	set7IT052	Agar	6936381	Sama_0569		rRNA (guanine-N(2)-)-methyltransferase (RefSeq)	-1.45164974236312	-7.17500927040793	FALSE
+motility	set7IT051	Agar	6936403	Sama_0591		hypothetical protein (RefSeq)	-1.69480172941484	-6.31510637386895	FALSE
+motility	set7IT050	Agar	6936403	Sama_0591		hypothetical protein (RefSeq)	-1.60353950664802	-7.98877990529428	FALSE
+motility	set7IT052	Agar	6936403	Sama_0591		hypothetical protein (RefSeq)	-1.35193491059922	-5.9695942316632	FALSE
+motility	set7IT051	Agar	6936404	Sama_0592		hypothetical protein (RefSeq)	-1.67724546694072	-8.53482942677315	TRUE
+motility	set7IT052	Agar	6936404	Sama_0592		hypothetical protein (RefSeq)	-1.61376946963623	-8.69481122591766	TRUE
+motility	set7IT053	Agar	6936404	Sama_0592		hypothetical protein (RefSeq)	-1.49143990930277	-8.88340041277285	TRUE
+motility	set5H41	Agar	6936404	Sama_0592		hypothetical protein (RefSeq)	-1.32205185115373	-8.58086412634789	TRUE
+motility	set5H40	Agar	6936404	Sama_0592		hypothetical protein (RefSeq)	-1.29960461042486	-8.00497717117565	TRUE
+motility	set7IT050	Agar	6936404	Sama_0592		hypothetical protein (RefSeq)	-1.29555934970124	-7.87907852106143	TRUE
+motility	set7IT050	Agar	6936405	Sama_0593		hypothetical protein (RefSeq)	-1.96421238680521	-5.13603292227723	FALSE
+motility	set7IT052	Agar	6936406	Sama_0594		hypothetical protein (RefSeq)	-2.13199444879944	-10.5478263013573	FALSE
+motility	set7IT053	Agar	6936406	Sama_0594		hypothetical protein (RefSeq)	-1.77628739821478	-8.97074999801633	FALSE
+motility	set7IT051	Agar	6936406	Sama_0594		hypothetical protein (RefSeq)	-1.55610001756773	-7.41511776314801	FALSE
+motility	set5H40	Agar	6936406	Sama_0594		hypothetical protein (RefSeq)	-1.4489293630306	-8.20195647032209	FALSE
+motility	set5H41	Agar	6936406	Sama_0594		hypothetical protein (RefSeq)	-1.40429727149041	-7.48554618557329	FALSE
+motility	set7IT050	Agar	6936406	Sama_0594		hypothetical protein (RefSeq)	-1.30296351903973	-6.50846603277842	FALSE
+motility	set7IT052	Agar	6936409	Sama_0597		hypothetical protein (RefSeq)	2.08647572330912	7.92101769857516	FALSE
+motility	set7IT053	Agar	6936409	Sama_0597		hypothetical protein (RefSeq)	2.09026529036106	7.45615931612856	FALSE
+motility	set7IT051	Agar	6936409	Sama_0597		hypothetical protein (RefSeq)	2.15363482770394	9.33526666954857	FALSE
+motility	set5H40	Agar	6936409	Sama_0597		hypothetical protein (RefSeq)	2.39647534704103	11.8412811947591	FALSE
+motility	set5H41	Agar	6936409	Sama_0597		hypothetical protein (RefSeq)	2.44658589518386	7.8419587600899	FALSE
+motility	set7IT050	Agar	6936409	Sama_0597		hypothetical protein (RefSeq)	2.63689304911408	10.5216570728256	FALSE
+motility	set7IT053	Agar	6936455	Sama_0643		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.33720752206747	-10.9252362999332	FALSE
+motility	set7IT051	Agar	6936455	Sama_0643		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.16714788498539	-10.6748202040646	FALSE
+motility	set7IT050	Agar	6936455	Sama_0643		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.03661303610331	-9.39319196322906	FALSE
+motility	set7IT052	Agar	6936455	Sama_0643		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-1.93669447653279	-8.68964960997498	FALSE
+motility	set5H40	Agar	6936455	Sama_0643		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-1.51589058991894	-7.92745832206644	FALSE
+motility	set5H41	Agar	6936455	Sama_0643		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-1.03562034944504	-5.26189759802369	FALSE
+motility	set7IT051	Agar	6936585	Sama_0773		ABC-type polysaccharide/polyol phosphate export systems permease component (RefSeq)	-1.12435312993081	-5.19123385992166	FALSE
+motility	set7IT053	Agar	6936662	Sama_0849		M24/M37 family peptidase (RefSeq)	-1.43557016995155	-7.45146892788785	FALSE
+motility	set7IT051	Agar	6936662	Sama_0849		M24/M37 family peptidase (RefSeq)	-1.31985147799722	-7.39876855683808	FALSE
+motility	set7IT052	Agar	6936662	Sama_0849		M24/M37 family peptidase (RefSeq)	-1.14215337746236	-6.63074974444569	FALSE
+motility	set7IT050	Agar	6936783	Sama_0965		GGDEF domain-containing protein (RefSeq)	-1.41239223471663	-7.29571077841958	TRUE
+motility	set7IT051	Agar	6936783	Sama_0965		GGDEF domain-containing protein (RefSeq)	-1.21994030669018	-6.66680090008662	TRUE
+motility	set7IT052	Agar	6936783	Sama_0965		GGDEF domain-containing protein (RefSeq)	-1.01762051906938	-5.57958177031023	TRUE
+motility	set7IT053	Agar	6936783	Sama_0965		GGDEF domain-containing protein (RefSeq)	-1.0133687193552	-5.06067438047972	TRUE
+motility	set7IT053	Agar	6936798	Sama_0980		hypothetical protein (RefSeq)	3.57981552276498	27.386188982222	TRUE
+motility	set7IT051	Agar	6936798	Sama_0980		hypothetical protein (RefSeq)	4.06899537429855	30.7845753605071	TRUE
+motility	set7IT052	Agar	6936798	Sama_0980		hypothetical protein (RefSeq)	4.2784554202447	32.6741711765951	TRUE
+motility	set7IT050	Agar	6936798	Sama_0980		hypothetical protein (RefSeq)	4.83347056097783	37.5994024063004	TRUE
+motility	set5H40	Agar	6936798	Sama_0980		hypothetical protein (RefSeq)	4.9331036665587	39.2586209367195	TRUE
+motility	set5H41	Agar	6936798	Sama_0980		hypothetical protein (RefSeq)	5.61967287533909	40.7572607937863	TRUE
+motility	set7IT051	Agar	6936888	Sama_1062		GGDEF domain-containing protein (RefSeq)	-1.4855705442673	-5.78455937029085	TRUE
+motility	set7IT050	Agar	6936888	Sama_1062		GGDEF domain-containing protein (RefSeq)	-1.30919918053672	-5.6145574917147	TRUE
+motility	set7IT053	Agar	6937159	Sama_1329		hypothetical protein (RefSeq)	-2.45006027490216	-11.2757069615845	FALSE
+motility	set7IT050	Agar	6937159	Sama_1329		hypothetical protein (RefSeq)	-1.9648068731916	-9.58460408036103	FALSE
+motility	set7IT052	Agar	6937159	Sama_1329		hypothetical protein (RefSeq)	-1.89243086176128	-8.28546671922977	FALSE
+motility	set7IT051	Agar	6937159	Sama_1329		hypothetical protein (RefSeq)	-1.45420028854032	-6.95041030512244	FALSE
+motility	set5H40	Agar	6937349	Sama_1519		putative metal dependent phosphohydrolase (RefSeq)	-1.96424721950718	-7.7635624055208	FALSE
+motility	set7IT052	Agar	6937349	Sama_1519		putative metal dependent phosphohydrolase (RefSeq)	-1.65090184483034	-6.66681411754167	FALSE
+motility	set5H41	Agar	6937349	Sama_1519		putative metal dependent phosphohydrolase (RefSeq)	-1.30572872341862	-5.54012063663077	FALSE
+motility	set7IT052	Agar	6937671	Sama_1821		putative diguanylate phosphodiesterase (RefSeq)	-2.39958509276226	-8.48881412610762	FALSE
+motility	set7IT053	Agar	6937671	Sama_1821		putative diguanylate phosphodiesterase (RefSeq)	-2.28700035709723	-8.84223686805574	FALSE
+motility	set7IT050	Agar	6937671	Sama_1821		putative diguanylate phosphodiesterase (RefSeq)	-2.24324040900395	-9.0740168613922	FALSE
+motility	set5H40	Agar	6937671	Sama_1821		putative diguanylate phosphodiesterase (RefSeq)	-1.95150371730851	-8.81794385194497	FALSE
+motility	set7IT051	Agar	6937671	Sama_1821		putative diguanylate phosphodiesterase (RefSeq)	-1.79769740733768	-7.58976994658824	FALSE
+motility	set5H41	Agar	6937671	Sama_1821		putative diguanylate phosphodiesterase (RefSeq)	-1.38475036621226	-6.44206379815974	FALSE
+motility	set7IT053	Agar	6937755	Sama_1896		putative diguanylate phosphodiesterase (RefSeq)	-2.38889848333486	-5.79936083074823	FALSE
+motility	set7IT051	Agar	6937755	Sama_1896		putative diguanylate phosphodiesterase (RefSeq)	-1.66390374841037	-5.43075744482656	FALSE
+motility	set7IT051	Agar	6937790	Sama_1931		septum site-determining protein MinD (RefSeq)	-2.82890004505066	-5.9585301747351	TRUE
+motility	set7IT052	Agar	6937790	Sama_1931		septum site-determining protein MinD (RefSeq)	-2.34678040435168	-6.18536776353762	TRUE
+motility	set7IT050	Agar	6937790	Sama_1931		septum site-determining protein MinD (RefSeq)	-2.17796922694758	-5.74090705588348	TRUE
+motility	set7IT052	Agar	6937813	Sama_1954		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-1.23858170506089	-5.59770733582551	FALSE
+motility	set5H41	Agar	6937813	Sama_1954		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-1.21192562657467	-5.50617867910259	FALSE
+motility	set7IT050	Agar	6938018	Sama_2151		hypothetical protein (RefSeq)	-1.63206649861808	-6.77136592566943	FALSE
+motility	set7IT053	Agar	6938018	Sama_2151		hypothetical protein (RefSeq)	-1.56673761376475	-6.6927249901849	FALSE
+motility	set5H40	Agar	6938018	Sama_2151		hypothetical protein (RefSeq)	-1.53920539919554	-6.34820806285095	FALSE
+motility	set7IT052	Agar	6938018	Sama_2151		hypothetical protein (RefSeq)	-1.5351439270666	-6.47014579481987	FALSE
+motility	set7IT051	Agar	6938018	Sama_2151		hypothetical protein (RefSeq)	-1.5284152921046	-6.20907243318849	FALSE
+motility	set5H41	Agar	6938018	Sama_2151		hypothetical protein (RefSeq)	-1.43109687247727	-6.61602273733437	FALSE
+motility	set7IT053	Agar	6938068	Sama_2201		chemotaxis protein CheV (RefSeq)	-1.28003074460976	-5.17286669545469	FALSE
+motility	set7IT050	Agar	6938152	Sama_2273		CheW domain-containing protein (RefSeq)	-1.74909323540841	-6.031043064123	FALSE
+motility	set7IT053	Agar	6938153	Sama_2274		ParA family protein (RefSeq)	-1.99613934187369	-10.6061996037475	TRUE
+motility	set7IT052	Agar	6938153	Sama_2274		ParA family protein (RefSeq)	-1.74716203831552	-9.80579927024729	TRUE
+motility	set7IT050	Agar	6938153	Sama_2274		ParA family protein (RefSeq)	-1.65096400912911	-9.25950954149717	TRUE
+motility	set5H40	Agar	6938153	Sama_2274		ParA family protein (RefSeq)	-1.40288604097182	-7.58423011714788	TRUE
+motility	set7IT051	Agar	6938153	Sama_2274		ParA family protein (RefSeq)	-1.32318917257031	-6.62273822654212	TRUE
+motility	set5H41	Agar	6938153	Sama_2274		ParA family protein (RefSeq)	-1.12141779530893	-5.07605423085017	TRUE
+motility	set7IT050	Agar	6938156	Sama_2277		putative CheA signal transduction histidine kinase (RefSeq)	-3.84818980534436	-5.86954167208623	TRUE
+motility	set7IT053	Agar	6938156	Sama_2277		putative CheA signal transduction histidine kinase (RefSeq)	-3.68887160097526	-5.62653784769907	TRUE
+motility	set7IT051	Agar	6938156	Sama_2277		putative CheA signal transduction histidine kinase (RefSeq)	-3.55012038928288	-7.88372047630665	TRUE
+motility	set5H41	Agar	6938157	Sama_2278		putative chemotaxis phosphatase, CheZ (RefSeq)	-3.92517167753186	-5.36870003543399	TRUE
+motility	set7IT050	Agar	6938157	Sama_2278		putative chemotaxis phosphatase, CheZ (RefSeq)	-3.37997050929844	-7.77768434614887	TRUE
+motility	set7IT053	Agar	6938157	Sama_2278		putative chemotaxis phosphatase, CheZ (RefSeq)	-3.34048458616187	-7.38471644501877	TRUE
+motility	set7IT051	Agar	6938157	Sama_2278		putative chemotaxis phosphatase, CheZ (RefSeq)	-3.32062003814602	-7.6411123763199	TRUE
+motility	set5H40	Agar	6938157	Sama_2278		putative chemotaxis phosphatase, CheZ (RefSeq)	-3.02301611264888	-7.95856158206549	TRUE
+motility	set7IT052	Agar	6938157	Sama_2278		putative chemotaxis phosphatase, CheZ (RefSeq)	-2.31516078478363	-6.63308595491819	TRUE
+motility	set7IT052	Agar	6938198	Sama_2319		protein-glutamate O-methyltransferase (RefSeq)	-3.98316408128604	-6.63124433541846	TRUE
+motility	set7IT050	Agar	6938198	Sama_2319		protein-glutamate O-methyltransferase (RefSeq)	-3.75751025241264	-7.58871216364528	TRUE
+motility	set7IT053	Agar	6938198	Sama_2319		protein-glutamate O-methyltransferase (RefSeq)	-3.68268634937941	-9.70504846256705	TRUE
+motility	set7IT051	Agar	6938198	Sama_2319		protein-glutamate O-methyltransferase (RefSeq)	-3.21136968389885	-10.1234685903622	TRUE
+motility	set5H40	Agar	6938298	Sama_2417		TPR domain-containing protein (RefSeq)	1.1562944190741	8.85286986003199	FALSE
+motility	set7IT053	Agar	6938298	Sama_2417		TPR domain-containing protein (RefSeq)	1.19529946007715	9.15204510343954	FALSE
+motility	set7IT051	Agar	6938299	Sama_2418		GGDEF domain-containing protein (RefSeq)	5.0089196937735	32.5757609979904	TRUE
+motility	set7IT050	Agar	6938299	Sama_2418		GGDEF domain-containing protein (RefSeq)	5.03102394423274	28.7616692888528	TRUE
+motility	set7IT053	Agar	6938299	Sama_2418		GGDEF domain-containing protein (RefSeq)	5.0429006946416	32.807222053672	TRUE
+motility	set7IT052	Agar	6938299	Sama_2418		GGDEF domain-containing protein (RefSeq)	5.1421793138202	30.2627440215706	TRUE
+motility	set5H40	Agar	6938299	Sama_2418		GGDEF domain-containing protein (RefSeq)	5.19363977875712	31.9925255541091	TRUE
+motility	set5H41	Agar	6938299	Sama_2418		GGDEF domain-containing protein (RefSeq)	5.49276976608319	30.8386559523041	TRUE
+motility	set7IT052	Agar	6938363	Sama_2482		Ham1-like protein (RefSeq)	-1.04075133855791	-5.00204511198404	FALSE
+motility	set7IT050	Agar	6938370	Sama_2489	trmB	tRNA (guanine-N(7)-)-methyltransferase (RefSeq)	-1.59900989705717	-7.13593430151736	FALSE
+motility	set7IT053	Agar	6938437	Sama_2556		AmpG protein, putative (RefSeq)	-1.49665121447508	-10.7158652645483	FALSE
+motility	set7IT051	Agar	6938437	Sama_2556		AmpG protein, putative (RefSeq)	-1.35747101883946	-9.51763136179706	FALSE
+motility	set7IT053	Agar	6938477	Sama_2590		lytic murein transglycosylase B (RefSeq)	-1.41019318397907	-6.70127983343075	FALSE
+motility	set7IT053	Agar	6938520	Sama_2623		cyclic nucleotide phosphodiesterase, putative (RefSeq)	1.49905960007197	10.1149967786934	TRUE
+motility	set7IT052	Agar	6938520	Sama_2623		cyclic nucleotide phosphodiesterase, putative (RefSeq)	1.54675788385639	10.139079185254	TRUE
+motility	set5H40	Agar	6938520	Sama_2623		cyclic nucleotide phosphodiesterase, putative (RefSeq)	1.61423486178749	11.0365806840637	TRUE
+motility	set7IT050	Agar	6938520	Sama_2623		cyclic nucleotide phosphodiesterase, putative (RefSeq)	1.6382695726652	9.93708364542867	TRUE
+motility	set7IT051	Agar	6938520	Sama_2623		cyclic nucleotide phosphodiesterase, putative (RefSeq)	1.84207120315441	11.1315097093054	TRUE
+motility	set5H41	Agar	6938520	Sama_2623		cyclic nucleotide phosphodiesterase, putative (RefSeq)	2.0511516712024	13.7460908978958	TRUE
+motility	set7IT052	Agar	6938527	Sama_2630		lipolytic enzyme, G-D-S-L (RefSeq)	-2.20459867802215	-7.3597277051814	FALSE
+motility	set7IT050	Agar	6938527	Sama_2630		lipolytic enzyme, G-D-S-L (RefSeq)	-1.73003234779467	-6.61479274160965	FALSE
+motility	set7IT052	Agar	6938572	Sama_2675		SH3 domain-containing protein (RefSeq)	-1.51640443826619	-5.03864313441162	FALSE
+motility	set7IT053	Agar	6938622	Sama_2725		hypothetical protein (RefSeq)	-1.76860657289065	-6.51413431371587	FALSE
+motility	set7IT050	Agar	6938622	Sama_2725		hypothetical protein (RefSeq)	-1.26934539725615	-5.01248926675896	FALSE
+motility	set7IT053	Agar	6938849	Sama_2952		sensory box histidine kinase/response regulator (RefSeq)	1.79160065085838	12.7085136678865	FALSE
+motility	set7IT051	Agar	6938849	Sama_2952		sensory box histidine kinase/response regulator (RefSeq)	1.93052279034295	13.1708991738813	FALSE
+motility	set7IT050	Agar	6938849	Sama_2952		sensory box histidine kinase/response regulator (RefSeq)	2.08798198360793	13.8028148357105	FALSE
+motility	set7IT052	Agar	6938849	Sama_2952		sensory box histidine kinase/response regulator (RefSeq)	2.14719361589255	14.4535224053356	FALSE
+motility	set5H40	Agar	6938849	Sama_2952		sensory box histidine kinase/response regulator (RefSeq)	2.46909319424113	15.7287317022955	FALSE
+motility	set5H41	Agar	6938849	Sama_2952		sensory box histidine kinase/response regulator (RefSeq)	2.86592431222562	16.8884453455922	FALSE
+motility	set7IT053	Agar	6938984	Sama_3082		K+-dependent Na+/Ca+ exchanger related-protein (RefSeq)	-2.17383604056409	-9.18047649342485	FALSE
+motility	set7IT050	Agar	6938984	Sama_3082		K+-dependent Na+/Ca+ exchanger related-protein (RefSeq)	-1.71084913361709	-7.20220894348462	FALSE
+motility	set7IT052	Agar	6938984	Sama_3082		K+-dependent Na+/Ca+ exchanger related-protein (RefSeq)	-1.61497838967835	-5.96968249402986	FALSE
+motility	set7IT051	Agar	6938984	Sama_3082		K+-dependent Na+/Ca+ exchanger related-protein (RefSeq)	-1.59862362737178	-6.60117378961942	FALSE
+motility	set7IT051	Agar	6939038	Sama_3136		CheC, inhibitor of MCP methylation (RefSeq)	1.10039570885609	5.76166584087135	TRUE
+motility	set7IT052	Agar	6939038	Sama_3136		CheC, inhibitor of MCP methylation (RefSeq)	1.32195080916602	6.39651181957993	TRUE
+motility	set7IT053	Agar	6939038	Sama_3136		CheC, inhibitor of MCP methylation (RefSeq)	1.32773497572309	6.39826099059623	TRUE
+motility	set7IT050	Agar	6939038	Sama_3136		CheC, inhibitor of MCP methylation (RefSeq)	1.37490707602707	6.76953236158196	TRUE
+motility	set5H40	Agar	6939038	Sama_3136		CheC, inhibitor of MCP methylation (RefSeq)	1.4240476921237	7.6579914838761	TRUE
+motility	set5H41	Agar	6939038	Sama_3136		CheC, inhibitor of MCP methylation (RefSeq)	1.97673843736971	8.1925201198656	TRUE
+motility	set7IT051	Agar	6939039	Sama_3137		response regulator receiver protein (RefSeq)	1.41058520825058	7.88645732204125	FALSE
+motility	set7IT053	Agar	6939039	Sama_3137		response regulator receiver protein (RefSeq)	1.73972895933558	10.6468640554101	FALSE
+motility	set7IT052	Agar	6939039	Sama_3137		response regulator receiver protein (RefSeq)	1.75624948596792	10.1290597388818	FALSE
+motility	set7IT050	Agar	6939039	Sama_3137		response regulator receiver protein (RefSeq)	1.78754481260275	10.2457121796713	FALSE
+motility	set5H40	Agar	6939039	Sama_3137		response regulator receiver protein (RefSeq)	2.02765281337446	12.4486183356655	FALSE
+motility	set5H41	Agar	6939039	Sama_3137		response regulator receiver protein (RefSeq)	2.27319548252946	12.1954792098832	FALSE
+motility	set7IT053	Agar	6939064	Sama_3162		response regulator receiver protein (RefSeq)	2.14686089001515	6.94600722638241	FALSE
+motility	set5H40	Agar	6939064	Sama_3162		response regulator receiver protein (RefSeq)	2.51923246412251	7.99452910024341	FALSE
+motility	set7IT051	Agar	6939064	Sama_3162		response regulator receiver protein (RefSeq)	2.53947503065506	7.28179208035545	FALSE
+motility	set7IT052	Agar	6939064	Sama_3162		response regulator receiver protein (RefSeq)	2.54551683728104	8.12361435384435	FALSE
+motility	set7IT050	Agar	6939064	Sama_3162		response regulator receiver protein (RefSeq)	2.55342199136168	7.38015566576587	FALSE
+motility	set5H41	Agar	6939064	Sama_3162		response regulator receiver protein (RefSeq)	2.78381369306903	9.42834252084973	FALSE
+motility	set7IT052	Agar	6939065	Sama_3163		sensory box histidine kinase (RefSeq)	1.03231951410375	7.52364433964148	FALSE
+motility	set5H40	Agar	6939087	Sama_3185		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-1.26428933524248	-7.070024342996	FALSE
+motility	set7IT051	Agar	6939087	Sama_3185		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-1.00275595615865	-5.11379623861141	FALSE
+motility	set7IT052	Agar	6939088	Sama_3186		response regulator receiver protein (RefSeq)	1.73586917121332	6.32764723523232	FALSE
+motility	set5H40	Agar	6939088	Sama_3186		response regulator receiver protein (RefSeq)	2.59505533969636	6.70964459165042	FALSE
+motility	set5H41	Agar	6939088	Sama_3186		response regulator receiver protein (RefSeq)	2.66292377421811	6.85908518915283	FALSE
+motility	set5H41	Agar	6939089	Sama_3187		sensor histidine kinase (RefSeq)	1.81374384720464	10.5345173672542	FALSE
+motility	set5H40	Agar	6939089	Sama_3187		sensor histidine kinase (RefSeq)	2.10765043815327	11.667191303711	FALSE
+motility	set5H41	Agar	6939110	Sama_3208		hypothetical protein (RefSeq)	2.30444886682679	12.6055989169975	TRUE
+motility	set5H40	Agar	6939110	Sama_3208		hypothetical protein (RefSeq)	2.37507208890218	13.1644703836287	TRUE
+motility	set7IT050	Agar	6939110	Sama_3208		hypothetical protein (RefSeq)	2.43075801808123	13.6918982425096	TRUE
+motility	set7IT053	Agar	6939110	Sama_3208		hypothetical protein (RefSeq)	2.47746972643293	11.4150664527148	TRUE
+motility	set7IT051	Agar	6939110	Sama_3208		hypothetical protein (RefSeq)	2.56465449986588	12.2630995616233	TRUE
+motility	set7IT052	Agar	6939110	Sama_3208		hypothetical protein (RefSeq)	2.86467702252144	14.3067552606445	TRUE
+motility	set5H40	Agar	6939111	Sama_3209		TatD family hydrolase (RefSeq)	1.99466847946612	10.3378508044645	TRUE
+motility	set7IT050	Agar	6939111	Sama_3209		TatD family hydrolase (RefSeq)	2.10200901505655	11.52403663779	TRUE
+motility	set7IT051	Agar	6939111	Sama_3209		TatD family hydrolase (RefSeq)	2.26593060708622	14.1969488522645	TRUE
+motility	set7IT052	Agar	6939111	Sama_3209		TatD family hydrolase (RefSeq)	2.28698455320415	12.4687847228229	TRUE
+motility	set5H41	Agar	6939111	Sama_3209		TatD family hydrolase (RefSeq)	2.37519950250431	12.4445528963219	TRUE
+motility	set7IT053	Agar	6939111	Sama_3209		TatD family hydrolase (RefSeq)	2.4218747387427	13.4642999330371	TRUE
+motility	set7IT053	Agar	6939112	Sama_3210		GGDEF domain-containing protein (RefSeq)	2.2670510317003	17.6042986971715	TRUE
+motility	set7IT051	Agar	6939112	Sama_3210		GGDEF domain-containing protein (RefSeq)	2.47165880284382	18.1943673792221	TRUE
+motility	set5H40	Agar	6939112	Sama_3210		GGDEF domain-containing protein (RefSeq)	2.47348788304816	18.5862409285677	TRUE
+motility	set7IT050	Agar	6939112	Sama_3210		GGDEF domain-containing protein (RefSeq)	2.47643293318792	17.6602073053947	TRUE
+motility	set5H41	Agar	6939112	Sama_3210		GGDEF domain-containing protein (RefSeq)	2.54476432726988	19.1442578917258	TRUE
+motility	set7IT052	Agar	6939112	Sama_3210		GGDEF domain-containing protein (RefSeq)	2.6445061428136	19.2699596215562	TRUE
+motility	set7IT053	Agar	6939148	Sama_3246		HAD-superfamily hydrolase, subfamily IA, variant 1 family protein (RefSeq)	-4.17021563948964	-6.36960758063905	FALSE
+motility	set7IT052	Agar	6939148	Sama_3246		HAD-superfamily hydrolase, subfamily IA, variant 1 family protein (RefSeq)	-4.09732073245929	-6.8358970738138	FALSE
+motility	set7IT051	Agar	6939148	Sama_3246		HAD-superfamily hydrolase, subfamily IA, variant 1 family protein (RefSeq)	-4.00427513371998	-8.91865969467835	FALSE
+motility	set7IT050	Agar	6939148	Sama_3246		HAD-superfamily hydrolase, subfamily IA, variant 1 family protein (RefSeq)	-3.93340389410443	-8.76080928551231	FALSE
+motility	set7IT053	Agar	6939181	Sama_3275		phosphatidylglycerophosphatase B, putative (RefSeq)	-1.67326948710312	-7.06279677251465	FALSE
+motility	set7IT051	Agar	6939181	Sama_3275		phosphatidylglycerophosphatase B, putative (RefSeq)	-1.53053625794127	-7.06568965389468	FALSE
+motility	set7IT052	Agar	6939181	Sama_3275		phosphatidylglycerophosphatase B, putative (RefSeq)	-1.19883470968587	-5.35836881153762	FALSE
+motility	set7IT050	Agar	6939181	Sama_3275		phosphatidylglycerophosphatase B, putative (RefSeq)	-1.1665000255255	-5.10843003009943	FALSE
+motility	set7IT051	Agar	6939194	Sama_3288		magnesium chelatase family protein (RefSeq)	-1.25594394520223	-5.51683462428856	FALSE
+motility	set7IT052	Agar	6939332	Sama_3425		hypothetical protein (RefSeq)	1.0304474281808	5.12812710428598	FALSE
+motility	set5H40	Agar	6939332	Sama_3425		hypothetical protein (RefSeq)	1.10694949085312	5.83083923444577	FALSE
+motility	set7IT051	Agar	6939355	Sama_3448		drug resistance transporter, Bcr/CflA family protein (RefSeq)	1.52268969476658	8.96455245744633	FALSE
+motility	set7IT052	Agar	6939355	Sama_3448		drug resistance transporter, Bcr/CflA family protein (RefSeq)	1.58676184438375	8.71545855068514	FALSE
+motility	set7IT050	Agar	6939355	Sama_3448		drug resistance transporter, Bcr/CflA family protein (RefSeq)	1.83690488841624	11.7433793880311	FALSE
+motility	set5H41	Agar	6939355	Sama_3448		drug resistance transporter, Bcr/CflA family protein (RefSeq)	2.56322967271638	16.3448470464334	FALSE
+motility	set5H40	Agar	6939355	Sama_3448		drug resistance transporter, Bcr/CflA family protein (RefSeq)	2.77329841912576	16.1189428333158	FALSE
+motility	set7IT053	Agar	6939356	Sama_3449		regulatory protein, LysR (RefSeq)	1.1840585974022	7.33055005560325	FALSE
+motility	set7IT052	Agar	6939356	Sama_3449		regulatory protein, LysR (RefSeq)	1.38414210149018	7.54048632039513	FALSE
+motility	set7IT051	Agar	6939356	Sama_3449		regulatory protein, LysR (RefSeq)	1.60255095029493	9.35233100586934	FALSE
+motility	set7IT050	Agar	6939356	Sama_3449		regulatory protein, LysR (RefSeq)	1.96558314316432	11.8598267465965	FALSE
+motility	set5H41	Agar	6939356	Sama_3449		regulatory protein, LysR (RefSeq)	2.17796215788125	13.2441708849867	FALSE
+motility	set5H40	Agar	6939356	Sama_3449		regulatory protein, LysR (RefSeq)	2.42500723921269	14.2775792650015	FALSE
+motility	set7IT053	Agar	6939400	Sama_3492		electron transport protein SCO1/SenC (RefSeq)	1.00674360409631	6.38323365934254	FALSE
+motility	set7IT053	Agar	6939430	Sama_3522		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.88382714492631	-21.3635783513646	TRUE
+motility	set7IT052	Agar	6939430	Sama_3522		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.80413643006491	-20.2387600139974	TRUE
+motility	set7IT051	Agar	6939430	Sama_3522		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.19164527310272	-15.730885534385	TRUE
+motility	set7IT050	Agar	6939430	Sama_3522		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-2.08448497193676	-16.0546499326702	TRUE
+motility	set5H40	Agar	6939435	Sama_3527		molybdenum cofactor biosynthesis protein D (RefSeq)	1.77976421840935	6.86946949487134	FALSE
+motility	set7IT052	Agar	6939453	Sama_3545		hypothetical protein (RefSeq)	-1.36409902921791	-7.68144029909254	FALSE
+motility	set7IT051	Agar	6939453	Sama_3545		hypothetical protein (RefSeq)	-1.03538000931616	-5.77063474880301	FALSE
+motility	set7IT050	Agar	6939453	Sama_3545		hypothetical protein (RefSeq)	-1.00441841591886	-5.42200146184676	FALSE
+nitrogen source	set3H37	Adenosine	6936960	Sama_1134	purU	formyltetrahydrofolate deformylase (RefSeq)	-1.55807283774097	-5.978521429403	FALSE
+nitrogen source	set3H37	Adenosine	6937530	Sama_1686		MutT/nudix family protein (RefSeq)	-2.70336369476202	-6.96477887022156	FALSE
+nitrogen source	set3H17	Adenosine	6937606	Sama_1760		acetyltransferase (RefSeq)	1.627332091443	10.0677926116846	FALSE
+nitrogen source	set3H37	Adenosine	6937606	Sama_1760		acetyltransferase (RefSeq)	1.65063638496703	10.7322094472775	FALSE
+nitrogen source	set3H13	Cytidine	6937833	Sama_1974		cytidine deaminase (RefSeq)	-4.88789444310997	-5.80722231736185	TRUE
+nitrogen source	set3H33	Cytidine	6937833	Sama_1974		cytidine deaminase (RefSeq)	-4.42871866829675	-6.74644022020758	TRUE
+nitrogen source	set3H33	Cytidine	6937906	Sama_2047		uridine kinase (RefSeq)	1.18989898114336	6.92651547819517	FALSE
+nitrogen source	set3H13	Cytidine	6937906	Sama_2047		uridine kinase (RefSeq)	1.48960745388772	9.30264541307353	FALSE
+nitrogen source	set3H13	Cytidine	6938398	Sama_2517		xanthine/uracil permease family protein (RefSeq)	-1.273717617316	-8.57934571346109	FALSE
+nitrogen source	set3H38	D-Glucosamine Hydrochloride	6936377	Sama_0565		LacI family transcription regulator (RefSeq)	-1.49833131577529	-9.02137503164788	FALSE
+nitrogen source	set3H38	D-Glucosamine Hydrochloride	6936463	Sama_0651		Rh-like protein/ammonium transporter (RefSeq)	-2.32809054266037	-15.603022324891	TRUE
+nitrogen source	set3H18	D-Glucosamine Hydrochloride	6936463	Sama_0651		Rh-like protein/ammonium transporter (RefSeq)	-1.3420850520722	-9.51122493094227	TRUE
+nitrogen source	set3H18	D-Glucosamine Hydrochloride	6936757	Sama_0944		hypothetical protein (RefSeq)	-1.53773953730603	-7.30103952403944	FALSE
+nitrogen source	set3H38	D-Glucosamine Hydrochloride	6936757	Sama_0944		hypothetical protein (RefSeq)	-1.43559192638304	-6.42122153254207	FALSE
+nitrogen source	set3H38	D-Glucosamine Hydrochloride	6936758	Sama_0945		glutamine--fructose-6-phosphate transaminase (isomerizing) (RefSeq)	-4.3578068835684	-11.9431370962948	TRUE
+nitrogen source	set3H18	D-Glucosamine Hydrochloride	6936758	Sama_0945		glutamine--fructose-6-phosphate transaminase (isomerizing) (RefSeq)	-4.21673934643734	-14.696875710392	TRUE
+nitrogen source	set3H38	D-Glucosamine Hydrochloride	6936759	Sama_0946		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-2.27599215889859	-7.35007198345474	FALSE
+nitrogen source	set3H18	D-Glucosamine Hydrochloride	6936759	Sama_0946		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-1.71022527400823	-5.13526915444509	FALSE
+nitrogen source	set3H18	D-Glucosamine Hydrochloride	6936760	Sama_0947		hypothetical protein (RefSeq)	-1.70901308481705	-8.6876780534647	FALSE
+nitrogen source	set3H38	D-Glucosamine Hydrochloride	6936760	Sama_0947		hypothetical protein (RefSeq)	-1.64263339537738	-8.71010931270932	FALSE
+nitrogen source	set3H18	D-Glucosamine Hydrochloride	6938110	Sama_2231		fructokinase (RefSeq)	-1.81590398565265	-7.47387284898948	FALSE
+nitrogen source	set3H38	D-Glucosamine Hydrochloride	6938110	Sama_2231		fructokinase (RefSeq)	-1.38131711399939	-5.30660752259183	FALSE
+nitrogen source	set3H21	Glycine	6936449	Sama_0637		hypothetical protein (RefSeq)	-3.48027263356283	-9.77086260278341	FALSE
+nitrogen source	set3H41	Glycine	6936449	Sama_0637		hypothetical protein (RefSeq)	-2.66303672740506	-9.51206821177027	FALSE
+nitrogen source	set3H21	Glycine	6937065	Sama_1236		psp operon transcriptional activator (RefSeq)	-1.41175390796145	-5.29593319243999	FALSE
+nitrogen source	set3H21	Glycine	6937068	Sama_1239		phage shock protein C (RefSeq)	-2.60194080493868	-5.80110170451311	TRUE
+nitrogen source	set3H21	Glycine	6937205	Sama_1375		Acetyl-CoA C-acetyltransferase (RefSeq)	-1.94618366840905	-5.90795973569533	FALSE
+nitrogen source	set3H41	Glycine	6938344	Sama_2463		hypothetical protein (RefSeq)	-1.33607581704195	-5.67086269254694	TRUE
+nitrogen source	set3H21	Glycine	6938344	Sama_2463		hypothetical protein (RefSeq)	-1.27073565358301	-6.52257768715834	TRUE
+nitrogen source	set3H41	Glycine	6938533	Sama_2636		4-aminobutyrate aminotransferase (RefSeq)	1.74573336275445	7.79787336086419	FALSE
+nitrogen source	set3H21	Glycine	6938533	Sama_2636		4-aminobutyrate aminotransferase (RefSeq)	1.99031191947951	9.62312411626681	FALSE
+nitrogen source	set3H41	Glycine	6938639	Sama_2742		ATP-dependent RNA helicase SrmB (RefSeq)	1.80448988920866	8.45526026796948	FALSE
+nitrogen source	set3H41	Glycine	6938941	Sama_3039		D-isomer specific 2-hydroxyacid dehydrogenase family protein (RefSeq)	-1.14096824234563	-5.31638021928523	FALSE
+nitrogen source	set3H21	Glycine	6939067	Sama_3165		hypothetical protein (RefSeq)	-1.63432777719192	-10.3686629269497	FALSE
+nitrogen source	set3H21	Glycine	6939159	Sama_3257		HemY protein (RefSeq)	-2.63667486193774	-11.1260588587565	FALSE
+nitrogen source	set3H41	Glycine	6939159	Sama_3257		HemY protein (RefSeq)	-2.18196256108163	-10.0190715069627	FALSE
+nitrogen source	set3H23	L-Arginine	6935868	Sama_0083		alpha/beta hydrolase fold (RefSeq)	-1.62468092305416	-11.2267162023164	FALSE
+nitrogen source	set3H3	L-Arginine	6935868	Sama_0083		alpha/beta hydrolase fold (RefSeq)	-1.46403391175827	-10.8504815115447	FALSE
+nitrogen source	set3H23	L-Arginine	6937151	Sama_1321		succinylarginine dihydrolase (RefSeq)	-5.60182471986226	-10.7635456346661	TRUE
+nitrogen source	set3H3	L-Arginine	6937151	Sama_1321		succinylarginine dihydrolase (RefSeq)	-5.42750046402758	-13.5959601738447	TRUE
+nitrogen source	set3H3	L-Arginine	6938178	Sama_2299		response regulator receiver protein (RefSeq)	1.09658037080465	5.265860220836	FALSE
+nitrogen source	set3H3	L-Arginine	6938906	Sama_3009	astD	succinylglutamic semialdehyde dehydrogenase (RefSeq)	-4.76255188171253	-18.8300549800264	TRUE
+nitrogen source	set3H23	L-Arginine	6938906	Sama_3009	astD	succinylglutamic semialdehyde dehydrogenase (RefSeq)	-4.67943390228767	-17.240034892051	TRUE
+nitrogen source	set3H23	L-Arginine	6938907	Sama_3010		arginine N-succinyltransferase (RefSeq)	-4.80730096966832	-18.3688526511557	TRUE
+nitrogen source	set3H3	L-Arginine	6938907	Sama_3010		arginine N-succinyltransferase (RefSeq)	-4.73199917414919	-17.8827128884658	TRUE
+nitrogen source	set3H16	L-Aspartic Acid	6935821	Sama_0039		potassium uptake protein TrkH (RefSeq)	-3.67246057056995	-20.3998447877027	FALSE
+nitrogen source	set3H36	L-Aspartic Acid	6935821	Sama_0039		potassium uptake protein TrkH (RefSeq)	-3.44754786412059	-21.1755959637399	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6936263	Sama_0452		MSHA biogenesis protein MshJ (RefSeq)	-1.21953011901257	-5.42914018899548	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6936347	Sama_0536		galactokinase (RefSeq)	1.40113343658847	6.69874812328765	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6936650	Sama_0837		citrate transporter (RefSeq)	1.7010645953114	10.1431612936193	FALSE
+nitrogen source	set3H36	L-Aspartic Acid	6936650	Sama_0837		citrate transporter (RefSeq)	1.86749706728007	11.3337723632153	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6936880	Sama_1054		membrane protein (RefSeq)	-1.15996054334783	-5.00793557195878	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6936888	Sama_1062		GGDEF domain-containing protein (RefSeq)	-1.4230104341047	-5.27927138463335	FALSE
+nitrogen source	set3H36	L-Aspartic Acid	6937096	Sama_1266		hypothetical protein (RefSeq)	-1.66217935810133	-6.30303373995824	TRUE
+nitrogen source	set3H36	L-Aspartic Acid	6937149	Sama_1319		sodium:dicarboxylate symporter (RefSeq)	-1.97797710475014	-9.32079408957976	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6937149	Sama_1319		sodium:dicarboxylate symporter (RefSeq)	-1.7550403925883	-7.31124225819585	FALSE
+nitrogen source	set3H36	L-Aspartic Acid	6937195	Sama_1365		6-phosphogluconate dehydrogenase (RefSeq)	1.07411761982347	5.20380880038361	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6937283	Sama_1453		transporter, putative (RefSeq)	1.81976214318721	6.91912809647419	FALSE
+nitrogen source	set3H36	L-Aspartic Acid	6937486	Sama_1642		carbonate dehydratase (RefSeq)	-1.74953035488259	-6.20878935410755	FALSE
+nitrogen source	set3H36	L-Aspartic Acid	6937606	Sama_1760		acetyltransferase (RefSeq)	1.79030230349475	11.962408317035	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6937606	Sama_1760		acetyltransferase (RefSeq)	2.00560155982621	12.8568040248407	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6938545	Sama_2648		aldehyde dehydrogenase (RefSeq)	1.33029774523755	8.17950771325669	FALSE
+nitrogen source	set3H36	L-Aspartic Acid	6938840	Sama_2943		hypothetical protein (RefSeq)	-1.29248115372493	-5.17096666691653	FALSE
+nitrogen source	set3H16	L-Aspartic Acid	6939369	Sama_3462		O-succinylbenzoate synthase (RefSeq)	-1.21229278438221	-5.44142357633763	FALSE
+nitrogen source	set3H36	L-Aspartic Acid	6939537	Sama_3629		hypothetical protein (RefSeq)	-1.36549819208948	-5.30942532273501	FALSE
+nitrogen source	set3H24	L-Histidine	6935950	Sama_0165		phosphoenolpyruvate carboxykinase (RefSeq)	-1.33106548551551	-6.2553293028003	FALSE
+nitrogen source	set3H4	L-Histidine	6936055	Sama_0252		competence/damage-inducible protein CinA (RefSeq)	-1.94180234230222	-9.72393631693473	FALSE
+nitrogen source	set3H24	L-Histidine	6936055	Sama_0252		competence/damage-inducible protein CinA (RefSeq)	-1.45219013739313	-7.93149181610845	FALSE
+nitrogen source	set3H4	L-Histidine	6936130	Sama_0327	radC	DNA repair protein RadC (RefSeq)	1.16893686203682	6.18845268535854	FALSE
+nitrogen source	set3H24	L-Histidine	6936385	Sama_0573		alkaline phosphatase (RefSeq)	-1.18928475572312	-5.86810990824292	FALSE
+nitrogen source	set3H24	L-Histidine	6936699	Sama_0886		hypothetical protein (RefSeq)	1.42713220579935	7.46561608461099	FALSE
+nitrogen source	set3H4	L-Histidine	6936912	Sama_1086		Fmu (Sun) (RefSeq)	-2.16878838633417	-8.11444477997435	FALSE
+nitrogen source	set3H24	L-Histidine	6937283	Sama_1453		transporter, putative (RefSeq)	1.3884015151926	6.5074345347496	FALSE
+nitrogen source	set3H4	L-Histidine	6937474	Sama_1630		LysR family transcriptional regulator (RefSeq)	-3.13626561650564	-8.7764709696069	FALSE
+nitrogen source	set3H24	L-Histidine	6937474	Sama_1630		LysR family transcriptional regulator (RefSeq)	-2.54783396288534	-8.86032439089901	FALSE
+nitrogen source	set3H4	L-Histidine	6937475	Sama_1631		histidine ammonia-lyase (RefSeq)	-3.15524611342571	-10.609033203946	TRUE
+nitrogen source	set3H24	L-Histidine	6937475	Sama_1631		histidine ammonia-lyase (RefSeq)	-3.11269002097728	-9.96619022336471	TRUE
+nitrogen source	set3H24	L-Histidine	6937476	Sama_1632		urocanate hydratase (RefSeq)	-4.45223667655562	-14.2622865354508	TRUE
+nitrogen source	set3H4	L-Histidine	6937476	Sama_1632		urocanate hydratase (RefSeq)	-3.20246419606518	-11.7109582585764	TRUE
+nitrogen source	set3H4	L-Histidine	6938544	Sama_2647		oxidoreductase (RefSeq)	-1.51384006555106	-6.59446459482706	FALSE
+nitrogen source	set3H24	L-Histidine	6938637	Sama_2740		branched-chain amino acid transport system II carrier protein BrnQ (RefSeq)	-1.26348237932134	-6.66186116025545	FALSE
+nitrogen source	set3H24	L-Histidine	6938639	Sama_2742		ATP-dependent RNA helicase SrmB (RefSeq)	1.65095327541653	5.86820083592731	FALSE
+nitrogen source	set3H4	L-Histidine	6938820	Sama_2923		hypoxanthine-guanine phosphoribosyltransferase (RefSeq)	-1.15780179646668	-5.51405539571281	FALSE
+nitrogen source	set3H4	L-Histidine	6938836	Sama_2939		tyrosine-specific transport protein, putative (RefSeq)	-1.5585564842075	-9.78682306388685	FALSE
+nitrogen source	set3H24	L-Histidine	6938836	Sama_2939		tyrosine-specific transport protein, putative (RefSeq)	-1.11582061703662	-6.58167043326621	FALSE
+nitrogen source	set3H4	L-Histidine	6939103	Sama_3201		arginase/agmatinase/formiminoglutamase (RefSeq)	-4.62292024314921	-7.72678471203598	TRUE
+nitrogen source	set3H24	L-Histidine	6939103	Sama_3201		arginase/agmatinase/formiminoglutamase (RefSeq)	-4.28511936028383	-12.038688476757	TRUE
+nitrogen source	set3H14	L-Leucine	6935821	Sama_0039		potassium uptake protein TrkH (RefSeq)	-1.51805527396224	-11.6732895372518	FALSE
+nitrogen source	set3H34	L-Leucine	6935821	Sama_0039		potassium uptake protein TrkH (RefSeq)	-1.31011312173348	-10.2588456995752	FALSE
+nitrogen source	set3H14	L-Leucine	6937186	Sama_1356		3-oxoacid CoA-transferase (RefSeq)	-1.67694440818263	-8.66682651182009	FALSE
+nitrogen source	set3H34	L-Leucine	6937186	Sama_1356		3-oxoacid CoA-transferase (RefSeq)	-1.31036068813462	-7.78709060007535	FALSE
+nitrogen source	set3H14	L-Leucine	6937187	Sama_1357		3-oxoacid CoA-transferase (RefSeq)	-1.52279392375574	-6.66224897469003	FALSE
+nitrogen source	set3H34	L-Leucine	6937187	Sama_1357		3-oxoacid CoA-transferase (RefSeq)	-1.4537736167226	-6.5930877506437	FALSE
+nitrogen source	set3H14	L-Leucine	6937189	Sama_1359		3-methylcrotonyl-CoA carboxylase alpha subunit (RefSeq)	-3.08483485896945	-11.5375983962786	FALSE
+nitrogen source	set3H34	L-Leucine	6937189	Sama_1359		3-methylcrotonyl-CoA carboxylase alpha subunit (RefSeq)	-2.61143518271983	-12.0647504723616	FALSE
+nitrogen source	set3H14	L-Leucine	6937192	Sama_1362		isovaleryl-CoA dehydrogenase (RefSeq)	-1.98089093732019	-11.6952697953073	TRUE
+nitrogen source	set3H34	L-Leucine	6937192	Sama_1362		isovaleryl-CoA dehydrogenase (RefSeq)	-1.69661223761163	-11.3959239603032	TRUE
+nitrogen source	set3H14	L-Leucine	6937279	Sama_1449		hypothetical protein (RefSeq)	-1.41700464205621	-6.33219675689404	FALSE
+nitrogen source	set3H34	L-Leucine	6937283	Sama_1453		transporter, putative (RefSeq)	1.41632294725419	9.02017064005045	FALSE
+nitrogen source	set3H14	L-Leucine	6937283	Sama_1453		transporter, putative (RefSeq)	1.53446696992328	9.23624816900332	FALSE
+nitrogen source	set3H34	L-Leucine	6937542	Sama_1698		hypothetical protein (RefSeq)	-1.44343407191998	-7.93679828334316	FALSE
+nitrogen source	set3H14	L-Leucine	6937542	Sama_1698		hypothetical protein (RefSeq)	-1.39427448726626	-6.30429919383451	FALSE
+nitrogen source	set3H34	L-Leucine	6939257	Sama_3351		hypothetical protein (RefSeq)	1.13690139219209	10.0666981153316	FALSE
+nitrogen source	set3H14	L-Leucine	6939257	Sama_3351		hypothetical protein (RefSeq)	1.14480570174318	10.1060376718316	FALSE
+nitrogen source	set3H15	L-Lysine	6935814	Sama_0032	fadB	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-1.18231792238368	-9.37304707569836	FALSE
+nitrogen source	set3H15	L-Lysine	6936418	Sama_0606		pseudouridylate synthase (RefSeq)	-1.19223453084029	-6.87721261483975	FALSE
+nitrogen source	set3H35	L-Lysine	6936463	Sama_0651		Rh-like protein/ammonium transporter (RefSeq)	-1.26654951890836	-10.2487110158204	FALSE
+nitrogen source	set3H15	L-Lysine	6936940	Sama_1114		omega-3 polyunsaturated fatty acid synthase PfaB (RefSeq)	-1.5774894363665	-5.81884142312883	FALSE
+nitrogen source	set3H15	L-Lysine	6937470	Sama_1626	astD	succinylglutamic semialdehyde dehydrogenase (RefSeq)	-4.1642632001021	-11.7016643250598	FALSE
+nitrogen source	set3H35	L-Lysine	6937470	Sama_1626	astD	succinylglutamic semialdehyde dehydrogenase (RefSeq)	-3.35649388620153	-15.3963397146685	FALSE
+nitrogen source	set3H35	L-Lysine	6937471	Sama_1627		arginine N-succinyltransferase (RefSeq)	-3.34990798878426	-9.07194137400506	FALSE
+nitrogen source	set3H15	L-Lysine	6937471	Sama_1627		arginine N-succinyltransferase (RefSeq)	-3.23018483021554	-6.65862745333517	FALSE
+nitrogen source	set3H35	L-Lysine	6937472	Sama_1628	argD	bifunctional N-succinyldiaminopimelate-aminotransferase/acetylornithine transaminase protein (RefSeq)	-3.0598733074593	-13.0560117409098	TRUE
+nitrogen source	set3H15	L-Lysine	6937472	Sama_1628	argD	bifunctional N-succinyldiaminopimelate-aminotransferase/acetylornithine transaminase protein (RefSeq)	-2.76245605176291	-9.87209259851429	TRUE
+nitrogen source	set3H35	L-Lysine	6937473	Sama_1629		AsnC family transcriptional regulator (RefSeq)	-2.65828205729577	-6.08823075304529	TRUE
+nitrogen source	set3H35	L-Lysine	6937830	Sama_1971	rrmA	23S rRNA methyltransferase A (RefSeq)	-1.49490887004168	-7.32158778061382	FALSE
+nitrogen source	set3H35	L-Lysine	6938330	Sama_2449		starch synthase (RefSeq)	-1.11732691816713	-7.17288056338744	FALSE
+nitrogen source	set3H15	L-Lysine	6938362	Sama_2481		hypothetical protein (RefSeq)	-2.05889952424225	-6.82664704940447	FALSE
+nitrogen source	set3H35	L-Lysine	6938362	Sama_2481		hypothetical protein (RefSeq)	-1.4182298750768	-9.25376293338087	FALSE
+nitrogen source	set3H15	L-Lysine	6938692	Sama_2795		transketolase, central region (RefSeq)	-1.56196436666108	-10.4184733343061	FALSE
+nitrogen source	set3H15	L-Lysine	6938693	Sama_2796		acyl-CoA dehydrogenase-like protein (RefSeq)	-1.11911265705235	-7.01787059936749	TRUE
+nitrogen source	set3H15	L-Lysine	6938712	Sama_2815		phosphotransferase (RefSeq)	-1.68516089916448	-7.43440024777541	FALSE
+nitrogen source	set3H35	L-Lysine	6938712	Sama_2815		phosphotransferase (RefSeq)	-1.57942276655978	-8.4643206106606	FALSE
+nitrogen source	set3H35	L-Lysine	6939239	Sama_3333		hypothetical protein (RefSeq)	1.3993858895304	6.6382487460443	FALSE
+nitrogen source	set3H15	L-Lysine	6939239	Sama_3333		hypothetical protein (RefSeq)	1.72419180490494	6.01412223137605	FALSE
+nitrogen source	set3H15	L-Lysine	6939240	Sama_3334		ornithine decarboxylase (RefSeq)	1.36087705472287	11.9264747675644	FALSE
+nitrogen source	set3H35	L-Lysine	6939240	Sama_3334		ornithine decarboxylase (RefSeq)	1.39658704838255	12.3478152816511	FALSE
+nitrogen source	set3H35	L-Lysine	6939241	Sama_3335	potE	putrescine transporter (RefSeq)	1.58279831177324	14.2678759552094	FALSE
+nitrogen source	set3H15	L-Lysine	6939241	Sama_3335	potE	putrescine transporter (RefSeq)	1.66316885561517	14.1993456869767	FALSE
+nitrogen source	set3H40	L-Proline	6936462	Sama_0650		nitrogen regulatory protein P-II (RefSeq)	-1.11878505350536	-5.57369419952246	FALSE
+nitrogen source	set3H40	L-Proline	6936463	Sama_0651		Rh-like protein/ammonium transporter (RefSeq)	-1.67483009122256	-13.0156121561064	FALSE
+nitrogen source	set3H20	L-Proline	6938044	Sama_2177		sodium/proline symporter (RefSeq)	-1.00879877262518	-6.47982024305289	TRUE
+nitrogen source	set3H40	L-Proline	6938330	Sama_2449		starch synthase (RefSeq)	-2.21155389455592	-11.4136586418712	FALSE
+nitrogen source	set3H20	L-Proline	6938330	Sama_2449		starch synthase (RefSeq)	-1.77107380416378	-10.0649094622891	FALSE
+nitrogen source	set3H20	L-Proline	6938573	Sama_2676		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase (RefSeq)	-4.10426039134998	-22.5819580295874	TRUE
+nitrogen source	set3H40	L-Proline	6938573	Sama_2676		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase (RefSeq)	-3.54598346205587	-19.9278432782912	TRUE
+nitrogen source	set3H30	L-Serine	6936260	Sama_0449		regulatory protein CsrD (RefSeq)	-1.46225827997038	-9.71216448893562	FALSE
+nitrogen source	set3H11	L-Threonine	6936463	Sama_0651		Rh-like protein/ammonium transporter (RefSeq)	-1.81677679854374	-13.6128870773266	FALSE
+nitrogen source	set3H31	L-Threonine	6937497	Sama_1653		putative methyl-accepting chemotaxis sensory transducer (RefSeq)	-1.05386387413058	-5.24297818165699	FALSE
+nitrogen source	set3H11	L-Threonine	6938024	Sama_2157		hypothetical protein (RefSeq)	-1.68234549375904	-10.5043812649309	TRUE
+nitrogen source	set3H31	L-Threonine	6938024	Sama_2157		hypothetical protein (RefSeq)	-1.10135099823414	-6.34858844181473	TRUE
+nitrogen source	set3H11	L-Threonine	6938330	Sama_2449		starch synthase (RefSeq)	-1.48648661826118	-7.82936567081178	FALSE
+nitrogen source	set3H28	N-Acetyl-D-Glucosamine	6936504	Sama_0692		hypothetical protein (RefSeq)	-1.09923226843874	-5.35385838975277	TRUE
+nitrogen source	set3H8	N-Acetyl-D-Glucosamine	6936757	Sama_0944		hypothetical protein (RefSeq)	-4.51061426546814	-11.2734697246329	TRUE
+nitrogen source	set3H28	N-Acetyl-D-Glucosamine	6936757	Sama_0944		hypothetical protein (RefSeq)	-3.78152920921528	-8.07041868332045	TRUE
+nitrogen source	set3H8	N-Acetyl-D-Glucosamine	6936758	Sama_0945		glutamine--fructose-6-phosphate transaminase (isomerizing) (RefSeq)	-4.15947277545684	-11.9086604155693	TRUE
+nitrogen source	set3H28	N-Acetyl-D-Glucosamine	6936758	Sama_0945		glutamine--fructose-6-phosphate transaminase (isomerizing) (RefSeq)	-3.7633535277494	-12.7013264412126	TRUE
+nitrogen source	set3H8	N-Acetyl-D-Glucosamine	6936759	Sama_0946		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-5.24861341647423	-8.76936844503492	TRUE
+nitrogen source	set3H28	N-Acetyl-D-Glucosamine	6936759	Sama_0946		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-4.57889338338997	-5.4529299538751	TRUE
+nitrogen source	set3H28	N-Acetyl-D-Glucosamine	6938110	Sama_2231		fructokinase (RefSeq)	-1.2473306827612	-5.18031675728149	FALSE
+nitrogen source	set3H28	N-Acetyl-D-Glucosamine	6938890	Sama_2993		SUA5/YciO/YrdC family translation initiation protein (RefSeq)	-1.6691216739117	-9.97244818089215	FALSE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6936463	Sama_0651		Rh-like protein/ammonium transporter (RefSeq)	-1.39611022021219	-8.82210239869489	TRUE
+nitrogen source	set3H12	Putrescine Dihydrochloride	6936759	Sama_0946		N-acetylglucosamine-6-phosphate deacetylase (RefSeq)	-1.43672269282174	-6.42258919334122	FALSE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6938533	Sama_2636		4-aminobutyrate aminotransferase (RefSeq)	-2.60337697535427	-10.9552780954433	TRUE
+nitrogen source	set3H12	Putrescine Dihydrochloride	6938533	Sama_2636		4-aminobutyrate aminotransferase (RefSeq)	-1.65168976722648	-8.75333115539317	TRUE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6938535	Sama_2638		putative oxidoreductase (RefSeq)	-2.65409096763983	-15.2160449890542	TRUE
+nitrogen source	set3H12	Putrescine Dihydrochloride	6938535	Sama_2638		putative oxidoreductase (RefSeq)	-2.18499798363264	-13.0547203006012	TRUE
+nitrogen source	set3H12	Putrescine Dihydrochloride	6938536	Sama_2639		binding-protein-dependent transport systems inner membrane component (RefSeq)	-2.54295248135188	-9.66819151499513	FALSE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6938536	Sama_2639		binding-protein-dependent transport systems inner membrane component (RefSeq)	-2.521690773876	-8.70267289433885	FALSE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6938540	Sama_2643		putative aminotransferase (RefSeq)	-1.51634905766095	-9.4708504426446	TRUE
+nitrogen source	set3H12	Putrescine Dihydrochloride	6938540	Sama_2643		putative aminotransferase (RefSeq)	-1.32110087422489	-8.34321291446063	TRUE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6938542	Sama_2645		glutamine amidotransferase (RefSeq)	-3.21399918892922	-9.64205689546527	TRUE
+nitrogen source	set3H12	Putrescine Dihydrochloride	6938542	Sama_2645		glutamine amidotransferase (RefSeq)	-2.45022453128385	-7.08203377320118	TRUE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6938544	Sama_2647		oxidoreductase (RefSeq)	-1.23788138006265	-6.93642228794526	FALSE
+nitrogen source	set3H12	Putrescine Dihydrochloride	6938545	Sama_2648		aldehyde dehydrogenase (RefSeq)	-3.57534294721849	-20.2307508823698	TRUE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6938545	Sama_2648		aldehyde dehydrogenase (RefSeq)	-3.26156026587798	-18.0746659979647	TRUE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6938712	Sama_2815		phosphotransferase (RefSeq)	-1.40800854155882	-7.17789120543117	FALSE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6939159	Sama_3257		HemY protein (RefSeq)	-1.31931779317883	-6.338737127484	FALSE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6939239	Sama_3333		hypothetical protein (RefSeq)	1.70168899903962	5.76359870890552	FALSE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6939240	Sama_3334		ornithine decarboxylase (RefSeq)	1.26448715186783	10.784700263211	FALSE
+nitrogen source	set3H12	Putrescine Dihydrochloride	6939240	Sama_3334		ornithine decarboxylase (RefSeq)	1.29581455857125	11.0141600520449	FALSE
+nitrogen source	set3H32	Putrescine Dihydrochloride	6939241	Sama_3335	potE	putrescine transporter (RefSeq)	1.20062095741706	10.0054558509785	FALSE
+nitrogen source	set3H12	Putrescine Dihydrochloride	6939241	Sama_3335	potE	putrescine transporter (RefSeq)	1.29865819291986	10.7778335152832	FALSE
+pH	set5H29		6935804	Sama_0022		Urea carboxylase (RefSeq)	1.67455345628297	11.6471596204782	FALSE
+pH	set5H27		6935804	Sama_0022		Urea carboxylase (RefSeq)	2.06073358541558	15.3116158606942	FALSE
+pH	set5H29		6935805	Sama_0023		hypothetical protein (RefSeq)	1.76742287278724	12.6297888826559	FALSE
+pH	set5H27		6935805	Sama_0023		hypothetical protein (RefSeq)	1.96670357585562	13.3500031389988	FALSE
+pH	set5H27		6935868	Sama_0083		alpha/beta hydrolase fold (RefSeq)	-2.17392599548394	-14.2750366743378	FALSE
+pH	set5H29		6935868	Sama_0083		alpha/beta hydrolase fold (RefSeq)	-1.9649903543245	-13.5285857537126	FALSE
+pH	set5H27		6935980	Sama_0195		RNA-binding protein (RefSeq)	-1.42063152767443	-8.55147176975175	FALSE
+pH	set5H27		6936320	Sama_0509		NAD dependent epimerase/dehydratase family protein (RefSeq)	-1.10983051097843	-5.89757014756447	FALSE
+pH	set5H27		6936476	Sama_0664		glutathione S-transferase family protein (RefSeq)	-1.68650033688647	-10.6514136826596	FALSE
+pH	set5H29		6936476	Sama_0664		glutathione S-transferase family protein (RefSeq)	-1.25865805971017	-8.66600048227538	FALSE
+pH	set5H27		6936845	Sama_1027		transporter, putative (RefSeq)	-1.16437392649466	-7.6218238669835	FALSE
+pH	set5H29		6937112	Sama_1282		signal transduction histidine kinase, LytS (RefSeq)	1.84721114738959	12.8145041145119	FALSE
+pH	set5H27		6937112	Sama_1282		signal transduction histidine kinase, LytS (RefSeq)	2.44923130074454	14.510063954779	FALSE
+pH	set5H27		6937814	Sama_1955		sensory box histidine kinase (RefSeq)	1.64571450271947	11.8613587445575	FALSE
+pH	set5H27		6938260	Sama_2380		isocitrate lyase (RefSeq)	-1.58274161749522	-10.7850201055763	TRUE
+pH	set5H29		6938260	Sama_2380		isocitrate lyase (RefSeq)	-1.46694122663146	-9.7978328662889	TRUE
+pH	set5H27		6938827	Sama_2930		hypothetical protein (RefSeq)	1.03495203487012	5.17977687712588	FALSE
+pH	set5H27		6939382	Sama_3475		CzcA family heavy metal efflux protein (RefSeq)	-1.49246290037506	-13.1098274185126	FALSE
+pH	set5H27		6939409	Sama_3501		DNA-damage-inducible protein F (RefSeq)	-1.89974241851503	-15.7125986032396	FALSE
+pH	set5H29		6939409	Sama_3501		DNA-damage-inducible protein F (RefSeq)	-1.40968433755431	-11.6792460943353	FALSE
+pH	set5H27		6939451	Sama_3543		glutathione reductase (RefSeq)	-2.07447008433497	-16.1307901928643	FALSE
+pH	set5H29		6939451	Sama_3543		glutathione reductase (RefSeq)	-1.85264455839157	-14.519329133889	FALSE
+pH	set5H29		6939531	Sama_3623		putative chorismate--pyruvate lyase (RefSeq)	1.42677327527717	8.2458482832283	FALSE
+pH	set5H27		6939531	Sama_3623		putative chorismate--pyruvate lyase (RefSeq)	1.4543556059174	8.58169571172406	FALSE
+stress	setAH47	1-ethyl-3-methylimidazolium acetate	6937535	Sama_1691	mdoG	glucan biosynthesis protein G (RefSeq)	-2.07036434895493	-10.086406743015	FALSE
+stress	setAH45	1-ethyl-3-methylimidazolium acetate	6937535	Sama_1691	mdoG	glucan biosynthesis protein G (RefSeq)	-1.58081335775899	-8.27746967468727	FALSE
+stress	setAH45	1-ethyl-3-methylimidazolium acetate	6939014	Sama_3112		hypothetical protein (RefSeq)	-2.19445029568416	-15.0789914798069	TRUE
+stress	setAH47	1-ethyl-3-methylimidazolium acetate	6939014	Sama_3112		hypothetical protein (RefSeq)	-2.08300602672678	-15.5830907771208	TRUE
+stress	setAH47	1-ethyl-3-methylimidazolium acetate	6939094	Sama_3192		hypothetical protein (RefSeq)	-1.48710192033163	-8.59748646805076	FALSE
+stress	set5H9	5-Hydroxymethylfurfural	6936240	Sama_0429		hypothetical protein (RefSeq)	-3.4511764285673	-13.9158923854619	FALSE
+stress	set5H9	5-Hydroxymethylfurfural	6936771	Sama_0956		phosphoglucosamine mutase (RefSeq)	1.17312486490243	10.2038569228977	FALSE
+stress	set5H9	5-Hydroxymethylfurfural	6937396	Sama_1560		M24/M37 family peptidase (RefSeq)	2.20517654125158	14.4203105653177	FALSE
+stress	set5H9	5-Hydroxymethylfurfural	6937888	Sama_2029		membrane-bound lytic transglycolase-related protein (RefSeq)	2.29858991221171	16.2201973643728	FALSE
+stress	set5H9	5-Hydroxymethylfurfural	6938893	Sama_2996		ABC transporter, ATP-binding protein (RefSeq)	1.0546656878137	9.5419591048233	TRUE
+stress	set5H9	5-Hydroxymethylfurfural	6939426	Sama_3518		carbohydrate kinase (RefSeq)	1.7484884726568	14.9425265304703	FALSE
+stress	set4H25	Aluminum chloride hydrate	6935892	Sama_0107		hypothetical protein (RefSeq)	-2.47532380634669	-17.541617970328	FALSE
+stress	set4H25	Aluminum chloride hydrate	6936356	Sama_0545		outer membrane porin, putative (RefSeq)	-1.59245249494011	-13.4600672101949	FALSE
+stress	set4H24	Aluminum chloride hydrate	6936475	Sama_0663		ferredoxin--NADP reductase (RefSeq)	-3.01452048912979	-11.9229337439235	FALSE
+stress	set4H23	Aluminum chloride hydrate	6936475	Sama_0663		ferredoxin--NADP reductase (RefSeq)	-2.43129281077214	-12.1249481548804	FALSE
+stress	set4H25	Aluminum chloride hydrate	6937604	Sama_1758		hypothetical protein (RefSeq)	-4.07308151973871	-16.4971053935581	TRUE
+stress	set4H23	Aluminum chloride hydrate	6937604	Sama_1758		hypothetical protein (RefSeq)	-3.78780087751147	-15.7750780678181	TRUE
+stress	set4H24	Aluminum chloride hydrate	6937604	Sama_1758		hypothetical protein (RefSeq)	-3.62664444852842	-17.1014752507928	TRUE
+stress	set4H25	Aluminum chloride hydrate	6938651	Sama_2754		hypothetical protein (RefSeq)	-1.62360125907046	-8.96604702734991	FALSE
+stress	set4H30	Bacitracin	6935859	Sama_0074		HAD-superfamily hydrolase, subfamily IA, variant 1 family protein (RefSeq)	-2.29314095624252	-9.05151943948557	FALSE
+stress	set4H29	Bacitracin	6935859	Sama_0074		HAD-superfamily hydrolase, subfamily IA, variant 1 family protein (RefSeq)	-1.66040047666554	-8.18325847668865	FALSE
+stress	set4H29	Bacitracin	6935892	Sama_0107		hypothetical protein (RefSeq)	-1.91099061152498	-15.182753189368	FALSE
+stress	set4H30	Bacitracin	6936179	Sama_0368		type IV pilus biogenesis protein PilC (RefSeq)	1.49034458952096	10.0889814226107	FALSE
+stress	set4H30	Bacitracin	6936214	Sama_0403		drug resistance transporter, EmrB/QacA family protein (RefSeq)	-1.40394749063857	-10.5418612655123	FALSE
+stress	set4H30	Bacitracin	6936356	Sama_0545		outer membrane porin, putative (RefSeq)	-3.61136724451599	-24.1240692273155	FALSE
+stress	set4H30	Bacitracin	6936378	Sama_0566		hypothetical protein (RefSeq)	-1.02485362931372	-6.37203805617438	FALSE
+stress	set4H30	Bacitracin	6936449	Sama_0637		hypothetical protein (RefSeq)	-2.69774242649556	-11.2359314968634	FALSE
+stress	set4H30	Bacitracin	6936833	Sama_1015	nrdR	transcriptional regulator NrdR (RefSeq)	-2.17283560574944	-6.27326510609215	FALSE
+stress	set4H30	Bacitracin	6936888	Sama_1062		GGDEF domain-containing protein (RefSeq)	1.8568253646644	11.7476392573262	FALSE
+stress	set4H30	Bacitracin	6937065	Sama_1236		psp operon transcriptional activator (RefSeq)	-3.93507660077926	-10.7195377001775	TRUE
+stress	set4H29	Bacitracin	6937065	Sama_1236		psp operon transcriptional activator (RefSeq)	-3.69130845092108	-11.8768582679416	TRUE
+stress	set4H29	Bacitracin	6937068	Sama_1239		phage shock protein C (RefSeq)	-5.25894017464816	-6.22961398931102	TRUE
+stress	set4H30	Bacitracin	6937068	Sama_1239		phage shock protein C (RefSeq)	-5.24080963981052	-5.091425859252	TRUE
+stress	set4H30	Bacitracin	6937149	Sama_1319		sodium:dicarboxylate symporter (RefSeq)	1.1086236858034	7.99537974686587	FALSE
+stress	set4H30	Bacitracin	6937159	Sama_1329		hypothetical protein (RefSeq)	-1.74857106556467	-8.21177521358863	TRUE
+stress	set4H29	Bacitracin	6937604	Sama_1758		hypothetical protein (RefSeq)	-1.45112860267022	-10.7750223775924	FALSE
+stress	set4H30	Bacitracin	6937774	Sama_1915		hypothetical protein (RefSeq)	1.50861318308165	7.70814525653616	FALSE
+stress	set4H30	Bacitracin	6937815	Sama_1956		hypothetical protein (RefSeq)	-2.43411911704283	-7.94111655706483	FALSE
+stress	set4H30	Bacitracin	6937858	Sama_1999		ribosomal protein S6 modification protein, putative (RefSeq)	1.20802240764398	9.19128044847291	FALSE
+stress	set4H30	Bacitracin	6937888	Sama_2029		membrane-bound lytic transglycolase-related protein (RefSeq)	1.27356079972159	9.0135957417756	FALSE
+stress	set4H29	Bacitracin	6938434	Sama_2553		putative lipoprotein (RefSeq)	-1.22062143436891	-6.09792406347705	TRUE
+stress	set4H30	Bacitracin	6938622	Sama_2725		hypothetical protein (RefSeq)	-1.42041107812351	-6.44767132410873	FALSE
+stress	set4H30	Bacitracin	6938640	Sama_2743		hypothetical protein (RefSeq)	-4.35706089849391	-16.6330940543278	FALSE
+stress	set4H29	Bacitracin	6938640	Sama_2743		hypothetical protein (RefSeq)	-1.66872195861671	-12.581761505799	FALSE
+stress	set4H30	Bacitracin	6938641	Sama_2744		AcrB/AcrD/AcrF family protein (RefSeq)	-4.18721328351509	-24.7427523784784	TRUE
+stress	set4H29	Bacitracin	6938641	Sama_2744		AcrB/AcrD/AcrF family protein (RefSeq)	-1.49693287559601	-12.8398623553198	TRUE
+stress	set4H30	Bacitracin	6939033	Sama_3131		ATP-dependent helicase HepA (RefSeq)	-1.36369828702671	-11.0323994020298	TRUE
+stress	set4H30	Bacitracin	6939042	Sama_3140		ABC 3 transport family protein (RefSeq)	1.03222092224083	7.37288866932565	FALSE
+stress	set4H30	Bacitracin	6939043	Sama_3141		adhesion protein, putative (RefSeq)	1.21246113920529	9.2165123271838	FALSE
+stress	set4H30	Bacitracin	6939044	Sama_3142		hypothetical protein (RefSeq)	1.03951286765074	7.78046141924013	FALSE
+stress	set4H30	Bacitracin	6939294	Sama_3387		hypothetical protein (RefSeq)	-3.3430142141159	-8.25585822571843	TRUE
+stress	set4H29	Bacitracin	6939294	Sama_3387		hypothetical protein (RefSeq)	-3.18336143226483	-8.79772043285074	TRUE
+stress	set4H29	Bacitracin	6939295	Sama_3388		hypothetical protein (RefSeq)	-4.04783877416583	-14.2585592174194	TRUE
+stress	set4H30	Bacitracin	6939295	Sama_3388		hypothetical protein (RefSeq)	-3.61481335330043	-14.6636184143447	TRUE
+stress	set4H30	Bacitracin	6939350	Sama_3443		peptidase M16-like protein (RefSeq)	1.07340767836931	9.61588783852911	FALSE
+stress	set4H30	Bacitracin	6939426	Sama_3518		carbohydrate kinase (RefSeq)	1.29421372271625	9.88528242731576	FALSE
+stress	set4H30	Bacitracin	6939440	Sama_3532		hypothetical protein (RefSeq)	2.51680054289349	9.43425174616143	FALSE
+stress	set5H21	Benzalkonium Chloride	6935892	Sama_0107		hypothetical protein (RefSeq)	-2.34269275825573	-16.9885320759193	FALSE
+stress	set5H21	Benzalkonium Chloride	6936212	Sama_0401		LysR family transcriptional regulator (RefSeq)	-2.29641703135048	-15.625938886389	FALSE
+stress	set5H21	Benzalkonium Chloride	6936288	Sama_0477		outer membrane efflux protein (RefSeq)	-2.28034289541092	-15.2452402864224	FALSE
+stress	set5H21	Benzalkonium Chloride	6936289	Sama_0478		HlyD family secretion protein (RefSeq)	-2.42799297846101	-11.7916646888641	FALSE
+stress	set5H21	Benzalkonium Chloride	6936290	Sama_0479		hypothetical protein (RefSeq)	-2.3127690449975	-13.4158388399755	FALSE
+stress	set5H21	Benzalkonium Chloride	6936907	Sama_1081		magnesium transporter, putative (RefSeq)	-3.29325660210951	-17.9002680016243	FALSE
+stress	set5H21	Benzalkonium Chloride	6936958	Sama_1132		flavodoxin (RefSeq)	-2.04611172040784	-5.5389348394332	FALSE
+stress	set5H21	Benzalkonium Chloride	6936991	Sama_1165		putative lipoprotein (RefSeq)	-1.77699034920353	-5.1909290230514	FALSE
+stress	set5H21	Benzalkonium Chloride	6937147	Sama_1317		inosine kinase (RefSeq)	1.28252520679484	8.41960500786215	FALSE
+stress	set5H21	Benzalkonium Chloride	6937604	Sama_1758		hypothetical protein (RefSeq)	-2.71699031743273	-16.9981564690489	FALSE
+stress	set5H21	Benzalkonium Chloride	6937894	Sama_2035		ATP-dependent protease La (RefSeq)	-1.18914171832807	-7.24704200475801	FALSE
+stress	set5H21	Benzalkonium Chloride	6938326	Sama_2445		multi anti extrusion protein MatE (RefSeq)	-2.28293733514317	-10.6807936328121	TRUE
+stress	set5H21	Benzalkonium Chloride	6938651	Sama_2754		hypothetical protein (RefSeq)	-2.12212869918411	-9.87921030528095	FALSE
+stress	set5H20	Benzalkonium Chloride	6938651	Sama_2754		hypothetical protein (RefSeq)	-1.10548750995415	-5.45759975552624	FALSE
+stress	set5H21	Benzalkonium Chloride	6938838	Sama_2941		catalase (RefSeq)	-2.40970202288161	-12.1251404188351	TRUE
+stress	set5H21	Benzalkonium Chloride	6939174	Sama_3268		HlyD family secretion protein (RefSeq)	-4.35752969954561	-17.8333456030465	TRUE
+stress	set5H20	Benzalkonium Chloride	6939174	Sama_3268		HlyD family secretion protein (RefSeq)	-2.52875331429733	-12.265683437258	TRUE
+stress	set5H21	Benzalkonium Chloride	6939284	Sama_3377		hypothetical protein (RefSeq)	1.07795898640346	7.24340254040266	FALSE
+stress	set5H21	Benzalkonium Chloride	6939288	Sama_3381		hypothetical protein (RefSeq)	2.03219251033585	12.0687767755752	FALSE
+stress	set5H21	Benzalkonium Chloride	6939291	Sama_3384		glycosyl transferase, group 2 family protein (RefSeq)	1.02197482386914	7.55740402032367	FALSE
+stress	set5H21	Benzalkonium Chloride	6939296	Sama_3389		FAD-binding protein (RefSeq)	1.06400038115844	8.60695297978678	FALSE
+stress	set5H21	Benzalkonium Chloride	6939359	Sama_3452		hypothetical protein (RefSeq)	-1.81216347023657	-6.92549908292644	FALSE
+stress	set4H21	Benzethonium chloride	6935892	Sama_0107		hypothetical protein (RefSeq)	-1.82567517837617	-14.6475519469158	FALSE
+stress	set4H21	Benzethonium chloride	6936288	Sama_0477		outer membrane efflux protein (RefSeq)	-2.16902387435451	-16.099344102995	FALSE
+stress	set4H21	Benzethonium chloride	6936289	Sama_0478		HlyD family secretion protein (RefSeq)	-2.27021278288479	-14.0861725570029	FALSE
+stress	set4H21	Benzethonium chloride	6936290	Sama_0479		hypothetical protein (RefSeq)	-2.11240940865937	-13.5709888593148	FALSE
+stress	set4H21	Benzethonium chloride	6936605	Sama_0793		outer membrane protein RomA (RefSeq)	-1.09507731800119	-7.41249494657416	FALSE
+stress	set4H21	Benzethonium chloride	6937604	Sama_1758		hypothetical protein (RefSeq)	-2.60509482983856	-16.5896892072414	FALSE
+stress	set4H21	Benzethonium chloride	6938326	Sama_2445		multi anti extrusion protein MatE (RefSeq)	-1.83408545691166	-9.96688417009721	TRUE
+stress	set4H21	Benzethonium chloride	6938651	Sama_2754		hypothetical protein (RefSeq)	-1.41337810413549	-8.69388681604124	FALSE
+stress	set4H21	Benzethonium chloride	6939174	Sama_3268		HlyD family secretion protein (RefSeq)	-4.68841957763612	-16.7722763280554	TRUE
+stress	set5H5	Carbenicillin disodium salt	6937003	Sama_1177		proton-dependent oligopeptide transporter (POT) family protein (RefSeq)	10.6101862421506	23.8157405996754	FALSE
+stress	set5H5	Carbenicillin disodium salt	6938695	Sama_2798		putative outer membrane protein (RefSeq)	1.86586552569978	9.68616509274053	TRUE
+stress	set4H48	Chloramphenicol	6937445	Sama_1606		ATP-dependent protease (RefSeq)	-1.75453633038504	-9.5496773866435	FALSE
+stress	set4H47	Chloramphenicol	6937445	Sama_1606		ATP-dependent protease (RefSeq)	-1.65492758962186	-8.54623992799962	FALSE
+stress	set4H48	Chloramphenicol	6937463	Sama_1619		ATP-dependent helicase HrpA (RefSeq)	-2.45186088649656	-17.8872677056017	TRUE
+stress	set4H47	Chloramphenicol	6937463	Sama_1619		ATP-dependent helicase HrpA (RefSeq)	-1.81455880663009	-13.8114546146638	TRUE
+stress	setAH32	Choline chloride	6938326	Sama_2445		multi anti extrusion protein MatE (RefSeq)	-1.1096514782961	-6.41239637303671	FALSE
+stress	setAH32	Choline chloride	6938566	Sama_2669		hypothetical protein (RefSeq)	-1.11162243930957	-6.06210016752683	FALSE
+stress	set5H16	Cisplatin	6936070	Sama_0267		hypothetical protein (RefSeq)	-1.46986169723444	-8.35852375018377	FALSE
+stress	set5H16	Cisplatin	6936136	Sama_0333		ATP-dependent DNA helicase RecQ (RefSeq)	-1.97897895216124	-15.3757048719672	TRUE
+stress	set5H15	Cisplatin	6936136	Sama_0333		ATP-dependent DNA helicase RecQ (RefSeq)	-1.09122374834213	-9.39405701377429	TRUE
+stress	set5H16	Cisplatin	6936325	Sama_0514		excinuclease ABC, A subunit (RefSeq)	-3.38762415756211	-19.8072266156562	TRUE
+stress	set4H7	Cisplatin	6936325	Sama_0514		excinuclease ABC, A subunit (RefSeq)	-2.42369104250695	-17.3911922495626	TRUE
+stress	set5H15	Cisplatin	6936325	Sama_0514		excinuclease ABC, A subunit (RefSeq)	-2.36797626950837	-18.8003073538832	TRUE
+stress	set5H14	Cisplatin	6936325	Sama_0514		excinuclease ABC, A subunit (RefSeq)	-1.37404513197887	-11.6883275890848	TRUE
+stress	set5H16	Cisplatin	6936404	Sama_0592		hypothetical protein (RefSeq)	-2.00055380928583	-13.6476946976418	TRUE
+stress	set5H15	Cisplatin	6936404	Sama_0592		hypothetical protein (RefSeq)	-1.43579924935657	-11.1986575089829	TRUE
+stress	set5H15	Cisplatin	6936405	Sama_0593		hypothetical protein (RefSeq)	-1.34622484808945	-5.76206846338131	FALSE
+stress	set5H16	Cisplatin	6936406	Sama_0594		hypothetical protein (RefSeq)	-1.90207905113593	-11.7515546688607	FALSE
+stress	set5H15	Cisplatin	6936406	Sama_0594		hypothetical protein (RefSeq)	-1.30555567431705	-9.53057298695674	FALSE
+stress	set5H16	Cisplatin	6936799	Sama_0981		DNA repair protein RadA (RefSeq)	-2.50098362084688	-10.2756102961833	TRUE
+stress	set5H15	Cisplatin	6936799	Sama_0981		DNA repair protein RadA (RefSeq)	-1.13385262942477	-7.06517887043057	TRUE
+stress	set5H16	Cisplatin	6936844	Sama_1026		recombination and repair protein (RefSeq)	-3.1774037056255	-11.7266600905838	TRUE
+stress	set4H7	Cisplatin	6936844	Sama_1026		recombination and repair protein (RefSeq)	-1.73960196564438	-7.71033575685607	TRUE
+stress	set5H15	Cisplatin	6936844	Sama_1026		recombination and repair protein (RefSeq)	-1.19025341283894	-7.68201174574744	TRUE
+stress	set5H16	Cisplatin	6936907	Sama_1081		magnesium transporter, putative (RefSeq)	1.0381815048316	5.20147285638752	FALSE
+stress	set5H16	Cisplatin	6936940	Sama_1114		omega-3 polyunsaturated fatty acid synthase PfaB (RefSeq)	-1.79400546758293	-6.2005778939204	FALSE
+stress	set5H16	Cisplatin	6937080	Sama_1250		DNA polymerase II (RefSeq)	-1.74781818343964	-10.5289991625322	TRUE
+stress	set4H7	Cisplatin	6937080	Sama_1250		DNA polymerase II (RefSeq)	-1.21659174466512	-6.92184701656098	TRUE
+stress	set4H7	Cisplatin	6937097	Sama_1267		exonuclease SbcD, putative (RefSeq)	-1.29933894067302	-5.74421306970981	FALSE
+stress	set4H7	Cisplatin	6937098	Sama_1268		exonuclease SbcC, putative (RefSeq)	-1.16883803345203	-5.40803140267547	FALSE
+stress	set5H15	Cisplatin	6937142	Sama_1312	recR	recombination protein RecR (RefSeq)	-3.73364274372456	-7.08629852252223	TRUE
+stress	set5H16	Cisplatin	6937142	Sama_1312	recR	recombination protein RecR (RefSeq)	-3.31467874229866	-5.49155066680807	TRUE
+stress	set5H14	Cisplatin	6937142	Sama_1312	recR	recombination protein RecR (RefSeq)	-2.86293043519558	-7.65514240432596	TRUE
+stress	set5H16	Cisplatin	6937147	Sama_1317		inosine kinase (RefSeq)	1.61062906354558	7.23688011787021	FALSE
+stress	set5H16	Cisplatin	6937160	Sama_1330		transcription-repair coupling factor (RefSeq)	-3.06382789381559	-15.9946340611131	TRUE
+stress	set5H15	Cisplatin	6937160	Sama_1330		transcription-repair coupling factor (RefSeq)	-1.6709659097307	-12.7235564968824	TRUE
+stress	set5H16	Cisplatin	6937236	Sama_1406		hypothetical protein (RefSeq)	3.2561677900556	11.00762290988	TRUE
+stress	set5H15	Cisplatin	6937449	Sama_1608	uvrC	excinuclease ABC subunit C (RefSeq)	-3.65563839727837	-10.8767902065973	TRUE
+stress	set5H16	Cisplatin	6937449	Sama_1608	uvrC	excinuclease ABC subunit C (RefSeq)	-3.20022731954151	-7.39465829873858	TRUE
+stress	set5H14	Cisplatin	6937449	Sama_1608	uvrC	excinuclease ABC subunit C (RefSeq)	-2.2342528392428	-10.0186747001241	TRUE
+stress	set5H16	Cisplatin	6937681	Sama_1828		excinuclease ABC subunit B (RefSeq)	-3.25607376932959	-6.59140915002842	TRUE
+stress	set5H15	Cisplatin	6937681	Sama_1828		excinuclease ABC subunit B (RefSeq)	-3.18197334002229	-12.6247380694623	TRUE
+stress	set5H14	Cisplatin	6937681	Sama_1828		excinuclease ABC subunit B (RefSeq)	-1.61783681019429	-9.34653257920662	TRUE
+stress	set5H16	Cisplatin	6937721	Sama_1863		DNA-directed DNA polymerase (RefSeq)	-1.53209189097657	-8.17403148890714	TRUE
+stress	set5H16	Cisplatin	6937753	Sama_1894		hypothetical protein (RefSeq)	-1.7545129955835	-7.75226417135064	FALSE
+stress	set5H16	Cisplatin	6937799	Sama_1940		ATP-dependent helicase DinG (RefSeq)	-3.08290953185225	-14.0864357043382	TRUE
+stress	set5H15	Cisplatin	6937799	Sama_1940		ATP-dependent helicase DinG (RefSeq)	-1.51427031278892	-11.2698050163198	TRUE
+stress	set5H16	Cisplatin	6937832	Sama_1973	sbcB	exonuclease I (RefSeq)	-2.78252308298443	-7.52776572261877	TRUE
+stress	set5H16	Cisplatin	6937870	Sama_2011		polyphosphate kinase (RefSeq)	-1.52487232612408	-9.2070120792049	FALSE
+stress	set5H16	Cisplatin	6937939	Sama_2080		helicase (RefSeq)	-1.78049224527572	-9.77881699612445	TRUE
+stress	set4H7	Cisplatin	6938142	Sama_2263		hypothetical protein (RefSeq)	1.51598322735336	5.31015844761228	FALSE
+stress	set5H16	Cisplatin	6938408	Sama_2527		DNA polymerase IV (RefSeq)	-1.08850485515251	-6.77430220215882	TRUE
+stress	set5H16	Cisplatin	6938634	Sama_2737		single-stranded-DNA-specific exonuclease RecJ (RefSeq)	-2.70095729345776	-14.9808416619607	TRUE
+stress	set5H15	Cisplatin	6938634	Sama_2737		single-stranded-DNA-specific exonuclease RecJ (RefSeq)	-1.56606813282698	-11.7118375397431	TRUE
+stress	set4H7	Cisplatin	6938634	Sama_2737		single-stranded-DNA-specific exonuclease RecJ (RefSeq)	-1.34416927740734	-8.24767109925463	TRUE
+stress	set3H47	Cobalt chloride hexahydrate	6935978	Sama_0193		tRNA (uracil-5-)-methyltransferase (RefSeq)	1.33003660292811	10.4060222233655	TRUE
+stress	set3H47	Cobalt chloride hexahydrate	6936240	Sama_0429		hypothetical protein (RefSeq)	-2.21725319488428	-5.54438758072886	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6936347	Sama_0536		galactokinase (RefSeq)	2.89261758736755	23.270605344907	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6936414	Sama_0602		hypothetical protein (RefSeq)	1.10828044350864	5.08487919776807	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6936475	Sama_0663		ferredoxin--NADP reductase (RefSeq)	-2.50247479183278	-5.08218172429751	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6936478	Sama_0666		iron(III) ABC transporter, periplasmic iron(III)-binding protein (RefSeq)	-2.35396596146311	-6.44867059282373	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6936479	Sama_0667		iron(III) ABC transporter, permease protein (RefSeq)	-2.5739690841139	-6.22708646601608	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6936480	Sama_0668		iron(III) ABC transporter, ATP-binding protein (RefSeq)	-2.39474226581907	-5.9972829787622	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6936581	Sama_0769		UDP-N-acetylmuramate (RefSeq)	1.68588000593587	8.01348605780636	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6936661	Sama_0848	anmK	anhydro-N-acetylmuramic acid kinase (RefSeq)	1.35261626049826	9.852261231702	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6936881	Sama_1055		sodium:dicarboxylate symporter (RefSeq)	-1.89010096042255	-5.30641056851763	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6937156	Sama_1326		beta-hexosaminidase (RefSeq)	1.80036165426467	9.78019621219532	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6937396	Sama_1560		M24/M37 family peptidase (RefSeq)	1.53696266255815	7.58528137727362	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6937599	Sama_1753		putative RNA methyltransferase (RefSeq)	1.37903105233111	7.57685879572552	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6937600	Sama_1754		ecotin (RefSeq)	8.07260282640589	10.6873265489675	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6937677	Sama_1824		pyridoxal-5'-phosphate-dependent enzyme, beta subunit (RefSeq)	1.16120000516521	5.92634231319487	TRUE
+stress	set3H47	Cobalt chloride hexahydrate	6938370	Sama_2489	trmB	tRNA (guanine-N(7)-)-methyltransferase (RefSeq)	1.50930855443145	8.74086043017908	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6938437	Sama_2556		AmpG protein, putative (RefSeq)	3.54112011246532	32.3896928803022	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6938712	Sama_2815		phosphotransferase (RefSeq)	1.36163920483007	8.82153451056428	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6938717	Sama_2820	apaG	ApaG (RefSeq)	1.66331924841203	6.93275604847614	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6938890	Sama_2993		SUA5/YciO/YrdC family translation initiation protein (RefSeq)	1.98910707129723	15.9622615964539	FALSE
+stress	set3H47	Cobalt chloride hexahydrate	6939451	Sama_3543		glutathione reductase (RefSeq)	2.01429047672339	18.0312573690187	FALSE
+stress	set4H40	D-Cycloserine	6936325	Sama_0514		excinuclease ABC, A subunit (RefSeq)	-1.27194350528999	-10.2538961689696	TRUE
+stress	set4H40	D-Cycloserine	6936430	Sama_0618		alkyl hydroperoxide reductase, F subunit (RefSeq)	-1.95345678330676	-11.5039277602131	TRUE
+stress	set4H40	D-Cycloserine	6936581	Sama_0769		UDP-N-acetylmuramate (RefSeq)	-1.50266941121205	-5.08124630761634	FALSE
+stress	set4H40	D-Cycloserine	6936655	Sama_0842		hypothetical protein (RefSeq)	-1.25098205549845	-6.05239926144451	FALSE
+stress	set4H40	D-Cycloserine	6936881	Sama_1055		sodium:dicarboxylate symporter (RefSeq)	-1.09573173457827	-5.9762528902733	FALSE
+stress	set4H40	D-Cycloserine	6937003	Sama_1177		proton-dependent oligopeptide transporter (POT) family protein (RefSeq)	2.2682799246661	11.4061495413538	FALSE
+stress	set4H40	D-Cycloserine	6937142	Sama_1312	recR	recombination protein RecR (RefSeq)	-2.22639905030775	-6.8866162808053	TRUE
+stress	set4H40	D-Cycloserine	6937547	Sama_1703		hypothetical protein (RefSeq)	-2.66248326190852	-5.67670471914978	FALSE
+stress	set4H40	D-Cycloserine	6937832	Sama_1973	sbcB	exonuclease I (RefSeq)	-1.30624474362062	-5.9941391339086	FALSE
+stress	set4H40	D-Cycloserine	6938006	Sama_2139		exodeoxyribonuclease III (RefSeq)	-1.38476635565768	-6.36220188648101	TRUE
+stress	set4H40	D-Cycloserine	6938953	Sama_3051		hypothetical protein (RefSeq)	-1.43372652315327	-7.64819026283082	FALSE
+stress	set4H40	D-Cycloserine	6939148	Sama_3246		HAD-superfamily hydrolase, subfamily IA, variant 1 family protein (RefSeq)	-1.47426738155536	-8.50217652621803	FALSE
+stress	set4H40	D-Cycloserine	6939358	Sama_3451		hypothetical protein (RefSeq)	-1.47799784186742	-8.61499333318536	FALSE
+stress	set4H40	D-Cycloserine	6939416	Sama_3508		hypothetical protein (RefSeq)	-1.58369789662923	-11.0361246589587	FALSE
+stress	set4H33	Dimethyl Sulfoxide	6936356	Sama_0545		outer membrane porin, putative (RefSeq)	1.6788598162533	15.9714907544145	FALSE
+stress	set4H41	Doxycycline hyclate	6937463	Sama_1619		ATP-dependent helicase HrpA (RefSeq)	-1.60682069505146	-12.0314935661031	TRUE
+stress	set4H41	Doxycycline hyclate	6938434	Sama_2553		putative lipoprotein (RefSeq)	-1.54541062014057	-6.97348161134043	FALSE
+stress	set4H41	Doxycycline hyclate	6939297	Sama_3390		hypothetical protein (RefSeq)	-1.36311932745349	-7.83531321038209	FALSE
+stress	set4H32	Fusidic acid sodium salt	6935918	Sama_0133		hypothetical protein (RefSeq)	1.12648778321009	5.63849157784744	FALSE
+stress	set4H32	Fusidic acid sodium salt	6936179	Sama_0368		type IV pilus biogenesis protein PilC (RefSeq)	3.27556231378803	16.8253773313203	FALSE
+stress	set4H32	Fusidic acid sodium salt	6936675	Sama_0862		DNA mismatch repair protein (RefSeq)	1.87404456342321	7.4716249038893	TRUE
+stress	set4H32	Fusidic acid sodium salt	6936863	Sama_1045		DNA mismatch repair protein MutS (RefSeq)	2.17453348964582	11.4101919712836	TRUE
+stress	set4H32	Fusidic acid sodium salt	6936938	Sama_1112		omega-3 polyunsaturated fatty acid synthase PfaD (RefSeq)	1.92874316504301	8.89523169705891	FALSE
+stress	set4H32	Fusidic acid sodium salt	6936939	Sama_1113		omega-3 polyunsaturated fatty acid synthase PfaC (RefSeq)	1.69401309416177	13.1619887542771	FALSE
+stress	set4H32	Fusidic acid sodium salt	6936940	Sama_1114		omega-3 polyunsaturated fatty acid synthase PfaB (RefSeq)	1.61666612980055	7.64800310781189	FALSE
+stress	set4H32	Fusidic acid sodium salt	6936941	Sama_1115		erythronolide synthase (RefSeq)	1.74419803335411	14.2444999173511	FALSE
+stress	set4H32	Fusidic acid sodium salt	6936942	Sama_1116		transcriptional regulator, putative (RefSeq)	1.08870662959971	6.15835436770004	FALSE
+stress	set4H32	Fusidic acid sodium salt	6937003	Sama_1177		proton-dependent oligopeptide transporter (POT) family protein (RefSeq)	1.46995436371293	9.04245723924506	FALSE
+stress	set4H32	Fusidic acid sodium salt	6937603	Sama_1757		prolyl oligopeptidase (RefSeq)	1.55877312709591	6.17610988026531	FALSE
+stress	set4H32	Fusidic acid sodium salt	6937871	Sama_2012		guanosine-5'-triphosphate,3'-diphosphate diphosphatase (RefSeq)	1.38065260522793	8.3849447421987	FALSE
+stress	set4H32	Fusidic acid sodium salt	6937972	Sama_2105		hypothetical protein (RefSeq)	1.36652126266728	6.11180884312261	FALSE
+stress	set4H32	Fusidic acid sodium salt	6938034	Sama_2167	fadJ	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	1.38924758403685	7.24139191535954	FALSE
+stress	set4H32	Fusidic acid sodium salt	6938437	Sama_2556		AmpG protein, putative (RefSeq)	1.5919897962742	12.4678948550126	FALSE
+stress	set4H32	Fusidic acid sodium salt	6938690	Sama_2793		hypothetical protein (RefSeq)	2.14586601475821	8.83816426823563	FALSE
+stress	set4H32	Fusidic acid sodium salt	6938890	Sama_2993		SUA5/YciO/YrdC family translation initiation protein (RefSeq)	1.37517193642308	10.2118210273957	FALSE
+stress	set4H32	Fusidic acid sodium salt	6938924	Sama_3027	mutL	DNA mismatch repair protein (RefSeq)	1.77760202341738	7.47114630978328	TRUE
+stress	set4H32	Fusidic acid sodium salt	6939451	Sama_3543		glutathione reductase (RefSeq)	2.8891748265012	24.0430601619883	FALSE
+stress	setAH35	L-Lysine	6935905	Sama_0120		molybdopterin biosynthesis MoeA protein, putative (RefSeq)	-3.02339348501679	-19.2221942268812	FALSE
+stress	setAH37	L-Lysine	6935905	Sama_0120		molybdopterin biosynthesis MoeA protein, putative (RefSeq)	-2.90585541092827	-19.1641588869547	FALSE
+stress	setAH35	L-Lysine	6935906	Sama_0121		molybdopterin-guanine dinucleotide biosynthesis protein (RefSeq)	-4.01853845391231	-6.65885291845815	FALSE
+stress	setAH37	L-Lysine	6935906	Sama_0121		molybdopterin-guanine dinucleotide biosynthesis protein (RefSeq)	-3.45549293617137	-7.60379889481594	FALSE
+stress	setAH35	L-Lysine	6935907	Sama_0122		ABC transporter, ATP-binding protein (RefSeq)	-3.26974094383517	-8.3192249533164	FALSE
+stress	setAH37	L-Lysine	6935907	Sama_0122		ABC transporter, ATP-binding protein (RefSeq)	-3.04778705424342	-7.75450610601484	FALSE
+stress	setAH35	L-Lysine	6935908	Sama_0123		ABC transporter, permease protein (RefSeq)	-3.42056544531169	-14.6964044413779	FALSE
+stress	setAH37	L-Lysine	6935908	Sama_0123		ABC transporter, permease protein (RefSeq)	-3.10867574452649	-14.2514967057666	FALSE
+stress	setAH35	L-Lysine	6935909	Sama_0124		putative sulfate transport system substrate-binding protein (RefSeq)	-2.96745663930282	-16.7878026750812	FALSE
+stress	setAH37	L-Lysine	6935909	Sama_0124		putative sulfate transport system substrate-binding protein (RefSeq)	-2.84018035054944	-16.4017693584513	FALSE
+stress	setAH35	L-Lysine	6935910	Sama_0125		response regulator receiver protein (RefSeq)	-2.58848941248516	-11.9059087598316	FALSE
+stress	setAH37	L-Lysine	6935910	Sama_0125		response regulator receiver protein (RefSeq)	-2.57079583759875	-12.4362629031398	FALSE
+stress	setAH35	L-Lysine	6935911	Sama_0126		sensor histidine kinase (RefSeq)	-2.51456983800112	-18.6325903784669	FALSE
+stress	setAH37	L-Lysine	6935911	Sama_0126		sensor histidine kinase (RefSeq)	-2.27021684380578	-17.9346390642709	FALSE
+stress	setAH35	L-Lysine	6935922	Sama_0137		molybdopterin biosynthesis protein MoeB (RefSeq)	-4.3939273336949	-11.9868542030991	FALSE
+stress	setAH37	L-Lysine	6935922	Sama_0137		molybdopterin biosynthesis protein MoeB (RefSeq)	-3.69170292098975	-13.3059492874527	FALSE
+stress	setAH35	L-Lysine	6935923	Sama_0138		molybdopterin biosynthesis MoeA protein (RefSeq)	-2.66372200679853	-10.4215460991039	FALSE
+stress	setAH37	L-Lysine	6935923	Sama_0138		molybdopterin biosynthesis MoeA protein (RefSeq)	-2.52022040174316	-11.1312701676761	FALSE
+stress	setAH35	L-Lysine	6936288	Sama_0477		outer membrane efflux protein (RefSeq)	-3.50044750595311	-20.5021955924858	FALSE
+stress	setAH37	L-Lysine	6936288	Sama_0477		outer membrane efflux protein (RefSeq)	-3.29520728899962	-20.3330644203388	FALSE
+stress	setAH35	L-Lysine	6936289	Sama_0478		HlyD family secretion protein (RefSeq)	-3.45961264863626	-16.5170888289395	FALSE
+stress	setAH37	L-Lysine	6936289	Sama_0478		HlyD family secretion protein (RefSeq)	-3.15858554104849	-16.0483030750858	FALSE
+stress	setAH35	L-Lysine	6936290	Sama_0479		hypothetical protein (RefSeq)	-3.64474108922259	-18.7878874719654	FALSE
+stress	setAH37	L-Lysine	6936290	Sama_0479		hypothetical protein (RefSeq)	-3.29052767353546	-18.4630433762119	FALSE
+stress	setAH35	L-Lysine	6936449	Sama_0637		hypothetical protein (RefSeq)	-1.84157000611058	-9.76937519241356	FALSE
+stress	setAH35	L-Lysine	6937142	Sama_1312	recR	recombination protein RecR (RefSeq)	-1.78129058049506	-5.26504135088421	FALSE
+stress	setAH37	L-Lysine	6937547	Sama_1703		hypothetical protein (RefSeq)	1.58312472321239	6.32849751938996	FALSE
+stress	setAH35	L-Lysine	6937547	Sama_1703		hypothetical protein (RefSeq)	1.9090523693908	8.40896997903485	FALSE
+stress	setAH35	L-Lysine	6937729	Sama_1871		sodium/hydrogen exchanger family protein (RefSeq)	-1.00837252002908	-5.8423360303698	FALSE
+stress	setAH37	L-Lysine	6937880	Sama_2021	ushA	bifunctional UDP-sugar hydrolase/5'-nucleotidase periplasmic precursor (RefSeq)	1.0317132885016	8.29573391088539	FALSE
+stress	setAH35	L-Lysine	6937880	Sama_2021	ushA	bifunctional UDP-sugar hydrolase/5'-nucleotidase periplasmic precursor (RefSeq)	1.30588898197264	10.5965403285583	FALSE
+stress	setAH35	L-Lysine	6938045	Sama_2178		membrane protein involved in aromatic hydrocarbon degradation (RefSeq)	1.2285375331257	9.0248207132362	FALSE
+stress	setAH35	L-Lysine	6938838	Sama_2941		catalase (RefSeq)	-2.79960263665126	-14.523374515638	TRUE
+stress	setAH37	L-Lysine	6938838	Sama_2941		catalase (RefSeq)	-2.32676985536584	-13.566621757642	TRUE
+stress	setAH35	L-Lysine	6939387	Sama_3479		aromatic amino acid transport protein (RefSeq)	-1.7288267795581	-13.3107448609206	FALSE
+stress	setAH37	L-Lysine	6939387	Sama_3479		aromatic amino acid transport protein (RefSeq)	-1.68723946072885	-13.3284283634531	FALSE
+stress	setAH37	L-Lysine	6939432	Sama_3524	moaA	molybdenum cofactor biosynthesis protein A (RefSeq)	-1.39635037809482	-6.48467335101686	FALSE
+stress	setAH35	L-Lysine	6939432	Sama_3524	moaA	molybdenum cofactor biosynthesis protein A (RefSeq)	-1.39614554069364	-6.71002926537802	FALSE
+stress	setAH37	L-Lysine	6939434	Sama_3526	moaC	molybdenum cofactor biosynthesis protein C (RefSeq)	-3.85724129546711	-14.2978025756535	FALSE
+stress	setAH35	L-Lysine	6939434	Sama_3526	moaC	molybdenum cofactor biosynthesis protein C (RefSeq)	-3.82387118710068	-14.5173536712541	FALSE
+stress	setAH35	L-Lysine	6939435	Sama_3527		molybdenum cofactor biosynthesis protein D (RefSeq)	-3.56461386263212	-6.34069113859772	FALSE
+stress	setAH37	L-Lysine	6939435	Sama_3527		molybdenum cofactor biosynthesis protein D (RefSeq)	-3.399634454286	-6.79965137338955	FALSE
+stress	setAH35	L-Lysine	6939436	Sama_3528		molybdenum cofactor biosynthesis protein E (RefSeq)	-4.42519683942157	-8.41736220248408	FALSE
+stress	setAH37	L-Lysine	6939436	Sama_3528		molybdenum cofactor biosynthesis protein E (RefSeq)	-3.66855589092914	-8.42377472034937	FALSE
+stress	setAH35	L-Lysine	6939519	Sama_3611		formate dehydrogenase, C subunit, putative (RefSeq)	-3.29453250240316	-19.5349510580871	FALSE
+stress	setAH37	L-Lysine	6939519	Sama_3611		formate dehydrogenase, C subunit, putative (RefSeq)	-3.01529964371131	-19.2312985210715	FALSE
+stress	setAH35	L-Lysine	6939520	Sama_3612		formate dehydrogenase, iron-sulfur subunit (RefSeq)	-3.39991270299758	-16.6319811011603	FALSE
+stress	setAH37	L-Lysine	6939520	Sama_3612		formate dehydrogenase, iron-sulfur subunit (RefSeq)	-2.73808297542128	-15.0588751362022	FALSE
+stress	setAH35	L-Lysine	6939521	Sama_3613		formate dehydrogenase, alpha subunit (RefSeq)	-3.07362581443981	-24.2085791808838	FALSE
+stress	setAH37	L-Lysine	6939521	Sama_3613		formate dehydrogenase, alpha subunit (RefSeq)	-3.0542993870376	-24.2804869865143	FALSE
+stress	setAH35	L-Lysine	6939522	Sama_3614		hypothetical protein (RefSeq)	-2.64920248574113	-7.31737517484408	FALSE
+stress	setAH37	L-Lysine	6939522	Sama_3614		hypothetical protein (RefSeq)	-2.01813475215935	-7.24462076882029	FALSE
+stress	setAH35	L-Lysine	6939523	Sama_3615		TorA specific chaperone, putative (RefSeq)	-3.37625423268315	-7.42989378485667	FALSE
+stress	setAH37	L-Lysine	6939523	Sama_3615		TorA specific chaperone, putative (RefSeq)	-2.99256475101175	-7.57585969330128	FALSE
+stress	setAH35	L-Lysine	6939524	Sama_3616		iron-sulfur cluster-binding protein (RefSeq)	-3.02548872244495	-17.4644006490661	FALSE
+stress	setAH37	L-Lysine	6939524	Sama_3616		iron-sulfur cluster-binding protein (RefSeq)	-2.99775919269168	-17.6464203178918	FALSE
+stress	setAH35	L-Lysine	6939525	Sama_3617		hypothetical protein (RefSeq)	-4.19165357826848	-11.0912115739903	FALSE
+stress	setAH37	L-Lysine	6939525	Sama_3617		hypothetical protein (RefSeq)	-3.39572827422879	-11.6807207326939	FALSE
+stress	setAH35	L-Lysine	6939527	Sama_3619		formate dehydrogenase accessory protein FdhD, putative (RefSeq)	-3.62312582450082	-14.3638880534099	FALSE
+stress	setAH37	L-Lysine	6939527	Sama_3619		formate dehydrogenase accessory protein FdhD, putative (RefSeq)	-3.25116091200778	-14.8232026103654	FALSE
+stress	setAH37	L-Lysine	6939531	Sama_3623		putative chorismate--pyruvate lyase (RefSeq)	-1.50184755296488	-7.86042808053564	FALSE
+stress	setAH35	L-Lysine	6939531	Sama_3623		putative chorismate--pyruvate lyase (RefSeq)	-1.36499226312403	-7.36440316875077	FALSE
+stress	set4H37	MreB Perturbing Compound A22	6936356	Sama_0545		outer membrane porin, putative (RefSeq)	1.45969812840601	13.5951026063927	FALSE
+stress	set4H38	MreB Perturbing Compound A22	6936356	Sama_0545		outer membrane porin, putative (RefSeq)	1.79237801184732	16.8777784335816	FALSE
+stress	set4H37	MreB Perturbing Compound A22	6938577	Sama_2680		hypothetical protein (RefSeq)	-1.85870958158312	-7.52393109107644	FALSE
+stress	set4H38	MreB Perturbing Compound A22	6938577	Sama_2680		hypothetical protein (RefSeq)	-1.84196995549817	-8.02747967684767	FALSE
+stress	set3H45	Nickel (II) chloride hexahydrate	6937962	Sama_2095		hypothetical protein (RefSeq)	-1.83320842612648	-13.632248538885	TRUE
+stress	set3H45	Nickel (II) chloride hexahydrate	6939409	Sama_3501		DNA-damage-inducible protein F (RefSeq)	-1.3863639153791	-12.711136068104	TRUE
+stress	set4H3	Paraquat dichloride	6935846	Sama_0061		rhodanese-like protein (RefSeq)	-3.9675203665274	-10.5390325684408	FALSE
+stress	set4H3	Paraquat dichloride	6935892	Sama_0107		hypothetical protein (RefSeq)	-1.86272591682982	-13.8395504314847	FALSE
+stress	set4H3	Paraquat dichloride	6935978	Sama_0193		tRNA (uracil-5-)-methyltransferase (RefSeq)	1.00899837250506	8.68914232386503	FALSE
+stress	set4H3	Paraquat dichloride	6936130	Sama_0327	radC	DNA repair protein RadC (RefSeq)	1.23792797967818	8.84936617157222	FALSE
+stress	set4H3	Paraquat dichloride	6936184	Sama_0373		regulatory protein AmpE (RefSeq)	-1.13897456752048	-7.88372582695001	FALSE
+stress	set4H3	Paraquat dichloride	6936212	Sama_0401		LysR family transcriptional regulator (RefSeq)	-1.53813273451292	-10.2480392019863	FALSE
+stress	set4H3	Paraquat dichloride	6936213	Sama_0402		HlyD family secretion protein (RefSeq)	-1.76046363323026	-8.85109157218542	FALSE
+stress	set4H3	Paraquat dichloride	6936214	Sama_0403		drug resistance transporter, EmrB/QacA family protein (RefSeq)	-3.14141890827813	-17.3478496905451	FALSE
+stress	set4H3	Paraquat dichloride	6936240	Sama_0429		hypothetical protein (RefSeq)	-3.84448787157668	-11.0367699900771	TRUE
+stress	set4H3	Paraquat dichloride	6936318	Sama_0507		hypothetical protein (RefSeq)	-1.1915967423644	-6.02724595708753	FALSE
+stress	set4H3	Paraquat dichloride	6936575	Sama_0763		cobalamin 5'-phosphate synthase (RefSeq)	1.03476627442854	7.36405292701418	FALSE
+stress	set4H3	Paraquat dichloride	6936655	Sama_0842		hypothetical protein (RefSeq)	-1.38378276210824	-5.78459423335628	FALSE
+stress	set4H3	Paraquat dichloride	6936662	Sama_0849		M24/M37 family peptidase (RefSeq)	-1.59590857800957	-10.0651655733618	FALSE
+stress	set4H3	Paraquat dichloride	6936717	Sama_0904		peptidyl-prolyl cis-trans isomerase SlyD (RefSeq)	1.80207692297586	10.6681906664164	FALSE
+stress	set4H3	Paraquat dichloride	6936785	Sama_0967		lipoprotein NlpI (RefSeq)	-1.08592337199454	-7.09054112025557	FALSE
+stress	set4H3	Paraquat dichloride	6937083	Sama_1253		hypothetical protein (RefSeq)	1.38214673316345	9.14458472985082	FALSE
+stress	set4H3	Paraquat dichloride	6937159	Sama_1329		hypothetical protein (RefSeq)	2.08160776792836	14.8915070936182	FALSE
+stress	set4H3	Paraquat dichloride	6937160	Sama_1330		transcription-repair coupling factor (RefSeq)	2.35079376309318	19.2302435326738	FALSE
+stress	set4H3	Paraquat dichloride	6937535	Sama_1691	mdoG	glucan biosynthesis protein G (RefSeq)	-3.61693516987562	-9.82425349696879	FALSE
+stress	set4H3	Paraquat dichloride	6937665	Sama_1815		acyl-CoA dehydrogenase (RefSeq)	-1.10235010874699	-7.40256845454192	FALSE
+stress	set4H3	Paraquat dichloride	6937706	Sama_1848		gonadoliberin III-related protein (RefSeq)	-1.49157454597719	-5.80541129853776	FALSE
+stress	set4H3	Paraquat dichloride	6937709	Sama_1851		hypothetical protein (RefSeq)	-1.1380956427451	-5.33583843302632	FALSE
+stress	set4H3	Paraquat dichloride	6937746	Sama_1887		AsmA protein (RefSeq)	-2.80630936832185	-8.48351729127691	FALSE
+stress	set4H3	Paraquat dichloride	6938004	Sama_2137		intracellular septation protein A (RefSeq)	-3.70516189285613	-7.44688323934925	FALSE
+stress	set4H3	Paraquat dichloride	6938034	Sama_2167	fadJ	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-1.73907293069502	-8.20094565482718	FALSE
+stress	set4H3	Paraquat dichloride	6938035	Sama_2168	fadI	3-ketoacyl-CoA thiolase (RefSeq)	-1.20118860034804	-6.32710139599378	FALSE
+stress	set4H3	Paraquat dichloride	6938067	Sama_2200		serine/threonine transporter SstT (RefSeq)	1.51897662968629	10.9360185274736	FALSE
+stress	set4H3	Paraquat dichloride	6938326	Sama_2445		multi anti extrusion protein MatE (RefSeq)	-3.85065439295554	-10.7467669767444	TRUE
+stress	set4H3	Paraquat dichloride	6938328	Sama_2447		DEAD-box ATP dependent DNA helicase (RefSeq)	3.36080553262754	10.7113887871166	FALSE
+stress	set4H3	Paraquat dichloride	6938497	Sama_2604		hypothetical protein (RefSeq)	-1.43390452322449	-8.96115430282013	FALSE
+stress	set4H3	Paraquat dichloride	6938890	Sama_2993		SUA5/YciO/YrdC family translation initiation protein (RefSeq)	1.61699675887356	13.0257479930384	FALSE
+stress	set4H3	Paraquat dichloride	6938921	Sama_3024		GTP-binding protein HflX (RefSeq)	-3.03437417921246	-8.85291280527751	FALSE
+stress	set4H3	Paraquat dichloride	6939237	Sama_3331		hypothetical protein (RefSeq)	-1.63016034295942	-12.0635504190359	FALSE
+stress	set4H3	Paraquat dichloride	6939283	Sama_3376		hypothetical protein (RefSeq)	-1.31450875247695	-8.37231097848912	FALSE
+stress	set4H3	Paraquat dichloride	6939294	Sama_3387		hypothetical protein (RefSeq)	-2.66664251328853	-6.79404247687335	TRUE
+stress	set4H3	Paraquat dichloride	6939295	Sama_3388		hypothetical protein (RefSeq)	-2.35779430535803	-12.2726005961861	TRUE
+stress	set4H3	Paraquat dichloride	6939358	Sama_3451		hypothetical protein (RefSeq)	-1.61508867280572	-7.51416783203318	FALSE
+stress	set4H3	Paraquat dichloride	6939359	Sama_3452		hypothetical protein (RefSeq)	-3.3357534555478	-8.00665822073804	TRUE
+stress	set4H3	Paraquat dichloride	6939416	Sama_3508		hypothetical protein (RefSeq)	-1.64961270035676	-10.931648048782	FALSE
+stress	set4H14	Sisomicin sulfate salt	6935792	Sama_0010		hypothetical protein (RefSeq)	-1.8600679228284	-6.21483638085638	FALSE
+stress	set4H14	Sisomicin sulfate salt	6935846	Sama_0061		rhodanese-like protein (RefSeq)	-2.07178959238866	-10.1132731045765	TRUE
+stress	set4H14	Sisomicin sulfate salt	6936179	Sama_0368		type IV pilus biogenesis protein PilC (RefSeq)	1.40309946343112	10.072028182213	FALSE
+stress	set4H14	Sisomicin sulfate salt	6937724	Sama_1866		putative two-component system sensor kinase (RefSeq)	1.11957186768742	6.89883688204319	FALSE
+stress	set4H14	Sisomicin sulfate salt	6937746	Sama_1887		AsmA protein (RefSeq)	-1.19287391610198	-5.12908242475056	FALSE
+stress	set4H14	Sisomicin sulfate salt	6938004	Sama_2137		intracellular septation protein A (RefSeq)	-2.92141545691153	-6.44441836165566	FALSE
+stress	set4H14	Sisomicin sulfate salt	6938034	Sama_2167	fadJ	multifunctional fatty acid oxidation complex subunit alpha (RefSeq)	-1.5911067606557	-6.77785498974828	TRUE
+stress	set4H14	Sisomicin sulfate salt	6938035	Sama_2168	fadI	3-ketoacyl-CoA thiolase (RefSeq)	-1.31152476498487	-6.5783819437041	TRUE
+stress	set4H14	Sisomicin sulfate salt	6938921	Sama_3024		GTP-binding protein HflX (RefSeq)	-1.6071520625235	-6.70357483118621	FALSE
+stress	set4H14	Sisomicin sulfate salt	6939294	Sama_3387		hypothetical protein (RefSeq)	-1.84868707848268	-5.78790170083073	FALSE
+stress	set4H14	Sisomicin sulfate salt	6939295	Sama_3388		hypothetical protein (RefSeq)	-2.03554312126712	-11.1058000405952	FALSE
+stress	set4H14	Sisomicin sulfate salt	6939359	Sama_3452		hypothetical protein (RefSeq)	-2.01277349499536	-7.36505893232365	FALSE
+stress	set5H19	Sodium Chloride	6935818	Sama_0036		protoporphyrinogen oxidase (RefSeq)	1.44129252417874	12.5141792858328	FALSE
+stress	set5H19	Sodium Chloride	6936374	Sama_0562		glucose/galactose transporter (RefSeq)	-1.30453149472726	-9.30392514559897	FALSE
+stress	set5H19	Sodium Chloride	6936650	Sama_0837		citrate transporter (RefSeq)	1.72821972963462	13.8635791766131	FALSE
+stress	set5H19	Sodium Chloride	6936958	Sama_1132		flavodoxin (RefSeq)	-3.98947540018264	-8.3567122958086	TRUE
+stress	set5H18	Sodium Chloride	6936958	Sama_1132		flavodoxin (RefSeq)	-3.23051259883663	-7.8713217429758	TRUE
+stress	set5H19	Sodium Chloride	6937001	Sama_1175		choline/carnitine/betaine transport (RefSeq)	-4.52457019490843	-17.9783398659849	TRUE
+stress	set5H18	Sodium Chloride	6937001	Sama_1175		choline/carnitine/betaine transport (RefSeq)	-3.34044159381277	-18.7594038786799	TRUE
+stress	set5H17	Sodium Chloride	6937001	Sama_1175		choline/carnitine/betaine transport (RefSeq)	-2.09233256497491	-14.7364272424534	TRUE
+stress	set5H19	Sodium Chloride	6937068	Sama_1239		phage shock protein C (RefSeq)	-1.81616986571584	-5.6579589571031	FALSE
+stress	set5H19	Sodium Chloride	6937279	Sama_1449		hypothetical protein (RefSeq)	-1.80063491705026	-9.45263048616446	FALSE
+stress	set5H19	Sodium Chloride	6937547	Sama_1703		hypothetical protein (RefSeq)	1.83074868055394	9.11239263401091	FALSE
+stress	set5H19	Sodium Chloride	6937880	Sama_2021	ushA	bifunctional UDP-sugar hydrolase/5'-nucleotidase periplasmic precursor (RefSeq)	1.35876015874882	10.838188428388	FALSE
+stress	set5H19	Sodium Chloride	6938307	Sama_2426		putative RNA 2'-O-ribose methyltransferase (RefSeq)	-1.32915365702107	-7.98472634490963	FALSE
+stress	set5H18	Sodium Chloride	6938307	Sama_2426		putative RNA 2'-O-ribose methyltransferase (RefSeq)	-1.15459359618128	-6.64054085746599	FALSE
+stress	set5H19	Sodium Chloride	6938838	Sama_2941		catalase (RefSeq)	-3.83863653678039	-19.0534512466681	FALSE
+stress	set5H18	Sodium Chloride	6938838	Sama_2941		catalase (RefSeq)	-1.43338541165642	-11.0163718040285	FALSE
+stress	set5H19	Sodium Chloride	6939295	Sama_3388		hypothetical protein (RefSeq)	-1.74043781477126	-11.8690929106056	FALSE
+stress	set5H19	Sodium Chloride	6939434	Sama_3526	moaC	molybdenum cofactor biosynthesis protein C (RefSeq)	-1.54323265453782	-8.98392734599093	FALSE
+stress	set5H19	Sodium Chloride	6939477	Sama_3569		hypothetical protein (RefSeq)	-1.17641848353195	-9.66063781075247	TRUE
+stress	set5H19	Sodium Chloride	6939519	Sama_3611		formate dehydrogenase, C subunit, putative (RefSeq)	-1.27847874407704	-10.2868627096613	FALSE
+stress	set5H19	Sodium Chloride	6939520	Sama_3612		formate dehydrogenase, iron-sulfur subunit (RefSeq)	-1.43430617501642	-10.3139299710033	FALSE
+stress	set5H19	Sodium Chloride	6939521	Sama_3613		formate dehydrogenase, alpha subunit (RefSeq)	-1.27075535131994	-11.2704129545632	FALSE
+stress	set4H16	Sodium Chlorite	6935922	Sama_0137		molybdopterin biosynthesis protein MoeB (RefSeq)	-3.81269024863489	-13.6003373853812	TRUE
+stress	set4H15	Sodium Chlorite	6935922	Sama_0137		molybdopterin biosynthesis protein MoeB (RefSeq)	-2.84015900621826	-10.2692076716578	TRUE
+stress	set4H16	Sodium Chlorite	6937134	Sama_1304		hypothetical protein (RefSeq)	-1.50017823896572	-5.93455732167313	FALSE
+stress	set4H15	Sodium Chlorite	6937329	Sama_1499		hypothetical protein (RefSeq)	1.6955834023056	14.407676605984	FALSE
+stress	set4H16	Sodium Chlorite	6937329	Sama_1499		hypothetical protein (RefSeq)	2.34789121525457	20.7711772429268	FALSE
+stress	set4H16	Sodium Chlorite	6937751	Sama_1892		putative sulfite oxidase subunit YedZ (RefSeq)	-3.26457191968096	-9.47489267400566	TRUE
+stress	set4H15	Sodium Chlorite	6937751	Sama_1892		putative sulfite oxidase subunit YedZ (RefSeq)	-2.53264181788236	-6.81390298365998	TRUE
+stress	set4H16	Sodium Chlorite	6937752	Sama_1893		putative sulfite oxidase subunit YedY (RefSeq)	-3.4338801240099	-13.4034005678918	TRUE
+stress	set4H15	Sodium Chlorite	6937752	Sama_1893		putative sulfite oxidase subunit YedY (RefSeq)	-2.85325554147535	-9.98556266643936	TRUE
+stress	set4H16	Sodium Chlorite	6937850	Sama_1991		bifunctional methionine sulfoxide reductase B/A protein (RefSeq)	-1.10192023214724	-6.39479298184581	FALSE
+stress	set4H16	Sodium Chlorite	6937880	Sama_2021	ushA	bifunctional UDP-sugar hydrolase/5'-nucleotidase periplasmic precursor (RefSeq)	1.23885256837837	10.7775670762625	FALSE
+stress	set4H16	Sodium Chlorite	6938042	Sama_2175		RNA polymerase sigma factor (RefSeq)	-3.77756597055308	-7.56285036556328	TRUE
+stress	set4H15	Sodium Chlorite	6938042	Sama_2175		RNA polymerase sigma factor (RefSeq)	-3.35249944786718	-5.54817257112874	TRUE
+stress	set4H16	Sodium Chlorite	6938351	Sama_2470		hypothetical protein (RefSeq)	-2.15809248526319	-8.14144967628959	FALSE
+stress	set4H15	Sodium Chlorite	6938351	Sama_2470		hypothetical protein (RefSeq)	-2.11506630257421	-6.49680226043692	FALSE
+stress	set4H16	Sodium Chlorite	6939101	Sama_3199		hypothetical protein (RefSeq)	1.13860401744645	7.96428531232445	FALSE
+stress	set4H16	Sodium Chlorite	6939432	Sama_3524	moaA	molybdenum cofactor biosynthesis protein A (RefSeq)	-1.48380142315223	-5.98512031883916	TRUE
+stress	set4H16	Sodium Chlorite	6939434	Sama_3526	moaC	molybdenum cofactor biosynthesis protein C (RefSeq)	-3.38998670037849	-14.2641897955658	TRUE
+stress	set4H15	Sodium Chlorite	6939434	Sama_3526	moaC	molybdenum cofactor biosynthesis protein C (RefSeq)	-2.80241624563098	-10.6647858402566	TRUE
+stress	set4H16	Sodium Chlorite	6939435	Sama_3527		molybdenum cofactor biosynthesis protein D (RefSeq)	-3.828661521968	-6.83976853912477	FALSE
+stress	set4H15	Sodium Chlorite	6939435	Sama_3527		molybdenum cofactor biosynthesis protein D (RefSeq)	-2.95801684030508	-5.28439257595178	FALSE
+stress	set4H16	Sodium Chlorite	6939436	Sama_3528		molybdenum cofactor biosynthesis protein E (RefSeq)	-3.20009801709517	-7.64034914194987	TRUE
+stress	setAH43	Sodium acetate	6938938	Sama_3036		transporter, putative (RefSeq)	1.41891537543285	13.1848411793304	FALSE
+stress	setAH39	Sodium acetate	6938938	Sama_3036		transporter, putative (RefSeq)	1.5698634268919	14.4645075984919	FALSE
+stress	set4H13	Sodium nitrate	6936070	Sama_0267		hypothetical protein (RefSeq)	-1.02948793976219	-6.61222233188728	FALSE
+stress	set4H13	Sodium nitrate	6936211	Sama_0400		putative lipoprotein (RefSeq)	-1.09127753095551	-7.55005887328873	FALSE
+stress	set4H13	Sodium nitrate	6936449	Sama_0637		hypothetical protein (RefSeq)	-1.87272854275403	-8.8368664977973	FALSE
+stress	set4H13	Sodium nitrate	6936938	Sama_1112		omega-3 polyunsaturated fatty acid synthase PfaD (RefSeq)	-1.57722404881689	-5.97355908044937	FALSE
+stress	set4H13	Sodium nitrate	6936939	Sama_1113		omega-3 polyunsaturated fatty acid synthase PfaC (RefSeq)	-1.58729744390714	-10.6919279850311	FALSE
+stress	set4H13	Sodium nitrate	6936941	Sama_1115		erythronolide synthase (RefSeq)	-1.82903574443672	-13.0436085248937	FALSE
+stress	set4H13	Sodium nitrate	6937159	Sama_1329		hypothetical protein (RefSeq)	-2.24741260302395	-11.1901447145164	FALSE
+stress	set4H13	Sodium nitrate	6937311	Sama_1481		hypothetical protein (RefSeq)	-1.35058823194495	-9.16861885709655	FALSE
+stress	set4H13	Sodium nitrate	6937696	Sama_1838		TonB-dependent receptor, putative (RefSeq)	-1.12850693892115	-6.89961427958647	FALSE
+stress	set4H13	Sodium nitrate	6937980	Sama_2113		ErfK/YbiS/YcfS/YnhG (RefSeq)	1.29589784625084	8.9192556591479	FALSE
+stress	set4H13	Sodium nitrate	6938004	Sama_2137		intracellular septation protein A (RefSeq)	-1.55774677537389	-6.049277158249	FALSE
+stress	set4H13	Sodium nitrate	6938018	Sama_2151		hypothetical protein (RefSeq)	2.416151360617	18.1253437212045	FALSE
+stress	set4H13	Sodium nitrate	6938566	Sama_2669		hypothetical protein (RefSeq)	-1.09867065249757	-5.26402632195832	FALSE
+stress	set4H13	Sodium nitrate	6938695	Sama_2798		putative outer membrane protein (RefSeq)	3.17724481239579	16.6406836259859	FALSE
+stress	set4H13	Sodium nitrate	6938814	Sama_2917		aminopeptidase N (RefSeq)	1.22423269668416	10.6044559595739	FALSE
+stress	set4H13	Sodium nitrate	6938998	Sama_3096		OmpA family protein (RefSeq)	-1.72143076409179	-9.82966964900836	FALSE
+stress	set4H13	Sodium nitrate	6939297	Sama_3390		hypothetical protein (RefSeq)	-1.42941862171263	-7.78506090902421	FALSE
+stress	set4H13	Sodium nitrate	6939440	Sama_3532		hypothetical protein (RefSeq)	3.22874783580309	9.42190580444792	FALSE
+stress	set4H12	Sodium nitrite	6937741	Sama_1882		LysR family transcriptional regulator (RefSeq)	1.12327849530071	6.32082168158027	FALSE
+stress	set4H12	Sodium nitrite	6939094	Sama_3192		hypothetical protein (RefSeq)	-2.75642290176994	-9.77612256153962	FALSE
+stress	set4H11	Sodium nitrite	6939094	Sama_3192		hypothetical protein (RefSeq)	-2.65294288879079	-10.6562439230764	FALSE
+stress	set4H17	Sodium perchlorate monohydrate	6936356	Sama_0545		outer membrane porin, putative (RefSeq)	-1.96313356926242	-15.8189321962684	FALSE
+stress	set4H17	Sodium perchlorate monohydrate	6936664	Sama_0851		hypothetical protein (RefSeq)	-1.5424745785359	-10.5694532487702	FALSE
+stress	set4H17	Sodium perchlorate monohydrate	6937159	Sama_1329		hypothetical protein (RefSeq)	-2.47755201667337	-12.8306421715565	FALSE
+stress	set4H17	Sodium perchlorate monohydrate	6937696	Sama_1838		TonB-dependent receptor, putative (RefSeq)	-3.7389238740821	-13.0746904806683	FALSE
+stress	set4H17	Sodium perchlorate monohydrate	6938639	Sama_2742		ATP-dependent RNA helicase SrmB (RefSeq)	-1.5865293673522	-6.28887447625492	FALSE
+stress	set4H17	Sodium perchlorate monohydrate	6938696	Sama_2799		hypothetical protein (RefSeq)	-2.12525505049757	-8.31767959115558	FALSE
+stress	set4H17	Sodium perchlorate monohydrate	6938697	Sama_2800		response regulator receiver protein (RefSeq)	-2.57218994557568	-16.1772130794825	FALSE
+stress	set4H17	Sodium perchlorate monohydrate	6938698	Sama_2801		sensor protein RstB, putative (RefSeq)	-2.05006322456986	-9.50074728130329	FALSE
+stress	set4H17	Sodium perchlorate monohydrate	6938967	Sama_3065		putative salt-induced outer membrane protein (RefSeq)	-1.31611255962833	-9.0557118348708	TRUE
+stress	set5H4	Spectinomycin dihydrochloride pentahydrate	6935792	Sama_0010		hypothetical protein (RefSeq)	-2.22419429682185	-7.75914878720274	FALSE
+stress	set5H4	Spectinomycin dihydrochloride pentahydrate	6935846	Sama_0061		rhodanese-like protein (RefSeq)	-1.67769770240242	-8.0167276111613	FALSE
+stress	set5H4	Spectinomycin dihydrochloride pentahydrate	6936351	Sama_0540		FxsA cytoplasmic membrane protein (RefSeq)	-1.71288789795416	-6.69534003299769	FALSE
+stress	set5H4	Spectinomycin dihydrochloride pentahydrate	6937609	Sama_1761		MATE efflux family protein (RefSeq)	1.26220381668687	9.17279215841365	TRUE
+stress	set5H4	Spectinomycin dihydrochloride pentahydrate	6937724	Sama_1866		putative two-component system sensor kinase (RefSeq)	1.02737760365116	6.36796968326655	FALSE
+stress	set5H4	Spectinomycin dihydrochloride pentahydrate	6938921	Sama_3024		GTP-binding protein HflX (RefSeq)	-1.95043221365855	-8.26365202341527	FALSE
+stress	set5H4	Spectinomycin dihydrochloride pentahydrate	6939294	Sama_3387		hypothetical protein (RefSeq)	-2.04371273092072	-7.64832599634691	FALSE
+stress	set5H4	Spectinomycin dihydrochloride pentahydrate	6939295	Sama_3388		hypothetical protein (RefSeq)	-2.22363683807772	-14.189765857934	FALSE
+stress	set5H4	Spectinomycin dihydrochloride pentahydrate	6939359	Sama_3452		hypothetical protein (RefSeq)	-2.63384606423462	-9.47179378274511	FALSE
+stress	set5H10	Vanillin	6936212	Sama_0401		LysR family transcriptional regulator (RefSeq)	1.53147388623935	13.1162184219909	FALSE
+stress	set5H10	Vanillin	6936213	Sama_0402		HlyD family secretion protein (RefSeq)	1.63285377333897	12.693921384148	FALSE
+stress	set5H10	Vanillin	6936214	Sama_0403		drug resistance transporter, EmrB/QacA family protein (RefSeq)	1.53536210987945	13.7891025527475	FALSE
+stress	set5H10	Vanillin	6937652	Sama_1804		hypothetical protein (RefSeq)	1.56047532890954	8.03336461697517	FALSE
+stress	set5H10	Vanillin	6939094	Sama_3192		hypothetical protein (RefSeq)	-1.66221349973338	-9.9826162566372	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6936356	Sama_0545		outer membrane porin, putative (RefSeq)	2.72352767434982	25.5842242905802	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6936475	Sama_0663		ferredoxin--NADP reductase (RefSeq)	-1.07609312709817	-5.41798687041762	FALSE
+stress	set4H8	Zinc sulfate heptahydrate	6936496	Sama_0684		aminopeptidase P, putative (RefSeq)	1.58234988709766	13.7189255646617	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6936938	Sama_1112		omega-3 polyunsaturated fatty acid synthase PfaD (RefSeq)	1.59108412742897	9.03966708801786	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6936939	Sama_1113		omega-3 polyunsaturated fatty acid synthase PfaC (RefSeq)	1.75726638124648	15.0221047281426	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6936941	Sama_1115		erythronolide synthase (RefSeq)	1.66236543498697	14.587548488708	FALSE
+stress	set4H8	Zinc sulfate heptahydrate	6937083	Sama_1253		hypothetical protein (RefSeq)	1.16997953023564	8.56311624214848	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6937445	Sama_1606		ATP-dependent protease (RefSeq)	1.50772264424022	9.5851297330906	FALSE
+stress	set4H8	Zinc sulfate heptahydrate	6938067	Sama_2200		serine/threonine transporter SstT (RefSeq)	1.57240959819158	12.8240995469659	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6938067	Sama_2200		serine/threonine transporter SstT (RefSeq)	1.85616015294635	14.0933571501127	FALSE
+stress	set4H8	Zinc sulfate heptahydrate	6938351	Sama_2470		hypothetical protein (RefSeq)	-1.78816178028787	-6.88131461104358	FALSE
+stress	set4H8	Zinc sulfate heptahydrate	6938437	Sama_2556		AmpG protein, putative (RefSeq)	1.57991710043189	14.6067540398667	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6938696	Sama_2799		hypothetical protein (RefSeq)	2.04045858106816	12.6390787058773	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6938697	Sama_2800		response regulator receiver protein (RefSeq)	2.1841848295935	18.9359524487615	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6938698	Sama_2801		sensor protein RstB, putative (RefSeq)	2.11835867805259	16.0466239381345	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6938951	Sama_3049		hypothetical protein (RefSeq)	1.07002332076779	6.30785125950035	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6938952	Sama_3050		hypothetical protein (RefSeq)	1.46096293561338	11.6241608492132	FALSE
+stress	set4H8	Zinc sulfate heptahydrate	6938961	Sama_3059		hypothetical protein (RefSeq)	1.01585164135213	9.47484334262	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6939090	Sama_3188		CzcA family heavy metal efflux protein (RefSeq)	-2.69515708580326	-14.4888843242401	TRUE
+stress	set4H9	Zinc sulfate heptahydrate	6939091	Sama_3189		secretion protein HlyD (RefSeq)	-2.68488848161087	-8.73595499957598	TRUE
+stress	set4H9	Zinc sulfate heptahydrate	6939092	Sama_3190		hypothetical protein (RefSeq)	-2.35911033282628	-6.58706647924137	FALSE
+stress	set4H9	Zinc sulfate heptahydrate	6939319	Sama_3412		ferrichrome iron receptor (RefSeq)	1.03285616151567	9.29428309625876	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6936164	Sama_0361		peptidase M23B (RefSeq)	1.38070443885903	7.98717268703587	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6936318	Sama_0507		hypothetical protein (RefSeq)	-1.05485214977284	-7.21448972664292	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6936356	Sama_0545		outer membrane porin, putative (RefSeq)	2.38736244890516	22.0483589906563	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6936785	Sama_0967		lipoprotein NlpI (RefSeq)	-1.12879805026294	-8.19342779958751	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6937081	Sama_1251		outer membrane porin, putative (RefSeq)	4.2799284834387	34.7060731753035	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6937445	Sama_1606		ATP-dependent protease (RefSeq)	1.32341190527769	9.40748952259168	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6938067	Sama_2200		serine/threonine transporter SstT (RefSeq)	1.50087096658897	10.0881943772526	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6938351	Sama_2470		hypothetical protein (RefSeq)	-1.82724091510499	-6.32773573532488	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6939143	Sama_3241		phosphoglycerate transport regulatory protein PgtC, putative (RefSeq)	1.02511384115372	7.3852584709989	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6939316	Sama_3409		putative iron uptake protein (RefSeq)	1.41579839316328	10.9589663697186	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6939317	Sama_3410		hypothetical protein (RefSeq)	1.39090084193268	13.228666328405	FALSE
+stress	set5H12	copper (II) chloride dihydrate	6939381	Sama_3474		heavy metal efflux system protein, putative (RefSeq)	-1.64485261023429	-13.7904829968639	TRUE
+stress	set5H12	copper (II) chloride dihydrate	6939382	Sama_3475		CzcA family heavy metal efflux protein (RefSeq)	-2.22300808488761	-19.6924905662149	TRUE
+stress	set4H2	sodium fluoride	6935978	Sama_0193		tRNA (uracil-5-)-methyltransferase (RefSeq)	1.12631131204644	9.55861219415344	FALSE
+stress	set4H1	sodium fluoride	6936081	Sama_0278		endonuclease (RefSeq)	1.17323108729489	11.1666273264412	FALSE
+stress	set4H1	sodium fluoride	6936082	Sama_0279		hypothetical protein (RefSeq)	1.18146952102492	9.91631467354754	FALSE
+stress	set4H2	sodium fluoride	6936164	Sama_0361		peptidase M23B (RefSeq)	1.46645879272245	7.14560933514809	FALSE
+stress	set4H2	sodium fluoride	6936281	Sama_0470		maf protein (RefSeq)	1.62418109342708	6.24459083868643	FALSE
+stress	set4H2	sodium fluoride	6936325	Sama_0514		excinuclease ABC, A subunit (RefSeq)	-1.73506821989522	-11.3701020555513	TRUE
+stress	set4H2	sodium fluoride	6936661	Sama_0848	anmK	anhydro-N-acetylmuramic acid kinase (RefSeq)	1.35807529265503	9.65925608603441	FALSE
+stress	set4H2	sodium fluoride	6937147	Sama_1317		inosine kinase (RefSeq)	4.30851331723835	30.557812999712	FALSE
+stress	set4H2	sodium fluoride	6937156	Sama_1326		beta-hexosaminidase (RefSeq)	1.6930236472381	9.43391081087546	FALSE
+stress	set4H2	sodium fluoride	6937606	Sama_1760		acetyltransferase (RefSeq)	-1.6831970829336	-8.32136049749699	FALSE
+stress	set4H1	sodium fluoride	6937623	Sama_1775		crcB protein (RefSeq)	-3.17957154450806	-6.00992934936662	TRUE
+stress	set4H1	sodium fluoride	6937647	Sama_1799		fumarate/nitrate reduction transcriptional regulator (RefSeq)	1.44454497182929	6.0301970169121	FALSE
+stress	set4H2	sodium fluoride	6937870	Sama_2011		polyphosphate kinase (RefSeq)	-2.5289103259025	-9.94223124894495	FALSE
+stress	set4H2	sodium fluoride	6937906	Sama_2047		uridine kinase (RefSeq)	-1.52581699117382	-5.22170199379578	FALSE
+stress	set4H2	sodium fluoride	6938045	Sama_2178		membrane protein involved in aromatic hydrocarbon degradation (RefSeq)	1.54101111965733	10.9682232697155	FALSE
+stress	set4H2	sodium fluoride	6938370	Sama_2489	trmB	tRNA (guanine-N(7)-)-methyltransferase (RefSeq)	-1.63312140340508	-5.51885979568092	FALSE
+stress	set4H2	sodium fluoride	6938569	Sama_2672		hypothetical protein (RefSeq)	5.49533809381776	24.009908963889	FALSE
+stress	set4H2	sodium fluoride	6938712	Sama_2815		phosphotransferase (RefSeq)	1.75525635143459	11.2935141614081	FALSE
+stress	set4H2	sodium fluoride	6938921	Sama_3024		GTP-binding protein HflX (RefSeq)	-1.92296701998844	-5.35307648573605	FALSE
+stress	set4H2	sodium fluoride	6938924	Sama_3027	mutL	DNA mismatch repair protein (RefSeq)	1.07187680410358	6.50496504986158	FALSE
+stress	set4H2	sodium fluoride	6938957	Sama_3055		tRNA-dihydrouridine synthase A (RefSeq)	-1.1955573204835	-8.00753525422889	FALSE
+stress	set4H2	sodium fluoride	6939268	Sama_3361		phosphoglycolate phosphatase (RefSeq)	1.93555961675	14.2775512638695	FALSE
+temperature	set5H32		6936265	Sama_0454		MSHA biogenesis protein MshL (RefSeq)	1.07133731949913	9.59864931006377	FALSE
+temperature	set5H32		6936268	Sama_0457		MSHA biogenesis protein MshE (RefSeq)	1.1267607422065	10.0701226417228	FALSE
+temperature	set5H32		6936320	Sama_0509		NAD dependent epimerase/dehydratase family protein (RefSeq)	-1.27007603586771	-8.24073960126673	FALSE
+temperature	set5H36		6936786	Sama_0968	prfC	peptide chain release factor 3 (RefSeq)	-1.16672530429908	-8.78562073626963	FALSE
+temperature	set5H32		6938614	Sama_2717		hypothetical protein (RefSeq)	-1.26562695246959	-7.79092256035998	FALSE
+temperature	set5H32		6938793	Sama_2896		putative TonB-dependent outer membrane receptor (RefSeq)	-1.08039393647246	-9.5965304601121	FALSE
+temperature	set5H32		6938899	Sama_3002		phosphoribulokinase (RefSeq)	-1.83315713524701	-12.0771150758736	TRUE
+temperature	set5H34		6939163	Sama_3261		type I secretion outer membrane protein, TolC (RefSeq)	1.25318879237143	11.4650068608694	FALSE

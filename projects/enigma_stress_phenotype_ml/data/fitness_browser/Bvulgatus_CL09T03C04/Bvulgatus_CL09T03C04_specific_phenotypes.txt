@@ -1,0 +1,45 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1IT032	(+)-Arabinogalactan	HMPREF1058_RS07330	HMPREF1058_RS07330		efflux RND transporter permease subunit	-1.43381155409173	-7.91965743844189	FALSE
+carbon source	set1IT031	(+)-Arabinogalactan	HMPREF1058_RS07330	HMPREF1058_RS07330		efflux RND transporter permease subunit	-1.2882759535014	-8.27710602761279	FALSE
+carbon source	set1IT032	(+)-Arabinogalactan	HMPREF1058_RS07605	HMPREF1058_RS07605		radical SAM protein	1.33135723094156	7.01831063249063	FALSE
+carbon source	set1IT031	(+)-Arabinogalactan	HMPREF1058_RS07605	HMPREF1058_RS07605		radical SAM protein	1.56254388751389	8.24235866862493	FALSE
+carbon source	set1IT032	(+)-Arabinogalactan	HMPREF1058_RS08440	HMPREF1058_RS08440		RagB/SusD family nutrient uptake outer membrane protein	-1.25668943507256	-9.78937114784493	FALSE
+carbon source	set1IT031	(+)-Arabinogalactan	HMPREF1058_RS08440	HMPREF1058_RS08440		RagB/SusD family nutrient uptake outer membrane protein	-1.25057009870979	-9.75971030246376	FALSE
+carbon source	set1IT032	(+)-Arabinogalactan	HMPREF1058_RS08445	HMPREF1058_RS08445		TonB-dependent receptor	-1.26841623226249	-9.33466042098133	FALSE
+carbon source	set1IT031	(+)-Arabinogalactan	HMPREF1058_RS08445	HMPREF1058_RS08445		TonB-dependent receptor	-1.21583231851539	-9.3256979547725	FALSE
+carbon source	set1IT032	(+)-Arabinogalactan	HMPREF1058_RS08450	HMPREF1058_RS08450		response regulator	-1.4569090663749	-10.8110106174826	FALSE
+carbon source	set1IT031	(+)-Arabinogalactan	HMPREF1058_RS08450	HMPREF1058_RS08450		response regulator	-1.44392300446133	-11.1973655799408	FALSE
+carbon source	set1IT031	(+)-Arabinogalactan	HMPREF1058_RS10540	HMPREF1058_RS10540		glycoside hydrolase family 97 protein	-1.79717004123517	-11.7390030495433	TRUE
+carbon source	set1IT032	(+)-Arabinogalactan	HMPREF1058_RS10540	HMPREF1058_RS10540		glycoside hydrolase family 97 protein	-1.50407132935066	-10.1627664196668	TRUE
+carbon source	set1IT072	D-Glucosamine Hydrochloride	HMPREF1058_RS15050	HMPREF1058_RS15050		DUF5009 domain-containing protein	-1.6106824356656	-5.62156198144036	TRUE
+carbon source	set1IT023	D-Glucose	HMPREF1058_RS14335	HMPREF1058_RS14335		citrate/2-methylcitrate synthase	-1.38742059694784	-7.88305427691201	FALSE
+carbon source	set1IT024	D-Glucose	HMPREF1058_RS14335	HMPREF1058_RS14335		citrate/2-methylcitrate synthase	-1.16413899380454	-6.44644871125598	FALSE
+carbon source	set1IT024	D-Glucose	HMPREF1058_RS14470	HMPREF1058_RS14470		hypothetical protein	1.51087258677462	11.8500459315563	FALSE
+carbon source	set1IT023	D-Glucose	HMPREF1058_RS18035	HMPREF1058_RS18035		6-phosphogluconolactonase	-2.98823242711707	-11.1444380919547	FALSE
+carbon source	set1IT024	D-Glucose	HMPREF1058_RS18035	HMPREF1058_RS18035		6-phosphogluconolactonase	-2.80297177238505	-8.57963500979624	FALSE
+carbon source	set1IT050	D-Glucose	HMPREF1058_RS18035	HMPREF1058_RS18035		6-phosphogluconolactonase	-1.28834741482617	-6.00643646244878	FALSE
+carbon source	set1IT042	D-Maltose monohydrate	HMPREF1058_RS04610	HMPREF1058_RS04610		ATP-binding protein	-1.86759047242791	-5.53395881713237	FALSE
+carbon source	set1IT078	D-Maltose monohydrate	HMPREF1058_RS16485	HMPREF1058_RS16485		cyclomaltodextrinase C-terminal domain-containing protein	1.63233334724867	11.9071573206653	FALSE
+carbon source	set1IT041	D-Maltose monohydrate	HMPREF1058_RS16485	HMPREF1058_RS16485		cyclomaltodextrinase C-terminal domain-containing protein	1.63397942310028	10.2517831017246	FALSE
+carbon source	set1IT068	L-Fucose	HMPREF1058_RS08860	HMPREF1058_RS08860		rhamnulokinase	-6.54129260798174	-10.0039826123981	FALSE
+carbon source	set1IT067	L-Fucose	HMPREF1058_RS08860	HMPREF1058_RS08860		rhamnulokinase	-5.08292136748196	-13.5193527983876	FALSE
+carbon source	set1IT068	L-Fucose	HMPREF1058_RS08865	HMPREF1058_RS08865		L-rhamnose isomerase	-3.50268681724463	-8.60834964363564	FALSE
+carbon source	set1IT067	L-Fucose	HMPREF1058_RS08865	HMPREF1058_RS08865		L-rhamnose isomerase	-2.87889422842797	-10.3110558249253	FALSE
+carbon source	set1IT067	L-Fucose	HMPREF1058_RS08870	HMPREF1058_RS08870		L-rhamnose/proton symporter RhaT	-2.96761566240161	-12.0900469136749	FALSE
+carbon source	set1IT068	L-Fucose	HMPREF1058_RS08870	HMPREF1058_RS08870		L-rhamnose/proton symporter RhaT	-2.85986027619755	-9.91618627597792	FALSE
+carbon source	set1IT068	L-Fucose	HMPREF1058_RS08915	HMPREF1058_RS08915		AraC family transcriptional regulator	-3.40902191696957	-17.7658497393925	TRUE
+carbon source	set1IT067	L-Fucose	HMPREF1058_RS08915	HMPREF1058_RS08915		AraC family transcriptional regulator	-2.96399310768932	-15.3436136754443	TRUE
+carbon source	set1IT068	L-Fucose	HMPREF1058_RS12270	HMPREF1058_RS12270		L-fucose:H+ symporter permease	-5.41316795243902	-19.1757980418825	TRUE
+carbon source	set1IT067	L-Fucose	HMPREF1058_RS12270	HMPREF1058_RS12270		L-fucose:H+ symporter permease	-5.0193722882177	-19.1544793768859	TRUE
+carbon source	set1IT068	L-Fucose	HMPREF1058_RS12275	HMPREF1058_RS12275		L-fucose isomerase	-6.08786503455184	-11.5108915422657	TRUE
+carbon source	set1IT067	L-Fucose	HMPREF1058_RS12275	HMPREF1058_RS12275		L-fucose isomerase	-5.69530761664675	-15.7963115823674	TRUE
+carbon source	set1IT067	L-Fucose	HMPREF1058_RS12280	HMPREF1058_RS12280		GntR family transcriptional regulator	-2.22538002870597	-5.90501782343495	FALSE
+carbon source	set1IT035	Mannan from Saccharomyces cerevisiae	HMPREF1058_RS02415	HMPREF1058_RS02415		RagB/SusD family nutrient uptake outer membrane protein	-1.41818202689076	-8.04207786085263	FALSE
+carbon source	set1IT036	Mannan from Saccharomyces cerevisiae	HMPREF1058_RS02415	HMPREF1058_RS02415		RagB/SusD family nutrient uptake outer membrane protein	-1.20507614293242	-6.77231965442204	FALSE
+carbon source	set1IT035	Mannan from Saccharomyces cerevisiae	HMPREF1058_RS02420	HMPREF1058_RS02420		TonB-dependent receptor	-1.02432080015562	-8.07788258813402	FALSE
+carbon source	set1IT036	Mannan from Saccharomyces cerevisiae	HMPREF1058_RS02420	HMPREF1058_RS02420		TonB-dependent receptor	-1.01198538296046	-8.23065819506545	FALSE
+carbon source	set1IT035	Mannan from Saccharomyces cerevisiae	HMPREF1058_RS06250	HMPREF1058_RS06250		AMP-binding protein	-1.65595637145644	-9.06792268396284	FALSE
+carbon source	set1IT036	Mannan from Saccharomyces cerevisiae	HMPREF1058_RS06250	HMPREF1058_RS06250		AMP-binding protein	-1.437839688109	-8.38330767570415	FALSE
+carbon source	set1IT035	Mannan from Saccharomyces cerevisiae	HMPREF1058_RS06295	HMPREF1058_RS06295		aspartate ammonia-lyase	-1.48502486514107	-6.95177760810186	FALSE
+carbon source	set1IT036	Mannan from Saccharomyces cerevisiae	HMPREF1058_RS11190	HMPREF1058_RS11190		rubrerythrin family protein	1.61360562187368	9.73539030138045	FALSE
+carbon source	set1IT035	Mannan from Saccharomyces cerevisiae	HMPREF1058_RS11190	HMPREF1058_RS11190		rubrerythrin family protein	1.6887457452388	9.9905267429374	FALSE

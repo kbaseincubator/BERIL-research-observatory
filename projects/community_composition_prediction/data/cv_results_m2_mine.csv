@@ -1,0 +1,5 @@
+target,model,rmse
+log_Cu_ppm,M2_mine,1.1990902902084901
+log_Zn_ppm,M2_mine,0.9304923290037891
+log_Pb_ppm,M2_mine,0.7733592145022843
+log_Ni_ppm,M2_mine,1.8223441282519413

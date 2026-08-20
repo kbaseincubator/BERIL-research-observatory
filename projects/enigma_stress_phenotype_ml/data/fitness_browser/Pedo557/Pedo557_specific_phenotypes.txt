@@ -1,0 +1,1061 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set4IT018	Agro_defined_trehalose	CA265_RS13285	CA265_RS13285		magnesium transporter	-5.06505780518203	-11.0633375434806	FALSE
+carbon source	set4IT011	Agro_defined_trehalose	CA265_RS13285	CA265_RS13285		magnesium transporter	-4.21041828997822	-7.63777289407543	FALSE
+carbon source	set4IT011	Agro_defined_trehalose	CA265_RS13685	CA265_RS13685		hypothetical protein	1.40253038192991	5.47481188141418	FALSE
+carbon source	set4IT018	Agro_defined_trehalose	CA265_RS13685	CA265_RS13685		hypothetical protein	1.57957207585085	6.24134995104915	FALSE
+carbon source	set4IT018	Agro_defined_trehalose	CA265_RS16250	CA265_RS16250		secretory protein	1.37891237026362	5.27988684854707	FALSE
+carbon source	set4IT011	Agro_defined_trehalose	CA265_RS16250	CA265_RS16250		secretory protein	1.49584242008806	6.18502970027727	FALSE
+carbon source	set4IT011	Agro_defined_trehalose	CA265_RS20480	CA265_RS20480		restriction endonuclease subunit S	1.39671632747993	7.63130739878735	FALSE
+carbon source	set4IT018	Agro_defined_trehalose	CA265_RS22975	CA265_RS22975		hypothetical protein	-3.63835913297142	-5.39338757319909	FALSE
+carbon source	set2IT056	Beta-Lactose	CA265_RS06070	CA265_RS06070		hypothetical protein	1.00349462406898	5.33681207638497	FALSE
+carbon source	set2IT062	D-Cellobiose	CA265_RS21460	CA265_RS21460		5-formyltetrahydrofolate cyclo-ligase	-1.56609277285954	-5.80296300099115	FALSE
+carbon source	set2IT061	D-Galactose	CA265_RS06120	CA265_RS06120		galactose-1-phosphate uridylyltransferase	-5.47650838975869	-15.3846853536163	TRUE
+carbon source	set2IT048	D-Galactose	CA265_RS06120	CA265_RS06120		galactose-1-phosphate uridylyltransferase	-5.29727989362878	-14.4433181954786	TRUE
+carbon source	set2IT061	D-Galactose	CA265_RS06125	CA265_RS06125		galactokinase	-5.23932602379456	-14.9490551730088	TRUE
+carbon source	set2IT048	D-Galactose	CA265_RS06125	CA265_RS06125		galactokinase	-5.13366797889154	-15.3066010532135	TRUE
+carbon source	set2IT061	D-Galactose	CA265_RS06130	CA265_RS06130		sodium transporter	-1.25856980941783	-9.40853988454116	FALSE
+carbon source	set2IT048	D-Galactose	CA265_RS06130	CA265_RS06130		sodium transporter	-1.12276999819123	-8.9233458625071	FALSE
+carbon source	set2IT048	D-Galactose	CA265_RS07845	CA265_RS07845		signal transduction protein	-2.19995105993439	-7.7074867600549	FALSE
+carbon source	set2IT061	D-Galactose	CA265_RS07845	CA265_RS07845		signal transduction protein	-1.9497376469293	-7.35914720612963	FALSE
+carbon source	set2IT061	D-Galactose	CA265_RS07875	CA265_RS07875		FAD-dependent oxidoreductase	-1.48204461641704	-6.88715060230351	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS05220	CA265_RS05220		fructose-bisphosphatase class I	-2.27356226470933	-11.7413992549486	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS05220	CA265_RS05220		fructose-bisphosphatase class I	-1.94030977695899	-11.5225861356315	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS09040	CA265_RS09040		ribonuclease Z	-1.54899462100611	-8.22039722196432	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS09040	CA265_RS09040		ribonuclease Z	-1.29905447982585	-6.95481774439991	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS09190	CA265_RS09190		chloride channel protein	-1.60837782775502	-13.5115442422465	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS09190	CA265_RS09190		chloride channel protein	-1.20271671726378	-9.4809273194257	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS16405	CA265_RS16405		aconitate hydratase	-3.75622623735754	-15.1355287741736	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS16405	CA265_RS16405		aconitate hydratase	-3.70568091421331	-13.0277501657032	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS17220	CA265_RS17220		NAD(P)H-dependent oxidoreductase	-1.60692309031281	-5.35736742406991	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS19820	CA265_RS19820		LacI family transcriptional regulator	-5.67185963702622	-7.77520843084708	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS19820	CA265_RS19820		LacI family transcriptional regulator	-4.83058136063796	-8.68807683494995	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS19850	CA265_RS19850		NADP-dependent glyceraldehyde-3-phosphate dehydrogenase	-1.56213425125113	-6.82070042225649	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS19850	CA265_RS19850		NADP-dependent glyceraldehyde-3-phosphate dehydrogenase	-1.19525265777916	-6.95270253156435	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS19855	CA265_RS19855		MFS transporter	-4.2049450230757	-10.1633650610742	TRUE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS19855	CA265_RS19855		MFS transporter	-4.03592227040563	-11.0457102158545	TRUE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS19860	CA265_RS19860		bifunctional 4-hydroxy-2-oxoglutarate aldolase/2-dehydro-3-deoxy-phosphogluconate aldolase	-4.12535065220261	-7.40516293055939	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS19860	CA265_RS19860		bifunctional 4-hydroxy-2-oxoglutarate aldolase/2-dehydro-3-deoxy-phosphogluconate aldolase	-3.75213986739946	-7.97878054038908	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS19865	CA265_RS19865		carbohydrate kinase	-4.14299900656307	-12.4807992644836	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS19865	CA265_RS19865		carbohydrate kinase	-4.12189221462023	-11.9983937511105	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS19870	CA265_RS19870		glucuronate isomerase	-4.25473083250094	-10.6405343931926	TRUE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS19870	CA265_RS19870		glucuronate isomerase	-4.05448390262595	-11.9410900713546	TRUE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS19875	CA265_RS19875		altronate hydrolase	-4.69183032182635	-8.44186440947521	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS19875	CA265_RS19875		altronate hydrolase	-4.64402574111995	-8.90900875235652	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS19880	CA265_RS19880		altronate oxidoreductase	-5.06259661207096	-9.11095881585294	TRUE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS19880	CA265_RS19880		altronate oxidoreductase	-4.55063082180872	-10.1594014839528	TRUE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS20115	CA265_RS20115		hypothetical protein	-1.41873935794424	-5.23285242829959	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS20230	CA265_RS20230		hypothetical protein	-2.69073086520768	-7.92372495952752	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS20230	CA265_RS20230		hypothetical protein	-2.4395475944058	-8.80281788788406	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS23195	CA265_RS23195		HIT family protein	-2.19876129110504	-7.88588428953891	FALSE
+carbon source	set2IT064	D-Galacturonic Acid monohydrate	CA265_RS23195	CA265_RS23195		HIT family protein	-2.16608215900533	-5.87955339588581	FALSE
+carbon source	set2IT051	D-Galacturonic Acid monohydrate	CA265_RS25075	CA265_RS25075		phenylacetic acid degradation protein	-2.09985748826655	-5.07728462037985	FALSE
+carbon source	set2IT067	D-Glucosamine Hydrochloride	CA265_RS01265	CA265_RS01265		GntR family transcriptional regulator	2.99816643772035	6.9813342611758	FALSE
+carbon source	set2IT054	D-Glucosamine Hydrochloride	CA265_RS01265	CA265_RS01265		GntR family transcriptional regulator	3.07443870635445	6.26149236105335	FALSE
+carbon source	set2IT067	D-Glucosamine Hydrochloride	CA265_RS01270	CA265_RS01270		hypothetical protein	1.40381292775585	6.78386115114012	FALSE
+carbon source	set2IT054	D-Glucosamine Hydrochloride	CA265_RS01270	CA265_RS01270		hypothetical protein	1.50648748339403	6.99533614538673	FALSE
+carbon source	set2IT054	D-Glucosamine Hydrochloride	CA265_RS08675	CA265_RS08675		glucose/galactose MFS transporter	-2.99567482764964	-12.6277926439454	TRUE
+carbon source	set2IT067	D-Glucosamine Hydrochloride	CA265_RS08675	CA265_RS08675		glucose/galactose MFS transporter	-2.35312252234567	-14.2863217685997	TRUE
+carbon source	set2IT067	D-Glucosamine Hydrochloride	CA265_RS08805	CA265_RS08805		LacI family transcriptional regulator	-2.30243229697999	-13.0702222614589	FALSE
+carbon source	set2IT054	D-Glucosamine Hydrochloride	CA265_RS08805	CA265_RS08805		LacI family transcriptional regulator	-2.05035316466953	-8.61535812184207	FALSE
+carbon source	set2IT067	D-Glucosamine Hydrochloride	CA265_RS11300	CA265_RS11300		sugar kinase	-2.1946894229763	-12.601280743589	FALSE
+carbon source	set2IT054	D-Glucosamine Hydrochloride	CA265_RS11300	CA265_RS11300		sugar kinase	-2.02512574087596	-9.45606723148145	FALSE
+carbon source	set2IT054	D-Glucosamine Hydrochloride	CA265_RS24395	CA265_RS24395		XRE family transcriptional regulator	-1.33502334956765	-5.64854733157934	FALSE
+carbon source	set2IT047	D-Maltose monohydrate	CA265_RS24630	CA265_RS24630		SusC/RagA family protein	-1.35584863423599	-7.36560079501529	FALSE
+carbon source	set2IT060	D-Maltose monohydrate	CA265_RS24630	CA265_RS24630		SusC/RagA family protein	-1.22311307270655	-6.80312075132476	FALSE
+carbon source	set2IT047	D-Maltose monohydrate	CA265_RS24655	CA265_RS24655		family 65 glycosyl hydrolase	-2.15665323684196	-9.53250854190121	FALSE
+carbon source	set2IT060	D-Maltose monohydrate	CA265_RS24655	CA265_RS24655		family 65 glycosyl hydrolase	-2.0958580057996	-10.5315208438136	FALSE
+carbon source	set2IT047	D-Maltose monohydrate	CA265_RS24665	CA265_RS24665		MFS transporter	-2.98726770711825	-10.6679511648616	TRUE
+carbon source	set2IT060	D-Maltose monohydrate	CA265_RS24665	CA265_RS24665		MFS transporter	-2.9779149558146	-12.4794522606084	TRUE
+carbon source	set2IT070	D-Mannose	CA265_RS01265	CA265_RS01265		GntR family transcriptional regulator	1.37321948556269	7.71959449131646	FALSE
+carbon source	set2IT057	D-Mannose	CA265_RS08525	CA265_RS08525		IclR family transcriptional regulator	1.1952649090436	10.0589750958747	FALSE
+carbon source	set2IT070	D-Mannose	CA265_RS08525	CA265_RS08525		IclR family transcriptional regulator	1.21664537872026	9.62003703030112	FALSE
+carbon source	set2IT057	D-Mannose	CA265_RS08555	CA265_RS08555		CoA transferase	1.23681943171046	6.40146298083375	FALSE
+carbon source	set2IT070	D-Mannose	CA265_RS08555	CA265_RS08555		CoA transferase	1.29196873762741	7.37467920537767	FALSE
+carbon source	set2IT070	D-Mannose	CA265_RS16230	CA265_RS16230		hypothetical protein	-1.00654600725784	-7.47419283775978	FALSE
+carbon source	set2IT070	D-Mannose	CA265_RS16235	CA265_RS16235		hypothetical protein	-1.29080287705174	-7.4563311421774	FALSE
+carbon source	set2IT057	D-Mannose	CA265_RS16235	CA265_RS16235		hypothetical protein	-1.01256808220998	-5.43121025203369	FALSE
+carbon source	set2IT055	D-Salicin	CA265_RS15365	CA265_RS15365		oxidoreductase	-1.77867225956837	-7.62503681231729	FALSE
+carbon source	set2IT068	D-Salicin	CA265_RS15365	CA265_RS15365		oxidoreductase	-1.75535706208403	-9.1464741009153	FALSE
+carbon source	set2IT055	D-Salicin	CA265_RS24625	CA265_RS24625		LacI family transcriptional regulator	2.27431727328603	16.3291626536078	FALSE
+carbon source	set2IT068	D-Salicin	CA265_RS24625	CA265_RS24625		LacI family transcriptional regulator	2.37033675684231	16.7033487343585	FALSE
+carbon source	set4IT017	D-Trehalose dihydrate	CA265_RS05200	CA265_RS05200		hypothetical protein	-1.73207354358479	-5.43705196980729	FALSE
+carbon source	set2IT065	D-Trehalose dihydrate	CA265_RS14705	CA265_RS14705		hypothetical protein	1.97857108572257	13.3257374001633	FALSE
+carbon source	set2IT052	D-Trehalose dihydrate	CA265_RS14705	CA265_RS14705		hypothetical protein	2.05090347538067	15.4114545540482	FALSE
+carbon source	set2IT052	D-Trehalose dihydrate	CA265_RS16250	CA265_RS16250		secretory protein	1.26134089462936	5.9566108719697	FALSE
+carbon source	set2IT065	D-Trehalose dihydrate	CA265_RS16270	CA265_RS16270		hypothetical protein	1.24473784081063	5.8240783889361	FALSE
+carbon source	set2IT052	D-Trehalose dihydrate	CA265_RS16270	CA265_RS16270		hypothetical protein	1.51767409062058	7.69219998480657	FALSE
+carbon source	set2IT065	D-Trehalose dihydrate	CA265_RS22975	CA265_RS22975		hypothetical protein	-5.42072077075138	-6.44925590393908	TRUE
+carbon source	set2IT052	D-Trehalose dihydrate	CA265_RS22975	CA265_RS22975		hypothetical protein	-3.76797234540833	-7.86254176577009	TRUE
+carbon source	set4IT017	D-Trehalose dihydrate	CA265_RS22975	CA265_RS22975		hypothetical protein	-3.09563638126672	-8.08684446421116	TRUE
+carbon source	set4IT010	D-Trehalose dihydrate	CA265_RS22975	CA265_RS22975		hypothetical protein	-3.05993790181112	-6.72627119165355	TRUE
+carbon source	set2IT065	D-Trehalose dihydrate	CA265_RS24625	CA265_RS24625		LacI family transcriptional regulator	1.47624216247362	10.7186551829251	FALSE
+carbon source	set2IT052	D-Trehalose dihydrate	CA265_RS24625	CA265_RS24625		LacI family transcriptional regulator	1.49508250140422	11.3544862634416	FALSE
+carbon source	set2IT052	D-Trehalose dihydrate	CA265_RS24680	CA265_RS24680		hypothetical protein	1.2447809055307	5.17370003922694	FALSE
+carbon source	set2IT065	D-Trehalose dihydrate	CA265_RS24680	CA265_RS24680		hypothetical protein	1.26454419092807	5.84348753529604	FALSE
+carbon source	set4IT017	D-Trehalose dihydrate	CA265_RS25295	CA265_RS25295		DoxX family protein	1.31449607645626	7.14255544353649	FALSE
+carbon source	set2IT059	L-Arabinose	CA265_RS00645	CA265_RS00645		MFS transporter	-1.21722637941555	-6.11481518434959	FALSE
+carbon source	set2IT046	L-Arabinose	CA265_RS03650	CA265_RS03650		NUDIX hydrolase	-1.85259896028088	-8.16511586076801	FALSE
+carbon source	set2IT059	L-Arabinose	CA265_RS03650	CA265_RS03650		NUDIX hydrolase	-1.84232311023752	-7.79421004633847	FALSE
+carbon source	set2IT046	L-Arabinose	CA265_RS06140	CA265_RS06140		RNA-binding protein	-1.36263334842131	-7.3205083555578	FALSE
+carbon source	set2IT059	L-Arabinose	CA265_RS06140	CA265_RS06140		RNA-binding protein	-1.35991578285064	-6.14817761812466	FALSE
+carbon source	set2IT046	L-Arabinose	CA265_RS06215	CA265_RS06215		inositol monophosphatase	-4.25346454668455	-10.8957240129117	FALSE
+carbon source	set2IT059	L-Arabinose	CA265_RS06215	CA265_RS06215		inositol monophosphatase	-2.76449949556077	-8.94571563098713	FALSE
+carbon source	set2IT046	L-Arabinose	CA265_RS08320	CA265_RS08320		DNA mismatch repair protein MutT	2.24418606577587	16.7122799371592	FALSE
+carbon source	set2IT059	L-Arabinose	CA265_RS08320	CA265_RS08320		DNA mismatch repair protein MutT	2.46082508022725	17.8099961212177	FALSE
+carbon source	set2IT059	L-Arabinose	CA265_RS08325	CA265_RS08325		haloacid dehalogenase	1.69601544898473	6.44766445866933	FALSE
+carbon source	set2IT046	L-Arabinose	CA265_RS08325	CA265_RS08325		haloacid dehalogenase	1.78158465258203	6.63488137146754	FALSE
+carbon source	set2IT046	L-Arabinose	CA265_RS08615	CA265_RS08615		L-arabinose isomerase	-4.93807578413126	-14.5398241960003	TRUE
+carbon source	set2IT059	L-Arabinose	CA265_RS08615	CA265_RS08615		L-arabinose isomerase	-4.88832030569003	-14.7128523008346	TRUE
+carbon source	set2IT046	L-Arabinose	CA265_RS08620	CA265_RS08620		L-ribulose-5-phosphate 4-epimerase	-5.33102444562307	-7.28741116218939	TRUE
+carbon source	set2IT059	L-Arabinose	CA265_RS08620	CA265_RS08620		L-ribulose-5-phosphate 4-epimerase	-4.88152648717651	-7.43492144258349	TRUE
+carbon source	set2IT046	L-Arabinose	CA265_RS08625	CA265_RS08625		ribulokinase	-5.91198854452595	-10.63790097251	TRUE
+carbon source	set2IT059	L-Arabinose	CA265_RS08625	CA265_RS08625		ribulokinase	-5.04425543672346	-12.6033053764438	TRUE
+carbon source	set2IT046	L-Arabinose	CA265_RS21135	CA265_RS21135		hypothetical protein	-1.69040430689664	-6.93624848386542	FALSE
+carbon source	set2IT059	L-Arabinose	CA265_RS21135	CA265_RS21135		hypothetical protein	-1.3258680924349	-6.11783144477067	FALSE
+carbon source	set2IT059	L-Arabinose	CA265_RS22985	CA265_RS22985		helicase SNF2	1.52219788867675	12.9606557761362	FALSE
+carbon source	set2IT046	L-Arabinose	CA265_RS22985	CA265_RS22985		helicase SNF2	1.54189509633509	13.5167996709878	FALSE
+carbon source	set4IT007	Lactitol	CA265_RS15380	CA265_RS15380		hydroxypyruvate isomerase	-2.47765046984694	-6.50088934782061	FALSE
+carbon source	set4IT014	Lactitol	CA265_RS15380	CA265_RS15380		hydroxypyruvate isomerase	-2.14057830998961	-5.61762483420786	FALSE
+carbon source	set4IT006	Lactulose	CA265_RS04005	CA265_RS04005		hypothetical protein	1.27650960945184	5.88571010448426	FALSE
+carbon source	set4IT006	Lactulose	CA265_RS04010	CA265_RS04010		hypothetical protein	1.77455878796514	5.69878910401843	FALSE
+carbon source	set4IT013	Lactulose	CA265_RS04010	CA265_RS04010		hypothetical protein	1.80690324874983	6.11569009804459	FALSE
+carbon source	set4IT013	Lactulose	CA265_RS04015	CA265_RS04015		ABC transporter ATP-binding protein	1.21097227532913	6.54729799524665	FALSE
+carbon source	set4IT006	Lactulose	CA265_RS04015	CA265_RS04015		ABC transporter ATP-binding protein	1.356179411144	7.16301543578735	FALSE
+carbon source	set4IT013	Lactulose	CA265_RS04020	CA265_RS04020		hypothetical protein	2.00920361282878	5.26893343385022	FALSE
+carbon source	set4IT006	Lactulose	CA265_RS04020	CA265_RS04020		hypothetical protein	2.01826424199934	5.10663869142497	FALSE
+carbon source	set4IT013	Lactulose	CA265_RS20485	CA265_RS20485		hypothetical protein	1.30812701872293	6.03376383185665	FALSE
+carbon source	set4IT008	Maltitol	CA265_RS25295	CA265_RS25295		DoxX family protein	1.44853904521651	7.06874245308763	FALSE
+carbon source	set4IT016	Methyl-B-D-galactopyranoside	CA265_RS01050	CA265_RS01050		sodium:solute symporter	1.25798114932424	8.42501106501154	FALSE
+carbon source	set4IT009	Methyl-B-D-galactopyranoside	CA265_RS01050	CA265_RS01050		sodium:solute symporter	1.37339523843895	9.73046555856393	FALSE
+carbon source	set4IT016	Methyl-B-D-galactopyranoside	CA265_RS04020	CA265_RS04020		hypothetical protein	1.60308939355381	5.02403306189111	FALSE
+carbon source	set4IT009	Methyl-B-D-galactopyranoside	CA265_RS04020	CA265_RS04020		hypothetical protein	1.70197938167736	5.41827548812569	FALSE
+carbon source	set4IT009	Methyl-B-D-galactopyranoside	CA265_RS06070	CA265_RS06070		hypothetical protein	1.16325910493547	5.52668204175621	FALSE
+carbon source	set4IT016	Methyl-B-D-galactopyranoside	CA265_RS06070	CA265_RS06070		hypothetical protein	1.17772793201062	6.06013861021267	FALSE
+carbon source	set4IT009	Methyl-B-D-galactopyranoside	CA265_RS11395	CA265_RS11395		GntR family transcriptional regulator	1.50364303909291	9.86591789511216	FALSE
+carbon source	set4IT016	Methyl-B-D-galactopyranoside	CA265_RS11395	CA265_RS11395		GntR family transcriptional regulator	1.56044308468434	11.5131790071422	FALSE
+carbon source	set4IT016	Methyl-B-D-galactopyranoside	CA265_RS15390	CA265_RS15390		xylose isomerase	-1.77601528366756	-6.41435780264223	FALSE
+carbon source	set4IT009	Methyl-B-D-galactopyranoside	CA265_RS15390	CA265_RS15390		xylose isomerase	-1.62505653639348	-5.15351247387879	FALSE
+carbon source	set4IT009	Methyl-B-D-galactopyranoside	CA265_RS17705	CA265_RS17705		hypothetical protein	1.42660727334391	10.3748327434902	FALSE
+carbon source	set2IT053	N-Acetyl-D-Glucosamine	CA265_RS08675	CA265_RS08675		glucose/galactose MFS transporter	-3.69076194996983	-15.9255401641774	TRUE
+carbon source	set2IT066	N-Acetyl-D-Glucosamine	CA265_RS08675	CA265_RS08675		glucose/galactose MFS transporter	-3.34324016606467	-16.6960103245477	TRUE
+carbon source	set2IT053	N-Acetyl-D-Glucosamine	CA265_RS08805	CA265_RS08805		LacI family transcriptional regulator	-3.20065654054967	-14.6478418675937	FALSE
+carbon source	set2IT066	N-Acetyl-D-Glucosamine	CA265_RS08805	CA265_RS08805		LacI family transcriptional regulator	-2.98497446014239	-14.0042576518059	FALSE
+carbon source	set2IT053	N-Acetyl-D-Glucosamine	CA265_RS11300	CA265_RS11300		sugar kinase	-3.07099852448675	-13.887693886272	FALSE
+carbon source	set2IT066	N-Acetyl-D-Glucosamine	CA265_RS11300	CA265_RS11300		sugar kinase	-2.87903628746086	-14.1361413194896	FALSE
+carbon source	set2IT053	N-Acetyl-D-Glucosamine	CA265_RS17660	CA265_RS17660		N-acetylglucosamine kinase	-1.56247648190046	-7.29255460302872	FALSE
+carbon source	set2IT066	N-Acetyl-D-Glucosamine	CA265_RS17660	CA265_RS17660		N-acetylglucosamine kinase	-1.49937640829588	-7.28408061332429	FALSE
+carbon source	set2IT053	N-Acetyl-D-Glucosamine	CA265_RS24395	CA265_RS24395		XRE family transcriptional regulator	-1.49521952582421	-7.06064633690188	FALSE
+carbon source	set2IT066	N-Acetyl-D-Glucosamine	CA265_RS24395	CA265_RS24395		XRE family transcriptional regulator	-1.24061959385887	-5.59895174765765	FALSE
+nitrogen source	set2IT094	Cytidine	CA265_RS16075	CA265_RS16075		cytidine deaminase	-3.8476790649699	-6.80606360938803	FALSE
+nitrogen source	set3IT022	Cytidine	CA265_RS16075	CA265_RS16075		cytidine deaminase	-3.43753667393634	-5.52356482296117	FALSE
+nitrogen source	set3IT022	Cytidine	CA265_RS22985	CA265_RS22985		helicase SNF2	2.56972612100051	20.931530641717	FALSE
+nitrogen source	set2IT094	Cytidine	CA265_RS22985	CA265_RS22985		helicase SNF2	2.73543357670076	23.5511256599215	FALSE
+nitrogen source	set3IT021	D-Glucosamine Hydrochloride	CA265_RS01265	CA265_RS01265		GntR family transcriptional regulator	1.37891780130582	5.38209480729038	FALSE
+nitrogen source	set3IT021	D-Glucosamine Hydrochloride	CA265_RS08675	CA265_RS08675		glucose/galactose MFS transporter	-3.89969257088242	-16.7488354234835	FALSE
+nitrogen source	set3IT021	D-Glucosamine Hydrochloride	CA265_RS08805	CA265_RS08805		LacI family transcriptional regulator	-1.93763611202711	-10.3307747499896	FALSE
+nitrogen source	set3IT021	D-Glucosamine Hydrochloride	CA265_RS11300	CA265_RS11300		sugar kinase	-1.65661863792966	-10.5430999802119	FALSE
+nitrogen source	set3IT021	D-Glucosamine Hydrochloride	CA265_RS21920	CA265_RS21920		DUF5009 domain-containing protein	-2.26774123285631	-9.2127162354403	TRUE
+nitrogen source	set3IT023	Glucuronamide	CA265_RS02145	CA265_RS02145		1,4-alpha-glucan branching enzyme	1.48941431215582	12.1075699360346	FALSE
+nitrogen source	set2IT095	Glucuronamide	CA265_RS14970	CA265_RS14970		hypothetical protein	-1.95467001008301	-7.13339160478283	FALSE
+nitrogen source	set3IT023	Glucuronamide	CA265_RS14970	CA265_RS14970		hypothetical protein	-1.75249233430996	-6.16869902725415	FALSE
+nitrogen source	set3IT023	Glucuronamide	CA265_RS16665	CA265_RS16665		hypothetical protein	-1.8221528144147	-5.53191849879887	FALSE
+nitrogen source	set3IT023	Glucuronamide	CA265_RS17705	CA265_RS17705		hypothetical protein	2.03903563082433	14.8526792120021	FALSE
+nitrogen source	set2IT095	Glucuronamide	CA265_RS17705	CA265_RS17705		hypothetical protein	2.07092438085087	17.0258438657049	FALSE
+nitrogen source	set2IT095	Glucuronamide	CA265_RS17715	CA265_RS17715		hypothetical protein	2.09729411283513	20.1447812903243	FALSE
+nitrogen source	set3IT023	Glucuronamide	CA265_RS17715	CA265_RS17715		hypothetical protein	2.14907578729342	20.4104847933352	FALSE
+nitrogen source	set3IT023	Glucuronamide	CA265_RS23935	CA265_RS23935		hypothetical protein	1.22379045842696	6.71386246019612	FALSE
+nitrogen source	set3IT017	Gly-DL-Asp	CA265_RS05150	CA265_RS05150		MBL fold metallo-hydrolase	-2.46999863948665	-10.7104181078769	FALSE
+nitrogen source	set2IT089	Gly-DL-Asp	CA265_RS05150	CA265_RS05150		MBL fold metallo-hydrolase	-2.13612912122378	-9.30185117517433	FALSE
+nitrogen source	set2IT089	Gly-DL-Asp	CA265_RS16405	CA265_RS16405		aconitate hydratase	-2.33724802250775	-11.1493114644167	FALSE
+nitrogen source	set3IT017	Gly-DL-Asp	CA265_RS16405	CA265_RS16405		aconitate hydratase	-2.31538996576865	-12.9793433528527	FALSE
+nitrogen source	set2IT089	Gly-DL-Asp	CA265_RS20005	CA265_RS20005		enoyl-CoA hydratase	-3.68369201039366	-9.84836363248137	FALSE
+nitrogen source	set3IT017	Gly-DL-Asp	CA265_RS20005	CA265_RS20005		enoyl-CoA hydratase	-3.08403163346475	-9.35235201093818	FALSE
+nitrogen source	set2IT089	Gly-DL-Asp	CA265_RS21460	CA265_RS21460		5-formyltetrahydrofolate cyclo-ligase	-1.46613888495548	-5.82740721576509	FALSE
+nitrogen source	set2IT089	Gly-DL-Asp	CA265_RS23195	CA265_RS23195		HIT family protein	-1.52462129589046	-5.48094929541701	FALSE
+nitrogen source	set3IT017	Gly-DL-Asp	CA265_RS24395	CA265_RS24395		XRE family transcriptional regulator	-4.79665030540254	-9.70969739962808	FALSE
+nitrogen source	set2IT089	Gly-DL-Asp	CA265_RS24395	CA265_RS24395		XRE family transcriptional regulator	-4.51900051718459	-9.61847975516238	FALSE
+nitrogen source	set3IT017	Gly-DL-Asp	CA265_RS25075	CA265_RS25075		phenylacetic acid degradation protein	-1.71544237819186	-6.22958569809538	FALSE
+nitrogen source	set3IT010	Glycine	CA265_RS05150	CA265_RS05150		MBL fold metallo-hydrolase	-1.26949770921327	-8.96292008666747	FALSE
+nitrogen source	set2IT082	Glycine	CA265_RS05150	CA265_RS05150		MBL fold metallo-hydrolase	-1.17842332764556	-8.02640734658151	FALSE
+nitrogen source	set3IT010	Glycine	CA265_RS14970	CA265_RS14970		hypothetical protein	-2.06883752525172	-9.1137776843813	FALSE
+nitrogen source	set2IT082	Glycine	CA265_RS14970	CA265_RS14970		hypothetical protein	-1.8338563240654	-8.42905425900921	FALSE
+nitrogen source	set2IT082	Glycine	CA265_RS15435	CA265_RS15435		hypothetical protein	-2.99546359045165	-9.6411148304986	TRUE
+nitrogen source	set3IT010	Glycine	CA265_RS15435	CA265_RS15435		hypothetical protein	-2.48084561612626	-7.4166158034237	TRUE
+nitrogen source	set3IT010	Glycine	CA265_RS15880	CA265_RS15880		sugar ABC transporter ATP-binding protein	-2.15475652549476	-5.70298688102433	FALSE
+nitrogen source	set2IT082	Glycine	CA265_RS15880	CA265_RS15880		sugar ABC transporter ATP-binding protein	-1.85071631991665	-7.2596765474608	FALSE
+nitrogen source	set3IT010	Glycine	CA265_RS19680	CA265_RS19680		DNA-binding transcriptional regulator OxyR	-1.98345947013907	-9.63303023583413	FALSE
+nitrogen source	set2IT082	Glycine	CA265_RS19680	CA265_RS19680		DNA-binding transcriptional regulator OxyR	-1.42093116621299	-5.94971329553973	FALSE
+nitrogen source	set3IT010	Glycine	CA265_RS20005	CA265_RS20005		enoyl-CoA hydratase	-2.43296222275516	-9.12971657433341	FALSE
+nitrogen source	set2IT082	Glycine	CA265_RS20005	CA265_RS20005		enoyl-CoA hydratase	-2.10857905890405	-7.98596664134719	FALSE
+nitrogen source	set3IT010	Glycine	CA265_RS20385	CA265_RS20385		hemagglutinin	-2.11163860057086	-10.6300984923062	FALSE
+nitrogen source	set2IT082	Glycine	CA265_RS20385	CA265_RS20385		hemagglutinin	-1.95361889101914	-9.94092178485543	FALSE
+nitrogen source	set3IT010	Glycine	CA265_RS21460	CA265_RS21460		5-formyltetrahydrofolate cyclo-ligase	-4.7872578092602	-7.2982843189951	FALSE
+nitrogen source	set2IT082	Glycine	CA265_RS21460	CA265_RS21460		5-formyltetrahydrofolate cyclo-ligase	-3.40249964983164	-7.87980828254782	FALSE
+nitrogen source	set2IT080	L-Asparagine	CA265_RS25090	CA265_RS25090		L-asparaginase 1	-1.74165059648636	-5.04620334879786	TRUE
+nitrogen source	set2IT081	L-Glutamine	CA265_RS09240	CA265_RS09240		hypothetical protein	-1.7422670913024	-8.61372485989489	FALSE
+nitrogen source	set2IT081	L-Glutamine	CA265_RS15985	CA265_RS15985		mechanosensitive ion channel protein MscS	-1.15961869505656	-7.69487121152427	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS02145	CA265_RS02145		1,4-alpha-glucan branching enzyme	-1.58085974985254	-10.0198576638175	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS04405	CA265_RS04405		DNA polymerase/3'-5' exonuclease PolX	-1.04452743100064	-6.10640397300034	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS04580	CA265_RS04580		EamA family transporter	-3.22328205604396	-11.5398905062641	FALSE
+nitrogen source	set3IT003	L-Histidine	CA265_RS04580	CA265_RS04580		EamA family transporter	-2.97210584987664	-10.7722758244566	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS04980	CA265_RS04980		recombination protein RecR	-1.60359238961058	-6.09652635029232	TRUE
+nitrogen source	set2IT075	L-Histidine	CA265_RS09240	CA265_RS09240		hypothetical protein	-5.50303595219045	-10.5403016882815	FALSE
+nitrogen source	set3IT003	L-Histidine	CA265_RS09240	CA265_RS09240		hypothetical protein	-5.49450584133738	-9.86685061681443	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS10765	CA265_RS10765		EamA family transporter	-1.15563980050587	-5.57849422667612	FALSE
+nitrogen source	set3IT003	L-Histidine	CA265_RS15145	CA265_RS15145		amino acid permease	1.48269292323745	10.5725849016304	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS15145	CA265_RS15145		amino acid permease	1.51535984481152	10.3038571837366	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS15575	CA265_RS15575		antibiotic ABC transporter ATP-binding protein	1.31532393889926	11.141506566657	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS19430	CA265_RS19430		excinuclease ABC subunit B	-1.19641898528055	-7.21740462015279	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS21440	CA265_RS21440		peptidylprolyl isomerase	1.04841758342396	5.37551046184472	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS21450	CA265_RS21450		imidazolonepropionase	-3.49463892580872	-9.24374772388392	FALSE
+nitrogen source	set3IT003	L-Histidine	CA265_RS21450	CA265_RS21450		imidazolonepropionase	-2.76177447766282	-8.9240948120789	FALSE
+nitrogen source	set3IT003	L-Histidine	CA265_RS21455	CA265_RS21455		arginase	-2.72815202593983	-8.9690363473561	TRUE
+nitrogen source	set2IT075	L-Histidine	CA265_RS21455	CA265_RS21455		arginase	-2.46390460544846	-10.9911754144692	TRUE
+nitrogen source	set2IT075	L-Histidine	CA265_RS22265	CA265_RS22265		transcriptional regulator	-3.74817603047929	-9.44290065669833	FALSE
+nitrogen source	set3IT003	L-Histidine	CA265_RS22265	CA265_RS22265		transcriptional regulator	-2.74777436096567	-8.6818916638537	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS22270	CA265_RS22270		histidine ammonia-lyase	-3.58864757397614	-13.4764495234581	TRUE
+nitrogen source	set3IT003	L-Histidine	CA265_RS22270	CA265_RS22270		histidine ammonia-lyase	-3.45190041927063	-14.1354973681944	TRUE
+nitrogen source	set2IT075	L-Histidine	CA265_RS22835	CA265_RS22835		ATP-dependent DNA helicase RecG	-1.56471923451909	-6.8751543561456	FALSE
+nitrogen source	set3IT003	L-Histidine	CA265_RS22835	CA265_RS22835		ATP-dependent DNA helicase RecG	-1.53955648027062	-5.45042264901702	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS22985	CA265_RS22985		helicase SNF2	-1.39292565580717	-8.56614220675494	FALSE
+nitrogen source	set3IT003	L-Histidine	CA265_RS24760	CA265_RS24760		DNA replication and repair protein RecF	-1.19811001405455	-6.07124445156837	FALSE
+nitrogen source	set2IT075	L-Histidine	CA265_RS24760	CA265_RS24760		DNA replication and repair protein RecF	-1.14236250482849	-6.41061662843348	FALSE
+nitrogen source	set3IT014	L-Isoleucine	CA265_RS17280	CA265_RS17280		hypothetical protein	-4.53105838607201	-15.5017083214319	FALSE
+nitrogen source	set2IT086	L-Isoleucine	CA265_RS17280	CA265_RS17280		hypothetical protein	-4.2166249800932	-15.0738196926593	FALSE
+nitrogen source	set3IT015	L-Leucine	CA265_RS09125	CA265_RS09125		methylglutaconyl-CoA hydratase	-1.0878628742816	-6.77120930037335	FALSE
+nitrogen source	set3IT015	L-Leucine	CA265_RS13115	CA265_RS13115		hydroxymethylglutaryl-CoA lyase	-1.4162106780095	-7.52835260268121	FALSE
+nitrogen source	set2IT087	L-Leucine	CA265_RS13115	CA265_RS13115		hydroxymethylglutaryl-CoA lyase	-1.299090866653	-6.53790480183666	FALSE
+nitrogen source	set3IT015	L-Leucine	CA265_RS17280	CA265_RS17280		hypothetical protein	-4.41246041317827	-15.1156738297416	FALSE
+nitrogen source	set2IT087	L-Leucine	CA265_RS17280	CA265_RS17280		hypothetical protein	-4.35278763373088	-13.6556953616056	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS04135	CA265_RS04135		uroporphyrinogen-III C-methyltransferase	-1.85201413595152	-5.90962010283765	FALSE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS04135	CA265_RS04135		uroporphyrinogen-III C-methyltransferase	-1.746962000678	-5.66594081089809	FALSE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS05150	CA265_RS05150		MBL fold metallo-hydrolase	-1.58413073771778	-7.56911494557003	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS05150	CA265_RS05150		MBL fold metallo-hydrolase	-1.28824711313286	-6.15427345700753	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS08080	CA265_RS08080		thioesterase	1.04621343666877	5.48278208929374	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS09895	CA265_RS09895		aromatic compound degradation protein PaaI	1.93410831126339	5.0361946273944	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS12715	CA265_RS12715		hypothetical protein	3.63643166060155	25.6089379739839	FALSE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS12715	CA265_RS12715		hypothetical protein	3.77232610747949	25.6874792547907	FALSE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS13060	CA265_RS13060		hypothetical protein	-1.61777525268478	-5.98617853283289	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS13060	CA265_RS13060		hypothetical protein	-1.46842933380185	-5.42484962413699	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS13260	CA265_RS13260		ABC transporter	1.59512227569154	12.2603019272122	FALSE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS13260	CA265_RS13260		ABC transporter	1.61868348791147	13.2687530729263	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS14545	CA265_RS14545		hypothetical protein	1.45310885428438	8.26541739290525	FALSE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS14545	CA265_RS14545		hypothetical protein	1.56539609235273	8.48246684327017	FALSE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS15575	CA265_RS15575		antibiotic ABC transporter ATP-binding protein	1.47646860766701	11.5777810605128	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS15575	CA265_RS15575		antibiotic ABC transporter ATP-binding protein	1.58915743517621	13.2536580297821	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS16655	CA265_RS16655		peptidase M42	-1.68051052462512	-5.46285554820562	FALSE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS16655	CA265_RS16655		peptidase M42	-1.53734967989359	-6.50232345202876	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS17280	CA265_RS17280		hypothetical protein	-1.6871207053448	-7.77959321012049	FALSE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS17280	CA265_RS17280		hypothetical protein	-1.26753324699867	-6.00794760108101	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS19980	CA265_RS19980		hypothetical protein	1.75323102253554	10.0555263021475	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS20005	CA265_RS20005		enoyl-CoA hydratase	-2.70834307076727	-7.34622835567553	TRUE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS20005	CA265_RS20005		enoyl-CoA hydratase	-2.38353711812941	-6.16454009575244	TRUE
+nitrogen source	set2IT088	L-Phenylalanine	CA265_RS20375	CA265_RS20375		methyltransferase	1.6530492468397	9.15426632061276	FALSE
+nitrogen source	set3IT016	L-Phenylalanine	CA265_RS20375	CA265_RS20375		methyltransferase	1.7444855581819	10.7219749032374	FALSE
+nitrogen source	set3IT011	L-Proline	CA265_RS11605	CA265_RS11605		proline dehydrogenase	-5.8852684091258	-7.00475878552913	TRUE
+nitrogen source	set2IT083	L-Proline	CA265_RS11605	CA265_RS11605		proline dehydrogenase	-4.90517553641563	-10.930931716345	TRUE
+nitrogen source	set2IT085	L-Valine	CA265_RS01085	CA265_RS01085		hypothetical protein	1.08858659127813	5.73421604993774	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS02375	CA265_RS02375		hypothetical protein	1.02328441178095	5.66373704408237	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS02835	CA265_RS02835		integrase	-2.12042510797763	-5.70158494226527	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS06120	CA265_RS06120		galactose-1-phosphate uridylyltransferase	1.37144470432766	5.40516561788688	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS06120	CA265_RS06120		galactose-1-phosphate uridylyltransferase	1.38263761270066	5.76330582512073	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS06575	CA265_RS06575		MFS transporter	-1.17373857306638	-5.2967721238422	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS08190	CA265_RS08190		cystathionine gamma-synthase	-2.42883224444276	-7.97687070767388	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS08190	CA265_RS08190		cystathionine gamma-synthase	-1.91352171832324	-7.9789891840237	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS08195	CA265_RS08195		hypothetical protein	3.27049670936574	6.2248003578964	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS10765	CA265_RS10765		EamA family transporter	1.86847288567564	13.1711919940629	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS10765	CA265_RS10765		EamA family transporter	1.89422349131318	13.9040774817276	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS12715	CA265_RS12715		hypothetical protein	2.50084056106811	11.9042404790136	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS12715	CA265_RS12715		hypothetical protein	2.56320588116139	15.4380282717363	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS16655	CA265_RS16655		peptidase M42	-1.72647194413749	-7.06757890385169	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS16655	CA265_RS16655		peptidase M42	-1.42369092177299	-6.0935605666491	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS17280	CA265_RS17280		hypothetical protein	-4.33824801346054	-11.8714801090549	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS17280	CA265_RS17280		hypothetical protein	-4.24763473100061	-15.989702021369	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS17480	CA265_RS17480		isoleucyl-tRNA synthetase	-1.11090607055125	-5.21194540548712	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS17575	CA265_RS17575		acyl-CoA dehydrogenase	1.72527221858964	12.4165182107665	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS17575	CA265_RS17575		acyl-CoA dehydrogenase	1.77764992233609	11.8915538340165	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS17585	CA265_RS17585		acetyl-CoA acetyltransferase	1.80415321148816	12.6321522181347	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS17585	CA265_RS17585		acetyl-CoA acetyltransferase	2.14202859797927	12.7978480381523	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS17590	CA265_RS17590		3-hydroxyacyl-CoA dehydrogenase	2.16666255860793	16.2197290524276	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS17590	CA265_RS17590		3-hydroxyacyl-CoA dehydrogenase	2.16963217054086	16.4965337111684	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS18385	CA265_RS18385		peptidase	1.02940214925264	6.57263920694128	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS18385	CA265_RS18385		peptidase	1.05520989960001	6.60316814252369	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS20005	CA265_RS20005		enoyl-CoA hydratase	-1.57141241560266	-5.83118959979031	TRUE
+nitrogen source	set3IT013	L-Valine	CA265_RS20135	CA265_RS20135		peptidase T	-1.2766732272166	-7.70673176476645	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS20135	CA265_RS20135		peptidase T	-1.02227333182451	-5.18479365251382	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS20375	CA265_RS20375		methyltransferase	1.7211425838191	9.48674984092863	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS20375	CA265_RS20375		methyltransferase	1.89176999092149	6.26144412448021	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS21780	CA265_RS21780		aminopeptidase	-1.116108734162	-6.51683378792009	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS22710	CA265_RS22710		hypothetical protein	1.27246853696613	8.33772511296466	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS22710	CA265_RS22710		hypothetical protein	1.3609483576168	7.71248164827516	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS23195	CA265_RS23195		HIT family protein	-2.26645200405195	-5.38678424666173	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS23195	CA265_RS23195		HIT family protein	-2.12283587300419	-6.83208728121979	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS25015	CA265_RS25015		hypothetical protein	-1.69686943388915	-6.21365691383602	FALSE
+nitrogen source	set3IT013	L-Valine	CA265_RS25015	CA265_RS25015		hypothetical protein	-1.47462669880665	-7.11117979219481	FALSE
+nitrogen source	set2IT085	L-Valine	CA265_RS25355	CA265_RS25355		DUF2807 domain-containing protein	1.33286190299702	5.09741725041253	FALSE
+nitrogen source	set3IT020	N-Acetyl-D-Glucosamine	CA265_RS08675	CA265_RS08675		glucose/galactose MFS transporter	-2.68227541615961	-10.1987956442527	TRUE
+nitrogen source	set3IT020	N-Acetyl-D-Glucosamine	CA265_RS08805	CA265_RS08805		LacI family transcriptional regulator	-2.14132445906363	-9.22125588758171	FALSE
+nitrogen source	set3IT020	N-Acetyl-D-Glucosamine	CA265_RS11300	CA265_RS11300		sugar kinase	-2.26751719954038	-9.12053404541048	FALSE
+nitrogen source	set3IT020	N-Acetyl-D-Glucosamine	CA265_RS17660	CA265_RS17660		N-acetylglucosamine kinase	-1.90544065811453	-8.01237632927239	FALSE
+nitrogen source	set3IT020	N-Acetyl-D-Glucosamine	CA265_RS24395	CA265_RS24395		XRE family transcriptional regulator	-1.4263595081092	-5.0202928261479	FALSE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS09990	CA265_RS09990		uroporphyrinogen-III C-methyltransferase	-1.28903600050674	-6.61511746602915	TRUE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS09990	CA265_RS09990		uroporphyrinogen-III C-methyltransferase	-1.13123148018407	-5.02202594630322	TRUE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS09995	CA265_RS09995		nitrite reductase (NAD(P)H)	-5.26877501770728	-20.1429811047423	TRUE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS09995	CA265_RS09995		nitrite reductase (NAD(P)H)	-5.00595165140411	-18.5154467684639	TRUE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS10015	CA265_RS10015		NAD(P)H-nitrite reductase	-2.40159419977031	-16.2415341716084	TRUE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS10015	CA265_RS10015		NAD(P)H-nitrite reductase	-2.18607933507138	-13.3576991144901	TRUE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS10020	CA265_RS10020		hypothetical protein	-2.60257772023583	-6.16880345084935	FALSE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS10020	CA265_RS10020		hypothetical protein	-2.18389960105912	-9.47997656916471	FALSE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS10025	CA265_RS10025		hypothetical protein	-1.93985671564463	-10.033675090896	TRUE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS10025	CA265_RS10025		hypothetical protein	-1.8664760893827	-8.74531093966348	TRUE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS10030	CA265_RS10030		hypothetical protein	-2.71814608830435	-11.120267152735	FALSE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS10030	CA265_RS10030		hypothetical protein	-1.98166098909672	-8.49157164267534	FALSE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS12615	CA265_RS12615		GTP 3',8-cyclase MoaA	-2.33481344976253	-9.19837566944318	TRUE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS12615	CA265_RS12615		GTP 3',8-cyclase MoaA	-2.26688736921326	-6.02399609153584	TRUE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS12620	CA265_RS12620		molybdopterin molybdenumtransferase MoeA	-2.32845480042266	-11.0309847400352	FALSE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS12620	CA265_RS12620		molybdopterin molybdenumtransferase MoeA	-1.95870879804905	-9.94589148623015	FALSE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS12635	CA265_RS12635		molybdopterin synthase sulfur carrier subunit	-2.1260518021796	-5.56628778033122	FALSE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS12640	CA265_RS12640		molybdopterin biosynthesis protein	-2.50473485899996	-10.6301006133153	FALSE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS12640	CA265_RS12640		molybdopterin biosynthesis protein	-2.33359317670402	-8.80150111880953	FALSE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS12645	CA265_RS12645		molybdopterin converting factor	-2.59853069180286	-7.98075228796479	FALSE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS12645	CA265_RS12645		molybdopterin converting factor	-2.2992457816239	-6.85391742724636	FALSE
+nitrogen source	set3IT025	Sodium nitrate	CA265_RS12650	CA265_RS12650		bifunctional molybdenum cofactor biosynthesis protein MoaC/MoaB	-2.46913306714238	-12.6236629121234	TRUE
+nitrogen source	set3IT001	Sodium nitrate	CA265_RS12650	CA265_RS12650		bifunctional molybdenum cofactor biosynthesis protein MoaC/MoaB	-2.25293150051083	-10.6448219521697	TRUE
+nitrogen source	set2IT091	casamino acids	CA265_RS00130	CA265_RS00130		glycosyltransferase	-1.59929565957984	-9.18138783858602	FALSE
+nitrogen source	set2IT091	casamino acids	CA265_RS14935	CA265_RS14935		hypothetical protein	1.68738370107222	14.9064117488553	FALSE
+nitrogen source	set3IT019	casamino acids	CA265_RS14935	CA265_RS14935		hypothetical protein	1.70406076452494	14.1514797315154	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS02415	CA265_RS02415		monofunctional biosynthetic peptidoglycan transglycosylase	-3.13094429165458	-11.2347920319312	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS02415	CA265_RS02415		monofunctional biosynthetic peptidoglycan transglycosylase	-3.12408305244173	-8.72363910261855	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS05870	CA265_RS05870		sulfatase	-3.657177072371	-21.0833037072898	TRUE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS05870	CA265_RS05870		sulfatase	-3.36919706653556	-20.5714016735527	TRUE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS05875	CA265_RS05875		TonB-dependent receptor	-3.67029731750217	-19.2193179628886	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS05875	CA265_RS05875		TonB-dependent receptor	-3.41371803678357	-18.7992924214959	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS05880	CA265_RS05880		DNA-binding response regulator	-2.80617236482124	-5.23445660598464	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS05885	CA265_RS05885		two-component sensor histidine kinase	-3.8729081492754	-13.3430886301507	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS05885	CA265_RS05885		two-component sensor histidine kinase	-3.30215666442079	-15.0837917687597	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS06275	CA265_RS06275		aspartate kinase	-1.26750293537779	-7.7224864915588	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS06315	CA265_RS06315		uridine kinase	-1.42393194404005	-7.10555522583666	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS06315	CA265_RS06315		uridine kinase	-1.40798238679088	-5.60341344203132	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS06870	CA265_RS06870		efflux transporter periplasmic adaptor subunit	-2.13038029046248	-15.1611477718945	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS06870	CA265_RS06870		efflux transporter periplasmic adaptor subunit	-1.89492239953393	-11.8918399284074	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS06875	CA265_RS06875		hydrophobe/amphiphile efflux-1 family RND transporter	-2.02175048249201	-12.7895700812108	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS06875	CA265_RS06875		hydrophobe/amphiphile efflux-1 family RND transporter	-1.97364611175551	-13.2729010387114	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS06880	CA265_RS06880		RND transporter	-2.1867631241774	-12.4255846245425	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS06880	CA265_RS06880		RND transporter	-1.78422891882775	-10.1630072250809	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS09190	CA265_RS09190		chloride channel protein	-1.55707817870231	-12.4065369212565	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS09190	CA265_RS09190		chloride channel protein	-1.36581009867872	-10.9967258580496	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS14055	CA265_RS14055		acyl-CoA thioesterase	-1.23726629339992	-7.376618462233	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS14055	CA265_RS14055		acyl-CoA thioesterase	-1.09390557765815	-5.89339019045632	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS14765	CA265_RS14765		alkaline phosphatase family protein	2.10270004215952	18.6373649027416	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS14765	CA265_RS14765		alkaline phosphatase family protein	2.35177269110592	20.1674912168391	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS15215	CA265_RS15215		two-component sensor histidine kinase	-3.36454781138577	-15.7623372883987	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS15215	CA265_RS15215		two-component sensor histidine kinase	-3.27063201064848	-13.9291224512835	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS16150	CA265_RS16150		UDP-diphosphatase	-3.3619778913372	-7.7580055910071	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS16150	CA265_RS16150		UDP-diphosphatase	-2.81355104534516	-7.98780251595281	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS20025	CA265_RS20025		Zn-dependent hydrolase	-1.01685336036144	-7.12998328230217	FALSE
+stress	set1IT089	Aluminum chloride hydrate	CA265_RS21700	CA265_RS21700		two-component sensor histidine kinase	-2.07521835074848	-7.43643093026154	FALSE
+stress	set2IT026	Aluminum chloride hydrate	CA265_RS21700	CA265_RS21700		two-component sensor histidine kinase	-1.74723321037468	-8.01076439253974	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS00130	CA265_RS00130		glycosyltransferase	1.46274487997532	11.6215010385368	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS00130	CA265_RS00130		glycosyltransferase	1.57668943576813	12.0841135837186	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS02415	CA265_RS02415		monofunctional biosynthetic peptidoglycan transglycosylase	-1.37053617490879	-7.69652760550276	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS06360	CA265_RS06360		hypothetical protein	-1.37416218820085	-10.3073951413559	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS06365	CA265_RS06365		hypothetical protein	-1.70987527920098	-11.20038582929	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS06365	CA265_RS06365		hypothetical protein	-1.57150498702989	-10.9196579586274	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS06870	CA265_RS06870		efflux transporter periplasmic adaptor subunit	1.66958500115616	13.5587468053589	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS06905	CA265_RS06905		hypothetical protein	1.02265510170516	8.80192354500767	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS06905	CA265_RS06905		hypothetical protein	1.26785645458402	10.3761156921735	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS09050	CA265_RS09050		N-acetylmuramoyl-L-alanine amidase	1.49276414101747	5.35110600799571	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS09050	CA265_RS09050		N-acetylmuramoyl-L-alanine amidase	1.72781347275341	6.40916239839327	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS09730	CA265_RS09730		subclass B3 metallo-beta-lactamase	-1.01756161667011	-6.47750915920782	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS10940	CA265_RS10940		hypothetical protein	1.19116461731479	8.9618715357204	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS10940	CA265_RS10940		hypothetical protein	1.46723963862666	10.9272757574444	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS15020	CA265_RS15020		hypothetical protein	-1.0618617468201	-6.59878650427	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS15215	CA265_RS15215		two-component sensor histidine kinase	1.43430313891645	11.5865774554771	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS18190	CA265_RS18190		cupin	-1.48169062121044	-7.57528467782351	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS19725	CA265_RS19725		hypothetical protein	-2.82084303421954	-10.4287582615528	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS19725	CA265_RS19725		hypothetical protein	-2.4811295291589	-10.4891669753317	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS20275	CA265_RS20275		LD-carboxypeptidase	-1.26802028115804	-5.94703823746663	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS20275	CA265_RS20275		LD-carboxypeptidase	-1.12058869342504	-5.35639831769345	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS21175	CA265_RS21175		sodium:proton antiporter	1.57550987253116	6.03780713274087	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS21335	CA265_RS21335		transporter	1.50584096988651	5.49194163637786	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS21335	CA265_RS21335		transporter	2.09443063600754	6.45080453661621	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS21340	CA265_RS21340		secretion protein HlyD	1.88682577848931	15.4228249735231	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS21340	CA265_RS21340		secretion protein HlyD	2.22216488717377	16.4274834774066	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS21345	CA265_RS21345		MFS transporter	1.57074259344971	12.120510634717	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS21345	CA265_RS21345		MFS transporter	2.01942314986077	16.9014566738165	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS23005	CA265_RS23005		hypothetical protein	-3.63133768924292	-10.8889005902462	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS23005	CA265_RS23005		hypothetical protein	-3.22885284451043	-10.0474178589088	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS23010	CA265_RS23010		hydrophobe/amphiphile efflux-1 family RND transporter	-4.0397454427076	-21.6111887939059	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS23010	CA265_RS23010		hydrophobe/amphiphile efflux-1 family RND transporter	-3.77038436919574	-19.0230996413175	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS23015	CA265_RS23015		efflux transporter periplasmic adaptor subunit	-4.14512556892303	-13.4553619042883	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS23015	CA265_RS23015		efflux transporter periplasmic adaptor subunit	-4.09092895230194	-11.5125542809617	FALSE
+stress	set2IT014	Carbenicillin disodium salt	CA265_RS23020	CA265_RS23020		hypothetical protein	2.51020620024591	6.14868484612197	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS23020	CA265_RS23020		hypothetical protein	3.80913887736244	7.37116713806719	FALSE
+stress	set1IT077	Carbenicillin disodium salt	CA265_RS24245	CA265_RS24245		hypothetical protein	-1.19722650213765	-5.61130751969312	FALSE
+stress	set1IT073	Chloramphenicol	CA265_RS05035	CA265_RS05035		TetR family transcriptional regulator	1.34848457377734	5.85428242679721	FALSE
+stress	set2IT010	Chloramphenicol	CA265_RS05035	CA265_RS05035		TetR family transcriptional regulator	1.49737901321872	6.4640002455718	FALSE
+stress	set1IT073	Chloramphenicol	CA265_RS06295	CA265_RS06295		endonuclease MutS2	-1.78515629025612	-10.973138547976	FALSE
+stress	set2IT010	Chloramphenicol	CA265_RS06295	CA265_RS06295		endonuclease MutS2	-1.71419050448021	-8.38122678135577	FALSE
+stress	set2IT010	Chloramphenicol	CA265_RS14020	CA265_RS14020		ABC transporter ATP-binding protein	-1.83222110850086	-12.0953587837152	TRUE
+stress	set1IT073	Chloramphenicol	CA265_RS14020	CA265_RS14020		ABC transporter ATP-binding protein	-1.73158731224885	-10.5300847842024	TRUE
+stress	set1IT073	Chloramphenicol	CA265_RS24180	CA265_RS24180		acriflavin resistance protein	-2.92826719748569	-17.3663920890994	FALSE
+stress	set2IT010	Chloramphenicol	CA265_RS24180	CA265_RS24180		acriflavin resistance protein	-2.86667789400779	-16.9703673847685	FALSE
+stress	set2IT010	Chloramphenicol	CA265_RS24190	CA265_RS24190		transporter	-2.49459003492981	-10.2937421290958	FALSE
+stress	set1IT073	Chloramphenicol	CA265_RS24190	CA265_RS24190		transporter	-2.25747976732874	-8.6128478644877	FALSE
+stress	set1IT015	Cisplatin	CA265_RS02835	CA265_RS02835		integrase	-2.31156159091233	-6.87579934291733	FALSE
+stress	set1IT049	Cisplatin	CA265_RS02835	CA265_RS02835		integrase	-2.17685171266802	-7.88235436132258	FALSE
+stress	set1IT050	Cisplatin	CA265_RS04980	CA265_RS04980		recombination protein RecR	-4.14461391581989	-8.96000940040489	TRUE
+stress	set1IT016	Cisplatin	CA265_RS04980	CA265_RS04980		recombination protein RecR	-3.78936456632689	-9.05672992704926	TRUE
+stress	set1IT015	Cisplatin	CA265_RS04980	CA265_RS04980		recombination protein RecR	-3.55292415814567	-10.5996149700537	TRUE
+stress	set1IT049	Cisplatin	CA265_RS04980	CA265_RS04980		recombination protein RecR	-3.25692415315426	-9.84391551213971	TRUE
+stress	set1IT050	Cisplatin	CA265_RS06545	CA265_RS06545		DNA polymerase IV	-1.15015218428815	-5.58427066210216	FALSE
+stress	set1IT016	Cisplatin	CA265_RS06545	CA265_RS06545		DNA polymerase IV	-1.10914340040133	-7.03995916245613	FALSE
+stress	set1IT049	Cisplatin	CA265_RS06545	CA265_RS06545		DNA polymerase IV	-1.01762895473766	-6.25210249172021	FALSE
+stress	set1IT050	Cisplatin	CA265_RS06550	CA265_RS06550		DNA polymerase III subunit alpha	-1.14836831542432	-8.31330597382563	TRUE
+stress	set1IT016	Cisplatin	CA265_RS06550	CA265_RS06550		DNA polymerase III subunit alpha	-1.00619137763947	-7.06699620056576	TRUE
+stress	set1IT016	Cisplatin	CA265_RS09085	CA265_RS09085		phosphoesterase	-3.45436986203308	-9.50393625600223	FALSE
+stress	set1IT050	Cisplatin	CA265_RS09085	CA265_RS09085		phosphoesterase	-3.32171789309333	-10.1769207803445	FALSE
+stress	set1IT049	Cisplatin	CA265_RS09085	CA265_RS09085		phosphoesterase	-2.76461178800823	-10.1434996681624	FALSE
+stress	set1IT015	Cisplatin	CA265_RS09085	CA265_RS09085		phosphoesterase	-2.35375421792399	-9.04432339952882	FALSE
+stress	set1IT016	Cisplatin	CA265_RS09090	CA265_RS09090		DNA ligase-associated DEXH box helicase	-3.53228579079137	-15.3241782147746	FALSE
+stress	set1IT050	Cisplatin	CA265_RS09090	CA265_RS09090		DNA ligase-associated DEXH box helicase	-3.39355686769817	-17.4972705056463	FALSE
+stress	set1IT049	Cisplatin	CA265_RS09090	CA265_RS09090		DNA ligase-associated DEXH box helicase	-2.33939738641569	-15.7170111312698	FALSE
+stress	set1IT015	Cisplatin	CA265_RS09090	CA265_RS09090		DNA ligase-associated DEXH box helicase	-2.05473249529028	-12.2877885222391	FALSE
+stress	set1IT015	Cisplatin	CA265_RS09520	CA265_RS09520		site-specific tyrosine recombinase XerD	-1.66482103775353	-6.41132880779434	TRUE
+stress	set1IT049	Cisplatin	CA265_RS09520	CA265_RS09520		site-specific tyrosine recombinase XerD	-1.54084219686124	-6.58636285415443	TRUE
+stress	set1IT050	Cisplatin	CA265_RS09735	CA265_RS09735		nuclease	-1.6131511317828	-5.05950076063557	FALSE
+stress	set1IT016	Cisplatin	CA265_RS10845	CA265_RS10845		hypothetical protein	1.04633860458823	5.06922737472712	FALSE
+stress	set1IT050	Cisplatin	CA265_RS12710	CA265_RS12710		ATP-dependent endonuclease	-1.51031622130941	-8.5035207913349	TRUE
+stress	set1IT016	Cisplatin	CA265_RS12710	CA265_RS12710		ATP-dependent endonuclease	-1.27219690140953	-7.48976001633816	TRUE
+stress	set1IT015	Cisplatin	CA265_RS12710	CA265_RS12710		ATP-dependent endonuclease	-1.16439145216603	-7.67881091530925	TRUE
+stress	set1IT049	Cisplatin	CA265_RS12710	CA265_RS12710		ATP-dependent endonuclease	-1.09382426767291	-7.20365841365451	TRUE
+stress	set1IT016	Cisplatin	CA265_RS14855	CA265_RS14855		DNA repair protein RecN	-1.59192772349475	-9.09283045861854	TRUE
+stress	set1IT050	Cisplatin	CA265_RS14855	CA265_RS14855		DNA repair protein RecN	-1.49811856528945	-8.05123278785714	TRUE
+stress	set1IT015	Cisplatin	CA265_RS14855	CA265_RS14855		DNA repair protein RecN	-1.4468574808801	-8.38883139924831	TRUE
+stress	set1IT049	Cisplatin	CA265_RS14855	CA265_RS14855		DNA repair protein RecN	-1.33507643805203	-8.97940305727754	TRUE
+stress	set1IT016	Cisplatin	CA265_RS17435	CA265_RS17435		DNA repair protein RecO	-4.30147335830785	-7.73315727022361	TRUE
+stress	set1IT050	Cisplatin	CA265_RS17435	CA265_RS17435		DNA repair protein RecO	-3.99834642745587	-9.94156188413643	TRUE
+stress	set1IT049	Cisplatin	CA265_RS17435	CA265_RS17435		DNA repair protein RecO	-3.10364211757417	-8.73117423536863	TRUE
+stress	set1IT015	Cisplatin	CA265_RS17435	CA265_RS17435		DNA repair protein RecO	-2.73154658809215	-9.77259746912795	TRUE
+stress	set1IT016	Cisplatin	CA265_RS18110	CA265_RS18110		excinuclease ABC subunit C	-4.006805173661	-13.2490717449679	TRUE
+stress	set1IT050	Cisplatin	CA265_RS18110	CA265_RS18110		excinuclease ABC subunit C	-3.9217188342702	-14.3813766195294	TRUE
+stress	set1IT049	Cisplatin	CA265_RS18110	CA265_RS18110		excinuclease ABC subunit C	-2.92649494274847	-10.5193440184368	TRUE
+stress	set1IT015	Cisplatin	CA265_RS18110	CA265_RS18110		excinuclease ABC subunit C	-2.61922933944979	-9.58670086407684	TRUE
+stress	set1IT016	Cisplatin	CA265_RS19430	CA265_RS19430		excinuclease ABC subunit B	-4.33071830048216	-14.3464306700796	TRUE
+stress	set1IT050	Cisplatin	CA265_RS19430	CA265_RS19430		excinuclease ABC subunit B	-4.25822480959849	-15.2261981241717	TRUE
+stress	set1IT049	Cisplatin	CA265_RS19430	CA265_RS19430		excinuclease ABC subunit B	-3.35619658959363	-14.9582486726222	TRUE
+stress	set1IT015	Cisplatin	CA265_RS19430	CA265_RS19430		excinuclease ABC subunit B	-2.9155000125101	-14.3573694932088	TRUE
+stress	set1IT016	Cisplatin	CA265_RS22835	CA265_RS22835		ATP-dependent DNA helicase RecG	-3.20107874012444	-9.37113356624251	TRUE
+stress	set1IT050	Cisplatin	CA265_RS22835	CA265_RS22835		ATP-dependent DNA helicase RecG	-2.93478536157383	-10.1027780214611	TRUE
+stress	set1IT015	Cisplatin	CA265_RS22835	CA265_RS22835		ATP-dependent DNA helicase RecG	-2.85619822094898	-9.83224769666474	TRUE
+stress	set1IT049	Cisplatin	CA265_RS22835	CA265_RS22835		ATP-dependent DNA helicase RecG	-2.44432060753903	-9.61340482303837	TRUE
+stress	set1IT016	Cisplatin	CA265_RS24760	CA265_RS24760		DNA replication and repair protein RecF	-3.52593757961823	-9.72623485454493	TRUE
+stress	set1IT050	Cisplatin	CA265_RS24760	CA265_RS24760		DNA replication and repair protein RecF	-3.32290963037321	-10.0956725071945	TRUE
+stress	set1IT015	Cisplatin	CA265_RS24760	CA265_RS24760		DNA replication and repair protein RecF	-3.06125484454941	-11.0073963398815	TRUE
+stress	set1IT049	Cisplatin	CA265_RS24760	CA265_RS24760		DNA replication and repair protein RecF	-2.49654411689238	-11.8675662280515	TRUE
+stress	set1IT003	Cobalt chloride hexahydrate	CA265_RS00495	CA265_RS00495		CusA/CzcA family heavy metal efflux RND transporter	-4.65029003485628	-20.2050843048192	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS00495	CA265_RS00495		CusA/CzcA family heavy metal efflux RND transporter	-4.29538679116885	-20.1125710145229	FALSE
+stress	set1IT003	Cobalt chloride hexahydrate	CA265_RS00500	CA265_RS00500		efflux transporter periplasmic adaptor subunit	-5.20764729742818	-7.95041884454381	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS00500	CA265_RS00500		efflux transporter periplasmic adaptor subunit	-4.73691396178984	-9.58892052480036	FALSE
+stress	set1IT003	Cobalt chloride hexahydrate	CA265_RS00505	CA265_RS00505		xylose isomerase	-1.22579132810583	-5.2816278962399	FALSE
+stress	set1IT003	Cobalt chloride hexahydrate	CA265_RS00935	CA265_RS00935		hypothetical protein	-1.20186556801778	-6.96558639523262	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS00935	CA265_RS00935		hypothetical protein	-1.06946918477387	-6.69025944834649	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS01930	CA265_RS01930		hypothetical protein	-1.17954327743383	-7.43337126530716	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS06295	CA265_RS06295		endonuclease MutS2	-2.89044747122524	-13.48660470617	FALSE
+stress	set1IT003	Cobalt chloride hexahydrate	CA265_RS06295	CA265_RS06295		endonuclease MutS2	-2.84417932999581	-15.2621715682072	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS12715	CA265_RS12715		hypothetical protein	-3.89168855394707	-10.4666148385159	FALSE
+stress	set1IT003	Cobalt chloride hexahydrate	CA265_RS12715	CA265_RS12715		hypothetical protein	-2.77786319721462	-10.4864088734841	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS13285	CA265_RS13285		magnesium transporter	1.26568981587352	6.46001752941471	FALSE
+stress	set1IT003	Cobalt chloride hexahydrate	CA265_RS13285	CA265_RS13285		magnesium transporter	1.34071130839427	7.37140276999796	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS15690	CA265_RS15690		NADPH-dependent FMN reductase	1.39579312711583	8.7278316012572	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS20720	CA265_RS20720		hypothetical protein	-1.44193236774512	-5.37736911290164	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS22275	CA265_RS22275		urocanate hydratase	-1.24381319119629	-7.22247387610156	FALSE
+stress	set1IT003	Cobalt chloride hexahydrate	CA265_RS22275	CA265_RS22275		urocanate hydratase	-1.23401741743402	-7.87214601839579	FALSE
+stress	set1IT037	Cobalt chloride hexahydrate	CA265_RS23615	CA265_RS23615		hemolysin	1.42847715201851	9.61198947439755	TRUE
+stress	set1IT003	Cobalt chloride hexahydrate	CA265_RS23615	CA265_RS23615		hemolysin	1.56066877991245	12.3351779482295	TRUE
+stress	set2IT038	D-Cycloserine	CA265_RS01035	CA265_RS01035		hypothetical protein	2.71149270385023	18.383069498181	FALSE
+stress	set2IT005	D-Cycloserine	CA265_RS01035	CA265_RS01035		hypothetical protein	2.85685926787515	18.8231562472548	FALSE
+stress	set2IT038	D-Cycloserine	CA265_RS06575	CA265_RS06575		MFS transporter	-1.47254066523604	-6.95137227795525	FALSE
+stress	set2IT037	D-Cycloserine	CA265_RS11605	CA265_RS11605		proline dehydrogenase	1.47245713561905	11.6081618925963	FALSE
+stress	set2IT004	D-Cycloserine	CA265_RS11605	CA265_RS11605		proline dehydrogenase	1.57401124660764	12.6632287285529	FALSE
+stress	set2IT005	D-Cycloserine	CA265_RS11605	CA265_RS11605		proline dehydrogenase	3.72837079006866	28.1860509925516	FALSE
+stress	set2IT038	D-Cycloserine	CA265_RS11605	CA265_RS11605		proline dehydrogenase	3.76492660154048	24.6790554800521	FALSE
+stress	set2IT038	D-Cycloserine	CA265_RS14020	CA265_RS14020		ABC transporter ATP-binding protein	-1.34526740599031	-9.27658027367464	FALSE
+stress	set2IT005	D-Cycloserine	CA265_RS14020	CA265_RS14020		ABC transporter ATP-binding protein	-1.34013874860811	-9.88896834633815	FALSE
+stress	set2IT005	D-Cycloserine	CA265_RS15880	CA265_RS15880		sugar ABC transporter ATP-binding protein	2.61545375383125	19.9659410233841	FALSE
+stress	set2IT038	D-Cycloserine	CA265_RS15880	CA265_RS15880		sugar ABC transporter ATP-binding protein	2.78245535826646	19.2631246242773	FALSE
+stress	set2IT037	D-Cycloserine	CA265_RS17190	CA265_RS17190		beta-N-acetylglucosaminidase	1.14457004037841	9.0420181712492	FALSE
+stress	set2IT005	D-Cycloserine	CA265_RS17190	CA265_RS17190		beta-N-acetylglucosaminidase	1.19024089057257	9.72172383037024	FALSE
+stress	set2IT038	D-Cycloserine	CA265_RS17190	CA265_RS17190		beta-N-acetylglucosaminidase	1.22307722528367	10.2486810391039	FALSE
+stress	set2IT004	D-Cycloserine	CA265_RS17190	CA265_RS17190		beta-N-acetylglucosaminidase	1.31801432431787	11.0886311616213	FALSE
+stress	set2IT005	D-Cycloserine	CA265_RS19590	CA265_RS19590		hypothetical protein	1.59145326973034	5.70055488945738	FALSE
+stress	set2IT031	Dimethyl Sulfoxide	CA265_RS08760	CA265_RS08760		histidine kinase	-2.15297070641975	-11.5751909500658	FALSE
+stress	set1IT094	Dimethyl Sulfoxide	CA265_RS08760	CA265_RS08760		histidine kinase	-1.93207842018417	-8.90167573920938	FALSE
+stress	set1IT094	Dimethyl Sulfoxide	CA265_RS08765	CA265_RS08765		response regulator	-3.52567317128024	-5.63458863145096	FALSE
+stress	set2IT031	Dimethyl Sulfoxide	CA265_RS08765	CA265_RS08765		response regulator	-3.16410688321332	-5.67522679603734	FALSE
+stress	set2IT030	Dimethyl Sulfoxide	CA265_RS08765	CA265_RS08765		response regulator	-1.39652663304716	-5.76578284865336	FALSE
+stress	set2IT029	Fusidic acid sodium salt	CA265_RS04700	CA265_RS04700		hypothetical protein	1.37129125924912	6.21441040500011	FALSE
+stress	set1IT091	Fusidic acid sodium salt	CA265_RS04700	CA265_RS04700		hypothetical protein	1.51180301587728	5.71657614187557	FALSE
+stress	set2IT028	Fusidic acid sodium salt	CA265_RS04700	CA265_RS04700		hypothetical protein	1.75695102349223	5.65012002249872	FALSE
+stress	set1IT091	Fusidic acid sodium salt	CA265_RS09445	CA265_RS09445		tetracycline resistance MFS efflux pump	-1.30589664084404	-7.51458077391702	FALSE
+stress	set1IT091	Fusidic acid sodium salt	CA265_RS24180	CA265_RS24180		acriflavin resistance protein	-3.95996295653697	-21.6750971243629	FALSE
+stress	set2IT028	Fusidic acid sodium salt	CA265_RS24180	CA265_RS24180		acriflavin resistance protein	-3.27964132077847	-16.8596417190117	FALSE
+stress	set2IT028	Fusidic acid sodium salt	CA265_RS24190	CA265_RS24190		transporter	-3.69476746816718	-10.6841498517208	FALSE
+stress	set1IT091	Fusidic acid sodium salt	CA265_RS24190	CA265_RS24190		transporter	-3.5523171367632	-11.2743888369193	FALSE
+stress	set2IT036	Lomefloxacin hydrochloride	CA265_RS05040	CA265_RS05040		efflux transporter periplasmic adaptor subunit	-2.07757340411091	-9.9666909874202	FALSE
+stress	set2IT003	Lomefloxacin hydrochloride	CA265_RS05040	CA265_RS05040		efflux transporter periplasmic adaptor subunit	-2.07248549875162	-8.01480593415708	FALSE
+stress	set2IT036	Lomefloxacin hydrochloride	CA265_RS05045	CA265_RS05045		hydrophobe/amphiphile efflux-1 family RND transporter	-2.11520489408546	-15.0932548878185	TRUE
+stress	set2IT003	Lomefloxacin hydrochloride	CA265_RS05045	CA265_RS05045		hydrophobe/amphiphile efflux-1 family RND transporter	-1.89781262408107	-13.5495597486482	TRUE
+stress	set2IT036	Lomefloxacin hydrochloride	CA265_RS05050	CA265_RS05050		RND transporter	-1.56400726910863	-5.92143959301465	FALSE
+stress	set2IT036	Lomefloxacin hydrochloride	CA265_RS09520	CA265_RS09520		site-specific tyrosine recombinase XerD	-1.69445947953008	-7.63547855726492	FALSE
+stress	set2IT003	Lomefloxacin hydrochloride	CA265_RS09520	CA265_RS09520		site-specific tyrosine recombinase XerD	-1.54086886082895	-6.44405404357369	FALSE
+stress	set2IT002	MreB Perturbing Compound A22	CA265_RS02560	CA265_RS02560		hypothetical protein	-3.63228157827549	-16.8583163862642	FALSE
+stress	set2IT035	MreB Perturbing Compound A22	CA265_RS02560	CA265_RS02560		hypothetical protein	-3.59818675182552	-13.4751628806277	FALSE
+stress	set2IT035	MreB Perturbing Compound A22	CA265_RS12835	CA265_RS12835		polysaccharide deacetylase	-1.66051572391947	-6.86728967560208	FALSE
+stress	set2IT002	MreB Perturbing Compound A22	CA265_RS12835	CA265_RS12835		polysaccharide deacetylase	-1.62558952668152	-6.28614225128795	FALSE
+stress	set2IT035	MreB Perturbing Compound A22	CA265_RS17215	CA265_RS17215		endonuclease	-1.36818986750552	-8.12582521219093	FALSE
+stress	set2IT002	MreB Perturbing Compound A22	CA265_RS17215	CA265_RS17215		endonuclease	-1.36104122594862	-7.55449506374975	FALSE
+stress	set2IT002	MreB Perturbing Compound A22	CA265_RS18180	CA265_RS18180		cupin	-2.03376173213979	-7.11383858205168	FALSE
+stress	set2IT035	MreB Perturbing Compound A22	CA265_RS18180	CA265_RS18180		cupin	-1.50721201363723	-5.83428899982844	FALSE
+stress	set2IT002	MreB Perturbing Compound A22	CA265_RS18400	CA265_RS18400		iron-sulfur cluster-binding protein	-1.40748079704081	-6.03961308678987	FALSE
+stress	set2IT035	MreB Perturbing Compound A22	CA265_RS18400	CA265_RS18400		iron-sulfur cluster-binding protein	-1.25015562225181	-6.05842827070944	FALSE
+stress	set2IT002	MreB Perturbing Compound A22	CA265_RS21010	CA265_RS21010		hypothetical protein	-1.45681640397219	-5.31994720546387	FALSE
+stress	set2IT035	MreB Perturbing Compound A22	CA265_RS24180	CA265_RS24180		acriflavin resistance protein	-3.03467796174435	-17.352072975582	FALSE
+stress	set2IT002	MreB Perturbing Compound A22	CA265_RS24180	CA265_RS24180		acriflavin resistance protein	-2.94644544822972	-16.8621477051581	FALSE
+stress	set2IT002	MreB Perturbing Compound A22	CA265_RS24190	CA265_RS24190		transporter	-2.77026012520402	-7.81220595414382	FALSE
+stress	set2IT035	MreB Perturbing Compound A22	CA265_RS24190	CA265_RS24190		transporter	-2.60383921344755	-9.72303478459663	FALSE
+stress	set2IT035	MreB Perturbing Compound A22	CA265_RS25365	CA265_RS25365		glycerol acyltransferase	-1.34647394437488	-5.57797927512023	FALSE
+stress	set2IT018	Nalidixic acid sodium salt	CA265_RS07650	CA265_RS07650		DNA topoisomerase III	-1.61193194735063	-10.2755721946231	FALSE
+stress	set1IT081	Nalidixic acid sodium salt	CA265_RS07650	CA265_RS07650		DNA topoisomerase III	-1.57066880471221	-9.93813961936675	FALSE
+stress	set1IT081	Nalidixic acid sodium salt	CA265_RS10750	CA265_RS10750		SMC-Scp complex subunit ScpB	-1.44264500649628	-5.95019192206901	FALSE
+stress	set1IT081	Nalidixic acid sodium salt	CA265_RS12990	CA265_RS12990		chromosome segregation protein SMC	-1.37295923401861	-10.0542017956696	FALSE
+stress	set2IT018	Nalidixic acid sodium salt	CA265_RS12990	CA265_RS12990		chromosome segregation protein SMC	-1.33408793885838	-9.79113778157144	FALSE
+stress	set2IT018	Nalidixic acid sodium salt	CA265_RS13285	CA265_RS13285		magnesium transporter	-2.33530993196958	-8.82088957888941	FALSE
+stress	set1IT081	Nalidixic acid sodium salt	CA265_RS13285	CA265_RS13285		magnesium transporter	-2.20594485787534	-10.1608929940677	FALSE
+stress	set1IT081	Nalidixic acid sodium salt	CA265_RS19170	CA265_RS19170		chromosome segregation protein ScpA	-1.0940085035068	-6.04836461581559	FALSE
+stress	set2IT018	Nalidixic acid sodium salt	CA265_RS20775	CA265_RS20775		hypothetical protein	-2.01896414701425	-5.10454595222751	FALSE
+stress	set2IT006	Neomycin trisulfate salt hydrate	CA265_RS17210	CA265_RS17210		rhomboid family intramembrane serine protease	-1.44527608176256	-7.03561045932875	FALSE
+stress	set2IT006	Neomycin trisulfate salt hydrate	CA265_RS20120	CA265_RS20120		rhomboid family intramembrane serine protease	-1.45366731901472	-7.15059588361323	FALSE
+stress	set2IT039	Neomycin trisulfate salt hydrate	CA265_RS20120	CA265_RS20120		rhomboid family intramembrane serine protease	-1.38166473548635	-7.00467092133649	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS00230	CA265_RS00230		hypothetical protein	1.07167058364094	5.1363227325692	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS00230	CA265_RS00230		hypothetical protein	1.11157186225155	6.03351801082026	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS00495	CA265_RS00495		CusA/CzcA family heavy metal efflux RND transporter	-3.71553302347859	-19.5310881857494	TRUE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS00495	CA265_RS00495		CusA/CzcA family heavy metal efflux RND transporter	-3.63767435923527	-17.5215402980877	TRUE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS00500	CA265_RS00500		efflux transporter periplasmic adaptor subunit	-3.85809114763236	-9.91114975856172	TRUE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS00500	CA265_RS00500		efflux transporter periplasmic adaptor subunit	-3.47333365975024	-9.44604992672223	TRUE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS00505	CA265_RS00505		xylose isomerase	-3.03590977672707	-10.3387263000047	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS00505	CA265_RS00505		xylose isomerase	-2.57771625581105	-8.59075297537286	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS02560	CA265_RS02560		hypothetical protein	-2.114063002942	-11.4450256996105	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS02560	CA265_RS02560		hypothetical protein	-2.10662401063688	-13.4511192309512	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS05160	CA265_RS05160		hypothetical protein	1.98470983091031	18.1654625790569	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS05160	CA265_RS05160		hypothetical protein	2.05403704333596	18.9661065711796	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS06870	CA265_RS06870		efflux transporter periplasmic adaptor subunit	1.97951162947438	16.4687807422378	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS06870	CA265_RS06870		efflux transporter periplasmic adaptor subunit	2.18508296097018	17.1949035884796	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS06875	CA265_RS06875		hydrophobe/amphiphile efflux-1 family RND transporter	2.0784003573527	18.0049026424466	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS06875	CA265_RS06875		hydrophobe/amphiphile efflux-1 family RND transporter	2.31857442749893	20.0076610167823	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS06880	CA265_RS06880		RND transporter	2.05142050239216	14.2241512329722	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS06880	CA265_RS06880		RND transporter	2.209986167507	17.0394525979213	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS12715	CA265_RS12715		hypothetical protein	-1.45254774620086	-5.92445023566685	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS13260	CA265_RS13260		ABC transporter	-3.37438726831889	-18.492454277501	TRUE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS13260	CA265_RS13260		ABC transporter	-3.22450746656169	-17.8477477144022	TRUE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS14545	CA265_RS14545		hypothetical protein	-3.8634666695783	-9.59840196911724	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS14545	CA265_RS14545		hypothetical protein	-2.89994650349075	-8.04610607670037	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS15215	CA265_RS15215		two-component sensor histidine kinase	2.39132497736334	18.4348789390659	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS15215	CA265_RS15215		two-component sensor histidine kinase	2.49385483389259	20.3205290679917	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS15575	CA265_RS15575		antibiotic ABC transporter ATP-binding protein	-3.06853707841126	-13.8428629821088	TRUE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS15575	CA265_RS15575		antibiotic ABC transporter ATP-binding protein	-3.0552911223135	-13.7322660061546	TRUE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS22275	CA265_RS22275		urocanate hydratase	-4.53841893499714	-14.531763985908	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS22275	CA265_RS22275		urocanate hydratase	-4.20588745927749	-15.4730962961274	FALSE
+stress	set1IT001	Nickel (II) chloride hexahydrate	CA265_RS23615	CA265_RS23615		hemolysin	1.5990075201703	13.2398229629493	TRUE
+stress	set1IT035	Nickel (II) chloride hexahydrate	CA265_RS23615	CA265_RS23615		hemolysin	1.69305720253987	13.0174885703564	TRUE
+stress	set1IT011	Paraquat dichloride	CA265_RS00990	CA265_RS00990		acyl-CoA desaturase	-2.31897061303457	-7.77334640676722	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS00990	CA265_RS00990		acyl-CoA desaturase	-1.80756275564147	-6.74294452159239	FALSE
+stress	set1IT010	Paraquat dichloride	CA265_RS00990	CA265_RS00990		acyl-CoA desaturase	-1.78818609985655	-8.12531192669354	FALSE
+stress	set1IT044	Paraquat dichloride	CA265_RS00990	CA265_RS00990		acyl-CoA desaturase	-1.56613191069554	-7.86554448787301	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS01005	CA265_RS01005		SAM-dependent methyltransferase	1.75189830756425	6.73676069400091	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS01005	CA265_RS01005		SAM-dependent methyltransferase	1.8477018139066	5.78332294998689	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS01010	CA265_RS01010		NADP transhydrogenase subunit alpha	1.8858684804785	5.1906947393813	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS01035	CA265_RS01035		hypothetical protein	-2.55978714881999	-5.79548537926023	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS02430	CA265_RS02430		ABC transporter ATPase	-2.00291047421814	-7.21575163955528	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS02430	CA265_RS02430		ABC transporter ATPase	-1.97740990800172	-6.66686326809402	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS02950	CA265_RS02950		long-chain fatty acid transporter	-1.04887723017395	-6.15016534332835	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS03085	CA265_RS03085		hypothetical protein	1.95049436653905	5.64955945814506	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS03085	CA265_RS03085		hypothetical protein	2.15601123863789	6.07471209206679	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS03160	CA265_RS03160		hydrolase	1.54268190212094	6.17855202586974	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS03160	CA265_RS03160		hydrolase	1.54641349742115	6.7818889835662	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS03545	CA265_RS03545		exopolyphosphatase	-1.73184050677853	-7.69938455283146	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS04950	CA265_RS04950		hypothetical protein	-2.31730851961144	-6.59800859067878	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS04950	CA265_RS04950		hypothetical protein	-2.16305888745699	-6.69772804420574	FALSE
+stress	set1IT044	Paraquat dichloride	CA265_RS04950	CA265_RS04950		hypothetical protein	-1.83053700847365	-8.05473383073645	FALSE
+stress	set1IT010	Paraquat dichloride	CA265_RS04950	CA265_RS04950		hypothetical protein	-1.76693112334037	-6.90916054005835	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS06315	CA265_RS06315		uridine kinase	1.8070398041879	10.2857323631935	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS06315	CA265_RS06315		uridine kinase	1.90886024478139	8.74791688155647	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS07440	CA265_RS07440		hypothetical protein	-2.39792896922387	-5.92918876531616	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS07440	CA265_RS07440		hypothetical protein	-2.28564176997891	-6.33469888455256	FALSE
+stress	set1IT044	Paraquat dichloride	CA265_RS07440	CA265_RS07440		hypothetical protein	-1.81936682375108	-6.85457773484488	FALSE
+stress	set1IT010	Paraquat dichloride	CA265_RS07440	CA265_RS07440		hypothetical protein	-1.73310611622634	-5.4039486470002	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS07475	CA265_RS07475		1-acyl-sn-glycerol-3-phosphate acyltransferase	-2.29138020873646	-6.83314817874503	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS07475	CA265_RS07475		1-acyl-sn-glycerol-3-phosphate acyltransferase	-2.21732436479787	-7.13448291355473	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS08205	CA265_RS08205		histidine phosphatase family protein	1.53547878105119	5.01113193421251	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS08820	CA265_RS08820		hypothetical protein	-1.27106670010053	-6.7886129509106	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS08820	CA265_RS08820		hypothetical protein	-1.12965899490378	-5.17194114773227	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS08825	CA265_RS08825		tRNA (adenosine(37)-N6)-dimethylallyltransferase MiaA	-1.58898939810275	-7.97969642832402	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS08965	CA265_RS08965		thioesterase	4.35976196623029	5.03606346414927	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS09055	CA265_RS09055		N-acetylmuramoyl-L-alanine amidase	1.75906635772718	8.86694756529157	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS09055	CA265_RS09055		N-acetylmuramoyl-L-alanine amidase	1.92082294280954	9.8235300635258	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS09535	CA265_RS09535		transporter	-1.84806741188619	-8.62989329122753	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS09535	CA265_RS09535		transporter	-1.73071562555665	-7.79564657243306	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS09620	CA265_RS09620		FAD-binding oxidoreductase	1.21457643516482	8.86910909770205	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS09620	CA265_RS09620		FAD-binding oxidoreductase	1.22103036985209	8.83214746363868	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS09800	CA265_RS09800		chromosome partitioning protein ParA	1.00230302778967	6.48343460284745	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS10595	CA265_RS10595		dicarboxylate/amino acid:cation symporter	2.77228220949504	12.2254331136272	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS10595	CA265_RS10595		dicarboxylate/amino acid:cation symporter	3.02055711949489	13.1556951694585	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS10835	CA265_RS10835		AMP-binding protein	-1.17450266287561	-7.51769647489627	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS10940	CA265_RS10940		hypothetical protein	1.14419704635811	8.26010238557521	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS10940	CA265_RS10940		hypothetical protein	1.41390474100259	10.2447752067725	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS11605	CA265_RS11605		proline dehydrogenase	1.57763905694859	9.48913232029542	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS11605	CA265_RS11605		proline dehydrogenase	1.64428000292693	10.3462117213412	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS11760	CA265_RS11760		mobilization protein	2.35586006584306	5.73820518252749	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS11760	CA265_RS11760		mobilization protein	2.42551320856215	5.26227505366906	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS12835	CA265_RS12835		polysaccharide deacetylase	-2.0023917627681	-8.84877675297415	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS12835	CA265_RS12835		polysaccharide deacetylase	-1.60428155490441	-7.28831968928488	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS12905	CA265_RS12905		hypothetical protein	1.20583704100704	5.81407841986023	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS12905	CA265_RS12905		hypothetical protein	1.48692070786653	6.33039089946001	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS13205	CA265_RS13205		zinc/iron permease	-1.72006835272211	-7.92361600241684	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS13205	CA265_RS13205		zinc/iron permease	-1.29849771700085	-6.32473244080061	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS13740	CA265_RS13740		cysteine synthase	1.26027148644991	7.59775704050796	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS13750	CA265_RS13750		hypothetical protein	1.17272975051523	5.95520511296978	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS15170	CA265_RS15170		peptidase M23	1.06453033574188	7.87809845109158	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS15170	CA265_RS15170		peptidase M23	1.16934928025853	7.71941557254383	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS15985	CA265_RS15985		mechanosensitive ion channel protein MscS	1.68619666779765	14.197159715379	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS15985	CA265_RS15985		mechanosensitive ion channel protein MscS	1.83013901894315	13.893222337744	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS16090	CA265_RS16090		ribonuclease BN	1.1823066224433	8.45273189576696	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS16090	CA265_RS16090		ribonuclease BN	1.44144058224608	10.2361624104194	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS16115	CA265_RS16115		DEAD/DEAH box helicase	1.45428871018355	8.7951742284481	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS16935	CA265_RS16935		permease	-1.50151332131614	-5.37263760983196	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS17210	CA265_RS17210		rhomboid family intramembrane serine protease	-1.5419605417156	-6.82969304847511	TRUE
+stress	set1IT011	Paraquat dichloride	CA265_RS17210	CA265_RS17210		rhomboid family intramembrane serine protease	-1.51341034099435	-7.1163998803581	TRUE
+stress	set1IT011	Paraquat dichloride	CA265_RS17905	CA265_RS17905		hypothetical protein	-1.26872702095684	-6.22149856640869	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS18190	CA265_RS18190		cupin	1.575324481285	11.7254296160183	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS18190	CA265_RS18190		cupin	1.7075534955934	11.2110632540386	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS18300	CA265_RS18300		3-oxoacyl-ACP synthase	-2.42801323251502	-7.14114591406631	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS18300	CA265_RS18300		3-oxoacyl-ACP synthase	-2.03794254439292	-7.31740700272489	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS18310	CA265_RS18310		thioredoxin family protein	1.30979768559328	5.29309256893209	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS18600	CA265_RS18600		hypothetical protein	1.02420285199246	5.07983210704849	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS18600	CA265_RS18600		hypothetical protein	1.1516024375801	5.8814129915202	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS19350	CA265_RS19350		ATP-dependent exodnase (exonuclease V) alpha subunit - helicase superfamily I member	-1.36056229347039	-7.26258752941622	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS19495	CA265_RS19495		FkbM family methyltransferase	1.68667185793439	9.01004002842356	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS19495	CA265_RS19495		FkbM family methyltransferase	1.75160623825147	8.14617407120968	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS19530	CA265_RS19530		asparaginase	-1.44574583140369	-6.06867177498837	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS19530	CA265_RS19530		asparaginase	-1.21569241677293	-5.16151968271555	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS19605	CA265_RS19605		serine hydrolase	3.11790278093258	21.5454857687447	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS19605	CA265_RS19605		serine hydrolase	3.52006310999816	21.2978585059945	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS20055	CA265_RS20055		thiamine phosphate synthase	1.2437202558625	7.64087028986665	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS20055	CA265_RS20055		thiamine phosphate synthase	1.30019160199275	6.22482732259873	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS20115	CA265_RS20115		hypothetical protein	1.20573524473662	6.90544376330767	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS20120	CA265_RS20120		rhomboid family intramembrane serine protease	-2.28247854854868	-6.92764225757427	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS20780	CA265_RS20780		hypothetical protein	2.41853734499998	6.68064079412424	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS20780	CA265_RS20780		hypothetical protein	2.76927958130761	6.78736855821383	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS21035	CA265_RS21035		3-oxoacyl-ACP synthase	-1.42681910269846	-6.38205480000939	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS21910	CA265_RS21910		glycoside hydrolase	2.32561469227124	17.8386153565683	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS21910	CA265_RS21910		glycoside hydrolase	2.59268719254153	20.5792961527179	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS22985	CA265_RS22985		helicase SNF2	-2.00819863739899	-11.0364045547922	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS22985	CA265_RS22985		helicase SNF2	-1.91426099716767	-10.5819900432973	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS23195	CA265_RS23195		HIT family protein	1.70704504887297	8.18908800134341	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS23195	CA265_RS23195		HIT family protein	1.73000530883041	9.53901578469736	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS23420	CA265_RS23420		peptidase S41	-2.44156204019059	-10.353347355549	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS23420	CA265_RS23420		peptidase S41	-2.01105988671909	-8.81391849145456	FALSE
+stress	set1IT011	Paraquat dichloride	CA265_RS23955	CA265_RS23955		glycosyl transferase family 4	-1.43984171423485	-6.83792422555206	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS23955	CA265_RS23955		glycosyl transferase family 4	-1.17545076334274	-6.68407764413557	FALSE
+stress	set1IT045	Paraquat dichloride	CA265_RS24830	CA265_RS24830		beta-N-acetylhexosaminidase	1.03899975185754	8.18408652544343	FALSE
+stress	set1IT032	Polymyxin B sulfate	CA265_RS01805	CA265_RS01805		hypothetical protein	-1.37836752720016	-8.55147186750764	FALSE
+stress	set1IT032	Polymyxin B sulfate	CA265_RS15280	CA265_RS15280		glycine C-acetyltransferase	1.46334437620016	9.79783288268089	FALSE
+stress	set1IT066	Polymyxin B sulfate	CA265_RS15280	CA265_RS15280		glycine C-acetyltransferase	1.51204488619141	11.5900553037889	FALSE
+stress	set1IT066	Polymyxin B sulfate	CA265_RS20030	CA265_RS20030		hypothetical protein	-1.33023492547313	-9.35662057504952	FALSE
+stress	set1IT032	Polymyxin B sulfate	CA265_RS20030	CA265_RS20030		hypothetical protein	-1.24178064972066	-7.54445439670585	FALSE
+stress	set1IT066	Polymyxin B sulfate	CA265_RS20385	CA265_RS20385		hemagglutinin	-1.09144664629818	-5.30239556419289	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS00020	CA265_RS00020		methanol dehydrogenase	-1.04431678429435	-5.43506593885981	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS02250	CA265_RS02250		ribonuclease	-1.09246697880381	-6.14730090236734	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS03410	CA265_RS03410		hypothetical protein	-1.50782068261243	-5.33973060542678	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS03645	CA265_RS03645		L,D-transpeptidase	-3.95136345847821	-14.8536368211559	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS03645	CA265_RS03645		L,D-transpeptidase	-3.56223560286569	-12.8208024842515	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS04355	CA265_RS04355		hypothetical protein	-3.11091049173677	-7.1460137207671	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS04355	CA265_RS04355		hypothetical protein	-1.65318043055082	-7.07346453989761	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS06790	CA265_RS06790		chondroitinase	1.11401699812174	6.37184181466771	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS06790	CA265_RS06790		chondroitinase	1.24387356540104	6.56991839499934	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS08075	CA265_RS08075		ribonuclease BN	-1.02962593165971	-5.4737393080757	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS08120	CA265_RS08120		copper homeostasis protein CutC	-1.6031852860033	-8.76614951806329	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS08120	CA265_RS08120		copper homeostasis protein CutC	-1.48470039960945	-7.87919416158613	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS08965	CA265_RS08965		thioesterase	-1.56490930722435	-5.10381179704765	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS09055	CA265_RS09055		N-acetylmuramoyl-L-alanine amidase	-1.14662425991978	-5.80023556826306	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS09300	CA265_RS09300		hypothetical protein	-1.02869803765077	-5.08694669627193	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS10595	CA265_RS10595		dicarboxylate/amino acid:cation symporter	1.39326353226274	8.42686858456947	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS10595	CA265_RS10595		dicarboxylate/amino acid:cation symporter	1.75304895564574	10.9038677052114	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS11120	CA265_RS11120		phosphohydrolase	1.14513486785415	6.86381493850377	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS13050	CA265_RS13050		hypothetical protein	-2.30434093503795	-5.40803060754762	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS13750	CA265_RS13750		hypothetical protein	1.12571678695611	5.23334957457182	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS13960	CA265_RS13960		hypothetical protein	-2.38785750321438	-6.38940580011639	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS13960	CA265_RS13960		hypothetical protein	-2.15902675467042	-8.17870858057177	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS14410	CA265_RS14410		4-amino-4-deoxychorismate lyase	-1.79234913367933	-8.80733316286855	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS14410	CA265_RS14410		4-amino-4-deoxychorismate lyase	-1.72068737726096	-6.41132981889917	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS15020	CA265_RS15020		hypothetical protein	-1.25319138576104	-5.06624612396054	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS15020	CA265_RS15020		hypothetical protein	-1.12383678908155	-6.28118940895949	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS15110	CA265_RS15110		NAD(P)-dependent oxidoreductase	1.92095945458869	5.12543498900198	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS15230	CA265_RS15230		RNA pseudouridine synthase	1.37686055007146	6.05594347054436	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS16470	CA265_RS16470		23S rRNA (pseudouridine(1915)-N(3))-methyltransferase RlmH	1.31634052056681	9.01142340683396	TRUE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS16470	CA265_RS16470		23S rRNA (pseudouridine(1915)-N(3))-methyltransferase RlmH	1.35888309982014	6.24836811808908	TRUE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS16765	CA265_RS16765		SAM-dependent methyltransferase	1.11895149715638	7.21568986698808	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS17210	CA265_RS17210		rhomboid family intramembrane serine protease	-4.86619152080011	-12.9327329700343	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS17210	CA265_RS17210		rhomboid family intramembrane serine protease	-4.630278491994	-13.9225237175462	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS17600	CA265_RS17600		hypothetical protein	1.04612639211952	6.14182526564774	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS19605	CA265_RS19605		serine hydrolase	1.79213777973682	11.0534108974044	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS19605	CA265_RS19605		serine hydrolase	1.99080225846871	11.5256936079344	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS19985	CA265_RS19985		hypothetical protein	-1.83193625833703	-5.84214415757626	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS19985	CA265_RS19985		hypothetical protein	-1.45433830060746	-5.40980393367632	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS20120	CA265_RS20120		rhomboid family intramembrane serine protease	-6.19129149380075	-7.37069314742822	TRUE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS20120	CA265_RS20120		rhomboid family intramembrane serine protease	-4.60221571145731	-12.5618411809347	TRUE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS20400	CA265_RS20400		hypothetical protein	-1.80264908556975	-7.47798798243525	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS20400	CA265_RS20400		hypothetical protein	-1.77478588982767	-7.32736307420402	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS20980	CA265_RS20980		6-phosphofructokinase	-1.63563788674317	-6.24959196649579	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS20980	CA265_RS20980		6-phosphofructokinase	-1.48994889794863	-5.21436807833839	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS21340	CA265_RS21340		secretion protein HlyD	-1.1457904759943	-5.30154916316715	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS22405	CA265_RS22405		hypothetical protein	-1.24087984958515	-7.74546321981811	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS23620	CA265_RS23620		16S rRNA (uracil(1498)-N(3))-methyltransferase	2.90088225446573	20.2911488887265	FALSE
+stress	set1IT059	Sisomicin sulfate salt	CA265_RS23620	CA265_RS23620		16S rRNA (uracil(1498)-N(3))-methyltransferase	3.05311889159054	18.0925968317897	FALSE
+stress	set1IT025	Sisomicin sulfate salt	CA265_RS25070	CA265_RS25070		murein transglycosylase	-2.47708093992913	-6.29869370405886	FALSE
+stress	set1IT033	Sodium Chloride	CA265_RS04155	CA265_RS04155		bifunctional alpha,alpha-trehalose-phosphate synthase (UDP-forming)/trehalose-phosphatase	-4.47642405980759	-17.6665796529135	FALSE
+stress	set1IT067	Sodium Chloride	CA265_RS04155	CA265_RS04155		bifunctional alpha,alpha-trehalose-phosphate synthase (UDP-forming)/trehalose-phosphatase	-4.32058971102695	-18.9471531989632	FALSE
+stress	set1IT033	Sodium Chloride	CA265_RS09430	CA265_RS09430		hypothetical protein	-1.04644947870576	-5.05676613853709	FALSE
+stress	set1IT033	Sodium Chloride	CA265_RS13285	CA265_RS13285		magnesium transporter	-3.81974662551359	-12.1630403132754	FALSE
+stress	set1IT067	Sodium Chloride	CA265_RS13285	CA265_RS13285		magnesium transporter	-3.7337789802972	-13.3996494026764	FALSE
+stress	set1IT033	Sodium Chloride	CA265_RS14060	CA265_RS14060		sodium:proton antiporter	-1.58146978314176	-10.5322180878198	FALSE
+stress	set1IT067	Sodium Chloride	CA265_RS14060	CA265_RS14060		sodium:proton antiporter	-1.26353663449391	-9.54373392372443	FALSE
+stress	set1IT033	Sodium Chloride	CA265_RS15020	CA265_RS15020		hypothetical protein	-2.48443922024626	-10.9227653097044	FALSE
+stress	set1IT067	Sodium Chloride	CA265_RS15020	CA265_RS15020		hypothetical protein	-2.22729566437425	-11.1033770162143	FALSE
+stress	set1IT033	Sodium Chloride	CA265_RS19980	CA265_RS19980		hypothetical protein	-2.04835127691078	-6.51555255712791	FALSE
+stress	set1IT067	Sodium Chloride	CA265_RS19980	CA265_RS19980		hypothetical protein	-1.41900636475974	-6.47221211139898	FALSE
+stress	set1IT067	Sodium Chloride	CA265_RS19985	CA265_RS19985		hypothetical protein	-1.84922586454505	-7.98212032447133	FALSE
+stress	set1IT033	Sodium Chloride	CA265_RS19985	CA265_RS19985		hypothetical protein	-1.63962893900015	-6.81232564550766	FALSE
+stress	set1IT033	Sodium Chloride	CA265_RS21010	CA265_RS21010		hypothetical protein	-1.31882480346264	-5.02838658598818	FALSE
+stress	set1IT021	Sodium nitrite	CA265_RS06165	CA265_RS06165		HPP family protein	1.06879943022203	5.2538759594666	TRUE
+stress	set1IT056	Sodium nitrite	CA265_RS06165	CA265_RS06165		HPP family protein	1.19201507088063	7.43131358977895	TRUE
+stress	set1IT022	Sodium nitrite	CA265_RS06165	CA265_RS06165		HPP family protein	2.77305408751086	16.7837091405439	TRUE
+stress	set2IT013	Spectinomycin dihydrochloride pentahydrate	CA265_RS03645	CA265_RS03645		L,D-transpeptidase	-1.40999851904269	-10.3319349440916	FALSE
+stress	set2IT013	Spectinomycin dihydrochloride pentahydrate	CA265_RS04950	CA265_RS04950		hypothetical protein	-1.42412079783158	-5.64289317960687	FALSE
+stress	set1IT076	Spectinomycin dihydrochloride pentahydrate	CA265_RS08890	CA265_RS08890		23S rRNA (guanosine(2251)-2'-O)-methyltransferase RlmB	-3.02412382930053	-8.5414061392807	TRUE
+stress	set2IT013	Spectinomycin dihydrochloride pentahydrate	CA265_RS08890	CA265_RS08890		23S rRNA (guanosine(2251)-2'-O)-methyltransferase RlmB	-2.98608679449332	-9.54504867329458	TRUE
+stress	set1IT076	Spectinomycin dihydrochloride pentahydrate	CA265_RS08960	CA265_RS08960		MATE family efflux transporter	-3.3566987848637	-13.1985477899783	FALSE
+stress	set2IT013	Spectinomycin dihydrochloride pentahydrate	CA265_RS08960	CA265_RS08960		MATE family efflux transporter	-3.09061382244943	-11.0372169381915	FALSE
+stress	set1IT075	Spectinomycin dihydrochloride pentahydrate	CA265_RS08960	CA265_RS08960		MATE family efflux transporter	-1.27866768649456	-7.44938215694114	FALSE
+stress	set2IT013	Spectinomycin dihydrochloride pentahydrate	CA265_RS18660	CA265_RS18660		SAM-dependent methyltransferase	-1.2684992565356	-6.18657609252888	TRUE
+stress	set1IT076	Spectinomycin dihydrochloride pentahydrate	CA265_RS18660	CA265_RS18660		SAM-dependent methyltransferase	-1.18959931928701	-5.42786225317176	TRUE
+stress	set2IT013	Spectinomycin dihydrochloride pentahydrate	CA265_RS22770	CA265_RS22770		hypothetical protein	-2.35261661239514	-9.39571308623285	FALSE
+stress	set1IT076	Spectinomycin dihydrochloride pentahydrate	CA265_RS22770	CA265_RS22770		hypothetical protein	-2.2577600851885	-10.4493411845811	FALSE
+stress	set1IT076	Spectinomycin dihydrochloride pentahydrate	CA265_RS22775	CA265_RS22775		glycosyl hydrolase	-2.56908220676221	-9.71592025423695	FALSE
+stress	set2IT013	Spectinomycin dihydrochloride pentahydrate	CA265_RS22775	CA265_RS22775		glycosyl hydrolase	-2.40931864841152	-9.63028517006189	FALSE
+stress	set2IT012	Spectinomycin dihydrochloride pentahydrate	CA265_RS22775	CA265_RS22775		glycosyl hydrolase	-1.84787167943072	-7.23417135365316	FALSE
+stress	set1IT076	Spectinomycin dihydrochloride pentahydrate	CA265_RS25070	CA265_RS25070		murein transglycosylase	-1.89215581871428	-6.21378526643378	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS05035	CA265_RS05035		TetR family transcriptional regulator	2.28568065707257	5.55633287476403	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS06295	CA265_RS06295		endonuclease MutS2	-3.28623098048025	-13.6018311313117	FALSE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS06295	CA265_RS06295		endonuclease MutS2	-3.02781526336257	-11.803788499498	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS08960	CA265_RS08960		MATE family efflux transporter	-3.5184473204544	-12.5187836886769	TRUE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS08960	CA265_RS08960		MATE family efflux transporter	-2.7438030896438	-11.1337444962076	TRUE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS08965	CA265_RS08965		thioesterase	1.9903461622539	6.37635179377019	FALSE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS08965	CA265_RS08965		thioesterase	2.04632091135801	6.19851054060814	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS09445	CA265_RS09445		tetracycline resistance MFS efflux pump	-2.60993054243191	-11.6426849977336	FALSE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS09445	CA265_RS09445		tetracycline resistance MFS efflux pump	-2.19729827897111	-7.534527983009	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS12725	CA265_RS12725		16S rRNA (guanine(966)-N(2))-methyltransferase RsmD	-3.29153231462853	-8.65383819254766	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS16765	CA265_RS16765		SAM-dependent methyltransferase	6.14404730501347	44.3730697333264	TRUE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS16765	CA265_RS16765		SAM-dependent methyltransferase	6.51098434958644	43.415749771233	TRUE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS23005	CA265_RS23005		hypothetical protein	-2.61538875112646	-12.0796713559054	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS23005	CA265_RS23005		hypothetical protein	-2.44844555077898	-12.4040878730637	FALSE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS23010	CA265_RS23010		hydrophobe/amphiphile efflux-1 family RND transporter	-2.68301627209347	-15.1622455990459	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS23010	CA265_RS23010		hydrophobe/amphiphile efflux-1 family RND transporter	-2.43693502555268	-16.6214494446958	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS23015	CA265_RS23015		efflux transporter periplasmic adaptor subunit	-2.71901769147633	-11.5283096835079	FALSE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS23015	CA265_RS23015		efflux transporter periplasmic adaptor subunit	-2.53199502368655	-8.96415884351892	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS23020	CA265_RS23020		hypothetical protein	1.84109297098902	6.20204478418377	FALSE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS23020	CA265_RS23020		hypothetical protein	2.0240827384835	6.62869383247643	FALSE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS24180	CA265_RS24180		acriflavin resistance protein	-2.33889896735947	-14.8205601743671	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS24180	CA265_RS24180		acriflavin resistance protein	-1.99901782993547	-14.4696796629319	FALSE
+stress	set2IT011	Tetracycline hydrochloride	CA265_RS24190	CA265_RS24190		transporter	-2.26277323522363	-11.5081741718964	FALSE
+stress	set1IT074	Tetracycline hydrochloride	CA265_RS24190	CA265_RS24190		transporter	-1.92061809302981	-8.08174270786552	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS00130	CA265_RS00130		glycosyltransferase	-2.0124208031666	-9.66876736479504	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS01035	CA265_RS01035		hypothetical protein	-1.85802082941719	-6.3167051544432	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS01035	CA265_RS01035		hypothetical protein	-1.43430785452905	-5.29872205363875	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS01660	CA265_RS01660		hypothetical protein	-1.12067453032093	-5.517620753234	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS01815	CA265_RS01815		antitermination protein NusG	-1.09850472539862	-5.32790377149691	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS01905	CA265_RS01905		hypothetical protein	2.62195295695086	8.80043296834767	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS01905	CA265_RS01905		hypothetical protein	2.87158832418728	9.47866437602129	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS01910	CA265_RS01910		hypothetical protein	2.41787937937849	10.1032284932919	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS01910	CA265_RS01910		hypothetical protein	2.57235792674832	9.7983779266596	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS03645	CA265_RS03645		L,D-transpeptidase	-1.58236947508757	-8.83271232905163	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS04010	CA265_RS04010		hypothetical protein	1.21396663605477	6.71062773139995	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS04015	CA265_RS04015		ABC transporter ATP-binding protein	1.06081491376779	5.3773760956996	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS04015	CA265_RS04015		ABC transporter ATP-binding protein	1.31670341373852	6.51638382834844	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS04020	CA265_RS04020		hypothetical protein	2.44149158760355	6.59842592953951	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS04020	CA265_RS04020		hypothetical protein	2.44903655769162	6.79233357329722	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS04360	CA265_RS04360		hypothetical protein	1.33682710183532	9.52108367381421	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS04360	CA265_RS04360		hypothetical protein	2.0273478447682	16.652098177709	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS04820	CA265_RS04820		GntR family transcriptional regulator	-2.38883656997319	-5.13121380443198	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS04820	CA265_RS04820		GntR family transcriptional regulator	-1.75272546040817	-5.36182779764373	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS05160	CA265_RS05160		hypothetical protein	-1.93285426454501	-14.0621082912192	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06120	CA265_RS06120		galactose-1-phosphate uridylyltransferase	1.74737207962383	7.85133606391823	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06140	CA265_RS06140		RNA-binding protein	-1.50104454050624	-5.103734545092	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06360	CA265_RS06360		hypothetical protein	-2.31918140453797	-12.3632736803044	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS06360	CA265_RS06360		hypothetical protein	-1.58043624413911	-9.16113807964757	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06365	CA265_RS06365		hypothetical protein	-2.86915509525286	-11.4160667823433	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS06365	CA265_RS06365		hypothetical protein	-1.6796422392534	-7.94457568929655	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06530	CA265_RS06530		hypothetical protein	1.06679471251439	7.0807856792766	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06570	CA265_RS06570		MFS transporter	-1.13160333045657	-7.10232312190628	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06695	CA265_RS06695		hypothetical protein	1.12193584780067	6.38765072754967	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06870	CA265_RS06870		efflux transporter periplasmic adaptor subunit	-1.54126575242118	-9.1920327426049	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06875	CA265_RS06875		hydrophobe/amphiphile efflux-1 family RND transporter	-1.50117105060706	-8.90866556600385	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06880	CA265_RS06880		RND transporter	-1.45209518933249	-8.53859449217163	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS06905	CA265_RS06905		hypothetical protein	-1.21048208615713	-7.25758401776112	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS06905	CA265_RS06905		hypothetical protein	-1.1504346412969	-6.12478213272696	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS07485	CA265_RS07485		macrolide ABC transporter ATP-binding protein	3.4033146820849	21.7401532069489	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS07485	CA265_RS07485		macrolide ABC transporter ATP-binding protein	3.67557511180336	23.7314025041359	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS07510	CA265_RS07510		ABC transporter	3.29208210904114	23.6686721209451	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS07510	CA265_RS07510		ABC transporter	3.54946852821021	25.4414483189677	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS08080	CA265_RS08080		thioesterase	-2.24729408583127	-9.41391743671788	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS08080	CA265_RS08080		thioesterase	-1.16273479440463	-5.17629249773989	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS08820	CA265_RS08820		hypothetical protein	1.08690996267655	6.43352398887376	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS08825	CA265_RS08825		tRNA (adenosine(37)-N6)-dimethylallyltransferase MiaA	1.57381449400628	10.8850301257882	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS08825	CA265_RS08825		tRNA (adenosine(37)-N6)-dimethylallyltransferase MiaA	2.34449889895966	14.2517259210168	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS08995	CA265_RS08995		TonB-dependent receptor	1.08657559657657	8.28648874907523	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS08995	CA265_RS08995		TonB-dependent receptor	1.24574893829587	9.73723395880026	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS09200	CA265_RS09200		hypothetical protein	1.63946003069951	5.12058537810788	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS09200	CA265_RS09200		hypothetical protein	1.77989789630692	5.8087743005089	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS09715	CA265_RS09715		polyphosphate--nucleotide phosphotransferase	3.62701797593254	5.20178939098423	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS10210	CA265_RS10210		alpha-L-fucosidase	1.17535142161965	5.24465133417328	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS10220	CA265_RS10220		hypothetical protein	1.18415882657381	5.6647250140526	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS10220	CA265_RS10220		hypothetical protein	1.46421872247288	7.09292308991871	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS10225	CA265_RS10225		hypothetical protein	1.1902440957572	5.51780288668923	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS10225	CA265_RS10225		hypothetical protein	1.30591967031933	5.76167051040971	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS10750	CA265_RS10750		SMC-Scp complex subunit ScpB	1.93556256555536	8.70264701216648	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS10750	CA265_RS10750		SMC-Scp complex subunit ScpB	2.17414998982086	12.5086097980832	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS12725	CA265_RS12725		16S rRNA (guanine(966)-N(2))-methyltransferase RsmD	-2.13542910315845	-6.47846240067838	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS12820	CA265_RS12820		hypothetical protein	1.36387526064404	6.60225209352071	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS12820	CA265_RS12820		hypothetical protein	1.3756737886239	6.48550992582061	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS12835	CA265_RS12835		polysaccharide deacetylase	-2.06444231135555	-6.9814159690385	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS12925	CA265_RS12925		glycoside hydrolase	-2.24175364640945	-7.12351823904027	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS12925	CA265_RS12925		glycoside hydrolase	-1.24433030095515	-5.48580842682974	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS13390	CA265_RS13390		hypothetical protein	1.23912441294014	5.08722147936034	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS13390	CA265_RS13390		hypothetical protein	1.30710141784036	5.72834391267963	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS13690	CA265_RS13690		hypothetical protein	1.19699664749102	8.85216900078989	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS13740	CA265_RS13740		cysteine synthase	3.64325537678436	7.86761406077382	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS13740	CA265_RS13740		cysteine synthase	3.9206004762181	8.39780850598664	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS13745	CA265_RS13745		sugar transporter	2.27839272044217	6.22475652721515	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS13750	CA265_RS13750		hypothetical protein	2.73163962983808	7.36996451581236	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS13750	CA265_RS13750		hypothetical protein	2.77614260124088	6.78693220070666	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS14025	CA265_RS14025		DUF5103 domain-containing protein	-2.90507009229428	-11.169747014598	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS14025	CA265_RS14025		DUF5103 domain-containing protein	-1.75327774752239	-8.31320261593028	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS14735	CA265_RS14735		hypothetical protein	-1.18636331145769	-5.06543273333603	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS14735	CA265_RS14735		hypothetical protein	-1.18040446100569	-5.0163907445888	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS14840	CA265_RS14840		DUF4835 domain-containing protein	1.17871758376467	7.39993923407753	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS15110	CA265_RS15110		NAD(P)-dependent oxidoreductase	2.65630970656618	6.88258350815793	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS15110	CA265_RS15110		NAD(P)-dependent oxidoreductase	2.78699191426721	7.32434241243064	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS15170	CA265_RS15170		peptidase M23	3.68209716405484	28.7910414487504	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS15170	CA265_RS15170		peptidase M23	3.80850198839943	32.4375888013974	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS15175	CA265_RS15175		thioredoxin-dependent thiol peroxidase	1.4587327070306	6.42820525379941	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS15215	CA265_RS15215		two-component sensor histidine kinase	-1.49410466705897	-9.13531125733737	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS16150	CA265_RS16150		UDP-diphosphatase	-2.71410997353359	-7.2227995970224	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS16150	CA265_RS16150		UDP-diphosphatase	-1.94724557198793	-6.58963671769814	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS16270	CA265_RS16270		hypothetical protein	1.68699859517066	10.3620632336214	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS16380	CA265_RS16380		efflux transporter periplasmic adaptor subunit	3.1388782292166	23.0442480874656	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS16380	CA265_RS16380		efflux transporter periplasmic adaptor subunit	3.20662437552513	23.9606223789473	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS16385	CA265_RS16385		transporter	2.82248702533207	19.5438791899663	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS16385	CA265_RS16385		transporter	2.99037405834656	19.0949720217829	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS17190	CA265_RS17190		beta-N-acetylglucosaminidase	1.13489878196276	9.23379656231709	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS17190	CA265_RS17190		beta-N-acetylglucosaminidase	1.53752140520292	12.4975298297192	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS17210	CA265_RS17210		rhomboid family intramembrane serine protease	-2.13660518488135	-8.76215172167166	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS17215	CA265_RS17215		endonuclease	-2.6851426489887	-10.8380713259816	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS17215	CA265_RS17215		endonuclease	-1.90033805952676	-10.3568128790738	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS17870	CA265_RS17870		polymerase	-2.38124209072972	-9.84748274206545	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS17870	CA265_RS17870		polymerase	-1.79402351951888	-7.8789347803985	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS18190	CA265_RS18190		cupin	-1.72303940947396	-6.84307747170066	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS18190	CA265_RS18190		cupin	-1.44454554845728	-7.24515282891143	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS19155	CA265_RS19155		hypothetical protein	1.03058126339194	8.19668469179359	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS19200	CA265_RS19200		mannose-1-phosphate guanylyltransferase	-1.50001600849174	-9.66779140015161	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS19350	CA265_RS19350		ATP-dependent exodnase (exonuclease V) alpha subunit - helicase superfamily I member	-1.59081103927821	-9.01304463662383	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS19535	CA265_RS19535		hypothetical protein	1.82756403043499	13.1171781141895	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS19535	CA265_RS19535		hypothetical protein	1.98260831411013	12.9070543036763	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS19540	CA265_RS19540		tail-specific protease	-2.63676226944337	-13.8650464081888	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS19540	CA265_RS19540		tail-specific protease	-1.69662762495228	-10.3431849663012	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS19595	CA265_RS19595		GxxExxY protein	1.09598737600523	5.23226907598448	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS19600	CA265_RS19600		hypothetical protein	1.15981128177278	5.06553368970327	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS19605	CA265_RS19605		serine hydrolase	5.01458690184103	30.307769349066	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS19605	CA265_RS19605		serine hydrolase	5.80090014062941	32.7756411671725	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS19610	CA265_RS19610		hypothetical protein	2.18763595402094	10.205179071076	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS19620	CA265_RS19620		hypothetical protein	2.14388627766569	6.41777910113363	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS19620	CA265_RS19620		hypothetical protein	2.17926647926326	6.80350397085241	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS19795	CA265_RS19795		TonB-dependent receptor	5.27146660723278	46.1785645299917	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS19795	CA265_RS19795		TonB-dependent receptor	5.86673886630491	51.1330766633295	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS20325	CA265_RS20325		hypothetical protein	1.15959158349985	7.34201511476475	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS20325	CA265_RS20325		hypothetical protein	1.25124156109311	7.66979132934041	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS20390	CA265_RS20390		hypothetical protein	-1.0023424994091	-5.03526892250001	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS20605	CA265_RS20605		hypothetical protein	1.8256388408863	5.00741103742292	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS20605	CA265_RS20605		hypothetical protein	2.13543747757286	5.16094004535687	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS20615	CA265_RS20615		hypothetical protein	1.85246457662259	7.93359391509972	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS20615	CA265_RS20615		hypothetical protein	1.89001488438555	8.56666895376449	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS20620	CA265_RS20620		hypothetical protein	1.99358641634433	6.70240579611298	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS20620	CA265_RS20620		hypothetical protein	2.02384879743301	6.44792015951914	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS20745	CA265_RS20745		conjugative transposon protein TraK	1.55857592497003	5.26804686781332	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS20745	CA265_RS20745		conjugative transposon protein TraK	2.01322837260166	6.76018645427948	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS20765	CA265_RS20765		mobilization protein	1.10973569834286	5.3752623968419	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21040	CA265_RS21040		hypothetical protein	-1.04636551395267	-7.0609473715162	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21205	CA265_RS21205		ABC transporter	-1.88716925539694	-7.92365394031859	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21205	CA265_RS21205		ABC transporter	-1.06949414976744	-5.01137315869749	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21245	CA265_RS21245		hypothetical protein	2.09851611805169	10.4904482818138	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21245	CA265_RS21245		hypothetical protein	2.11285311186986	10.2507408434239	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21250	CA265_RS21250		thioredoxin	2.32132525808401	6.88660977008379	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21250	CA265_RS21250		thioredoxin	2.32159664127807	6.70550208106504	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21255	CA265_RS21255		hypothetical protein	3.12287684324642	8.29165720851722	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21255	CA265_RS21255		hypothetical protein	3.31787818837286	8.66767683160893	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21260	CA265_RS21260		hypothetical protein	2.7957956327886	8.17842400198792	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21260	CA265_RS21260		hypothetical protein	3.18015603715139	8.75947997698639	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21265	CA265_RS21265		hypothetical protein	2.9066942219415	6.64797489562477	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21265	CA265_RS21265		hypothetical protein	3.1589307311881	6.61021594571043	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21290	CA265_RS21290		hypothetical protein	4.51464689532337	5.63750869981367	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21290	CA265_RS21290		hypothetical protein	5.3824861593797	5.75779076508521	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21340	CA265_RS21340		secretion protein HlyD	1.00714630323514	6.10288815561023	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21340	CA265_RS21340		secretion protein HlyD	1.2607280861025	9.11775883550329	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21345	CA265_RS21345		MFS transporter	1.1519957905865	7.98358174303948	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21345	CA265_RS21345		MFS transporter	1.18631679860335	7.86892936061053	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21850	CA265_RS21850		hypothetical protein	3.67590434628198	20.887946910317	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21850	CA265_RS21850		hypothetical protein	3.69818145878949	21.9226476374392	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21865	CA265_RS21865		two-component sensor histidine kinase	3.63842895735796	20.6721470921279	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21865	CA265_RS21865		two-component sensor histidine kinase	4.02105456335372	21.5925486532763	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS21910	CA265_RS21910		glycoside hydrolase	-2.86740164554754	-13.0649994887584	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS21910	CA265_RS21910		glycoside hydrolase	-1.97896908884306	-10.1373425097022	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS22775	CA265_RS22775		glycosyl hydrolase	-2.47117509688013	-8.47090587718941	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS22775	CA265_RS22775		glycosyl hydrolase	-1.92820471852073	-7.72819166492949	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS22815	CA265_RS22815		X-Pro aminopeptidase	-1.67011241059719	-8.44232900471446	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS22815	CA265_RS22815		X-Pro aminopeptidase	-1.31821286230681	-7.89367907454347	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS23140	CA265_RS23140		hypothetical protein	2.23428097394008	6.32983324337725	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS23490	CA265_RS23490		phosphoenolpyruvate carboxykinase (ATP)	1.01224685041113	6.18734802236782	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS23490	CA265_RS23490		phosphoenolpyruvate carboxykinase (ATP)	1.14295058462887	6.75845998264409	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS24025	CA265_RS24025		hypothetical protein	1.37829334863643	6.92477471013343	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS24025	CA265_RS24025		hypothetical protein	1.89843841845444	9.13835928495222	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS24075	CA265_RS24075		hypothetical protein	1.09098325363499	7.98232013979887	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS24170	CA265_RS24170		MFS transporter	1.15112315905135	8.22557089096722	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS24170	CA265_RS24170		MFS transporter	1.42343629771413	8.07655564023404	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS24175	CA265_RS24175		hypothetical protein	1.93393723693875	10.447452118986	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS24175	CA265_RS24175		hypothetical protein	2.09442490554952	11.231464818491	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS24630	CA265_RS24630		SusC/RagA family protein	-1.52782062991371	-11.4093968031484	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS24630	CA265_RS24630		SusC/RagA family protein	-1.16771857337191	-9.04680556059283	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS24635	CA265_RS24635		RagB/SusD family nutrient uptake outer membrane protein	-1.75368576198353	-10.1932782152301	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS24635	CA265_RS24635		RagB/SusD family nutrient uptake outer membrane protein	-1.32712558468899	-8.59732818647347	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS24640	CA265_RS24640		DUF5116 domain-containing protein	-1.11849542111347	-6.47828459073183	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS24640	CA265_RS24640		DUF5116 domain-containing protein	-1.10753296309123	-5.98875921586521	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS24645	CA265_RS24645		alpha-amylase	-1.17847774956764	-6.97513858798183	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS24645	CA265_RS24645		alpha-amylase	-1.10383883493889	-6.09046023073622	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS24665	CA265_RS24665		MFS transporter	-1.09223490640802	-6.26127322618767	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS24665	CA265_RS24665		MFS transporter	-1.06699857188279	-5.97025117902998	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS25160	CA265_RS25160		glycosyl transferase family 2	-1.50326998624291	-5.65473819360077	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS25165	CA265_RS25165		glycosyl transferase	-1.37952533783561	-8.5416726181454	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS25355	CA265_RS25355		DUF2807 domain-containing protein	1.55145972233066	5.02111799038059	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS25355	CA265_RS25355		DUF2807 domain-containing protein	1.87466945258767	5.41083307370628	FALSE
+stress	set1IT096	Vancomycin Hydrochloride Hydrate	CA265_RS25445	CA265_RS25445		ABC transporter	2.7776825903723	18.2019651268966	FALSE
+stress	set2IT033	Vancomycin Hydrochloride Hydrate	CA265_RS25445	CA265_RS25445		ABC transporter	3.11313664700865	17.7421635550913	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS00495	CA265_RS00495		CusA/CzcA family heavy metal efflux RND transporter	-5.2728794219021	-16.9112150525216	FALSE
+stress	set1IT017	Zinc sulfate heptahydrate	CA265_RS00495	CA265_RS00495		CusA/CzcA family heavy metal efflux RND transporter	-4.82476173886072	-19.4935096011301	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS00495	CA265_RS00495		CusA/CzcA family heavy metal efflux RND transporter	-4.4666812668684	-18.5792674071013	FALSE
+stress	set1IT051	Zinc sulfate heptahydrate	CA265_RS00495	CA265_RS00495		CusA/CzcA family heavy metal efflux RND transporter	-4.36132235703532	-19.6948063424584	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS00500	CA265_RS00500		efflux transporter periplasmic adaptor subunit	-5.49017330696318	-6.53147373711196	FALSE
+stress	set1IT051	Zinc sulfate heptahydrate	CA265_RS00500	CA265_RS00500		efflux transporter periplasmic adaptor subunit	-4.38141355281074	-9.32198007025847	FALSE
+stress	set1IT017	Zinc sulfate heptahydrate	CA265_RS00500	CA265_RS00500		efflux transporter periplasmic adaptor subunit	-4.00792362602163	-9.63942475985274	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS00500	CA265_RS00500		efflux transporter periplasmic adaptor subunit	-3.83981085075536	-9.86418903289557	FALSE
+stress	set1IT017	Zinc sulfate heptahydrate	CA265_RS00505	CA265_RS00505		xylose isomerase	-1.36032623957844	-5.49359962278384	FALSE
+stress	set1IT017	Zinc sulfate heptahydrate	CA265_RS00925	CA265_RS00925		hypothetical protein	2.36418439307531	5.89116606458519	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS02605	CA265_RS02605		hypothetical protein	1.60364357978555	6.07959800595586	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS02605	CA265_RS02605		hypothetical protein	1.70284949535049	6.6515369711629	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS03650	CA265_RS03650		NUDIX hydrolase	-3.53870328711767	-8.08031576308345	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS03650	CA265_RS03650		NUDIX hydrolase	-3.24873636349083	-8.13125046000697	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS04820	CA265_RS04820		GntR family transcriptional regulator	-4.23630617350631	-8.61493597217907	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS04820	CA265_RS04820		GntR family transcriptional regulator	-3.93989825500889	-8.10037722575642	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS04970	CA265_RS04970		Rossman fold protein, TIGR00730 family	-3.38256867648967	-10.6748725929743	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS04970	CA265_RS04970		Rossman fold protein, TIGR00730 family	-2.86497514407898	-9.45588583793996	FALSE
+stress	set1IT051	Zinc sulfate heptahydrate	CA265_RS04970	CA265_RS04970		Rossman fold protein, TIGR00730 family	-1.4590739991898	-8.38951947693777	FALSE
+stress	set1IT051	Zinc sulfate heptahydrate	CA265_RS05160	CA265_RS05160		hypothetical protein	2.66885155696375	24.9699110600309	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS05160	CA265_RS05160		hypothetical protein	2.86941485950907	24.2000572231368	FALSE
+stress	set1IT017	Zinc sulfate heptahydrate	CA265_RS05160	CA265_RS05160		hypothetical protein	3.26915460261592	30.3467990015524	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS05160	CA265_RS05160		hypothetical protein	3.44638901822396	27.7630212757681	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS05165	CA265_RS05165		hypothetical protein	1.16921542866788	5.48979323059261	FALSE
+stress	set1IT017	Zinc sulfate heptahydrate	CA265_RS05165	CA265_RS05165		hypothetical protein	1.23626052119139	5.55262279001722	FALSE
+stress	set1IT051	Zinc sulfate heptahydrate	CA265_RS05165	CA265_RS05165		hypothetical protein	1.25907456079855	6.16641451798651	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS05165	CA265_RS05165		hypothetical protein	1.62522584677672	5.57155410392426	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS06580	CA265_RS06580		MFS transporter	-1.2406865052151	-6.81132618165313	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS06875	CA265_RS06875		hydrophobe/amphiphile efflux-1 family RND transporter	1.51014498468252	11.0003621217452	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS07140	CA265_RS07140		MFS transporter	-1.06448160028958	-5.44828667190396	FALSE
+stress	set1IT051	Zinc sulfate heptahydrate	CA265_RS08155	CA265_RS08155		Bcr/CflA family drug resistance efflux transporter	1.49757306866089	11.1480691349527	FALSE
+stress	set1IT017	Zinc sulfate heptahydrate	CA265_RS08155	CA265_RS08155		Bcr/CflA family drug resistance efflux transporter	1.95524839906168	13.8020946818738	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS10200	CA265_RS10200		HAD family hydrolase	-2.02226161802573	-5.86320394501264	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS10200	CA265_RS10200		HAD family hydrolase	-1.82481664595899	-6.17672086995524	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS12875	CA265_RS12875		ABC-F family ATPase	-1.47161641789941	-6.4124223924719	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS14765	CA265_RS14765		alkaline phosphatase family protein	2.19661359728816	18.0138557228712	FALSE
+stress	set1IT051	Zinc sulfate heptahydrate	CA265_RS14765	CA265_RS14765		alkaline phosphatase family protein	2.52488106124594	22.5269123488755	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS14765	CA265_RS14765		alkaline phosphatase family protein	2.7209579616284	18.4392170063579	FALSE
+stress	set1IT017	Zinc sulfate heptahydrate	CA265_RS14765	CA265_RS14765		alkaline phosphatase family protein	3.02040650967143	26.755158393573	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS15005	CA265_RS15005		porin	1.49903111182127	9.11649873741855	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS15005	CA265_RS15005		porin	1.69808306507982	12.2081551440495	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS15215	CA265_RS15215		two-component sensor histidine kinase	1.44514405812075	7.55188664547732	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS15215	CA265_RS15215		two-component sensor histidine kinase	2.14636911928558	15.7436906478665	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS15230	CA265_RS15230		RNA pseudouridine synthase	1.64531665411745	5.85580037702715	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS22710	CA265_RS22710		hypothetical protein	-2.34208387091267	-8.92679224484286	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS22710	CA265_RS22710		hypothetical protein	-1.75071663611954	-8.74576387099045	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS23615	CA265_RS23615		hemolysin	1.34198871530699	9.92946558421143	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS23840	CA265_RS23840		S1/P1 Nuclease	2.00088706649382	11.225980795584	FALSE
+stress	set1IT051	Zinc sulfate heptahydrate	CA265_RS23840	CA265_RS23840		S1/P1 Nuclease	2.09270143346866	15.9480831429464	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS23840	CA265_RS23840		S1/P1 Nuclease	2.24172045795421	10.617232089219	FALSE
+stress	set1IT017	Zinc sulfate heptahydrate	CA265_RS23840	CA265_RS23840		S1/P1 Nuclease	2.51592038541541	20.0138578482976	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS23980	CA265_RS23980		patatin	1.11552470551973	6.54011057100375	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS23980	CA265_RS23980		patatin	1.19156256667862	5.45221405730196	FALSE
+stress	set1IT018	Zinc sulfate heptahydrate	CA265_RS24655	CA265_RS24655		family 65 glycosyl hydrolase	1.91591863031298	12.5204107474129	FALSE
+stress	set1IT052	Zinc sulfate heptahydrate	CA265_RS24655	CA265_RS24655		family 65 glycosyl hydrolase	2.76266197076382	15.2243838925191	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS00020	CA265_RS00020		methanol dehydrogenase	-2.42185054789302	-7.06332794908747	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS00020	CA265_RS00020		methanol dehydrogenase	-1.70723073939325	-7.00321443269655	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS00605	CA265_RS00605		endonuclease III	5.19709838412986	6.97704319777628	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS00605	CA265_RS00605		endonuclease III	5.92993341565316	7.81370201047944	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS00610	CA265_RS00610		hypothetical protein	3.45561409517646	8.52064175253833	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS00610	CA265_RS00610		hypothetical protein	3.85456439810145	8.46291028847628	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS00615	CA265_RS00615		copper oxidase	-5.01736547736663	-15.1356737352511	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS00615	CA265_RS00615		copper oxidase	-4.93864941045886	-15.8164729568879	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS01430	CA265_RS01430		hypothetical protein	-1.08534563417992	-5.67207860991632	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS04080	CA265_RS04080		hypothetical protein	-1.07618296041337	-5.76139725376995	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS06360	CA265_RS06360		hypothetical protein	-1.50283925175047	-7.77896628988734	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS06360	CA265_RS06360		hypothetical protein	-1.37518431799802	-7.24689290764891	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS07485	CA265_RS07485		macrolide ABC transporter ATP-binding protein	1.09599201253167	6.03946135697902	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS07510	CA265_RS07510		ABC transporter	1.34053333457679	8.51191421746306	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS09705	CA265_RS09705		copper oxidase	2.71602750737192	7.70306366766457	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS09705	CA265_RS09705		copper oxidase	3.44184262535054	10.2866951898177	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS10045	CA265_RS10045		peptidase	1.06295270470943	5.83360662447216	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS10045	CA265_RS10045		peptidase	1.07744485172188	5.6976007435723	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS10985	CA265_RS10985		hypothetical protein	1.44310381439339	7.90274379018743	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS14025	CA265_RS14025		DUF5103 domain-containing protein	-1.23975592134546	-5.32784501443	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS14410	CA265_RS14410		4-amino-4-deoxychorismate lyase	-1.80870773297307	-5.33907205853833	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS16385	CA265_RS16385		transporter	1.06149116811391	6.23594122591204	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS16385	CA265_RS16385		transporter	1.10809805450105	6.63444500003648	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS18600	CA265_RS18600		hypothetical protein	1.1160236463838	5.1765215457689	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS20310	CA265_RS20310		SusC/RagA family TonB-linked outer membrane protein	1.14667801444252	9.13333581609723	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS20310	CA265_RS20310		SusC/RagA family TonB-linked outer membrane protein	1.17424939778613	8.82938101281266	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS21400	CA265_RS21400		heavy metal transporter	-1.09020633896851	-5.99447557619105	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS21415	CA265_RS21415		AraC family transcriptional regulator	-5.42813305595574	-5.2805382378176	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS21415	CA265_RS21415		AraC family transcriptional regulator	-4.77567161867939	-5.66852646430795	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS21620	CA265_RS21620		hybrid sensor histidine kinase/response regulator	2.26349855106137	16.0620485647136	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS21620	CA265_RS21620		hybrid sensor histidine kinase/response regulator	2.49573094141148	12.6169245526972	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS22815	CA265_RS22815		X-Pro aminopeptidase	-1.30369843489792	-5.81129615894803	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS23615	CA265_RS23615		hemolysin	-4.05425214266061	-14.2808922516942	FALSE
+stress	set1IT005	copper (II) chloride dihydrate	CA265_RS23615	CA265_RS23615		hemolysin	-3.74565508603198	-11.0128566923562	FALSE
+stress	set1IT039	copper (II) chloride dihydrate	CA265_RS23840	CA265_RS23840		S1/P1 Nuclease	1.30421537023311	7.49679966263602	FALSE
+stress	set1IT008	sodium fluoride	CA265_RS13115	CA265_RS13115		hydroxymethylglutaryl-CoA lyase	-1.03958759826974	-6.29478700459576	FALSE
+stress	set1IT008	sodium fluoride	CA265_RS14055	CA265_RS14055		acyl-CoA thioesterase	-1.47310216138188	-7.59376371633794	FALSE
+stress	set1IT008	sodium fluoride	CA265_RS14995	CA265_RS14995		sodium-translocating pyrophosphatase	-3.72210027658776	-19.0791067455221	FALSE
+stress	set1IT042	sodium fluoride	CA265_RS14995	CA265_RS14995		sodium-translocating pyrophosphatase	-3.57333734283462	-16.8058953498849	FALSE
+stress	set1IT041	sodium fluoride	CA265_RS14995	CA265_RS14995		sodium-translocating pyrophosphatase	-1.414236449065	-10.8916879894725	FALSE
+stress	set1IT007	sodium fluoride	CA265_RS14995	CA265_RS14995		sodium-translocating pyrophosphatase	-1.16553628842487	-9.07829257816478	FALSE
+stress	set1IT008	sodium fluoride	CA265_RS22645	CA265_RS22645		tryptophan 2,3-dioxygenase	2.37634679603493	5.4323303391261	FALSE
+stress	set1IT042	sodium fluoride	CA265_RS22645	CA265_RS22645		tryptophan 2,3-dioxygenase	2.78753358656338	6.31590840623189	FALSE
+stress	set1IT042	sodium fluoride	CA265_RS23620	CA265_RS23620		16S rRNA (uracil(1498)-N(3))-methyltransferase	-2.21321168970449	-7.11901949217485	FALSE
+stress	set1IT008	sodium fluoride	CA265_RS23620	CA265_RS23620		16S rRNA (uracil(1498)-N(3))-methyltransferase	-1.70694511076072	-7.34962515364369	FALSE
+stress	set1IT042	sodium fluoride	CA265_RS25085	CA265_RS25085		hydrolase TatD	-1.837247213436	-5.13315870094095	FALSE

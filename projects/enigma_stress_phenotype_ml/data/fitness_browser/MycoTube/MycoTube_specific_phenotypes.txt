@@ -1,0 +1,387 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set2S606	D,L-Malic Acid	Rv3667	Rv3667		Acetyl-coenzyme A synthetase Acs (acetate--CoA ligase) (acetyl-CoA synthetase) (acetyl-CoA synthase) (acyl-activating enzyme) (acetate thiokinase) (acetyl-activating enzyme) (acetate--coenzyme A ligase) (acetyl-coenzyme A synthase)	-1.43917073403919	-8.35250651307329	FALSE
+carbon source	set1S226	D-Glucose	Rv3331	Rv3331		Probable sugar-transport integral membrane protein SugI	-3.46674358495582	-9.71540643188418	FALSE
+carbon source	set1S225	D-Glucose	Rv3331	Rv3331		Probable sugar-transport integral membrane protein SugI	-3.09729700149586	-7.56785701626796	FALSE
+carbon source	set2S607	D-Trehalose dihydrate	Rv1236	Rv1236		Probable sugar-transport integral membrane protein ABC transporter SugA	-1.80019017132024	-9.0395211051533	TRUE
+carbon source	set2S608	D-Trehalose dihydrate	Rv1236	Rv1236		Probable sugar-transport integral membrane protein ABC transporter SugA	-1.79621176862084	-9.42804936790645	TRUE
+carbon source	set2S608	D-Trehalose dihydrate	Rv1238	Rv1238		Probable sugar-transport ATP-binding protein ABC transporter SugC	-1.62687524194649	-6.11427133796348	FALSE
+carbon source	set2S607	D-Trehalose dihydrate	Rv3777	Rv3777		Probable oxidoreductase	1.21532786907121	6.41202348242223	FALSE
+carbon source	set1S220	Glycerol	Rv0243	Rv0243		Probable acetyl-CoA acyltransferase FadA2 (3-ketoacyl-CoA thiolase) (beta-ketothiolase)	-1.57748141079572	-8.60106128835142	FALSE
+carbon source	set1S230	L-Asparagine	Rv0037c	Rv0037c		Probable conserved integral membrane protein	-2.07960369214612	-14.8921818747277	FALSE
+carbon source	set1S229	L-Asparagine	Rv0037c	Rv0037c		Probable conserved integral membrane protein	-1.50859100018328	-9.10841279660011	FALSE
+carbon source	set1S229	L-Asparagine	Rv0530A	Rv0530A		Conserved protein	1.37929324282449	8.42990063540405	FALSE
+carbon source	set1S230	L-Asparagine	Rv0530A	Rv0530A		Conserved protein	1.51986498542011	9.73956521027707	FALSE
+carbon source	set1S230	L-Asparagine	Rv1180	Rv1180		Probable polyketide beta-ketoacyl synthase Pks3	1.3962570573768	6.30158020345307	FALSE
+carbon source	set1S230	L-Asparagine	Rv1181	Rv1181		Probable polyketide beta-ketoacyl synthase Pks4	1.08165340523008	7.19271803901277	FALSE
+carbon source	set1S230	L-Asparagine	Rv2127	Rv2127		L-asparagine permease AnsP1	-1.78548281307661	-10.3702312282557	FALSE
+carbon source	set1S229	L-Asparagine	Rv2127	Rv2127		L-asparagine permease AnsP1	-1.72812064455507	-11.1474463377242	FALSE
+carbon source	set1S230	L-Asparagine	Rv2462c	Rv2462c		Probable trigger factor (TF) protein Tig	-1.63337939141374	-5.42369047380647	FALSE
+carbon source	set1S230	L-Asparagine	Rv2618	Rv2618		Conserved hypothetical protein	-1.38620128078578	-5.09422530133477	FALSE
+carbon source	set1S230	L-Asparagine	Rv3145	Rv3145		Probable NADH dehydrogenase I (chain A) NuoA (NADH-ubiquinone oxidoreductase chain A)	-1.72558344548486	-9.93830392114769	FALSE
+carbon source	set1S230	L-Asparagine	Rv3146	Rv3146		Probable NADH dehydrogenase I (chain B) NuoB (NADH-ubiquinone oxidoreductase chain B)	-1.42744199781304	-8.80172448314291	FALSE
+carbon source	set1S229	L-Asparagine	Rv3146	Rv3146		Probable NADH dehydrogenase I (chain B) NuoB (NADH-ubiquinone oxidoreductase chain B)	-1.31886751459272	-7.02126510380784	FALSE
+carbon source	set1S229	L-Asparagine	Rv3149	Rv3149		Probable NADH dehydrogenase I (chain E) NuoE (NADH-ubiquinone oxidoreductase chain E)	-1.46901486861189	-7.57532032850303	FALSE
+carbon source	set1S230	L-Asparagine	Rv3149	Rv3149		Probable NADH dehydrogenase I (chain E) NuoE (NADH-ubiquinone oxidoreductase chain E)	-1.44082368036198	-9.19209602157462	FALSE
+carbon source	set1S229	L-Asparagine	Rv3150	Rv3150		Probable NADH dehydrogenase I (chain F) NuoF (NADH-ubiquinone oxidoreductase chain F)	-1.47737499070377	-6.19006669841524	FALSE
+carbon source	set1S230	L-Asparagine	Rv3150	Rv3150		Probable NADH dehydrogenase I (chain F) NuoF (NADH-ubiquinone oxidoreductase chain F)	-1.37655307485141	-5.01005691232146	FALSE
+carbon source	set1S230	L-Asparagine	Rv3151	Rv3151		Probable NADH dehydrogenase I (chain G) NuoG (NADH-ubiquinone oxidoreductase chain G)	-1.46709436630015	-5.08972677153215	FALSE
+carbon source	set1S229	L-Asparagine	Rv3151	Rv3151		Probable NADH dehydrogenase I (chain G) NuoG (NADH-ubiquinone oxidoreductase chain G)	-1.34697228618484	-6.62472675258585	FALSE
+carbon source	set1S230	L-Asparagine	Rv3152	Rv3152		Probable NADH dehydrogenase I (chain H) NuoH (NADH-ubiquinone oxidoreductase chain H)	-1.15659529804548	-7.4478551443537	FALSE
+carbon source	set1S230	L-Asparagine	Rv3154	Rv3154		Probable NADH dehydrogenase I (chain J) NuoJ (NADH-ubiquinone oxidoreductase chain J)	-1.29255764874228	-5.39876535062046	FALSE
+carbon source	set1S230	L-Asparagine	Rv3156	Rv3156		Probable NADH dehydrogenase I (chain L) NuoL (NADH-ubiquinone oxidoreductase chain L)	-1.44234545489795	-7.39736441937295	FALSE
+carbon source	set1S230	L-Asparagine	Rv3157	Rv3157		Probable NADH dehydrogenase I (chain M) NUOK (NADH-ubiquinone oxidoreductase chain M)	-1.63334362460701	-6.03866489826343	FALSE
+carbon source	set1S230	L-Asparagine	Rv3158	Rv3158		Probable NADH dehydrogenase I (chain N) NuoN (NADH-ubiquinone oxidoreductase chain N)	-1.44600850079583	-7.89196072953635	FALSE
+carbon source	set1S229	L-Asparagine	Rv3158	Rv3158		Probable NADH dehydrogenase I (chain N) NuoN (NADH-ubiquinone oxidoreductase chain N)	-1.30339566995955	-6.92634438517447	FALSE
+carbon source	set1S230	L-Asparagine	Rv3342	Rv3342		Possible methyltransferase (methylase)	-1.60737570988534	-6.30203802776933	FALSE
+carbon source	set1S230	L-Asparagine	Rv3719	Rv3719		Conserved protein	-1.61245380483748	-7.52720879227547	FALSE
+carbon source	set1S230	L-Asparagine	Rv3720	Rv3720		Possible fatty acid synthase	-2.12332039642791	-10.8343975871874	FALSE
+carbon source	set1S229	L-Asparagine	Rv3720	Rv3720		Possible fatty acid synthase	-1.50382772476971	-7.0777188300711	FALSE
+carbon source	set1S230	L-Asparagine	Rv3824c	Rv3824c		Conserved polyketide synthase associated protein PapA1	1.55033843225451	7.35224307540772	FALSE
+carbon source	set1S230	L-Asparagine	Rv3825c	Rv3825c		Polyketide synthase Pks2	1.52357194727162	13.9002628390248	FALSE
+carbon source	set1S230	L-Asparagine	Rv3826	Rv3826		Probable fatty-acid-AMP ligase FadD23 (fatty-acid-AMP synthetase) (fatty-acid-AMP synthase)	1.23529837865583	9.45102283295568	FALSE
+carbon source	set1S232	L-Aspartic Acid	Rv2127	Rv2127		L-asparagine permease AnsP1	-1.63181715489542	-11.0212019905687	FALSE
+carbon source	set1S231	L-Aspartic Acid	Rv2127	Rv2127		L-asparagine permease AnsP1	-1.53776692589196	-8.89154615291639	FALSE
+carbon source	set1S232	L-Aspartic Acid	Rv3720	Rv3720		Possible fatty acid synthase	-1.37377824421807	-7.57367280532395	FALSE
+carbon source	set2S624	Palmitic acid	Rv3259	Rv3259		Conserved hypothetical protein	1.25008422036703	5.67022596613468	FALSE
+carbon source	set1S224	Potassium acetate	Rv0408	Rv0408		Probable phosphate acetyltransferase Pta (phosphotransacetylase)	-3.17262753288934	-6.13339795193265	TRUE
+carbon source	set1S223	Potassium acetate	Rv0408	Rv0408		Probable phosphate acetyltransferase Pta (phosphotransacetylase)	-3.10275800077265	-7.52664720357367	TRUE
+carbon source	set1S223	Potassium acetate	Rv3342	Rv3342		Possible methyltransferase (methylase)	-1.45996826398952	-6.57473432921947	FALSE
+carbon source	set2S602	Sodium D-Lactate	Rv0487	Rv0487		Conserved hypothetical protein	-2.27696191290444	-7.0222456609201	FALSE
+carbon source	set2S601	Sodium D-Lactate	Rv0487	Rv0487		Conserved hypothetical protein	-2.21693758444653	-7.13443627834198	FALSE
+carbon source	set2S602	Sodium D-Lactate	Rv1257c	Rv1257c		Probable oxidoreductase	-3.04831116226643	-7.00816132680979	TRUE
+carbon source	set2S601	Sodium D-Lactate	Rv1257c	Rv1257c		Probable oxidoreductase	-2.63303006189061	-6.63968378633509	TRUE
+carbon source	set2S603	Sodium L-Lactate	Rv1872c	Rv1872c		Possible L-lactate dehydrogenase (cytochrome) LldD2	-2.46944956701161	-8.82781042293926	TRUE
+carbon source	set2S604	Sodium L-Lactate	Rv1872c	Rv1872c		Possible L-lactate dehydrogenase (cytochrome) LldD2	-2.4020965242135	-7.16523462293408	TRUE
+carbon source	set2S618	Sodium butyrate	Rv2851c	Rv2851c		GCN5-related N-acetyltransferase	-1.57817425364295	-5.79876549653063	FALSE
+carbon source	set2S618	Sodium butyrate	Rv3575c	Rv3575c		Transcriptional regulatory protein (probably LacI-family)	-1.57465437780277	-7.87516282824462	FALSE
+carbon source	set2S617	Sodium butyrate	Rv3575c	Rv3575c		Transcriptional regulatory protein (probably LacI-family)	-1.47649299529046	-8.63427478015201	FALSE
+carbon source	set5S598	Sodium oleate	Rv3766	Rv3766		Hypothetical protein	-3.05255707891069	-5.48358303886375	FALSE
+carbon source	set1S221	Sodium propionate	Rv0280	Rv0280		PPE family protein PPE3	-1.76627171249577	-10.4967962023834	FALSE
+carbon source	set1S222	Sodium propionate	Rv0408	Rv0408		Probable phosphate acetyltransferase Pta (phosphotransacetylase)	-1.9745733184327	-6.25651381349684	TRUE
+carbon source	set1S221	Sodium propionate	Rv0408	Rv0408		Probable phosphate acetyltransferase Pta (phosphotransacetylase)	-1.7704055315707	-5.85231243250912	TRUE
+carbon source	set1S222	Sodium propionate	Rv0409	Rv0409		Probable acetate kinase AckA (acetokinase)	-1.39562700220077	-5.38831677991174	TRUE
+carbon source	set1S221	Sodium propionate	Rv1058	Rv1058		Probable medium chain fatty-acid-CoA ligase FadD14 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	-1.41923381096731	-6.00097147904204	FALSE
+carbon source	set1S222	Sodium propionate	Rv1058	Rv1058		Probable medium chain fatty-acid-CoA ligase FadD14 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	-1.40516453982035	-5.8563219534988	FALSE
+carbon source	set1S222	Sodium propionate	Rv1129c	Rv1129c		Probable transcriptional regulator protein	-4.58842407447208	-9.74715055863394	FALSE
+carbon source	set1S221	Sodium propionate	Rv1129c	Rv1129c		Probable transcriptional regulator protein	-3.95260478404676	-8.6827535537456	FALSE
+carbon source	set1S222	Sodium propionate	Rv1130	Rv1130		Possible methylcitrate dehydratase PrpD	-2.87273972784344	-5.84324107016988	FALSE
+carbon source	set1S221	Sodium propionate	Rv1130	Rv1130		Possible methylcitrate dehydratase PrpD	-2.83523319425834	-7.109507496242	FALSE
+carbon source	set1S222	Sodium propionate	Rv1183	Rv1183		Probable conserved transmembrane transport protein MmpL10	-1.16647706481128	-6.63519689208044	FALSE
+carbon source	set1S221	Sodium propionate	Rv1193	Rv1193		Probable fatty-acid-CoA ligase FadD36 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	-2.30591478074293	-5.44231011063926	FALSE
+carbon source	set1S222	Sodium propionate	Rv3145	Rv3145		Probable NADH dehydrogenase I (chain A) NuoA (NADH-ubiquinone oxidoreductase chain A)	-2.78113341791541	-10.01494881569	FALSE
+carbon source	set1S221	Sodium propionate	Rv3145	Rv3145		Probable NADH dehydrogenase I (chain A) NuoA (NADH-ubiquinone oxidoreductase chain A)	-2.42440661944428	-10.7864947570208	FALSE
+carbon source	set1S222	Sodium propionate	Rv3146	Rv3146		Probable NADH dehydrogenase I (chain B) NuoB (NADH-ubiquinone oxidoreductase chain B)	-2.34715970768059	-8.59528689829151	FALSE
+carbon source	set1S221	Sodium propionate	Rv3146	Rv3146		Probable NADH dehydrogenase I (chain B) NuoB (NADH-ubiquinone oxidoreductase chain B)	-2.29843123862044	-6.91851580273071	FALSE
+carbon source	set1S222	Sodium propionate	Rv3147	Rv3147		Probable NADH dehydrogenase I (chain C) NuoC (NADH-ubiquinone oxidoreductase chain C)	-2.69508957204045	-5.44878210274111	FALSE
+carbon source	set1S221	Sodium propionate	Rv3147	Rv3147		Probable NADH dehydrogenase I (chain C) NuoC (NADH-ubiquinone oxidoreductase chain C)	-2.38492060193216	-5.14897911460358	FALSE
+carbon source	set1S221	Sodium propionate	Rv3148	Rv3148		Probable NADH dehydrogenase I (chain D) NuoD (NADH-ubiquinone oxidoreductase chain D)	-2.89435532959205	-7.17904273718189	FALSE
+carbon source	set1S222	Sodium propionate	Rv3148	Rv3148		Probable NADH dehydrogenase I (chain D) NuoD (NADH-ubiquinone oxidoreductase chain D)	-2.83057497046828	-6.61283328013452	FALSE
+carbon source	set1S221	Sodium propionate	Rv3149	Rv3149		Probable NADH dehydrogenase I (chain E) NuoE (NADH-ubiquinone oxidoreductase chain E)	-2.62348814660202	-7.97600255984466	FALSE
+carbon source	set1S222	Sodium propionate	Rv3149	Rv3149		Probable NADH dehydrogenase I (chain E) NuoE (NADH-ubiquinone oxidoreductase chain E)	-2.44418351142171	-10.9384706858881	FALSE
+carbon source	set1S221	Sodium propionate	Rv3150	Rv3150		Probable NADH dehydrogenase I (chain F) NuoF (NADH-ubiquinone oxidoreductase chain F)	-3.01398094376286	-6.32053848677724	FALSE
+carbon source	set1S222	Sodium propionate	Rv3150	Rv3150		Probable NADH dehydrogenase I (chain F) NuoF (NADH-ubiquinone oxidoreductase chain F)	-2.38897573082667	-5.14110710456274	FALSE
+carbon source	set1S222	Sodium propionate	Rv3151	Rv3151		Probable NADH dehydrogenase I (chain G) NuoG (NADH-ubiquinone oxidoreductase chain G)	-2.22618117250535	-6.45421566620284	FALSE
+carbon source	set1S221	Sodium propionate	Rv3152	Rv3152		Probable NADH dehydrogenase I (chain H) NuoH (NADH-ubiquinone oxidoreductase chain H)	-2.54899829027593	-9.93442816978852	FALSE
+carbon source	set1S222	Sodium propionate	Rv3152	Rv3152		Probable NADH dehydrogenase I (chain H) NuoH (NADH-ubiquinone oxidoreductase chain H)	-2.30756418769624	-6.92607204037252	FALSE
+carbon source	set1S221	Sodium propionate	Rv3153	Rv3153		Probable NADH dehydrogenase I (chain I) NuoI (NADH-ubiquinone oxidoreductase chain I)	-2.16429323147941	-6.7270989893048	FALSE
+carbon source	set1S222	Sodium propionate	Rv3153	Rv3153		Probable NADH dehydrogenase I (chain I) NuoI (NADH-ubiquinone oxidoreductase chain I)	-2.14948022296871	-9.22663565665766	FALSE
+carbon source	set1S221	Sodium propionate	Rv3154	Rv3154		Probable NADH dehydrogenase I (chain J) NuoJ (NADH-ubiquinone oxidoreductase chain J)	-2.58071531469324	-6.10297411868303	FALSE
+carbon source	set1S222	Sodium propionate	Rv3154	Rv3154		Probable NADH dehydrogenase I (chain J) NuoJ (NADH-ubiquinone oxidoreductase chain J)	-2.52702836273018	-7.78167991203932	FALSE
+carbon source	set1S222	Sodium propionate	Rv3156	Rv3156		Probable NADH dehydrogenase I (chain L) NuoL (NADH-ubiquinone oxidoreductase chain L)	-2.69709531000486	-12.1497299705099	FALSE
+carbon source	set1S221	Sodium propionate	Rv3156	Rv3156		Probable NADH dehydrogenase I (chain L) NuoL (NADH-ubiquinone oxidoreductase chain L)	-2.56694095033712	-11.5667916669167	FALSE
+carbon source	set1S221	Sodium propionate	Rv3157	Rv3157		Probable NADH dehydrogenase I (chain M) NUOK (NADH-ubiquinone oxidoreductase chain M)	-2.15791820625367	-5.5225353753378	FALSE
+carbon source	set1S221	Sodium propionate	Rv3158	Rv3158		Probable NADH dehydrogenase I (chain N) NuoN (NADH-ubiquinone oxidoreductase chain N)	-2.19520811111771	-10.4041464604479	FALSE
+carbon source	set1S222	Sodium propionate	Rv3158	Rv3158		Probable NADH dehydrogenase I (chain N) NuoN (NADH-ubiquinone oxidoreductase chain N)	-2.14352394137938	-10.9452333595536	FALSE
+carbon source	set1S222	Sodium propionate	Rv3575c	Rv3575c		Transcriptional regulatory protein (probably LacI-family)	-1.30896815984556	-9.505292723932	FALSE
+carbon source	set1S221	Sodium propionate	Rv3575c	Rv3575c		Transcriptional regulatory protein (probably LacI-family)	-1.21809696248194	-5.34849787125678	FALSE
+carbon source	set2S621	Stearic acid	Rv0169	Rv0169		Mce-family protein Mce1A	-1.28559706623263	-6.85147650870831	FALSE
+carbon source	set2S622	Stearic acid	Rv0169	Rv0169		Mce-family protein Mce1A	-1.26693377523157	-5.90255690428769	FALSE
+carbon source	set2S621	Stearic acid	Rv0171	Rv0171		Mce-family protein Mce1C	-1.26687834194622	-6.80023037462765	FALSE
+carbon source	set2S621	Stearic acid	Rv0172	Rv0172		Mce-family protein Mce1D	-1.4624224823267	-5.45096182795888	FALSE
+carbon source	set2S622	Stearic acid	Rv0173	Rv0173		Possible Mce-family lipoprotein LprK (Mce-family lipoprotein Mce1E)	-1.68341445980402	-6.49322027323197	FALSE
+carbon source	set2S621	Stearic acid	Rv0173	Rv0173		Possible Mce-family lipoprotein LprK (Mce-family lipoprotein Mce1E)	-1.59220042849074	-5.35859042670416	FALSE
+carbon source	set2S622	Stearic acid	Rv0174	Rv0174		Mce-family protein Mce1F	-1.62495346502421	-6.87618561971638	FALSE
+carbon source	set2S621	Stearic acid	Rv0174	Rv0174		Mce-family protein Mce1F	-1.59129962628094	-6.46258351779349	FALSE
+carbon source	set2S621	Stearic acid	Rv0176	Rv0176		Probable conserved Mce associated transmembrane protein	-1.60512425708816	-5.90285071240354	FALSE
+carbon source	set2S622	Stearic acid	Rv3766	Rv3766		Hypothetical protein	-2.65618156951092	-5.13194593315164	FALSE
+carbon source	set2S621	Stearic acid	Rv3766	Rv3766		Hypothetical protein	-2.21927017728636	-5.09713907139127	FALSE
+carbon source	set2S615	Valeric acid	Rv1129c	Rv1129c		Probable transcriptional regulator protein	-4.39260667209756	-9.35359229070194	FALSE
+carbon source	set2S616	Valeric acid	Rv1129c	Rv1129c		Probable transcriptional regulator protein	-3.60543303998862	-7.3178672750226	FALSE
+carbon source	set2S615	Valeric acid	Rv1130	Rv1130		Possible methylcitrate dehydratase PrpD	-3.35763950320846	-7.75318300861148	FALSE
+carbon source	set2S616	Valeric acid	Rv3133c	Rv3133c		Two component transcriptional regulatory protein DevR (probably LuxR/UhpA-family)	1.2072093780464	6.19940390979886	FALSE
+carbon source	set2S615	Valeric acid	Rv3151	Rv3151		Probable NADH dehydrogenase I (chain G) NuoG (NADH-ubiquinone oxidoreductase chain G)	-1.26409252264961	-5.66544270235338	FALSE
+carbon source	set2S615	Valeric acid	Rv3158	Rv3158		Probable NADH dehydrogenase I (chain N) NuoN (NADH-ubiquinone oxidoreductase chain N)	-1.30172193371951	-7.60114044510501	FALSE
+carbon source	set2S609	casamino acids	Rv2127	Rv2127		L-asparagine permease AnsP1	-1.29138330822715	-9.63068431132791	FALSE
+carbon source	set5S599	cholesterol	Rv0129c	Rv0129c		Secreted antigen 85-C FbpC (85C) (antigen 85 complex C) (AG58C) (mycolyl transferase 85C) (fibronectin-binding protein C)	1.35038345740696	7.42702755985099	FALSE
+carbon source	set5S600	cholesterol	Rv0692	Rv0692		Conserved hypothetical protein	-2.84388574720144	-5.07579307950189	FALSE
+carbon source	set5S599	cholesterol	Rv0694	Rv0694		Possible L-lactate dehydrogenase (cytochrome) LldD1	-1.91783975300485	-5.0762159805983	FALSE
+carbon source	set5S600	cholesterol	Rv0761c	Rv0761c		Possible zinc-containing alcohol dehydrogenase NAD dependent AdhB	-1.95166420484857	-7.80213697040215	FALSE
+carbon source	set5S599	cholesterol	Rv0761c	Rv0761c		Possible zinc-containing alcohol dehydrogenase NAD dependent AdhB	-1.8071254644754	-5.02243591969611	FALSE
+carbon source	set5S599	cholesterol	Rv0908	Rv0908		Probable metal cation transporter ATPase P-type CtpE	1.3644610130343	7.53524891784587	FALSE
+carbon source	set5S599	cholesterol	Rv2799	Rv2799		Probable membrane protein	-1.46019979868419	-7.71160437134758	FALSE
+carbon source	set5S600	cholesterol	Rv3494c	Rv3494c		Mce-family protein Mce4F	-2.22839640370157	-6.7586899929557	FALSE
+carbon source	set5S599	cholesterol	Rv3494c	Rv3494c		Mce-family protein Mce4F	-1.86914967629398	-7.87084366646001	FALSE
+carbon source	set5S600	cholesterol	Rv3498c	Rv3498c		Mce-family protein Mce4B	-1.76625482186312	-6.03177642928587	FALSE
+carbon source	set5S599	cholesterol	Rv3498c	Rv3498c		Mce-family protein Mce4B	-1.74536297553626	-5.39437855040698	FALSE
+carbon source	set5S600	cholesterol	Rv3526	Rv3526		Oxygenase component of 3-ketosteroid-9-alpha-hydroxylase KshA	-1.86949082547608	-8.39617500303087	FALSE
+carbon source	set5S599	cholesterol	Rv3537	Rv3537		Probable dehydrogenase	-1.87475471470787	-6.41095735778687	FALSE
+carbon source	set5S600	cholesterol	Rv3561	Rv3561		Probable fatty-acid-CoA ligase FadD3 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	-1.64925899005079	-8.20045577060536	FALSE
+carbon source	set5S599	cholesterol	Rv3570c	Rv3570c		Possible oxidoreductase. Possible 3-hydroxy-9,10-seconandrost-1,3,5(10)-triene-9,17-dione hydroxylase.	-2.55606027226319	-6.1975712268486	FALSE
+carbon source	set5S600	cholesterol	Rv3570c	Rv3570c		Possible oxidoreductase. Possible 3-hydroxy-9,10-seconandrost-1,3,5(10)-triene-9,17-dione hydroxylase.	-2.33007057020756	-5.35825050225645	FALSE
+carbon source	set2S620	heptadecanoic acid	Rv0171	Rv0171		Mce-family protein Mce1C	-1.54242546189435	-6.93888296943284	FALSE
+carbon source	set2S619	heptadecanoic acid	Rv0171	Rv0171		Mce-family protein Mce1C	-1.34343524215317	-7.02502500355783	FALSE
+carbon source	set2S620	heptadecanoic acid	Rv0172	Rv0172		Mce-family protein Mce1D	-1.58251432156767	-6.86934774169948	FALSE
+carbon source	set2S619	heptadecanoic acid	Rv0172	Rv0172		Mce-family protein Mce1D	-1.30047948525027	-5.75938969526567	FALSE
+carbon source	set2S620	heptadecanoic acid	Rv0173	Rv0173		Possible Mce-family lipoprotein LprK (Mce-family lipoprotein Mce1E)	-1.57824373319064	-5.49874807613209	FALSE
+carbon source	set2S620	heptadecanoic acid	Rv0174	Rv0174		Mce-family protein Mce1F	-1.52245913442763	-7.53112928962337	FALSE
+carbon source	set2S619	heptadecanoic acid	Rv0174	Rv0174		Mce-family protein Mce1F	-1.52109572678764	-7.52783154422155	FALSE
+carbon source	set2S619	heptadecanoic acid	Rv0176	Rv0176		Probable conserved Mce associated transmembrane protein	-1.64746711121725	-7.93258789589936	FALSE
+carbon source	set2S620	heptadecanoic acid	Rv0176	Rv0176		Probable conserved Mce associated transmembrane protein	-1.56504144020381	-6.83806722397113	FALSE
+carbon source	set2S620	heptadecanoic acid	Rv1129c	Rv1129c		Probable transcriptional regulator protein	-2.36933239507675	-7.77610775180819	FALSE
+carbon source	set2S619	heptadecanoic acid	Rv1129c	Rv1129c		Probable transcriptional regulator protein	-2.25286314533342	-9.80868778194328	FALSE
+carbon source	set2S619	heptadecanoic acid	Rv1130	Rv1130		Possible methylcitrate dehydratase PrpD	-2.36404093711961	-9.24515613379523	FALSE
+carbon source	set2S620	heptadecanoic acid	Rv1130	Rv1130		Possible methylcitrate dehydratase PrpD	-2.22828845982712	-5.56039139564776	FALSE
+carbon source	set2S620	heptadecanoic acid	Rv3766	Rv3766		Hypothetical protein	-2.445151325871	-5.86876181133715	FALSE
+nitrogen source	set2S630	L-Alanine	Rv2780	Rv2780		Secreted L-alanine dehydrogenase Ald (40 kDa antigen) (TB43)	-1.96271942603877	-8.66027772873353	TRUE
+nitrogen source	set2S629	L-Alanine	Rv2780	Rv2780		Secreted L-alanine dehydrogenase Ald (40 kDa antigen) (TB43)	-1.4630698117225	-5.22189128933669	TRUE
+nitrogen source	set2S641	L-Serine	Rv0280	Rv0280		PPE family protein PPE3	-1.70796786960307	-11.4522184704482	FALSE
+no stress control	set6S721		Rv0746	Rv0746		PE-PGRS family protein PE_PGRS9	-1.43922992563038	-5.39010472978125	FALSE
+no stress control	set3S267		Rv1087	Rv1087		PE-PGRS family protein PE_PGRS21	1.44420608791634	9.21987565312025	FALSE
+no stress control	set3S267		Rv1091	Rv1091		PE-PGRS family protein PE_PGRS22	1.57141413164047	8.13880296972265	FALSE
+no stress control	set3S268		Rv1091	Rv1091		PE-PGRS family protein PE_PGRS22	1.65163770522963	8.25535918092641	FALSE
+no stress control	set6S704		Rv3746c	Rv3746c		Probable PE family protein PE34 (PE family-related protein)	1.64791404859287	7.41504278666954	FALSE
+pH	set6S758		Rv0270	Rv0270		Probable fatty-acid-CoA ligase FadD2 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	2.17019065644564	12.2964464429985	FALSE
+pH	set6S757		Rv0270	Rv0270		Probable fatty-acid-CoA ligase FadD2 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	2.19469239092146	12.1420811818039	FALSE
+pH	set6S758		Rv0408	Rv0408		Probable phosphate acetyltransferase Pta (phosphotransacetylase)	1.86378533826881	8.50540253527358	FALSE
+pH	set6S757		Rv0408	Rv0408		Probable phosphate acetyltransferase Pta (phosphotransacetylase)	1.88219164600129	8.77846007823414	FALSE
+pH	set6S758		Rv0464c	Rv0464c		Conserved protein	-1.25685074866843	-5.7755922942759	FALSE
+pH	set6S757		Rv0464c	Rv0464c		Conserved protein	-1.111233690212	-5.86824138024466	FALSE
+pH	set6S757		Rv0934	Rv0934		Periplasmic phosphate-binding lipoprotein PstS1 (PBP-1) (PstS1)	2.13164775593163	11.2084442206507	FALSE
+pH	set6S758		Rv0934	Rv0934		Periplasmic phosphate-binding lipoprotein PstS1 (PBP-1) (PstS1)	2.59810187782086	10.1556423382889	FALSE
+pH	set6S757		Rv0935	Rv0935		Phosphate-transport integral membrane ABC transporter PstC1	2.45149259788903	12.4822856674575	FALSE
+pH	set6S758		Rv0935	Rv0935		Phosphate-transport integral membrane ABC transporter PstC1	2.575573474873	11.2311213024287	FALSE
+pH	set6S757		Rv0936	Rv0936		Phosphate-transport integral membrane ABC transporter PstA2	2.18156998998416	13.9925412546339	FALSE
+pH	set6S758		Rv0936	Rv0936		Phosphate-transport integral membrane ABC transporter PstA2	2.23330130337953	9.4057326533728	FALSE
+pH	set6S757		Rv1151c	Rv1151c		Transcriptional regulatory protein	2.12993873459622	9.74006928414449	FALSE
+pH	set6S758		Rv1151c	Rv1151c		Transcriptional regulatory protein	2.83758928320643	12.2900717419624	FALSE
+pH	set6S757		Rv1206	Rv1206		Probable fatty-acid-CoA ligase FadD6 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	1.61706575081314	8.91864040373861	FALSE
+pH	set6S758		Rv1206	Rv1206		Probable fatty-acid-CoA ligase FadD6 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	1.7011635709114	9.57906866565619	FALSE
+pH	set6S757		Rv1544	Rv1544		Possible ketoacyl reductase	1.43640077441827	6.71955415539771	FALSE
+pH	set6S758		Rv1544	Rv1544		Possible ketoacyl reductase	1.47132260120038	9.18112922172224	FALSE
+pH	set6S757		Rv1747	Rv1747		Probable conserved transmembrane ATP-binding protein ABC transporter	1.27468349855746	7.97585371139364	FALSE
+pH	set6S757		Rv1886c	Rv1886c		Secreted antigen 85-B FbpB (85B) (antigen 85 complex B) (mycolyl transferase 85B) (fibronectin-binding protein B) (extracellular alpha-antigen)	-1.09591595289623	-7.46164255864303	FALSE
+pH	set6S758		Rv1886c	Rv1886c		Secreted antigen 85-B FbpB (85B) (antigen 85 complex B) (mycolyl transferase 85B) (fibronectin-binding protein B) (extracellular alpha-antigen)	-1.08117574049082	-8.06746493518115	FALSE
+pH	set6S758		Rv2187	Rv2187		Long-chain-fatty-acid-CoA ligase FadD15 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	1.14114841381527	7.15019627291892	FALSE
+pH	set6S757		Rv2187	Rv2187		Long-chain-fatty-acid-CoA ligase FadD15 (fatty-acid-CoA synthetase) (fatty-acid-CoA synthase)	1.14959303134818	6.80884081883764	FALSE
+pH	set6S758		Rv2467	Rv2467		Probable aminopeptidase N PepN (Lysyl aminopeptidase) (LYS-AP) (alanine aminopeptidase)	-1.50652103457087	-6.19120900457707	FALSE
+pH	set6S757		Rv2531c	Rv2531c		Probable amino acid decarboxylase	1.10930127277937	7.45823888864296	FALSE
+pH	set6S758		Rv2531c	Rv2531c		Probable amino acid decarboxylase	1.19836143000893	8.28845047262133	FALSE
+pH	set6S757		Rv2589	Rv2589		4-aminobutyrate aminotransferase GabT (gamma-amino-N-butyrate transaminase) (GABA transaminase) (glutamate:succinic semialdehyde transaminase) (GABA aminotransferase) (GABA-at)	-1.63205833068602	-8.76765241559796	FALSE
+pH	set6S758		Rv2589	Rv2589		4-aminobutyrate aminotransferase GabT (gamma-amino-N-butyrate transaminase) (GABA transaminase) (glutamate:succinic semialdehyde transaminase) (GABA aminotransferase) (GABA-at)	-1.53918583223466	-7.16904122061778	FALSE
+pH	set6S758		Rv2672	Rv2672		Possible secreted protease	-1.67084729804651	-6.07492113307625	FALSE
+pH	set6S758		Rv2721c	Rv2721c		Possible conserved transmembrane alanine and glycine rich protein	1.69953619765978	9.03784116584539	FALSE
+pH	set6S757		Rv2721c	Rv2721c		Possible conserved transmembrane alanine and glycine rich protein	1.88013762640503	10.5789936931667	FALSE
+pH	set6S758		Rv2722	Rv2722		Conserved hypothetical protein	1.57733101125429	6.60253283048049	FALSE
+pH	set6S757		Rv2722	Rv2722		Conserved hypothetical protein	1.841341581014	6.57493656413467	FALSE
+pH	set6S757		Rv3319	Rv3319		Probable succinate dehydrogenase (iron-sulphur protein subunit) SdhB (succinic dehydrogenase) (fumarate reductase) (fumarate dehydrogenase) (fumaric hydrogenase)	-1.98424539653431	-6.21871220475525	FALSE
+pH	set6S758		Rv3632	Rv3632		Possible conserved membrane protein	1.64766877618262	6.2823800503312	FALSE
+pH	set6S757		Rv3632	Rv3632		Possible conserved membrane protein	2.04066167115608	7.71340664051345	FALSE
+pH	set6S757		Rv3734c	Rv3734c		Putative triacylglycerol synthase (diacylglycerol acyltransferase) Tgs2	1.51344578569648	11.9582389086649	FALSE
+pH	set6S758		Rv3734c	Rv3734c		Putative triacylglycerol synthase (diacylglycerol acyltransferase) Tgs2	1.57679325993552	10.7549168509418	FALSE
+pH	set6S758		Rv3779	Rv3779		Probable conserved transmembrane protein alanine and leucine rich	1.96213999194588	12.7513019034854	FALSE
+pH	set6S757		Rv3779	Rv3779		Probable conserved transmembrane protein alanine and leucine rich	2.0679842366275	12.3271860791138	FALSE
+pH	set6S757		Rv3908	Rv3908		Possible mutator protein MutT4	1.28537355814846	5.28709948428522	FALSE
+stress	set5S667	2,4-Dinitrophenol	Rv1071c	Rv1071c		Possible enoyl-CoA hydratase EchA9 (enoyl hydrase) (unsaturated acyl-CoA hydratase) (crotonase)	-1.23782903299482	-5.73381128001801	FALSE
+stress	set5S653	2-Mercaptopyridine N-oxide sodium salt	Rv0877	Rv0877		Conserved hypothetical protein	1.42985878363281	9.34585173741165	FALSE
+stress	set5S654	2-Mercaptopyridine N-oxide sodium salt	Rv0877	Rv0877		Conserved hypothetical protein	2.25030537885075	13.4446245812392	FALSE
+stress	set5S653	2-Mercaptopyridine N-oxide sodium salt	Rv1205	Rv1205		Conserved hypothetical protein	1.46386820006086	7.18662687990043	FALSE
+stress	set5S654	2-Mercaptopyridine N-oxide sodium salt	Rv1205	Rv1205		Conserved hypothetical protein	2.25708126004575	10.3903321392997	FALSE
+stress	set5S654	2-Mercaptopyridine N-oxide sodium salt	Rv1901	Rv1901		Probable CinA-like protein CinA	1.49797603145419	6.0148622359607	FALSE
+stress	set5S654	2-Mercaptopyridine N-oxide sodium salt	Rv2344c	Rv2344c		Probable deoxyguanosine triphosphate triphosphohydrolase Dgt (dGTPase) (dGTP triphosphohydrolase)	-1.73869536221712	-5.16995821593063	FALSE
+stress	set5S654	2-Mercaptopyridine N-oxide sodium salt	Rv2684	Rv2684		Probable arsenic-transport integral membrane protein ArsA	1.06981887833129	6.42637445061463	FALSE
+stress	set5S653	2-Mercaptopyridine N-oxide sodium salt	Rv3842c	Rv3842c		Probable glycerophosphoryl diester phosphodiesterase GlpQ1 (glycerophosphodiester phosphodiesterase)	1.13769506949541	5.70710586589677	FALSE
+stress	set5S654	2-Mercaptopyridine N-oxide sodium salt	Rv3842c	Rv3842c		Probable glycerophosphoryl diester phosphodiesterase GlpQ1 (glycerophosphodiester phosphodiesterase)	1.35260581841143	7.43543684545135	FALSE
+stress	set5S650	2-bromo-2-nitro-1,3-propanediol	Rv0877	Rv0877		Conserved hypothetical protein	1.53045194968471	10.4191070770505	FALSE
+stress	set5S609	8-hydroxy-nitroquinoline	Rv3839	Rv3839		Conserved hypothetical protein	1.01611929957533	6.72415130507005	FALSE
+stress	set5S670	Antimycin A	Rv3082c	Rv3082c		Virulence-regulating transcriptional regulator VirS (AraC/XylS family)	1.98919588716536	10.4691365617531	FALSE
+stress	set5S669	Antimycin A	Rv3082c	Rv3082c		Virulence-regulating transcriptional regulator VirS (AraC/XylS family)	2.08048874912834	8.15202860952087	FALSE
+stress	set5S670	Antimycin A	Rv3083	Rv3083		Probable monooxygenase (hydroxylase)	1.38129083844398	6.72633503692746	FALSE
+stress	set5S669	Antimycin A	Rv3083	Rv3083		Probable monooxygenase (hydroxylase)	1.40919676616087	6.71953256447728	FALSE
+stress	set1S203	Bedaquiline	Rv0174	Rv0174		Mce-family protein Mce1F	-1.57606343077896	-6.15534762241862	FALSE
+stress	set1S203	Bedaquiline	Rv0176	Rv0176		Probable conserved Mce associated transmembrane protein	-1.57707793660621	-5.88323719534334	FALSE
+stress	set1S203	Bedaquiline	Rv1184c	Rv1184c		Possible exported protein	-2.28020127587054	-11.5333008481421	FALSE
+stress	set1S204	Bedaquiline	Rv1184c	Rv1184c		Possible exported protein	-1.76969874307481	-8.11974160291296	FALSE
+stress	set5S638	Benzethonium chloride	Rv3161c	Rv3161c		Possible dioxygenase	-2.0436347896224	-5.02916180571291	FALSE
+stress	set5S637	Benzethonium chloride	Rv3161c	Rv3161c		Possible dioxygenase	-1.80050853018261	-5.06317920286309	FALSE
+stress	set5S648	Ceftriaxone disodium salt hemi(heptahydrate)	Rv2068c	Rv2068c		Class a beta-lactamase BlaC	-1.44972960659504	-7.29429322955297	FALSE
+stress	set5S647	Ceftriaxone disodium salt hemi(heptahydrate)	Rv2068c	Rv2068c		Class a beta-lactamase BlaC	-1.31344932419295	-8.38412642513179	FALSE
+stress	set5S648	Ceftriaxone disodium salt hemi(heptahydrate)	Rv2864c	Rv2864c		Possible penicillin-binding lipoprotein	-1.07217368279022	-5.06173628348351	FALSE
+stress	set5S647	Ceftriaxone disodium salt hemi(heptahydrate)	Rv2864c	Rv2864c		Possible penicillin-binding lipoprotein	-1.00133636087529	-6.58978976261242	FALSE
+stress	set5S647	Ceftriaxone disodium salt hemi(heptahydrate)	Rv3811	Rv3811		Conserved hypothetical protein	-1.4456424433471	-9.99356539612637	FALSE
+stress	set5S648	Ceftriaxone disodium salt hemi(heptahydrate)	Rv3811	Rv3811		Conserved hypothetical protein	-1.20792946690075	-7.43259519827337	FALSE
+stress	set6S705	Ciprofloxacin Hydrochloride	Rv1634	Rv1634		Possible drug efflux membrane protein	-1.70209255273269	-7.6766707612007	FALSE
+stress	set5S630	Ciprofloxacin Hydrochloride	Rv1634	Rv1634		Possible drug efflux membrane protein	-1.48837259727849	-7.85455761591637	FALSE
+stress	set5S629	Ciprofloxacin Hydrochloride	Rv1634	Rv1634		Possible drug efflux membrane protein	-1.35504499218621	-7.70839476880869	FALSE
+stress	set5S629	Ciprofloxacin Hydrochloride	Rv2781c	Rv2781c		Possible alanine rich oxidoreductase	1.29552826462241	6.19295744989594	FALSE
+stress	set4S293	Clarithromycin	Rv1322	Rv1322		Conserved hypothetical protein	-1.75208673758001	-7.57612022844305	FALSE
+stress	set4S294	Clarithromycin	Rv1322	Rv1322		Conserved hypothetical protein	-1.60179955244451	-5.17570210428865	FALSE
+stress	set4S294	Clarithromycin	Rv1988	Rv1988		Probable 23S rRNA methyltransferase Erm(37)	-3.18186225995816	-9.4719309061116	FALSE
+stress	set4S293	Clarithromycin	Rv1988	Rv1988		Probable 23S rRNA methyltransferase Erm(37)	-3.02848783422019	-5.72100073191074	FALSE
+stress	set4S293	Clarithromycin	Rv2125	Rv2125		Conserved hypothetical protein	-1.05579232231206	-6.32423656166866	FALSE
+stress	set4S293	Clarithromycin	Rv2368c	Rv2368c		Probable PHOH-like protein PhoH1 (phosphate starvation-inducible protein PSIH)	-2.13421647104451	-9.88510579131201	FALSE
+stress	set4S294	Clarithromycin	Rv2368c	Rv2368c		Probable PHOH-like protein PhoH1 (phosphate starvation-inducible protein PSIH)	-1.96284592510039	-9.86956542286317	FALSE
+stress	set4S293	Clarithromycin	Rv2725c	Rv2725c		Probable GTP-binding protein HflX	-3.12361032070111	-10.9741382014594	FALSE
+stress	set4S294	Clarithromycin	Rv2725c	Rv2725c		Probable GTP-binding protein HflX	-3.09013917995681	-13.8631347877837	FALSE
+stress	set1S211	Clofazimine	Rv0678	Rv0678		Conserved protein	1.25785681572983	5.51144845156771	FALSE
+stress	set1S214	Clofazimine	Rv0678	Rv0678		Conserved protein	2.06692897831108	9.15192056668486	FALSE
+stress	set1S213	Clofazimine	Rv0678	Rv0678		Conserved protein	2.11570414285941	9.80397035407132	FALSE
+stress	set1S211	Clofazimine	Rv1184c	Rv1184c		Possible exported protein	-1.01405684467588	-5.28589030119872	FALSE
+stress	set5S587	Cumene hydroperoxide	Rv1925	Rv1925		Probable acyl-CoA ligase FadD31 (acyl-CoA synthetase) (acyl-CoA synthase)	-2.04619171938325	-8.38952114639375	FALSE
+stress	set5S588	Cumene hydroperoxide	Rv1925	Rv1925		Probable acyl-CoA ligase FadD31 (acyl-CoA synthetase) (acyl-CoA synthase)	-1.86758157160013	-7.80739587602989	FALSE
+stress	set4S292	Delamanid	Rv2073c	Rv2073c		Probable shortchain dehydrogenase	-1.70047065721986	-8.96250063546137	FALSE
+stress	set4S291	Delamanid	Rv2073c	Rv2073c		Probable shortchain dehydrogenase	-1.47298886518033	-6.8336357740851	FALSE
+stress	set4S291	Delamanid	Rv3547	Rv3547		Deazaflavin-dependent nitroreductase Ddn	2.24231647145011	14.9306004037481	FALSE
+stress	set4S292	Delamanid	Rv3547	Rv3547		Deazaflavin-dependent nitroreductase Ddn	2.25857148290159	14.6070458287886	FALSE
+stress	set2S584	Dimethyl Sulfoxide	Rv0984	Rv0984		Possible pterin-4-alpha-carbinolamine dehydratase MoaB2 (PHS) (4-alpha-hydroxy-tetrahydropterin dehydratase) (pterin-4-a-carbinolamine dehydratase) (phenylalanine hydroxylase-stimulating protein) (PHS) (pterin carbinolamine dehydratase) (PCD)	1.40317233619499	5.45265753758913	FALSE
+stress	set5S656	Econazole nitrate salt	Rv0678	Rv0678		Conserved protein	2.01190375437013	9.83900919580498	FALSE
+stress	set5S655	Econazole nitrate salt	Rv0678	Rv0678		Conserved protein	2.36534330738719	13.8204294192381	FALSE
+stress	set5S655	Econazole nitrate salt	Rv3572	Rv3572		Unknown protein	-1.18635460449924	-5.20027473233195	FALSE
+stress	set5S631	Erythromycin	Rv1988	Rv1988		Probable 23S rRNA methyltransferase Erm(37)	-2.8867408813074	-8.99926270116064	FALSE
+stress	set5S631	Erythromycin	Rv2725c	Rv2725c		Probable GTP-binding protein HflX	-1.72876658284367	-9.69853257469008	FALSE
+stress	set5S632	Erythromycin	Rv2725c	Rv2725c		Probable GTP-binding protein HflX	-1.4501920964001	-7.45874973552738	FALSE
+stress	set1S205	Ethambutol	Rv0020c	Rv0020c		Conserved protein with FHA domain, FhaA	-1.48827322461579	-5.4281870994699	FALSE
+stress	set1S206	Ethambutol	Rv0020c	Rv0020c		Conserved protein with FHA domain, FhaA	-1.41598642802286	-7.30754412346818	FALSE
+stress	set3S275	Ethionamide	Rv1205	Rv1205		Conserved hypothetical protein	-1.41996830006716	-5.35345970640353	FALSE
+stress	set3S276	Ethionamide	Rv1901	Rv1901		Probable CinA-like protein CinA	-1.67425182850969	-6.75235825265084	FALSE
+stress	set3S275	Ethionamide	Rv1901	Rv1901		Probable CinA-like protein CinA	-1.44778705655923	-5.01236360391231	FALSE
+stress	set3S275	Ethionamide	Rv3082c	Rv3082c		Virulence-regulating transcriptional regulator VirS (AraC/XylS family)	2.08268009702956	9.91211836791752	FALSE
+stress	set3S276	Ethionamide	Rv3082c	Rv3082c		Virulence-regulating transcriptional regulator VirS (AraC/XylS family)	2.0940194780681	10.2307215810319	FALSE
+stress	set3S275	Ethionamide	Rv3083	Rv3083		Probable monooxygenase (hydroxylase)	2.1703866448972	10.6341088665883	FALSE
+stress	set3S276	Ethionamide	Rv3083	Rv3083		Probable monooxygenase (hydroxylase)	2.25302433205445	13.1172687884704	FALSE
+stress	set6S767	Hydrogen peroxide	Rv1925	Rv1925		Probable acyl-CoA ligase FadD31 (acyl-CoA synthetase) (acyl-CoA synthase)	-1.55795101816546	-7.80035910989575	FALSE
+stress	set6S681	Hydrogen peroxide	Rv1925	Rv1925		Probable acyl-CoA ligase FadD31 (acyl-CoA synthetase) (acyl-CoA synthase)	-1.54033334017719	-7.92224918945618	FALSE
+stress	set6S682	Hydrogen peroxide	Rv1925	Rv1925		Probable acyl-CoA ligase FadD31 (acyl-CoA synthetase) (acyl-CoA synthase)	-1.47102963434527	-6.72095041583898	FALSE
+stress	set6S768	Hydrogen peroxide	Rv1925	Rv1925		Probable acyl-CoA ligase FadD31 (acyl-CoA synthetase) (acyl-CoA synthase)	-1.3805555929775	-6.67348865090618	FALSE
+stress	set2S596	Hygromycin B	Rv1280c	Rv1280c		Probable periplasmic oligopeptide-binding lipoprotein OppA	-1.80520622790619	-6.99320665760295	FALSE
+stress	set2S595	Hygromycin B	Rv1280c	Rv1280c		Probable periplasmic oligopeptide-binding lipoprotein OppA	-1.66548594639287	-6.68359379719999	FALSE
+stress	set2S595	Hygromycin B	Rv1281c	Rv1281c		Probable oligopeptide-transport ATP-binding protein ABC transporter OppD	-1.87155271266575	-6.31680057543941	FALSE
+stress	set2S596	Hygromycin B	Rv1281c	Rv1281c		Probable oligopeptide-transport ATP-binding protein ABC transporter OppD	-1.70962881555967	-5.9160455114125	FALSE
+stress	set2S595	Hygromycin B	Rv1819c	Rv1819c		Probable drug-transport transmembrane ATP-binding protein ABC transporter BacA	3.20049010683048	25.0758585727957	FALSE
+stress	set2S596	Hygromycin B	Rv1819c	Rv1819c		Probable drug-transport transmembrane ATP-binding protein ABC transporter BacA	3.31719844955244	27.2712062238626	FALSE
+stress	set2S596	Hygromycin B	Rv2416c	Rv2416c		Enhanced intracellular survival protein Eis,GCN5-related N-acetyltransferase	-2.74131408063654	-6.84447510201902	FALSE
+stress	set2S595	Hygromycin B	Rv2416c	Rv2416c		Enhanced intracellular survival protein Eis,GCN5-related N-acetyltransferase	-2.72848782720526	-5.31169109771459	FALSE
+stress	set3S273	Isoniazid	Rv0038	Rv0038		Conserved protein	1.39725989545994	5.77658696190524	FALSE
+stress	set3S273	Isoniazid	Rv0158	Rv0158		Probable transcriptional regulatory protein (possibly TetR-family)	-1.25540879098759	-7.27274828283174	FALSE
+stress	set3S274	Isoniazid	Rv0279c	Rv0279c		PE-PGRS family protein PE_PGRS4	1.52623475448127	6.94446266547975	FALSE
+stress	set3S273	Isoniazid	Rv0877	Rv0877		Conserved hypothetical protein	2.8136266451147	15.9395784398758	FALSE
+stress	set3S274	Isoniazid	Rv0877	Rv0877		Conserved hypothetical protein	3.24773029009644	20.018839247048	FALSE
+stress	set3S274	Isoniazid	Rv1090	Rv1090		Probable cellulase CelA2b (endo-1,4-beta-glucanase) (endoglucanase) (carboxymethyl cellulase)	1.65005227124304	6.57578612496028	FALSE
+stress	set3S273	Isoniazid	Rv1091	Rv1091		PE-PGRS family protein PE_PGRS22	1.51885698311426	8.68351442401349	FALSE
+stress	set3S273	Isoniazid	Rv1170	Rv1170		N-acetyl-1-D-myo-inosityl-2-amino-2-deoxy-alpha- D-glucopyranoside deacetylase MshB (GlcNAc-Ins deacetylase)	2.50472838701324	5.40158622842206	FALSE
+stress	set3S274	Isoniazid	Rv1170	Rv1170		N-acetyl-1-D-myo-inosityl-2-amino-2-deoxy-alpha- D-glucopyranoside deacetylase MshB (GlcNAc-Ins deacetylase)	2.79337287398891	7.1086508367709	FALSE
+stress	set3S273	Isoniazid	Rv1205	Rv1205		Conserved hypothetical protein	-1.81633155302855	-6.0244134442321	FALSE
+stress	set3S274	Isoniazid	Rv1205	Rv1205		Conserved hypothetical protein	-1.4636880411938	-6.74511322738882	FALSE
+stress	set3S274	Isoniazid	Rv1901	Rv1901		Probable CinA-like protein CinA	-1.38109990278656	-5.07818424078769	FALSE
+stress	set3S273	Isoniazid	Rv1901	Rv1901		Probable CinA-like protein CinA	-1.36428377998051	-5.39538495684017	FALSE
+stress	set3S274	Isoniazid	Rv2388c	Rv2388c		Probable oxygen-independent coproporphyrinogen III oxidase HemN (coproporphyrinogenase) (coprogen oxidase)	1.09731138826772	6.00221857962022	FALSE
+stress	set3S273	Isoniazid	Rv2388c	Rv2388c		Probable oxygen-independent coproporphyrinogen III oxidase HemN (coproporphyrinogenase) (coprogen oxidase)	1.10149559519387	5.39150457139548	FALSE
+stress	set3S273	Isoniazid	Rv2404c	Rv2404c		Probable GTP-binding protein LepA (GTP-binding elongation factor)	3.02531934133323	19.2729355161736	FALSE
+stress	set3S274	Isoniazid	Rv2404c	Rv2404c		Probable GTP-binding protein LepA (GTP-binding elongation factor)	3.1822406100142	19.4319474051345	FALSE
+stress	set3S273	Isoniazid	Rv2431c	Rv2431c		PE family protein PE25	1.01576411203401	5.14970639877687	FALSE
+stress	set3S274	Isoniazid	Rv2433c	Rv2433c		Hypothetical protein	1.70022857029729	6.78331983539699	FALSE
+stress	set3S273	Isoniazid	Rv2434c	Rv2434c		Probable conserved transmembrane protein	1.86807960506594	5.94100350372609	FALSE
+stress	set3S273	Isoniazid	Rv2681	Rv2681		Conserved hypothetical alanine rich protein	1.67318802708297	5.65729425975941	FALSE
+stress	set6S694	Levofloxacin	Rv1108c	Rv1108c		Probable exodeoxyribonuclease VII (large subunit) XseA (exonuclease VII large subunit)	-1.66949433733351	-5.01744716013466	FALSE
+stress	set6S693	Levofloxacin	Rv3585	Rv3585		DNA repair protein RadA (DNA repair protein SMS)	-1.00907657713046	-6.19907388393254	FALSE
+stress	set6S690	Linezolid	Rv1644	Rv1644		Possible 23S rRNA methyltransferase TsnR	1.5440797784459	11.6254344554031	FALSE
+stress	set6S689	Linezolid	Rv1644	Rv1644		Possible 23S rRNA methyltransferase TsnR	1.62585089974261	12.3204294904096	FALSE
+stress	set6S679	Menadione	Rv1117	Rv1117		Conserved protein	-1.4223654048691	-7.3125305938807	FALSE
+stress	set2S585	Meropenem	Rv1019	Rv1019		Probable transcriptional regulatory protein (probably TetR-family)	-1.55036932617245	-9.546682352806	FALSE
+stress	set2S585	Meropenem	Rv1194c	Rv1194c		Conserved protein	-1.34165462186115	-5.21190359600507	FALSE
+stress	set2S585	Meropenem	Rv1195	Rv1195		PE family protein PE13	-1.21790165549702	-6.53052538642214	FALSE
+stress	set2S586	Meropenem	Rv1195	Rv1195		PE family protein PE13	-1.1422617100941	-6.10821021810005	FALSE
+stress	set2S586	Meropenem	Rv2068c	Rv2068c		Class a beta-lactamase BlaC	-2.88296535637032	-11.9572473421536	FALSE
+stress	set2S585	Meropenem	Rv2068c	Rv2068c		Class a beta-lactamase BlaC	-2.43264672427734	-11.568114207498	FALSE
+stress	set2S585	Meropenem	Rv2525c	Rv2525c		Conserved hypothetical protein. Secreted; predicted to be a substrate of the twin arginine translocation (tat) export system.	-1.42532324084283	-8.47301979734378	FALSE
+stress	set2S586	Meropenem	Rv2525c	Rv2525c		Conserved hypothetical protein. Secreted; predicted to be a substrate of the twin arginine translocation (tat) export system.	-1.3893776067901	-9.9096288515899	FALSE
+stress	set2S586	Meropenem	Rv2864c	Rv2864c		Possible penicillin-binding lipoprotein	-1.58008571775364	-8.29410586450494	FALSE
+stress	set2S585	Meropenem	Rv2864c	Rv2864c		Possible penicillin-binding lipoprotein	-1.26847139415643	-6.38700523887899	FALSE
+stress	set2S585	Meropenem	Rv3811	Rv3811		Conserved hypothetical protein	-1.68499855833635	-10.8448721908327	FALSE
+stress	set2S586	Meropenem	Rv3811	Rv3811		Conserved hypothetical protein	-1.55736930525718	-9.81936337259876	FALSE
+stress	set2S586	Meropenem	Rv3814c	Rv3814c		Possible acyltransferase	-1.31254581860685	-6.96252788963892	FALSE
+stress	set2S585	Meropenem	Rv3814c	Rv3814c		Possible acyltransferase	-1.23992556953202	-6.3566317740057	FALSE
+stress	set3S269	Moxifloxacin	Rv0146	Rv0146		Possible S-adenosylmethionine-dependent methyltransferase	-2.36607675568936	-9.57946567203784	FALSE
+stress	set3S270	Moxifloxacin	Rv0146	Rv0146		Possible S-adenosylmethionine-dependent methyltransferase	-1.84116591862792	-7.79187801161559	FALSE
+stress	set3S270	Moxifloxacin	Rv1020	Rv1020		Probable transcription-repair coupling factor Mfd (TRCF)	-1.23314008949903	-7.81081939193117	TRUE
+stress	set3S269	Moxifloxacin	Rv1020	Rv1020		Probable transcription-repair coupling factor Mfd (TRCF)	-1.06880810344392	-7.03099427278943	TRUE
+stress	set3S269	Moxifloxacin	Rv1091	Rv1091		PE-PGRS family protein PE_PGRS22	1.58245233473714	10.4184790316574	FALSE
+stress	set6S746	Nickel (II) chloride hexahydrate	Rv0450c	Rv0450c		Probable conserved transmembrane transport protein MmpL4	-2.01438758124451	-10.8157678838211	FALSE
+stress	set6S745	Nickel (II) chloride hexahydrate	Rv0450c	Rv0450c		Probable conserved transmembrane transport protein MmpL4	-1.66836052508113	-7.7482291358197	FALSE
+stress	set6S723	Norfloxacin	Rv1634	Rv1634		Possible drug efflux membrane protein	-1.42341592263382	-6.6398220433873	FALSE
+stress	set6S724	Norfloxacin	Rv1634	Rv1634		Possible drug efflux membrane protein	-1.36352713749901	-7.04017865318979	FALSE
+stress	set5S660	Novobiocin sodium salt	Rv2922c	Rv2922c		Probable chromosome partition protein Smc	-1.78719970349839	-6.27388286500251	FALSE
+stress	set5S659	Novobiocin sodium salt	Rv2922c	Rv2922c		Probable chromosome partition protein Smc	-1.57810193623845	-6.70011647413368	FALSE
+stress	set3S279	Ofloxacin	Rv1020	Rv1020		Probable transcription-repair coupling factor Mfd (TRCF)	-1.04099694776618	-6.49180900659853	FALSE
+stress	set2S590	Pretomanid	Rv1634	Rv1634		Possible drug efflux membrane protein	2.75631465676808	20.5822800530983	FALSE
+stress	set2S589	Pretomanid	Rv1634	Rv1634		Possible drug efflux membrane protein	2.96482084949248	21.2073262608133	FALSE
+stress	set2S589	Pretomanid	Rv1901	Rv1901		Probable CinA-like protein CinA	-1.22182710806131	-6.5834580755445	FALSE
+stress	set2S590	Pretomanid	Rv2073c	Rv2073c		Probable shortchain dehydrogenase	-1.54008370743666	-6.32158390701984	FALSE
+stress	set2S589	Pretomanid	Rv2073c	Rv2073c		Probable shortchain dehydrogenase	-1.47078071478873	-7.26819440918233	FALSE
+stress	set2S590	Pretomanid	Rv3547	Rv3547		Deazaflavin-dependent nitroreductase Ddn	4.15091039410721	25.7476835793301	FALSE
+stress	set2S589	Pretomanid	Rv3547	Rv3547		Deazaflavin-dependent nitroreductase Ddn	4.61598225106456	33.5285495726066	FALSE
+stress	set5S592	Pyrazinamide	Rv2043c	Rv2043c		Pyrazinamidase/nicotinamidase PncA (PZase)	2.44554961517039	7.8622860343833	FALSE
+stress	set1S201	Rifampicin	Rv1280c	Rv1280c		Probable periplasmic oligopeptide-binding lipoprotein OppA	-1.58526257774611	-7.32053594483043	FALSE
+stress	set1S202	Rifampicin	Rv1280c	Rv1280c		Probable periplasmic oligopeptide-binding lipoprotein OppA	-1.36810940540927	-6.87524143071937	FALSE
+stress	set1S201	Rifampicin	Rv1433	Rv1433		Possible conserved exported protein	-2.06158697845935	-7.06456579558376	FALSE
+stress	set1S202	Rifampicin	Rv1433	Rv1433		Possible conserved exported protein	-1.84870906088949	-8.84815167372446	FALSE
+stress	set1S202	Rifampicin	Rv2525c	Rv2525c		Conserved hypothetical protein. Secreted; predicted to be a substrate of the twin arginine translocation (tat) export system.	-1.66345848786897	-9.93553816628737	FALSE
+stress	set1S201	Rifampicin	Rv2525c	Rv2525c		Conserved hypothetical protein. Secreted; predicted to be a substrate of the twin arginine translocation (tat) export system.	-1.42726328843939	-8.13847269870193	FALSE
+stress	set1S202	Rifampicin	Rv2672	Rv2672		Possible secreted protease	-1.42853313093275	-7.44624136031165	FALSE
+stress	set1S201	Rifampicin	Rv2721c	Rv2721c		Possible conserved transmembrane alanine and glycine rich protein	1.41961574084941	10.7747015304429	FALSE
+stress	set6S734	Sisomicin sulfate salt	Rv0051	Rv0051		Probable conserved transmembrane protein	1.50132505294145	5.85105487060315	FALSE
+stress	set6S733	Sisomicin sulfate salt	Rv0169	Rv0169		Mce-family protein Mce1A	1.367041213202	6.27892451464734	FALSE
+stress	set6S733	Sisomicin sulfate salt	Rv0171	Rv0171		Mce-family protein Mce1C	1.24975292289038	6.03704378518167	FALSE
+stress	set6S733	Sisomicin sulfate salt	Rv0176	Rv0176		Probable conserved Mce associated transmembrane protein	1.39716545444944	6.28512614339944	FALSE
+stress	set6S734	Sisomicin sulfate salt	Rv0176	Rv0176		Probable conserved Mce associated transmembrane protein	1.57131972846016	7.71339073849282	FALSE
+stress	set6S734	Sisomicin sulfate salt	Rv0660c	Rv0660c		Possible antitoxin MazE2	1.45813513332456	7.02088668519447	FALSE
+stress	set6S733	Sisomicin sulfate salt	Rv1258c	Rv1258c		Probable conserved integral membrane transport protein	-1.54161523809369	-7.61487239093811	FALSE
+stress	set6S734	Sisomicin sulfate salt	Rv1258c	Rv1258c		Probable conserved integral membrane transport protein	-1.35766139252444	-8.22732079537696	FALSE
+stress	set6S733	Sisomicin sulfate salt	Rv1808	Rv1808		PPE family protein PPE32	-1.29228146238324	-7.78016150060614	FALSE
+stress	set6S734	Sisomicin sulfate salt	Rv1808	Rv1808		PPE family protein PPE32	-1.0216630770054	-6.58265687326045	FALSE
+stress	set6S734	Sisomicin sulfate salt	Rv1809	Rv1809		PPE family protein PPE33	-1.4004279329244	-5.69866101080722	FALSE
+stress	set6S733	Sisomicin sulfate salt	Rv1819c	Rv1819c		Probable drug-transport transmembrane ATP-binding protein ABC transporter BacA	2.39205100070584	16.257139578439	FALSE
+stress	set6S734	Sisomicin sulfate salt	Rv1819c	Rv1819c		Probable drug-transport transmembrane ATP-binding protein ABC transporter BacA	2.6601617340699	19.2268648306861	FALSE
+stress	set6S685	Sodium Dodecyl Sulfate	Rv0711	Rv0711		Possible arylsulfatase AtsA (aryl-sulfate sulphohydrolase) (arylsulphatase)	-1.28355438069478	-8.25119195802833	FALSE
+stress	set6S686	Sodium Dodecyl Sulfate	Rv1429	Rv1429		Conserved protein	2.00344558390463	10.8610676995593	FALSE
+stress	set6S685	Sodium Dodecyl Sulfate	Rv1429	Rv1429		Conserved protein	2.23651876537977	12.2390709117449	FALSE
+stress	set6S685	Sodium Dodecyl Sulfate	Rv2616	Rv2616		Conserved protein	-1.59367384636754	-5.03378424561436	FALSE
+stress	set6S686	Sodium Dodecyl Sulfate	Rv3651	Rv3651		Conserved hypothetical protein	1.85285836421091	9.91895333533053	FALSE
+stress	set6S749	Sodium hypochlorite	Rv0438c	Rv0438c		Probable molybdopterin biosynthesis protein MoeA2	1.75638898792022	9.03157605438619	FALSE
+stress	set6S750	Sodium hypochlorite	Rv0438c	Rv0438c		Probable molybdopterin biosynthesis protein MoeA2	1.8874142912406	9.98339552800637	FALSE
+stress	set6S750	Sodium hypochlorite	Rv0864	Rv0864		Probable molybdenum cofactor biosynthesis protein C 2 MoaC2	1.46379138113438	7.72974786206789	FALSE
+stress	set6S749	Sodium hypochlorite	Rv0864	Rv0864		Probable molybdenum cofactor biosynthesis protein C 2 MoaC2	1.77407511233624	8.69422534499373	FALSE
+stress	set6S749	Sodium hypochlorite	Rv1858	Rv1858		Probable molybdenum-transport integral membrane protein ABC transporter ModB	1.63604963443752	9.41719665653004	FALSE
+stress	set6S750	Sodium hypochlorite	Rv1858	Rv1858		Probable molybdenum-transport integral membrane protein ABC transporter ModB	1.80470448853966	6.77706732685363	FALSE
+stress	set6S749	Sodium hypochlorite	Rv1859	Rv1859		Probable molybdenum-transport ATP-binding protein ABC transporter ModC	1.67237911994822	9.00383649148895	FALSE
+stress	set6S750	Sodium hypochlorite	Rv1859	Rv1859		Probable molybdenum-transport ATP-binding protein ABC transporter ModC	1.72096555402125	10.9729496643394	FALSE
+stress	set6S750	Sodium hypochlorite	Rv2453c	Rv2453c		Probable molybdopterin-guanine dinucleotide biosynthesis protein A MobA	1.58397992869352	7.55594153946856	FALSE
+stress	set6S749	Sodium hypochlorite	Rv2453c	Rv2453c		Probable molybdopterin-guanine dinucleotide biosynthesis protein A MobA	1.6018443824645	7.41917650134689	FALSE
+stress	set6S765	Sodium nitrite	Rv1074c	Rv1074c		Probable beta-ketoacyl CoA thiolase FadA3	-1.17868808497622	-6.38738211341057	FALSE
+stress	set6S765	Sodium nitrite	Rv3272	Rv3272		Conserved hypothetical protein	1.34053074365705	7.86326718228689	FALSE
+stress	set5S636	Spectinomycin dihydrochloride pentahydrate	Rv1258c	Rv1258c		Probable conserved integral membrane transport protein	-2.46464056990215	-11.7371404201707	FALSE
+stress	set5S635	Spectinomycin dihydrochloride pentahydrate	Rv1258c	Rv1258c		Probable conserved integral membrane transport protein	-2.25127948112054	-11.2894126880864	FALSE
+stress	set3S288	Streptomycin sulfate salt	Rv1258c	Rv1258c		Probable conserved integral membrane transport protein	-2.55388559210533	-13.4532832672883	FALSE
+stress	set3S287	Streptomycin sulfate salt	Rv1258c	Rv1258c		Probable conserved integral membrane transport protein	-2.33336262150526	-14.1723223953726	FALSE
+stress	set3S288	Streptomycin sulfate salt	Rv1280c	Rv1280c		Probable periplasmic oligopeptide-binding lipoprotein OppA	-1.61238542127676	-6.22322627746059	FALSE
+stress	set3S287	Streptomycin sulfate salt	Rv1280c	Rv1280c		Probable periplasmic oligopeptide-binding lipoprotein OppA	-1.3872098596548	-7.89450368962248	FALSE
+stress	set3S288	Streptomycin sulfate salt	Rv1819c	Rv1819c		Probable drug-transport transmembrane ATP-binding protein ABC transporter BacA	2.01700600628271	17.4257787394093	FALSE
+stress	set3S287	Streptomycin sulfate salt	Rv1819c	Rv1819c		Probable drug-transport transmembrane ATP-binding protein ABC transporter BacA	2.19054833044753	17.4070831371564	FALSE
+stress	set3S288	Streptomycin sulfate salt	Rv3919c	Rv3919c		Probable glucose-inhibited division protein B Gid	2.19844974879022	6.52214022783677	FALSE
+stress	set3S287	Streptomycin sulfate salt	Rv3919c	Rv3919c		Probable glucose-inhibited division protein B Gid	2.69535637253181	7.88043846288579	FALSE
+stress	set6S726	copper (II) chloride dihydrate	Rv0092	Rv0092		Cation transporter P-type ATPase a CtpA	1.26366989926045	6.59511996072178	FALSE
+stress	set6S725	copper (II) chloride dihydrate	Rv0092	Rv0092		Cation transporter P-type ATPase a CtpA	1.65347594143315	7.5838855241623	FALSE
+stress	set6S725	copper (II) chloride dihydrate	Rv0450c	Rv0450c		Probable conserved transmembrane transport protein MmpL4	1.81240123641336	8.75557297354933	FALSE
+stress	set6S726	copper (II) chloride dihydrate	Rv1386	Rv1386		PE family protein PE15	1.58962018805396	5.12359987039993	FALSE
+stress	set6S725	copper (II) chloride dihydrate	Rv1386	Rv1386		PE family protein PE15	2.49073311237689	6.4324232522083	FALSE
+stress	set6S726	copper (II) chloride dihydrate	Rv1387	Rv1387		PPE family protein PPE20	1.91358774001263	14.8644733162518	FALSE
+stress	set6S725	copper (II) chloride dihydrate	Rv1387	Rv1387		PPE family protein PPE20	2.6003692443249	19.9009388035288	FALSE

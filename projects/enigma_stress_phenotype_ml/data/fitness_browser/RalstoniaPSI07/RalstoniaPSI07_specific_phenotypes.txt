@@ -1,0 +1,18 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+cpg	set1IT089		RPSI07_RS01375	RPSI07_RS01375		flagellar protein FlgN	1.54193812182517	5.97096603232796	FALSE
+m63_quarter_strength	set1IT086		RPSI07_RS00470	RPSI07_RS00470		GNAT family N-acetyltransferase	1.05926835371657	6.72699347409685	FALSE
+m63_quarter_strength	set3IT043		RPSI07_RS07635	RPSI07_RS07635		D-xylose ABC transporter substrate-binding protein	-1.4824575572824	-7.03451677232277	TRUE
+m63_quarter_strength	set1IT086		RPSI07_RS07635	RPSI07_RS07635		D-xylose ABC transporter substrate-binding protein	-1.26535125018787	-6.34423226805855	TRUE
+m63_quarter_strength	set1IT086		RPSI07_RS07640	RPSI07_RS07640		xylose ABC transporter ATP-binding protein	-1.44247225295126	-7.56552663078872	TRUE
+m63_quarter_strength	set3IT043		RPSI07_RS07640	RPSI07_RS07640		xylose ABC transporter ATP-binding protein	-1.13489326550709	-6.3205716479691	TRUE
+m63_quarter_strength	set1IT086		RPSI07_RS13100	RPSI07_RS13100		phosphoenolpyruvate carboxylase	-3.69395178197219	-15.0456045335286	TRUE
+m63_quarter_strength	set1IT090		RPSI07_RS13100	RPSI07_RS13100		phosphoenolpyruvate carboxylase	-3.5217169659122	-14.5692295068695	TRUE
+m63_quarter_strength	set3IT043		RPSI07_RS13100	RPSI07_RS13100		phosphoenolpyruvate carboxylase	-2.59928108559708	-12.2483153783278	TRUE
+m63_quarter_strength	set3IT043		RPSI07_RS15115	RPSI07_RS15115		hypothetical protein	1.66340083000844	5.28364389247726	FALSE
+m63_quarter_strength	set3IT043		RPSI07_RS15685	RPSI07_RS15685		bifunctional (p)ppGpp synthetase/guanosine-3',5'-bis(diphosphate) 3'-pyrophosphohydrolase	1.26642065120616	6.17118793732767	FALSE
+m63_quarter_strength	set1IT086		RPSI07_RS15685	RPSI07_RS15685		bifunctional (p)ppGpp synthetase/guanosine-3',5'-bis(diphosphate) 3'-pyrophosphohydrolase	1.34373109972675	9.46818091520302	FALSE
+m63_quarter_strength	set1IT090		RPSI07_RS15685	RPSI07_RS15685		bifunctional (p)ppGpp synthetase/guanosine-3',5'-bis(diphosphate) 3'-pyrophosphohydrolase	1.46290223908443	9.09063666398595	FALSE
+m63_quarter_strength	set1IT086		RPSI07_RS21630	RPSI07_RS21630		glycerate kinase	-1.50792808852103	-6.26889187227804	FALSE
+m63_quarter_strength	set3IT043		RPSI07_RS21630	RPSI07_RS21630		glycerate kinase	-1.19843299567851	-5.1953632391601	FALSE
+xylem sap	set2IT022	Plant=Tomato_MoneyMaker; PlantTreatment=exvivo_xylem_sap_from_healthy_plant; Sample=xylem_sap; Collection=25hr_after_growth_in_xylem_sap	RPSI07_RS11525	RPSI07_RS11525		aspartate 1-decarboxylase	-2.59747081159933	-7.14340654637969	FALSE
+xylem sap	set2IT019	Plant=Tomato_MoneyMaker; PlantTreatment=exvivo_xylem_sap_from_healthy_plant; Sample=xylem_sap; Collection=25hr_after_growth_in_xylem_sap	RPSI07_RS11525	RPSI07_RS11525		aspartate 1-decarboxylase	-1.98052685071436	-5.2434696182206	FALSE

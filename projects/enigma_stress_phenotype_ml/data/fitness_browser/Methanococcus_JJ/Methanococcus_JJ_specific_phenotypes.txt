@@ -1,0 +1,243 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+iron	set4IT045	Iron (II) chloride tetrahydrate	MMJJ_RS00585	MMJJ_RS00585		S-layer protein	1.03616644902243	7.74645874606138	FALSE
+iron	set4IT043	Iron (II) chloride tetrahydrate	MMJJ_RS00585	MMJJ_RS00585		S-layer protein	1.10374138254753	8.50774599125046	FALSE
+iron	set4IT044	Iron (II) chloride tetrahydrate	MMJJ_RS00585	MMJJ_RS00585		S-layer protein	1.18527226227366	8.28363632272089	FALSE
+iron	set4IT043	Iron (II) chloride tetrahydrate	MMJJ_RS01430	MMJJ_RS01430		hypothetical protein	1.11514449961308	7.00595028739768	FALSE
+iron	set4IT045	Iron (II) chloride tetrahydrate	MMJJ_RS01430	MMJJ_RS01430		hypothetical protein	1.4601258530157	9.33920840705512	FALSE
+iron	set4IT044	Iron (II) chloride tetrahydrate	MMJJ_RS01430	MMJJ_RS01430		hypothetical protein	1.47176215558328	8.47906802624486	FALSE
+iron	set4IT043	Iron (II) chloride tetrahydrate	MMJJ_RS01435	MMJJ_RS01435		4Fe-4S binding protein	1.35908479643516	9.88486111775379	FALSE
+iron	set4IT045	Iron (II) chloride tetrahydrate	MMJJ_RS01435	MMJJ_RS01435		4Fe-4S binding protein	1.75616991418949	12.8918470841786	FALSE
+iron	set4IT044	Iron (II) chloride tetrahydrate	MMJJ_RS01435	MMJJ_RS01435		4Fe-4S binding protein	1.79668728733039	12.6981668260428	FALSE
+iron	set4IT030	Iron (II) chloride tetrahydrate	MMJJ_RS04135	MMJJ_RS04135		7-cyano-7-deazaguanine synthase QueC	-1.78610985962589	-6.02390236978572	FALSE
+iron	set4IT045	Iron (II) chloride tetrahydrate	MMJJ_RS04295	MMJJ_RS04295		DUF2202 domain-containing protein	1.35675512250516	9.96001819197061	FALSE
+iron	set4IT044	Iron (II) chloride tetrahydrate	MMJJ_RS04295	MMJJ_RS04295		DUF2202 domain-containing protein	1.44251340382102	9.37954910654681	FALSE
+iron	set4IT043	Iron (II) chloride tetrahydrate	MMJJ_RS04295	MMJJ_RS04295		DUF2202 domain-containing protein	1.45367404751375	11.1032842119815	FALSE
+iron	set4IT076	Iron (II) chloride tetrahydrate	MMJJ_RS09000	MMJJ_RS09000		restriction endonuclease	1.01926071288738	7.32975079847899	FALSE
+iron	set4IT077	Iron (II) chloride tetrahydrate	MMJJ_RS09005	MMJJ_RS09005		N-6 DNA methylase	1.0859671572352	9.11366006683805	FALSE
+iron	set4IT076	Iron (II) chloride tetrahydrate	MMJJ_RS09005	MMJJ_RS09005		N-6 DNA methylase	1.29749132816775	10.551128223392	FALSE
+nitrogen source	set4IT063		MMJJ_RS00250	MMJJ_RS00250		sulfite exporter TauE/SafE family protein	1.13016388568607	5.07075961567975	FALSE
+nitrogen source	set4IT063		MMJJ_RS00690	MMJJ_RS00690		nitrogenase subunit alpha	-1.91264769289762	-9.59686851936083	FALSE
+nitrogen source	set4IT063		MMJJ_RS00700	MMJJ_RS00700		P-II family nitrogen regulator	-2.53267971402001	-6.28024277521775	FALSE
+nitrogen source	set4IT063		MMJJ_RS00705	MMJJ_RS00705		nitrogenase iron protein	-2.2776793456016	-7.83256482051448	FALSE
+nitrogen source	set4IT063		MMJJ_RS04230	MMJJ_RS04230		ABC transporter ATP-binding protein	1.33058917827071	8.39198094207029	FALSE
+nitrogen source	set4IT063		MMJJ_RS04235	MMJJ_RS04235		molybdate ABC transporter permease subunit	1.70495600089346	6.87491669861168	FALSE
+nitrogen source	set4IT063		MMJJ_RS04240	MMJJ_RS04240		molybdate ABC transporter substrate-binding protein	1.59833215483524	9.22705749811238	FALSE
+nitrogen source	set4IT063		MMJJ_RS04930	MMJJ_RS04930		MFS transporter	-2.63538716140392	-8.59807025892509	FALSE
+nitrogen source	set4IT063		MMJJ_RS05030	MMJJ_RS05030		orotate phosphoribosyltransferase-like protein	-2.62568431173537	-7.9788425310344	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS00025	MMJJ_RS00025		16S rRNA (adenine(1518)-N(6)/adenine(1519)-N(6))- dimethyltransferase RsmA	-2.11826572065839	-6.79836402927537	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS00025	MMJJ_RS00025		16S rRNA (adenine(1518)-N(6)/adenine(1519)-N(6))- dimethyltransferase RsmA	-1.95875485568312	-5.27428648497855	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS00025	MMJJ_RS00025		16S rRNA (adenine(1518)-N(6)/adenine(1519)-N(6))- dimethyltransferase RsmA	-1.93703236452619	-5.94335110751765	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS00025	MMJJ_RS00025		16S rRNA (adenine(1518)-N(6)/adenine(1519)-N(6))- dimethyltransferase RsmA	-1.90715452737886	-6.62489897032791	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS00025	MMJJ_RS00025		16S rRNA (adenine(1518)-N(6)/adenine(1519)-N(6))- dimethyltransferase RsmA	-1.88448342978662	-7.17402863831874	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS00670	MMJJ_RS00670		nitrogen fixation	-1.92944084604941	-6.53513454486697	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS00670	MMJJ_RS00670		nitrogen fixation	-1.52756574408345	-5.48985026939491	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS00675	MMJJ_RS00675		nitrogenase	-2.16618569382517	-10.4349694466658	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS00675	MMJJ_RS00675		nitrogenase	-1.67937714070816	-9.46701833864301	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS00675	MMJJ_RS00675		nitrogenase	-1.43253744444597	-9.10913105734276	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS00675	MMJJ_RS00675		nitrogenase	-1.30958518093777	-6.09948453751741	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS00675	MMJJ_RS00675		nitrogenase	-1.2335593104325	-5.19477842638751	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS00680	MMJJ_RS00680		nitrogenase iron-molybdenum cofactor biosynthesis protein NifE	-1.9511612193942	-10.6599185793432	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS00680	MMJJ_RS00680		nitrogenase iron-molybdenum cofactor biosynthesis protein NifE	-1.86577023292378	-12.0216133963152	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS00680	MMJJ_RS00680		nitrogenase iron-molybdenum cofactor biosynthesis protein NifE	-1.46199914644407	-7.57667082047009	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS00680	MMJJ_RS00680		nitrogenase iron-molybdenum cofactor biosynthesis protein NifE	-1.24120309628139	-8.03619937943817	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS00680	MMJJ_RS00680		nitrogenase iron-molybdenum cofactor biosynthesis protein NifE	-1.22520988120951	-6.86393348785429	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS00685	MMJJ_RS00685		nitrogenase molybdenum-iron protein subunit beta	-1.5340271002751	-8.95672151804817	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS00685	MMJJ_RS00685		nitrogenase molybdenum-iron protein subunit beta	-1.01205347622788	-5.7426602541852	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS00690	MMJJ_RS00690		nitrogenase subunit alpha	-1.23211820383851	-6.40540601055261	FALSE
+nitrogen source	set4IT005	Adenosine	MMJJ_RS01040	MMJJ_RS01040		DUF4013 domain-containing protein	1.35950455562647	5.36109042968179	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS01430	MMJJ_RS01430		hypothetical protein	1.16720549165867	5.05876834657272	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS01555	MMJJ_RS01555		Na/Pi cotransporter family protein	-1.65224554423801	-8.69810749948849	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS01555	MMJJ_RS01555		Na/Pi cotransporter family protein	-1.33742646686178	-7.03286680538206	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS01555	MMJJ_RS01555		Na/Pi cotransporter family protein	-1.26888835614736	-6.15304826217119	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS01980	MMJJ_RS01980		cation:proton antiporter	-1.53570784148348	-7.70509149325572	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS02105	MMJJ_RS02105		right-handed parallel beta-helix repeat-containing protein	1.05121366201971	8.65522733104116	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS03220	MMJJ_RS03220		inosine/xanthosine triphosphatase	-1.57288915805012	-7.89166553386352	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS03220	MMJJ_RS03220		inosine/xanthosine triphosphatase	-1.51283884820654	-8.04308529306564	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS03220	MMJJ_RS03220		inosine/xanthosine triphosphatase	-1.39307513405144	-6.76065290182547	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS03220	MMJJ_RS03220		inosine/xanthosine triphosphatase	-1.30258159229773	-6.02954273904112	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS04000	MMJJ_RS04000		NAD(P)H-hydrate dehydratase	-1.57722438145918	-8.16445449271109	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS04000	MMJJ_RS04000		NAD(P)H-hydrate dehydratase	-1.55676740454558	-8.31809760348521	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS04000	MMJJ_RS04000		NAD(P)H-hydrate dehydratase	-1.42508485422055	-7.47250490177855	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS04000	MMJJ_RS04000		NAD(P)H-hydrate dehydratase	-1.18514894323984	-7.04305382396239	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS04465	MMJJ_RS04465		MTAP family purine nucleoside phosphorylase	1.68098108699297	5.87922191598051	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS04465	MMJJ_RS04465		MTAP family purine nucleoside phosphorylase	2.31277862678576	8.40171505859982	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS04515	MMJJ_RS04515		HD domain-containing protein	-2.33782479528156	-13.5693106962538	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS04515	MMJJ_RS04515		HD domain-containing protein	-1.99235495384536	-12.0833249867083	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS04515	MMJJ_RS04515		HD domain-containing protein	-1.94742390407603	-10.6475509008485	FALSE
+nitrogen source	set4IT005	Adenosine	MMJJ_RS04515	MMJJ_RS04515		HD domain-containing protein	-1.56699583394248	-8.35310866000886	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS04515	MMJJ_RS04515		HD domain-containing protein	-1.54949955015603	-6.26623978308301	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS04555	MMJJ_RS04555		MATE family efflux transporter	-1.02933822905542	-6.198459385313	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS04635	MMJJ_RS04635		DUF367 family protein	-2.21063526097375	-5.06202727505138	FALSE
+nitrogen source	set4IT005	Adenosine	MMJJ_RS04660	MMJJ_RS04660		hypoxanthine/guanine phosphoribosyltransferase	1.83173454800245	9.64063169489955	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS04660	MMJJ_RS04660		hypoxanthine/guanine phosphoribosyltransferase	3.19033044792071	15.6559464001722	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS04660	MMJJ_RS04660		hypoxanthine/guanine phosphoribosyltransferase	3.39453483165671	13.5760193910416	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS04660	MMJJ_RS04660		hypoxanthine/guanine phosphoribosyltransferase	3.48284992780271	18.2504439784553	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS04660	MMJJ_RS04660		hypoxanthine/guanine phosphoribosyltransferase	3.63133491844851	11.461887995592	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS04660	MMJJ_RS04660		hypoxanthine/guanine phosphoribosyltransferase	3.82726798667457	14.6513121326358	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS04930	MMJJ_RS04930		MFS transporter	-1.20231388579695	-6.3019809734128	FALSE
+nitrogen source	set4IT005	Adenosine	MMJJ_RS05030	MMJJ_RS05030		orotate phosphoribosyltransferase-like protein	1.26451640150936	7.19575432408999	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS05030	MMJJ_RS05030		orotate phosphoribosyltransferase-like protein	1.46909219360648	6.50726903702803	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS05030	MMJJ_RS05030		orotate phosphoribosyltransferase-like protein	2.33129813769074	11.2781095407723	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS05110	MMJJ_RS05110		ammonium transporter	-3.14868397133333	-17.8457328898203	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS05110	MMJJ_RS05110		ammonium transporter	-2.85949000058304	-15.2140248530966	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS05110	MMJJ_RS05110		ammonium transporter	-2.77924060901987	-17.4366917755226	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS05110	MMJJ_RS05110		ammonium transporter	-2.64611497996595	-13.8799345036964	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS05110	MMJJ_RS05110		ammonium transporter	-2.32936901909666	-10.5245530262977	FALSE
+nitrogen source	set4IT005	Adenosine	MMJJ_RS05110	MMJJ_RS05110		ammonium transporter	-2.10731849239025	-10.5187804183548	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS05115	MMJJ_RS05115		P-II family nitrogen regulator	-4.18211257961864	-5.14550153747588	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS05115	MMJJ_RS05115		P-II family nitrogen regulator	-3.59586384313808	-5.78930915716757	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS05495	MMJJ_RS05495		MinD/ParA family protein	1.10149863303277	5.31014773758866	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS05495	MMJJ_RS05495		MinD/ParA family protein	1.37989534549909	5.14044618027308	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS05800	MMJJ_RS05800		coenzyme F420-0:L-glutamate ligase	-2.57486032674575	-11.3432825476731	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS05800	MMJJ_RS05800		coenzyme F420-0:L-glutamate ligase	-2.13256696146981	-8.63406178396664	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS05800	MMJJ_RS05800		coenzyme F420-0:L-glutamate ligase	-1.74828205976657	-6.13726004743982	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS05925	MMJJ_RS05925		DUF2099 family protein	-1.86325956587047	-6.85680010111775	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS05925	MMJJ_RS05925		DUF2099 family protein	-1.72318494353485	-6.82522221708655	FALSE
+nitrogen source	set4IT005	Adenosine	MMJJ_RS06135	MMJJ_RS06135		50S ribosomal protein L11 methyltransferase	1.2584880610449	7.41147088625602	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS06135	MMJJ_RS06135		50S ribosomal protein L11 methyltransferase	1.40201104439692	5.70074524194031	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS06135	MMJJ_RS06135		50S ribosomal protein L11 methyltransferase	1.41119408093113	6.49879161393201	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS06135	MMJJ_RS06135		50S ribosomal protein L11 methyltransferase	1.47602064340866	5.64080577521538	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS06135	MMJJ_RS06135		50S ribosomal protein L11 methyltransferase	1.8749464694245	8.65225406689464	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS06140	MMJJ_RS06140		RimK family alpha-L-glutamate ligase	-1.96853543663115	-7.45903539873606	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS06140	MMJJ_RS06140		RimK family alpha-L-glutamate ligase	-1.96808660190456	-7.45664625209257	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS06140	MMJJ_RS06140		RimK family alpha-L-glutamate ligase	-1.58147067535686	-5.95897328501927	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS06205	MMJJ_RS06205		EamA family transporter	1.33535362703318	5.1970464760693	TRUE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS06205	MMJJ_RS06205		EamA family transporter	1.42071868728152	6.02677775602813	TRUE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS06205	MMJJ_RS06205		EamA family transporter	1.68941061482628	6.01442237606251	TRUE
+nitrogen source	set4IT005	Adenosine	MMJJ_RS06205	MMJJ_RS06205		EamA family transporter	3.32778023673461	17.765540451554	TRUE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS06205	MMJJ_RS06205		EamA family transporter	4.50858981604197	19.9600617774847	TRUE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS06205	MMJJ_RS06205		EamA family transporter	4.69163091435938	20.9813060230729	TRUE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS06680	MMJJ_RS06680		DUF366 family protein	2.04974499831773	6.00408963806987	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS06680	MMJJ_RS06680		DUF366 family protein	2.38607931826662	5.61962009907469	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS06735	MMJJ_RS06735		cobalt ECF transporter T component CbiQ	-1.45871875974717	-6.54175274277486	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS06735	MMJJ_RS06735		cobalt ECF transporter T component CbiQ	-1.15840556406007	-5.03207688002945	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS06745	MMJJ_RS06745		energy-coupling factor ABC transporter permease	-1.53406111484274	-5.07994944582077	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS06800	MMJJ_RS06800		prefoldin subunit alpha	-1.65019895098956	-5.40807684780332	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS07240	MMJJ_RS07240		MBL fold metallo-hydrolase	2.32253133672955	14.4341731357602	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS07240	MMJJ_RS07240		MBL fold metallo-hydrolase	2.62105456408886	16.2843605585196	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS07240	MMJJ_RS07240		MBL fold metallo-hydrolase	2.75073177724167	17.1009625030974	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS07365	MMJJ_RS07365		CatB-related O-acetyltransferase	-1.42687239536479	-7.81911716057975	FALSE
+nitrogen source	set4IT005	Adenosine	MMJJ_RS07365	MMJJ_RS07365		CatB-related O-acetyltransferase	-1.08950107983949	-5.38852037430754	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS07385	MMJJ_RS07385		ribosomal protein S18-alanine N-acetyltransferase	1.51730507518124	5.10264312777212	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS07385	MMJJ_RS07385		ribosomal protein S18-alanine N-acetyltransferase	1.57233835757172	6.23614390614151	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS07385	MMJJ_RS07385		ribosomal protein S18-alanine N-acetyltransferase	1.72018499571305	6.7852075524497	FALSE
+nitrogen source	set4IT006	Adenosine	MMJJ_RS07745	MMJJ_RS07745		DUF5814 domain-containing protein	1.18621581189564	7.20221607090675	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS07745	MMJJ_RS07745		DUF5814 domain-containing protein	1.27469152279846	5.85518024121413	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS07775	MMJJ_RS07775		fluoride efflux transporter CrcB	-1.54542933876227	-5.43892873915003	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS07800	MMJJ_RS07800		AMP-binding protein	1.17932188098563	5.27831131639163	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS07800	MMJJ_RS07800		AMP-binding protein	1.31998049386692	6.88577871119321	FALSE
+nitrogen source	set4IT005	Adenosine	MMJJ_RS07820	MMJJ_RS07820		bifunctional hexulose-6-phosphate synthase/ribonuclease regulator	1.22959695462809	8.2487692539773	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS07920	MMJJ_RS07920		6-carboxytetrahydropterin synthase QueD	1.54857984574072	5.54319501597874	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS07920	MMJJ_RS07920		6-carboxytetrahydropterin synthase QueD	1.8960746395273	5.77609497910271	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS07920	MMJJ_RS07920		6-carboxytetrahydropterin synthase QueD	1.98125709906608	7.5170244629857	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS08240	MMJJ_RS08240		L-fuculose phosphate aldolase	-1.50235576758994	-6.83865379477195	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS08240	MMJJ_RS08240		L-fuculose phosphate aldolase	-1.37032488636744	-7.35520558542659	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS08240	MMJJ_RS08240		L-fuculose phosphate aldolase	-1.29815165167728	-6.38123512598823	FALSE
+nitrogen source	set4IT012	Adenosine	MMJJ_RS08915	MMJJ_RS08915		CoB--CoM heterodisulfide reductase subunit C	-3.41080792753591	-6.24340446223201	FALSE
+nitrogen source	set4IT010	Adenosine	MMJJ_RS08915	MMJJ_RS08915		CoB--CoM heterodisulfide reductase subunit C	-2.93213401553208	-7.00661165802917	FALSE
+nitrogen source	set4IT011	Adenosine	MMJJ_RS08915	MMJJ_RS08915		CoB--CoM heterodisulfide reductase subunit C	-2.47397971502089	-6.64942915939415	FALSE
+nitrogen source	set4IT004	Adenosine	MMJJ_RS09330	MMJJ_RS09330		hypothetical protein	1.73302307741072	5.09701382473815	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS00675	MMJJ_RS00675		nitrogenase	-2.96508246809406	-13.7556060439464	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS00675	MMJJ_RS00675		nitrogenase	-2.84878515914626	-14.3999566899883	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS00675	MMJJ_RS00675		nitrogenase	-1.83935310087629	-9.77498009987094	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS00680	MMJJ_RS00680		nitrogenase iron-molybdenum cofactor biosynthesis protein NifE	-2.49166810289122	-7.64952155874121	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS00680	MMJJ_RS00680		nitrogenase iron-molybdenum cofactor biosynthesis protein NifE	-2.32558039224281	-9.02155267804376	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS00680	MMJJ_RS00680		nitrogenase iron-molybdenum cofactor biosynthesis protein NifE	-1.70839008215569	-8.72362140472664	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS00685	MMJJ_RS00685		nitrogenase molybdenum-iron protein subunit beta	-2.72687288060147	-11.539724135085	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS00685	MMJJ_RS00685		nitrogenase molybdenum-iron protein subunit beta	-2.60150312493821	-9.19947530000165	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS00685	MMJJ_RS00685		nitrogenase molybdenum-iron protein subunit beta	-1.99684265352229	-13.0736269385194	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS00690	MMJJ_RS00690		nitrogenase subunit alpha	-2.69111895113761	-15.5350035119984	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS00690	MMJJ_RS00690		nitrogenase subunit alpha	-2.57029731546537	-14.5024187749492	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS00690	MMJJ_RS00690		nitrogenase subunit alpha	-2.01013628789902	-13.3491312122089	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS00695	MMJJ_RS00695		P-II family nitrogen regulator	-2.96766049747831	-11.6137108398803	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS00695	MMJJ_RS00695		P-II family nitrogen regulator	-2.94467674799954	-12.3827117575135	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS00695	MMJJ_RS00695		P-II family nitrogen regulator	-1.63337370960189	-5.70510889471414	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS00700	MMJJ_RS00700		P-II family nitrogen regulator	-2.75438880097935	-9.8143925897489	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS00700	MMJJ_RS00700		P-II family nitrogen regulator	-2.25859821346848	-8.59492615649358	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS00700	MMJJ_RS00700		P-II family nitrogen regulator	-1.84201124744024	-6.94343393836264	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS00705	MMJJ_RS00705		nitrogenase iron protein	-2.68587635514772	-14.0758932383116	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS00705	MMJJ_RS00705		nitrogenase iron protein	-2.25738609032237	-9.36441235944705	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS00705	MMJJ_RS00705		nitrogenase iron protein	-1.94824230792822	-11.2260009884582	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS04230	MMJJ_RS04230		ABC transporter ATP-binding protein	1.17605491560151	8.67505750068148	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS04230	MMJJ_RS04230		ABC transporter ATP-binding protein	1.34749924199873	9.63487114506852	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS04230	MMJJ_RS04230		ABC transporter ATP-binding protein	1.45326623724639	9.79716129275174	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS04235	MMJJ_RS04235		molybdate ABC transporter permease subunit	1.33526329179001	5.61442787798376	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS04240	MMJJ_RS04240		molybdate ABC transporter substrate-binding protein	1.23603916517503	7.44238172664402	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS04930	MMJJ_RS04930		MFS transporter	-3.82546116570835	-16.4882853511545	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS04930	MMJJ_RS04930		MFS transporter	-2.83079466313042	-13.0183500146727	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS04930	MMJJ_RS04930		MFS transporter	-1.89546184170583	-11.3089952531819	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS05030	MMJJ_RS05030		orotate phosphoribosyltransferase-like protein	-2.45381399663403	-10.1882294860141	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS05030	MMJJ_RS05030		orotate phosphoribosyltransferase-like protein	-1.95168900657739	-9.08950934116532	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS05030	MMJJ_RS05030		orotate phosphoribosyltransferase-like protein	-1.7734829103788	-9.28235642344544	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS05110	MMJJ_RS05110		ammonium transporter	-2.89105534209462	-15.355836390337	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS05110	MMJJ_RS05110		ammonium transporter	-2.84321852208749	-16.2232258861709	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS05110	MMJJ_RS05110		ammonium transporter	-2.77256237469751	-17.3611482686973	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS05115	MMJJ_RS05115		P-II family nitrogen regulator	-4.36879140699603	-6.08140644817283	FALSE
+nitrogen source	set4IT019	D-glucosamine	MMJJ_RS05115	MMJJ_RS05115		P-II family nitrogen regulator	-3.30441293084463	-6.57983481760765	FALSE
+nitrogen source	set4IT020	D-glucosamine	MMJJ_RS05115	MMJJ_RS05115		P-II family nitrogen regulator	-3.01488956788902	-6.925594521949	FALSE
+nitrogen source	set4IT021	D-glucosamine	MMJJ_RS05455	MMJJ_RS05455		DUF2098 family protein	-1.15752731696326	-7.03673221183394	FALSE
+nutrient t2	set1IT053	Sodium acetate	MMJJ_RS00420	MMJJ_RS00420		CBS domain-containing protein	1.79313975286811	7.73910669721837	TRUE
+nutrient t2	set1IT054	Sodium acetate	MMJJ_RS00420	MMJJ_RS00420		CBS domain-containing protein	1.90518082036255	8.66906469443381	TRUE
+nutrient t2	set1IT047	Sodium acetate	MMJJ_RS01635	MMJJ_RS01635		DUF4041 domain-containing protein	-1.15510201797971	-7.18286175258534	FALSE
+nutrient t2	set1IT047	Sodium acetate	MMJJ_RS01655	MMJJ_RS01655		hypothetical protein	-1.52215038290543	-10.4867622957768	FALSE
+nutrient t2	set1IT048	Sodium acetate	MMJJ_RS01655	MMJJ_RS01655		hypothetical protein	-1.49455204817713	-10.9688729756594	FALSE
+nutrient t2	set1IT046	Sodium acetate	MMJJ_RS01655	MMJJ_RS01655		hypothetical protein	-1.41467825772867	-10.4620014435238	FALSE
+nutrient t2	set1IT047	Sodium acetate	MMJJ_RS01665	MMJJ_RS01665		archease	-2.34188604415393	-8.69450076880412	FALSE
+nutrient t2	set1IT046	Sodium acetate	MMJJ_RS01665	MMJJ_RS01665		archease	-2.25485699109208	-9.94412097451345	FALSE
+nutrient t2	set1IT048	Sodium acetate	MMJJ_RS01665	MMJJ_RS01665		archease	-2.11674745156577	-8.15221218475272	FALSE
+nutrient t2	set1IT047	Sodium acetate	MMJJ_RS01675	MMJJ_RS01675		malate dehydrogenase	-2.0287674327494	-12.4084877003521	FALSE
+nutrient t2	set1IT046	Sodium acetate	MMJJ_RS01675	MMJJ_RS01675		malate dehydrogenase	-1.87009866052222	-11.6182501646086	FALSE
+nutrient t2	set1IT048	Sodium acetate	MMJJ_RS01675	MMJJ_RS01675		malate dehydrogenase	-1.73878815855479	-11.0256875011554	FALSE
+nutrient t2	set2IT072	Sodium acetate	MMJJ_RS01800	MMJJ_RS01800		ADP-ribosylglycohydrolase family protein	-1.42044467859111	-7.00943535169978	FALSE
+nutrient t2	set1IT053	Sodium acetate	MMJJ_RS04105	MMJJ_RS04105		prepilin peptidase	1.43089593311105	10.6933958458056	FALSE
+nutrient t2	set1IT054	Sodium acetate	MMJJ_RS04105	MMJJ_RS04105		prepilin peptidase	1.4523342065212	11.0677365549334	FALSE
+nutrient t2	set2IT072	Sodium acetate	MMJJ_RS05035	MMJJ_RS05035		4Fe-4S binding protein	1.22882396543509	5.62696942849481	FALSE
+nutrient t2	set1IT048	Sodium acetate	MMJJ_RS07240	MMJJ_RS07240		MBL fold metallo-hydrolase	1.70796232006323	11.9845674102834	FALSE
+nutrient t2	set1IT046	Sodium acetate	MMJJ_RS07240	MMJJ_RS07240		MBL fold metallo-hydrolase	1.8719138305212	12.9825824446442	FALSE
+nutrient t2	set1IT047	Sodium acetate	MMJJ_RS07240	MMJJ_RS07240		MBL fold metallo-hydrolase	1.95747457453583	13.3992414808031	FALSE
+nutrient t2	set1IT029	Sodium acetate	MMJJ_RS08260	MMJJ_RS08260		ABC transporter ATP-binding protein	-1.37819436259259	-7.50553923654358	FALSE
+nutrient t2	set2IT012	Sodium acetate	MMJJ_RS08260	MMJJ_RS08260		ABC transporter ATP-binding protein	-1.31559277090797	-8.33516232981341	FALSE
+nutrient t2	set1IT029	Sodium acetate	MMJJ_RS08265	MMJJ_RS08265		iron ABC transporter permease	-1.36297259193107	-9.49687123946056	FALSE
+nutrient t2	set2IT012	Sodium acetate	MMJJ_RS08270	MMJJ_RS08270		iron ABC transporter substrate-binding protein	-1.43398349031536	-10.9197810431598	FALSE
+nutrient t2	set1IT029	Sodium acetate	MMJJ_RS08270	MMJJ_RS08270		iron ABC transporter substrate-binding protein	-1.28137034355121	-9.87825982018514	FALSE
+nutrient t2	set2IT072	Sodium acetate	MMJJ_RS08755	MMJJ_RS08755		ADP-glyceromanno-heptose 6-epimerase	-2.67396244649629	-15.2349624911775	FALSE
+nutrient t2	set2IT060	Sodium acetate	MMJJ_RS08755	MMJJ_RS08755		ADP-glyceromanno-heptose 6-epimerase	-2.19974213282604	-14.0766469064969	FALSE
+nutrient t2	set2IT084	Sodium acetate	MMJJ_RS08755	MMJJ_RS08755		ADP-glyceromanno-heptose 6-epimerase	-1.90301724158285	-13.6084243270201	FALSE
+nutrient t2	set1IT031	Sodium acetate	MMJJ_RS08755	MMJJ_RS08755		ADP-glyceromanno-heptose 6-epimerase	-1.5803774920593	-7.15373000670089	FALSE
+nutrient t2	set1IT053	Sodium acetate	MMJJ_RS08930	MMJJ_RS08930		5'/3'-nucleotidase SurE	1.63629317628256	9.7019319973825	FALSE
+nutrient t2	set1IT054	Sodium acetate	MMJJ_RS08930	MMJJ_RS08930		5'/3'-nucleotidase SurE	1.68415617417361	10.5048695628005	FALSE
+rich t2	set2IT070		MMJJ_RS00240	MMJJ_RS00240		AI-2E family transporter	-1.21782567358696	-8.56993712418962	TRUE
+rich t2	set2IT093		MMJJ_RS00250	MMJJ_RS00250		sulfite exporter TauE/SafE family protein	-1.07569288250749	-5.5831844829491	FALSE
+rich t2	set2IT093		MMJJ_RS01300	MMJJ_RS01300		MarR family transcriptional regulator	-1.51852041511545	-5.47363437642473	FALSE
+rich t2	set2IT093		MMJJ_RS01580	MMJJ_RS01580		phosphoadenosine phosphosulfate reductase family protein	-1.70870221938103	-7.61389654370379	FALSE
+rich t2	set2IT093		MMJJ_RS01680	MMJJ_RS01680		cation diffusion facilitator family transporter	-2.42697757901809	-5.93492555409898	FALSE
+rich t2	set2IT070		MMJJ_RS01800	MMJJ_RS01800		ADP-ribosylglycohydrolase family protein	-1.11695214353416	-6.15685740142004	TRUE
+rich t2	set2IT093		MMJJ_RS01980	MMJJ_RS01980		cation:proton antiporter	2.02940707544729	10.9676496829376	FALSE
+rich t2	set2IT093		MMJJ_RS02145	MMJJ_RS02145		class I SAM-dependent methyltransferase	-3.31601743983637	-9.03461520646573	FALSE
+rich t2	set2IT093		MMJJ_RS02875	MMJJ_RS02875		site-2 protease family protein	-1.30781327795821	-6.02676270443574	TRUE
+rich t2	set2IT070		MMJJ_RS02875	MMJJ_RS02875		site-2 protease family protein	-1.01892733242463	-6.98065196834442	TRUE
+rich t2	set2IT093		MMJJ_RS03600	MMJJ_RS03600		TrmJ/YjtD family RNA methyltransferase	-1.60611090131991	-6.25796834189254	FALSE
+rich t2	set2IT070		MMJJ_RS03960	MMJJ_RS03960		DUF2067 domain-containing protein	-1.45096999509339	-7.07683161450356	TRUE
+rich t2	set2IT070		MMJJ_RS04115	MMJJ_RS04115		HDIG domain-containing protein	-1.29063184318513	-6.13021288162263	FALSE
+rich t2	set2IT093		MMJJ_RS04540	MMJJ_RS04540		site-2 protease family protein	-1.40514312111651	-5.49585304304218	FALSE
+rich t2	set2IT093		MMJJ_RS04580	MMJJ_RS04580		2-phosphosulfolactate phosphatase	-1.98453372249004	-6.69830161974948	FALSE
+rich t2	set2IT093		MMJJ_RS04640	MMJJ_RS04640		TIGR01177 family methyltransferase	-2.13761212905427	-9.93783936764082	FALSE
+rich t2	set2IT093		MMJJ_RS04645	MMJJ_RS04645		acetate--CoA ligase	-1.44068183134772	-8.32843395887812	FALSE
+rich t2	set2IT093		MMJJ_RS05010	MMJJ_RS05010		Coenzyme F420 hydrogenase/dehydrogenase, beta subunit C-terminal domain	1.52255711335376	9.90311381779448	FALSE
+rich t2	set2IT093		MMJJ_RS05680	MMJJ_RS05680		hypothetical protein	2.13837146617018	10.8245042248214	FALSE
+rich t2	set2IT070		MMJJ_RS05690	MMJJ_RS05690		hypothetical protein	1.0152357207888	9.10099986725533	FALSE
+rich t2	set2IT093		MMJJ_RS06055	MMJJ_RS06055		S-methyl-5-thioribose-1-phosphate isomerase	1.49501123847063	8.26860730044806	FALSE
+rich t2	set2IT093		MMJJ_RS06590	MMJJ_RS06590		sodium:alanine symporter family protein	-2.64547480607284	-9.48746752315853	FALSE
+rich t2	set2IT093		MMJJ_RS06810	MMJJ_RS06810		L-serine ammonia-lyase, iron-sulfur-dependent, subunit alpha	1.53484198241912	9.45080053616341	FALSE
+rich t2	set2IT093		MMJJ_RS07220	MMJJ_RS07220		coenzyme F420 hydrogenase subunit beta	1.39949222909848	9.84809531771229	FALSE
+rich t2	set2IT093		MMJJ_RS07225	MMJJ_RS07225		coenzyme F420 hydrogenase subunit gamma	1.57623979924617	8.29777689957299	FALSE
+rich t2	set2IT093		MMJJ_RS07230	MMJJ_RS07230		coenzyme F420-reducing hydrogenase, FrhD protein	1.41275525809492	6.56293865171434	FALSE
+rich t2	set2IT093		MMJJ_RS07235	MMJJ_RS07235		coenzyme F420 hydrogenase subunit alpha	1.68304089169733	11.4905344444526	FALSE
+rich t2	set2IT070		MMJJ_RS08040	MMJJ_RS08040		NAD(P)/FAD-dependent oxidoreductase	1.74001348213851	10.808290890115	FALSE
+rich t2	set2IT093		MMJJ_RS08215	MMJJ_RS08215		radical SAM protein	-1.24114172328165	-5.32916191216428	FALSE
+rich t2	set2IT093		MMJJ_RS08260	MMJJ_RS08260		ABC transporter ATP-binding protein	1.92563471421776	11.2730898056547	FALSE
+rich t2	set2IT093		MMJJ_RS08265	MMJJ_RS08265		iron ABC transporter permease	1.80616862440942	11.7113745656442	FALSE
+rich t2	set2IT093		MMJJ_RS08270	MMJJ_RS08270		iron ABC transporter substrate-binding protein	1.31142471946879	9.06859276785203	FALSE
+rich t2	set2IT093		MMJJ_RS08450	MMJJ_RS08450		undecaprenyl-diphosphate phosphatase	-3.4844337360845	-12.4643604261076	FALSE
+rich t2	set2IT093		MMJJ_RS08555	MMJJ_RS08555		redox-regulated ATPase YchF	-1.54334178059647	-6.93597555186368	FALSE
+rich t2	set2IT093		MMJJ_RS09125	MMJJ_RS09125		CBS domain-containing protein	-1.47739033768398	-6.95360754636553	TRUE

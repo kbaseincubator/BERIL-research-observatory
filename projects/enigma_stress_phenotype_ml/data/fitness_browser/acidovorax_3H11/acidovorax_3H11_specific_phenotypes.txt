@@ -1,0 +1,707 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1IT077	D-Fructose	Ac3H11_3034			Fructokinase (EC 2.7.1.4)	-1.83570010322688	-5.59570827923497	FALSE
+carbon source	set2IT002	D-Fructose	Ac3H11_3034			Fructokinase (EC 2.7.1.4)	-1.3436851325075	-7.29060097758401	FALSE
+carbon source	set1IT062	D-Fructose	Ac3H11_3034			Fructokinase (EC 2.7.1.4)	-1.29716607736847	-5.80385920136251	FALSE
+carbon source	set1IT077	D-Fructose	Ac3H11_3035			Fructose ABC transporter, substrate-binding component FrcB	-4.48455157216712	-11.6865896276231	FALSE
+carbon source	set2IT002	D-Fructose	Ac3H11_3035			Fructose ABC transporter, substrate-binding component FrcB	-4.06404643034963	-12.8433455756503	FALSE
+carbon source	set1IT062	D-Fructose	Ac3H11_3035			Fructose ABC transporter, substrate-binding component FrcB	-4.01301082293606	-10.3153126346806	FALSE
+carbon source	set1IT077	D-Fructose	Ac3H11_3036			Fructose ABC transporter, permease component FrcC	-4.62570484167482	-9.75424354203199	TRUE
+carbon source	set1IT062	D-Fructose	Ac3H11_3036			Fructose ABC transporter, permease component FrcC	-4.42657011704792	-9.86955142898293	TRUE
+carbon source	set2IT002	D-Fructose	Ac3H11_3036			Fructose ABC transporter, permease component FrcC	-3.7603375851719	-8.43490324194445	TRUE
+carbon source	set2IT005	D-Galactose	Ac3H11_600			Galactonate dehydratase (EC 4.2.1.6)	-3.46063063619528	-12.6137820067967	TRUE
+carbon source	set1IT065	D-Galactose	Ac3H11_600			Galactonate dehydratase (EC 4.2.1.6)	-3.24046914440484	-11.73307344401	TRUE
+carbon source	set1IT080	D-Galactose	Ac3H11_600			Galactonate dehydratase (EC 4.2.1.6)	-3.01076665338777	-8.80873657332172	TRUE
+carbon source	set2IT005	D-Galactose	Ac3H11_602			2-dehydro-3-deoxygalactonokinase (EC 2.7.1.58)	-4.88851702718752	-6.64876528394205	TRUE
+carbon source	set2IT005	D-Galactose	Ac3H11_603			L-2-keto-3-deoxyarabonate dehydratase (EC 4.2.1.43)	-6.11936071300797	-5.9505824923553	FALSE
+carbon source	set1IT080	D-Galactose	Ac3H11_603			L-2-keto-3-deoxyarabonate dehydratase (EC 4.2.1.43)	-4.42043096133666	-6.66617836331846	FALSE
+carbon source	set1IT080	D-Galactose	Ac3H11_604			L-arabonate dehydratase (EC 4.2.1.25)	-5.4153443011703	-5.44527914227588	FALSE
+carbon source	set2IT005	D-Galactose	Ac3H11_604			L-arabonate dehydratase (EC 4.2.1.25)	-3.45180902490857	-5.8045416268347	FALSE
+carbon source	set1IT065	D-Galactose	Ac3H11_604			L-arabonate dehydratase (EC 4.2.1.25)	-3.32967335853845	-5.24316288720838	FALSE
+carbon source	set2IT005	D-Galactose	Ac3H11_605			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-6.73855635194903	-6.55933275403517	FALSE
+carbon source	set1IT080	D-Galactose	Ac3H11_605			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-6.6392946319621	-6.46879624167245	FALSE
+carbon source	set1IT080	D-Galactose	Ac3H11_606			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-5.32368098590969	-8.27568786832455	FALSE
+carbon source	set2IT005	D-Galactose	Ac3H11_606			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-4.99902521838234	-9.20101772330851	FALSE
+carbon source	set1IT065	D-Galactose	Ac3H11_606			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-4.91244602257747	-7.94878984414371	FALSE
+carbon source	set1IT065	D-Galactose	Ac3H11_608			L-arabinose transport system permease protein (TC 3.A.1.2.2)	-6.00155298817022	-5.84867323010119	TRUE
+carbon source	set1IT080	D-Galactose	Ac3H11_608			L-arabinose transport system permease protein (TC 3.A.1.2.2)	-5.51123713507989	-8.41875438021972	TRUE
+carbon source	set2IT005	D-Galactose	Ac3H11_608			L-arabinose transport system permease protein (TC 3.A.1.2.2)	-4.70215823702702	-8.42539818510882	TRUE
+carbon source	set2IT005	D-Galactose	Ac3H11_610			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-5.57326270683904	-8.49312407292581	TRUE
+carbon source	set1IT065	D-Galactose	Ac3H11_610			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-5.02298349178533	-9.0296301798103	TRUE
+carbon source	set1IT080	D-Galactose	Ac3H11_610			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-4.83582847618787	-8.99193163834689	TRUE
+carbon source	set1IT065	D-Galactose	Ac3H11_612			2-ketoglutaric semialdehyde dehydrogenase (EC 1.2.1.26)	-3.42794993910047	-5.85336121680073	FALSE
+carbon source	set2IT005	D-Galactose	Ac3H11_612			2-ketoglutaric semialdehyde dehydrogenase (EC 1.2.1.26)	-3.2357388681639	-6.46845636673456	FALSE
+carbon source	set2IT005	D-Galactose	Ac3H11_613			Galactose-binding protein regulator	-4.69215652850521	-5.55569402448912	FALSE
+carbon source	set1IT065	D-Galactose	Ac3H11_613			Galactose-binding protein regulator	-4.39707226936431	-6.01376070193277	FALSE
+carbon source	set1IT080	D-Galactose	Ac3H11_613			Galactose-binding protein regulator	-4.1810625061233	-6.04229714593895	FALSE
+carbon source	set2IT005	D-Galactose	Ac3H11_614			Putative oxidoreductase in arabinose utilization cluster	-5.3187076475327	-6.32061234968771	TRUE
+carbon source	set1IT080	D-Galactose	Ac3H11_614			Putative oxidoreductase in arabinose utilization cluster	-5.02202185546208	-9.02790148203921	TRUE
+carbon source	set1IT065	D-Galactose	Ac3H11_614			Putative oxidoreductase in arabinose utilization cluster	-4.83665881023257	-8.07230073830455	TRUE
+carbon source	set1IT065	D-Galactose	Ac3H11_615			L-arabinolactonase (EC 3.1.1.15)	-4.9890501801114	-5.61323641396211	TRUE
+carbon source	set2IT005	D-Galactose	Ac3H11_791			Glycerol-3-phosphate ABC transporter, ATP-binding protein UgpC (TC 3.A.1.1.3)	-1.27722615770849	-6.83673148978947	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1207			FIG003879: Predicted amidohydrolase	2.56554156649345	5.10023788426553	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1264			Sensor protein basS/pmrB (EC 2.7.3.-)	-1.11828099091065	-5.63335841371421	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1539			UDP-N-acetylglucosamine 4,6-dehydratase (EC 4.2.1.-)	-1.23077357289321	-10.6441075486049	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1545			Bacillosamine/Legionaminic acid biosynthesis aminotransferase PglE; 4-keto-6-deoxy-N-Acetyl-D-hexosaminyl-(Lipid carrier) aminotransferase	-1.14625296913265	-9.68302433630831	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1549			PseA protein	-1.13532921761099	-10.0568811368516	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1550			hypothetical protein	-1.60381637073386	-5.85236756426665	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1555			Lipid carrier : UDP-N-acetylgalactosaminyltransferase (EC 2.4.1.-)	-1.62171315414907	-8.17809012101388	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_1555			Lipid carrier : UDP-N-acetylgalactosaminyltransferase (EC 2.4.1.-)	-1.62095180333117	-7.38182298435397	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1587			Periplasmic serine proteases (ClpP class)	1.40760144575331	12.4054149334941	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_1587			Periplasmic serine proteases (ClpP class)	1.65704213957172	14.0390681290431	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1633			Autolysin sensor kinase (EC 2.7.3.-)	-1.42538260178445	-7.40873486770849	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_1735			Spermidine synthase (EC 2.5.1.16)	1.08033367038542	5.89278781220163	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_1840			Ribose operon repressor	1.57026062671899	9.39303497949727	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_1840			Ribose operon repressor	1.63952403033428	10.2463436457238	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_3226			TRAP-type transport system, periplasmic component, predicted N-acetylneuraminate-binding protein	-4.93029152603179	-10.5311816670912	TRUE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_3226			TRAP-type transport system, periplasmic component, predicted N-acetylneuraminate-binding protein	-4.37842366892227	-10.1938129178475	TRUE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_3227			TRAP-type C4-dicarboxylate transport system, large permease component	-5.49167455717937	-12.288717504173	TRUE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_3227			TRAP-type C4-dicarboxylate transport system, large permease component	-5.05754652818783	-15.9149869506866	TRUE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_3228			Tripartite ATP-independent periplasmic transporter, DctQ component	-4.45078345754867	-5.64036943727828	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_3888			Cytochrome c oxidase polypeptide III (EC 1.9.3.1)	-1.84561956065214	-7.54482941597644	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_3890			Cytochrome oxidase biogenesis protein Cox11-CtaG, copper delivery to Cox1	-1.81714135931455	-7.61271547428078	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_3890			Cytochrome oxidase biogenesis protein Cox11-CtaG, copper delivery to Cox1	-1.6920389898013	-6.8546077185934	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_4446			Cytochrome c5	-1.65171828711891	-6.4020439375744	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_4982			Transcriptional regulator, TetR family	1.14351586755681	7.9306318149236	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_58			Tricarboxylate transport transcriptional regulator TctD	4.2429924928	13.7742459191684	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_58			Tricarboxylate transport transcriptional regulator TctD	4.41378619027304	20.9849659702541	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_59			Tricarboxylate transport protein TctC	4.22144111557115	32.7637167760142	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_59			Tricarboxylate transport protein TctC	4.40571023376854	35.0006781433078	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_60			Tricarboxylate transport protein TctB	4.91979890649618	27.1751835187685	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_60			Tricarboxylate transport protein TctB	5.0186804684926	19.645704172058	FALSE
+carbon source	set1IT083	D-Gluconic Acid sodium salt	Ac3H11_61			Tricarboxylate transport membrane protein TctA	4.56395812894023	35.5154405897655	FALSE
+carbon source	set1IT068	D-Gluconic Acid sodium salt	Ac3H11_61			Tricarboxylate transport membrane protein TctA	4.66501005289003	36.1882641029086	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_1263			Response regulator receiver:Transcriptional regulatory protein, C- terminal	-1.49679220001937	-7.98029225928482	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_1263			Response regulator receiver:Transcriptional regulatory protein, C- terminal	-1.42893886805411	-6.7085375656835	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_166			Glycine cleavage system H protein	-1.62974903274567	-6.64395377081716	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_1688			Probable transmembrane protein	-1.60028810027471	-5.18038827518666	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_2063			Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)	-5.27305950377242	-7.78422618841222	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_2063			Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)	-4.38470676914784	-7.34627660310852	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_2064			ABC-type sugar transport system, permease component	-6.51940884346618	-9.97187067017617	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_2064			ABC-type sugar transport system, permease component	-5.38619097516696	-10.9140514872799	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_2065			Maltose/maltodextrin ABC transporter, permease protein MalG	-5.27711363004485	-10.7091827155042	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_2065			Maltose/maltodextrin ABC transporter, permease protein MalG	-4.58928659017494	-7.93116028280916	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_2066			SN-glycerol-3-phosphate transport ATP-binding protein UgpC (TC 3.A.1.1.3)	-4.60868413580832	-10.4087757042868	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_2066			SN-glycerol-3-phosphate transport ATP-binding protein UgpC (TC 3.A.1.1.3)	-4.53660357691339	-10.6787341468846	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_3083			Benzoyl-CoA oxygenase component A	-1.33084717457193	-7.73543290455507	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_3083			Benzoyl-CoA oxygenase component A	-1.18984624377244	-7.07218799440701	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_3888			Cytochrome c oxidase polypeptide III (EC 1.9.3.1)	-1.67578499475561	-8.17252690671244	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_3888			Cytochrome c oxidase polypeptide III (EC 1.9.3.1)	-1.64583303702851	-6.09953552414373	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_3890			Cytochrome oxidase biogenesis protein Cox11-CtaG, copper delivery to Cox1	-2.4229428851546	-10.3470795094528	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_3890			Cytochrome oxidase biogenesis protein Cox11-CtaG, copper delivery to Cox1	-2.09754853351999	-9.92109156748354	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_4391			Transcriptional activator of acetoin/glycerol metabolism	-1.38455851150634	-6.41971372066236	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_4393			Aldehyde dehydrogenase (EC 1.2.1.3)	-1.76618010650491	-8.56167395870684	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_4393			Aldehyde dehydrogenase (EC 1.2.1.3)	-1.74322947614133	-9.76172686042002	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_4982			Transcriptional regulator, TetR family	-1.29628401076184	-8.08166693356787	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_58			Tricarboxylate transport transcriptional regulator TctD	1.44286693437844	5.92140008479599	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_671			hypothetical protein	-1.77636629170255	-6.89028850698379	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_671			hypothetical protein	-1.7513411770538	-7.90111244119264	FALSE
+carbon source	set1IT076	D-Glucose	Ac3H11_951			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-2.15181130267692	-14.6931500472003	FALSE
+carbon source	set1IT061	D-Glucose	Ac3H11_951			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.89738990626275	-11.1385935472254	FALSE
+carbon source	set2IT021	D-Mannose	Ac3H11_2063			Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)	-1.36778674375385	-5.94820133038689	FALSE
+carbon source	set2IT021	D-Mannose	Ac3H11_2064			ABC-type sugar transport system, permease component	-1.43314807756066	-6.55424626631879	TRUE
+carbon source	set2IT021	D-Mannose	Ac3H11_2065			Maltose/maltodextrin ABC transporter, permease protein MalG	-1.64407497234579	-6.54544077463196	TRUE
+carbon source	set2IT021	D-Mannose	Ac3H11_2066			SN-glycerol-3-phosphate transport ATP-binding protein UgpC (TC 3.A.1.1.3)	-1.52210957515124	-8.69000944370496	TRUE
+carbon source	set2IT021	D-Mannose	Ac3H11_2078			D-mannose isomerase (EC 5.3.1.7)	-5.33684776178118	-10.236635439789	TRUE
+carbon source	set2IT021	D-Mannose	Ac3H11_3035			Fructose ABC transporter, substrate-binding component FrcB	-1.92766579985851	-9.1274851687195	FALSE
+carbon source	set2IT021	D-Mannose	Ac3H11_3036			Fructose ABC transporter, permease component FrcC	-1.75900810881632	-5.71801733463607	FALSE
+carbon source	set1IT081	D-Ribose	Ac3H11_1264			Sensor protein basS/pmrB (EC 2.7.3.-)	-2.05520197240476	-8.36324903471846	FALSE
+carbon source	set1IT066	D-Ribose	Ac3H11_1264			Sensor protein basS/pmrB (EC 2.7.3.-)	-1.99244600434647	-10.4019701810345	FALSE
+carbon source	set1IT066	D-Ribose	Ac3H11_1840			Ribose operon repressor	-5.71477697869223	-9.54754159922175	TRUE
+carbon source	set1IT081	D-Ribose	Ac3H11_1840			Ribose operon repressor	-5.55744891501907	-8.61666156108108	TRUE
+carbon source	set1IT081	D-Ribose	Ac3H11_1841			Ribose ABC transport system, ATP-binding protein RbsA (TC 3.A.1.2.1)	-5.36487027339117	-13.8822442188816	FALSE
+carbon source	set1IT066	D-Ribose	Ac3H11_1841			Ribose ABC transport system, ATP-binding protein RbsA (TC 3.A.1.2.1)	-4.9946909642866	-14.0331786567194	FALSE
+carbon source	set1IT066	D-Ribose	Ac3H11_2939			D-arabinitol 4-dehydrogenase (EC 1.1.1.11)	1.59969018743253	9.01589291186841	FALSE
+carbon source	set1IT081	D-Ribose	Ac3H11_2939			D-arabinitol 4-dehydrogenase (EC 1.1.1.11)	1.94151257418564	10.9171054032021	FALSE
+carbon source	set1IT066	D-Ribose	Ac3H11_3034			Fructokinase (EC 2.7.1.4)	1.50093540983122	6.57764424062899	FALSE
+carbon source	set1IT081	D-Ribose	Ac3H11_3034			Fructokinase (EC 2.7.1.4)	1.63584252069344	7.0558866270392	FALSE
+carbon source	set1IT081	D-Ribose	Ac3H11_4393			Aldehyde dehydrogenase (EC 1.2.1.3)	-1.14034877372485	-6.42662724679869	FALSE
+carbon source	set1IT066	D-Ribose	Ac3H11_604			L-arabonate dehydratase (EC 4.2.1.25)	2.89098351663596	10.500335507945	FALSE
+carbon source	set1IT081	D-Ribose	Ac3H11_604			L-arabonate dehydratase (EC 4.2.1.25)	3.82535515095622	19.1862093298252	FALSE
+carbon source	set1IT066	D-Ribose	Ac3H11_671			hypothetical protein	-1.16467156575138	-6.21705789423284	FALSE
+carbon source	set2IT013	D-Sorbitol	Ac3H11_2940			Ribitol 2-dehydrogenase (EC 1.1.1.56)	-4.38284958042871	-5.5595224043411	FALSE
+carbon source	set2IT013	D-Sorbitol	Ac3H11_2941			Various polyols ABC transporter, ATP-binding component	-3.27320797062496	-5.54286293471077	TRUE
+carbon source	set2IT013	D-Sorbitol	Ac3H11_2942			Various polyols ABC transporter, permease component 2	-4.06047249928639	-7.37457773276455	TRUE
+carbon source	set2IT013	D-Sorbitol	Ac3H11_2943			Various polyols ABC transporter, permease component 1	-4.58954776913097	-10.9782698266308	TRUE
+carbon source	set2IT013	D-Sorbitol	Ac3H11_2944			Various polyols ABC transporter, periplasmic substrate-binding protein	-5.33308438316544	-17.6563251975548	TRUE
+carbon source	set2IT013	D-Sorbitol	Ac3H11_3035			Fructose ABC transporter, substrate-binding component FrcB	-1.58629190123039	-9.51335316282743	FALSE
+carbon source	set2IT013	D-Sorbitol	Ac3H11_3036			Fructose ABC transporter, permease component FrcC	-1.7064411879392	-8.56530805882583	TRUE
+carbon source	set2IT012	Glycerol	Ac3H11_791			Glycerol-3-phosphate ABC transporter, ATP-binding protein UgpC (TC 3.A.1.1.3)	-2.28594556892864	-9.63911051446747	FALSE
+carbon source	set2IT012	Glycerol	Ac3H11_792			Glycerol-3-phosphate ABC transporter, ATP-binding protein UgpC (TC 3.A.1.1.3)	-1.61946570937044	-6.05343832955684	FALSE
+carbon source	set2IT012	Glycerol	Ac3H11_793			Glycerol-3-phosphate ABC transporter, permease protein UgpA (TC 3.A.1.1.3)	-2.636103207236	-9.99646894303971	FALSE
+carbon source	set2IT012	Glycerol	Ac3H11_794			Glycerol-3-phosphate ABC transporter, permease protein UgpE (TC 3.A.1.1.3)	-1.88986022354077	-6.28147038237786	FALSE
+carbon source	set1IT079	L-Arabinose	Ac3H11_3372			2,4-dihydroxyhept-2-ene-1,7-dioic acid aldolase (EC 4.1.2.n4)	-1.78925001194638	-5.39108577986524	FALSE
+carbon source	set1IT064	L-Arabinose	Ac3H11_517			NAD synthetase (EC 6.3.1.5) / Glutamine amidotransferase chain of NAD synthetase	-1.6364527026398	-8.31699449743606	FALSE
+carbon source	set1IT079	L-Arabinose	Ac3H11_517			NAD synthetase (EC 6.3.1.5) / Glutamine amidotransferase chain of NAD synthetase	-1.47077216969601	-8.13955919641793	FALSE
+carbon source	set2IT004	L-Arabinose	Ac3H11_603			L-2-keto-3-deoxyarabonate dehydratase (EC 4.2.1.43)	-3.58732910315424	-7.13193920390764	TRUE
+carbon source	set1IT079	L-Arabinose	Ac3H11_603			L-2-keto-3-deoxyarabonate dehydratase (EC 4.2.1.43)	-2.88455456673374	-6.27942086603897	TRUE
+carbon source	set1IT064	L-Arabinose	Ac3H11_604			L-arabonate dehydratase (EC 4.2.1.25)	-5.19743581102746	-6.17128212951897	TRUE
+carbon source	set1IT079	L-Arabinose	Ac3H11_604			L-arabonate dehydratase (EC 4.2.1.25)	-4.83581514102707	-6.60615373299177	TRUE
+carbon source	set2IT004	L-Arabinose	Ac3H11_604			L-arabonate dehydratase (EC 4.2.1.25)	-4.31546637892283	-5.865252991854	TRUE
+carbon source	set1IT079	L-Arabinose	Ac3H11_605			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-5.03408437601333	-9.04056778100799	FALSE
+carbon source	set1IT064	L-Arabinose	Ac3H11_605			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-4.55743535013992	-7.8119356579054	FALSE
+carbon source	set2IT004	L-Arabinose	Ac3H11_605			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-4.32704114820825	-8.70722646147485	FALSE
+carbon source	set1IT064	L-Arabinose	Ac3H11_606			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-5.05024551917858	-8.8377277607361	TRUE
+carbon source	set1IT079	L-Arabinose	Ac3H11_606			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-4.32359738120218	-6.15134875318456	TRUE
+carbon source	set2IT004	L-Arabinose	Ac3H11_606			Ribose ABC transport system, permease protein RbsC (TC 3.A.1.2.1)	-4.21961352969003	-8.13417087732745	TRUE
+carbon source	set1IT064	L-Arabinose	Ac3H11_608			L-arabinose transport system permease protein (TC 3.A.1.2.2)	-5.65474138284068	-8.63796596281094	TRUE
+carbon source	set2IT004	L-Arabinose	Ac3H11_608			L-arabinose transport system permease protein (TC 3.A.1.2.2)	-5.15239735057333	-8.57513551999045	TRUE
+carbon source	set1IT079	L-Arabinose	Ac3H11_608			L-arabinose transport system permease protein (TC 3.A.1.2.2)	-3.80135944643222	-9.42191552947183	TRUE
+carbon source	set1IT064	L-Arabinose	Ac3H11_610			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-4.54948144376827	-8.7203767363328	TRUE
+carbon source	set1IT079	L-Arabinose	Ac3H11_610			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-4.42349688039013	-8.1304012661068	TRUE
+carbon source	set2IT004	L-Arabinose	Ac3H11_610			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-2.76654979070191	-7.22121070837311	TRUE
+carbon source	set1IT079	L-Arabinose	Ac3H11_612			2-ketoglutaric semialdehyde dehydrogenase (EC 1.2.1.26)	-4.1459664583208	-7.77218725878824	FALSE
+carbon source	set2IT004	L-Arabinose	Ac3H11_612			2-ketoglutaric semialdehyde dehydrogenase (EC 1.2.1.26)	-3.45187460584171	-6.86166013741916	FALSE
+carbon source	set1IT064	L-Arabinose	Ac3H11_613			Galactose-binding protein regulator	-5.64385571959101	-5.49490323386639	TRUE
+carbon source	set1IT079	L-Arabinose	Ac3H11_613			Galactose-binding protein regulator	-3.34813773285328	-6.53319612842809	TRUE
+carbon source	set2IT004	L-Arabinose	Ac3H11_613			Galactose-binding protein regulator	-3.06658691563758	-6.24725335471381	TRUE
+carbon source	set1IT079	L-Arabinose	Ac3H11_614			Putative oxidoreductase in arabinose utilization cluster	-6.22367081053867	-7.40757671463382	TRUE
+carbon source	set1IT064	L-Arabinose	Ac3H11_614			Putative oxidoreductase in arabinose utilization cluster	-4.73942934529594	-10.0989089578182	TRUE
+carbon source	set2IT004	L-Arabinose	Ac3H11_614			Putative oxidoreductase in arabinose utilization cluster	-4.66016333440367	-8.89499051344888	TRUE
+carbon source	set2IT004	L-Arabinose	Ac3H11_615			L-arabinolactonase (EC 3.1.1.15)	-4.92312985018785	-5.76143939722949	FALSE
+carbon source	set1IT064	L-Arabinose	Ac3H11_615			L-arabinolactonase (EC 3.1.1.15)	-3.26809086987005	-5.01210700296926	FALSE
+carbon source	set2IT004	L-Arabinose	Ac3H11_616			Aldose 1-epimerase	-1.09979773871575	-5.48483939587512	FALSE
+carbon source	set1IT064	L-Arabinose	Ac3H11_951			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.02138898351247	-7.99941647262435	FALSE
+carbon source	set2IT004	L-Arabinose	Ac3H11_951			Acetyl-coenzyme A synthetase (EC 6.2.1.1)	-1.0141082252261	-8.16642563695394	FALSE
+carbon source	set2IT016	L-Asparagine	Ac3H11_1954			Glutamate Aspartate periplasmic binding protein precursor GltI (TC 3.A.1.3.4)	-2.46712300260881	-11.3846319041494	FALSE
+carbon source	set2IT016	L-Asparagine	Ac3H11_950			putative membrane protein	1.61184067386709	11.8310429084096	TRUE
+carbon source	set2IT017	L-Glutamine	Ac3H11_1079			NADP-dependent malic enzyme (EC 1.1.1.40)	-1.40574380455396	-12.298268003877	TRUE
+carbon source	set2IT017	L-Glutamine	Ac3H11_155			TRAP dicarboxylate transporter, DctM subunit, unknown substrate 5	-1.46654255553734	-5.15244813075462	FALSE
+carbon source	set2IT017	L-Glutamine	Ac3H11_156			TRAP dicarboxylate transporter, DctQ subunit, unknown substrate 5	-1.92918676298412	-6.30296462655239	FALSE
+carbon source	set2IT017	L-Glutamine	Ac3H11_2391			L-asparaginase (EC 3.5.1.1)	2.93859136866533	15.6906886598311	FALSE
+carbon source	set2IT015	L-Malic acid disodium salt monohydrate	Ac3H11_2468			membrane protein, putative	-1.00839837987606	-7.46834433677428	FALSE
+carbon source	set2IT015	L-Malic acid disodium salt monohydrate	Ac3H11_718			Sensor histidine kinase	-3.03164560767132	-12.4145123116119	FALSE
+carbon source	set2IT015	L-Malic acid disodium salt monohydrate	Ac3H11_719			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-2.69575334389421	-12.4178002329645	TRUE
+carbon source	set2IT008	Sodium D,L-Lactate	Ac3H11_1623			L-lactate dehydrogenase (EC 1.1.2.3)	-2.43353082363381	-10.0087589312448	TRUE
+carbon source	set1IT086	Sodium D,L-Lactate	Ac3H11_1623			L-lactate dehydrogenase (EC 1.1.2.3)	-2.17337817480841	-9.4513797201043	TRUE
+carbon source	set1IT072	Sodium D,L-Lactate	Ac3H11_1623			L-lactate dehydrogenase (EC 1.1.2.3)	-1.78084143060109	-8.82390870567455	TRUE
+carbon source	set1IT086	Sodium D,L-Lactate	Ac3H11_3398			Glycolate dehydrogenase (EC 1.1.99.14), iron-sulfur subunit GlcF	-4.42407557754487	-13.4844927549119	TRUE
+carbon source	set1IT072	Sodium D,L-Lactate	Ac3H11_3398			Glycolate dehydrogenase (EC 1.1.99.14), iron-sulfur subunit GlcF	-4.32138419347832	-12.1626778867625	TRUE
+carbon source	set2IT008	Sodium D,L-Lactate	Ac3H11_3398			Glycolate dehydrogenase (EC 1.1.99.14), iron-sulfur subunit GlcF	-2.55676639168724	-12.0027244619809	TRUE
+carbon source	set1IT072	Sodium D,L-Lactate	Ac3H11_4483			Glycolate dehydrogenase (EC 1.1.99.14), subunit GlcD	-4.56892960277508	-17.6419632808506	TRUE
+carbon source	set1IT086	Sodium D,L-Lactate	Ac3H11_4483			Glycolate dehydrogenase (EC 1.1.99.14), subunit GlcD	-4.44092124716773	-17.1955756724855	TRUE
+carbon source	set2IT008	Sodium D,L-Lactate	Ac3H11_4483			Glycolate dehydrogenase (EC 1.1.99.14), subunit GlcD	-3.00467947515413	-16.3957508427078	TRUE
+carbon source	set1IT086	Sodium D,L-Lactate	Ac3H11_4484			Glycine cleavage system transcriptional activator GcvA	-4.30050129535668	-9.99034899654175	TRUE
+carbon source	set1IT072	Sodium D,L-Lactate	Ac3H11_4484			Glycine cleavage system transcriptional activator GcvA	-3.28196831056492	-11.3623492380553	TRUE
+carbon source	set2IT008	Sodium D,L-Lactate	Ac3H11_4484			Glycine cleavage system transcriptional activator GcvA	-2.81189564862686	-11.6511605082048	TRUE
+carbon source	set1IT084	Sodium D-Lactate	Ac3H11_3398			Glycolate dehydrogenase (EC 1.1.99.14), iron-sulfur subunit GlcF	-4.62223173535789	-11.1905465630266	TRUE
+carbon source	set1IT070	Sodium D-Lactate	Ac3H11_3398			Glycolate dehydrogenase (EC 1.1.99.14), iron-sulfur subunit GlcF	-4.33550664330282	-10.2643754048261	TRUE
+carbon source	set2IT006	Sodium D-Lactate	Ac3H11_3398			Glycolate dehydrogenase (EC 1.1.99.14), iron-sulfur subunit GlcF	-4.02170912585797	-13.4060182004958	TRUE
+carbon source	set1IT084	Sodium D-Lactate	Ac3H11_4483			Glycolate dehydrogenase (EC 1.1.99.14), subunit GlcD	-6.10086281752531	-18.4430009357712	TRUE
+carbon source	set1IT070	Sodium D-Lactate	Ac3H11_4483			Glycolate dehydrogenase (EC 1.1.99.14), subunit GlcD	-5.30009406800069	-18.4992317268632	TRUE
+carbon source	set2IT006	Sodium D-Lactate	Ac3H11_4483			Glycolate dehydrogenase (EC 1.1.99.14), subunit GlcD	-4.23143884028039	-17.4690822350713	TRUE
+carbon source	set1IT084	Sodium D-Lactate	Ac3H11_4484			Glycine cleavage system transcriptional activator GcvA	-3.83696095302528	-7.93927904925939	FALSE
+carbon source	set1IT070	Sodium D-Lactate	Ac3H11_4484			Glycine cleavage system transcriptional activator GcvA	-3.73823784139835	-8.31696456380874	FALSE
+carbon source	set2IT006	Sodium D-Lactate	Ac3H11_4484			Glycine cleavage system transcriptional activator GcvA	-3.43086172822907	-11.8784390214378	FALSE
+carbon source	set1IT071	Sodium L-Lactate	Ac3H11_1623			L-lactate dehydrogenase (EC 1.1.2.3)	-5.80759038680135	-10.4541799427361	TRUE
+carbon source	set2IT007	Sodium L-Lactate	Ac3H11_1623			L-lactate dehydrogenase (EC 1.1.2.3)	-5.44195859492963	-9.07769440375754	TRUE
+carbon source	set1IT085	Sodium L-Lactate	Ac3H11_1623			L-lactate dehydrogenase (EC 1.1.2.3)	-4.70726592440884	-9.91428910337252	TRUE
+carbon source	set1IT085	Sodium L-Lactate	Ac3H11_4484			Glycine cleavage system transcriptional activator GcvA	-4.17156853846504	-9.04737229293879	TRUE
+carbon source	set2IT007	Sodium L-Lactate	Ac3H11_4484			Glycine cleavage system transcriptional activator GcvA	-3.36036594146025	-9.2193980806996	TRUE
+carbon source	set1IT071	Sodium L-Lactate	Ac3H11_4484			Glycine cleavage system transcriptional activator GcvA	-3.22395822504139	-5.86727677825486	TRUE
+carbon source	set1IT089	Sodium propionate	Ac3H11_1140			Aconitate hydratase (EC 4.2.1.3) @ 2-methylisocitrate dehydratase (EC 4.2.1.99)	-1.02326224932722	-7.81262038667675	TRUE
+carbon source	set1IT089	Sodium propionate	Ac3H11_133			Transcriptional regulator, LuxR family	1.14085519306212	6.80795560202379	FALSE
+carbon source	set1IT089	Sodium propionate	Ac3H11_1711			Acyl-CoA dehydrogenase, long-chain specific, mitochondrial precursor (EC 1.3.99.13)	1.6225205534312	11.3490643473725	FALSE
+carbon source	set1IT089	Sodium propionate	Ac3H11_1712			Acyl-CoA dehydrogenase, short-chain specific (EC 1.3.99.2)	1.89645151640484	14.9585093435865	FALSE
+carbon source	set1IT089	Sodium propionate	Ac3H11_1815			Phosphoglycerate mutase (EC 5.4.2.1)	-1.66179924726051	-5.83917355421018	FALSE
+carbon source	set1IT089	Sodium propionate	Ac3H11_2523			Enoyl-CoA hydratase (EC 4.2.1.17) / Delta(3)-cis-delta(2)-trans-enoyl-CoA isomerase (EC 5.3.3.8) / 3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35) / 3-hydroxybutyryl-CoA epimerase (EC 5.1.2.3)	2.93144729798634	22.736362906873	FALSE
+carbon source	set1IT089	Sodium propionate	Ac3H11_2563			Adenylate cyclase (EC 4.6.1.1)	-1.56500235218319	-7.91110407669533	FALSE
+carbon source	set1IT089	Sodium propionate	Ac3H11_4244			sensor histidine kinase	-5.1930215724801	-7.74849623567563	FALSE
+carbon source	set1IT089	Sodium propionate	Ac3H11_4892			Acetyl-CoA hydrolase (EC 3.1.2.1)	1.12030274505124	8.84617169501025	TRUE
+carbon source	set2IT009	Sodium pyruvate	Ac3H11_1664			2-hydroxy-3-oxopropionate reductase (EC 1.1.1.60)	1.22205033908113	7.82599029308736	FALSE
+carbon source	set1IT073	Sodium pyruvate	Ac3H11_1664			2-hydroxy-3-oxopropionate reductase (EC 1.1.1.60)	2.22297092101768	14.0290210219333	FALSE
+carbon source	set1IT087	Sodium pyruvate	Ac3H11_1664			2-hydroxy-3-oxopropionate reductase (EC 1.1.1.60)	2.25039458339189	14.1230480696163	FALSE
+carbon source	set2IT009	Sodium pyruvate	Ac3H11_2313			Multimodular transpeptidase-transglycosylase (EC 2.4.1.129) (EC 3.4.-.-)	-1.5244051997083	-8.67715708726097	FALSE
+carbon source	set1IT087	Sodium pyruvate	Ac3H11_3888			Cytochrome c oxidase polypeptide III (EC 1.9.3.1)	-1.83070878288013	-7.59297728286815	FALSE
+carbon source	set1IT073	Sodium pyruvate	Ac3H11_3888			Cytochrome c oxidase polypeptide III (EC 1.9.3.1)	-1.64503238120634	-6.63916861794374	FALSE
+carbon source	set1IT073	Sodium pyruvate	Ac3H11_3890			Cytochrome oxidase biogenesis protein Cox11-CtaG, copper delivery to Cox1	-1.99639365293239	-9.45641909372395	FALSE
+carbon source	set1IT087	Sodium pyruvate	Ac3H11_3890			Cytochrome oxidase biogenesis protein Cox11-CtaG, copper delivery to Cox1	-1.67163696896431	-7.52227148372684	FALSE
+carbon source	set1IT073	Sodium pyruvate	Ac3H11_4446			Cytochrome c5	-1.4797927755838	-6.99589947508116	FALSE
+carbon source	set1IT087	Sodium pyruvate	Ac3H11_58			Tricarboxylate transport transcriptional regulator TctD	2.09510691702802	11.4732160012666	FALSE
+carbon source	set1IT073	Sodium pyruvate	Ac3H11_58			Tricarboxylate transport transcriptional regulator TctD	2.26400610825081	13.0436452514792	FALSE
+carbon source	set1IT087	Sodium pyruvate	Ac3H11_59			Tricarboxylate transport protein TctC	2.29162807604581	18.9851454806117	FALSE
+carbon source	set1IT073	Sodium pyruvate	Ac3H11_59			Tricarboxylate transport protein TctC	2.45040951456347	19.5773709728848	FALSE
+carbon source	set1IT087	Sodium pyruvate	Ac3H11_60			Tricarboxylate transport protein TctB	1.93288810707971	8.97343949908489	FALSE
+carbon source	set1IT073	Sodium pyruvate	Ac3H11_60			Tricarboxylate transport protein TctB	2.35761834883174	10.8733611652868	FALSE
+carbon source	set1IT087	Sodium pyruvate	Ac3H11_61			Tricarboxylate transport membrane protein TctA	2.0342219972789	14.7708756399092	FALSE
+carbon source	set1IT073	Sodium pyruvate	Ac3H11_61			Tricarboxylate transport membrane protein TctA	2.12448347594611	16.2358782093417	FALSE
+carbon source	set2IT010	Sodium succinate dibasic hexahydrate	Ac3H11_718			Sensor histidine kinase	-4.05520395420784	-11.926837556522	FALSE
+carbon source	set1IT088	Sodium succinate dibasic hexahydrate	Ac3H11_718			Sensor histidine kinase	-3.0881891362029	-11.9314207987605	FALSE
+carbon source	set1IT074	Sodium succinate dibasic hexahydrate	Ac3H11_718			Sensor histidine kinase	-2.59382841464737	-9.01632073033656	FALSE
+carbon source	set2IT010	Sodium succinate dibasic hexahydrate	Ac3H11_719			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-3.10850986570838	-12.7820319173337	TRUE
+carbon source	set1IT088	Sodium succinate dibasic hexahydrate	Ac3H11_719			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-3.02625242557166	-11.3442166435551	TRUE
+carbon source	set1IT074	Sodium succinate dibasic hexahydrate	Ac3H11_719			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-2.63503924995131	-11.1232134144551	TRUE
+carbon source	set2IT014	Tween 20	Ac3H11_1212			Secretion protein HlyD precursor	-1.668360753369	-5.85657010457433	FALSE
+carbon source	set2IT014	Tween 20	Ac3H11_1213			Cobalt-zinc-cadmium resistance protein CzcA; Cation efflux system protein CusA	-1.29628835739034	-8.92496897017704	FALSE
+carbon source	set2IT014	Tween 20	Ac3H11_2831			Isocitrate lyase (EC 4.1.3.1)	-5.11226357678624	-20.8136435543676	TRUE
+carbon source	set2IT014	Tween 20	Ac3H11_3188			3-methylmercaptopropionyl-CoA dehydrogenase (DmdC)	-1.60868086600928	-11.2410929862882	TRUE
+carbon source	set2IT014	Tween 20	Ac3H11_3897			Transcriptional regulator, LysR family	-3.35012110567051	-8.18049603512073	FALSE
+carbon source	set2IT014	Tween 20	Ac3H11_715			Transcriptional regulator, LysR family, in glycolate utilization operon	-1.63599817204245	-7.4427810716819	FALSE
+carbon source	set1IT082	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_313			DNA mismatch repair protein MutL	1.17442885677662	6.34190426185863	FALSE
+carbon source	set1IT067	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_3641			DNA mismatch repair protein MutS	1.63286432383106	5.20782763995412	FALSE
+carbon source	set1IT067	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_58			Tricarboxylate transport transcriptional regulator TctD	2.90355228955649	10.9456675490416	FALSE
+carbon source	set1IT082	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_58			Tricarboxylate transport transcriptional regulator TctD	3.27717771233443	20.9474734787713	FALSE
+carbon source	set1IT067	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_59			Tricarboxylate transport protein TctC	3.07933422896137	24.278919341743	FALSE
+carbon source	set1IT082	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_59			Tricarboxylate transport protein TctC	3.39066841908814	25.9739637928606	FALSE
+carbon source	set1IT067	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_60			Tricarboxylate transport protein TctB	3.59837288552175	19.6100892195512	FALSE
+carbon source	set1IT082	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_60			Tricarboxylate transport protein TctB	3.84445604499103	17.8085134718195	FALSE
+carbon source	set1IT067	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_61			Tricarboxylate transport membrane protein TctA	3.73159324916186	24.2589410663364	FALSE
+carbon source	set1IT082	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_61			Tricarboxylate transport membrane protein TctA	4.00341434331834	30.3882405495276	FALSE
+carbon source	set1IT082	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_718			Sensor histidine kinase	-2.33797675435525	-7.92463097635052	FALSE
+carbon source	set1IT067	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_718			Sensor histidine kinase	-1.79896282947638	-5.84290578594589	FALSE
+carbon source	set1IT082	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_719			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-2.27380436611339	-10.3949270375637	TRUE
+carbon source	set1IT067	a-Ketoglutaric acid disodium salt hydrate	Ac3H11_719			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-2.20010360417973	-10.7314008082599	TRUE
+lb	set1IT060		Ac3H11_1424			Chemotaxis protein CheD	1.80385882726267	14.5046064252875	FALSE
+lb	set1IT055		Ac3H11_1424			Chemotaxis protein CheD	2.03743624898925	16.6065721482151	FALSE
+lb	set1IT055		Ac3H11_1559			Response regulator	2.405423711279	18.3462929621431	FALSE
+lb	set1IT060		Ac3H11_1559			Response regulator	2.41123850273116	20.0381570854679	FALSE
+lb	set3IT070		Ac3H11_2190			Permease of the drug/metabolite transporter (DMT) superfamily	1.49494048023481	9.52699330643456	FALSE
+lb	set1IT055		Ac3H11_4164			GGDEF family protein	1.25367621548796	9.39983790937138	FALSE
+lb	set1IT060		Ac3H11_446			diguanylate cyclase/phosphodiesterase (GGDEF & EAL domains) with PAS/PAC sensor(s)	1.47890749480625	11.0771639098562	FALSE
+lb	set1IT055		Ac3H11_446			diguanylate cyclase/phosphodiesterase (GGDEF & EAL domains) with PAS/PAC sensor(s)	1.80725543462306	12.6517739744258	FALSE
+lb	set1IT055		Ac3H11_447			hypothetical protein	1.08197156466982	5.34624470763992	FALSE
+lb	set1IT060		Ac3H11_524			DNA-directed RNA polymerase specialized sigma subunit, sigma24-like	1.42109076847232	10.2452184713444	FALSE
+motility	set3IT096	Agar	Ac3H11_4332			Adenylylsulfate kinase (EC 2.7.1.25)	1.82587645203392	6.32308323453846	FALSE
+motility	set3IT096	Agar	Ac3H11_4333			FIG00957387: hypothetical protein	1.26653230623772	6.16389625734798	FALSE
+motility	set3IT096	Agar	Ac3H11_4518			Leucine-, isoleucine-, valine-, threonine-, and alanine-binding protein	1.59777864679683	9.42056478336974	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_1358			Valine--pyruvate aminotransferase (EC 2.6.1.66)	1.35463284451323	6.45135207249765	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_1390			Glucose-1-phosphate cytidylyltransferase (EC 2.7.7.33)	-1.25706983164909	-5.13269922162883	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_1393			methyltransferase, putative	-1.20904163151147	-6.18738328833343	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_1396			Cephalosporin hydroxylase	-1.58440533137739	-5.48596686296616	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_167			Glycine dehydrogenase [decarboxylating] (glycine cleavage system P protein) (EC 1.4.4.2)	-1.08675435384575	-6.21005505080158	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_1725			diguanylate cyclase/phosphodiesterase (GGDEF & EAL domains) with PAS/PAC sensor(s)	-1.63102178511301	-7.47261475300365	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_1833			5-formyltetrahydrofolate cyclo-ligase (EC 6.3.3.2)	-2.44601080661488	-5.62565338109964	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_1840			Ribose operon repressor	-1.95195730976785	-5.06950910175425	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_1914			Enoyl-CoA hydratase (EC 4.2.1.17) / 3,2-trans-enoyl-CoA isomerase (EC 5.3.3.8) / 3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35)	-1.87361555283293	-9.83386524380634	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_2064			ABC-type sugar transport system, permease component	-3.04761587597637	-7.81962563529541	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_2065			Maltose/maltodextrin ABC transporter, permease protein MalG	-3.17031152488236	-6.5317962034192	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_2066			SN-glycerol-3-phosphate transport ATP-binding protein UgpC (TC 3.A.1.1.3)	-2.2580164947506	-6.92787684354108	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_2563			Adenylate cyclase (EC 4.6.1.1)	-3.36312640166125	-11.5331258601788	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_2564			Response regulator receiver:Transcriptional regulatory protein, C terminal	-3.48871884819559	-6.10372323375457	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_2630			Alpha/beta hydrolase fold	-1.41567606000804	-6.54106452433509	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_2831			Isocitrate lyase (EC 4.1.3.1)	-1.38471151871151	-7.30150058928504	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_3083			Benzoyl-CoA oxygenase component A	-2.26157159496962	-7.99011624722245	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_3634			Signaling protein with a acyltransferase and GGDEF domains	1.31353942016462	5.23174432722039	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_3890			Cytochrome oxidase biogenesis protein Cox11-CtaG, copper delivery to Cox1	-2.30393618803956	-6.53248048958731	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_3897			Transcriptional regulator, LysR family	-3.14716668596092	-6.21369719655459	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_4027			Ribosomal protein L11 methyltransferase (EC 2.1.1.-)	-1.47401691201022	-5.04795408201901	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_493			toluenesulfonate zinc-independent alcohol dehydrogenase	2.88651306756617	7.62059102725593	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_495			Aldehyde dehydrogenase (EC 1.2.1.3)	3.2474987105348	10.0590688834534	FALSE
+nitrogen source	set4IT092	Ammonium chloride	Ac3H11_506			biphenyl-2,3-diol 1,2-dioxygenase III-related protein	1.89571420080017	8.22059096887235	FALSE
+nitrogen source	set4IT086	D-Alanine	Ac3H11_3455			FOG: TPR repeat	1.5714302142822	9.80341389344938	FALSE
+nitrogen source	set4IT086	D-Alanine	Ac3H11_3897			Transcriptional regulator, LysR family	-3.2043108094017	-5.54725400026782	FALSE
+nitrogen source	set4IT086	D-Alanine	Ac3H11_4846			Transcriptional regulator	-2.74144123428068	-8.82178094043043	FALSE
+nitrogen source	set4IT086	D-Alanine	Ac3H11_4848			D-amino acid dehydrogenase small subunit (EC 1.4.99.1)	-3.03457001294326	-12.8090265773283	TRUE
+nitrogen source	set4IT086	D-Alanine	Ac3H11_506			biphenyl-2,3-diol 1,2-dioxygenase III-related protein	1.38204277848653	5.94107453454698	FALSE
+nitrogen source	set4IT078	L-Alanine	Ac3H11_4846			Transcriptional regulator	-2.98079565846477	-8.47559732958881	FALSE
+nitrogen source	set4IT078	L-Alanine	Ac3H11_4848			D-amino acid dehydrogenase small subunit (EC 1.4.99.1)	-3.40061272975542	-12.0085715077824	FALSE
+nitrogen source	set4IT070	L-Arginine	Ac3H11_2064			ABC-type sugar transport system, permease component	-1.88644267383488	-7.06959323806872	FALSE
+nitrogen source	set4IT070	L-Arginine	Ac3H11_2065			Maltose/maltodextrin ABC transporter, permease protein MalG	-1.49839667264914	-5.02457676202789	FALSE
+nitrogen source	set4IT070	L-Arginine	Ac3H11_2066			SN-glycerol-3-phosphate transport ATP-binding protein UgpC (TC 3.A.1.1.3)	-1.53295131237907	-8.87838668124324	FALSE
+nitrogen source	set4IT070	L-Arginine	Ac3H11_3403			Probable signal peptide protein	-2.22459628655557	-7.87591412601082	FALSE
+nitrogen source	set4IT070	L-Arginine	Ac3H11_3685			Urease accessory protein UreG	-2.02796488093802	-8.13447530981477	FALSE
+nitrogen source	set4IT070	L-Arginine	Ac3H11_3689			Urease alpha subunit (EC 3.5.1.5)	-1.93221532881528	-5.50834216197977	FALSE
+nitrogen source	set4IT070	L-Arginine	Ac3H11_3897			Transcriptional regulator, LysR family	-3.01900793782455	-6.69258106915556	FALSE
+nitrogen source	set4IT070	L-Arginine	Ac3H11_701			Arginase (EC 3.5.3.1)	-3.36744285815405	-5.41856482906193	TRUE
+nitrogen source	set4IT075	L-Glutamine	Ac3H11_3897			Transcriptional regulator, LysR family	-2.72650510639707	-8.44822360681585	FALSE
+nitrogen source	set4IT075	L-Glutamine	Ac3H11_530			2-isopropylmalate synthase (EC 2.3.3.13)	-1.18449263963302	-5.75540990288687	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2064			ABC-type sugar transport system, permease component	-3.9408963921343	-10.7758465584416	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2065			Maltose/maltodextrin ABC transporter, permease protein MalG	-3.19081774143304	-8.47169883858741	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2066			SN-glycerol-3-phosphate transport ATP-binding protein UgpC (TC 3.A.1.1.3)	-3.21014683344465	-13.1479060530569	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2548			N-formylglutamate deformylase (EC 3.5.1.68)	-4.7985278150736	-13.7606352914669	TRUE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2549			Formiminoglutamic iminohydrolase (EC 3.5.3.13)	-7.64379147423345	-11.694485836719	TRUE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2550			Imidazolonepropionase (EC 3.5.2.7)	-5.10532727026831	-9.7752572297801	TRUE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2552			Phytanoyl-CoA dioxygenase	-4.19839052096776	-7.49325160612416	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2554			Amino acid ABC transporter, permease protein	-3.02414756038518	-5.75541980208659	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2555			Glutamine ABC transporter, periplasmic glutamine-binding protein (TC 3.A.1.3.2)	-5.39942616326581	-12.0610275642026	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2556			Transcriptional regulator, IclR family	-5.85631252051602	-5.64688791314098	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2557			Urocanate hydratase (EC 4.2.1.49)	-5.47763876052227	-16.1992564636385	TRUE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2558			Histidine ammonia-lyase (EC 4.3.1.3)	-5.92384319302162	-9.04428130496609	TRUE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2560			Urea carboxylase-related ABC transporter, ATPase protein	-6.07271212801926	-9.68021221819794	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2561			ABC transporter, permease protein	-4.71710956191919	-13.4668631793155	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_2562			ABC transporter substrate-binding protein	-4.34707604435703	-10.0586704303418	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_3274			5-methyltetrahydrofolate--homocysteine methyltransferase (EC 2.1.1.13)	-1.81689625292948	-12.0597820247139	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_3297			5-methyltetrahydrofolate--homocysteine methyltransferase (EC 2.1.1.13)	-1.61297650958549	-8.96318534317765	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_3808			tungsten-containing formate dehydrogenase alpha subunit	-1.01746924870104	-7.03761319094145	FALSE
+nitrogen source	set4IT071	L-Histidine	Ac3H11_985			Outer membrane vitamin B12 receptor BtuB	-1.99009514529107	-11.2786410228926	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_1358			Valine--pyruvate aminotransferase (EC 2.6.1.66)	-2.85698643995158	-11.392280343947	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_1363			Transcriptional regulator, GntR family domain / Aspartate aminotransferase (EC 2.6.1.1)	-1.81651528922042	-7.99086866605354	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_1911			Predicted transcriptional regulator for fatty acid degradation FadP, TetR family	-2.04315087194005	-7.19959500317008	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_2991			Isovaleryl-CoA dehydrogenase (EC 1.3.8.4)	-1.34451777750467	-6.97907161506799	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_2993			Isocitrate dehydrogenase phosphatase (EC 2.7.11.5)/kinase (EC 3.1.3.-)	-1.9331666399141	-11.2437841713586	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_2994			3-ketoacyl-CoA thiolase (EC 2.3.1.16)	-3.03911868727166	-8.19774456894595	TRUE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_2996			Butyryl-CoA dehydrogenase (EC 1.3.99.2)	-1.71359230296037	-6.92641056532958	TRUE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_3897			Transcriptional regulator, LysR family	-3.82132866279574	-8.27714925332427	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_4824			Oligopeptide transport ATP-binding protein OppF (TC 3.A.1.5.1)	-2.30343418304598	-7.19464583649668	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_493			toluenesulfonate zinc-independent alcohol dehydrogenase	2.40520463763299	11.9073227848365	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_495			Aldehyde dehydrogenase (EC 1.2.1.3)	2.40240683034644	12.8724112836246	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_5000			2-isopropylmalate synthase (EC 2.3.3.13)	-1.30366067312005	-5.66832183798863	TRUE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_506			biphenyl-2,3-diol 1,2-dioxygenase III-related protein	1.61275009656757	7.01485087371562	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_530			2-isopropylmalate synthase (EC 2.3.3.13)	-1.79289053586483	-6.20910105613455	FALSE
+nitrogen source	set4IT080	L-Isoleucine	Ac3H11_532			Predicted Lactate-responsive regulator, IclR family	-1.31613628744168	-5.35585456863121	FALSE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_133			Transcriptional regulator, LuxR family	-1.87914956603039	-6.20826368586404	FALSE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_1358			Valine--pyruvate aminotransferase (EC 2.6.1.66)	-2.70997212828803	-12.9822565823782	TRUE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_2831			Isocitrate lyase (EC 4.1.3.1)	-6.49528753168082	-11.7070681287297	FALSE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_2991			Isovaleryl-CoA dehydrogenase (EC 1.3.8.4)	-6.19253955249239	-23.887539621424	TRUE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_3009			Acetoacetyl-CoA synthetase (EC 6.2.1.16) / Long-chain-fatty-acid--CoA ligase (EC 6.2.1.3)	-3.15572420706344	-7.77911376491016	FALSE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_3011			Dienelactone hydrolase and related enzymes	-4.8942074031902	-5.16760137646231	FALSE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_3897			Transcriptional regulator, LysR family	-4.01092288688545	-7.78177145888463	FALSE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_503			Outer membrane protein assembly factor YaeT precursor	-1.48116010221779	-5.66970388613931	FALSE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_506			biphenyl-2,3-diol 1,2-dioxygenase III-related protein	1.31770296310678	6.15019342317782	FALSE
+nitrogen source	set4IT081	L-Leucine	Ac3H11_715			Transcriptional regulator, LysR family, in glycolate utilization operon	-1.17498904894587	-5.6881147904642	FALSE
+nitrogen source	set4IT083	L-Phenylalanine	Ac3H11_1015			Aromatic-amino-acid aminotransferase (EC 2.6.1.57)	-3.41193750238815	-7.16031561791598	FALSE
+nitrogen source	set4IT083	L-Phenylalanine	Ac3H11_1847			Phenylalanine-4-hydroxylase (EC 1.14.16.1)	-4.64007537498721	-21.3928328792863	TRUE
+nitrogen source	set4IT083	L-Phenylalanine	Ac3H11_1848			Tricarboxylate transport protein TctC	-3.13992027830783	-8.41510601402969	FALSE
+nitrogen source	set4IT083	L-Phenylalanine	Ac3H11_1849			4-hydroxyphenylpyruvate dioxygenase (EC 1.13.11.27)	-4.80948507836475	-15.9672086364777	TRUE
+nitrogen source	set4IT083	L-Phenylalanine	Ac3H11_1852			Transcriptional regulator, AsnC family	-4.99688244084852	-12.8000493241024	FALSE
+nitrogen source	set4IT083	L-Phenylalanine	Ac3H11_2306			Maleylacetoacetate isomerase (EC 5.2.1.2) @ Glutathione S-transferase, zeta (EC 2.5.1.18)	-4.20486470965596	-10.1183397136967	TRUE
+nitrogen source	set4IT083	L-Phenylalanine	Ac3H11_2831			Isocitrate lyase (EC 4.1.3.1)	-1.24128851235613	-10.0321787969197	FALSE
+nitrogen source	set4IT083	L-Phenylalanine	Ac3H11_3545			Glyoxalase family protein	-5.33836151748391	-13.3575574788981	FALSE
+nitrogen source	set4IT083	L-Phenylalanine	Ac3H11_4961			NADPH:quinone oxidoreductase	-3.36352228097447	-5.37471775422565	FALSE
+nitrogen source	set4IT077	L-Proline	Ac3H11_1079			NADP-dependent malic enzyme (EC 1.1.1.40)	-1.51518491046708	-12.5160316312969	FALSE
+nitrogen source	set4IT077	L-Proline	Ac3H11_2849			PutR, transcriptional activator of PutA and PutP	-4.50644465219767	-10.4956182910146	TRUE
+nitrogen source	set4IT077	L-Proline	Ac3H11_2850			Transcriptional repressor of PutA and PutP / Proline dehydrogenase (EC 1.5.99.8) (Proline oxidase) / Delta-1-pyrroline-5-carboxylate dehydrogenase (EC 1.5.1.12)	-5.61546655702575	-24.5375579035373	TRUE
+nitrogen source	set4IT072	L-Serine	Ac3H11_2064			ABC-type sugar transport system, permease component	-2.06599089401131	-10.138926510712	FALSE
+nitrogen source	set4IT072	L-Serine	Ac3H11_2065			Maltose/maltodextrin ABC transporter, permease protein MalG	-1.72506067508417	-6.36318098030984	FALSE
+nitrogen source	set4IT072	L-Serine	Ac3H11_2066			SN-glycerol-3-phosphate transport ATP-binding protein UgpC (TC 3.A.1.1.3)	-1.87737961382471	-9.15801492209682	FALSE
+nitrogen source	set4IT072	L-Serine	Ac3H11_4236			Homoserine dehydrogenase (EC 1.1.1.3)	-2.39208620138976	-7.53245919275738	FALSE
+nitrogen source	set4IT072	L-Serine	Ac3H11_4846			Transcriptional regulator	-1.64696497668847	-10.831740954896	FALSE
+nitrogen source	set4IT072	L-Serine	Ac3H11_929			L-serine dehydratase (EC 4.3.1.17)	-3.72672190216502	-15.2804073349677	TRUE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_1911			Predicted transcriptional regulator for fatty acid degradation FadP, TetR family	-1.45748041316019	-5.59400534542785	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_2063			Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)	-1.96899238089168	-5.34946977865993	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_2064			ABC-type sugar transport system, permease component	-2.37591060063625	-6.85174535861303	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_2065			Maltose/maltodextrin ABC transporter, permease protein MalG	-2.13897181851423	-6.1852638369926	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_2066			SN-glycerol-3-phosphate transport ATP-binding protein UgpC (TC 3.A.1.1.3)	-2.61073558429381	-9.82199258576948	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_2404			Aspartate aminotransferase (EC 2.6.1.1)	-1.48159621178397	-8.45491050371332	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_2563			Adenylate cyclase (EC 4.6.1.1)	-1.9023279243225	-11.4374988873481	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_2564			Response regulator receiver:Transcriptional regulatory protein, C terminal	-2.5296031294191	-5.68822558576119	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_2994			3-ketoacyl-CoA thiolase (EC 2.3.1.16)	-1.93054365474667	-6.35683507742594	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_2996			Butyryl-CoA dehydrogenase (EC 1.3.99.2)	-1.15005101575741	-5.07820434185807	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_35			Pyruvate dehydrogenase E1 component (EC 1.2.4.1)	-5.22290486156264	-26.907182294382	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_4236			Homoserine dehydrogenase (EC 1.1.1.3)	-6.2104566884275	-8.51738029596673	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_4237			hypothetical protein	-5.09608135620821	-5.97586477334275	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_4824			Oligopeptide transport ATP-binding protein OppF (TC 3.A.1.5.1)	-1.72419288685541	-8.84286061663059	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_501			ABC-type multidrug transport system, permease component	-2.51843192079121	-5.37938538944258	FALSE
+nitrogen source	set4IT073	L-Threonine	Ac3H11_503			Outer membrane protein assembly factor YaeT precursor	-1.30598246514423	-6.37581206449199	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_1241			Molybdenum cofactor biosynthesis protein MoaC	1.45235256643586	11.5744543333675	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_1503			Molybdopterin biosynthesis protein MoeA	1.12445590291754	8.19338458328176	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_1574			hypothetical protein	1.88441061235213	7.06101460449874	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_165			Aminomethyltransferase (glycine cleavage system T protein) (EC 2.1.2.10)	1.94788239330451	11.2061832943514	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_166			Glycine cleavage system H protein	2.23716640124722	16.4864352311448	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_1849			4-hydroxyphenylpyruvate dioxygenase (EC 1.13.11.27)	-1.07449694258511	-6.45175511206275	TRUE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_1852			Transcriptional regulator, AsnC family	-1.67043459592866	-11.5814686600769	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_1913			FIG00581832: hypothetical protein	1.13577425123782	8.09585550771629	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_1914			Enoyl-CoA hydratase (EC 4.2.1.17) / 3,2-trans-enoyl-CoA isomerase (EC 5.3.3.8) / 3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35)	1.52496194338036	13.8849253839934	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_1916			3-ketoacyl-CoA thiolase (EC 2.3.1.16) @ Acetyl-CoA acetyltransferase (EC 2.3.1.9)	1.30335034841014	6.74999420165062	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_2043			OsmC/Ohr family protein	1.45000925209252	11.4445546748104	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_2306			Maleylacetoacetate isomerase (EC 5.2.1.2) @ Glutathione S-transferase, zeta (EC 2.5.1.18)	-1.69423227883602	-6.80915454737829	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_2379			exported protein	1.35270054319691	9.03161689543824	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_2582			Na(+) H(+) antiporter subunit A; Na(+) H(+) antiporter subunit B	-1.37052644423095	-9.35833404762534	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_283			FKBP-type peptidyl-prolyl cis-trans isomerase SlyD (EC 5.2.1.8)	1.55624367339244	5.73277922127342	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_2831			Isocitrate lyase (EC 4.1.3.1)	-2.46632528176687	-14.234822551217	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_3455			FOG: TPR repeat	-3.92412795099415	-13.6244066793903	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_3545			Glyoxalase family protein	-1.33990293237623	-8.13919598822477	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_3797			Formate dehydrogenase chain D (EC 1.2.1.2)	1.62624547124015	12.472650198342	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_3802			Formate dehydrogenase-O, iron-sulfur subunit (EC 1.2.1.2); Putative formate dehydrogenase iron-sulfur subunit (EC 1.2.1.2)	1.10882212584291	7.16909493091214	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_3803			Formate dehydrogenase-O, major subunit (EC 1.2.1.2)	1.20713338482112	10.9747367029738	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_3804			Putative formate dehydrogenase-specific chaperone	1.18134837370191	10.1257504535116	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_3805			Iron-sulfur cluster-binding protein	1.22564417679256	9.75005422052365	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_3806			FIG00433900: hypothetical protein	1.07119535177019	5.9389392133769	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_3875			FIG015547: peptidase, M16 family	-2.82374403999757	-12.2882710340756	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_4004			Thiol:disulfide interchange protein DsbC	2.10920008598609	18.2415983737043	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_4031			Predicted nucleotidyltransferase	-1.64209864164642	-8.17270986777512	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_4262			Protein YidD	1.85595207513388	12.9963748889741	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_4529			Acyl-CoA-binding protein	1.37669594784672	10.3015277756481	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_484			Molybdopterin biosynthesis protein MoeA	1.37740369329878	10.4488169140356	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_486			Molybdopterin-guanine dinucleotide biosynthesis protein MobA	1.65441455498335	11.087742947321	FALSE
+nitrogen source	set4IT084	L-tyrosine disodium salt	Ac3H11_487			Molybdenum cofactor biosynthesis protein MoaA	1.50103656319667	12.4151292995844	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_1911			Predicted transcriptional regulator for fatty acid degradation FadP, TetR family	-1.52043383070069	-6.16310121089662	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_2377			Isocitrate dehydrogenase [NADP] (EC 1.1.1.42)	-1.12126783073315	-8.71239119540268	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_2594			FIG01199081: hypothetical protein	-3.62498075663456	-5.82530879283414	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_2953			Pyridine nucleotide-disulphide oxidoreductase associated with reductive pyrimidine catabolism	-5.55605570917966	-9.18413605833831	TRUE
+nitrogen source	set4IT090	Uridine	Ac3H11_2954			Dihydropyrimidine dehydrogenase [NADP+] (EC 1.3.1.2)	-4.72982206468808	-9.33230116647165	TRUE
+nitrogen source	set4IT090	Uridine	Ac3H11_2955			Cytosine/purine/uracil/thiamine/allantoin permease family protein	-3.37571094390158	-7.28378250261835	TRUE
+nitrogen source	set4IT090	Uridine	Ac3H11_2956			Dihydropyrimidinase (EC 3.5.2.2)	-5.53088793663636	-9.24041636456091	TRUE
+nitrogen source	set4IT090	Uridine	Ac3H11_2957			N-carbamoyl-L-amino acid hydrolase (EC 3.5.1.87)	-3.65035245903136	-5.23870524291724	TRUE
+nitrogen source	set4IT090	Uridine	Ac3H11_3226			TRAP-type transport system, periplasmic component, predicted N-acetylneuraminate-binding protein	-2.09727907325397	-9.20126120184256	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_3227			TRAP-type C4-dicarboxylate transport system, large permease component	-2.24463388616044	-12.0928146792169	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_3228			Tripartite ATP-independent periplasmic transporter, DctQ component	-1.72876634800154	-6.55267115102131	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_3634			Signaling protein with a acyltransferase and GGDEF domains	1.1278542911553	7.44232698376345	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_3712			Transcriptional regulator, TetR family	1.16438862009697	5.71460347625115	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_383			FIG01198699: hypothetical protein	-2.92551448937434	-15.4639873246089	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_3897			Transcriptional regulator, LysR family	-3.34732060353395	-8.53691844457017	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_4340			Methylmalonate-semialdehyde dehydrogenase (EC 1.2.1.27)	-2.69039208326913	-9.8304328262024	TRUE
+nitrogen source	set4IT090	Uridine	Ac3H11_4342			Omega-amino acid--pyruvate aminotransferase (EC 2.6.1.18)	-3.16472837837566	-15.4583521987673	TRUE
+nitrogen source	set4IT090	Uridine	Ac3H11_4344			Regulatory protein, LysR:LysR, substrate-binding	-2.2664710864198	-7.85926391154078	TRUE
+nitrogen source	set4IT090	Uridine	Ac3H11_4846			Transcriptional regulator	-2.10500214413642	-9.43802850877106	FALSE
+nitrogen source	set4IT090	Uridine	Ac3H11_4848			D-amino acid dehydrogenase small subunit (EC 1.4.99.1)	-2.25974121738288	-12.5069122600355	FALSE
+pH	set4IT069		Ac3H11_1143			diguanylate cyclase/phosphodiesterase (GGDEF & EAL domains) with PAS/PAC sensor(s)	1.0768120762362	5.91451564026298	FALSE
+pH	set4IT068		Ac3H11_1215			Glutathione peroxidase family protein	-1.3349644347324	-6.12014986081126	FALSE
+pH	set4IT068		Ac3H11_1509			membrane protein, putative	1.36894631674867	5.08340924913064	FALSE
+pH	set4IT068		Ac3H11_1511			Predicted ATPase related to phosphate starvation-inducible protein PhoH	-1.57791570557112	-6.5571384087339	FALSE
+pH	set4IT069		Ac3H11_1511			Predicted ATPase related to phosphate starvation-inducible protein PhoH	-1.44314646845764	-6.12527830045393	FALSE
+pH	set4IT068		Ac3H11_1561			Beta N-acetyl-glucosaminidase (EC 3.2.1.52)	1.5196309200714	6.17353284719398	FALSE
+pH	set4IT069		Ac3H11_1561			Beta N-acetyl-glucosaminidase (EC 3.2.1.52)	1.63587202973442	8.11981480399014	FALSE
+pH	set4IT069		Ac3H11_1833			5-formyltetrahydrofolate cyclo-ligase (EC 6.3.3.2)	1.46909601683922	7.3992181872097	FALSE
+pH	set4IT069		Ac3H11_1834			Soluble lytic murein transglycosylase precursor (EC 3.2.1.-)	-1.88036432589696	-7.36503184509608	FALSE
+pH	set4IT068		Ac3H11_1834			Soluble lytic murein transglycosylase precursor (EC 3.2.1.-)	-1.79042109871675	-6.51867464709607	FALSE
+pH	set4IT068		Ac3H11_2101			Proposed lipoate regulatory protein YbeD	2.01510004388307	11.3638710398067	FALSE
+pH	set4IT069		Ac3H11_2101			Proposed lipoate regulatory protein YbeD	2.18548253394543	7.72349733660356	FALSE
+pH	set4IT069		Ac3H11_2523			Enoyl-CoA hydratase (EC 4.2.1.17) / Delta(3)-cis-delta(2)-trans-enoyl-CoA isomerase (EC 5.3.3.8) / 3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35) / 3-hydroxybutyryl-CoA epimerase (EC 5.1.2.3)	1.17824504178303	6.00990908956447	FALSE
+pH	set4IT058		Ac3H11_2539			Mlr1315 protein	-3.57377101998998	-11.1314435264106	FALSE
+pH	set4IT059		Ac3H11_2539			Mlr1315 protein	-3.56275677522469	-12.5667276492441	FALSE
+pH	set4IT068		Ac3H11_2549			Formiminoglutamic iminohydrolase (EC 3.5.3.13)	-1.81169242468704	-10.7800756677377	FALSE
+pH	set4IT069		Ac3H11_2549			Formiminoglutamic iminohydrolase (EC 3.5.3.13)	-1.66940981130976	-7.16103233284463	FALSE
+pH	set4IT068		Ac3H11_2582			Na(+) H(+) antiporter subunit A; Na(+) H(+) antiporter subunit B	-2.93515876862617	-12.7199333338921	TRUE
+pH	set4IT069		Ac3H11_2582			Na(+) H(+) antiporter subunit A; Na(+) H(+) antiporter subunit B	-2.23554485857679	-9.30508383565333	TRUE
+pH	set4IT067		Ac3H11_2582			Na(+) H(+) antiporter subunit A; Na(+) H(+) antiporter subunit B	-1.43762109475376	-10.4534702440308	TRUE
+pH	set4IT068		Ac3H11_2584			Na(+) H(+) antiporter subunit D	-3.0377942131086	-7.49515216106733	TRUE
+pH	set4IT069		Ac3H11_2865			tRNA pseudouridine synthase B (EC 4.2.1.70)	1.45441713745213	5.05808290750129	FALSE
+pH	set4IT068		Ac3H11_2948			Ethidium bromide-methyl viologen resistance protein EmrE	-1.26232944438195	-5.34152076845714	FALSE
+pH	set4IT069		Ac3H11_3188			3-methylmercaptopropionyl-CoA dehydrogenase (DmdC)	1.18324778784888	7.92405566342812	FALSE
+pH	set4IT068		Ac3H11_3188			3-methylmercaptopropionyl-CoA dehydrogenase (DmdC)	1.30872101247938	8.88842693776145	FALSE
+pH	set4IT068		Ac3H11_3276			hypothetical protein	-2.99079684074655	-6.1910321040982	FALSE
+pH	set4IT069		Ac3H11_3276			hypothetical protein	-2.59954946782776	-6.07342560307952	FALSE
+pH	set4IT069		Ac3H11_3297			5-methyltetrahydrofolate--homocysteine methyltransferase (EC 2.1.1.13)	1.37706317561399	8.98790548853029	FALSE
+pH	set4IT069		Ac3H11_3370			FIG00933367: hypothetical protein	1.60994768513112	5.74058622824644	FALSE
+pH	set4IT068		Ac3H11_3370			FIG00933367: hypothetical protein	1.63671933344635	7.12015872746606	FALSE
+pH	set4IT068		Ac3H11_339			Transcriptional regulator, PadR family	1.97139515014524	11.0244704107056	FALSE
+pH	set4IT069		Ac3H11_339			Transcriptional regulator, PadR family	2.25234651294578	7.84753460052588	FALSE
+pH	set4IT068		Ac3H11_3396			ProQ: influences osmotic activation of compatible solute ProP	1.42260469119262	5.98622203835733	FALSE
+pH	set4IT069		Ac3H11_3396			ProQ: influences osmotic activation of compatible solute ProP	1.56979126796449	7.98887815786075	FALSE
+pH	set4IT069		Ac3H11_3455			FOG: TPR repeat	-2.55699875477796	-7.42118312991733	FALSE
+pH	set4IT068		Ac3H11_3455			FOG: TPR repeat	-2.47150514711518	-7.383277621875	FALSE
+pH	set4IT067		Ac3H11_3455			FOG: TPR repeat	-1.68067049677293	-9.25216681852454	FALSE
+pH	set4IT069		Ac3H11_3460			DNA repair protein RecN	-1.12898917215556	-5.06248263764864	FALSE
+pH	set4IT069		Ac3H11_3548			Cytochrome B561	1.06810795463768	5.6024846073751	FALSE
+pH	set4IT069		Ac3H11_3563			Phenylpropionate dioxygenase and related ring-hydroxylating dioxygenases, large terminal subunit	2.53333825699079	20.8674453074189	FALSE
+pH	set4IT068		Ac3H11_3563			Phenylpropionate dioxygenase and related ring-hydroxylating dioxygenases, large terminal subunit	2.63518289439592	21.4797186586491	FALSE
+pH	set4IT068		Ac3H11_3875			FIG015547: peptidase, M16 family	-3.07347624203905	-12.1160974309131	FALSE
+pH	set4IT069		Ac3H11_3875			FIG015547: peptidase, M16 family	-2.4462190929822	-10.7335717719258	FALSE
+pH	set4IT068		Ac3H11_3893			putative transmembrane protein	-1.53272579974932	-5.81354342886784	FALSE
+pH	set4IT068		Ac3H11_3933			Surface antigen (D15) precursor	1.39967430432591	10.2856759470137	FALSE
+pH	set4IT069		Ac3H11_3933			Surface antigen (D15) precursor	1.50086133178492	10.6307814883792	FALSE
+pH	set4IT069		Ac3H11_3934			putative exported protein	1.39147338392219	6.7442911547727	FALSE
+pH	set4IT068		Ac3H11_3934			putative exported protein	1.79415791107996	10.6618481940338	FALSE
+pH	set4IT068		Ac3H11_3936			PspA/IM30 family protein	-2.13260797194926	-5.20800038156422	FALSE
+pH	set4IT068		Ac3H11_4004			Thiol:disulfide interchange protein DsbC	3.22231524814947	23.1106108732038	FALSE
+pH	set4IT069		Ac3H11_4004			Thiol:disulfide interchange protein DsbC	3.27468855055784	22.6642196447679	FALSE
+pH	set4IT068		Ac3H11_4027			Ribosomal protein L11 methyltransferase (EC 2.1.1.-)	1.79000657450209	9.35275623348609	FALSE
+pH	set4IT069		Ac3H11_4027			Ribosomal protein L11 methyltransferase (EC 2.1.1.-)	1.88216550389111	11.937991551723	FALSE
+pH	set4IT068		Ac3H11_4031			Predicted nucleotidyltransferase	-1.85706763328942	-5.65281378238063	FALSE
+pH	set4IT069		Ac3H11_4031			Predicted nucleotidyltransferase	-1.63516344865748	-5.26279302161812	FALSE
+pH	set4IT068		Ac3H11_41			Peptidyl-prolyl cis-trans isomerase PpiB (EC 5.2.1.8)	1.23814315216696	6.36775546658288	FALSE
+pH	set4IT069		Ac3H11_41			Peptidyl-prolyl cis-trans isomerase PpiB (EC 5.2.1.8)	1.34296818870704	5.16443896108214	FALSE
+pH	set4IT069		Ac3H11_417			Asp-tRNAAsn/Glu-tRNAGln amidotransferase A subunit and related amidases	1.37813193795841	6.47047126439531	FALSE
+pH	set4IT068		Ac3H11_417			Asp-tRNAAsn/Glu-tRNAGln amidotransferase A subunit and related amidases	1.44226445938243	6.47085811319434	FALSE
+pH	set4IT068		Ac3H11_4226			tRNA-Val-CAC	1.70492304642314	5.75267628660875	FALSE
+pH	set4IT068		Ac3H11_4390			integral membrane sensor signal transduction histidine kinase	1.54511675951835	5.34253301729594	FALSE
+pH	set4IT068		Ac3H11_4708			SAM-dependent methyltransferases	-1.0063367728289	-5.70542100258484	FALSE
+pH	set4IT069		Ac3H11_477			Membrane-bound lytic murein transglycosylase D precursor (EC 3.2.1.-)	-1.86816754372346	-7.99442016453453	FALSE
+pH	set4IT068		Ac3H11_477			Membrane-bound lytic murein transglycosylase D precursor (EC 3.2.1.-)	-1.19640913593769	-5.5419158468962	FALSE
+pH	set4IT069		Ac3H11_4774			FIG016425: Soluble lytic murein transglycosylase and related regulatory proteins (some contain LysM/invasin domains)	1.92817200904668	14.7655360089635	FALSE
+pH	set4IT068		Ac3H11_4774			FIG016425: Soluble lytic murein transglycosylase and related regulatory proteins (some contain LysM/invasin domains)	1.95531424440886	15.7708712248171	FALSE
+pH	set4IT069		Ac3H11_4778			Glutaredoxin-related protein	1.83202129124856	13.754190377874	FALSE
+pH	set4IT068		Ac3H11_4778			Glutaredoxin-related protein	2.0430469853262	13.5413273400846	FALSE
+pH	set4IT069		Ac3H11_4824			Oligopeptide transport ATP-binding protein OppF (TC 3.A.1.5.1)	3.01611791702225	20.0134709331626	FALSE
+pH	set4IT068		Ac3H11_4824			Oligopeptide transport ATP-binding protein OppF (TC 3.A.1.5.1)	3.14026513025884	21.2392617655136	FALSE
+pH	set4IT069		Ac3H11_755			Site-specific recombinase	1.76539701899506	11.0686999862239	FALSE
+pH	set4IT068		Ac3H11_755			Site-specific recombinase	1.85998090570331	11.4835133670179	FALSE
+pH	set4IT069		Ac3H11_985			Outer membrane vitamin B12 receptor BtuB	2.07018993338117	15.5209157709855	FALSE
+pH	set4IT068		Ac3H11_985			Outer membrane vitamin B12 receptor BtuB	2.32982230494661	18.3828580034789	FALSE
+stress	set3IT067	2-Furfuraldehyde	Ac3H11_1253			N-acetyl-gamma-glutamyl-phosphate reductase (EC 1.2.1.38)	-1.07689276687909	-7.00807687802329	FALSE
+stress	set3IT067	2-Furfuraldehyde	Ac3H11_1682			Hypothetical nudix hydrolase YeaB	-1.42736680257148	-6.55769959784393	FALSE
+stress	set3IT067	2-Furfuraldehyde	Ac3H11_1856			Histone acetyltransferase HPA2 and related acetyltransferases	-1.06352230943459	-5.84265088817162	FALSE
+stress	set3IT067	2-Furfuraldehyde	Ac3H11_259			Probable Co/Zn/Cd efflux system membrane fusion protein	-1.26997620446078	-5.06183690546421	FALSE
+stress	set3IT067	2-Furfuraldehyde	Ac3H11_261			Transcriptional regulator, LysR family	-1.50793953606799	-10.8829734439928	FALSE
+stress	set3IT067	2-Furfuraldehyde	Ac3H11_3297			5-methyltetrahydrofolate--homocysteine methyltransferase (EC 2.1.1.13)	-1.36621733930385	-8.53185996655702	FALSE
+stress	set3IT067	2-Furfuraldehyde	Ac3H11_985			Outer membrane vitamin B12 receptor BtuB	-1.11161148979893	-7.61961992456184	FALSE
+stress	set2IT041	Aluminum chloride hydrate	Ac3H11_3006			lipoprotein, putative	1.5030399729036	8.74880100927859	FALSE
+stress	set2IT042	Aluminum chloride hydrate	Ac3H11_3006			lipoprotein, putative	1.8616413264988	11.481432427682	FALSE
+stress	set3IT050	Bacitracin	Ac3H11_1464			Cardiolipin synthetase (EC 2.7.8.-)	-1.32165386550806	-8.16700397935385	FALSE
+stress	set3IT050	Bacitracin	Ac3H11_3006			lipoprotein, putative	1.62192102211422	7.78904337715686	FALSE
+stress	set3IT062	Chloramphenicol	Ac3H11_2299			Protein-N(5)-glutamine methyltransferase PrmB, methylates LSU ribosomal protein L3p	-1.84691339527086	-10.451044004811	TRUE
+stress	set3IT061	Chloramphenicol	Ac3H11_2299			Protein-N(5)-glutamine methyltransferase PrmB, methylates LSU ribosomal protein L3p	-1.07791965283765	-6.05425393486589	TRUE
+stress	set3IT062	Chloramphenicol	Ac3H11_2300			Glutathione-regulated potassium-efflux system ATP-binding protein	-1.0791130660974	-7.83336179498128	TRUE
+stress	set3IT062	Chloramphenicol	Ac3H11_3563			Phenylpropionate dioxygenase and related ring-hydroxylating dioxygenases, large terminal subunit	-2.88850297573247	-20.9693024196525	FALSE
+stress	set3IT061	Chloramphenicol	Ac3H11_3563			Phenylpropionate dioxygenase and related ring-hydroxylating dioxygenases, large terminal subunit	-2.14234407572972	-16.5464153090982	FALSE
+stress	set3IT062	Chloramphenicol	Ac3H11_4641			tRNA pseudouridine synthase A (EC 4.2.1.70)	1.1807591710531	6.18249676736469	FALSE
+stress	set3IT062	Chloramphenicol	Ac3H11_896			macromolecule metabolism; macromolecule synthesis, modification; dna - replication, repair, restr./modif.	-1.70398897250456	-11.3533014042666	TRUE
+stress	set3IT061	Chloramphenicol	Ac3H11_896			macromolecule metabolism; macromolecule synthesis, modification; dna - replication, repair, restr./modif.	-1.32574967675693	-7.49176462107665	TRUE
+stress	set2IT029	Cisplatin	Ac3H11_3276			hypothetical protein	-4.55651016189048	-8.17255926866216	FALSE
+stress	set2IT028	Cisplatin	Ac3H11_3276			hypothetical protein	-3.90692456642466	-6.22876818418796	FALSE
+stress	set2IT029	Cisplatin	Ac3H11_4193			DNA polymerase III alpha subunit (EC 2.7.7.7)	-3.75881120663127	-15.1141242207802	TRUE
+stress	set2IT028	Cisplatin	Ac3H11_4193			DNA polymerase III alpha subunit (EC 2.7.7.7)	-1.86238458964636	-10.0064053437157	TRUE
+stress	set2IT029	Cisplatin	Ac3H11_4387			Excinuclease ABC subunit A	-1.33649996508608	-6.93871381280301	TRUE
+stress	set2IT029	Cisplatin	Ac3H11_4646			Chaperone protein HtpG	-1.98832631551776	-9.28809941173396	FALSE
+stress	set2IT028	Cisplatin	Ac3H11_4646			Chaperone protein HtpG	-1.41465016978575	-7.12970885123192	FALSE
+stress	set2IT028	Cisplatin	Ac3H11_517			NAD synthetase (EC 6.3.1.5) / Glutamine amidotransferase chain of NAD synthetase	-1.75895217813863	-5.39315192690856	FALSE
+stress	set2IT023	Cobalt chloride hexahydrate	Ac3H11_1509			membrane protein, putative	-1.46305343082548	-6.71364333087479	FALSE
+stress	set1IT050	Cobalt chloride hexahydrate	Ac3H11_1559			Response regulator	1.32459214330016	10.1400984418781	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_1914			Enoyl-CoA hydratase (EC 4.2.1.17) / 3,2-trans-enoyl-CoA isomerase (EC 5.3.3.8) / 3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35)	-2.01758335409239	-11.6846032070312	FALSE
+stress	set3IT077	Cobalt chloride hexahydrate	Ac3H11_1914			Enoyl-CoA hydratase (EC 4.2.1.17) / 3,2-trans-enoyl-CoA isomerase (EC 5.3.3.8) / 3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35)	-1.10299315774932	-6.41752400695559	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_2282			Long-chain-fatty-acid--CoA ligase (EC 6.2.1.3)	1.21251185311853	9.41126481429703	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_2836			Ferrichrome-iron receptor	-1.79271034177801	-12.8488612621541	FALSE
+stress	set2IT023	Cobalt chloride hexahydrate	Ac3H11_2836			Ferrichrome-iron receptor	-1.26474879524326	-10.189607361748	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_2837			Iron-uptake factor PiuC	-1.92362588977363	-7.05690741717097	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_2838			L-lactate dehydrogenase (EC 1.1.2.3)	-1.6151454292311	-5.10447759501252	FALSE
+stress	set3IT077	Cobalt chloride hexahydrate	Ac3H11_3188			3-methylmercaptopropionyl-CoA dehydrogenase (DmdC)	1.12457664650243	9.50548125964153	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_3188			3-methylmercaptopropionyl-CoA dehydrogenase (DmdC)	1.52376426889577	13.1140799964988	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_4031			Predicted nucleotidyltransferase	-1.41966602259718	-6.05090617945613	FALSE
+stress	set3IT077	Cobalt chloride hexahydrate	Ac3H11_405			Cobalt-zinc-cadmium resistance protein CzcD	-3.98613120463	-11.5766178586964	TRUE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_405			Cobalt-zinc-cadmium resistance protein CzcD	-2.98285116210744	-9.29985636863231	TRUE
+stress	set1IT051	Cobalt chloride hexahydrate	Ac3H11_405			Cobalt-zinc-cadmium resistance protein CzcD	-1.71118909068695	-6.99442610231762	TRUE
+stress	set1IT050	Cobalt chloride hexahydrate	Ac3H11_4164			GGDEF family protein	1.19526334294016	8.76912247130042	FALSE
+stress	set1IT051	Cobalt chloride hexahydrate	Ac3H11_4164			GGDEF family protein	1.39053169928566	10.3630380526956	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_4273			Oxidoreductase, short-chain dehydrogenase/reductase family (EC 1.1.1.-)	1.31776501807464	6.8378184239795	FALSE
+stress	set1IT051	Cobalt chloride hexahydrate	Ac3H11_446			diguanylate cyclase/phosphodiesterase (GGDEF & EAL domains) with PAS/PAC sensor(s)	1.95528640384249	14.5068722243569	FALSE
+stress	set1IT050	Cobalt chloride hexahydrate	Ac3H11_446			diguanylate cyclase/phosphodiesterase (GGDEF & EAL domains) with PAS/PAC sensor(s)	2.5466129204946	17.6462269597988	FALSE
+stress	set1IT051	Cobalt chloride hexahydrate	Ac3H11_447			hypothetical protein	1.23716288521342	6.85816326536779	FALSE
+stress	set1IT050	Cobalt chloride hexahydrate	Ac3H11_447			hypothetical protein	1.65167463578509	8.01897838474152	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_4529			Acyl-CoA-binding protein	-3.69229165402565	-9.76893453331242	FALSE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_4587			Lead, cadmium, zinc and mercury transporting ATPase (EC 3.6.3.3) (EC 3.6.3.5); Copper-translocating P-type ATPase (EC 3.6.3.4)	1.03321320447509	7.6216242423754	TRUE
+stress	set3IT077	Cobalt chloride hexahydrate	Ac3H11_4587			Lead, cadmium, zinc and mercury transporting ATPase (EC 3.6.3.3) (EC 3.6.3.5); Copper-translocating P-type ATPase (EC 3.6.3.4)	1.55705312699674	11.7908107472369	TRUE
+stress	set3IT076	Cobalt chloride hexahydrate	Ac3H11_4790			D-3-phosphoglycerate dehydrogenase (EC 1.1.1.95)	-2.10612090093637	-9.34491908250012	TRUE
+stress	set3IT077	Cobalt chloride hexahydrate	Ac3H11_4790			D-3-phosphoglycerate dehydrogenase (EC 1.1.1.95)	-1.47549628561642	-7.68400201885828	TRUE
+stress	set2IT023	Cobalt chloride hexahydrate	Ac3H11_4790			D-3-phosphoglycerate dehydrogenase (EC 1.1.1.95)	-1.11588373148328	-5.91970647497497	TRUE
+stress	set1IT050	Cobalt chloride hexahydrate	Ac3H11_524			DNA-directed RNA polymerase specialized sigma subunit, sigma24-like	1.3183349377711	10.1974369920139	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_1167			Para-aminobenzoate synthase, amidotransferase component (EC 2.6.1.85)	4.31949137943834	25.9085883587556	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_1197			Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system	2.53029279648876	7.80364731290408	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_1362			Transporter, LysE family	5.65123099140495	5.83721219196663	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_1531			Translation initiation factor 2	1.59763120212723	9.20645826105697	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_1776			Mobile element protein	1.08365873198439	8.23975608023755	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_1800			GTP-binding protein HflX	1.27031827205726	6.34892456501259	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_1834			Soluble lytic murein transglycosylase precursor (EC 3.2.1.-)	1.98405881409791	9.69532232053502	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_2101			Proposed lipoate regulatory protein YbeD	1.74408825166619	5.35775068034577	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_2306			Maleylacetoacetate isomerase (EC 5.2.1.2) @ Glutathione S-transferase, zeta (EC 2.5.1.18)	3.38640989848512	9.17036840620198	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_2308			Fumarylacetoacetate hydrolase family protein	1.25080901862748	5.03685155233951	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_2379			exported protein	1.39643480371665	6.31022886303171	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_2406			Permease of the drug/metabolite transporter (DMT) superfamily	1.45821215645693	5.67629165454642	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_2569			Similar to phosphoglycolate phosphatase, clustered with ubiquinone biosynthesis SAM-dependent O-methyltransferase	2.22023728873751	13.5252888737959	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_290			hypothetical protein	1.07407500102262	6.20093675549885	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_2952			Transcriptional regulator RutR of pyrimidine catabolism (TetR family)	2.61499349406779	9.26830333705633	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_3146			Sensor histidine kinase PrrB (RegB) (EC 2.7.3.-)	2.63286840266451	8.71294076639023	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_3274			5-methyltetrahydrofolate--homocysteine methyltransferase (EC 2.1.1.13)	2.83211492181003	18.2935535647435	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_3297			5-methyltetrahydrofolate--homocysteine methyltransferase (EC 2.1.1.13)	2.60632375448885	15.3861977998429	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_3386			PROBABLE TRANSMEMBRANE PROTEIN	3.47260476152215	5.87613688699314	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_3387			Glutathione peroxidase family protein	1.11662651092907	5.20013931927747	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_3435			Mll4877 protein	2.83907882666954	5.71649553983786	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_360			D-beta-hydroxybutyrate dehydrogenase (EC 1.1.1.30)	1.26788466024722	5.06025067109198	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_3641			DNA mismatch repair protein MutS	1.17565396209603	5.18871889432352	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_3735			Hydroxypyruvate isomerase (EC 5.3.1.22)	1.07891013333621	5.66754104073993	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_3785			Nucleoside-diphosphate-sugar epimerases	4.48661691974509	13.4891663184906	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_383			FIG01198699: hypothetical protein	-1.09840174752083	-6.75755725721345	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_4027			Ribosomal protein L11 methyltransferase (EC 2.1.1.-)	1.54496522864791	7.0079676213963	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_4226			tRNA-Val-CAC	2.19920914514511	8.79196537679368	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_4330			Guanine-specific ribonuclease N1 and T1 precursor	4.72608703628454	17.4438766123122	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_4340			Methylmalonate-semialdehyde dehydrogenase (EC 1.2.1.27)	5.67503563278683	26.9519836110651	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_4405			Probable transmembrane protein	2.60841383616114	9.43980900090712	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_4406			Branched-chain amino acid transport protein AzlC	3.01062926715528	14.3135447251437	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_4846			Transcriptional regulator	9.24258956866712	70.8774362603005	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_4848			D-amino acid dehydrogenase small subunit (EC 1.4.99.1)	9.69385955834005	79.6962410404709	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_493			toluenesulfonate zinc-independent alcohol dehydrogenase	8.18836319010509	43.8918739278219	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_495			Aldehyde dehydrogenase (EC 1.2.1.3)	7.54919317920144	44.0851636088786	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_517			NAD synthetase (EC 6.3.1.5) / Glutamine amidotransferase chain of NAD synthetase	4.45163827825918	16.7678921783164	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_552			Branched-chain amino acid ABC transporter, amino acid-binding protein (TC 3.A.1.4.1)	1.13367912327357	7.55555666504155	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_718			Sensor histidine kinase	3.14507497038618	13.0560758793792	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_719			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	3.43308614843159	16.3016933709191	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_849			hypothetical protein	1.96589217160016	6.34897705148672	FALSE
+stress	set4IT052	D-Cycloserine	Ac3H11_985			Outer membrane vitamin B12 receptor BtuB	1.83194966965813	12.6223169202692	FALSE
+stress	set4IT053	Doxycycline hyclate	Ac3H11_4461			Ribosomal RNA small subunit methyltransferase B (EC 2.1.1.-)	-1.22785459333914	-5.64161857231831	TRUE
+stress	set4IT053	Doxycycline hyclate	Ac3H11_4707			FIG00537720: hypothetical protein	7.30332764176422	6.60278352251119	FALSE
+stress	set4IT053	Doxycycline hyclate	Ac3H11_4708			SAM-dependent methyltransferases	9.46153135272414	80.851204853436	TRUE
+stress	set3IT051	Fusidic acid sodium salt	Ac3H11_896			macromolecule metabolism; macromolecule synthesis, modification; dna - replication, repair, restr./modif.	-2.33109353223215	-11.5926824419065	TRUE
+stress	set1IT049	Nickel (II) chloride hexahydrate	Ac3H11_1424			Chemotaxis protein CheD	1.71302066786401	14.343319597441	FALSE
+stress	set1IT049	Nickel (II) chloride hexahydrate	Ac3H11_1559			Response regulator	1.90193649234131	16.2630531648217	FALSE
+stress	set2IT022	Nickel (II) chloride hexahydrate	Ac3H11_1718			Sodium-dependent phosphate transporter	-1.77398814198244	-6.06100454445385	FALSE
+stress	set1IT049	Nickel (II) chloride hexahydrate	Ac3H11_3985			Signal transduction histidine kinase CheA (EC 2.7.3.-)	1.40382189230265	12.6126650287474	FALSE
+stress	set1IT049	Nickel (II) chloride hexahydrate	Ac3H11_3987			type IV pili signal transduction protein PilI	1.44937722232834	12.3996217053155	FALSE
+stress	set1IT049	Nickel (II) chloride hexahydrate	Ac3H11_3988			twitching motility protein PilH	1.30294167402142	7.70704094505303	FALSE
+stress	set1IT049	Nickel (II) chloride hexahydrate	Ac3H11_4164			GGDEF family protein	1.20366623945607	8.41376793259835	FALSE
+stress	set3IT075	Nickel (II) chloride hexahydrate	Ac3H11_4221			Permease of the drug/metabolite transporter (DMT) superfamily	-1.65334225590859	-7.0552980394607	FALSE
+stress	set1IT049	Nickel (II) chloride hexahydrate	Ac3H11_446			diguanylate cyclase/phosphodiesterase (GGDEF & EAL domains) with PAS/PAC sensor(s)	1.37289670893663	9.72054258191551	FALSE
+stress	set3IT075	Nickel (II) chloride hexahydrate	Ac3H11_4529			Acyl-CoA-binding protein	-2.57897891055189	-6.89488443767511	FALSE
+stress	set3IT075	Nickel (II) chloride hexahydrate	Ac3H11_4570			Heavy metal RND efflux outer membrane protein, CzcC family	-2.26989214476151	-5.69725128887231	FALSE
+stress	set3IT075	Nickel (II) chloride hexahydrate	Ac3H11_4575			Permease of the drug/metabolite transporter (DMT) superfamily	-1.01454618249239	-5.00191696949088	FALSE
+stress	set2IT022	Nickel (II) chloride hexahydrate	Ac3H11_4726			Transcriptional regulator, GntR family domain / Aspartate aminotransferase (EC 2.6.1.1)	1.186433470704	6.9822513952253	FALSE
+stress	set2IT026	Paraquat dichloride	Ac3H11_1593			UPF0246 protein YaaA	-1.39269109013057	-5.33165968792546	FALSE
+stress	set2IT026	Paraquat dichloride	Ac3H11_2051			Oligopeptide transport system permease protein OppB (TC 3.A.1.5.1)	1.43734024292512	6.74710122219157	FALSE
+stress	set2IT026	Paraquat dichloride	Ac3H11_4016			CcsA-related protein	-1.38500554650266	-5.35287019458498	FALSE
+stress	set2IT026	Paraquat dichloride	Ac3H11_495			Aldehyde dehydrogenase (EC 1.2.1.3)	-1.74853577248501	-6.15451341279002	FALSE
+stress	set2IT026	Paraquat dichloride	Ac3H11_755			Site-specific recombinase	1.53694462070918	9.46221788898427	FALSE
+stress	set2IT044	Phosphomycin disodium salt	Ac3H11_1561			Beta N-acetyl-glucosaminidase (EC 3.2.1.52)	-3.20681114945691	-7.01546726497083	FALSE
+stress	set2IT044	Phosphomycin disodium salt	Ac3H11_3055			Anhydro-N-acetylmuramic acid kinase (EC 2.7.1.-)	-4.54963595250724	-10.3335864726282	FALSE
+stress	set2IT044	Phosphomycin disodium salt	Ac3H11_4324			COG3178: Predicted phosphotransferase related to Ser/Thr protein kinases	-3.68335416839868	-14.2605554671379	FALSE
+stress	set2IT044	Phosphomycin disodium salt	Ac3H11_4815			Integral membrane protein	-3.86000605077509	-15.7175836557092	FALSE
+stress	set2IT043	Phosphomycin disodium salt	Ac3H11_4815			Integral membrane protein	-1.2768262540743	-6.56222791467825	FALSE
+stress	set1IT059	Polymyxin B sulfate	Ac3H11_1424			Chemotaxis protein CheD	1.725016997374	13.0426227850762	FALSE
+stress	set1IT059	Polymyxin B sulfate	Ac3H11_1559			Response regulator	2.05197975681514	12.8493184782746	FALSE
+stress	set1IT059	Polymyxin B sulfate	Ac3H11_3545			Glyoxalase family protein	1.20669203416891	7.69145735428814	FALSE
+stress	set1IT059	Polymyxin B sulfate	Ac3H11_4244			sensor histidine kinase	-1.50104027821945	-5.0047360805038	FALSE
+stress	set1IT059	Polymyxin B sulfate	Ac3H11_446			diguanylate cyclase/phosphodiesterase (GGDEF & EAL domains) with PAS/PAC sensor(s)	1.38627923063299	9.95792685800707	FALSE
+stress	set1IT057	Sisomicin sulfate salt	Ac3H11_1559			Response regulator	1.24599405672065	9.40087449252129	FALSE
+stress	set3IT087	Sisomicin sulfate salt	Ac3H11_3148			SbmA protein	1.49833105538491	13.2460786057597	FALSE
+stress	set1IT057	Sisomicin sulfate salt	Ac3H11_446			diguanylate cyclase/phosphodiesterase (GGDEF & EAL domains) with PAS/PAC sensor(s)	1.26040506146856	9.93309091069097	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_1241			Molybdenum cofactor biosynthesis protein MoaC	3.53029759695423	25.9156796062072	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_1503			Molybdopterin biosynthesis protein MoeA	2.97097050533137	18.4934996761978	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_1504			Molybdopterin-guanine dinucleotide biosynthesis protein MobB	2.37468581446797	6.47983912705135	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_3581			Molybdenum ABC transporter, periplasmic molybdenum-binding protein ModA (TC 3.A.1.8.1)	1.38629763787776	6.55331040129079	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_4488			Nitrate/nitrite sensor protein (EC 2.7.3.-)	2.20401021840395	14.4210702932289	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_4492			Respiratory nitrate reductase alpha chain (EC 1.7.99.4)	3.47320445079755	30.933167556427	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_4493			Respiratory nitrate reductase beta chain (EC 1.7.99.4)	3.55101772472314	28.2779788739418	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_4494			Respiratory nitrate reductase delta chain (EC 1.7.99.4)	3.43995882790017	14.6940922862777	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_4495			Respiratory nitrate reductase gamma chain (EC 1.7.99.4)	3.29087861796904	19.6410286843915	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_4720			YrbA protein	2.02859205860703	11.5877774955316	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_4778			Glutaredoxin-related protein	2.19873110191213	17.2271289020837	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_484			Molybdopterin biosynthesis protein MoeA	3.21954314137927	22.5439327282013	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_486			Molybdopterin-guanine dinucleotide biosynthesis protein MobA	3.42695295937043	20.955406125723	FALSE
+stress	set1IT058	Sodium Chlorate	Ac3H11_487			Molybdenum cofactor biosynthesis protein MoaA	3.24497575468714	25.0355895992615	FALSE
+stress	set2IT033	Sodium nitrite	Ac3H11_2541			CBS-domain-containing membrane protein	-3.45627017977781	-11.4158958201111	TRUE
+stress	set1IT056	Sodium nitrite	Ac3H11_2541			CBS-domain-containing membrane protein	-1.58800225633992	-8.39273457636343	TRUE
+stress	set2IT033	Sodium nitrite	Ac3H11_3130			Ferredoxin	-1.43327357469499	-5.29474917950904	FALSE
+stress	set2IT037	Sodium perchlorate monohydrate	Ac3H11_4149			Sulfate permease family protein	1.27376158288319	6.97840195863591	FALSE
+stress	set2IT036	Sodium perchlorate monohydrate	Ac3H11_4244			sensor histidine kinase	-1.64456892653678	-5.85531978483671	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_2282			Long-chain-fatty-acid--CoA ligase (EC 6.2.1.3)	1.04782892034297	8.56039230621569	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_2329			Lipid A export ATP-binding/permease protein MsbA	-2.78448457063608	-10.7665631677886	FALSE
+stress	set3IT063	Tetracycline hydrochloride	Ac3H11_2329			Lipid A export ATP-binding/permease protein MsbA	-1.70673289514743	-9.04851923320967	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_2349			Transcriptional regulator, MarR family	1.07524216572382	5.58800559158819	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_2836			Ferrichrome-iron receptor	-1.23383337955739	-9.983889099458	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_3062			transcriptional regulator, TetR family	-1.04410104608292	-5.79744317155895	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_3933			Surface antigen (D15) precursor	-2.23532060859779	-13.9437750059802	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_3934			putative exported protein	-2.25917933692948	-10.130610137373	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_4009			Putative sensor-like histidine kinase YfhK	1.33238619384839	7.7413554963475	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_4011			Putative sensory histidine kinase YfhA	1.14281450399379	9.27756592112494	TRUE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_4013			Glucans biosynthesis glucosyltransferase H (EC 2.4.1.-)	1.02839670002915	8.15516084366796	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_4461			Ribosomal RNA small subunit methyltransferase B (EC 2.1.1.-)	-4.03960438221832	-11.3132301636342	FALSE
+stress	set3IT063	Tetracycline hydrochloride	Ac3H11_4461			Ribosomal RNA small subunit methyltransferase B (EC 2.1.1.-)	-1.82604303623195	-7.95285795354147	FALSE
+stress	set3IT063	Tetracycline hydrochloride	Ac3H11_4707			FIG00537720: hypothetical protein	2.02354163635105	6.57553976519649	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_4707			FIG00537720: hypothetical protein	6.3996044225193	5.95410372459639	FALSE
+stress	set3IT063	Tetracycline hydrochloride	Ac3H11_4708			SAM-dependent methyltransferases	2.05106965200267	18.0165220718179	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_4708			SAM-dependent methyltransferases	7.98432056991984	73.0362030796013	FALSE
+stress	set3IT064	Tetracycline hydrochloride	Ac3H11_896			macromolecule metabolism; macromolecule synthesis, modification; dna - replication, repair, restr./modif.	-1.80481250874829	-9.45612996471407	TRUE
+stress	set2IT031	Zinc sulfate heptahydrate	Ac3H11_405			Cobalt-zinc-cadmium resistance protein CzcD	-1.57961026266598	-5.72393461306174	TRUE
+stress	set2IT031	Zinc sulfate heptahydrate	Ac3H11_4581			Cobalt-zinc-cadmium resistance protein CzcA; Cation efflux system protein CusA	-1.59293449380593	-10.6906074982012	TRUE
+stress	set2IT031	Zinc sulfate heptahydrate	Ac3H11_4582			Cobalt/zinc/cadmium efflux RND transporter, membrane fusion protein, CzcB family	-1.61212846911524	-6.21093118074604	FALSE
+stress	set2IT031	Zinc sulfate heptahydrate	Ac3H11_4583			Heavy metal RND efflux outer membrane protein, CzcC family	-1.46176602517504	-7.60277453699392	TRUE
+stress	set2IT031	Zinc sulfate heptahydrate	Ac3H11_4586			Heavy metal sensor histidine kinase	-1.1393622756602	-5.16827469000475	FALSE
+stress	set2IT031	Zinc sulfate heptahydrate	Ac3H11_4587			Lead, cadmium, zinc and mercury transporting ATPase (EC 3.6.3.3) (EC 3.6.3.5); Copper-translocating P-type ATPase (EC 3.6.3.4)	-3.71803309927137	-11.4935230419065	TRUE
+stress	set1IT052	copper (II) chloride dihydrate	Ac3H11_1559			Response regulator	1.1751436944073	8.65307512874739	FALSE
+stress	set2IT025	copper (II) chloride dihydrate	Ac3H11_2101			Proposed lipoate regulatory protein YbeD	1.41424128059563	5.07210440965076	FALSE
+stress	set2IT024	copper (II) chloride dihydrate	Ac3H11_2539			Mlr1315 protein	-1.6034404798763	-7.43981555135783	FALSE
+stress	set2IT025	copper (II) chloride dihydrate	Ac3H11_2539			Mlr1315 protein	-1.57707535607013	-7.43407459948191	FALSE
+stress	set2IT025	copper (II) chloride dihydrate	Ac3H11_3009			Acetoacetyl-CoA synthetase (EC 6.2.1.16) / Long-chain-fatty-acid--CoA ligase (EC 6.2.1.3)	1.39708207717415	5.3959938027115	FALSE
+stress	set2IT025	copper (II) chloride dihydrate	Ac3H11_3130			Ferredoxin	1.68024868112243	6.36511779995154	FALSE
+stress	set2IT025	copper (II) chloride dihydrate	Ac3H11_4841			FIG000557: hypothetical protein co-occurring with RecR	1.40186671877118	10.0241870673589	FALSE
+stress	set2IT025	copper (II) chloride dihydrate	Ac3H11_4892			Acetyl-CoA hydrolase (EC 3.1.2.1)	1.70019845698938	10.1399497668373	FALSE
+stress	set2IT025	copper (II) chloride dihydrate	Ac3H11_755			Site-specific recombinase	1.42272198482679	8.18879391480297	FALSE
+stress	set3IT079	sodium fluoride	Ac3H11_1841			Ribose ABC transport system, ATP-binding protein RbsA (TC 3.A.1.2.1)	1.00807449990123	5.69618783602344	FALSE
+stress	set3IT078	sodium fluoride	Ac3H11_1841			Ribose ABC transport system, ATP-binding protein RbsA (TC 3.A.1.2.1)	1.1149043491233	5.99050465242843	FALSE
+stress	set3IT080	sodium fluoride	Ac3H11_2582			Na(+) H(+) antiporter subunit A; Na(+) H(+) antiporter subunit B	-1.67305015404436	-9.98603576538966	FALSE
+stress	set3IT080	sodium fluoride	Ac3H11_2584			Na(+) H(+) antiporter subunit D	-1.48981727759636	-7.36584753668639	FALSE
+stress	set3IT079	sodium fluoride	Ac3H11_4236			Homoserine dehydrogenase (EC 1.1.1.3)	1.23193571528187	7.00707011561285	FALSE
+stress	set3IT078	sodium fluoride	Ac3H11_4237			hypothetical protein	1.34837865891241	5.96112588843348	FALSE
+stress	set3IT079	sodium fluoride	Ac3H11_4237			hypothetical protein	1.45879071485121	7.19565562419831	FALSE
+stress	set3IT069	syringaldehyde	Ac3H11_1815			Phosphoglycerate mutase (EC 5.4.2.1)	-1.95845312213087	-5.22248231126842	FALSE
+stress	set3IT069	syringaldehyde	Ac3H11_4149			Sulfate permease family protein	2.19692026321441	15.2933376410195	FALSE
+temperature	set3IT059		Ac3H11_177			D-beta-hydroxybutyrate dehydrogenase (EC 1.1.1.30)	1.19460407136667	8.89068795626557	FALSE
+temperature	set3IT058		Ac3H11_2529			3-methylmercaptopropionyl-CoA ligase (DmdB)	1.09672079434453	9.33034570280414	FALSE
+temperature	set3IT060		Ac3H11_2991			Isovaleryl-CoA dehydrogenase (EC 1.3.8.4)	-1.25932421160083	-11.0599084798143	FALSE

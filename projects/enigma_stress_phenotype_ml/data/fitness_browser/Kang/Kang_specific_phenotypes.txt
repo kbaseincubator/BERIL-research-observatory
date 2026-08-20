@@ -1,0 +1,288 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+motility	set3IT092	Agar	B158DRAFT_0163	B158DRAFT_0163		Protein of unknown function (DUF3426).	-1.11412483029931	-7.63115596084013	FALSE
+motility	set3IT092	Agar	B158DRAFT_0269	B158DRAFT_0269		hypothetical protein	-1.11096910431078	-5.36018914664061	FALSE
+motility	set3IT089	Agar	B158DRAFT_0399	B158DRAFT_0399		LysM domain.	-1.4635937422918	-8.09558451126903	FALSE
+motility	set3IT092	Agar	B158DRAFT_0399	B158DRAFT_0399		LysM domain.	-1.26705367496314	-7.01071675125426	FALSE
+motility	set3IT089	Agar	B158DRAFT_0719	B158DRAFT_0719		Methylase involved in ubiquinone/menaquinone biosynthesis	1.91604165558041	5.78404183363084	FALSE
+motility	set3IT091	Agar	B158DRAFT_0902	B158DRAFT_0902		phosphate ABC transporter substrate-binding protein, PhoT family (TC 3.A.1.7.1)	-1.79460282376986	-5.18198478844003	FALSE
+motility	set3IT092	Agar	B158DRAFT_0902	B158DRAFT_0902		phosphate ABC transporter substrate-binding protein, PhoT family (TC 3.A.1.7.1)	-1.581905663959	-5.72814092797056	FALSE
+motility	set3IT092	Agar	B158DRAFT_0923	B158DRAFT_0923		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	3.42898552504105	16.2967166234219	FALSE
+motility	set3IT089	Agar	B158DRAFT_0923	B158DRAFT_0923		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	3.77446846497543	17.8306251074624	FALSE
+motility	set3IT091	Agar	B158DRAFT_0923	B158DRAFT_0923		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	4.25218444259433	16.3708515718931	FALSE
+motility	set3IT091	Agar	B158DRAFT_1428	B158DRAFT_1428		Predicted Zn-dependent peptidases	2.12256151708327	9.43157220769642	FALSE
+motility	set3IT092	Agar	B158DRAFT_1428	B158DRAFT_1428		Predicted Zn-dependent peptidases	2.57520237717357	15.5714144532961	FALSE
+motility	set3IT089	Agar	B158DRAFT_1428	B158DRAFT_1428		Predicted Zn-dependent peptidases	2.57793077364163	15.4961295249075	FALSE
+motility	set3IT091	Agar	B158DRAFT_1431	B158DRAFT_1431		hypothetical protein	-1.89556888025718	-5.15655828560689	FALSE
+motility	set3IT092	Agar	B158DRAFT_1729	B158DRAFT_1729		Glutamate decarboxylase and related PLP-dependent proteins	1.17384830127507	5.60969027124614	FALSE
+motility	set3IT091	Agar	B158DRAFT_1729	B158DRAFT_1729		Glutamate decarboxylase and related PLP-dependent proteins	1.53192537703608	7.66226669557753	FALSE
+motility	set3IT089	Agar	B158DRAFT_1729	B158DRAFT_1729		Glutamate decarboxylase and related PLP-dependent proteins	3.5725362351341	14.5364463640217	FALSE
+motility	set3IT091	Agar	B158DRAFT_1778	B158DRAFT_1778		diguanylate cyclase (GGDEF) domain	-1.24974419567762	-6.59078602979736	FALSE
+motility	set3IT089	Agar	B158DRAFT_2052	B158DRAFT_2052		GTP-binding protein YchF	-1.58258637892189	-9.40415731646793	FALSE
+motility	set3IT091	Agar	B158DRAFT_2393	B158DRAFT_2393		hypothetical protein	2.89235659960856	6.73749029368639	FALSE
+motility	set3IT092	Agar	B158DRAFT_2393	B158DRAFT_2393		hypothetical protein	3.21832714470037	9.30709222939253	FALSE
+motility	set3IT089	Agar	B158DRAFT_2393	B158DRAFT_2393		hypothetical protein	3.28990459787591	8.51386830198436	FALSE
+motility	set3IT091	Agar	B158DRAFT_2394	B158DRAFT_2394		diguanylate cyclase (GGDEF) domain	4.8469615054499	13.9230408610689	FALSE
+motility	set3IT092	Agar	B158DRAFT_2394	B158DRAFT_2394		diguanylate cyclase (GGDEF) domain	5.00307336979328	15.9928891878005	FALSE
+motility	set3IT089	Agar	B158DRAFT_2394	B158DRAFT_2394		diguanylate cyclase (GGDEF) domain	5.13986753036121	17.3227302874528	FALSE
+motility	set3IT089	Agar	B158DRAFT_2412	B158DRAFT_2412		type IV pilus modification protein PilV	1.88434071079427	5.38747275265907	FALSE
+motility	set3IT091	Agar	B158DRAFT_2422	B158DRAFT_2422		Tfp pilus assembly protein, tip-associated adhesin PilY1	-2.30845176716464	-8.90982200030762	FALSE
+motility	set3IT092	Agar	B158DRAFT_2422	B158DRAFT_2422		Tfp pilus assembly protein, tip-associated adhesin PilY1	-2.14257999518938	-9.11886056722239	FALSE
+motility	set3IT089	Agar	B158DRAFT_2422	B158DRAFT_2422		Tfp pilus assembly protein, tip-associated adhesin PilY1	-2.01046977285812	-6.39275223817391	FALSE
+motility	set3IT092	Agar	B158DRAFT_2498	B158DRAFT_2498		hypothetical protein	4.0929079236874	7.14691353683549	FALSE
+motility	set3IT089	Agar	B158DRAFT_2498	B158DRAFT_2498		hypothetical protein	4.36290598238888	7.39644023572236	FALSE
+motility	set3IT091	Agar	B158DRAFT_2498	B158DRAFT_2498		hypothetical protein	5.84367465571728	8.27831863591909	FALSE
+motility	set3IT091	Agar	B158DRAFT_2527	B158DRAFT_2527		Response regulator containing CheY-like receiver, AAA-type ATPase, and DNA-binding domains	-1.53636318068117	-6.30195061031236	FALSE
+motility	set3IT089	Agar	B158DRAFT_2527	B158DRAFT_2527		Response regulator containing CheY-like receiver, AAA-type ATPase, and DNA-binding domains	-1.30677223045386	-5.18972277190826	FALSE
+motility	set3IT092	Agar	B158DRAFT_2527	B158DRAFT_2527		Response regulator containing CheY-like receiver, AAA-type ATPase, and DNA-binding domains	-1.13378302917847	-5.56125522956818	FALSE
+stress	set3IT071	1-ethyl-3-methylimidazolium acetate	B158DRAFT_0155	B158DRAFT_0155		Permeases of the drug/metabolite transporter (DMT) superfamily	-1.19085303533857	-7.82633455934256	FALSE
+stress	set3IT071	1-ethyl-3-methylimidazolium acetate	B158DRAFT_0581	B158DRAFT_0581		transcriptional regulator, LysR family	-1.71131499341179	-10.7677497667259	FALSE
+stress	set3IT071	1-ethyl-3-methylimidazolium acetate	B158DRAFT_0827	B158DRAFT_0827		acyl-phosphate glycerol 3-phosphate acyltransferase	-1.36573588143171	-9.76890101000076	FALSE
+stress	set3IT071	1-ethyl-3-methylimidazolium acetate	B158DRAFT_2495	B158DRAFT_2495		putative efflux protein, MATE family	-2.58609878322816	-18.9296941082976	FALSE
+stress	set3IT071	1-ethyl-3-methylimidazolium acetate	B158DRAFT_2496	B158DRAFT_2496		Uncharacterized conserved protein	-1.55065494142187	-10.3763388530801	FALSE
+stress	set2H1	2-Furfuraldehyde	B158DRAFT_0701	B158DRAFT_0701		NTP pyrophosphohydrolases including oxidative damage repair enzymes	-1.0109583846303	-5.08362000194644	FALSE
+stress	set3IT061	5-Hydroxymethylfurfural	B158DRAFT_1135	B158DRAFT_1135		ATPase components of ABC transporters with duplicated ATPase domains	-1.29804659175292	-11.5766671048097	TRUE
+stress	set3IT061	5-Hydroxymethylfurfural	B158DRAFT_2037	B158DRAFT_2037		ABC-type multidrug transport system, ATPase component	-1.34612534362535	-9.21162434575997	FALSE
+stress	set3IT061	5-Hydroxymethylfurfural	B158DRAFT_2038	B158DRAFT_2038		ABC-type polysaccharide/polyol phosphate export systems, permease component	-1.40537560283601	-9.02152700802172	TRUE
+stress	set2H22	Bacitracin	B158DRAFT_0255	B158DRAFT_0255		Uncharacterized enzyme of heme biosynthesis	-1.48252486692761	-11.585679967119	TRUE
+stress	set2H45	Bacitracin	B158DRAFT_0255	B158DRAFT_0255		Uncharacterized enzyme of heme biosynthesis	-1.36456220311153	-10.9823285655045	TRUE
+stress	set2H22	Bacitracin	B158DRAFT_0558	B158DRAFT_0558		sortase, marine proteobacterial type	-3.24999492474798	-17.575793565931	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_0558	B158DRAFT_0558		sortase, marine proteobacterial type	-3.14332091412168	-14.7262262678353	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_0559	B158DRAFT_0559		marine proteobacterial sortase target protein	-1.29802702330599	-10.26311818312	TRUE
+stress	set2H45	Bacitracin	B158DRAFT_0559	B158DRAFT_0559		marine proteobacterial sortase target protein	-1.29799652400063	-10.3887103113633	TRUE
+stress	set2H22	Bacitracin	B158DRAFT_0679	B158DRAFT_0679		FKBP-type peptidyl-prolyl cis-trans isomerases 1	-2.65229856877653	-12.9187954267587	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_0679	B158DRAFT_0679		FKBP-type peptidyl-prolyl cis-trans isomerases 1	-2.615530201502	-11.7243442807393	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_0747	B158DRAFT_0747		ATP-dependent protease HslVU, ATPase subunit	-1.58636116699814	-11.7524499007478	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_0747	B158DRAFT_0747		ATP-dependent protease HslVU, ATPase subunit	-1.57570248751251	-12.4322049958839	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_0748	B158DRAFT_0748		ATP-dependent protease HslVU, peptidase subunit	-1.61391065818354	-7.89532872693959	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_0748	B158DRAFT_0748		ATP-dependent protease HslVU, peptidase subunit	-1.3673635576576	-7.06394557414121	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_0858	B158DRAFT_0858		Na+/H+ antiporter	-1.18473541266404	-9.34236286050141	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_0858	B158DRAFT_0858		Na+/H+ antiporter	-1.10704202139183	-8.90218452535193	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_0914	B158DRAFT_0914		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	-1.96915837483259	-16.4623950862188	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_0914	B158DRAFT_0914		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	-1.93196405145985	-16.4926619750659	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_0923	B158DRAFT_0923		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	-2.07965321521786	-15.6880469511784	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_0923	B158DRAFT_0923		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	-1.99922474601572	-15.2039514444728	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_0991	B158DRAFT_0991		ABC-type multidrug transport system, ATPase component	-3.78025934442812	-20.718694543464	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_0991	B158DRAFT_0991		ABC-type multidrug transport system, ATPase component	-3.28100993622014	-17.3106215142804	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_0992	B158DRAFT_0992		hypothetical protein	-3.36984552804929	-21.8690946623333	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_0992	B158DRAFT_0992		hypothetical protein	-3.12348233992601	-18.2372531663334	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_1151	B158DRAFT_1151		Uncharacterized protein conserved in bacteria	-1.41691596561873	-8.94793110207968	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_1151	B158DRAFT_1151		Uncharacterized protein conserved in bacteria	-1.37878838632681	-8.43324172240518	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_2086	B158DRAFT_2086		K+-dependent Na+/Ca+ exchanger related-protein	-1.60933612494579	-7.30089202865773	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_2086	B158DRAFT_2086		K+-dependent Na+/Ca+ exchanger related-protein	-1.51592499511556	-7.08599281128725	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_2097	B158DRAFT_2097		Bacterial nucleoid DNA-binding protein	-2.1283826798208	-6.03556706080954	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_2239	B158DRAFT_2239		peptide chain release factor 3	1.06699584593131	9.63065473469932	TRUE
+stress	set2H45	Bacitracin	B158DRAFT_2333	B158DRAFT_2333		rhomboid family GlyGly-CTERM serine protease	-3.07871511885196	-7.79097332931702	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_2333	B158DRAFT_2333		rhomboid family GlyGly-CTERM serine protease	-3.00314937674477	-7.31475791126127	FALSE
+stress	set2H22	Bacitracin	B158DRAFT_2498	B158DRAFT_2498		hypothetical protein	-2.4494973176077	-8.01651661256136	FALSE
+stress	set2H45	Bacitracin	B158DRAFT_2498	B158DRAFT_2498		hypothetical protein	-1.80004118517848	-5.8054259961245	FALSE
+stress	set3IT057	Carbenicillin disodium salt	B158DRAFT_0102	B158DRAFT_0102		hypothetical protein	-1.04374303374933	-8.27407709234558	FALSE
+stress	set3IT067	Cholin acetate	B158DRAFT_0732	B158DRAFT_0732		efflux transporter, outer membrane factor (OMF) lipoprotein, NodT family	3.33517851268729	28.8705331816699	FALSE
+stress	set3IT067	Cholin acetate	B158DRAFT_0734	B158DRAFT_0734		RND family efflux transporter, MFP subunit	3.64830288487704	32.5775100361075	FALSE
+stress	set3IT067	Cholin acetate	B158DRAFT_0735	B158DRAFT_0735		transcriptional regulator, TetR family	2.71681859062625	7.94806799232958	FALSE
+stress	set3IT067	Cholin acetate	B158DRAFT_1298	B158DRAFT_1298		Uncharacterized protein conserved in bacteria	1.4388096898748	5.32675080349405	FALSE
+stress	set3IT067	Cholin acetate	B158DRAFT_1569	B158DRAFT_1569		transporter, NhaC family (TC 2.A.35)	-1.6801460200673	-8.06937891184053	FALSE
+stress	set3IT067	Cholin acetate	B158DRAFT_1793	B158DRAFT_1793		Alanine dehydrogenase	2.26922050965745	18.4086285342111	FALSE
+stress	set3IT067	Cholin acetate	B158DRAFT_1830	B158DRAFT_1830		Fatty-acid desaturase	1.43365696742546	8.84146579159259	FALSE
+stress	set3IT067	Cholin acetate	B158DRAFT_2078	B158DRAFT_2078		PTS IIA-like nitrogen-regulatory protein PtsN	3.52716006197417	15.3274395473575	FALSE
+stress	set3IT067	Cholin acetate	B158DRAFT_2295	B158DRAFT_2295		Uncharacterized conserved protein	1.9274104178175	8.32291344500247	FALSE
+stress	set3IT073	Choline Lysine	B158DRAFT_0301	B158DRAFT_0301		Hemolysins and related proteins containing CBS domains	-5.64438952951044	-24.7519294302077	FALSE
+stress	set3IT073	Choline Lysine	B158DRAFT_2105	B158DRAFT_2105		Predicted periplasmic or secreted lipoprotein	-1.27653281251735	-6.29113442011782	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0048	B158DRAFT_0048		Leucyl aminopeptidase	-1.10136928339394	-9.01807420610437	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0155	B158DRAFT_0155		Permeases of the drug/metabolite transporter (DMT) superfamily	-3.95153009745777	-6.11317589040776	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0182	B158DRAFT_0182		Chemotaxis response regulator containing a CheY-like receiver domain and a methylesterase domain	1.30550462855454	9.37010835680484	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0500	B158DRAFT_0500		hypothetical protein	-1.08626544301162	-7.75852933964683	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0532	B158DRAFT_0532		Uncharacterized protein conserved in bacteria	-1.41757809905541	-5.87187154329286	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0583	B158DRAFT_0583		Bis(5'nucleosyl)-tetraphosphatase, ApaH	-1.01110051337188	-7.61352958259479	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0590	B158DRAFT_0590		hypothetical protein	1.10454997972601	8.96530494426426	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0732	B158DRAFT_0732		efflux transporter, outer membrane factor (OMF) lipoprotein, NodT family	3.30421118232015	31.2402302393742	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0734	B158DRAFT_0734		RND family efflux transporter, MFP subunit	3.53497189941533	34.702701433162	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0735	B158DRAFT_0735		transcriptional regulator, TetR family	2.04348429084005	5.85606187735817	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0788	B158DRAFT_0788		dimethyladenosine transferase	1.30485966542869	10.1003789318637	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0827	B158DRAFT_0827		acyl-phosphate glycerol 3-phosphate acyltransferase	-2.69097198085047	-14.3660003501697	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_0899	B158DRAFT_0899		3-hydroxydecanoyl-[acyl-carrier-protein] dehydratase (EC 4.2.1.60)	-3.22325202484208	-12.7642714947097	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_1163	B158DRAFT_1163		hypothetical protein	1.53954425257217	12.836926869609	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_1344	B158DRAFT_1344		2-methylcitrate synthase (EC 2.3.3.5)	-1.57822070736779	-11.5595031870864	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_1408	B158DRAFT_1408		tRNA_Ala_GGC	1.89762345015517	18.0413086476637	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_1569	B158DRAFT_1569		transporter, NhaC family (TC 2.A.35)	-4.71225239265547	-26.4272651649382	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_1651	B158DRAFT_1651		hypothetical protein	1.45612741395629	10.9030714734496	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_1793	B158DRAFT_1793		Alanine dehydrogenase	2.69642765234568	26.0412087947089	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_1830	B158DRAFT_1830		Fatty-acid desaturase	2.307884948514	20.7524098655965	TRUE
+stress	set3IT065	Choline chloride	B158DRAFT_1831	B158DRAFT_1831		transcriptional regulator, TetR family	-1.28689872598317	-8.98247530386676	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_1838	B158DRAFT_1838		ADP-ribose pyrophosphatase	1.30704090271704	11.0658868432857	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_1913	B158DRAFT_1913		Membrane protease subunits, stomatin/prohibitin homologs	-1.11604056445676	-8.31964890802564	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_2078	B158DRAFT_2078		PTS IIA-like nitrogen-regulatory protein PtsN	2.89025317527418	13.355961179872	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_2295	B158DRAFT_2295		Uncharacterized conserved protein	1.56511730630955	6.45469808911501	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_2301	B158DRAFT_2301		Stress-induced morphogen (activity unknown)	1.35629471522959	8.4207649375496	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_2512	B158DRAFT_2512		Acyl-CoA dehydrogenases	-2.19241428452768	-15.6790670478742	FALSE
+stress	set3IT065	Choline chloride	B158DRAFT_2528	B158DRAFT_2528		His Kinase A (phospho-acceptor) domain/Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase	1.11358417127474	10.5784499036791	FALSE
+stress	set2H10	Cisplatin	B158DRAFT_0366	B158DRAFT_0366		DNA replication and repair protein RecF	-5.52675551870897	-18.0213425166188	TRUE
+stress	set2H33	Cisplatin	B158DRAFT_0366	B158DRAFT_0366		DNA replication and repair protein RecF	-2.11812204108169	-10.8623699606979	TRUE
+stress	set1H9	Cisplatin	B158DRAFT_0366	B158DRAFT_0366		DNA replication and repair protein RecF	-1.76881196412055	-6.97289154599103	TRUE
+stress	set2H10	Cisplatin	B158DRAFT_0601	B158DRAFT_0601		DNA replication and repair protein RecN	-3.68456667949158	-20.7501722974387	TRUE
+stress	set2H33	Cisplatin	B158DRAFT_0601	B158DRAFT_0601		DNA replication and repair protein RecN	-1.91402440328557	-13.1832599130584	TRUE
+stress	set2H10	Cisplatin	B158DRAFT_1273	B158DRAFT_1273		Excinuclease ABC subunit C	-4.52231489965432	-28.362827183226	TRUE
+stress	set2H33	Cisplatin	B158DRAFT_1273	B158DRAFT_1273		Excinuclease ABC subunit C	-1.64450532584595	-14.3967293301166	TRUE
+stress	set2H10	Cisplatin	B158DRAFT_1834	B158DRAFT_1834		SOS-response transcriptional repressors (RecA-mediated autopeptidases)	-3.78405591381684	-10.4483121231784	FALSE
+stress	set2H33	Cisplatin	B158DRAFT_1834	B158DRAFT_1834		SOS-response transcriptional repressors (RecA-mediated autopeptidases)	-1.94996925014844	-8.84933629704341	FALSE
+stress	set2H10	Cisplatin	B158DRAFT_1835	B158DRAFT_1835		Nucleotidyltransferase/DNA polymerase involved in DNA repair	-3.51036902318483	-23.9273694591866	TRUE
+stress	set2H33	Cisplatin	B158DRAFT_1835	B158DRAFT_1835		Nucleotidyltransferase/DNA polymerase involved in DNA repair	-1.72702809275662	-14.2341158739881	TRUE
+stress	set2H10	Cisplatin	B158DRAFT_2235	B158DRAFT_2235		hypothetical protein	-1.40713908709027	-11.1123035926361	FALSE
+stress	set2H33	Cisplatin	B158DRAFT_2235	B158DRAFT_2235		hypothetical protein	-1.01999048725191	-7.86618251779138	FALSE
+stress	set2H10	Cisplatin	B158DRAFT_2446	B158DRAFT_2446		Metal-dependent hydrolases of the beta-lactamase superfamily I	-1.13711979511357	-8.66094597772202	FALSE
+stress	set2H6	Cobalt chloride hexahydrate	B158DRAFT_1123	B158DRAFT_1123		DNA-binding regulatory protein, YebC/PmpR family	-3.48938649726718	-5.89651015329354	TRUE
+stress	set2H29	Cobalt chloride hexahydrate	B158DRAFT_1123	B158DRAFT_1123		DNA-binding regulatory protein, YebC/PmpR family	-3.37367025872996	-7.53184030165006	TRUE
+stress	set2H29	Cobalt chloride hexahydrate	B158DRAFT_1905	B158DRAFT_1905		cation diffusion facilitator family transporter	-2.0466386696578	-15.0752629322492	TRUE
+stress	set2H6	Cobalt chloride hexahydrate	B158DRAFT_1905	B158DRAFT_1905		cation diffusion facilitator family transporter	-1.4239693430655	-9.63237831076549	TRUE
+stress	set2H47	D-Cycloserine	B158DRAFT_0277	B158DRAFT_0277		Transcriptional regulator	-4.01316255732721	-22.2063754204505	FALSE
+stress	set2H24	D-Cycloserine	B158DRAFT_0277	B158DRAFT_0277		Transcriptional regulator	-3.84351522776069	-18.4735945854804	FALSE
+stress	set1H38	D-Cycloserine	B158DRAFT_0277	B158DRAFT_0277		Transcriptional regulator	-1.619035984759	-10.7078783352326	FALSE
+stress	set2H24	D-Cycloserine	B158DRAFT_0278	B158DRAFT_0278		peroxiredoxin	-3.91975343443817	-24.7763247691293	TRUE
+stress	set2H47	D-Cycloserine	B158DRAFT_0278	B158DRAFT_0278		peroxiredoxin	-3.79799908336672	-25.9800342849564	TRUE
+stress	set1H38	D-Cycloserine	B158DRAFT_0278	B158DRAFT_0278		peroxiredoxin	-1.25006202109664	-10.4174205177158	TRUE
+stress	set2H47	D-Cycloserine	B158DRAFT_0279	B158DRAFT_0279		alkyl hydroperoxide reductase, F subunit	-1.6865630647516	-15.1843781583989	TRUE
+stress	set2H24	D-Cycloserine	B158DRAFT_0279	B158DRAFT_0279		alkyl hydroperoxide reductase, F subunit	-1.56418049951474	-13.4277487522584	TRUE
+stress	set2H47	D-Cycloserine	B158DRAFT_0366	B158DRAFT_0366		DNA replication and repair protein RecF	-1.55474405502212	-9.17432009408719	FALSE
+stress	set2H24	D-Cycloserine	B158DRAFT_0366	B158DRAFT_0366		DNA replication and repair protein RecF	-1.50133643121769	-9.95049571720386	FALSE
+stress	set2H24	D-Cycloserine	B158DRAFT_1336	B158DRAFT_1336		5'-nucleotidase	-1.16301850139391	-8.67817941842696	FALSE
+stress	set2H47	D-Cycloserine	B158DRAFT_1336	B158DRAFT_1336		5'-nucleotidase	-1.10623116394116	-9.03192746446437	FALSE
+stress	set2H24	D-Cycloserine	B158DRAFT_1395	B158DRAFT_1395		Flavodoxin reductases (ferredoxin-NADPH reductases) family 1	1.57947931749504	12.5826425439619	FALSE
+stress	set2H47	D-Cycloserine	B158DRAFT_1395	B158DRAFT_1395		Flavodoxin reductases (ferredoxin-NADPH reductases) family 1	1.66046894725917	13.086929041986	FALSE
+stress	set2H47	D-Cycloserine	B158DRAFT_1412	B158DRAFT_1412		Nitroreductase	1.9154905950425	16.8253608095854	FALSE
+stress	set2H24	D-Cycloserine	B158DRAFT_1412	B158DRAFT_1412		Nitroreductase	1.96781657176222	17.1387429413045	FALSE
+stress	set2H24	D-Cycloserine	B158DRAFT_1530	B158DRAFT_1530		competence/damage-inducible protein CinA C-terminal domain	-1.3607049141474	-11.1350962094088	FALSE
+stress	set2H47	D-Cycloserine	B158DRAFT_1530	B158DRAFT_1530		competence/damage-inducible protein CinA C-terminal domain	-1.21628906529067	-10.0767389661638	FALSE
+stress	set2H24	D-Cycloserine	B158DRAFT_1532	B158DRAFT_1532		Uncharacterized protein conserved in bacteria	-1.21107887173408	-5.54898646232251	FALSE
+stress	set2H47	D-Cycloserine	B158DRAFT_2274	B158DRAFT_2274		Predicted 3'-5' exonuclease related to the exonuclease domain of PolB	-1.31655194663832	-9.57569095686607	FALSE
+stress	set2H24	D-Cycloserine	B158DRAFT_2274	B158DRAFT_2274		Predicted 3'-5' exonuclease related to the exonuclease domain of PolB	-1.2279986736281	-9.12342938730372	FALSE
+stress	set1H27	Dimethyl Sulfoxide	B158DRAFT_0007	B158DRAFT_0007		Integral membrane protein CcmA involved in cell shape determination	1.59285366558671	5.71897683632332	FALSE
+stress	set1H28	Dimethyl Sulfoxide	B158DRAFT_0907	B158DRAFT_0907		Predicted integral membrane protein	1.07902158233805	6.65946617770209	FALSE
+stress	set1H28	Dimethyl Sulfoxide	B158DRAFT_0980	B158DRAFT_0980		hypothetical protein	1.5676098690664	9.94102346345188	FALSE
+stress	set1H27	Dimethyl Sulfoxide	B158DRAFT_0980	B158DRAFT_0980		hypothetical protein	1.91245409138854	13.8074612281049	FALSE
+stress	set1H27	Dimethyl Sulfoxide	B158DRAFT_1058	B158DRAFT_1058		ABC-type Na+ transport system, ATPase component	1.41395404793652	8.91722714383307	FALSE
+stress	set1H27	Dimethyl Sulfoxide	B158DRAFT_1293	B158DRAFT_1293		6-pyruvoyl-tetrahydropterin synthase	-1.47092522508838	-6.39144151509369	FALSE
+stress	set1H39	Doxycycline hyclate	B158DRAFT_0425	B158DRAFT_0425		Predicted exporter	1.93489881497615	16.2049213752876	FALSE
+stress	set1H39	Doxycycline hyclate	B158DRAFT_0426	B158DRAFT_0426		Outer membrane lipoprotein carrier protein LolA.	2.08301743954713	11.5447144437958	FALSE
+stress	set1H39	Doxycycline hyclate	B158DRAFT_0443	B158DRAFT_0443		16S rRNA m(2)G-966 methyltransferase (EC 2.1.1.52)	-1.78542498729124	-13.1839813021692	FALSE
+stress	set1H40	Doxycycline hyclate	B158DRAFT_0443	B158DRAFT_0443		16S rRNA m(2)G-966 methyltransferase (EC 2.1.1.52)	-1.74564874229691	-13.1583816273275	FALSE
+stress	set1H39	Doxycycline hyclate	B158DRAFT_1809	B158DRAFT_1809		S-adenosylmethionine decarboxylase proenzyme, Bacillus form	-1.37237107565608	-12.1159939786093	FALSE
+stress	set1H40	Doxycycline hyclate	B158DRAFT_1809	B158DRAFT_1809		S-adenosylmethionine decarboxylase proenzyme, Bacillus form	-1.17313523951386	-10.36491432461	FALSE
+stress	set1H39	Doxycycline hyclate	B158DRAFT_1810	B158DRAFT_1810		spermidine synthase	-1.51749519672111	-8.6358558068175	FALSE
+stress	set1H39	Doxycycline hyclate	B158DRAFT_1907	B158DRAFT_1907		Uncharacterized protein conserved in bacteria	1.70083549576552	12.2517879569723	FALSE
+stress	set1H39	Doxycycline hyclate	B158DRAFT_2362	B158DRAFT_2362		Di- and tricarboxylate transporters	1.37667880731526	10.6291369734307	FALSE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_0601	B158DRAFT_0601		DNA replication and repair protein RecN	-6.28070527857177	-22.2962878740117	TRUE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_0732	B158DRAFT_0732		efflux transporter, outer membrane factor (OMF) lipoprotein, NodT family	-1.63521006637522	-13.7283698206003	FALSE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_0734	B158DRAFT_0734		RND family efflux transporter, MFP subunit	-1.53871177193896	-13.56470172562	TRUE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_0877	B158DRAFT_0877		DNA replication and repair protein RadA	-3.21955622316847	-23.1303425684418	TRUE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_1157	B158DRAFT_1157		Exodeoxyribonuclease VII large subunit (EC 3.1.11.6)	-6.75946522334855	-23.7893242143515	TRUE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_1510	B158DRAFT_1510		Predicted transcriptional regulator	-2.71532738797648	-19.4743383079874	FALSE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_1532	B158DRAFT_1532		Uncharacterized protein conserved in bacteria	-2.31244185292003	-11.546048404672	FALSE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_2234	B158DRAFT_2234		2-isopropylmalate synthase (EC 2.3.3.13)	-1.41215503490693	-5.58132454933288	FALSE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_2235	B158DRAFT_2235		hypothetical protein	-2.55709997543947	-14.7851098576076	FALSE
+stress	set3IT054	Lomefloxacin hydrochloride	B158DRAFT_2320	B158DRAFT_2320		Cytosine deaminase and related metal-dependent hydrolases	1.34332418378621	12.5937600262704	FALSE
+stress	set2H4	Nickel (II) chloride hexahydrate	B158DRAFT_0899	B158DRAFT_0899		3-hydroxydecanoyl-[acyl-carrier-protein] dehydratase (EC 4.2.1.60)	-1.48438387421864	-9.7262363239556	FALSE
+stress	set2H27	Nickel (II) chloride hexahydrate	B158DRAFT_0899	B158DRAFT_0899		3-hydroxydecanoyl-[acyl-carrier-protein] dehydratase (EC 4.2.1.60)	-1.46686891607657	-11.5080879251113	FALSE
+stress	set2H27	Nickel (II) chloride hexahydrate	B158DRAFT_0914	B158DRAFT_0914		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	-1.45860411643279	-13.091935879983	FALSE
+stress	set2H4	Nickel (II) chloride hexahydrate	B158DRAFT_1058	B158DRAFT_1058		ABC-type Na+ transport system, ATPase component	1.41135518760572	8.64272260731044	FALSE
+stress	set2H4	Nickel (II) chloride hexahydrate	B158DRAFT_1059	B158DRAFT_1059		ABC-type Na+ efflux pump, permease component	1.48083352657371	11.9422992566988	FALSE
+stress	set2H4	Nickel (II) chloride hexahydrate	B158DRAFT_2045	B158DRAFT_2045		transcriptional regulator, LuxR family	-1.38281941089302	-7.23893139539651	FALSE
+stress	set2H27	Nickel (II) chloride hexahydrate	B158DRAFT_2045	B158DRAFT_2045		transcriptional regulator, LuxR family	-1.34577419853532	-6.90458892213911	FALSE
+stress	set2H27	Nickel (II) chloride hexahydrate	B158DRAFT_2288	B158DRAFT_2288		haloacid dehalogenase superfamily, subfamily IA, variant 1 with third motif having Dx(3-4)D or Dx(3-4)E	-1.05813837843059	-7.39136978268947	FALSE
+stress	set2H4	Nickel (II) chloride hexahydrate	B158DRAFT_2288	B158DRAFT_2288		haloacid dehalogenase superfamily, subfamily IA, variant 1 with third motif having Dx(3-4)D or Dx(3-4)E	-1.04796286846408	-7.15990746360748	FALSE
+stress	set2H27	Nickel (II) chloride hexahydrate	B158DRAFT_2293	B158DRAFT_2293		histidinol dehydrogenase	-1.49159879545505	-11.0383813116686	FALSE
+stress	set2H4	Nickel (II) chloride hexahydrate	B158DRAFT_2293	B158DRAFT_2293		histidinol dehydrogenase	-1.46132781266648	-11.0998327613686	FALSE
+stress	set2H8	Paraquat dichloride	B158DRAFT_0100	B158DRAFT_0100		Na+/proline symporter	5.37634467791652	50.4983474179236	FALSE
+stress	set2H31	Paraquat dichloride	B158DRAFT_0100	B158DRAFT_0100		Na+/proline symporter	6.01548661659498	55.8407313894373	FALSE
+stress	set2H30	Paraquat dichloride	B158DRAFT_0100	B158DRAFT_0100		Na+/proline symporter	7.67866241437341	72.056917415898	FALSE
+stress	set2H7	Paraquat dichloride	B158DRAFT_0100	B158DRAFT_0100		Na+/proline symporter	7.88893342833899	74.4110337663845	FALSE
+stress	set1H6	Paraquat dichloride	B158DRAFT_0217	B158DRAFT_0217		hypothetical protein	4.25258959429537	6.7344991117818	FALSE
+stress	set2H8	Paraquat dichloride	B158DRAFT_1515	B158DRAFT_1515		methyltransferase, putative	-1.1506051060177	-8.52570678669185	FALSE
+stress	set2H8	Paraquat dichloride	B158DRAFT_1823	B158DRAFT_1823		alanine dehydrogenase	-1.17675668459697	-9.60504088905685	FALSE
+stress	set3IT059	Rifampicin	B158DRAFT_0588	B158DRAFT_0588		ribonuclease PH	-1.90721867028526	-15.249705830928	FALSE
+stress	set3IT059	Rifampicin	B158DRAFT_0788	B158DRAFT_0788		dimethyladenosine transferase	-1.26742456109967	-7.94891556066036	FALSE
+stress	set3IT059	Rifampicin	B158DRAFT_1779	B158DRAFT_1779		ATP-dependent helicase HrpA	-1.39265796334772	-13.1130831348455	FALSE
+stress	set3IT059	Rifampicin	B158DRAFT_1928	B158DRAFT_1928		Uncharacterized protein conserved in bacteria	-1.5431570050648	-11.1866970311954	FALSE
+stress	set3IT059	Rifampicin	B158DRAFT_2052	B158DRAFT_2052		GTP-binding protein YchF	-2.36268572713747	-17.4226423654559	TRUE
+stress	set1H22	Sodium Chloride	B158DRAFT_0980	B158DRAFT_0980		hypothetical protein	1.41105804025851	9.21469082958493	FALSE
+stress	set1H17	Sodium Chlorite	B158DRAFT_0012	B158DRAFT_0012		methionine-R-sulfoxide reductase/methionine-S-sulfoxide reductase	-1.03109558306127	-5.03734248983813	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_0277	B158DRAFT_0277		Transcriptional regulator	-1.95118701582928	-8.3445836597335	FALSE
+stress	set1H17	Sodium Chlorite	B158DRAFT_0277	B158DRAFT_0277		Transcriptional regulator	-1.22591369340835	-5.53956412831609	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_0278	B158DRAFT_0278		peroxiredoxin	-1.52825330445824	-9.44909731845394	FALSE
+stress	set1H17	Sodium Chlorite	B158DRAFT_0376	B158DRAFT_0376		CAAX amino terminal protease family.	1.1986792225283	5.69635656909862	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_0460	B158DRAFT_0460		NADPH-glutathione reductase (EC 1.8.1.7)	-1.88420069163107	-13.2905820485775	FALSE
+stress	set1H17	Sodium Chlorite	B158DRAFT_0460	B158DRAFT_0460		NADPH-glutathione reductase (EC 1.8.1.7)	-1.35306336109839	-9.63934714671044	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_0466	B158DRAFT_0466		RmlD substrate binding domain.	1.71470658037848	9.34235394082384	FALSE
+stress	set1H17	Sodium Chlorite	B158DRAFT_0731	B158DRAFT_0731		Predicted permease	-1.61175692856989	-6.49600326625834	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_0907	B158DRAFT_0907		Predicted integral membrane protein	1.15920318390833	7.10642040027429	FALSE
+stress	set1H17	Sodium Chlorite	B158DRAFT_0907	B158DRAFT_0907		Predicted integral membrane protein	1.24370344600441	8.0312455938473	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_0980	B158DRAFT_0980		hypothetical protein	1.37964932105028	7.84240023219699	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_1144	B158DRAFT_1144		Organic radical activating enzymes	-1.56226867336021	-7.89876208579941	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_1146	B158DRAFT_1146		preQ(0) biosynthesis protein QueC	-1.30048868842015	-6.85630159289502	FALSE
+stress	set1H17	Sodium Chlorite	B158DRAFT_1165	B158DRAFT_1165		Phospholipid N-methyltransferase	2.16214193735859	16.3879184983652	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_1293	B158DRAFT_1293		6-pyruvoyl-tetrahydropterin synthase	-1.65212782344429	-5.69339686362868	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_1333	B158DRAFT_1333		Uncharacterized protein conserved in bacteria	-1.74945867702901	-11.3932099475371	TRUE
+stress	set1H17	Sodium Chlorite	B158DRAFT_1333	B158DRAFT_1333		Uncharacterized protein conserved in bacteria	-1.32215578820969	-7.22964514001957	TRUE
+stress	set1H16	Sodium Chlorite	B158DRAFT_1482	B158DRAFT_1482		FimV N-terminal domain	1.42173873586119	10.9936094357894	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_1515	B158DRAFT_1515		methyltransferase, putative	-1.13386141867064	-7.336254266306	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_2037	B158DRAFT_2037		ABC-type multidrug transport system, ATPase component	1.48655509389132	8.3166161566876	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_2038	B158DRAFT_2038		ABC-type polysaccharide/polyol phosphate export systems, permease component	1.22675934782064	7.31062544088464	FALSE
+stress	set1H17	Sodium Chlorite	B158DRAFT_2210	B158DRAFT_2210		Periplasmic serine proteases (ClpP class)	1.4272179024678	10.3123411797906	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_2277	B158DRAFT_2277		(p)ppGpp synthetase, RelA/SpoT family	1.12426067072584	8.50316462742978	FALSE
+stress	set1H17	Sodium Chlorite	B158DRAFT_2301	B158DRAFT_2301		Stress-induced morphogen (activity unknown)	1.47420427217146	5.82266434475392	FALSE
+stress	set1H16	Sodium Chlorite	B158DRAFT_2515	B158DRAFT_2515		S-adenosylmethionine:tRNA ribosyltransferase-isomerase	-1.2218721398697	-6.97683074586426	TRUE
+stress	set1H16	Sodium Chlorite	B158DRAFT_2516	B158DRAFT_2516		tRNA-guanine transglycosylase (EC 2.4.2.29)	-1.34698981218007	-10.3338083695823	FALSE
+stress	set3IT070	Sodium acetate	B158DRAFT_0914	B158DRAFT_0914		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	-2.15557303263552	-19.2186496857568	FALSE
+stress	set3IT069	Sodium acetate	B158DRAFT_0914	B158DRAFT_0914		Dipeptidyl aminopeptidases/acylaminoacyl-peptidases	-1.96250517083603	-17.6118639583521	FALSE
+stress	set3IT070	Sodium acetate	B158DRAFT_0966	B158DRAFT_0966		FOG: FHA domain	-1.72252619815528	-9.03822585542414	FALSE
+stress	set3IT070	Sodium acetate	B158DRAFT_1404	B158DRAFT_1404		pyruvate kinase	-1.79050381730204	-14.9191648028316	FALSE
+stress	set3IT070	Sodium acetate	B158DRAFT_1841	B158DRAFT_1841		hypothetical protein	-2.1004317525067	-9.46233575812812	FALSE
+stress	set3IT069	Sodium acetate	B158DRAFT_1841	B158DRAFT_1841		hypothetical protein	-1.96895123894859	-8.25946884876277	FALSE
+stress	set1H12	Sodium nitrite	B158DRAFT_0254	B158DRAFT_0254		Uncharacterized enzyme of heme biosynthesis	1.98071613468229	15.176080356745	FALSE
+stress	set1H12	Sodium nitrite	B158DRAFT_0255	B158DRAFT_0255		Uncharacterized enzyme of heme biosynthesis	1.4880511842923	9.2880474949021	FALSE
+stress	set1H12	Sodium nitrite	B158DRAFT_0581	B158DRAFT_0581		transcriptional regulator, LysR family	1.41943257237523	6.03463142267751	FALSE
+stress	set1H12	Sodium nitrite	B158DRAFT_1126	B158DRAFT_1126		FOG: TPR repeat, SEL1 subfamily	-1.36073797437125	-5.95329648523147	FALSE
+stress	set1H12	Sodium nitrite	B158DRAFT_1165	B158DRAFT_1165		Phospholipid N-methyltransferase	1.66846791142382	7.1683103230449	FALSE
+stress	set1H12	Sodium nitrite	B158DRAFT_2299	B158DRAFT_2299		Membrane proteins related to metalloendopeptidases	1.4564011288179	10.6209439812686	FALSE
+stress	set1H12	Sodium nitrite	B158DRAFT_2362	B158DRAFT_2362		Di- and tricarboxylate transporters	3.62906050795695	18.8323539755782	FALSE
+stress	set1H12	Sodium nitrite	B158DRAFT_2512	B158DRAFT_2512		Acyl-CoA dehydrogenases	1.76923735054971	11.2701460166312	FALSE
+stress	set1H12	Sodium nitrite	B158DRAFT_2540	B158DRAFT_2540		hypothetical protein	-2.41044266604922	-5.14148829040881	FALSE
+stress	set1H19	Sodium perchlorate monohydrate	B158DRAFT_0250	B158DRAFT_0250		Predicted signal transduction protein with a C-terminal ATPase domain	1.03154165739805	8.52737743097187	FALSE
+stress	set3IT056	Spectinomycin dihydrochloride pentahydrate	B158DRAFT_1779	B158DRAFT_1779		ATP-dependent helicase HrpA	-1.14219347224367	-10.6957036055809	TRUE
+stress	set1H41	Tetracycline hydrochloride	B158DRAFT_0426	B158DRAFT_0426		Outer membrane lipoprotein carrier protein LolA.	1.23517838446524	5.15279171410684	FALSE
+stress	set1H41	Tetracycline hydrochloride	B158DRAFT_2362	B158DRAFT_2362		Di- and tricarboxylate transporters	1.64300011413971	10.4454104123722	FALSE
+stress	set1H8	Thallium(I) acetate	B158DRAFT_1559	B158DRAFT_1559		hypothetical protein	1.28070914540493	7.71887389373827	FALSE
+stress	set1H7	Thallium(I) acetate	B158DRAFT_1560	B158DRAFT_1560		Response regulators consisting of a CheY-like receiver domain and a winged-helix DNA-binding domain	1.08229834591068	8.7610793473186	FALSE
+stress	set1H8	Thallium(I) acetate	B158DRAFT_1560	B158DRAFT_1560		Response regulators consisting of a CheY-like receiver domain and a winged-helix DNA-binding domain	1.19091012114888	9.65653884883128	FALSE
+stress	set1H7	Thallium(I) acetate	B158DRAFT_1561	B158DRAFT_1561		Signal transduction histidine kinase	1.03474453438339	8.50775871685486	FALSE
+stress	set1H8	Thallium(I) acetate	B158DRAFT_1561	B158DRAFT_1561		Signal transduction histidine kinase	1.07719200091271	9.08092805989153	FALSE
+stress	set2H9	Thallium(I) acetate	B158DRAFT_2259	B158DRAFT_2259		ABC-type uncharacterized transport system, permease component	-1.38312526278023	-10.076213178106	FALSE
+stress	set3IT052	Vancomycin Hydrochloride Hydrate	B158DRAFT_0038	B158DRAFT_0038		penicillin-binding protein 1B	-2.09687099857456	-17.8338955046102	TRUE
+stress	set3IT052	Vancomycin Hydrochloride Hydrate	B158DRAFT_1486	B158DRAFT_1486		Uncharacterized protein conserved in bacteria	-1.36756467378099	-9.60244078977389	FALSE
+stress	set3IT052	Vancomycin Hydrochloride Hydrate	B158DRAFT_2386	B158DRAFT_2386		Outer membrane protein and related peptidoglycan-associated (lipo)proteins	-1.87513383551106	-15.1998025537199	FALSE
+stress	set1H47	methylglyoxal	B158DRAFT_0558	B158DRAFT_0558		sortase, marine proteobacterial type	-1.35586430306717	-7.24712795317106	FALSE
+stress	set1H47	methylglyoxal	B158DRAFT_0601	B158DRAFT_0601		DNA replication and repair protein RecN	-2.28616725385248	-15.1417583591196	TRUE
+stress	set1H47	methylglyoxal	B158DRAFT_0877	B158DRAFT_0877		DNA replication and repair protein RadA	-2.61267649168667	-19.5059859551657	TRUE
+stress	set1H47	methylglyoxal	B158DRAFT_0941	B158DRAFT_0941		S-formylglutathione hydrolase	-1.02317757549052	-5.82935605709711	TRUE
+stress	set1H47	methylglyoxal	B158DRAFT_1061	B158DRAFT_1061		hydroxyacylglutathione hydrolase	-2.30116235028633	-14.5040671647538	TRUE
+stress	set1H47	methylglyoxal	B158DRAFT_1166	B158DRAFT_1166		DNA polymerase III, chi subunit (EC 2.7.7.7)	1.6245824288188	12.5793531113546	FALSE
+stress	set1H47	methylglyoxal	B158DRAFT_1242	B158DRAFT_1242		lactoylglutathione lyase	-1.86264013887355	-10.2576719391433	TRUE
+stress	set1H47	methylglyoxal	B158DRAFT_1273	B158DRAFT_1273		Excinuclease ABC subunit C	-3.22326731385283	-25.9670715023451	TRUE
+stress	set1H47	methylglyoxal	B158DRAFT_1530	B158DRAFT_1530		competence/damage-inducible protein CinA C-terminal domain	-1.26565278792787	-8.38042876590952	FALSE
+stress	set1H47	methylglyoxal	B158DRAFT_1532	B158DRAFT_1532		Uncharacterized protein conserved in bacteria	-2.18641334873093	-8.94519891965024	FALSE
+stress	set1H47	methylglyoxal	B158DRAFT_1819	B158DRAFT_1819		ATPase related to the helicase subunit of the Holliday junction resolvase	-4.41357631726572	-18.2759855526396	TRUE
+stress	set1H47	methylglyoxal	B158DRAFT_2235	B158DRAFT_2235		hypothetical protein	-1.59320490329291	-9.45272261739857	FALSE
+stress	set1H47	methylglyoxal	B158DRAFT_2333	B158DRAFT_2333		rhomboid family GlyGly-CTERM serine protease	-1.33652002577601	-7.40420306044228	FALSE
+stress	set1H47	methylglyoxal	B158DRAFT_2337	B158DRAFT_2337		Sulfate permease and related transporters (MFS superfamily)	-3.75523311286548	-22.034963562594	TRUE
+stress	set1H47	methylglyoxal	B158DRAFT_2446	B158DRAFT_2446		Metal-dependent hydrolases of the beta-lactamase superfamily I	3.14579494592519	23.443751689431	FALSE
+stress	set1H47	methylglyoxal	B158DRAFT_2492	B158DRAFT_2492		Rad3-related DNA helicases	-1.64073801446328	-13.0965066950375	FALSE
+stress	set1H43	sodium fluoride	B158DRAFT_0965	B158DRAFT_0965		Serine/threonine protein phosphatase	1.24683403362032	9.08885182487371	FALSE
+stress	set1H43	sodium fluoride	B158DRAFT_0966	B158DRAFT_0966		FOG: FHA domain	2.00283400915314	15.3988007486207	FALSE
+stress	set1H43	sodium fluoride	B158DRAFT_1560	B158DRAFT_1560		Response regulators consisting of a CheY-like receiver domain and a winged-helix DNA-binding domain	-1.30779542820453	-10.9160599964499	FALSE
+stress	set1H43	sodium fluoride	B158DRAFT_1561	B158DRAFT_1561		Signal transduction histidine kinase	-1.07364657133342	-8.95422163543525	FALSE
+stress	set1H43	sodium fluoride	B158DRAFT_1819	B158DRAFT_1819		ATPase related to the helicase subunit of the Holliday junction resolvase	-3.72811236114828	-14.6744398009029	TRUE
+stress	set1H43	sodium fluoride	B158DRAFT_2277	B158DRAFT_2277		(p)ppGpp synthetase, RelA/SpoT family	-1.21178120975033	-10.8806052861563	FALSE
+stress	set1H43	sodium fluoride	B158DRAFT_2333	B158DRAFT_2333		rhomboid family GlyGly-CTERM serine protease	-1.42340523877964	-9.3529604591622	FALSE
+stress	set3IT063	syringaldehyde	B158DRAFT_1233	B158DRAFT_1233		Multimeric flavodoxin WrbA	-1.86072587293913	-16.1592770584833	FALSE
+stress	set3IT063	syringaldehyde	B158DRAFT_1404	B158DRAFT_1404		pyruvate kinase	-1.76553326083565	-15.3670784775202	FALSE
+stress	set3IT063	syringaldehyde	B158DRAFT_1618	B158DRAFT_1618		sodium/proton antiporter, NhaD family (TC 2.A.62)	-1.54024984319895	-12.8688878240982	FALSE
+temperature	set3IT082		B158DRAFT_1982	B158DRAFT_1982		cAMP-binding proteins - catabolite gene activator and regulatory subunit of cAMP-dependent protein kinases	-1.36616754313289	-10.4352161524535	FALSE
+temperature	set3IT081		B158DRAFT_1982	B158DRAFT_1982		cAMP-binding proteins - catabolite gene activator and regulatory subunit of cAMP-dependent protein kinases	-1.18655803600442	-9.29447168942597	FALSE

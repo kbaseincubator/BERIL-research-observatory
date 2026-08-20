@@ -1,0 +1,1 @@
+organism	orgId	locusId	sysName	gene	reannotation	comment	original_desc	aaseq

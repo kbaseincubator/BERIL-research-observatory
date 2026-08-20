@@ -1,0 +1,51 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+no nutrient control	set3S938	D-Glucose	OKGIIK_01510	OKGIIK_01510	mET2	homoserine O-succinyltransferase	-3.60959295549292	-9.54984189237136	FALSE
+no nutrient control	set3S937	D-Glucose	OKGIIK_01510	OKGIIK_01510	mET2	homoserine O-succinyltransferase	-3.49422022097181	-8.40374097714293	FALSE
+no nutrient control	set3S940	D-Glucose	OKGIIK_01510	OKGIIK_01510	mET2	homoserine O-succinyltransferase	-3.24573342087268	-9.49518613685839	FALSE
+no nutrient control	set3S939	D-Glucose	OKGIIK_01510	OKGIIK_01510	mET2	homoserine O-succinyltransferase	-2.98373099838896	-9.95314890731009	FALSE
+no nutrient control	set3S938	D-Glucose	OKGIIK_01515	OKGIIK_01515	metB	cystathionine gamma-synthase	-3.45467631317133	-14.1008756090156	FALSE
+no nutrient control	set3S939	D-Glucose	OKGIIK_01515	OKGIIK_01515	metB	cystathionine gamma-synthase	-3.41198178456134	-12.9483900105354	FALSE
+no nutrient control	set3S937	D-Glucose	OKGIIK_01515	OKGIIK_01515	metB	cystathionine gamma-synthase	-3.3093301891936	-13.3797821354104	FALSE
+no nutrient control	set3S940	D-Glucose	OKGIIK_01515	OKGIIK_01515	metB	cystathionine gamma-synthase	-3.27313538836125	-12.4214712275305	FALSE
+no nutrient control	set3S939	D-Glucose	OKGIIK_02655	OKGIIK_02655	flgC	flagellar basal body rod protein FlgC	1.49575213106163	8.75936945217372	FALSE
+no nutrient control	set3S937	D-Glucose	OKGIIK_05965	OKGIIK_05965	cysI	assimilatory sulfite reductase (NADPH) hemoprotein subunit	-2.8060664290192	-15.3254345513973	FALSE
+no nutrient control	set3S938	D-Glucose	OKGIIK_05965	OKGIIK_05965	cysI	assimilatory sulfite reductase (NADPH) hemoprotein subunit	-2.61246628453799	-15.6469713473024	FALSE
+no nutrient control	set3S939	D-Glucose	OKGIIK_05965	OKGIIK_05965	cysI	assimilatory sulfite reductase (NADPH) hemoprotein subunit	-2.46086601485503	-14.3507324311676	FALSE
+no nutrient control	set3S940	D-Glucose	OKGIIK_05965	OKGIIK_05965	cysI	assimilatory sulfite reductase (NADPH) hemoprotein subunit	-2.4546723158964	-13.7174177067546	FALSE
+no nutrient control	set3S939	D-Glucose	OKGIIK_05970	OKGIIK_05970	cysH	phosphoadenylyl-sulfate reductase	-2.55820966860893	-11.221425234608	FALSE
+no nutrient control	set3S940	D-Glucose	OKGIIK_05970	OKGIIK_05970	cysH	phosphoadenylyl-sulfate reductase	-2.5491083978066	-10.5234392801708	FALSE
+no nutrient control	set3S937	D-Glucose	OKGIIK_05970	OKGIIK_05970	cysH	phosphoadenylyl-sulfate reductase	-2.54463787711533	-11.3127146988811	FALSE
+no nutrient control	set3S938	D-Glucose	OKGIIK_05970	OKGIIK_05970	cysH	phosphoadenylyl-sulfate reductase	-2.08165453177279	-10.8491469483265	FALSE
+no nutrient control	set3S937	D-Glucose	OKGIIK_05975	OKGIIK_05975	lysR	CysB family transcriptional regulator	-3.63730293896534	-11.781672324897	FALSE
+no nutrient control	set3S938	D-Glucose	OKGIIK_05975	OKGIIK_05975	lysR	CysB family transcriptional regulator	-3.21149090727809	-14.761126476578	FALSE
+no nutrient control	set3S940	D-Glucose	OKGIIK_05975	OKGIIK_05975	lysR	CysB family transcriptional regulator	-3.13444811421908	-12.6277094169316	FALSE
+no nutrient control	set3S939	D-Glucose	OKGIIK_05975	OKGIIK_05975	lysR	CysB family transcriptional regulator	-3.04374088351907	-13.3370450517961	FALSE
+no nutrient control	set3S937	D-Glucose	OKGIIK_09460	OKGIIK_09460		DinB family	-1.21413057845287	-5.14205695753309	FALSE
+no nutrient control	set3S937	D-Glucose	OKGIIK_11830	OKGIIK_11830	metF	methylenetetrahydrofolate reductase [NAD(P)H]	-3.69270066768213	-12.6185974438806	FALSE
+no nutrient control	set3S939	D-Glucose	OKGIIK_11830	OKGIIK_11830	metF	methylenetetrahydrofolate reductase [NAD(P)H]	-3.56350158462525	-13.0666185797281	FALSE
+no nutrient control	set3S940	D-Glucose	OKGIIK_11830	OKGIIK_11830	metF	methylenetetrahydrofolate reductase [NAD(P)H]	-3.376013848585	-13.1335398952333	FALSE
+no nutrient control	set3S938	D-Glucose	OKGIIK_11830	OKGIIK_11830	metF	methylenetetrahydrofolate reductase [NAD(P)H]	-3.34488018598514	-15.4980613483458	FALSE
+nutrient	set3S929	D-Glucose	OKGIIK_00975	OKGIIK_00975		efflux RND transporter periplasmic adaptor subunit	-1.54068844810449	-8.22352072694383	FALSE
+nutrient	set3S930	D-Glucose	OKGIIK_00975	OKGIIK_00975		efflux RND transporter periplasmic adaptor subunit	-1.38597779408698	-7.40489083416248	FALSE
+nutrient	set3S932	D-Glucose	OKGIIK_00975	OKGIIK_00975		efflux RND transporter periplasmic adaptor subunit	-1.2792740083078	-7.23722216627061	FALSE
+nutrient	set3S929	D-Glucose	OKGIIK_00980	OKGIIK_00980		Multidrug transporter AcrB	-1.42725459206837	-11.3729908773724	FALSE
+nutrient	set3S932	D-Glucose	OKGIIK_00980	OKGIIK_00980		Multidrug transporter AcrB	-1.38377617218371	-11.2521734981047	FALSE
+nutrient	set3S931	D-Glucose	OKGIIK_00980	OKGIIK_00980		Multidrug transporter AcrB	-1.37843662232388	-11.3289614172789	FALSE
+nutrient	set3S930	D-Glucose	OKGIIK_00980	OKGIIK_00980		Multidrug transporter AcrB	-1.04390149619013	-8.83556694001969	FALSE
+nutrient	set3S929	D-Glucose	OKGIIK_01115	OKGIIK_01115	maiA	maleylacetoacetate isomerase	-1.85375696158478	-7.99634663846001	FALSE
+nutrient	set3S930	D-Glucose	OKGIIK_01115	OKGIIK_01115	maiA	maleylacetoacetate isomerase	-1.6590389789408	-7.26244916757008	FALSE
+nutrient	set3S932	D-Glucose	OKGIIK_01115	OKGIIK_01115	maiA	maleylacetoacetate isomerase	-1.50445969709666	-6.63570004520692	FALSE
+nutrient	set3S935	D-Glucose	OKGIIK_06595	OKGIIK_06595	kbl	glycine C-acetyltransferase	-2.36126308738339	-15.8813793174852	FALSE
+nutrient	set3S936	D-Glucose	OKGIIK_06595	OKGIIK_06595	kbl	glycine C-acetyltransferase	-2.1719615785119	-13.7519054638277	FALSE
+nutrient	set3S933	D-Glucose	OKGIIK_06595	OKGIIK_06595	kbl	glycine C-acetyltransferase	-1.64389367752304	-7.74108504778298	FALSE
+nutrient	set3S936	D-Glucose	OKGIIK_06605	OKGIIK_06605	tdh	L-threonine 3-dehydrogenase	-2.41670896004438	-15.5804861387952	TRUE
+nutrient	set3S935	D-Glucose	OKGIIK_06605	OKGIIK_06605	tdh	L-threonine 3-dehydrogenase	-2.20043876369485	-16.0970772811438	TRUE
+nutrient	set3S933	D-Glucose	OKGIIK_06605	OKGIIK_06605	tdh	L-threonine 3-dehydrogenase	-1.58516124846102	-8.94415949347171	TRUE
+nutrient	set3S929	D-Glucose	OKGIIK_10875	OKGIIK_10875		Dehydrogenase	-1.29920042903037	-5.15490661673912	FALSE
+nutrient	set3S933	D-Glucose	OKGIIK_13185	OKGIIK_13185	ygjP	metal-dependent hydrolase	1.32602246603912	6.74105869679679	FALSE
+nutrient	set3S936	D-Glucose	OKGIIK_13185	OKGIIK_13185	ygjP	metal-dependent hydrolase	1.36637984296822	9.06932802613262	FALSE
+nutrient	set3S935	D-Glucose	OKGIIK_13185	OKGIIK_13185	ygjP	metal-dependent hydrolase	1.44660461588648	10.5575176135935	FALSE
+nutrient	set3S931	D-Glucose	OKGIIK_13320	OKGIIK_13320	aceA	isocitrate lyase	-1.29704923407314	-8.02805714254712	FALSE
+nutrient	set3S929	D-Glucose	OKGIIK_13320	OKGIIK_13320	aceA	isocitrate lyase	-1.109565849437	-5.69844242215621	FALSE
+nutrient	set3S935	D-Glucose	OKGIIK_13860	OKGIIK_13860	dtd	D-aminoacyl-tRNA deacylase	-1.61332460959005	-5.75978178730862	FALSE
+nutrient	set3S935	D-Glucose	OKGIIK_16625	OKGIIK_16625		Ferredoxin--NADP(+) reductase	-1.99189987006975	-11.7330468161792	FALSE

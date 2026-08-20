@@ -1,0 +1,329 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1IT005	D-Galactose	HSERO_RS04225	HSERO_RS04225		permease	-2.22373952736822	-5.33226743512856	FALSE
+carbon source	set1IT033	D-Galactose	HSERO_RS05155	HSERO_RS05155		2-dehydro-3-deoxy-6-phosphogalactonate aldolase	-6.06961561038831	-5.15865515878322	TRUE
+carbon source	set1IT005	D-Galactose	HSERO_RS05155	HSERO_RS05155		2-dehydro-3-deoxy-6-phosphogalactonate aldolase	-4.54552723324389	-5.33240811780049	TRUE
+carbon source	set1IT033	D-Galactose	HSERO_RS05160	HSERO_RS05160		2-dehydro-3-deoxygalactonokinase	-2.84766876712778	-5.168502979351	TRUE
+carbon source	set1IT005	D-Galactose	HSERO_RS05160	HSERO_RS05160		2-dehydro-3-deoxygalactonokinase	-2.72306816587969	-6.82148871335288	TRUE
+carbon source	set1IT005	D-Galactose	HSERO_RS22820	HSERO_RS22820		ArsR family transcriptional regulator	2.26232165568542	8.12609446496135	FALSE
+carbon source	set2IT052	D-Galacturonic Acid monohydrate	HSERO_RS15785	HSERO_RS15785		5-dehydro-4-deoxyglucarate dehydratase	-5.81434610698764	-9.86085105130588	TRUE
+carbon source	set1IT020	D-Galacturonic Acid monohydrate	HSERO_RS15785	HSERO_RS15785		5-dehydro-4-deoxyglucarate dehydratase	-4.2523995953918	-10.394575133885	TRUE
+carbon source	set2IT052	D-Galacturonic Acid monohydrate	HSERO_RS15795	HSERO_RS15795		6-phosphogluconolactonase	-4.10832785059778	-6.6234321820664	FALSE
+carbon source	set1IT020	D-Galacturonic Acid monohydrate	HSERO_RS15795	HSERO_RS15795		6-phosphogluconolactonase	-2.95365373101166	-6.47829803320313	FALSE
+carbon source	set1IT020	D-Galacturonic Acid monohydrate	HSERO_RS15800	HSERO_RS15800		D-galactarate dehydratase	-4.39727258215365	-11.8889970146876	TRUE
+carbon source	set2IT052	D-Galacturonic Acid monohydrate	HSERO_RS15800	HSERO_RS15800		D-galactarate dehydratase	-3.96609670127187	-10.8203851991165	TRUE
+carbon source	set2IT052	D-Galacturonic Acid monohydrate	HSERO_RS15805	HSERO_RS15805		glucarate transporter	-5.40959028846095	-8.63621220477832	TRUE
+carbon source	set1IT020	D-Galacturonic Acid monohydrate	HSERO_RS15805	HSERO_RS15805		glucarate transporter	-3.94711910398962	-8.11865572993692	TRUE
+carbon source	set1IT020	D-Galacturonic Acid monohydrate	HSERO_RS17255	HSERO_RS17255		transporter	1.17481219239873	5.52320831025342	FALSE
+carbon source	set1IT020	D-Galacturonic Acid monohydrate	HSERO_RS17265	HSERO_RS17265		glucosyltransferase MdoH	1.32014204316055	6.31531723104258	FALSE
+carbon source	set2IT052	D-Galacturonic Acid monohydrate	HSERO_RS23010	HSERO_RS23010		hexuronate transporter	-3.88421426746872	-12.5652804264421	TRUE
+carbon source	set1IT020	D-Galacturonic Acid monohydrate	HSERO_RS23010	HSERO_RS23010		hexuronate transporter	-3.82147033436332	-12.571429647611	TRUE
+carbon source	set2IT052	D-Galacturonic Acid monohydrate	HSERO_RS23040	HSERO_RS23040		NAD-dependent dehydratase	-3.134793459318	-5.59657317643637	TRUE
+carbon source	set1IT011	D-Glucose-6-Phosphate sodium salt	HSERO_RS17870	HSERO_RS17870		glucokinase	1.21853308776626	6.10466252159208	TRUE
+carbon source	set1IT011	D-Glucose-6-Phosphate sodium salt	HSERO_RS22795	HSERO_RS22795		N-acetyltransferase	-1.42320881778906	-6.48291002898408	FALSE
+carbon source	set2IT060	D-Mannose	HSERO_RS03630	HSERO_RS03630		fructose transporter	-4.66171966965947	-7.01925527999514	FALSE
+carbon source	set1IT028	D-Mannose	HSERO_RS03630	HSERO_RS03630		fructose transporter	-3.94857349466588	-7.6724711516372	FALSE
+carbon source	set2IT060	D-Mannose	HSERO_RS03640	HSERO_RS03640		D-ribose transporter ATP-binding protein	-4.72983869623802	-10.8687700295333	FALSE
+carbon source	set1IT028	D-Mannose	HSERO_RS03640	HSERO_RS03640		D-ribose transporter ATP-binding protein	-3.59397763741091	-10.2966647207079	FALSE
+carbon source	set2IT060	D-Mannose	HSERO_RS03645	HSERO_RS03645		ribose ABC transporter permease	-3.38056263586227	-5.8896023243305	FALSE
+carbon source	set1IT028	D-Mannose	HSERO_RS03645	HSERO_RS03645		ribose ABC transporter permease	-2.27990718138968	-5.46865353469595	FALSE
+carbon source	set2IT060	D-Mannose	HSERO_RS03650	HSERO_RS03650		N-acyl-D-glucosamine 2-epimerase	-4.79908733863486	-7.56291969846043	TRUE
+carbon source	set1IT028	D-Mannose	HSERO_RS03650	HSERO_RS03650		N-acyl-D-glucosamine 2-epimerase	-4.25400079302887	-10.6958622321124	TRUE
+carbon source	set2IT060	D-Mannose	HSERO_RS20790	HSERO_RS20790		cytochrome B559 subunit alpha	-1.49469319903798	-5.22408683889286	FALSE
+carbon source	set1IT028	D-Mannose	HSERO_RS21415	HSERO_RS21415		lytic transglycosylase	-1.99642160354001	-5.89334179343614	FALSE
+carbon source	set2IT060	D-Mannose	HSERO_RS22480	HSERO_RS22480		dihydroxy-acid dehydratase	-3.51830741920224	-8.84403753339973	FALSE
+carbon source	set1IT028	D-Mannose	HSERO_RS22480	HSERO_RS22480		dihydroxy-acid dehydratase	-3.02463022347033	-9.16578926423752	FALSE
+carbon source	set1IT035	D-Ribose	HSERO_RS05330	HSERO_RS05330		glucose dehydrogenase	2.04249135800233	5.09611638442037	FALSE
+carbon source	set1IT007	D-Ribose	HSERO_RS07710	HSERO_RS07710		hypothetical protein	3.19064368095881	6.91796081989559	FALSE
+carbon source	set1IT035	D-Ribose	HSERO_RS08610	HSERO_RS08610		anhydrase	-2.8279286443178	-5.22037998367785	FALSE
+carbon source	set1IT035	D-Ribose	HSERO_RS11480	HSERO_RS11480		LacI family transcriptional regulator	-4.92694262568066	-5.32230475021889	TRUE
+carbon source	set1IT035	D-Ribose	HSERO_RS11485	HSERO_RS11485		ribose ABC transporter ATPase	-3.25763970459566	-7.6789285838857	TRUE
+carbon source	set1IT007	D-Ribose	HSERO_RS11485	HSERO_RS11485		ribose ABC transporter ATPase	-3.11746608680989	-7.18712124486084	TRUE
+carbon source	set1IT035	D-Ribose	HSERO_RS11490	HSERO_RS11490		ABC transporter permease	-5.04549860000345	-9.10826979171154	TRUE
+carbon source	set1IT007	D-Ribose	HSERO_RS11490	HSERO_RS11490		ABC transporter permease	-3.1957837697146	-6.47621330533647	TRUE
+carbon source	set1IT035	D-Ribose	HSERO_RS11500	HSERO_RS11500		ribokinase	-6.00272709216451	-5.60953861640309	TRUE
+carbon source	set1IT007	D-Ribose	HSERO_RS11500	HSERO_RS11500		ribokinase	-5.20135479548873	-5.52151883561587	TRUE
+carbon source	set1IT035	D-Ribose	HSERO_RS12295	HSERO_RS12295		histidine kinase	-1.48027514580467	-5.047416350313	FALSE
+carbon source	set1IT035	D-Ribose	HSERO_RS17135	HSERO_RS17135		peptide ABC transporter permease	-1.25769523013374	-5.15362907877289	FALSE
+carbon source	set1IT035	D-Ribose	HSERO_RS17145	HSERO_RS17145		peptide ABC transporter substrate-binding protein	-1.41486647128074	-5.07680467395596	FALSE
+carbon source	set1IT007	D-Ribose	HSERO_RS19355	HSERO_RS19355		galactarate dehydratase	2.23766813753085	5.94579945153738	FALSE
+carbon source	set1IT035	D-Ribose	HSERO_RS19355	HSERO_RS19355		galactarate dehydratase	2.46831982954612	5.87465791689487	FALSE
+carbon source	set1IT007	D-Ribose	HSERO_RS22795	HSERO_RS22795		N-acetyltransferase	-1.90375156273909	-6.55216920762354	FALSE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS02190	HSERO_RS02190		sugar ABC transporter substrate-binding protein	-3.71179296061484	-12.6467046687653	TRUE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS02195	HSERO_RS02195		sugar ABC transporter permease	-3.23525693280771	-5.37374773315129	TRUE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS02200	HSERO_RS02200		mannitol ABC transporter permease	-2.85345506860825	-9.66191275500352	TRUE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS02210	HSERO_RS02210		sugar ABC transporter ATP-binding protein	-3.34377458646139	-6.46363253293619	TRUE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS02220	HSERO_RS02220		xylulokinase	-4.04548203762208	-8.09751101369073	FALSE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS17000	HSERO_RS17000		sugar ABC transporter substrate-binding protein	-2.32632083958758	-7.73874354357561	FALSE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS17005	HSERO_RS17005		sugar ABC transporter permease	-3.8257590556921	-6.78675447482397	FALSE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS17015	HSERO_RS17015		sulfurtransferase	-2.4715551412128	-7.62443813334899	FALSE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS17020	HSERO_RS17020		sugar ABC transporter ATP-binding protein	-2.70878348922316	-7.16487412900095	FALSE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS17025	HSERO_RS17025		AraC family transcriptional regulator	-4.59925401254853	-9.42500961463071	TRUE
+carbon source	set1IT022	D-Sorbitol	HSERO_RS17030	HSERO_RS17030		xylulokinase	3.47905162493693	16.5257020620586	FALSE
+carbon source	set1IT032	D-Xylose	HSERO_RS19325	HSERO_RS19325		LysR family transcriptional regulator	-4.85052798849722	-8.24103067115254	FALSE
+carbon source	set1IT032	D-Xylose	HSERO_RS19330	HSERO_RS19330		FAH family protein	-3.08571016803991	-5.12793345858677	FALSE
+carbon source	set1IT032	D-Xylose	HSERO_RS19360	HSERO_RS19360		fumarylacetoacetate hydrolase	-4.07841108280642	-8.2833725386955	TRUE
+carbon source	set1IT021	Glycerol	HSERO_RS04870	HSERO_RS04870		ABC transporter substrate-binding protein	-2.25323643190668	-6.35490781981477	TRUE
+carbon source	set2IT053	Glycerol	HSERO_RS04875	HSERO_RS04875		glycerol kinase	-3.64238751184185	-7.55320178501304	TRUE
+carbon source	set1IT021	Glycerol	HSERO_RS04875	HSERO_RS04875		glycerol kinase	-3.11641685230825	-5.10275394280189	TRUE
+carbon source	set2IT053	Glycerol	HSERO_RS19100	HSERO_RS19100		FAD-binding protein	-1.55472657008956	-7.53781508617315	FALSE
+carbon source	set1IT031	L-Arabinose	HSERO_RS00725	HSERO_RS00725		LysR family transcriptional regulator	-2.46472135538184	-5.74979666680716	FALSE
+carbon source	set1IT031	L-Arabinose	HSERO_RS05205	HSERO_RS05205		dihydroxy-acid dehydratase	-3.10032072255897	-7.20977188390231	TRUE
+carbon source	set1IT003	L-Arabinose	HSERO_RS05205	HSERO_RS05205		dihydroxy-acid dehydratase	-2.59486483530271	-5.55213586592262	TRUE
+carbon source	set1IT031	L-Arabinose	HSERO_RS05210	HSERO_RS05210		3-oxoacyl-ACP reductase	-4.10208625247955	-5.34704901894925	TRUE
+carbon source	set1IT031	L-Arabinose	HSERO_RS05225	HSERO_RS05225		gluconolaconase	-3.72134967410122	-5.6939637919121	TRUE
+carbon source	set1IT031	L-Arabinose	HSERO_RS06870	HSERO_RS06870		cytochrome C biogenesis protein CcdA	-3.91009747254398	-7.06166985278883	TRUE
+carbon source	set1IT003	L-Arabinose	HSERO_RS06870	HSERO_RS06870		cytochrome C biogenesis protein CcdA	-3.38916052608528	-5.28294745270991	TRUE
+carbon source	set1IT031	L-Arabinose	HSERO_RS06875	HSERO_RS06875		LysR family transcriptional regulator	-4.04692293668565	-8.61953593423655	TRUE
+carbon source	set1IT003	L-Arabinose	HSERO_RS06875	HSERO_RS06875		LysR family transcriptional regulator	-2.77572892237909	-7.33106655520066	TRUE
+carbon source	set1IT024	L-Asparagine	HSERO_RS05895	HSERO_RS05895		Patatin	1.29950090616211	7.69884288705721	FALSE
+carbon source	set2IT056	L-Asparagine	HSERO_RS19240	HSERO_RS19240		arginine ABC transporter ATP-binding protein	-1.45745128461611	-7.47836962761783	FALSE
+carbon source	set1IT008	L-Fucose	HSERO_RS05235	HSERO_RS05235		fuconate dehydratase	-2.59029557870147	-5.70720038977147	TRUE
+carbon source	set1IT036	L-Fucose	HSERO_RS05235	HSERO_RS05235		fuconate dehydratase	-2.19643847411751	-5.06799605672994	TRUE
+carbon source	set1IT008	L-Fucose	HSERO_RS05250	HSERO_RS05250		D-ribose transporter ATP binding protein	-2.17506801523936	-6.09271794472571	FALSE
+carbon source	set1IT036	L-Fucose	HSERO_RS05250	HSERO_RS05250		D-ribose transporter ATP binding protein	-2.09734989723533	-7.23256745093301	FALSE
+carbon source	set1IT008	L-Fucose	HSERO_RS05255	HSERO_RS05255		ribose ABC transporter permease	-1.84574349508526	-5.90643064075874	FALSE
+carbon source	set1IT036	L-Fucose	HSERO_RS05260	HSERO_RS05260		LacI family transcriptional regulator	-1.90481001675623	-7.1905266959526	FALSE
+carbon source	set1IT008	L-Fucose	HSERO_RS05260	HSERO_RS05260		LacI family transcriptional regulator	-1.68519399372366	-7.13454137397078	FALSE
+carbon source	set1IT008	L-Fucose	HSERO_RS10840	HSERO_RS10840		cyanophycin synthetase	1.43718696987873	5.31238126930183	FALSE
+carbon source	set1IT036	L-Fucose	HSERO_RS10840	HSERO_RS10840		cyanophycin synthetase	1.48956377644536	5.3747007663838	FALSE
+carbon source	set1IT036	L-Fucose	HSERO_RS19325	HSERO_RS19325		LysR family transcriptional regulator	-2.12064353495573	-5.94446610650243	FALSE
+carbon source	set1IT008	L-Fucose	HSERO_RS19325	HSERO_RS19325		LysR family transcriptional regulator	-1.9363449141249	-6.83232357036052	FALSE
+carbon source	set1IT008	L-Fucose	HSERO_RS22795	HSERO_RS22795		N-acetyltransferase	-1.61915763657704	-5.27307620420834	FALSE
+carbon source	set2IT057	L-Glutamine	HSERO_RS11610	HSERO_RS11610		NADH dehydrogenase	-1.5394834028848	-5.30339866355634	FALSE
+carbon source	set2IT055	L-Malic acid disodium salt monohydrate	HSERO_RS03275	HSERO_RS03275		regulatory protein RecX	-1.52808241997727	-6.73715712231147	FALSE
+carbon source	set2IT055	L-Malic acid disodium salt monohydrate	HSERO_RS05850	HSERO_RS05850		exodeoxyribonuclease VII large subunit	-1.47885315631865	-6.92872252298947	FALSE
+carbon source	set1IT023	L-Malic acid disodium salt monohydrate	HSERO_RS05920	HSERO_RS05920		endonuclease	-2.67919300782326	-5.0989520483267	FALSE
+carbon source	set2IT058	L-Proline	HSERO_RS00865	HSERO_RS00865		AsnC family transcriptional regulator	-5.81839625519352	-7.96325070105837	TRUE
+carbon source	set1IT026	L-Proline	HSERO_RS00865	HSERO_RS00865		AsnC family transcriptional regulator	-3.87064021480958	-7.86884333040282	TRUE
+carbon source	set1IT026	L-Proline	HSERO_RS00870	HSERO_RS00870		ABC transporter substrate-binding protein	-6.23714195474706	-11.1681388909635	FALSE
+carbon source	set2IT058	L-Proline	HSERO_RS00870	HSERO_RS00870		ABC transporter substrate-binding protein	-6.12104729431665	-10.1946867429113	FALSE
+carbon source	set2IT058	L-Proline	HSERO_RS00875	HSERO_RS00875		hypothetical protein	-3.12436996158708	-5.36367414974914	FALSE
+carbon source	set1IT026	L-Proline	HSERO_RS00880	HSERO_RS00880		ornithine cyclodeaminase	-1.78229748983526	-5.39178785044234	FALSE
+carbon source	set2IT058	L-Proline	HSERO_RS00905	HSERO_RS00905		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-5.40231172402619	-15.676697456221	TRUE
+carbon source	set1IT026	L-Proline	HSERO_RS00905	HSERO_RS00905		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-4.20828464467126	-13.5498396254509	TRUE
+carbon source	set1IT026	L-Proline	HSERO_RS01975	HSERO_RS01975		4-hydroxybenzoate synthetase	-1.49403478777343	-5.39421192473405	FALSE
+carbon source	set1IT006	L-Rhamnose monohydrate	HSERO_RS22200	HSERO_RS22200		L-fuculose kinase	-3.01619455180757	-7.61833297227634	TRUE
+carbon source	set1IT034	L-Rhamnose monohydrate	HSERO_RS22200	HSERO_RS22200		L-fuculose kinase	-2.95297712491281	-6.76522454433395	TRUE
+carbon source	set1IT006	L-Rhamnose monohydrate	HSERO_RS22210	HSERO_RS22210		branched-chain amino acid ABC transporter permease	-4.06448940993568	-6.03479876546117	TRUE
+carbon source	set1IT034	L-Rhamnose monohydrate	HSERO_RS22210	HSERO_RS22210		branched-chain amino acid ABC transporter permease	-3.5333998378816	-9.02018455411406	TRUE
+carbon source	set1IT034	L-Rhamnose monohydrate	HSERO_RS22220	HSERO_RS22220		D-ribose transporter ATP-binding protein	-3.53339686299795	-7.49967024171765	TRUE
+carbon source	set1IT006	L-Rhamnose monohydrate	HSERO_RS22220	HSERO_RS22220		D-ribose transporter ATP-binding protein	-2.96046408941877	-9.16307508741516	TRUE
+carbon source	set1IT006	L-Rhamnose monohydrate	HSERO_RS22230	HSERO_RS22230		DeoR faimly transcriptional regulator	-3.82643606445506	-5.77684023775344	TRUE
+carbon source	set1IT006	L-Rhamnose monohydrate	HSERO_RS22240	HSERO_RS22240		sugar isomerase	-3.50242465292135	-8.64507202658926	TRUE
+carbon source	set1IT034	L-Rhamnose monohydrate	HSERO_RS22240	HSERO_RS22240		sugar isomerase	-3.37813611445355	-8.42009131915739	TRUE
+carbon source	set1IT006	L-Rhamnose monohydrate	HSERO_RS22795	HSERO_RS22795		N-acetyltransferase	-1.71265260892408	-6.17852326407475	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS06705	HSERO_RS06705		MFS transporter	-1.48391073329128	-7.24272790473512	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS08100	HSERO_RS08100		nicotinate phosphoribosyltransferase	-1.70641033663748	-7.33091454654149	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS08100	HSERO_RS08100		nicotinate phosphoribosyltransferase	-1.49040088724046	-5.66732039297444	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS08185	HSERO_RS08185		sulfate transporter subunit	-1.05310047983007	-6.07255030344361	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS08575	HSERO_RS08575		glyoxalase	-1.05429484472391	-5.64803041438727	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS10515	HSERO_RS10515		membrane protein	3.93856037688897	23.2281472291628	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS10515	HSERO_RS10515		membrane protein	4.11694903579727	24.3899294612209	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS10520	HSERO_RS10520		hypothetical protein	3.98776752084154	17.7304816752857	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS10520	HSERO_RS10520		hypothetical protein	4.18752217177083	25.9064000885973	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS10525	HSERO_RS10525		fusaric acid resistance protein	3.99149990119664	29.8795225416221	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS10525	HSERO_RS10525		fusaric acid resistance protein	4.00832236777529	30.5517075288125	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS10530	HSERO_RS10530		RND transporter	4.13104075507256	26.4260930037524	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS10530	HSERO_RS10530		RND transporter	4.15757007245189	26.5508113354717	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS10535	HSERO_RS10535		LysR family transcriptional regulator	-4.5222310647724	-14.3806268919757	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS10535	HSERO_RS10535		LysR family transcriptional regulator	-4.1883395645528	-14.6737430345804	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS11305	HSERO_RS11305		membrane protein	-1.56729182553901	-6.45073866667073	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS11305	HSERO_RS11305		membrane protein	-1.5652678835872	-6.3671252860351	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS15990	HSERO_RS15990		MarR family transcriptional regulator	-1.70276981550779	-9.82990769254989	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS16340	HSERO_RS16340		transcriptional regulator	-1.66098581876041	-6.90524290177836	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS20590	HSERO_RS20590		enoyl-CoA hydratase	-4.22894638715576	-12.6502867311865	TRUE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS20590	HSERO_RS20590		enoyl-CoA hydratase	-4.12306548385876	-13.3143442447267	TRUE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS20595	HSERO_RS20595		branched-chain amino acid ABC transporter substrate-binding protein	-1.80667131529506	-6.30146689665627	FALSE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS20635	HSERO_RS20635		aldehyde dehydrogenase	-3.90982875890788	-11.1679782164549	TRUE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS20635	HSERO_RS20635		aldehyde dehydrogenase	-3.57231938470042	-12.1005631192943	TRUE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS20640	HSERO_RS20640		enoyl-CoA hydratase	-4.92461035051541	-6.70112228072646	TRUE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS20640	HSERO_RS20640		enoyl-CoA hydratase	-4.48392027571726	-7.40541327362509	TRUE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS20645	HSERO_RS20645		3-hydroxyacyl-CoA dehydrogenase	-4.67173477488026	-7.76236954034263	TRUE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS20645	HSERO_RS20645		3-hydroxyacyl-CoA dehydrogenase	-3.96108951548383	-6.65042386371856	TRUE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS20650	HSERO_RS20650		phenylacetic acid degradation protein	-2.47798849283815	-6.95770832320814	TRUE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS20650	HSERO_RS20650		phenylacetic acid degradation protein	-1.93034509432836	-5.05376347080098	TRUE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS20655	HSERO_RS20655		phenylacetate-CoA ligase	-4.97716209553447	-11.9634006653105	TRUE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS20655	HSERO_RS20655		phenylacetate-CoA ligase	-3.90060351791346	-9.59192752775256	TRUE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS20660	HSERO_RS20660		acetyl-CoA acetyltransferase	-4.92620428836532	-14.4785222225196	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS20660	HSERO_RS20660		acetyl-CoA acetyltransferase	-4.66059450901508	-14.0008232929934	FALSE
+carbon source	set6IT094	Phenylacetic acid	HSERO_RS20665	HSERO_RS20665		2,3-dehydroadipyl-CoA hydratase	-4.72330739698487	-8.7900727292529	TRUE
+carbon source	set6IT087	Phenylacetic acid	HSERO_RS20665	HSERO_RS20665		2,3-dehydroadipyl-CoA hydratase	-4.55100864124197	-9.18660438305765	TRUE
+carbon source	set1IT042	Sodium D,L-Lactate	HSERO_RS02355	HSERO_RS02355		phosphoglucomutase	-1.14773732296914	-5.82444860738456	FALSE
+carbon source	set1IT042	Sodium D,L-Lactate	HSERO_RS06975	HSERO_RS06975		penicillin-binding protein 1A	-1.20918387267996	-7.32151602594842	FALSE
+carbon source	set1IT042	Sodium D,L-Lactate	HSERO_RS09950	HSERO_RS09950		chain-length determining protein	-1.59611432623793	-6.10773835671865	FALSE
+carbon source	set1IT042	Sodium D,L-Lactate	HSERO_RS09995	HSERO_RS09995		N-acetylglucosaminyldiphospho-UDP N-acetyl-beta-D-mannosaminyltransferase	-1.16845221563686	-5.09857194971492	FALSE
+carbon source	set1IT014	Sodium D,L-Lactate	HSERO_RS09995	HSERO_RS09995		N-acetylglucosaminyldiphospho-UDP N-acetyl-beta-D-mannosaminyltransferase	-1.16558503688894	-5.64460169625467	FALSE
+carbon source	set1IT042	Sodium D,L-Lactate	HSERO_RS19095	HSERO_RS19095		glycolate oxidase	-5.41186194625396	-6.41540914786892	TRUE
+carbon source	set1IT014	Sodium D,L-Lactate	HSERO_RS19095	HSERO_RS19095		glycolate oxidase	-2.78637374983033	-6.52073027148772	TRUE
+carbon source	set1IT042	Sodium D,L-Lactate	HSERO_RS19100	HSERO_RS19100		FAD-binding protein	-5.19922241462017	-12.0934547985001	TRUE
+carbon source	set1IT014	Sodium D,L-Lactate	HSERO_RS19100	HSERO_RS19100		FAD-binding protein	-2.83953667492478	-8.24583545586749	TRUE
+carbon source	set1IT042	Sodium D,L-Lactate	HSERO_RS19105	HSERO_RS19105		FAD-binding protein	-3.17525314093369	-7.00093360527131	TRUE
+carbon source	set1IT014	Sodium D,L-Lactate	HSERO_RS19105	HSERO_RS19105		FAD-binding protein	-2.37049954251616	-5.5796022904702	TRUE
+carbon source	set1IT014	Sodium D,L-Lactate	HSERO_RS21110	HSERO_RS21110		dTDP-glucose 4,6-dehydratase	1.49225030202131	9.00843657299141	FALSE
+carbon source	set1IT042	Sodium D,L-Lactate	HSERO_RS21110	HSERO_RS21110		dTDP-glucose 4,6-dehydratase	1.68830548327861	10.3240308413639	FALSE
+carbon source	set1IT042	Sodium D,L-Lactate	HSERO_RS23885	HSERO_RS23885		XRE family transcriptional regulator	1.5032417477874	9.08865630185842	FALSE
+carbon source	set1IT012	Sodium D-Lactate	HSERO_RS06025	HSERO_RS06025		histidine kinase	-1.48135730252273	-8.06761940768456	FALSE
+carbon source	set1IT012	Sodium D-Lactate	HSERO_RS06975	HSERO_RS06975		penicillin-binding protein 1A	-1.00317022752175	-7.18048989467289	FALSE
+carbon source	set1IT012	Sodium D-Lactate	HSERO_RS09950	HSERO_RS09950		chain-length determining protein	-1.30945005731559	-7.6170328506128	FALSE
+carbon source	set1IT012	Sodium D-Lactate	HSERO_RS09995	HSERO_RS09995		N-acetylglucosaminyldiphospho-UDP N-acetyl-beta-D-mannosaminyltransferase	-1.73139035420193	-6.96502377559893	FALSE
+carbon source	set1IT012	Sodium D-Lactate	HSERO_RS10000	HSERO_RS10000		mannose-1-phosphate guanylyltransferase	-1.83789521935536	-5.52589140201283	FALSE
+carbon source	set1IT012	Sodium D-Lactate	HSERO_RS19095	HSERO_RS19095		glycolate oxidase	-4.65581428544791	-8.29331100540125	TRUE
+carbon source	set1IT012	Sodium D-Lactate	HSERO_RS19100	HSERO_RS19100		FAD-binding protein	-4.66847324552024	-10.553729948811	TRUE
+carbon source	set1IT040	Sodium D-Lactate	HSERO_RS19100	HSERO_RS19100		FAD-binding protein	-4.37286502919142	-9.0614336344205	TRUE
+carbon source	set1IT012	Sodium D-Lactate	HSERO_RS19105	HSERO_RS19105		FAD-binding protein	-4.27736306033958	-10.4422575364631	TRUE
+carbon source	set1IT040	Sodium D-Lactate	HSERO_RS19105	HSERO_RS19105		FAD-binding protein	-3.89053557959367	-7.39075450128654	TRUE
+carbon source	set1IT041	Sodium L-Lactate	HSERO_RS16550	HSERO_RS16550		NAD(P)H quinone oxidoreductase	-1.13692872903851	-5.36687799278444	FALSE
+carbon source	set1IT015	Sodium pyruvate	HSERO_RS07015	HSERO_RS07015		isocitrate dehydrogenase	-1.33628731801296	-6.32631988816106	FALSE
+carbon source	set1IT017	Xylitol	HSERO_RS05335	HSERO_RS05335		ribulokinase	1.33298466493163	6.16894528991898	FALSE
+carbon source	set1IT045	Xylitol	HSERO_RS05335	HSERO_RS05335		ribulokinase	1.57878024629502	8.84005317381167	FALSE
+carbon source	set1IT045	Xylitol	HSERO_RS11220	HSERO_RS11220		hypothetical protein	1.14167719142742	5.31773568197294	FALSE
+carbon source	set1IT017	Xylitol	HSERO_RS11220	HSERO_RS11220		hypothetical protein	1.33153530079076	6.6269841470036	FALSE
+carbon source	set1IT017	Xylitol	HSERO_RS17000	HSERO_RS17000		sugar ABC transporter substrate-binding protein	-2.0452831215008	-6.01707175845942	TRUE
+carbon source	set1IT045	Xylitol	HSERO_RS17000	HSERO_RS17000		sugar ABC transporter substrate-binding protein	-1.95467877281235	-6.26506890682236	TRUE
+carbon source	set1IT045	Xylitol	HSERO_RS17010	HSERO_RS17010		sugar ABC transporter permease	-2.46915367805232	-6.08129830544273	TRUE
+carbon source	set1IT045	Xylitol	HSERO_RS17015	HSERO_RS17015		sulfurtransferase	-1.84914809053142	-5.49978478566257	TRUE
+carbon source	set1IT045	Xylitol	HSERO_RS17020	HSERO_RS17020		sugar ABC transporter ATP-binding protein	-4.0666144206909	-8.8503105861723	TRUE
+carbon source	set1IT017	Xylitol	HSERO_RS17020	HSERO_RS17020		sugar ABC transporter ATP-binding protein	-3.46760351384937	-10.2249988460121	TRUE
+carbon source	set1IT045	Xylitol	HSERO_RS17025	HSERO_RS17025		AraC family transcriptional regulator	-5.08644783995746	-6.60100013494181	TRUE
+carbon source	set1IT017	Xylitol	HSERO_RS17025	HSERO_RS17025		AraC family transcriptional regulator	-3.0848537966198	-5.38120438945859	TRUE
+carbon source	set1IT017	Xylitol	HSERO_RS17030	HSERO_RS17030		xylulokinase	5.86381785861434	23.1997232948855	TRUE
+carbon source	set1IT045	Xylitol	HSERO_RS17030	HSERO_RS17030		xylulokinase	5.91743030810675	34.5920845531992	TRUE
+carbon source	set1IT017	Xylitol	HSERO_RS22235	HSERO_RS22235		short-chain dehydrogenase	3.22259086889433	11.4601616313843	FALSE
+carbon source	set1IT045	Xylitol	HSERO_RS22235	HSERO_RS22235		short-chain dehydrogenase	3.76220678248839	14.7574610409509	FALSE
+carbon source	set1IT009	a-Ketoglutaric acid disodium salt hydrate	HSERO_RS06975	HSERO_RS06975		penicillin-binding protein 1A	-2.04070098852071	-11.8446609351825	FALSE
+carbon source	set1IT037	a-Ketoglutaric acid disodium salt hydrate	HSERO_RS06975	HSERO_RS06975		penicillin-binding protein 1A	-1.8733630380241	-11.4686656047033	FALSE
+carbon source	set1IT037	a-Ketoglutaric acid disodium salt hydrate	HSERO_RS16810	HSERO_RS16810		Fis family transcriptional regulator	-2.48240097354138	-8.23602426973163	TRUE
+carbon source	set1IT009	a-Ketoglutaric acid disodium salt hydrate	HSERO_RS16810	HSERO_RS16810		Fis family transcriptional regulator	-2.25055838472137	-5.50009829027822	TRUE
+carbon source	set1IT009	a-Ketoglutaric acid disodium salt hydrate	HSERO_RS16815	HSERO_RS16815		C4-dicarboxylate ABC transporter	-2.56267320868924	-12.1509890065179	TRUE
+carbon source	set1IT037	a-Ketoglutaric acid disodium salt hydrate	HSERO_RS16815	HSERO_RS16815		C4-dicarboxylate ABC transporter	-2.53604778227002	-9.17727109938512	TRUE
+carbon source	set1IT037	a-Ketoglutaric acid disodium salt hydrate	HSERO_RS16820	HSERO_RS16820		alpha-ketoglutarate permease	-2.88485841862851	-11.9435925558949	TRUE
+carbon source	set1IT009	a-Ketoglutaric acid disodium salt hydrate	HSERO_RS16820	HSERO_RS16820		alpha-ketoglutarate permease	-2.79871702821354	-8.89739989489351	TRUE
+carbon source	set2IT051	m-Inositol	HSERO_RS05460	HSERO_RS05460		LacI family transcription regulator	-3.72856662028859	-8.07506275136186	FALSE
+carbon source	set1IT019	m-Inositol	HSERO_RS05460	HSERO_RS05460		LacI family transcription regulator	-3.63417670636185	-6.96193205060973	FALSE
+carbon source	set2IT051	m-Inositol	HSERO_RS06135	HSERO_RS06135		malonic semialdehyde reductase	-2.57132580512004	-5.04316199215777	FALSE
+carbon source	set1IT019	m-Inositol	HSERO_RS06135	HSERO_RS06135		malonic semialdehyde reductase	-2.14321294899706	-5.66594440178306	FALSE
+carbon source	set1IT019	m-Inositol	HSERO_RS12095	HSERO_RS12095		myo-inositol 2-dehydrogenase	-5.43727514517958	-6.15176197115461	TRUE
+carbon source	set2IT051	m-Inositol	HSERO_RS12110	HSERO_RS12110		sugar ABC transporter substrate-binding protein	-6.73531111172655	-6.15472030840324	TRUE
+carbon source	set1IT019	m-Inositol	HSERO_RS12110	HSERO_RS12110		sugar ABC transporter substrate-binding protein	-4.50569376448279	-7.02035465267087	TRUE
+carbon source	set2IT051	m-Inositol	HSERO_RS12115	HSERO_RS12115		ATPase	-5.69081284344809	-5.58502972488628	TRUE
+carbon source	set1IT019	m-Inositol	HSERO_RS12115	HSERO_RS12115		ATPase	-4.87007100308263	-6.7401593376748	TRUE
+carbon source	set2IT051	m-Inositol	HSERO_RS12120	HSERO_RS12120		ABC transporter ATP-binding protein	-6.43556281635791	-9.82095351823466	TRUE
+carbon source	set1IT019	m-Inositol	HSERO_RS12120	HSERO_RS12120		ABC transporter ATP-binding protein	-5.21817735742051	-11.3410292716241	TRUE
+carbon source	set1IT019	m-Inositol	HSERO_RS12125	HSERO_RS12125		5-dehydro-2-deoxygluconokinase	-5.04827902154139	-13.6963845157451	TRUE
+carbon source	set2IT051	m-Inositol	HSERO_RS12125	HSERO_RS12125		5-dehydro-2-deoxygluconokinase	-4.40626420814047	-10.3820548588009	TRUE
+carbon source	set1IT019	m-Inositol	HSERO_RS12130	HSERO_RS12130		3D-(3,5/4)-trihydroxycyclohexane-1,2-dione hydrolase	-4.89104425876478	-11.0508691921539	TRUE
+carbon source	set2IT051	m-Inositol	HSERO_RS12130	HSERO_RS12130		3D-(3,5/4)-trihydroxycyclohexane-1,2-dione hydrolase	-4.14313677132323	-8.00741028790092	TRUE
+carbon source	set2IT051	m-Inositol	HSERO_RS12135	HSERO_RS12135		xylose isomerase	-8.54456744687012	-5.90318526647004	TRUE
+carbon source	set1IT019	m-Inositol	HSERO_RS12135	HSERO_RS12135		xylose isomerase	-5.14907474171426	-9.37657115703578	TRUE
+carbon source	set2IT051	m-Inositol	HSERO_RS14845	HSERO_RS14845		stationary phase survival protein SurE	-3.12122625711638	-7.19476145281992	FALSE
+carbon source	set2IT051	m-Inositol	HSERO_RS23235	HSERO_RS23235		GntR family transcriptional regulator	-1.11148464340418	-6.37860847839023	TRUE
+nitrogen source	set2IT063	L-Proline	HSERO_RS00865	HSERO_RS00865		AsnC family transcriptional regulator	-4.76332495041162	-9.62771200658197	TRUE
+nitrogen source	set2IT063	L-Proline	HSERO_RS00870	HSERO_RS00870		ABC transporter substrate-binding protein	-4.44078430844985	-13.3643493107243	FALSE
+nitrogen source	set2IT063	L-Proline	HSERO_RS00905	HSERO_RS00905		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-4.85732608636401	-12.570506644518	TRUE
+nitrogen source	set2IT063	L-Proline	HSERO_RS12800	HSERO_RS12800		aspartate aminotransferase	-1.76031018472914	-5.59008736147195	FALSE
+nutrient	set4IT048	L-Serine	HSERO_RS00265	HSERO_RS00265		threonine dehydratase	-2.49642069215079	-7.14715612761075	FALSE
+nutrient	set4IT047	L-Serine	HSERO_RS00265	HSERO_RS00265		threonine dehydratase	-1.88213895551164	-7.10547486515234	FALSE
+r2a control	set12IT039		HSERO_RS11765	HSERO_RS11765		peptide ABC transporter	-1.27466448532927	-8.60269697963563	FALSE
+r2a control	set12IT039		HSERO_RS22135	HSERO_RS22135		DNA helicase	-1.51801968729889	-13.9142137640968	FALSE
+r2a control	set12IT039		HSERO_RS22140	HSERO_RS22140		hypothetical protein	-1.47593246723928	-9.74914692263661	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS00825	HSERO_RS00825		protease	-1.57997672609401	-5.76115413713877	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS02465	HSERO_RS02465		ATP-dependent DNA helicase RecQ	-3.2405886164754	-12.2125679260035	TRUE
+stress	set2IT070	Cisplatin	HSERO_RS04375	HSERO_RS04375		hypothetical protein	1.03215109623527	6.76709482051627	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS04540	HSERO_RS04540		head protein	1.25857539295333	7.40296005136047	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS04560	HSERO_RS04560		terminase	1.30223848609652	10.1259215471029	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS04565	HSERO_RS04565		bacteriophage capsid portal protein	1.21626888659788	5.57931569422977	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS04570	HSERO_RS04570		hypothetical protein	1.15000382342921	5.45675472638751	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS04605	HSERO_RS04605		hypothetical protein	1.31917480542911	6.37184615455025	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS04610	HSERO_RS04610		hypothetical protein	1.09317738703516	9.29741617399939	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS04615	HSERO_RS04615		hypothetical protein	1.03428858971859	8.8729545724788	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS06080	HSERO_RS06080		hypothetical protein	-2.47417897425551	-7.35912528918104	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS06150	HSERO_RS06150		cell division protein ZapA	-2.92496542757051	-6.83616221491275	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS06495	HSERO_RS06495		nuclease	-2.57540217059258	-8.87758738900051	TRUE
+stress	set2IT070	Cisplatin	HSERO_RS06500	HSERO_RS06500		ATP-dependent DNA helicase	-1.30575487749031	-7.04180240179628	TRUE
+stress	set2IT070	Cisplatin	HSERO_RS09690	HSERO_RS09690		excinuclease ABC subunit C	-5.08922423200827	-7.06329849373497	TRUE
+stress	set2IT070	Cisplatin	HSERO_RS10745	HSERO_RS10745		DNA repair protein RadA	-2.84406543013975	-6.52796489267926	TRUE
+stress	set2IT070	Cisplatin	HSERO_RS14570	HSERO_RS14570		DNA-binding protein	-1.17753277794039	-5.82867724970785	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS15180	HSERO_RS15180		transcription-repair coupling factor	-3.41500157511464	-8.44723470245035	TRUE
+stress	set2IT070	Cisplatin	HSERO_RS17265	HSERO_RS17265		glucosyltransferase MdoH	1.64464614976755	12.1372906124068	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS17270	HSERO_RS17270		glucan biosynthesis protein D	1.68182704242597	12.6686875047675	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS19810	HSERO_RS19810		excinuclease ABC subunit A	-4.7930426436315	-14.6341590884846	TRUE
+stress	set2IT070	Cisplatin	HSERO_RS20720	HSERO_RS20720		GMP synthase	-2.4087405516248	-6.68678733125857	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS20725	HSERO_RS20725		permease	-2.29173701069311	-10.5650037938071	FALSE
+stress	set2IT070	Cisplatin	HSERO_RS20945	HSERO_RS20945		RNA-binding protein	-1.70645868929013	-5.96707195336869	TRUE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS02000	HSERO_RS02000		magnesium transporter	4.16298139792367	16.3850599411798	TRUE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS05435	HSERO_RS05435		hemolysin protein	2.45231998309967	13.904723017632	TRUE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS08385	HSERO_RS08385		anaerobic (selenocysteine-containing) formate dehydrogenase	1.21385736454479	5.45585555365362	FALSE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS10100	HSERO_RS10100		cation transporter	-2.77401886777841	-5.17061790299684	TRUE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS15990	HSERO_RS15990		MarR family transcriptional regulator	-2.21641611936269	-6.15301311170325	FALSE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS16665	HSERO_RS16665		CDP-6-deoxy-delta-3,4-glucoseen reductase	-1.8608474962876	-6.68648808315286	FALSE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS18520	HSERO_RS18520		exporter	-1.39407141519852	-5.92347369468658	FALSE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS19810	HSERO_RS19810		excinuclease ABC subunit A	-1.33417117106059	-6.98312289016763	FALSE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS20725	HSERO_RS20725		permease	-1.72056353026526	-7.08477169581473	FALSE
+stress	set2IT067	Cobalt chloride hexahydrate	HSERO_RS22980	HSERO_RS22980		membrane protein	1.76286368314153	10.0851450822784	FALSE
+stress	set2IT077	Dimethyl Sulfoxide	HSERO_RS00925	HSERO_RS00925		porin	-1.88255699059532	-7.63416568385053	FALSE
+stress	set2IT077	Dimethyl Sulfoxide	HSERO_RS10655	HSERO_RS10655		ribonuclease PH	-1.32365449352175	-5.23470707228969	FALSE
+stress	set2IT076	Fusidic acid sodium salt	HSERO_RS02410	HSERO_RS02410		acriflavine resistance protein B	-3.39671033663306	-11.1201212053135	TRUE
+stress	set2IT076	Fusidic acid sodium salt	HSERO_RS02415	HSERO_RS02415		hemolysin D	-2.97210464418017	-9.71198786023147	FALSE
+stress	set2IT076	Fusidic acid sodium salt	HSERO_RS15990	HSERO_RS15990		MarR family transcriptional regulator	3.75168438626097	21.325070454148	FALSE
+stress	set2IT076	Fusidic acid sodium salt	HSERO_RS17315	HSERO_RS17315		ATP-dependent helicase	-2.47089195643945	-12.8806223425316	TRUE
+stress	set2IT076	Fusidic acid sodium salt	HSERO_RS19775	HSERO_RS19775		acriflavine resistance protein B	1.7239491285944	9.0563242803953	FALSE
+stress	set2IT080	Lomefloxacin hydrochloride	HSERO_RS02410	HSERO_RS02410		acriflavine resistance protein B	-4.41177544721453	-12.5740468721632	TRUE
+stress	set2IT080	Lomefloxacin hydrochloride	HSERO_RS02415	HSERO_RS02415		hemolysin D	-4.91686160298696	-14.8668868256674	TRUE
+stress	set2IT080	Lomefloxacin hydrochloride	HSERO_RS03275	HSERO_RS03275		regulatory protein RecX	-3.08238291779949	-7.6604512664322	FALSE
+stress	set2IT080	Lomefloxacin hydrochloride	HSERO_RS04205	HSERO_RS04205		membrane protein	1.36037496651863	7.44204837591898	FALSE
+stress	set2IT080	Lomefloxacin hydrochloride	HSERO_RS04535	HSERO_RS04535		tail protein X	1.54734355267454	6.28494622223672	FALSE
+stress	set2IT080	Lomefloxacin hydrochloride	HSERO_RS05850	HSERO_RS05850		exodeoxyribonuclease VII large subunit	-3.56012685818627	-6.88734081281122	TRUE
+stress	set2IT080	Lomefloxacin hydrochloride	HSERO_RS16340	HSERO_RS16340		transcriptional regulator	1.51460373921347	5.28252730546626	FALSE
+stress	set2IT080	Lomefloxacin hydrochloride	HSERO_RS18540	HSERO_RS18540		3-ketoacyl-ACP reductase	1.12257460081852	6.64268616043121	FALSE
+stress	set2IT080	Lomefloxacin hydrochloride	HSERO_RS19775	HSERO_RS19775		acriflavine resistance protein B	-3.90475366867365	-9.17265166810972	FALSE
+stress	set2IT078	MreB Perturbing Compound A22	HSERO_RS02410	HSERO_RS02410		acriflavine resistance protein B	-2.42131148541035	-11.732075871318	TRUE
+stress	set2IT079	MreB Perturbing Compound A22	HSERO_RS02410	HSERO_RS02410		acriflavine resistance protein B	-2.39368473583701	-11.3866902929264	TRUE
+stress	set2IT079	MreB Perturbing Compound A22	HSERO_RS02415	HSERO_RS02415		hemolysin D	-2.79171279562397	-12.6556607540911	FALSE
+stress	set2IT078	MreB Perturbing Compound A22	HSERO_RS02415	HSERO_RS02415		hemolysin D	-2.45927711962783	-12.2065669190776	FALSE
+stress	set2IT079	MreB Perturbing Compound A22	HSERO_RS08045	HSERO_RS08045		preprotein translocase subunit TatB	-1.81290847540509	-7.21250823643802	FALSE
+stress	set2IT079	MreB Perturbing Compound A22	HSERO_RS17260	HSERO_RS17260		membrane protein	-1.79297387638818	-5.2080254632985	FALSE
+stress	set2IT079	MreB Perturbing Compound A22	HSERO_RS19775	HSERO_RS19775		acriflavine resistance protein B	-1.43674768828897	-6.21649941391193	FALSE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS01775	HSERO_RS01775		hypothetical protein	1.25101907213476	7.06471398879576	TRUE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS02000	HSERO_RS02000		magnesium transporter	4.85971888084856	21.9755997940166	TRUE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS02950	HSERO_RS02950		DNA methyltransferase	-1.27033284086634	-5.09448715609563	FALSE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS05435	HSERO_RS05435		hemolysin protein	2.77958177541595	19.1194780108125	TRUE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS06150	HSERO_RS06150		cell division protein ZapA	-1.33103190163589	-5.17497361892989	FALSE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS10870	HSERO_RS10870		methionine aminopeptidase	1.83713959449357	11.4372271751306	TRUE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS15990	HSERO_RS15990		MarR family transcriptional regulator	-1.90786894341592	-5.44039356586857	FALSE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS19140	HSERO_RS19140		Rieske (2Fe-2S) protein	1.43372407507177	6.92317591889207	TRUE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS19810	HSERO_RS19810		excinuclease ABC subunit A	-1.45311310656076	-8.17489879005833	FALSE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS20720	HSERO_RS20720		GMP synthase	-1.46900120421086	-5.17894906408394	FALSE
+stress	set2IT066	Nickel (II) chloride hexahydrate	HSERO_RS23925	HSERO_RS23925		multidrug ABC transporter ATP-binding protein	-1.27958086854729	-6.21603344632768	FALSE
+stress	set2IT073	Sisomicin sulfate salt	HSERO_RS02410	HSERO_RS02410		acriflavine resistance protein B	-3.47596921400208	-8.35413258218142	TRUE
+stress	set2IT073	Sisomicin sulfate salt	HSERO_RS02415	HSERO_RS02415		hemolysin D	-4.66485619126117	-13.4313943134146	FALSE
+stress	set2IT073	Sisomicin sulfate salt	HSERO_RS10870	HSERO_RS10870		methionine aminopeptidase	1.51987179414528	7.20742750163165	FALSE
+stress	set2IT073	Sisomicin sulfate salt	HSERO_RS14570	HSERO_RS14570		DNA-binding protein	-1.45778542408805	-5.89012274878921	FALSE
+stress	set2IT073	Sisomicin sulfate salt	HSERO_RS17270	HSERO_RS17270		glucan biosynthesis protein D	-1.86566319799682	-10.2398455665593	FALSE
+stress	set2IT073	Sisomicin sulfate salt	HSERO_RS19775	HSERO_RS19775		acriflavine resistance protein B	-5.19267483117959	-11.2346339851281	FALSE
+stress	set2IT072	Sodium nitrate	HSERO_RS02950	HSERO_RS02950		DNA methyltransferase	-1.48803193450806	-5.2613645710995	FALSE
+stress	set2IT072	Sodium nitrate	HSERO_RS03705	HSERO_RS03705		EvpB family type VI secretion protein	1.30462786713787	5.57826790686747	FALSE
+stress	set2IT072	Sodium nitrate	HSERO_RS03720	HSERO_RS03720		type VI secretion protein	1.21910795695676	7.6547781712374	FALSE
+stress	set2IT072	Sodium nitrate	HSERO_RS03730	HSERO_RS03730		ATPase	1.20680315174268	6.73643018093936	FALSE
+stress	set2IT072	Sodium nitrate	HSERO_RS06150	HSERO_RS06150		cell division protein ZapA	-2.01752573090994	-5.83232184800317	TRUE
+stress	set2IT072	Sodium nitrate	HSERO_RS08765	HSERO_RS08765		hypothetical protein	1.18477119474197	7.29799100422822	FALSE
+stress	set2IT072	Sodium nitrate	HSERO_RS19810	HSERO_RS19810		excinuclease ABC subunit A	-1.34892636067966	-6.12017290121396	TRUE
+stress	set2IT071	Sodium nitrite	HSERO_RS09565	HSERO_RS09565		membrane protein	-1.45552245803505	-6.94261135998737	TRUE
+stress	set2IT071	Sodium nitrite	HSERO_RS11610	HSERO_RS11610		NADH dehydrogenase	-2.225300873923	-5.62287616148938	FALSE
+stress	set2IT071	Sodium nitrite	HSERO_RS11615	HSERO_RS11615		hypothetical protein	-2.80131068958434	-7.36118267885704	FALSE
+stress	set2IT069	Thallium(I) acetate	HSERO_RS02345	HSERO_RS02345		1-acyl-sn-glycerol-3-phosphate acyltransferase	1.36515427915141	6.51010814486826	FALSE
+stress	set2IT069	Thallium(I) acetate	HSERO_RS02375	HSERO_RS02375		NAD-dependent dehydratase	-1.55515158713586	-7.62517748556694	FALSE
+stress	set2IT069	Thallium(I) acetate	HSERO_RS10665	HSERO_RS10665		coproporphyrinogen III oxidase	1.39283784839935	6.45764738463794	FALSE
+stress	set2IT069	Thallium(I) acetate	HSERO_RS19810	HSERO_RS19810		excinuclease ABC subunit A	-1.32306800459325	-7.6147222306496	FALSE
+stress	set2IT069	Thallium(I) acetate	HSERO_RS20680	HSERO_RS20680		multidrug DMT transporter permease	-1.75690418343071	-6.81639694883429	FALSE
+stress	set2IT069	Thallium(I) acetate	HSERO_RS20695	HSERO_RS20695		methyltransferase	-1.73559116694614	-5.73160588009336	FALSE
+stress	set2IT069	Thallium(I) acetate	HSERO_RS21110	HSERO_RS21110		dTDP-glucose 4,6-dehydratase	1.97750930163825	9.74562402924269	FALSE
+stress	set2IT068	sodium fluoride	HSERO_RS08765	HSERO_RS08765		hypothetical protein	1.58358671813913	7.54070003003809	FALSE
+stress	set2IT068	sodium fluoride	HSERO_RS08770	HSERO_RS08770		membrane protein	1.46142265949359	8.38680775281081	FALSE
+stress	set2IT068	sodium fluoride	HSERO_RS12335	HSERO_RS12335		voltage-gated chloride channel protein	-4.62413497061737	-7.42481185693544	TRUE
+stress	set2IT068	sodium fluoride	HSERO_RS16665	HSERO_RS16665		CDP-6-deoxy-delta-3,4-glucoseen reductase	1.03990932622261	5.88739335338227	FALSE
+stress	set2IT068	sodium fluoride	HSERO_RS19810	HSERO_RS19810		excinuclease ABC subunit A	-1.72152421367205	-7.32620853794212	TRUE
+supernatant	set13IT043	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	HSERO_RS02660	HSERO_RS02660		TonB-dependent receptor	-1.45202378138876	-8.3104342218851	FALSE
+supernatant	set13IT043	Supernatant; Trichoderma atroviride IMI grown in Vogels_fungal_media, filtered	HSERO_RS13645	HSERO_RS13645		membrane protein	-2.57016896673149	-5.03985811268938	FALSE
+vitamin	set5IT083		HSERO_RS12235	HSERO_RS12235		biotin synthase	-3.94446337581822	-8.51858774172689	FALSE
+vitamin	set5IT083		HSERO_RS12245	HSERO_RS12245		8-amino-7-oxononanoate synthase	-2.24198925211186	-5.44723399983041	FALSE
+vitamin	set5IT083		HSERO_RS12255	HSERO_RS12255		dethiobiotin synthetase	-2.46968643773983	-6.47030774390013	FALSE

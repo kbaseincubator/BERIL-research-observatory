@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figure S16: NGSA Geochemical Map</title>
+  <style>
+    :root {
+      --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781;
+      --gl:#e1e0d9; --bl:#c3c2b7;
+      --sig:#2a78d6; --ns:#c3c2b7; --acc:#e34948; --acc2:#eda100;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781; --gl:#2c2c2a; --bl:#383835; --sig:#3987e5; --ns:#52514e; --acc:#e66767; --acc2:#c98500; }
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+    .container { max-width:900px; margin:0 auto; }
+    .title { font-size:16px; font-weight:600; margin-bottom:20px; color:var(--tp); }
+    .panels { display:flex; gap:40px; margin-bottom:30px; }
+    .panel { flex:1; }
+    .panel-label { font-size:14px; font-weight:600; margin-bottom:10px; color:var(--ts); }
+    canvas { border:1px solid var(--gl); background:var(--sf); display:block; }
+    svg { display:block; }
+    .legend { margin-top:12px; font-size:12px; color:var(--ts); }
+    .legend-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+    .legend-box { width:14px; height:14px; border-radius:2px; }
+    .axis-label { font-size:11px; color:var(--ts); margin-top:6px; }
+    .note { font-size:11px; color:var(--tm); line-height:1.5; margin-top:20px; max-width:800px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Figure S16. P4 geochemical replication: spatial distribution of NGSA sampling sites and genus-level metal concentration assignments.</div>
+
+    <div class="panels">
+      <!-- Panel A: Map -->
+      <div class="panel">
+        <div class="panel-label">(A) NGSA sampling sites (Cu concentration)</div>
+        <div style="position:relative; width:380px;">
+          <canvas id="mapCanvas" width="380" height="360" style="border:1px solid var(--gl);"></canvas>
+          <svg id="australiaOutline" width="380" height="360" style="position:absolute; top:0; left:0; pointer-events:none;"></svg>
+        </div>
+        <div class="legend">
+          <div class="legend-row">
+            <div class="legend-box" style="background-color:#c3c2b7;"></div>
+            <span>&lt;10 ppm</span>
+          </div>
+          <div class="legend-row">
+            <div class="legend-box" style="background-color:#eda100;"></div>
+            <span>10–30 ppm</span>
+          </div>
+          <div class="legend-row">
+            <div class="legend-box" style="background-color:#e34948;"></div>
+            <span>30–80 ppm</span>
+          </div>
+          <div class="legend-row">
+            <div class="legend-box" style="background-color:#8b0000;"></div>
+            <span>&gt;80 ppm</span>
+          </div>
+        </div>
+        <div class="axis-label">Longitude (°E)</div>
+        <div class="axis-label">Latitude (°S)</div>
+      </div>
+
+      <!-- Panel B: Histogram -->
+      <div class="panel">
+        <div class="panel-label" id="histTitle">(B) Cu distribution (n = 1,297 sites)</div>
+        <svg id="histogramSvg" width="240" height="200" style="border:1px solid var(--gl);"></svg>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> P4 geochemical predictor: per-genus mean soil Cu (mg kg⁻¹) assigned from NGSA ICP-MS measurements within a 200 km join radius. AusMicrobiome 16S samples joined to the 1,315 NGSA sites cover n = 482 genera. Cu and Zn q &lt; 0.05 after BH-FDR across 5 metals (Fig. 7).
+    </div>
+  </div>
+
+  <script>
+    // Data embedded inline
+    const data = {
+      points: [[-12.655,142.272,14.6],[-13.12,141.985,21.6],[-22.702,114.898,13.4],[-22.736,116.122,48.3],[-27.822,153.002,10.6],[-24.117,118.382,40.3],[-29.547,148.581,14.8],[-17.165,131.413,16.2],[-28.346,146.842,15.1],[-22.98,145.247,16.5],[-25.849,135.245,15.6],[-35.752,143.66,18.7],[-23.534,149.707,34.6],[-30.857,119.927,17.7],[-20.72,120.924,6.4],[-30.963,118.796,11.6],[-34.876,150.499,19.9],[-27.641,142.781,20.1],[-29.128,149.001,26.5],[-28.618,147.163,29.2],[-25.286,133.087,12],[-31.882,141.593,17.2],[-32.009,141.546,27.8],[-32.368,142.069,28.6],[-32.765,142.356,15.9],[-33.06,142.608,28.4],[-33.206,142.776,31.8],[-33.331,143.04,29.8],[-33.529,143.343,26.8],[-33.842,143.877,22.1],[-34.095,144.263,37.8],[-34.385,144.693,38.6],[-34.622,145.078,32.7],[-34.833,145.395,30.5],[-35.035,145.634,25.5],[-35.235,145.903,27.2],[-35.413,146.141,28.9],[-35.619,146.376,37.2],[-35.897,146.636,30.6],[-36.082,146.851,37.3],[-36.291,147.107,35.4],[-36.541,147.347,39.7],[-36.854,147.627,31.2],[-37.158,148.01,26.5],[-37.397,148.234,29.6],[-37.582,148.388,30.3],[-37.764,148.489,23.4],[-37.889,148.559,23.9],[-38.053,149.044,25.1],[-38.257,149.268,30.6],[-38.426,149.444,23.7],[-38.598,149.64,21.5],[-38.801,149.889,24.4],[-38.923,150.073,25.1],[-39.124,150.262,21.8],[-39.298,150.444,20.3],[-39.489,150.682,19.6],[-39.667,150.878,21.5],[-39.829,151.024,20.3],[-40.008,151.177,24.8],[-40.155,151.336,24.3],[-40.328,151.534,24.9],[-40.521,151.771,24.1],[-40.673,151.96,23.6],[-40.86,152.136,21.6],[-40.883,152.159,21],[-40.895,152.172,21.1],[-40.881,152.185,20.6],[-12.655,142.272,14.6],[-13.12,141.985,21.6],[-22.702,114.898,13.4],[-22.736,116.122,48.3],[-27.822,153.002,10.6],[-24.117,118.382,40.3],[-29.547,148.581,14.8],[-17.165,131.413,16.2],[-28.346,146.842,15.1],[-22.98,145.247,16.5],[-25.849,135.245,15.6],[-35.752,143.66,18.7],[-23.534,149.707,34.6],[-30.857,119.927,17.7],[-20.72,120.924,6.4],[-30.963,118.796,11.6],[-34.876,150.499,19.9],[-27.641,142.781,20.1],[-29.128,149.001,26.5],[-28.618,147.163,29.2],[-25.286,133.087,12],[-31.882,141.593,17.2],[-32.009,141.546,27.8],[-32.368,142.069,28.6],[-32.765,142.356,15.9],[-33.06,142.608,28.4],[-33.206,142.776,31.8],[-33.331,143.04,29.8],[-33.529,143.343,26.8],[-33.842,143.877,22.1],[-34.095,144.263,37.8],[-34.385,144.693,38.6],[-34.622,145.078,32.7],[-34.833,145.395,30.5],[-35.035,145.634,25.5],[-35.235,145.903,27.2],[-35.413,146.141,28.9],[-35.619,146.376,37.2],[-35.897,146.636,30.6],[-36.082,146.851,37.3],[-36.291,147.107,35.4],[-36.541,147.347,39.7],[-36.854,147.627,31.2],[-37.158,148.01,26.5],[-37.397,148.234,29.6],[-37.582,148.388,30.3],[-37.764,148.489,23.4],[-37.889,148.559,23.9],[-38.053,149.044,25.1],[-38.257,149.268,30.6],[-38.426,149.444,23.7],[-38.598,149.64,21.5],[-38.801,149.889,24.4],[-38.923,150.073,25.1],[-39.124,150.262,21.8],[-39.298,150.444,20.3],[-39.489,150.682,19.6],[-39.667,150.878,21.5],[-39.829,151.024,20.3],[-40.008,151.177,24.8],[-40.155,151.336,24.3],[-40.328,151.534,24.9],[-40.521,151.771,24.1],[-40.673,151.96,23.6],[-40.86,152.136,21.6],[-40.883,152.159,21],[-40.895,152.172,21.1],[-40.881,152.185,20.6]],
+      counts: [5,5,9,13,39,45,90,98,126,122,164,192,185,109,55,22,12,3,2,1],
+      edges: [-0.046,0.065,0.177,0.288,0.399,0.51,0.621,0.732,0.844,0.955,1.066,1.177,1.288,1.399,1.511,1.622,1.733,1.844,1.955,2.066,2.178],
+      median_cu: 13.7
+    };
+
+    // Australia bounds and coastline
+    const ausOutline = [
+      [114,-22],[115,-33],[119,-35],[123,-34],[129,-34],[133,-33],
+      [137,-35],[139,-37],[148,-38],[152,-24],[153,-27],[153,-29],
+      [152,-23],[146,-19],[137,-16],[130,-12],[128,-15],[120,-22],[114,-22]
+    ];
+
+    const latMin = -44, latMax = -10;
+    const lonMin = 113, lonMax = 154;
+    const canvasW = 380, canvasH = 360;
+    const margin = 30;
+    const plotW = canvasW - 2*margin;
+    const plotH = canvasH - 2*margin;
+
+    function lonToX(lon) {
+      return margin + (lon - lonMin) / (lonMax - lonMin) * plotW;
+    }
+
+    function latToY(lat) {
+      return margin + (latMax - lat) / (latMax - latMin) * plotH;
+    }
+
+    function getCuColor(cu) {
+      if (cu < 10) return '#c3c2b7';
+      if (cu < 30) return '#eda100';
+      if (cu < 80) return '#e34948';
+      return '#8b0000';
+    }
+
+    // Panel A: Canvas map
+    const canvas = document.getElementById('mapCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--sf').trim();
+    ctx.fillRect(0, 0, canvasW, canvasH);
+
+    // Draw points
+    data.points.forEach(pt => {
+      const [lat, lon, cu] = pt;
+      const x = lonToX(lon);
+      const y = latToY(lat);
+      ctx.fillStyle = getCuColor(cu);
+      ctx.beginPath();
+      ctx.arc(x, y, 3, 0, 2*Math.PI);
+      ctx.fill();
+    });
+
+    // Panel A: SVG Australia outline
+    const svgOutline = document.getElementById('australiaOutline');
+    let pathData = 'M';
+    ausOutline.forEach((pt, i) => {
+      const x = lonToX(pt[0]);
+      const y = latToY(pt[1]);
+      pathData += (i === 0 ? '' : ' L') + x + ',' + y;
+    });
+    pathData += ' Z';
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', pathData);
+    path.setAttribute('stroke', getComputedStyle(document.documentElement).getPropertyValue('--gl').trim());
+    path.setAttribute('stroke-width', '1.5');
+    path.setAttribute('fill', 'none');
+    svgOutline.appendChild(path);
+
+    // Add state labels
+    const stateLabels = [
+      {name: 'QLD', lon: 145, lat: -23},
+      {name: 'NSW', lon: 149, lat: -32},
+      {name: 'VIC', lon: 145, lat: -37},
+      {name: 'SA', lon: 135, lat: -33},
+      {name: 'WA', lon: 121, lat: -27},
+      {name: 'NT', lon: 133, lat: -19}
+    ];
+
+    stateLabels.forEach(label => {
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', lonToX(label.lon));
+      text.setAttribute('y', latToY(label.lat));
+      text.setAttribute('font-size', '10');
+      text.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--tm').trim());
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('pointer-events', 'none');
+      text.textContent = label.name;
+      svgOutline.appendChild(text);
+    });
+
+    // Panel B: Histogram
+    const histSvg = document.getElementById('histogramSvg');
+    const histW = 240, histH = 200;
+    const histMargin = {t: 10, r: 10, b: 30, l: 35};
+    const histPlotW = histW - histMargin.l - histMargin.r;
+    const histPlotH = histH - histMargin.t - histMargin.b;
+
+    const maxCount = Math.max(...data.counts);
+    const minLogCu = data.edges[0];
+    const maxLogCu = data.edges[data.edges.length - 1];
+
+    // Draw bars
+    data.counts.forEach((count, i) => {
+      const x1 = histMargin.l + (i / data.counts.length) * histPlotW;
+      const x2 = histMargin.l + ((i + 1) / data.counts.length) * histPlotW;
+      const barH = (count / maxCount) * histPlotH;
+      const y = histMargin.t + histPlotH - barH;
+
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', x1);
+      rect.setAttribute('y', y);
+      rect.setAttribute('width', x2 - x1);
+      rect.setAttribute('height', barH);
+      rect.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--sig').trim());
+      histSvg.appendChild(rect);
+    });
+
+    // Median line
+    const medianLogCu = Math.log10(data.median_cu);
+    const medianX = histMargin.l + ((medianLogCu - minLogCu) / (maxLogCu - minLogCu)) * histPlotW;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', medianX);
+    line.setAttribute('y1', histMargin.t);
+    line.setAttribute('x2', medianX);
+    line.setAttribute('y2', histMargin.t + histPlotH);
+    line.setAttribute('stroke', getComputedStyle(document.documentElement).getPropertyValue('--acc').trim());
+    line.setAttribute('stroke-dasharray', '4,4');
+    line.setAttribute('stroke-width', '1.5');
+    histSvg.appendChild(line);
+
+    // Median annotation
+    const medianText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    medianText.setAttribute('x', medianX);
+    medianText.setAttribute('y', 8);
+    medianText.setAttribute('font-size', '10');
+    medianText.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--ts').trim());
+    medianText.setAttribute('text-anchor', 'middle');
+    medianText.textContent = `median = ${data.median_cu} ppm`;
+    histSvg.appendChild(medianText);
+
+    // Axes
+    const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    xAxis.setAttribute('x1', histMargin.l);
+    xAxis.setAttribute('y1', histMargin.t + histPlotH);
+    xAxis.setAttribute('x2', histMargin.l + histPlotW);
+    xAxis.setAttribute('y2', histMargin.t + histPlotH);
+    xAxis.setAttribute('stroke', getComputedStyle(document.documentElement).getPropertyValue('--ts').trim());
+    xAxis.setAttribute('stroke-width', '1');
+    histSvg.appendChild(xAxis);
+
+    const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    yAxis.setAttribute('x1', histMargin.l);
+    yAxis.setAttribute('y1', histMargin.t);
+    yAxis.setAttribute('x2', histMargin.l);
+    yAxis.setAttribute('y2', histMargin.t + histPlotH);
+    yAxis.setAttribute('stroke', getComputedStyle(document.documentElement).getPropertyValue('--ts').trim());
+    yAxis.setAttribute('stroke-width', '1');
+    histSvg.appendChild(yAxis);
+
+    // X-axis labels
+    const xLabels = ['0.0', '0.5', '1.0', '1.5', '2.0'];
+    xLabels.forEach((label, i) => {
+      const x = histMargin.l + (i / (xLabels.length - 1)) * histPlotW;
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', x);
+      text.setAttribute('y', histMargin.t + histPlotH + 14);
+      text.setAttribute('font-size', '9');
+      text.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--ts').trim());
+      text.setAttribute('text-anchor', 'middle');
+      text.textContent = label;
+      histSvg.appendChild(text);
+    });
+
+    // Y-axis label
+    const yLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    yLabel.setAttribute('x', 8);
+    yLabel.setAttribute('y', histMargin.t + histPlotH / 2);
+    yLabel.setAttribute('font-size', '9');
+    yLabel.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--ts').trim());
+    yLabel.setAttribute('text-anchor', 'middle');
+    yLabel.setAttribute('transform', `rotate(-90 8 ${histMargin.t + histPlotH / 2})`);
+    yLabel.textContent = 'Count';
+    histSvg.appendChild(yLabel);
+
+    // X-axis title
+    const xTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    xTitle.setAttribute('x', histMargin.l + histPlotW / 2);
+    xTitle.setAttribute('y', histH - 3);
+    xTitle.setAttribute('font-size', '9');
+    xTitle.setAttribute('fill', getComputedStyle(document.documentElement).getPropertyValue('--ts').trim());
+    xTitle.setAttribute('text-anchor', 'middle');
+    xTitle.textContent = 'log₁₀(Cu ppm)';
+    histSvg.appendChild(xTitle);
+  </script>
+</body>
+</html>

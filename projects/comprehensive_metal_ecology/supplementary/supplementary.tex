@@ -1,0 +1,1791 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in,top=1in,bottom=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{caption}
+
+% ── Figure and table numbering ─────────────────────────────────────────────
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\theequation}{S\arabic{equation}}
+
+% ── Section formatting ─────────────────────────────────────────────────────
+\titleformat{\section}{\large\bfseries}{SM\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+
+% ── Utility ────────────────────────────────────────────────────────────────
+\newcommand{\pval}[1]{$p = #1$}
+\newcommand{\betaval}[1]{$\beta = #1$}
+
+\captionsetup[figure]{labelfont=bf,labelsep=period,font=small}
+\captionsetup[table]{labelfont=bf,labelsep=period,font=small}
+
+\title{\textbf{Supplementary Information}\\[6pt]
+\large Genome streamlining is pervasive across prokaryotic functional categories,
+but a distinctive cofactor-versus-resistance split links metal-gene investment
+to ecological specialisation}
+
+\author{Heather R.\ MacGregor$^{1,2}$ and Adam P.\ Arkin$^{2,3}$\\[4pt]
+\small $^1$Department of Chemistry and Chemical Biology, University of California,
+Berkeley, CA~94720, USA\\
+\small $^2$Environmental Genomics and Systems Biology Division,
+Lawrence Berkeley National Laboratory, Berkeley, CA~94720, USA\\
+\small $^3$Department of Bioengineering, University of California,
+Berkeley, CA~94720, USA}
+
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+% ============================================================================
+\clearpage
+\section{Gene list construction and evidence tiers}
+\label{sm:genelist}
+% ============================================================================
+
+\subsection{Candidate KO universe}
+
+The metal-gene list was assembled from three independent sources:
+
+\begin{enumerate}
+\item \textbf{KEGG ORTHOLOGY / BRITE hierarchies.} KOs classified under BRITE
+  modules for heavy-metal resistance, metal transport, and metalloenzymes were
+  downloaded in 2024.  Only KOs with an explicit metal annotation in the KEGG
+  reaction or definition field were retained.
+
+\item \textbf{BacMet2 database}~\cite{pal2014}.  Experimentally validated
+  metal resistance genes from BacMet v2.0.  KEGG IDs were assigned by mapping
+  BacMet gene names to KEGG gene identifiers via the KEGG REST API
+  (\texttt{/find/genes/\{name\}} endpoint).
+
+\item \textbf{FitnessBrowser}~\cite{price2018}.  Genome-wide transposon
+  fitness screens under metallic stress conditions.  KOs with significant
+  fitness defects ($|\text{fitness score}| > 1.5$, $|t| > 5$) under $\geq 1$
+  metal stressor were included.
+\end{enumerate}
+
+KOs appearing in $\geq 2$ sources were cross-validated; those from only one
+source were retained as lower-confidence candidates with appropriate tier labels.
+The final list covers 730 KOs across 17 metals.
+
+\subsection{Evidence tiers}
+
+Each of the 730 candidate KOs was assigned to one of five evidence tiers:
+
+\begin{table}[H]
+\centering
+\caption{Evidence tier definitions.}
+\label{tab:tiers}
+\small
+\begin{tabular}{llrl}
+\toprule
+Tier & Label & $n$ KOs & Criterion \\
+\midrule
+1 & Tier~1 & 32 & Multi-source validated: BacMet2 \textsc{and} FitnessBrowser
+  \textsc{and} KEGG module \\
+2 & Tier~2 & 108 & Clear KEGG module definition; one additional source
+  (BacMet2 or Fitness) \\
+2-Fitness & Tier~2-Fitness & 116 & FitnessBrowser-validated only; no KEGG
+  module annotation \\
+3-BacMet & Tier~3-BacMet & 188 & BacMet2 literature-curated; no fitness
+  evidence \\
+3 & Tier~3 & 286 & KEGG BRITE only; ambiguous or multi-function annotation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Primary KO set} used in all confirmatory analyses: Tier~1 + Tier~2
+= \textbf{140 KOs}.  These have the strongest multi-source evidence and
+unambiguous KEGG functional annotations.  The full list with curation
+rationale is provided in Supplementary Table~S2.
+
+\subsection{Functional categories}
+
+Each KO was assigned a primary functional category based on KEGG annotation
+and BacMet2 gene function:
+
+\begin{itemize}
+\item \textbf{Transport / Homeostasis} — metal importers, exporters,
+  metallochaperones, siderophore-uptake systems, and ferritins.
+
+\item \textbf{Resistance / Detoxification} — metal-efflux pumps, detoxification
+  enzymes, and metal-responsive regulatory proteins that confer resistance.
+
+\item \textbf{Sensing / Regulation} — two-component sensor kinases, MerR-family
+  metalloregulators, and other metal-sensing regulatory elements.
+
+\item \textbf{Cofactor Biosynthesis} — enzymes in Fe--S cluster assembly,
+  molybdopterin (Moco) biosynthesis, and cobalamin pathway steps that
+  incorporate metal cofactors.
+
+\item \textbf{Metal-dependent Metabolism} — metabolic enzymes whose catalytic
+  activity requires a metal cofactor, supported by KEGG module assignment and
+  fitness screen evidence.
+\end{itemize}
+
+Assignment is based on the most specific category for each KO;
+\texttt{overlap\_flag = True} identifies six KOs with dual-function ambiguity
+in the full 730-KO list (not in the primary 140-KO set).
+
+\subsection{Metal coverage}
+
+The primary 140-KO set covers 17 metals: Fe, Zn, Co, Mn, Cu, Ni, S, Mo, Cd,
+Al, Tl, Ag, Hg, Au, Pb, As, and Bi.  Metal annotations are listed per KO in
+Supplementary Table~S2.  Metal-specific PGLS subsets were defined by filtering
+to KOs whose \texttt{metals} field contains the target metal.  Nine metals with
+$\geq 34$ primary KOs were included in the metal-specific confirmatory analysis:
+Co (101 KOs), Fe (98), Ni (84), S (74), Cu (71), Zn (67), Tl (45), Al (34),
+Mn (34). For Al, Tl, and S --- elements with fewer dedicated resistance systems --- KOs were assigned based on fitness-screen evidence or documented biochemical function; full curation rationale for these three metals is provided in Supplementary Table~S4.
+
+\subsection{Pfam / InterPro structural QC}
+
+To assess whether the primary KO set has independent structural evidence of
+metal interaction, we performed a three-step API pipeline for all 140 KOs:
+
+\begin{enumerate}
+\item \textbf{KO $\to$ gene:} KEGG REST \texttt{link/genes/ko:\{KO\}} filtered
+  to representative model organisms in priority order (\textit{E.\ coli},
+  \textit{B.\ subtilis}, \textit{P.\ aeruginosa}, \textit{Synechocystis},
+  \textit{M.\ tuberculosis}, \textit{S.\ coelicolor}, \textit{R.\ prowazekii},
+  \textit{C.\ jejuni}, \textit{B.\ pertussis}, \textit{M.\ genitalium});
+  then \texttt{conv/uniprot/\{gene\_id\}} to obtain a UniProt accession.
+  Rate: 0.4\,s per call; 3-retry exponential back-off.
+
+\item \textbf{Gene $\to$ Pfam:} UniProt REST
+  \texttt{/\{acc\}?fields=xref\_pfam\&format=tsv} to retrieve Pfam domain IDs.
+
+\item \textbf{Pfam $\to$ clan:} InterPro API
+  \texttt{/entry/pfam/\{PF\}/?format=json} $\to$
+  \texttt{metadata.set\_info.accession} to identify the InterPro clan.
+  Rate: 0.3\,s per call.
+\end{enumerate}
+
+Metal-binding domains were defined by five InterPro clans (verified in
+InterPro version 97+): CL0704 (HMA heavy-metal-associated domain), CL0344
+(4Fe--4S ferredoxin), CL0486 (Fer2 / 2Fe--2S ferredoxin), CL0361 (C2H2 zinc
+finger), and CL0193 (MBB metal beta-barrel); plus $\approx$25 metal-binding
+singleton Pfams identified from literature.
+
+\textbf{Results:} 10/140 (7.1\%) KOs have $\geq 1$ metal-binding clan or
+singleton Pfam.  The 130 without clan evidence fall into three classes:
+\texttt{pfam\_no\_metal\_clan} (113 KOs — Pfam domains found but none in
+metal-binding clans; predominantly ABC transporter ATPase / permease scaffolds
+PF00005 / PF00950 / PF01032, MerR-family sensors, and outer-membrane efflux
+proteins); \texttt{no\_gene\_found} (15 KOs — no representative bacterial gene
+in KEGG REST); and \texttt{no\_pfam\_domains} (2 KOs: ARN / K08197 and cbiL /
+K16915).  The low InterPro coverage is expected: metal transporters act via
+substrate selectivity at the binding pocket rather than via catalytic
+metal-cofactor domains, and will systematically fail clan-based Pfam filtering
+(see also Fig.~S14 and §5.1 of the main text).
+
+% ============================================================================
+\section{Per-megabase KO density calculation}
+\label{sm:density}
+% ============================================================================
+
+\subsection{Genomic data sources}
+
+\textbf{Primary dataset (bacteria, $n = 1{,}574$ genera):} BERDL Spark cluster,
+namespace \texttt{kbase.ke\_pangenome}.  The \texttt{genus\_clusters} table
+contains one row per GTDB genus with pangenome statistics (total gene count,
+mean genome size in bp, and the full KO annotation set across all genomes in
+the genus-level cluster).  Phylum / kingdom annotations joined from
+\texttt{kbase.ke\_pangenome.gtdb\_taxonomy\_r214v1}.
+
+\textbf{Geochemical replication dataset (soil concentration,
+$n = 482$ genera):} \texttt{refdata.ngsa} (Australian National Geochemical
+Survey of Australia; Geoscience Australia).  KO content extracted by the same
+pipeline, restricted to genera detected in Australian soil and sediment samples.
+Soil metal concentrations (ICP-MS, mg\,kg$^{-1}$) joined by a 200\,km radius
+spatial join between NGSA sampling sites and genus occurrences.
+
+\subsection{KO density formula}
+
+For each genus $g$:
+
+\begin{equation}
+\text{ko\_per\_mb\_primary}(g) =
+  \frac{n_{\text{distinct primary KOs}}(g)}{\text{mean\_genome\_size\_Mb}(g)}
+\end{equation}
+
+where $\text{mean\_genome\_size\_Mb} = \text{mean\_genome\_size\_bp} / 10^6$
+averaged across all genomes in the genus cluster, and
+$n_{\text{distinct primary KOs}}$ counts unique KO IDs from the 140-KO primary
+set present in $\geq 1$ genome of the genus.
+
+\subsection{Predictor standardisation}
+
+For PGLS, \texttt{ko\_per\_mb\_primary} is $z$-scored within each analysis
+dataset:
+\begin{equation}
+\text{predictor\_z} = \frac{\text{ko\_per\_mb\_primary} -
+  \mu(\text{ko\_per\_mb\_primary})}{\sigma(\text{ko\_per\_mb\_primary})}
+\end{equation}
+
+Standardisation is performed separately within each analysis dataset
+(bacteria, archaea, geochemical replication), so $\beta$ values are not
+directly comparable across datasets.
+
+\subsection{Primary dataset summary}
+
+\begin{table}[H]
+\centering
+\caption{Summary statistics for the primary bacterial dataset ($n = 1{,}574$
+genera).}
+\label{tab:datasummary}
+\small
+\begin{tabular}{ll}
+\toprule
+Statistic & Value \\
+\midrule
+$n$ genera & 1,574 \\
+\texttt{ko\_per\_mb\_primary}: mean (SD) & 8.61 (3.83) KOs/Mb \\
+\texttt{ko\_per\_mb\_primary}: range & 0.78--34.56 KOs/Mb \\
+Mean genome size: mean (SD) & 3.73 (1.63) Mb \\
+Dominant phyla & Proteobacteria (43\%), Firmicutes (21\%), \\
+ & Actinobacteria (13\%), Bacteroidetes (12\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+\section{Ecological niche breadth quantification}
+\label{sm:niche}
+% ============================================================================
+
+\subsection{Levins' standardised niche breadth}
+
+Niche breadth was quantified using Levins' $B$~\cite{levins1968}, standardised
+following Colwell \& Futuyma~\cite{colwell1971}:
+
+\begin{equation}
+B = \frac{1}{\sum_i p_i^2} \qquad\quad
+B_\mathrm{std} = \frac{B - 1}{n - 1}
+\end{equation}
+
+where $p_i$ is the proportional abundance of a genus in sample $i$ (relative
+to total abundance of that genus across all samples) and $n$ is the total
+number of samples.  $B_\mathrm{std} \in [0,1]$: 0 = complete specialist
+(all occurrences in one sample), 1 = complete generalist (perfectly even
+distribution).  Implementation: \texttt{scripts/niche\_utils.py::levins\_b\_std()}.
+
+\subsection{Primary niche breadth dataset (MicrobeAtlas)}
+
+\textbf{Data source:} \texttt{arkinlab.microbeatlas} (BERDL Spark) — genus-level
+OTU abundance matrix across $>400{,}000$ global 16S rDNA amplicon samples
+aggregated in the MicrobeAtlas database~\cite{sunagawa2015}.  Each OTU linked to a
+genus via \texttt{otu\_pangenome\_link\_v2.csv}; per-genus $B_\mathrm{std}$
+computed as the mean across all OTUs assigned to that genus.
+
+\textbf{Minimum sample filter:} Genera detected in $<5$ samples are excluded.
+Sensitivity checks at $n_\mathrm{min} = 50$ and $n_\mathrm{min} = 150$
+produce identical results (analyses S4 and S5, Table S2 of the main text),
+confirming that most genera in the dataset exceed these thresholds.
+
+\subsection{EMP niche breadth (secondary, exploratory)}
+
+\textbf{Data source:} Earth Microbiome Project 16S data
+(\texttt{refdata.emp\_16s}).  EMPO (Earth Microbiome Project Ontology)
+level-3 habitat categories used as the niche axis; level-2 used as fallback
+when $<5$ distinct EMPO-3 categories were present for a genus.  Levins
+$B_\mathrm{std}$ computed from the genus $\times$ EMPO-category co-occurrence
+matrix.  Minimum: $\geq 5$ EMP samples per genus.  $n = 539$ genera after
+merge with primary KO density data.
+
+\textbf{Result:} $\lambda = 0.055$ (little phylogenetic signal in EMP niche
+breadth), $\beta = -0.019$, $\text{SE} = 0.0115$, $p = 0.099$ (non-significant,
+directionally consistent; see Fig.~S13).
+
+\subsection{Soil-specialist definition}
+
+For the soil-restricted sensitivity analysis (analysis S7 of the main text),
+genera were classified as soil specialists via MicrobeAtlas \texttt{Env\_Level\_1}
+using ecosystem categories: \textit{soil}, \textit{agricultural}, \textit{farm},
+\textit{field}, \textit{paddy}, \textit{peatland}, \textit{desert}, \textit{shrub}.
+Procedure: (1) identify the dominant \texttt{Env\_Level\_1} category per OTU
+(row with maximum \texttt{n\_samples\_detected}); (2) flag OTU as
+\texttt{is\_soil} if dominant environment $\in$ SOIL\_ENVS; (3) join OTUs to
+genera; (4) compute $\text{frac\_soil} = n_\text{soil OTUs} / n_\text{OTUs}$
+per genus; (5) classify genus as soil specialist if $\text{frac\_soil} > 0.5$.
+Soil-restricted dataset: $n = 162$ genera.
+
+% ============================================================================
+\section{Phylogenetic tree}
+\label{sm:tree}
+% ============================================================================
+
+\textbf{Source:} GTDB (Genome Taxonomy Database) Release 214v1~\cite{parks2022}.  The full
+genus-level phylogeny was downloaded in Newick format and pruned to retain only
+genera present in the PGLS input dataset using
+\texttt{dendropy.Tree.prune\_taxa\_with\_labels()}.
+
+\begin{itemize}
+\item Bacterial tree: \texttt{data/gtdb\_bac\_genus\_pruned.tree}
+  (2,283 taxa before pruning; 1,574 retained for the primary analysis).
+
+\item Archaeal tree: \texttt{data/gtdb\_arc\_genus\_pruned.tree}
+  (pruned to 95 genera for the archaeal replication; 41 for the archaeal
+  sensitivity analysis at $n_\text{min} = 5$ genera per taxon).
+\end{itemize}
+
+Tip labels use lowercase genus names with spaces replaced by underscores,
+matching the \texttt{genus\_lower} column in all data files.  All branch
+lengths are in units of substitutions per site (molecular phylogram;
+root-to-tip distances range from 0.886 to 2.994 substitutions per site,
+confirming the tree is \textbf{not ultrametric}).
+
+\textbf{Note on ultrametric assumption.} PGLS under Brownian motion
+theoretically assumes an ultrametric (time-calibrated) phylogeny.  The GTDB
+bacterial tree is a molecular phylogram, not a time-scaled tree, and this is a
+limitation acknowledged here.  Two features of our implementation mitigate the
+impact: (1) Pagel's $\lambda$ is estimated by maximum likelihood for each model,
+which scales off-diagonal covariances and partially corrects for the
+non-ultrametric structure~\cite{pagel1999}; (2) sensitivity analyses confirm
+that the primary result holds at $\lambda = 0$ (OLS; $\beta = -0.032$,
+$p \approx 0$) and $\lambda = 1$ (full Brownian motion; $\beta = -0.018$,
+$p = 3.7 \times 10^{-6}$), spanning the range from ``tree structure ignored''
+to ``full BM''.  The Grafen (1989) transformation to an arbitrary ultrametric
+tree was not applied; this is a future robustness direction.
+
+The circular cladogram of the bacterial tree coloured by KO density and niche
+breadth is shown in Fig.~S1.
+
+% ============================================================================
+\section{Phylogenetic generalised least squares}
+\label{sm:pgls}
+% ============================================================================
+
+\subsection{Implementation}
+
+All PGLS models were fitted using \texttt{scripts/pgls\_utils.py}, a custom
+implementation using \texttt{dendropy}~5.0.8 for tree operations and
+\texttt{scipy}~1.17.1~\cite{virtanen2020} / \texttt{numpy}~2.4.4 for
+optimisation and linear algebra. All analyses were run in Python~3.13.9
+(conda-forge, GCC~14.3.0). CatBoost (version 1.2) was used for the
+exploratory LOPO analysis (SM~11). No R packages were used in the primary
+confirmatory analyses.
+
+\textbf{Variance--covariance matrix.}
+Built from the pruned GTDB tree as $V[i,j] = $ shared branch length from root
+to MRCA$(i,j)$ (= root-to-tip path length for $i = j$).
+
+\textbf{Pagel's $\lambda$.}
+Off-diagonal elements of $V$ are scaled by $\lambda \in (0,1)$:
+\begin{equation}
+V_\lambda[i,j] = \lambda \cdot V[i,j] \quad (i \neq j); \qquad
+V_\lambda[i,i] = V[i,i]
+\end{equation}
+$\lambda = 0$: OLS (no phylogenetic signal); $\lambda = 1$: Brownian motion
+(full phylogenetic signal).  $\lambda$ is estimated by maximising the profile
+log-likelihood:
+\begin{equation}
+\log L = -\tfrac{1}{2}\bigl[n\log(2\pi) + n\log(\sigma^2) +
+  \log|V_\lambda| +
+  (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})^\top
+  V_\lambda^{-1}
+  (\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) / \sigma^2\bigr]
+\end{equation}
+Optimisation via \texttt{scipy.optimize.minimize\_scalar()} with bounds
+$(10^{-4},\, 1 - 10^{-4})$ and \texttt{method='bounded'}.
+
+\textbf{GLS fit.}
+After $\lambda$ optimisation, GLS coefficients $\hat{\boldsymbol{\beta}}$ and
+standard errors are estimated:
+\begin{align}
+\hat{\boldsymbol{\beta}} &=
+  (\mathbf{X}^\top V^{-1} \mathbf{X})^{-1} \mathbf{X}^\top V^{-1} \mathbf{y}
+\\[4pt]
+\sigma^2 &=
+  \frac{(\mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}})^\top
+    V_\lambda^{-1}
+    (\mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}})}{n - p}
+\\[4pt]
+\mathrm{SE}(\hat{\beta}_j) &=
+  \sqrt{\bigl[(\mathbf{X}^\top V^{-1} \mathbf{X})^{-1}\bigr]_{jj} \cdot \sigma^2}
+\end{align}
+where $p$ is the number of predictors including the intercept.
+
+\textbf{Model statistics:}
+$t_j = \hat{\beta}_j / \mathrm{SE}(\hat{\beta}_j)$ with $\mathrm{df} = n - p$;
+$\mathrm{AIC} = -2\log L + 2(p + 1)$;
+$\Delta\mathrm{AIC} = \mathrm{AIC}(\text{model}) - \mathrm{AIC}(\text{null})$;
+$r^2 = 1 - \mathrm{Var}(\text{residuals}) / \mathrm{Var}(\text{response})$.
+
+\subsection{Primary result}
+
+\begin{table}[H]
+\centering
+\caption{Primary PGLS result (bacteria, $n = 1{,}574$ genera; MicrobeAtlas
+niche breadth vs Tier~1+2 KO density).}
+\label{tab:p1}
+\small
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+$n$ genera (bacteria) & 1,574 \\
+Pagel's $\lambda$ & 0.757 \\
+$\beta$ (\texttt{ko\_per\_mb\_primary}, $z$-scored) & $-0.0207$ \\
+SE & $0.00368$ \\
+$t$-statistic & $-5.629$ \\
+$p$ (raw) & $2.14 \times 10^{-8}$ \\
+$p$ (FDR, joint with P2 and P3) & $4.28 \times 10^{-8}$ \\
+$r^2$ & 0.046 \\
+$\Delta$AIC vs null & $-29.41$ \\
+\midrule
+Archaeal replication ($n = 95$): $\beta$ & $-0.0137$ ($p = 0.119$, FDR $= 0.178$) \\
+Geochemical replication ($n = 482$): $\beta$ & $-0.00171$ ($p = 0.755$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+\section{Multiple testing correction}
+\label{sm:mtc}
+% ============================================================================
+
+All corrections use the Benjamini--Hochberg (BH) procedure.
+
+\begin{description}
+\item[Primary three-way replication (§2.1 of main text).]
+  P-values from the three primary confirmatory tests (bacteria, archaea,
+  geochemical) corrected jointly ($n = 3$).
+  FDR: bacteria $= 4.28 \times 10^{-8}$; archaea $= 0.178$;
+  geochemical $= 0.755$.
+
+\item[Evidence-tier comparisons (§2.2 of main text).]
+  Two tier comparisons (\texttt{all\_non\_ambiguous} and \texttt{bacmet\_only})
+  corrected together ($n = 2$).
+
+\item[Functional category comparisons (§3 of main text).]
+  Five functional category PGLS models corrected together ($n = 5$).
+
+\item[Metal-specific analyses (§4 of main text).]
+  Nine metal-specific PGLS models corrected together ($n = 9$);
+  all nine pass FDR $< 0.05$.
+
+\item[Clade-stratified analyses.]
+  Four phylum-stratified PGLS models corrected together ($n = 4$).
+\end{description}
+
+No multiple testing correction was applied to pre-specified confounder checks
+(§5.2 of the main text) or to the eight sensitivity analyses (§5.3), as these
+are robustness tests of a single primary result rather than independent
+hypotheses. This design choice is pre-registered: confounder checks each ask
+``does the primary result survive after accounting for variable $X$?''---they
+test whether $\beta_\text{primary}$ is robust, not whether each confounder is
+independently associated with niche breadth. Applying BH-FDR across confounder
+checks would be statistically incorrect because the checks share the same null
+hypothesis ($H_0$: primary $\beta = 0$) and the confounder itself is not the
+quantity of interest. The split-magnitude permutation test (Section~7 of the
+main text) is treated as an independent hypothesis test and is therefore the
+sole focus of the confirmatory analysis family.
+
+% ============================================================================
+\section{Confounder analyses}
+\label{sm:confounders}
+% ============================================================================
+
+For each potential confounder, we refitted the PGLS model adding the confounder
+as a second predictor alongside \texttt{predictor\_z} and recorded the change
+in the primary $\beta$:
+\begin{equation}
+\Delta\beta\,(\%) =
+  \frac{|\hat{\beta}_{\text{with confounder}} - \hat{\beta}_{\text{baseline}}|}
+       {|\hat{\beta}_{\text{baseline}}|}
+  \times 100
+\end{equation}
+\textbf{Decision rule:} $\Delta\beta > 50\%$ \textsc{and} $p > 0.05$ for the
+density predictor $\Rightarrow$ confounder explains the effect.
+
+\begin{table}[H]
+\centering
+\caption{Confounder analysis results.}
+\label{tab:confounders}
+\small
+\begin{tabular}{p{3.2cm}p{4.5cm}rp{4cm}}
+\toprule
+Confounder & Operationalisation & $\Delta\beta$ (\%) & Verdict \\
+\midrule
+Genome size & Mean genome size in Mb ($z$-scored) & 46.7 &
+  ROBUST — below threshold; $p = 0.006$ \\
+GC content & Mean genomic GC\% ($z$-scored) & 23.7 &
+  ROBUST \\
+Isolation source & Categorical dummy (culture environment) & 14.5 &
+  ROBUST \\
+Mean latitude & Mean absolute latitude per genus & 51.8 &
+  ATTENUATED — $\beta$ becomes \emph{more} negative ($-0.031$), inconsistent
+  with confounding; latitude amplifies rather than explains the signal \\
+Dominant biome & Majority \texttt{Env\_Level\_1} (MicrobeAtlas) & 5.8 &
+  ROBUST \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No confounder meets the pre-specified decision rule ($\Delta\beta > 50\%$
+\textsc{and} non-significant).  Genome size partially attenuates $\beta$ by
+46.7\% but the predictor remains significant ($p = 0.006$), suggesting that
+genome size is a partial mediator rather than a confounder.
+
+% ============================================================================
+\section{Sensitivity analyses}
+\label{sm:sensitivity}
+% ============================================================================
+
+Eight pre-specified sensitivity analyses tested robustness to modelling
+assumptions.  All used the same response variable (\texttt{mean\_levins\_B\_std})
+and the same primary KO density predictor, with the modification noted.
+
+\begin{table}[H]
+\centering
+\caption{Sensitivity analysis results.  Six of eight analyses are
+  directionally consistent with the primary result and statistically
+  significant.}
+\label{tab:sensitivity}
+\small
+\begin{tabular}{clrrl}
+\toprule
+ID & Modification & $\beta$ & $p$ & Notes \\
+\midrule
+S1 & $\lambda$ fixed $= 0$ (OLS) & $-0.0319$ & $\approx 0$ &
+  Stronger effect under OLS \\
+S2 & $\lambda$ fixed $= 1$ (Brownian) & $-0.0182$ & $3.66 \times 10^{-6}$ &
+  Consistent \\
+S3 & Archaea, $n_{\min} = 5$ genera & $-0.0183$ & $0.084$ &
+  $n = 41$; directionally consistent, underpowered \\
+S4 & $n_{\min} = 50$ MicrobeAtlas samples & $-0.0207$ & $2.14 \times 10^{-8}$ &
+  Identical to primary \\
+S5 & $n_{\min} = 150$ MicrobeAtlas samples & $-0.0207$ & $2.14 \times 10^{-8}$ &
+  Identical to primary \\
+S6 & Raw (unstandardised) Levins $B$ & $-0.286$ & $1.11 \times 10^{-11}$ &
+  Stronger signal; same direction \\
+S7 & Australia-only subset & $-0.00171$ & $0.755$ &
+  Null; same result as geochemical replication \\
+S8 & Northern hemisphere only & $-0.0302$ & $3.24 \times 10^{-6}$ &
+  Stronger than primary; consistent \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+S4 and S5 produce identical results because all 1,574 genera in the primary
+dataset have MicrobeAtlas detection counts well above 150, making both
+thresholds redundant.  S7 is numerically equivalent to the geochemical
+replication (same $n = 482$ Australian subset; Australia is represented in
+the global dataset but the narrowed geographic range removes the global
+diversity signal).
+
+% ============================================================================
+\section{Pre-registration and analysis governance}
+\label{sm:prereg}
+% ============================================================================
+
+\subsection{Pre-registration}
+
+All confirmatory analyses (primary PGLS, archaeal replication, geochemical
+replication, evidence-tier comparisons, functional category comparisons,
+metal-specific comparisons, and all eight sensitivity analyses) were
+pre-specified in \texttt{RESEARCH\_PLAN.md} prior to data analysis.  This
+document recorded the hypothesis direction ($\beta < 0$), the response variable
+(\texttt{mean\_levins\_B\_std}), the predictor (\texttt{ko\_per\_mb\_primary}),
+the tree source (GTDB r214v1), the $\lambda$ estimation method (ML), the
+multiple testing procedure (BH), and the decision rule for confounders
+($\Delta\beta > 50\%$ \textsc{and} $p > 0.05$).
+
+Exploratory analyses (EMP niche breadth validation, BacDive geographic breadth,
+ENIGMA site-level replication, latitude mechanism tests, inverse PGLS, RDA
+variance partitioning, and community-weighted mean prediction) are labelled as
+such throughout the manuscript and were not pre-specified.
+
+\subsection{Analysis governance}
+
+Every reported statistic traces to a row in \texttt{INTERPRETATION\_TABLE.md},
+which records the notebook cell ID, output CSV file, and direction prediction
+for each confirmatory test.  Statistical values were entered from saved CSV
+files in \texttt{data/}, not from notebook-cell display output.  Exploratory
+analyses are tracked in a separate section of the same table, labelled
+``(Exploratory)''.
+
+% ============================================================================
+\section{Latitude mechanism tests}
+\label{sm:latitude}
+% ============================================================================
+
+The latitude amplification result (adding mean absolute latitude as a covariate
+increases $|\beta|$ from $-0.021$ to $-0.031$, §5.2 of main text) motivated a
+set of nine mechanistic tests examining whether a specific environmental
+variable could explain the latitudinal gradient in niche breadth.  These are
+exploratory analyses.
+
+Models A--I each added a single environmental predictor alongside latitude to
+the primary PGLS, testing whether the latitude effect was absorbed by:
+
+\begin{itemize}
+\item \textbf{Model A (bedrock Cr composite)}: GeoROC lithospheric
+  metal-index principal component (driven by Cr: BH $p = 6.7 \times 10^{-9}$,
+  and Co: BH $p = 0.0084$).
+
+\item \textbf{Model B (temperature range)}: CHELSA annual temperature range
+  (°C).
+
+\item \textbf{Model C--H}: Ore-deposit proximity; bioavailable metal mobility
+  index; soil metal hazard (CSU classification); soil temperature; lithology
+  class; REE deposit proximity.
+
+\item \textbf{Model I (soil organic matter)}: SOM (\%) as a redox proxy.
+  \textbf{Key result:} SOM is an independent negative predictor
+  ($\beta = -0.016$, $p = 6.8 \times 10^{-5}$); absorbs the pH association
+  (pH becomes non-significant when SOM is included), consistent with
+  organic-matter-driven metal speciation and bioavailability.
+
+\item \textbf{Redox controls}: Soil moisture and SOM do not attenuate the
+  Cr or Co bedrock signals ($p = 0.44$ and $0.50$ for attenuation tests),
+  arguing against a waterlogging / soil-reduction mechanism for the serpentine
+  Cr effect.
+\end{itemize}
+
+All 28 extended models are in \texttt{data/latitude\_mechanism\_results.csv}.
+
+% ============================================================================
+\clearpage
+
+% ============================================================================
+\section{Exploratory CatBoost LOPO analysis}
+\label{sm:catboost}
+% ============================================================================
+
+\textit{These analyses are exploratory and carry lower inferential weight than the
+pre-registered confirmatory analyses H1--H6.}
+
+\subsection{Design and software}
+
+CatBoost gradient-boosted trees (v1.2.10)~\cite{prokhorenkova2018catboost} were applied in a
+Leave-One-Phylum-Out (LOPO) cross-validation design.
+LOPO held out all genera from one phylum at a time across 11 phyla
+(Proteobacteria 660, Firmicutes 330, Actinobacteria 203, Bacteroidetes 180,
+Cyanobacteria 27, Planctomycetes 17, Chloroflexi 15, Verrucomicrobia 14,
+Spirochaetes 11, Synergistetes 11, Acidobacteria 10 genera),
+fitting on the remaining genera and evaluating predictions on held-out genera
+using Spearman~$\rho$.
+Model hyperparameters: \texttt{iterations=200, depth=4, learning\_rate=0.05,
+l2\_leaf\_reg=3.0, thread\_count=1, random\_seed=42}.
+\texttt{thread\_count=1} is required on the 128-core analysis server to
+prevent CatBoost from consuming all cores via implicit parallelism; the
+environment variable \texttt{OMP\_NUM\_THREADS=1} was set at launch.
+
+\subsection{Feature construction}
+
+KO presence records from \texttt{data/nb25\_ko\_presence\_matrix.parquet}
+(118 Tier~1+2 KOs with $\geq\!20$ genera each) were pivoted to a
+genus $\times$ KO matrix, converted to per-Mb density (count of genomes with
+KO / mean genome Mb), and $z$-scored across genera.
+Genome size (\texttt{genome\_size\_mb\_z}) was included as a covariate in all
+models.
+Functional subset $z$-scores (12 predictors) were used in the subset-level
+models; KO-to-subset assignments are from \texttt{data/s8\_ko\_metadata.csv}.
+
+\subsection{Environmental responses}
+
+Fifteen environmental $z$-scores were used as response variables:
+six CSU mobile metal fractions (PF1$_{\mathrm{As,Cd,Cr,Cu,Hg,Pb}}$) computed
+from the global mobility grid~\cite{qi2025}; six GeoROC bedrock
+metals (log Co, Cr, Cu, Ni, Pb, Zn) from
+\texttt{arkinlab\_microbeatlas.enriched\_metadata}; and Soil pH, ERA5
+temperature, and Env PC1 (first PC of the eight metal+pH+temperature variables).
+
+\subsection{Model configurations}
+
+\begin{enumerate}
+  \item \textbf{All-KO LOPO} (Step~1a): 118 KO densities + genome size;
+        $15 \times 11 = 165$ fits. Metric: Spearman~$\rho$ on held-out genera.
+  \item \textbf{Full-data SHAP}~\cite{lundberg2017} (Step~1b): CatBoost fit on all genera per
+        response; SHAP via \texttt{get\_feature\_importance(type=`ShapValues')}.
+  \item \textbf{Single-KO LOPO} (Step~1c): two features (KO density + genome
+        size) per KO~$\times$ response~$\times$ fold; $\approx\!19{,}470$ fits
+        total; faster hyperparameters (\texttt{iterations=100}).
+  \item \textbf{Within-subset LOPO + SHAP} (Step~1d): four functional subsets
+        (Resistance, Transport, Sensing, Cofactor) $\times$ 15 responses
+        $\times$ 11 folds.
+  \item \textbf{Functional-subset LOPO + SHAP heatmap} (Steps~2a/2b):
+        12 functional-subset $z$-scores as features.
+  \item \textbf{Abundance-weighted comparison} (Step~3): sample weights
+        $\log_{10}(n_\text{samples}+1)$, normalised to mean~$= 1$.
+  \item \textbf{Reverse classifier} (Step~4): \texttt{CatBoostClassifier}
+        predicts KO presence (binary) from the 15 environmental $z$-scores;
+        LOPO AUC.
+\end{enumerate}
+
+\subsection{KO prioritisation composite score}
+
+For each of 118 KOs, four sub-scores were computed and then min--max
+normalised to $[0,1]$ across all 118 KOs:
+\begin{enumerate}
+  \item $s_1$: best $|\overline{\rho}|$ across all 15 responses
+        (peak predictive power).
+  \item $s_2$: mean $|\overline{\rho}|$ across all 15 responses (breadth).
+  \item $s_3$: count of responses with $|\overline{\rho}| \geq 0.10$.
+  \item $s_4$: $-\log_{10}(\text{BH-FDR }q_\text{min})$ from the per-KO PGLS
+        on the three responses with available data (GEOROC Co, GEOROC Pb,
+        Soil pH); zero if no PGLS $p$ is available.
+\end{enumerate}
+Composite score $= (s_1 + s_2 + s_3 + s_4)/4$.
+KEGG pathway annotations for the top~25 KOs were assigned from KEGG~\cite{kanehisa2023} database
+entries; the four module groupings (Porphyrin/Cobalamin, Cu/Ag efflux cus,
+Metal transport, Sensing/stress/other) reflect documented pathway membership.
+Five KOs were designated as validation priorities:
+K01772~(\textit{hemH}), K09883~(\textit{cobT}), K07796~(\textit{cusC}),
+K19575~(\textit{bmrR}), K09823~(\textit{zur}).
+
+\subsection{Output files}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+File & Contents \\
+\midrule
+\texttt{data/catboost\_lopo\_results.csv} & Per-response avg~$\rho$; all-KO and subset models \\
+\texttt{data/catboost\_single\_ko\_ranking.csv} & Single-KO $\rho$ per KO $\times$ response (1,770 rows) \\
+\texttt{data/catboost\_within\_subset\_shap.csv} & Per-KO SHAP within each subset \\
+\texttt{data/catboost\_shap\_heatmap.csv} & Functional-subset SHAP matrix \\
+\texttt{data/catboost\_split\_validation.csv} & Resistance/cofactor SHAP per response \\
+\texttt{data/ko\_prioritization\_scores.csv} & Composite scores for 118 KOs \\
+\texttt{data/kegg\_pathway\_overlay.csv} & Top-25 KO $\times$ 15-response $\rho$ matrix \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================================
+\section{Social niche breadth benchmarking}
+\label{sec:snb_benchmark}
+% ============================================================================
+
+$\text{SNB}_\text{SES}$ was computed for all 3{,}389 genera detected in
+$\ge 10$ MicrobeAtlas samples (of 3{,}433 genera total; 462{,}716 samples
+across the full MicrobeAtlas database). For each genus $i$ with $N_i$ occurrences, the
+raw SNB partner count is the number of other genera co-occurring in at least
+one shared sample. Because $S = 462{,}716$ makes the standard
+999-permutation null model computationally infeasible, we used the exact
+analytical null: the probability that genus $j$ is present in a random draw
+of $N_i$ samples from $S$ is $p_{ij} = 1 - (1 - N_j/S)^{N_i}$, giving
+null mean $\mu_i = \sum_{j \ne i} p_{ij}$ and null variance
+$\sigma^2_i = \sum_{j \ne i} p_{ij}(1-p_{ij})$ (Bernoulli indicator sum,
+exact as $S \to \infty$). SES $= (\text{raw} - \mu_i)/\sigma_i$.
+Per-genus metrics and PGLS inputs are saved in
+\texttt{data/snb\_von\_meijenfeldt\_replication.csv}.
+
+Spearman correlations between $\text{SNB}_\text{SES}$ and our primary
+co-occurrence and niche-breadth metrics are given in
+Table~\ref{tab:snb_correlations}. PGLS regressions of $\text{SNB}_\text{SES}$
+against metal-gene density (soil stratum, $n = 838$ genera, $\lambda = 0.81$)
+gave: Model~1, total KO density: $\beta = -0.35$, $p = 0.49$; Model~2,
+resistance vs.\ cofactor decomposition: $\beta_\text{resist} = +0.67$,
+$p = 0.22$; $\beta_\text{cofactor} = +0.68$, $p = 0.27$. Neither model
+reached significance, consistent with the interpretation that
+$\text{SNB}_\text{SES}$ at this global scale reflects biogeographic range
+rather than local metal-gene niche structure.
+
+\begin{table}[htbp]
+\centering
+\caption{Spearman correlations between $\text{SNB}_\text{SES}$ and alternative
+co-occurrence and niche-breadth metrics. ``Sig. positive partners'' =
+per-genus count of significantly co-occurring partners under the hypergeometric
+null (FDR $< 5\%$, upper tail); Levins' $B_\text{std}$ = standardised niche
+breadth from MicrobeAtlas biome profiles.}
+\label{tab:snb_correlations}
+\begin{tabular}{lccc}
+\toprule
+Comparison & $\rho$ & $p$ & $n$ \\
+\midrule
+$\text{SNB}_\text{SES}$ vs.\ phi-coefficient degree & $-0.207$ & $4.9 \times 10^{-34}$ & 3{,}389 \\
+$\text{SNB}_\text{SES}$ vs.\ sig. positive partners & $+0.340$ & $2.0 \times 10^{-92}$ & 3{,}389 \\
+$\text{SNB}_\text{SES}$ vs.\ Levins' $B_\text{std}$ & $-0.184$ & $1.7 \times 10^{-5}$  & 539 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+\clearpage
+\section{Two-scale phylogenetic signal: method detail and validity assessment}
+\label{sm:twoscale}
+% ============================================================================
+
+\subsection{Method overview and novelty}
+
+The two-scale framework combines genus-level Pagel's $\lambda$ (applied to continuous genus presence fractions) with genome-level Fritz~\&~Purvis D (applied to binary genome presence/absence) on the same set of 275 curated metal KOs.
+This specific combination does not appear in the literature we searched; the closest conceptual analog pairs two distinct evolutionary signals (synteny index and sequence-mutability measure) to detect HGT between closely related taxa~\cite{adato2015}.
+The general logic---that different methods detect transfers at different evolutionary timescales, with composition/signal-based methods sensitive to recent transfers and phylogenetic/topology-based methods to ancient fixed transfers---is established across the HGT-detection literature.
+$\lambda$ here captures deep, genus-level phylogenetic clustering (trait conserved across millions of years of vertical transmission); D captures genome-level dispersal (recent or episodic horizontal acquisition detectable as phylogenetic randomness within and across genera).
+
+\subsection{D computation: single pooled genome tree}
+
+Fritz~\&~Purvis D was estimated once per KO on a single pooled 18,961-tip GTDB genome tree (all bacterial genomes in the dataset), not per-genus.
+For each KO, binary presence/absence was coded across all 18,961 genome tips; the observed ancestral-state-change statistic was calibrated against Brownian-motion ($D = 0$ expectation) and random-permutation ($D = 1$ expectation) null distributions, each with $n = 1{,}000$ simulations.
+This produces a single D value per KO, interpretable as a spectrum from phylogenetically clustered ($D \approx 0$, Brownian-motion-like) to phylogenetically dispersed ($D \approx 1$, random).
+
+The choice of a pooled tree over per-genus trees is a deliberate design decision: it tests for genome-level randomness across the full phylogenetic depth of the dataset, capturing both deep and shallow dispersal, rather than per-genus dispersal which would require a separate tree and sufficient sample size for each genus.
+The trade-off is that small genera (few genomes) may have limited power to contribute meaningful signal to the genome-scale D estimate; because D is computed on the pooled tree, this is less of a per-genus issue than for $\lambda$.
+
+\subsection{Validity concern 1: Pagel's $\lambda$ on bounded presence-fraction data}
+
+Pagel's $\lambda$ was designed for continuous traits evolving under Brownian motion (BM)---an unconstrained Gaussian process.
+Genus presence fractions are bounded proportions in $[0, 1]$, violating the Gaussian/BM assumption in two specific ways:
+
+\begin{enumerate}
+\item \textbf{Boundary compression.} Near-core genes (fraction $\to 1$) and rare genes (fraction $\to 0$) cannot vary freely; $\lambda$ estimation assumes residuals can take any real value, which is false at the boundaries.
+Many genes in a curated 275-KO metal-gene set will fall near one boundary or the other (core cofactor genes near 1.0; rare resistance genes near 0.0), making this a particularly relevant concern.
+
+\item \textbf{Unequal measurement precision.}
+A genus with $n = 2$ genomes can only yield presence fractions of 0, 0.5, or 1 --- completely discrete --- while a genus with $n = 200$ genomes provides a continuous fraction with real precision.
+Standard PGLS/$\lambda$ estimation does not downweight low-precision tips unless genome-count-weighted measurement error is explicitly modelled.
+In the primary dataset, 308 of 1,574 genera have exactly two genomes ($n_\text{genomes} = 2$ minimum), potentially injecting discretisation noise at the tips.
+\end{enumerate}
+
+\textbf{Robustness checks (performed).}
+We applied two checks to assess whether the bounded-proportion structure drives our $\lambda$ estimates.
+
+\textit{Check A: Arcsine-square-root transformation (Python, $n = 88$ KOs).}
+Genus presence fractions were arcsine-square-root-transformed before $\lambda$ estimation.
+Re-estimating $\lambda$ for all 88 Tier~1--2 KOs with sufficient genus representation yielded Spearman $r = 0.613$ ($p < 0.001$) between original and transformed estimates (mean $|\Delta\lambda| = 0.195$; median $0.179$).
+Nine KOs (10.2\%) crossed the $\lambda = 0.3$ weak/strong classification threshold, and \emph{all nine} changed in the weak-to-strong direction, indicating that the original PGLS \emph{underestimates} phylogenetic signal for sparse genes rather than overestimating it.
+The shifts are concentrated in transport and resistance genes with very low original $\lambda$ (e.g., $mntC$: $0.000 \to 0.525$; $troA$: $0.143 \to 0.683$; $shp$: $0.000 \to 0.552$).
+None of the 13 double-signal KOs (low $\lambda$ and high D) changed classification under this transformation.
+
+\textit{Check B: Phylogenetic lambda model on transformed fractions (\texttt{phylolm} in R, $n = 33$ KOs).}
+We fitted \texttt{phylolm} with \texttt{model="lambda"} to arcsine-square-root-transformed fractions for 33 KOs for which all required data were available.
+Spearman $\rho = 0.174$ between original PGLS $\lambda$ and \texttt{phylolm} $\lambda$ (mean $|\Delta\lambda| = 0.281$; 10/33, 30.3\% classification changes), with all changes again in the weak-to-strong direction.
+The lower concordance relative to Check~A likely reflects the smaller matched sample ($n = 33$ KOs) as much as methodological difference; the directional consistency confirms the conservative bias of the original estimates.
+
+\textbf{Conclusion.}
+Both transformation approaches reveal that original $\lambda$ estimates \emph{moderately underestimate} phylogenetic signal for sparse genes.
+Because all classification shifts move weak-to-strong, our identification of cofactor KOs as high-$\lambda$ and resistance KOs as low-$\lambda$ is conservative: the 13 double-signal (low-$\lambda$, high-D) KOs (6 resistance, 4 transport, 1 sensing, 1 metabolism, 1 unknown; Table~\ref{tab:double_signal}) have at least as much phylogenetic clustering as stated.
+Beta-regression alternatives (e.g., \texttt{betareg} in R) were not available in our compute environment and remain a priority for future independent replication.
+
+\subsection{Validity concern 2: sparse-genus noise and the orthogonality result}
+
+The Spearman correlation between D and $\lambda$ across 275 KOs is $\rho = -0.041$ ($p = 0.49$), reported in the main text as consistent with the two metrics capturing distinct evolutionary processes.
+However, a near-zero correlation has two equally plausible interpretations:
+
+\begin{itemize}
+\item \textbf{True independence:} D and $\lambda$ capture biologically distinct signals (dispersal timescale) and are genuinely orthogonal.
+\item \textbf{Noise dominance:} One or both metrics are dominated by estimation variance (particularly for $\lambda$ estimated from sparse-genome genera or small-KO-presence KOs), and the near-zero $\rho$ reflects the absence of a detectable signal in either direction rather than biological independence.
+\end{itemize}
+
+Distinguishing these interpretations requires a threshold stability check: recompute $\rho$ after successively removing genera below minimum-genome-count thresholds ($n_\text{min} = 2, 5, 10, 20$); if $\rho$ remains near zero, sparse-genome genera are not masking a real correlation.
+
+\textbf{Robustness check (performed).}
+We built a complete genus~$\times$~KO presence matrix for 240 of the 275 metal KOs from 16~million genome records (MGnify MAGs and SPIRE prokaryotic genomes combined) and recomputed $\rho(\lambda, D)$ at each threshold.
+
+\begin{center}
+\small
+\begin{tabular}{rrrrl}
+\toprule
+$n_\text{min}$ & Genera retained & KOs with data & $\rho$ & $p$ \\
+\midrule
+2  & 8,256 & 238 & $-0.068$ & 0.295 \\
+5  & 3,799 & 237 & $-0.020$ & 0.765 \\
+10 & 2,166 & 236 & $-0.097$ & 0.138 \\
+20 & 1,204 & 232 & $+0.100$ & 0.129 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The range across thresholds is $\Delta\rho = 0.197$ and no threshold yields a significant correlation (all $p > 0.12$).
+Importantly, $\rho$ does not trend monotonically toward a detectable signal as sparse genera are removed; the values oscillate near zero throughout.
+This confirms that the near-zero $\rho$ is not an artefact of sparse-genome genera dominating either metric: when low-genome-count genera are progressively excluded, no latent correlation emerges.
+The two-scale framework's orthogonality result is therefore robust, supporting the interpretation that $\lambda$ and D capture biologically distinct evolutionary signals at different timescales.
+
+\subsection{Comparison with Panstripe}
+
+Panstripe~\cite{tonkinhill2023} is a generalised-linear-regression-based tool designed specifically for phylogenetically controlled analysis of gene gain and loss rates in prokaryotic pangenomes.
+It is robust to population structure, sampling bias, and errors in predicted presence/absence of genes---all concerns that apply to the D statistic as applied here.
+Panstripe was not applied in this analysis primarily because it requires a per-gene presence/absence matrix with a shared pangenome phylogeny, whereas our D estimation used a pooled genome tree from GTDB.
+Applying Panstripe to the 140 primary metal KOs and comparing gene-gain/loss rates between cofactor biosynthesis and resistance subcategories would provide a more rigorous, purpose-built alternative to the D-based HGT screen and is an explicit future priority.
+
+% ============================================================================
+\clearpage
+\section*{Supplementary Tables}
+\addcontentsline{toc}{section}{Supplementary Tables}
+\setcounter{table}{1}
+% ============================================================================
+
+% -- Table S2: 140-KO primary metal gene list ---------------------------------
+
+\begin{longtable}{@{}llllp{3.8cm}l@{}}
+\caption{Primary 140-KO metal-gene list with evidence tier, functional category,
+metal targets, and source databases.  Tier: T1 = Tier~1 (multi-source validated,
+$n = 32$); T2 = Tier~2 (KEGG module + one additional source, $n = 108$).
+Category abbreviations: Transport = Transport/Homeostasis;
+Resistance = Resistance/Detoxification; Sensing = Sensing/Regulation;
+Cofactor = Cofactor Biosynthesis; Metabolism = Metal-dependent Metabolism.
+Source: KEGG = KEGG module annotation; BacMet2 = BacMet v2.0 database;
+Fitness = FitnessBrowser transposon screen.}
+\label{tab:ko_list}\\
+\toprule
+KO & Gene & Tier & Category & Metals & Source \\
+\midrule
+\endfirsthead
+\multicolumn{6}{l}{\small\textit{Table S2 continued.}}\\
+\toprule
+KO & Gene & Tier & Category & Metals & Source \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{\small\textit{Continued on next page.}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+K01534 & zntA & T1 & Transport & Zn, Cd, Cu, Ni, Co, Hg, Pb & BacMet2, Fitness \\
+K02006 & cbiO & T2 & Transport & Co, Ni & --- \\
+K02007 & cbiM & T2 & Transport & Co, Ni & --- \\
+K02008 & cbiQ & T2 & Transport & Co, Ni & --- \\
+K02009 & cbiN & T2 & Transport & Co, Ni & --- \\
+K02010 & afuC & T1 & Transport & Fe, Co, Zn & BacMet2, Fitness \\
+K02012 & afuA & T1 & Transport & Fe, Co, Zn & BacMet2, Fitness \\
+K02013 & ABC.FEV.A & T2 & Transport & Fe & --- \\
+K02015 & ABC.FEV.P & T2 & Transport & Fe & --- \\
+K02016 & ABC.FEV.S & T1 & Transport & Fe & BacMet2 \\
+K02068 & STAR1 & T1 & Transport & Fe, Ni & BacMet2, Fitness \\
+K02069 & STAR2 & T1 & Transport & Fe, Ni & BacMet2, Fitness \\
+K02074 & ABC.ZM.A & T2 & Transport & Mn, Zn & --- \\
+K02075 & ABC.ZM.P & T2 & Transport & Mn, Zn & --- \\
+K02077 & ABC.ZM.S & T2 & Transport & Mn, Zn & --- \\
+K02190 & cbiK & T2 & Transport & Co & KEGG \\
+K02230 & cobN & T2 & Transport & Co & KEGG \\
+K03523 & bioY & T2 & Transport & --- & --- \\
+K03795 & cbiX & T2 & Transport & Co & KEGG \\
+K05895 & cobK-cbiJ & T2 & Transport & Co & KEGG \\
+K08197 & ARN & T2 & Transport & Fe & --- \\
+K08225 & entS & T2 & Transport & Fe & --- \\
+K08970 & rcnA & T1 & Transport & Co, Ni & BacMet2, Fitness \\
+K09815 & znuA & T1 & Transport & Zn & BacMet2 \\
+K09816 & znuB & T1 & Transport & Zn & BacMet2 \\
+K09817 & znuC & T1 & Transport & Zn & BacMet2 \\
+K09818 & ABC.MN.S & T2 & Transport & Mn, Fe & --- \\
+K09819 & ABC.MN.P & T2 & Transport & Mn, Fe & --- \\
+K09820 & ABC.MN.A & T2 & Transport & Mn, Fe & --- \\
+K09882 & cobS & T2 & Transport & Co & KEGG \\
+K09883 & cobT & T2 & Transport & Co & KEGG \\
+K10094 & cbiK & T2 & Transport & Ni & --- \\
+K10830 & psaB & T2 & Transport & Mn, Zn & --- \\
+K10834 & hmuV & T2 & Transport & Fe & --- \\
+K11601 & mntC & T2 & Transport & Mn & --- \\
+K11602 & mntB & T2 & Transport & Mn & --- \\
+K11603 & mntA & T2 & Transport & Mn & --- \\
+K11604 & sitA & T1 & Transport & Mn, Fe & BacMet2 \\
+K11605 & sitC & T1 & Transport & Mn, Fe & BacMet2 \\
+K11606 & sitD & T1 & Transport & Mn, Fe & BacMet2 \\
+K11607 & sitB & T1 & Transport & Mn, Fe & BacMet2 \\
+K11704 & mtsA & T2 & Transport & Mn, Cu, Fe, Zn & --- \\
+K11705 & mtsC & T2 & Transport & Mn, Cu, Fe, Zn & --- \\
+K11706 & mtsB & T2 & Transport & Mn, Cu, Fe, Zn & --- \\
+K11707 & troA & T1 & Transport & Mn, Fe, Zn & BacMet2 \\
+K11708 & troC & T1 & Transport & Mn, Fe, Zn & BacMet2 \\
+K11709 & troD & T1 & Transport & Mn, Fe, Zn & BacMet2 \\
+K11710 & troB & T1 & Transport & Mn, Fe, Zn & BacMet2 \\
+K12346 & SMF & T2 & Transport & Fe & --- \\
+K14193 & isdA & T2 & Transport & Fe & --- \\
+K14709 & SLC39A1\_2\_3 & T2 & Transport & Zn & --- \\
+K14710 & SLC39A4 & T2 & Transport & Zn & --- \\
+K14711 & SLC39A5 & T2 & Transport & Zn & --- \\
+K14712 & SLC39A6 & T2 & Transport & Zn & --- \\
+K14713 & SLC39A7 & T2 & Transport & Zn & --- \\
+K14714 & SLC39A8 & T2 & Transport & Zn & --- \\
+K14715 & SLC39A9 & T2 & Transport & Zn & --- \\
+K14716 & SLC39A10 & T2 & Transport & Zn & --- \\
+K14717 & SLC39A11 & T2 & Transport & Zn & --- \\
+K14718 & SLC39A12 & T2 & Transport & Zn & --- \\
+K14719 & SLC39A13 & T2 & Transport & Zn & --- \\
+K14720 & SLC39A14 & T2 & Transport & Zn & --- \\
+K16302 & CNNM & T2 & Transport & --- & --- \\
+K16783 & bioN & T2 & Transport & --- & --- \\
+K16784 & bioM & T2 & Transport & --- & --- \\
+K16915 & cbiL & T2 & Transport & Ni & --- \\
+K19971 & psaA & T2 & Transport & Mn, Zn & --- \\
+K19972 & psaC & T2 & Transport & Mn, Zn & --- \\
+K19973 & mntA & T2 & Transport & Mn & --- \\
+K19975 & mntC & T2 & Transport & Mn & --- \\
+K19976 & mntB & T2 & Transport & Mn & --- \\
+K20170 & nicA1 & T2 & Transport & --- & KEGG \\
+K20982 & LOVC & T2 & Transport & --- & KEGG \\
+K22011 & cfbA & T2 & Transport & Co & KEGG \\
+K23185 & fepB & T2 & Transport & --- & --- \\
+K23186 & fepD & T2 & Transport & Fe & --- \\
+K23187 & fepG & T2 & Transport & Fe & --- \\
+K23188 & fepC & T2 & Transport & Fe & --- \\
+K24175 & MFSD5 & T2 & Transport & Mo & --- \\
+K25027 & btuC & T2 & Transport & Co & --- \\
+K25028 & btuD & T2 & Transport & Co & --- \\
+K25034 & btuF & T2 & Transport & Co & --- \\
+K25109 & sirA & T2 & Transport & Fe & --- \\
+K25110 & sirB & T2 & Transport & Fe & --- \\
+K25111 & sirC & T2 & Transport & Fe & --- \\
+K25113 & htsA & T2 & Transport & Fe & --- \\
+K25114 & htsB & T2 & Transport & Fe & --- \\
+K25115 & htsC & T2 & Transport & Fe & --- \\
+K25116 & isdD & T2 & Transport & Fe & --- \\
+K25117 & isdB & T2 & Transport & Fe & --- \\
+K25118 & isdC & T2 & Transport & Fe & --- \\
+K25119 & shp & T2 & Transport & Fe & --- \\
+K25130 & fecE & T2 & Transport & Fe & --- \\
+K25132 & hmuT & T2 & Transport & Fe & --- \\
+K25133 & hmuU & T2 & Transport & Fe & --- \\
+K25282 & yclQ & T2 & Transport & Fe & --- \\
+K25283 & yclO & T2 & Transport & Fe & --- \\
+K25284 & yclN & T2 & Transport & Fe & --- \\
+K25285 & yclP & T2 & Transport & Fe & --- \\
+K25286 & fagD & T2 & Transport & Fe & --- \\
+K25287 & desE & T2 & Transport & Fe & --- \\
+K25288 & fhuB & T2 & Transport & Fe & --- \\
+K25289 & fhuG & T2 & Transport & Fe & --- \\
+K25290 & fhuA & T2 & Transport & Fe & --- \\
+K25308 & fhuD & T2 & Transport & Fe & --- \\
+K28864 & YSL-PS & T2 & Transport & --- & --- \\
+\midrule
+K03325 & ACR3 & T1 & Resistance & As, Tl & BacMet2, Fitness \\
+K03446 & emrB & T2 & Resistance & Cu, Tl & BacMet2, Fitness \\
+K07665 & cusR & T1 & Resistance & Cu, Ni & BacMet2, Fitness \\
+K07785 & nrsD & T1 & Resistance & Ni & Fitness \\
+K07787 & cusA & T1 & Resistance & Cu, Ag & BacMet2, Fitness \\
+K07798 & cusB & T1 & Resistance & Cu, Ag, Zn & BacMet2, Fitness \\
+K08365 & merR & T1 & Resistance & Hg, Cu, Zn & BacMet2, Fitness \\
+K15725 & czcC & T1 & Resistance & Ni, Zn, Co, Cd & BacMet2, Fitness \\
+K15726 & czcA & T1 & Resistance & Co, Ni, Zn, Cd & BacMet2, Fitness \\
+K15727 & czcB & T1 & Resistance & Co, Ni, Zn, Cd & BacMet2, Fitness \\
+K16264 & czcD & T1 & Resistance & Cd, Co, Zn, Tl & BacMet2, Fitness \\
+K17686 & copA & T2 & Resistance & Cu & BacMet2, Fitness \\
+K19591 & cueR & T1 & Resistance & Cu, Co, Ni, Zn & BacMet2, Fitness \\
+K19594 & gesB & T1 & Resistance & Cu, Au & BacMet2 \\
+K19595 & gesA & T1 & Resistance & Cu, Au & BacMet2 \\
+\midrule
+K00240 & sdhB & T2 & Sensing & Fe, S & KEGG \\
+K00245 & frdB & T2 & Sensing & Fe, S & KEGG \\
+K02483 & --- & T2 & Sensing & Al, Co, Cu & BacMet2, Fitness \\
+K07644 & cusS & T1 & Sensing & Cu & BacMet2, Fitness \\
+K08941 & pscB & T2 & Sensing & Fe, S & KEGG \\
+K13638 & zntR & T2 & Sensing & Zn, Cu & BacMet2, Fitness \\
+K17219 & sreA & T2 & Sensing & Mo, S & KEGG \\
+K17220 & sreB & T2 & Sensing & S & KEGG \\
+K17221 & sreC & T2 & Sensing & S & KEGG \\
+K18367 & CoADR & T2 & Sensing & S & KEGG \\
+\midrule
+K02225 & cobC1 & T2 & Cofactor & Co & KEGG \\
+K03635 & MOCS2B & T2 & Cofactor & Mo & KEGG \\
+K03638 & moaB & T2 & Cofactor & Mo & KEGG \\
+K03750 & moeA & T2 & Cofactor & Mo & KEGG \\
+K03831 & mogA & T2 & Cofactor & Mo & KEGG \\
+\midrule
+K00380 & cysJ & T2 & Metabolism & S, Co, Cu & KEGG, Fitness \\
+\midrule
+K02484 & --- & T2 & --- & Al, Cu & BacMet2, Fitness \\
+K03673 & dsbA & T2 & --- & Ag, Al, Bi, Zn & BacMet2, Fitness \\
+K03981 & dsbC & T2 & --- & Al, Cu & BacMet2, Fitness \\
+\end{longtable}
+
+% ============================================================================
+% -- Table S3: Double-signal HGT candidate KOs --------------------------------
+
+\begin{table}[H]
+\caption{Double-signal HGT candidate KOs: genome-level Fritz \& Purvis D $> 0.2$
+\textbf{and} genus-level Pagel's $\lambda < 0.3$.
+D was computed on the 18{,}961-tip GTDB genome tree using binary presence/absence;
+$\lambda$ was estimated from genus presence fractions on the GTDB genus-level
+phylogeny.
+Low D indicates phylogenetically dispersed binary presence at the genome scale;
+low $\lambda$ indicates low genus-level signal in continuous presence fractions.
+KOs are sorted by D (descending).}
+\label{tab:double_signal}
+\centering
+\small
+\begin{tabular}{llllrrp{3.5cm}}
+\toprule
+KO & Gene & Subcategory & Tier & D & $\lambda$ & Metal relevance \\
+\midrule
+K07785 & \textit{nrsD} & Resistance/Detox. & T2 & 0.821 & 0.089 & Ni resistance (NrsD repressor) \\
+K19059 & \textit{merE} & Transport/Homeostasis & T2 & 0.728 & 0.102 & Hg transport (mer operon) \\
+K19057 & \textit{merD} & Resistance/Detox. & T2 & 0.701 & 0.165 & Hg resistance (mer operon) \\
+K19594 & \textit{gesB} & Resistance/Detox. & T2 & 0.597 & 0.156 & Au/Te resistance \\
+K08356 & \textit{aoxB} & Resistance/Detox. & T2 & 0.562 & 0.000 & As(III) oxidase \\
+K19595 & \textit{gesA} & Resistance/Detox. & T2 & 0.458 & 0.161 & Au/Te resistance \\
+K25119 & \textit{shp} & Transport/Homeostasis & T3 & 0.385 & 0.000 & Fe transport \\
+K03897 & \textit{iucD} & Unknown & T3 & 0.354 & 0.237 & Fe siderophore biosynthesis \\
+K19592 & \textit{golS} & Sensing/Regulation & T2 & 0.265 & 0.135 & Au/Te sensing \\
+K05908 & \textit{doxDA} & Metal-dep. Metabolism & T3 & 0.254 & 0.000 & As oxidation (sox pathway) \\
+K08170 & \textit{norB} & Resistance/Detox. & T3 & 0.239 & 0.033 & Cu/NO detoxification \\
+K14974 & \textit{nicC} & Transport/Homeostasis & T3 & 0.224 & 0.000 & Ni transport \\
+K15585 & \textit{nikB} & Transport/Homeostasis & T3 & 0.202 & 0.000 & Ni transport \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Category distribution of double-signal HGT candidates.}
+Among the 13 KOs meeting the double-signal criterion (D $> 0.2$ and $\lambda <
+0.3$): 6 are Resistance/Detoxification (\textit{nrsD}, \textit{merD},
+\textit{gesA}, \textit{gesB}, \textit{aoxB}, \textit{norB}); 4 are
+Transport/Homeostasis (\textit{merE}, \textit{shp}, \textit{nicC},
+\textit{nikB}); 1 is Sensing/Regulation (\textit{golS}); 1 is
+Metal-dependent Metabolism (\textit{doxDA}); 1 is Unknown (\textit{iucD}).
+\textbf{Zero} Cofactor Biosynthesis KOs meet the double-signal criterion,
+consistent with cofactor biosynthesis genes being vertically inherited and
+constitutively coupled to genome size rather than acquired by horizontal gene
+transfer.
+
+% -- Table S4: Tl/Al/S metal KO curation rationale ----------------------------
+
+\begin{longtable}{lllllp{4.8cm}}
+\caption{Curation rationale for KOs assigned to thallium (Tl), aluminium (Al),
+and sulfur (S): elements with fewer dedicated resistance systems whose KOs were
+assigned based on documented biochemical function or fitness-screen evidence.
+Tier codes: T1 = direct biochemical evidence; T2 = strong biochemical inference;
+T2F = fitness-screen evidence; T3 = computational/BacMet annotation.
+$n = 153$ KOs (Al $= 34$, Tl $= 45$, S $= 74$).}
+\label{tab:tl_al_s}\\
+\toprule
+KO & Gene & Metal & Subcategory & Tier & Biochemical rationale \\
+\midrule
+\endfirsthead
+\multicolumn{6}{l}{\small\textit{Table S4 continued.}}\\
+\toprule
+KO & Gene & Metal & Subcategory & Tier & Biochemical rationale \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{\small\textit{continued on next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+K02483 & --- & Al & Sensing/Regulation & T2 & Sensing/regulatory response to Al,Co,Cu \\
+K02484 & --- & Al & Unknown & T2 & Fitness screen: defect under Al,Cu stress \\
+K03673 & \textit{dsbA} & Al & Unknown & T2 & Fitness screen: defect under Ag,Al,Bi,Zn stress \\
+K03981 & \textit{dsbC} & Al & Unknown & T2 & Fitness screen: defect under Al,Cu stress \\
+K00528 & \textit{fpr} & Al & Unknown & T2F & Fitness screen: defect under Al,Co,Tl,Zn stress \\
+K01002 & \textit{mdoB} & Al & Unknown & T2F & Fitness screen: defect under Al,Bi,Fe,Tl stress \\
+K01069 & \textit{gloB} & Al & Unknown & T2F & Fitness screen: defect under Al,Tl,Zn stress \\
+K01073 & \textit{yigI} & Al & Unknown & T2F & Fitness screen: defect under Al,Co,Cu,Ni,Tl stress \\
+K01104 & \textit{E3.1.3.48} & Al & Unknown & T2F & Fitness screen: defect under Al stress \\
+K01256 & \textit{pepN} & Al & Unknown & T2F & Fitness screen: defect under Al,Ni stress \\
+K01262 & \textit{pepP} & Al & Unknown & T2F & Fitness screen: defect under Al,Cu,Ni stress \\
+K01414 & \textit{prlC} & Al & Unknown & T2F & Fitness screen: defect under Al,Cu,Ni stress \\
+K01626 & \textit{E2.5.1.54} & Al & Unknown & T2F & Fitness screen: defect under Al stress \\
+K01784 & \textit{galE} & Al & Resistance/Detox. & T2F & Resistance/detoxification; fitness defect under Al,Tl,Zn stress \\
+K02027 & \textit{ABC.MS.S} & Al & Unknown & T2F & Fitness screen: defect under Al,Cu,Ni stress \\
+K02028 & \textit{ABC.PA.A} & Al & Unknown & T2F & Fitness screen: defect under Al,Ni stress \\
+K02030 & \textit{ABC.PA.S} & Al & Unknown & T2F & Fitness screen: defect under Al,Ni stress \\
+K02424 & \textit{tcyA} & Al & Transport/Homeostasis & T2F & Metal transport/homeostasis (Al,Cu,Ni) \\
+K03296 & \textit{TC.HAE1} & Al & Unknown & T2F & Fitness screen: defect under Al,Cu,Ni stress \\
+K03316 & \textit{nhaP} & Al & Unknown & T2F & Fitness screen: defect under Al,Tl stress \\
+K03760 & \textit{eptA} & Al & Unknown & T2F & Fitness screen: defect under Al stress \\
+K03781 & \textit{katE} & Al & Unknown & T2F & Fitness screen: defect under Al,Ni stress \\
+K03814 & \textit{mtgA} & Al & Unknown & T2F & Fitness screen: defect under Al,Cr,Mn stress \\
+K03885 & \textit{ndh} & Al & Unknown & T2F & Fitness screen: defect under Al,Tl stress \\
+K05810 & \textit{LACC1} & Al & Unknown & T2F & Fitness screen: defect under Al,Tl stress \\
+K07165 & \textit{fecR} & Al & Unknown & T2F & Fitness screen: defect under Al,Bi,Tl stress \\
+K07277 & \textit{SAM50} & Al & Unknown & T2F & Fitness screen: defect under Al,Ni stress \\
+K07278 & \textit{tamA} & Al & Unknown & T2F & Fitness screen: defect under Al,Ni stress \\
+K07338 & --- & Al & Unknown & T2F & Fitness screen: defect under Al,Co,Ni stress \\
+K07636 & \textit{phoR} & Al & Sensing/Regulation & T2F & Sensing/regulatory response to Al,Cu \\
+K07666 & \textit{qseB} & Al & Sensing/Regulation & T2F & Sensing/regulatory response to Al,Cu \\
+K09800 & \textit{tamB} & Al & Unknown & T2F & Fitness screen: defect under Al,Co,Ni stress \\
+K19353 & \textit{eptC} & Al & Unknown & T2F & Fitness screen: defect under Al stress \\
+K20534 & \textit{gtrB} & Al & Unknown & T2F & Fitness screen: defect under Al,Tl stress \\
+K00240 & \textit{sdhB} & S & Sensing/Regulation & T2 & Sensing/regulatory response to Fe,S \\
+K00245 & \textit{frdB} & S & Sensing/Regulation & T2 & Sensing/regulatory response to Fe,S \\
+K00380 & \textit{cysJ} & S & Metal-dep. Metabolism & T2 & Metal-dependent metabolic enzyme (S,Co,Cu) \\
+K08941 & \textit{pscB} & S & Sensing/Regulation & T2 & Sensing/regulatory response to Fe,S \\
+K17219 & \textit{sreA} & S & Sensing/Regulation & T2 & Sensing/regulatory response to Mo,S \\
+K17220 & \textit{sreB} & S & Sensing/Regulation & T2 & Sensing/regulatory response to S \\
+K17221 & \textit{sreC} & S & Sensing/Regulation & T2 & Sensing/regulatory response to S \\
+K18367 & \textit{CoADR} & S & Sensing/Regulation & T2 & Sensing/regulatory response to S \\
+K00024 & \textit{mdh} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00031 & \textit{IDH1} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00169 & \textit{porA} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00170 & \textit{porB} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00171 & \textit{porD} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00172 & \textit{porC} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00174 & \textit{korA} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00175 & \textit{korB} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00176 & \textit{korD} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00177 & \textit{korC} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00239 & \textit{sdhA} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00241 & \textit{sdhC} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00242 & \textit{sdhD} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00244 & \textit{frdA} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00246 & \textit{frdC} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00247 & \textit{frdD} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00381 & \textit{cysI} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00390 & \textit{cysH} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00392 & \textit{sir} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K00860 & \textit{cysC} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00955 & \textit{cysNC} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00956 & \textit{cysN} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00957 & \textit{cysD} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K00958 & \textit{sat} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01006 & \textit{ppdK} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01007 & \textit{pps} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01595 & \textit{ppc} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01676 & \textit{E4.2.1.2A} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01677 & \textit{E4.2.1.2AA} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01678 & \textit{E4.2.1.2AB} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01679 & \textit{E4.2.1.2B} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01681 & \textit{ACO} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01682 & \textit{acnB} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01902 & \textit{sucD} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01903 & \textit{sucC} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01958 & \textit{PC} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01959 & \textit{pycA} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K01960 & \textit{pycB} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K02045 & \textit{cysA} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K02046 & \textit{cysU} & S & Transport/Homeostasis & T3 & Metal transport/homeostasis (S) \\
+K02047 & \textit{cysW} & S & Transport/Homeostasis & T3 & Metal transport/homeostasis (S) \\
+K02048 & \textit{cysP} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K03737 & \textit{por} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K05908 & \textit{doxDA} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K08940 & \textit{pscA} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K08942 & \textit{pscC} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K08943 & \textit{pscD} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K13811 & \textit{PAPSS} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K15230 & \textit{aclA} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K15231 & \textit{aclB} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K15232 & \textit{ccsA} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K15233 & \textit{ccsB} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K15234 & \textit{ccl} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K16936 & \textit{doxA} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K16937 & \textit{doxD} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K17222 & \textit{soxA} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K17223 & \textit{soxX} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K17224 & \textit{soxB} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K17225 & \textit{soxC} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K17226 & \textit{soxY} & S & Sensing/Regulation & T3 & Sensing/regulatory response to S \\
+K17227 & \textit{soxZ} & S & Sensing/Regulation & T3 & Sensing/regulatory response to S \\
+K17229 & \textit{fccB} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K17230 & \textit{fccA} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K19713 & \textit{tsdA} & S & Metal-dep. Metabolism & T3 & Metal-dependent metabolic enzyme (S) \\
+K22622 & \textit{soxD} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K27925 & \textit{tetH} & S & Unknown & T3 & Fitness screen: defect under S stress \\
+K03325 & \textit{ACR3} & Tl & Resistance/Detox. & T1 & Resistance/detoxification; fitness defect under As,Tl stress \\
+K16264 & \textit{czcD} & Tl & Resistance/Detox. & T1 & Resistance/detoxification; fitness defect under Cd,Co,Zn,Tl stress \\
+K03446 & \textit{emrB} & Tl & Resistance/Detox. & T2 & Resistance/detoxification; fitness defect under Cu,Tl stress \\
+K00059 & \textit{fabG} & Tl & Unknown & T2F & Fitness screen: defect under Bi,Ni,Tl stress \\
+K00108 & \textit{betA} & Tl & Metal-dep. Metabolism & T2F & Metal-dependent metabolic enzyme (Tl) \\
+K00130 & \textit{betB} & Tl & Metal-dep. Metabolism & T2F & Metal-dependent metabolic enzyme (Tl) \\
+K00523 & \textit{ascD} & Tl & Unknown & T2F & Fitness screen: defect under Co,Cu,Tl stress \\
+K00528 & \textit{fpr} & Tl & Unknown & T2F & Fitness screen: defect under Al,Co,Tl,Zn stress \\
+K01002 & \textit{mdoB} & Tl & Unknown & T2F & Fitness screen: defect under Al,Bi,Fe,Tl stress \\
+K01069 & \textit{gloB} & Tl & Unknown & T2F & Fitness screen: defect under Al,Tl,Zn stress \\
+K01073 & \textit{yigI} & Tl & Unknown & T2F & Fitness screen: defect under Al,Co,Cu,Ni,Tl stress \\
+K01278 & \textit{DPP4} & Tl & Unknown & T2F & Fitness screen: defect under Cu,Tl stress \\
+K01782 & \textit{fadJ} & Tl & Resistance/Detox. & T2F & Resistance/detoxification; fitness defect under Co,Tl stress \\
+K01784 & \textit{galE} & Tl & Resistance/Detox. & T2F & Resistance/detoxification; fitness defect under Al,Tl,Zn stress \\
+K01814 & \textit{hisA} & Tl & Resistance/Detox. & T2F & Resistance/detoxification; fitness defect under Co,Tl stress \\
+K01990 & \textit{ABC-2.A} & Tl & Unknown & T2F & Fitness screen: defect under Co,Fe,Ni,Tl stress \\
+K02072 & \textit{metI} & Tl & Transport/Homeostasis & T2F & Metal transport/homeostasis (Cr,Cu,Tl) \\
+K02167 & \textit{betI} & Tl & Sensing/Regulation & T2F & Sensing/regulatory response to Tl \\
+K02493 & \textit{hemK} & Tl & Unknown & T2F & Fitness screen: defect under Tl stress \\
+K03316 & \textit{nhaP} & Tl & Unknown & T2F & Fitness screen: defect under Al,Tl stress \\
+K03328 & \textit{TC.PST} & Tl & Unknown & T2F & Fitness screen: defect under Co,Ni,Tl stress \\
+K03439 & \textit{trmB} & Tl & Unknown & T2F & Fitness screen: defect under Tl stress \\
+K03442 & \textit{mscS} & Tl & Unknown & T2F & Fitness screen: defect under Co,Tl stress \\
+K03453 & \textit{TC.BASS} & Tl & Unknown & T2F & Fitness screen: defect under Tl stress \\
+K03568 & \textit{tldD} & Tl & Unknown & T2F & Fitness screen: defect under Ni,Tl stress \\
+K03593 & \textit{mrp} & Tl & Unknown & T2F & Fitness screen: defect under Tl stress \\
+K03701 & \textit{uvrA} & Tl & Unknown & T2F & Fitness screen: defect under Co,Ni,Tl,Zn stress \\
+K03885 & \textit{ndh} & Tl & Unknown & T2F & Fitness screen: defect under Al,Tl stress \\
+K05368 & \textit{fre} & Tl & Unknown & T2F & Fitness screen: defect under Cu,Tl stress \\
+K05592 & \textit{deaD} & Tl & Unknown & T2F & Fitness screen: defect under Cu,Tl stress \\
+K05799 & \textit{pdhR} & Tl & Sensing/Regulation & T2F & Sensing/regulatory response to Tl,Zn \\
+K05810 & \textit{LACC1} & Tl & Unknown & T2F & Fitness screen: defect under Al,Tl stress \\
+K06179 & \textit{rluC} & Tl & Unknown & T2F & Fitness screen: defect under Ni,Tl stress \\
+K06941 & \textit{rlmN} & Tl & Unknown & T2F & Fitness screen: defect under Cu,Tl stress \\
+K07058 & --- & Tl & Unknown & T2F & Fitness screen: defect under Co,Ni,Tl stress \\
+K07165 & \textit{fecR} & Tl & Unknown & T2F & Fitness screen: defect under Al,Bi,Tl stress \\
+K07263 & \textit{pqqL} & Tl & Transport/Homeostasis & T2F & Metal transport/homeostasis (Zn,Co,Tl) \\
+K07390 & \textit{grxD} & Tl & Unknown & T2F & Fitness screen: defect under Tl,Zn stress \\
+K08300 & \textit{rne} & Tl & Unknown & T2F & Fitness screen: defect under Mn,Tl stress \\
+K08301 & \textit{rng} & Tl & Unknown & T2F & Fitness screen: defect under Mn,Tl stress \\
+K09771 & \textit{TC.SMR3} & Tl & Resistance/Detox. & T2F & Resistance/detoxification; fitness defect under Tl stress \\
+K11645 & \textit{fbaB} & Tl & Unknown & T2F & Fitness screen: defect under Ni,Tl stress \\
+K13628 & \textit{iscA} & Tl & Sensing/Regulation & T2F & Sensing/regulatory response to Fe,Tl,Zn \\
+K18707 & --- & Tl & Unknown & T2F & Fitness screen: defect under Cu,Tl stress \\
+K20534 & \textit{gtrB} & Tl & Unknown & T2F & Fitness screen: defect under Al,Tl stress \\
+\end{longtable}
+
+% -- Table S5: Metal-KO pairwise overlap matrix --------------------------------
+
+\begin{table}[htbp]
+\caption{Pairwise overlap of KO sets across the nine metal-specific analyses.
+Diagonal entries give the total KO count for each metal; off-diagonal entries
+give the number of KOs shared between the two metal-specific sets.
+Substantial overlap (e.g.\ Co--Ni: 43 shared KOs; Ni--Cu: 18; Co--Zn: 17;
+Fe--Mn: 15) indicates that the nine per-metal PGLS results are not statistically
+independent. Generated from \texttt{data/curated\_mrg\_ko\_ids\_v2.csv};
+see \texttt{data/metal\_ko\_overlap\_matrix.csv}.}
+\label{tab:metal_overlap}
+\centering
+\small
+\begin{tabular}{lccccccccc}
+\toprule
+      & Tl & Fe & Ni & Zn & Al & Co & S & Cu & Mn \\
+\midrule
+Tl    & 45 &  3 &  9 &  9 & 10 & 12 & 0 &  9 &  2 \\
+Fe    &  3 & 98 &  7 & 11 &  1 &  8 & 3 &  5 & 15 \\
+Ni    &  9 &  7 & 84 & 13 & 14 & 43 & 0 & 18 &  1 \\
+Zn    &  9 & 11 & 13 & 67 &  4 & 17 & 0 & 12 & 13 \\
+Al    & 10 &  1 & 14 &  4 & 34 &  5 & 0 & 11 &  1 \\
+Co    & 12 &  8 & 43 & 17 &  5 &101 & 1 & 10 &  0 \\
+S     &  0 &  3 &  0 &  0 &  0 &  1 &74 &  1 &  0 \\
+Cu    &  9 &  5 & 18 & 12 & 11 & 10 & 1 & 71 &  3 \\
+Mn    &  2 & 15 &  1 & 13 &  1 &  0 & 0 &  3 & 34 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================================
+\section*{Supplementary Figures}
+\addcontentsline{toc}{section}{Supplementary Figures}
+\setcounter{figure}{0}
+% ============================================================================
+
+% -- Figure S1 ----------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS01_phylogenetic_tree}
+\caption{\textbf{Phylogenetic distribution of genera in the primary dataset.}
+Circular phylogenetic cladogram (GTDB r214v1; $n = 2{,}283$ bacterial genera
+before pruning; $n = 1{,}574$ with PGLS data, shown with filled tips).
+Inner ring: Tier~1+2 per-Mb KO density (red--blue gradient; red = high, blue = low).
+Outer ring: standardised Levins' niche breadth $B_\mathrm{std}$ (light = specialist,
+dark = generalist).  Arc labels indicate the four focal phyla
+(Proteobacteria, Actinobacteria, Firmicutes, Bacteroidetes).}
+\label{fig:s1}
+\end{figure}
+
+\clearpage
+% -- Figure S2 ----------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS02_genome_size}
+\caption{\textbf{Genome-size distribution and its relationship to niche breadth.}
+(A) Histogram of mean genome size (Mb) across 1,574 genera in the primary
+dataset.  (B)~Scatter plot of mean genome size vs standardised niche breadth
+($B_\mathrm{std}$) with PGLS regression line.  (C)~Scatter plot of mean
+genome size vs \texttt{ko\_per\_mb\_primary\_z}, demonstrating that per-Mb
+normalisation partially but not fully accounts for genome-size effects.
+Genome size attenuates the primary $\beta$ by 46.7\%, below the pre-specified
+50\% confounding threshold.}
+\label{fig:s2}
+\end{figure}
+
+\clearpage
+% -- Figure S3 ----------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS03_sensitivity}
+\caption{\textbf{Sensitivity analyses: PGLS $\beta$ is consistent across eight
+pre-specified checks.}
+Forest plot of $\beta$ (with $\pm 1.96$~SE error bars) from the primary analysis
+(bacteria, $n = 1{,}574$) and eight sensitivity analyses: OLS ($\lambda = 0$),
+Brownian motion ($\lambda = 1$), archaea ($n = 41$, $n_\mathrm{min} = 5$),
+genus-count thresholds ($n_\mathrm{min} \geq 50$ and $\geq 150$), raw (unstandardised)
+Levins $B$, Australia-only subset, northern hemisphere only, and soil-restricted.
+Filled points: $p < 0.05$; open points: $p \geq 0.05$.  Six of eight analyses
+are significant and directionally consistent.}
+\label{fig:s3}
+\end{figure}
+
+\clearpage
+% -- Figure S4 ----------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS04_negative_controls}
+\caption{\textbf{Named negative controls relative to the primary metal-gene estimate.}
+Forest plot of PGLS $\beta$ for three pre-specified named negative controls
+(ribosomal proteins, amino acid biosynthesis, DNA repair) alongside the primary
+metal-gene estimate.  All three negative controls are more negative than
+the primary estimate, confirming that the housekeeping baseline lies at
+$\beta \approx -0.030$ to $-0.035$, and the metal-gene $\beta = -0.021$ is
+weaker than the streamlining baseline.  Error bars: $\pm 1.96$~SE.}
+\label{fig:s4}
+\end{figure}
+
+\clearpage
+% -- Figure S5 ----------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS05_permutation}
+\caption{\textbf{Coreness-matched permutation: the primary $\beta$ is not
+distinctive relative to matched gene sets.}
+Histogram of $\beta$ from 1,000 coreness-matched null KO sets ($n = 140$ KOs each,
+matched to the primary set by pan-genome prevalence decile).  Red vertical line
+marks the observed $\beta = -0.021$ (empirical $p = 0.298$).  Null distribution:
+median $= -0.018$, SD $= 0.007$.  The primary metal-gene $\beta$ falls within the
+null distribution, indicating that the streamlining signal is not statistically
+unusual for a gene set of this size and prevalence distribution.}
+\label{fig:s5}
+\end{figure}
+
+\clearpage
+% -- Figure S6 ----------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS06_subcategory}
+\caption{\textbf{Functional subcategory comparison across AMR, TCS, and ABC
+transporter families.}
+Side-by-side forest plots of PGLS $\beta$ for subcategories within four gene
+families: metal genes (five functional subcategories within the 140-KO primary
+set), AMR (efflux pumps, enzymatic inactivation, target modification), TCS
+(sensor kinases, response regulators, phosphotransfer proteins), and ABC
+transporters (by substrate class).  Demonstrates that the resistance-null /
+cofactor-significant split is specific to the metal-gene set; AMR subcategories
+are all positive (anti-streamlining), TCS subcategories are all positive,
+while ABC transporter Lipid/LPS subcategory shows the only negative signal
+($\beta = -0.030$, $q = 3.3 \times 10^{-5}$).  Error bars: $\pm 1.96$~SE;
+filled points: BH-FDR $q < 0.05$.}
+\label{fig:s6}
+\end{figure}
+
+\clearpage
+% -- Figure S7 ----------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS07_cwm_biome}
+\caption{\textbf{Community-weighted metal-gene investment across biomes.}
+Bar plot of mean \texttt{ko\_per\_mb\_primary\_z} by MicrobeAtlas
+\texttt{Env\_Level\_1} habitat category ($n = 12$ categories with $>100$ samples),
+weighted by genus relative abundance within each habitat.  Error bars: $\pm$SE.
+Marine habitats show consistently lower community-weighted metal-gene density
+than terrestrial or host-associated environments, consistent with selective
+pressure from oligotrophic marine conditions favouring extreme genome streamlining.}
+\label{fig:s7}
+\end{figure}
+
+\clearpage
+% -- Figure S8 ----------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS08_ko_cooccurrence}
+\caption{\textbf{Tier co-occurrence heatmap.}
+Spearman $\rho$ heatmap of cross-genus co-occurrence between individual
+Tier~1 and Tier~2 KO densities at the genus level ($118 \times 118$ KOs
+represented; BH-FDR $q < 0.05$ cells highlighted).  KOs are clustered by
+functional subcategory (indicated by coloured column/row bars).
+Demonstrates the within-panel correlation structure: transport KOs form a
+broad positive cluster; resistance KOs and cofactor KOs form distinct modules
+weakly correlated with the transport block, justifying their treatment as
+distinct analytical subcategories.}
+\label{fig:s8}
+\end{figure}
+
+\clearpage
+% -- Figure S9 ----------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS09_clade_stratified}
+\caption{\textbf{Clade-stratified PGLS: signal within Proteobacteria and
+Actinobacteria.}
+Forest plot of PGLS $\beta$ for four phylum-stratified analyses
+(Proteobacteria, Actinobacteria, Firmicutes, Bacteroidetes) alongside the
+primary all-bacteria estimate.  Error bars: $\pm 1.96$~SE; filled points:
+BH-FDR $q < 0.05$ across the four phyla.
+Cochran's $Q = 3.60$ (df $= 3$, $p = 0.309$; $I^2 = 16.6\%$): no significant
+heterogeneity across phyla.  The signal is statistically significant in
+Proteobacteria and Actinobacteria; Firmicutes and Bacteroidetes are
+directionally consistent but underpowered.}
+\label{fig:s9}
+\end{figure}
+
+\clearpage
+% -- Figure S10 ---------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.85\textwidth]{../figures/png/figS10_heterogeneity}
+\caption{\textbf{Heterogeneity test: phylum-level $\beta$ estimates are
+statistically consistent.}
+Funnel plot of phylum-specific $\beta$ ($x$-axis) vs precision $1/\mathrm{SE}$
+($y$-axis) for the four clade-stratified estimates
+(Proteobacteria, Actinobacteria, Firmicutes, Bacteroidetes).
+Cochran's $Q = 3.60$ (df~$= 3$, $p = 0.309$; $I^2 = 16.6\%$): no significant
+heterogeneity; the primary effect is not concentrated in a single clade.}
+\label{fig:s10}
+\end{figure}
+
+\clearpage
+% -- Figure S11 ---------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS11_mag_quality}
+\caption{\textbf{MAG quality metrics and their effect on the primary association.}
+(A) Histograms of mean per-genus completeness (\%) and contamination (\%) for
+the $n = 1{,}107$ genera with CheckM quality metadata.
+(B)~Forest plot of PGLS $\beta$ from four models: primary analysis, primary with
+completeness added as covariate, primary with contamination as covariate, and
+primary restricted to high-quality MAGs (completeness $\geq 90\%$, contamination
+$\leq 5\%$; $n = 511$ genera).  Error bars: $\pm 1.96$~SE.  The primary $\beta$
+is robust to MAG quality variation: adding quality covariates leaves $\beta$
+unchanged at $-0.023$ ($p \approx 3 \times 10^{-8}$).}
+\label{fig:s11}
+\end{figure}
+
+\clearpage
+% -- Figure S12 ---------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS12_niche_validation}
+\caption{\textbf{Niche-breadth metric validation: $B_\mathrm{std}$ correlates
+with EMP and MGnify biome metrics.}
+(A)~Scatter plot of MicrobeAtlas $B_\mathrm{std}$ vs EMP-derived Levins'
+$B_\mathrm{std}$ for 539 overlapping genera (Spearman $\rho = 0.211$,
+$p = 7.7 \times 10^{-7}$).
+(B)~Scatter plot of MicrobeAtlas $B_\mathrm{std}$ vs MGnify biome Shannon
+diversity per genus ($\rho = +0.063$, $p = 0.046$).
+(C)~Bootstrap stability: histogram of $|\Delta B_\mathrm{std}|$ between
+the original and mean bootstrap estimate across 100 resamples
+($n = 1{,}574$ genera).  The low median $|\Delta|$ confirms that
+$B_\mathrm{std}$ is stable at the current MicrobeAtlas sample size.}
+\label{fig:s12}
+\end{figure}
+
+\clearpage
+% -- Figure S13 ---------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.85\textwidth]{../figures/png/figS13_emp_pgls}
+\caption{\textbf{EMP PGLS: directionally consistent at $n = 539$.}
+Scatter plot of EMP-derived Levins' $B_\mathrm{std}$ vs
+\texttt{ko\_per\_mb\_primary\_z} for 539 genera shared between the Earth
+Microbiome Project and the primary pangenome dataset.
+PGLS regression line (blue): $\beta = -0.019$, $p = 0.099$ (non-significant;
+directionally consistent with the primary result).
+Primary MicrobeAtlas regression line (grey) overlaid for comparison.
+The lower significance reflects the smaller sample size ($n = 539$ vs 1,574)
+and the coarser EMPO-2 habitat categorisation used as the niche axis.}
+\label{fig:s13}
+\end{figure}
+
+\clearpage
+% -- Figure S14 ---------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS14_pfam_qc}
+\caption{\textbf{Pfam / InterPro audit of 140 primary KOs.}
+Left: pie chart showing classification of 140 KOs by Pfam domain outcome:
+metal-binding clan confirmed (10/140, 7.1\%; five InterPro clans: CL0704, CL0344,
+CL0486, CL0361, CL0193); metal-processing Pfam but no metal-binding clan
+(113/140; e.g., ABC transporter scaffolds PF00005/PF00950, MerR-family sensors);
+no Pfam annotation (2/140); no representative bacterial gene in KEGG REST (15/140).
+Right: breakdown by functional subcategory, demonstrating that low clan coverage
+is expected for transporters (which act via binding-pocket selectivity) but not
+for cofactor enzymes (which carry structural metal-binding domains).}
+\label{fig:s14}
+\end{figure}
+
+\clearpage
+% -- Figure S15 ---------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS15_ausmicrobiome}
+\caption{\textbf{AusMicrobiome within-dataset PGLS and composition diagnostics.}
+(A)~Scatter plot of $B_\mathrm{std}$ vs \texttt{ko\_per\_mb\_primary\_z} for
+482 Australian genera ($\beta = -0.052$, $p = 2.2 \times 10^{-15}$).
+(B)~Phylum composition bar chart comparing the global ($n = 1{,}574$) and
+Australian ($n = 482$) genus panels; Proteobacteria are enriched and
+Firmicutes are depleted in the continental subset.
+(C)~Primary analysis restricted to the same 482 genera: $\beta = -0.052$,
+confirming that the larger within-dataset $\beta$ reflects a composition effect
+(the 482 Australian genera, dominated by Proteobacteria, collectively lie in
+a steeper part of the global regression).}
+\label{fig:s15}
+\end{figure}
+
+\clearpage
+% -- Figure S16 ---------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/png/figS16_ngsa_map}
+\caption{\textbf{Geochemical replication: spatial distribution of NGSA sampling
+sites and genus-level metal concentration assignments.}
+Map of Australia showing National Geochemical Survey of Australia (NGSA)
+ICP-MS soil sampling sites ($n \approx 1{,}200$ sites) and the 200\,km radius
+used for spatial assignment of soil metal concentrations to AusMicrobiome
+sampling locations.  Inset: histogram of per-genus mean Cu concentration
+(ICP-MS, mg\,kg$^{-1}$) for the 482 genera with NGSA coverage.  Sites are
+distributed across all major geological provinces, providing broad coverage of
+Australian bedrock diversity.  The 200\,km radius was chosen to maximise
+genus coverage while remaining within a geologically coherent region for most
+sites.}
+\label{fig:s16}
+\end{figure}
+
+\clearpage
+% -- Figure S17 ---------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth,height=0.78\textheight,keepaspectratio]{../figures/png/figS17_kegg_pathway_overlay}
+\caption{\textbf{Exploratory: top-20 metal-gene KOs by composite CatBoost
+ranking overlaid onto KEGG pathway modules.}
+\textit{Exploratory; not pre-registered.}
+Heatmap of cross-phylum LOPO Spearman~$\rho$ (RdBu\textsubscript{r} diverging
+colormap, $\pm 0.27$ symmetric; white at $\rho = 0$) for the top~20 KOs by
+composite score (rows) against 15~environmental responses (columns):
+six CSU mobile metal fractions (Mobile As--Pb), six GeoROC bedrock metals
+(BR Co, Cr, Cu, Ni, Pb, Zn), Soil pH, Temperature, and Env~PC1.
+Rows are grouped and colour-coded by KEGG module:
+Porphyrin/Cobalamin (red), Cu/Ag efflux \textit{cus} operon (amber),
+Metal transport (blue), Sensing/stress/other (green);
+the coloured strip at right indicates module membership.
+Row labels are bold and marked $\bigstar$ for the five KOs prioritised for
+functional validation
+(K01772 \textit{hemH}, K09883 \textit{cobT}, K07796 \textit{cusC},
+K19575 \textit{bmrR}, K09823 \textit{zur}).
+Right bar chart: count of responses with $|\rho| \geq 0.10$.
+Colorbar: Spearman~$\rho$ (LOPO).
+Source: \texttt{../figures/kegg\_pathway\_overlay\_slide.pdf};
+script: \texttt{scripts/analysis\_kegg\_pathway\_figure.py}.}
+\label{fig:s17}
+\end{figure}
+
+\clearpage
+% -- Figure S18 ---------------------------------------------------------------
+\begin{figure}[p]
+\centering
+\includegraphics[width=\textwidth]{../figures/png/figS1_sample_overview}
+\caption{\textbf{Overview of the MicrobeAtlas dataset used in this study.}
+\textbf{(a)}~Sample counts per biome category (log$_{10}$ scale; $N = 462{,}716$
+total samples).
+\textbf{(b)}~Global distribution of 386{,}064 geolocalised samples, coloured
+by biome; Robinson projection.
+\textbf{(c)}~Prevalence distribution of 3{,}433 unique genera across all
+MicrobeAtlas samples (log$_{10}$ scale); the dashed line marks the
+$\ge 10$-sample inclusion threshold used throughout the analysis
+(3{,}389 of 3{,}433 genera pass).
+\textbf{(d)}~Phylum composition of the 1{,}574 genera in the primary PGLS
+dataset; top 9 phyla shown individually, remainder grouped as Other.
+\textbf{(e)}~Distribution of standardised Levins' niche breadth
+($B_\mathrm{std}$; MicrobeAtlas) across the 1{,}574 primary genera;
+dashed line indicates the median.
+\textbf{(f)}~EMP prevalence vs.\ EMP $B_\mathrm{std}$ for the 539 genera
+in the EMP validation dataset (Spearman correlation analysis); the red line
+is the binned mean across 10 equal-frequency bins.
+\textbf{(g)}~t-SNE of 24{,}997 stratified MicrobeAtlas samples ($n = 25{,}000$
+target; proportional to biome count), coloured by biome. Genus-level binary
+presence/absence vectors ($3{,}389$ genera) were reduced to 50 principal
+components via Truncated SVD (cumulative explained variance $= 0.438$) before
+t-SNE (sklearn; perplexity $= 50$, $\mathrm{max\_iter} = 1{,}000$,
+\texttt{init=pca}). Each point is one sample; structure reflects shared
+genera-level community composition.
+Data sources: \texttt{data/sample\_latlon\_env.csv} (panels~b,c),
+\texttt{data/genus\_microbeatlas\_sample\_counts.csv} (panel~c),
+\texttt{data/01\_pgls\_input\_bacteria.csv} (panels~d,e),
+\texttt{data/emp\_niche\_pgls\_input.csv} (panel~f),
+\texttt{data/tsne\_embedding.csv} (panel~g);
+scripts: \texttt{scripts/make\_figS1\_sample\_overview.py},
+\texttt{scripts/compute\_tsne\_embedding.py}.}
+\label{fig:s18}
+\end{figure}
+
+\clearpage
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{thebibliography}{99}
+
+\bibitem{pal2014}
+Pal C, Bengtsson-Palme J, Rensing C, Kristiansson E, Larsson DGJ (2014) BacMet:
+antibacterial biocide and metal resistance genes database. \textit{Nucleic Acids
+Res} \textbf{42}:D737--D743. doi:10.1093/nar/gkt1252
+
+\bibitem{price2018}
+Price MN, Wetmore KM, Waters RJ, \textit{et al.} (2018) Mutant phenotypes for
+thousands of bacterial genes of unknown function. \textit{Nature}
+\textbf{557}:503--509. doi:10.1038/s41586-018-0124-0
+
+\bibitem{levins1968}
+Levins R (1968) \textit{Evolution in Changing Environments}. Princeton
+University Press, Princeton NJ.
+
+\bibitem{colwell1971}
+Colwell RK, Futuyma DJ (1971) On the measurement of niche breadth and overlap.
+\textit{Ecology} \textbf{52}:567--576. doi:10.2307/1934144
+
+\bibitem{sunagawa2015}
+Sunagawa S, Coelho LP, Chaffron S, Kultima JR, Labadie K, Salazar G
+\textit{et al.} (2015) Structure and function of the global ocean microbiome.
+\textit{Science} \textbf{348}:1261359. doi:10.1126/science.1261359
+
+\bibitem{arkin2018}
+Arkin AP, Cottingham RW, Henry CS, \textit{et al.} (2018) KBase: The United
+States Department of Energy Systems Biology Knowledgebase. \textit{Nat
+Biotechnol} \textbf{36}:566--569. doi:10.1038/nbt.4163
+
+\bibitem{parks2022}
+Parks DH, Chuvochina M, Rinke C, Mussig AJ, Chaumeil P-A, Hugenholtz P
+(2022) GTDB: an ongoing census of bacterial and archaeal diversity through
+a phylogenetically consistent, rank-normalised and complete genome-based
+taxonomy. \textit{Nucleic Acids Res} \textbf{50}:D785--D794.
+doi:10.1093/nar/gkab776
+
+\bibitem{virtanen2020}
+Virtanen P, Gommers R, Oliphant TE, \textit{et al.} (2020) SciPy 1.0:
+Fundamental algorithms for scientific computing in Python.
+\textit{Nat Methods} \textbf{17}:261--272. doi:10.1038/s41592-019-0686-2
+
+\bibitem{prokhorenkova2018catboost}
+Prokhorenkova LO, Gusev G, Vorobev A, Dorogush AV, Gulin A (2018)
+CatBoost: unbiased boosting with categorical features. In:
+\textit{Advances in Neural Information Processing Systems} \textbf{31},
+pp 6638--6648.
+
+\bibitem{lundberg2017}
+Lundberg SM, Lee S-I (2017) A unified approach to interpreting model
+predictions. In: \textit{Advances in Neural Information Processing
+Systems} \textbf{30}.
+
+\bibitem{kanehisa2023}
+Kanehisa M, Furumichi M, Sato Y, Kawashima M, Ishiguro-Watanabe M
+(2023) KEGG for taxonomy-based analysis of pathways and genomes.
+\textit{Nucleic Acids Res} \textbf{51}:D587--D592.
+doi:10.1093/nar/gkac963
+
+\bibitem{qi2025}
+Qi C, Hu T, Zheng Y, Wu M, Tang FHM, Liu M, \textit{et al.} (2025) Global
+and regional patterns of soil metal(loid) mobility and associated risks.
+\textit{Nat Commun} \textbf{16}:2947. doi:10.1038/s41467-025-58026-8
+
+\bibitem{vonmeijenfeldt2023}
+von Meijenfeldt FAB, Hogeweg P, Dutilh BE (2023) A social niche breadth
+score reveals niche range strategies of generalists and specialists.
+\textit{Nat Ecol Evol} \textbf{7}:768--781. doi:10.1038/s41559-023-02027-7
+
+\bibitem{pagel1999}
+Pagel M (1999) Inferring the historical patterns of biological evolution.
+\textit{Nature} \textbf{401}:877--884.
+
+\bibitem{grafen1989}
+Grafen A (1989) The phylogenetic regression.
+\textit{Philos Trans R Soc Lond B Biol Sci} \textbf{326}:119--157.
+
+\bibitem{adato2015}
+Adato O, Ninyo N, Gophna U, Snir S (2015) Detecting horizontal gene transfer
+between closely related taxa. \textit{PLoS Comput Biol} \textbf{11}:e1004408.
+doi:10.1371/journal.pcbi.1004408
+
+\bibitem{tonkinhill2023}
+Tonkin-Hill G, Gladstone RA, P\"{o}ntinen AK, Arredondo-Alonso S, Bentley SD,
+Corander J (2023) Robust analysis of prokaryotic pangenome gene gain and loss
+rates with Panstripe. \textit{Genome Res} \textbf{33}:129--140.
+doi:10.1101/gr.277340.122
+
+\end{thebibliography}
+
+\end{document}

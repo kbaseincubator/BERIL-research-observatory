@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figure S8 – KO Co-occurrence Heatmap</title>
+<style>
+:root {
+  --sf:#fcfcfb; --tp:#0b0b0b; --ts:#52514e; --tm:#898781; --gl:#e1e0d9; --bl:#c3c2b7; --sig:#2a78d6;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --sf:#1a1a19; --tp:#ffffff; --ts:#c3c2b7; --tm:#898781; --gl:#2c2c2a; --bl:#383835; --sig:#3987e5; }
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--sf); color:var(--tp); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; padding:24px; }
+h2 { font-size:13px; font-weight:600; margin-bottom:3px; }
+.sub { font-size:11px; color:var(--ts); margin-bottom:16px; line-height:1.5; }
+img { display:block; max-width:100%; border-radius:2px; }
+</style>
+</head>
+<body>
+<h2>Figure S8. Tier 1+2 KO co-occurrence heatmap: Resistance and Transport KOs form distinct co-occurrence blocks.</h2>
+<div class="sub">Spearman ρ between 118 Tier 1+2 KO frequencies (prevalence across MAG genomes within each genus; n = 1,573 genera). KOs ordered by functional category (colour bars): Resistance/Detoxification (red), Transport/Homeostasis (blue), Sensing/Regulation (amber), Metal-dependent Metabolism (teal), Cofactor Biosynthesis (purple). Colour scale: blue = negative co-occurrence, red = positive. High ρ within Resistance and Transport blocks reflects shared evolutionary drivers; weak cross-block correlations demonstrate functional modularity of the metal-gene panel.</div>
+<img src="png/figS08_ko_cooccurrence.png" alt="118×118 KO co-occurrence Spearman rho heatmap">
+</body>
+</html>

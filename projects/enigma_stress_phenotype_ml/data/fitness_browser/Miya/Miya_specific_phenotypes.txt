@@ -1,0 +1,678 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set4IT057		8499625	DvMF_0391		Carbonate dehydratase (RefSeq)	-3.16925633311055	-9.03539755242615	FALSE
+carbon source	set4IT003		8499625	DvMF_0391		Carbonate dehydratase (RefSeq)	-2.49828466905486	-7.11179371979423	FALSE
+carbon source	set3IT078		8500034	DvMF_0797		thiamine-phosphate pyrophosphorylase (RefSeq)	-2.24235186093848	-7.16742249482548	FALSE
+carbon source	set3IT078		8500035	DvMF_0798		thiamine biosynthesis protein ThiF (RefSeq)	-2.47454460625004	-8.23393777893181	FALSE
+carbon source	set3IT078		8500036	DvMF_0799	thiH	thiamine biosynthesis protein ThiH (RefSeq)	-2.60872779134065	-10.8520617793086	FALSE
+carbon source	set3IT078		8500037	DvMF_0800	thiG	thiazole synthase (RefSeq)	-3.12344492119014	-9.36709336359037	FALSE
+carbon source	set3IT078		8500038	DvMF_0801		thiamine biosynthesis protein ThiS (RefSeq)	-3.27380582198608	-8.69579795099869	FALSE
+carbon source	set4IT003		8500187	DvMF_0945		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-1.15786801156235	-6.2188019517887	FALSE
+carbon source	set4IT003		8500613	DvMF_1361		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.11700811655716	-5.89158000668282	FALSE
+carbon source	set4IT057		8500613	DvMF_1361		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.08951631958754	-6.42246235742005	FALSE
+carbon source	set4IT056		8500982	DvMF_1719		metal dependent phosphohydrolase (RefSeq)	-1.19442960480771	-7.68430841485742	FALSE
+carbon source	set4IT056		8502345	DvMF_3051		protein of unknown function DUF88 (RefSeq)	-1.73471957354759	-6.3978017952422	FALSE
+carbon source	set7IT033	L-Serine	8499231	DvMF_0011		serine dehydratase alpha chain (RefSeq)	-2.42947622005719	-9.44665852869838	FALSE
+carbon source	set7IT033	L-Serine	8499252	DvMF_0032		diguanylate cyclase (RefSeq)	1.74567100906601	8.23550458165359	FALSE
+carbon source	set7IT033	L-Serine	8499438	DvMF_0210		Extracellular ligand-binding receptor (RefSeq)	1.03775480050321	5.21801685008306	FALSE
+carbon source	set7IT033	L-Serine	8499439	DvMF_0211		diguanylate cyclase/phosphodiesterase with PAS/PAC sensor(s) (RefSeq)	1.10913151216291	7.37687216736597	FALSE
+carbon source	set7IT033	L-Serine	8500390	DvMF_1141		PAS/PAC sensor hybrid histidine kinase (RefSeq)	-1.29659330296935	-5.64675577454599	FALSE
+carbon source	set7IT033	L-Serine	8500734	DvMF_1477		diguanylate cyclase with PAS/PAC sensor (RefSeq)	1.10844029990479	7.38673510886542	FALSE
+carbon source	set6IT008	L-Serine	8501549	DvMF_2268		branched-chain amino acid aminotransferase (RefSeq)	1.23902840314305	5.86590744914118	FALSE
+carbon source	set7IT033	L-Serine	8501554	DvMF_2273		PAS/PAC sensor hybrid histidine kinase (RefSeq)	2.31611932464578	17.7219948064213	FALSE
+carbon source	set6IT008	L-Serine	8501773	DvMF_2489		diguanylate cyclase (RefSeq)	1.42101731682875	6.59594678919752	FALSE
+carbon source	set7IT033	L-Serine	8501773	DvMF_2489		diguanylate cyclase (RefSeq)	1.75874073310554	9.89505353895026	FALSE
+carbon source	set7IT033	L-Serine	8501820	DvMF_2536		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	1.70601163966097	14.4793397102474	FALSE
+carbon source	set7IT033	L-Serine	8501821	DvMF_2537		PAS/PAC sensor hybrid histidine kinase (RefSeq)	1.83935120395549	8.66491725391681	FALSE
+carbon source	set7IT033	L-Serine	8501948	DvMF_2662		metal dependent phosphohydrolase (RefSeq)	-1.02124292810894	-5.13880071410678	FALSE
+carbon source	set6IT005	Sodium D,L-Lactate	8500390	DvMF_1141		PAS/PAC sensor hybrid histidine kinase (RefSeq)	-1.22367706869626	-7.47792195560373	FALSE
+carbon source	set7IT039	casamino acids	8500320	DvMF_1071		hypothetical protein (RefSeq)	-3.03691318904915	-10.482431102505	FALSE
+carbon source	set7IT039	casamino acids	8500390	DvMF_1141		PAS/PAC sensor hybrid histidine kinase (RefSeq)	-1.21305592455987	-9.51004971281044	FALSE
+carbon source	set7IT039	casamino acids	8500922	DvMF_1660		HNH endonuclease (RefSeq)	-1.8013273341785	-5.1840868365789	FALSE
+carbon source	set7IT039	casamino acids	8501093	DvMF_1829		extracellular solute-binding protein family 5 (RefSeq)	-1.70418343872615	-10.5350696565289	FALSE
+nitrogen source	set7IT052	L-Serine	8499231	DvMF_0011		serine dehydratase alpha chain (RefSeq)	-2.20560290837592	-14.2041895321438	TRUE
+nitrogen source	set7IT063	L-Serine	8499231	DvMF_0011		serine dehydratase alpha chain (RefSeq)	-1.20762644639686	-8.36368890697396	TRUE
+nitrogen source	set7IT052	L-Serine	8499779	DvMF_0544		glutamate synthase alpha subunit domain protein (RefSeq)	-1.39322225356169	-6.30696530157807	FALSE
+nitrogen source	set7IT063	L-Serine	8499779	DvMF_0544		glutamate synthase alpha subunit domain protein (RefSeq)	-1.24238090164773	-6.03399751806151	FALSE
+nitrogen source	set7IT063	L-Serine	8499780	DvMF_0545		glutamine amidotransferase class-II (RefSeq)	-1.39285444087772	-6.40461025577905	FALSE
+nitrogen source	set7IT063	L-Serine	8499781	DvMF_0546		Glutamate synthase (NADPH) (RefSeq)	-1.28135319908179	-5.07736270239678	FALSE
+nitrogen source	set7IT068	casamino acids	8500059	DvMF_0822		GTP-binding protein TypA (RefSeq)	2.021383797631	13.8827160582852	FALSE
+nitrogen source	set7IT068	casamino acids	8501654	DvMF_2372	prfC	peptide chain release factor 3 (RefSeq)	2.03327230077825	16.0043214476946	FALSE
+nitrogen source	set7IT068	casamino acids	8502181	DvMF_2891		5-enolpyruvylshikimate-3-phosphate synthase-like protein (RefSeq)	1.46499225416496	6.86235642777413	FALSE
+nutrient	set8IT020	D,L-cysteine	8500179	DvMF_0937		ferredoxin-NADP(+) reductase subunit alpha (RefSeq)	-1.71446846668077	-7.14097747323427	FALSE
+nutrient	set8IT013	D,L-cysteine	8501445	DvMF_2175		transcriptional regulator, GntR family with aminotransferase domain (RefSeq)	-3.14599985619983	-10.5401301080583	FALSE
+nutrient	set8IT020	D,L-cysteine	8501445	DvMF_2175		transcriptional regulator, GntR family with aminotransferase domain (RefSeq)	-2.98050962083999	-13.4645186228174	FALSE
+nutrient	set8IT014	L-Histidine	8499416	DvMF_0189	purU	formyltetrahydrofolate deformylase (RefSeq)	-1.58456216538159	-7.9727936459944	TRUE
+rich moyls4	set1H40		8501251	DvMF_1984		protein of unknown function DUF81 (RefSeq)	-1.70131883758186	-9.1778837594291	FALSE
+rich moyls4	set1H39		8501251	DvMF_1984		protein of unknown function DUF81 (RefSeq)	-1.49265567841841	-11.3015426091904	FALSE
+rich moyls4	set1H40		8501255	DvMF_1988		response regulator receiver protein (RefSeq)	-1.52030220800089	-6.14667990328322	FALSE
+rich moyls4	set1H40		8501256	DvMF_1989		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.67732782638991	-12.7600026643703	FALSE
+rich moyls4	set1H40		8501257	DvMF_1990		Pyruvate, water dikinase (RefSeq)	-1.57901086212202	-9.7256415638988	FALSE
+rich moyls4	set1H39		8501257	DvMF_1990		Pyruvate, water dikinase (RefSeq)	-1.54679411041571	-9.52217104542064	FALSE
+starvation	set6IT053		8499286	DvMF_0064		histidine kinase (RefSeq)	1.18333418941142	6.32139098465136	FALSE
+starvation	set2IT023		8499359	DvMF_0136		hypothetical protein (RefSeq)	1.46709625284138	12.6114813654903	FALSE
+starvation	set6IT053		8499395	DvMF_0171		beta-lactamase domain protein (RefSeq)	1.58385845116394	7.09651482393077	FALSE
+starvation	set4IT004		8499482	DvMF_0254		response regulator receiver modulated serine phosphatase (RefSeq)	1.12125919910594	5.7682973973665	FALSE
+starvation	set4IT005		8499482	DvMF_0254		response regulator receiver modulated serine phosphatase (RefSeq)	1.34835388321112	6.86971035886879	FALSE
+starvation	set4IT007		8499484	DvMF_0256		AMP-dependent synthetase and ligase (RefSeq)	1.52274685206171	7.06609016878523	FALSE
+starvation	set4IT005		8499504	DvMF_0274		hydrogenase (NiFe) small subunit HydA (RefSeq)	-1.88330084651686	-6.51474955286383	FALSE
+starvation	set2IT023		8499504	DvMF_0274		hydrogenase (NiFe) small subunit HydA (RefSeq)	-1.59187884162696	-6.15969649327358	FALSE
+starvation	set2IT024		8499511	DvMF_0281		pyridoxine 5'-phosphate synthase (RefSeq)	-4.04554515810302	-9.9719025902888	FALSE
+starvation	set6IT052		8499511	DvMF_0281		pyridoxine 5'-phosphate synthase (RefSeq)	1.21584157074499	6.1451890266443	FALSE
+starvation	set6IT054		8499511	DvMF_0281		pyridoxine 5'-phosphate synthase (RefSeq)	1.57107444799224	6.78329875233061	FALSE
+starvation	set6IT053		8499511	DvMF_0281		pyridoxine 5'-phosphate synthase (RefSeq)	1.68077667226272	11.5677617027449	FALSE
+starvation	set6IT054		8499551	DvMF_0321		iron-containing alcohol dehydrogenase (RefSeq)	-2.71738251430436	-11.0100949455057	FALSE
+starvation	set6IT054		8499560	DvMF_0330		iron-containing alcohol dehydrogenase (RefSeq)	-2.27238510025437	-7.87232188992743	FALSE
+starvation	set6IT054		8499561	DvMF_0331		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	-2.54276618428776	-10.2233490119159	FALSE
+starvation	set6IT043		8499561	DvMF_0331		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	-1.42392010790371	-9.33866325698112	FALSE
+starvation	set6IT044		8499561	DvMF_0331		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	-1.41861182317953	-8.52265885622994	FALSE
+starvation	set6IT054		8499562	DvMF_0332		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	-2.58517409602976	-8.76434941384555	FALSE
+starvation	set6IT044		8499562	DvMF_0332		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	-1.51033425198879	-8.31964224421698	FALSE
+starvation	set6IT054		8499573	DvMF_0342		hypothetical protein (RefSeq)	1.34769008632674	9.66198368523293	FALSE
+starvation	set6IT052		8499573	DvMF_0342		hypothetical protein (RefSeq)	1.36103791937479	9.93628890156542	FALSE
+starvation	set6IT053		8499573	DvMF_0342		hypothetical protein (RefSeq)	2.1595458485383	13.6356329204021	FALSE
+starvation	set4IT007		8499588	DvMF_0356		Tetratricopeptide TPR_4 (RefSeq)	2.10352725289997	9.21536545360591	FALSE
+starvation	set4IT007		8499624	DvMF_0390		hypothetical protein (RefSeq)	1.23789861862823	8.18513357118082	FALSE
+starvation	set4IT004		8499625	DvMF_0391		Carbonate dehydratase (RefSeq)	-2.14879190940638	-6.32589181179578	FALSE
+starvation	set4IT006		8499738	DvMF_0503		elongation factor G (RefSeq)	1.16703728538467	6.19525091820137	FALSE
+starvation	set4IT007		8499738	DvMF_0503		elongation factor G (RefSeq)	1.46606647632449	7.43797221512462	FALSE
+starvation	set6IT052		8499742	DvMF_0507		glycosyl transferase group 1 (RefSeq)	1.25636665260642	8.14623247195493	FALSE
+starvation	set6IT054		8499742	DvMF_0507		glycosyl transferase group 1 (RefSeq)	1.28993043496463	5.55121726305551	FALSE
+starvation	set6IT053		8499742	DvMF_0507		glycosyl transferase group 1 (RefSeq)	1.72314714989395	9.17869523556995	FALSE
+starvation	set6IT052		8499804	DvMF_0569		chaperone DnaJ domain protein (RefSeq)	-1.63118381359108	-5.48926833135409	FALSE
+starvation	set6IT054		8500034	DvMF_0797		thiamine-phosphate pyrophosphorylase (RefSeq)	1.35696052446867	5.59094820985532	FALSE
+starvation	set2IT024		8500035	DvMF_0798		thiamine biosynthesis protein ThiF (RefSeq)	-4.62651015567117	-6.20573043349352	FALSE
+starvation	set6IT054		8500035	DvMF_0798		thiamine biosynthesis protein ThiF (RefSeq)	1.24076457262748	5.64349550699245	FALSE
+starvation	set6IT053		8500035	DvMF_0798		thiamine biosynthesis protein ThiF (RefSeq)	1.28137316145725	5.01225012188072	FALSE
+starvation	set2IT024		8500036	DvMF_0799	thiH	thiamine biosynthesis protein ThiH (RefSeq)	-4.06429440928188	-8.75644929709987	FALSE
+starvation	set4IT007		8500036	DvMF_0799	thiH	thiamine biosynthesis protein ThiH (RefSeq)	2.19917426984109	6.7497469994093	FALSE
+starvation	set2IT024		8500037	DvMF_0800	thiG	thiazole synthase (RefSeq)	-5.71258619525484	-6.94630636824367	FALSE
+starvation	set4IT007		8500037	DvMF_0800	thiG	thiazole synthase (RefSeq)	1.27667444343001	5.73280769959474	FALSE
+starvation	set2IT024		8500038	DvMF_0801		thiamine biosynthesis protein ThiS (RefSeq)	-6.63687906207361	-7.67821119288447	FALSE
+starvation	set2IT024		8500180	DvMF_0938		putative oxidoreductase (RefSeq)	-1.28115747473437	-6.32109681577106	FALSE
+starvation	set4IT004		8500187	DvMF_0945		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-2.61508486441181	-11.2201199232078	FALSE
+starvation	set4IT005		8500187	DvMF_0945		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-1.79406862122272	-8.03205165235596	FALSE
+starvation	set2IT024		8500390	DvMF_1141		PAS/PAC sensor hybrid histidine kinase (RefSeq)	-2.7212515100506	-13.7992853224653	FALSE
+starvation	set6IT054		8500419	DvMF_1169		hypothetical protein (RefSeq)	1.87823601600702	13.9865563091861	FALSE
+starvation	set6IT053		8500419	DvMF_1169		hypothetical protein (RefSeq)	1.90062129980695	15.9182789881098	FALSE
+starvation	set4IT006		8500564	DvMF_1312		NAD-dependent epimerase/dehydratase (RefSeq)	1.71474889456465	10.5020008600272	FALSE
+starvation	set4IT007		8500578	DvMF_1326		protein of unknown function DUF52 (RefSeq)	-3.48085742636719	-5.65467039229904	FALSE
+starvation	set4IT007		8500586	DvMF_1334		response regulator receiver protein (RefSeq)	1.37064585910541	6.22672000265438	FALSE
+starvation	set4IT006		8500586	DvMF_1334		response regulator receiver protein (RefSeq)	1.50503942941418	7.89522202284291	FALSE
+starvation	set4IT005		8500586	DvMF_1334		response regulator receiver protein (RefSeq)	1.61374121815905	7.90711114993948	FALSE
+starvation	set4IT004		8500613	DvMF_1361		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.03045360819298	-5.15529357780066	FALSE
+starvation	set6IT054		8500618	DvMF_1366		diguanylate cyclase (RefSeq)	-5.02715665458151	-8.91120749107909	FALSE
+starvation	set6IT053		8500618	DvMF_1366		diguanylate cyclase (RefSeq)	-4.77690497960113	-13.6541222531753	FALSE
+starvation	set6IT052		8500618	DvMF_1366		diguanylate cyclase (RefSeq)	-4.56800528169625	-15.3595412064662	FALSE
+starvation	set6IT051		8500618	DvMF_1366		diguanylate cyclase (RefSeq)	-4.12127497987417	-16.9497711225312	FALSE
+starvation	set6IT050		8500618	DvMF_1366		diguanylate cyclase (RefSeq)	-2.14222992143924	-11.6581166551108	FALSE
+starvation	set2IT023		8500626	DvMF_1374		putative PAS/PAC sensor protein (RefSeq)	1.00455723044664	8.97758904832855	FALSE
+starvation	set2IT023		8500627	DvMF_1375		histidine kinase (RefSeq)	1.1914517413838	7.96963831162114	FALSE
+starvation	set4IT004		8500690	DvMF_1438		protein of unknown function UPF0016 (RefSeq)	-1.15575749181561	-7.20577593160834	FALSE
+starvation	set2IT024		8500754	DvMF_1495		von Willebrand factor type A (RefSeq)	1.3778438973293	12.9950309317394	FALSE
+starvation	set4IT005		8500757	DvMF_1498		ABC transporter related (RefSeq)	-1.65532055492027	-5.63607125335102	FALSE
+starvation	set4IT007		8500757	DvMF_1498		ABC transporter related (RefSeq)	-1.51869419866304	-5.26470172421767	FALSE
+starvation	set4IT006		8500757	DvMF_1498		ABC transporter related (RefSeq)	-1.47991438438416	-5.73031065981137	FALSE
+starvation	set4IT004		8500757	DvMF_1498		ABC transporter related (RefSeq)	-1.44639398638241	-5.75723269269091	FALSE
+starvation	set6IT054		8500777	DvMF_1518		NADH dehydrogenase (quinone) (RefSeq)	-1.69507458381085	-6.37174734448948	FALSE
+starvation	set6IT054		8500778	DvMF_1519		respiratory-chain NADH dehydrogenase subunit 1 (RefSeq)	-1.68753363454935	-7.20825359871797	FALSE
+starvation	set4IT004		8500782	DvMF_1523		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-1.59311188245563	-5.13593745692611	FALSE
+starvation	set4IT005		8500782	DvMF_1523		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-1.56166912861614	-5.08563452213523	FALSE
+starvation	set6IT053		8500787	DvMF_1528		phospholipase D/Transphosphatidylase (RefSeq)	-1.79830589381014	-5.14302294209326	FALSE
+starvation	set6IT054		8500787	DvMF_1528		phospholipase D/Transphosphatidylase (RefSeq)	-1.38894361930456	-5.13224242507765	FALSE
+starvation	set4IT005		8500855	DvMF_1593		NADH-ubiquinone/plastoquinone oxidoreductase chain 3 (RefSeq)	-2.35054462565348	-5.62997076862705	FALSE
+starvation	set4IT004		8500855	DvMF_1593		NADH-ubiquinone/plastoquinone oxidoreductase chain 3 (RefSeq)	-1.89295006911267	-8.23760289492695	FALSE
+starvation	set6IT054		8500855	DvMF_1593		NADH-ubiquinone/plastoquinone oxidoreductase chain 3 (RefSeq)	-1.46519312215063	-8.27063816040165	FALSE
+starvation	set4IT005		8500863	DvMF_1601		putative monovalent cation/H+ antiporter subunit D (RefSeq)	-2.06894966680481	-8.35943158176918	FALSE
+starvation	set4IT004		8500863	DvMF_1601		putative monovalent cation/H+ antiporter subunit D (RefSeq)	-1.7876985379167	-9.95363606954323	FALSE
+starvation	set4IT005		8500865	DvMF_1603		putative monovalent cation/H+ antiporter subunit D (RefSeq)	-2.23883693529929	-9.00506254390165	FALSE
+starvation	set4IT004		8500865	DvMF_1603		putative monovalent cation/H+ antiporter subunit D (RefSeq)	-2.18692768738646	-9.6167091389031	FALSE
+starvation	set6IT054		8500865	DvMF_1603		putative monovalent cation/H+ antiporter subunit D (RefSeq)	-1.53082911846521	-7.76905779869433	FALSE
+starvation	set4IT005		8500867	DvMF_1605		NADH dehydrogenase (quinone) (RefSeq)	-2.48499104580927	-9.47249597288199	FALSE
+starvation	set4IT004		8500867	DvMF_1605		NADH dehydrogenase (quinone) (RefSeq)	-2.10024050792997	-10.8807172773871	FALSE
+starvation	set6IT054		8500867	DvMF_1605		NADH dehydrogenase (quinone) (RefSeq)	-1.65864971004719	-10.4189881331552	FALSE
+starvation	set6IT049		8500917	DvMF_1655		phage major capsid protein, HK97 family (RefSeq)	1.03779402241568	6.32259629760505	FALSE
+starvation	set6IT051		8500963	DvMF_1700		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	1.04395223138446	5.1372309664121	FALSE
+starvation	set6IT052		8500963	DvMF_1700		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	2.2953882845027	14.8390860545222	FALSE
+starvation	set6IT054		8500963	DvMF_1700		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	2.69527672340162	16.0919176606474	FALSE
+starvation	set6IT053		8500963	DvMF_1700		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	3.21966013371366	18.8967570623425	FALSE
+starvation	set4IT005		8501062	DvMF_1798		sigma54 specific transcriptional acivator, PspF, Fis family (RefSeq)	-1.31145827557919	-5.39341227652999	FALSE
+starvation	set4IT006		8501089	DvMF_1825		oligopeptide/dipeptide ABC transporter, ATPase subunit (RefSeq)	-1.9882397956994	-5.1265705127901	FALSE
+starvation	set4IT005		8501089	DvMF_1825		oligopeptide/dipeptide ABC transporter, ATPase subunit (RefSeq)	-1.55165175681329	-5.22618723825049	FALSE
+starvation	set4IT006		8501090	DvMF_1826		oligopeptide/dipeptide ABC transporter, ATPase subunit (RefSeq)	-1.88761512160354	-6.6777256467367	FALSE
+starvation	set4IT005		8501090	DvMF_1826		oligopeptide/dipeptide ABC transporter, ATPase subunit (RefSeq)	-1.62229142395144	-5.38145587312517	FALSE
+starvation	set4IT006		8501092	DvMF_1828		binding-protein-dependent transport systems inner membrane component (RefSeq)	-1.80319478897287	-6.97904200996669	FALSE
+starvation	set4IT005		8501092	DvMF_1828		binding-protein-dependent transport systems inner membrane component (RefSeq)	-1.50212482065976	-5.34848621760836	FALSE
+starvation	set2IT023		8501092	DvMF_1828		binding-protein-dependent transport systems inner membrane component (RefSeq)	1.50482000909769	8.03964252873449	FALSE
+starvation	set4IT005		8501093	DvMF_1829		extracellular solute-binding protein family 5 (RefSeq)	-1.50908389118502	-6.45846452152182	FALSE
+starvation	set4IT006		8501104	DvMF_1840		CDP-glycerol:poly(glycerophosphate) glycerophosphotransferase (RefSeq)	1.26646141516294	7.40605785716307	FALSE
+starvation	set4IT007		8501298	DvMF_2031		ribonucleotide-diphosphate reductase subunit alpha (RefSeq)	-1.15716749001461	-5.18934547367439	FALSE
+starvation	set4IT006		8501439	DvMF_2169		phospholipid/glycerol acyltransferase (RefSeq)	2.21364145363137	12.3952563840039	FALSE
+starvation	set4IT007		8501439	DvMF_2169		phospholipid/glycerol acyltransferase (RefSeq)	4.3624886721449	27.7653583542023	FALSE
+starvation	set4IT007		8501440	DvMF_2170		protein of unknown function DUF523 (RefSeq)	3.02410381578419	9.67303828366544	FALSE
+starvation	set4IT006		8501456	DvMF_2186		dual specificity protein phosphatase (RefSeq)	-1.01182572458742	-5.950283897961	FALSE
+starvation	set6IT053		8501457	DvMF_2187		pyruvate phosphate dikinase PEP/pyruvate-binding (RefSeq)	1.39398722198653	7.84704960416879	FALSE
+starvation	set4IT004		8501460	DvMF_2190		phosphonate ABC transporter, periplasmic phosphonate-binding protein (RefSeq)	-1.60933345524764	-5.51779190748439	FALSE
+starvation	set4IT005		8501460	DvMF_2190		phosphonate ABC transporter, periplasmic phosphonate-binding protein (RefSeq)	-1.26391197571061	-5.43720537565213	FALSE
+starvation	set4IT004		8501462	DvMF_2192		protein of unknown function DUF81 (RefSeq)	-1.5026654534876	-5.01772220672187	FALSE
+starvation	set4IT004		8501510	DvMF_2234		transcriptional regulator, Crp/Fnr family (RefSeq)	-1.64145256788758	-5.92180519040833	FALSE
+starvation	set4IT006		8501549	DvMF_2268		branched-chain amino acid aminotransferase (RefSeq)	1.52512398128335	6.32981743938007	FALSE
+starvation	set4IT007		8501549	DvMF_2268		branched-chain amino acid aminotransferase (RefSeq)	2.3732177166048	13.0589475784453	FALSE
+starvation	set4IT005		8501556	DvMF_2275		metal dependent phosphohydrolase (RefSeq)	1.09258884902055	5.38938665820565	FALSE
+starvation	set6IT054		8501614	DvMF_2332		response regulator receiver protein (RefSeq)	-2.59623370245257	-5.00059352233215	FALSE
+starvation	set6IT053		8501614	DvMF_2332		response regulator receiver protein (RefSeq)	-2.48096136266441	-5.69968554600387	FALSE
+starvation	set6IT051		8501614	DvMF_2332		response regulator receiver protein (RefSeq)	-1.6281446165883	-6.10806031238671	FALSE
+starvation	set2IT024		8501624	DvMF_2342		protein of unknown function DUF81 (RefSeq)	-1.05255536665088	-5.13861075905395	FALSE
+starvation	set6IT053		8501665	DvMF_2383		aminotransferase class IV (RefSeq)	1.13303064495515	5.70705990356488	FALSE
+starvation	set2IT023		8501773	DvMF_2489		diguanylate cyclase (RefSeq)	2.1218604534831	13.626000166557	FALSE
+starvation	set6IT054		8501820	DvMF_2536		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	-2.43065166213463	-11.0498276491378	FALSE
+starvation	set6IT052		8501820	DvMF_2536		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	-1.76246317955235	-8.80962735085122	FALSE
+starvation	set6IT053		8501820	DvMF_2536		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	-1.72853775056723	-7.95847425882371	FALSE
+starvation	set6IT054		8501821	DvMF_2537		PAS/PAC sensor hybrid histidine kinase (RefSeq)	-2.02341651378932	-12.0835706002081	FALSE
+starvation	set6IT053		8501821	DvMF_2537		PAS/PAC sensor hybrid histidine kinase (RefSeq)	-1.8381991581728	-8.78488916228566	FALSE
+starvation	set6IT052		8501821	DvMF_2537		PAS/PAC sensor hybrid histidine kinase (RefSeq)	-1.72290767077803	-10.1137583213181	FALSE
+starvation	set6IT052		8501822	DvMF_2538		hypothetical protein (RefSeq)	-1.67080389252807	-6.27113641525482	FALSE
+starvation	set4IT007		8501851	DvMF_2566		phosphate ABC transporter, inner membrane subunit PstC (RefSeq)	-4.46927286592654	-5.41278513352427	FALSE
+starvation	set4IT004		8501851	DvMF_2566		phosphate ABC transporter, inner membrane subunit PstC (RefSeq)	-1.7128480631705	-7.55622403218015	FALSE
+starvation	set4IT005		8501851	DvMF_2566		phosphate ABC transporter, inner membrane subunit PstC (RefSeq)	-1.50773191812905	-5.82061674408569	FALSE
+starvation	set4IT006		8501851	DvMF_2566		phosphate ABC transporter, inner membrane subunit PstC (RefSeq)	-1.50661752441217	-6.00205869241954	FALSE
+starvation	set4IT007		8501852	DvMF_2567		phosphate ABC transporter, inner membrane subunit PstA (RefSeq)	-3.63566526314448	-9.95529470711194	FALSE
+starvation	set4IT005		8501852	DvMF_2567		phosphate ABC transporter, inner membrane subunit PstA (RefSeq)	-2.1850574779543	-9.03930092594163	FALSE
+starvation	set4IT006		8501852	DvMF_2567		phosphate ABC transporter, inner membrane subunit PstA (RefSeq)	-1.70461859302365	-6.84220676425228	FALSE
+starvation	set4IT004		8501852	DvMF_2567		phosphate ABC transporter, inner membrane subunit PstA (RefSeq)	-1.27471753706007	-6.03490364476108	FALSE
+starvation	set4IT007		8501859	DvMF_2574		Osmosensitive K channel His kinase sensor (RefSeq)	-2.63090532043152	-6.56899080565562	FALSE
+starvation	set4IT005		8501859	DvMF_2574		Osmosensitive K channel His kinase sensor (RefSeq)	-1.59389187137254	-9.88468293767227	FALSE
+starvation	set4IT004		8501859	DvMF_2574		Osmosensitive K channel His kinase sensor (RefSeq)	-1.41940863125314	-6.40442299363696	FALSE
+starvation	set6IT052		8501963	DvMF_2677		response regulator receiver sensor hybrid histidine kinase (RefSeq)	-1.40700168393696	-5.81282221450241	FALSE
+starvation	set6IT054		8502076	DvMF_2789		histidine kinase (RefSeq)	-3.52157433842447	-12.3857645255465	FALSE
+starvation	set6IT053		8502076	DvMF_2789		histidine kinase (RefSeq)	-2.40101713583862	-7.64241152518133	FALSE
+starvation	set6IT052		8502076	DvMF_2789		histidine kinase (RefSeq)	-2.32980491475641	-11.2169535280393	FALSE
+starvation	set6IT051		8502076	DvMF_2789		histidine kinase (RefSeq)	-1.41343617853187	-9.31219055057922	FALSE
+starvation	set2IT024		8502099	DvMF_2812		protein of unknown function DUF81 (RefSeq)	-1.83651362772059	-7.68631665060586	FALSE
+starvation	set6IT054		8502100	DvMF_2813		TOBE domain protein (RefSeq)	-1.07931498562694	-6.28113715962981	FALSE
+starvation	set2IT024		8502164	DvMF_2874		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-3.67566080301299	-10.7204862951207	FALSE
+starvation	set6IT053		8502164	DvMF_2874		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	1.4314964637775	11.0352444762896	FALSE
+starvation	set2IT024		8502165	DvMF_2875		FAD linked oxidase domain protein (RefSeq)	-3.7900238766108	-15.1124600519845	FALSE
+starvation	set6IT052		8502165	DvMF_2875		FAD linked oxidase domain protein (RefSeq)	1.15713512536222	5.84931363092043	FALSE
+starvation	set6IT054		8502165	DvMF_2875		FAD linked oxidase domain protein (RefSeq)	1.35574871774924	6.94874930522554	FALSE
+starvation	set6IT053		8502165	DvMF_2875		FAD linked oxidase domain protein (RefSeq)	1.8782060621772	9.4838259448628	FALSE
+starvation	set2IT023		8502256	DvMF_2966		hypothetical protein (RefSeq)	1.74460211954662	9.05189451255808	FALSE
+starvation	set2IT023		8502276	DvMF_2986		multi-sensor hybrid histidine kinase (RefSeq)	-1.30464890625517	-5.91639340324431	FALSE
+starvation	set6IT052		8502283	DvMF_2992		ATPase, P-type (transporting), HAD superfamily, subfamily IC (RefSeq)	-2.10082561711823	-8.90705667230072	FALSE
+starvation	set6IT053		8502283	DvMF_2992		ATPase, P-type (transporting), HAD superfamily, subfamily IC (RefSeq)	-1.56758632807563	-8.93034978573198	FALSE
+starvation	set6IT054		8502283	DvMF_2992		ATPase, P-type (transporting), HAD superfamily, subfamily IC (RefSeq)	-1.41077968177704	-8.14820933093592	FALSE
+starvation	set6IT051		8502283	DvMF_2992		ATPase, P-type (transporting), HAD superfamily, subfamily IC (RefSeq)	-1.32424129329963	-7.4371387102807	FALSE
+starvation	set4IT006		8502302	DvMF_3010		sigma54 specific transcriptional regulator, Fis family (RefSeq)	1.74297123258423	7.50892059497932	FALSE
+starvation	set4IT007		8502302	DvMF_3010		sigma54 specific transcriptional regulator, Fis family (RefSeq)	2.73338781100852	20.487924107974	FALSE
+starvation	set2IT024		8502366	DvMF_3072		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	1.79073344724049	11.5892023609391	FALSE
+starvation	set2IT024		8502368	DvMF_3074		response regulator receiver modulated metal dependent phosphohydrolase (RefSeq)	-1.17664828087558	-6.10616677459802	FALSE
+starvation	set4IT007		8502376	DvMF_3082		protein of unknown function UPF0118 (RefSeq)	-2.59320005418167	-5.55698212294805	FALSE
+starvation	set4IT006		8502436	DvMF_3142		glycosyl transferase family 2 (RefSeq)	1.22032688921801	8.3020265738562	FALSE
+starvation	set4IT006		8502437	DvMF_3143		glycosyl transferase family 2 (RefSeq)	1.18016644092315	7.56277100610596	FALSE
+starvation	set4IT007		8502437	DvMF_3143		glycosyl transferase family 2 (RefSeq)	1.2698268976411	5.99621595056815	FALSE
+starvation	set4IT007		8502441	DvMF_3147		alpha-glucan phosphorylase (RefSeq)	-3.53506588635203	-11.0076463809726	FALSE
+starvation	set6IT054		8502441	DvMF_3147		alpha-glucan phosphorylase (RefSeq)	-2.85025152185473	-12.5286718933373	FALSE
+starvation	set6IT053		8502441	DvMF_3147		alpha-glucan phosphorylase (RefSeq)	-2.28706112654594	-10.4942292407604	FALSE
+starvation	set6IT052		8502441	DvMF_3147		alpha-glucan phosphorylase (RefSeq)	-2.05134142280433	-10.8597217425117	FALSE
+stress	set4IT045	2-Furfuraldehyde	8501945	DvMF_2659		cysteine desulfurase NifS (RefSeq)	-3.00376945320431	-6.37916490234046	TRUE
+stress	set4IT045	2-Furfuraldehyde	8502265	DvMF_2975		nitroreductase (RefSeq)	4.32470776398345	13.9601221264858	FALSE
+stress	set4IT047	5-Hydroxymethylfurfural	8499680	DvMF_0446		putative glutamate synthase subunit beta (RefSeq)	-2.06469433162548	-5.65423258067886	FALSE
+stress	set4IT046	5-Hydroxymethylfurfural	8500171	DvMF_0929		transcriptional regulator, LuxR family (RefSeq)	-1.33133992312451	-5.62841230002756	FALSE
+stress	set4IT047	5-Hydroxymethylfurfural	8500171	DvMF_0929		transcriptional regulator, LuxR family (RefSeq)	-1.0443164187313	-8.22007059140103	FALSE
+stress	set4IT047	5-Hydroxymethylfurfural	8500173	DvMF_0931		molybdopterin oxidoreductase (RefSeq)	-1.16015964185709	-6.66983967203127	FALSE
+stress	set4IT047	5-Hydroxymethylfurfural	8500175	DvMF_0933		molybdopterin-containing oxidoreductase membrane anchor subunit (RefSeq)	-2.72710515255579	-12.0228562698501	FALSE
+stress	set4IT048	5-Hydroxymethylfurfural	8500175	DvMF_0933		molybdopterin-containing oxidoreductase membrane anchor subunit (RefSeq)	-1.57004044682717	-8.7966606138903	FALSE
+stress	set4IT046	5-Hydroxymethylfurfural	8501556	DvMF_2275		metal dependent phosphohydrolase (RefSeq)	-1.07401942691205	-6.76142440708611	FALSE
+stress	set4IT046	5-Hydroxymethylfurfural	8501661	DvMF_2379		ABC transporter related (RefSeq)	-2.43819058846392	-6.87107040149414	TRUE
+stress	set4IT048	5-Hydroxymethylfurfural	8502329	DvMF_3036		cytochrome c biogenesis protein transmembrane region (RefSeq)	-2.24307632470255	-14.6780544689985	FALSE
+stress	set3IT050	Aluminum chloride hydrate	8501000	DvMF_1737		metallophosphoesterase (RefSeq)	-1.89283954091768	-9.41899354047646	FALSE
+stress	set3IT059	Bacitracin	8499339	DvMF_0116		ferric uptake regulator, Fur family (RefSeq)	-3.53987829523282	-5.66173034227145	FALSE
+stress	set3IT060	Bacitracin	8499339	DvMF_0116		ferric uptake regulator, Fur family (RefSeq)	-1.47072919871757	-7.54875261736211	FALSE
+stress	set3IT059	Bacitracin	8499359	DvMF_0136		hypothetical protein (RefSeq)	1.82769078103926	12.758075152955	FALSE
+stress	set3IT059	Bacitracin	8499402	DvMF_0178		outer membrane chaperone Skp (OmpH) (RefSeq)	-2.55951774819892	-5.26452063130312	FALSE
+stress	set3IT060	Bacitracin	8499886	DvMF_0651		hypothetical protein (RefSeq)	1.48194795488766	8.15440343485231	FALSE
+stress	set3IT059	Bacitracin	8499886	DvMF_0651		hypothetical protein (RefSeq)	2.36293599973073	11.0713903355036	FALSE
+stress	set3IT059	Bacitracin	8499998	DvMF_0762		glycosyl transferase family 2 (RefSeq)	1.47263585028763	7.43000372207896	FALSE
+stress	set3IT060	Bacitracin	8500025	DvMF_0788		extracellular solute-binding protein family 5 (RefSeq)	-6.42459837497465	-15.3048964366658	FALSE
+stress	set3IT059	Bacitracin	8500025	DvMF_0788		extracellular solute-binding protein family 5 (RefSeq)	-6.17650816172833	-12.5662217421113	FALSE
+stress	set3IT059	Bacitracin	8500059	DvMF_0822		GTP-binding protein TypA (RefSeq)	1.77500700212456	11.7947903349533	FALSE
+stress	set3IT060	Bacitracin	8500162	DvMF_0920		binding-protein-dependent transport systems inner membrane component (RefSeq)	-4.52791279544254	-5.01436683523207	FALSE
+stress	set3IT059	Bacitracin	8500162	DvMF_0920		binding-protein-dependent transport systems inner membrane component (RefSeq)	-4.36461490841374	-6.48126080657065	FALSE
+stress	set3IT060	Bacitracin	8500163	DvMF_0921		binding-protein-dependent transport systems inner membrane component (RefSeq)	-7.18684118547397	-6.87291902587062	FALSE
+stress	set3IT059	Bacitracin	8500163	DvMF_0921		binding-protein-dependent transport systems inner membrane component (RefSeq)	-4.93006323758526	-5.2783935428638	FALSE
+stress	set3IT059	Bacitracin	8500301	DvMF_1052		multi-sensor hybrid histidine kinase (RefSeq)	-4.98900672175492	-17.4635448690387	FALSE
+stress	set3IT060	Bacitracin	8500301	DvMF_1052		multi-sensor hybrid histidine kinase (RefSeq)	-3.59666224773541	-19.8804407689212	FALSE
+stress	set3IT059	Bacitracin	8500371	DvMF_1122		Serine-type D-Ala-D-Ala carboxypeptidase (RefSeq)	2.19043659431135	5.20585116614384	FALSE
+stress	set3IT059	Bacitracin	8500419	DvMF_1169		hypothetical protein (RefSeq)	1.79774914504529	11.0497015757738	FALSE
+stress	set3IT059	Bacitracin	8500647	DvMF_1395	truA	tRNA pseudouridine synthase A (RefSeq)	1.15246048400411	5.97104401265999	FALSE
+stress	set3IT059	Bacitracin	8500651	DvMF_1399		Ribosomal small subunit Rsm22 (RefSeq)	2.32369431381746	9.55201396310567	FALSE
+stress	set3IT059	Bacitracin	8500727	DvMF_1470		ErfK/YbiS/YcfS/YnhG family protein (RefSeq)	1.94308819381252	7.47817430610691	FALSE
+stress	set3IT059	Bacitracin	8500802	DvMF_1543		rare lipoprotein A (RefSeq)	2.8765177477521	5.08186575215371	FALSE
+stress	set3IT059	Bacitracin	8500953	DvMF_1690		polysaccharide export protein (RefSeq)	1.36010492486079	7.26112180508214	FALSE
+stress	set3IT059	Bacitracin	8501000	DvMF_1737		metallophosphoesterase (RefSeq)	1.29876057112518	7.36683436594192	FALSE
+stress	set3IT059	Bacitracin	8501280	DvMF_2013		flagellar biosynthesis protein FlhF, putative (RefSeq)	1.3067051125577	5.44453372979716	FALSE
+stress	set3IT059	Bacitracin	8501299	DvMF_2032		cell division ATP-binding protein FtsE (RefSeq)	1.48338410464507	9.64160257256301	FALSE
+stress	set3IT060	Bacitracin	8501488	DvMF_2218		Lytic transglycosylase catalytic (RefSeq)	1.1423304857521	5.89952526215323	FALSE
+stress	set3IT059	Bacitracin	8501488	DvMF_2218		Lytic transglycosylase catalytic (RefSeq)	3.18161664125281	9.60939425021582	FALSE
+stress	set3IT059	Bacitracin	8501547	DvMF_2266		putative lipoprotein (RefSeq)	1.04598117811654	7.37182598868252	FALSE
+stress	set3IT060	Bacitracin	8501622	DvMF_2340		Sigma 54 interacting domain protein (RefSeq)	1.62623046342071	10.242657103634	FALSE
+stress	set3IT059	Bacitracin	8501622	DvMF_2340		Sigma 54 interacting domain protein (RefSeq)	2.22399134655568	11.6624702597434	FALSE
+stress	set3IT059	Bacitracin	8501654	DvMF_2372	prfC	peptide chain release factor 3 (RefSeq)	2.22944909306564	10.5730123881623	TRUE
+stress	set3IT059	Bacitracin	8501810	DvMF_2526		carbon storage regulator, CsrA (RefSeq)	2.32707817367579	5.4333321537584	FALSE
+stress	set3IT059	Bacitracin	8501968	DvMF_2682		Membrane-bound lytic murein transglycosylase B-like protein (RefSeq)	-3.24446949964133	-7.92122102806457	FALSE
+stress	set3IT060	Bacitracin	8501968	DvMF_2682		Membrane-bound lytic murein transglycosylase B-like protein (RefSeq)	-1.61427347259905	-5.77717204294437	FALSE
+stress	set3IT060	Bacitracin	8502044	DvMF_2757	tgt	queuine tRNA-ribosyltransferase (RefSeq)	-1.24385361283635	-6.5215690237649	FALSE
+stress	set3IT059	Bacitracin	8502063	DvMF_2776		hypothetical protein (RefSeq)	1.61707451694393	6.67333259211958	FALSE
+stress	set3IT059	Bacitracin	8502084	DvMF_2797		hypothetical protein (RefSeq)	-2.10559030429828	-6.05718154046392	FALSE
+stress	set3IT060	Bacitracin	8502136	DvMF_2847			1.48258360714039	9.13780450039267	FALSE
+stress	set3IT059	Bacitracin	8502136	DvMF_2847			3.57880082676602	18.8769135177855	FALSE
+stress	set3IT059	Bacitracin	8502329	DvMF_3036		cytochrome c biogenesis protein transmembrane region (RefSeq)	-1.17770716722459	-5.69062924952099	FALSE
+stress	set3IT059	Bacitracin	8502351	DvMF_3057		DEAD/DEAH box helicase domain protein (RefSeq)	-1.20033390504326	-5.04147681859545	FALSE
+stress	set3IT059	Bacitracin	8502451	DvMF_3157		Peptidase M23 (RefSeq)	2.25156463728014	11.1005036074035	FALSE
+stress	set3IT059	Bacitracin	8502466	DvMF_3172		UTP--glucose-1-phosphate uridylyltransferase (RefSeq)	1.76733892089127	8.62369177520762	FALSE
+stress	set1H19	Carbenicillin disodium salt	8499339	DvMF_0116		ferric uptake regulator, Fur family (RefSeq)	-1.41340632765323	-7.32543557862847	FALSE
+stress	set1H19	Carbenicillin disodium salt	8499373	DvMF_0150		DivIVA family protein (RefSeq)	2.26767182600774	5.78903083312803	FALSE
+stress	set1H19	Carbenicillin disodium salt	8499402	DvMF_0178		outer membrane chaperone Skp (OmpH) (RefSeq)	-2.00024620691983	-5.73976946395505	FALSE
+stress	set1H19	Carbenicillin disodium salt	8499623	DvMF_0389		Beta-lactamase (RefSeq)	-1.37140840814581	-5.00905808749844	FALSE
+stress	set1H18	Carbenicillin disodium salt	8499623	DvMF_0389		Beta-lactamase (RefSeq)	-1.32243023878257	-7.77259754079096	FALSE
+stress	set1H19	Carbenicillin disodium salt	8499801	DvMF_0566		peptidyl-prolyl cis-trans isomerase cyclophilin type (RefSeq)	-1.57346534805525	-5.65660679227084	FALSE
+stress	set1H19	Carbenicillin disodium salt	8500148	DvMF_0911		uracil phosphoribosyltransferase (RefSeq)	-1.59545121363638	-7.07799055051221	FALSE
+stress	set1H18	Carbenicillin disodium salt	8500389	DvMF_1140		hypothetical protein (RefSeq)	1.50312525067298	7.9283198991245	FALSE
+stress	set1H19	Carbenicillin disodium salt	8500389	DvMF_1140		hypothetical protein (RefSeq)	2.11517783243559	9.01186789915691	FALSE
+stress	set1H19	Carbenicillin disodium salt	8500776	DvMF_1517		transcriptional regulator, TetR family (RefSeq)	3.0358795141416	5.64731548835126	FALSE
+stress	set1H19	Carbenicillin disodium salt	8500777	DvMF_1518		NADH dehydrogenase (quinone) (RefSeq)	1.62573787731547	6.60608617812875	FALSE
+stress	set1H18	Carbenicillin disodium salt	8500785	DvMF_1526		chromate transporter, chromate ion transporter (CHR) family (RefSeq)	1.50291962224802	10.1440436169231	FALSE
+stress	set1H19	Carbenicillin disodium salt	8500785	DvMF_1526		chromate transporter, chromate ion transporter (CHR) family (RefSeq)	2.88350267402163	18.8889920339363	FALSE
+stress	set1H19	Carbenicillin disodium salt	8500786	DvMF_1527		hypothetical protein (RefSeq)	-1.03186000287901	-7.22133101511263	FALSE
+stress	set1H19	Carbenicillin disodium salt	8500953	DvMF_1690		polysaccharide export protein (RefSeq)	-1.32708332699836	-6.7784203514751	FALSE
+stress	set1H18	Carbenicillin disodium salt	8501299	DvMF_2032		cell division ATP-binding protein FtsE (RefSeq)	1.43201224947537	11.4787673698859	FALSE
+stress	set1H19	Carbenicillin disodium salt	8501299	DvMF_2032		cell division ATP-binding protein FtsE (RefSeq)	3.07340941212599	17.9832085937316	FALSE
+stress	set1H18	Carbenicillin disodium salt	8501300	DvMF_2033		protein of unknown function DUF214 (RefSeq)	1.4186079610894	13.1133086939929	FALSE
+stress	set1H19	Carbenicillin disodium salt	8501300	DvMF_2033		protein of unknown function DUF214 (RefSeq)	3.14107571509042	27.7711998122622	FALSE
+stress	set1H18	Carbenicillin disodium salt	8501533	DvMF_2252		DEAD/DEAH box helicase domain protein (RefSeq)	1.6315257229666	14.6606417384684	FALSE
+stress	set1H19	Carbenicillin disodium salt	8501533	DvMF_2252		DEAD/DEAH box helicase domain protein (RefSeq)	2.38977438743855	21.1410329585058	FALSE
+stress	set1H19	Carbenicillin disodium salt	8501913	DvMF_2628		hypothetical protein (RefSeq)	-1.31370743113254	-8.27477789946734	FALSE
+stress	set1H19	Carbenicillin disodium salt	8501968	DvMF_2682		Membrane-bound lytic murein transglycosylase B-like protein (RefSeq)	-1.71291662686105	-8.28218556045304	FALSE
+stress	set1H18	Carbenicillin disodium salt	8501968	DvMF_2682		Membrane-bound lytic murein transglycosylase B-like protein (RefSeq)	-1.69718314433747	-11.0867727656152	FALSE
+stress	set1H19	Carbenicillin disodium salt	8502325	DvMF_3033		hypothetical protein (RefSeq)	-1.14785108163967	-5.45090859448274	FALSE
+stress	set1H18	Carbenicillin disodium salt	8502451	DvMF_3157		Peptidase M23 (RefSeq)	1.41787640836351	11.5573395096662	FALSE
+stress	set1H19	Carbenicillin disodium salt	8502451	DvMF_3157		Peptidase M23 (RefSeq)	3.07032697916168	23.5250603895388	FALSE
+stress	set1H19	Carbenicillin disodium salt	8502462	DvMF_3168		hypothetical protein (RefSeq)	-1.33733383176133	-9.60104636209175	FALSE
+stress	set1H18	Carbenicillin disodium salt	8502462	DvMF_3168		hypothetical protein (RefSeq)	-1.15655139191543	-6.95643341514681	FALSE
+stress	set1H19	Carbenicillin disodium salt	8502466	DvMF_3172		UTP--glucose-1-phosphate uridylyltransferase (RefSeq)	1.25187087374245	7.47001572788635	FALSE
+stress	set4IT024	Ceftazidime hydrate	8501926	DvMF_2640		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	1.53274412415148	13.2481951225141	FALSE
+stress	set3IT071	Cephalothin sodium salt	8499679	DvMF_0445		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-2.63357053419672	-5.48108449975363	FALSE
+stress	set3IT071	Cephalothin sodium salt	8499680	DvMF_0446		putative glutamate synthase subunit beta (RefSeq)	-2.78461355971285	-18.5287064504855	FALSE
+stress	set3IT070	Cephalothin sodium salt	8499680	DvMF_0446		putative glutamate synthase subunit beta (RefSeq)	-2.54056356085728	-13.8336329332008	FALSE
+stress	set3IT071	Cephalothin sodium salt	8500953	DvMF_1690		polysaccharide export protein (RefSeq)	-1.28220768966738	-6.64597377960206	FALSE
+stress	set3IT070	Cephalothin sodium salt	8500953	DvMF_1690		polysaccharide export protein (RefSeq)	-1.18657707579304	-7.40520293467988	FALSE
+stress	set3IT071	Cephalothin sodium salt	8502409	DvMF_3115		nitroreductase (RefSeq)	-2.5273455105601	-8.5924608780345	FALSE
+stress	set3IT071	Cephalothin sodium salt	8502462	DvMF_3168		hypothetical protein (RefSeq)	-1.20886376931143	-7.73383026035704	FALSE
+stress	set3IT070	Cephalothin sodium salt	8502462	DvMF_3168		hypothetical protein (RefSeq)	-1.20101430979427	-9.36267067681031	FALSE
+stress	set1H31	Chloramphenicol	8501251	DvMF_1984		protein of unknown function DUF81 (RefSeq)	-1.43469232294451	-8.02078390713937	FALSE
+stress	set1H32	Chloramphenicol	8501251	DvMF_1984		protein of unknown function DUF81 (RefSeq)	-1.42290267821305	-9.70870536467085	FALSE
+stress	set1H32	Chloramphenicol	8501256	DvMF_1989		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.53674797427235	-10.784984219537	FALSE
+stress	set1H31	Chloramphenicol	8501256	DvMF_1989		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.34704987440852	-11.783316153008	FALSE
+stress	set1H31	Chloramphenicol	8501257	DvMF_1990		Pyruvate, water dikinase (RefSeq)	-1.58613830225464	-9.38937521293332	FALSE
+stress	set1H32	Chloramphenicol	8501257	DvMF_1990		Pyruvate, water dikinase (RefSeq)	-1.51427653199473	-10.1002228766527	FALSE
+stress	set1H31	Chloramphenicol	8501259	DvMF_1992		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.40729727736207	-6.5934936455625	FALSE
+stress	set1H32	Chloramphenicol	8501259	DvMF_1992		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.37643466898603	-5.183665357775	FALSE
+stress	set1H32	Chloramphenicol	8501661	DvMF_2379		ABC transporter related (RefSeq)	-3.74675370725506	-14.2482492571994	TRUE
+stress	set1H31	Chloramphenicol	8501661	DvMF_2379		ABC transporter related (RefSeq)	-2.74539299687106	-16.0414984865437	TRUE
+stress	set4IT010	D-Cycloserine	8499519	DvMF_0289		Recombination protein O RecO (RefSeq)	-3.12471065677567	-10.2932339521446	FALSE
+stress	set4IT010	D-Cycloserine	8499688	DvMF_0454		excinuclease ABC subunit B (RefSeq)	-4.67244617657125	-13.5497872098767	TRUE
+stress	set7IT051	D-Cycloserine	8500268	DvMF_1024		hypothetical protein (RefSeq)	1.34416869441297	5.71484796791676	FALSE
+stress	set4IT010	D-Cycloserine	8500369	DvMF_1120		hypothetical protein (RefSeq)	3.07938142923383	9.8152446373899	FALSE
+stress	set4IT010	D-Cycloserine	8501457	DvMF_2187		pyruvate phosphate dikinase PEP/pyruvate-binding (RefSeq)	1.1079014143369	7.29249797310431	FALSE
+stress	set4IT010	D-Cycloserine	8501458	DvMF_2188		response regulator receiver protein (RefSeq)	1.89249366674462	5.29008143184088	FALSE
+stress	set4IT010	D-Cycloserine	8501459	DvMF_2189		multi-sensor signal transduction histidine kinase (RefSeq)	1.49649236259573	6.2629634715693	FALSE
+stress	set4IT010	D-Cycloserine	8501460	DvMF_2190		phosphonate ABC transporter, periplasmic phosphonate-binding protein (RefSeq)	1.17060162024343	5.72268065614202	FALSE
+stress	set4IT010	D-Cycloserine	8501463	DvMF_2193		protein of unknown function DUF169 (RefSeq)	1.50487431967401	9.58721629522526	FALSE
+stress	set7IT051	D-Cycloserine	8501488	DvMF_2218		Lytic transglycosylase catalytic (RefSeq)	1.12906653605412	6.00562841252697	FALSE
+stress	set4IT010	D-Cycloserine	8501552	DvMF_2271		recombination protein RecR (RefSeq)	-4.74789953520008	-6.66239160551268	TRUE
+stress	set4IT010	D-Cycloserine	8501554	DvMF_2273		PAS/PAC sensor hybrid histidine kinase (RefSeq)	1.33184021353888	9.5244803468758	FALSE
+stress	set4IT010	D-Cycloserine	8501594	DvMF_2313		DNA-directed DNA polymerase (RefSeq)	-1.12510847317165	-5.10721489671455	FALSE
+stress	set4IT010	D-Cycloserine	8502134	DvMF_2845		excinuclease ABC, C subunit (RefSeq)	-2.96032011893996	-9.21883627430808	FALSE
+stress	set4IT010	D-Cycloserine	8502344	DvMF_3050		excinuclease ABC, A subunit (RefSeq)	-3.75442851994258	-10.7455451969843	TRUE
+stress	set3IT066	Dimethyl Sulfoxide	8500175	DvMF_0933		molybdopterin-containing oxidoreductase membrane anchor subunit (RefSeq)	-2.30658597284551	-12.653793659911	FALSE
+stress	set3IT065	Dimethyl Sulfoxide	8500175	DvMF_0933		molybdopterin-containing oxidoreductase membrane anchor subunit (RefSeq)	-1.94707964893004	-12.9162215898626	FALSE
+stress	set3IT063	Dimethyl Sulfoxide	8500358	DvMF_1109		sodium/calcium exchanger membrane region (RefSeq)	-1.59768300256658	-7.71985891738635	TRUE
+stress	set3IT063	Dimethyl Sulfoxide	8500672	DvMF_1420		MltA domain protein (RefSeq)	-2.10020830412817	-15.7051468576444	FALSE
+stress	set3IT063	Dimethyl Sulfoxide	8500799	DvMF_1540		H(+)-transporting two-sector ATPase (RefSeq)	-2.84779350385605	-18.5068573456619	FALSE
+stress	set3IT063	Dimethyl Sulfoxide	8500800	DvMF_1541		TrkA-N domain protein (RefSeq)	-2.68567192976312	-5.73258703206276	FALSE
+stress	set3IT063	Dimethyl Sulfoxide	8500872	DvMF_1610		anaerobic dimethyl sulfoxide reductase subunit C (RefSeq)	-1.46258080797426	-9.94405708010542	FALSE
+stress	set3IT066	Dimethyl Sulfoxide	8500872	DvMF_1610		anaerobic dimethyl sulfoxide reductase subunit C (RefSeq)	-1.43086091403909	-9.51068284687079	FALSE
+stress	set3IT063	Dimethyl Sulfoxide	8501654	DvMF_2372	prfC	peptide chain release factor 3 (RefSeq)	-1.97427516781163	-8.52094821939819	TRUE
+stress	set3IT063	Dimethyl Sulfoxide	8502044	DvMF_2757	tgt	queuine tRNA-ribosyltransferase (RefSeq)	-1.48494544423885	-9.69542621928962	TRUE
+stress	set4IT053	Furfuryl Alcohol	8500171	DvMF_0929		transcriptional regulator, LuxR family (RefSeq)	1.11349072778158	9.19582938070908	FALSE
+stress	set4IT054	Furfuryl Alcohol	8500171	DvMF_0929		transcriptional regulator, LuxR family (RefSeq)	2.97166585078217	22.4314475608829	FALSE
+stress	set4IT054	Furfuryl Alcohol	8500172	DvMF_0930		cytoplasmic chaperone TorD family protein (RefSeq)	2.99405965489689	11.0970092261684	FALSE
+stress	set4IT053	Furfuryl Alcohol	8500173	DvMF_0931		molybdopterin oxidoreductase (RefSeq)	1.28942788320761	7.68170302172624	FALSE
+stress	set4IT054	Furfuryl Alcohol	8500173	DvMF_0931		molybdopterin oxidoreductase (RefSeq)	3.10489606089602	18.4004437102148	FALSE
+stress	set4IT054	Furfuryl Alcohol	8500174	DvMF_0932		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	3.31263068374065	14.3976506338353	FALSE
+stress	set4IT054	Furfuryl Alcohol	8500175	DvMF_0933		molybdopterin-containing oxidoreductase membrane anchor subunit (RefSeq)	2.79424862407393	23.9764537828924	FALSE
+stress	set4IT054	Furfuryl Alcohol	8501926	DvMF_2640		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	2.10114122674078	17.8808208359252	FALSE
+stress	set4IT054	Furfuryl Alcohol	8502100	DvMF_2813		TOBE domain protein (RefSeq)	1.27588946971179	10.3811279548394	FALSE
+stress	set4IT053	Furfuryl Alcohol	8502329	DvMF_3036		cytochrome c biogenesis protein transmembrane region (RefSeq)	-2.6102443686397	-14.8918642180861	FALSE
+stress	set3IT062	Fusidic acid sodium salt	8499242	DvMF_0022		metal dependent phosphohydrolase (RefSeq)	-1.18927782958649	-5.97919153158274	FALSE
+stress	set3IT062	Fusidic acid sodium salt	8499825	DvMF_0590		ATP-dependent protease, putative (RefSeq)	-2.61930447323142	-17.0549156931718	FALSE
+stress	set3IT062	Fusidic acid sodium salt	8502402	DvMF_3108		Rhomboid family protein (RefSeq)	-1.34771523933832	-8.28451416375141	FALSE
+stress	set1H34	G418 disulfate salt solution	8501251	DvMF_1984		protein of unknown function DUF81 (RefSeq)	-1.60694175798924	-7.21486847589307	FALSE
+stress	set1H33	G418 disulfate salt solution	8501251	DvMF_1984		protein of unknown function DUF81 (RefSeq)	-1.44305346797918	-8.05912378877257	FALSE
+stress	set1H33	G418 disulfate salt solution	8501255	DvMF_1988		response regulator receiver protein (RefSeq)	-1.4776434424875	-5.88838973341147	FALSE
+stress	set1H33	G418 disulfate salt solution	8501256	DvMF_1989		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.5255395765483	-13.123258185101	FALSE
+stress	set1H34	G418 disulfate salt solution	8501256	DvMF_1989		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.42265918437782	-10.0313286724467	FALSE
+stress	set1H33	G418 disulfate salt solution	8501257	DvMF_1990		Pyruvate, water dikinase (RefSeq)	-1.78435487811371	-10.0133270335166	FALSE
+stress	set1H34	G418 disulfate salt solution	8501257	DvMF_1990		Pyruvate, water dikinase (RefSeq)	-1.75192550873667	-8.81073381243933	FALSE
+stress	set1H33	G418 disulfate salt solution	8501259	DvMF_1992		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.35046715664383	-5.57076109991209	FALSE
+stress	set2IT005	Gentamicin sulfate salt	8500651	DvMF_1399		Ribosomal small subunit Rsm22 (RefSeq)	1.54772659195378	7.87747623855924	FALSE
+stress	set2IT005	Gentamicin sulfate salt	8500724	DvMF_1467		regulatory protein, FmdB family (RefSeq)	1.6773609990386	5.6045031849358	FALSE
+stress	set2IT005	Gentamicin sulfate salt	8501184	DvMF_1918		extracellular solute-binding protein family 3 (RefSeq)	1.50262659751716	10.5944417250902	FALSE
+stress	set2IT005	Gentamicin sulfate salt	8501533	DvMF_2252		DEAD/DEAH box helicase domain protein (RefSeq)	1.88681241559423	9.96997383522721	FALSE
+stress	set2IT005	Gentamicin sulfate salt	8501680	DvMF_2398		ABC transporter related (RefSeq)	1.59647758359163	8.44890146221825	FALSE
+stress	set2IT005	Gentamicin sulfate salt	8502044	DvMF_2757	tgt	queuine tRNA-ribosyltransferase (RefSeq)	-2.37625015625247	-8.19428938007111	FALSE
+stress	set2IT006	Gentamicin sulfate salt	8502044	DvMF_2757	tgt	queuine tRNA-ribosyltransferase (RefSeq)	-1.78724016695799	-8.63188735192039	FALSE
+stress	set2IT005	Gentamicin sulfate salt	8502302	DvMF_3010		sigma54 specific transcriptional regulator, Fis family (RefSeq)	1.66076936865952	6.72128088970846	FALSE
+stress	set3IT077	Lomefloxacin hydrochloride	8499345	DvMF_0122		exodeoxyribonuclease VII, large subunit (RefSeq)	-5.40552014413428	-9.2748184239215	TRUE
+stress	set3IT077	Lomefloxacin hydrochloride	8499347	DvMF_0124		exodeoxyribonuclease VII small subunit (RefSeq)	-4.90222437725408	-6.90637793460113	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499946	DvMF_0711		hypothetical protein (RefSeq)	2.53899387500901	7.5618412266738	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499952	DvMF_0717		hypothetical protein (RefSeq)	5.38896117528695	9.13581625040274	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499953	DvMF_0718		hypothetical protein (RefSeq)	4.86553676206717	25.1252928184966	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499955	DvMF_0720		protein of unknown function DUF1018 (RefSeq)	3.8504249496218	23.6803430124307	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499958	DvMF_0723		Lytic transglycosylase catalytic (RefSeq)	4.83246720351088	19.2617012196956	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499959	DvMF_0724		hypothetical protein (RefSeq)	4.43882121450633	16.2967238039943	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499962	DvMF_0727		Protein of unknown function DUF1804 (RefSeq)	3.53595238542541	8.91096511074162	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499963	DvMF_0728		phage uncharacterized protein (RefSeq)	3.23638982995025	23.9731044327067	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499964	DvMF_0729		protein of unknown function DUF935 (RefSeq)	3.01076683444368	17.4336490315449	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499965	DvMF_0730		phage head morphogenesis protein, SPP1 gp7 family (RefSeq)	2.71173279263223	11.7537830381424	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499966	DvMF_0731		phage virion morphogenesis protein (RefSeq)	2.86751091749224	10.0562665444132	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499968	DvMF_0733		hypothetical protein (RefSeq)	3.17941143064881	5.73409712862809	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499969	DvMF_0734		hypothetical protein (RefSeq)	3.18062974798214	16.1604334750765	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499970	DvMF_0735		hypothetical protein (RefSeq)	2.66391477923033	6.72063251183799	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499973	DvMF_0738		Domain of unknown function DUF1834 (RefSeq)	3.06990810323053	13.0046500613576	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499974	DvMF_0739		hypothetical protein (RefSeq)	3.52384126514835	8.94304613045891	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499975	DvMF_0740		Mu tail sheath family protein (RefSeq)	2.78058102844366	14.7533239416471	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499976	DvMF_0741		hypothetical protein (RefSeq)	2.84793953924114	10.4950100201268	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499978	DvMF_0743		hypothetical protein (RefSeq)	3.21408007755168	11.4448287821058	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499979	DvMF_0744		DNA circulation family protein (RefSeq)	3.06054345244466	10.7295596846974	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499980	DvMF_0745		putative phage tail protein (RefSeq)	3.26899598732358	21.1280549262539	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499984	DvMF_0749		Baseplate J family protein (RefSeq)	2.78444338332758	7.2035143467346	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499985	DvMF_0750		hypothetical protein (RefSeq)	2.46903183041474	8.57186277048225	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499986	DvMF_0751		hypothetical protein (RefSeq)	3.69685495402268	26.9807392593759	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499987	DvMF_0752		hypothetical protein (RefSeq)	3.21446480274302	14.1320093136953	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8499989	DvMF_0754		putative DNA modification protein (RefSeq)	2.98692720174911	8.83102089644329	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500100	DvMF_0863		hypothetical protein (RefSeq)	4.60337924106407	10.503650557622	FALSE
+stress	set3IT077	Lomefloxacin hydrochloride	8500165	DvMF_0923		SMC domain protein (RefSeq)	-5.64699896016772	-12.7547475681004	FALSE
+stress	set3IT077	Lomefloxacin hydrochloride	8500210	DvMF_0968		hypothetical protein (RefSeq)	-2.02239468015007	-11.6287666178376	FALSE
+stress	set3IT077	Lomefloxacin hydrochloride	8500457	DvMF_1206		hypothetical protein (RefSeq)	-1.91773185712583	-7.57494950486848	FALSE
+stress	set3IT077	Lomefloxacin hydrochloride	8500524	DvMF_1273		DNA-binding protein (RefSeq)	1.54989174767472	9.68974615329708	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500524	DvMF_1273		DNA-binding protein (RefSeq)	4.4144691520293	20.0535574043731	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500527	DvMF_1276		Lytic transglycosylase catalytic (RefSeq)	2.56018521750571	9.73869084596591	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500528	DvMF_1277		hypothetical protein (RefSeq)	2.26182403137446	9.6134448134711	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500529	DvMF_1278		hypothetical protein (RefSeq)	2.44721006428142	15.5035154127586	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500533	DvMF_1282		portal protein, putative (RefSeq)	1.16866265447939	6.26418984124302	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500539	DvMF_1288		hypothetical protein (RefSeq)	1.23002025780427	5.40241694402757	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500549	DvMF_1298		phage tail tape measure protein, TP901 family (RefSeq)	1.43911308155072	7.85936509974682	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500554	DvMF_1303		baseplate assembly protein, putative (RefSeq)	1.50295285035144	6.39870805306808	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500556	DvMF_1305		tail fiber protein, putative (RefSeq)	1.31989995368207	6.7566697366195	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500560	DvMF_1309		hypothetical protein (RefSeq)	1.64191417995534	5.68491539080043	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8500935	DvMF_1673		hypothetical protein (RefSeq)	2.7684575611864	5.63778107345433	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501333	DvMF_2066		heavy metal translocating P-type ATPase (RefSeq)	1.74411381636452	10.8687838675724	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501335	DvMF_2068		peptidase M48 Ste24p (RefSeq)	1.10397283917408	8.39894121183583	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501337	DvMF_2070		hypothetical protein (RefSeq)	1.29212559259277	8.52341861702676	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501338	DvMF_2071		hypothetical protein (RefSeq)	1.13464384445978	6.68733332015719	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501339	DvMF_2072		hypothetical protein (RefSeq)	1.29212786348714	7.24334652950336	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501340	DvMF_2073		hypothetical protein (RefSeq)	1.33540626292982	8.74806057231809	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501342	DvMF_2075		fumarate hydratase, class II (RefSeq)	1.1397887002241	8.07331165749043	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501344	DvMF_2077		FAD-dependent pyridine nucleotide-disulphide oxidoreductase (RefSeq)	1.47040411473332	5.67100708005064	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501346	DvMF_2079		NmrA family protein (RefSeq)	1.20528520627376	7.29060998870475	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501353	DvMF_2086		UspA domain protein (RefSeq)	1.79833334232137	7.67110551662512	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501354	DvMF_2087	asnC	asparaginyl-tRNA synthetase (RefSeq)	1.21625430175947	5.28350001871601	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501357	DvMF_2089		Rubrerythrin (RefSeq)	1.6424479071814	6.04434334115893	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501358	DvMF_2090		hypothetical protein (RefSeq)	1.31275566901438	6.23759452672907	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501359	DvMF_2091		hypothetical protein (RefSeq)	1.21891997952638	8.08574692571392	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501360	DvMF_2092		hypothetical protein (RefSeq)	1.49874070176766	8.22095607901854	FALSE
+stress	set3IT076	Lomefloxacin hydrochloride	8501363	DvMF_2095		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	1.17196412525863	6.62294795930056	FALSE
+stress	set3IT077	Lomefloxacin hydrochloride	8501592	DvMF_2311		hypothetical protein (RefSeq)	-1.39069891385164	-8.45239542194972	FALSE
+stress	set3IT077	Lomefloxacin hydrochloride	8501593	DvMF_2312		metallophosphoesterase (RefSeq)	-1.4659930991957	-8.71508742521853	FALSE
+stress	set3IT073	MreB Perturbing Compound A22	8499732	DvMF_0497		GatB/YqeY family protein (RefSeq)	-1.53552928724763	-8.26048772787108	TRUE
+stress	set3IT073	MreB Perturbing Compound A22	8501000	DvMF_1737		metallophosphoesterase (RefSeq)	-1.5037880045569	-9.22528554172051	FALSE
+stress	set3IT073	MreB Perturbing Compound A22	8501308	DvMF_2041		protein of unknown function DUF116 (RefSeq)	-1.97479056908256	-5.22506343551628	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499282	DvMF_0060		UTP-glucose-1-phosphate uridylyltransferase (RefSeq)	-1.1869024633181	-5.059586426256	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499345	DvMF_0122		exodeoxyribonuclease VII, large subunit (RefSeq)	-2.80190237334403	-12.217848671797	TRUE
+stress	set1H35	Nalidixic acid sodium salt	8499345	DvMF_0122		exodeoxyribonuclease VII, large subunit (RefSeq)	-2.7376874634954	-8.36859941610587	TRUE
+stress	set1H35	Nalidixic acid sodium salt	8499347	DvMF_0124		exodeoxyribonuclease VII small subunit (RefSeq)	-2.88011451689261	-7.04124298623956	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499347	DvMF_0124		exodeoxyribonuclease VII small subunit (RefSeq)	-2.62529307121396	-7.4644083689691	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499952	DvMF_0717		hypothetical protein (RefSeq)	2.97189418400165	8.81071788325737	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499953	DvMF_0718		hypothetical protein (RefSeq)	2.58203263568504	17.2019658982612	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499953	DvMF_0718		hypothetical protein (RefSeq)	2.95561430259062	15.7009456915226	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499955	DvMF_0720		protein of unknown function DUF1018 (RefSeq)	1.60458686702527	6.31833272943516	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499955	DvMF_0720		protein of unknown function DUF1018 (RefSeq)	1.94525066543388	11.802209537382	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499958	DvMF_0723		Lytic transglycosylase catalytic (RefSeq)	1.01373189100892	6.90927772452612	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499958	DvMF_0723		Lytic transglycosylase catalytic (RefSeq)	2.16968418571443	5.59076740012728	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499962	DvMF_0727		Protein of unknown function DUF1804 (RefSeq)	1.50425652031706	5.98237293880298	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499963	DvMF_0728		phage uncharacterized protein (RefSeq)	1.59467065736297	11.0818731410726	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499963	DvMF_0728		phage uncharacterized protein (RefSeq)	1.73279872114842	12.587712003143	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499964	DvMF_0729		protein of unknown function DUF935 (RefSeq)	1.42390356710337	12.0586190637406	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499964	DvMF_0729		protein of unknown function DUF935 (RefSeq)	1.53256227640115	5.35795422618787	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499965	DvMF_0730		phage head morphogenesis protein, SPP1 gp7 family (RefSeq)	1.4678228340338	10.4142407897988	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499965	DvMF_0730		phage head morphogenesis protein, SPP1 gp7 family (RefSeq)	1.9066880055455	10.1945792672051	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499966	DvMF_0731		phage virion morphogenesis protein (RefSeq)	1.19124189813166	5.56071955886477	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499966	DvMF_0731		phage virion morphogenesis protein (RefSeq)	1.70007090923236	8.72202752877063	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499968	DvMF_0733		hypothetical protein (RefSeq)	1.54337018845111	8.79543289883153	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499969	DvMF_0734		hypothetical protein (RefSeq)	1.19728937969103	5.13535959451488	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499969	DvMF_0734		hypothetical protein (RefSeq)	1.74193796726622	14.303659420236	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499970	DvMF_0735		hypothetical protein (RefSeq)	1.48947740259075	5.44928823358849	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499970	DvMF_0735		hypothetical protein (RefSeq)	1.63293905860019	5.73804722732186	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499973	DvMF_0738		Domain of unknown function DUF1834 (RefSeq)	1.25585153242595	6.74162390225469	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499973	DvMF_0738		Domain of unknown function DUF1834 (RefSeq)	1.77648831622741	10.1112282983063	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499974	DvMF_0739		hypothetical protein (RefSeq)	1.35963856560921	10.7201610020274	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499974	DvMF_0739		hypothetical protein (RefSeq)	1.51809169697677	10.8729624160488	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499975	DvMF_0740		Mu tail sheath family protein (RefSeq)	1.32337859872344	8.16314119424941	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499975	DvMF_0740		Mu tail sheath family protein (RefSeq)	1.73893870248644	10.8418364790128	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499976	DvMF_0741		hypothetical protein (RefSeq)	1.26180948467461	7.79700589723166	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499976	DvMF_0741		hypothetical protein (RefSeq)	1.53412277412771	8.54503651156359	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499978	DvMF_0743		hypothetical protein (RefSeq)	1.44155460550871	7.9336984111704	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499978	DvMF_0743		hypothetical protein (RefSeq)	1.87672975685516	13.262979514292	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499979	DvMF_0744		DNA circulation family protein (RefSeq)	1.54998533569145	6.30142802199259	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499979	DvMF_0744		DNA circulation family protein (RefSeq)	1.8703081251859	9.93168678867979	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499980	DvMF_0745		putative phage tail protein (RefSeq)	1.34547037596853	10.3293392243301	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499980	DvMF_0745		putative phage tail protein (RefSeq)	1.92312693226338	13.669276472614	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499985	DvMF_0750		hypothetical protein (RefSeq)	1.38435148813583	5.33058237422459	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499986	DvMF_0751		hypothetical protein (RefSeq)	1.82270851292348	13.2314039301844	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499986	DvMF_0751		hypothetical protein (RefSeq)	2.15817318173264	15.8359402312914	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499987	DvMF_0752		hypothetical protein (RefSeq)	1.71234498575646	7.01761651410243	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499987	DvMF_0752		hypothetical protein (RefSeq)	1.8963706583418	7.81129980294693	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8499989	DvMF_0754		putative DNA modification protein (RefSeq)	2.37415382457379	6.29987858363116	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8499989	DvMF_0754		putative DNA modification protein (RefSeq)	2.93063241293098	6.18731046027137	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8500165	DvMF_0923		SMC domain protein (RefSeq)	-2.21557617412666	-9.94286132463341	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8500165	DvMF_0923		SMC domain protein (RefSeq)	-1.90203583799966	-5.83466993231367	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8500304	DvMF_1055		Mg2 transporter protein CorA family protein (RefSeq)	1.59885177447414	8.74331655741946	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8500785	DvMF_1526		chromate transporter, chromate ion transporter (CHR) family (RefSeq)	1.7631562595592	13.6753716202594	FALSE
+stress	set1H36	Nalidixic acid sodium salt	8500935	DvMF_1673		hypothetical protein (RefSeq)	1.75832321431731	7.56478436374505	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8500935	DvMF_1673		hypothetical protein (RefSeq)	2.13645893960423	10.4170773427918	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501333	DvMF_2066		heavy metal translocating P-type ATPase (RefSeq)	1.17986508061095	9.117537508645	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501337	DvMF_2070		hypothetical protein (RefSeq)	1.52022187710063	11.0425523923621	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501338	DvMF_2071		hypothetical protein (RefSeq)	1.09971294127969	6.13373200730474	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501339	DvMF_2072		hypothetical protein (RefSeq)	1.2109795676432	8.63094967199998	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501340	DvMF_2073		hypothetical protein (RefSeq)	1.21347710212553	9.8017910600577	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501341	DvMF_2074		glycosyl transferase family 2 (RefSeq)	1.2919282128075	11.546478271174	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501342	DvMF_2075		fumarate hydratase, class II (RefSeq)	1.35367220594098	11.7452717438854	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501343	DvMF_2076		GPR1/FUN34/yaaH family protein (RefSeq)	1.47304057332054	11.1426545360649	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501344	DvMF_2077		FAD-dependent pyridine nucleotide-disulphide oxidoreductase (RefSeq)	1.54558803347194	11.9371596411956	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501345	DvMF_2078		peptidyl-prolyl cis-trans isomerase cyclophilin type (RefSeq)	1.61034823523857	7.76449267442633	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501346	DvMF_2079		NmrA family protein (RefSeq)	1.64837476682358	12.5036388440321	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501352	DvMF_2085		putative lipoprotein (RefSeq)	1.89971859631329	12.5504463493672	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501353	DvMF_2086		UspA domain protein (RefSeq)	1.7335516339756	10.8517203774066	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501354	DvMF_2087	asnC	asparaginyl-tRNA synthetase (RefSeq)	1.63094976604587	13.6965329237796	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501357	DvMF_2089		Rubrerythrin (RefSeq)	1.26529094208877	7.03747103288963	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501358	DvMF_2090		hypothetical protein (RefSeq)	1.36172759334683	10.4768437904056	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501359	DvMF_2091		hypothetical protein (RefSeq)	1.25569574733704	10.2350138783652	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501360	DvMF_2092		hypothetical protein (RefSeq)	1.29429455663614	9.86873627724503	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501363	DvMF_2095		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	1.40841634372819	10.1043321102248	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501365	DvMF_2097		NADPH-dependent FMN reductase (RefSeq)	1.27406415907302	8.67863157186497	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501369	DvMF_2101		major facilitator superfamily MFS_1 (RefSeq)	1.20673953107104	10.3608293653116	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501370	DvMF_2102		UspA domain protein (RefSeq)	1.39118072144427	9.05732971208114	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501375	DvMF_2107		response regulator receiver protein (RefSeq)	1.13092307534314	8.75371041190292	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501376	DvMF_2108		integral membrane sensor signal transduction histidine kinase (RefSeq)	1.46000801754869	12.3069943007469	FALSE
+stress	set1H35	Nalidixic acid sodium salt	8501377	DvMF_2109		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	1.25843761828879	10.2601825632591	FALSE
+stress	set2IT018	Polymyxin B sulfate	8499280	DvMF_0058		YbbR family protein (RefSeq)	-2.56923654180472	-8.72861615233557	FALSE
+stress	set2IT018	Polymyxin B sulfate	8499385	DvMF_0162		hypothetical protein (RefSeq)	-1.28005213225609	-7.91323336155008	FALSE
+stress	set2IT018	Polymyxin B sulfate	8499515	DvMF_0285		transcription-repair coupling factor (RefSeq)	-1.12921928480999	-7.59222488460027	FALSE
+stress	set2IT018	Polymyxin B sulfate	8499588	DvMF_0356		Tetratricopeptide TPR_4 (RefSeq)	-2.19631270922833	-8.8445888801601	FALSE
+stress	set2IT018	Polymyxin B sulfate	8499856	DvMF_0621		methyl-accepting chemotaxis sensory transducer (RefSeq)	1.11071028754131	6.14806268426426	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500025	DvMF_0788		extracellular solute-binding protein family 5 (RefSeq)	-2.05508659314462	-13.241408259604	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500055	DvMF_0818		type IV pilus assembly PilZ (RefSeq)	1.87252993674408	7.83256554786977	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500148	DvMF_0911		uracil phosphoribosyltransferase (RefSeq)	-1.35697125995388	-7.11435514303945	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500163	DvMF_0921		binding-protein-dependent transport systems inner membrane component (RefSeq)	-2.35157233364492	-5.05672985522886	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500263	DvMF_1020		oligopeptide/dipeptide ABC transporter, ATPase subunit (RefSeq)	-2.18410587315761	-6.31575931524963	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500292	DvMF_1048		Sel1 domain protein repeat-containing protein (RefSeq)	-3.12051375452018	-9.61298954213754	FALSE
+stress	set2IT020	Polymyxin B sulfate	8500292	DvMF_1048		Sel1 domain protein repeat-containing protein (RefSeq)	-1.2197635849233	-6.69775359764452	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500301	DvMF_1052		multi-sensor hybrid histidine kinase (RefSeq)	-2.0155754251427	-12.0801029696481	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500385	DvMF_1136		Tetratricopeptide domain protein (RefSeq)	1.41330354808544	5.60644684409824	FALSE
+stress	set2IT019	Polymyxin B sulfate	8500468	DvMF_1217		formate dehydrogenase, alpha subunit (RefSeq)	1.10727964908173	6.63681978786012	FALSE
+stress	set2IT019	Polymyxin B sulfate	8500483	DvMF_1232		formate dehydrogenase accessory protein FdhD, putative (RefSeq)	1.68785846926745	8.7798127806141	FALSE
+stress	set2IT019	Polymyxin B sulfate	8500484	DvMF_1233		formate dehydrogenase accessory protein (RefSeq)	1.92708360479587	6.97773819253633	FALSE
+stress	set2IT019	Polymyxin B sulfate	8500825	DvMF_1566		hypothetical protein (RefSeq)	1.27862076706345	5.70011315888688	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500825	DvMF_1566		hypothetical protein (RefSeq)	1.65869516544814	11.7956693516238	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500872	DvMF_1610		anaerobic dimethyl sulfoxide reductase subunit C (RefSeq)	-1.30430493306117	-5.36510973133964	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500955	DvMF_1692		PAS modulated sigma54 specific transcriptional regulator, Fis family (RefSeq)	-1.04751123047186	-5.5892387674839	FALSE
+stress	set2IT018	Polymyxin B sulfate	8500956	DvMF_1693		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-1.7601808264775	-5.97849438608298	FALSE
+stress	set2IT019	Polymyxin B sulfate	8500956	DvMF_1693		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-1.20848471510207	-5.30328436970386	FALSE
+stress	set2IT018	Polymyxin B sulfate	8501308	DvMF_2041		protein of unknown function DUF116 (RefSeq)	-2.14308213759036	-6.50065265707405	FALSE
+stress	set2IT018	Polymyxin B sulfate	8501654	DvMF_2372	prfC	peptide chain release factor 3 (RefSeq)	-1.98748513266715	-7.68275008268239	TRUE
+stress	set2IT018	Polymyxin B sulfate	8501681	DvMF_2399		ABC transporter related (RefSeq)	1.39067267970066	8.79501689193536	FALSE
+stress	set2IT018	Polymyxin B sulfate	8502044	DvMF_2757	tgt	queuine tRNA-ribosyltransferase (RefSeq)	-1.33853200110469	-6.17664082191214	FALSE
+stress	set2IT018	Polymyxin B sulfate	8502084	DvMF_2797		hypothetical protein (RefSeq)	-2.35806663476582	-5.8940020416644	FALSE
+stress	set2IT018	Polymyxin B sulfate	8502167	DvMF_2877		phosphoenolpyruvate-protein phosphotransferase (RefSeq)	-1.67720290394142	-10.3268691249385	FALSE
+stress	set2IT018	Polymyxin B sulfate	8502304	DvMF_3012		hypothetical protein (RefSeq)	-3.13071241166498	-6.88318161292005	FALSE
+stress	set2IT020	Polymyxin B sulfate	8502304	DvMF_3012		hypothetical protein (RefSeq)	-1.19422848448329	-6.15536391894166	FALSE
+stress	set2IT018	Polymyxin B sulfate	8502351	DvMF_3057		DEAD/DEAH box helicase domain protein (RefSeq)	1.08308303385758	7.75856030875073	FALSE
+stress	set2IT018	Polymyxin B sulfate	8502466	DvMF_3172		UTP--glucose-1-phosphate uridylyltransferase (RefSeq)	-1.42357377462636	-5.39391897789005	FALSE
+stress	set4IT036	Rifampicin	8499802	DvMF_0567		ATP-dependent chaperone ClpB (RefSeq)	1.16813128832597	8.83793316984488	FALSE
+stress	set4IT035	Rifampicin	8499802	DvMF_0567		ATP-dependent chaperone ClpB (RefSeq)	1.41365309421277	8.79474468984079	FALSE
+stress	set4IT035	Rifampicin	8500046	DvMF_0809		glycerol kinase (RefSeq)	2.74693854902904	12.1861593027161	FALSE
+stress	set4IT035	Rifampicin	8500111	DvMF_0874		sodium:neurotransmitter symporter (RefSeq)	1.59550739894499	7.33704480510077	FALSE
+stress	set4IT034	Rifampicin	8500171	DvMF_0929		transcriptional regulator, LuxR family (RefSeq)	1.1815954646167	9.05026028911617	FALSE
+stress	set4IT035	Rifampicin	8500171	DvMF_0929		transcriptional regulator, LuxR family (RefSeq)	2.36008335050636	18.4346281591985	FALSE
+stress	set4IT035	Rifampicin	8500172	DvMF_0930		cytoplasmic chaperone TorD family protein (RefSeq)	2.57387089561721	8.4577396216702	FALSE
+stress	set4IT034	Rifampicin	8500173	DvMF_0931		molybdopterin oxidoreductase (RefSeq)	1.22572489223379	6.31737004027792	FALSE
+stress	set4IT035	Rifampicin	8500173	DvMF_0931		molybdopterin oxidoreductase (RefSeq)	2.61742097612624	17.0906493399866	FALSE
+stress	set4IT034	Rifampicin	8500174	DvMF_0932		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	1.53844231869459	6.86134694664099	FALSE
+stress	set4IT035	Rifampicin	8500174	DvMF_0932		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	2.78971900607324	10.9516647964412	FALSE
+stress	set4IT035	Rifampicin	8500175	DvMF_0933		molybdopterin-containing oxidoreductase membrane anchor subunit (RefSeq)	1.63044419399733	7.62281315612729	FALSE
+stress	set4IT034	Rifampicin	8500175	DvMF_0933		molybdopterin-containing oxidoreductase membrane anchor subunit (RefSeq)	1.71754158401451	12.3330634638255	FALSE
+stress	set4IT036	Rifampicin	8500358	DvMF_1109		sodium/calcium exchanger membrane region (RefSeq)	-1.63860043322364	-5.35703303563819	FALSE
+stress	set4IT035	Rifampicin	8501090	DvMF_1826		oligopeptide/dipeptide ABC transporter, ATPase subunit (RefSeq)	1.26108125357134	5.84476928985628	FALSE
+stress	set4IT035	Rifampicin	8501093	DvMF_1829		extracellular solute-binding protein family 5 (RefSeq)	1.39206420373748	5.45002300269487	FALSE
+stress	set4IT035	Rifampicin	8501869	DvMF_2584		phosphoenolpyruvate-protein phosphotransferase (RefSeq)	-1.64177246681516	-6.99317987608637	FALSE
+stress	set4IT035	Rifampicin	8501951	DvMF_2665		hypothetical protein (RefSeq)	1.418649434896	6.10115938381028	FALSE
+stress	set4IT036	Rifampicin	8502329	DvMF_3036		cytochrome c biogenesis protein transmembrane region (RefSeq)	-1.63718674825054	-14.1055494632821	FALSE
+stress	set4IT035	Rifampicin	8502329	DvMF_3036		cytochrome c biogenesis protein transmembrane region (RefSeq)	-1.19511549839985	-7.41363581402282	FALSE
+stress	set4IT035	Rifampicin	8502351	DvMF_3057		DEAD/DEAH box helicase domain protein (RefSeq)	1.35257644869059	7.42849341643517	FALSE
+stress	set2IT010	Sisomicin sulfate salt	8500169	DvMF_0927		protein of unknown function UPF0005 (RefSeq)	-1.86251930463794	-5.90196613906374	FALSE
+stress	set2IT009	Sisomicin sulfate salt	8500169	DvMF_0927		protein of unknown function UPF0005 (RefSeq)	-1.60375880397254	-6.41255479302203	FALSE
+stress	set2IT009	Sisomicin sulfate salt	8500693	DvMF_1441		hemolysin A (RefSeq)	1.21809193896924	6.77609529603419	FALSE
+stress	set2IT010	Sisomicin sulfate salt	8501320	DvMF_2053		S-adenosylmethionine/tRNA-ribosyltransferase- isomerase (RefSeq)	-1.31343364128763	-7.91772600661292	FALSE
+stress	set2IT010	Sisomicin sulfate salt	8501960	DvMF_2674		HflK protein (RefSeq)	-1.47471012896365	-5.63623662203298	FALSE
+stress	set2IT009	Sisomicin sulfate salt	8502044	DvMF_2757	tgt	queuine tRNA-ribosyltransferase (RefSeq)	-2.16667656319256	-6.40012056489351	FALSE
+stress	set2IT010	Sisomicin sulfate salt	8502044	DvMF_2757	tgt	queuine tRNA-ribosyltransferase (RefSeq)	-2.06867424270919	-7.21672326259886	FALSE
+stress	set2IT009	Sisomicin sulfate salt	8502302	DvMF_3010		sigma54 specific transcriptional regulator, Fis family (RefSeq)	1.43992878152406	7.85750204567769	FALSE
+stress	set7IT062	Sodium Chlorate	8499339	DvMF_0116		ferric uptake regulator, Fur family (RefSeq)	-2.51250148879102	-12.2674331325374	FALSE
+stress	set7IT061	Sodium Chlorate	8499682	DvMF_0448		molybdopterin oxidoreductase (RefSeq)	1.45132311349617	8.20389471018242	FALSE
+stress	set7IT061	Sodium Chlorate	8499854	DvMF_0619		CheA signal transduction histidine kinase (RefSeq)	1.22429885746845	5.84161953078296	FALSE
+stress	set7IT061	Sodium Chlorate	8500380	DvMF_1131		response regulator receiver sensor signal transduction histidine kinase (RefSeq)	1.47872211389211	5.75945539917629	FALSE
+stress	set7IT062	Sodium Chlorate	8500473	DvMF_1222		multi-sensor signal transduction histidine kinase (RefSeq)	-1.5330106913562	-9.85044459587763	FALSE
+stress	set7IT061	Sodium Chlorate	8500473	DvMF_1222		multi-sensor signal transduction histidine kinase (RefSeq)	-1.29760121896112	-6.2955606402015	FALSE
+stress	set7IT061	Sodium Chlorate	8500483	DvMF_1232		formate dehydrogenase accessory protein FdhD, putative (RefSeq)	3.73469013336369	14.4476977645633	FALSE
+stress	set7IT061	Sodium Chlorate	8500741	DvMF_1484		Nitrate reductase (RefSeq)	1.97584311316634	13.9040641841862	FALSE
+stress	set7IT061	Sodium Chlorate	8500874	DvMF_1612		anaerobic dimethyl sulfoxide reductase, A subunit, DmsA/YnfE family (RefSeq)	1.03145657206365	6.3190748449987	FALSE
+stress	set7IT062	Sodium Chlorate	8500915	DvMF_1653		phage conserved hypothetical protein, phiE125 gp8 (RefSeq)	-1.62542133631889	-8.19013505911815	FALSE
+stress	set7IT061	Sodium Chlorate	8501219	DvMF_1953		UBA/THIF-type NAD/FAD binding protein (RefSeq)	2.99753312386162	16.243098988422	FALSE
+stress	set7IT061	Sodium Chlorate	8501221	DvMF_1955		thiamineS protein (RefSeq)	2.87500785932686	9.64845646496973	FALSE
+stress	set7IT062	Sodium Chlorate	8501418	DvMF_2148		multi-sensor signal transduction histidine kinase (RefSeq)	-2.94653239446894	-11.5274258822387	FALSE
+stress	set7IT061	Sodium Chlorate	8501418	DvMF_2148		multi-sensor signal transduction histidine kinase (RefSeq)	-1.96446423957985	-5.652354168813	FALSE
+stress	set7IT062	Sodium Chlorate	8501419	DvMF_2149		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	-4.35081547715529	-10.1193009659225	FALSE
+stress	set7IT061	Sodium Chlorate	8501545	DvMF_2264		DNA binding domain protein, excisionase family (RefSeq)	3.65277176835532	25.9827841038913	TRUE
+stress	set7IT061	Sodium Chlorate	8501592	DvMF_2311		hypothetical protein (RefSeq)	-1.15205496369934	-5.01372336069947	FALSE
+stress	set7IT062	Sodium Chlorate	8501680	DvMF_2398		ABC transporter related (RefSeq)	-1.8949834788339	-5.30641579077178	FALSE
+stress	set7IT062	Sodium Chlorate	8501681	DvMF_2399		ABC transporter related (RefSeq)	-2.1409472737463	-5.68453615174414	FALSE
+stress	set7IT062	Sodium Chlorate	8501682	DvMF_2400		binding-protein-dependent transport systems inner membrane component (RefSeq)	-2.2191527322746	-6.215505263601	FALSE
+stress	set7IT061	Sodium Chlorate	8501868	DvMF_2583		dihydroxyacetone kinase, L subunit (RefSeq)	3.59692814552973	23.7931345771905	TRUE
+stress	set7IT061	Sodium Chlorate	8501869	DvMF_2584		phosphoenolpyruvate-protein phosphotransferase (RefSeq)	3.69179724725975	18.138759291418	FALSE
+stress	set7IT061	Sodium Chlorate	8501963	DvMF_2677		response regulator receiver sensor hybrid histidine kinase (RefSeq)	1.56477483726446	7.08795856177125	FALSE
+stress	set7IT062	Sodium Chlorate	8502169	DvMF_2879		PTS system mannose/fructose/sorbose family IID component (RefSeq)	-1.53012267453774	-5.66420282149638	FALSE
+stress	set7IT061	Sodium Chlorate	8502181	DvMF_2891		5-enolpyruvylshikimate-3-phosphate synthase-like protein (RefSeq)	2.65130715140873	8.05652480466769	FALSE
+stress	set7IT062	Sodium Chlorate	8502329	DvMF_3036		cytochrome c biogenesis protein transmembrane region (RefSeq)	-1.89978590708317	-11.5716867715307	FALSE
+stress	set7IT061	Sodium Chlorate	8502355	DvMF_3061		ABC transporter related (RefSeq)	1.39131640049215	8.63892283401105	FALSE
+stress	set7IT060	Sodium Chlorite	8499339	DvMF_0116		ferric uptake regulator, Fur family (RefSeq)	-1.67723841327112	-8.28301129830507	FALSE
+stress	set7IT060	Sodium Chlorite	8500915	DvMF_1653		phage conserved hypothetical protein, phiE125 gp8 (RefSeq)	-1.52852588619685	-7.553403438205	FALSE
+stress	set7IT060	Sodium Chlorite	8500955	DvMF_1692		PAS modulated sigma54 specific transcriptional regulator, Fis family (RefSeq)	-1.1822431541811	-6.45131895318916	FALSE
+stress	set7IT060	Sodium Chlorite	8500956	DvMF_1693		4Fe-4S ferredoxin iron-sulfur binding domain protein (RefSeq)	-1.11192536537926	-7.36972483320924	FALSE
+stress	set7IT073	Sodium Chlorite	8501046	DvMF_1782		CheD (RefSeq)	1.30359876043622	7.3457701315581	FALSE
+stress	set1H37	Sodium nitrate	8500613	DvMF_1361		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.32368107326959	-6.57063349554192	FALSE
+stress	set1H37	Sodium nitrate	8501251	DvMF_1984		protein of unknown function DUF81 (RefSeq)	-1.45974445498345	-7.56837874820482	FALSE
+stress	set1H37	Sodium nitrate	8501256	DvMF_1989		integral membrane sensor signal transduction histidine kinase (RefSeq)	-1.45546366474098	-9.10214793194595	FALSE
+stress	set1H37	Sodium nitrate	8501257	DvMF_1990		Pyruvate, water dikinase (RefSeq)	-1.53134537020665	-7.6845956953515	FALSE
+stress	set1H37	Sodium nitrate	8501456	DvMF_2186		dual specificity protein phosphatase (RefSeq)	4.4476994343777	38.9000609915262	FALSE
+stress	set1H38	Sodium nitrate	8501456	DvMF_2186		dual specificity protein phosphatase (RefSeq)	5.32665126787585	36.4543843067638	FALSE
+stress	set1H37	Sodium nitrate	8501457	DvMF_2187		pyruvate phosphate dikinase PEP/pyruvate-binding (RefSeq)	9.12772562540261	80.5761006436076	FALSE
+stress	set1H38	Sodium nitrate	8501457	DvMF_2187		pyruvate phosphate dikinase PEP/pyruvate-binding (RefSeq)	11.1953869636018	101.011634713434	FALSE
+stress	set1H37	Sodium nitrate	8501458	DvMF_2188		response regulator receiver protein (RefSeq)	9.14884748822251	50.8829056618555	FALSE
+stress	set1H38	Sodium nitrate	8501458	DvMF_2188		response regulator receiver protein (RefSeq)	11.5553314922367	56.2051372398666	FALSE
+stress	set1H37	Sodium nitrate	8501459	DvMF_2189		multi-sensor signal transduction histidine kinase (RefSeq)	9.26887806294495	63.7681532789352	FALSE
+stress	set1H38	Sodium nitrate	8501459	DvMF_2189		multi-sensor signal transduction histidine kinase (RefSeq)	11.2759553951024	66.5204702412481	FALSE
+stress	set1H37	Sodium nitrate	8501460	DvMF_2190		phosphonate ABC transporter, periplasmic phosphonate-binding protein (RefSeq)	9.31302392871843	79.5564611035633	TRUE
+stress	set1H38	Sodium nitrate	8501460	DvMF_2190		phosphonate ABC transporter, periplasmic phosphonate-binding protein (RefSeq)	11.338215790083	88.5416518107034	TRUE
+stress	set1H37	Sodium nitrate	8501462	DvMF_2192		protein of unknown function DUF81 (RefSeq)	9.33918196184047	62.9727017556329	FALSE
+stress	set1H38	Sodium nitrate	8501462	DvMF_2192		protein of unknown function DUF81 (RefSeq)	11.3235289338958	75.3132247530791	FALSE
+stress	set1H37	Sodium nitrate	8501463	DvMF_2193		protein of unknown function DUF169 (RefSeq)	4.13977034419327	10.8356784465141	FALSE
+stress	set1H38	Sodium nitrate	8501463	DvMF_2193		protein of unknown function DUF169 (RefSeq)	5.13478184089811	10.6510869095134	FALSE
+stress	set2IT007	Sodium nitrite	8500231	DvMF_0988		hydroxylamine reductase (RefSeq)	-1.12558601642951	-8.23706020096952	TRUE
+stress	set2IT007	Sodium nitrite	8501667	DvMF_2385		Nitrite reductase (cytochrome; ammonia-forming) (RefSeq)	-4.73940469090362	-14.4428864613606	FALSE
+stress	set2IT008	Sodium nitrite	8501667	DvMF_2385		Nitrite reductase (cytochrome; ammonia-forming) (RefSeq)	-3.14825602860615	-12.1349552122092	FALSE
+stress	set2IT007	Sodium nitrite	8501668	DvMF_2386		cytochrome c nitrite reductase small subunit (RefSeq)	-4.90576068765854	-5.54858934959733	FALSE
+stress	set2IT008	Sodium nitrite	8501668	DvMF_2386		cytochrome c nitrite reductase small subunit (RefSeq)	-3.10578834101008	-6.21399756282805	FALSE
+stress	set2IT015	Sodium perchlorate monohydrate	8500380	DvMF_1131		response regulator receiver sensor signal transduction histidine kinase (RefSeq)	1.46629495393814	7.99693894373492	FALSE
+stress	set2IT015	Sodium perchlorate monohydrate	8501375	DvMF_2107		response regulator receiver protein (RefSeq)	2.84139505828903	15.9804348120083	TRUE
+stress	set2IT015	Sodium perchlorate monohydrate	8501376	DvMF_2108		integral membrane sensor signal transduction histidine kinase (RefSeq)	3.43043208714763	16.6285737971347	TRUE
+stress	set2IT015	Sodium perchlorate monohydrate	8501377	DvMF_2109		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	3.34032287034268	16.838042543821	TRUE
+stress	set2IT003	Tetracycline hydrochloride	8499616	DvMF_0383	greA	transcription elongation factor GreA (RefSeq)	-1.82115118181187	-6.98831959599769	FALSE
+stress	set2IT003	Tetracycline hydrochloride	8499701	DvMF_0467		CheA signal transduction histidine kinase (RefSeq)	-1.85775202733625	-9.91725768463228	FALSE
+stress	set2IT003	Tetracycline hydrochloride	8499822	DvMF_0587		hypothetical protein (RefSeq)	1.82748403683062	15.6731396976728	FALSE
+stress	set2IT003	Tetracycline hydrochloride	8501300	DvMF_2033		protein of unknown function DUF214 (RefSeq)	-1.56408736523495	-11.443823938408	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8499385	DvMF_0162		hypothetical protein (RefSeq)	-1.01040596730579	-5.13584294594926	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8499484	DvMF_0256		AMP-dependent synthetase and ligase (RefSeq)	1.09629575774318	5.58604114590165	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8499624	DvMF_0390		hypothetical protein (RefSeq)	1.27083187513403	8.39483069215032	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8499719	DvMF_0485		ATP-dependent protease peptidase subunit (RefSeq)	1.7351373712199	5.35044157372026	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8500025	DvMF_0788		extracellular solute-binding protein family 5 (RefSeq)	-1.71768504417609	-6.30104935629565	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8500115	DvMF_0878		protein of unknown function UPF0052 and CofD (RefSeq)	1.35277220000119	8.21428095557429	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8500292	DvMF_1048		Sel1 domain protein repeat-containing protein (RefSeq)	1.64003641066315	11.6739140372794	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8500301	DvMF_1052		multi-sensor hybrid histidine kinase (RefSeq)	-1.44665027439982	-9.34429771883026	FALSE
+stress	set3IT069	Vancomycin Hydrochloride Hydrate	8500371	DvMF_1122		Serine-type D-Ala-D-Ala carboxypeptidase (RefSeq)	2.64127292344623	16.792232921663	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8500371	DvMF_1122		Serine-type D-Ala-D-Ala carboxypeptidase (RefSeq)	6.72256853900245	22.6244553500834	FALSE
+stress	set3IT067	Vancomycin Hydrochloride Hydrate	8500371	DvMF_1122		Serine-type D-Ala-D-Ala carboxypeptidase (RefSeq)	6.75688299473596	10.1885872218118	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8500769	DvMF_1510		two component, sigma54 specific, transcriptional regulator, Fis family (RefSeq)	1.18484251005342	9.54066268182782	FALSE
+stress	set3IT069	Vancomycin Hydrochloride Hydrate	8500953	DvMF_1690		polysaccharide export protein (RefSeq)	1.25532421049721	10.016470091396	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8500953	DvMF_1690		polysaccharide export protein (RefSeq)	2.90915788245365	25.9046926445913	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8501913	DvMF_2628		hypothetical protein (RefSeq)	2.54120609312298	10.8056867507879	FALSE
+stress	set3IT069	Vancomycin Hydrochloride Hydrate	8502084	DvMF_2797		hypothetical protein (RefSeq)	-1.44739705142331	-9.02645994024837	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8502136	DvMF_2847			1.04489475704867	7.34210304525013	FALSE
+stress	set3IT069	Vancomycin Hydrochloride Hydrate	8502304	DvMF_3012		hypothetical protein (RefSeq)	1.59943294852407	8.36966522993479	FALSE
+stress	set3IT068	Vancomycin Hydrochloride Hydrate	8502304	DvMF_3012		hypothetical protein (RefSeq)	3.03645365633172	13.8208285940173	FALSE
+stress	set3IT069	Vancomycin Hydrochloride Hydrate	8502453	DvMF_3159		protein of unknown function DUF610 YibQ (RefSeq)	-1.83870457288582	-5.35645606849682	FALSE
+stress	set4IT050	Vanillin	8499688	DvMF_0454		excinuclease ABC subunit B (RefSeq)	-1.38610894368847	-8.46468047944484	FALSE
+stress	set4IT050	Vanillin	8500651	DvMF_1399		Ribosomal small subunit Rsm22 (RefSeq)	1.55180718728647	10.9203542219434	FALSE
+stress	set4IT050	Vanillin	8501660	DvMF_2378		tRNA (adenine-N(1)-)-methyltransferase (RefSeq)	-1.13372033048477	-5.6388106806528	FALSE
+stress	set4IT052	Vanillin	8501926	DvMF_2640		PAS/PAC sensor signal transduction histidine kinase (RefSeq)	2.20451255267188	19.3855607850582	FALSE
+stress	set4IT050	Vanillin	8501951	DvMF_2665		hypothetical protein (RefSeq)	1.64654137902754	11.3766943053876	FALSE
+stress	set4IT050	Vanillin	8502329	DvMF_3036		cytochrome c biogenesis protein transmembrane region (RefSeq)	-3.39043536295359	-17.8088808680444	FALSE
+stress	set3IT053	benzoic acid	8499455	DvMF_0227		phosphoglucomutase (RefSeq)	-1.08005867891791	-6.14061413620568	FALSE
+stress	set3IT053	benzoic acid	8499700	DvMF_0466		MCP methyltransferase, CheR-type (RefSeq)	-2.73508995742897	-11.1322909497543	FALSE
+stress	set3IT054	benzoic acid	8499700	DvMF_0466		MCP methyltransferase, CheR-type (RefSeq)	-2.11130019479277	-7.74185691807894	FALSE
+stress	set3IT055	benzoic acid	8499700	DvMF_0466		MCP methyltransferase, CheR-type (RefSeq)	-1.88007444088564	-10.2030740450492	FALSE
+stress	set3IT057	benzoic acid	8500111	DvMF_0874		sodium:neurotransmitter symporter (RefSeq)	-1.30530615839884	-7.40029999309889	FALSE
+stress	set3IT055	benzoic acid	8500111	DvMF_0874		sodium:neurotransmitter symporter (RefSeq)	-1.29690696266332	-6.86465488993716	FALSE
+stress	set3IT054	benzoic acid	8500111	DvMF_0874		sodium:neurotransmitter symporter (RefSeq)	-1.02178778665679	-6.2885510528832	FALSE
+stress	set3IT053	benzoic acid	8501130	DvMF_1866		DRTGG domain protein (RefSeq)	-1.76317935304695	-6.21039597207515	FALSE
+stress	set4IT040	methylglyoxal	8502134	DvMF_2845		excinuclease ABC, C subunit (RefSeq)	-1.55138414906004	-7.2240348701073	FALSE
+stress	set4IT040	methylglyoxal	8502344	DvMF_3050		excinuclease ABC, A subunit (RefSeq)	-1.63215969186807	-7.37888883277846	TRUE

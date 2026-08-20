@@ -1,0 +1,736 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS01570	ABID97_RS01570		LysR substrate-binding domain-containing protein	-4.89988114202727	-6.43358489516167	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS01570	ABID97_RS01570		LysR substrate-binding domain-containing protein	-4.62154909666392	-6.51034503298354	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS03180	ABID97_RS03180		acetoacetate--CoA ligase	-1.06902789624985	-7.84002857963206	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS03180	ABID97_RS03180		acetoacetate--CoA ligase	-1.0004422097476	-7.55103740814293	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS03385	ABID97_RS03385		AAA family ATPase	-1.39661611844385	-10.2126684173915	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS04020	ABID97_RS04020		GMC family oxidoreductase N-terminal domain-containing protein	-1.23885493125268	-7.85615586570663	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS04020	ABID97_RS04020		GMC family oxidoreductase N-terminal domain-containing protein	-1.15078478460093	-7.57219757303656	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS06325	ABID97_RS06325		histidine kinase	-1.46921202324114	-11.0975485200912	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS06325	ABID97_RS06325		histidine kinase	-1.46676375519772	-11.011226195641	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS06545	ABID97_RS06545		ROK family protein	1.21287850733331	9.66462101329434	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS06545	ABID97_RS06545		ROK family protein	1.49401473874927	12.6516981076805	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS09420	ABID97_RS09420		carbon monoxide dehydrogenase subunit G	-1.29354487620521	-6.75542377685254	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS10360	ABID97_RS10360		tripartite tricarboxylate transporter substrate binding protein	1.15239486283651	6.81454672060091	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS14755	ABID97_RS14755		'GTP 3',8-cyclase MoaA' pseudo=_no_value transl_table=11	-2.03810503067389	-10.3580841137662	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS14755	ABID97_RS14755		'GTP 3',8-cyclase MoaA' pseudo=_no_value transl_table=11	-1.65437166698891	-10.5645905251419	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS15705	ABID97_RS15705		3-(methylthio)propionyl-CoA ligase	1.24034999945529	6.30390596438525	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS15705	ABID97_RS15705		3-(methylthio)propionyl-CoA ligase	1.37455285463304	7.46600952381837	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS17020	ABID97_RS17020		phosphotransferase	-1.54187970767248	-12.5957317284789	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS17020	ABID97_RS17020		phosphotransferase	-1.32130358260742	-10.4899500061966	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS25535	ABID97_RS25535		sugar ABC transporter substrate-binding protein	-1.18323718738957	-5.5838049661524	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS25985	ABID97_RS25985		CaiB/BaiF CoA-transferase family protein	5.42653629055233	5.31504863479823	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS28745	ABID97_RS28745		GMC family oxidoreductase N-terminal domain-containing protein	2.18584749258758	10.6008606004162	FALSE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS28745	ABID97_RS28745		GMC family oxidoreductase N-terminal domain-containing protein	2.56745529498314	11.7208615161796	FALSE
+carbon source	set1IT014	2-Deoxy-D-Ribose	ABID97_RS28795	ABID97_RS28795		SMP-30/gluconolactonase/LRE family protein	-1.97357622405087	-7.11758394284095	TRUE
+carbon source	set1IT062	2-Deoxy-D-Ribose	ABID97_RS28795	ABID97_RS28795		SMP-30/gluconolactonase/LRE family protein	-1.95618195704836	-8.00639157473635	TRUE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS00735	ABID97_RS00735		LysR family transcriptional regulator	3.82667734762029	26.2398091866875	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS01420	ABID97_RS01420		cyclopropane-fatty-acyl-phospholipid synthase family protein	-2.9675569644579	-12.6130425851106	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS01420	ABID97_RS01420		cyclopropane-fatty-acyl-phospholipid synthase family protein	-2.47275790562762	-11.4872852540651	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS01980	ABID97_RS01980		hypothetical protein	-1.82682821583687	-6.92150260777682	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS02075	ABID97_RS02075		DUF3717 domain-containing protein	-1.56700871108173	-5.57981907967851	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS03790	ABID97_RS03790		branched-chain amino acid transaminase	-2.42925598459428	-9.48461932035689	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS03790	ABID97_RS03790		branched-chain amino acid transaminase	-1.34887449725216	-6.36514823231061	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS04360	ABID97_RS04360		helicase SNF2	3.69896894074613	22.7250577025538	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS05360	ABID97_RS05360		16S rRNA (cytosine(967)-C(5))-methyltransferase RsmB	1.16033943092007	5.06195505876581	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS05360	ABID97_RS05360		16S rRNA (cytosine(967)-C(5))-methyltransferase RsmB	1.21037619883391	6.61979053857801	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS05865	ABID97_RS05865		3-hydroxyacyl-CoA dehydrogenase/enoyl-CoA hydratase family protein	-1.59263319118211	-6.85247728187101	TRUE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS06495	ABID97_RS06495		histidine phosphatase family protein	1.56337991694874	7.78334448896547	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS07170	ABID97_RS07170		hemolysin family protein	-1.93572181934118	-9.25759287218929	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS07170	ABID97_RS07170		hemolysin family protein	-1.61807451203525	-8.38415568465251	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS08770	ABID97_RS08770		histidinol-phosphate transaminase	-4.96019608597634	-11.5382172542975	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS08770	ABID97_RS08770		histidinol-phosphate transaminase	-3.73030785501626	-11.8539469121825	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS13955	ABID97_RS13955		biotin synthase BioB	1.34066310308694	6.46258243693167	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS13985	ABID97_RS13985		polyhydroxyalkanoate depolymerase	-2.31787819656243	-11.1105300391171	TRUE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS13985	ABID97_RS13985		polyhydroxyalkanoate depolymerase	-1.67053123194082	-6.91470739542088	TRUE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS14080	ABID97_RS14080		M3 family metallopeptidase	-1.17849455172923	-8.23038204646526	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS14080	ABID97_RS14080		M3 family metallopeptidase	-1.09435519846455	-9.23785074482811	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS14945	ABID97_RS14945		4-hydroxybenzoate 3-monooxygenase	-7.06659124627177	-14.3649592539181	TRUE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS14945	ABID97_RS14945		4-hydroxybenzoate 3-monooxygenase	-4.47347339384471	-14.0924951538842	TRUE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS14950	ABID97_RS14950		IclR family transcriptional regulator C-terminal domain-containing protein	-6.0864313965868	-7.1048678894797	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS14950	ABID97_RS14950		IclR family transcriptional regulator C-terminal domain-containing protein	-3.53923474286958	-6.64228429188042	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS16305	ABID97_RS16305		response regulator	1.58420569263109	6.18070907863701	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS17725	ABID97_RS17725		tripartite tricarboxylate transporter permease	1.04538438018542	6.27308502216107	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS19350	ABID97_RS19350		group 1 truncated hemoglobin	-1.27103931173146	-5.49214346744944	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS19705	ABID97_RS19705		carboxymuconolactone decarboxylase family protein	-7.71059412422445	-5.32212685643348	TRUE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS19895	ABID97_RS19895		histone deacetylase family protein	-3.68832310699633	-5.39257003710427	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS19895	ABID97_RS19895		histone deacetylase family protein	-1.83732391509376	-7.36115406196744	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS19925	ABID97_RS19925		ABC transporter substrate-binding protein	-2.57244416055899	-7.78540675287433	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS19925	ABID97_RS19925		ABC transporter substrate-binding protein	-2.40830781536057	-10.0355000278947	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS19935	ABID97_RS19935		carbohydrate ABC transporter permease	-2.18145694854027	-5.9836922463556	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS19950	ABID97_RS19950		ABC transporter ATP-binding protein	-2.31515219126395	-6.75515889910023	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS19950	ABID97_RS19950		ABC transporter ATP-binding protein	-1.78169054568597	-5.59412982689325	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS20390	ABID97_RS20390		DHA2 family efflux MFS transporter permease subunit	1.23620643784662	6.21832376586556	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS20740	ABID97_RS20740		FUSC family membrane protein	-4.33687029887555	-11.3830313480384	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS20740	ABID97_RS20740		FUSC family membrane protein	-3.87253459114217	-8.26485106048185	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS21060	ABID97_RS21060		DUF427 domain-containing protein	-2.10911314966717	-6.37127294199538	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS23730	ABID97_RS23730		tetratricopeptide repeat protein	1.41893640988524	6.81195653745931	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS23730	ABID97_RS23730		tetratricopeptide repeat protein	1.72622687035333	7.37245379818606	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS24195	ABID97_RS24195		3-oxoacid CoA-transferase subunit B	-5.80259112508172	-5.64928310789161	TRUE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS24195	ABID97_RS24195		3-oxoacid CoA-transferase subunit B	-5.65557475908289	-6.72085133705323	TRUE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS24200	ABID97_RS24200		3-oxoacid CoA-transferase subunit A	-5.07783679876177	-6.94057149741651	TRUE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS24200	ABID97_RS24200		3-oxoacid CoA-transferase subunit A	-4.4842144310314	-6.82888613399246	TRUE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS24375	ABID97_RS24375		LysR substrate-binding domain-containing protein	-5.43655952655715	-8.39692195465207	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS24375	ABID97_RS24375		LysR substrate-binding domain-containing protein	-3.70373079378101	-10.3273232807926	FALSE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS24380	ABID97_RS24380		protocatechuate 3,4-dioxygenase subunit beta	-6.47052450266116	-13.1503350424394	TRUE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS24380	ABID97_RS24380		protocatechuate 3,4-dioxygenase subunit beta	-3.95831211185888	-14.3691410018638	TRUE
+carbon source	set1IT072	4-Hydroxybenzoic Acid	ABID97_RS24385	ABID97_RS24385		protocatechuate 3,4-dioxygenase subunit alpha	-7.65194516121046	-5.28659909430611	TRUE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS24805	ABID97_RS24805		enoyl-CoA hydratase	1.49673821589511	7.83027404645711	FALSE
+carbon source	set1IT024	4-Hydroxybenzoic Acid	ABID97_RS25150	ABID97_RS25150		thioredoxin family protein	1.91861106755139	6.96325091021489	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS00340	ABID97_RS00340		DUF2946 family protein	-1.28843541085447	-7.21123068026742	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS00340	ABID97_RS00340		DUF2946 family protein	-1.10158548650711	-6.46078947097403	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS02825	ABID97_RS02825		heavy metal translocating P-type ATPase	-1.74784618869122	-5.92905731706399	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS07525	ABID97_RS07525		molybdate ABC transporter permease subunit	-2.00732556669185	-7.48254090150123	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS07525	ABID97_RS07525		molybdate ABC transporter permease subunit	-1.85041040107528	-7.3652851803119	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS07530	ABID97_RS07530		molybdate ABC transporter substrate-binding protein	-2.01429355647949	-7.37111852082733	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS07530	ABID97_RS07530		molybdate ABC transporter substrate-binding protein	-1.84695354932368	-5.00431429045164	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS07535	ABID97_RS07535		ATP-binding cassette domain-containing protein	-1.88551208014321	-9.4546236115886	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS07535	ABID97_RS07535		ATP-binding cassette domain-containing protein	-1.86275727652113	-10.8709107237711	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS14745	ABID97_RS14745		gephyrin-like molybdotransferase Glp	-1.49280667534119	-5.74843273505565	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS14755	ABID97_RS14755		'GTP 3',8-cyclase MoaA' pseudo=_no_value transl_table=11	-4.38920987435197	-9.13156633874439	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS14755	ABID97_RS14755		'GTP 3',8-cyclase MoaA' pseudo=_no_value transl_table=11	-2.93621912333907	-9.38238235070932	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS20205	ABID97_RS20205		nicotinamide riboside transporter PnuC	-1.9781950430562	-6.0033358648875	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22045	ABID97_RS22045		guanine deaminase	1.08827414791377	8.4890968583444	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS22050	ABID97_RS22050		BMP family ABC transporter substrate-binding protein	-1.12004426222155	-6.89540829065293	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22050	ABID97_RS22050		BMP family ABC transporter substrate-binding protein	-1.05430347077384	-6.57799777901335	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22110	ABID97_RS22110		NCS2 family permease	-1.56885202952931	-5.7003636029433	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22115	ABID97_RS22115		LysR family transcriptional regulator	-3.09837879290376	-9.52850465681271	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS22115	ABID97_RS22115		LysR family transcriptional regulator	-2.47543527027521	-8.72441241761587	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22120	ABID97_RS22120		xanthine dehydrogenase molybdopterin binding subunit	-3.64465345742711	-13.3170524699157	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS22120	ABID97_RS22120		xanthine dehydrogenase molybdopterin binding subunit	-3.41776980843772	-11.862377002068	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS22125	ABID97_RS22125		xanthine dehydrogenase small subunit	-3.04363221058697	-8.5832860870701	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22125	ABID97_RS22125		xanthine dehydrogenase small subunit	-2.9458197122172	-9.92268584231931	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22185	ABID97_RS22185		urate hydroxylase PuuD	-2.56789157296448	-11.8881746479312	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS22185	ABID97_RS22185		urate hydroxylase PuuD	-2.54321533853693	-10.8637508748565	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22200	ABID97_RS22200		hydroxyisourate hydrolase	-4.75849885378358	-7.43561524206138	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS22200	ABID97_RS22200		hydroxyisourate hydrolase	-3.86048044910643	-7.00845596396448	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22210	ABID97_RS22210		allantoinase PuuE	-4.96150447374353	-12.0076172694282	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS22210	ABID97_RS22210		allantoinase PuuE	-4.07573440593888	-8.28159929578891	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22215	ABID97_RS22215		2-oxo-4-hydroxy-4-carboxy-5-ureidoimidazoline decarboxylase	-4.91545472222702	-7.81696432044739	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS22215	ABID97_RS22215		2-oxo-4-hydroxy-4-carboxy-5-ureidoimidazoline decarboxylase	-3.57806745758925	-5.13839007743193	FALSE
+carbon source	set2IT090	Adenine hydrochloride hydrate	ABID97_RS22320	ABID97_RS22320		glyoxylate carboligase	-4.06082146722898	-8.15230218742732	FALSE
+carbon source	set2IT042	Adenine hydrochloride hydrate	ABID97_RS22320	ABID97_RS22320		glyoxylate carboligase	-2.48083540185027	-6.56376223795194	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS00315	ABID97_RS00315		TetR family transcriptional regulator	-1.82324457913567	-10.1915801727035	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS00705	ABID97_RS00705		(2Fe-2S) ferredoxin domain-containing protein	1.14018704808008	7.86469455950993	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS01420	ABID97_RS01420		cyclopropane-fatty-acyl-phospholipid synthase family protein	-1.67814405271411	-10.5765544788144	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS01935	ABID97_RS01935		3-oxo-tetronate kinase	-1.09381414880274	-7.21848369429482	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS02055	ABID97_RS02055		PepSY-associated TM helix domain-containing protein	1.19184353182412	10.2439442186645	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS06515	ABID97_RS06515		SDR family oxidoreductase	-4.59941816490909	-10.0313792595154	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS07015	ABID97_RS07015		OsmC family protein	-1.4656858932547	-8.39179070588774	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS07170	ABID97_RS07170		hemolysin family protein	-1.84514760910612	-9.14473189779284	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS08265	ABID97_RS08265		S49 family peptidase	-1.24598911619093	-5.837896527736	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS09905	ABID97_RS09905		YncE family protein	-4.49700160727674	-16.7559456767942	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS09910	ABID97_RS09910		polysaccharide deacetylase family protein	-2.83399066959554	-7.26001515187826	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS09915	ABID97_RS09915		sterol desaturase family protein	-4.45012825824267	-7.97349054266918	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS10635	ABID97_RS10635		excinuclease ABC subunit UvrC	-1.7433015440361	-8.10472397141658	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS10660	ABID97_RS10660		tartrate dehydrogenase	-1.06640966547052	-7.3700269859448	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS13925	ABID97_RS13925		GntR family transcriptional regulator	1.90670691023895	8.64759290627872	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS14955	ABID97_RS14955		response regulator	-7.05276005853627	-8.39497248089445	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS14965	ABID97_RS14965		DegQ family serine endoprotease	-4.52906580875052	-8.16652917772145	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS15620	ABID97_RS15620		cell division protein ZipA C-terminal FtsZ-binding domain-containing protein	-1.58379649717986	-5.72771809244084	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS17545	ABID97_RS17545		class II fumarate hydratase	1.16013093751112	5.15991938563499	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS19540	ABID97_RS19540		phosphoethanolamine--lipid A transferase	-1.75694346244663	-6.36349018279167	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS21925	ABID97_RS21925		heme-binding beta-barrel domain-containing protein	-2.41008871835058	-12.2149811538584	FALSE
+carbon source	set1IT077	D,L-Malic Acid	ABID97_RS25275	ABID97_RS25275		metallophosphoesterase	-1.2427117078065	-6.13884668569851	FALSE
+carbon source	set1IT005	D-Arabinose	ABID97_RS02940	ABID97_RS02940		FAD-linked oxidase C-terminal domain-containing protein	-1.20701898556708	-7.5849549618603	FALSE
+carbon source	set1IT053	D-Arabinose	ABID97_RS02940	ABID97_RS02940		FAD-linked oxidase C-terminal domain-containing protein	-1.1900591478941	-7.29732325057225	FALSE
+carbon source	set1IT053	D-Arabinose	ABID97_RS05790	ABID97_RS05790		DMT family transporter	1.03460687942239	6.14525330933182	FALSE
+carbon source	set1IT005	D-Arabinose	ABID97_RS05800	ABID97_RS05800		altronate dehydratase family protein	-4.98775859166902	-10.4626413267573	TRUE
+carbon source	set1IT053	D-Arabinose	ABID97_RS05800	ABID97_RS05800		altronate dehydratase family protein	-4.94286082445671	-10.5618648256543	TRUE
+carbon source	set1IT053	D-Arabinose	ABID97_RS05805	ABID97_RS05805		TRAP transporter large permease	6.22564932439367	11.2291124695677	FALSE
+carbon source	set1IT005	D-Arabinose	ABID97_RS05805	ABID97_RS05805		TRAP transporter large permease	6.60547982543531	11.7087655996378	FALSE
+carbon source	set1IT053	D-Arabinose	ABID97_RS05815	ABID97_RS05815		sialic acid TRAP transporter substrate-binding protein SiaP	4.77695076762065	5.91835429981887	FALSE
+carbon source	set1IT005	D-Arabinose	ABID97_RS05815	ABID97_RS05815		sialic acid TRAP transporter substrate-binding protein SiaP	5.08333007682466	6.10839066754828	FALSE
+carbon source	set1IT053	D-Arabinose	ABID97_RS05825	ABID97_RS05825		SDR family oxidoreductase	6.76516475950808	31.3997507881408	FALSE
+carbon source	set1IT005	D-Arabinose	ABID97_RS05825	ABID97_RS05825		SDR family oxidoreductase	6.99622798760288	28.0318665967334	FALSE
+carbon source	set1IT005	D-Arabinose	ABID97_RS05830	ABID97_RS05830		SDR family NAD(P)-dependent oxidoreductase	2.03849934028184	10.7622494060268	FALSE
+carbon source	set1IT053	D-Arabinose	ABID97_RS05830	ABID97_RS05830		SDR family NAD(P)-dependent oxidoreductase	2.37638423521752	7.7322690172247	FALSE
+carbon source	set1IT053	D-Arabinose	ABID97_RS07135	ABID97_RS07135		L-iditol 2-dehydrogenase	-6.53826875549944	-6.37100153657206	TRUE
+carbon source	set1IT053	D-Arabinose	ABID97_RS07140	ABID97_RS07140		transaldolase family protein	3.51534786821293	5.27491684301514	FALSE
+carbon source	set1IT005	D-Arabinose	ABID97_RS07140	ABID97_RS07140		transaldolase family protein	3.52231904191628	5.43603173428128	FALSE
+carbon source	set1IT005	D-Arabinose	ABID97_RS09980	ABID97_RS09980		4-hydroxythreonine-4-phosphate dehydrogenase PdxA	1.59862468503272	5.21339670796763	FALSE
+carbon source	set1IT053	D-Arabinose	ABID97_RS22965	ABID97_RS22965		ClpXP protease specificity-enhancing factor	-1.38150225180705	-7.40021909627042	FALSE
+carbon source	set1IT053	D-Arabinose	ABID97_RS23480	ABID97_RS23480		ATP-binding protein	-1.02195913882245	-6.66248729573026	TRUE
+carbon source	set1IT050	D-Fructose	ABID97_RS07075	ABID97_RS07075		iron ABC transporter permease	1.2377890029341	10.0824221971495	FALSE
+carbon source	set1IT002	D-Fructose	ABID97_RS07075	ABID97_RS07075		iron ABC transporter permease	1.40301645836592	10.9093301981492	FALSE
+carbon source	set1IT050	D-Fructose	ABID97_RS07090	ABID97_RS07090		lipocalin family protein	1.66709895265677	9.86062103782549	FALSE
+carbon source	set1IT002	D-Fructose	ABID97_RS07090	ABID97_RS07090		lipocalin family protein	1.9111950432458	10.6429540595314	FALSE
+carbon source	set1IT050	D-Fructose	ABID97_RS07145	ABID97_RS07145		carbohydrate kinase	-4.87302204013733	-8.10713280428941	TRUE
+carbon source	set1IT002	D-Fructose	ABID97_RS07145	ABID97_RS07145		carbohydrate kinase	-4.45425817154764	-6.04365041028977	TRUE
+carbon source	set1IT050	D-Fructose	ABID97_RS07150	ABID97_RS07150		AraC family transcriptional regulator	-1.6426778516408	-7.68201659583231	FALSE
+carbon source	set1IT002	D-Fructose	ABID97_RS07150	ABID97_RS07150		AraC family transcriptional regulator	-1.49383717246744	-6.83989917046934	FALSE
+carbon source	set1IT002	D-Fructose	ABID97_RS16995	ABID97_RS16995		D-2-hydroxyacid dehydrogenase family protein	1.26677487982321	9.47110907684454	FALSE
+carbon source	set1IT007	D-Galactose	ABID97_RS06780	ABID97_RS06780		aldose epimerase family protein	-1.36859590000013	-7.53730973923577	TRUE
+carbon source	set1IT055	D-Galactose	ABID97_RS06780	ABID97_RS06780		aldose epimerase family protein	-1.11588802045885	-6.20685847399154	TRUE
+carbon source	set1IT055	D-Galactose	ABID97_RS06815	ABID97_RS06815		SMP-30/gluconolactonase/LRE family protein	-2.72119111162194	-9.32293993567698	TRUE
+carbon source	set1IT007	D-Galactose	ABID97_RS06815	ABID97_RS06815		SMP-30/gluconolactonase/LRE family protein	-2.71694304827756	-6.41905034504	TRUE
+carbon source	set1IT055	D-Galactose	ABID97_RS06820	ABID97_RS06820		SDR family oxidoreductase	-2.22649081692875	-6.57691476236501	TRUE
+carbon source	set1IT055	D-Galactose	ABID97_RS06840	ABID97_RS06840		multiple monosaccharide ABC transporter substrate-binding protein	-3.55379766263448	-5.86936171392103	TRUE
+carbon source	set1IT007	D-Galactose	ABID97_RS06840	ABID97_RS06840		multiple monosaccharide ABC transporter substrate-binding protein	-3.21038665817928	-5.5446035099979	TRUE
+carbon source	set1IT007	D-Galactose	ABID97_RS06850	ABID97_RS06850		multiple monosaccharide ABC transporter permease	-2.9462860215646	-5.92943346214927	TRUE
+carbon source	set1IT055	D-Galactose	ABID97_RS21210	ABID97_RS21210		2-dehydro-3-deoxygalactonokinase	-6.64258895821935	-5.71603577517769	TRUE
+carbon source	set1IT055	D-Galactose	ABID97_RS21215	ABID97_RS21215		2-dehydro-3-deoxy-6-phosphogalactonate aldolase	-7.4454879118476	-7.25044719434869	TRUE
+carbon source	set1IT007	D-Galactose	ABID97_RS21215	ABID97_RS21215		2-dehydro-3-deoxy-6-phosphogalactonate aldolase	-5.84636673261989	-5.83511757139653	TRUE
+carbon source	set1IT011	D-Gluconic Acid sodium salt	ABID97_RS00260	ABID97_RS00260		PilT/PilU family type 4a pilus ATPase	-1.12951757265262	-5.08362182534429	FALSE
+carbon source	set1IT059	D-Gluconic Acid sodium salt	ABID97_RS09330	ABID97_RS09330		FCD domain-containing protein	1.41505139106646	10.0091136316011	FALSE
+carbon source	set1IT059	D-Gluconic Acid sodium salt	ABID97_RS20030	ABID97_RS20030		sugar kinase	-1.48443986919928	-5.46767637399236	FALSE
+carbon source	set1IT011	D-Gluconic Acid sodium salt	ABID97_RS20030	ABID97_RS20030		sugar kinase	-1.16163753997602	-5.88558765599776	FALSE
+carbon source	set1IT049	D-Glucose	ABID97_RS01170	ABID97_RS01170		ABC transporter permease	-3.01961390013715	-10.9835726351792	TRUE
+carbon source	set1IT001	D-Glucose	ABID97_RS01170	ABID97_RS01170		ABC transporter permease	-2.92498771292896	-9.23461304576826	TRUE
+carbon source	set1IT049	D-Glucose	ABID97_RS02540	ABID97_RS02540		phosphotransferase	-2.69419087321744	-16.2720864200758	FALSE
+carbon source	set1IT001	D-Glucose	ABID97_RS02540	ABID97_RS02540		phosphotransferase	-1.75441258860569	-8.78532246019027	FALSE
+carbon source	set1IT049	D-Glucose	ABID97_RS06830	ABID97_RS06830		aldehyde dehydrogenase family protein	1.64631902716723	8.49242451733281	FALSE
+carbon source	set1IT001	D-Glucose	ABID97_RS09125	ABID97_RS09125		histidine kinase	1.43866277201737	7.73453158998907	FALSE
+carbon source	set1IT049	D-Glucose	ABID97_RS16615	ABID97_RS16615		ATP-dependent RNA helicase HrpA	1.16649345633378	10.2859681795127	FALSE
+carbon source	set1IT001	D-Glucose	ABID97_RS16615	ABID97_RS16615		ATP-dependent RNA helicase HrpA	1.37475756566066	11.1780177372197	FALSE
+carbon source	set1IT049	D-Glucose	ABID97_RS23110	ABID97_RS23110		D-hexose-6-phosphate mutarotase	-1.23049714881679	-7.63902626364142	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS01925	ABID97_RS01925		2-oxo-tetronate isomerase	-1.42439341513699	-6.0334497241447	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS01935	ABID97_RS01935		3-oxo-tetronate kinase	-1.62929076685541	-7.70935320948897	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS01980	ABID97_RS01980		hypothetical protein	-2.88037865255115	-6.35592110432061	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS05835	ABID97_RS05835		fumarylacetoacetate hydrolase family protein	2.47338870153842	15.1105374107309	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS07310	ABID97_RS07310		BLUF domain-containing protein	-1.34597297384569	-8.12016802716389	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS08010	ABID97_RS08010		alpha-hydroxy acid oxidase	-2.07988501616414	-5.76371220892686	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS09125	ABID97_RS09125		histidine kinase	2.57124297404523	19.6100901038816	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS10060	ABID97_RS10060		FAD-binding oxidoreductase	-2.89825473533623	-8.38534881468492	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS10330	ABID97_RS10330		TRAP transporter large permease	-3.93736741763507	-6.07205995981385	TRUE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS10350	ABID97_RS10350		NAD(P)-dependent oxidoreductase	-5.26316005457738	-7.21383123221949	TRUE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS10360	ABID97_RS10360		tripartite tricarboxylate transporter substrate binding protein	6.58676192235114	20.5691707083895	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS10365	ABID97_RS10365		5-dehydro-4-deoxyglucarate dehydratase	-2.70393166956031	-5.46216224440226	TRUE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS10595	ABID97_RS10595		sodium:proton antiporter	-1.04026875174664	-5.90616403792155	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS10600	ABID97_RS10600		D-glycerate dehydrogenase	3.52297799857588	11.1348030504318	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS14050	ABID97_RS14050		NAD(P)/FAD-dependent oxidoreductase	-3.20096908529722	-13.0257857544196	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS16615	ABID97_RS16615		ATP-dependent RNA helicase HrpA	2.25860020723376	18.9180940311044	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS19690	ABID97_RS19690		TIM barrel protein	7.15173765803539	5.72070804148721	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS21920	ABID97_RS21920		autotransporter outer membrane beta-barrel domain-containing protein	1.74956933762551	13.1758523632595	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS23200	ABID97_RS23200		VacJ family lipoprotein	1.27149861284626	6.79409613663899	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS25650	ABID97_RS25650		ribonuclease activity regulator RraA	1.78111407594119	7.36416831722832	FALSE
+carbon source	set1IT058	D-Glucuronic Acid	ABID97_RS25870	ABID97_RS25870		IlvD/Edd family dehydratase	-2.07324254548751	-5.18240754519573	FALSE
+carbon source	set2IT044	D-Mannose	ABID97_RS00340	ABID97_RS00340		DUF2946 family protein	-1.6086450683603	-9.73770462969912	FALSE
+carbon source	set2IT092	D-Mannose	ABID97_RS00340	ABID97_RS00340		DUF2946 family protein	-1.3786359048225	-9.67418727283301	FALSE
+carbon source	set2IT092	D-Mannose	ABID97_RS05795	ABID97_RS05795		malate/lactate/ureidoglycolate dehydrogenase	-2.26343697535011	-5.85498533160763	FALSE
+carbon source	set2IT044	D-Mannose	ABID97_RS05800	ABID97_RS05800		altronate dehydratase family protein	-1.83533439513891	-7.50583626844945	FALSE
+carbon source	set2IT044	D-Mannose	ABID97_RS05805	ABID97_RS05805		TRAP transporter large permease	-1.12373743563585	-5.01639231489526	FALSE
+carbon source	set2IT092	D-Mannose	ABID97_RS06545	ABID97_RS06545		ROK family protein	-2.11312110726181	-9.90946987132958	FALSE
+carbon source	set2IT044	D-Mannose	ABID97_RS06545	ABID97_RS06545		ROK family protein	-2.11242148698038	-9.29455277642829	FALSE
+carbon source	set2IT044	D-Mannose	ABID97_RS14050	ABID97_RS14050		NAD(P)/FAD-dependent oxidoreductase	-2.17063318025529	-10.5385082389779	FALSE
+carbon source	set2IT092	D-Mannose	ABID97_RS14050	ABID97_RS14050		NAD(P)/FAD-dependent oxidoreductase	-2.10574569531078	-11.683411997325	FALSE
+carbon source	set1IT056	D-Ribose	ABID97_RS01925	ABID97_RS01925		2-oxo-tetronate isomerase	1.86626203225652	16.5284256780028	FALSE
+carbon source	set1IT008	D-Ribose	ABID97_RS01925	ABID97_RS01925		2-oxo-tetronate isomerase	1.9614210244128	15.2129336805319	FALSE
+carbon source	set1IT056	D-Ribose	ABID97_RS01935	ABID97_RS01935		3-oxo-tetronate kinase	1.96736634548084	13.4171787495152	FALSE
+carbon source	set1IT008	D-Ribose	ABID97_RS01935	ABID97_RS01935		3-oxo-tetronate kinase	1.9831285780495	12.3680170326198	FALSE
+carbon source	set1IT056	D-Ribose	ABID97_RS04660	ABID97_RS04660		6-phosphofructokinase	-1.98108593330461	-12.1253536361133	FALSE
+carbon source	set1IT008	D-Ribose	ABID97_RS04660	ABID97_RS04660		6-phosphofructokinase	-1.76861618951784	-7.47035685006431	FALSE
+carbon source	set1IT056	D-Ribose	ABID97_RS07095	ABID97_RS07095		transaldolase	-4.07159659641758	-12.26493163044	FALSE
+carbon source	set1IT008	D-Ribose	ABID97_RS07095	ABID97_RS07095		transaldolase	-4.05123889815501	-11.0152984119797	FALSE
+carbon source	set1IT008	D-Ribose	ABID97_RS24760	ABID97_RS24760		sugar ABC transporter ATP-binding protein	-2.244151110785	-7.03439098613418	TRUE
+carbon source	set1IT056	D-Ribose	ABID97_RS24760	ABID97_RS24760		sugar ABC transporter ATP-binding protein	-2.21187872854074	-7.50443051084577	TRUE
+carbon source	set1IT056	D-Ribose	ABID97_RS24765	ABID97_RS24765		ABC transporter permease	-2.36943186036876	-7.90785059852258	TRUE
+carbon source	set1IT091	D-Serine	ABID97_RS13930	ABID97_RS13930		methylmalonyl-CoA mutase	3.89172588118001	12.0474537508162	FALSE
+carbon source	set1IT091	D-Serine	ABID97_RS25175	ABID97_RS25175		MBL fold metallo-hydrolase	1.91330946741256	8.20084251864393	FALSE
+carbon source	set1IT028	D-Sorbitol	ABID97_RS07110	ABID97_RS07110		sugar ABC transporter substrate-binding protein	-5.40057310206183	-9.77762050248042	TRUE
+carbon source	set1IT076	D-Sorbitol	ABID97_RS07110	ABID97_RS07110		sugar ABC transporter substrate-binding protein	-4.31910369905839	-6.60110174550653	TRUE
+carbon source	set1IT076	D-Sorbitol	ABID97_RS07115	ABID97_RS07115		sugar ABC transporter permease	-6.4707426579643	-9.32425468048683	TRUE
+carbon source	set1IT028	D-Sorbitol	ABID97_RS07115	ABID97_RS07115		sugar ABC transporter permease	-6.15656469417334	-9.16674662462308	TRUE
+carbon source	set1IT028	D-Sorbitol	ABID97_RS07120	ABID97_RS07120		carbohydrate ABC transporter permease	-5.99229492093905	-7.13335704924605	TRUE
+carbon source	set1IT076	D-Sorbitol	ABID97_RS07120	ABID97_RS07120		carbohydrate ABC transporter permease	-5.43511132623616	-9.07403440683929	TRUE
+carbon source	set1IT076	D-Sorbitol	ABID97_RS07125	ABID97_RS07125		sn-glycerol-3-phosphate ABC transporter ATP-binding protein UgpC	-5.40386304508507	-8.25277401185095	TRUE
+carbon source	set1IT028	D-Sorbitol	ABID97_RS07125	ABID97_RS07125		sn-glycerol-3-phosphate ABC transporter ATP-binding protein UgpC	-4.73754053873918	-7.0691464572574	TRUE
+carbon source	set1IT076	D-Sorbitol	ABID97_RS07135	ABID97_RS07135		L-iditol 2-dehydrogenase	-7.32161315937793	-7.13430579759334	TRUE
+carbon source	set1IT028	D-Sorbitol	ABID97_RS07135	ABID97_RS07135		L-iditol 2-dehydrogenase	-6.74375614392037	-8.02428253946416	TRUE
+carbon source	set1IT076	D-Sorbitol	ABID97_RS07145	ABID97_RS07145		carbohydrate kinase	-4.99981432972904	-6.83725038301237	FALSE
+carbon source	set1IT028	D-Sorbitol	ABID97_RS07145	ABID97_RS07145		carbohydrate kinase	-3.83283118771945	-5.47454910331293	FALSE
+carbon source	set1IT028	D-Sorbitol	ABID97_RS07150	ABID97_RS07150		AraC family transcriptional regulator	-6.23770387134095	-9.53422227433757	TRUE
+carbon source	set1IT076	D-Sorbitol	ABID97_RS07150	ABID97_RS07150		AraC family transcriptional regulator	-5.36588559179271	-8.38787541901252	TRUE
+carbon source	set1IT054	D-Xylose	ABID97_RS00070	ABID97_RS00070		fumarylacetoacetate hydrolase family protein	-1.4118578785939	-8.81813215210528	FALSE
+carbon source	set1IT054	D-Xylose	ABID97_RS01170	ABID97_RS01170		ABC transporter permease	-2.21567190570823	-9.36932380275033	FALSE
+carbon source	set1IT006	D-Xylose	ABID97_RS01170	ABID97_RS01170		ABC transporter permease	-1.94837129856464	-8.4818597199104	FALSE
+carbon source	set1IT006	D-Xylose	ABID97_RS02940	ABID97_RS02940		FAD-linked oxidase C-terminal domain-containing protein	-1.72115484091707	-11.1632693275432	FALSE
+carbon source	set1IT054	D-Xylose	ABID97_RS02940	ABID97_RS02940		FAD-linked oxidase C-terminal domain-containing protein	-1.61854252096322	-11.1456901765798	FALSE
+carbon source	set1IT054	D-Xylose	ABID97_RS03290	ABID97_RS03290		LysR family transcriptional regulator	-1.81044195597688	-6.00130671979514	FALSE
+carbon source	set1IT006	D-Xylose	ABID97_RS03290	ABID97_RS03290		LysR family transcriptional regulator	-1.37095800938558	-5.02657385343186	FALSE
+carbon source	set1IT054	D-Xylose	ABID97_RS05835	ABID97_RS05835		fumarylacetoacetate hydrolase family protein	-2.64524398193577	-5.68531255618919	FALSE
+carbon source	set1IT006	D-Xylose	ABID97_RS05835	ABID97_RS05835		fumarylacetoacetate hydrolase family protein	-2.46411893979898	-5.28562186446693	FALSE
+carbon source	set1IT054	D-Xylose	ABID97_RS06815	ABID97_RS06815		SMP-30/gluconolactonase/LRE family protein	-3.34334919823087	-8.69754990289696	TRUE
+carbon source	set1IT006	D-Xylose	ABID97_RS06815	ABID97_RS06815		SMP-30/gluconolactonase/LRE family protein	-3.20101122521365	-7.76641865202657	TRUE
+carbon source	set1IT006	D-Xylose	ABID97_RS06870	ABID97_RS06870		IlvD/Edd family dehydratase	1.09313555487784	5.79254410246354	TRUE
+carbon source	set1IT054	D-Xylose	ABID97_RS06870	ABID97_RS06870		IlvD/Edd family dehydratase	1.16884156408522	7.20989230678194	TRUE
+carbon source	set1IT054	D-Xylose	ABID97_RS22175	ABID97_RS22175		NAD-dependent succinate-semialdehyde dehydrogenase	-2.04253213852637	-5.79544472899071	FALSE
+carbon source	set1IT006	D-Xylose	ABID97_RS23480	ABID97_RS23480		ATP-binding protein	-1.01148676166223	-6.45553254685824	FALSE
+carbon source	set1IT026	Ethanol	ABID97_RS15020	ABID97_RS15020		aldehyde dehydrogenase	-1.09839701669903	-7.21506931197931	TRUE
+carbon source	set1IT026	Ethanol	ABID97_RS17525	ABID97_RS17525		acetate--CoA ligase	-1.74348020116105	-10.827453249332	FALSE
+carbon source	set1IT074	Ethanol	ABID97_RS17525	ABID97_RS17525		acetate--CoA ligase	-1.45277924548843	-9.00863255984765	FALSE
+carbon source	set2IT091	Glucuronamide	ABID97_RS01170	ABID97_RS01170		ABC transporter permease	3.09604217852317	21.0885947741177	FALSE
+carbon source	set2IT043	Glucuronamide	ABID97_RS01170	ABID97_RS01170		ABC transporter permease	3.29993698076725	19.7394437420517	FALSE
+carbon source	set2IT043	Glucuronamide	ABID97_RS04095	ABID97_RS04095		TSUP family transporter	1.00524083497702	5.42529008279225	FALSE
+carbon source	set2IT091	Glucuronamide	ABID97_RS10360	ABID97_RS10360		tripartite tricarboxylate transporter substrate binding protein	1.70354254775523	8.7361083229164	FALSE
+carbon source	set2IT043	Glucuronamide	ABID97_RS10360	ABID97_RS10360		tripartite tricarboxylate transporter substrate binding protein	1.91839792480693	5.87980473776226	FALSE
+carbon source	set2IT043	Glucuronamide	ABID97_RS20350	ABID97_RS20350		FtsX-like permease family protein	1.03576816879331	5.68054211533959	FALSE
+carbon source	set2IT043	Glucuronamide	ABID97_RS23110	ABID97_RS23110		D-hexose-6-phosphate mutarotase	1.28049716008824	7.80245719746619	FALSE
+carbon source	set2IT091	Glucuronamide	ABID97_RS23110	ABID97_RS23110		D-hexose-6-phosphate mutarotase	1.5547307629208	10.8903776364504	FALSE
+carbon source	set1IT093	Gly-Glu	ABID97_RS05655	ABID97_RS05655		D-amino acid dehydrogenase	-1.58869223865958	-12.0073209303302	FALSE
+carbon source	set1IT045	Gly-Glu	ABID97_RS05655	ABID97_RS05655		D-amino acid dehydrogenase	-1.21780195508404	-9.32577081201725	FALSE
+carbon source	set1IT045	Gly-Glu	ABID97_RS05935	ABID97_RS05935		amino acid ABC transporter substrate-binding protein	-5.08886008501939	-15.4179810787381	FALSE
+carbon source	set1IT093	Gly-Glu	ABID97_RS05935	ABID97_RS05935		amino acid ABC transporter substrate-binding protein	-4.72618213771933	-10.2774912747342	FALSE
+carbon source	set1IT093	Gly-Glu	ABID97_RS05940	ABID97_RS05940		amino acid ABC transporter permease	-6.76522870453159	-12.1859563820603	FALSE
+carbon source	set1IT045	Gly-Glu	ABID97_RS05940	ABID97_RS05940		amino acid ABC transporter permease	-5.80724876445278	-14.5390332380059	FALSE
+carbon source	set1IT093	Gly-Glu	ABID97_RS05945	ABID97_RS05945		amino acid ABC transporter permease	-5.94285723472679	-13.8445026495839	FALSE
+carbon source	set1IT045	Gly-Glu	ABID97_RS05945	ABID97_RS05945		amino acid ABC transporter permease	-5.47886622194643	-12.7745413690639	FALSE
+carbon source	set1IT045	Gly-Glu	ABID97_RS19580	ABID97_RS19580		hydantoinase B/oxoprolinase family protein	-1.03467553254295	-5.81908500616025	FALSE
+carbon source	set1IT093	Gly-Glu	ABID97_RS19655	ABID97_RS19655		aminomethyl-transferring glycine dehydrogenase	-1.32403430824538	-8.45198789104866	TRUE
+carbon source	set1IT027	Glycerol	ABID97_RS01765	ABID97_RS01765		LysR family transcriptional regulator	1.39108108017218	9.1377785723532	FALSE
+carbon source	set1IT075	Glycerol	ABID97_RS01765	ABID97_RS01765		LysR family transcriptional regulator	1.43852701503711	9.54326905308898	FALSE
+carbon source	set1IT075	Glycerol	ABID97_RS01770	ABID97_RS01770		VOC family protein	1.57182412935968	5.96424340919834	FALSE
+carbon source	set1IT075	Glycerol	ABID97_RS07090	ABID97_RS07090		lipocalin family protein	1.02694424852584	7.29850743242338	FALSE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS01420	ABID97_RS01420		cyclopropane-fatty-acyl-phospholipid synthase family protein	-1.75692942033549	-11.8472076304129	FALSE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS01925	ABID97_RS01925		2-oxo-tetronate isomerase	-1.47083051750391	-7.55018010338248	FALSE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS02235	ABID97_RS02235		TerC family protein	1.28527675468024	7.28369130053798	FALSE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS03515	ABID97_RS03515		amino acid synthesis family protein	-2.21394022801792	-6.47320835207446	FALSE
+carbon source	set1IT070	Glycolic Acid	ABID97_RS03645	ABID97_RS03645		LysR substrate-binding domain-containing protein	-5.40127469195291	-8.7565322859155	FALSE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS03645	ABID97_RS03645		LysR substrate-binding domain-containing protein	-5.31759337720498	-6.14286255922489	FALSE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS03650	ABID97_RS03650		FAD-linked oxidase C-terminal domain-containing protein	-6.09784677487558	-13.7730749402311	TRUE
+carbon source	set1IT070	Glycolic Acid	ABID97_RS03650	ABID97_RS03650		FAD-linked oxidase C-terminal domain-containing protein	-5.20757929668759	-12.0533983743707	TRUE
+carbon source	set1IT070	Glycolic Acid	ABID97_RS03660	ABID97_RS03660		glycolate oxidase subunit GlcF	-5.96434328882349	-9.15080782101089	TRUE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS03660	ABID97_RS03660		glycolate oxidase subunit GlcF	-5.1970428658033	-10.3419505330307	TRUE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS04715	ABID97_RS04715		haloacid dehalogenase type II	-2.08281530194014	-8.48184589586208	FALSE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS05240	ABID97_RS05240		phosphoglycolate phosphatase	-2.42356072864218	-5.11541962046791	TRUE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS05490	ABID97_RS05490		PAS domain S-box protein	-1.24243873303071	-5.56281994454436	FALSE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS08055	ABID97_RS08055		MFS transporter	-4.94525001028232	-6.87852238862195	FALSE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS17390	ABID97_RS17390		adenosylcobinamide-phosphate synthase CbiB	2.36657354601765	15.3193401011137	FALSE
+carbon source	set1IT070	Glycolic Acid	ABID97_RS22320	ABID97_RS22320		glyoxylate carboligase	-5.27347185646622	-9.47684864202795	TRUE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS22320	ABID97_RS22320		glyoxylate carboligase	-5.1837076645747	-7.91815305526319	TRUE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS27670	ABID97_RS27670		glycerate kinase	-5.60812746139426	-7.00489851928737	TRUE
+carbon source	set1IT070	Glycolic Acid	ABID97_RS27670	ABID97_RS27670		glycerate kinase	-4.81204126834673	-9.06319511822484	TRUE
+carbon source	set1IT022	Glycolic Acid	ABID97_RS27675	ABID97_RS27675		pyruvate kinase	-2.52841639822279	-6.41845484808592	FALSE
+carbon source	set1IT086	L-Alanine	ABID97_RS01420	ABID97_RS01420		cyclopropane-fatty-acyl-phospholipid synthase family protein	1.65528491337265	12.7578836868465	FALSE
+carbon source	set1IT038	L-Alanine	ABID97_RS01420	ABID97_RS01420		cyclopropane-fatty-acyl-phospholipid synthase family protein	1.89838763167652	14.9548969121414	FALSE
+carbon source	set1IT038	L-Alanine	ABID97_RS07835	ABID97_RS07835		replication-associated recombination protein A	1.3525470401212	6.37290645745808	FALSE
+carbon source	set1IT086	L-Alanine	ABID97_RS12345	ABID97_RS12345		alpha/beta fold hydrolase	-2.8108144074706	-7.66954029570057	FALSE
+carbon source	set1IT038	L-Alanine	ABID97_RS12345	ABID97_RS12345		alpha/beta fold hydrolase	-2.16159694933058	-7.0081081599997	FALSE
+carbon source	set1IT038	L-Alanine	ABID97_RS12540	ABID97_RS12540		Lrp/AsnC family transcriptional regulator	1.16755610564853	6.36204790031355	FALSE
+carbon source	set1IT038	L-Alanine	ABID97_RS22455	ABID97_RS22455		carbon starvation CstA family protein	1.0751468563048	5.48941622878527	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS03725	ABID97_RS03725		2-oxo-hept-4-ene-1,7-dioate hydratase	1.93298696721373	5.97603744991272	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS03725	ABID97_RS03725		2-oxo-hept-4-ene-1,7-dioate hydratase	2.05072438428165	8.34367573874333	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS03730	ABID97_RS03730		5-carboxymethyl-2-hydroxymuconate Delta-isomerase	1.66910558593735	5.07372690028203	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS03735	ABID97_RS03735		extradiol ring-cleavage dioxygenase	1.37947864266494	8.22836832415436	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS03740	ABID97_RS03740		aromatic ring-opening dioxygenase subunit LigA	1.64176086624027	7.02240649802473	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS03740	ABID97_RS03740		aromatic ring-opening dioxygenase subunit LigA	1.65291040217723	11.1905733134587	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS03745	ABID97_RS03745		5-carboxymethyl-2-hydroxymuconate semialdehyde dehydrogenase	1.38791603691433	6.38342265531827	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS03745	ABID97_RS03745		5-carboxymethyl-2-hydroxymuconate semialdehyde dehydrogenase	1.39903694633121	6.94647973275241	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS03750	ABID97_RS03750		tripartite tricarboxylate transporter substrate binding protein	1.183904935534	7.77101627475606	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS03750	ABID97_RS03750		tripartite tricarboxylate transporter substrate binding protein	1.19438848779813	6.63959788794471	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS03755	ABID97_RS03755		fumarylacetoacetate hydrolase family protein	1.48280248880366	7.94162490921081	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS03755	ABID97_RS03755		fumarylacetoacetate hydrolase family protein	1.48832961576835	9.7329395083182	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS03760	ABID97_RS03760		fumarylacetoacetate hydrolase family protein	1.45433793842919	6.08852566045787	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS03760	ABID97_RS03760		fumarylacetoacetate hydrolase family protein	1.73895521572151	7.42661331126392	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS03765	ABID97_RS03765		homoprotocatechuate degradation operon regulator HpaR	1.91656283289508	5.62909577328791	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS03775	ABID97_RS03775		hypothetical protein	1.31737768798952	5.38563778962502	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS06855	ABID97_RS06855		sugar ABC transporter ATP-binding protein	-7.79380222568521	-5.19490466703114	TRUE
+carbon source	set1IT052	L-Arabinose	ABID97_RS06860	ABID97_RS06860		ABC transporter permease	-3.38908228175992	-5.13693949430674	TRUE
+carbon source	set1IT052	L-Arabinose	ABID97_RS06870	ABID97_RS06870		IlvD/Edd family dehydratase	-5.9970833920924	-6.72329384098897	TRUE
+carbon source	set1IT004	L-Arabinose	ABID97_RS06870	ABID97_RS06870		IlvD/Edd family dehydratase	-5.34162477672065	-5.64310234157152	TRUE
+carbon source	set1IT052	L-Arabinose	ABID97_RS15955	ABID97_RS15955		iron-containing alcohol dehydrogenase	-1.14886088645914	-6.55665602211344	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS22175	ABID97_RS22175		NAD-dependent succinate-semialdehyde dehydrogenase	-5.12264350670131	-6.07574168232166	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS22175	ABID97_RS22175		NAD-dependent succinate-semialdehyde dehydrogenase	-4.93244350201946	-5.85015383985096	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS22965	ABID97_RS22965		ClpXP protease specificity-enhancing factor	-1.63530206629128	-6.14638024647775	FALSE
+carbon source	set1IT052	L-Arabinose	ABID97_RS23480	ABID97_RS23480		ATP-binding protein	-3.10699361549309	-16.1956302577229	FALSE
+carbon source	set1IT004	L-Arabinose	ABID97_RS23480	ABID97_RS23480		ATP-binding protein	-3.08936352586844	-9.62550338897424	FALSE
+carbon source	set1IT083	L-Asparagine	ABID97_RS07275	ABID97_RS07275		sodium:solute symporter family protein	1.73830711274049	13.2464122038584	FALSE
+carbon source	set1IT035	L-Asparagine	ABID97_RS07275	ABID97_RS07275		sodium:solute symporter family protein	1.82547220780074	14.7182990944016	FALSE
+carbon source	set1IT083	L-Asparagine	ABID97_RS16980	ABID97_RS16980		asparaginase	-2.01113997013385	-8.76052965635499	FALSE
+carbon source	set1IT083	L-Asparagine	ABID97_RS17530	ABID97_RS17530		YqhA family protein	1.79937135899851	12.3902760039172	TRUE
+carbon source	set1IT035	L-Asparagine	ABID97_RS17530	ABID97_RS17530		YqhA family protein	3.09436271401839	21.9929629307597	TRUE
+carbon source	set1IT035	L-Asparagine	ABID97_RS20725	ABID97_RS20725		serine O-acetyltransferase	-1.40209834304052	-5.33035316486119	FALSE
+carbon source	set2IT094	L-Fucose	ABID97_RS05800	ABID97_RS05800		altronate dehydratase family protein	-1.22748202531602	-5.48047415408217	TRUE
+carbon source	set2IT046	L-Fucose	ABID97_RS05800	ABID97_RS05800		altronate dehydratase family protein	-1.10968392344649	-5.07374336967318	TRUE
+carbon source	set2IT046	L-Fucose	ABID97_RS20125	ABID97_RS20125		4-hydroxy-tetrahydrodipicolinate synthase	1.51740464537654	9.12945316397954	FALSE
+carbon source	set1IT036	L-Glutamine	ABID97_RS17530	ABID97_RS17530		YqhA family protein	1.69484071082291	11.2118279024494	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS01570	ABID97_RS01570		LysR substrate-binding domain-containing protein	-2.68075674190698	-7.4608364336887	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS01570	ABID97_RS01570		LysR substrate-binding domain-containing protein	-2.64085369344114	-9.0292504589001	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS01860	ABID97_RS01860		indolepyruvate ferredoxin oxidoreductase family protein	1.28855569388035	11.4549350919356	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS02040	ABID97_RS02040		glutathione peroxidase	1.54448207071346	11.1481804703676	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS02040	ABID97_RS02040		glutathione peroxidase	1.60736692913801	12.8611942087367	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS02540	ABID97_RS02540		phosphotransferase	-1.1776114904901	-6.03022737525965	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS02540	ABID97_RS02540		phosphotransferase	-1.14542638755447	-6.68183731772101	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS03395	ABID97_RS03395		DNA helicase RecQ	1.04744193128955	7.09991284170764	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS03395	ABID97_RS03395		DNA helicase RecQ	1.11144688072484	6.66638757143325	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS03400	ABID97_RS03400		ABC transporter substrate-binding protein	-5.29642962337229	-7.54365294798912	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS03400	ABID97_RS03400		ABC transporter substrate-binding protein	-4.82506193897688	-7.99646439301112	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS03405	ABID97_RS03405		ABC transporter permease	-4.77156263732728	-8.95949306236042	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS03405	ABID97_RS03405		ABC transporter permease	-4.49755443562163	-11.7075580889158	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS03425	ABID97_RS03425		urocanate hydratase	-6.44952425164109	-7.67901473722069	TRUE
+carbon source	set1IT032	L-Histidine	ABID97_RS03425	ABID97_RS03425		urocanate hydratase	-6.2862652313274	-8.61887012083589	TRUE
+carbon source	set1IT032	L-Histidine	ABID97_RS03435	ABID97_RS03435		imidazolonepropionase	-5.55524417012967	-6.57757732461079	TRUE
+carbon source	set1IT080	L-Histidine	ABID97_RS03435	ABID97_RS03435		imidazolonepropionase	-5.52332254966727	-7.56097894321972	TRUE
+carbon source	set1IT032	L-Histidine	ABID97_RS03440	ABID97_RS03440		formimidoylglutamate deiminase	-7.49968275827058	-6.94836097774582	TRUE
+carbon source	set1IT080	L-Histidine	ABID97_RS03440	ABID97_RS03440		formimidoylglutamate deiminase	-7.4986651131518	-7.30739915706721	TRUE
+carbon source	set1IT080	L-Histidine	ABID97_RS03445	ABID97_RS03445		N-formylglutamate deformylase	-6.1883833433174	-9.16092868642306	TRUE
+carbon source	set1IT032	L-Histidine	ABID97_RS03445	ABID97_RS03445		N-formylglutamate deformylase	-5.74879682591896	-11.0326591175538	TRUE
+carbon source	set1IT032	L-Histidine	ABID97_RS04105	ABID97_RS04105		tripartite tricarboxylate transporter permease	1.16973031850308	5.89972172915915	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS04110	ABID97_RS04110		tripartite tricarboxylate transporter TctB family protein	1.36653946479978	8.45161352807225	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS04110	ABID97_RS04110		tripartite tricarboxylate transporter TctB family protein	1.4087389023055	9.32706589344352	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS04895	ABID97_RS04895		site-specific recombinase	-1.01930255466253	-5.34972123575986	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS05610	ABID97_RS05610		LysE family translocator	2.02879257313764	5.76556818819987	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS05615	ABID97_RS05615		DJ-1/PfpI family protein	1.42145159449671	8.1779898100198	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS05615	ABID97_RS05615		DJ-1/PfpI family protein	1.5470666870338	11.3715508922317	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS05620	ABID97_RS05620		PLP-dependent aminotransferase family protein	1.03439861994432	5.15472021641406	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS05620	ABID97_RS05620		PLP-dependent aminotransferase family protein	1.37556210260791	7.99729226731918	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS05625	ABID97_RS05625		DMT family transporter	1.15217342855302	7.10601035779225	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS05625	ABID97_RS05625		DMT family transporter	1.37922919270902	8.45457297261316	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS05775	ABID97_RS05775		catalase	-3.48111127870511	-15.392709779744	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS05775	ABID97_RS05775		catalase	-3.47446676876465	-14.7470096091062	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS05850	ABID97_RS05850		TetR/AcrR family transcriptional regulator	-1.63335330171779	-5.18843472588226	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS06335	ABID97_RS06335		metalloprotease TldD	-1.88096395507533	-12.9715300552466	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS06335	ABID97_RS06335		metalloprotease TldD	-1.84836789499535	-13.5384734409056	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS06355	ABID97_RS06355		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	-1.54234287676368	-7.95502746351594	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS06355	ABID97_RS06355		UDP-N-acetylmuramate:L-alanyl-gamma-D-glutamyl- meso-diaminopimelate ligase	-1.36421996060904	-6.17956087134971	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS06605	ABID97_RS06605		LysR substrate-binding domain-containing protein	-2.53940867160197	-7.46469758873178	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS06605	ABID97_RS06605		LysR substrate-binding domain-containing protein	-1.69171538004964	-5.81777793715826	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS07015	ABID97_RS07015		OsmC family protein	-1.62252135184164	-7.48458484118686	TRUE
+carbon source	set1IT032	L-Histidine	ABID97_RS07015	ABID97_RS07015		OsmC family protein	-1.56398124094147	-8.60226673666957	TRUE
+carbon source	set1IT080	L-Histidine	ABID97_RS07030	ABID97_RS07030		ABC transporter permease	-1.48560408698342	-7.20927080026701	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS07035	ABID97_RS07035		M20 aminoacylase family protein	-1.43966591463893	-6.72043048122112	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS07035	ABID97_RS07035		M20 aminoacylase family protein	-1.40367753731839	-7.92846209853597	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS07170	ABID97_RS07170		hemolysin family protein	-2.41521839316278	-9.72795978097336	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS07170	ABID97_RS07170		hemolysin family protein	-2.33698155741852	-7.8856873750467	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS07525	ABID97_RS07525		molybdate ABC transporter permease subunit	1.36760238640212	8.74161775546377	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS07530	ABID97_RS07530		molybdate ABC transporter substrate-binding protein	1.15823318497429	6.95088380236637	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS07530	ABID97_RS07530		molybdate ABC transporter substrate-binding protein	1.35299315021528	9.99826511945571	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS07535	ABID97_RS07535		ATP-binding cassette domain-containing protein	1.13457835641937	8.47363335479232	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS07535	ABID97_RS07535		ATP-binding cassette domain-containing protein	1.19633627075457	9.92709966651107	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS08375	ABID97_RS08375		DNA repair protein RecO	-1.88078732828269	-6.36783457701862	TRUE
+carbon source	set1IT032	L-Histidine	ABID97_RS09545	ABID97_RS09545		HAD-IA family hydrolase	-1.26010444918568	-5.02905750647504	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS09955	ABID97_RS09955		exodeoxyribonuclease III	-2.25852266749787	-6.45001159798798	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS09955	ABID97_RS09955		exodeoxyribonuclease III	-1.75111729717062	-6.33291503338724	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS10775	ABID97_RS10775		TonB-dependent receptor	1.26216616670696	9.94129344013433	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS10775	ABID97_RS10775		TonB-dependent receptor	1.40161159359102	10.8468363291331	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS10780	ABID97_RS10780		Fe2+-dependent dioxygenase	1.18220750774613	5.79119557714861	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS10780	ABID97_RS10780		Fe2+-dependent dioxygenase	1.48493372670441	8.63459896165241	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS13705	ABID97_RS13705		hypothetical protein	-1.40967439118448	-6.46095991894379	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS14080	ABID97_RS14080		M3 family metallopeptidase	-3.04163642218423	-16.8949096486129	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS14080	ABID97_RS14080		M3 family metallopeptidase	-3.03247837200835	-14.6087931213212	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS15905	ABID97_RS15905		MATE family efflux transporter	1.02411766942713	5.94447120785328	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS16900	ABID97_RS16900		exodeoxyribonuclease I	-1.61682047008412	-5.94986340256844	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS17545	ABID97_RS17545		class II fumarate hydratase	1.80818851648104	8.38237546905404	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS17545	ABID97_RS17545		class II fumarate hydratase	2.15414904236533	11.1102383830363	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS19770	ABID97_RS19770		ABC transporter permease	1.06743393526922	6.79906311257439	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS19775	ABID97_RS19775		sugar ABC transporter substrate-binding protein	1.11680745374075	5.84704395873606	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS19925	ABID97_RS19925		ABC transporter substrate-binding protein	-1.35227289890681	-5.10729429820156	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS20695	ABID97_RS20695		metalloprotease PmbA	-2.02681069882853	-9.9635872774421	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS20695	ABID97_RS20695		metalloprotease PmbA	-1.67561457556445	-7.70534984618757	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS21465	ABID97_RS21465		TonB-dependent siderophore receptor	1.57878864555215	11.6168816760682	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS21465	ABID97_RS21465		TonB-dependent siderophore receptor	1.69279225358723	11.9904793678705	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS23365	ABID97_RS23365		PepSY domain-containing protein	1.78853864973983	14.0704097626729	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS23365	ABID97_RS23365		PepSY domain-containing protein	1.83471269817761	14.6908035481447	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS23370	ABID97_RS23370		TonB-dependent siderophore receptor	1.14375844404904	9.94671498103228	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS23370	ABID97_RS23370		TonB-dependent siderophore receptor	1.21572802755551	10.1434227010226	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS24605	ABID97_RS24605		benzoylformate decarboxylase	-1.15242954936213	-6.24941983724045	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS24605	ABID97_RS24605		benzoylformate decarboxylase	-1.07382295871271	-6.93118264618907	FALSE
+carbon source	set1IT080	L-Histidine	ABID97_RS24800	ABID97_RS24800		peptidase M61	-1.57060822197448	-8.9784919909959	FALSE
+carbon source	set1IT032	L-Histidine	ABID97_RS24800	ABID97_RS24800		peptidase M61	-1.54408368096851	-8.23389913299451	FALSE
+carbon source	set1IT039	L-Leucine	ABID97_RS01860	ABID97_RS01860		indolepyruvate ferredoxin oxidoreductase family protein	-6.03436916538972	-24.150516426714	TRUE
+carbon source	set1IT087	L-Leucine	ABID97_RS01860	ABID97_RS01860		indolepyruvate ferredoxin oxidoreductase family protein	-6.02282920722434	-26.0213418556941	TRUE
+carbon source	set1IT039	L-Leucine	ABID97_RS01865	ABID97_RS01865		Lrp/AsnC family transcriptional regulator	-1.56394654403649	-6.13419189219079	FALSE
+carbon source	set1IT087	L-Leucine	ABID97_RS01865	ABID97_RS01865		Lrp/AsnC family transcriptional regulator	-1.38056287127541	-6.64151933249903	FALSE
+carbon source	set1IT039	L-Leucine	ABID97_RS03790	ABID97_RS03790		branched-chain amino acid transaminase	-2.36625602212437	-8.90965733983368	FALSE
+carbon source	set1IT087	L-Leucine	ABID97_RS03790	ABID97_RS03790		branched-chain amino acid transaminase	-1.96319521623265	-7.19142366871662	FALSE
+carbon source	set1IT087	L-Leucine	ABID97_RS19655	ABID97_RS19655		aminomethyl-transferring glycine dehydrogenase	-1.58064131177595	-9.286509332687	FALSE
+carbon source	set1IT039	L-Leucine	ABID97_RS19655	ABID97_RS19655		aminomethyl-transferring glycine dehydrogenase	-1.42219362731202	-10.0945806588437	FALSE
+carbon source	set1IT039	L-Leucine	ABID97_RS24805	ABID97_RS24805		enoyl-CoA hydratase	-2.00263548457544	-10.304397637585	FALSE
+carbon source	set1IT087	L-Leucine	ABID97_RS24805	ABID97_RS24805		enoyl-CoA hydratase	-1.71600072983625	-10.2321703668787	FALSE
+carbon source	set1IT039	L-Leucine	ABID97_RS25140	ABID97_RS25140		isovaleryl-CoA dehydrogenase	-6.72180648070256	-13.6636860109082	TRUE
+carbon source	set1IT087	L-Leucine	ABID97_RS25140	ABID97_RS25140		isovaleryl-CoA dehydrogenase	-6.33675498601606	-14.7647809014238	TRUE
+carbon source	set1IT039	L-Leucine	ABID97_RS25145	ABID97_RS25145		AraC family transcriptional regulator	-5.42660754313606	-6.03474644681023	FALSE
+carbon source	set1IT087	L-Leucine	ABID97_RS25145	ABID97_RS25145		AraC family transcriptional regulator	-5.10693994304573	-6.07580561760326	FALSE
+carbon source	set1IT079	L-Malic acid disodium salt monohydrate	ABID97_RS02790	ABID97_RS02790		penicillin-binding protein 1A	-1.83707885537336	-12.3904471124055	FALSE
+carbon source	set1IT031	L-Malic acid disodium salt monohydrate	ABID97_RS02790	ABID97_RS02790		penicillin-binding protein 1A	-1.30311172497388	-8.99372515522855	FALSE
+carbon source	set1IT079	L-Malic acid disodium salt monohydrate	ABID97_RS06755	ABID97_RS06755		putative Na+/H+ antiporter	-2.65572371696809	-13.4584598543874	FALSE
+carbon source	set1IT031	L-Malic acid disodium salt monohydrate	ABID97_RS06755	ABID97_RS06755		putative Na+/H+ antiporter	-2.27803153395721	-11.7225410249839	FALSE
+carbon source	set1IT079	L-Malic acid disodium salt monohydrate	ABID97_RS06895	ABID97_RS06895		cyanophycin synthetase	-1.12755371650716	-7.7116536818797	FALSE
+carbon source	set1IT031	L-Malic acid disodium salt monohydrate	ABID97_RS06900	ABID97_RS06900		cyanophycin synthetase	-1.33465271339983	-6.49580204283397	FALSE
+carbon source	set1IT031	L-Malic acid disodium salt monohydrate	ABID97_RS08695	ABID97_RS08695		permease	-1.73774171505834	-11.2940718116534	FALSE
+carbon source	set1IT079	L-Malic acid disodium salt monohydrate	ABID97_RS08695	ABID97_RS08695		permease	-1.28344425416155	-8.00723667457494	FALSE
+carbon source	set1IT079	L-Malic acid disodium salt monohydrate	ABID97_RS25280	ABID97_RS25280		phosphatase PAP2 family protein	-1.12867517530911	-5.31024475666983	FALSE
+carbon source	set1IT031	L-Malic acid disodium salt monohydrate	ABID97_RS26600	ABID97_RS26600		ATP-binding protein	-3.93295619101231	-5.2832652130885	TRUE
+carbon source	set1IT079	L-Malic acid disodium salt monohydrate	ABID97_RS26600	ABID97_RS26600		ATP-binding protein	-2.72477254747752	-5.31601305642017	TRUE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS00080	ABID97_RS00080		DUF3567 domain-containing protein	-1.4254840840571	-6.41532350356545	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS00260	ABID97_RS00260		PilT/PilU family type 4a pilus ATPase	-1.44682962439929	-5.88295824422769	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS01890	ABID97_RS01890		FAD-binding oxidoreductase	-2.04444695267696	-5.25571044045504	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS01900	ABID97_RS01900		NAD(P)H-dependent oxidoreductase	1.26454586022168	6.22091410564817	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS01900	ABID97_RS01900		NAD(P)H-dependent oxidoreductase	1.51678621256421	5.08692124135165	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS01905	ABID97_RS01905		PDR/VanB family oxidoreductase	-5.95391623459195	-5.40016111236499	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS01905	ABID97_RS01905		PDR/VanB family oxidoreductase	-5.68415490851523	-7.89208991400718	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS01910	ABID97_RS01910		TetR family transcriptional regulator C-terminal domain-containing protein	-6.06797333929432	-12.328552361363	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS01910	ABID97_RS01910		TetR family transcriptional regulator C-terminal domain-containing protein	-5.66727285245641	-11.6354127908632	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS03675	ABID97_RS03675		DMT family transporter	-1.59907743363482	-6.32554335099917	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS03955	ABID97_RS03955		fumarylacetoacetase	-7.01274172606956	-9.62237620525117	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS03955	ABID97_RS03955		fumarylacetoacetase	-5.48670532470272	-13.2719147912675	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS03960	ABID97_RS03960		homogentisate 1,2-dioxygenase	-2.49556578307282	-6.31742508512668	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS03960	ABID97_RS03960		homogentisate 1,2-dioxygenase	-2.49104875758943	-8.20721364476619	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS03970	ABID97_RS03970		FAD-dependent oxidoreductase	-1.73473388166734	-8.41561263681144	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS03970	ABID97_RS03970		FAD-dependent oxidoreductase	-1.2194458265355	-7.59562053651697	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS06360	ABID97_RS06360		hypothetical protein	1.5968578535236	11.8780783385632	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS06360	ABID97_RS06360		hypothetical protein	1.73905189220693	13.3205698696689	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS06515	ABID97_RS06515		SDR family oxidoreductase	-7.2900297290878	-5.03869566850308	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS06515	ABID97_RS06515		SDR family oxidoreductase	-5.98153843468124	-9.14133120296148	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS07295	ABID97_RS07295		dihydroneopterin triphosphate diphosphatase	1.42455531692662	7.2354071399064	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS07295	ABID97_RS07295		dihydroneopterin triphosphate diphosphatase	1.50514410807227	9.03029598121992	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS07300	ABID97_RS07300		endonuclease/exonuclease/phosphatase family protein	2.06407476852791	6.98598104263696	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS07300	ABID97_RS07300		endonuclease/exonuclease/phosphatase family protein	2.20842667128519	8.83728457785751	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS08780	ABID97_RS08780		4a-hydroxytetrahydrobiopterin dehydratase	-4.89682535367226	-6.42675191727694	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS09045	ABID97_RS09045		SDR family oxidoreductase	-7.47233706489188	-7.2808584062457	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS09045	ABID97_RS09045		SDR family oxidoreductase	-6.81506169936385	-6.45880453764703	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS17605	ABID97_RS17605		trigger factor	1.39344427903046	5.31537882707728	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS17605	ABID97_RS17605		trigger factor	1.41126816804843	7.28886318126586	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS18145	ABID97_RS18145		hypothetical protein	1.22072887690292	5.20947722646168	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS19115	ABID97_RS19115		polysaccharide biosynthesis/export family protein	1.5036153664466	7.65053646309261	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS23630	ABID97_RS23630		radical SAM family heme chaperone HemW	1.05306753126215	7.11106493999739	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS23635	ABID97_RS23635		non-canonical purine NTP pyrophosphatase	-1.80088298700862	-10.125385235375	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS23635	ABID97_RS23635		non-canonical purine NTP pyrophosphatase	-1.64692325178439	-9.74752773756004	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS25005	ABID97_RS25005		23S rRNA (adenine(2030)-N(6))-methyltransferase RlmJ	1.14771099722077	9.21923180847567	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS25305	ABID97_RS25305		NAD(P)H-dependent oxidoreductase	-1.33647700806693	-5.8026030577471	FALSE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS25305	ABID97_RS25305		NAD(P)H-dependent oxidoreductase	-1.27293881968299	-5.70663149127276	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS25355	ABID97_RS25355		Lrp/AsnC family transcriptional regulator	-7.19146129559348	-11.0073014593334	TRUE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS25355	ABID97_RS25355		Lrp/AsnC family transcriptional regulator	-6.96503163858049	-12.5519098611104	TRUE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS25360	ABID97_RS25360		4-hydroxyphenylpyruvate dioxygenase	-6.45768524748989	-18.2025494704196	TRUE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS25360	ABID97_RS25360		4-hydroxyphenylpyruvate dioxygenase	-6.20001828404136	-20.6344826866134	TRUE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS25365	ABID97_RS25365		transporter substrate-binding domain-containing protein	-2.76636196268751	-6.59035565061857	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS25365	ABID97_RS25365		transporter substrate-binding domain-containing protein	-2.72919390572425	-5.47824677765805	FALSE
+carbon source	set1IT088	L-Phenylalanine	ABID97_RS25370	ABID97_RS25370		phenylalanine 4-monooxygenase	-7.03272011452574	-13.5238625652573	TRUE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS25370	ABID97_RS25370		phenylalanine 4-monooxygenase	-6.38531404152974	-18.4483035572165	TRUE
+carbon source	set1IT040	L-Phenylalanine	ABID97_RS25400	ABID97_RS25400		tRNA-Ile	1.47737129636007	5.2430013079101	FALSE
+carbon source	set1IT037	L-Proline	ABID97_RS00240	ABID97_RS00240		L-glutamate gamma-semialdehyde dehydrogenase	-5.33327447741134	-17.4164036792704	TRUE
+carbon source	set1IT085	L-Proline	ABID97_RS00240	ABID97_RS00240		L-glutamate gamma-semialdehyde dehydrogenase	-4.99296436908512	-16.9256812552263	TRUE
+carbon source	set1IT037	L-Proline	ABID97_RS00245	ABID97_RS00245		Lrp/AsnC ligand binding domain-containing protein	-4.12280378244193	-7.74034902426339	TRUE
+carbon source	set1IT085	L-Proline	ABID97_RS00245	ABID97_RS00245		Lrp/AsnC ligand binding domain-containing protein	-3.71964800707306	-9.33055962982559	TRUE
+carbon source	set1IT034	L-Threonine	ABID97_RS01960	ABID97_RS01960		alpha-ketoglutarate dehydrogenase	-4.55767297878895	-20.3514462038877	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS01960	ABID97_RS01960		alpha-ketoglutarate dehydrogenase	-4.51713344594188	-19.8857926673327	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS01965	ABID97_RS01965		Lrp/AsnC family transcriptional regulator	-4.82312530951374	-11.7270718414596	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS01965	ABID97_RS01965		Lrp/AsnC family transcriptional regulator	-4.08733146415765	-13.0534907052572	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS02910	ABID97_RS02910		16S rRNA (guanine(527)-N(7))-methyltransferase RsmG	1.47718281264274	8.60327633099538	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS02910	ABID97_RS02910		16S rRNA (guanine(527)-N(7))-methyltransferase RsmG	1.67196032651609	12.966665400992	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS03450	ABID97_RS03450		homocysteine S-methyltransferase family protein	-3.28687394822341	-14.6786478933742	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS03450	ABID97_RS03450		homocysteine S-methyltransferase family protein	-2.67820380289651	-14.5767570368984	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS03470	ABID97_RS03470		methionine synthase	-3.15934024586828	-23.3311586322857	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS03470	ABID97_RS03470		methionine synthase	-2.81625585736659	-20.8165343461181	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS04340	ABID97_RS04340		excinuclease ABC subunit UvrA	-1.60240386852028	-13.7648532120337	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS04340	ABID97_RS04340		excinuclease ABC subunit UvrA	-1.58419247529666	-13.9309560213734	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS06360	ABID97_RS06360		hypothetical protein	1.15075376267553	9.59342766505937	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS06360	ABID97_RS06360		hypothetical protein	1.18412487295266	10.2399253437097	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS07835	ABID97_RS07835		replication-associated recombination protein A	-1.39323768374689	-5.70253764702622	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS09150	ABID97_RS09150		UvrD-helicase domain-containing protein	-1.86231041658288	-5.97675985094906	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS10260	ABID97_RS10260		SpoVR family protein	1.25799296540632	9.41479256960409	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS10260	ABID97_RS10260		SpoVR family protein	1.58145919740449	11.8811587660979	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS10265	ABID97_RS10265		YeaH/YhbH family protein	1.04966610471663	7.41315603556057	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS10265	ABID97_RS10265		YeaH/YhbH family protein	1.61000562997228	10.608345293318	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS10270	ABID97_RS10270		PrkA family serine protein kinase	1.12991420900926	10.2628772461826	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS10270	ABID97_RS10270		PrkA family serine protein kinase	1.49299783191719	13.4542854155522	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS10310	ABID97_RS10310		lactonase family protein	1.01754125875654	5.97737776872647	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS10635	ABID97_RS10635		excinuclease ABC subunit UvrC	-4.13349968572918	-11.2631981925978	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS10635	ABID97_RS10635		excinuclease ABC subunit UvrC	-3.05383483245027	-9.43255784082124	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS10680	ABID97_RS10680		histidine phosphatase family protein	-2.12992789220927	-6.01611592237671	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS10680	ABID97_RS10680		histidine phosphatase family protein	-1.74568158718917	-6.64459730683796	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS10715	ABID97_RS10715		5'/3'-nucleotidase SurE	-1.60479912501576	-7.37932884446608	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS12480	ABID97_RS12480		homoserine dehydrogenase	-5.36278382383423	-9.02502508753333	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS12480	ABID97_RS12480		homoserine dehydrogenase	-4.66659871412955	-10.3918393491331	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS13900	ABID97_RS13900		hypothetical protein	1.16807129688192	9.33059981722866	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS13910	ABID97_RS13910		tyrosine-type recombinase/integrase	-1.06411920474882	-6.23827348943756	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS13910	ABID97_RS13910		tyrosine-type recombinase/integrase	-1.02150475638839	-6.12012378948621	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS13930	ABID97_RS13930		methylmalonyl-CoA mutase	-3.56769807599045	-10.2850268282887	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS13930	ABID97_RS13930		methylmalonyl-CoA mutase	-3.24264282855587	-9.81574488700251	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS13940	ABID97_RS13940		methylmalonyl Co-A mutase-associated GTPase MeaB	-2.60798078574078	-5.90117398489443	TRUE
+carbon source	set1IT034	L-Threonine	ABID97_RS13940	ABID97_RS13940		methylmalonyl Co-A mutase-associated GTPase MeaB	-2.59614462209313	-5.14901262524236	TRUE
+carbon source	set1IT082	L-Threonine	ABID97_RS16475	ABID97_RS16475		tRNA pseudouridine(55) synthase TruB	1.18559604614386	9.27726146145038	TRUE
+carbon source	set1IT034	L-Threonine	ABID97_RS16475	ABID97_RS16475		tRNA pseudouridine(55) synthase TruB	1.1857351499134	9.1348253921811	TRUE
+carbon source	set1IT034	L-Threonine	ABID97_RS16605	ABID97_RS16605		pyridoxal phosphate-dependent aminotransferase	-1.04628920173574	-7.73493162587001	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS17410	ABID97_RS17410		helical backbone metal receptor	-2.78663031905393	-5.0553134669374	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS17410	ABID97_RS17410		helical backbone metal receptor	-2.78009922754655	-8.15803535416453	FALSE
+carbon source	set1IT082	L-Threonine	ABID97_RS20125	ABID97_RS20125		4-hydroxy-tetrahydrodipicolinate synthase	3.65803119279893	29.3986548303118	FALSE
+carbon source	set1IT034	L-Threonine	ABID97_RS20125	ABID97_RS20125		4-hydroxy-tetrahydrodipicolinate synthase	3.80784691195979	21.6089661185485	FALSE
+carbon source	set1IT090	L-Tryptophan	ABID97_RS01425	ABID97_RS01425		bifunctional salicylyl-CoA 5-hydroxylase/oxidoreductase	-3.39544719792794	-16.053383046231	TRUE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS01425	ABID97_RS01425		bifunctional salicylyl-CoA 5-hydroxylase/oxidoreductase	-3.38614304416877	-14.8889325990388	TRUE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS01435	ABID97_RS01435		enoyl-CoA hydratase family protein	-6.27201687777554	-6.10670952697178	TRUE
+carbon source	set1IT090	L-Tryptophan	ABID97_RS01435	ABID97_RS01435		enoyl-CoA hydratase family protein	-4.11918407263543	-8.31435801498783	TRUE
+carbon source	set1IT090	L-Tryptophan	ABID97_RS01440	ABID97_RS01440		acyl-CoA dehydrogenase family protein	-3.63125865795131	-11.981775746103	TRUE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS01440	ABID97_RS01440		acyl-CoA dehydrogenase family protein	-3.39827068598539	-9.27819748835613	TRUE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS01445	ABID97_RS01445		AMP-binding protein	-2.99463081592533	-11.1710318043017	TRUE
+carbon source	set1IT090	L-Tryptophan	ABID97_RS01445	ABID97_RS01445		AMP-binding protein	-2.70552002650906	-12.0565436982929	TRUE
+carbon source	set1IT090	L-Tryptophan	ABID97_RS03205	ABID97_RS03205		acyl-CoA dehydrogenase	-5.81335366167136	-9.70261638201363	TRUE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS03205	ABID97_RS03205		acyl-CoA dehydrogenase	-5.70413080722565	-7.81731140355582	TRUE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS07835	ABID97_RS07835		replication-associated recombination protein A	1.29467507952166	6.25203802130635	FALSE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS08590	ABID97_RS08590		tryptophan 2,3-dioxygenase	-8.02128915551357	-5.06621747191789	TRUE
+carbon source	set1IT090	L-Tryptophan	ABID97_RS08600	ABID97_RS08600		kynureninase	-5.28674553772292	-15.2282896882955	TRUE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS08600	ABID97_RS08600		kynureninase	-4.92955996671944	-11.8264175678607	TRUE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS08605	ABID97_RS08605		arylformamidase	-7.24830600048301	-7.83146252782981	TRUE
+carbon source	set1IT090	L-Tryptophan	ABID97_RS08605	ABID97_RS08605		arylformamidase	-3.87896635386117	-8.27454557619787	TRUE
+carbon source	set1IT090	L-Tryptophan	ABID97_RS08920	ABID97_RS08920		SDR family NAD(P)-dependent oxidoreductase	-2.71738368122043	-9.31440226553252	TRUE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS08920	ABID97_RS08920		SDR family NAD(P)-dependent oxidoreductase	-2.45846169944043	-7.11349977357101	TRUE
+carbon source	set1IT090	L-Tryptophan	ABID97_RS12345	ABID97_RS12345		alpha/beta fold hydrolase	-1.53307266124908	-6.0683937649244	FALSE
+carbon source	set1IT042	L-Tryptophan	ABID97_RS23245	ABID97_RS23245		MFS transporter	-1.03582920050962	-5.94507177788084	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS01570	ABID97_RS01570		LysR substrate-binding domain-containing protein	-2.11781642804197	-6.5280225228948	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS04020	ABID97_RS04020		GMC family oxidoreductase N-terminal domain-containing protein	-1.11059515571568	-7.30088846034923	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS06325	ABID97_RS06325		histidine kinase	-1.37934316391085	-8.53207887156774	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS06545	ABID97_RS06545		ROK family protein	1.33227169734927	10.7354457488078	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS09420	ABID97_RS09420		carbon monoxide dehydrogenase subunit G	-1.20663479091274	-5.92871782452837	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS14755	ABID97_RS14755		'GTP 3',8-cyclase MoaA' pseudo=_no_value transl_table=11	-1.57168662126331	-7.3224746786778	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS15705	ABID97_RS15705		3-(methylthio)propionyl-CoA ligase	1.26945318331278	5.72097306254947	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS17020	ABID97_RS17020		phosphotransferase	-1.11677631463558	-7.83259192482368	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS25985	ABID97_RS25985		CaiB/BaiF CoA-transferase family protein	5.4098385658431	6.22369982142254	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS28710	ABID97_RS28710		xanthine dehydrogenase family protein subunit M	-1.14716698136032	-5.13802630277436	FALSE
+carbon source	set1IT041	L-tyrosine disodium salt	ABID97_RS28745	ABID97_RS28745		GMC family oxidoreductase N-terminal domain-containing protein	2.45407842154429	12.2204083746983	FALSE
+carbon source	set1IT012	Potassium acetate	ABID97_RS07085	ABID97_RS07085		HAD family phosphatase	-1.34852240384381	-5.51528313077711	FALSE
+carbon source	set1IT060	Potassium acetate	ABID97_RS07085	ABID97_RS07085		HAD family phosphatase	-1.19611118282154	-5.72993603626791	FALSE
+carbon source	set1IT012	Potassium acetate	ABID97_RS08520	ABID97_RS08520		trans-aconitate 2-methyltransferase	-1.38191869339593	-6.20740294778111	FALSE
+carbon source	set1IT060	Potassium acetate	ABID97_RS17525	ABID97_RS17525		acetate--CoA ligase	-5.26554301393605	-14.4183823504323	FALSE
+carbon source	set1IT012	Potassium acetate	ABID97_RS17525	ABID97_RS17525		acetate--CoA ligase	-4.79366938071787	-14.7555010738943	FALSE
+carbon source	set1IT017	Sodium D,L-Lactate	ABID97_RS03650	ABID97_RS03650		FAD-linked oxidase C-terminal domain-containing protein	-2.92892792400657	-14.1878713694863	TRUE
+carbon source	set1IT065	Sodium D,L-Lactate	ABID97_RS03650	ABID97_RS03650		FAD-linked oxidase C-terminal domain-containing protein	-2.81243153798015	-14.0702094584539	TRUE
+carbon source	set1IT065	Sodium D,L-Lactate	ABID97_RS03660	ABID97_RS03660		glycolate oxidase subunit GlcF	-2.89403166260917	-11.2869596503839	TRUE
+carbon source	set1IT017	Sodium D,L-Lactate	ABID97_RS03660	ABID97_RS03660		glycolate oxidase subunit GlcF	-2.87092998377996	-14.1356057397116	TRUE
+carbon source	set1IT065	Sodium D,L-Lactate	ABID97_RS08010	ABID97_RS08010		alpha-hydroxy acid oxidase	-6.36950697963693	-7.57372529295653	TRUE
+carbon source	set1IT017	Sodium D,L-Lactate	ABID97_RS08010	ABID97_RS08010		alpha-hydroxy acid oxidase	-5.64173711659254	-8.60591011088173	TRUE
+carbon source	set1IT017	Sodium D,L-Lactate	ABID97_RS08015	ABID97_RS08015		LysR substrate-binding domain-containing protein	-3.04662487684644	-6.48189889257925	TRUE
+carbon source	set1IT063	Sodium D-Lactate	ABID97_RS03650	ABID97_RS03650		FAD-linked oxidase C-terminal domain-containing protein	-6.75162535990814	-12.162537692431	TRUE
+carbon source	set1IT063	Sodium D-Lactate	ABID97_RS03660	ABID97_RS03660		glycolate oxidase subunit GlcF	-5.2892389741487	-9.34495172612143	TRUE
+carbon source	set1IT021	Sodium Formate	ABID97_RS07505	ABID97_RS07505		LysR substrate-binding domain-containing protein	1.8610165120581	8.95172341945047	TRUE
+carbon source	set1IT069	Sodium Formate	ABID97_RS07510	ABID97_RS07510		NAD(P)H-dependent oxidoreductase subunit E	1.24125293368595	10.2877108563669	FALSE
+carbon source	set1IT021	Sodium Formate	ABID97_RS07510	ABID97_RS07510		NAD(P)H-dependent oxidoreductase subunit E	2.01029179845324	15.00479677784	FALSE
+carbon source	set1IT069	Sodium Formate	ABID97_RS07515	ABID97_RS07515		formate dehydrogenase subunit alpha	1.27921845545512	9.92014981748518	TRUE
+carbon source	set1IT021	Sodium Formate	ABID97_RS07515	ABID97_RS07515		formate dehydrogenase subunit alpha	2.39443287920553	18.4434657537534	TRUE
+carbon source	set1IT021	Sodium Formate	ABID97_RS07585	ABID97_RS07585		hypothetical protein	1.4002433113665	5.44495759577077	FALSE
+carbon source	set1IT021	Sodium Formate	ABID97_RS07590	ABID97_RS07590		formate dehydrogenase accessory sulfurtransferase FdhD	1.15452891446141	7.89969169229594	FALSE
+carbon source	set1IT069	Sodium Formate	ABID97_RS17240	ABID97_RS17240		'bifunctional (p)ppGpp synthetase/guanosine-3',5'-bis(diphosphate) 3'-pyrophosphohydrolase' pseudo=_no_value transl_table=11	-1.49290263972004	-8.56763314488984	FALSE
+carbon source	set1IT069	Sodium Formate	ABID97_RS23085	ABID97_RS23085		histidine triad nucleotide-binding protein	-1.48454966725566	-6.54385551495565	FALSE
+carbon source	set1IT016	Sodium L-Lactate	ABID97_RS08010	ABID97_RS08010		alpha-hydroxy acid oxidase	-6.24462060064012	-7.42522790840577	TRUE
+carbon source	set1IT064	Sodium L-Lactate	ABID97_RS08010	ABID97_RS08010		alpha-hydroxy acid oxidase	-5.8962586778053	-8.06999414921198	TRUE
+carbon source	set1IT064	Sodium L-Lactate	ABID97_RS08015	ABID97_RS08015		LysR substrate-binding domain-containing protein	-7.48823675030524	-5.13428125864458	TRUE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS00340	ABID97_RS00340		DUF2946 family protein	-2.15998891386536	-9.48899675955839	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS00340	ABID97_RS00340		DUF2946 family protein	-2.09736965093444	-8.67362707461284	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS00405	ABID97_RS00405		NAD(+) synthase	2.72734654885724	23.759482940678	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS00405	ABID97_RS00405		NAD(+) synthase	3.1386440133998	27.6200542740078	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS02515	ABID97_RS02515		ribonuclease domain-containing protein	1.64492674501244	5.49999138311006	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS02515	ABID97_RS02515		ribonuclease domain-containing protein	1.80336021028302	5.79325463837938	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS03370	ABID97_RS03370		phosphoenolpyruvate carboxykinase (GTP)	6.90766292420168	67.0685051104896	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS03370	ABID97_RS03370		phosphoenolpyruvate carboxykinase (GTP)	7.54069636071398	72.9963524357212	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS03525	ABID97_RS03525		ABC transporter substrate-binding protein	1.86627955464735	13.824871503644	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS03525	ABID97_RS03525		ABC transporter substrate-binding protein	1.99036376098497	10.976470793654	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS03530	ABID97_RS03530		ABC transporter permease	1.77214622633023	8.8591303886026	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS03530	ABID97_RS03530		ABC transporter permease	2.04919666211223	9.81611402462391	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS03540	ABID97_RS03540		ABC transporter ATP-binding protein	2.3678224139791	14.528383454748	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS03540	ABID97_RS03540		ABC transporter ATP-binding protein	2.54997058876651	17.0814102176731	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS04535	ABID97_RS04535		glycogen synthase GlgA	1.02483319404646	5.74606276774387	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS04555	ABID97_RS04555		alpha-amylase family glycosyl hydrolase	1.00347777694127	5.64184327000204	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS04560	ABID97_RS04560		NAD(P)/FAD-dependent oxidoreductase	1.44484706836504	5.7562715445904	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS04560	ABID97_RS04560		NAD(P)/FAD-dependent oxidoreductase	1.5727088537922	6.60999869043616	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS05850	ABID97_RS05850		TetR/AcrR family transcriptional regulator	7.54543658704993	42.5333288710911	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS05850	ABID97_RS05850		TetR/AcrR family transcriptional regulator	8.05869199579518	43.1374667146932	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS06495	ABID97_RS06495		histidine phosphatase family protein	2.60502929328977	16.7345447379624	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS06495	ABID97_RS06495		histidine phosphatase family protein	2.74887874458317	15.1831229196662	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS07010	ABID97_RS07010		porin	1.6534281479069	9.0552238825297	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS07010	ABID97_RS07010		porin	1.78742812245894	9.95047535407607	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS07015	ABID97_RS07015		OsmC family protein	2.29094629559362	10.957100964826	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS07015	ABID97_RS07015		OsmC family protein	2.30397201349718	12.2175620483948	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS07030	ABID97_RS07030		ABC transporter permease	1.28105358510958	7.21456345505888	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS07075	ABID97_RS07075		iron ABC transporter permease	1.23709840087321	6.54161025666929	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS07075	ABID97_RS07075		iron ABC transporter permease	1.3541642052271	8.63104637046334	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS07180	ABID97_RS07180		Grx4 family monothiol glutaredoxin	2.52111231689972	14.9007222953688	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS07180	ABID97_RS07180		Grx4 family monothiol glutaredoxin	2.78293755591491	19.5729415883774	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS07480	ABID97_RS07480		isocitrate/isopropylmalate family dehydrogenase	7.23674514815309	67.5188710490091	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS07480	ABID97_RS07480		isocitrate/isopropylmalate family dehydrogenase	7.83201710587726	70.5517487982383	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS07485	ABID97_RS07485		phosphodiester glycosidase family protein	1.35570650169996	5.85042906379391	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS07645	ABID97_RS07645		MFS transporter	3.87050378125775	13.0590489048345	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS07645	ABID97_RS07645		MFS transporter	4.02892731891277	14.3201079273335	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS08520	ABID97_RS08520		trans-aconitate 2-methyltransferase	4.62778786526522	10.2936990395307	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS08520	ABID97_RS08520		trans-aconitate 2-methyltransferase	5.03459582371696	10.7668154752565	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS08785	ABID97_RS08785		M48 family metallopeptidase	1.61855544995493	6.8085032735022	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS08785	ABID97_RS08785		M48 family metallopeptidase	1.84156156364674	6.53809333330513	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS10065	ABID97_RS10065		DUF2069 domain-containing protein	1.07056995079103	6.41463312685374	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS10065	ABID97_RS10065		DUF2069 domain-containing protein	1.22872884394625	7.97624428234664	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS12145	ABID97_RS12145		maltose alpha-D-glucosyltransferase	1.77870812349795	14.9031114517606	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS12145	ABID97_RS12145		maltose alpha-D-glucosyltransferase	1.9781074584615	16.543748622166	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS12160	ABID97_RS12160		malto-oligosyltrehalose trehalohydrolase	1.19907528734462	6.20637390792742	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS12160	ABID97_RS12160		malto-oligosyltrehalose trehalohydrolase	1.58563039214573	7.8023105947472	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS14865	ABID97_RS14865		RDD family protein	3.64260385191426	23.6003543682357	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS14865	ABID97_RS14865		RDD family protein	3.8842583521598	17.0425032430426	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS17240	ABID97_RS17240		'bifunctional (p)ppGpp synthetase/guanosine-3',5'-bis(diphosphate) 3'-pyrophosphohydrolase' pseudo=_no_value transl_table=11	2.19004764572856	11.3863779201011	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS17240	ABID97_RS17240		'bifunctional (p)ppGpp synthetase/guanosine-3',5'-bis(diphosphate) 3'-pyrophosphohydrolase' pseudo=_no_value transl_table=11	2.2574563748708	11.5964827264101	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS18120	ABID97_RS18120		transporter substrate-binding domain-containing protein	6.73244350928351	54.0245186262713	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS18120	ABID97_RS18120		transporter substrate-binding domain-containing protein	7.29911876277712	64.4241961996511	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS20205	ABID97_RS20205		nicotinamide riboside transporter PnuC	1.12741793866476	5.50257166033008	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS25305	ABID97_RS25305		NAD(P)H-dependent oxidoreductase	1.89492429291557	10.6821738367775	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS25305	ABID97_RS25305		NAD(P)H-dependent oxidoreductase	1.94587501008062	9.96981261271273	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS25315	ABID97_RS25315		creatininase family protein	1.63882540106462	5.3170425734579	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS26555	ABID97_RS26555		lipoyl synthase	3.27003836408367	6.13268506907117	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS26555	ABID97_RS26555		lipoyl synthase	3.54098819536878	5.41547188033367	FALSE
+carbon source	set2IT093	Sodium butyrate	ABID97_RS28310	ABID97_RS28310		alpha/beta hydrolase	1.67734575630055	8.65551591413654	FALSE
+carbon source	set2IT045	Sodium butyrate	ABID97_RS28310	ABID97_RS28310		alpha/beta hydrolase	1.77599874958067	6.42307046703273	FALSE
+carbon source	set1IT068	Sodium propionate	ABID97_RS13930	ABID97_RS13930		methylmalonyl-CoA mutase	8.1853184886285	18.7232236998087	TRUE
+carbon source	set1IT020	Sodium propionate	ABID97_RS13930	ABID97_RS13930		methylmalonyl-CoA mutase	8.64414747304826	23.2042724637992	TRUE
+carbon source	set1IT068	Sodium propionate	ABID97_RS13940	ABID97_RS13940		methylmalonyl Co-A mutase-associated GTPase MeaB	5.36811782246644	9.11929681147134	TRUE
+carbon source	set1IT020	Sodium propionate	ABID97_RS13940	ABID97_RS13940		methylmalonyl Co-A mutase-associated GTPase MeaB	6.55603618179426	14.4387286376315	TRUE
+carbon source	set1IT068	Sodium propionate	ABID97_RS17410	ABID97_RS17410		helical backbone metal receptor	4.89388168484331	37.7369637569937	FALSE
+carbon source	set1IT020	Sodium propionate	ABID97_RS17410	ABID97_RS17410		helical backbone metal receptor	5.37130797432684	42.2393468337297	FALSE
+carbon source	set1IT020	Sodium propionate	ABID97_RS25175	ABID97_RS25175		MBL fold metallo-hydrolase	4.88974539023849	12.8157389164403	FALSE
+carbon source	set1IT068	Sodium propionate	ABID97_RS25175	ABID97_RS25175		MBL fold metallo-hydrolase	6.09832891129369	13.9624844826035	FALSE
+carbon source	set1IT068	Sodium propionate	ABID97_RS27700	ABID97_RS27700		HAMP domain-containing sensor histidine kinase	1.33876458948453	5.55241391860264	FALSE
+carbon source	set1IT020	Sodium propionate	ABID97_RS27895	ABID97_RS27895		AraC family transcriptional regulator	6.006464346969	28.8720889024185	FALSE
+carbon source	set1IT018	Sodium pyruvate	ABID97_RS15500	ABID97_RS15500		aliphatic sulfonate ABC transporter substrate-binding protein	-1.56215004395481	-5.67087915431263	FALSE
+carbon source	set1IT018	Sodium pyruvate	ABID97_RS22450	ABID97_RS22450		YbdD/YjiX family protein	-2.62873019222681	-6.79514591818852	TRUE
+carbon source	set1IT066	Sodium pyruvate	ABID97_RS22455	ABID97_RS22455		carbon starvation CstA family protein	-2.49943435686057	-12.2970048750381	TRUE
+carbon source	set1IT018	Sodium pyruvate	ABID97_RS22455	ABID97_RS22455		carbon starvation CstA family protein	-2.10544317132046	-6.74496292520136	TRUE
+carbon source	set1IT066	Sodium pyruvate	ABID97_RS22515	ABID97_RS22515		response regulator transcription factor	-2.43976478539898	-8.52212578278768	TRUE
+carbon source	set1IT018	Sodium pyruvate	ABID97_RS22515	ABID97_RS22515		response regulator transcription factor	-2.39975631801783	-12.712603348456	TRUE
+carbon source	set1IT030	Tween 20	ABID97_RS00320	ABID97_RS00320		efflux RND transporter periplasmic adaptor subunit	-3.25271276667716	-17.0455012062923	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS00320	ABID97_RS00320		efflux RND transporter periplasmic adaptor subunit	-3.22982425804634	-17.2414612832501	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS00325	ABID97_RS00325		efflux RND transporter permease subunit	-3.33432209182024	-15.5811135200864	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS00325	ABID97_RS00325		efflux RND transporter permease subunit	-2.94656575242918	-14.4257679479831	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS00330	ABID97_RS00330		efflux transporter outer membrane subunit	-1.71115000586876	-9.02093952756278	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS00330	ABID97_RS00330		efflux transporter outer membrane subunit	-1.60201993295138	-8.70651283904098	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS02005	ABID97_RS02005		YhdP family protein	-1.19285142729881	-9.05345873411802	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS03820	ABID97_RS03820		beta-ketoacyl synthase chain length factor	1.37326269882584	8.81079856523314	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS03820	ABID97_RS03820		beta-ketoacyl synthase chain length factor	1.49513892828754	7.54076176412082	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS03825	ABID97_RS03825		beta-ketoacyl-[acyl-carrier-protein] synthase family protein	1.74153381349744	9.29716270972215	TRUE
+carbon source	set1IT078	Tween 20	ABID97_RS03825	ABID97_RS03825		beta-ketoacyl-[acyl-carrier-protein] synthase family protein	1.86518983558809	12.6793791705295	TRUE
+carbon source	set1IT030	Tween 20	ABID97_RS04445	ABID97_RS04445		long-chain-fatty-acid--CoA ligase	-2.75356059259593	-13.5443577485155	TRUE
+carbon source	set1IT078	Tween 20	ABID97_RS04445	ABID97_RS04445		long-chain-fatty-acid--CoA ligase	-2.31430347722861	-11.6937684178002	TRUE
+carbon source	set1IT078	Tween 20	ABID97_RS05745	ABID97_RS05745		acyltransferase family protein	-1.10807133598785	-9.35704668075709	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS05865	ABID97_RS05865		3-hydroxyacyl-CoA dehydrogenase/enoyl-CoA hydratase family protein	-1.3748272664563	-6.83539254791774	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS05865	ABID97_RS05865		3-hydroxyacyl-CoA dehydrogenase/enoyl-CoA hydratase family protein	-1.36094973928564	-8.30866560058881	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS07355	ABID97_RS07355		CHASE3 domain-containing protein	-1.46172206639627	-6.15109231380951	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS09945	ABID97_RS09945		nitrogen regulation protein NR(I)	-1.6180521781309	-7.10977711976358	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS11010	ABID97_RS11010		phosphatase PAP2 family protein	-1.11882820130957	-5.31244700158974	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS11010	ABID97_RS11010		phosphatase PAP2 family protein	-1.10811032644713	-6.32635427709744	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS16755	ABID97_RS16755		lysophospholipid acyltransferase family protein	1.50335163304699	5.21361305240499	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS16755	ABID97_RS16755		lysophospholipid acyltransferase family protein	1.57989562440249	6.45110888612898	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS16760	ABID97_RS16760		glycosyltransferase family 2 protein	1.48229763976399	7.30564338838006	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS16765	ABID97_RS16765		3-oxoacyl-ACP reductase FabG	1.41018542599532	7.76317282269619	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS16765	ABID97_RS16765		3-oxoacyl-ACP reductase FabG	1.54499739108527	9.57148298579912	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS16795	ABID97_RS16795		acyl-CoA synthetase	1.54862683919562	10.6911977095147	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS16795	ABID97_RS16795		acyl-CoA synthetase	1.59768893170477	10.7655084077843	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS16800	ABID97_RS16800		AMP-binding protein	1.4970114952985	10.630862157229	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS16800	ABID97_RS16800		AMP-binding protein	1.76643407450077	12.2373918829996	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS16805	ABID97_RS16805		hypothetical protein	1.28230446542102	8.3961971403201	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS16805	ABID97_RS16805		hypothetical protein	1.32985947494209	7.5394415710054	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS16810	ABID97_RS16810		phosphopantetheine-binding protein	1.69875420205503	8.62239760019526	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS16810	ABID97_RS16810		phosphopantetheine-binding protein	1.82859143014082	13.9443173243327	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS19895	ABID97_RS19895		histone deacetylase family protein	-1.28712594324835	-6.46272103923148	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS19895	ABID97_RS19895		histone deacetylase family protein	-1.23979660920097	-6.44004077749979	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS21075	ABID97_RS21075		NAD(P)/FAD-dependent oxidoreductase	-8.29544124982372	-8.08413798938405	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS21075	ABID97_RS21075		NAD(P)/FAD-dependent oxidoreductase	-7.53966259844299	-8.00554907823228	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS23145	ABID97_RS23145		histidinol-phosphate transaminase	-1.46193175319332	-9.1017639128991	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS23145	ABID97_RS23145		histidinol-phosphate transaminase	-1.33091492460318	-7.91996525964937	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS23210	ABID97_RS23210		lipid asymmetry maintenance ABC transporter permease subunit MlaE	-1.75393536437402	-8.20664767009607	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS23215	ABID97_RS23215		ABC transporter ATP-binding protein	-1.39134659172427	-10.0821557798493	FALSE
+carbon source	set1IT078	Tween 20	ABID97_RS24245	ABID97_RS24245		methyltransferase domain-containing protein	-2.44471718871885	-10.0728725675077	FALSE
+carbon source	set1IT030	Tween 20	ABID97_RS24245	ABID97_RS24245		methyltransferase domain-containing protein	-1.96252363451164	-7.74381627057832	FALSE
+carbon source	set1IT057	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS02635	ABID97_RS02635		monovalent cation:proton antiporter-2 (CPA2) family protein	1.26160436689586	11.7014026668151	FALSE
+carbon source	set1IT057	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS12465	ABID97_RS12465		dicarboxylate/amino acid:cation symporter	-2.1795747780462	-7.55767110807272	FALSE
+carbon source	set1IT009	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS12465	ABID97_RS12465		dicarboxylate/amino acid:cation symporter	-1.96477480847055	-5.61827254658782	FALSE
+carbon source	set1IT057	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS17465	ABID97_RS17465		malonyl-CoA synthase	2.25700173778125	18.8067441012761	TRUE
+carbon source	set1IT057	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS20370	ABID97_RS20370		branched-chain amino acid ABC transporter permease	-1.19241649202501	-5.22688239727381	FALSE
+carbon source	set1IT057	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS22695	ABID97_RS22695		tripartite tricarboxylate transporter permease	2.02884994195001	13.1549618136518	FALSE
+carbon source	set1IT009	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS22695	ABID97_RS22695		tripartite tricarboxylate transporter permease	2.05367520368257	12.8884302061243	FALSE
+carbon source	set1IT009	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS22700	ABID97_RS22700		tripartite tricarboxylate transporter TctB family protein	1.61848657525644	11.8255266928333	FALSE
+carbon source	set1IT057	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS22700	ABID97_RS22700		tripartite tricarboxylate transporter TctB family protein	1.69670502035283	11.4737568156399	FALSE
+carbon source	set1IT057	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS26555	ABID97_RS26555		lipoyl synthase	4.1316003937306	7.02042656999836	FALSE
+carbon source	set1IT009	a-Ketoglutaric acid disodium salt hydrate	ABID97_RS26555	ABID97_RS26555		lipoyl synthase	4.41505242162563	6.67636587341859	FALSE
+carbon source	set2IT047	casamino acids	ABID97_RS07170	ABID97_RS07170		hemolysin family protein	-1.38544213384877	-7.19335724035068	FALSE

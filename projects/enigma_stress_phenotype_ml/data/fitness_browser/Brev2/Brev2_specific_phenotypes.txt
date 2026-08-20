@@ -1,0 +1,77 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set1S90	D-Glucose	A4249_RS00310	A4249_RS00310		acetoacetyl-CoA reductase	1.58675708411665	5.54581175431556	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS00715	A4249_RS00715		cation:dicarboxylase symporter family transporter	2.30668605794959	17.0820199198765	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS01740	A4249_RS01740		VOC family protein	-2.22421027902593	-12.7548272822973	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS01745	A4249_RS01745		peptide-methionine (S)-S-oxide reductase MsrA	1.64185338459345	12.0488564145686	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS01810	A4249_RS01810		hypothetical protein	-1.05767614015356	-6.33799173501902	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS02220	A4249_RS02220		MaoC family dehydratase	-2.19397859392707	-7.25730797101595	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS02830	A4249_RS02830		phenylalanine 4-monooxygenase	-1.34259680891647	-8.89561317337002	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS04100	A4249_RS04100		J domain-containing protein	-2.23879239183713	-8.59646434225427	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS04440	A4249_RS04440		MFS transporter	1.52169581691363	9.04213290298938	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS04445	A4249_RS04445		ubiquinol oxidase subunit II	1.17720934452481	6.91502952795943	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS04460	A4249_RS04460		cytochrome o ubiquinol oxidase subunit IV	1.56090317273149	5.74039910662752	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS05420	A4249_RS05420		amino acid permease	2.36056845469671	20.2660894988534	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS06570	A4249_RS06570		glutathione-disulfide reductase	1.62122867004668	14.1919693298496	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS06580	A4249_RS06580		HWE histidine kinase domain-containing protein	-2.97947241805329	-5.54779109387666	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS07350	A4249_RS07350		FliM/FliN family flagellar motor switch protein	1.5307858365956	8.11380541276742	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS07620	A4249_RS07620		NAD regulator	-1.99216713133738	-10.0148103145209	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS07755	A4249_RS07755		TetR/AcrR family transcriptional regulator	-1.06584289130948	-7.00601688815199	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS07820	A4249_RS07820		transglycosylase SLT domain-containing protein	1.1579057105511	6.37040302555455	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS08315	A4249_RS08315		cystathionine gamma-synthase	2.08401917476703	16.1471910944854	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS08320	A4249_RS08320		cystathionine beta-synthase	2.34401483636011	17.1405529117938	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS08325	A4249_RS08325		ribonuclease R	-1.14307850759368	-6.18815983457406	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS08540	A4249_RS08540		flagellar basal body P-ring protein FlgI	1.34259092912014	9.51000961921484	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS08620	A4249_RS08620		flagellar hook-associated protein FlgK	1.05138496806262	8.61864096497032	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS08635	A4249_RS08635		flagellar hook protein FlgE	1.24649995613608	9.40364583907625	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS08640	A4249_RS08640		DUF1153 domain-containing protein	-1.629234343475	-5.09523656559481	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS09215	A4249_RS09215		tyrosine-protein phosphatase	-2.05443311366405	-19.8619064653579	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS09335	A4249_RS09335		aminomethyl-transferring glycine dehydrogenase subunit GcvPA	-1.14053561443226	-7.03566940568894	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS09610	A4249_RS09610		flagellar motor switch protein FliM	1.41243671728674	8.85714673911061	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS09615	A4249_RS09615		flagellar basal body-associated FliL family protein	1.15493822336275	6.62672631731983	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS09625	A4249_RS09625		flagellar basal-body rod protein FlgG	1.56504126047421	8.99672362768182	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS09630	A4249_RS09630		flagella basal body P-ring formation protein FlgA	1.18471616265343	5.57216320755427	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS09635	A4249_RS09635		flagellar basal body L-ring protein FlgH	1.2468714587688	7.70455445120222	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS09695	A4249_RS09695		polyprenyl synthetase family protein	-1.79269698538499	-10.7414045154311	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS09740	A4249_RS09740		histidine kinase dimerization/phosphoacceptor domain -containing protein	3.26188755541772	31.162364861471	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS09745	A4249_RS09745		response regulator	3.08351045708565	22.9712454948001	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS09750	A4249_RS09750		CHASE3 domain-containing protein	2.96226379071999	26.2662317172493	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS09755	A4249_RS09755		flagellar biosynthesis protein FlhA	1.02359900294471	7.39799695188318	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS09785	A4249_RS09785		flagellar basal-body MS-ring/collar protein FliF	1.13258195999142	7.00994117067512	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS09950	A4249_RS09950		alpha-amylase family glycosyl hydrolase	-1.56077114583153	-12.3022312367363	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS10290	A4249_RS10290		flagellar protein export ATPase FliI	1.05274961478867	6.06442577554466	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS10835	A4249_RS10835		c-type cytochrome biogenesis protein CcmI	2.52635129654842	8.56388400854252	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS11055	A4249_RS11055		NAD-dependent epimerase/dehydratase family protein	1.01130481577965	8.90322945192055	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS11275	A4249_RS11275		phosphotransferase	-1.51133134591493	-5.65741926451019	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS12660	A4249_RS12660		aldo/keto reductase	1.32566388949087	8.71947409493947	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS13205	A4249_RS13205		Lrp/AsnC family transcriptional regulator	3.16237850795677	16.9051404208629	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS14305	A4249_RS14305		gamma-glutamyltransferase family protein	-2.25288405551838	-13.2822037698269	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS14775	A4249_RS14775		sigma-70 family RNA polymerase sigma factor	3.21045578709622	7.56742331943483	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS14785	A4249_RS14785		response regulator	3.70235520697585	36.0878179901872	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS14795	A4249_RS14795		acyl dehydratase	-1.4632896901009	-7.5170591355241	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS14820	A4249_RS14820		ribosome silencing factor	-1.6623005222129	-5.14962288697011	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS15030	A4249_RS15030		aromatic ring-hydroxylating dioxygenase subunit alpha	1.82754536613364	16.6685352025084	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS15330	A4249_RS15330		flagellar motor stator protein MotA	1.29479781094915	10.7954866189872	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS15675	A4249_RS15675		Crp/Fnr family transcriptional regulator	2.30744813074709	17.9746537060366	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS16000	A4249_RS16000		hypothetical protein	1.17427748385432	10.6787131554151	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS16020	A4249_RS16020		flagellar basal body rod protein FlgB	1.16462261739354	7.60225180897042	FALSE
+carbon source	set1S88	D-Glucose	A4249_RS16025	A4249_RS16025		flagellar basal body rod protein FlgC	1.4400773365117	8.66659813782788	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS16040	A4249_RS16040		FAD-dependent oxidoreductase	3.15683508440627	21.3763581272809	FALSE
+carbon source	set1S90	D-Glucose	A4249_RS16595	A4249_RS16595		hypothetical protein	2.36292356047165	16.563458539957	FALSE
+carbon source	set1S91	Tween 20	A4249_RS00380	A4249_RS00380		MerR family DNA-binding transcriptional regulator	-1.90637991980032	-5.48306592307655	FALSE
+carbon source	set1S91	Tween 20	A4249_RS01605	A4249_RS01605		MFS transporter	-1.19108163752362	-8.35269715440986	FALSE
+carbon source	set1S91	Tween 20	A4249_RS04655	A4249_RS04655		peptidoglycan DD-metalloendopeptidase family protein	-1.30850539405094	-6.84214911048859	FALSE
+carbon source	set1S91	Tween 20	A4249_RS05470	A4249_RS05470		lytic transglycosylase domain-containing protein	-1.71922497375685	-14.9191046530651	FALSE
+carbon source	set1S91	Tween 20	A4249_RS05870	A4249_RS05870		ETC complex I subunit	-3.60545431907586	-10.104011811228	FALSE
+carbon source	set1S91	Tween 20	A4249_RS07955	A4249_RS07955		MBL fold metallo-hydrolase	-2.22289640640051	-15.7502498948118	FALSE
+carbon source	set1S91	Tween 20	A4249_RS08455	A4249_RS08455		TolC family outer membrane protein	-2.49182523296	-20.1314275220482	FALSE
+carbon source	set1S89	Tween 20	A4249_RS08455	A4249_RS08455		TolC family outer membrane protein	-1.5578023611479	-13.3091434595279	FALSE
+carbon source	set1S91	Tween 20	A4249_RS09215	A4249_RS09215		tyrosine-protein phosphatase	-1.63717343010257	-15.9193475314064	FALSE
+carbon source	set1S89	Tween 20	A4249_RS09830	A4249_RS09830		ATP-binding protein	-1.28513102265485	-5.91844149827165	FALSE
+carbon source	set1S91	Tween 20	A4249_RS09920	A4249_RS09920		TolC family protein	-2.28228945253234	-14.6812220771229	FALSE
+carbon source	set1S89	Tween 20	A4249_RS09920	A4249_RS09920		TolC family protein	-1.46671289771115	-11.054130179482	FALSE
+carbon source	set1S91	Tween 20	A4249_RS09925	A4249_RS09925		multidrug efflux RND transporter permease subunit	-2.30882777135768	-16.0996036084841	FALSE
+carbon source	set1S89	Tween 20	A4249_RS09925	A4249_RS09925		multidrug efflux RND transporter permease subunit	-1.46777914835056	-12.5890458866595	FALSE
+carbon source	set1S91	Tween 20	A4249_RS09930	A4249_RS09930		efflux RND transporter periplasmic adaptor subunit	-2.5174061044095	-13.8292506558155	FALSE
+carbon source	set1S89	Tween 20	A4249_RS09930	A4249_RS09930		efflux RND transporter periplasmic adaptor subunit	-1.64813247675203	-9.97230247539759	FALSE
+carbon source	set1S91	Tween 20	A4249_RS14520	A4249_RS14520		alpha/beta hydrolase	-1.17920663226773	-8.26949800635224	FALSE
+carbon source	set1S91	Tween 20	A4249_RS14845	A4249_RS14845		saccharopine dehydrogenase family protein	1.09232491806977	8.31287733015097	FALSE

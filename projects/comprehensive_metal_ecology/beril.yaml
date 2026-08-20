@@ -1,0 +1,33 @@
+project_id: comprehensive_metal_ecology
+status: analysis
+title: "Metal-Gene Density Predicts Ecological Niche Breadth in Prokaryotes"
+description: >
+  Pre-specified PGLS analysis testing whether metal-gene density (140 KOs, Tier 1+2,
+  24 metals) negatively predicts ecological niche breadth (Levins' standardised B)
+  across 1,574 bacterial genera, controlling for genome size and phylogenetic
+  non-independence (Pagel's λ, GTDB r214 genus tree). Primary result P1:
+  β = −0.021, SE = 0.0037, p = 2.1×10⁻⁸, λ = 0.757. Internal functional split
+  (cofactor vs. resistance Δβ = 0.035, emp_p < 0.001) is the key secondary finding.
+  Three external replications (P3/P4/P5), 29+ notebooks, phylogenetic signal analyses,
+  co-occurrence networks, and lateral HGT evidence.
+created_at: "2026-06-01T00:00:00Z"
+last_session_at: "2026-07-22T19:30:00Z"
+branch: hrm-projects-v3
+engine:
+  name: claude
+authors:
+  - name: "Heather MacGregor"
+    affiliation: "Lawrence Berkeley National Laboratory"
+    orcid: "0000-0003-1112-3009"
+thesis_chapter: "Part 2 — Metal Ecology"
+data_sources:
+  - kbase.ke_pangenome
+  - kescience_mgnify
+  - arkinlab.microbeatlas
+  - arkinlab.envdbs
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true
+submissions: []

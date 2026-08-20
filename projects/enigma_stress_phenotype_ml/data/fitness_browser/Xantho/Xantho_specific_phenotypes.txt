@@ -1,0 +1,33 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+clovis xylem sap	set3IT083		Xcc-8004.2231.1	Xcc-8004.2231.1		Stringent starvation protein A	1.26088897119511	8.53419237927884	FALSE
+in planta	set1IT091		Xcc-8004.2180.1	Xcc-8004.2180.1		RND efflux system, membrane fusion protein CmeA	-1.21534853783289	-6.34644409069291	FALSE
+in planta	set2IT083		Xcc-8004.2368.1	Xcc-8004.2368.1		N-Acetyl-D-glucosamine ABC transport system, permease protein 1	-1.26349114391226	-5.03704055361467	FALSE
+in planta	set2IT083		Xcc-8004.2451.1	Xcc-8004.2451.1		Multiple sugar ABC transporter, ATP-binding protein	-1.12097698226987	-6.60095302719823	FALSE
+in planta	set1IT091		Xcc-8004.2743.1	Xcc-8004.2743.1		FIG01210856: hypothetical protein	-3.53241305099883	-13.8153400501182	FALSE
+in planta	set2IT075		Xcc-8004.2743.1	Xcc-8004.2743.1		FIG01210856: hypothetical protein	-2.40348799696022	-11.744456811958	FALSE
+in planta	set2IT079		Xcc-8004.2743.1	Xcc-8004.2743.1		FIG01210856: hypothetical protein	-1.72487622814691	-8.68210323735906	FALSE
+in planta	set2IT083		Xcc-8004.2743.1	Xcc-8004.2743.1		FIG01210856: hypothetical protein	-1.50283995281767	-7.0681081930246	FALSE
+in planta	set1IT091		Xcc-8004.3080.1	Xcc-8004.3080.1		Galactonate dehydratase (EC 4.2.1.6)	-1.34015530054611	-7.31416500975261	FALSE
+in planta	set2IT079		Xcc-8004.3362.1	Xcc-8004.3362.1		Phosphate transport system permease protein PstA (TC 3.A.1.7.1)	-2.51057563057262	-5.45273830173381	FALSE
+in planta	set1IT091		Xcc-8004.3770.1	Xcc-8004.3770.1		Aminodeoxychorismate lyase (EC 4.1.3.38)	-1.52962977256894	-6.06437120495337	FALSE
+in planta	set2IT079		Xcc-8004.3870.1	Xcc-8004.3870.1		Inner membrane protein	-1.39705770992259	-7.14174907615347	FALSE
+in planta	set2IT083		Xcc-8004.3992.1	Xcc-8004.3992.1		Para-aminobenzoate synthase, aminase component (EC 2.6.1.85)	-1.03383597918975	-5.08560222479103	FALSE
+in planta	set1IT091		Xcc-8004.4063.1	Xcc-8004.4063.1		Phosphate regulon sensor protein PhoR (SphS) (EC 2.7.13.3)	-1.68766135234684	-6.67259193180454	FALSE
+in planta	set2IT083		Xcc-8004.4092.1	Xcc-8004.4092.1		FIG01209901: hypothetical protein	-1.4841335256567	-6.43383782035804	FALSE
+in planta	set2IT079		Xcc-8004.4653.1	Xcc-8004.4653.1		amino acid transporter	-1.41380107730386	-8.22212706558142	FALSE
+in planta	set2IT083		Xcc-8004.5035.1	Xcc-8004.5035.1		Tryptophan halogenase	1.17573606793925	5.26660636932673	FALSE
+in planta	set1IT091		Xcc-8004.5036.1	Xcc-8004.5036.1		Ferric siderophore transport system, periplasmic binding protein TonB	1.39879557084586	6.80176246755889	FALSE
+in planta	set2IT083		Xcc-8004.5062.1	Xcc-8004.5062.1		Integral membrane protein	-1.47807170727098	-5.87293324734287	FALSE
+in planta	set2IT083		Xcc-8004.5095.1	Xcc-8004.5095.1		uncharacterized domain / RidA/YER057c/UK114 superfamily, group 5	-1.23540980095534	-5.58740006928506	FALSE
+xantho_mme_glucose_casamino	set2IT092		Xcc-8004.1673.1	Xcc-8004.1673.1		Phosphoribosylglycinamide formyltransferase (EC 2.1.2.2)	-1.60349183032696	-5.57913176525936	FALSE
+xantho_mme_glucose_casamino	set3IT089		Xcc-8004.2019.1	Xcc-8004.2019.1		Decarboxylase family protein	-1.34342621534966	-7.52945864839059	FALSE
+xantho_mme_glucose_casamino	set3IT073		Xcc-8004.2207.1	Xcc-8004.2207.1		Membrane fusion component of tripartite multidrug resistance system	-1.21086251592909	-6.22558652240716	FALSE
+xantho_mme_glucose_dropout_lth	set3IT090		Xcc-8004.2009.1	Xcc-8004.2009.1		Quinolinate phosphoribosyltransferase [decarboxylating] (EC 2.4.2.19)	-1.90525245508467	-8.18642884005292	FALSE
+xantho_mme_glucose_dropout_lth	set3IT090		Xcc-8004.2165.1	Xcc-8004.2165.1		Ornithine aminotransferase (EC 2.6.1.13); Succinylornithine transaminase (EC 2.6.1.81); Acetylornithine aminotransferase (EC 2.6.1.11); N-succinyl-L,L-diaminopimelate aminotransferase (EC 2.6.1.17)	-2.26490671254476	-12.7047491350012	FALSE
+xantho_mme_glucose_dropout_lth	set3IT090		Xcc-8004.2936.1	Xcc-8004.2936.1		Amino acid transporters	-1.58893100312624	-8.93074612815505	FALSE
+xantho_mme_glucose_dropout_lth	set3IT090		Xcc-8004.3325.1	Xcc-8004.3325.1		3-hydroxyanthranilate 3,4-dioxygenase (EC 1.13.11.6)	-2.20425382430027	-5.90992830075479	FALSE
+xantho_mme_glucose_dropout_lth	set3IT090		Xcc-8004.3327.1	Xcc-8004.3327.1		Kynureninase (EC 3.7.1.3)	-1.6217876402994	-6.742100894336	FALSE
+xantho_mme_glucose_dropout_lth	set3IT090		Xcc-8004.3328.1	Xcc-8004.3328.1		Kynurenine 3-monooxygenase (EC 1.14.13.9)	-1.44547942919016	-5.60284641906867	FALSE
+xantho_mme_glucose_dropout_lth	set3IT090		Xcc-8004.4082.1	Xcc-8004.4082.1		L-threonine 3-dehydrogenase (EC 1.1.1.103)	-1.48752554534572	-9.07822790090519	FALSE
+xantho_mme_glucose_dropout_lth	set3IT090		Xcc-8004.4088.1	Xcc-8004.4088.1		2-amino-3-ketobutyrate coenzyme A ligase (EC 2.3.1.29)	-1.09329740191057	-7.21347253416984	FALSE
+xantho_mme_glucose_dropout_lth	set3IT090		Xcc-8004.4985.1	Xcc-8004.4985.1		Arginase (EC 3.5.3.1)	-1.98320731170899	-9.36882577084217	FALSE

@@ -1,0 +1,52 @@
+project_id: metal_ecology_thesis
+status: analysis
+title: 'Microbial Metal Ecology: Turnover vs Gene Gain in Global Soil Communities'
+description: >
+  Integrated synthesis of six completed analyses addressing the central thesis question:
+  does metal contamination select for metal-tolerant lineages (community turnover) or
+  drive metal resistance gene gain within resident lineages? All sub-analyses are
+  complete; this project provides the unified pre-registered analysis plan and
+  cross-project synthesis.
+
+  Sub-analyses (all complete):
+    1. comprehensive_metal_ecology      — PGLS: niche breadth vs metal gene density (1,574 genera)
+    2. per_ko_metal_associations        — MWAS: 6,451 KOs × 6 metals (8,585 MAGs)
+    3. community_composition_prediction — ML: taxon community → metal prediction
+    4. enigma_stress_phenotype_ml       — ENIGMA isolate sequence → metal fitness (AUC 0.556–0.779)
+    5. metagenomic_environment_prediction — MAG-level metal prediction (SPIRE + MGnify)
+    6. mwas_confound_analysis           — MWAS collinearity control: 1,097 → 2–4 true hits
+
+created_at: '2026-08-07T00:00:00Z'
+branch: hrm-projects-v3
+engine:
+  name: claude
+authors:
+- name: Heather MacGregor
+  affiliation: Lawrence Berkeley National Laboratory
+  orcid: 0000-0003-1112-3009
+thesis_chapter: All parts (synthesis)
+sub_analyses:
+  - project_id: comprehensive_metal_ecology
+    role: primary — PGLS ecology (Aim 1)
+    status: complete
+  - project_id: per_ko_metal_associations
+    role: primary — MWAS per-KO (Aim 2)
+    status: complete
+  - project_id: community_composition_prediction
+    role: primary — community ML prediction (Aim 3)
+    status: complete
+  - project_id: enigma_stress_phenotype_ml
+    role: primary — isolate sequence fitness (Aim 4)
+    status: complete
+  - project_id: metagenomic_environment_prediction
+    role: supporting — MAG-level prediction
+    status: complete
+  - project_id: mwas_confound_analysis
+    role: supporting — MWAS collinearity control
+    status: complete
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: false
+last_session_at: '2026-08-07T00:00:00Z'

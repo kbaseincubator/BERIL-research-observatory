@@ -1,0 +1,164 @@
+{
+  "global_pagel_lambda": 0.453721335184084,
+  "pagel_p_value": 3.9823489089909796e-258,
+  "pgls_coefficients": [
+    {
+      "term": "(Intercept)",
+      "estimate": -0.395978065849,
+      "p_value": 0.0257836537209323
+    },
+    {
+      "term": "median_levins_B",
+      "estimate": -1.43533135405919e-07,
+      "p_value": 0.142991707406842
+    }
+  ],
+  "n_species_analysed": 6740,
+  "n_genera": 979,
+  "clade_specific_lambda": [
+    {
+      "clade": "Actinomycetota",
+      "lambda": 0.658298996129135,
+      "p_value": 1.31394312060496e-97,
+      "n_species": 1401
+    },
+    {
+      "clade": "Pseudomonadota",
+      "lambda": 0.360782846848405,
+      "p_value": 3.58546539923252e-57,
+      "n_species": 2829
+    },
+    {
+      "clade": "Bacillota",
+      "lambda": 0.552779430671082,
+      "p_value": 5.54476484080359e-26,
+      "n_species": 643
+    },
+    {
+      "clade": "Bacteroidota",
+      "lambda": 0.619813087567214,
+      "p_value": 2.71250513964317e-59,
+      "n_species": 872
+    },
+    {
+      "clade": "Thermoplasmatota",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 12
+    },
+    {
+      "clade": "Bacillota_A",
+      "lambda": 0.629441672940106,
+      "p_value": 3.40017417649175e-07,
+      "n_species": 401
+    },
+    {
+      "clade": "Bacillota_C",
+      "lambda": 0.886124416244877,
+      "p_value": 0.0060540660411135,
+      "n_species": 50
+    },
+    {
+      "clade": "Bacillota_B",
+      "lambda": 0.766549169753132,
+      "p_value": 0.19739238662488,
+      "n_species": 10
+    },
+    {
+      "clade": "Cyanobacteriota",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 41
+    },
+    {
+      "clade": "Spirochaetota",
+      "lambda": 0.400954207265889,
+      "p_value": 0.736486720387828,
+      "n_species": 13
+    },
+    {
+      "clade": "Campylobacterota",
+      "lambda": 0.223606797749979,
+      "p_value": 0.0823314784417965,
+      "n_species": 42
+    },
+    {
+      "clade": "Bacillota_E",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 5
+    },
+    {
+      "clade": "Desulfobacterota",
+      "lambda": 0.999926686256414,
+      "p_value": 0.0170475116141523,
+      "n_species": 15
+    },
+    {
+      "clade": "Deinococcota",
+      "lambda": 0.0013883404377597,
+      "p_value": 0.993213377134986,
+      "n_species": 17
+    },
+    {
+      "clade": "Halobacteriota",
+      "lambda": 0.230689702668927,
+      "p_value": 0.183689160988402,
+      "n_species": 64
+    },
+    {
+      "clade": "Acidobacteriota",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 18
+    },
+    {
+      "clade": "Planctomycetota",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 25
+    },
+    {
+      "clade": "Verrucomicrobiota",
+      "lambda": 0.523057172893869,
+      "p_value": 0.556388152711787,
+      "n_species": 25
+    },
+    {
+      "clade": "Thermoproteota",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 21
+    },
+    {
+      "clade": "Fusobacteriota",
+      "lambda": 0.999926686256414,
+      "p_value": 0.253472107930084,
+      "n_species": 5
+    },
+    {
+      "clade": "Synergistota",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 5
+    },
+    {
+      "clade": "Myxococcota",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 17
+    },
+    {
+      "clade": "Gemmatimonadota",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 8
+    },
+    {
+      "clade": "Chloroflexota",
+      "lambda": 7.33137435857406e-05,
+      "p_value": 1.0,
+      "n_species": 10
+    }
+  ]
+}

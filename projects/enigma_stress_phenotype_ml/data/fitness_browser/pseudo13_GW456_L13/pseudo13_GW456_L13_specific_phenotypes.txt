@@ -1,0 +1,718 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set2IT076	D-Alanine	PfGW456L13_120			Branched-chain amino acid transport ATP-binding protein LivF (TC 3.A.1.4.1)	-1.36840223860383	-5.31397856880647	TRUE
+carbon source	set1IT028	D-Alanine	PfGW456L13_120			Branched-chain amino acid transport ATP-binding protein LivF (TC 3.A.1.4.1)	-1.21780488017482	-5.95488106374035	TRUE
+carbon source	set2IT076	D-Alanine	PfGW456L13_121			Branched-chain amino acid transport ATP-binding protein LivG (TC 3.A.1.4.1)	-1.32590255679977	-5.55839729548075	TRUE
+carbon source	set1IT028	D-Alanine	PfGW456L13_121			Branched-chain amino acid transport ATP-binding protein LivG (TC 3.A.1.4.1)	-1.25157835619985	-5.03049215275251	TRUE
+carbon source	set1IT028	D-Alanine	PfGW456L13_122			Branched-chain amino acid transport system permease protein LivM (TC 3.A.1.4.1)	-1.15743307198165	-8.39602097376554	FALSE
+carbon source	set1IT028	D-Alanine	PfGW456L13_124			Branched-chain amino acid ABC transporter, amino acid-binding protein (TC 3.A.1.4.1)	-1.38361762261815	-9.71489559729265	FALSE
+carbon source	set2IT076	D-Alanine	PfGW456L13_124			Branched-chain amino acid ABC transporter, amino acid-binding protein (TC 3.A.1.4.1)	-1.06024808967192	-7.56998083791559	FALSE
+carbon source	set2IT076	D-Alanine	PfGW456L13_1866			Aminomethyltransferase (glycine cleavage system T protein) (EC 2.1.2.10)	1.17795780876144	5.61120335653413	FALSE
+carbon source	set1IT028	D-Alanine	PfGW456L13_1866			Aminomethyltransferase (glycine cleavage system T protein) (EC 2.1.2.10)	1.23518103902832	6.62072029899026	FALSE
+carbon source	set1IT028	D-Alanine	PfGW456L13_4332			Flagellar synthesis regulator FleN	-1.94339225316092	-8.02861262548262	FALSE
+carbon source	set1IT028	D-Alanine	PfGW456L13_4606			High-affinity leucine-specific transport system, periplasmic binding protein LivK (TC 3.A.1.4.1)	-1.79359689080393	-8.85722406780099	FALSE
+carbon source	set2IT076	D-Alanine	PfGW456L13_4606			High-affinity leucine-specific transport system, periplasmic binding protein LivK (TC 3.A.1.4.1)	-1.37893036787884	-8.0297417260735	FALSE
+carbon source	set2IT076	D-Alanine	PfGW456L13_4608			High-affinity branched-chain amino acid transport system permease protein LivH (TC 3.A.1.4.1)	-1.72227030913528	-7.85641044103295	TRUE
+carbon source	set1IT028	D-Alanine	PfGW456L13_4608			High-affinity branched-chain amino acid transport system permease protein LivH (TC 3.A.1.4.1)	-1.69705407758102	-9.76903850753448	TRUE
+carbon source	set1IT028	D-Alanine	PfGW456L13_4609			Branched-chain amino acid transport system permease protein LivM (TC 3.A.1.4.1)	-1.68761216919841	-10.0789020876639	TRUE
+carbon source	set2IT076	D-Alanine	PfGW456L13_4609			Branched-chain amino acid transport system permease protein LivM (TC 3.A.1.4.1)	-1.58324129075869	-9.55938738611185	TRUE
+carbon source	set2IT076	D-Alanine	PfGW456L13_4611			Branched-chain amino acid transport ATP-binding protein LivF (TC 3.A.1.4.1)	-1.8068132274647	-5.61202526487237	TRUE
+carbon source	set1IT028	D-Alanine	PfGW456L13_4791			Transposase and inactivated derivatives	2.30797360047259	9.36967103527816	FALSE
+carbon source	set2IT076	D-Alanine	PfGW456L13_4791			Transposase and inactivated derivatives	2.59541749712793	9.58277721886716	FALSE
+carbon source	set2IT050	D-Fructose	PfGW456L13_1891			DNA-binding response regulator GltR, controls specific porins for the entry of glucose	-1.46824655558308	-5.27009656101662	FALSE
+carbon source	set1IT002	D-Fructose	PfGW456L13_1894			Glucose ABC transport system, periplasmic sugar-binding protein	-1.63251521056478	-6.0940925722863	FALSE
+carbon source	set1IT002	D-Fructose	PfGW456L13_1895			Glucose ABC transport system, inner membrane component 1	-1.41340638489348	-7.18397512592098	FALSE
+carbon source	set2IT050	D-Fructose	PfGW456L13_1900			Phosphogluconate repressor HexR, RpiR family	1.46812146464296	6.96330825947218	FALSE
+carbon source	set1IT002	D-Fructose	PfGW456L13_2224			2-keto-3-deoxy-D-arabino-heptulosonate-7- phosphate synthase I alpha (EC 2.5.1.54)	-1.52485904845925	-5.36670419220448	TRUE
+carbon source	set2IT050	D-Fructose	PfGW456L13_2803			Glyceraldehyde-3-phosphate dehydrogenase, putative	-1.65796522324734	-6.55502564701941	FALSE
+carbon source	set2IT050	D-Fructose	PfGW456L13_4001			Polysaccharide export lipoprotein Wza	-1.97901383653671	-11.4628024339485	FALSE
+carbon source	set2IT050	D-Fructose	PfGW456L13_4002			YjbF outer membrane lipoprotein	-2.09850840334256	-6.39477476352798	FALSE
+carbon source	set1IT002	D-Fructose	PfGW456L13_5073			PTS system, fructose-specific IIB component (EC 2.7.1.69) / PTS system, fructose-specific IIC component (EC 2.7.1.69)	-3.87288545333465	-13.8581478408708	TRUE
+carbon source	set2IT050	D-Fructose	PfGW456L13_5073			PTS system, fructose-specific IIB component (EC 2.7.1.69) / PTS system, fructose-specific IIC component (EC 2.7.1.69)	-2.97517476183214	-14.6622536267117	TRUE
+carbon source	set1IT002	D-Fructose	PfGW456L13_5075			Phosphoenolpyruvate-protein phosphotransferase of PTS system (EC 2.7.3.9)	-3.31041431862782	-6.68645884515883	TRUE
+carbon source	set2IT050	D-Fructose	PfGW456L13_5075			Phosphoenolpyruvate-protein phosphotransferase of PTS system (EC 2.7.3.9)	-2.61875321162506	-7.64304088569544	TRUE
+carbon source	set1IT002	D-Fructose	PfGW456L13_855			Autolysis response regulater LytR	-1.90099685352267	-9.20375505453597	FALSE
+carbon source	set1IT005	D-Galactose	PfGW456L13_1891			DNA-binding response regulator GltR, controls specific porins for the entry of glucose	-2.15879267444865	-6.30073863551071	FALSE
+carbon source	set1IT005	D-Galactose	PfGW456L13_1894			Glucose ABC transport system, periplasmic sugar-binding protein	-1.66277571079851	-5.6075715908974	FALSE
+carbon source	set1IT005	D-Galactose	PfGW456L13_1895			Glucose ABC transport system, inner membrane component 1	-2.01705352467038	-9.36469036041131	FALSE
+carbon source	set1IT005	D-Galactose	PfGW456L13_1896			Glucose ABC transport system, inner membrane component 2	-2.49698810239628	-8.84747064272545	FALSE
+carbon source	set1IT005	D-Galactose	PfGW456L13_1897			Glucose ABC transporter, ATP-binding subunit (EC 3.6.3.-)	-1.86759269779915	-6.76991748272362	FALSE
+carbon source	set1IT005	D-Galactose	PfGW456L13_2119			3-oxoacyl-[acyl-carrier protein] reductase (EC 1.1.1.100)	-4.56552421163837	-5.41644153820091	TRUE
+carbon source	set2IT053	D-Galactose	PfGW456L13_2119			3-oxoacyl-[acyl-carrier protein] reductase (EC 1.1.1.100)	-3.91968975058122	-7.78552785289826	TRUE
+carbon source	set1IT005	D-Galactose	PfGW456L13_2126			2-dehydro-3-deoxygalactonokinase (EC 2.7.1.58)	-4.53371536255438	-5.38113602069703	TRUE
+carbon source	set2IT053	D-Galactose	PfGW456L13_2126			2-dehydro-3-deoxygalactonokinase (EC 2.7.1.58)	-3.41989275121232	-6.04186545662846	TRUE
+carbon source	set1IT005	D-Galactose	PfGW456L13_2128			Galactonate dehydratase (EC 4.2.1.6)	-5.1312811730198	-6.10530126484237	TRUE
+carbon source	set2IT053	D-Galactose	PfGW456L13_2128			Galactonate dehydratase (EC 4.2.1.6)	-4.10349627622075	-11.9221981927305	TRUE
+carbon source	set1IT005	D-Galactose	PfGW456L13_2130			Hexuronate transporter	-3.16067355679762	-8.55594962649653	TRUE
+carbon source	set2IT053	D-Galactose	PfGW456L13_2130			Hexuronate transporter	-2.11181321822466	-8.31674788743306	TRUE
+carbon source	set1IT005	D-Galactose	PfGW456L13_3314			3-carboxymuconate cyclase	-2.2683079243572	-5.72786870075018	FALSE
+carbon source	set2IT055	D-Gluconic Acid sodium salt	PfGW456L13_2309			FIG139991: Putative thiamine pyrophosphate-requiring enzyme	-2.21987018151734	-5.64277911204314	FALSE
+carbon source	set2IT055	D-Gluconic Acid sodium salt	PfGW456L13_2310			FIG137594: Putative iron-regulated membrane protein	-2.79457334080849	-7.58234541742014	FALSE
+carbon source	set1IT007	D-Gluconic Acid sodium salt	PfGW456L13_2310			FIG137594: Putative iron-regulated membrane protein	-2.3791109661349	-6.02162872593404	FALSE
+carbon source	set2IT055	D-Gluconic Acid sodium salt	PfGW456L13_4437			Cytosine/purine/uracil/thiamine/allantoin permease family protein	1.45420062277171	5.61501506079928	FALSE
+carbon source	set2IT080	D-Glucosamine Hydrochloride	PfGW456L13_1925			Gluconate utilization system Gnt-I transcriptional repressor	11.8511916065517	48.4359416240595	TRUE
+carbon source	set1IT032	D-Glucosamine Hydrochloride	PfGW456L13_1925			Gluconate utilization system Gnt-I transcriptional repressor	12.0356969342673	49.6630812057172	TRUE
+carbon source	set2IT080	D-Glucosamine Hydrochloride	PfGW456L13_2867			D-serine deaminase (EC 4.3.1.18)	-1.20032485576393	-5.04080913899576	TRUE
+carbon source	set2IT049	D-Glucose	PfGW456L13_2155			tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase (EC 2.1.1.61) / FAD-dependent cmnm(5)s(2)U34 oxidoreductase	-1.16312293507362	-5.71557601511932	FALSE
+carbon source	set2IT049	D-Glucose	PfGW456L13_929			Putrescine ABC transporter putrescine-binding protein PotF (TC 3.A.1.11.2)	-1.34150865073021	-5.93952317293451	FALSE
+carbon source	set2IT081	D-Mannose	PfGW456L13_1893			N-acylglucosamine 2-epimerase (EC 5.1.3.8)	-2.82894477488461	-8.70196580930043	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_1893			N-acylglucosamine 2-epimerase (EC 5.1.3.8)	-2.80474710201072	-8.66755064524109	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_2803			Glyceraldehyde-3-phosphate dehydrogenase, putative	-1.68315448800159	-8.73230194208087	FALSE
+carbon source	set2IT081	D-Mannose	PfGW456L13_2803			Glyceraldehyde-3-phosphate dehydrogenase, putative	-1.4886307691222	-8.53838316973498	FALSE
+carbon source	set1IT033	D-Mannose	PfGW456L13_3036			Fructokinase (EC 2.7.1.4)	-3.61695309502325	-11.0628841444364	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_3036			Fructokinase (EC 2.7.1.4)	-3.53184033969358	-10.6441052902096	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_3038			Multiple polyol-specific dehydrogenase (EC 1.1.1.-)	-2.87375832938152	-9.93489731769234	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_3038			Multiple polyol-specific dehydrogenase (EC 1.1.1.-)	-2.7228173983438	-9.2748680306323	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_3039			Various polyols ABC transporter, ATP-binding component	-3.77050286959464	-10.1651348197959	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_3039			Various polyols ABC transporter, ATP-binding component	-3.33101949215407	-10.6192291913476	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_3040			Various polyols ABC transporter, permease component 2	-2.7701542666163	-6.99266621966673	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_3040			Various polyols ABC transporter, permease component 2	-2.34471186551674	-6.128024119301	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_3041			Various polyols ABC transporter, permease component 1	-2.25425248101886	-8.08990223560248	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_3041			Various polyols ABC transporter, permease component 1	-2.10204266233754	-6.54315862780325	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_3042			Various polyols ABC transporter, periplasmic substrate-binding protein	-3.13233015761305	-16.8710997935407	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_3042			Various polyols ABC transporter, periplasmic substrate-binding protein	-2.93637654224436	-14.7255110867676	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_3043			hypothetical protein	-3.15930902876901	-6.91180702898804	FALSE
+carbon source	set1IT033	D-Mannose	PfGW456L13_3043			hypothetical protein	-3.07454538878029	-7.19514818003543	FALSE
+carbon source	set1IT033	D-Mannose	PfGW456L13_3044			Transcriptional regulator of various polyols utilization, AraC family	-3.30630094630396	-8.3644459119656	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_3044			Transcriptional regulator of various polyols utilization, AraC family	-3.23525824651327	-6.93974534107819	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_5073			PTS system, fructose-specific IIB component (EC 2.7.1.69) / PTS system, fructose-specific IIC component (EC 2.7.1.69)	-3.40086081142742	-12.836841952057	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_5073			PTS system, fructose-specific IIB component (EC 2.7.1.69) / PTS system, fructose-specific IIC component (EC 2.7.1.69)	-3.18030946310653	-12.9541026827855	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_5075			Phosphoenolpyruvate-protein phosphotransferase of PTS system (EC 2.7.3.9)	-4.41860682695848	-10.139397831298	TRUE
+carbon source	set2IT081	D-Mannose	PfGW456L13_5075			Phosphoenolpyruvate-protein phosphotransferase of PTS system (EC 2.7.3.9)	-4.05203782754663	-11.0147017048271	TRUE
+carbon source	set1IT033	D-Mannose	PfGW456L13_855			Autolysis response regulater LytR	-1.26503996220805	-8.45789577224972	FALSE
+carbon source	set1IT027	D-Serine	PfGW456L13_1142			Protein rarD	-4.09027933201787	-14.5719232165664	FALSE
+carbon source	set2IT075	D-Serine	PfGW456L13_1142			Protein rarD	-3.27309554557613	-11.7560993783379	FALSE
+carbon source	set2IT075	D-Serine	PfGW456L13_2348			2-Oxobutyrate oxidase, putative	1.40888300021244	5.38301003480002	FALSE
+carbon source	set1IT027	D-Serine	PfGW456L13_3647			D-serine dehydratase transcriptional activator	-4.09934091648027	-17.9416330199425	TRUE
+carbon source	set2IT075	D-Serine	PfGW456L13_3647			D-serine dehydratase transcriptional activator	-3.31458106862914	-16.9509357611289	TRUE
+carbon source	set1IT027	D-Serine	PfGW456L13_3648			D-serine dehydratase (EC 4.3.1.18)	-4.32435470610018	-16.610275850318	TRUE
+carbon source	set2IT075	D-Serine	PfGW456L13_3648			D-serine dehydratase (EC 4.3.1.18)	-4.18992353015848	-17.1431077590575	TRUE
+carbon source	set2IT075	D-Serine	PfGW456L13_3649			D-serine permease DsdX	-3.32004687618843	-8.61025742205329	TRUE
+carbon source	set1IT027	D-Serine	PfGW456L13_3649			D-serine permease DsdX	-3.2925193878968	-8.62967749482009	TRUE
+carbon source	set2IT075	D-Serine	PfGW456L13_4247			NLP/P60 family protein	1.09101572827249	7.50621334534969	FALSE
+carbon source	set1IT027	D-Serine	PfGW456L13_4437			Cytosine/purine/uracil/thiamine/allantoin permease family protein	1.77545779395317	6.11762104497634	FALSE
+carbon source	set2IT075	D-Serine	PfGW456L13_4437			Cytosine/purine/uracil/thiamine/allantoin permease family protein	2.45306078628796	6.08138580726072	FALSE
+carbon source	set2IT075	D-Serine	PfGW456L13_617			FIG00953365: hypothetical protein	2.06172490423676	13.6438800172642	FALSE
+carbon source	set2IT062	Glycerol	PfGW456L13_1350			Antiholin-like protein LrgA	-1.48017576913058	-5.96943290145502	TRUE
+carbon source	set2IT062	Glycerol	PfGW456L13_1351			LrgA-associated membrane protein LrgB	-1.81537308366946	-10.6309887262091	TRUE
+carbon source	set1IT014	Glycerol	PfGW456L13_1351			LrgA-associated membrane protein LrgB	-1.56987662764721	-7.36316797360355	TRUE
+carbon source	set1IT014	Glycerol	PfGW456L13_1900			Phosphogluconate repressor HexR, RpiR family	1.66411181974452	8.08565541301263	FALSE
+carbon source	set1IT014	Glycerol	PfGW456L13_2173			Methylthioribose-1-phosphate isomerase (EC 5.3.1.23)	-1.31248027718869	-5.23890300663072	FALSE
+carbon source	set1IT014	Glycerol	PfGW456L13_2803			Glyceraldehyde-3-phosphate dehydrogenase, putative	-1.50917428336423	-5.92001696093313	FALSE
+carbon source	set2IT062	Glycerol	PfGW456L13_4555			FIG00954264: hypothetical protein	-2.07497655598662	-7.23125231364953	FALSE
+carbon source	set2IT062	Glycerol	PfGW456L13_4556			ThiJ/PfpI family protein	-2.05098530165522	-12.4556813979257	FALSE
+carbon source	set1IT014	Glycerol	PfGW456L13_4556			ThiJ/PfpI family protein	-1.27179918291255	-6.30875573573378	FALSE
+carbon source	set2IT062	Glycerol	PfGW456L13_5114			L-lactate permease	-1.300150394563	-6.70648378630129	TRUE
+carbon source	set2IT062	Glycerol	PfGW456L13_5115			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-1.94947436761467	-7.60763162588256	TRUE
+carbon source	set2IT062	Glycerol	PfGW456L13_5116			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-1.33732505615891	-7.18851580698327	TRUE
+carbon source	set1IT014	Glycerol	PfGW456L13_5118			Predicted D-lactate dehydrogenase, Fe-S protein, FAD/FMN-containing	-2.34348434948517	-10.4928554905526	TRUE
+carbon source	set2IT062	Glycerol	PfGW456L13_5118			Predicted D-lactate dehydrogenase, Fe-S protein, FAD/FMN-containing	-1.88853962758298	-9.00133460243888	TRUE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_2118			L-arabinolactonase (EC 3.1.1.15)	-3.13120731809499	-5.58909765501515	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_2118			L-arabinolactonase (EC 3.1.1.15)	-1.8281275836669	-5.96811981331073	TRUE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_2119			3-oxoacyl-[acyl-carrier protein] reductase (EC 1.1.1.100)	-2.01478185731089	-5.11013128840516	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_2119			3-oxoacyl-[acyl-carrier protein] reductase (EC 1.1.1.100)	-1.8082254183483	-7.17266337718719	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_2120			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-1.41469584093246	-6.91282327348386	TRUE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_2120			L-arabinose-binding periplasmic protein precursor AraF (TC 3.A.1.2.2)	-1.25996380188001	-5.36395044359829	TRUE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_2121			L-arabinose transport ATP-binding protein AraG (TC 3.A.1.2.2)	-1.39247681482464	-6.66477202334971	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_2121			L-arabinose transport ATP-binding protein AraG (TC 3.A.1.2.2)	-1.33412840138426	-8.26933522647151	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_2122			L-arabinose transport system permease protein (TC 3.A.1.2.2)	-1.80488879862715	-9.00611160947188	TRUE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_2122			L-arabinose transport system permease protein (TC 3.A.1.2.2)	-1.77477525599007	-7.73844761829261	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_2126			2-dehydro-3-deoxygalactonokinase (EC 2.7.1.58)	5.54926457108907	13.5951222782166	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_2126			2-dehydro-3-deoxygalactonokinase (EC 2.7.1.58)	5.74616927635292	17.2205171894666	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_2131			D-galactonate regulator, IclR family	5.0725566370488	19.4891284168251	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_2131			D-galactonate regulator, IclR family	5.22845613305727	15.6462062694632	TRUE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_2504			4-oxalocrotonate decarboxylase (EC 4.1.1.77)	1.69173512095897	5.45989872217365	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_3317			SUGAR TRANSPORTER	-2.56304516151573	-8.80302756369447	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_3317			SUGAR TRANSPORTER	-2.04877952389791	-10.3043436949166	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_3318			Nitrate/nitrite transporter	-1.28570142584952	-5.72900974253823	TRUE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_3320			L-arabonate dehydratase (EC 4.2.1.25)	-2.77042053650483	-10.721459130716	TRUE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_3320			L-arabonate dehydratase (EC 4.2.1.25)	-2.04576874210633	-10.4755662787859	TRUE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_3524			FIG00443700: hypothetical protein	-2.12374696075305	-6.06385064288687	FALSE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_3524			FIG00443700: hypothetical protein	-1.54692983395057	-6.16167074246189	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_3526			ABC transporter permease protein	-1.93747546417731	-6.96332030405699	FALSE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_3909			Ribose operon repressor	2.99877347833455	10.1383768225804	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_3909			Ribose operon repressor	3.60763225038699	12.2492482660866	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_3985			hypothetical protein	-1.55541559873374	-7.88988715825532	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_4027			Transcription-repair coupling factor	2.01990182602802	15.1374687327011	FALSE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_4027			Transcription-repair coupling factor	2.13250251903159	15.8063812375398	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_4332			Flagellar synthesis regulator FleN	-1.69822780449333	-6.42188180552733	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_4355			Flagellar regulatory protein FleQ	1.29374676518141	5.17683330468865	FALSE
+carbon source	set1IT004	L-Arabinose	PfGW456L13_5077			Fructose repressor FruR, LacI family	2.99277685832909	11.2502642948031	FALSE
+carbon source	set2IT052	L-Arabinose	PfGW456L13_5077			Fructose repressor FruR, LacI family	3.04900404625031	9.07842746235491	FALSE
+carbon source	set2IT066	L-Asparagine	PfGW456L13_4770			Glutamate Aspartate periplasmic binding protein precursor GltI (TC 3.A.1.3.4)	-3.46381988245352	-12.0018738161772	TRUE
+carbon source	set1IT018	L-Asparagine	PfGW456L13_4770			Glutamate Aspartate periplasmic binding protein precursor GltI (TC 3.A.1.3.4)	-3.32983727663982	-12.3065257954765	TRUE
+carbon source	set2IT066	L-Asparagine	PfGW456L13_4771			Glutamate Aspartate transport system permease protein GltJ (TC 3.A.1.3.4)	-3.13417745183831	-7.78531247202422	TRUE
+carbon source	set1IT018	L-Asparagine	PfGW456L13_4771			Glutamate Aspartate transport system permease protein GltJ (TC 3.A.1.3.4)	-2.94285652794011	-6.96021205519939	TRUE
+carbon source	set2IT066	L-Asparagine	PfGW456L13_4772			Glutamate Aspartate transport system permease protein GltK (TC 3.A.1.3.4)	-4.12151514842457	-10.8346780665484	FALSE
+carbon source	set1IT018	L-Asparagine	PfGW456L13_4772			Glutamate Aspartate transport system permease protein GltK (TC 3.A.1.3.4)	-4.11383664933146	-11.4407504185768	FALSE
+carbon source	set2IT066	L-Asparagine	PfGW456L13_4774			Signal transduction histidine kinase regulating C4-dicarboxylate transport system (EC 2.7.13.3)	-3.31081065384978	-15.3371511179404	TRUE
+carbon source	set1IT018	L-Asparagine	PfGW456L13_4774			Signal transduction histidine kinase regulating C4-dicarboxylate transport system (EC 2.7.13.3)	-2.83683713199222	-16.5227262908574	TRUE
+carbon source	set2IT066	L-Asparagine	PfGW456L13_4775			Two component, Sigma-54 Specific, central transcriptional regulator of acidic amino acid uptake	-3.90607406880256	-9.27598532209219	FALSE
+carbon source	set1IT018	L-Asparagine	PfGW456L13_4775			Two component, Sigma-54 Specific, central transcriptional regulator of acidic amino acid uptake	-3.83427822892177	-11.7857893045757	FALSE
+carbon source	set2IT066	L-Asparagine	PfGW456L13_740			L-asparaginase (EC 3.5.1.1)	-2.99120098451597	-10.2447501854622	TRUE
+carbon source	set1IT018	L-Asparagine	PfGW456L13_740			L-asparaginase (EC 3.5.1.1)	-2.84038089819456	-11.8051823868747	TRUE
+carbon source	set1IT019	L-Glutamine	PfGW456L13_115			Mannose-6-phosphate isomerase (EC 5.3.1.8)	1.54179375048675	12.6188614666878	TRUE
+carbon source	set2IT067	L-Glutamine	PfGW456L13_115			Mannose-6-phosphate isomerase (EC 5.3.1.8)	1.58503752131345	9.73926974027889	TRUE
+carbon source	set2IT067	L-Glutamine	PfGW456L13_4770			Glutamate Aspartate periplasmic binding protein precursor GltI (TC 3.A.1.3.4)	3.63272761843469	15.4906083052029	FALSE
+carbon source	set1IT019	L-Glutamine	PfGW456L13_4770			Glutamate Aspartate periplasmic binding protein precursor GltI (TC 3.A.1.3.4)	3.88345088930156	22.3051094098426	FALSE
+carbon source	set2IT067	L-Glutamine	PfGW456L13_4771			Glutamate Aspartate transport system permease protein GltJ (TC 3.A.1.3.4)	3.55424001746105	15.5270088195473	TRUE
+carbon source	set1IT019	L-Glutamine	PfGW456L13_4771			Glutamate Aspartate transport system permease protein GltJ (TC 3.A.1.3.4)	3.67291639411275	19.6684052330811	TRUE
+carbon source	set2IT067	L-Glutamine	PfGW456L13_4772			Glutamate Aspartate transport system permease protein GltK (TC 3.A.1.3.4)	3.36853522961062	17.7173348969296	TRUE
+carbon source	set1IT019	L-Glutamine	PfGW456L13_4772			Glutamate Aspartate transport system permease protein GltK (TC 3.A.1.3.4)	3.65737815295189	23.2034562793056	TRUE
+carbon source	set2IT067	L-Glutamine	PfGW456L13_4774			Signal transduction histidine kinase regulating C4-dicarboxylate transport system (EC 2.7.13.3)	3.89127953375873	27.5946333584595	TRUE
+carbon source	set1IT019	L-Glutamine	PfGW456L13_4774			Signal transduction histidine kinase regulating C4-dicarboxylate transport system (EC 2.7.13.3)	4.14728349647469	34.5445763759839	TRUE
+carbon source	set2IT067	L-Glutamine	PfGW456L13_4775			Two component, Sigma-54 Specific, central transcriptional regulator of acidic amino acid uptake	3.93905339564684	15.6802664926675	FALSE
+carbon source	set1IT019	L-Glutamine	PfGW456L13_4775			Two component, Sigma-54 Specific, central transcriptional regulator of acidic amino acid uptake	4.17197445580022	26.3518820509198	FALSE
+carbon source	set2IT067	L-Glutamine	PfGW456L13_741			sodium/alanine transporter	-1.46826542018568	-10.2094049623097	TRUE
+carbon source	set1IT019	L-Glutamine	PfGW456L13_741			sodium/alanine transporter	-1.36719445209904	-11.6290353382791	TRUE
+carbon source	set1IT017	L-Histidine	PfGW456L13_316			N-formylglutamate deformylase (EC 3.5.1.68)	-5.73885200705051	-16.1266022905887	TRUE
+carbon source	set2IT065	L-Histidine	PfGW456L13_316			N-formylglutamate deformylase (EC 3.5.1.68)	-4.44895427120651	-11.4979860393192	TRUE
+carbon source	set1IT017	L-Histidine	PfGW456L13_317			Imidazolonepropionase (EC 3.5.2.7)	-5.72246040566193	-9.5426244958114	TRUE
+carbon source	set2IT065	L-Histidine	PfGW456L13_317			Imidazolonepropionase (EC 3.5.2.7)	-4.58143897994098	-11.1802532802735	TRUE
+carbon source	set1IT017	L-Histidine	PfGW456L13_318			Histidine transport protein (permease)	-3.53341692866722	-14.4250232196114	TRUE
+carbon source	set2IT065	L-Histidine	PfGW456L13_320			Histidine ammonia-lyase (EC 4.3.1.3)	-5.66374206089643	-7.73728045832245	TRUE
+carbon source	set1IT017	L-Histidine	PfGW456L13_320			Histidine ammonia-lyase (EC 4.3.1.3)	-4.48830083324314	-5.73612273748373	TRUE
+carbon source	set2IT065	L-Histidine	PfGW456L13_322			Histidine ABC transporter, ATP-binding protein (TC 3.A.1)	3.99918344136329	5.57780050421151	TRUE
+carbon source	set2IT065	L-Histidine	PfGW456L13_325			Purine-cytosine permease	1.44848110994537	5.12141799807208	TRUE
+carbon source	set2IT065	L-Histidine	PfGW456L13_326			Urocanate hydratase (EC 4.2.1.49)	-4.6763725342177	-20.0379021219769	TRUE
+carbon source	set1IT017	L-Histidine	PfGW456L13_326			Urocanate hydratase (EC 4.2.1.49)	-4.38225824454135	-17.0205748815094	TRUE
+carbon source	set1IT017	L-Histidine	PfGW456L13_327			hypothetical protein	-4.59859999185791	-8.84170337729699	FALSE
+carbon source	set1IT017	L-Histidine	PfGW456L13_330			Formiminoglutamic iminohydrolase (EC 3.5.3.13)	-6.49048516056445	-7.7291391953607	TRUE
+carbon source	set2IT065	L-Histidine	PfGW456L13_330			Formiminoglutamic iminohydrolase (EC 3.5.3.13)	-5.69251597063169	-12.1520004854259	TRUE
+carbon source	set1IT017	L-Histidine	PfGW456L13_567			Glycine cleavage system transcriptional activator	-1.32654045433171	-6.91104867428834	TRUE
+carbon source	set1IT016	L-Malic acid disodium salt monohydrate	PfGW456L13_2016			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-2.12023204984261	-5.26534147496171	TRUE
+carbon source	set2IT064	L-Malic acid disodium salt monohydrate	PfGW456L13_3524			FIG00443700: hypothetical protein	-1.43269513957463	-7.06775707154815	FALSE
+carbon source	set2IT064	L-Malic acid disodium salt monohydrate	PfGW456L13_3526			ABC transporter permease protein	-1.37179081742408	-6.54009141688258	FALSE
+carbon source	set1IT016	L-Malic acid disodium salt monohydrate	PfGW456L13_400			Signal transduction histidine kinase regulating C4-dicarboxylate transport system	-2.98358715193156	-8.98749627014488	TRUE
+carbon source	set1IT016	L-Malic acid disodium salt monohydrate	PfGW456L13_401			C4-dicarboxylate transport transcriptional regulatory protein	-3.57621988947353	-7.75937623657261	TRUE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_2108			Aminodeoxychorismate lyase (EC 4.1.3.38)	-1.54506049267953	-5.64287521396551	FALSE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_2108			Aminodeoxychorismate lyase (EC 4.1.3.38)	-1.45733650070074	-6.23835128075132	FALSE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_2244			2-keto-3-deoxy-D-arabino-heptulosonate-7- phosphate synthase II (EC 2.5.1.54)	-1.43643200515157	-9.09117197119056	TRUE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_2244			2-keto-3-deoxy-D-arabino-heptulosonate-7- phosphate synthase II (EC 2.5.1.54)	-1.13795723452828	-6.78875848179262	TRUE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_2423			Phenylacetate-CoA oxygenase/reductase, PaaK subunit	-1.14903825898223	-5.64158312856851	TRUE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_2427			Phenylacetate-CoA oxygenase, PaaG subunit	-1.38704116566654	-5.41568853787035	TRUE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_2872			Acetoacetyl-CoA synthetase (EC 6.2.1.16)	-3.477246159492	-15.2055048821844	FALSE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_2872			Acetoacetyl-CoA synthetase (EC 6.2.1.16)	-2.56430533574791	-13.8510418031405	FALSE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_2875			Sigma-54 dependent transcriptional regulator	-3.10697164252661	-13.8908205295015	FALSE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_2875			Sigma-54 dependent transcriptional regulator	-2.4097143509768	-13.4538924423468	FALSE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_2935			4-hydroxyphenylpyruvate dioxygenase (EC 1.13.11.27)	-4.0895141545095	-13.3999099282577	TRUE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_2935			4-hydroxyphenylpyruvate dioxygenase (EC 1.13.11.27)	-3.481412811538	-12.3854142981347	TRUE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_3836			Decarboxylase family protein	-1.32508245369241	-5.6067390424583	FALSE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_3872			Transcriptional regulator, AraC family	-1.42308563109132	-5.55869759122478	FALSE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_4123			Para-aminobenzoate synthase, aminase component (EC 2.6.1.85)	-1.3597195698594	-6.63093878738013	FALSE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_4393			Phenylalanine hydroxylase transcriptional activator PhhR	-3.39459486193523	-11.5609856105741	TRUE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_4393			Phenylalanine hydroxylase transcriptional activator PhhR	-2.62231875426397	-9.22393884380869	TRUE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_4394			Phenylalanine-4-hydroxylase (EC 1.14.16.1)	-3.3905042254591	-7.54736041106237	TRUE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_4394			Phenylalanine-4-hydroxylase (EC 1.14.16.1)	-1.8691440338497	-6.61448565590734	TRUE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_4396			Aspartate aminotransferase (EC 2.6.1.1)	-2.92014516053759	-8.86772599758462	TRUE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_4396			Aspartate aminotransferase (EC 2.6.1.1)	-1.70312824245599	-5.7491162168858	TRUE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_4591			3-oxoadipate CoA-transferase subunit B (EC 2.8.3.6); Glutaconate CoA-transferase subunit B (EC 2.8.3.12)	1.19944827591933	8.75140421247938	FALSE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_4591			3-oxoadipate CoA-transferase subunit B (EC 2.8.3.6); Glutaconate CoA-transferase subunit B (EC 2.8.3.12)	1.47171039092346	6.92088544458662	FALSE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_4592			3-oxoadipate CoA-transferase subunit A (EC 2.8.3.6); Glutaconate CoA-transferase subunit A (EC 2.8.3.12)	1.19591101484459	6.79249867250904	TRUE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_4592			3-oxoadipate CoA-transferase subunit A (EC 2.8.3.6); Glutaconate CoA-transferase subunit A (EC 2.8.3.12)	1.3140221988613	7.73237439752612	TRUE
+carbon source	set1IT025	L-Phenylalanine	PfGW456L13_4962			Homogentisate 1,2-dioxygenase (EC 1.13.11.5)	-3.43714502386749	-9.2307207100265	TRUE
+carbon source	set2IT073	L-Phenylalanine	PfGW456L13_4962			Homogentisate 1,2-dioxygenase (EC 1.13.11.5)	-3.08533869841685	-11.459356718181	TRUE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_1745			Alkyl hydroperoxide reductase subunit C-like protein	1.46838772707449	6.11236255737804	FALSE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_1970			hypothetical protein	1.77463531107991	12.113889190789	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_1970			hypothetical protein	1.99876152931692	13.729234908852	FALSE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_1971			Succinylornithine transaminase (EC 2.6.1.81)	1.57230289464654	9.48066124532896	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_1971			Succinylornithine transaminase (EC 2.6.1.81)	1.83372607335875	10.3614728443214	FALSE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_2114			Molybdenum cofactor biosynthesis protein MoaA	-1.23641439647924	-5.31610236807801	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_2274			Molybdopterin biosynthesis protein MoeA	-1.15202758848969	-6.00079975781854	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_2738			benzoate dioxygenase, ferredoxin reductase component; Anthranilate dioxygenase reductase	-1.30502405405983	-7.16460781809125	TRUE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_2739			Benzoate 1,2-dioxygenase beta subunit (EC 1.14.12.10)	-1.77723268610971	-7.47194950875097	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_2739			Benzoate 1,2-dioxygenase beta subunit (EC 1.14.12.10)	-1.29216470414915	-6.63915928777149	TRUE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_2740			Benzoate 1,2-dioxygenase alpha subunit (EC 1.14.12.10)	-1.52512292408899	-8.83379797407727	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_2740			Benzoate 1,2-dioxygenase alpha subunit (EC 1.14.12.10)	-1.13979095934362	-6.41519352450796	TRUE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_3822			Catechol 1,2-dioxygenase (EC 1.13.11.1)	-2.07500173553876	-8.21229811211072	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_3822			Catechol 1,2-dioxygenase (EC 1.13.11.1)	-1.67788431127263	-6.01530391473123	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_3823			Muconolactone isomerase (EC 5.3.3.4)	-2.3816046257624	-7.05817435917629	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_408			Formate dehydrogenase chain D (EC 1.2.1.2)	-1.02301303220523	-5.13374575035781	FALSE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_4264			Branched-chain amino acid transport system carrier protein	1.29879174023915	8.71048486096001	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_4288			Kynureninase (EC 3.7.1.3)	-3.61322332942372	-14.6337499501317	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_4288			Kynureninase (EC 3.7.1.3)	-3.05353437735948	-14.3484686466793	TRUE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_4289			Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system	-2.53165801471413	-9.6697239350187	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_4289			Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system	-1.92127830835344	-7.68446756820579	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_4291			Aromatic amino acid transport protein AroP	-1.11023338183819	-7.16612317770405	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_4292			Tryptophan 2,3-dioxygenase (EC 1.13.11.11)	-3.37149640795509	-6.27225777255198	TRUE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_4293			Kynurenine formamidase, bacterial (EC 3.5.1.9)	-2.79475738961276	-11.1856984355156	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_4293			Kynurenine formamidase, bacterial (EC 3.5.1.9)	-2.06812826250094	-7.45020043259261	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_4479			Sialic acid transporter (permease) NanT	-1.23902155364056	-5.31761141977281	FALSE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_4579			Transcription repressor of multidrug efflux pump acrAB operon, TetR (AcrR) family	-1.73883000176274	-7.11153640519136	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_4579			Transcription repressor of multidrug efflux pump acrAB operon, TetR (AcrR) family	-1.43727742028366	-6.10858146662806	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_4589			Protocatechuate 3,4-dioxygenase beta chain (EC 1.13.11.3)	-3.21024974643937	-6.26477160606872	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_4592			3-oxoadipate CoA-transferase subunit A (EC 2.8.3.6); Glutaconate CoA-transferase subunit A (EC 2.8.3.12)	-3.91826179060353	-10.9742382363974	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_4592			3-oxoadipate CoA-transferase subunit A (EC 2.8.3.6); Glutaconate CoA-transferase subunit A (EC 2.8.3.12)	-3.03421754631194	-7.27149905284376	TRUE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_4594			Pca regulon regulatory protein PcaR	-4.20534383590033	-16.717210613864	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_4594			Pca regulon regulatory protein PcaR	-3.67105442141727	-15.838561059646	TRUE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_600			Zinc ABC transporter, inner membrane permease protein ZnuB	-2.05409088485237	-6.94456013811098	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_740			L-asparaginase (EC 3.5.1.1)	1.10747287768449	6.82451114549077	FALSE
+carbon source	set2IT074	L-Tryptophan	PfGW456L13_902			Aminomethyltransferase (glycine cleavage system T protein) (EC 2.1.2.10)	-1.75003012435909	-8.54800172073859	FALSE
+carbon source	set1IT026	L-Tryptophan	PfGW456L13_902			Aminomethyltransferase (glycine cleavage system T protein) (EC 2.1.2.10)	-1.63039981656893	-7.70594008650353	FALSE
+carbon source	set1IT022	L-Valine	PfGW456L13_2590			Methylcrotonyl-CoA carboxylase carboxyl transferase subunit (EC 6.4.1.4)	-1.86294207316919	-10.54720611983	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_2590			Methylcrotonyl-CoA carboxylase carboxyl transferase subunit (EC 6.4.1.4)	-1.83579688090762	-9.44716412675391	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_2591			Isovaleryl-CoA dehydrogenase (EC 1.3.8.4)	-1.44531450120778	-9.58337559759766	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_2591			Isovaleryl-CoA dehydrogenase (EC 1.3.8.4)	-1.25156790074777	-7.56528529101896	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_2985			Butyryl-CoA dehydrogenase (EC 1.3.99.2)	-4.10464947621464	-10.5014309543574	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_2985			Butyryl-CoA dehydrogenase (EC 1.3.99.2)	-3.31118259974462	-12.0730859620373	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_2986			3-hydroxyisobutyryl-CoA hydrolase (EC 3.1.2.4)	-5.37253618788859	-7.33833795277952	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_2986			3-hydroxyisobutyryl-CoA hydrolase (EC 3.1.2.4)	-5.0726811764289	-9.06843404691363	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_3031			Threonine dehydratase biosynthetic (EC 4.3.1.19)	-2.27858668285918	-8.67433730086018	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_3031			Threonine dehydratase biosynthetic (EC 4.3.1.19)	-1.99724474937459	-6.85636561663893	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_3540			Branched-chain alpha-keto acid dehydrogenase, E1 component, alpha subunit (EC 1.2.4.4)	-5.78783486680892	-7.91350662440677	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_3540			Branched-chain alpha-keto acid dehydrogenase, E1 component, alpha subunit (EC 1.2.4.4)	-4.41590468788789	-10.0448272052434	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_3541			Branched-chain alpha-keto acid dehydrogenase, E1 component, beta subunit (EC 1.2.4.4)	-5.04562310419499	-14.1234233941044	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_3541			Branched-chain alpha-keto acid dehydrogenase, E1 component, beta subunit (EC 1.2.4.4)	-3.99028916600343	-14.5495832160448	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_3542			Dihydrolipoamide acyltransferase component of branched-chain alpha-keto acid dehydrogenase complex (EC 2.3.1.168)	-5.11870800874791	-8.51736601229223	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_3543			Dihydrolipoamide dehydrogenase of branched-chain alpha-keto acid dehydrogenase (EC 1.8.1.4)	-3.58917362559377	-5.81410050062492	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_3543			Dihydrolipoamide dehydrogenase of branched-chain alpha-keto acid dehydrogenase (EC 1.8.1.4)	-3.57349871451576	-6.87313770404685	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_4115			2-methylaconitate cis-trans isomerase	-5.80708159564719	-5.64772128091908	FALSE
+carbon source	set2IT070	L-Valine	PfGW456L13_4115			2-methylaconitate cis-trans isomerase	-4.49966394428605	-8.55159505681637	FALSE
+carbon source	set1IT022	L-Valine	PfGW456L13_4117			2-methylcitrate synthase (EC 2.3.3.5)	-5.63359544585602	-10.1330887734572	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_4117			2-methylcitrate synthase (EC 2.3.3.5)	-4.78357802345578	-17.0422741899164	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_5145			3-hydroxyisobutyrate dehydrogenase (EC 1.1.1.31)	-5.0195256688748	-11.649050403985	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_5145			3-hydroxyisobutyrate dehydrogenase (EC 1.1.1.31)	-4.99273502051736	-10.3741499903485	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_5146			Methylmalonate-semialdehyde dehydrogenase (EC 1.2.1.27)	-4.82798800264235	-9.23303348298265	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_5146			Methylmalonate-semialdehyde dehydrogenase (EC 1.2.1.27)	-4.78445359363713	-9.68106615695279	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_5147			Transcriptional regulator, LysR family	-5.00419309763647	-16.5754122547842	TRUE
+carbon source	set2IT070	L-Valine	PfGW456L13_5147			Transcriptional regulator, LysR family	-4.81990353722995	-17.7073060456547	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_554			Glutaryl-CoA dehydrogenase (EC 1.3.99.7)	-1.28059262410226	-7.31219344182212	FALSE
+carbon source	set2IT070	L-Valine	PfGW456L13_910			Transcriptional regulator, AsnC family	-2.27572519595932	-6.33315519634094	TRUE
+carbon source	set1IT022	L-Valine	PfGW456L13_910			Transcriptional regulator, AsnC family	-2.18168363216906	-6.72437852992763	TRUE
+carbon source	set1IT030	Putrescine Dihydrochloride	PfGW456L13_1864			FIG023103: Predicted transmembrane protein	-2.06024584100493	-5.03157983245966	FALSE
+carbon source	set1IT030	Putrescine Dihydrochloride	PfGW456L13_2229			Universal stress protein family	-1.41319621084972	-6.17391745581524	FALSE
+carbon source	set1IT030	Putrescine Dihydrochloride	PfGW456L13_3987			tRNA dihydrouridine synthase A	-1.06178924841864	-5.23571872218402	FALSE
+carbon source	set1IT030	Putrescine Dihydrochloride	PfGW456L13_4027			Transcription-repair coupling factor	-1.83895244349562	-12.0316982269096	FALSE
+carbon source	set1IT030	Putrescine Dihydrochloride	PfGW456L13_4060			hypothetical protein	-1.93251862379452	-6.80276015806584	FALSE
+carbon source	set1IT030	Putrescine Dihydrochloride	PfGW456L13_4065			Type cbb3 cytochrome oxidase biogenesis protein CcoG, involved in Cu oxidation	-1.48361835544544	-7.513799052695	FALSE
+carbon source	set1IT030	Putrescine Dihydrochloride	PfGW456L13_805			Aldehyde dehydrogenase (EC 1.2.1.3)	-2.7753278276129	-8.87765627068013	TRUE
+carbon source	set1IT030	Putrescine Dihydrochloride	PfGW456L13_925			Gamma-glutamyl-putrescine synthetase (EC 6.3.1.11)	-2.88632113174535	-10.0260172238001	TRUE
+carbon source	set1IT030	Putrescine Dihydrochloride	PfGW456L13_929			Putrescine ABC transporter putrescine-binding protein PotF (TC 3.A.1.11.2)	-2.30691768606331	-7.67273772578211	TRUE
+carbon source	set1IT011	Sodium D,L-Lactate	PfGW456L13_5114			L-lactate permease	-3.43332789427671	-13.4355817633763	TRUE
+carbon source	set1IT011	Sodium D,L-Lactate	PfGW456L13_5115			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-4.48917894557384	-10.5066139395789	TRUE
+carbon source	set1IT011	Sodium D,L-Lactate	PfGW456L13_5116			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-4.09311947804853	-16.1119287415195	TRUE
+carbon source	set1IT009	Sodium D-Lactate	PfGW456L13_1738			Ferric iron ABC transporter, ATP-binding protein	-2.29533302320584	-5.34747149694552	FALSE
+carbon source	set1IT009	Sodium D-Lactate	PfGW456L13_2172			S-adenosylhomocysteine deaminase (EC 3.5.4.28); Methylthioadenosine deaminase	-1.61219431188449	-7.77019925788542	FALSE
+carbon source	set2IT057	Sodium D-Lactate	PfGW456L13_2172			S-adenosylhomocysteine deaminase (EC 3.5.4.28); Methylthioadenosine deaminase	-1.29432444772351	-5.1517116118926	FALSE
+carbon source	set1IT009	Sodium D-Lactate	PfGW456L13_5114			L-lactate permease	-5.44401147906748	-12.1548998485622	TRUE
+carbon source	set2IT057	Sodium D-Lactate	PfGW456L13_5114			L-lactate permease	-5.25835800994718	-13.1459643743211	TRUE
+carbon source	set1IT009	Sodium D-Lactate	PfGW456L13_5115			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-6.19811810924292	-6.03857434047248	TRUE
+carbon source	set2IT057	Sodium D-Lactate	PfGW456L13_5115			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-4.59956013887325	-8.35167967685132	TRUE
+carbon source	set2IT057	Sodium D-Lactate	PfGW456L13_5116			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-5.21544605534078	-13.4726013908994	TRUE
+carbon source	set1IT009	Sodium D-Lactate	PfGW456L13_5116			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-5.13696828723119	-14.7851653446724	TRUE
+carbon source	set2IT057	Sodium D-Lactate	PfGW456L13_5118			Predicted D-lactate dehydrogenase, Fe-S protein, FAD/FMN-containing	-4.97614355690288	-13.2201959086392	TRUE
+carbon source	set1IT009	Sodium D-Lactate	PfGW456L13_5118			Predicted D-lactate dehydrogenase, Fe-S protein, FAD/FMN-containing	-4.72209831399924	-13.8698200091256	TRUE
+carbon source	set2IT058	Sodium L-Lactate	PfGW456L13_2155			tRNA (5-methylaminomethyl-2-thiouridylate)-methyltransferase (EC 2.1.1.61) / FAD-dependent cmnm(5)s(2)U34 oxidoreductase	-1.25855433611595	-5.35360964583575	FALSE
+carbon source	set2IT058	Sodium L-Lactate	PfGW456L13_5114			L-lactate permease	-5.02211067543656	-13.7315315684886	TRUE
+carbon source	set2IT058	Sodium L-Lactate	PfGW456L13_5115			Predicted L-lactate dehydrogenase, Fe-S oxidoreductase subunit YkgE	-4.74509758565472	-7.6576181309147	TRUE
+carbon source	set2IT058	Sodium L-Lactate	PfGW456L13_5116			Predicted L-lactate dehydrogenase, Iron-sulfur cluster-binding subunit YkgF	-5.18804533059508	-12.9794740004861	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1155			Acyl-CoA dehydrogenase (EC 1.3.8.7)	1.00398949356487	5.92917090850974	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1156			Acyl-CoA dehydrogenase (EC 1.3.8.7)	-3.23179862677804	-12.6449274290992	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1362			Membrane-bound lytic murein transglycosylase B precursor (EC 3.2.1.-)	1.90926557626032	8.10433413168542	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1369			Membrane-bound lytic murein transglycosylase B precursor (EC 3.2.1.-)	1.83999947539688	11.40155970361	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1385			Hydroxymethylpyrimidine phosphate kinase ThiD (EC 2.7.4.7)	1.65698785321825	5.96992637218259	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1430			tRNA (Uracil54-C5-)-methyltransferase (EC 2.1.1.35)	-1.47480368669022	-5.68867208604052	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1494			COG1496: Uncharacterized conserved protein	-1.116864427907	-5.35873401816729	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1495			ClpB protein	1.04227208794956	6.32380392903889	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_153			GTP-binding protein HflX	2.29591362210571	6.02853929135749	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1534			FIG00955330: hypothetical protein	2.44947610943571	16.3929218092361	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1601			FIG00953775: hypothetical protein	-2.60607914380555	-6.03872625840362	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1666			LysR family transcriptional regulator QseA	5.5598878944769	15.6750014884331	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1667			Outer membrane component of tripartite multidrug resistance system	-1.53798780572773	-5.24354997948225	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_179			Putative esterase, FIGfam005057	-1.67558721893584	-5.49407266197299	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_1949			Transcriptional regulator, TetR family	3.7806945213595	9.53186193491038	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2			Methylmalonate-semialdehyde dehydrogenase (EC 1.2.1.27)	-1.09057431087694	-5.32620249687377	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2223			Glutamate synthase [NADPH] large chain (EC 1.4.1.13)	-2.7620706560206	-9.73241833235223	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2227			2-dehydropantoate 2-reductase (EC 1.1.1.169)	-1.06782932616738	-5.15326803746606	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_225			Methyl-accepting chemotaxis protein	-1.2259796921214	-5.06437766569354	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2251			hypothetical protein	-1.32167092593414	-6.88104707961986	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_229			Na(+)/H(+) antiporter	-2.17732346210586	-9.06044943416612	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2335			Teichoic acid export ATP-binding protein TagH (EC 3.6.3.40)	1.68068283454795	5.74630183534055	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2342			SAM-dependent methyltransferases	3.33176399202933	7.07876496175248	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2549			Murein-DD-endopeptidase (EC 3.4.99.-)	2.0096526589065	11.8159305604805	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2559			Hydrolase, carbon-nitrogen family	2.18522997773688	9.99228572299442	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2600			Histone acetyltransferase HPA2 and related acetyltransferases	1.5355405553	5.82032726518626	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_2798			Putative TEGT family carrier/transport protein	-2.18067037241329	-7.64204676235034	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_3025			Fe(2+)/alpha-ketoglutarate-dependent dioxygenase LpxO	-1.48601495518791	-5.58521262274956	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_3162			Ferrichrome-iron receptor	-1.10112097357359	-7.80814573889189	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_3298			NAD-specific glutamate dehydrogenase (EC 1.4.1.2), large form	-2.76596824158206	-11.3756378569125	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_3325			Membrane alanine aminopeptidase N (EC 3.4.11.2)	1.05577523083616	5.31243127172613	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_3341			Membrane-bound lytic murein transglycosylase D precursor (EC 3.2.1.-)	3.5998014089203	13.1450448589216	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_3342			Oligopeptide ABC transporter, periplasmic oligopeptide-binding protein OppA (TC 3.A.1.5.1)	1.42902375299081	7.70555902884977	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_3344			Oligopeptide transport system permease protein OppB (TC 3.A.1.5.1)	1.71453997542533	8.2107593556814	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_3345			Oligopeptide transport system permease protein OppC (TC 3.A.1.5.1)	1.39506700127056	5.64657633490309	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_3538			FIG146518: Zn-dependent hydrolases, including glyoxylases	-2.49056339600915	-5.52427131625315	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_377			Lysine-arginine-ornithine-binding periplasmic protein precursor (TC 3.A.1.3.1)	-1.01913081997327	-5.93042377031337	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4045			Soluble lytic murein transglycosylase precursor (EC 3.2.1.-)	2.16530723305074	13.1229015563459	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4060			hypothetical protein	1.52503194607548	9.21522969686259	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4066			Putative analog of CcoH, COG3198	1.97412766189175	9.15041875934447	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4091			D-alanyl-D-alanine carboxypeptidase (EC 3.4.16.4)	1.5104620978734	7.2289842103862	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4110			Ribonuclease E inhibitor RraA	-2.63740371074558	-5.02418876297842	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4111			Esterase/lipase/thioesterase family protein	2.0099960333752	6.70319780914208	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4247			NLP/P60 family protein	2.27085134799959	12.0698200350646	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4281			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-1.5745724638595	-7.7794710910365	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4332			Flagellar synthesis regulator FleN	-1.65511004061725	-6.09881816665901	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4510			Putative permease PerM (= YfgO)	-1.99959577759346	-9.24407860455981	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4579			Transcription repressor of multidrug efflux pump acrAB operon, TetR (AcrR) family	4.95741617475579	18.5814147761973	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4647			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-3.0655067627002	-5.50733983105901	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4678			5-nucleotidase SurE (EC 3.1.3.5) @ Exopolyphosphatase (EC 3.6.1.11)	-2.10299158570551	-5.4801353296069	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4770			Glutamate Aspartate periplasmic binding protein precursor GltI (TC 3.A.1.3.4)	-1.52471338894579	-6.25168869096459	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4807			ATP-dependent protease La (EC 3.4.21.53) Type I	-1.63598490665338	-9.5246300616119	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4892			FIG005548: transport protein	1.33812663774005	9.30040350935132	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4894			FIG002188: hypothetical protein	1.35783162403683	7.98702830586248	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4895			FIG067310: hypothetical protein	1.04975072987371	6.81721368018179	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_491			Fatty acid desaturase (EC 1.14.19.1); Delta-9 fatty acid desaturase (EC 1.14.19.1)	1.37466333869097	5.53813890180441	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_4924			Lysine 2,3-aminomutase (EC 5.4.3.2)	1.63925635135625	6.6007575391473	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_5049			Sensor histidine kinase PrrB (RegB) (EC 2.7.3.-)	3.44849853511965	14.3242399234388	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_505			HlyD family secretion protein	-3.0604663450627	-12.2285218054351	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_506			membrane protein, putative	-2.84584380997345	-12.8417757418555	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_507			Inner membrane component of tripartite multidrug resistance system	-3.23722882231671	-10.9179911210081	TRUE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_508			Transcriptional regulator, MarR family	-2.43998510005951	-5.87920605752554	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_55			tRNA dihydrouridine synthase B (EC 1.-.-.-)	2.08214515317781	6.21050515760132	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_553			L-carnitine dehydratase/bile acid-inducible protein F	-1.62432225989807	-6.70604522754366	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_554			Glutaryl-CoA dehydrogenase (EC 1.3.99.7)	-2.63501383464701	-7.56431767064999	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_577			Fused spore maturation proteins A and B	-2.22974306101396	-8.67963602424746	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_587			N-acetylmuramoyl-L-alanine amidase (EC 3.5.1.28)	-2.11455192058097	-8.90334187715951	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_722			putative membrane protein	-2.53653038276435	-6.31484933832789	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_873			Porphobilinogen synthase (EC 4.2.1.24)	2.18954659753326	9.1227150701721	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_896			Xaa-Pro aminopeptidase (EC 3.4.11.9)	2.38614948312744	13.3088562692592	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_902			Aminomethyltransferase (glycine cleavage system T protein) (EC 2.1.2.10)	-1.77537292615582	-6.85477377879481	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_908			Type II secretory pathway, ATPase PulE/Tfp pilus assembly pathway, ATPase PilB	1.46245062822791	7.06277243758036	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_911			Adenylate cyclase (EC 4.6.1.1)	2.12509173857303	6.32339480705968	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_938			FIG00953078: hypothetical protein	-1.62590632111947	-5.6423293931942	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_941			ABC-type amino acid transport/signal transduction systems, periplasmic component/domain	1.24728725442681	6.10802009537312	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_946			Outer membrane protein assembly factor YaeT precursor	2.29312417892282	11.2619730218164	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_97			membrane protein, putative	5.77802070069558	14.4503090671887	FALSE
+carbon source	set2IT082	Sodium octanoate	PfGW456L13_992			FIG015547: peptidase, M16 family	-1.86858758407659	-6.00635956732417	FALSE
+carbon source	set1IT012	Sodium succinate dibasic hexahydrate	PfGW456L13_1900			Phosphogluconate repressor HexR, RpiR family	-1.88754460013403	-6.88495236564215	FALSE
+carbon source	set1IT012	Sodium succinate dibasic hexahydrate	PfGW456L13_2016			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-3.26694770356488	-10.9507700307407	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_1354			DedA protein	-3.96687983553283	-10.3078773209177	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_1440			Ferredoxin--NADP(+) reductase (EC 1.18.1.2)	-3.01514606468041	-7.54867922916031	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_1688			Predicted ATPase related to phosphate starvation-inducible protein PhoH	-1.1750618671795	-5.14540169664636	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2182			regulator of length of O-antigen component of lipopolysaccharide chains	-2.7234437602372	-7.02339281481517	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2256			sensor histidine kinase/response regulator	-2.35670801173953	-11.911857945791	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2290			Acyclic terpenes utilization regulator AtuR, TetR family	-1.15176105492186	-5.10843990311561	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2303			ABC transporter in pyoverdin gene cluster, periplasmic component	-4.84545387518451	-10.4043511210403	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2304			ABC transporter in pyoverdin gene cluster, permease component	-5.7036015787737	-5.54874027948819	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2305			ABC transporter in pyoverdin gene cluster, ATP-binding component	-5.36331538785002	-5.20906068810384	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2306			FIG014801: Cation ABC transporter, periplasmic cation-binding protein	-6.2243233925494	-7.40979406661703	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2307			FIG049111: Hypothetical protein in pyoverdin gene cluster	-5.84565044421173	-6.94287353284126	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2308			FIG137877: Hypothetical protein in pyoverdin gene cluster	-4.06528227023091	-5.95218981559533	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2309			FIG139991: Putative thiamine pyrophosphate-requiring enzyme	-4.56365216831429	-6.02075313124506	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2384			TonB-dependent siderophore receptor	-5.23240225936917	-18.429351792717	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_2862			Bacteriophage N4 adsorption protein A	-1.02995202406713	-5.94489448873622	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_3547			Cobalt-zinc-cadmium resistance protein CzcD	-6.12729238836123	-5.95914471773571	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_3985			hypothetical protein	-1.78625892231582	-9.68936312795351	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_4514			Sigma factor RpoE negative regulatory protein RseB precursor	-1.35017163571765	-5.27994479953465	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_4516			RNA polymerase sigma-H factor AlgT	1.41049260296809	5.75043415482827	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_4523			Tricarboxylate transport sensor protein TctE	-2.26007735704082	-7.53830032620665	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_4524			Tricarboxylate transport transcriptional regulator TctD	-5.29408994965492	-8.81625802278997	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_4525			Tricarboxylate porin OpdH	-1.85096278179937	-8.42367895359921	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_4526			Tricarboxylate transport protein TctC	-4.38026050397511	-11.620631269614	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_4527			Tricarboxylate transport protein TctB	-3.34200486664886	-8.69393611590292	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_4528			Tricarboxylate transport membrane protein TctA	-3.11949162250015	-11.0517203539906	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_634			Integral membrane protein TerC	-1.57369096529658	-5.94567162935654	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_635			Uncharacterized transporter, similarity to citrate transporter	-2.15752846301554	-12.1468533909595	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_883			O-antigen acetylase	1.01833865768734	6.20583424216446	FALSE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_958			Cd(II)/Pb(II)-responsive transcriptional regulator	-5.04832225675276	-11.800065965318	TRUE
+carbon source	set2IT056	Trisodium citrate dihydrate	PfGW456L13_959			Lead, cadmium, zinc and mercury transporting ATPase (EC 3.6.3.3) (EC 3.6.3.5); Copper-translocating P-type ATPase (EC 3.6.3.4)	-6.07759981413642	-10.9406408418765	FALSE
+carbon source	set1IT015	Tween 20	PfGW456L13_1156			Acyl-CoA dehydrogenase (EC 1.3.8.7)	-2.49023840974551	-17.2820883796778	TRUE
+carbon source	set1IT015	Tween 20	PfGW456L13_1621			FIG002188: hypothetical protein	-1.03716231478684	-9.06946991603323	TRUE
+carbon source	set2IT063	Tween 20	PfGW456L13_2016			Aerobic C4-dicarboxylate transporter for fumarate, L-malate, D-malate, succunate, aspartate	-2.26802920271152	-10.5703549006069	FALSE
+carbon source	set1IT015	Tween 20	PfGW456L13_3322			FIG005548: transport protein	-1.00433357213091	-7.52503660024633	TRUE
+carbon source	set1IT015	Tween 20	PfGW456L13_3570			FIG00960995: hypothetical protein	-1.46487186825421	-7.69147221095945	FALSE
+carbon source	set2IT063	Tween 20	PfGW456L13_400			Signal transduction histidine kinase regulating C4-dicarboxylate transport system	-1.46276168398679	-8.9651172510337	FALSE
+carbon source	set2IT063	Tween 20	PfGW456L13_401			C4-dicarboxylate transport transcriptional regulatory protein	-2.49299609740511	-10.741042012103	FALSE
+carbon source	set1IT015	Tween 20	PfGW456L13_4110			Ribonuclease E inhibitor RraA	-1.55337663255497	-6.45121757287292	FALSE
+carbon source	set1IT015	Tween 20	PfGW456L13_4468			Isocitrate dehydrogenase phosphatase (EC 2.7.11.5)/kinase (EC 3.1.3.-)	-1.48898471041311	-10.8128747962274	TRUE
+carbon source	set1IT006	a-Ketoglutaric acid disodium salt hydrate	PfGW456L13_1805			Dicarboxylate MFS transporter	-3.90531575899929	-15.4152003189462	TRUE
+carbon source	set2IT054	a-Ketoglutaric acid disodium salt hydrate	PfGW456L13_1805			Dicarboxylate MFS transporter	-2.76296371315812	-13.5671935649483	TRUE
+carbon source	set1IT006	a-Ketoglutaric acid disodium salt hydrate	PfGW456L13_1806			Nitrogen regulation protein NR(I)	-4.81169467894757	-6.58082892372775	TRUE
+carbon source	set2IT054	a-Ketoglutaric acid disodium salt hydrate	PfGW456L13_1806			Nitrogen regulation protein NR(I)	-4.38141070562878	-8.42796865867523	TRUE
+carbon source	set1IT006	a-Ketoglutaric acid disodium salt hydrate	PfGW456L13_1807			C4-dicarboxylate transport sensor protein	-4.45683080777754	-10.3610416298233	TRUE
+carbon source	set2IT054	a-Ketoglutaric acid disodium salt hydrate	PfGW456L13_1807			C4-dicarboxylate transport sensor protein	-2.74958603047022	-10.4830499816825	TRUE
+nitrogen source	set3IT093	Cytosine	PfGW456L13_2445			Cytosine deaminase (EC 3.5.4.1)	-2.52302906071553	-7.18822607823284	TRUE
+nitrogen source	set3IT093	Cytosine	PfGW456L13_2446			Possible oxidoreductase	1.84635329833467	9.31443556172196	FALSE
+nitrogen source	set3IT093	Cytosine	PfGW456L13_3503			Beta-ureidopropionase (EC 3.5.1.6)	-1.69298122256008	-6.98438887268712	FALSE
+nitrogen source	set3IT093	Cytosine	PfGW456L13_3505			Possible pyrimidine permease in reductive pathway	-1.09283052090063	-5.98116687145151	TRUE
+nitrogen source	set3IT093	Cytosine	PfGW456L13_3506			Dihydropyrimidinase (EC 3.5.2.2)	-1.3112005417829	-5.77586155125149	TRUE
+nitrogen source	set3IT086	D-Alanine	PfGW456L13_1700			Glutamate Aspartate transport system permease protein GltK (TC 3.A.1.3.4)	-1.25406768824625	-6.90279258052312	TRUE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_1057			Membrane-bound lytic murein transglycosylase A precursor (EC 3.2.1.-)	-1.58913161533644	-6.53758026840493	FALSE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_1142			Protein rarD	-4.37227361811134	-11.9470795937291	TRUE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_117			Oxidoreductase, short chain dehydrogenase/reductase family	-1.58869062063998	-7.75483673857532	FALSE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_2223			Glutamate synthase [NADPH] large chain (EC 1.4.1.13)	-1.53965683950096	-7.58301757720767	FALSE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_2252			Aspartate aminotransferase (EC 2.6.1.1)	-1.23091077261834	-6.79102888045432	TRUE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_3647			D-serine dehydratase transcriptional activator	-4.92547338092574	-17.6587439894467	TRUE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_3648			D-serine dehydratase (EC 4.3.1.18)	-4.73656132515557	-16.4315732589367	TRUE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_3649			D-serine permease DsdX	-1.56633946389338	-5.18780239564819	FALSE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_375			transport permease protein of gamma-aminobutyrate	1.48720929834718	11.8971043375713	FALSE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_4001			Polysaccharide export lipoprotein Wza	-1.72439477177724	-10.7593912397135	FALSE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_4002			YjbF outer membrane lipoprotein	-1.51140882772986	-5.44277313582107	FALSE
+nitrogen source	set3IT085	D-Serine	PfGW456L13_4790			D-serine/D-alanine/glycine transporter	2.78953369458945	23.0328893285141	FALSE
+nitrogen source	set3IT087	Gly-DL-Asp	PfGW456L13_1868			Glycine dehydrogenase [decarboxylating] (glycine cleavage system P protein) (EC 1.4.4.2)	-1.47053521666688	-9.81973728117136	FALSE
+nitrogen source	set3IT087	Gly-DL-Asp	PfGW456L13_3909			Ribose operon repressor	1.27000118474469	6.93180444170439	TRUE
+nitrogen source	set3IT087	Gly-DL-Asp	PfGW456L13_5051			Dipeptide-binding ABC transporter, periplasmic substrate-binding component (TC 3.A.1.5.2)	-2.27049545701913	-9.23184959554361	TRUE
+nitrogen source	set3IT087	Gly-DL-Asp	PfGW456L13_5053			Outer membrane porin, OprD family	2.39168002452651	6.84180641100377	TRUE
+nitrogen source	set3IT087	Gly-DL-Asp	PfGW456L13_5054			Dipeptide-binding ABC transporter, periplasmic substrate-binding component (TC 3.A.1.5.2)	5.85558334389205	9.65956380018883	TRUE
+nitrogen source	set3IT087	Gly-DL-Asp	PfGW456L13_5055			Dipeptide transport system permease protein DppB (TC 3.A.1.5.2)	-2.05222326700966	-6.99765390900896	TRUE
+nitrogen source	set3IT087	Gly-DL-Asp	PfGW456L13_5056			Dipeptide transport system permease protein DppC (TC 3.A.1.5.2)	-2.66762722600417	-5.098930847186	TRUE
+nitrogen source	set3IT087	Gly-DL-Asp	PfGW456L13_5058			Dipeptide transport ATP-binding protein DppF (TC 3.A.1.5.2)	-2.76123731958692	-7.53876578862879	TRUE
+nitrogen source	set3IT088	Gly-Glu	PfGW456L13_5051			Dipeptide-binding ABC transporter, periplasmic substrate-binding component (TC 3.A.1.5.2)	-2.06834961074622	-10.3076923862121	TRUE
+nitrogen source	set3IT088	Gly-Glu	PfGW456L13_5053			Outer membrane porin, OprD family	1.76668589337859	5.88719161267902	TRUE
+nitrogen source	set3IT088	Gly-Glu	PfGW456L13_5054			Dipeptide-binding ABC transporter, periplasmic substrate-binding component (TC 3.A.1.5.2)	4.3980297599743	8.72072650683039	TRUE
+nitrogen source	set3IT088	Gly-Glu	PfGW456L13_5055			Dipeptide transport system permease protein DppB (TC 3.A.1.5.2)	-2.42101403926461	-8.74079201322602	TRUE
+nitrogen source	set3IT088	Gly-Glu	PfGW456L13_5056			Dipeptide transport system permease protein DppC (TC 3.A.1.5.2)	-2.3361000596638	-6.16696794552898	TRUE
+nitrogen source	set3IT088	Gly-Glu	PfGW456L13_5057			Dipeptide transport ATP-binding protein DppD (TC 3.A.1.5.2)	-1.88324844101937	-5.01094011163141	TRUE
+nitrogen source	set3IT088	Gly-Glu	PfGW456L13_5058			Dipeptide transport ATP-binding protein DppF (TC 3.A.1.5.2)	-2.02698256646342	-7.4287111130793	TRUE
+nitrogen source	set3IT076	Glycine	PfGW456L13_161			putative membrane protein	-4.75189879661621	-12.7603525806305	TRUE
+nitrogen source	set3IT076	Glycine	PfGW456L13_1866			Aminomethyltransferase (glycine cleavage system T protein) (EC 2.1.2.10)	-3.92742818461065	-8.88672534570822	TRUE
+nitrogen source	set3IT076	Glycine	PfGW456L13_1868			Glycine dehydrogenase [decarboxylating] (glycine cleavage system P protein) (EC 1.4.4.2)	-4.78526513451386	-22.1683967164202	TRUE
+nitrogen source	set3IT076	Glycine	PfGW456L13_1870			Sigma-54 dependent transcriptional regulator/sensory box protein	-1.67442294759709	-7.62583090375206	TRUE
+nitrogen source	set3IT076	Glycine	PfGW456L13_2685			Serine hydroxymethyltransferase (EC 2.1.2.1)	-1.35610965344812	-6.97899747380096	FALSE
+nitrogen source	set3IT076	Glycine	PfGW456L13_4791			Transposase and inactivated derivatives	1.21947916383744	5.19442458223466	FALSE
+nitrogen source	set3IT067	L-Arginine	PfGW456L13_1971			Succinylornithine transaminase (EC 2.6.1.81)	-4.43355858114764	-11.362417400398	TRUE
+nitrogen source	set3IT067	L-Arginine	PfGW456L13_1974			Succinylglutamic semialdehyde dehydrogenase (EC 1.2.1.71)	-3.87574786577157	-6.4075845141021	TRUE
+nitrogen source	set3IT067	L-Arginine	PfGW456L13_1977			Succinylglutamate desuccinylase (EC 3.5.1.96)	-3.5352124766899	-7.65542757650719	FALSE
+nitrogen source	set3IT067	L-Arginine	PfGW456L13_3518			Quino(hemo)protein alcohol dehydrogenase, PQQ-dependent (EC 1.1.99.8)	1.20934532259112	10.4883358893017	FALSE
+nitrogen source	set3IT067	L-Arginine	PfGW456L13_821			Multidrug and toxin extrusion (MATE) family efflux pump YdhE/NorM, homolog	-1.60455483944689	-9.2533114641468	FALSE
+nitrogen source	set3IT074	L-Asparagine	PfGW456L13_740			L-asparaginase (EC 3.5.1.1)	-1.08864109485575	-5.8793324848727	TRUE
+nitrogen source	set3IT070	L-Aspartic Acid	PfGW456L13_1891			DNA-binding response regulator GltR, controls specific porins for the entry of glucose	-1.65658983787055	-7.13190306329303	FALSE
+nitrogen source	set3IT070	L-Aspartic Acid	PfGW456L13_1892			Integral membrane sensor signal transduction histidine kinase (EC 2.7.13.3), glucose catabolism cluster	-1.49092876766632	-5.94574998901801	FALSE
+nitrogen source	set3IT070	L-Aspartic Acid	PfGW456L13_1894			Glucose ABC transport system, periplasmic sugar-binding protein	-1.50264526583977	-7.71174947660906	FALSE
+nitrogen source	set3IT070	L-Aspartic Acid	PfGW456L13_1895			Glucose ABC transport system, inner membrane component 1	-1.70001534592545	-10.753866659475	FALSE
+nitrogen source	set3IT070	L-Aspartic Acid	PfGW456L13_1896			Glucose ABC transport system, inner membrane component 2	-1.99202119661183	-9.43712507387627	FALSE
+nitrogen source	set3IT070	L-Aspartic Acid	PfGW456L13_1897			Glucose ABC transporter, ATP-binding subunit (EC 3.6.3.-)	-1.91099134475088	-9.10358276702445	FALSE
+nitrogen source	set3IT070	L-Aspartic Acid	PfGW456L13_4652			Kup system potassium uptake protein	-1.5158699289661	-9.24867974516862	FALSE
+nitrogen source	set3IT075	L-Glutamine	PfGW456L13_4778			Transcriptional activator MetR	-1.16660381960807	-8.22264814017017	TRUE
+nitrogen source	set3IT075	L-Glutamine	PfGW456L13_54			Probable transmembrane protein	-1.65869067672213	-6.42931490247862	FALSE
+nitrogen source	set3IT068	L-Histidine	PfGW456L13_316			N-formylglutamate deformylase (EC 3.5.1.68)	-4.77652668334717	-14.9980850136281	TRUE
+nitrogen source	set3IT068	L-Histidine	PfGW456L13_317			Imidazolonepropionase (EC 3.5.2.7)	-3.65871057872676	-9.15414687638281	TRUE
+nitrogen source	set3IT068	L-Histidine	PfGW456L13_320			Histidine ammonia-lyase (EC 4.3.1.3)	-2.34451872546039	-5.75486007909422	TRUE
+nitrogen source	set3IT068	L-Histidine	PfGW456L13_326			Urocanate hydratase (EC 4.2.1.49)	-1.72085541731272	-11.3455905480199	TRUE
+nitrogen source	set3IT068	L-Histidine	PfGW456L13_330			Formiminoglutamic iminohydrolase (EC 3.5.3.13)	-4.4179972473337	-12.3987841423209	TRUE
+nitrogen source	set3IT068	L-Histidine	PfGW456L13_4805			Glucose dehydrogenase, PQQ-dependent (EC 1.1.5.2)	-1.15476412872669	-8.54943818214823	FALSE
+nitrogen source	set3IT068	L-Histidine	PfGW456L13_567			Glycine cleavage system transcriptional activator	-1.16821929819872	-7.15340545682146	FALSE
+nitrogen source	set3IT080	L-Isoleucine	PfGW456L13_2982			3-ketoacyl-CoA thiolase (EC 2.3.1.16)	-2.44079002169768	-5.02543684411719	TRUE
+nitrogen source	set3IT080	L-Isoleucine	PfGW456L13_2983			Butyryl-CoA dehydrogenase (EC 1.3.99.2)	-1.3620646469237	-7.64324449870465	TRUE
+nitrogen source	set3IT080	L-Isoleucine	PfGW456L13_3238			Transcriptional regulator, AraC family	-1.99412421463445	-7.82241909808893	TRUE
+nitrogen source	set3IT080	L-Isoleucine	PfGW456L13_3540			Branched-chain alpha-keto acid dehydrogenase, E1 component, alpha subunit (EC 1.2.4.4)	-2.29897875900728	-7.80828120739841	TRUE
+nitrogen source	set3IT080	L-Isoleucine	PfGW456L13_3541			Branched-chain alpha-keto acid dehydrogenase, E1 component, beta subunit (EC 1.2.4.4)	-1.91628587251771	-9.42915307266564	TRUE
+nitrogen source	set3IT080	L-Isoleucine	PfGW456L13_3542			Dihydrolipoamide acyltransferase component of branched-chain alpha-keto acid dehydrogenase complex (EC 2.3.1.168)	-1.85612277522667	-7.0514614247451	TRUE
+nitrogen source	set3IT080	L-Isoleucine	PfGW456L13_3543			Dihydrolipoamide dehydrogenase of branched-chain alpha-keto acid dehydrogenase (EC 1.8.1.4)	-1.35398509724938	-5.46350253376046	TRUE
+nitrogen source	set3IT080	L-Isoleucine	PfGW456L13_4115			2-methylaconitate cis-trans isomerase	-3.85804897209136	-6.98697236543862	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1164			Coenzyme PQQ synthesis protein F (EC 3.4.99.-)	-1.34171856670894	-8.92433438084663	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1170			5-aminopentanamidase (EC 3.5.1.30)	-2.85323178583093	-11.4942309619042	TRUE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1171			Lysine 2-monooxygenase (EC 1.13.12.2)	-4.9496003802124	-15.8452306901171	TRUE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1172			Transcriptional regulator, AsnC family	-5.11920047702044	-9.80501734324409	TRUE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1891			DNA-binding response regulator GltR, controls specific porins for the entry of glucose	-2.51301584968504	-6.18781124887715	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1892			Integral membrane sensor signal transduction histidine kinase (EC 2.7.13.3), glucose catabolism cluster	-3.11818729869985	-8.34840462751315	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1894			Glucose ABC transport system, periplasmic sugar-binding protein	-3.200045208534	-11.5649694272643	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1895			Glucose ABC transport system, inner membrane component 1	-2.98510736697622	-15.2105480825376	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1896			Glucose ABC transport system, inner membrane component 2	-3.5179596243244	-11.1879381703279	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_1897			Glucose ABC transporter, ATP-binding subunit (EC 3.6.3.-)	-3.50078448304138	-11.3114799737831	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_2411			3-ketoacyl-CoA thiolase (EC 2.3.1.16) @ Acetyl-CoA acetyltransferase (EC 2.3.1.9)	-1.47216385706374	-7.34236483425959	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_3215			HTH-type transcriptional regulator BetI	-4.78347925263783	-7.26605286401755	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_3513			Coenzyme PQQ synthesis protein E	-1.19847657972455	-5.32235890008098	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_3519			SoxH protein, homolog	-1.92936859136925	-6.16274080163893	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_377			Lysine-arginine-ornithine-binding periplasmic protein precursor (TC 3.A.1.3.1)	-1.07520809250898	-7.1919916330116	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_378			Arginine ABC transporter, permease protein ArtQ	-1.61817421657072	-10.0513676127754	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_379			Amino acid ABC transporter, permease protein	-1.20340525931387	-7.55063449457967	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_3872			Transcriptional regulator, AraC family	-4.11403227264768	-6.12616415707649	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_495			Succinate-semialdehyde dehydrogenase [NAD(P)+] (EC 1.2.1.16)	-1.25493178231077	-5.98009925284016	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_553			L-carnitine dehydratase/bile acid-inducible protein F	-1.69603075317247	-9.77164603442844	FALSE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_554			Glutaryl-CoA dehydrogenase (EC 1.3.99.7)	-1.97580525139931	-9.75921320726354	TRUE
+nitrogen source	set3IT069	L-Lysine	PfGW456L13_555			Glycine cleavage system transcriptional activator	-1.16078768878391	-6.71208087182707	TRUE
+nitrogen source	set3IT082	L-Phenylalanine	PfGW456L13_2935			4-hydroxyphenylpyruvate dioxygenase (EC 1.13.11.27)	-1.99485213801099	-10.57365022224	TRUE
+nitrogen source	set3IT082	L-Phenylalanine	PfGW456L13_3955			Transcriptional regulator, TetR family	2.11687749329166	8.47686532256916	FALSE
+nitrogen source	set3IT082	L-Phenylalanine	PfGW456L13_4222			Transcriptional regulator, TetR family	2.95826781324527	17.3182875272883	TRUE
+nitrogen source	set3IT082	L-Phenylalanine	PfGW456L13_4393			Phenylalanine hydroxylase transcriptional activator PhhR	-2.48279278319875	-9.86648357235171	TRUE
+nitrogen source	set3IT082	L-Phenylalanine	PfGW456L13_4394			Phenylalanine-4-hydroxylase (EC 1.14.16.1)	-1.64499221602904	-7.56590235449772	TRUE
+nitrogen source	set3IT082	L-Phenylalanine	PfGW456L13_4396			Aspartate aminotransferase (EC 2.6.1.1)	-2.08017280690322	-5.81802155352152	TRUE
+nitrogen source	set3IT082	L-Phenylalanine	PfGW456L13_4977			FolM Alternative dihydrofolate reductase 1	1.28151528954373	7.19187993676626	FALSE
+nitrogen source	set3IT077	L-Proline	PfGW456L13_1534			FIG00955330: hypothetical protein	-1.16958190058018	-6.92735503959748	FALSE
+nitrogen source	set3IT077	L-Proline	PfGW456L13_2172			S-adenosylhomocysteine deaminase (EC 3.5.4.28); Methylthioadenosine deaminase	-2.21154907485532	-9.14709323448658	FALSE
+nitrogen source	set3IT077	L-Proline	PfGW456L13_859			Uncharacterized protein EC-HemY, likely associated with heme metabolism based on gene clustering with hemC, hemD in Proteobacteria (unrelated to HemY-type PPO in GramPositives)	-2.06831589967937	-6.97236503892672	FALSE
+nitrogen source	set3IT072	L-Serine	PfGW456L13_4954			L-serine dehydratase (EC 4.3.1.17)	-4.73382904247938	-16.7216108124699	TRUE
+nitrogen source	set3IT073	L-Threonine	PfGW456L13_1114			Low-specificity L-threonine aldolase (EC 4.1.2.48)	-2.54169301073347	-5.30280238349955	TRUE
+nitrogen source	set3IT073	L-Threonine	PfGW456L13_1115			Membrane protein, putative	3.84744117036043	6.88221988413547	FALSE
+nitrogen source	set3IT073	L-Threonine	PfGW456L13_1777			GGDEF domain/EAL domain protein	1.13174150229954	8.70051914411744	FALSE
+nitrogen source	set3IT073	L-Threonine	PfGW456L13_1866			Aminomethyltransferase (glycine cleavage system T protein) (EC 2.1.2.10)	-1.9980195470333	-7.52371486098463	TRUE
+nitrogen source	set3IT073	L-Threonine	PfGW456L13_1868			Glycine dehydrogenase [decarboxylating] (glycine cleavage system P protein) (EC 1.4.4.2)	-2.70438362198595	-15.611795518358	TRUE
+nitrogen source	set3IT073	L-Threonine	PfGW456L13_1869			Glycine cleavage system H protein	-2.62118054863667	-6.01698390856503	TRUE
+nitrogen source	set3IT073	L-Threonine	PfGW456L13_1870			Sigma-54 dependent transcriptional regulator/sensory box protein	-1.60717933951224	-6.06671925910155	TRUE
+nitrogen source	set3IT084	L-Tryptophan	PfGW456L13_4288			Kynureninase (EC 3.7.1.3)	-1.15051913369824	-7.59004252926377	TRUE
+nitrogen source	set3IT084	L-Tryptophan	PfGW456L13_4591			3-oxoadipate CoA-transferase subunit B (EC 2.8.3.6); Glutaconate CoA-transferase subunit B (EC 2.8.3.12)	-1.7044953265822	-5.31707944765458	FALSE
+nitrogen source	set3IT084	L-Tryptophan	PfGW456L13_4592			3-oxoadipate CoA-transferase subunit A (EC 2.8.3.6); Glutaconate CoA-transferase subunit A (EC 2.8.3.12)	-1.68772188537219	-7.93993762366564	FALSE
+nitrogen source	set3IT084	L-Tryptophan	PfGW456L13_4594			Pca regulon regulatory protein PcaR	-1.23976880871303	-8.7236680530038	FALSE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_229			Na(+)/H(+) antiporter	1.25845682622788	10.6075884233382	FALSE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_2542			Major facilitator family transporter	1.83497606863219	5.78593510870203	FALSE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_2568			1-aminocyclopropane-1-carboxylate deaminase (EC 3.5.99.7)	-1.01125026954141	-6.48273180823222	FALSE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_2985			Butyryl-CoA dehydrogenase (EC 1.3.99.2)	-2.66147916310856	-11.5780834899924	TRUE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_2986			3-hydroxyisobutyryl-CoA hydrolase (EC 3.1.2.4)	-2.45199156564027	-6.6918210456104	TRUE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_3031			Threonine dehydratase biosynthetic (EC 4.3.1.19)	-4.45139844335596	-12.0161749442161	FALSE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_3540			Branched-chain alpha-keto acid dehydrogenase, E1 component, alpha subunit (EC 1.2.4.4)	-4.26233660942606	-8.91912849612366	TRUE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_3541			Branched-chain alpha-keto acid dehydrogenase, E1 component, beta subunit (EC 1.2.4.4)	-3.84595221015507	-15.1855044445922	TRUE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_3542			Dihydrolipoamide acyltransferase component of branched-chain alpha-keto acid dehydrogenase complex (EC 2.3.1.168)	-3.82023304866154	-10.3189735569633	TRUE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_3543			Dihydrolipoamide dehydrogenase of branched-chain alpha-keto acid dehydrogenase (EC 1.8.1.4)	-4.88259419776669	-8.71693602613973	FALSE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_3955			Transcriptional regulator, TetR family	1.51032786938424	9.03678113218268	FALSE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_4115			2-methylaconitate cis-trans isomerase	-3.37967375279291	-8.32454408958859	FALSE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_4117			2-methylcitrate synthase (EC 2.3.3.5)	-1.75040952616142	-10.405950630477	FALSE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_5147			Transcriptional regulator, LysR family	-1.03759337560125	-8.10829795090459	TRUE
+nitrogen source	set3IT079	L-Valine	PfGW456L13_910			Transcriptional regulator, AsnC family	-1.73882078070342	-5.22127397357598	TRUE
+nitrogen source	set3IT091	N-Acetyl-D-Glucosamine	PfGW456L13_134			Protein containing transglutaminase-like domain, putative cysteine protease	-1.15594512792267	-7.92173773605687	FALSE
+nitrogen source	set3IT091	N-Acetyl-D-Glucosamine	PfGW456L13_2803			Glyceraldehyde-3-phosphate dehydrogenase, putative	-1.23516950506643	-6.54183082875284	FALSE
+nitrogen source	set3IT091	N-Acetyl-D-Glucosamine	PfGW456L13_4830			N-acetylglucosamine-6-phosphate deacetylase (EC 3.5.1.25)	-5.0516740079093	-15.2089176141127	TRUE
+nitrogen source	set3IT091	N-Acetyl-D-Glucosamine	PfGW456L13_4831			Glucosamine-6-phosphate deaminase [isomerizing], alternative (EC 3.5.99.6)	-2.87396498039482	-5.34686015708418	TRUE
+nitrogen source	set3IT091	N-Acetyl-D-Glucosamine	PfGW456L13_4832			PTS system, glucose-specific IIA component / Phosphotransferase system, phosphocarrier protein HPr / Phosphoenolpyruvate-protein phosphotransferase of PTS system (EC 2.7.3.9)	-4.81836969846672	-13.4907396802345	TRUE
+nitrogen source	set3IT091	N-Acetyl-D-Glucosamine	PfGW456L13_4833			PTS system, N-acetylglucosamine-specific IIA component (EC 2.7.1.69) / PTS system, N-acetylglucosamine-specific IIB component (EC 2.7.1.69) / PTS system, N-acetylglucosamine-specific IIC component (EC 2.7.1.69)	-4.62798429585216	-17.2062502898764	TRUE
+nitrogen source	set3IT091	N-Acetyl-D-Glucosamine	PfGW456L13_750			Aldose 1-epimerase	-1.61101281213572	-10.6276879380165	TRUE
+nitrogen source	set3IT091	N-Acetyl-D-Glucosamine	PfGW456L13_855			Autolysis response regulater LytR	-1.36652525149457	-8.83977083598778	FALSE
+nitrogen source	set3IT090	Putrescine Dihydrochloride	PfGW456L13_805			Aldehyde dehydrogenase (EC 1.2.1.3)	-3.25363676963886	-9.59754254560753	TRUE
+nitrogen source	set3IT090	Putrescine Dihydrochloride	PfGW456L13_925			Gamma-glutamyl-putrescine synthetase (EC 6.3.1.11)	-4.9727307531711	-13.2416852716529	TRUE
+nitrogen source	set3IT095	Sodium nitrate	PfGW456L13_2114			Molybdenum cofactor biosynthesis protein MoaA	-1.4576353228157	-5.00877633491034	TRUE
+nitrogen source	set3IT095	Sodium nitrate	PfGW456L13_2272			Molybdopterin-guanine dinucleotide biosynthesis protein MobA	-1.33727819381354	-6.54475009602824	TRUE
+nitrogen source	set3IT095	Sodium nitrate	PfGW456L13_2274			Molybdopterin biosynthesis protein MoeA	-1.22941654953004	-6.63500484543372	TRUE
+nitrogen source	set3IT095	Sodium nitrate	PfGW456L13_4098			Response regulator NasT	-5.22073730098907	-6.18607892114359	TRUE
+nitrogen source	set3IT095	Sodium nitrate	PfGW456L13_4101			Nitrite reductase [NAD(P)H] large subunit (EC 1.7.1.4)	-4.28508768250892	-18.2484778341449	TRUE
+nitrogen source	set3IT095	Sodium nitrate	PfGW456L13_4103			Assimilatory nitrate reductase large subunit (EC:1.7.99.4)	-3.01886267290764	-12.9187628318904	TRUE
+nitrogen source	set3IT095	Sodium nitrate	PfGW456L13_4778			Transcriptional activator MetR	-2.7367985844059	-17.4379481889016	FALSE
+nitrogen source	set3IT095	Sodium nitrate	PfGW456L13_4947			Permease of the drug/metabolite transporter (DMT) superfamily	-2.85962309370679	-8.11815544552646	FALSE
+nitrogen source	set3IT095	Sodium nitrate	PfGW456L13_4948			Transcriptional regulator, AraC family	-1.8196743309273	-7.70387081673185	FALSE
+nitrogen source	set3IT092	Uridine	PfGW456L13_1662			Heavy metal sensor histidine kinase	-2.89091695904581	-8.8185408354291	TRUE
+nitrogen source	set3IT092	Uridine	PfGW456L13_2			Methylmalonate-semialdehyde dehydrogenase (EC 1.2.1.27)	-1.32034035477766	-8.10560126521041	TRUE
+nitrogen source	set3IT092	Uridine	PfGW456L13_3			Omega-amino acid--pyruvate aminotransferase (EC 2.6.1.18)	-2.70061341315255	-15.2250421866371	TRUE
+nitrogen source	set3IT092	Uridine	PfGW456L13_3503			Beta-ureidopropionase (EC 3.5.1.6)	-3.84936956055912	-6.90225087166328	TRUE
+nitrogen source	set3IT092	Uridine	PfGW456L13_3505			Possible pyrimidine permease in reductive pathway	-3.14105461807364	-8.23689949949985	TRUE
+nitrogen source	set3IT092	Uridine	PfGW456L13_3506			Dihydropyrimidinase (EC 3.5.2.2)	-3.9478990327509	-7.92093637983712	TRUE
+nitrogen source	set3IT092	Uridine	PfGW456L13_3507			Pyridine nucleotide-disulphide oxidoreductase associated with reductive pyrimidine catabolism	-4.58097469534458	-6.94307686238948	TRUE
+nitrogen source	set3IT092	Uridine	PfGW456L13_3508			Dihydropyrimidine dehydrogenase [NADP+] (EC 1.3.1.2)	-3.54235387658883	-11.9955145696929	TRUE
+nitrogen source	set3IT092	Uridine	PfGW456L13_4			LysR family transcriptional regulator PA0133	-2.09362060125501	-10.5549980752925	TRUE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_1281			Catalase (EC 1.11.1.6)	-2.4316954554894	-12.8054901477679	FALSE
+stress	set2IT090	Aluminum chloride hydrate	PfGW456L13_1766			PAP2 superfamily protein	-2.06899413793668	-7.93142298199015	FALSE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_1767			DNA-binding response regulator ColR	-2.70815850314621	-7.81947387554268	TRUE
+stress	set2IT090	Aluminum chloride hydrate	PfGW456L13_1767			DNA-binding response regulator ColR	-1.92864638360615	-7.27238538465893	TRUE
+stress	set2IT090	Aluminum chloride hydrate	PfGW456L13_2146			Phosphoglycerol transferase and related proteins, alkaline phosphatase superfamily	-2.1173536378393	-13.3756242061562	TRUE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_2146			Phosphoglycerol transferase and related proteins, alkaline phosphatase superfamily	-1.39946963741059	-10.2721540800882	TRUE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_2224			2-keto-3-deoxy-D-arabino-heptulosonate-7- phosphate synthase I alpha (EC 2.5.1.54)	-1.67584262130037	-6.65865782611445	FALSE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_2317			Xaa-Pro aminopeptidase (EC 3.4.11.9)	-1.81048419053778	-7.36975228965376	FALSE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_4400			Aromatic amino acid transport protein AroP	-2.25821118022831	-14.3602293922206	FALSE
+stress	set2IT090	Aluminum chloride hydrate	PfGW456L13_4400			Aromatic amino acid transport protein AroP	-1.80249959892536	-12.0123940084777	FALSE
+stress	set2IT090	Aluminum chloride hydrate	PfGW456L13_4497			membrane protein, putative	-1.80602213482253	-12.5400297587063	TRUE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_4497			membrane protein, putative	-1.13582105265841	-8.35180261106902	TRUE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_4516			RNA polymerase sigma-H factor AlgT	1.37151604517213	7.1457434666991	FALSE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_4643			Peptide chain release factor RF-3	1.32010738584449	10.5849413706147	TRUE
+stress	set2IT090	Aluminum chloride hydrate	PfGW456L13_5028			FIG005080: Possible exported protein	-1.90274367538015	-13.2611763113303	FALSE
+stress	set2IT089	Aluminum chloride hydrate	PfGW456L13_5047			ABC transporter, ATP-binding protein	1.31600576754925	10.328152987655	FALSE
+stress	set2IT090	Aluminum chloride hydrate	PfGW456L13_5123			Ais protein, putative	-2.49615841654763	-6.30433967729625	FALSE
+stress	set2IT090	Aluminum chloride hydrate	PfGW456L13_622			Protein tyrosine/serine phosphatase	-2.15731005300359	-8.30843856454997	TRUE
+stress	set2IT090	Aluminum chloride hydrate	PfGW456L13_887			Glycerol-3-phosphate transporter	1.52733119408828	13.2992952729325	TRUE
+stress	set3IT051	Bacitracin	PfGW456L13_1281			Catalase (EC 1.11.1.6)	-2.00600356190675	-11.2154744799009	FALSE
+stress	set3IT051	Bacitracin	PfGW456L13_179			Putative esterase, FIGfam005057	-1.19979633255171	-5.07454190418834	FALSE
+stress	set3IT051	Bacitracin	PfGW456L13_4281			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-1.14240012203122	-8.30798291922451	FALSE
+stress	set3IT051	Bacitracin	PfGW456L13_4282			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-1.4285914484789	-5.09941465669332	FALSE
+stress	set3IT051	Bacitracin	PfGW456L13_4400			Aromatic amino acid transport protein AroP	-1.53689818042641	-10.6644860180902	FALSE
+stress	set3IT051	Bacitracin	PfGW456L13_4647			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-1.84853112855007	-7.58309861583796	FALSE
+stress	set3IT051	Bacitracin	PfGW456L13_54			Probable transmembrane protein	-1.52987459986566	-7.42708835371225	FALSE
+stress	set3IT051	Bacitracin	PfGW456L13_946			Outer membrane protein assembly factor YaeT precursor	1.64144037180655	10.5354681541352	FALSE
+stress	set2IT088	Benzethonium chloride	PfGW456L13_1620			FIG067310: hypothetical protein	-1.87295651378096	-14.2636571640888	TRUE
+stress	set2IT088	Benzethonium chloride	PfGW456L13_563			FIG00953248: hypothetical protein	-1.16514017836483	-6.47696118300497	TRUE
+stress	set2IT088	Benzethonium chloride	PfGW456L13_564			FIG00953482: hypothetical protein	-2.00592388692291	-14.2159295168692	TRUE
+stress	set1IT042	Cisplatin	PfGW456L13_1283			Excinuclease ABC subunit A	-1.17467909968154	-10.1376419000061	TRUE
+stress	set1IT042	Cisplatin	PfGW456L13_2886			Excinuclease ABC subunit C	-1.40700106163183	-9.23971833700096	TRUE
+stress	set1IT042	Cisplatin	PfGW456L13_2970			Fe2+/Zn2+ uptake regulation proteins	-1.08627104231631	-5.29028519932859	FALSE
+stress	set1IT042	Cisplatin	PfGW456L13_3307			Exonuclease SbcD	-1.36275110633739	-5.37694201747187	TRUE
+stress	set1IT042	Cisplatin	PfGW456L13_3308			Exonuclease SbcC	-1.12284591316103	-5.76533809612754	TRUE
+stress	set1IT042	Cisplatin	PfGW456L13_3959			Excinuclease ABC subunit B	-1.19185416710347	-9.37239649359092	TRUE
+stress	set1IT042	Cisplatin	PfGW456L13_4074			Recombination protein RecR	-1.33785188526417	-6.49580316303173	TRUE
+stress	set1IT042	Cisplatin	PfGW456L13_664			DNA recombination and repair protein RecF	-1.1485267388292	-7.94659782051767	TRUE
+stress	set1IT042	Cisplatin	PfGW456L13_724			ATP-dependent DNA helicase UvrD/PcrA	-1.24292105974329	-9.91189174838566	TRUE
+stress	set1IT036	Cobalt chloride hexahydrate	PfGW456L13_3547			Cobalt-zinc-cadmium resistance protein CzcD	-3.80899723144898	-9.0537268893371	TRUE
+stress	set3IT064	D-Cycloserine	PfGW456L13_2927			Alkyl hydroperoxide reductase protein C (EC 1.6.4.-)	-2.15228975600804	-6.67141763843343	TRUE
+stress	set3IT064	D-Cycloserine	PfGW456L13_377			Lysine-arginine-ornithine-binding periplasmic protein precursor (TC 3.A.1.3.1)	-1.41577302567145	-9.6547031369742	FALSE
+stress	set3IT064	D-Cycloserine	PfGW456L13_4281			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-1.5977972459934	-10.4651512511263	FALSE
+stress	set3IT064	D-Cycloserine	PfGW456L13_4282			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.05237991144791	-5.53944023312446	FALSE
+stress	set3IT064	D-Cycloserine	PfGW456L13_890			FIG006231: RNA-binding protein	-1.72846079695033	-6.4916206795429	TRUE
+stress	set3IT055	Dimethyl Sulfoxide	PfGW456L13_859			Uncharacterized protein EC-HemY, likely associated with heme metabolism based on gene clustering with hemC, hemD in Proteobacteria (unrelated to HemY-type PPO in GramPositives)	-1.45305436743974	-5.58817693538787	FALSE
+stress	set3IT053	Fusidic acid sodium salt	PfGW456L13_4467			ATP-dependent RNA helicase HrpA (EC 3.6.4.13)	-2.6665312526504	-13.0784522306482	TRUE
+stress	set3IT052	Fusidic acid sodium salt	PfGW456L13_4467			ATP-dependent RNA helicase HrpA (EC 3.6.4.13)	-2.15967531742214	-11.4382364063955	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_1003			Radical SAM family enzyme, similar to coproporphyrinogen III oxidase, oxygen-independent, clustered with nucleoside-triphosphatase RdgB	1.51930736464623	7.92882407549988	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_1551			Ribosomal-protein-S18p-alanine acetyltransferase (EC 2.3.1.-)	1.46108386265986	7.30213933034187	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_1599			Hypoxanthine-guanine phosphoribosyltransferase (EC 2.4.2.8)	1.20184946438318	5.90907530802311	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_1610			Restriction endonuclease	-1.49004426507446	-5.97261559769516	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_179			Putative esterase, FIGfam005057	-1.71778122086401	-8.33179104115075	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_1862			Queuosine Biosynthesis QueC ATPase	1.99568864107136	6.33441763999305	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_1949			Transcriptional regulator, TetR family	5.44394637356774	14.1612561464559	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_2097			Ribosomal large subunit pseudouridine synthase C (EC 4.2.1.70)	2.70063022261862	11.1847671318824	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_2140			OmpA family protein	-2.94691722456749	-5.82986873090557	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_2321			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	2.44294439973187	6.03241750450162	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_2549			Murein-DD-endopeptidase (EC 3.4.99.-)	1.2642568070423	8.90685448498704	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_2954			RND efflux system, inner membrane transporter CmeB	-2.9409686850404	-5.61458178621078	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_3341			Membrane-bound lytic murein transglycosylase D precursor (EC 3.2.1.-)	2.15826770018332	10.3312544182828	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_3538			FIG146518: Zn-dependent hydrolases, including glyoxylases	1.53966300734385	7.16304482509078	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_377			Lysine-arginine-ornithine-binding periplasmic protein precursor (TC 3.A.1.3.1)	-1.22858016515197	-8.14995810238313	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_3959			Excinuclease ABC subunit B	1.11845902495148	8.1083744231834	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_4247			NLP/P60 family protein	1.36204489272943	8.11189195478623	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_4281			Nucleoside ABC transporter, periplasmic nucleoside-binding protein	-2.14061946348244	-10.8983741873497	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_4471			Fe(2+)/alpha-ketoglutarate-dependent dioxygenase LpxO	-1.40513714005418	-6.09844265872613	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_4516			RNA polymerase sigma-H factor AlgT	1.73346741213043	10.4359731847317	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_4579			Transcription repressor of multidrug efflux pump acrAB operon, TetR (AcrR) family	7.14008634434994	30.0860437746904	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_4624			ATP-dependent helicase DinG/Rad3	-1.23348042681173	-5.81733422601695	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_4647			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-3.76146755910051	-7.60292494702023	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_4851			Exodeoxyribonuclease VII large subunit (EC 3.1.11.6)	-2.35027124656511	-6.41987145115229	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_5106			DNA repair protein RecN	-1.97923932548552	-9.59374942800384	TRUE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_54			Probable transmembrane protein	-1.45396572553531	-7.37424078573855	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_724			ATP-dependent DNA helicase UvrD/PcrA	-1.35339271793638	-10.4192891096304	FALSE
+stress	set3IT063	Lomefloxacin hydrochloride	PfGW456L13_946			Outer membrane protein assembly factor YaeT precursor	7.37877092862383	46.1406475459898	FALSE
+stress	set3IT062	MreB Perturbing Compound A22	PfGW456L13_97			membrane protein, putative	-1.9948952144031	-5.54210401727888	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	PfGW456L13_1068			Lipoprotein, putative	1.69859212467469	6.5572916628362	FALSE
+stress	set1IT035	Nickel (II) chloride hexahydrate	PfGW456L13_115			Mannose-6-phosphate isomerase (EC 5.3.1.8)	-2.64214607438685	-12.3252458193747	TRUE
+stress	set1IT035	Nickel (II) chloride hexahydrate	PfGW456L13_1393			Cobalt-zinc-cadmium resistance protein	1.93971743242055	12.2393470144483	TRUE
+stress	set1IT035	Nickel (II) chloride hexahydrate	PfGW456L13_2455			Histidine permease YuiF	-1.13446843103892	-7.89990376257721	TRUE
+stress	set1IT035	Nickel (II) chloride hexahydrate	PfGW456L13_4197			Potassium efflux system KefA protein / Small-conductance mechanosensitive channel	-1.02579900309984	-7.72746190446418	FALSE
+stress	set1IT038	Paraquat dichloride	PfGW456L13_1052			cytosolic long-chain acyl-CoA thioester hydrolase family protein	-2.31337055939987	-5.95285493779338	FALSE
+stress	set1IT038	Paraquat dichloride	PfGW456L13_1082			Choline dehydrogenase (EC 1.1.99.1)	-2.0960649889177	-12.5685328232214	TRUE
+stress	set1IT038	Paraquat dichloride	PfGW456L13_1083			Betaine aldehyde dehydrogenase (EC 1.2.1.8)	-2.14424084479092	-9.76198657918868	TRUE
+stress	set1IT038	Paraquat dichloride	PfGW456L13_1085			High-affinity choline uptake protein BetT	3.57858654252529	27.242703470447	TRUE
+stress	set1IT038	Paraquat dichloride	PfGW456L13_1440			Ferredoxin--NADP(+) reductase (EC 1.18.1.2)	-2.72529225623582	-9.247254149393	TRUE
+stress	set1IT038	Paraquat dichloride	PfGW456L13_802			hypothetical protein	1.40148767981777	9.24749648680923	FALSE
+stress	set1IT038	Paraquat dichloride	PfGW456L13_803			FIG00953403: hypothetical protein	3.72904512482397	11.9360191466658	TRUE
+stress	set1IT038	Paraquat dichloride	PfGW456L13_805			Aldehyde dehydrogenase (EC 1.2.1.3)	5.03893272912634	13.2520292499552	TRUE
+stress	set1IT038	Paraquat dichloride	PfGW456L13_806			Major facilitator family transporter	-4.24431785605359	-17.0554247463245	TRUE
+stress	set2IT086	Sodium Chloride	PfGW456L13_995			Cell division protein FtsX	-1.30472753081458	-9.90508203529062	FALSE
+stress	set2IT085	Sodium nitrate	PfGW456L13_1048			ATP-dependent RNA helicase RhlE	1.35569560843848	10.7735356634572	FALSE
+stress	set2IT085	Sodium nitrate	PfGW456L13_1216			Phosphoglycolate phosphatase (EC 3.1.3.18)	1.18409130706537	7.4200157160939	TRUE
+stress	set2IT085	Sodium nitrate	PfGW456L13_160			Epoxyqueuosine (oQ) reductase QueG	1.94418483686131	8.81266325752326	FALSE
+stress	set2IT085	Sodium nitrate	PfGW456L13_4006			UTP--glucose-1-phosphate uridylyltransferase (EC 2.7.7.9)	1.47839003835354	11.2176481844971	FALSE
+stress	set2IT085	Sodium nitrate	PfGW456L13_4213			FKBP-type peptidyl-prolyl cis-trans isomerase FklB (EC 5.2.1.8)	-1.56623065898663	-7.60968465858127	TRUE
+stress	set2IT085	Sodium nitrate	PfGW456L13_4516			RNA polymerase sigma-H factor AlgT	-1.84873010998762	-9.91416410891919	FALSE
+stress	set2IT085	Sodium nitrate	PfGW456L13_653			Trk system potassium uptake protein TrkA	1.44144772663626	10.1135380853224	FALSE
+stress	set2IT085	Sodium nitrate	PfGW456L13_724			ATP-dependent DNA helicase UvrD/PcrA	-1.48734506050592	-11.2184947509073	FALSE
+stress	set2IT085	Sodium nitrate	PfGW456L13_890			FIG006231: RNA-binding protein	-1.34251916683138	-5.93375331152252	TRUE
+stress	set2IT085	Sodium nitrate	PfGW456L13_893			Z-ring-associated protein ZapA	-1.44349741113731	-5.4843170146283	TRUE
+stress	set2IT085	Sodium nitrate	PfGW456L13_995			Cell division protein FtsX	-2.2646337560263	-14.6831917364013	TRUE
+stress	set2IT084	Sodium nitrite	PfGW456L13_1974			Succinylglutamic semialdehyde dehydrogenase (EC 1.2.1.71)	-1.43250955162069	-5.06364150717024	FALSE
+stress	set2IT084	Sodium nitrite	PfGW456L13_1977			Succinylglutamate desuccinylase (EC 3.5.1.96)	-1.69135358402818	-6.55428168535405	FALSE
+stress	set1IT040	Thallium(I) acetate	PfGW456L13_1440			Ferredoxin--NADP(+) reductase (EC 1.18.1.2)	-3.75707467528484	-8.06937632461465	TRUE
+stress	set1IT041	Thallium(I) acetate	PfGW456L13_1440			Ferredoxin--NADP(+) reductase (EC 1.18.1.2)	-1.78488255507233	-7.47275901400435	TRUE
+stress	set1IT040	Thallium(I) acetate	PfGW456L13_864			hypothetical protein	-1.79819130369881	-6.9907740116207	FALSE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_1348			MORN repeat family protein	1.13019227430644	9.84778197248973	FALSE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_1535			Multimodular transpeptidase-transglycosylase (EC 2.4.1.129) (EC 3.4.-.-)	-2.13817346700903	-12.8937929588639	TRUE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_1970			hypothetical protein	1.56588673899396	11.2638234044823	FALSE
+stress	set3IT057	Vancomycin Hydrochloride Hydrate	PfGW456L13_2557			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	1.27748102655789	9.30281965377343	TRUE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_2557			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	2.40989136565831	17.7961367022843	TRUE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_3341			Membrane-bound lytic murein transglycosylase D precursor (EC 3.2.1.-)	-1.90352442660636	-7.50607785606233	TRUE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_4623			hydrolase, putative	1.12626286862872	9.33262081031686	FALSE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_4647			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	1.49000747573753	10.977580394173	FALSE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_4720			probable glucosyl transferase	1.34642676638702	10.4721159545443	FALSE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_724			ATP-dependent DNA helicase UvrD/PcrA	-1.39922018301188	-10.5152744867869	FALSE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_778			Phosphonate ABC transporter phosphate-binding periplasmic component (TC 3.A.1.9.1)	-1.07930256366388	-6.42159749294452	FALSE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_908			Type II secretory pathway, ATPase PulE/Tfp pilus assembly pathway, ATPase PilB	1.33846453389669	6.8266727658847	FALSE
+stress	set3IT058	Vancomycin Hydrochloride Hydrate	PfGW456L13_946			Outer membrane protein assembly factor YaeT precursor	1.57052470588301	11.5050150878323	FALSE
+stress	set1IT043	Zinc sulfate heptahydrate	PfGW456L13_1738			Ferric iron ABC transporter, ATP-binding protein	-1.60140305769798	-5.09181280956059	FALSE
+stress	set1IT043	Zinc sulfate heptahydrate	PfGW456L13_1767			DNA-binding response regulator ColR	-1.51988036762023	-5.25699570888748	FALSE
+stress	set1IT043	Zinc sulfate heptahydrate	PfGW456L13_2384			TonB-dependent siderophore receptor	-1.08716907267168	-8.16294188322114	FALSE
+stress	set1IT043	Zinc sulfate heptahydrate	PfGW456L13_958			Cd(II)/Pb(II)-responsive transcriptional regulator	-3.90020456340045	-11.2607650736944	TRUE
+stress	set1IT043	Zinc sulfate heptahydrate	PfGW456L13_959			Lead, cadmium, zinc and mercury transporting ATPase (EC 3.6.3.3) (EC 3.6.3.5); Copper-translocating P-type ATPase (EC 3.6.3.4)	-4.76790611626824	-14.3419128952758	TRUE
+stress	set1IT043	Zinc sulfate heptahydrate	PfGW456L13_995			Cell division protein FtsX	-1.35060523690245	-10.0688092621883	FALSE
+stress	set1IT037	sodium fluoride	PfGW456L13_1334			Transcriptional regulator	-1.3016101889667	-7.88202677899406	TRUE
+stress	set1IT037	sodium fluoride	PfGW456L13_2653			FIG065221: Holliday junction DNA helicase	-1.58419345991937	-6.24618881056692	TRUE
+stress	set1IT037	sodium fluoride	PfGW456L13_2654			CrcB protein	-4.82637883524072	-8.60355237359063	TRUE

@@ -1,0 +1,299 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+nitrogen source	set7IT025	L-Glutamic acid monopotassium salt monohydrate	Synpcc7942_2127	Synpcc7942_2127	nblA	phycobilisome degradation protein NblA	-2.52917991298485	-6.47194389801174	FALSE
+nitrogen source	set7IT013	L-Glutamic acid monopotassium salt monohydrate	Synpcc7942_2127	Synpcc7942_2127	nblA	phycobilisome degradation protein NblA	-1.60021362746969	-5.35225890415873	FALSE
+nitrogen source	set7IT014	L-Glutamine	Synpcc7942_1697	Synpcc7942_1697		Zn-finger, CDGSH type	-1.29974065352384	-6.00323006971617	FALSE
+nitrogen source	set7IT014	L-Glutamine	Synpcc7942_1729	Synpcc7942_1729	kdpD	potassium-transporting ATPase D chain	-1.55155449017425	-7.16340438303102	FALSE
+nitrogen source	set7IT014	L-Glutamine	Synpcc7942_2053	Synpcc7942_2053		probable peptidase	-1.5528201918428	-9.25344461857368	FALSE
+nitrogen source	set7IT022	L-Phenylalanine	Synpcc7942_1729	Synpcc7942_1729	kdpD	potassium-transporting ATPase D chain	-1.23801966442917	-6.44297660983705	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_0080	Synpcc7942_0080		probable ABC transporter permease protein	-1.6508365475618	-8.41213352661357	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_0119	Synpcc7942_0119		hypothetical protein	-2.62379400794387	-6.81397509373367	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_0308	Synpcc7942_0308	chpX	CO2 hydration protein	-1.73364303218081	-5.86326110391836	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_0309	Synpcc7942_0309	ndhF4	NAD(P)H-quinone oxidoreductase subunit F	-1.84575256704426	-9.55334614530317	FALSE
+stress	set8IT084	Bacitracin	Synpcc7942_0443	Synpcc7942_0443		hypothetical protein	-3.27783461648686	-13.9416114388209	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_0443	Synpcc7942_0443		hypothetical protein	-2.45494486669006	-9.58704081567398	FALSE
+stress	set4IT061	Bacitracin	Synpcc7942_0443	Synpcc7942_0443		hypothetical protein	-1.96529660404902	-10.0808682774819	FALSE
+stress	set4IT061	Bacitracin	Synpcc7942_0481	Synpcc7942_0481		protease	1.09969500977683	5.07520133013579	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_0481	Synpcc7942_0481		protease	1.91548176502855	7.17514178892757	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_0553	Synpcc7942_0553		Secretion protein HlyD	-2.02467258182613	-11.6886413298235	FALSE
+stress	set8IT084	Bacitracin	Synpcc7942_0610	Synpcc7942_0610		hypothetical protein	-1.25953824312898	-9.72199089388234	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_0867	Synpcc7942_0867		hypothetical protein	-1.77297222968352	-5.40422741772841	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_0868	Synpcc7942_0868		hypothetical protein	-2.05300701765864	-13.3753960268269	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_1069	Synpcc7942_1069		hypothetical protein	-2.54070076766124	-12.7751104197924	FALSE
+stress	set8IT084	Bacitracin	Synpcc7942_1069	Synpcc7942_1069		hypothetical protein	-1.40465632533988	-8.75767559367373	FALSE
+stress	set4IT061	Bacitracin	Synpcc7942_1069	Synpcc7942_1069		hypothetical protein	-1.31465204810862	-7.73146262575476	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_1349	Synpcc7942_1349		hypothetical protein	-1.31172895364127	-5.78301654541263	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_1508	Synpcc7942_1508		hypothetical protein	-1.77639885671765	-9.50927080534223	FALSE
+stress	set8IT084	Bacitracin	Synpcc7942_1770	Synpcc7942_1770		hypothetical protein	1.56900898670234	9.92086656583883	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_1770	Synpcc7942_1770		hypothetical protein	2.21017955570658	8.95335945609217	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_1800	Synpcc7942_1800		hypothetical protein	-1.02881700555655	-5.63377442938049	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_1934	Synpcc7942_1934	dacB	D-alanyl-D-alanine carboxypeptidase/D-alanyl-D-alanine-endopeptidase	-2.20809838527705	-12.4644791322827	FALSE
+stress	set4IT061	Bacitracin	Synpcc7942_1934	Synpcc7942_1934	dacB	D-alanyl-D-alanine carboxypeptidase/D-alanyl-D-alanine-endopeptidase	-1.44210917745384	-9.26438944938095	FALSE
+stress	set8IT084	Bacitracin	Synpcc7942_1934	Synpcc7942_1934	dacB	D-alanyl-D-alanine carboxypeptidase/D-alanyl-D-alanine-endopeptidase	-1.4294763849898	-7.87804433517442	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_2002	Synpcc7942_2002		hypothetical protein	-1.25973182419789	-6.18947880332118	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_2163	Synpcc7942_2163		hypothetical protein	-1.92721345129127	-6.68081433884402	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_2424	Synpcc7942_2424		hypothetical protein	1.28953290444499	7.40015821337592	FALSE
+stress	set4IT060	Bacitracin	Synpcc7942_2550	Synpcc7942_2550		hypothetical protein	-1.68431574122337	-9.20507994201449	FALSE
+stress	set4IT051	Benzethonium chloride	Synpcc7942_0066	Synpcc7942_0066		hypothetical protein	-1.8039677982164	-12.9221971678431	FALSE
+stress	set4IT051	Benzethonium chloride	Synpcc7942_0067	Synpcc7942_0067		probable permease protein of ABC transporter	-1.895465934404	-11.8836485377504	FALSE
+stress	set4IT051	Benzethonium chloride	Synpcc7942_0068	Synpcc7942_0068		ATPase	-1.64175225367584	-10.3601628495584	FALSE
+stress	set4IT051	Benzethonium chloride	Synpcc7942_1350	Synpcc7942_1350		hypothetical protein	1.7395329040004	6.65539584725207	FALSE
+stress	set4IT051	Benzethonium chloride	Synpcc7942_1599	Synpcc7942_1599		hypothetical protein	-1.26194259318313	-6.86050280138585	FALSE
+stress	set4IT051	Benzethonium chloride	Synpcc7942_2133	Synpcc7942_2133		hypothetical protein	-2.32353803461598	-10.7467951816592	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_0447	Synpcc7942_0447	nth	DNA-(apurinic or apyrimidinic site) lyase / endonuclease III	1.83778560684162	5.67750620306918	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_0661	Synpcc7942_0661		hypothetical protein	-3.33753926959851	-7.44780179092199	FALSE
+stress	set4IT087	Ceftazidime hydrate	Synpcc7942_0661	Synpcc7942_0661		hypothetical protein	-2.87679142962471	-19.3995629686573	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_0865	Synpcc7942_0865		nucleotide-binding protein	1.89231828381444	7.93674821839612	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_0961	Synpcc7942_0961		cell envelope-related function transcriptional attenuator common domain	-1.14671103777824	-7.07918883488554	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_1045	Synpcc7942_1045		amidase enhancer-like	1.47566661489275	8.73778794148898	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_1376	Synpcc7942_1376		hypothetical protein	3.1028910289987	13.0679060621144	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_1508	Synpcc7942_1508		hypothetical protein	2.15628426560601	7.89040334242814	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_1770	Synpcc7942_1770		hypothetical protein	1.88551240970331	6.61555581321617	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_1905	Synpcc7942_1905	hlyB	cyclic nucleotide-binding domain (cNMP-BD) protein	1.1967433852688	6.04050278127782	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2163	Synpcc7942_2163		hypothetical protein	2.33868062227676	6.37018334482782	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2262	Synpcc7942_2262		hypothetical protein	2.56755412248974	13.1442338721395	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2294	Synpcc7942_2294		hypothetical protein	2.08972427418511	8.56967796946908	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2328	Synpcc7942_2328		TPR repeat	1.48119005284611	7.38956221045567	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2337	Synpcc7942_2337		N-acetylmuramoyl-L-alanine amidase, family 2	1.43033124674693	5.19467012659811	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2492	Synpcc7942_2492	livF	ATPase	-1.46858601041179	-6.97611379320048	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2493	Synpcc7942_2493	natA	ATPase	-1.90198562211352	-8.92002207117371	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2494	Synpcc7942_2494	livM	putative branched-chain amino acid ABC transporter, permease protein	-1.2751629226581	-7.33924792963917	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2496	Synpcc7942_2496	livJ	branched-chain amino-acid ABC transport system periplasmic binding protein	-1.38971458001412	-8.13245364563103	FALSE
+stress	set4IT086	Ceftazidime hydrate	Synpcc7942_2571	Synpcc7942_2571	mrcA	Penicillin-binding protein 1A	-2.65608606943942	-11.5741664738515	FALSE
+stress	set4IT087	Ceftazidime hydrate	Synpcc7942_2571	Synpcc7942_2571	mrcA	Penicillin-binding protein 1A	-2.37792405100448	-15.3491159107399	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_0280	Synpcc7942_0280	cinA	competence damage-inducible protein A	1.04745448228135	5.52956526159012	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_0610	Synpcc7942_0610		hypothetical protein	-2.0275592118018	-10.6320702893748	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_0650	Synpcc7942_0650	nat	hypothetical protein	1.80532411639912	7.41291512814705	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_0661	Synpcc7942_0661		hypothetical protein	-3.66734336689984	-14.3880177047424	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_0714	Synpcc7942_0714	amiA	Cell wall hydrolase/autolysin	-2.07038225147985	-10.4050928791553	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_0787	Synpcc7942_0787	phoA	putative purple acid phosphatase	2.13924585523356	11.4597878815011	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_0961	Synpcc7942_0961		cell envelope-related function transcriptional attenuator common domain	-1.41533654951473	-6.35959079797593	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_1045	Synpcc7942_1045		amidase enhancer-like	1.50813528642006	9.23376547091263	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_1069	Synpcc7942_1069		hypothetical protein	-1.25707477773935	-6.15400729295167	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_1136	Synpcc7942_1136	pepN	PBS lyase HEAT-like repeat	-1.3321264043101	-8.52053170052582	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_1394	Synpcc7942_1394		PDZ/DHR/GLGF	1.39570970266694	7.83476214317913	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_1395	Synpcc7942_1395		hypothetical protein	2.41609023341808	10.1858649133606	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_1599	Synpcc7942_1599		hypothetical protein	-1.71026905922011	-5.61157762387461	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_2002	Synpcc7942_2002		hypothetical protein	-1.56152992776716	-5.8285567206094	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_2097	Synpcc7942_2097		hypothetical protein	-1.14270590644314	-5.73138711566378	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_2357	Synpcc7942_2357		hypothetical protein	1.02397402680237	6.18463489463616	FALSE
+stress	set4IT073	Cephalothin sodium salt	Synpcc7942_2571	Synpcc7942_2571	mrcA	Penicillin-binding protein 1A	-2.87192456327304	-15.8392878051867	FALSE
+stress	set3IT002	Chloramphenicol	Synpcc7942_0066	Synpcc7942_0066		hypothetical protein	-1.17192814853302	-6.9229632427051	FALSE
+stress	set3IT002	Chloramphenicol	Synpcc7942_0067	Synpcc7942_0067		probable permease protein of ABC transporter	-1.33390182648123	-7.03549550264175	FALSE
+stress	set3IT002	Chloramphenicol	Synpcc7942_1263	Synpcc7942_1263		N6-adenine-specific DNA methylase-like	1.01660088464985	6.19284533115643	FALSE
+stress	set3IT002	Chloramphenicol	Synpcc7942_1640	Synpcc7942_1640		hypothetical protein	2.84617920324458	11.2582602839572	FALSE
+stress	set3IT002	Chloramphenicol	Synpcc7942_1796	Synpcc7942_1796		hypothetical protein	-1.94460733037314	-5.29701690286252	FALSE
+stress	set3IT002	Chloramphenicol	Synpcc7942_2051	Synpcc7942_2051		hypothetical protein	1.46158268348742	10.2673135449246	FALSE
+stress	set3IT022	Cisplatin	Synpcc7942_0251	Synpcc7942_0251		Exonuclease	-1.14438109494515	-5.16417028484931	FALSE
+stress	set3IT022	Cisplatin	Synpcc7942_0843	Synpcc7942_0843		hypothetical protein	-2.14174469758225	-5.03134614266168	FALSE
+stress	set3IT022	Cisplatin	Synpcc7942_1588	Synpcc7942_1588		CBS	-1.35464294136693	-7.12448666561631	FALSE
+stress	set3IT022	Cisplatin	Synpcc7942_2094	Synpcc7942_2094		Beta-Ig-H3/fasciclin	-2.4074917978943	-6.29742234071869	FALSE
+stress	set3IT022	Cisplatin	Synpcc7942_2097	Synpcc7942_2097		hypothetical protein	-1.42319547440579	-5.55979907754275	FALSE
+stress	set3IT022	Cisplatin	Synpcc7942_2266	Synpcc7942_2266		periplasmic polyamine-binding protein of ABC transporter	-2.13817485009387	-8.75373672179049	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_0276	Synpcc7942_0276	glcD	glycolate oxidase subunit GlcD	-1.77325616737524	-7.93941252130581	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_0544	Synpcc7942_0544		YciI-like protein	-1.51446764381858	-6.96225436462315	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_0608	Synpcc7942_0608		hypothetical protein	-2.83335895923021	-10.0896045072116	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_0875	Synpcc7942_0875		hypothetical protein	-1.24297077081229	-6.21245642437384	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_1257	Synpcc7942_1257		chloride channel-like	-1.50958623670178	-8.79825075774678	FALSE
+stress	set4IT079	D-Cycloserine	Synpcc7942_1536	Synpcc7942_1536	gat	probable amidotransferase	-1.5647876334539	-8.3865318440739	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_1717	Synpcc7942_1717	glcF	glycolate oxidase subunit (Fe-S) protein	-1.57843040222344	-6.35858117220018	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_1725	Synpcc7942_1725		transcriptional regulator, GntR family	-3.8933639983292	-15.5166670640421	FALSE
+stress	set4IT079	D-Cycloserine	Synpcc7942_1725	Synpcc7942_1725		transcriptional regulator, GntR family	-2.88311817866514	-15.3956279114271	FALSE
+stress	set4IT079	D-Cycloserine	Synpcc7942_1747	Synpcc7942_1747		hypothetical protein	-2.97171790085315	-17.7096480508874	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_1747	Synpcc7942_1747		hypothetical protein	-1.72134955402449	-9.05481152241895	FALSE
+stress	set4IT080	D-Cycloserine	Synpcc7942_1747	Synpcc7942_1747		hypothetical protein	-1.0217794986103	-7.06715854717966	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_1760	Synpcc7942_1760	ald	L-alanine dehydrogenase	-1.88538253070006	-10.4255092837859	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_1865	Synpcc7942_1865	ppnK	inorganic polyphosphate/ATP-NAD kinase	-1.08896323475644	-5.23646170284495	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_2285	Synpcc7942_2285	gldA	glycerol dehydrogenase	-3.37514490403583	-13.9395033438935	FALSE
+stress	set4IT079	D-Cycloserine	Synpcc7942_2285	Synpcc7942_2285	gldA	glycerol dehydrogenase	-2.82059192281953	-15.0638405568707	FALSE
+stress	set4IT080	D-Cycloserine	Synpcc7942_2285	Synpcc7942_2285	gldA	glycerol dehydrogenase	-1.98961861578121	-11.4701664378271	FALSE
+stress	set4IT078	D-Cycloserine	Synpcc7942_2502	Synpcc7942_2502		hypothetical protein	-3.26831225014991	-11.7164922811937	FALSE
+stress	set4IT079	D-Cycloserine	Synpcc7942_2502	Synpcc7942_2502		hypothetical protein	-3.23589677707947	-13.1024285943054	FALSE
+stress	set4IT066	Dimethyl Sulfoxide	Synpcc7942_1011	Synpcc7942_1011	sphS	PAS/PAC sensor signal transduction histidine kinase	-1.1813127812584	-7.59426181018797	FALSE
+stress	set4IT063	Fusidic acid sodium salt	Synpcc7942_0066	Synpcc7942_0066		hypothetical protein	-1.34510308410116	-10.1161406149582	FALSE
+stress	set4IT063	Fusidic acid sodium salt	Synpcc7942_0067	Synpcc7942_0067		probable permease protein of ABC transporter	-1.47364583349699	-8.30798576461561	FALSE
+stress	set4IT063	Fusidic acid sodium salt	Synpcc7942_0068	Synpcc7942_0068		ATPase	-1.65755153105574	-10.3368044519971	FALSE
+stress	set8IT086	Fusidic acid sodium salt	Synpcc7942_1169	Synpcc7942_1169		oligopeptide-binding protein of oligopeptide ABC transporter	1.18467724244136	6.96017949963596	FALSE
+stress	set8IT086	Fusidic acid sodium salt	Synpcc7942_1254	Synpcc7942_1254		cyclic nucleotide-binding domain (cNMP-BD) protein	1.49213889234075	5.21032809148101	FALSE
+stress	set4IT063	Fusidic acid sodium salt	Synpcc7942_1376	Synpcc7942_1376		hypothetical protein	-1.67066831459896	-11.058637055504	FALSE
+stress	set4IT063	Fusidic acid sodium salt	Synpcc7942_1508	Synpcc7942_1508		hypothetical protein	-1.55682392784393	-9.94782931061754	FALSE
+stress	set4IT063	Fusidic acid sodium salt	Synpcc7942_1605	Synpcc7942_1605		hypothetical protein	1.0112812914919	5.58383083523846	FALSE
+stress	set8IT088	Fusidic acid sodium salt	Synpcc7942_1605	Synpcc7942_1605		hypothetical protein	1.6938921079069	11.1100052821068	FALSE
+stress	set8IT087	Fusidic acid sodium salt	Synpcc7942_1605	Synpcc7942_1605		hypothetical protein	2.7809389882235	17.713282805691	FALSE
+stress	set8IT086	Fusidic acid sodium salt	Synpcc7942_1605	Synpcc7942_1605		hypothetical protein	6.37428412544854	38.7763736742331	FALSE
+stress	set8IT086	Fusidic acid sodium salt	Synpcc7942_1607	Synpcc7942_1607	somA2	probable porin; major outer membrane protein	3.47869409704143	29.2199782337173	FALSE
+stress	set8IT086	Fusidic acid sodium salt	Synpcc7942_1784	Synpcc7942_1784	sigF2	RNA polymerase sigma factor SigF	1.4463345484998	9.06290376461503	FALSE
+stress	set4IT063	Fusidic acid sodium salt	Synpcc7942_2163	Synpcc7942_2163		hypothetical protein	-1.36033191479159	-5.84036420090432	FALSE
+stress	set3IT013	Gentamicin sulfate salt	Synpcc7942_0877	Synpcc7942_0877	rps12	Elongator protein 3/MiaB/NifB	-1.16055626731635	-9.06026139893127	FALSE
+stress	set3IT013	Gentamicin sulfate salt	Synpcc7942_2043	Synpcc7942_2043	speH	S-adenosylmethionine decarboxylase proenzyme	1.87172220314648	5.63275016892994	FALSE
+stress	set3IT013	Gentamicin sulfate salt	Synpcc7942_2158	Synpcc7942_2158	apcF	allophycocyanin, beta subunit	1.46505117813455	5.90965987323231	FALSE
+stress	set3IT013	Gentamicin sulfate salt	Synpcc7942_2266	Synpcc7942_2266		periplasmic polyamine-binding protein of ABC transporter	-2.78670283688255	-17.0165140340263	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0001	Synpcc7942_0001	dnaN	DNA polymerase III subunit beta	1.4086966581965	5.13650085291526	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0109	Synpcc7942_0109		DNA-binding ferritin-like protein (oxidative damage protectant)-like	1.61969421545642	5.28407068234687	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0196	Synpcc7942_0196		Beta-carotene 15,15'-dioxygenase	2.80449406070439	13.4922925647253	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0240	Synpcc7942_0240	apcD	hypothetical protein	2.07771246683455	7.03219897346204	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0258	Synpcc7942_0258		hypothetical protein	2.20074757351249	5.44511408026829	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0276	Synpcc7942_0276	glcD	glycolate oxidase subunit GlcD	-2.76447660623639	-5.80285659212758	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0308	Synpcc7942_0308	chpX	CO2 hydration protein	3.04274630129492	10.5532829936486	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0309	Synpcc7942_0309	ndhF4	NAD(P)H-quinone oxidoreductase subunit F	2.10021483091293	9.41421369815551	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0530	Synpcc7942_0530		4Fe-4S cluster binding	1.33548048124955	6.61068437437998	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0567	Synpcc7942_0567		hypothetical protein	-1.74086648097404	-7.90843988515321	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0568	Synpcc7942_0568	codA	cytosine deaminase	-1.36153695813838	-6.10794131409767	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0867	Synpcc7942_0867		hypothetical protein	-4.13386846752004	-6.62995902796513	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_0970	Synpcc7942_0970	crtD	phytoene dehydrogenase-like	-1.30216047374618	-7.39476772207721	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1099	Synpcc7942_1099	ubiE	ubiquinone/menaquinone biosynthesis methyltransferase	-3.43891745798964	-12.3486962844064	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1264	Synpcc7942_1264	nha2	Na+/H+ antiporter	-1.78895198789829	-9.84479096780545	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1367	Synpcc7942_1367		cytochrome P450	-1.79417362281281	-8.59045227834916	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1502	Synpcc7942_1502		hypothetical protein	-2.0551885648867	-6.18718776517825	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1527	Synpcc7942_1527		nitrogen assimilation regulatory protein	1.66875030482636	10.9208439258713	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1645	Synpcc7942_1645	rnc	RNAse III	-1.79513827909691	-7.27189028221818	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1717	Synpcc7942_1717	glcF	glycolate oxidase subunit (Fe-S) protein	-1.61810655555772	-5.83510870903045	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1762	Synpcc7942_1762		hypothetical protein	-1.94651422792481	-8.21709663191	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1820	Synpcc7942_1820		hypothetical protein	1.15251935774106	5.82830481092485	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_1937	Synpcc7942_1937	msrA	peptide methionine sulfoxide reductase	-1.63183353550343	-7.11858185513214	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_2066	Synpcc7942_2066		tRNA-dihydrouridine synthase A	1.81970153772976	7.43030555689616	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_2109	Synpcc7942_2109		ATPase	1.22244712637791	5.25542527148392	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_2180	Synpcc7942_2180	prxQ-A1	bacterioferritin comigratory protein	1.75141476042891	5.99855388107201	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_2282	Synpcc7942_2282		GAF sensor signal transduction histidine kinase	-2.94867176076118	-12.31201545437	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_2325	Synpcc7942_2325		PBS lyase HEAT-like repeat	-2.16994539970798	-6.8492530042407	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_2374	Synpcc7942_2374		tRNA-i(6)A37 thiotransferase enzyme MiaB	2.02377420545137	10.4136730712888	FALSE
+stress	set4IT074	MreB Perturbing Compound A22	Synpcc7942_2416	Synpcc7942_2416	srrA	two component transcriptional regulator, winged helix family	-1.527376801791	-6.990037929645	FALSE
+stress	set3IT010	Nalidixic acid sodium salt	Synpcc7942_0067	Synpcc7942_0067		probable permease protein of ABC transporter	-1.30400061225808	-6.62775361586641	FALSE
+stress	set3IT010	Nalidixic acid sodium salt	Synpcc7942_0677	Synpcc7942_0677	pex	transcriptional regulator, PadR family	-1.30927438927195	-5.30115582033297	FALSE
+stress	set3IT010	Nalidixic acid sodium salt	Synpcc7942_1396	Synpcc7942_1396		hypothetical protein	2.12099731160089	5.45735434250972	FALSE
+stress	set3IT010	Nalidixic acid sodium salt	Synpcc7942_1452	Synpcc7942_1452	radA	DNA repair protein RadA	-1.83806945854444	-10.4449425827292	TRUE
+stress	set3IT010	Nalidixic acid sodium salt	Synpcc7942_2276	Synpcc7942_2276		hypothetical protein	-1.67043733852016	-5.10625264796673	FALSE
+stress	set4IT092	Rifampicin	Synpcc7942_0080	Synpcc7942_0080		probable ABC transporter permease protein	-2.88492711261463	-14.76587019165	FALSE
+stress	set4IT090	Rifampicin	Synpcc7942_0080	Synpcc7942_0080		probable ABC transporter permease protein	-2.82548460871054	-14.1591743386236	FALSE
+stress	set4IT091	Rifampicin	Synpcc7942_0080	Synpcc7942_0080		probable ABC transporter permease protein	-2.6132720136547	-15.8615356906862	FALSE
+stress	set4IT093	Rifampicin	Synpcc7942_0080	Synpcc7942_0080		probable ABC transporter permease protein	-2.1591223503341	-12.9896165835936	FALSE
+stress	set4IT090	Rifampicin	Synpcc7942_0443	Synpcc7942_0443		hypothetical protein	-2.1243435578601	-8.90522041591776	FALSE
+stress	set4IT092	Rifampicin	Synpcc7942_0443	Synpcc7942_0443		hypothetical protein	-1.49317427793476	-6.80337745856662	FALSE
+stress	set4IT090	Rifampicin	Synpcc7942_0553	Synpcc7942_0553		Secretion protein HlyD	-2.97486047550393	-11.5991797811664	FALSE
+stress	set4IT092	Rifampicin	Synpcc7942_0553	Synpcc7942_0553		Secretion protein HlyD	-2.57194222434959	-10.6451314187983	FALSE
+stress	set4IT091	Rifampicin	Synpcc7942_0553	Synpcc7942_0553		Secretion protein HlyD	-2.55885408643864	-13.7650091667149	FALSE
+stress	set4IT093	Rifampicin	Synpcc7942_0553	Synpcc7942_0553		Secretion protein HlyD	-2.35001316553713	-12.6415777034557	FALSE
+stress	set4IT090	Rifampicin	Synpcc7942_0650	Synpcc7942_0650	nat	hypothetical protein	1.51551450653995	6.21712802916387	FALSE
+stress	set4IT090	Rifampicin	Synpcc7942_0962	Synpcc7942_0962	sun	sun protein	-1.46282130887383	-8.13040891286914	FALSE
+stress	set4IT092	Rifampicin	Synpcc7942_1321	Synpcc7942_1321		hypothetical protein	-1.41598330754531	-6.77468624576802	FALSE
+stress	set4IT091	Rifampicin	Synpcc7942_1321	Synpcc7942_1321		hypothetical protein	-1.33016996048882	-7.69996098876928	FALSE
+stress	set4IT090	Rifampicin	Synpcc7942_1321	Synpcc7942_1321		hypothetical protein	-1.30891165114002	-5.4684399620488	FALSE
+stress	set4IT092	Rifampicin	Synpcc7942_2002	Synpcc7942_2002		hypothetical protein	1.25266977578349	6.37564965873533	FALSE
+stress	set4IT090	Rifampicin	Synpcc7942_2002	Synpcc7942_2002		hypothetical protein	1.49282461121794	7.54445914008304	FALSE
+stress	set4IT090	Rifampicin	Synpcc7942_2294	Synpcc7942_2294		hypothetical protein	1.26214916134027	7.46357603429551	FALSE
+stress	set4IT092	Rifampicin	Synpcc7942_2294	Synpcc7942_2294		hypothetical protein	1.62552086992158	9.49988047453591	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_0011	Synpcc7942_0011		hypothetical protein	1.38394645503868	6.9188346756154	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_0111	Synpcc7942_0111	dnaK	DnaK protein-like	-1.56460320461958	-9.7470361444021	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_0154	Synpcc7942_0154		hypothetical protein	1.59521493170533	9.0080488435858	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_0241	Synpcc7942_0241	rumA	23S rRNA (uracil-5-)-methyltransferase RumA	1.15835345826547	7.72858994032392	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_0338	Synpcc7942_0338	petF	Ferredoxin (2Fe-2S)	-1.45239910352477	-5.98164053701774	FALSE
+stress	set3IT040	Sodium Chloride	Synpcc7942_0342	Synpcc7942_0342		hypothetical protein	-1.80795382427208	-5.74038777305715	FALSE
+stress	set8IT075	Sodium Chloride	Synpcc7942_0363	Synpcc7942_0363		hypothetical protein	1.47135892810438	6.52584539805319	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_0391	Synpcc7942_0391		hypothetical protein	-1.84816150857527	-10.4335302971406	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_0391	Synpcc7942_0391		hypothetical protein	-1.41290107897491	-8.89182580042292	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_0397	Synpcc7942_0397	lim17	putative neutral invertase	2.44649398295697	17.2272141674803	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_0397	Synpcc7942_0397	lim17	putative neutral invertase	3.30778238897589	23.8550140805492	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_0795	Synpcc7942_0795		hypothetical protein	1.62050272070328	10.966221611017	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_0795	Synpcc7942_0795		hypothetical protein	1.86812567469366	12.3041342627256	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_0808	Synpcc7942_0808	sps	HAD-superfamily hydrolase subfamily IIB	-2.83499337816787	-7.84025374705668	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_0808	Synpcc7942_0808	sps	HAD-superfamily hydrolase subfamily IIB	-2.36191204219155	-9.60721839769093	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1018	Synpcc7942_1018		hypothetical protein	1.65070730269393	9.25331517909979	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1018	Synpcc7942_1018		hypothetical protein	2.0055256530088	11.0393081389501	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1195	Synpcc7942_1195		hypothetical protein	-2.59163509956248	-8.18939759544317	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1195	Synpcc7942_1195		hypothetical protein	-1.42743405959367	-5.65280952779162	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1262	Synpcc7942_1262		uncharacterized FAD-dependent dehydrogenase	1.02927700399453	7.42766788387491	FALSE
+stress	set8IT075	Sodium Chloride	Synpcc7942_1272	Synpcc7942_1272		hypothetical protein	-1.07020496276106	-5.33797086265562	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1275	Synpcc7942_1275		hypothetical protein	-2.85241533755705	-11.0276738345121	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1275	Synpcc7942_1275		hypothetical protein	-2.54226452215672	-11.9162844475094	FALSE
+stress	set3IT040	Sodium Chloride	Synpcc7942_1348	Synpcc7942_1348		hypothetical protein	1.42630283991735	5.2524063545911	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1409	Synpcc7942_1409	futA2	iron transport system substrate-binding protein	-2.04948060706847	-10.4676880755393	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1409	Synpcc7942_1409	futA2	iron transport system substrate-binding protein	-1.09495416127365	-6.42894752173243	FALSE
+stress	set3IT040	Sodium Chloride	Synpcc7942_1502	Synpcc7942_1502		hypothetical protein	-1.58595918162396	-5.69544623431451	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1536	Synpcc7942_1536	gat	probable amidotransferase	-1.16961978548851	-5.66404874576483	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1629	Synpcc7942_1629		hypothetical protein	-1.2584382148306	-5.33571397976843	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1645	Synpcc7942_1645	rnc	RNAse III	2.34964626346386	14.7134317922451	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1645	Synpcc7942_1645	rnc	RNAse III	3.07382529960954	18.0579357909132	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1749	Synpcc7942_1749	fer	ferredoxin	-1.81158591574281	-6.24620252124628	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1750	Synpcc7942_1750	ycf35	conserved hypothetical protein YCF35	-1.58844753600618	-6.23497637042919	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1760	Synpcc7942_1760	ald	L-alanine dehydrogenase	-1.33533334153013	-8.16110821614086	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_1762	Synpcc7942_1762		hypothetical protein	1.32941974892453	9.19185872188282	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1821	Synpcc7942_1821		hypothetical protein	-2.56890481446997	-6.38089452776881	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1890	Synpcc7942_1890		hypothetical protein	1.3672769232676	6.7614833704404	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_1958	Synpcc7942_1958		hypothetical protein	-1.74723059265408	-5.30819576976586	FALSE
+stress	set8IT072	Sodium Chloride	Synpcc7942_2159	Synpcc7942_2159		hypothetical protein	1.53966978790373	11.0079592743626	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_2159	Synpcc7942_2159		hypothetical protein	1.66572803831565	10.7207366395176	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_2159	Synpcc7942_2159		hypothetical protein	1.81762083723448	12.3492553292735	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_2256	Synpcc7942_2256		hypothetical protein	2.07241078175274	11.7921738935938	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_2282	Synpcc7942_2282		GAF sensor signal transduction histidine kinase	1.65244701758577	13.1532318393364	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_2282	Synpcc7942_2282		GAF sensor signal transduction histidine kinase	2.47095044514319	19.9879486229717	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_2294	Synpcc7942_2294		hypothetical protein	1.25712817548163	7.12109584969171	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_2422	Synpcc7942_2422		hypothetical protein	2.39698408645265	16.8529980027924	FALSE
+stress	set8IT070	Sodium Chloride	Synpcc7942_2422	Synpcc7942_2422		hypothetical protein	2.59535733105122	16.104566632799	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_2544	Synpcc7942_2544		hypothetical protein	-1.91297871893528	-7.46985035499779	FALSE
+stress	set8IT071	Sodium Chloride	Synpcc7942_2550	Synpcc7942_2550		hypothetical protein	-1.52853622228101	-7.15656293798469	FALSE
+stress	set8IT073	Sodium Chloride	Synpcc7942_2583	Synpcc7942_2583		hypothetical protein	-1.45696391033811	-5.97967449825938	FALSE
+stress	set8IT058	Sodium Chlorite	Synpcc7942_0307	Synpcc7942_0307	napA	Na+/H+ antiporter	2.27693295926533	15.3155280596512	FALSE
+stress	set8IT058	Sodium Chlorite	Synpcc7942_0308	Synpcc7942_0308	chpX	CO2 hydration protein	1.56537424070663	7.08487361344569	FALSE
+stress	set8IT058	Sodium Chlorite	Synpcc7942_0309	Synpcc7942_0309	ndhF4	NAD(P)H-quinone oxidoreductase subunit F	2.12516382256229	14.6517519847237	FALSE
+stress	set8IT058	Sodium Chlorite	Synpcc7942_0546	Synpcc7942_0546	nha4	Na+/H+ antiporter	-5.14987247709265	-9.28288228841812	FALSE
+stress	set8IT059	Sodium Chlorite	Synpcc7942_0546	Synpcc7942_0546	nha4	Na+/H+ antiporter	-1.47283227619693	-11.0923591017396	FALSE
+stress	set8IT058	Sodium Chlorite	Synpcc7942_1125	Synpcc7942_1125		putative CheA signal transduction histidine kinase, no good domain identification	1.59384771871341	9.59630764082937	FALSE
+stress	set8IT059	Sodium Chlorite	Synpcc7942_1125	Synpcc7942_1125		putative CheA signal transduction histidine kinase, no good domain identification	2.36915116290842	17.2970003085713	FALSE
+stress	set8IT058	Sodium Chlorite	Synpcc7942_1403	Synpcc7942_1403		Hydroxyacylglutathione hydrolase	-1.85074173100276	-8.56819671410457	FALSE
+stress	set8IT058	Sodium Chlorite	Synpcc7942_1584	Synpcc7942_1584		hypothetical protein	-2.93106414439915	-14.0272650198399	FALSE
+stress	set8IT059	Sodium Chlorite	Synpcc7942_1584	Synpcc7942_1584		hypothetical protein	-2.35964372163827	-13.1640519796282	FALSE
+stress	set8IT058	Sodium Chlorite	Synpcc7942_1937	Synpcc7942_1937	msrA	peptide methionine sulfoxide reductase	-3.16329686246074	-13.9927204236334	FALSE
+stress	set8IT059	Sodium Chlorite	Synpcc7942_1937	Synpcc7942_1937	msrA	peptide methionine sulfoxide reductase	-1.6281773499327	-9.40325467483433	FALSE
+stress	set8IT060	Sodium Chlorite	Synpcc7942_1937	Synpcc7942_1937	msrA	peptide methionine sulfoxide reductase	-1.35859214074136	-6.92703723837038	FALSE
+stress	set8IT058	Sodium Chlorite	Synpcc7942_2190	Synpcc7942_2190	msrB	Methionine sulfoxide reductase B	-4.47903090632347	-10.4074252503268	TRUE
+stress	set8IT060	Sodium Chlorite	Synpcc7942_2190	Synpcc7942_2190	msrB	Methionine sulfoxide reductase B	-2.19283019139282	-7.47295096918067	TRUE
+stress	set8IT059	Sodium Chlorite	Synpcc7942_2190	Synpcc7942_2190	msrB	Methionine sulfoxide reductase B	-2.1565146661096	-9.94225753689183	TRUE
+stress	set8IT059	Sodium Chlorite	Synpcc7942_2422	Synpcc7942_2422		hypothetical protein	1.69281301802273	12.8104520655405	FALSE
+stress	set3IT029	Sodium nitrate	Synpcc7942_0338	Synpcc7942_0338	petF	Ferredoxin (2Fe-2S)	-1.80372989537678	-6.25323867445491	FALSE
+stress	set8IT049	Sodium nitrate	Synpcc7942_0691	Synpcc7942_0691		hypothetical protein	-1.70134039507036	-6.99048198002652	FALSE
+stress	set3IT029	Sodium nitrate	Synpcc7942_0828	Synpcc7942_0828		hypothetical protein	-2.01985138453754	-5.05017722056279	FALSE
+stress	set7IT048	Sodium nitrate	Synpcc7942_1195	Synpcc7942_1195		hypothetical protein	-1.69542277486472	-7.87755297785693	FALSE
+stress	set8IT049	Sodium nitrate	Synpcc7942_1607	Synpcc7942_1607	somA2	probable porin; major outer membrane protein	-1.72801924198129	-11.111558188544	FALSE
+stress	set7IT048	Sodium nitrate	Synpcc7942_1607	Synpcc7942_1607	somA2	probable porin; major outer membrane protein	-1.64269671749902	-10.2145842217486	FALSE
+stress	set7IT048	Sodium nitrate	Synpcc7942_1750	Synpcc7942_1750	ycf35	conserved hypothetical protein YCF35	-1.48162259877517	-6.9107402591049	FALSE
+stress	set3IT026	Sodium nitrite	Synpcc7942_0237	Synpcc7942_0237		hypothetical protein	-1.27067087847546	-6.80073667637167	FALSE
+stress	set7IT043	Sodium nitrite	Synpcc7942_0391	Synpcc7942_0391		hypothetical protein	-1.30941424690106	-9.40675924486401	FALSE
+stress	set3IT026	Sodium nitrite	Synpcc7942_0391	Synpcc7942_0391		hypothetical protein	-1.25170881238681	-8.44178290895264	FALSE
+stress	set3IT026	Sodium nitrite	Synpcc7942_0596	Synpcc7942_0596		delta(24)-sterol C-methyltransferase	-2.60206914318927	-13.1577262276714	FALSE
+stress	set7IT043	Sodium nitrite	Synpcc7942_0596	Synpcc7942_0596		delta(24)-sterol C-methyltransferase	-2.44368654416425	-12.4197154450446	FALSE
+stress	set7IT043	Sodium nitrite	Synpcc7942_2002	Synpcc7942_2002		hypothetical protein	-1.18299894802589	-6.7729115260825	FALSE
+stress	set3IT026	Sodium nitrite	Synpcc7942_2130	Synpcc7942_2130		hypothetical protein	-1.76297602610301	-5.2143106111571	FALSE
+stress	set8IT063	Sodium perchlorate monohydrate	Synpcc7942_0808	Synpcc7942_0808	sps	HAD-superfamily hydrolase subfamily IIB	-1.21879495280263	-8.62423756640271	FALSE
+stress	set8IT063	Sodium perchlorate monohydrate	Synpcc7942_0891	Synpcc7942_0891		hypothetical protein	-2.62584101146582	-6.25012568478552	FALSE
+stress	set8IT063	Sodium perchlorate monohydrate	Synpcc7942_1195	Synpcc7942_1195		hypothetical protein	-1.67308047325323	-8.47650234439756	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_0110	Synpcc7942_0110		transcriptional regulator, XRE family	1.44058431781269	7.4431819496881	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_0111	Synpcc7942_0111	dnaK	DnaK protein-like	2.12353065754455	14.2200677987128	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_0214	Synpcc7942_0214		hypothetical protein	-1.30240570235078	-6.9273474885557	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_0329	Synpcc7942_0329		hypothetical protein	1.15683600478907	6.7029325677142	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_0397	Synpcc7942_0397	lim17	putative neutral invertase	-1.39966480407941	-8.68754717514027	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_0415	Synpcc7942_0415		hypothetical protein	-1.3236671937341	-6.00942552893054	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_0621	Synpcc7942_0621		hypothetical protein	1.89845344747218	10.8862798243914	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_0962	Synpcc7942_0962	sun	sun protein	1.60404626487282	10.728409736878	TRUE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_1620	Synpcc7942_1620	ycf46	ATPase	1.78053115222128	9.63139891294299	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_1721	Synpcc7942_1721		PBS lyase HEAT-like repeat	-1.54771759277171	-6.27323853674673	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_1750	Synpcc7942_1750	ycf35	conserved hypothetical protein YCF35	2.22011860990255	8.59156821983671	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_1796	Synpcc7942_1796		hypothetical protein	-2.1200804453514	-5.37122891731629	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_1941	Synpcc7942_1941		hypothetical protein	1.64034264912109	10.307817728414	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_2051	Synpcc7942_2051		hypothetical protein	1.52781255133894	9.19291441222302	FALSE
+stress	set3IT007	Spectinomycin dihydrochloride pentahydrate	Synpcc7942_2285	Synpcc7942_2285	gldA	glycerol dehydrogenase	1.82404200181583	9.63980909476413	FALSE
+stress	set3IT020	Thallium(I) acetate	Synpcc7942_0686	Synpcc7942_0686		FO synthase subunit 2	1.65032086939358	6.85555614962596	FALSE
+stress	set3IT019	Thallium(I) acetate	Synpcc7942_0686	Synpcc7942_0686		FO synthase subunit 2	2.82671540837564	8.40168557322965	FALSE
+stress	set3IT017	Thallium(I) acetate	Synpcc7942_0686	Synpcc7942_0686		FO synthase subunit 2	2.92963474516644	9.47581168077981	FALSE
+stress	set3IT018	Thallium(I) acetate	Synpcc7942_0686	Synpcc7942_0686		FO synthase subunit 2	3.43865673290345	10.5243243738004	FALSE
+stress	set3IT020	Thallium(I) acetate	Synpcc7942_0688	Synpcc7942_0688		transcriptional regulator, ArsR family	4.01900495785056	12.3903052653903	FALSE
+stress	set3IT019	Thallium(I) acetate	Synpcc7942_0688	Synpcc7942_0688		transcriptional regulator, ArsR family	8.20428161751437	25.8289905679034	FALSE
+stress	set3IT018	Thallium(I) acetate	Synpcc7942_0688	Synpcc7942_0688		transcriptional regulator, ArsR family	10.6512504040735	30.6774705880545	FALSE
+stress	set3IT017	Thallium(I) acetate	Synpcc7942_0688	Synpcc7942_0688		transcriptional regulator, ArsR family	12.0632665381693	33.0674855005097	FALSE
+stress	set3IT017	Thallium(I) acetate	Synpcc7942_0991	Synpcc7942_0991	pxcA	proton extrusion protein PcxA	1.56120743227414	7.20623494218261	FALSE
+stress	set3IT017	Thallium(I) acetate	Synpcc7942_1704	Synpcc7942_1704		hypothetical protein	1.76635699067921	8.53496261699547	FALSE
+stress	set3IT019	Thallium(I) acetate	Synpcc7942_1938	Synpcc7942_1938	arsB	multidrug-efflux transporter	-2.70081319045599	-8.2443825034331	TRUE
+stress	set3IT020	Thallium(I) acetate	Synpcc7942_1938	Synpcc7942_1938	arsB	multidrug-efflux transporter	-2.30421942937815	-11.179408074503	TRUE
+stress	set3IT017	Thallium(I) acetate	Synpcc7942_1939	Synpcc7942_1939	gap3	glyceraldehyde-3-phosphate dehydrogenase	1.82713458748232	6.38227614852615	FALSE
+stress	set3IT024	Zinc sulfate heptahydrate	Synpcc7942_0338	Synpcc7942_0338	petF	Ferredoxin (2Fe-2S)	-2.04593546576481	-6.47227690310146	FALSE
+stress	set3IT024	Zinc sulfate heptahydrate	Synpcc7942_2266	Synpcc7942_2266		periplasmic polyamine-binding protein of ABC transporter	-1.86483338280129	-9.71457603314368	FALSE
+stress	set3IT015	sodium fluoride	Synpcc7942_2186	Synpcc7942_2186	nha7	probable Na+/H+-exchanging protein	-3.38322652017074	-18.5697378976067	FALSE
+stress	set3IT014	sodium fluoride	Synpcc7942_2186	Synpcc7942_2186	nha7	probable Na+/H+-exchanging protein	-3.1981493679183	-16.7087443963426	FALSE

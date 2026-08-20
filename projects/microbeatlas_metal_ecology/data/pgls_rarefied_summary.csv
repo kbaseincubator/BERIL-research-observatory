@@ -1,2 +1,2 @@
 "model","response","predictor","n_iterations","median_n_taxa","median_lambda","median_beta","q25_beta","q75_beta","median_p","frac_p_lt_0.05","frac_bonf_sig"
-"rarefied_1species","mean_levins_B_std","mean_n_metal_types_z",200,606,0.704496483373089,0.0147052170061159,0.0126044327683789,0.0165819656101362,0.005404516376693,0.895,0.575
+"rarefied_1species","mean_levins_B_std","mean_n_metal_types_z",200,1000,0.887695685814983,0.0092223117124183,0.00740557634664964,0.0112452443528408,0.0535597331133268,0.49,0.105

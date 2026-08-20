@@ -1,0 +1,13 @@
+model,region,auc,n_cont,n_ref,n_folds,cv_type,n_train,n_test
+B0,0,0.5,30.0,167.0,,within_region,,
+CLR,0,0.9935531788472964,30.0,167.0,5.0,within_region,,
+M1 (CLR+GW),0,0.9935531788472964,30.0,167.0,5.0,within_region,,
+M2 (CLR+GW+env),0,1.0,30.0,167.0,5.0,within_region,,
+B0,1,0.5,107.0,30.0,,within_region,,
+CLR,1,0.9984126984126984,107.0,30.0,5.0,within_region,,
+M1 (CLR+GW),1,1.0,107.0,30.0,5.0,within_region,,
+CLR,0,0.18862275449101795,,,,cross_region,508.0,197.0
+M1 (CLR+GW),0,0.2025948103792415,,,,cross_region,508.0,197.0
+M2 (CLR+GW+env),0,0.5261477045908184,,,,cross_region,230.0,197.0
+CLR,1,0.17383177570093455,,,,cross_region,568.0,137.0
+M1 (CLR+GW),1,0.14579439252336446,,,,cross_region,568.0,137.0

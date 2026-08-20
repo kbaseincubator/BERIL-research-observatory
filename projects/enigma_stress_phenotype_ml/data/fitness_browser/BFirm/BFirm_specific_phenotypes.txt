@@ -1,0 +1,577 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set6IT055	2-Deoxy-D-Ribose	BPHYT_RS01740	BPHYT_RS01740		hypothetical protein	-1.18187338204202	-6.93724650459811	TRUE
+carbon source	set6IT056	2-Deoxy-D-Ribose	BPHYT_RS01740	BPHYT_RS01740		hypothetical protein	-1.17822559292967	-5.63171336345567	TRUE
+carbon source	set6IT057	2-Deoxy-D-Ribose	BPHYT_RS01830	BPHYT_RS01830		LacI family transcriptional regulator	-2.25905098088819	-10.3142559458173	FALSE
+carbon source	set6IT058	2-Deoxy-D-Ribose	BPHYT_RS01830	BPHYT_RS01830		LacI family transcriptional regulator	-1.78990011655715	-8.90119906999577	FALSE
+carbon source	set6IT055	2-Deoxy-D-Ribose	BPHYT_RS01830	BPHYT_RS01830		LacI family transcriptional regulator	-1.62308118784672	-8.3969998875077	FALSE
+carbon source	set6IT056	2-Deoxy-D-Ribose	BPHYT_RS01830	BPHYT_RS01830		LacI family transcriptional regulator	-1.5199848651456	-7.16813238879712	FALSE
+carbon source	set6IT058	2-Deoxy-D-Ribose	BPHYT_RS07000	BPHYT_RS07000		acetyl-CoA synthetase	-2.05111606064712	-14.2866411641166	FALSE
+carbon source	set6IT057	2-Deoxy-D-Ribose	BPHYT_RS07000	BPHYT_RS07000		acetyl-CoA synthetase	-1.98643451320287	-11.8127518466326	FALSE
+carbon source	set6IT055	2-Deoxy-D-Ribose	BPHYT_RS07000	BPHYT_RS07000		acetyl-CoA synthetase	-1.44742097708649	-9.44737478845506	FALSE
+carbon source	set6IT056	2-Deoxy-D-Ribose	BPHYT_RS07000	BPHYT_RS07000		acetyl-CoA synthetase	-1.44574505263265	-9.16828212908989	FALSE
+carbon source	set6IT057	2-Deoxy-D-Ribose	BPHYT_RS11325	BPHYT_RS11325		voltage-gated chloride channel protein ClcB	-1.29513434495804	-5.43684791012007	FALSE
+carbon source	set6IT055	2-Deoxy-D-Ribose	BPHYT_RS11365	BPHYT_RS11365		TetR family transcriptional regulator	-1.14448929915443	-5.21753881881201	FALSE
+carbon source	set6IT057	2-Deoxy-D-Ribose	BPHYT_RS15470	BPHYT_RS15470		tRNA (guanine-N(7)-)-methyltransferase	-2.06638677830496	-10.3763893978225	TRUE
+carbon source	set6IT058	2-Deoxy-D-Ribose	BPHYT_RS15470	BPHYT_RS15470		tRNA (guanine-N(7)-)-methyltransferase	-1.85889340054276	-7.04142076356149	TRUE
+carbon source	set6IT056	2-Deoxy-D-Ribose	BPHYT_RS15470	BPHYT_RS15470		tRNA (guanine-N(7)-)-methyltransferase	-1.64829257794044	-8.85727494260385	TRUE
+carbon source	set6IT055	2-Deoxy-D-Ribose	BPHYT_RS15470	BPHYT_RS15470		tRNA (guanine-N(7)-)-methyltransferase	-1.58786589527836	-7.06552399041227	TRUE
+carbon source	set6IT056	2-Deoxy-D-Ribose	BPHYT_RS21705	BPHYT_RS21705		sulfoacetaldehyde acetyltransferase	-2.50525479259941	-6.7132683270476	FALSE
+carbon source	set6IT058	2-Deoxy-D-Ribose	BPHYT_RS21705	BPHYT_RS21705		sulfoacetaldehyde acetyltransferase	-2.28296716102677	-6.48950741497365	FALSE
+carbon source	set6IT057	2-Deoxy-D-Ribose	BPHYT_RS21705	BPHYT_RS21705		sulfoacetaldehyde acetyltransferase	-2.2663729656071	-5.36304704764311	FALSE
+carbon source	set6IT055	2-Deoxy-D-Ribose	BPHYT_RS21705	BPHYT_RS21705		sulfoacetaldehyde acetyltransferase	-1.7858859699633	-6.63214293084623	FALSE
+carbon source	set6IT058	2-Deoxy-D-Ribose	BPHYT_RS22600	BPHYT_RS22600		transport protein RbsD/FucU	2.07684332753365	6.73498373528161	FALSE
+carbon source	set6IT057	2-Deoxy-D-Ribose	BPHYT_RS22600	BPHYT_RS22600		transport protein RbsD/FucU	2.2115981942675	10.6301151247585	FALSE
+carbon source	set6IT055	2-Deoxy-D-Ribose	BPHYT_RS25785	BPHYT_RS25785		sugar ABC transporter permease	2.58112821566017	5.00325927421821	TRUE
+carbon source	set6IT056	2-Deoxy-D-Ribose	BPHYT_RS25785	BPHYT_RS25785		sugar ABC transporter permease	2.83392706601085	6.76614881745312	TRUE
+carbon source	set6IT058	2-Deoxy-D-Ribose	BPHYT_RS25785	BPHYT_RS25785		sugar ABC transporter permease	3.97361648987064	7.31399334187737	TRUE
+carbon source	set6IT057	2-Deoxy-D-Ribose	BPHYT_RS25785	BPHYT_RS25785		sugar ABC transporter permease	4.26459579169811	8.67391905696157	TRUE
+carbon source	set6IT057	2-Deoxy-D-Ribose	BPHYT_RS25805	BPHYT_RS25805		ribokinase	-3.99215616159543	-5.54173027478158	TRUE
+carbon source	set6IT058	2-Deoxy-D-Ribose	BPHYT_RS25805	BPHYT_RS25805		ribokinase	-3.76536149132821	-5.44913378288894	TRUE
+carbon source	set6IT056	2-Deoxy-D-Ribose	BPHYT_RS25805	BPHYT_RS25805		ribokinase	-2.95927546874893	-5.67621258400842	TRUE
+carbon source	set6IT055	2-Deoxy-D-Ribose	BPHYT_RS25805	BPHYT_RS25805		ribokinase	-2.7485620781002	-5.53765543836344	TRUE
+carbon source	set6IT058	2-Deoxy-D-Ribose	BPHYT_RS25810	BPHYT_RS25810		aldehyde dehydrogenase	-6.10739551194717	-5.50269219502564	TRUE
+carbon source	set6IT056	2-Deoxy-D-Ribose	BPHYT_RS25810	BPHYT_RS25810		aldehyde dehydrogenase	-3.31607901630892	-6.50521188326236	TRUE
+carbon source	set6IT059	2-Deoxy-D-ribonic acid lithium salt	BPHYT_RS01830	BPHYT_RS01830		LacI family transcriptional regulator	-1.57176637211688	-5.70664735755546	FALSE
+carbon source	set6IT059	2-Deoxy-D-ribonic acid lithium salt	BPHYT_RS07000	BPHYT_RS07000		acetyl-CoA synthetase	-1.12052059576728	-5.90104850508433	FALSE
+carbon source	set6IT059	2-Deoxy-D-ribonic acid lithium salt	BPHYT_RS09150	BPHYT_RS09150		acetyl-CoA acetyltransferase	3.30736405027372	12.7258875105607	TRUE
+carbon source	set6IT059	2-Deoxy-D-ribonic acid lithium salt	BPHYT_RS10950	BPHYT_RS10950		transcriptional regulator	10.0268302880695	37.0878653202948	FALSE
+carbon source	set6IT059	2-Deoxy-D-ribonic acid lithium salt	BPHYT_RS12875	BPHYT_RS12875		oligopeptidase A	-1.60797217356356	-5.8612770580588	FALSE
+carbon source	set6IT059	2-Deoxy-D-ribonic acid lithium salt	BPHYT_RS16575	BPHYT_RS16575		Xaa-Pro aminopeptidase	-1.43826004893437	-5.80728491980719	FALSE
+carbon source	set6IT059	2-Deoxy-D-ribonic acid lithium salt	BPHYT_RS21750	BPHYT_RS21750		major facilitator transporter	-1.13037714083182	-5.94964014834856	FALSE
+carbon source	set6IT059	2-Deoxy-D-ribonic acid lithium salt	BPHYT_RS34340	BPHYT_RS34340		Fis family transcriptional regulator	2.52563350506531	11.5520931674983	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS02940	BPHYT_RS02940		adenine phosphoribosyltransferase	6.9324611001129	34.5372524022272	TRUE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS03555	BPHYT_RS03555		glutamine-synthetase adenylyltransferase	4.01188672294314	8.85226883671628	TRUE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS03880	BPHYT_RS03880		LysR family transcriptional regulator	2.35031400332514	15.9892457691867	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS03980	BPHYT_RS03980		mannose-1-phosphate guanyltransferase	1.59455506137164	7.06554865229492	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS04050	BPHYT_RS04050		group 1 glycosyl transferase	1.30671614910574	5.37082453786673	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS04055	BPHYT_RS04055		PST family polysaccharide export protein	1.80175967272572	5.67725059261908	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS07520	BPHYT_RS07520		permease	1.6109735871149	6.83190816624289	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS07615	BPHYT_RS07615		glycogen synthase	2.4636246305401	8.57630760834136	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS07995	BPHYT_RS07995		diguanylate phosphodiesterase	-2.7666224228913	-5.22059607805028	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS08580	BPHYT_RS08580		ADP-ribose pyrophosphatase	2.6920635551496	9.79417370819907	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS08835	BPHYT_RS08835		glyoxylate carboligase	2.0443858604554	10.5985650642433	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS08840	BPHYT_RS08840		LysR family transcriptional regulator	1.92468550548671	8.25912975555121	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS09400	BPHYT_RS09400		spermidine/putrescine ABC transporter ATPase	1.18933066442176	5.53462724849189	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS09405	BPHYT_RS09405		branched-chain amino acid ABC transporter substrate-binding protein	1.52683773480782	5.75654158413113	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS11325	BPHYT_RS11325		voltage-gated chloride channel protein ClcB	4.1289521813496	17.4084500250458	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS11515	BPHYT_RS11515		LysR family transcriptional regulator	1.31103246668713	5.36327603743092	TRUE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS11545	BPHYT_RS11545		allantoicase	1.61806542588515	10.1178905822323	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS13655	BPHYT_RS13655		GTP pyrophosphokinase	2.20184061158486	15.3248464015926	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS14655	BPHYT_RS14655		Fis family transcriptional regulator	1.77848851777014	6.93095336330674	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS15080	BPHYT_RS15080		FAD-binding molybdopterin dehydrogenase	2.055141275023	5.53143795139445	TRUE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS15085	BPHYT_RS15085		aldehyde oxidase	1.83097798244283	10.5434773718199	TRUE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS15095	BPHYT_RS15095		adenine deaminase	1.05843600347167	5.73055956681108	TRUE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS15450	BPHYT_RS15450		chromosome partitioning protein	1.45760796683327	6.22842716677778	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS15455	BPHYT_RS15455		hypothetical protein	1.9212464323855	6.44858663888599	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS16455	BPHYT_RS16455		ferritin	1.15429500569737	7.10771638736827	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS16895	BPHYT_RS16895		competence damage-inducible protein A	-1.70871522554003	-6.91558134998637	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS17085	BPHYT_RS17085		hypoxanthine phosphoribosyltransferase	2.6051858608018	11.7495672384781	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS18620	BPHYT_RS18620		transcriptional regulator	1.46850162665358	5.2380124694799	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS21240	BPHYT_RS21240		LuxR family transcriptional regulator	1.24105107405157	5.9630732565823	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS21705	BPHYT_RS21705		sulfoacetaldehyde acetyltransferase	1.77458471987876	5.84220456524633	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS21740	BPHYT_RS21740		IclR family transcriptional regulator	2.84962416077696	14.5953342930614	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS21745	BPHYT_RS21745		choline dehydrogenase	3.14796466061699	13.6007656981916	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS21750	BPHYT_RS21750		major facilitator transporter	2.7176838707145	9.4075790182607	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS22235	BPHYT_RS22235		sensor histidine kinase	-1.77716749040458	-5.921570382007	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS22240	BPHYT_RS22240		hypothetical protein	-1.75656124589972	-5.96828399816984	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS22245	BPHYT_RS22245		sodium:solute symporter	-1.4868073884297	-5.27300434153815	TRUE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS33635	BPHYT_RS33635		AMP nucleosidase	-2.42902902701961	-10.7409595535586	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS33980	BPHYT_RS33980		aconitate hydratase	1.33701113497778	8.40194937951385	FALSE
+carbon source	set8IT028	2-Deoxyadenosine 5-monophosphate	BPHYT_RS36565	BPHYT_RS36565		hypothetical protein	1.35751704254775	5.28578424739644	FALSE
+carbon source	set11IT004	Azelaic acid	BPHYT_RS03780	BPHYT_RS03780		acyl-CoA dehydrogenase	-4.57543400099023	-7.35549545831058	TRUE
+carbon source	set11IT004	Azelaic acid	BPHYT_RS09560	BPHYT_RS09560		3-hydroxyacyl-CoA dehydrogenase	-2.82895171199561	-5.22797717594799	FALSE
+carbon source	set11IT004	Azelaic acid	BPHYT_RS20305	BPHYT_RS20305		hypothetical protein	-4.41366964940993	-6.559370496108	TRUE
+carbon source	set11IT004	Azelaic acid	BPHYT_RS25035	BPHYT_RS25035		long-chain fatty acid--CoA ligase	-3.31548065116618	-5.62519039745824	FALSE
+carbon source	set1IT026	D-Alanine	BPHYT_RS12965	BPHYT_RS12965		fatty acid hydroxylase	-1.490537234827	-6.80528572347341	FALSE
+carbon source	set1IT026	D-Alanine	BPHYT_RS12970	BPHYT_RS12970		hypothetical protein	-1.64138370008184	-8.29332901775638	FALSE
+carbon source	set1IT026	D-Alanine	BPHYT_RS14785	BPHYT_RS14785		AsnC family transcriptional regulator	-3.33688337088725	-9.61635554126323	TRUE
+carbon source	set1IT026	D-Alanine	BPHYT_RS14790	BPHYT_RS14790		D-amino acid dehydrogenase	-3.47188538278276	-7.03091423971519	TRUE
+carbon source	set1IT026	D-Alanine	BPHYT_RS22240	BPHYT_RS22240		hypothetical protein	-1.1428269961528	-7.52486652985654	TRUE
+carbon source	set1IT026	D-Alanine	BPHYT_RS22245	BPHYT_RS22245		sodium:solute symporter	-1.29512080988023	-8.45568681289582	TRUE
+carbon source	set1IT026	D-Alanine	BPHYT_RS33220	BPHYT_RS33220		group 1 glycosyl transferase	-1.40163089884969	-7.01536430317766	FALSE
+carbon source	set1IT005	D-Galactose	BPHYT_RS16405	BPHYT_RS16405		galactonate dehydratase	-2.58372937554702	-12.1654434946971	TRUE
+carbon source	set1IT005	D-Galactose	BPHYT_RS16920	BPHYT_RS16920		3-oxoacyl-ACP reductase	-2.10660195799207	-5.74395427263148	TRUE
+carbon source	set1IT005	D-Galactose	BPHYT_RS16925	BPHYT_RS16925		arabinose ABC transporter permease	-1.87918662160568	-8.25957287446471	TRUE
+carbon source	set1IT005	D-Galactose	BPHYT_RS16930	BPHYT_RS16930		arabinose ABC transporter ATP-binding protein	-2.12975481320814	-10.9892016649072	TRUE
+carbon source	set1IT005	D-Galactose	BPHYT_RS16935	BPHYT_RS16935		arabinose ABC transporter substrate-binding protein	-2.10270953675299	-8.16492148859972	TRUE
+carbon source	set1IT005	D-Galactose	BPHYT_RS16940	BPHYT_RS16940		short-chain dehydrogenase	-2.20557824419234	-6.77870572380036	TRUE
+carbon source	set1IT005	D-Galactose	BPHYT_RS16945	BPHYT_RS16945		2-dehydro-3-deoxy-6-phosphogalactonate aldolase	-6.24304014815495	-6.96903172518219	TRUE
+carbon source	set1IT005	D-Galactose	BPHYT_RS16955	BPHYT_RS16955		IclR family transcriptional regulator	-3.13492233060226	-10.6241885493259	TRUE
+carbon source	set1IT015	D-Galacturonic Acid monohydrate	BPHYT_RS24155	BPHYT_RS24155		5-dehydro-4-deoxyglucarate dehydratase	-2.15562457272085	-6.74874474802689	TRUE
+carbon source	set1IT008	D-Gluconic Acid sodium salt	BPHYT_RS11290	BPHYT_RS11290		bifunctional glyoxylate/hydroxypyruvate reductase B	-2.37341713173648	-5.56258459003023	TRUE
+carbon source	set1IT008	D-Gluconic Acid sodium salt	BPHYT_RS16720	BPHYT_RS16720		gluconate kinase	-5.58718654713359	-5.07632167995927	TRUE
+carbon source	set1IT008	D-Gluconic Acid sodium salt	BPHYT_RS16725	BPHYT_RS16725		permease	-4.07781227074442	-12.8508194388721	TRUE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS01695	BPHYT_RS01695		L-glyceraldehyde 3-phosphate reductase	1.09385304634476	6.59283823488255	FALSE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS02735	BPHYT_RS02735		iron dicitrate transport regulator FecR	-3.6047239464065	-8.85592236313532	TRUE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS06885	BPHYT_RS06885		NADP-dependent aryl-alcohol dehydrogenase	1.12785976111706	9.2463542257269	FALSE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS15780	BPHYT_RS15780		ABC transporter ATP-binding protein	-1.15831941535598	-8.01774662926325	TRUE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS15795	BPHYT_RS15795		hypothetical protein	-1.72040245701705	-7.57000145645354	TRUE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS15800	BPHYT_RS15800		GntR family transcriptional regulator	7.00826383855296	38.294066108805	TRUE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS15805	BPHYT_RS15805		carnitine dehydratase	-1.15154968773379	-5.57165489874498	TRUE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS16505	BPHYT_RS16505		HAD family hydrolase	-2.0211262296717	-6.02497965959983	TRUE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS19055	BPHYT_RS19055		COF family hydrolase	-2.34485696714941	-13.4483532089632	FALSE
+carbon source	set2IT079	D-Glucosamine Hydrochloride	BPHYT_RS22485	BPHYT_RS22485		NADP-dependent aryl-alcohol dehydrogenase	1.56501202100351	7.53607519776991	FALSE
+carbon source	set11IT008	D-Glucose	BPHYT_RS15490	BPHYT_RS15490		coproporphyrinogen III oxidase	-1.6516903465967	-5.4000155231165	TRUE
+carbon source	set11IT008	D-Glucose	BPHYT_RS33635	BPHYT_RS33635		AMP nucleosidase	2.29470432652948	15.3130217535631	FALSE
+carbon source	set1IT007	D-Ribose	BPHYT_RS20675	BPHYT_RS20675		LysR family transcriptional regulator	-3.54192958796797	-7.25258076674211	FALSE
+carbon source	set1IT007	D-Ribose	BPHYT_RS20685	BPHYT_RS20685		ribose ABC transporter ATPase	-2.77925307306899	-6.91906519714135	TRUE
+carbon source	set1IT016	D-Sorbitol	BPHYT_RS16095	BPHYT_RS16095		sugar ABC transporter ATP-binding protein	-4.14952176326963	-9.6589961969899	TRUE
+carbon source	set1IT016	D-Sorbitol	BPHYT_RS16105	BPHYT_RS16105		mannitol ABC transporter permease	-3.45869629141139	-7.61230852643331	TRUE
+carbon source	set1IT016	D-Sorbitol	BPHYT_RS16110	BPHYT_RS16110		sugar ABC transporter permease	-3.98405679711464	-9.43554985873763	TRUE
+carbon source	set1IT016	D-Sorbitol	BPHYT_RS16115	BPHYT_RS16115		sugar ABC transporter substrate-binding protein	-3.77916163182298	-12.1631316059051	TRUE
+carbon source	set1IT016	D-Sorbitol	BPHYT_RS16120	BPHYT_RS16120		sorbitol dehydrogenase	-3.85058179679359	-12.6372892720046	TRUE
+carbon source	set2IT070	D-Xylose	BPHYT_RS03975	BPHYT_RS03975		AraC family transcriptional regulator	1.34451349075965	5.45441816020636	FALSE
+carbon source	set2IT070	D-Xylose	BPHYT_RS03980	BPHYT_RS03980		mannose-1-phosphate guanyltransferase	1.27013646555946	8.79244258719473	FALSE
+carbon source	set2IT070	D-Xylose	BPHYT_RS04055	BPHYT_RS04055		PST family polysaccharide export protein	1.41102283399078	6.19847385113555	FALSE
+carbon source	set2IT070	D-Xylose	BPHYT_RS14655	BPHYT_RS14655		Fis family transcriptional regulator	1.6973094782694	12.6360730562766	FALSE
+carbon source	set2IT070	D-Xylose	BPHYT_RS17865	BPHYT_RS17865		membrane protein	-1.78700752297465	-6.79219611499867	FALSE
+carbon source	set2IT070	D-Xylose	BPHYT_RS27100	BPHYT_RS27100		RNase II stability modulator	-2.46137226258692	-10.153323359047	FALSE
+carbon source	set2IT070	D-Xylose	BPHYT_RS32825	BPHYT_RS32825		xylose isomerase	-4.52889627364904	-6.25806128440858	TRUE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS01465	BPHYT_RS01465		lysine transporter LysE	1.15748463415982	7.72659974065711	TRUE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS01465	BPHYT_RS01465		lysine transporter LysE	1.23745724127261	7.43259093281332	TRUE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS02940	BPHYT_RS02940		adenine phosphoribosyltransferase	5.04916652919657	21.5770831988046	TRUE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS02940	BPHYT_RS02940		adenine phosphoribosyltransferase	5.37184618765182	20.4307259455028	TRUE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS03555	BPHYT_RS03555		glutamine-synthetase adenylyltransferase	3.37476781764683	10.530794530628	TRUE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS03555	BPHYT_RS03555		glutamine-synthetase adenylyltransferase	3.4785675784777	9.862245299927	TRUE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS03865	BPHYT_RS03865		FAD-binding molybdopterin dehydrogenase	-1.11792575367308	-5.06798307365083	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS03870	BPHYT_RS03870		aldehyde oxidase	-1.16206543003889	-5.11183130868753	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS03870	BPHYT_RS03870		aldehyde oxidase	-1.00497140322736	-6.32882215649778	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS03880	BPHYT_RS03880		LysR family transcriptional regulator	-1.30536786718827	-5.00463892490636	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS05060	BPHYT_RS05060		membrane protein	1.09580069335877	5.47977515951471	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS11545	BPHYT_RS11545		allantoicase	-1.31722662653734	-5.56343033644774	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS12520	BPHYT_RS12520		nicotinate phosphoribosyltransferase	2.16845979634043	6.42828973693282	TRUE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS12830	BPHYT_RS12830		dihydrolipoamide dehydrogenase	-1.32173087957641	-5.73216623831537	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS14535	BPHYT_RS14535		nicotinate phosphoribosyltransferase	-1.34724651823822	-5.33747335587697	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS15095	BPHYT_RS15095		adenine deaminase	1.00876922592965	5.31008886563167	TRUE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS15095	BPHYT_RS15095		adenine deaminase	1.44587489397445	8.04993649554108	TRUE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS15100	BPHYT_RS15100		guanine deaminase	-1.25767057701828	-6.1589345177953	TRUE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS15100	BPHYT_RS15100		guanine deaminase	-1.10173719461595	-5.55569849576083	TRUE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS15450	BPHYT_RS15450		chromosome partitioning protein	2.27032740819694	9.81567239795921	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS15450	BPHYT_RS15450		chromosome partitioning protein	2.42615335597153	10.3013111168333	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS15455	BPHYT_RS15455		hypothetical protein	2.80492446294673	13.3836180642314	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS15455	BPHYT_RS15455		hypothetical protein	2.90395871651246	7.73512539694829	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS15575	BPHYT_RS15575		CDP-6-deoxy-delta-3,4-glucoseen reductase	1.469810851395	5.05093806836674	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS15715	BPHYT_RS15715		ATP-dependent Clp protease adapter protein ClpS	-1.38641198733974	-6.3460508852912	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS16300	BPHYT_RS16300		hypothetical protein	-1.78858915488224	-6.67395669122021	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS16300	BPHYT_RS16300		hypothetical protein	-1.47771877669524	-7.00742063590343	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS16895	BPHYT_RS16895		competence damage-inducible protein A	-1.64377697107596	-5.95901771897389	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS16895	BPHYT_RS16895		competence damage-inducible protein A	-1.49396006574004	-7.37421104411481	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS17085	BPHYT_RS17085		hypoxanthine phosphoribosyltransferase	2.28999238406826	8.63051955553423	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS17085	BPHYT_RS17085		hypoxanthine phosphoribosyltransferase	2.80151468870085	10.2383285825062	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS21240	BPHYT_RS21240		LuxR family transcriptional regulator	1.14850116177521	7.48564406046665	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS22245	BPHYT_RS22245		sodium:solute symporter	-1.27028960766499	-5.63635849221555	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS29965	BPHYT_RS29965		amidase	1.2087940769764	5.68549716954234	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS33635	BPHYT_RS33635		AMP nucleosidase	-1.86639991845272	-10.1391268071989	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS33635	BPHYT_RS33635		AMP nucleosidase	-1.35065059703283	-8.54629705271659	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS34660	BPHYT_RS34660		DNA-binding protein	-1.25260446471312	-5.02769007118349	FALSE
+carbon source	set8IT022	Deoxyribonucleic acid from herring sperm	BPHYT_RS36555	BPHYT_RS36555		hypothetical protein	1.48412901132654	7.83791110708401	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS36555	BPHYT_RS36555		hypothetical protein	1.66447084023131	9.51673051040359	FALSE
+carbon source	set8IT031	Deoxyribonucleic acid from herring sperm	BPHYT_RS36565	BPHYT_RS36565		hypothetical protein	1.64328651010605	5.2994498186835	FALSE
+carbon source	set12IT025	Disodium Glutarate	BPHYT_RS03780	BPHYT_RS03780		acyl-CoA dehydrogenase	-5.14210346146109	-7.02157374089485	FALSE
+carbon source	set12IT024	Disodium Glutarate	BPHYT_RS03780	BPHYT_RS03780		acyl-CoA dehydrogenase	-4.73628542841707	-6.46742673359332	FALSE
+carbon source	set12IT024	Disodium Glutarate	BPHYT_RS11175	BPHYT_RS11175		alpha-ketoglutarate transporter	-2.62586531060623	-7.97994565233069	TRUE
+carbon source	set12IT025	Disodium Glutarate	BPHYT_RS11175	BPHYT_RS11175		alpha-ketoglutarate transporter	-2.52600388580476	-7.63466607669088	TRUE
+carbon source	set12IT024	Disodium Glutarate	BPHYT_RS13985	BPHYT_RS13985		CoA transferase	-2.96490726617937	-12.2951408446976	FALSE
+carbon source	set12IT025	Disodium Glutarate	BPHYT_RS13985	BPHYT_RS13985		CoA transferase	-2.80925329503427	-14.1662580496337	FALSE
+carbon source	set12IT025	Disodium Glutarate	BPHYT_RS18620	BPHYT_RS18620		transcriptional regulator	1.83188733644323	7.78895730278122	FALSE
+carbon source	set12IT024	Disodium Glutarate	BPHYT_RS18620	BPHYT_RS18620		transcriptional regulator	1.8358167613038	5.28651289964822	FALSE
+carbon source	set12IT025	Disodium Glutarate	BPHYT_RS19975	BPHYT_RS19975		IclR family transcriptional regulator	-3.12332743818161	-6.07016375847501	FALSE
+carbon source	set12IT024	Disodium Glutarate	BPHYT_RS20305	BPHYT_RS20305		hypothetical protein	-5.65474969510686	-7.74749447618213	FALSE
+carbon source	set12IT025	Disodium Glutarate	BPHYT_RS20305	BPHYT_RS20305		hypothetical protein	-3.76093304803104	-7.78411699294406	FALSE
+carbon source	set12IT024	Disodium Glutarate	BPHYT_RS29425	BPHYT_RS29425		IclR family transcriptional regulator	1.9782842354545	6.25126536672309	TRUE
+carbon source	set12IT025	Disodium Glutarate	BPHYT_RS29425	BPHYT_RS29425		IclR family transcriptional regulator	2.00944385419231	7.70693477525191	TRUE
+carbon source	set12IT025	Disodium Glutarate	BPHYT_RS32820	BPHYT_RS32820		xylose ABC transporter substrate-binding protein	3.07571003734534	11.9759534757248	FALSE
+carbon source	set12IT024	Disodium Glutarate	BPHYT_RS32820	BPHYT_RS32820		xylose ABC transporter substrate-binding protein	3.30873997840009	13.3817465034576	FALSE
+carbon source	set11IT006	Dodecandioic acid	BPHYT_RS13540	BPHYT_RS13540		LysR family transcriptional regulator	-2.23465782458365	-10.6818104201018	TRUE
+carbon source	set11IT006	Dodecandioic acid	BPHYT_RS17295	BPHYT_RS17295		long-chain fatty acid--CoA ligase	-1.79400052099418	-8.61698063837656	TRUE
+carbon source	set11IT006	Dodecandioic acid	BPHYT_RS20305	BPHYT_RS20305		hypothetical protein	-2.02642044754121	-7.97756794616595	FALSE
+carbon source	set11IT006	Dodecandioic acid	BPHYT_RS25035	BPHYT_RS25035		long-chain fatty acid--CoA ligase	-3.07250325182444	-6.02351822888433	FALSE
+carbon source	set2IT077	Gly-Glu	BPHYT_RS09435	BPHYT_RS09435		MarR family transcriptional regulator	2.39286805334556	10.7536087430235	FALSE
+carbon source	set2IT077	Gly-Glu	BPHYT_RS17155	BPHYT_RS17155		peptidase A24	-1.12290189480635	-5.90515768921134	FALSE
+carbon source	set2IT077	Gly-Glu	BPHYT_RS18805	BPHYT_RS18805		flagellar basal body protein FliL	1.62114223153349	6.81964001417396	FALSE
+carbon source	set2IT077	Gly-Glu	BPHYT_RS19330	BPHYT_RS19330		glycine dehydrogenase (decarboxylating)	-1.92941526377174	-8.59080459819036	TRUE
+carbon source	set2IT077	Gly-Glu	BPHYT_RS19535	BPHYT_RS19535		XRE family transcriptional regulator	-2.95654051821829	-9.36591203958467	FALSE
+carbon source	set2IT077	Gly-Glu	BPHYT_RS19540	BPHYT_RS19540		sensor histidine kinase	-2.07860246339846	-9.95470247091379	FALSE
+carbon source	set2IT077	Gly-Glu	BPHYT_RS26405	BPHYT_RS26405		glycogen synthase	1.07349528604691	6.28688399719729	FALSE
+carbon source	set1IT023	L-Alanine	BPHYT_RS08455	BPHYT_RS08455		ribonuclease R	-1.53762746880424	-9.19380825797638	FALSE
+carbon source	set1IT023	L-Alanine	BPHYT_RS14785	BPHYT_RS14785		AsnC family transcriptional regulator	-5.870325099341	-7.47142460036674	TRUE
+carbon source	set1IT023	L-Alanine	BPHYT_RS14790	BPHYT_RS14790		D-amino acid dehydrogenase	-4.50096544082849	-5.3816693245262	TRUE
+carbon source	set1IT004	L-Arabinose	BPHYT_RS16915	BPHYT_RS16915		gluconolaconase	-2.03190562528252	-9.78856138022762	TRUE
+carbon source	set1IT004	L-Arabinose	BPHYT_RS16920	BPHYT_RS16920		3-oxoacyl-ACP reductase	-2.2894369467622	-6.99600133245435	TRUE
+carbon source	set1IT004	L-Arabinose	BPHYT_RS19705	BPHYT_RS19705		LysR family transcriptional regulator	-2.69169272215282	-9.74480509335775	TRUE
+carbon source	set1IT004	L-Arabinose	BPHYT_RS19720	BPHYT_RS19720		arabinose ABC transporter ATP-binding protein	-2.38137699240313	-9.2143054120231	TRUE
+carbon source	set1IT004	L-Arabinose	BPHYT_RS19730	BPHYT_RS19730		dihydroxy-acid dehydratase	-2.79081726572714	-10.7822009207079	TRUE
+carbon source	set2IT076	L-Arginine	BPHYT_RS07680	BPHYT_RS07680		histidine/lysine/arginine/ornithine ABC transporter permease HisM	-3.11739371733796	-10.0118189370402	TRUE
+carbon source	set2IT076	L-Arginine	BPHYT_RS07720	BPHYT_RS07720		succinylglutamate desuccinylase	-3.6461583543597	-8.81329733685705	FALSE
+carbon source	set2IT076	L-Arginine	BPHYT_RS07735	BPHYT_RS07735		ABC transporter substrate-binding protein	-3.20101367923106	-10.885011109491	FALSE
+carbon source	set1IT020	L-Asparagine	BPHYT_RS01885	BPHYT_RS01885		branched-chain amino acid ABC transporter substrate-binding protein	-3.00732623487003	-12.3251537530743	FALSE
+carbon source	set1IT020	L-Asparagine	BPHYT_RS08815	BPHYT_RS08815		L-asparaginase	-4.01682132766258	-6.08213155925445	TRUE
+carbon source	set1IT020	L-Asparagine	BPHYT_RS15590	BPHYT_RS15590		amino acid ABC transporter ATPase	-3.0838844618465	-9.76021531175513	FALSE
+carbon source	set1IT020	L-Asparagine	BPHYT_RS15595	BPHYT_RS15595		ABC transporter	-2.75190594901286	-14.7746131943829	FALSE
+carbon source	set1IT020	L-Asparagine	BPHYT_RS15600	BPHYT_RS15600		ABC transporter ATP-binding protein	-3.03394309421153	-11.8535051968895	FALSE
+carbon source	set1IT020	L-Asparagine	BPHYT_RS15605	BPHYT_RS15605		ABC transporter permease	-2.74738809520029	-14.1307991559853	FALSE
+carbon source	set1IT020	L-Asparagine	BPHYT_RS15610	BPHYT_RS15610		branched-chain amino acid ABC transporter substrate-binding protein	-2.17857384231823	-10.3992166601278	TRUE
+carbon source	set1IT020	L-Asparagine	BPHYT_RS17540	BPHYT_RS17540		amino acid:proton symporter	-1.58534152822626	-12.2264352674275	TRUE
+carbon source	set1IT020	L-Asparagine	BPHYT_RS19355	BPHYT_RS19355		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	1.6854947992946	14.78979643295	FALSE
+carbon source	set2IT071	L-Fucose	BPHYT_RS26970	BPHYT_RS26970		4Fe-4S ferredoxin	-2.59637955797039	-6.33301968155566	FALSE
+carbon source	set2IT071	L-Fucose	BPHYT_RS34210	BPHYT_RS34210		ureidoglycolate lyase	-4.63536800992287	-9.37814650427165	TRUE
+carbon source	set2IT071	L-Fucose	BPHYT_RS34215	BPHYT_RS34215		oxidoreductase	-5.08875755612425	-8.13473585630141	TRUE
+carbon source	set2IT071	L-Fucose	BPHYT_RS34225	BPHYT_RS34225		aldo/keto reductase	-5.10890259676941	-8.49844406889904	TRUE
+carbon source	set2IT071	L-Fucose	BPHYT_RS34230	BPHYT_RS34230		hydrolase	-4.74147691543128	-8.27201475692946	FALSE
+carbon source	set2IT071	L-Fucose	BPHYT_RS34250	BPHYT_RS34250		ABC transporter substrate-binding protein	-5.98550954260906	-9.45715575677578	TRUE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS01885	BPHYT_RS01885		branched-chain amino acid ABC transporter substrate-binding protein	-2.57812907838111	-10.1280869984992	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS02305	BPHYT_RS02305		methionine synthase	-1.8722542875509	-9.67365710589066	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS02310	BPHYT_RS02310		5-methyltetrahydrofolate--homocysteine methyltransferase	-1.9110655051184	-12.0638921057196	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS03210	BPHYT_RS03210		cardiolipin synthetase	1.24423027272366	7.09616761707984	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS05675	BPHYT_RS05675		hypothetical protein	-1.27519536791543	-6.89377348976964	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS15590	BPHYT_RS15590		amino acid ABC transporter ATPase	-2.94950100917122	-8.12077171856176	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS15595	BPHYT_RS15595		ABC transporter	-2.78265555291845	-13.5115055080814	TRUE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS15600	BPHYT_RS15600		ABC transporter ATP-binding protein	-2.3796218871574	-10.6405337578436	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS15605	BPHYT_RS15605		ABC transporter permease	-2.15647319595156	-10.1487886660564	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS15610	BPHYT_RS15610		branched-chain amino acid ABC transporter substrate-binding protein	-1.6236583126716	-8.43779627879909	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS17540	BPHYT_RS17540		amino acid:proton symporter	-1.9147200089076	-13.698152980973	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS18310	BPHYT_RS18310		malic enzyme	-1.53443084996933	-7.49428406150508	TRUE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS18620	BPHYT_RS18620		transcriptional regulator	-1.66240660510115	-5.59529130805717	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS18625	BPHYT_RS18625		allophanate hydrolase	-1.22344986645342	-6.41136591425104	TRUE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS19355	BPHYT_RS19355		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	3.45639517991056	28.1073729971097	FALSE
+carbon source	set1IT021	L-Glutamine	BPHYT_RS22695	BPHYT_RS22695		TetR family transcriptional regulator	-1.4455787985284	-7.59502452956763	FALSE
+carbon source	set1IT019	L-Histidine	BPHYT_RS07555	BPHYT_RS07555		histidine ammonia-lyase	-9.10925055459468	-6.29449018119217	TRUE
+carbon source	set1IT019	L-Histidine	BPHYT_RS07585	BPHYT_RS07585		N-formylglutamate amidohydrolase	-7.59963719862549	-5.11974505430025	TRUE
+carbon source	set1IT019	L-Histidine	BPHYT_RS09375	BPHYT_RS09375		(2Fe-2S)-binding protein	-1.29121265510932	-10.1246298222117	FALSE
+carbon source	set1IT019	L-Histidine	BPHYT_RS15590	BPHYT_RS15590		amino acid ABC transporter ATPase	-1.62455542051276	-8.1922403847423	FALSE
+carbon source	set1IT019	L-Histidine	BPHYT_RS24000	BPHYT_RS24000		ABC transporter substrate-binding protein	-1.2137685044011	-5.7246266759757	FALSE
+carbon source	set1IT018	L-Malic acid disodium salt monohydrate	BPHYT_RS02510	BPHYT_RS02510		C4-dicarboxylate ABC transporter	-4.07630792753688	-13.6919049840275	TRUE
+carbon source	set1IT018	L-Malic acid disodium salt monohydrate	BPHYT_RS02515	BPHYT_RS02515		ATPase	-3.56174240488812	-17.0542359678487	TRUE
+carbon source	set1IT018	L-Malic acid disodium salt monohydrate	BPHYT_RS02520	BPHYT_RS02520		Fis family transcriptional regulator	-3.04917987266878	-5.26843955211636	TRUE
+carbon source	set1IT024	L-Phenylalanine	BPHYT_RS01920	BPHYT_RS01920		AsnC family transcriptional regulator	-6.69402235405695	-12.0473819943353	TRUE
+carbon source	set1IT024	L-Phenylalanine	BPHYT_RS02015	BPHYT_RS02015		MFS transporter	-5.01955435688937	-11.5136861016778	TRUE
+carbon source	set1IT024	L-Phenylalanine	BPHYT_RS13545	BPHYT_RS13545		3-hydroxyacyl-CoA dehydrogenase	-2.13299889754859	-9.58531021309169	TRUE
+carbon source	set1IT024	L-Phenylalanine	BPHYT_RS14905	BPHYT_RS14905		histidinol-phosphate aminotransferase	-1.21914324436176	-5.41412008897869	FALSE
+carbon source	set1IT024	L-Phenylalanine	BPHYT_RS17335	BPHYT_RS17335		enoyl-CoA hydratase	-6.34237249958275	-11.4197403999201	TRUE
+carbon source	set1IT024	L-Phenylalanine	BPHYT_RS17340	BPHYT_RS17340		aldehyde dehydrogenase	-6.29407653206219	-9.61710999893991	TRUE
+carbon source	set1IT024	L-Phenylalanine	BPHYT_RS17345	BPHYT_RS17345		acetyl-CoA acetyltransferase	-1.85691712314814	-6.70980072152597	TRUE
+carbon source	set1IT022	L-Proline	BPHYT_RS15595	BPHYT_RS15595		ABC transporter	-4.0249634879256	-13.4920469887668	TRUE
+carbon source	set1IT022	L-Proline	BPHYT_RS15600	BPHYT_RS15600		ABC transporter ATP-binding protein	-4.69037446620333	-11.9118937130778	FALSE
+carbon source	set1IT022	L-Proline	BPHYT_RS15605	BPHYT_RS15605		ABC transporter permease	-5.01779752397797	-14.41096326877	FALSE
+carbon source	set1IT022	L-Proline	BPHYT_RS15610	BPHYT_RS15610		branched-chain amino acid ABC transporter substrate-binding protein	-2.6645929434888	-9.86901897011911	TRUE
+carbon source	set1IT022	L-Proline	BPHYT_RS19355	BPHYT_RS19355		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-5.51991701471498	-23.399018384596	TRUE
+carbon source	set1IT006	L-Rhamnose monohydrate	BPHYT_RS26970	BPHYT_RS26970		4Fe-4S ferredoxin	-1.71639528056674	-5.97242083347989	TRUE
+carbon source	set1IT006	L-Rhamnose monohydrate	BPHYT_RS28235	BPHYT_RS28235		short-chain dehydrogenase	-2.8664775818128	-5.18039643813058	TRUE
+carbon source	set1IT006	L-Rhamnose monohydrate	BPHYT_RS34210	BPHYT_RS34210		ureidoglycolate lyase	-5.60185722959937	-7.67415936860262	TRUE
+carbon source	set1IT006	L-Rhamnose monohydrate	BPHYT_RS34225	BPHYT_RS34225		aldo/keto reductase	-4.56769481011398	-7.31769684055278	FALSE
+carbon source	set1IT006	L-Rhamnose monohydrate	BPHYT_RS34230	BPHYT_RS34230		hydrolase	-2.32292586207459	-8.93230466581601	FALSE
+carbon source	set1IT006	L-Rhamnose monohydrate	BPHYT_RS34245	BPHYT_RS34245		multidrug ABC transporter ATP-binding protein	-2.52447560189095	-5.48463865826217	FALSE
+carbon source	set1IT006	L-Rhamnose monohydrate	BPHYT_RS34250	BPHYT_RS34250		ABC transporter substrate-binding protein	-2.89097397718867	-7.46457797905348	FALSE
+carbon source	set1IT025	L-Tryptophan	BPHYT_RS03780	BPHYT_RS03780		acyl-CoA dehydrogenase	-3.69824525038469	-7.51218656534156	TRUE
+carbon source	set1IT025	L-Tryptophan	BPHYT_RS09150	BPHYT_RS09150		acetyl-CoA acetyltransferase	-1.29402259674874	-7.30581914546919	FALSE
+carbon source	set1IT025	L-Tryptophan	BPHYT_RS14785	BPHYT_RS14785		AsnC family transcriptional regulator	-1.8728146264455	-6.74014173086797	TRUE
+carbon source	set1IT025	L-Tryptophan	BPHYT_RS16030	BPHYT_RS16030		kynureninase	-4.57508289116758	-8.17685895086145	TRUE
+carbon source	set1IT025	L-Tryptophan	BPHYT_RS35445	BPHYT_RS35445		2-aminobenzoate-CoA ligase	-2.04240141627337	-6.64799200185604	TRUE
+carbon source	set1IT025	L-Tryptophan	BPHYT_RS35460	BPHYT_RS35460		acyl-CoA dehydrogenase	-3.78608533088467	-7.38940551715739	TRUE
+carbon source	set1IT025	L-Tryptophan	BPHYT_RS35465	BPHYT_RS35465		enoyl-CoA hydratase	-2.44777987077573	-5.0279312929149	TRUE
+carbon source	set11IT017	Malonic acid	BPHYT_RS07000	BPHYT_RS07000		acetyl-CoA synthetase	-4.06905501888832	-14.2791509118966	FALSE
+carbon source	set10IT094	Malonic acid	BPHYT_RS07000	BPHYT_RS07000		acetyl-CoA synthetase	-3.76150687796919	-16.0585610992734	FALSE
+carbon source	set10IT094	Malonic acid	BPHYT_RS14835	BPHYT_RS14835		deacetylase	-1.62030441720221	-5.33911546320529	FALSE
+carbon source	set10IT094	Malonic acid	BPHYT_RS23905	BPHYT_RS23905		malonate decarboxylase subunit epsilon	-2.64436620158341	-5.5898982100223	TRUE
+carbon source	set10IT094	Malonic acid	BPHYT_RS23935	BPHYT_RS23935		malonate decarboxylase subunit alpha	-3.21158859527723	-7.67015202568978	TRUE
+carbon source	set11IT017	Malonic acid	BPHYT_RS23935	BPHYT_RS23935		malonate decarboxylase subunit alpha	-3.07704036244923	-6.50067806128177	TRUE
+carbon source	set1IT028	N-Acetyl-D-Glucosamine	BPHYT_RS02730	BPHYT_RS02730		N-acetylglucosamine-6-phosphate deacetylase	-3.14341170597337	-12.3872618722292	TRUE
+carbon source	set1IT028	N-Acetyl-D-Glucosamine	BPHYT_RS02735	BPHYT_RS02735		iron dicitrate transport regulator FecR	-4.01588150040354	-6.59070172810916	TRUE
+carbon source	set1IT028	N-Acetyl-D-Glucosamine	BPHYT_RS02740	BPHYT_RS02740		PTS glucose transporter subunit IIA	-2.35258072046678	-6.95053575307752	TRUE
+carbon source	set1IT028	N-Acetyl-D-Glucosamine	BPHYT_RS02745	BPHYT_RS02745		PTS system N-acetylglucosamine-specific transporter subunit IIBC	-2.64385425874688	-6.73501218164628	TRUE
+carbon source	set1IT028	N-Acetyl-D-Glucosamine	BPHYT_RS14055	BPHYT_RS14055		aldose epimerase	-2.73546660450281	-15.6949934048381	FALSE
+carbon source	set1IT028	N-Acetyl-D-Glucosamine	BPHYT_RS24370	BPHYT_RS24370		glucose-6-phosphate 1-dehydrogenase	-1.48873900520611	-6.00553764421879	FALSE
+carbon source	set8IT027	Phenylacetic acid	BPHYT_RS02015	BPHYT_RS02015		MFS transporter	-1.51305009038169	-9.41288252298719	TRUE
+carbon source	set8IT036	Phenylacetic acid	BPHYT_RS02015	BPHYT_RS02015		MFS transporter	-1.33313220834402	-6.15260044642001	TRUE
+carbon source	set8IT036	Phenylacetic acid	BPHYT_RS13540	BPHYT_RS13540		LysR family transcriptional regulator	-1.34263126187016	-5.74957974219559	FALSE
+carbon source	set8IT036	Phenylacetic acid	BPHYT_RS15210	BPHYT_RS15210		aminopeptidase N	-1.06407079827273	-5.96091490995223	FALSE
+carbon source	set8IT027	Phenylacetic acid	BPHYT_RS17335	BPHYT_RS17335		enoyl-CoA hydratase	-2.85943180095511	-9.00750399512052	TRUE
+carbon source	set8IT036	Phenylacetic acid	BPHYT_RS17335	BPHYT_RS17335		enoyl-CoA hydratase	-2.27194313695298	-5.13324597692357	TRUE
+carbon source	set8IT036	Phenylacetic acid	BPHYT_RS17340	BPHYT_RS17340		aldehyde dehydrogenase	-4.37304073988152	-7.0108012494142	TRUE
+carbon source	set8IT027	Phenylacetic acid	BPHYT_RS17340	BPHYT_RS17340		aldehyde dehydrogenase	-2.59627406462524	-6.71926028920074	TRUE
+carbon source	set8IT027	Phenylacetic acid	BPHYT_RS17345	BPHYT_RS17345		acetyl-CoA acetyltransferase	-4.23542855272045	-9.41687389106987	TRUE
+carbon source	set8IT036	Phenylacetic acid	BPHYT_RS17345	BPHYT_RS17345		acetyl-CoA acetyltransferase	-3.1284585824247	-5.53018431940148	TRUE
+carbon source	set8IT027	Phenylacetic acid	BPHYT_RS17355	BPHYT_RS17355		phenylacetic acid degradation protein	-3.87223007743249	-9.35316034738945	TRUE
+carbon source	set8IT036	Phenylacetic acid	BPHYT_RS17355	BPHYT_RS17355		phenylacetic acid degradation protein	-2.71221219722768	-5.52057003039094	TRUE
+carbon source	set8IT036	Phenylacetic acid	BPHYT_RS17360	BPHYT_RS17360		phenylacetate-CoA ligase	-2.91165276561623	-8.57409820374359	TRUE
+carbon source	set8IT027	Phenylacetic acid	BPHYT_RS17360	BPHYT_RS17360		phenylacetate-CoA ligase	-2.80526991028031	-12.1122348570853	TRUE
+carbon source	set11IT007	Protocatechuic Acid	BPHYT_RS29385	BPHYT_RS29385		acetyl-CoA acetyltransferase	-5.38703503884376	-5.2236543056037	FALSE
+carbon source	set11IT024	Protocatechuic Acid	BPHYT_RS30245	BPHYT_RS30245		porin	-2.91952209565865	-9.90446774692771	FALSE
+carbon source	set11IT007	Protocatechuic Acid	BPHYT_RS30245	BPHYT_RS30245		porin	-2.79152829291112	-11.7371148853908	FALSE
+carbon source	set11IT007	Protocatechuic Acid	BPHYT_RS33635	BPHYT_RS33635		AMP nucleosidase	3.31568262730002	23.0721651442575	FALSE
+carbon source	set11IT024	Protocatechuic Acid	BPHYT_RS33980	BPHYT_RS33980		aconitate hydratase	-4.93612160383091	-11.468471435398	FALSE
+carbon source	set11IT007	Protocatechuic Acid	BPHYT_RS33980	BPHYT_RS33980		aconitate hydratase	-3.06638828292174	-9.81476424522103	FALSE
+carbon source	set1IT027	Putrescine Dihydrochloride	BPHYT_RS06095	BPHYT_RS06095		esterase	-2.1992747767633	-9.9316631074284	FALSE
+carbon source	set1IT027	Putrescine Dihydrochloride	BPHYT_RS14480	BPHYT_RS14480		ribosomal large subunit pseudouridine synthase C	-1.64440198654115	-8.07499493008775	FALSE
+carbon source	set1IT027	Putrescine Dihydrochloride	BPHYT_RS14785	BPHYT_RS14785		AsnC family transcriptional regulator	-2.89190487910935	-6.3804386468027	TRUE
+carbon source	set1IT027	Putrescine Dihydrochloride	BPHYT_RS14790	BPHYT_RS14790		D-amino acid dehydrogenase	-4.05890959626781	-5.55699477143415	FALSE
+carbon source	set1IT027	Putrescine Dihydrochloride	BPHYT_RS15470	BPHYT_RS15470		tRNA (guanine-N(7)-)-methyltransferase	-2.68036580794939	-11.5066616085049	FALSE
+carbon source	set1IT027	Putrescine Dihydrochloride	BPHYT_RS22435	BPHYT_RS22435		4-aminobutyrate aminotransferase	-1.66762805965876	-5.7183192297645	TRUE
+carbon source	set1IT027	Putrescine Dihydrochloride	BPHYT_RS23160	BPHYT_RS23160		glutamine synthetase	-3.97114656101182	-5.20228282849704	TRUE
+carbon source	set11IT022	Sebacic acid	BPHYT_RS13540	BPHYT_RS13540		LysR family transcriptional regulator	-1.65546984421662	-6.97943229306329	FALSE
+carbon source	set11IT005	Sebacic acid	BPHYT_RS13540	BPHYT_RS13540		LysR family transcriptional regulator	-1.40929786502317	-7.23294152816035	FALSE
+carbon source	set11IT022	Sebacic acid	BPHYT_RS14835	BPHYT_RS14835		deacetylase	-1.57846725544392	-5.08901721817437	FALSE
+carbon source	set11IT005	Sebacic acid	BPHYT_RS14835	BPHYT_RS14835		deacetylase	-1.45780580704872	-5.75423803469512	FALSE
+carbon source	set11IT022	Sebacic acid	BPHYT_RS25030	BPHYT_RS25030		gluconate 2-dehydrogenase	-4.66784396445345	-5.1758886044799	FALSE
+carbon source	set11IT005	Sebacic acid	BPHYT_RS25030	BPHYT_RS25030		gluconate 2-dehydrogenase	-3.95154124925789	-6.02647222094617	FALSE
+carbon source	set11IT022	Sebacic acid	BPHYT_RS25035	BPHYT_RS25035		long-chain fatty acid--CoA ligase	-5.48172202048925	-7.67129506812491	FALSE
+carbon source	set11IT005	Sebacic acid	BPHYT_RS25035	BPHYT_RS25035		long-chain fatty acid--CoA ligase	-3.85620626091346	-7.2865403407124	FALSE
+carbon source	set1IT011	Sodium D,L-Lactate	BPHYT_RS26970	BPHYT_RS26970		4Fe-4S ferredoxin	-1.57432040212373	-6.0001908468043	TRUE
+carbon source	set1IT009	Sodium D-Lactate	BPHYT_RS22245	BPHYT_RS22245		sodium:solute symporter	-1.02464180408727	-6.66131602634699	TRUE
+carbon source	set1IT010	Sodium L-Lactate	BPHYT_RS26970	BPHYT_RS26970		4Fe-4S ferredoxin	-5.25876911771552	-10.728272445025	TRUE
+carbon source	set1IT010	Sodium L-Lactate	BPHYT_RS26990	BPHYT_RS26990		GntR family transcriptional regulator	1.30765808352799	6.40178813455396	TRUE
+carbon source	set11IT019	Sodium adipate	BPHYT_RS11175	BPHYT_RS11175		alpha-ketoglutarate transporter	-4.68019453773439	-6.2475332793305	TRUE
+carbon source	set11IT019	Sodium adipate	BPHYT_RS13540	BPHYT_RS13540		LysR family transcriptional regulator	-2.19722246097645	-7.34299711476902	TRUE
+carbon source	set11IT019	Sodium adipate	BPHYT_RS13545	BPHYT_RS13545		3-hydroxyacyl-CoA dehydrogenase	-3.41019878731687	-6.41378425628576	FALSE
+carbon source	set11IT010	Sodium propionate	BPHYT_RS23815	BPHYT_RS23815		LysR family transcriptional regulator	1.87574064643288	9.51134031818405	FALSE
+carbon source	set11IT010	Sodium propionate	BPHYT_RS23825	BPHYT_RS23825		hypothetical protein	1.51799665674427	5.55401126334248	FALSE
+carbon source	set11IT010	Sodium propionate	BPHYT_RS26850	BPHYT_RS26850		ATPase AAA	-3.84456854149742	-11.645450025108	TRUE
+carbon source	set11IT010	Sodium propionate	BPHYT_RS30150	BPHYT_RS30150		methylcitrate synthase	-4.7657509707026	-5.70258831337094	TRUE
+carbon source	set11IT010	Sodium propionate	BPHYT_RS30155	BPHYT_RS30155		Fis family transcriptional regulator	-3.62881021969219	-5.10356760086574	TRUE
+carbon source	set11IT010	Sodium propionate	BPHYT_RS33980	BPHYT_RS33980		aconitate hydratase	-2.55832950289127	-11.2347743337669	TRUE
+carbon source	set1IT012	Sodium pyruvate	BPHYT_RS22235	BPHYT_RS22235		sensor histidine kinase	-1.59122432702076	-7.4546468706696	TRUE
+carbon source	set1IT012	Sodium pyruvate	BPHYT_RS22240	BPHYT_RS22240		hypothetical protein	-1.77273938723087	-10.9354047342157	TRUE
+carbon source	set1IT012	Sodium pyruvate	BPHYT_RS22245	BPHYT_RS22245		sodium:solute symporter	-1.71506680515267	-10.2523193283354	TRUE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS02165	BPHYT_RS02165		adenosylmethionine-8-amino-7-oxononanoate aminotransferase	-2.18061610755685	-7.57998441706497	TRUE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS02510	BPHYT_RS02510		C4-dicarboxylate ABC transporter	-4.20805670122095	-9.75035826184162	TRUE
+carbon source	set1IT013	Sodium succinate dibasic hexahydrate	BPHYT_RS02510	BPHYT_RS02510		C4-dicarboxylate ABC transporter	-1.76451547062943	-8.63816159886562	TRUE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS02515	BPHYT_RS02515		ATPase	-4.03260361851333	-14.0837259373346	TRUE
+carbon source	set1IT013	Sodium succinate dibasic hexahydrate	BPHYT_RS02515	BPHYT_RS02515		ATPase	-1.80764711343262	-11.2997014568353	TRUE
+carbon source	set1IT013	Sodium succinate dibasic hexahydrate	BPHYT_RS02520	BPHYT_RS02520		Fis family transcriptional regulator	-1.96640968264672	-7.18211055327878	TRUE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS02900	BPHYT_RS02900		ribosome hibernation promoting factor	1.82396502204557	8.02111752773116	FALSE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS05675	BPHYT_RS05675		hypothetical protein	-1.63614761507449	-6.8002617510195	FALSE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS11180	BPHYT_RS11180		SpoVR family protein	2.08814644689845	6.82976833013542	FALSE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS11185	BPHYT_RS11185		hypothetical protein	2.49345088139938	11.3937911000444	FALSE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS11190	BPHYT_RS11190		PrkA family serine protein kinase	2.48066349313522	8.54054799459241	FALSE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS14525	BPHYT_RS14525		sodium:proton antiporter	1.13621832729832	7.54965364609298	FALSE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS15435	BPHYT_RS15435		ethyl tert-butyl ether degradation EthD	1.57644468199371	5.50290351970157	FALSE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS16455	BPHYT_RS16455		ferritin	1.44610774354239	9.85364428730261	FALSE
+carbon source	set11IT018	Sodium succinate dibasic hexahydrate	BPHYT_RS16575	BPHYT_RS16575		Xaa-Pro aminopeptidase	2.54843520397674	18.3697076355815	FALSE
+carbon source	set11IT003	Suberic acid	BPHYT_RS09555	BPHYT_RS09555		long-chain fatty acid--CoA ligase	-1.39060770159632	-6.5593593136094	FALSE
+carbon source	set11IT003	Suberic acid	BPHYT_RS25025	BPHYT_RS25025		acyl-CoA dehydrogenase	3.39431432019823	5.55683051140627	FALSE
+carbon source	set11IT020	Suberic acid	BPHYT_RS25025	BPHYT_RS25025		acyl-CoA dehydrogenase	3.59646642475212	5.7905492026693	FALSE
+carbon source	set11IT020	Suberic acid	BPHYT_RS25035	BPHYT_RS25035		long-chain fatty acid--CoA ligase	-4.19491388785652	-8.04150866414644	FALSE
+carbon source	set11IT003	Suberic acid	BPHYT_RS25035	BPHYT_RS25035		long-chain fatty acid--CoA ligase	-3.33304632890253	-5.97579726188289	FALSE
+carbon source	set2IT072	Trisodium citrate dihydrate	BPHYT_RS03220	BPHYT_RS03220		acyl-CoA dehydrogenase	-1.09903043094816	-6.39657249520554	FALSE
+carbon source	set2IT072	Trisodium citrate dihydrate	BPHYT_RS06505	BPHYT_RS06505		TetR family transcriptional regulator	-1.34536476691016	-9.22255662317623	FALSE
+carbon source	set2IT072	Trisodium citrate dihydrate	BPHYT_RS11325	BPHYT_RS11325		voltage-gated chloride channel protein ClcB	-1.95085223399777	-8.01538989212789	FALSE
+carbon source	set2IT072	Trisodium citrate dihydrate	BPHYT_RS19975	BPHYT_RS19975		IclR family transcriptional regulator	4.20133016848901	29.1831767108693	FALSE
+carbon source	set2IT072	Trisodium citrate dihydrate	BPHYT_RS20100	BPHYT_RS20100		sensor histidine kinase	1.44587818723244	5.05433520803544	FALSE
+carbon source	set2IT072	Trisodium citrate dihydrate	BPHYT_RS20305	BPHYT_RS20305		hypothetical protein	-1.32309514205662	-5.07458830432622	FALSE
+carbon source	set1IT017	Tween 20	BPHYT_RS02240	BPHYT_RS02240		isocitrate dehydrogenase kinase/phosphatase	-1.92020264946262	-7.55264474844163	TRUE
+carbon source	set1IT017	Tween 20	BPHYT_RS03220	BPHYT_RS03220		acyl-CoA dehydrogenase	-2.74271732950626	-7.18208186013711	TRUE
+carbon source	set1IT017	Tween 20	BPHYT_RS06505	BPHYT_RS06505		TetR family transcriptional regulator	-2.38663415519334	-8.36625550969083	TRUE
+carbon source	set1IT017	Tween 20	BPHYT_RS12305	BPHYT_RS12305		malate synthase	-2.59668396142207	-7.00724437513176	TRUE
+carbon source	set1IT017	Tween 20	BPHYT_RS14795	BPHYT_RS14795		acyl-CoA dehydrogenase	-2.67492603597284	-11.5733609702732	TRUE
+carbon source	set2IT073	Xylitol	BPHYT_RS03975	BPHYT_RS03975		AraC family transcriptional regulator	1.80084150506767	8.89364815878815	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS03980	BPHYT_RS03980		mannose-1-phosphate guanyltransferase	1.61794696047975	9.55696197127222	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS04000	BPHYT_RS04000		GDP-mannose 4,6-dehydratase	1.52019443932083	8.17489797042326	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS04035	BPHYT_RS04035		transferase	1.72283204338698	5.57547483480684	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS04045	BPHYT_RS04045		acyltransferase	1.66395162338779	8.9218097833964	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS04050	BPHYT_RS04050		group 1 glycosyl transferase	1.46061190712848	8.43625273252147	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS04055	BPHYT_RS04055		PST family polysaccharide export protein	1.4564614947722	9.50812548530896	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS14655	BPHYT_RS14655		Fis family transcriptional regulator	1.84134645926533	13.4048960975116	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS15730	BPHYT_RS15730		isocitrate dehydrogenase	1.34341650882408	10.0226431877992	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS16045	BPHYT_RS16045		actin	3.82806517573879	19.9955179241791	TRUE
+carbon source	set2IT073	Xylitol	BPHYT_RS16050	BPHYT_RS16050		iditol 2-dehydrogenase	-2.75207602996268	-7.8053834737662	TRUE
+carbon source	set2IT073	Xylitol	BPHYT_RS17725	BPHYT_RS17725		BolA family transcriptional regulator	-1.45236255416682	-6.05024952578525	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS27100	BPHYT_RS27100		RNase II stability modulator	-2.53912484093589	-9.20631599276991	FALSE
+carbon source	set2IT073	Xylitol	BPHYT_RS34250	BPHYT_RS34250		ABC transporter substrate-binding protein	-2.33451840430024	-7.25081979823518	FALSE
+carbon source	set2IT074	m-Inositol	BPHYT_RS13910	BPHYT_RS13910		5-dehydro-2-deoxygluconokinase	-3.56624876975658	-10.625013597739	TRUE
+carbon source	set2IT074	m-Inositol	BPHYT_RS13920	BPHYT_RS13920		xylose isomerase	-4.85395247257268	-10.7959785174119	TRUE
+carbon source	set2IT074	m-Inositol	BPHYT_RS13925	BPHYT_RS13925		5-deoxyglucuronate isomerase	-3.68200839660292	-7.47950880223541	TRUE
+carbon source	set2IT074	m-Inositol	BPHYT_RS21560	BPHYT_RS21560		GntR family transcriptional regulator	-2.37218059268792	-7.77380528334454	TRUE
+motility	set2IT091	Agar	BPHYT_RS15020	BPHYT_RS15020		tetratricopeptide repeat protein	-1.50211370398008	-6.45972848613125	FALSE
+motility	set2IT090	Agar	BPHYT_RS15020	BPHYT_RS15020		tetratricopeptide repeat protein	-1.49958450351963	-5.96956600006558	FALSE
+motility	set2IT089	Agar	BPHYT_RS15020	BPHYT_RS15020		tetratricopeptide repeat protein	-1.44237417626435	-5.7727933635538	FALSE
+motility	set2IT090	Agar	BPHYT_RS18845	BPHYT_RS18845		flagellar hook-associated protein FlgK	-5.047781963162	-13.2044472210784	FALSE
+motility	set2IT089	Agar	BPHYT_RS18845	BPHYT_RS18845		flagellar hook-associated protein FlgK	-4.79868292190517	-13.4962806552555	FALSE
+motility	set2IT086	Agar	BPHYT_RS18845	BPHYT_RS18845		flagellar hook-associated protein FlgK	-3.54806541857912	-13.0908519568683	FALSE
+motility	set2IT087	Agar	BPHYT_RS18845	BPHYT_RS18845		flagellar hook-associated protein FlgK	-3.37567152043762	-14.2282307409522	FALSE
+motility	set2IT088	Agar	BPHYT_RS18845	BPHYT_RS18845		flagellar hook-associated protein FlgK	-2.98302068880646	-13.1725609779867	FALSE
+motility	set2IT091	Agar	BPHYT_RS18845	BPHYT_RS18845		flagellar hook-associated protein FlgK	-2.65675167677357	-12.0894251041681	FALSE
+motility	set2IT089	Agar	BPHYT_RS19010	BPHYT_RS19010		flagellar motor protein MotB	-5.19831899733416	-6.86717390506308	TRUE
+motility	set2IT090	Agar	BPHYT_RS19010	BPHYT_RS19010		flagellar motor protein MotB	-5.19178029635781	-8.09911560126846	TRUE
+motility	set2IT086	Agar	BPHYT_RS19010	BPHYT_RS19010		flagellar motor protein MotB	-3.07578235103032	-6.7149793252878	TRUE
+motility	set2IT088	Agar	BPHYT_RS19010	BPHYT_RS19010		flagellar motor protein MotB	-1.89948152982028	-5.06884744368494	TRUE
+motility	set2IT089	Agar	BPHYT_RS19015	BPHYT_RS19015		flagellar motor protein MotA	-4.3491251052074	-9.36744093139556	TRUE
+motility	set2IT090	Agar	BPHYT_RS19015	BPHYT_RS19015		flagellar motor protein MotA	-4.26173730390726	-9.83338521342213	TRUE
+motility	set2IT087	Agar	BPHYT_RS19015	BPHYT_RS19015		flagellar motor protein MotA	-2.88711576154094	-10.2596145388506	TRUE
+motility	set2IT088	Agar	BPHYT_RS19015	BPHYT_RS19015		flagellar motor protein MotA	-2.64785370847396	-10.5317169175923	TRUE
+motility	set2IT086	Agar	BPHYT_RS19015	BPHYT_RS19015		flagellar motor protein MotA	-2.48743003807687	-8.37438111341053	TRUE
+motility	set2IT091	Agar	BPHYT_RS19015	BPHYT_RS19015		flagellar motor protein MotA	-2.27439212835172	-9.88976933776202	TRUE
+motility	set2IT089	Agar	BPHYT_RS19100	BPHYT_RS19100		hypothetical protein	-3.85056892115435	-12.8699810358949	FALSE
+motility	set2IT090	Agar	BPHYT_RS19100	BPHYT_RS19100		hypothetical protein	-3.50547369199032	-15.3710591460909	FALSE
+motility	set2IT087	Agar	BPHYT_RS19100	BPHYT_RS19100		hypothetical protein	-2.7728397256409	-11.949587659164	FALSE
+motility	set2IT091	Agar	BPHYT_RS19100	BPHYT_RS19100		hypothetical protein	-2.73858767851062	-11.1089362932712	FALSE
+motility	set2IT088	Agar	BPHYT_RS19100	BPHYT_RS19100		hypothetical protein	-2.32520820255618	-9.8255216424676	FALSE
+motility	set2IT086	Agar	BPHYT_RS19100	BPHYT_RS19100		hypothetical protein	-2.14933317481761	-10.5916006559817	FALSE
+motility	set2IT089	Agar	BPHYT_RS19105	BPHYT_RS19105		aminotransferase	-4.17542084942552	-12.6238772006403	FALSE
+motility	set2IT090	Agar	BPHYT_RS19105	BPHYT_RS19105		aminotransferase	-3.38959090499892	-11.9893799381857	FALSE
+motility	set2IT087	Agar	BPHYT_RS19105	BPHYT_RS19105		aminotransferase	-2.85487836927287	-10.7761824066186	FALSE
+motility	set2IT088	Agar	BPHYT_RS19105	BPHYT_RS19105		aminotransferase	-2.50840450259884	-8.35963760302866	FALSE
+motility	set2IT091	Agar	BPHYT_RS19105	BPHYT_RS19105		aminotransferase	-2.34723076514183	-9.92857408493098	FALSE
+motility	set2IT086	Agar	BPHYT_RS19105	BPHYT_RS19105		aminotransferase	-1.93939072549957	-7.66912344433904	FALSE
+motility	set2IT089	Agar	BPHYT_RS19120	BPHYT_RS19120		3-oxoacyl-ACP synthase	-3.4892690745748	-7.04583337404114	FALSE
+motility	set2IT088	Agar	BPHYT_RS19120	BPHYT_RS19120		3-oxoacyl-ACP synthase	-2.6226504216208	-5.98041626660093	FALSE
+motility	set2IT086	Agar	BPHYT_RS19120	BPHYT_RS19120		3-oxoacyl-ACP synthase	-2.22953388828415	-6.92736970042552	FALSE
+motility	set2IT090	Agar	BPHYT_RS24690	BPHYT_RS24690		ionic transporter y4hA	1.35230357448428	6.71657705019779	FALSE
+motility	set2IT090	Agar	BPHYT_RS33890	BPHYT_RS33890		fimbrial protein FimV	-2.17511667354667	-7.46541668237758	FALSE
+motility	set2IT089	Agar	BPHYT_RS33890	BPHYT_RS33890		fimbrial protein FimV	-2.17009005646143	-7.892957612271	FALSE
+motility	set2IT086	Agar	BPHYT_RS33890	BPHYT_RS33890		fimbrial protein FimV	-1.7651434996066	-7.8283433599746	FALSE
+motility	set2IT091	Agar	BPHYT_RS33890	BPHYT_RS33890		fimbrial protein FimV	-1.74343536265478	-6.63064656918654	FALSE
+motility	set2IT087	Agar	BPHYT_RS33890	BPHYT_RS33890		fimbrial protein FimV	-1.71310740448345	-7.1273843168563	FALSE
+motility	set2IT086	Agar	BPHYT_RS34360	BPHYT_RS34360		methyl-accepting chemotaxis protein	-1.94337862584487	-5.96734717816388	FALSE
+motility	set2IT091	Agar	BPHYT_RS36005	BPHYT_RS36005		hypothetical protein	-2.12752511799457	-6.3186317233907	FALSE
+motility	set2IT090	Agar	BPHYT_RS36555	BPHYT_RS36555		hypothetical protein	1.46497842923092	7.89911875922036	FALSE
+nitrogen source	set3IT071	Carnitine Hydrochloride	BPHYT_RS22375	BPHYT_RS22375		4-hydroxybenzoyl-CoA thioesterase	-3.87998423147214	-9.65515420377993	TRUE
+nitrogen source	set3IT071	Carnitine Hydrochloride	BPHYT_RS22380	BPHYT_RS22380		3-hydroxybutyryl-CoA dehydrogenase	-3.29460355226127	-5.65104555652746	TRUE
+nitrogen source	set3IT071	Carnitine Hydrochloride	BPHYT_RS22385	BPHYT_RS22385		hypothetical protein	-3.48039675789731	-11.7559880883638	TRUE
+nitrogen source	set3IT071	Carnitine Hydrochloride	BPHYT_RS22390	BPHYT_RS22390		glycine/betaine ABC transporter substrate-binding protein	-3.18342588102924	-9.25924035451364	TRUE
+nitrogen source	set3IT071	Carnitine Hydrochloride	BPHYT_RS22395	BPHYT_RS22395		AraC family transcriptional regulator	-2.78216513955468	-5.5360760334656	TRUE
+nitrogen source	set3IT071	Carnitine Hydrochloride	BPHYT_RS25105	BPHYT_RS25105		sarcosine oxidase subunit beta	-2.38798775285382	-5.15283072900663	TRUE
+nitrogen source	set3IT071	Carnitine Hydrochloride	BPHYT_RS25115	BPHYT_RS25115		sarcosine oxidase subunit alpha	-3.09132781989437	-7.20678895826368	TRUE
+nitrogen source	set3IT071	Carnitine Hydrochloride	BPHYT_RS25205	BPHYT_RS25205		electron transfer flavoprotein subunit alpha	-3.93034121956887	-12.9462965414426	FALSE
+nitrogen source	set3IT068	D-Alanine	BPHYT_RS02550	BPHYT_RS02550		ammonia channel protein	-1.08532298531439	-5.20419707795085	FALSE
+nitrogen source	set3IT068	D-Alanine	BPHYT_RS12965	BPHYT_RS12965		fatty acid hydroxylase	-2.98396850704577	-8.82566659672896	FALSE
+nitrogen source	set3IT068	D-Alanine	BPHYT_RS12970	BPHYT_RS12970		hypothetical protein	-3.84585742570337	-11.2779788651782	FALSE
+nitrogen source	set3IT068	D-Alanine	BPHYT_RS14785	BPHYT_RS14785		AsnC family transcriptional regulator	-3.60853428038783	-6.79701704017291	TRUE
+nitrogen source	set3IT068	D-Alanine	BPHYT_RS14790	BPHYT_RS14790		D-amino acid dehydrogenase	-5.1273143632931	-5.86356934250031	TRUE
+nitrogen source	set3IT068	D-Alanine	BPHYT_RS18580	BPHYT_RS18580		short-chain dehydrogenase	-1.44876749029508	-5.06108577639526	FALSE
+nitrogen source	set3IT064	L-Alanine	BPHYT_RS13655	BPHYT_RS13655		GTP pyrophosphokinase	-3.99805511996403	-14.0222677475672	FALSE
+nitrogen source	set3IT064	L-Alanine	BPHYT_RS14785	BPHYT_RS14785		AsnC family transcriptional regulator	-4.75625452335543	-8.99085202073946	TRUE
+nitrogen source	set3IT061	L-Asparagine	BPHYT_RS02165	BPHYT_RS02165		adenosylmethionine-8-amino-7-oxononanoate aminotransferase	-1.88556496883868	-7.41545099059096	FALSE
+nitrogen source	set3IT061	L-Asparagine	BPHYT_RS02305	BPHYT_RS02305		methionine synthase	-1.46853288719819	-7.35917233287579	FALSE
+nitrogen source	set3IT061	L-Asparagine	BPHYT_RS02310	BPHYT_RS02310		5-methyltetrahydrofolate--homocysteine methyltransferase	-1.28163038899954	-6.23948008993004	FALSE
+nitrogen source	set3IT061	L-Asparagine	BPHYT_RS08815	BPHYT_RS08815		L-asparaginase	-5.21505597166028	-5.80108492531324	FALSE
+nitrogen source	set3IT061	L-Asparagine	BPHYT_RS12185	BPHYT_RS12185		succinyldiaminopimelate aminotransferase	-1.41613435863671	-6.58465062959847	FALSE
+nitrogen source	set3IT070	L-Citrulline	BPHYT_RS06920	BPHYT_RS06920		iron permease FTR1	-3.00970871610654	-7.67489566881248	FALSE
+nitrogen source	set3IT070	L-Citrulline	BPHYT_RS06925	BPHYT_RS06925		membrane protein	-1.62186911951312	-7.06286071797452	FALSE
+nitrogen source	set3IT070	L-Citrulline	BPHYT_RS19355	BPHYT_RS19355		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-1.4109011157631	-9.78273656009207	TRUE
+nitrogen source	set3IT070	L-Citrulline	BPHYT_RS35155	BPHYT_RS35155		TonB-denpendent receptor	-1.03855168259688	-5.88215288125815	FALSE
+nitrogen source	set3IT058	L-Glutamic acid monopotassium salt monohydrate	BPHYT_RS02305	BPHYT_RS02305		methionine synthase	-1.75544819284714	-6.79533136501523	FALSE
+nitrogen source	set3IT058	L-Glutamic acid monopotassium salt monohydrate	BPHYT_RS02310	BPHYT_RS02310		5-methyltetrahydrofolate--homocysteine methyltransferase	-1.61783119944473	-8.08985142323793	FALSE
+nitrogen source	set3IT058	L-Glutamic acid monopotassium salt monohydrate	BPHYT_RS16695	BPHYT_RS16695		glutamate/aspartate ABC transporter permease GltJ	-1.2658300994673	-5.96052929379809	TRUE
+nitrogen source	set3IT062	L-Glutamine	BPHYT_RS02165	BPHYT_RS02165		adenosylmethionine-8-amino-7-oxononanoate aminotransferase	-3.57402137294243	-10.5575611535537	FALSE
+nitrogen source	set3IT062	L-Glutamine	BPHYT_RS02305	BPHYT_RS02305		methionine synthase	-1.26929789368642	-6.88044487425501	FALSE
+nitrogen source	set3IT062	L-Glutamine	BPHYT_RS02310	BPHYT_RS02310		5-methyltetrahydrofolate--homocysteine methyltransferase	-1.38904964119576	-8.07029185416253	FALSE
+nitrogen source	set3IT062	L-Glutamine	BPHYT_RS05215	BPHYT_RS05215		DNA-binding protein	-2.08170638776941	-7.79116327999224	FALSE
+nitrogen source	set3IT065	L-Isoleucine	BPHYT_RS00600	BPHYT_RS00600		histidine kinase	1.06994586200946	5.52730257118389	FALSE
+nitrogen source	set3IT065	L-Isoleucine	BPHYT_RS04055	BPHYT_RS04055		PST family polysaccharide export protein	1.25734422086555	5.54396440334329	FALSE
+nitrogen source	set3IT065	L-Isoleucine	BPHYT_RS13280	BPHYT_RS13280		2-isopropylmalate synthase	-2.25859150238751	-8.32612831642015	TRUE
+nitrogen source	set3IT065	L-Isoleucine	BPHYT_RS15600	BPHYT_RS15600		ABC transporter ATP-binding protein	-1.79988744685478	-6.35014043924847	FALSE
+nitrogen source	set3IT065	L-Isoleucine	BPHYT_RS16285	BPHYT_RS16285		branched-chain amino acid aminotransferase	-2.38465434085103	-6.26226072729875	TRUE
+nitrogen source	set3IT065	L-Isoleucine	BPHYT_RS32700	BPHYT_RS32700		membrane protein	-2.09337482076471	-5.8785082726883	FALSE
+nitrogen source	set3IT056	L-Lysine	BPHYT_RS01885	BPHYT_RS01885		branched-chain amino acid ABC transporter substrate-binding protein	-2.22046115406488	-6.71573695895947	FALSE
+nitrogen source	set3IT056	L-Lysine	BPHYT_RS10285	BPHYT_RS10285		hypothetical protein	2.99974541889967	7.63405992712478	FALSE
+nitrogen source	set3IT056	L-Lysine	BPHYT_RS15595	BPHYT_RS15595		ABC transporter	-3.38424311347477	-8.15829550759464	FALSE
+nitrogen source	set3IT056	L-Lysine	BPHYT_RS15600	BPHYT_RS15600		ABC transporter ATP-binding protein	-2.18921109481609	-6.7068495050922	FALSE
+nitrogen source	set3IT056	L-Lysine	BPHYT_RS15605	BPHYT_RS15605		ABC transporter permease	-2.19863478624099	-5.83654568392466	FALSE
+nitrogen source	set3IT056	L-Lysine	BPHYT_RS16895	BPHYT_RS16895		competence damage-inducible protein A	-1.11494818241614	-5.164839098626	FALSE
+nitrogen source	set3IT056	L-Lysine	BPHYT_RS32650	BPHYT_RS32650		aldehyde dehydrogenase	-3.8145390525727	-8.7134403148919	TRUE
+nitrogen source	set3IT066	L-Phenylalanine	BPHYT_RS01885	BPHYT_RS01885		branched-chain amino acid ABC transporter substrate-binding protein	-1.83488884401263	-9.90834094078152	TRUE
+nitrogen source	set3IT066	L-Phenylalanine	BPHYT_RS02015	BPHYT_RS02015		MFS transporter	-1.83268749713828	-10.2100820842353	TRUE
+nitrogen source	set3IT066	L-Phenylalanine	BPHYT_RS15595	BPHYT_RS15595		ABC transporter	-2.11763603417099	-7.94213971819	FALSE
+nitrogen source	set3IT066	L-Phenylalanine	BPHYT_RS15600	BPHYT_RS15600		ABC transporter ATP-binding protein	-1.82213132373934	-7.10478074374508	FALSE
+nitrogen source	set3IT066	L-Phenylalanine	BPHYT_RS15605	BPHYT_RS15605		ABC transporter permease	-1.50562419155654	-7.61146571390884	FALSE
+nitrogen source	set3IT066	L-Phenylalanine	BPHYT_RS17335	BPHYT_RS17335		enoyl-CoA hydratase	-2.52874254221606	-7.83285664040443	TRUE
+nitrogen source	set3IT066	L-Phenylalanine	BPHYT_RS17340	BPHYT_RS17340		aldehyde dehydrogenase	-3.97627836438415	-9.03495584746839	FALSE
+nitrogen source	set3IT063	L-Proline	BPHYT_RS02165	BPHYT_RS02165		adenosylmethionine-8-amino-7-oxononanoate aminotransferase	-1.83102882161391	-6.22570603554539	FALSE
+nitrogen source	set3IT063	L-Proline	BPHYT_RS05480	BPHYT_RS05480		NAD synthetase	-1.36580943487352	-7.06562475991228	FALSE
+nitrogen source	set3IT063	L-Proline	BPHYT_RS15590	BPHYT_RS15590		amino acid ABC transporter ATPase	-4.43521607178247	-6.07487627428808	FALSE
+nitrogen source	set3IT063	L-Proline	BPHYT_RS15595	BPHYT_RS15595		ABC transporter	-3.03603991503349	-9.26628484767789	FALSE
+nitrogen source	set3IT063	L-Proline	BPHYT_RS15600	BPHYT_RS15600		ABC transporter ATP-binding protein	-3.99586149151487	-12.8885120710248	FALSE
+nitrogen source	set3IT063	L-Proline	BPHYT_RS15605	BPHYT_RS15605		ABC transporter permease	-3.51776562260125	-10.4907714391185	FALSE
+nitrogen source	set3IT063	L-Proline	BPHYT_RS15610	BPHYT_RS15610		branched-chain amino acid ABC transporter substrate-binding protein	-2.63278145825016	-10.7622845632098	FALSE
+nitrogen source	set3IT063	L-Proline	BPHYT_RS19355	BPHYT_RS19355		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-4.82567268831605	-21.557065446223	TRUE
+nitrogen source	set3IT075	N-Acetyl-D-Glucosamine	BPHYT_RS02730	BPHYT_RS02730		N-acetylglucosamine-6-phosphate deacetylase	-2.54858272455587	-10.1326448488911	TRUE
+nitrogen source	set3IT075	N-Acetyl-D-Glucosamine	BPHYT_RS02735	BPHYT_RS02735		iron dicitrate transport regulator FecR	-3.62462773255918	-9.58573011763784	TRUE
+nitrogen source	set3IT075	N-Acetyl-D-Glucosamine	BPHYT_RS02745	BPHYT_RS02745		PTS system N-acetylglucosamine-specific transporter subunit IIBC	-2.49107651918211	-7.73061796772886	TRUE
+nitrogen source	set3IT075	N-Acetyl-D-Glucosamine	BPHYT_RS14055	BPHYT_RS14055		aldose epimerase	-1.53972805609959	-8.52897436488126	FALSE
+nitrogen source	set3IT074	Putrescine Dihydrochloride	BPHYT_RS14480	BPHYT_RS14480		ribosomal large subunit pseudouridine synthase C	-1.22453086521999	-5.72852653975087	FALSE
+nitrogen source	set3IT074	Putrescine Dihydrochloride	BPHYT_RS14785	BPHYT_RS14785		AsnC family transcriptional regulator	-2.34809513588924	-9.45383652053864	FALSE
+nitrogen source	set3IT074	Putrescine Dihydrochloride	BPHYT_RS15470	BPHYT_RS15470		tRNA (guanine-N(7)-)-methyltransferase	-1.73008422791751	-6.89266980287833	FALSE
+nitrogen source	set3IT074	Putrescine Dihydrochloride	BPHYT_RS23160	BPHYT_RS23160		glutamine synthetase	-3.73924419758922	-5.06462897033585	TRUE
+nitrogen source	set3IT077	Uridine	BPHYT_RS13300	BPHYT_RS13300		phenylhydantoinase	-5.36427586423978	-6.18414185439799	TRUE
+nitrogen source	set3IT077	Uridine	BPHYT_RS21555	BPHYT_RS21555		beta alanine--pyruvate aminotransferase	-2.71645230681064	-6.47582020757094	TRUE
+nutrient	set4IT042		BPHYT_RS16500	BPHYT_RS16500		MIP family channel protein	-1.69129851041251	-7.84370144973242	FALSE
+nutrient	set4IT036	L-Histidine	BPHYT_RS07555	BPHYT_RS07555		histidine ammonia-lyase	-1.82349468044733	-6.00887660733781	FALSE
+nutrient	set4IT037	L-Serine	BPHYT_RS13655	BPHYT_RS13655		GTP pyrophosphokinase	-1.18108781156403	-8.26725238782489	FALSE
+nutrient	set4IT038	L-Serine	BPHYT_RS13655	BPHYT_RS13655		GTP pyrophosphokinase	-1.12439677825193	-8.47290896427841	FALSE
+nutrient	set4IT038	L-Serine	BPHYT_RS19330	BPHYT_RS19330		glycine dehydrogenase (decarboxylating)	-1.43169496355555	-6.56717520535427	FALSE
+pH	set2IT056		BPHYT_RS13770	BPHYT_RS13770		RND transporter	-6.5230749267533	-17.0331792732392	FALSE
+pH	set2IT057		BPHYT_RS13770	BPHYT_RS13770		RND transporter	-5.86679680310874	-12.6049442443701	FALSE
+pH	set2IT056		BPHYT_RS13775	BPHYT_RS13775		fusaric acid resistance protein	-3.74101601905598	-9.04525251517278	FALSE
+pH	set2IT057		BPHYT_RS13775	BPHYT_RS13775		fusaric acid resistance protein	-2.9431471621721	-6.73782570801006	FALSE
+pH	set2IT056		BPHYT_RS13785	BPHYT_RS13785		membrane protein	-5.34943581747495	-12.1889809293557	FALSE
+pH	set2IT057		BPHYT_RS13785	BPHYT_RS13785		membrane protein	-4.88230159071359	-5.90012993788602	FALSE
+pH	set2IT056		BPHYT_RS14495	BPHYT_RS14495		molybdopterin-guanine dinucleotide biosynthesis protein A	-1.64583476146812	-6.68817247940584	FALSE
+pH	set2IT057		BPHYT_RS14495	BPHYT_RS14495		molybdopterin-guanine dinucleotide biosynthesis protein A	-1.44926989745533	-7.34394166661209	FALSE
+pH	set2IT057		BPHYT_RS19535	BPHYT_RS19535		XRE family transcriptional regulator	-1.39561343443589	-5.40991667457159	FALSE
+pH	set2IT056		BPHYT_RS19540	BPHYT_RS19540		sensor histidine kinase	-1.08675580337737	-6.89903508174218	FALSE
+pH	set2IT057		BPHYT_RS23985	BPHYT_RS23985		carbohydrate porin	-5.17157949871308	-9.38098723064148	FALSE
+pH	set2IT056		BPHYT_RS23985	BPHYT_RS23985		carbohydrate porin	-4.44886951436966	-8.49856750351412	FALSE
+pH	set2IT056		BPHYT_RS24905	BPHYT_RS24905		hypothetical protein	-1.08642008188618	-6.18401581809674	FALSE
+pH	set2IT057		BPHYT_RS24905	BPHYT_RS24905		hypothetical protein	-1.04456890873412	-7.25289421605328	FALSE
+pH	set2IT057		BPHYT_RS24910	BPHYT_RS24910		NADH:ubiquinone oxidoreductase subunit M	-1.35900638425289	-8.29557877431968	FALSE
+pH	set2IT056		BPHYT_RS24910	BPHYT_RS24910		NADH:ubiquinone oxidoreductase subunit M	-1.07832612711623	-6.81384586694387	FALSE
+pH	set2IT056		BPHYT_RS34825	BPHYT_RS34825		4-hydroxy-3-methylbut-2-enyl diphosphate reductase	-1.46013966724928	-6.96299408761674	FALSE
+pH	set2IT057		BPHYT_RS34825	BPHYT_RS34825		4-hydroxy-3-methylbut-2-enyl diphosphate reductase	-1.23184400524843	-5.48585767690433	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS03175	BPHYT_RS03175		sterol-binding protein	-2.15648175623732	-7.56644541899441	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS03285	BPHYT_RS03285		aminoglycoside phosphotransferase	-1.37901922992032	-6.57674750181934	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS06585	BPHYT_RS06585		hypothetical protein	-1.48558971249826	-10.8133566818126	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS14260	BPHYT_RS14260		trehalose-6-phosphate synthase	1.28551539818174	9.50323525179418	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS15020	BPHYT_RS15020		tetratricopeptide repeat protein	-1.84164367202882	-8.33381708992318	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS15575	BPHYT_RS15575		CDP-6-deoxy-delta-3,4-glucoseen reductase	-1.93964887987551	-8.27406077010389	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS15715	BPHYT_RS15715		ATP-dependent Clp protease adapter protein ClpS	1.5091404260731	7.63405633282374	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS19020	BPHYT_RS19020		transcriptional regulator	1.41347567560068	11.9241249597713	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS22555	BPHYT_RS22555		transcriptional regulator	-1.41662601953798	-5.7485231163046	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS23705	BPHYT_RS23705		hypothetical protein	1.52717941640272	11.5844541271457	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS33590	BPHYT_RS33590		Rieske (2Fe-2S) protein	-1.24172102662007	-6.92216638492565	FALSE
+stress	set1IT045	Bacitracin	BPHYT_RS34825	BPHYT_RS34825		4-hydroxy-3-methylbut-2-enyl diphosphate reductase	-1.88358121498638	-9.87071610423456	FALSE
+stress	set1IT043	Benzethonium chloride	BPHYT_RS08815	BPHYT_RS08815		L-asparaginase	-1.49110998972132	-7.53383794809685	FALSE
+stress	set1IT043	Benzethonium chloride	BPHYT_RS15595	BPHYT_RS15595		ABC transporter	-1.71643003489764	-8.54424764425126	FALSE
+stress	set1IT043	Benzethonium chloride	BPHYT_RS15600	BPHYT_RS15600		ABC transporter ATP-binding protein	-1.42283109279597	-7.55712292939689	FALSE
+stress	set1IT043	Benzethonium chloride	BPHYT_RS15605	BPHYT_RS15605		ABC transporter permease	-1.46537087728226	-7.92570977119753	FALSE
+stress	set1IT043	Benzethonium chloride	BPHYT_RS19350	BPHYT_RS19350		amino acid ABC transporter substrate-binding protein	-1.6280301340453	-6.99369916693163	FALSE
+stress	set1IT043	Benzethonium chloride	BPHYT_RS19355	BPHYT_RS19355		bifunctional proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase	-1.51313426949145	-12.1485542820394	FALSE
+stress	set1IT043	Benzethonium chloride	BPHYT_RS22515	BPHYT_RS22515		multidrug efflux RND transporter permease subunit	-2.52752889208905	-10.5061067765499	FALSE
+stress	set1IT043	Benzethonium chloride	BPHYT_RS22520	BPHYT_RS22520		RND transporter	-2.05779022468192	-5.73463041425795	FALSE
+stress	set2IT052	Cephalothin sodium salt	BPHYT_RS22965	BPHYT_RS22965		ligand-gated channel protein	1.06098992702844	8.3403828839841	FALSE
+stress	set1IT031	Cobalt chloride hexahydrate	BPHYT_RS15010	BPHYT_RS15010		cation transporter	-4.36420518379248	-5.92406122754314	FALSE
+stress	set1IT031	Cobalt chloride hexahydrate	BPHYT_RS16440	BPHYT_RS16440		hemolysin D	-2.86166500595887	-14.0468075251331	TRUE
+stress	set2IT053	Lomefloxacin hydrochloride	BPHYT_RS03560	BPHYT_RS03560		DNA repair protein	-2.19631101236961	-10.8109097362947	TRUE
+stress	set2IT053	Lomefloxacin hydrochloride	BPHYT_RS12235	BPHYT_RS12235		DNA repair protein RadA	-2.23797384143276	-7.67184025150719	TRUE
+stress	set2IT053	Lomefloxacin hydrochloride	BPHYT_RS17730	BPHYT_RS17730		metal-dependent hydrolase	1.577443889348	11.123792289336	FALSE
+stress	set2IT053	Lomefloxacin hydrochloride	BPHYT_RS17735	BPHYT_RS17735		ABC transporter ATP-binding protein	1.53768869839129	8.58770225303411	FALSE
+stress	set2IT053	Lomefloxacin hydrochloride	BPHYT_RS34175	BPHYT_RS34175		N-acylglucosamine 2-epimerase	1.19483758429531	8.7608195104095	FALSE
+stress	set2IT053	Lomefloxacin hydrochloride	BPHYT_RS34825	BPHYT_RS34825		4-hydroxy-3-methylbut-2-enyl diphosphate reductase	-1.45016230589754	-8.96485465178163	FALSE
+stress	set2IT083	MreB Perturbing Compound A22	BPHYT_RS01935	BPHYT_RS01935		lipoprotein	1.40063015357633	9.44376473613328	FALSE
+stress	set2IT083	MreB Perturbing Compound A22	BPHYT_RS09510	BPHYT_RS09510		amino acid dehydrogenase	1.97661657437263	11.7761790675505	FALSE
+stress	set2IT083	MreB Perturbing Compound A22	BPHYT_RS17155	BPHYT_RS17155		peptidase A24	-1.16022185764452	-7.4383785222121	FALSE
+stress	set2IT083	MreB Perturbing Compound A22	BPHYT_RS22510	BPHYT_RS22510		MexE family multidrug efflux RND transporter periplasmic adaptor subunit	-2.2447769161752	-7.49128778867825	FALSE
+stress	set2IT083	MreB Perturbing Compound A22	BPHYT_RS22515	BPHYT_RS22515		multidrug efflux RND transporter permease subunit	-1.72868868227428	-9.37325378862988	FALSE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS06910	BPHYT_RS06910		membrane protein	-2.19412806614156	-6.40539900219834	FALSE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS06920	BPHYT_RS06920		iron permease FTR1	-2.82624912715317	-7.82332756921098	FALSE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS06925	BPHYT_RS06925		membrane protein	-2.7406819370909	-8.31923763034321	FALSE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS09190	BPHYT_RS09190		cystathionine beta-lyase	2.35713715046238	8.35124384169909	TRUE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS15470	BPHYT_RS15470		tRNA (guanine-N(7)-)-methyltransferase	2.25367764816729	14.8415039046641	TRUE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS20295	BPHYT_RS20295		ligand-gated channel	-1.92039701042987	-13.5855882853034	FALSE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS21285	BPHYT_RS21285		hypothetical protein	1.36006179110379	5.80031376404676	FALSE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS22060	BPHYT_RS22060		amino acid transporter	-1.42443642340798	-10.8151373881676	TRUE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS23985	BPHYT_RS23985		carbohydrate porin	-1.10163222177109	-5.16469868223999	FALSE
+stress	set2IT080	Nickel (II) chloride hexahydrate	BPHYT_RS34660	BPHYT_RS34660		DNA-binding protein	-1.90665127993377	-8.44262220687873	FALSE
+stress	set1IT034	Paraquat dichloride	BPHYT_RS03220	BPHYT_RS03220		acyl-CoA dehydrogenase	1.3591659313948	9.97518161435343	FALSE
+stress	set1IT034	Paraquat dichloride	BPHYT_RS03815	BPHYT_RS03815		MFS transporter permease	-4.00638175491595	-6.85073723124072	TRUE
+stress	set1IT034	Paraquat dichloride	BPHYT_RS08080	BPHYT_RS08080		tRNA pseudouridine synthase B	1.92030384678169	12.5543853799234	FALSE
+stress	set1IT034	Paraquat dichloride	BPHYT_RS33980	BPHYT_RS33980		aconitate hydratase	-1.81049358665054	-8.20473586376039	FALSE
+stress	set1IT040	Polymyxin B sulfate	BPHYT_RS26730	BPHYT_RS26730		membrane protein	-1.26528997293909	-5.36722129888868	FALSE
+stress	set1IT036	Thallium(I) acetate	BPHYT_RS00965	BPHYT_RS00965		ArsR family transcriptional regulator	7.33338279286244	41.6911068675872	FALSE
+stress	set1IT036	Thallium(I) acetate	BPHYT_RS03160	BPHYT_RS03160		hypothetical protein	-1.33449926674035	-5.43781839225961	FALSE
+stress	set1IT036	Thallium(I) acetate	BPHYT_RS15470	BPHYT_RS15470		tRNA (guanine-N(7)-)-methyltransferase	-2.03039809238565	-10.6083393050533	FALSE
+stress	set1IT036	Thallium(I) acetate	BPHYT_RS15575	BPHYT_RS15575		CDP-6-deoxy-delta-3,4-glucoseen reductase	-1.37035271191165	-6.21505109877701	FALSE
+stress	set1IT037	Zinc sulfate heptahydrate	BPHYT_RS00130	BPHYT_RS00130		ATPase P	-6.33027819291363	-11.1511116596442	TRUE
+vitamin	set5IT078		BPHYT_RS02165	BPHYT_RS02165		adenosylmethionine-8-amino-7-oxononanoate aminotransferase	-2.35675268616917	-7.06677778497093	TRUE
+vitamin	set5IT076		BPHYT_RS12640	BPHYT_RS12640		phosphoesterase	-1.51190175624713	-7.55110477153066	FALSE
+vitamin	set5IT076		BPHYT_RS16500	BPHYT_RS16500		MIP family channel protein	-2.09802452700177	-6.07190153026108	FALSE
+vitamin	set5IT075		BPHYT_RS16500	BPHYT_RS16500		MIP family channel protein	-1.71503671628323	-5.58204146589463	FALSE

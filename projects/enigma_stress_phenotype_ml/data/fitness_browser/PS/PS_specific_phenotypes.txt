@@ -1,0 +1,253 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+anaerobic	set2H42	Sodium D,L-Lactate	Dsui_0128	Dsui_0128		D-alanyl-D-alanine carboxypeptidase	1.57284352108593	12.1239582059113	FALSE
+anaerobic	set2H36	Sodium D,L-Lactate	Dsui_0635	Dsui_0635		periplasmic component of amino acid ABC-type transporter/signal transduction system	1.43037188933105	9.82665547550155	FALSE
+anaerobic	set2H34	Sodium D,L-Lactate	Dsui_0635	Dsui_0635		periplasmic component of amino acid ABC-type transporter/signal transduction system	1.65030304810501	11.9644446718096	FALSE
+anaerobic	set2H35	Sodium D,L-Lactate	Dsui_0635	Dsui_0635		periplasmic component of amino acid ABC-type transporter/signal transduction system	1.6543351157567	10.6787512311316	FALSE
+anaerobic	set2H33	Sodium D,L-Lactate	Dsui_0635	Dsui_0635		periplasmic component of amino acid ABC-type transporter/signal transduction system	1.73736448164472	11.461499783666	FALSE
+anaerobic	set2H43	Sodium D,L-Lactate	Dsui_0746	Dsui_0746		glutathione synthetase	1.77093775652164	6.63022063471974	FALSE
+anaerobic	set2H44	Sodium D,L-Lactate	Dsui_0746	Dsui_0746		glutathione synthetase	1.83913513590192	7.76026032566958	FALSE
+anaerobic	set2H42	Sodium D,L-Lactate	Dsui_0746	Dsui_0746		glutathione synthetase	1.87096787231969	7.43743582247511	FALSE
+anaerobic	set2H41	Sodium D,L-Lactate	Dsui_0746	Dsui_0746		glutathione synthetase	1.95938725701744	7.28382363472069	FALSE
+anaerobic	set2H42	Sodium D,L-Lactate	Dsui_1263	Dsui_1263		TRAP-type mannitol/chloroaromatic compound transport system, small permease component	1.36631855064102	6.5981079684735	FALSE
+anaerobic	set2H41	Sodium D,L-Lactate	Dsui_1690	Dsui_1690		cAMP-binding protein	-1.45390509517225	-5.41190741475962	FALSE
+anaerobic	set2H41	Sodium D,L-Lactate	Dsui_1745	Dsui_1745		flagellar biosynthetic protein FliQ	-1.19325486011769	-6.66630993967437	FALSE
+anaerobic	set2H43	Sodium D,L-Lactate	Dsui_1755	Dsui_1755		flagellar motor switch protein FliG	-1.33667267550138	-5.61776550104703	FALSE
+anaerobic	set2H42	Sodium D,L-Lactate	Dsui_1755	Dsui_1755		flagellar motor switch protein FliG	-1.28156055288858	-5.44944778308662	FALSE
+anaerobic	set2H43	Sodium D,L-Lactate	Dsui_1987	Dsui_1987		putative permease	1.79439531237404	9.07954791138258	FALSE
+anaerobic	set2H42	Sodium D,L-Lactate	Dsui_1987	Dsui_1987		putative permease	1.84093347906299	8.10487762885947	FALSE
+anaerobic	set2H44	Sodium D,L-Lactate	Dsui_1987	Dsui_1987		putative permease	1.92645360836217	8.13948829313061	FALSE
+anaerobic	set2H41	Sodium D,L-Lactate	Dsui_1987	Dsui_1987		putative permease	1.96685568583543	9.26715437040508	FALSE
+anaerobic	set2H43	Sodium D,L-Lactate	Dsui_2532	Dsui_2532		tripartite ATP-independent periplasmic transporter solute receptor, DctP family	1.14761840468577	5.37615319468509	FALSE
+anaerobic	set2H47	Sodium nitrate	Dsui_1181	Dsui_1181		signal transduction histidine kinase	-1.00108447496816	-5.06475190652644	FALSE
+anaerobic	set2H48	Sodium nitrate	Dsui_2427	Dsui_2427		molybdenum cofactor biosynthesis protein A	-1.56030556015597	-5.78743476607452	FALSE
+anaerobic	set2H47	Sodium nitrate	Dsui_2427	Dsui_2427		molybdenum cofactor biosynthesis protein A	-1.4171186548234	-6.10843724788079	FALSE
+anaerobic	set2H46	Sodium nitrate	Dsui_2427	Dsui_2427		molybdenum cofactor biosynthesis protein A	-1.29419624811516	-5.13703258227216	FALSE
+anaerobic	set2H48	Sodium nitrate	Dsui_3303	Dsui_3303		ferredoxin-type protein, NapH/MauN family	-1.89860225592857	-8.98317152463197	FALSE
+anaerobic	set2H47	Sodium nitrate	Dsui_3303	Dsui_3303		ferredoxin-type protein, NapH/MauN family	-1.68363415659598	-9.6010293087584	FALSE
+anaerobic	set2H45	Sodium nitrate	Dsui_3303	Dsui_3303		ferredoxin-type protein, NapH/MauN family	-1.55678666781241	-8.10028989616952	FALSE
+anaerobic	set2H48	Sodium nitrate	Dsui_3304	Dsui_3304		NADH:ubiquinone oxidoreductase chain I-like protein	-1.7307530137707	-9.15530575127224	FALSE
+anaerobic	set2H45	Sodium nitrate	Dsui_3304	Dsui_3304		NADH:ubiquinone oxidoreductase chain I-like protein	-1.68125726693694	-8.40284010788219	FALSE
+anaerobic	set2H47	Sodium nitrate	Dsui_3304	Dsui_3304		NADH:ubiquinone oxidoreductase chain I-like protein	-1.64728643230116	-9.77584255745061	FALSE
+anaerobic	set2H46	Sodium nitrate	Dsui_3304	Dsui_3304		NADH:ubiquinone oxidoreductase chain I-like protein	-1.48146798848892	-7.37355069324164	FALSE
+anaerobic	set2H46	Sodium nitrate	Dsui_3307	Dsui_3307		cytochrome c553	-1.30666066106969	-6.10835406305455	FALSE
+carbon source	set1H19	Sodium acetate	Dsui_0016	Dsui_0016		transcriptional regulator	-2.17322790792416	-5.82256485862025	FALSE
+carbon source	set1H17	Sodium acetate	Dsui_0016	Dsui_0016		transcriptional regulator	-2.07365759669393	-7.769326697525	FALSE
+carbon source	set1H18	Sodium acetate	Dsui_0016	Dsui_0016		transcriptional regulator	-1.7671640575067	-5.56475509575252	FALSE
+carbon source	set6IT040	Sodium propionate	Dsui_0471	Dsui_0471		cobalamin 5''-phosphate synthase/cobalamin synthase	-1.47395917807121	-6.79472826160848	FALSE
+carbon source	set6IT040	Sodium propionate	Dsui_0516	Dsui_0516		acetyl-CoA carboxylase, biotin carboxylase subunit	-4.79829306836716	-15.3358551580876	TRUE
+carbon source	set6IT046	Sodium propionate	Dsui_0516	Dsui_0516		acetyl-CoA carboxylase, biotin carboxylase subunit	-4.37818042729743	-11.97798523121	TRUE
+carbon source	set6IT040	Sodium propionate	Dsui_0517	Dsui_0517		acetyl-CoA carboxylase, carboxyltransferase component (subunits alpha and beta)	-5.34389004024779	-7.30821273698624	TRUE
+carbon source	set6IT046	Sodium propionate	Dsui_0517	Dsui_0517		acetyl-CoA carboxylase, carboxyltransferase component (subunits alpha and beta)	-4.11221576407593	-8.29778614963734	TRUE
+carbon source	set6IT046	Sodium propionate	Dsui_0518	Dsui_0518		LAO/AO transport system ATPase	-3.87537569048422	-9.54031134227299	TRUE
+carbon source	set6IT040	Sodium propionate	Dsui_0518	Dsui_0518		LAO/AO transport system ATPase	-3.87076209834515	-14.2541936968336	TRUE
+carbon source	set6IT040	Sodium propionate	Dsui_0519	Dsui_0519		methylmalonyl-CoA mutase	-5.58908779748658	-24.4829343010997	TRUE
+carbon source	set6IT046	Sodium propionate	Dsui_0519	Dsui_0519		methylmalonyl-CoA mutase	-4.79297274099601	-23.5466988458991	TRUE
+carbon source	set6IT040	Sodium propionate	Dsui_0541	Dsui_0541		cobalamin biosynthesis protein CobD	-1.50306749287082	-5.50791293567853	FALSE
+carbon source	set6IT046	Sodium propionate	Dsui_3227	Dsui_3227		2-isopropylmalate synthase	-1.78278322820379	-6.43689585668238	FALSE
+carbon source	set6IT040	Sodium propionate	Dsui_3227	Dsui_3227		2-isopropylmalate synthase	-1.63407100558472	-6.87189202355057	FALSE
+carbon source	set6IT040	Sodium propionate	Dsui_3228	Dsui_3228		transcriptional regulator	-1.60364089507849	-9.61136753679046	FALSE
+carbon source	set6IT046	Sodium propionate	Dsui_3228	Dsui_3228		transcriptional regulator	-1.41338139877857	-5.78684369785287	FALSE
+carbon source	set6IT035	a-Ketoglutaric acid disodium salt hydrate	Dsui_0290	Dsui_0290		SSS sodium solute transporter	1.67564983353645	9.06499917969125	FALSE
+carbon source	set6IT041	a-Ketoglutaric acid disodium salt hydrate	Dsui_0290	Dsui_0290		SSS sodium solute transporter	2.08097255740571	12.4034593389175	FALSE
+carbon source	set6IT041	a-Ketoglutaric acid disodium salt hydrate	Dsui_3153	Dsui_3153		TRAP transporter, DctM subunit	-1.43030561866237	-6.08162761695982	TRUE
+carbon source	set6IT035	a-Ketoglutaric acid disodium salt hydrate	Dsui_3153	Dsui_3153		TRAP transporter, DctM subunit	-1.22564876475492	-5.38753089330117	TRUE
+carbon source	set6IT035	a-Ketoglutaric acid disodium salt hydrate	Dsui_3160	Dsui_3160		response regulator	-1.63160142868412	-6.08077259987521	FALSE
+carbon source	set6IT041	a-Ketoglutaric acid disodium salt hydrate	Dsui_3160	Dsui_3160		response regulator	-1.57794018121268	-6.33872939934014	FALSE
+stress	set6IT029	Bacitracin	Dsui_3187	Dsui_3187		putative membrane protein, required for colicin V production	-2.59662473684468	-10.2694437582967	FALSE
+stress	set5IT012	Cisplatin	Dsui_0181	Dsui_0181		hypothetical protein	2.63945573701787	5.15332734945219	FALSE
+stress	set5IT014	Cisplatin	Dsui_0182	Dsui_0182		hypothetical protein	2.30804142988082	10.1463785951369	FALSE
+stress	set5IT012	Cisplatin	Dsui_0182	Dsui_0182		hypothetical protein	2.78206817965314	12.7304787658162	FALSE
+stress	set5IT013	Cisplatin	Dsui_0182	Dsui_0182		hypothetical protein	2.91283302692047	12.8973704642528	FALSE
+stress	set5IT012	Cisplatin	Dsui_0218	Dsui_0218		Integrase	1.1436185447416	7.8761531397399	FALSE
+stress	set5IT012	Cisplatin	Dsui_0311	Dsui_0311		ATP-dependent DNA helicase RecG	-4.68154850736823	-6.400798146856	TRUE
+stress	set5IT014	Cisplatin	Dsui_0311	Dsui_0311		ATP-dependent DNA helicase RecG	-4.4596249806727	-6.0013086208933	TRUE
+stress	set5IT013	Cisplatin	Dsui_0311	Dsui_0311		ATP-dependent DNA helicase RecG	-4.37415176948165	-6.72097919513773	TRUE
+stress	set5IT014	Cisplatin	Dsui_1234	Dsui_1234		putative Zn-dependent protease-like protein	-3.04614940789036	-15.2835616035751	TRUE
+stress	set5IT013	Cisplatin	Dsui_1234	Dsui_1234		putative Zn-dependent protease-like protein	-2.46755667298866	-12.6505294167401	TRUE
+stress	set5IT012	Cisplatin	Dsui_1234	Dsui_1234		putative Zn-dependent protease-like protein	-2.37270941883666	-12.5661888065272	TRUE
+stress	set5IT014	Cisplatin	Dsui_1249	Dsui_1249		hypothetical protein	-1.79531031330304	-6.47549186716873	FALSE
+stress	set5IT013	Cisplatin	Dsui_1249	Dsui_1249		hypothetical protein	-1.77049255894759	-6.33094818625871	FALSE
+stress	set5IT012	Cisplatin	Dsui_1249	Dsui_1249		hypothetical protein	-1.57213751068251	-5.74769719893947	FALSE
+stress	set5IT012	Cisplatin	Dsui_1316	Dsui_1316		hypothetical protein	-1.94598566383079	-5.91558308906217	FALSE
+stress	set5IT013	Cisplatin	Dsui_1316	Dsui_1316		hypothetical protein	-1.88879657768145	-6.23252734952552	FALSE
+stress	set5IT014	Cisplatin	Dsui_1316	Dsui_1316		hypothetical protein	-1.84687663478097	-9.19392497697815	FALSE
+stress	set5IT012	Cisplatin	Dsui_1622	Dsui_1622		excinuclease ABC, A subunit	-5.54033306706045	-23.4219126330258	TRUE
+stress	set5IT014	Cisplatin	Dsui_1622	Dsui_1622		excinuclease ABC, A subunit	-5.52813578557974	-24.9367489255256	TRUE
+stress	set5IT013	Cisplatin	Dsui_1622	Dsui_1622		excinuclease ABC, A subunit	-5.23902457948582	-22.7283581452909	TRUE
+stress	set5IT012	Cisplatin	Dsui_1699	Dsui_1699		cation/cationic drug transporter	-1.19382799476824	-6.34642796686198	FALSE
+stress	set5IT013	Cisplatin	Dsui_1811	Dsui_1811		recombination protein RecR	-5.00675158447094	-6.24781920487763	TRUE
+stress	set5IT014	Cisplatin	Dsui_1811	Dsui_1811		recombination protein RecR	-4.93964417541869	-7.03666477492752	TRUE
+stress	set5IT014	Cisplatin	Dsui_2149	Dsui_2149		DNA helicase, Rad3	-2.03719744016367	-11.0216900150872	TRUE
+stress	set5IT013	Cisplatin	Dsui_2149	Dsui_2149		DNA helicase, Rad3	-1.79921058547075	-7.71003567488908	TRUE
+stress	set5IT012	Cisplatin	Dsui_2149	Dsui_2149		DNA helicase, Rad3	-1.79509417005401	-10.7057954899058	TRUE
+stress	set5IT014	Cisplatin	Dsui_2385	Dsui_2385		transcription-repair coupling factor Mfd	-5.6041290485892	-12.5009206045869	TRUE
+stress	set5IT013	Cisplatin	Dsui_2385	Dsui_2385		transcription-repair coupling factor Mfd	-5.18219125224704	-11.6763261808935	TRUE
+stress	set5IT012	Cisplatin	Dsui_2385	Dsui_2385		transcription-repair coupling factor Mfd	-5.12960560812393	-17.299438067112	TRUE
+stress	set5IT014	Cisplatin	Dsui_2413	Dsui_2413		DNA repair protein RadA	-1.47249435651751	-5.45726939357177	TRUE
+stress	set5IT012	Cisplatin	Dsui_2413	Dsui_2413		DNA repair protein RadA	-1.3254949893103	-5.27974098786373	TRUE
+stress	set5IT014	Cisplatin	Dsui_2462	Dsui_2462		DNA repair protein RecO	-6.11911720859371	-11.3232200796144	TRUE
+stress	set5IT013	Cisplatin	Dsui_2462	Dsui_2462		DNA repair protein RecO	-5.6204098698985	-12.5788544869002	TRUE
+stress	set5IT012	Cisplatin	Dsui_2462	Dsui_2462		DNA repair protein RecO	-5.16315317812429	-13.6999658804261	TRUE
+stress	set5IT013	Cisplatin	Dsui_2470	Dsui_2470		excinuclease ABC, C subunit	-3.53411220704262	-6.32560320956243	TRUE
+stress	set5IT012	Cisplatin	Dsui_2926	Dsui_2926		diguanylate cyclase (GGDEF) domain-containing protein	-1.29014443123082	-7.06919661743213	FALSE
+stress	set5IT014	Cisplatin	Dsui_3401	Dsui_3401		putative Zn-dependent protease-like protein	-3.07874989460644	-11.973725555647	TRUE
+stress	set5IT012	Cisplatin	Dsui_3401	Dsui_3401		putative Zn-dependent protease-like protein	-2.02758296459767	-10.2154623717969	TRUE
+stress	set5IT013	Cisplatin	Dsui_3401	Dsui_3401		putative Zn-dependent protease-like protein	-1.94399343541563	-6.87058434967716	TRUE
+stress	set5IT014	Cisplatin	Dsui_3458	Dsui_3458		septum site-determining protein MinC	-3.13924497436267	-7.88027135955824	FALSE
+stress	set5IT012	Cisplatin	Dsui_3458	Dsui_3458		septum site-determining protein MinC	-2.66141088847031	-9.11795144628053	FALSE
+stress	set5IT013	Cisplatin	Dsui_3458	Dsui_3458		septum site-determining protein MinC	-2.3001158614372	-7.03084938031565	FALSE
+stress	set5IT014	Cisplatin	Dsui_3459	Dsui_3459		septum site-determining protein MinD	-2.93756487863298	-14.2655703609102	FALSE
+stress	set5IT012	Cisplatin	Dsui_3459	Dsui_3459		septum site-determining protein MinD	-2.81911441097553	-9.82755793356333	FALSE
+stress	set5IT013	Cisplatin	Dsui_3459	Dsui_3459		septum site-determining protein MinD	-2.71573239841969	-14.7171910323014	FALSE
+stress	set5IT005	Cobalt chloride hexahydrate	Dsui_1050	Dsui_1050		signal transduction histidine kinase, nitrogen specific	1.76912286403806	11.3374815455928	FALSE
+stress	set5IT005	Cobalt chloride hexahydrate	Dsui_1051	Dsui_1051		nitrogen regulation protein NR(I)	1.21271570177556	6.26916632596384	FALSE
+stress	set5IT005	Cobalt chloride hexahydrate	Dsui_2530	Dsui_2530		pseudouridine synthase, RluA family	1.95463320808565	5.96727912924175	FALSE
+stress	set5IT005	Cobalt chloride hexahydrate	Dsui_3023	Dsui_3023		phosphate/sulfate permease	-1.85092365592216	-14.4643197922002	FALSE
+stress	set5IT005	Cobalt chloride hexahydrate	Dsui_3024	Dsui_3024		phosphate transport regulator related to PhoU	-1.52513052266266	-10.8826700564526	FALSE
+stress	set5IT005	Cobalt chloride hexahydrate	Dsui_3453	Dsui_3453		cation diffusion facilitator family transporter	-3.44909108002003	-7.73230676388981	TRUE
+stress	set5IT004	Cobalt chloride hexahydrate	Dsui_3453	Dsui_3453		cation diffusion facilitator family transporter	-2.44638507523395	-6.23054017053357	TRUE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0014	Dsui_0014		putative membrane protein	2.35613813341788	14.3493315453209	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_0014	Dsui_0014		putative membrane protein	2.78820139098449	15.1724783343863	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_0014	Dsui_0014		putative membrane protein	2.8533085399873	15.2247833851635	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0046	Dsui_0046		Zn-dependent oligopeptidase	1.17903213816622	8.68732068521905	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0118	Dsui_0118		monothiol glutaredoxin, Grx4 family	1.88641641103393	10.3614353958273	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_0118	Dsui_0118		monothiol glutaredoxin, Grx4 family	1.97442960967749	12.2674886500274	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_0118	Dsui_0118		monothiol glutaredoxin, Grx4 family	2.09729406685199	10.3150410841196	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_0154	Dsui_0154		hypothetical protein	1.63785277933338	15.5423118302293	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0154	Dsui_0154		hypothetical protein	1.66831974408573	15.8465511903422	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_0154	Dsui_0154		hypothetical protein	1.67065569150764	15.6964684542554	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0408	Dsui_0408		cation/multidrug efflux pump	2.20632271093888	10.2503881343875	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_0408	Dsui_0408		cation/multidrug efflux pump	2.28710466461786	10.298335655882	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_0408	Dsui_0408		cation/multidrug efflux pump	2.54632089779408	11.0052801127088	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0409	Dsui_0409		RND family efflux transporter, MFP subunit	2.42961492622451	16.1929052500675	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_0409	Dsui_0409		RND family efflux transporter, MFP subunit	2.45748532529163	17.2393531219016	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_0409	Dsui_0409		RND family efflux transporter, MFP subunit	2.63427179618355	16.4960020677939	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0491	Dsui_0491		putative oxygen-independent coproporphyrinogen III oxidase	-1.2068291298189	-7.12763187865294	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0656	Dsui_0656		chemotaxis protein histidine kinase-like protein	3.2013118592745	13.7372271419827	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_0656	Dsui_0656		chemotaxis protein histidine kinase-like protein	3.61595568664012	14.3871347394049	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_0656	Dsui_0656		chemotaxis protein histidine kinase-like protein	3.76551365801624	13.9849245462328	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_0812	Dsui_0812		ribosomal RNA small subunit methyltransferase RsmB	-2.11049017809111	-11.2923722451574	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_0812	Dsui_0812		ribosomal RNA small subunit methyltransferase RsmB	-2.09237468041587	-11.8700096724178	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0812	Dsui_0812		ribosomal RNA small subunit methyltransferase RsmB	-2.04578485446377	-10.8632496989999	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_0844	Dsui_0844		ABC-type branched-chain amino acid transport system, periplasmic component	-1.05496552444175	-8.41509405981108	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_0847	Dsui_0847		16S rRNA (guanine(527)-N(7))-methyltransferase GidB	1.99264422143035	12.2148316144288	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_0847	Dsui_0847		16S rRNA (guanine(527)-N(7))-methyltransferase GidB	2.10958858051306	14.913592645193	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_0847	Dsui_0847		16S rRNA (guanine(527)-N(7))-methyltransferase GidB	2.32084426320616	15.210074404093	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_1040	Dsui_1040		glutamyl-queuosine tRNA(Asp) synthetase	1.1971569034372	5.8596728432687	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_1187	Dsui_1187		type IV pilus assembly protein PilM	-1.28446855214279	-8.79338188978461	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_1187	Dsui_1187		type IV pilus assembly protein PilM	-1.23315584156279	-8.68652608438072	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_1373	Dsui_1373		ATP-dependent helicase HrpA	-3.22340005863469	-24.2657357318379	TRUE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_1373	Dsui_1373		ATP-dependent helicase HrpA	-3.15121135799396	-20.9054683971504	TRUE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_1373	Dsui_1373		ATP-dependent helicase HrpA	-3.01049323818034	-21.3364789458424	TRUE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_1524	Dsui_1524		transcriptional regulator	3.78006706946146	13.3290133046351	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_1524	Dsui_1524		transcriptional regulator	4.19174044308036	12.4329597995897	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_1524	Dsui_1524		transcriptional regulator	4.30572013218437	12.5082419464511	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_1571	Dsui_1571		Fe-S cluster protector protein	1.485093260517	12.0167671165554	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_1571	Dsui_1571		Fe-S cluster protector protein	1.62803995069985	10.6995643146378	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_1571	Dsui_1571		Fe-S cluster protector protein	1.83660784116831	12.5705481482623	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_1870	Dsui_1870		efflux transporter, outer membrane factor lipoprotein, NodT family	-2.43589925191636	-5.11983512038322	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_1946	Dsui_1946		putative N-acetylglucosaminyl transferase	-1.68813048430523	-8.39395444842485	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_2057	Dsui_2057		ABC-type branched-chain amino acid transport systems, ATPase component	1.11968792221025	5.51796601382748	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_2059	Dsui_2059		ABC-type branched-chain amino acid transport system, permease component	1.59814424474956	6.32453138626293	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_2430	Dsui_2430		tRNA-Asn	1.81852130307767	9.78001324926454	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_2430	Dsui_2430		tRNA-Asn	1.93350691708761	10.1733654135812	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_2430	Dsui_2430		tRNA-Asn	2.07997979565073	10.7772178324336	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_2437	Dsui_2437		pseudouridine synthase, RluA family	1.88611360076986	12.043150723705	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_2437	Dsui_2437		pseudouridine synthase, RluA family	1.95161399780414	9.39275814854043	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_2437	Dsui_2437		pseudouridine synthase, RluA family	2.0341970415619	9.18934335769043	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_2441	Dsui_2441		putative methyltransferase	1.3213362394875	7.16767280830742	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_2441	Dsui_2441		putative methyltransferase	1.35621949621525	6.43078170532394	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_2679	Dsui_2679		rRNA methylase	1.99737618873708	10.0538941416392	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_2679	Dsui_2679		rRNA methylase	2.0134802141715	9.01640924370207	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_2679	Dsui_2679		rRNA methylase	2.20260133282859	9.50349919913417	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_2746	Dsui_2746		ATP-binding cassette protein, ChvD family	1.41484332136103	11.2693224804074	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_2746	Dsui_2746		ATP-binding cassette protein, ChvD family	1.56718593839875	12.5440776756777	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_2746	Dsui_2746		ATP-binding cassette protein, ChvD family	1.6338902039982	13.1589281671045	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_3083	Dsui_3083		ABC-type branched-chain amino acid transport system, periplasmic component	1.31096000119227	7.69442451583486	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_3083	Dsui_3083		ABC-type branched-chain amino acid transport system, periplasmic component	1.35949297964897	7.97423509309321	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_3083	Dsui_3083		ABC-type branched-chain amino acid transport system, periplasmic component	1.55051223935531	9.97623825562283	FALSE
+stress	set6IT030	Fusidic acid sodium salt	Dsui_3518	Dsui_3518		putative membrane protein	1.25730086611425	6.23761953613434	FALSE
+stress	set6IT031	Fusidic acid sodium salt	Dsui_3518	Dsui_3518		putative membrane protein	1.27845714861162	6.42352146727755	FALSE
+stress	set6IT032	Fusidic acid sodium salt	Dsui_3533	Dsui_3533		putative membrane protein/domain protein	1.13209176921461	6.69282029315768	FALSE
+stress	set1H7	Hydrogen peroxide	Dsui_0822	Dsui_0822		DNA-binding ferritin-like protein (oxidative damage protectant)	-2.65491345420211	-17.9076641969784	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_0456	Dsui_0456		homoserine kinase, Neisseria type	2.49465687478452	8.69843902983963	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_0518	Dsui_0518		LAO/AO transport system ATPase	-1.88316221069481	-7.77830988907697	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_0635	Dsui_0635		periplasmic component of amino acid ABC-type transporter/signal transduction system	1.40765274109315	10.1600636518342	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_1050	Dsui_1050		signal transduction histidine kinase, nitrogen specific	1.55983816647211	9.30339826684134	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_1051	Dsui_1051		nitrogen regulation protein NR(I)	1.19388988475196	5.29536060570031	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_1542	Dsui_1542		small-conductance mechanosensitive channel	-1.88167568148298	-10.4533160610453	FALSE
+stress	set5IT001	Nickel (II) chloride hexahydrate	Dsui_1699	Dsui_1699		cation/cationic drug transporter	-1.27231183306936	-7.28653282818589	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_1850	Dsui_1850		putative transcriptional regulator	1.0451693977482	5.44718077743462	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_1923	Dsui_1923		ribonucleotide reductase, beta subunit	-3.11200150111865	-15.4208133904098	FALSE
+stress	set5IT001	Nickel (II) chloride hexahydrate	Dsui_1923	Dsui_1923		ribonucleotide reductase, beta subunit	-2.60408796140121	-14.8294910489604	FALSE
+stress	set5IT003	Nickel (II) chloride hexahydrate	Dsui_1923	Dsui_1923		ribonucleotide reductase, beta subunit	-2.19053450292506	-14.0681729937182	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_1924	Dsui_1924		ribonucleoside-diphosphate reductase, alpha subunit	-2.65274308347035	-16.6046103061885	FALSE
+stress	set5IT001	Nickel (II) chloride hexahydrate	Dsui_1924	Dsui_1924		ribonucleoside-diphosphate reductase, alpha subunit	-2.33766511403543	-17.7667316239966	FALSE
+stress	set5IT003	Nickel (II) chloride hexahydrate	Dsui_1924	Dsui_1924		ribonucleoside-diphosphate reductase, alpha subunit	-1.9896017235158	-16.6298650067393	FALSE
+stress	set5IT001	Nickel (II) chloride hexahydrate	Dsui_2923	Dsui_2923		esterase/lipase	-1.06388534206858	-5.65486137026723	FALSE
+stress	set5IT001	Nickel (II) chloride hexahydrate	Dsui_2925	Dsui_2925		propionate--CoA ligase	-1.41003178344911	-11.5872564638263	FALSE
+stress	set5IT001	Nickel (II) chloride hexahydrate	Dsui_2926	Dsui_2926		diguanylate cyclase (GGDEF) domain-containing protein	-1.21081207859867	-6.37039198591418	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_3016	Dsui_3016		hypothetical protein	1.28875367372782	9.91178491263592	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_3024	Dsui_3024		phosphate transport regulator related to PhoU	1.34359499011871	9.81072959606971	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_3090	Dsui_3090		hypothetical protein	1.71421606511469	6.78757958306539	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_3091	Dsui_3091		integral membrane protein, TerC family	1.70441077192121	5.5843769330022	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_3367	Dsui_3367		ABC-type sugar transport system, periplasmic component	-1.06511568360425	-5.68507688789496	FALSE
+stress	set5IT002	Nickel (II) chloride hexahydrate	Dsui_3507	Dsui_3507		ring-hydroxylating dioxygenase, large terminal subunit	1.08680254495204	6.91358761339683	TRUE
+stress	set1H11	Sodium Chlorite	Dsui_1653	Dsui_1653		ferrous iron transporter FeoB	-4.90036998397907	-5.82548775055015	FALSE
+stress	set1H10	Sodium Chlorite	Dsui_1653	Dsui_1653		ferrous iron transporter FeoB	-4.87886909982199	-5.79992781575083	FALSE
+stress	set1H12	Sodium Chlorite	Dsui_1653	Dsui_1653		ferrous iron transporter FeoB	-4.79353530573242	-5.69848425663142	FALSE
+stress	set1H9	Sodium Chlorite	Dsui_1653	Dsui_1653		ferrous iron transporter FeoB	-4.31513818554356	-6.5798139041192	FALSE
+stress	set5IT022	Sodium nitrate	Dsui_0128	Dsui_0128		D-alanyl-D-alanine carboxypeptidase	-1.81637175716205	-15.1279562929474	FALSE
+stress	set5IT022	Sodium nitrate	Dsui_0899	Dsui_0899		D-alanyl-D-alanine carboxypeptidase	-2.04606757959468	-16.603705254917	FALSE
+stress	set6IT027	Sodium perchlorate monohydrate	Dsui_1272	Dsui_1272		putative transcriptional regulator	1.34257689616173	10.8511993626428	FALSE
+stress	set6IT027	Sodium perchlorate monohydrate	Dsui_3486	Dsui_3486		response regulator with CheY-like receiver, AAA-type ATPase, and DNA-binding domains	-1.52065552151132	-7.09727212195677	FALSE
+stress	set6IT026	Sodium perchlorate monohydrate	Dsui_3486	Dsui_3486		response regulator with CheY-like receiver, AAA-type ATPase, and DNA-binding domains	-1.46511704505004	-7.21955363189518	FALSE
+stress	set5IT010	Thallium(I) acetate	Dsui_0603	Dsui_0603		pyridoxal phosphate enzyme, YggS family	-2.90813128574054	-13.94942043876	FALSE
+stress	set5IT011	Thallium(I) acetate	Dsui_0603	Dsui_0603		pyridoxal phosphate enzyme, YggS family	-2.7457640714021	-13.5132338796805	FALSE
+stress	set5IT009	Thallium(I) acetate	Dsui_0603	Dsui_0603		pyridoxal phosphate enzyme, YggS family	-2.70320974332532	-13.5205989229867	FALSE
+stress	set5IT011	Thallium(I) acetate	Dsui_1850	Dsui_1850		putative transcriptional regulator	1.52233064147037	7.40363014489506	FALSE
+stress	set5IT011	Thallium(I) acetate	Dsui_2531	Dsui_2531		uncharacterized protein, YfiH family	-1.66306674193148	-6.15145373821775	FALSE
+stress	set5IT011	Thallium(I) acetate	Dsui_3211	Dsui_3211		glutamate dehydrogenase/leucine dehydrogenase	-1.84733733399789	-12.6382336306941	FALSE
+stress	set5IT009	Thallium(I) acetate	Dsui_3211	Dsui_3211		glutamate dehydrogenase/leucine dehydrogenase	-1.31645517465133	-9.52495367653828	FALSE
+stress	set5IT016	Zinc sulfate heptahydrate	Dsui_2928	Dsui_2928		ABC-type Fe3+ transport system, periplasmic component	-1.34784505137051	-5.41779438515087	FALSE
+stress	set5IT016	Zinc sulfate heptahydrate	Dsui_2929	Dsui_2929		hypothetical protein	-1.52303058496429	-6.11804299620566	FALSE
+stress	set5IT016	Zinc sulfate heptahydrate	Dsui_3128	Dsui_3128		ribonuclease R	-1.52680425209568	-7.51391179398688	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_0014	Dsui_0014		putative membrane protein	-2.04149169086047	-7.60511963471939	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_0101	Dsui_0101		exonuclease, DNA polymerase III, epsilon subunit family	-1.24328523766571	-8.1431356793324	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_0456	Dsui_0456		homoserine kinase, Neisseria type	1.52946073070039	8.04286224344082	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_0497	Dsui_0497		TIGR00255 family protein	-2.0470869173382	-7.52326501972922	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_0609	Dsui_0609		2-polyprenylphenol hydroxylase-like oxidoreductase	-1.67389842426242	-5.93250358113418	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_0656	Dsui_0656		chemotaxis protein histidine kinase-like protein	1.31406903423501	7.6514502005336	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_0815	Dsui_0815		Zn-dependent protease with chaperone function	-1.42912492354866	-7.05523966151173	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1050	Dsui_1050		signal transduction histidine kinase, nitrogen specific	1.18255290781307	7.96038274165284	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1051	Dsui_1051		nitrogen regulation protein NR(I)	1.52447955401725	7.00641952581151	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1151	Dsui_1151		transcriptional regulator	-1.27236992041632	-6.55972464496342	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1194	Dsui_1194		tRNA-N(6)-(isopentenyl)adenosine-37 thiotransferase enzyme MiaB	-1.48836544097004	-6.54113626909331	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1351	Dsui_1351		DNA/RNA helicase, superfamily II	-2.5229874423314	-10.5259717455394	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1383	Dsui_1383		transporter, monovalent cation:proton antiporter-2 (CPA2) family	-1.36897408867655	-8.29164827224829	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1526	Dsui_1526		hypothetical protein	-1.61502214226523	-5.23795331470607	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1542	Dsui_1542		small-conductance mechanosensitive channel	-1.43419613207505	-5.77432228175621	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1772	Dsui_1772		type I secretion system ABC transporter, PrtD family	-1.54201612818775	-5.88517627592514	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_1901	Dsui_1901		peroxiredoxin	-1.21363900176818	-5.59881555225276	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2002	Dsui_2002		TIGR00645 family protein	-2.51669566767538	-7.3475127507648	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2066	Dsui_2066		ABC-type metal ion transport system, periplasmic component/surface antigen	1.74969674076442	11.5050511323694	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2067	Dsui_2067		ABC-type metal ion transport system, permease component	2.13379862114256	11.879874545376	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2068	Dsui_2068		ABC-type metal ion transport system, ATPase component	2.06389329257547	9.60978104190478	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2535	Dsui_2535		putative divalent heavy-metal cations transporter	-2.16551876561193	-5.63107911128027	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2541	Dsui_2541		putative esterase of the alpha-beta hydrolase superfamily	-2.13134373903255	-5.85456431369521	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2625	Dsui_2625		hypothetical protein	-1.24187156360735	-8.62220408805448	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2626	Dsui_2626		Plasmid replication region DNA-binding N-term protein	-1.36631528717346	-11.5144772577158	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2731	Dsui_2731		putative metal-dependent phosphoesterase, PHP family	-1.15177958378419	-5.92850196715817	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_2751	Dsui_2751		cyanophycin synthetase	-1.38305643142961	-7.45734391701651	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3016	Dsui_3016		hypothetical protein	1.52686376913026	5.15744597491326	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3091	Dsui_3091		integral membrane protein, TerC family	5.34772821872193	22.4607063582138	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3136	Dsui_3136		GTP-binding protein HflX	-1.59387803872739	-7.19638962737705	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3155	Dsui_3155		tripartite ATP-independent periplasmic transporter solute receptor, DctP family	1.5388213343365	7.88030037123172	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3159	Dsui_3159		PAS domain S-box	2.03203143865619	10.5439426374661	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3160	Dsui_3160		response regulator	2.75102901537558	9.62572269117937	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3280	Dsui_3280		formate dehydrogenase, gamma subunit	-1.86753905301885	-5.17416781390403	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3281	Dsui_3281		formate dehydrogenase, beta subunit, Fe-S containing	-1.17075922928407	-5.28002824513146	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3367	Dsui_3367		ABC-type sugar transport system, periplasmic component	-1.14310889627093	-6.20545477639443	FALSE
+stress	set5IT006	copper (II) chloride dihydrate	Dsui_3533	Dsui_3533		putative membrane protein/domain protein	1.19011956891091	6.82500897072743	FALSE
+stress	set5IT008	sodium fluoride	Dsui_1367	Dsui_1367		crcB protein	-5.54631680703678	-6.54699922647288	TRUE
+stress	set5IT007	sodium fluoride	Dsui_1367	Dsui_1367		crcB protein	-5.30788192555955	-6.59485824145407	TRUE

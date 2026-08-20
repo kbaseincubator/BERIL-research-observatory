@@ -1,0 +1,303 @@
+expGroup	expName	condition_1	locusId	sysName	gene	desc	fit	t	conserved
+carbon source	set5S692	D-Cellobiose	ABZR88_RS00280	ABZR88_RS00280		Gfo/Idh/MocA family oxidoreductase	-2.71045359378671	-6.99215766540772	FALSE
+carbon source	set5S680	D-Cellobiose	ABZR88_RS00280	ABZR88_RS00280		Gfo/Idh/MocA family oxidoreductase	-2.30302799508588	-7.912336254698	FALSE
+carbon source	set5S691	D-Cellobiose	ABZR88_RS00280	ABZR88_RS00280		Gfo/Idh/MocA family oxidoreductase	-1.83306885906246	-7.78027330935197	FALSE
+carbon source	set5S679	D-Cellobiose	ABZR88_RS00280	ABZR88_RS00280		Gfo/Idh/MocA family oxidoreductase	-1.81308139707004	-6.08732733026408	FALSE
+carbon source	set5S680	D-Cellobiose	ABZR88_RS01490	ABZR88_RS01490		SPW repeat protein	1.08749361988839	5.9136387054267	FALSE
+carbon source	set5S680	D-Cellobiose	ABZR88_RS11525	ABZR88_RS11525		hypothetical protein	1.10115197870394	7.30664641098582	FALSE
+carbon source	set5S692	D-Cellobiose	ABZR88_RS11525	ABZR88_RS11525		hypothetical protein	1.11312993240959	8.38815630624432	FALSE
+carbon source	set5S680	D-Cellobiose	ABZR88_RS13180	ABZR88_RS13180		DUF1080 domain-containing protein	-1.66740242434294	-8.47308056048292	FALSE
+carbon source	set5S679	D-Cellobiose	ABZR88_RS13180	ABZR88_RS13180		DUF1080 domain-containing protein	-1.61280385993102	-8.04875968065077	FALSE
+carbon source	set5S692	D-Cellobiose	ABZR88_RS13180	ABZR88_RS13180		DUF1080 domain-containing protein	-1.54839170034362	-9.25554724264448	FALSE
+carbon source	set5S691	D-Cellobiose	ABZR88_RS13180	ABZR88_RS13180		DUF1080 domain-containing protein	-1.42605699525358	-8.15937479872582	FALSE
+carbon source	set5S692	D-Cellobiose	ABZR88_RS13230	ABZR88_RS13230		hypothetical protein	-1.10742838115315	-5.46434872086167	FALSE
+carbon source	set5S680	D-Cellobiose	ABZR88_RS13230	ABZR88_RS13230		hypothetical protein	-1.03817001099161	-6.22268892929673	FALSE
+carbon source	set5S679	D-Cellobiose	ABZR88_RS14125	ABZR88_RS14125		Glu/Leu/Phe/Val dehydrogenase	-1.3449769695774	-5.29313533082401	FALSE
+carbon source	set5S691	D-Cellobiose	ABZR88_RS20945	ABZR88_RS20945		DUF4199 domain-containing protein	2.63997898307459	17.8669707032338	FALSE
+carbon source	set5S692	D-Cellobiose	ABZR88_RS20945	ABZR88_RS20945		DUF4199 domain-containing protein	2.68835772397199	17.1517191373132	FALSE
+carbon source	set5S680	D-Cellobiose	ABZR88_RS20945	ABZR88_RS20945		DUF4199 domain-containing protein	2.72802655249147	18.2973916325421	FALSE
+carbon source	set5S679	D-Cellobiose	ABZR88_RS20945	ABZR88_RS20945		DUF4199 domain-containing protein	2.73574035507243	15.8703124736318	FALSE
+carbon source	set1S593	D-Fructose	ABZR88_RS03755	ABZR88_RS03755		carbohydrate kinase	-4.19912564781916	-8.63558193202253	TRUE
+carbon source	set1S641	D-Fructose	ABZR88_RS03755	ABZR88_RS03755		carbohydrate kinase	-3.99371179124001	-9.51924661933034	TRUE
+carbon source	set1S593	D-Fructose	ABZR88_RS11160	ABZR88_RS11160		sulfatase	1.64936332388687	7.3559695271022	FALSE
+carbon source	set1S641	D-Fructose	ABZR88_RS11160	ABZR88_RS11160		sulfatase	1.70235903511615	7.86786242848434	FALSE
+carbon source	set1S641	D-Fructose	ABZR88_RS15275	ABZR88_RS15275		L-fucose:H+ symporter permease	-1.63314828622681	-9.25236494891421	TRUE
+carbon source	set1S593	D-Fructose	ABZR88_RS15275	ABZR88_RS15275		L-fucose:H+ symporter permease	-1.49421978277171	-9.8206453988828	TRUE
+carbon source	set1S596	D-Xylose	ABZR88_RS16150	ABZR88_RS16150		xylose isomerase	-5.43730717364738	-13.8321355427728	TRUE
+carbon source	set1S644	D-Xylose	ABZR88_RS16150	ABZR88_RS16150		xylose isomerase	-5.08348538880306	-11.225411296455	TRUE
+carbon source	set4S762	L-Arabinose	ABZR88_RS09650	ABZR88_RS09650		cation-translocating P-type ATPase	-1.21829169552451	-9.43845987075121	FALSE
+carbon source	set5S688	L-Arabinose	ABZR88_RS09650	ABZR88_RS09650		cation-translocating P-type ATPase	-1.20079455365845	-7.91617713135503	FALSE
+carbon source	set4S714	L-Arabinose	ABZR88_RS12505	ABZR88_RS12505		alpha-amylase family glycosyl hydrolase	-1.3725303604776	-8.1906951613691	FALSE
+carbon source	set5S676	L-Arabinose	ABZR88_RS13995	ABZR88_RS13995		hypothetical protein	1.43387501755849	5.01473047323111	FALSE
+carbon source	set5S676	L-Arabinose	ABZR88_RS21080	ABZR88_RS21080		transcription-repair coupling factor	-1.48169691819163	-8.22886441034671	FALSE
+carbon source	set4S714	L-Arabinose	ABZR88_RS21080	ABZR88_RS21080		transcription-repair coupling factor	-1.10199429604501	-6.85554280622515	FALSE
+carbon source	set5S688	L-Arabinose	ABZR88_RS21080	ABZR88_RS21080		transcription-repair coupling factor	-1.09917570679312	-6.48562232580524	FALSE
+carbon source	set1S642	L-Rhamnose monohydrate	ABZR88_RS03470	ABZR88_RS03470		bifunctional pyr operon transcriptional regulator/uracil phosphoribosyltransferase PyrR	-1.85025715604333	-5.18349780023123	FALSE
+carbon source	set1S642	L-Rhamnose monohydrate	ABZR88_RS04640	ABZR88_RS04640		aldose 1-epimerase family protein	4.19725010931475	21.8378205988827	FALSE
+carbon source	set1S594	L-Rhamnose monohydrate	ABZR88_RS04640	ABZR88_RS04640		aldose 1-epimerase family protein	4.2061804179466	28.9174060118586	FALSE
+carbon source	set1S642	L-Rhamnose monohydrate	ABZR88_RS12555	ABZR88_RS12555		response regulator transcription factor	-1.19007767236855	-5.86812715991273	FALSE
+carbon source	set1S594	L-Rhamnose monohydrate	ABZR88_RS12555	ABZR88_RS12555		response regulator transcription factor	-1.08458336631274	-6.71527059247909	FALSE
+carbon source	set1S642	L-Rhamnose monohydrate	ABZR88_RS15180	ABZR88_RS15180		(Fe-S)-binding protein	-1.43705535374708	-5.88413920241328	TRUE
+carbon source	set1S642	L-Rhamnose monohydrate	ABZR88_RS15185	ABZR88_RS15185		lactate utilization protein B	-1.98286071182117	-5.86131609721473	TRUE
+carbon source	set1S594	L-Rhamnose monohydrate	ABZR88_RS15185	ABZR88_RS15185		lactate utilization protein B	-1.83215176518455	-6.76989555027949	TRUE
+carbon source	set4S720	Sodium alginate	ABZR88_RS13305	ABZR88_RS13305		glycoside hydrolase family 31 protein	-1.46998479145757	-10.5499585469199	FALSE
+carbon source	set4S720	Sodium alginate	ABZR88_RS13315	ABZR88_RS13315		RagB/SusD family nutrient uptake outer membrane protein	-1.58690982510195	-7.91643810325208	FALSE
+carbon source	set4S720	Sodium alginate	ABZR88_RS13320	ABZR88_RS13320		TonB-dependent receptor	-1.50838775676561	-10.7370942954258	FALSE
+carbon source	set4S720	Sodium alginate	ABZR88_RS13325	ABZR88_RS13325		DUF6377 domain-containing protein	-1.68748766403618	-8.97412355087796	FALSE
+carbon source	set4S768	Sodium alginate	ABZR88_RS13325	ABZR88_RS13325		DUF6377 domain-containing protein	-1.44073274412129	-9.67047805157933	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS00390	ABZR88_RS00390		amidohydrolase	1.26140757658117	7.20260200333334	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS00390	ABZR88_RS00390		amidohydrolase	1.42418402108447	9.01185666014557	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS00390	ABZR88_RS00390		amidohydrolase	1.71082759265434	5.19431849142522	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS00390	ABZR88_RS00390		amidohydrolase	1.76614132811473	7.21340046155931	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS00395	ABZR88_RS00395		serine hydrolase	-2.2509783564534	-7.21887572546992	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS00395	ABZR88_RS00395		serine hydrolase	-1.93348844217666	-6.23275290887663	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS01015	ABZR88_RS01015		DUF3826 domain-containing protein	1.11404317280209	5.26769825296242	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS01520	ABZR88_RS01520		efflux RND transporter periplasmic adaptor subunit	1.41495954717009	7.53428187641731	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS01520	ABZR88_RS01520		efflux RND transporter periplasmic adaptor subunit	1.50592368627465	8.58650492715461	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS01520	ABZR88_RS01520		efflux RND transporter periplasmic adaptor subunit	1.52320307051211	7.5515424323558	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS01520	ABZR88_RS01520		efflux RND transporter periplasmic adaptor subunit	1.65840205439251	10.0842479995959	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS01645	ABZR88_RS01645		type II toxin-antitoxin system RelE/ParE family toxin	1.27584186839826	5.41565898279621	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS01765	ABZR88_RS01765		short chain dehydrogenase	-5.08392253190624	-5.61026500451362	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS01815	ABZR88_RS01815		ABC transporter ATP-binding protein	1.20678471068318	5.84934963639272	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS01815	ABZR88_RS01815		ABC transporter ATP-binding protein	1.23405304613816	6.23975103742888	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS01815	ABZR88_RS01815		ABC transporter ATP-binding protein	1.34150364627517	6.38013930982796	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS02030	ABZR88_RS02030		NADPH-dependent FMN reductase	1.22170399250529	5.84387288008694	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS02030	ABZR88_RS02030		NADPH-dependent FMN reductase	1.25342750455875	6.64768773302183	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS02030	ABZR88_RS02030		NADPH-dependent FMN reductase	1.43007234962287	6.50541883911629	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS02975	ABZR88_RS02975		glucose-6-phosphate dehydrogenase	-1.79508862340359	-5.38879397995325	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS03365	ABZR88_RS03365		ABC transporter ATP-binding protein	-2.46152446625383	-5.79233893512034	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS03365	ABZR88_RS03365		ABC transporter ATP-binding protein	-2.32046601382726	-6.07897008398664	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS03365	ABZR88_RS03365		ABC transporter ATP-binding protein	-2.26030213751214	-6.07221603370628	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS03365	ABZR88_RS03365		ABC transporter ATP-binding protein	-2.07056544356439	-5.40546379468468	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS03370	ABZR88_RS03370		ABC transporter permease	-2.29593743428159	-5.71044415384245	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS03370	ABZR88_RS03370		ABC transporter permease	-2.08483133986989	-5.26196334111333	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS03535	ABZR88_RS03535		threonine synthase	1.6020846412232	6.75055808543782	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS03535	ABZR88_RS03535		threonine synthase	1.65397955136298	6.64827229611012	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS03535	ABZR88_RS03535		threonine synthase	1.67948964754445	7.14955779412946	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS03945	ABZR88_RS03945		ABC transporter permease	1.77818141335019	6.78344421638469	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS03945	ABZR88_RS03945		ABC transporter permease	1.80574603077531	7.79007137958261	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS03945	ABZR88_RS03945		ABC transporter permease	1.97694731334431	9.233638020201	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS03945	ABZR88_RS03945		ABC transporter permease	2.04377348497008	9.44532028140972	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS04590	ABZR88_RS04590		YdeI/OmpD-associated family protein	1.34088200966129	6.01375041087143	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS04590	ABZR88_RS04590		YdeI/OmpD-associated family protein	1.35418357556423	7.12484274616163	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS04590	ABZR88_RS04590		YdeI/OmpD-associated family protein	1.44631501109461	6.33874536992232	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS04705	ABZR88_RS04705		hypothetical protein	1.18138091840747	5.53541347986621	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS04710	ABZR88_RS04710		aldo/keto reductase	-1.41827230978457	-5.02410716473701	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS04980	ABZR88_RS04980		amino acid permease	2.13637650560963	11.1846771033316	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS04980	ABZR88_RS04980		amino acid permease	2.19037235519817	11.2754793064577	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS04980	ABZR88_RS04980		amino acid permease	2.232973653182	10.8463296014881	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS04980	ABZR88_RS04980		amino acid permease	2.31078454104076	12.1750057744842	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS05070	ABZR88_RS05070		type II toxin-antitoxin system RelE/ParE family toxin	1.42316193017515	6.49020124120196	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS05515	ABZR88_RS05515		START domain-containing protein	1.30221456503483	5.71466937724141	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS06240	ABZR88_RS06240		TonB-dependent receptor	-1.96834883579696	-12.0831038280152	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS06240	ABZR88_RS06240		TonB-dependent receptor	-1.95323283082925	-11.1440828603417	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS06240	ABZR88_RS06240		TonB-dependent receptor	-1.93599414860306	-10.5467556757513	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS06240	ABZR88_RS06240		TonB-dependent receptor	-1.40970737083496	-9.56237031269055	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS06245	ABZR88_RS06245		RagB/SusD family nutrient uptake outer membrane protein	-2.27120697074128	-11.2905189998979	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS06245	ABZR88_RS06245		RagB/SusD family nutrient uptake outer membrane protein	-2.11731810824038	-10.5172520348649	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS06245	ABZR88_RS06245		RagB/SusD family nutrient uptake outer membrane protein	-1.96433008670624	-8.87207303314609	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS06245	ABZR88_RS06245		RagB/SusD family nutrient uptake outer membrane protein	-1.45697613074864	-8.31035533441095	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS06590	ABZR88_RS06590		BlaI/MecI/CopY family transcriptional regulator	1.48945442899981	8.52699766919516	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS06590	ABZR88_RS06590		BlaI/MecI/CopY family transcriptional regulator	1.63105532087185	9.55593531536717	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS06590	ABZR88_RS06590		BlaI/MecI/CopY family transcriptional regulator	1.67262378811024	9.45745766803325	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS06590	ABZR88_RS06590		BlaI/MecI/CopY family transcriptional regulator	1.70151098748441	8.38030832913608	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS06695	ABZR88_RS06695		hypothetical protein	-2.41138093745281	-6.31204076161089	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS06695	ABZR88_RS06695		hypothetical protein	-2.23294963677354	-6.15063010048807	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS06695	ABZR88_RS06695		hypothetical protein	-1.76794091230196	-5.84925284976856	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS06695	ABZR88_RS06695		hypothetical protein	-1.52656933932986	-5.36677842600594	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS06700	ABZR88_RS06700		OmpP1/FadL family transporter	-2.2593618642871	-9.24963121012646	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS06700	ABZR88_RS06700		OmpP1/FadL family transporter	-2.16236311997757	-9.71763881251373	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS06700	ABZR88_RS06700		OmpP1/FadL family transporter	-2.026985660275	-8.80599074297797	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS06700	ABZR88_RS06700		OmpP1/FadL family transporter	-1.81764656770861	-6.28392787661793	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS06775	ABZR88_RS06775		hypothetical protein	-1.65203230351948	-5.54767960695681	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS06775	ABZR88_RS06775		hypothetical protein	-1.44733486219096	-6.85317818015299	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS07555	ABZR88_RS07555		GAF domain-containing protein	1.12886877231101	7.72570971952313	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS07570	ABZR88_RS07570		Pycsar system effector family protein	1.40980288228333	5.47757226461324	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS07570	ABZR88_RS07570		Pycsar system effector family protein	1.69001685505945	6.60594473224088	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS07570	ABZR88_RS07570		Pycsar system effector family protein	1.74115446724196	7.22463790920444	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS07570	ABZR88_RS07570		Pycsar system effector family protein	1.75407546726758	6.13289915090265	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS08215	ABZR88_RS08215		PAS domain-containing protein	1.4504303628197	9.03405802428756	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS08215	ABZR88_RS08215		PAS domain-containing protein	1.50874668659834	6.66581415286518	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS08215	ABZR88_RS08215		PAS domain-containing protein	1.59000854422949	10.2090198242933	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS08215	ABZR88_RS08215		PAS domain-containing protein	1.86058500366235	11.0661642150975	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS08380	ABZR88_RS08380		RagB/SusD family nutrient uptake outer membrane protein	-2.57345571774215	-5.1128100796763	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS08380	ABZR88_RS08380		RagB/SusD family nutrient uptake outer membrane protein	-2.53180517617232	-5.21811447395108	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS08380	ABZR88_RS08380		RagB/SusD family nutrient uptake outer membrane protein	-2.5281951547789	-5.98528429851071	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS08380	ABZR88_RS08380		RagB/SusD family nutrient uptake outer membrane protein	-2.13928966086188	-6.63237032953394	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS08395	ABZR88_RS08395		hypothetical protein	-1.67349993278322	-5.43826829852834	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS08395	ABZR88_RS08395		hypothetical protein	-1.63384076027819	-5.27947022240851	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS08395	ABZR88_RS08395		hypothetical protein	-1.27494397263989	-6.18353381099347	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS08400	ABZR88_RS08400		hypothetical protein	-1.95905603278962	-6.30012070455628	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS08400	ABZR88_RS08400		hypothetical protein	-1.58659022479461	-5.42502926857456	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS08490	ABZR88_RS08490		RagB/SusD family nutrient uptake outer membrane protein	-3.27062536805841	-9.87556803898751	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS08490	ABZR88_RS08490		RagB/SusD family nutrient uptake outer membrane protein	-3.25478800571978	-10.4715678497419	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS08490	ABZR88_RS08490		RagB/SusD family nutrient uptake outer membrane protein	-3.01142001438573	-8.44648886934888	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS08490	ABZR88_RS08490		RagB/SusD family nutrient uptake outer membrane protein	-2.72883366330725	-8.25219637438535	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS08495	ABZR88_RS08495		TonB-dependent receptor	-2.67825690137849	-13.7124122759993	TRUE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS08495	ABZR88_RS08495		TonB-dependent receptor	-2.66172209561357	-13.1548039998627	TRUE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS08495	ABZR88_RS08495		TonB-dependent receptor	-2.63367031358444	-12.7106805359319	TRUE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS08495	ABZR88_RS08495		TonB-dependent receptor	-2.55022385433411	-11.8109226295383	TRUE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS08500	ABZR88_RS08500		hybrid sensor histidine kinase/response regulator transcription factor	-2.620882133567	-15.0564820519522	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS08500	ABZR88_RS08500		hybrid sensor histidine kinase/response regulator transcription factor	-2.43962149005212	-14.9393164692916	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS08500	ABZR88_RS08500		hybrid sensor histidine kinase/response regulator transcription factor	-2.38045527485374	-14.7778034168582	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS08500	ABZR88_RS08500		hybrid sensor histidine kinase/response regulator transcription factor	-2.16559843113614	-12.392731019261	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS09455	ABZR88_RS09455		PhoH family protein	-1.52326981101144	-6.52318655208989	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS09455	ABZR88_RS09455		PhoH family protein	-1.36129070156353	-5.28970653113526	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS09455	ABZR88_RS09455		PhoH family protein	-1.26661030660006	-5.27967522441136	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS09455	ABZR88_RS09455		PhoH family protein	-1.19462468451152	-5.83021601026108	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS09545	ABZR88_RS09545		PLP-dependent aspartate aminotransferase family protein	-1.42745236761601	-8.2301606237705	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS09545	ABZR88_RS09545		PLP-dependent aspartate aminotransferase family protein	-1.38796071412018	-7.03568759549197	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS09545	ABZR88_RS09545		PLP-dependent aspartate aminotransferase family protein	-1.36721252136646	-5.68517727442848	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS09545	ABZR88_RS09545		PLP-dependent aspartate aminotransferase family protein	-1.1970989601586	-5.10506528576818	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS10340	ABZR88_RS10340		pitrilysin family protein	-1.40455589141943	-5.92423879235041	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS10380	ABZR88_RS10380		DUF4251 domain-containing protein	-2.53273958836154	-5.36386362976492	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS10380	ABZR88_RS10380		DUF4251 domain-containing protein	-2.24230544912569	-7.96546540273385	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS10380	ABZR88_RS10380		DUF4251 domain-containing protein	-2.17478609230558	-6.09966187019913	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS10380	ABZR88_RS10380		DUF4251 domain-containing protein	-2.07787302500848	-6.26684072482093	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS10385	ABZR88_RS10385		ATP-binding cassette domain-containing protein	-1.81950545004875	-6.97865933442685	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS10445	ABZR88_RS10445		response regulator	1.003021168144	7.87168224320213	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS10445	ABZR88_RS10445		response regulator	1.08708606990733	8.12077686114399	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS10445	ABZR88_RS10445		response regulator	1.17132235549524	8.81736250664873	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS10490	ABZR88_RS10490		UxaA family hydrolase	-4.80824651019569	-13.6304639553702	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS10490	ABZR88_RS10490		UxaA family hydrolase	-4.56693567412135	-11.7237346206231	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS10490	ABZR88_RS10490		UxaA family hydrolase	-4.45893098347828	-12.2634199738284	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS10490	ABZR88_RS10490		UxaA family hydrolase	-4.41957523799964	-10.8829080329158	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS10495	ABZR88_RS10495		tagaturonate reductase	-4.41434902235514	-15.292418975135	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS10495	ABZR88_RS10495		tagaturonate reductase	-4.37946879934997	-17.4045037153011	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS10495	ABZR88_RS10495		tagaturonate reductase	-4.02093971905286	-11.4465270852749	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS10495	ABZR88_RS10495		tagaturonate reductase	-3.99216628699966	-14.3492319224914	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS10530	ABZR88_RS10530		LacI family DNA-binding transcriptional regulator	-1.52924886795731	-6.60572208670324	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS10530	ABZR88_RS10530		LacI family DNA-binding transcriptional regulator	-1.39994377528032	-6.87057315702515	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS10530	ABZR88_RS10530		LacI family DNA-binding transcriptional regulator	-1.32028568777646	-7.27007318293989	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS10565	ABZR88_RS10565		thioredoxin family protein	-1.59231340607849	-8.57621242590717	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS10565	ABZR88_RS10565		thioredoxin family protein	-1.45165501434993	-7.04573809249919	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS10565	ABZR88_RS10565		thioredoxin family protein	-1.32933871674863	-6.61623410436924	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS10565	ABZR88_RS10565		thioredoxin family protein	-1.15606387656925	-6.4414118232203	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS11570	ABZR88_RS11570		nicotinate phosphoribosyltransferase	1.11400949477583	6.35974069773525	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS11570	ABZR88_RS11570		nicotinate phosphoribosyltransferase	1.18518642988664	8.32023127896436	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS11570	ABZR88_RS11570		nicotinate phosphoribosyltransferase	1.24389921795081	9.4089214620911	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS11675	ABZR88_RS11675		alpha/beta fold hydrolase	1.1933621722656	5.28331291120588	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS11675	ABZR88_RS11675		alpha/beta fold hydrolase	1.22197416447278	5.42436737248164	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS11675	ABZR88_RS11675		alpha/beta fold hydrolase	1.4076665797518	5.85765856639294	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS11675	ABZR88_RS11675		alpha/beta fold hydrolase	1.53800442473206	8.88097064231553	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS11740	ABZR88_RS11740		YggS family pyridoxal phosphate-dependent enzyme	-1.52228773014624	-6.82260115970037	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS11740	ABZR88_RS11740		YggS family pyridoxal phosphate-dependent enzyme	-1.49180736324983	-5.92164006035169	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS11740	ABZR88_RS11740		YggS family pyridoxal phosphate-dependent enzyme	-1.48609135292997	-5.22343688431961	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS11850	ABZR88_RS11850		putative sensor domain DACNV-containing protein	2.3877113051428	14.2183081299748	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS11850	ABZR88_RS11850		putative sensor domain DACNV-containing protein	2.49656970253933	14.3065843883763	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS11850	ABZR88_RS11850		putative sensor domain DACNV-containing protein	2.5264319683668	12.0588350356798	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS11850	ABZR88_RS11850		putative sensor domain DACNV-containing protein	2.60829662806205	15.3286435006368	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS11995	ABZR88_RS11995		ABC transporter ATP-binding protein	-2.35339750903252	-6.43616329691338	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS11995	ABZR88_RS11995		ABC transporter ATP-binding protein	-2.20872307726677	-8.39897019325558	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS11995	ABZR88_RS11995		ABC transporter ATP-binding protein	-1.9819153505467	-7.77255097436125	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS11995	ABZR88_RS11995		ABC transporter ATP-binding protein	-1.85515208184989	-7.50442387468855	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS12010	ABZR88_RS12010		MBL fold metallo-hydrolase	1.3496774003421	5.24968934896584	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS12010	ABZR88_RS12010		MBL fold metallo-hydrolase	1.42358753783856	5.73414187648727	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS12010	ABZR88_RS12010		MBL fold metallo-hydrolase	1.61612613313845	8.29957604976133	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS12010	ABZR88_RS12010		MBL fold metallo-hydrolase	1.67851296524571	5.71383588677703	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS12535	ABZR88_RS12535		TetR/AcrR family transcriptional regulator	1.46405123701014	8.30887505267145	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS12925	ABZR88_RS12925		FecR family protein	1.31857062859722	5.78212944951354	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS12925	ABZR88_RS12925		FecR family protein	1.37152318343215	5.46726031814523	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS13435	ABZR88_RS13435		acetyl-CoA C-acyltransferase	1.62948529563586	6.13032043618835	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS13435	ABZR88_RS13435		acetyl-CoA C-acyltransferase	1.69190867526894	7.33035212413319	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS13435	ABZR88_RS13435		acetyl-CoA C-acyltransferase	1.81622770604674	5.71422442505858	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS13440	ABZR88_RS13440		3-hydroxyacyl-CoA dehydrogenase/enoyl-CoA hydratase family protein	1.02550141519246	5.56975953046023	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS13440	ABZR88_RS13440		3-hydroxyacyl-CoA dehydrogenase/enoyl-CoA hydratase family protein	1.06027507785812	5.02274020797987	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS13810	ABZR88_RS13810		SDR family NAD(P)-dependent oxidoreductase	-4.24148374348807	-5.90296449041355	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS13810	ABZR88_RS13810		SDR family NAD(P)-dependent oxidoreductase	-4.15178888194355	-6.56871899605019	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS13810	ABZR88_RS13810		SDR family NAD(P)-dependent oxidoreductase	-3.99118442153285	-5.40353859723093	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS14685	ABZR88_RS14685		long-chain fatty acid--CoA ligase	2.71733743009569	15.9212113642107	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS14685	ABZR88_RS14685		long-chain fatty acid--CoA ligase	2.79279584009833	16.5825227400365	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS14685	ABZR88_RS14685		long-chain fatty acid--CoA ligase	3.05872053242459	13.6032065253156	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS14685	ABZR88_RS14685		long-chain fatty acid--CoA ligase	3.21639162648452	16.0105953895043	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS15185	ABZR88_RS15185		lactate utilization protein B	-1.50671839225103	-5.90190944178759	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS15335	ABZR88_RS15335		peroxiredoxin	-2.5846528927729	-5.15345082453945	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS15525	ABZR88_RS15525		DUF2147 domain-containing protein	1.68591139257189	7.50053341991123	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS15525	ABZR88_RS15525		DUF2147 domain-containing protein	1.83031097418705	7.12178908725207	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS15710	ABZR88_RS15710		YqjF family protein	1.22620852940112	6.35679290434235	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS16200	ABZR88_RS16200		MFS transporter	-4.05599948737354	-10.2214409473989	TRUE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS16200	ABZR88_RS16200		MFS transporter	-4.02611283642879	-11.5198361965242	TRUE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS16200	ABZR88_RS16200		MFS transporter	-3.94636074600051	-11.9876482101572	TRUE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS16200	ABZR88_RS16200		MFS transporter	-3.07751355760181	-10.2128187547117	TRUE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS16255	ABZR88_RS16255		AI-2E family transporter	1.12737752457428	6.350673205948	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS16255	ABZR88_RS16255		AI-2E family transporter	1.25557316681232	7.36352543253766	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS16255	ABZR88_RS16255		AI-2E family transporter	1.54507819093293	8.91639150101365	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS16255	ABZR88_RS16255		AI-2E family transporter	1.66586794094267	8.46982402423811	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS16320	ABZR88_RS16320		hypothetical protein	-1.58564276965601	-5.89969027959383	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS16320	ABZR88_RS16320		hypothetical protein	-1.5352537970357	-5.05428182672771	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS16460	ABZR88_RS16460		catalase/peroxidase HPI	-2.88482107774843	-6.29330154529631	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS16460	ABZR88_RS16460		catalase/peroxidase HPI	-2.65061736704152	-7.14206409302397	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS16460	ABZR88_RS16460		catalase/peroxidase HPI	-2.59642439585547	-7.42235769113577	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS16460	ABZR88_RS16460		catalase/peroxidase HPI	-1.63476315092174	-8.09978946185765	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS16685	ABZR88_RS16685		HAMP domain-containing sensor histidine kinase	-1.6335307485515	-6.42629098179015	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS16695	ABZR88_RS16695		glycoside hydrolase family 130 protein	2.41435354691517	14.4651647614069	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS16695	ABZR88_RS16695		glycoside hydrolase family 130 protein	2.46319715404909	17.1430887007754	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS16695	ABZR88_RS16695		glycoside hydrolase family 130 protein	2.61899217368592	13.6719776148662	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS16695	ABZR88_RS16695		glycoside hydrolase family 130 protein	2.67442528680428	13.5275199841499	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS16900	ABZR88_RS16900		hypothetical protein	-1.82542495685473	-5.50573649593511	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS16935	ABZR88_RS16935		nitrate reductase	-2.49492671445299	-7.90953189421267	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS16935	ABZR88_RS16935		nitrate reductase	-2.443753085504	-7.46393408400657	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS16935	ABZR88_RS16935		nitrate reductase	-1.98710805466298	-7.66645480732206	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS16935	ABZR88_RS16935		nitrate reductase	-1.35211455231919	-5.67627744311116	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS17050	ABZR88_RS17050		DNA mismatch repair protein MutS	1.82499782941673	6.14169376152029	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS17050	ABZR88_RS17050		DNA mismatch repair protein MutS	1.86286337573354	5.86209598661991	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS17410	ABZR88_RS17410		OmpH family outer membrane protein	1.47049755765374	6.92029467670342	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS17410	ABZR88_RS17410		OmpH family outer membrane protein	1.56539884993559	6.84174214319343	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS17410	ABZR88_RS17410		OmpH family outer membrane protein	1.68259082671475	7.3611854060169	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS17865	ABZR88_RS17865		glycoside hydrolase family 28 protein	-2.21310353028749	-8.49601965544956	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS17865	ABZR88_RS17865		glycoside hydrolase family 28 protein	-1.93786347886573	-6.44465661791337	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS18225	ABZR88_RS18225		M42 family metallopeptidase	-2.38602798898104	-5.83408514918006	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS19120	ABZR88_RS19120		S41 family peptidase	1.57730117971625	7.19546050383004	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS19120	ABZR88_RS19120		S41 family peptidase	1.74310624896132	7.35702978416876	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS19120	ABZR88_RS19120		S41 family peptidase	1.88005342532754	9.18223092484651	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS19120	ABZR88_RS19120		S41 family peptidase	1.97632762670974	8.58229463530715	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS19730	ABZR88_RS19730		S8 family serine peptidase	-2.00282959410719	-8.36839310343427	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS19730	ABZR88_RS19730		S8 family serine peptidase	-1.74942964956915	-8.69614482025551	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS19840	ABZR88_RS19840		PspC domain-containing protein	2.13550864547778	7.16005808308007	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS19840	ABZR88_RS19840		PspC domain-containing protein	2.25696911381308	6.24711512312904	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS19840	ABZR88_RS19840		PspC domain-containing protein	2.29532126575229	7.44329827425797	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS19840	ABZR88_RS19840		PspC domain-containing protein	2.52197583207523	7.57379862342636	FALSE
+carbon source	set5S684	polygalacturonic acid	ABZR88_RS19850	ABZR88_RS19850		outer membrane beta-barrel family protein	1.74788127254514	6.6800862877732	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS19850	ABZR88_RS19850		outer membrane beta-barrel family protein	1.93117723036462	7.63656651745176	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS19850	ABZR88_RS19850		outer membrane beta-barrel family protein	1.95105558994523	7.21955843610149	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS19850	ABZR88_RS19850		outer membrane beta-barrel family protein	1.97142024445416	7.63713990803117	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS20875	ABZR88_RS20875		type II toxin-antitoxin system RelE/ParE family toxin	1.34397502086735	5.46904765135479	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS20995	ABZR88_RS20995		PIG-L family deacetylase	-2.22274123836662	-8.10539815968041	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS20995	ABZR88_RS20995		PIG-L family deacetylase	-1.67668891036854	-6.04881771544014	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS20995	ABZR88_RS20995		PIG-L family deacetylase	-1.56421228947417	-6.3691259258749	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS21485	ABZR88_RS21485		response regulator transcription factor	1.53507900332099	6.8692942760259	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS21485	ABZR88_RS21485		response regulator transcription factor	1.60245785061237	5.06311668369323	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS21485	ABZR88_RS21485		response regulator transcription factor	1.63014118163013	7.79407679426942	FALSE
+carbon source	set5S696	polygalacturonic acid	ABZR88_RS21600	ABZR88_RS21600		molybdopterin molybdotransferase MoeA	-1.77147077110653	-5.72639394335425	FALSE
+carbon source	set5S695	polygalacturonic acid	ABZR88_RS22115	ABZR88_RS22115		NADPH dehydrogenase NamA	-3.30777963548936	-5.09399508389617	FALSE
+carbon source	set5S683	polygalacturonic acid	ABZR88_RS22115	ABZR88_RS22115		NADPH dehydrogenase NamA	-3.25576635390948	-5.33484462471003	FALSE
+in planta	set1S645	Plant=Brachypodium_distachyon; PlantTreatment=None; Sample=rhizosphere; GrowthSubstrate=0.5X_MS_agar; Collection=outgrowth_R2A; Time=7_days	ABZR88_RS00290	ABZR88_RS00290		mannonate dehydratase	-1.38565311527803	-7.0540332756653	FALSE
+in planta	set1S646	Plant=Brachypodium_distachyon; PlantTreatment=None; Sample=rhizosphere; GrowthSubstrate=0.5X_MS_agar; Collection=outgrowth_R2A; Time=7_days	ABZR88_RS00290	ABZR88_RS00290		mannonate dehydratase	-1.06960534181361	-7.5665849776715	FALSE
+in planta	set1S645	Plant=Brachypodium_distachyon; PlantTreatment=None; Sample=rhizosphere; GrowthSubstrate=0.5X_MS_agar; Collection=outgrowth_R2A; Time=7_days	ABZR88_RS14840	ABZR88_RS14840		sodium/sugar symporter	-1.29989767795375	-7.73622497499075	FALSE
+in planta	set1S645	Plant=Brachypodium_distachyon; PlantTreatment=None; Sample=rhizosphere; GrowthSubstrate=0.5X_MS_agar; Collection=outgrowth_R2A; Time=7_days	ABZR88_RS14850	ABZR88_RS14850		RagB/SusD family nutrient uptake outer membrane protein	-1.00705435911865	-7.162804017467	FALSE
+in planta	set1S645	Plant=Brachypodium_distachyon; PlantTreatment=None; Sample=rhizosphere; GrowthSubstrate=0.5X_MS_agar; Collection=outgrowth_R2A; Time=7_days	ABZR88_RS14865	ABZR88_RS14865		LacI family DNA-binding transcriptional regulator	-1.17592613043443	-5.13979136624526	FALSE
+motility_chemotaxis	set3S657		ABZR88_RS14235	ABZR88_RS14235		glycosyltransferase family 2 protein	1.60132057438803	6.10752926958599	FALSE
+motility_chemotaxis	set3S656		ABZR88_RS15950	ABZR88_RS15950		hypothetical protein	1.68379493700467	7.3398799167714	FALSE
+motility_chemotaxis	set3S645		ABZR88_RS17585	ABZR88_RS17585		hypothetical protein	-4.15342602692883	-8.93102689141252	FALSE
+no stress control	set2S194		ABZR88_RS10100	ABZR88_RS10100		2,3-diphosphoglycerate-dependent phosphoglycerate mutase	1.0788480543125	5.23118102298266	FALSE
+stress	set2S199	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS05710	ABZR88_RS05710		dienelactone hydrolase family protein	1.47430032113645	8.41834290801274	FALSE
+stress	set2S199	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS07910	ABZR88_RS07910		Rossmann-like and DUF2520 domain-containing protein	1.9703847550499	6.69398545726473	FALSE
+stress	set2S198	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08810	ABZR88_RS08810		bifunctional hydroxymethylpyrimidine kinase/phosphomethylpyrimidine kinase	-1.59617658900296	-11.0573836369127	FALSE
+stress	set2S246	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08810	ABZR88_RS08810		bifunctional hydroxymethylpyrimidine kinase/phosphomethylpyrimidine kinase	-1.49211111481564	-8.37138358993667	FALSE
+stress	set2S198	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08815	ABZR88_RS08815		HesA/MoeB/ThiF family protein	-1.64834271637436	-11.0713807648649	FALSE
+stress	set2S246	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08815	ABZR88_RS08815		HesA/MoeB/ThiF family protein	-1.19101470080533	-6.13321009463492	FALSE
+stress	set2S246	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08820	ABZR88_RS08820		2-iminoacetate synthase ThiH	-1.61111377873883	-9.26084987699715	FALSE
+stress	set2S198	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08820	ABZR88_RS08820		2-iminoacetate synthase ThiH	-1.50810900190654	-7.31756037224664	FALSE
+stress	set2S246	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08825	ABZR88_RS08825		thiazole synthase	-1.56516172648544	-8.05848991234489	FALSE
+stress	set2S198	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08825	ABZR88_RS08825		thiazole synthase	-1.53886010013691	-8.64165791111497	FALSE
+stress	set2S198	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08840	ABZR88_RS08840		phosphomethylpyrimidine synthase ThiC	-1.47983310411657	-9.28303999783104	FALSE
+stress	set2S246	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS08840	ABZR88_RS08840		phosphomethylpyrimidine synthase ThiC	-1.4440379382705	-8.98010387158464	FALSE
+stress	set2S199	6-methoxy-2(3H)-benzoxazolone	ABZR88_RS12540	ABZR88_RS12540		efflux RND transporter periplasmic adaptor subunit	-1.48636150584812	-5.6164410939402	FALSE
+stress	set2S196	Apigenin	ABZR88_RS08820	ABZR88_RS08820		2-iminoacetate synthase ThiH	-1.42333726529881	-7.66422661634162	FALSE
+stress	set1S582	copper (II) chloride dihydrate	ABZR88_RS12225	ABZR88_RS12225		ABC transporter ATP-binding protein	-1.28722626776028	-9.44311100176407	FALSE
+stress	set1S630	copper (II) chloride dihydrate	ABZR88_RS12225	ABZR88_RS12225		ABC transporter ATP-binding protein	-1.18342306369541	-7.88888204402992	FALSE
+stress	set1S631	potassium fluoride	ABZR88_RS11640	ABZR88_RS11640		sodium-translocating pyrophosphatase	-5.32063075085476	-21.4235280636857	FALSE
+stress	set1S583	potassium fluoride	ABZR88_RS11640	ABZR88_RS11640		sodium-translocating pyrophosphatase	-5.17106336524413	-19.6027197783354	FALSE
+stress	set1S583	potassium fluoride	ABZR88_RS22105	ABZR88_RS22105		voltage-gated chloride channel family protein	-4.46283547606318	-14.6230424380531	FALSE
+stress	set1S631	potassium fluoride	ABZR88_RS22105	ABZR88_RS22105		voltage-gated chloride channel family protein	-4.05567530899	-16.216945680458	FALSE
+temperature	set3S641		ABZR88_RS01485	ABZR88_RS01485		SUMF1/EgtB/PvdO family nonheme iron enzyme	1.28601393713623	8.84658086790889	FALSE

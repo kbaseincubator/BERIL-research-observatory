@@ -1,0 +1,17 @@
+project_root/
+├── data/                          # All data files (parquet, json, caches)
+├── figures/                       # Plots and heatmaps
+├── models/                        # Trained .cbm and platt .pkl files
+├── src/                           # Shared Python modules
+│   └── feature_extraction.py      # Feature extraction functions (AA, kmer, ESM‑2, etc.)
+├── notebooks/
+│   ├── 01_Data_Preparation.ipynb          # Build initial labelled dataset (Spark)
+│   ├── 02_Integrate_Downloaded_Data.ipynb # Parse & merge FitnessBrowser organisms
+│   ├── 03_Feature_Engineering.ipynb       # Compute all feature sets → parquet caches
+│   ├── 04_Feature_Evaluation.ipynb        # Compare combinations → best_feature_combination.json
+│   ├── 05_Model_Training.ipynb            # Train final per‑stressor models (organism‑free)
+│   ├── 06_Model_Evaluation.ipynb          # Hold‑out metrics, taxonomic novelty, LOGO, isolate predictions
+│   ├── 07_Ensemble_Model_Training.ipynb   # (Optional) Train models with order + genome features
+│   ├── 08_General_Essentiality_Model.ipynb# (Optional) Single multi‑stressor model
+│   └── 09_Isolate_Prediction.ipynb        # Standalone isolate prediction with trained models
+└── README.md

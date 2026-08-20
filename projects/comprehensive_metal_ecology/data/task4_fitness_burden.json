@@ -1,0 +1,10 @@
+{
+  "n": 1094,
+  "lambda": 0.6637,
+  "fit_resistance_beta": 0.011142950438694127,
+  "fit_resistance_SE": 0.004631721532364731,
+  "fit_resistance_p": 0.01630325730576354,
+  "fit_transport_beta": -0.0027365257934790967,
+  "fit_transport_SE": 0.004121389249309883,
+  "fit_transport_p": 0.5068426369914958
+}
