@@ -159,6 +159,10 @@ Skills are invoked automatically based on context, or explicitly with `/skill-na
 
 BERIL CLI commands (`beril doctor`, `beril setup`, `beril start`) handle environment management outside the agent session. `beril start --agent <name>` launches Claude Code, Codex, Gemini CLI or omp. With `--agent omp`, session transcripts are written under `~/.beril/omp-sessions/<checkout>/` — in `$HOME`, which persists across BERDL pod restarts where the checkout does not — and the path is printed at launch, so a session can be handed to a transcript reader afterwards.
 
+For automation, [the Parquet staging CLI](docs/parquet-staging-cli.md) provides
+a plan-first, non-interactive upload, ingest, and source-verification path. It
+stages data only; canonical promotion remains a separate authorized operation.
+
 ---
 
 ### Getting BERDL Access

@@ -33,22 +33,30 @@ print_preflight_plan(table_stats, namespace, mode, bucket, bronze_prefix,
                      progress_key, confirmed, user_namespace=None)
     Print upload/ingest plan. Shows user_namespace when provided. Raises if confirmed=False.
 
-upload_files(minio_client, bucket, table_stats, bronze_prefix, file_ext)
+upload_files(minio_client, bucket, table_stats, bronze_prefix, file_ext,
+             force=False, verify_sha256=False)
     Upload data files to MinIO bronze. Chunked tables are skipped here —
-    their chunk files are uploaded one-by-one during ingest.
+    their chunk files are uploaded one-by-one during ingest. The guarded
+    automation path forces replacement and verifies stored SHA-256 digests.
 
 run_ingest(spark, minio_client, table_stats, schemas, schema_defs, namespace,
            tenant, dataset, bucket, bronze_prefix, mode, file_ext,
            delimiter, progress_key)
     Ingest all tables into Iceberg silver. Returns the (possibly reconnected) spark.
 
-verify_ingest(spark, namespace, table_stats, minio_client, bucket, progress_key)
-    Query row counts and compare against expected. Prints results.
+verify_ingest(spark, namespace, table_stats, minio_client, bucket, progress_key,
+              bronze_prefix=None)
+    Compare Iceberg row counts against the SOURCE data, print the results, and
+    return a structured verification outcome.
+    Text sources use the source-file line count; Parquet sources are counted
+    with spark.read.parquet against the uploaded bronze object, which is what
+    bronze_prefix locates. Without it, Parquet tables report UNVERIFIED.
 """
 
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import json
 import logging
@@ -543,25 +551,32 @@ def build_table_stats(
             schemas[table] = ", ".join(f"{c} STRING" for c in cols)
             print(f"  {table}: no schema found — defaulting all {len(cols)} columns to STRING")
 
-    print(f"Analyzing {len(source_files)} table(s) — counting lines...")
+    print(f"Analyzing {len(source_files)} table(s)...")
     for f in source_files:
         table      = f.stem
         size_bytes = f.stat().st_size
         size_gb    = size_bytes / 1e9
-        wait_note  = "  (large file — may take several minutes)" if size_gb > 10 else ""
-        print(f"  {f.name}: {size_gb:.1f} GB{wait_note}", end=" ", flush=True)
-        total_lines = _count_lines(f)
-        data_lines  = max(total_lines - 1, 0)   # exclude header
-
-        # Parquet uses Spark's native reader — pandas chunking is not supported.
         if f.suffix == ".parquet":
-            chunk_size, n_chunks = data_lines, 1
-        elif chunked_ingest and size_bytes > chunk_target_bytes and data_lines > 0:
-            chunk_size = max(1, round(data_lines * chunk_target_bytes / size_bytes))
-            n_chunks   = math.ceil(data_lines / chunk_size)
+            # A newline count over binary Parquet content is neither a row count
+            # nor useful planning evidence. The uploaded source is counted with
+            # Spark during verification instead.
+            data_lines = None
+            chunk_size, n_chunks = None, 1
+            print(f"  {f.name}: {size_gb:.1f} GB -> rows verified after upload")
         else:
-            chunk_size = data_lines
-            n_chunks   = 1
+            wait_note = "  (large file — may take several minutes)" if size_gb > 10 else ""
+            print(f"  {f.name}: {size_gb:.1f} GB{wait_note}", end=" ", flush=True)
+            total_lines = _count_lines(f)
+            data_lines = max(total_lines - 1, 0)   # exclude header
+            if chunked_ingest and size_bytes > chunk_target_bytes and data_lines > 0:
+                chunk_size = max(1, round(data_lines * chunk_target_bytes / size_bytes))
+                n_chunks = math.ceil(data_lines / chunk_size)
+            else:
+                chunk_size = data_lines
+                n_chunks = 1
+            note = (f"{n_chunks} chunks x ~{chunk_size:,} lines"
+                    if n_chunks > 1 else "single ingest")
+            print(f"-> {data_lines:,} data lines  [{note}]")
 
         table_stats[table] = {
             "path":       f,
@@ -571,9 +586,6 @@ def build_table_stats(
             "n_chunks":   n_chunks,
             "chunked":    n_chunks > 1,
         }
-        note = (f"{n_chunks} chunks x ~{chunk_size:,} lines"
-                if n_chunks > 1 else "single ingest")
-        print(f"-> {data_lines:,} data lines  [{note}]")
 
     return table_stats
 
@@ -688,6 +700,7 @@ def print_preflight_plan(
     progress_key: str,
     confirmed: bool,
     user_namespace: str | None = None,
+    plan_only: bool = False,
 ) -> None:
     """Print the upload and ingest plan.
 
@@ -722,12 +735,18 @@ def print_preflight_plan(
             print(f"  {table:<45s}  {s['n_chunks']} chunks x ~{s['chunk_size']:,} lines"
                   f"  (~{chunk_gb:.1f} GB each)  [CHUNKED]")
         else:
-            print(f"  {table:<45s}  {s['data_lines']:,} lines  [single ingest]")
+            rows = s["data_lines"]
+            detail = (f"{rows:,} lines" if rows is not None
+                      else "rows verified after upload")
+            print(f"  {table:<45s}  {detail}  [single ingest]")
 
     print(f"\nProgress log : s3a://{bucket}/{progress_key}")
     print(f"Ingest mode  : {mode}")
     print("=" * W)
 
+    if plan_only:
+        print("PLAN ONLY — no upload or ingest operation was performed.")
+        return
     if not confirmed:
         raise RuntimeError(
             "\nReview the plan above.\n"
@@ -747,6 +766,28 @@ def _minio_object_size(minio_client, bucket: str, key: str) -> int:
         if any(tag in str(e) for tag in ("NoSuchKey", "does not exist", "404")):
             return -1
         raise
+
+
+def _sha256_file(path: Path) -> str:
+    """Return a streaming SHA-256 digest without loading a source into memory."""
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        while chunk := stream.read(8 * 1024 * 1024):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _sha256_object(minio_client, bucket: str, key: str) -> str:
+    """Stream one stored object and return its SHA-256 digest."""
+    response = minio_client.get_object(bucket, key)
+    digest = hashlib.sha256()
+    try:
+        while chunk := response.read(8 * 1024 * 1024):
+            digest.update(chunk)
+    finally:
+        response.close()
+        response.release_conn()
+    return digest.hexdigest()
 
 
 def _verify_chunk_upload(
@@ -828,12 +869,19 @@ def upload_files(
     table_stats: dict,
     bronze_prefix: str,
     file_ext: str,
-) -> None:
+    force: bool = False,
+    verify_sha256: bool = False,
+) -> dict[str, str]:
     """Upload all data files to MinIO bronze.
 
     Skips any file whose size already matches the remote object, so re-running
-    after a partial upload only uploads what is missing.
+    after a partial upload only uploads what is missing. ``force`` plus
+    ``verify_sha256`` is the guarded automation path: it replaces every object,
+    streams it back from object storage, and returns the verified SHA-256 digest.
     """
+    if verify_sha256 and not force:
+        raise ValueError("SHA-256 verification requires forced object replacement")
+    verified_digests: dict[str, str] = {}
     print("Checking / uploading data files...")
     for table, s in table_stats.items():
         if s["chunked"]:
@@ -844,10 +892,12 @@ def upload_files(
         local_size  = s["size_bytes"]
         remote_size = _minio_object_size(minio_client, bucket, key)
 
-        if remote_size == local_size:
+        if remote_size == local_size and not force:
             print(f"  {table}: {local_size / 1e9:.1f} GB — already in MinIO, skipping")
             continue
-        if remote_size != -1:
+        if force and remote_size != -1:
+            print(f"  {table}: replacing existing {remote_size:,} B object")
+        elif remote_size != -1:
             print(f"  {table}: size mismatch "
                   f"(local {local_size:,} B vs MinIO {remote_size:,} B) — re-uploading")
         else:
@@ -856,7 +906,19 @@ def upload_files(
         minio_client.fput_object(bucket, key, str(s["path"]))
         print(f"done  -> s3a://{bucket}/{key}")
 
+        if verify_sha256:
+            local_digest = _sha256_file(s["path"])
+            observed = _sha256_object(minio_client, bucket, key)
+            if observed != local_digest:
+                raise RuntimeError(
+                    f"[verify] SHA-256 mismatch for s3a://{bucket}/{key}; "
+                    "the stored object does not match the selected source"
+                )
+            verified_digests[table] = observed
+            print(f"  [verify] s3a://{bucket}/{key}  SHA-256 OK")
+
     print("\nUpload complete.")
+    return verified_digests
 
 
 # ── Progress log ───────────────────────────────────────────────────────────────
@@ -1171,7 +1233,9 @@ def run_ingest(
         print("=" * 60)
         print(f"Ingesting {len(pending_non_chunked)} non-chunked table(s) via pipeline:")
         for t, s in pending_non_chunked.items():
-            print(f"  {t}: {s['data_lines']:,} rows | {s['size_bytes'] / 1e9:.1f} GB")
+            rows = s["data_lines"]
+            row_summary = f"{rows:,} rows" if rows is not None else "rows pending verification"
+            print(f"  {t}: {row_summary} | {s['size_bytes'] / 1e9:.1f} GB")
 
         cfg = _build_dataset_config(
             tenant, dataset, bucket, bronze_prefix,
@@ -1195,7 +1259,17 @@ def run_ingest(
         now = datetime.now(timezone.utc).isoformat()
         for tbl_result in (result or {}).get("tables", []):
             table     = tbl_result["name"]
-            rows_done = tbl_result.get("rows_written", table_stats[table]["data_lines"])
+            # Record the ingest result for progress and resume decisions. Independent
+            # verification below derives its expected count from the source instead.
+            # Text sources preserve the historical line-count fallback for an older
+            # pipeline that omits `rows_written`; binary sources must report the count.
+            rows_done = tbl_result.get("rows_written")
+            if rows_done is None:
+                rows_done = table_stats[table]["data_lines"]
+            if rows_done is None:
+                raise RuntimeError(
+                    f"ingest() omitted rows_written for binary source table {table}"
+                )
             _append_progress(minio_client, bucket, progress_key, {
                 "table": table, "chunk": 0,
                 "start_line": 1, "end_line": rows_done,
@@ -1250,6 +1324,42 @@ def run_ingest(
 
 # ── Verification ───────────────────────────────────────────────────────────────
 
+def _expected_from_source(spark, table_stats: dict, table: str,
+                          bucket: str, bronze_prefix: str | None):
+    """Expected row count for `table`, taken from the SOURCE data.
+
+    Returns ``(count, basis)``, or ``(None, reason)`` when the source cannot be
+    counted. `basis` is printed so an operator can see what was actually
+    compared rather than having to infer it.
+
+    Text sources: the line count is the row count, so `data_lines` is used
+    directly, as it was before the Parquet fix.
+
+    Parquet: `_count_lines` on binary content is meaningless, so the source is
+    counted with Spark's own reader against the uploaded bronze object. This
+    needs no new dependency, and deliberately does not fall back to the
+    progress log's `total_rows`: that value comes from the same run being
+    checked, so comparing it to Iceberg cannot detect the pipeline dropping
+    source rows.
+    """
+    stats = table_stats[table]
+    suffix = Path(str(stats["path"])).suffix
+
+    if suffix != ".parquet":
+        return stats["data_lines"], "source lines"
+
+    if not bronze_prefix:
+        return None, "parquet source not counted (bronze_prefix not supplied)"
+
+    uri = f"s3a://{bucket}/{bronze_prefix}/{table}{suffix}"
+    try:
+        return spark.read.parquet(uri).count(), "source parquet"
+    except Exception:  # noqa: BLE001 - any reader failure is "unverifiable"
+        # Do not copy provider diagnostics into the credential-free outcome or
+        # console. The URI is reconstructable from the declared plan.
+        return None, "source parquet unreadable"
+
+
 def verify_ingest(
     spark,
     namespace: str,
@@ -1257,20 +1367,66 @@ def verify_ingest(
     minio_client,
     bucket: str,
     progress_key: str,
-) -> None:
-    """Query row counts from Iceberg and compare against expected line counts.
+    bronze_prefix: str | None = None,
+) -> dict:
+    """Query Iceberg row counts and compare them against the SOURCE data.
 
-    Prints a pass/fail summary for each table and flags any mismatches.
+    The comparison is source-versus-destination, so it can catch the pipeline
+    silently dropping rows. Text sources use the source-file line count;
+    Parquet sources are counted with `spark.read.parquet` against the uploaded
+    bronze object, because a line count of binary content is meaningless and
+    produced false MISMATCHes before.
+
+    Checking against the progress log's `total_rows` instead would compare the
+    run's own report to its own output and could not detect row loss, which is
+    why `bronze_prefix` is needed rather than reusing the log.
+
+    Tables absent from the progress log are flagged INCOMPLETE. Tables whose
+    source cannot be counted are flagged UNVERIFIED with the reason, never
+    silently passed. Prints a pass/fail summary for each table.
     """
     print("=" * 60)
     print("VERIFICATION")
     print("=" * 60)
 
     progress_log = _load_progress_log(minio_client, bucket, progress_key)
-    all_match    = True
+    complete_from_log = {
+        e["table"]
+        for e in progress_log
+        if e.get("status") == "complete" and "total_rows" in e
+    }
+    all_match = True
+    table_results = []
 
-    print("Row counts (Iceberg vs expected):")
-    for table, stats in table_stats.items():
+    print("Row counts (Iceberg vs source):")
+    for table in table_stats:
+        if table not in complete_from_log:
+            print(f"  {table:<45s}  {'(not in progress log)':>32}  [INCOMPLETE]")
+            all_match = False
+            table_results.append({
+                "table": table,
+                "status": "incomplete",
+                "source_rows": None,
+                "destination_rows": None,
+                "source_basis": None,
+            })
+            continue
+
+        expected, basis = _expected_from_source(
+            spark, table_stats, table, bucket, bronze_prefix
+        )
+        if expected is None:
+            print(f"  {table:<45s}  {basis:>32}  [UNVERIFIED]")
+            all_match = False
+            table_results.append({
+                "table": table,
+                "status": "unverified",
+                "source_rows": None,
+                "destination_rows": None,
+                "source_basis": basis,
+            })
+            continue
+
         # Quote each segment of a (possibly dotted, multi-level Iceberg) namespace
         # separately — backtick-quoting the whole "tenant.dataset" as one identifier
         # makes Spark look for a schema literally named "tenant.dataset".
@@ -1278,11 +1434,18 @@ def verify_ingest(
         count    = spark.sql(
             f"SELECT COUNT(*) FROM {fqn}"
         ).collect()[0][0]
-        expected = stats["data_lines"]
         match    = "OK" if count == expected else "MISMATCH"
         if count != expected:
             all_match = False
-        print(f"  {table:<45s}  {count:>12,}  expected {expected:>12,}  [{match}]")
+        table_results.append({
+            "table": table,
+            "status": "verified" if count == expected else "mismatch",
+            "source_rows": expected,
+            "destination_rows": count,
+            "source_basis": basis,
+        })
+        print(f"  {table:<45s}  {count:>12,}  expected {expected:>12,} "
+              f"({basis})  [{match}]")
 
     print("\nProgress log summary:")
     for e in progress_log:
@@ -1295,6 +1458,12 @@ def verify_ingest(
         print("All row counts match. Ingest successful.")
         print(f"Namespace : {namespace}   (query this in BERDL)")
     else:
-        print("Row count mismatch detected.")
+        print("Verification failed; see per-table statuses above.")
         print(f"  Namespace    : {namespace}")
         print(f"  Progress log : s3a://{bucket}/{progress_key}")
+
+    return {
+        "verified": all_match,
+        "namespace": namespace,
+        "tables": table_results,
+    }

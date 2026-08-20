@@ -297,6 +297,12 @@ print(f"  → s3a://cdm-lake/{BRONZE_PREFIX}/metadata/")
 
 ### Step 4: Generate, configure, and run the ingest notebook
 
+The non-interactive `scripts/ingest_dataset.py` command currently initializes
+the off-cluster client and is therefore not the in-cluster entry point. Keep the
+notebook path below on JupyterHub, where Spark and object-store clients require
+the explicit bypass from Step 0b. Both paths reuse the same `ingest_lib`
+upload, ingest, progress, and source-verification functions.
+
 Copy the in-cluster template into the source directory:
 
 ```bash

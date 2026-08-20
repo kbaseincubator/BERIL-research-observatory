@@ -410,6 +410,14 @@ Confirm to the user:
 
 ### Step 4: Generate, configure, and run the ingest notebook
 
+For a Parquet-only directory that must be staged non-interactively, prefer
+`scripts/ingest_dataset.py` and follow `docs/parquet-staging-cli.md`. Run its
+plan-only form first and wait for explicit confirmation before adding
+`--execute-staging`. The command reuses `ingest_lib`, writes a machine-readable
+verification outcome, and cannot promote a canonical namespace. Continue with
+the notebook workflow below for CSV, TSV, SQLite, user-tenant, interactive
+metadata, or other cases the staging CLI does not support.
+
 Copy the reference template into the source directory, named after the dataset:
 
 ```bash
@@ -573,6 +581,8 @@ push a corrected `completed` record.
 - `scripts/bootstrap_client.sh`: create `.venv-berdl` and install base query packages.
 - `scripts/bootstrap_ingest.sh`: install ingest-specific packages on top of `.venv-berdl`.
 - `scripts/ingest_preflight.py`: print the pre-flight ingest plan (no Spark required). Run before executing the ingest notebook to review upload sizes and chunk counts.
+- `scripts/ingest_dataset.py`: plan or execute Parquet-only staging and emit an
+  immutable, credential-free verification outcome; never promotes canonical tables.
 
 ## References
 
