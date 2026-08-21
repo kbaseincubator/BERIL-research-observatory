@@ -363,6 +363,27 @@ Markers and `beril.yaml.submissions[]` are managed exclusively by this step. `su
    Re-run `/submit` to retry the upload — it will skip the approval step
    and only retry the upload.
    ```
+   **When the error is an authorization failure on the destination tenant** (`Insufficient permissions`, `Access Denied`), append this to the marker. Without it the reader concludes they are blocked until a steward acts, when a working destination may already be available to them:
+   ```markdown
+   This is an authorization block, not a credential or data problem. The archive
+   destination defaults to `tenant-general-warehouse/microbialdiscoveryforge`. If you
+   have write access to another tenant path, either pass it directly:
+
+       python tools/lakehouse_upload.py {project_id} --tenant-path <path>
+
+   or export it before re-running `/submit`:
+
+       export BERIL_UPLOAD_TENANT_PATH=<path>
+
+   The path is bucket-relative and must not end in `projects`, which is appended.
+   `lakehouse_upload.py` reads the process environment and does not load `.env`, so a
+   value written only to `.env` has no effect on the upload.
+
+   `--list` and `--validate` honour the same override, so you will still find the
+   project yourself. Anyone who looks without that override set will not, which is why
+   this keeps you working rather than resolving anything: also ask a steward of the
+   default tenant for `read_write`.
+   ```
    Omit the `Archive key (partial)` line when the failure is a hard error (exit 1) with no archive written. Include it whenever the upload script emitted JSON containing `archive_key` (exit 0 but rehash-failed in Phase 3b.5, or exit 2 partial-success).
 3. Status stays `complete`. Update `README.md` `## Status` to add a parenthetical:
    ```
