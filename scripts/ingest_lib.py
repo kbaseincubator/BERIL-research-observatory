@@ -42,8 +42,12 @@ run_ingest(spark, minio_client, table_stats, schemas, schema_defs, namespace,
            delimiter, progress_key)
     Ingest all tables into Iceberg silver. Returns the (possibly reconnected) spark.
 
-verify_ingest(spark, namespace, table_stats, minio_client, bucket, progress_key)
-    Query row counts and compare against expected. Prints results.
+verify_ingest(spark, namespace, table_stats, minio_client, bucket, progress_key,
+              bronze_prefix=None)
+    Compare Iceberg row counts against the SOURCE data and print the results.
+    Text sources use the source-file line count; Parquet sources are counted
+    with spark.read.parquet against the uploaded bronze object, which is what
+    bronze_prefix locates. Without it, Parquet tables report UNVERIFIED.
 """
 
 from __future__ import annotations
@@ -1195,6 +1199,10 @@ def run_ingest(
         now = datetime.now(timezone.utc).isoformat()
         for tbl_result in (result or {}).get("tables", []):
             table     = tbl_result["name"]
+            # Record the ingest result for progress and resume decisions. Independent
+            # verification below derives its expected count from the source instead.
+            # The fallback preserves the historical progress format when an older
+            # pipeline result omits `rows_written`.
             rows_done = tbl_result.get("rows_written", table_stats[table]["data_lines"])
             _append_progress(minio_client, bucket, progress_key, {
                 "table": table, "chunk": 0,
@@ -1250,6 +1258,40 @@ def run_ingest(
 
 # ── Verification ───────────────────────────────────────────────────────────────
 
+def _expected_from_source(spark, table_stats: dict, table: str,
+                          bucket: str, bronze_prefix: str | None):
+    """Expected row count for `table`, taken from the SOURCE data.
+
+    Returns ``(count, basis)``, or ``(None, reason)`` when the source cannot be
+    counted. `basis` is printed so an operator can see what was actually
+    compared rather than having to infer it.
+
+    Text sources: the line count is the row count, so `data_lines` is used
+    directly, as it was before the Parquet fix.
+
+    Parquet: `_count_lines` on binary content is meaningless, so the source is
+    counted with Spark's own reader against the uploaded bronze object. This
+    needs no new dependency, and deliberately does not fall back to the
+    progress log's `total_rows`: that value comes from the same run being
+    checked, so comparing it to Iceberg cannot detect the pipeline dropping
+    source rows.
+    """
+    stats = table_stats[table]
+    suffix = Path(str(stats["path"])).suffix
+
+    if suffix != ".parquet":
+        return stats["data_lines"], "source lines"
+
+    if not bronze_prefix:
+        return None, "parquet source not counted (bronze_prefix not supplied)"
+
+    uri = f"s3a://{bucket}/{bronze_prefix}/{table}{suffix}"
+    try:
+        return spark.read.parquet(uri).count(), "source parquet"
+    except Exception as exc:  # noqa: BLE001 - any reader failure is "unverifiable"
+        return None, f"parquet source unreadable at {uri}: {exc}"
+
+
 def verify_ingest(
     spark,
     namespace: str,
@@ -1257,20 +1299,51 @@ def verify_ingest(
     minio_client,
     bucket: str,
     progress_key: str,
+    bronze_prefix: str | None = None,
 ) -> None:
-    """Query row counts from Iceberg and compare against expected line counts.
+    """Query Iceberg row counts and compare them against the SOURCE data.
 
-    Prints a pass/fail summary for each table and flags any mismatches.
+    The comparison is source-versus-destination, so it can catch the pipeline
+    silently dropping rows. Text sources use the source-file line count;
+    Parquet sources are counted with `spark.read.parquet` against the uploaded
+    bronze object, because a line count of binary content is meaningless and
+    produced false MISMATCHes before.
+
+    Checking against the progress log's `total_rows` instead would compare the
+    run's own report to its own output and could not detect row loss, which is
+    why `bronze_prefix` is needed rather than reusing the log.
+
+    Tables absent from the progress log are flagged INCOMPLETE. Tables whose
+    source cannot be counted are flagged UNVERIFIED with the reason, never
+    silently passed. Prints a pass/fail summary for each table.
     """
     print("=" * 60)
     print("VERIFICATION")
     print("=" * 60)
 
     progress_log = _load_progress_log(minio_client, bucket, progress_key)
+    complete_from_log = {
+        e["table"]
+        for e in progress_log
+        if e.get("status") == "complete" and "total_rows" in e
+    }
     all_match    = True
 
-    print("Row counts (Iceberg vs expected):")
-    for table, stats in table_stats.items():
+    print("Row counts (Iceberg vs source):")
+    for table in table_stats:
+        if table not in complete_from_log:
+            print(f"  {table:<45s}  {'(not in progress log)':>32}  [INCOMPLETE]")
+            all_match = False
+            continue
+
+        expected, basis = _expected_from_source(
+            spark, table_stats, table, bucket, bronze_prefix
+        )
+        if expected is None:
+            print(f"  {table:<45s}  {basis:>32}  [UNVERIFIED]")
+            all_match = False
+            continue
+
         # Quote each segment of a (possibly dotted, multi-level Iceberg) namespace
         # separately — backtick-quoting the whole "tenant.dataset" as one identifier
         # makes Spark look for a schema literally named "tenant.dataset".
@@ -1278,11 +1351,11 @@ def verify_ingest(
         count    = spark.sql(
             f"SELECT COUNT(*) FROM {fqn}"
         ).collect()[0][0]
-        expected = stats["data_lines"]
         match    = "OK" if count == expected else "MISMATCH"
         if count != expected:
             all_match = False
-        print(f"  {table:<45s}  {count:>12,}  expected {expected:>12,}  [{match}]")
+        print(f"  {table:<45s}  {count:>12,}  expected {expected:>12,} "
+              f"({basis})  [{match}]")
 
     print("\nProgress log summary:")
     for e in progress_log:
