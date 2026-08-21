@@ -27,11 +27,11 @@ spark_url = f"sc://jupyter-{os.environ['USER']}.jupyterhub-prod:15002/;use_ssl=f
 spark = SparkSession.builder.remote(spark_url).getOrCreate()
 
 # Direct MinIO (env vars are pre-set on-cluster)
-endpoint = os.environ["MINIO_ENDPOINT_URL"].replace("https://","").replace("http://","")
+endpoint = os.environ["S3_ENDPOINT_URL"].replace("https://","").replace("http://","")
 minio_client = Minio(endpoint,
-    access_key=os.environ["MINIO_ACCESS_KEY"],
-    secret_key=os.environ["MINIO_SECRET_KEY"],
-    secure=os.environ.get("MINIO_SECURE","true").lower()=="true")
+    access_key=os.environ["S3_ACCESS_KEY"],
+    secret_key=os.environ["S3_SECRET_KEY"],
+    secure=os.environ.get("S3_SECURE","true").lower()=="true")
 
 # Register with the berdl_notebook_utils stubs that ingest_lib sets up on import
 sys.modules["berdl_notebook_utils.setup_spark_session"].get_spark_session = lambda **kw: spark

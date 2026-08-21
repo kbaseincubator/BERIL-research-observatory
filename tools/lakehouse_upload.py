@@ -163,7 +163,13 @@ def _check_mc_alias():
     rc, _out, _err = _mc("alias", "list", MC_ALIAS)
     if rc != 0:
         print(f"ERROR: mc alias '{MC_ALIAS}' not configured.", file=sys.stderr)
-        print("Run: mc alias set berdl-minio $MINIO_ENDPOINT_URL $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY", file=sys.stderr)
+        # This line previously named three different schemes at once (MINIO_*, then
+        # AWS_*), none of which a current pod sets. The variables are S3_*.
+        print(
+            "Run: bash scripts/configure_mc.sh   # resolves the credentials for you\n"
+            f"Or:  mc alias set {MC_ALIAS} $S3_ENDPOINT_URL $S3_ACCESS_KEY $S3_SECRET_KEY",
+            file=sys.stderr,
+        )
         return False
     return True
 

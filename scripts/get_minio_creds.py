@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import shlex
 import shutil
 import subprocess
 import sys
@@ -65,15 +66,78 @@ def parse_remote_json(stdout: str) -> dict[str, Any] | None:
     return None
 
 
+DEFAULT_ENDPOINT_URL = "https://minio.berdl.kbase.us"
+
+# BERDL renamed these from MINIO_* to S3_* and no consumer was updated, so every
+# lookup here tries the current name first and the historical one second. Verified
+# on a pod 2026-08-14: only S3_ACCESS_KEY, S3_SECRET_KEY, S3_ENDPOINT_URL and
+# S3_SECURE are present; no MINIO_* variable exists. The fallback is kept for
+# older pod images rather than for the current one.
+ACCESS_KEY_NAMES = ("S3_ACCESS_KEY", "MINIO_ACCESS_KEY")
+SECRET_KEY_NAMES = ("S3_SECRET_KEY", "MINIO_SECRET_KEY")
+ENDPOINT_NAMES = ("S3_ENDPOINT_URL", "MINIO_ENDPOINT_URL")
+
+
+def _first(mapping: dict[str, Any], names: tuple[str, ...]) -> str | None:
+    """Return the first non-empty value among ``names``, or None."""
+    for name in names:
+        value = mapping.get(name)
+        if value:
+            return str(value)
+    return None
+
+
+SHELL_NAME_PAIRS = (
+    ("S3_ACCESS_KEY", "MINIO_ACCESS_KEY"),
+    ("S3_SECRET_KEY", "MINIO_SECRET_KEY"),
+    ("S3_ENDPOINT_URL", "MINIO_ENDPOINT_URL"),
+)
+
+
+def shell_exports(creds: dict[str, str]) -> list[str]:
+    """Lines for ``eval "$(get_minio_creds.py --shell)"``.
+
+    Values go through :func:`shlex.quote` rather than being wrapped in literal
+    single quotes. A secret containing a quote, a newline, or a ``$`` would
+    otherwise produce a broken line at best and an injection at worst, and the
+    caller is an ``eval``.
+
+    Both spellings are exported. Callers that predate the MINIO_ to S3_ rename
+    (``scripts/configure_mc.sh``, and anything a user already has in a shell)
+    still read the old names.
+    """
+    lines: list[str] = []
+    for canonical, legacy in SHELL_NAME_PAIRS:
+        quoted = shlex.quote(creds[canonical])
+        lines.append(f"export {canonical}={quoted}")
+        lines.append(f"export {legacy}={quoted}")
+    lines.append(f"# source={creds['source']}")
+    return lines
+
+
+def _searched() -> str:
+    """The variable names a failure looked for, per role, for error messages.
+
+    Split by role rather than run together: only the access and secret keys can
+    cause the failure, while the endpoint has a default and never does.
+    """
+    return (
+        f"    access key: {' then '.join(ACCESS_KEY_NAMES)}\n"
+        f"    secret key: {' then '.join(SECRET_KEY_NAMES)}\n"
+        f"    endpoint (optional, defaults to {DEFAULT_ENDPOINT_URL}): "
+        f"{' then '.join(ENDPOINT_NAMES)}"
+    )
+
+
 def resolve_from_local_env() -> dict[str, str] | None:
-    access_key = os.getenv("MINIO_ACCESS_KEY")
-    secret_key = os.getenv("MINIO_SECRET_KEY")
-    endpoint_url = os.getenv("MINIO_ENDPOINT_URL", "https://minio.berdl.kbase.us")
+    access_key = _first(dict(os.environ), ACCESS_KEY_NAMES)
+    secret_key = _first(dict(os.environ), SECRET_KEY_NAMES)
+    endpoint_url = _first(dict(os.environ), ENDPOINT_NAMES) or DEFAULT_ENDPOINT_URL
     if access_key and secret_key:
         return {
-            "MINIO_ACCESS_KEY": access_key,
-            "MINIO_SECRET_KEY": secret_key,
-            "MINIO_ENDPOINT_URL": endpoint_url,
+            "S3_ACCESS_KEY": access_key,
+            "S3_SECRET_KEY": secret_key,
+            "S3_ENDPOINT_URL": endpoint_url,
             "source": "local-env",
         }
     return None
@@ -93,13 +157,12 @@ def resolve_from_berdl_remote(bootstrap_remote: bool) -> dict[str, str] | None:
             print(spawn_result.stderr.strip(), file=sys.stderr)
             return None
 
+    # Ask the pod for both spellings and decide here, so the precedence rule lives
+    # in one place rather than being duplicated into a remote one-liner.
+    wanted = list(ACCESS_KEY_NAMES + SECRET_KEY_NAMES + ENDPOINT_NAMES)
     code = (
         "import json, os; "
-        "print(json.dumps({"
-        "'MINIO_ACCESS_KEY': os.getenv('MINIO_ACCESS_KEY'), "
-        "'MINIO_SECRET_KEY': os.getenv('MINIO_SECRET_KEY'), "
-        "'MINIO_ENDPOINT_URL': os.getenv('MINIO_ENDPOINT_URL', 'https://minio.berdl.kbase.us')"
-        "}))"
+        f"print(json.dumps({{n: os.getenv(n) for n in {wanted!r}}}))"
     )
     result = run(["berdl-remote", "python", code])
     if result.returncode != 0:
@@ -110,16 +173,16 @@ def resolve_from_berdl_remote(bootstrap_remote: bool) -> dict[str, str] | None:
     if not payload:
         return None
 
-    access_key = payload.get("MINIO_ACCESS_KEY")
-    secret_key = payload.get("MINIO_SECRET_KEY")
-    endpoint_url = payload.get("MINIO_ENDPOINT_URL") or "https://minio.berdl.kbase.us"
+    access_key = _first(payload, ACCESS_KEY_NAMES)
+    secret_key = _first(payload, SECRET_KEY_NAMES)
+    endpoint_url = _first(payload, ENDPOINT_NAMES) or DEFAULT_ENDPOINT_URL
     if not access_key or not secret_key:
         return None
 
     return {
-        "MINIO_ACCESS_KEY": access_key,
-        "MINIO_SECRET_KEY": secret_key,
-        "MINIO_ENDPOINT_URL": endpoint_url,
+        "S3_ACCESS_KEY": access_key,
+        "S3_SECRET_KEY": secret_key,
+        "S3_ENDPOINT_URL": endpoint_url,
         "source": "berdl-remote",
     }
 
@@ -134,16 +197,20 @@ def main() -> int:
 
     if creds is None:
         print(
-            "Could not resolve MinIO credentials from local env or berdl-remote.",
+            "Could not resolve object-store credentials.\n"
+            "  Variables looked for:\n"
+            f"{_searched()}\n"
+            f"  Sources tried: {args.env_file}, the local environment, "
+            "and berdl-remote.\n"
+            "  On a BERDL pod the current names are S3_ACCESS_KEY and S3_SECRET_KEY; "
+            "MINIO_* no longer exists there.\n"
+            "  This is a missing variable, not a rejected credential.",
             file=sys.stderr,
         )
         return 1
 
     if args.shell:
-        print(f"export MINIO_ACCESS_KEY='{creds['MINIO_ACCESS_KEY']}'")
-        print(f"export MINIO_SECRET_KEY='{creds['MINIO_SECRET_KEY']}'")
-        print(f"export MINIO_ENDPOINT_URL='{creds['MINIO_ENDPOINT_URL']}'")
-        print(f"# source={creds['source']}")
+        print("\n".join(shell_exports(creds)))
     else:
         print(json.dumps(creds, indent=2))
 

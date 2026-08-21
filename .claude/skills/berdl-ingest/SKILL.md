@@ -81,11 +81,11 @@ token        = os.environ["KBASE_AUTH_TOKEN"]
 spark_url    = f"sc://jupyter-{os.environ['USER']}.jupyterhub-prod:15002/;use_ssl=false;x-kbase-token={token}"
 spark        = SparkSession.builder.remote(spark_url).getOrCreate()
 
-endpoint     = os.environ["MINIO_ENDPOINT_URL"].replace("https://", "").replace("http://", "")
+endpoint     = os.environ["S3_ENDPOINT_URL"].replace("https://", "").replace("http://", "")
 minio_client = Minio(endpoint,
-    access_key=os.environ["MINIO_ACCESS_KEY"],
-    secret_key=os.environ["MINIO_SECRET_KEY"],
-    secure=os.environ.get("MINIO_SECURE", "true").lower() == "true")
+    access_key=os.environ["S3_ACCESS_KEY"],
+    secret_key=os.environ["S3_SECRET_KEY"],
+    secure=os.environ.get("S3_SECURE", "true").lower() == "true")
 
 # The Iceberg build of data_lakehouse_ingest looks up get_s3_client (renamed from
 # get_minio_client) — register both names on the stubs, plus the Spark session.
@@ -383,9 +383,11 @@ On re-run, the ingest cell reads the log and skips any table with `"status": "co
 - **Spark Connect build fails:** The JH environment or Spark sidecar is not configured
   correctly, or `KBASE_AUTH_TOKEN` / `USER` is unset. Report the error verbatim and stop
   — this is not a tunnel issue and cannot be fixed by the agent.
-- **MinIO client build fails:** The `MINIO_ENDPOINT_URL` / `MINIO_ACCESS_KEY` /
-  `MINIO_SECRET_KEY` env vars are not set in this JH environment. Report the error and
-  ask the user to check with a BERDL admin.
+- **MinIO client build fails:** The `S3_ENDPOINT_URL` / `S3_ACCESS_KEY` /
+  `S3_SECRET_KEY` env vars are not set in this JH environment. Check the names before
+  escalating: these were called `MINIO_*` on older images, so a `KeyError` on one
+  spelling may just mean the pod uses the other. Report the error and ask the user to
+  check with a BERDL admin.
 - **`ingest()` returns `success: false`:** Raise immediately — do not silently continue
   to the next table. Show the `errors` list from the report.
 - **Row count mismatch:** Check `s3a://cdm-lake/{BRONZE_PREFIX}/_ingest_progress.jsonl`

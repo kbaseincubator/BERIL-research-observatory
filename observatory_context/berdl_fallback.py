@@ -74,11 +74,12 @@ def _resolve_credentials() -> dict[str, str | None] | None:
     if remote is None:
         return None
     # Keep the resolved endpoint precedence (S3_ENDPOINT_URL/MINIO_ENDPOINT_URL)
-    # unless berdl-remote supplied one explicitly.
+    # unless berdl-remote supplied one explicitly. get_minio_creds returns the
+    # canonical S3_* keys regardless of which spelling the pod actually had.
     return {
-        "endpoint_url": remote.get("MINIO_ENDPOINT_URL") or settings["endpoint_url"],
-        "access_key": remote.get("MINIO_ACCESS_KEY"),
-        "secret_key": remote.get("MINIO_SECRET_KEY"),
+        "endpoint_url": remote.get("S3_ENDPOINT_URL") or settings["endpoint_url"],
+        "access_key": remote.get("S3_ACCESS_KEY"),
+        "secret_key": remote.get("S3_SECRET_KEY"),
     }
 
 

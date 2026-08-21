@@ -277,7 +277,7 @@ python tools/lakehouse_upload.py {project_id}
 
 The script archives all project files to `s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/{project_id}/`. If the `berdl-minio` `mc` alias isn't configured, set it up first:
 ```bash
-mc alias set berdl-minio $MINIO_ENDPOINT_URL $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+mc alias set berdl-minio $S3_ENDPOINT_URL $S3_ACCESS_KEY $S3_SECRET_KEY
 ```
 
 On a successful archive, the upload tool also submits the project files to the BERIL-managed context service so the knowledge layer can see the completed project. That step is handled entirely inside `lakehouse_upload.py` and is **best-effort**: it runs only when BERIL and the context service are available and the user is logged in, and if it is skipped or fails the lakehouse archive still succeeds (the tool reports it in its JSON but does not fail the upload). `/submit` needs no extra handling for it — the exit-code contract below is unchanged.
