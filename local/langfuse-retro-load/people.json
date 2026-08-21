@@ -1,0 +1,36 @@
+[
+  {
+    "person": "mamillerpa",
+    "user_id": "mamillerpa",
+    "role": "Observe",
+    "group": "NMDC",
+    "sources": [
+      {
+        "type": "workshop-frozen-corpus",
+        "find_root": "~/justin-trace-analysis/data/claudefiles/mamillerpa/.claude/projects",
+        "consent_bin": "team",
+        "force_event_day": ["4a1f0add-391b-4775-bc15-bd21c4e459ac"]
+      },
+      {
+        "type": "pod-live",
+        "find_root": "~/.claude/projects",
+        "consent_bin": null,
+        "force_event_day": []
+      }
+    ]
+  },
+  {
+    "person": "dkishore",
+    "user_id": "dkishore",
+    "role": "Observe",
+    "group": "KBase",
+    "sources": [
+      {
+        "type": "workshop-frozen-corpus",
+        "find_root": "~/justin-trace-analysis/data/claudefiles/dkishore/.claude/projects",
+        "consent_bin": "opt_in",
+        "force_event_day": []
+      }
+    ]
+  }
+]
